@@ -56,16 +56,9 @@ It's an independent project with its ongoing development made possible entirely 
 [![Join the forum at https://forum.metroui.org.ua](https://img.shields.io/badge/metro-forum-orange.svg)](https://forum.metroui.org.ua)
 
 
-### Whats new
-+ Full code refactoring and optimisation
-+ New components
-+ New plugin model
-+ Declarative approach to the definition of components
-+ Framework itself monitors components, pressure via ajax
-+ Framework itself monitors components attributes to change
-+ Create cool page without knowledge of javascript
+### Docs
 
- Documentation and Demo for v4: [metroui.org.ua](https://metroui.org.ua/) or short [m4.org.ua](https://m4.org.ua).   
+ Documentation and Demo: [metroui.org.ua](https://metroui.org.ua/)   
 
 ### Releases
 
