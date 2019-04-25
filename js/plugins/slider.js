@@ -168,8 +168,8 @@ var Slider = {
         var marker = slider.find(".marker");
         var hint = slider.find(".hint");
 
-        marker.on(Metro.events.start, function(){
-            $(document).on(Metro.events.move, function(e){
+        marker.on(Metro.events.startAll, function(){
+            $(document).on(Metro.events.moveAll, function(e){
                 if (o.hint === true && o.hintAlways !== true) {
                     hint.fadeIn();
                 }
@@ -181,9 +181,9 @@ var Slider = {
                 });
             });
 
-            $(document).on(Metro.events.stop, function(){
-                $(document).off(Metro.events.move);
-                $(document).off(Metro.events.stop);
+            $(document).on(Metro.events.stopAll, function(){
+                $(document).off(Metro.events.moveAll);
+                $(document).off(Metro.events.stopAll);
 
                 if (o.hintAlways !== true) {
                     hint.fadeOut();
