@@ -15,6 +15,7 @@
 + [x] Global setup: add using global object `metro{ComponentName}Setup` to set up all components on the page with own global options set.
 + [x] Resizable: fix toggle `canResize` property   
 + [x] Calendar picker: fix width for calendar wide
++ [x] Slider: change events to `startAll`, `moveAll`, `stopAll`
 
 ### 4.2.40
 + [x] Chat: new component
