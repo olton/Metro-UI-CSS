@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.41",
-    compileTime: "25/04/2019 09:09:36",
+    compileTime: "26/04/2019 10:54:17",
     buildNumber: "722",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -19488,6 +19488,11 @@ var StreamerDefaultConfig = {
     excludeSelectClass: "",
     excludeClickClass: "",
     excludeClass: "",
+
+    onDataLoad: Metro.noop,
+    onDataLoaded: Metro.noop,
+    onDataLoadError: Metro.noop,
+
     onStreamClick: Metro.noop,
     onStreamSelect: Metro.noop,
     onEventClick: Metro.noop,
@@ -19547,9 +19552,26 @@ var Streamer = {
         $("<div>").addClass("events-area").appendTo(element);
 
         if (o.source !== null) {
+
+            Utils.exec(o.onDataLoad, [o.source], element[0]);
+            element.fire("dataload", {
+                source: o.source
+            });
+
             $.get(o.source, function(data){
+                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                element.fire("dataloaded", {
+                    source: o.source,
+                    data: data
+                });
                 that.data = data;
                 that.build();
+            }).fail(function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+                element.fire("dataloaderror", {
+                    source: o.source,
+                    xhr: xhr
+                });
             });
         } else {
             this.data = o.data;
@@ -19649,6 +19671,9 @@ var Streamer = {
 
                 if (stream_item.events !== undefined) {
                     $.each(stream_item.events, function(event_index){
+
+                        console.log(Array.isArray(this));
+
                         var event_item = this;
                         var _icon;
                         var sid = stream_index+":"+event_index;
@@ -20062,28 +20087,44 @@ var Streamer = {
 
         o.source = new_source;
 
-        $.get(o.source, function(data){
-            that.data = data;
-            that.build();
+        Utils.exec(o.onDataLoad, [o.source], element[0]);
+        element.fire("dataload", {
+            source: o.source
         });
 
-        element.trigger("sourcechanged");
+        $.get(o.source, function(data){
+            Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+            element.fire("dataloaded", {
+                source: o.source,
+                data: data
+            });
+            that.data = data;
+            that.build();
+        }).fail(function(xhr){
+            Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+            element.fire("dataloaderror", {
+                source: o.source,
+                xhr: xhr
+            });
+        });
+
+        element.fire("sourcechange");
     },
 
-    changeData: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
-        var new_data = element.attr("data-data");
+    changeData: function(data){
+        var that = this, element = this.element, o = this.options;
+        var old_data = this.data;
 
-        if (String(new_data).trim() === "") {
-            return ;
-        }
+        o.data =  data ? data : JSON.parse(element.attr("data-data"));
 
-        o.data = new_data;
+        this.data = o.data;
 
-        this.data = JSON.parse(o.data);
         this.build();
 
-        element.trigger("datachanged");
+        element.fire("datachange", {
+            oldData: old_data,
+            newData: o.data
+        });
     },
 
     changeStreamSelectOption: function(){

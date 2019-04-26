@@ -16,6 +16,8 @@
 + [x] Resizable: fix toggle `canResize` property   
 + [x] Calendar picker: fix width for calendar wide
 + [x] Slider: change events to `startAll`, `moveAll`, `stopAll`
++ [x] Streamer: add events `data-on-data-load`, `data-on-data-loaded`, `data-on-data-load-error` 
++ [x] Streamer: fix methods `changeSource`, `changeData`
 
 ### 4.2.40
 + [x] Chat: new component
