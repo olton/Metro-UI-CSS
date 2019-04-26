@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.41",
-    compileTime: "26/04/2019 10:54:17",
+    compileTime: "26/04/2019 14:43:37",
     buildNumber: "722",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -19650,6 +19650,7 @@ var Streamer = {
 
         if (data.streams !== undefined) {
             $.each(data.streams, function(stream_index){
+                var stream_height = 75, rows = 0;
                 var stream_item = this;
                 var stream = $("<div>").addClass("stream").addClass(this.cls).appendTo(streams);
                 stream
@@ -19671,10 +19672,8 @@ var Streamer = {
 
                 if (stream_item.events !== undefined) {
                     $.each(stream_item.events, function(event_index){
-
-                        console.log(Array.isArray(this));
-
                         var event_item = this;
+                        var row = event_item.row === undefined ? 1 : parseInt(event_item.row);
                         var _icon;
                         var sid = stream_index+":"+event_index;
                         var custom_html = event_item.custom !== undefined ? event_item.custom : "";
@@ -19693,10 +19692,16 @@ var Streamer = {
 
 
                         var left = timeline.find(".js-time-point-"+this.time.replace(":", "-"))[0].offsetLeft - stream.outerWidth();
+                        var top = 75 * (row - 1);
+
+                        if (row > rows) {
+                            rows = row;
+                        }
 
                         event.css({
                             position: "absolute",
-                            left: left
+                            left: left,
+                            top: top
                         });
 
 
@@ -19746,6 +19751,14 @@ var Streamer = {
                     var last_child = stream_events.find(".stream-event:last-child");
                     if (last_child.length > 0) stream_events.outerWidth(last_child[0].offsetLeft + last_child.outerWidth());
                 }
+
+                stream_events.css({
+                    height: stream_height * rows
+                });
+
+                element.find(".stream").eq(stream_events.index()).css({
+                    height: stream_height * rows
+                })
             });
         }
 

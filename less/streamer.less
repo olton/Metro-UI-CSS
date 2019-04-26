@@ -177,7 +177,8 @@
     }
 
     .stream-events {
-        height: 75px;
+        min-height: 75px;
+        height: auto;
         width: auto;
         position: relative;
         display: flex;
@@ -194,7 +195,8 @@
 
     .stream-event {
         width: @streamItemWidth - 2;
-        height: ~"calc(100% - 3px)";
+        //height: ~"calc(100% - 3px)";
+        height: 72px;
         border: 1px solid @grayWhite;
         margin: 2px 1px;
         background-color: @white;

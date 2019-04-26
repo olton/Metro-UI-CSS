@@ -18,6 +18,7 @@
 + [x] Slider: change events to `startAll`, `moveAll`, `stopAll`
 + [x] Streamer: add events `data-on-data-load`, `data-on-data-loaded`, `data-on-data-load-error` 
 + [x] Streamer: fix methods `changeSource`, `changeData`
++ [x] Streamer: add property `row` for event
 
 ### 4.2.40
 + [x] Chat: new component

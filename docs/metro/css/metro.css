@@ -24757,7 +24757,8 @@ figure img {
   margin-top: -1px;
 }
 .streamer .stream-events {
-  height: 75px;
+  min-height: 75px;
+  height: auto;
   width: auto;
   position: relative;
   display: -webkit-box;
@@ -24776,7 +24777,7 @@ figure img {
 }
 .streamer .stream-event {
   width: 222px;
-  height: calc(100% - 3px);
+  height: 72px;
   border: 1px solid #f5f5f5;
   margin: 2px 1px;
   background-color: #ffffff;
