@@ -46,6 +46,22 @@
                     "clsClosedIcon": "fg-red"
                 },
                 {
+                    "icon": "images/olshanskysmall.jpg",
+                    "time": "09:00",
+                    "title": "Alexandr Olshansky",
+                    "subtitle": "Internet Invest Group",
+                    "desc": "Information revolution - the way to new middle ages",
+                    "size": 1,
+                    "selected": 0,
+                    "closed": true,
+                    "closedIcon": "<span class='mif-video-camera'></span>",
+                    "openIcon": "<span class='mif-apps'></span>",
+                    "target": "https://2017.iforum.ua/reporter/?id=99#video-365",
+                    "cls": "exclude-click-class cls1",
+                    "clsClosedIcon": "fg-red",
+                    "row": 2
+                },
+                {
                     "icon": "images/ambass.jpg",
                     "time": "09:20",
                     "title": "Marie Yovanovitch",
