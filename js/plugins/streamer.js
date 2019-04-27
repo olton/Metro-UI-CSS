@@ -237,50 +237,55 @@ var Streamer = {
                         });
 
 
-                        var slide = $("<div>").addClass("stream-event-slide").appendTo(event);
-                        var slide_logo = $("<div>").addClass("slide-logo").appendTo(slide);
-                        var slide_data = $("<div>").addClass("slide-data").appendTo(slide);
+                        if (Utils.isNull(event_item.html)) {
 
-                        if (event_item.icon !== undefined) {
-                            if (Utils.isTag(event_item.icon)) {
-                                $(event_item.icon).addClass("icon").appendTo(slide_logo);
-                            } else {
-                                $("<img>").addClass("icon").attr("src", event_item.icon).appendTo(slide_logo);
+                            var slide = $("<div>").addClass("stream-event-slide").appendTo(event);
+                            var slide_logo = $("<div>").addClass("slide-logo").appendTo(slide);
+                            var slide_data = $("<div>").addClass("slide-data").appendTo(slide);
+
+                            if (event_item.icon !== undefined) {
+                                if (Utils.isTag(event_item.icon)) {
+                                    $(event_item.icon).addClass("icon").appendTo(slide_logo);
+                                } else {
+                                    $("<img>").addClass("icon").attr("src", event_item.icon).appendTo(slide_logo);
+                                }
                             }
-                        }
 
-                        $("<span>").addClass("time").css({
-                            backgroundColor: bg,
-                            color: fg
-                        }).html(event_item.time).appendTo(slide_logo);
+                            $("<span>").addClass("time").css({
+                                backgroundColor: bg,
+                                color: fg
+                            }).html(event_item.time).appendTo(slide_logo);
 
-                        $("<div>").addClass("title").html(event_item.title).appendTo(slide_data);
-                        $("<div>").addClass("subtitle").html(event_item.subtitle).appendTo(slide_data);
-                        $("<div>").addClass("desc").html(event_item.desc).appendTo(slide_data);
+                            $("<div>").addClass("title").html(event_item.title).appendTo(slide_data);
+                            $("<div>").addClass("subtitle").html(event_item.subtitle).appendTo(slide_data);
+                            $("<div>").addClass("desc").html(event_item.desc).appendTo(slide_data);
 
-                        if (o.closed === false && (element.attr("id") === StreamerIDS_i && StreamerIDS_a.indexOf(sid) !== -1) || event_item.selected === true || parseInt(event_item.selected) === 1) {
-                            event.addClass("selected");
-                        }
+                            if (o.closed === false && (element.attr("id") === StreamerIDS_i && StreamerIDS_a.indexOf(sid) !== -1) || event_item.selected === true || parseInt(event_item.selected) === 1) {
+                                event.addClass("selected");
+                            }
 
-                        if (o.closed === true || event_item.closed === true || parseInt(event_item.closed) === 1) {
-                            _icon = event_item.closedIcon !== undefined ? Utils.isTag(event_item.closedIcon) ? event_item.closedIcon : "<span>"+event_item.closedIcon+"</span>" : Utils.isTag(o.defaultClosedIcon) ? o.defaultClosedIcon : "<span>"+o.defaultClosedIcon+"</span>";
-                            $(_icon).addClass("state-icon").addClass(event_item.clsClosedIcon).appendTo(slide);
-                            event
-                                .data("closed", true)
-                                .data("target", event_item.target);
-                            event.append(custom_html_open);
+                            if (o.closed === true || event_item.closed === true || parseInt(event_item.closed) === 1) {
+                                _icon = event_item.closedIcon !== undefined ? Utils.isTag(event_item.closedIcon) ? event_item.closedIcon : "<span>" + event_item.closedIcon + "</span>" : Utils.isTag(o.defaultClosedIcon) ? o.defaultClosedIcon : "<span>" + o.defaultClosedIcon + "</span>";
+                                $(_icon).addClass("state-icon").addClass(event_item.clsClosedIcon).appendTo(slide);
+                                event
+                                    .data("closed", true)
+                                    .data("target", event_item.target);
+                                event.append(custom_html_open);
+                            } else {
+                                _icon = event_item.openIcon !== undefined ? Utils.isTag(event_item.openIcon) ? event_item.openIcon : "<span>" + event_item.openIcon + "</span>" : Utils.isTag(o.defaultOpenIcon) ? o.defaultOpenIcon : "<span>" + o.defaultOpenIcon + "</span>";
+                                $(_icon).addClass("state-icon").addClass(event_item.clsOpenIcon).appendTo(slide);
+                                event
+                                    .data("closed", false);
+                                event.append(custom_html_close);
+                            }
+
+                            event.append(custom_html);
                         } else {
-                            _icon = event_item.openIcon !== undefined ? Utils.isTag(event_item.openIcon) ? event_item.openIcon : "<span>"+event_item.openIcon+"</span>"  : Utils.isTag(o.defaultOpenIcon) ? o.defaultOpenIcon : "<span>"+o.defaultOpenIcon+"</span>";
-                            $(_icon).addClass("state-icon").addClass(event_item.clsOpenIcon).appendTo(slide);
-                            event
-                                .data("closed", false);
-                            event.append(custom_html_close);
+                            event.html(event_item.html);
                         }
-
-                        event.append(custom_html);
                     });
 
-                    var last_child = stream_events.find(".stream-event:last-child");
+                    var last_child = stream_events.find(".stream-event").last();
                     if (last_child.length > 0) stream_events.outerWidth(last_child[0].offsetLeft + last_child.outerWidth());
                 }
 
