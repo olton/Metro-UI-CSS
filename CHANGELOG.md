@@ -19,6 +19,7 @@
 + [x] Streamer: add events `data-on-data-load`, `data-on-data-loaded`, `data-on-data-load-error` 
 + [x] Streamer: fix methods `changeSource`, `changeData`
 + [x] Streamer: add property `row` for event
++ [x] Streamer: add property `html` for event with custom html
 
 ### 4.2.40
 + [x] Chat: new component
