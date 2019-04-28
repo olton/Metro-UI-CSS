@@ -35,7 +35,7 @@ If you'd like to join them, please consider:
 
 <h3 align="center">Silver sponsors</h3>
 <div align="center">
-<a href="https://interactivity.com.ua"><img src="https://metroui.org.ua/images/Interactivity.png"></a>
+<a href="https://interactivity.com.ua"><img src="https://metroui.org.ua/images/Interactivity.png" style="height: 100px"></a>
 </div>
 
 <!--
