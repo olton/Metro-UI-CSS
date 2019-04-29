@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "29/04/2019 12:42:10",
+    compileTime: "29/04/2019 13:04:18",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17272,7 +17272,9 @@ var Select = {
             } else {
                 element.val(item.value);
                 input.html(html);
-                element.trigger("change");
+                element.fire("change", {
+                    val: item.value
+                });
                 l.addClass("active");
             }
         }
