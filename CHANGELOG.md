@@ -2,6 +2,7 @@
 + [x] General: improved components initialization
 + [x] Hotkeys: now you can add `hotkey` at runtime
 + [x] Select: fix cyclic error when `Uncaught ReferenceError: function is not defined` for `onchange` event
++ [x] Card: add class `flex-card` to create card in flex model
 
 ### 4.2.41
 + [x] List: add event `data-on-data-load-error`
