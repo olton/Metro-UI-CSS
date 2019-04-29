@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "29/04/2019 13:04:18",
+    compileTime: "29/04/2019 14:46:11",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20597,9 +20597,7 @@ var Table = {
 
         Utils.exec(o.onTableCreate, [element], element[0]);
 
-        setImmediate(function(){
-            element.fire("tablecreate");
-        })
+        element.fire("tablecreate");
     },
 
     _service: function(){

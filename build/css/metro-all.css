@@ -31202,6 +31202,27 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 * + .card {
   margin-top: 1rem;
 }
+.card.flex-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+.card.flex-card .card-header,
+.card.flex-card .card-footer {
+  height: 57px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+}
+.card.flex-card .card-footer {
+  margin-top: auto;
+}
 .tile-small,
 .tile-medium,
 .tile-wide,

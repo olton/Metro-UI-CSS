@@ -79,3 +79,20 @@
 * + .card {
     margin-top: 1rem;
 }
+
+.card {
+    &.flex-card {
+        display: flex;
+        flex-flow: column;
+
+        .card-header, .card-footer {
+            height: 57px;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        .card-footer {
+            margin-top: auto;
+        }
+    }
+}
