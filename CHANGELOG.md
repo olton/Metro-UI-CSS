@@ -1,6 +1,7 @@
 ### 4.2.42
 + [x] General: improved components initialization
-+ [x] Hotkeys: now you can add hotkey at runtime
++ [x] Hotkeys: now you can add `hotkey` at runtime
++ [x] Select: fix cyclic error when `Uncaught ReferenceError: function is not defined` for `onchange` event
 
 ### 4.2.41
 + [x] List: add event `data-on-data-load-error`
