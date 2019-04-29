@@ -1,3 +1,7 @@
+### 4.2.42
++ [x] General: improved components initialization
++ [x] Hotkeys: now you can add hotkey at runtime
+
 ### 4.2.41
 + [x] List: add event `data-on-data-load-error`
 + [x] List: add item template with property `template`
