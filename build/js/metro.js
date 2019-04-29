@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "29/04/2019 14:46:11",
+    compileTime: "29/04/2019 15:04:32",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -320,7 +320,7 @@ var Metro = {
                 if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
                     if (mutation.attributeName === 'data-hotkey') {
 
-                        Metro.initHotkeys([mutation.target]);
+                        Metro.initHotkeys([mutation.target], true);
 
                     } else {
                         var element = $(mutation.target);
@@ -409,9 +409,8 @@ var Metro = {
         return this;
     },
 
-    initHotkeys: function(hotkeys){
+    initHotkeys: function(hotkeys, redefine){
         $.each(hotkeys, function(){
-            'use strict';
             var element = $(this);
             var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
 
@@ -419,8 +418,12 @@ var Metro = {
                 return;
             }
 
-            if (element.data('hotKeyBonded') === true ) {
+            if (element.data('hotKeyBonded') === true && !Utils.bool(redefine)) {
                 return;
+            }
+
+            if (element.data('hotKeyBonded') === true && Utils.bool(redefine)) {
+                $(document).off(Metro.events.keyup, null, hotkey);
             }
 
             Metro.hotkeys.push(hotkey);
