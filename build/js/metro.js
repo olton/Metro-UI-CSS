@@ -1,6 +1,6 @@
 /*
  * Metro 4 Components Library v4.2.42  (https://metroui.org.ua)
- * Copyright 2019 Sergey Pimenov
+ * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
 
@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "30/04/2019 20:41:21",
+    compileTime: "02/05/2019 17:39:01",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14748,6 +14748,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var func;
 
+        node=$(node);
+
         if (!node.hasClass("node-group")) {
             return ;
         }
@@ -14787,6 +14789,8 @@ var ListView = {
         if (node === null) {
             target = element;
         } else {
+
+            node=$(node);
 
             if (!node.hasClass("node-group")) {
                 return ;
@@ -14846,6 +14850,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var new_node, parent_node, list;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         new_node = this._createNode(data);
@@ -14867,6 +14873,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var new_node, parent_node, list;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         new_node = this._createNode(data);
@@ -14887,6 +14895,8 @@ var ListView = {
     del: function(node){
         var element = this.element, o = this.options;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         var parent_list = node.closest("ul");
@@ -14905,6 +14915,8 @@ var ListView = {
 
     clean: function(node){
         var element = this.element, o = this.options;
+
+        node=$(node);
 
         if (!node.length) {return;}
 
