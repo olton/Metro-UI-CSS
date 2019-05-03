@@ -29,6 +29,7 @@ var StreamerDefaultConfig = {
     onStreamSelect: Metro.noop,
     onEventClick: Metro.noop,
     onEventSelect: Metro.noop,
+    onEventsScroll: Metro.noop,
     onStreamerCreate: Metro.noop
 };
 
@@ -440,19 +441,24 @@ var Streamer = {
 
         if (Utils.isTouchDevice() !== true) {
             element.on(Metro.events.mousewheel, ".events-area", function(e) {
-                var acrollable = $(this);
+                var scroll, scrollable = $(this);
 
                 if (e.deltaY === undefined || e.deltaFactor === undefined) {
                     return ;
                 }
 
                 if (e.deltaFactor > 1) {
-                    var scroll = acrollable.scrollLeft() - ( e.deltaY * 30 );
-                    acrollable.scrollLeft(scroll);
-                    e.preventDefault();
+                    scroll = scrollable.scrollLeft() - ( e.deltaY * 30 );
+                    scrollable.scrollLeft(scroll);
                 }
+
+                e.preventDefault();
             });
         }
+
+        element.find(".events-area").last().on("scroll", function(e){
+            Utils.exec(o.onEventsScroll, [this.scrollLeft], element[0]);
+        });
 
         if (Utils.isTouchDevice() === true) {
             element.on(Metro.events.click, ".stream", function(){

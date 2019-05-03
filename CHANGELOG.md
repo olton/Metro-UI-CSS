@@ -3,7 +3,8 @@
 + [x] Hotkeys: now you can add or change `hotkey` at runtime
 + [x] Select: fix cyclic error when `Uncaught ReferenceError: function is not defined` for `onchange` event
 + [x] Card: add class `flex-card` to create card in flex model
-+ [x] ListView: fix works methods with jQuery object and\or HTMLElement 
++ [x] ListView: fix works methods with jQuery object and\or HTMLElement
++ [x] Streamer: add event `data-on-events-scroll` 
 
 ### 4.2.41
 + [x] List: add event `data-on-data-load-error`
