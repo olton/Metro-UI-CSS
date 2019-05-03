@@ -47,6 +47,8 @@ var Streamer = {
         this.elem  = elem;
         this.element = $(elem);
         this.data = null;
+        this.scroll = 0;
+        this.scrollDir = "left";
 
         this._setOptionsFromDOM();
         this._create();
@@ -212,7 +214,13 @@ var Streamer = {
                         var custom_html = event_item.custom !== undefined ? event_item.custom : "";
                         var custom_html_open = event_item.custom_open !== undefined ? event_item.custom_open : "";
                         var custom_html_close = event_item.custom_close !== undefined ? event_item.custom_close : "";
-                        var event = $("<div>")
+                        var event;
+
+                        if (event_item.skip !== undefined && Utils.bool(event_item.skip)) {
+                            return ;
+                        }
+
+                        event = $("<div>")
                             .data("origin", event_item)
                             .data("sid", sid)
                             .data("data", event_item.data)
@@ -457,7 +465,10 @@ var Streamer = {
         }
 
         element.find(".events-area").last().on("scroll", function(e){
-            Utils.exec(o.onEventsScroll, [this.scrollLeft], element[0]);
+            var oldScroll = that.scroll;
+            that.scrollDir = that.scroll < this.scrollLeft ? "left" : "right";
+            that.scroll = this.scrollLeft;
+            Utils.exec(o.onEventsScroll, [this.scrollLeft, oldScroll, that.scrollDir], element[0]);
         });
 
         if (Utils.isTouchDevice() === true) {
