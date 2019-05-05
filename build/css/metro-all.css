@@ -25094,6 +25094,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   left: auto;
 }
 @media screen and (min-width: 0) {
+  .streamer.streamer-expand-fs .streams,
   .streamer.streamer-expand-fs .stream {
     width: 200px;
   }
@@ -25118,6 +25119,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 576px) {
+  .streamer.streamer-expand-sm .streams,
   .streamer.streamer-expand-sm .stream {
     width: 200px;
   }
@@ -25142,6 +25144,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 768px) {
+  .streamer.streamer-expand-md .streams,
   .streamer.streamer-expand-md .stream {
     width: 200px;
   }
@@ -25166,6 +25169,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 992px) {
+  .streamer.streamer-expand-lg .streams,
   .streamer.streamer-expand-lg .stream {
     width: 200px;
   }
@@ -25190,6 +25194,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 1200px) {
+  .streamer.streamer-expand-xl .streams,
   .streamer.streamer-expand-xl .stream {
     width: 200px;
   }
@@ -25214,6 +25219,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 1452px) {
+  .streamer.streamer-expand-xxl .streams,
   .streamer.streamer-expand-xxl .stream {
     width: 200px;
   }

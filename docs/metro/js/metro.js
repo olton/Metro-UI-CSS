@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "03/05/2019 19:12:16",
+    compileTime: "05/05/2019 20:57:34",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -19845,6 +19845,23 @@ var Streamer = {
 
         Utils.exec(o.onStreamerCreate, null, element[0]);
         element.fire("streamercreate");
+
+        this._fireScroll();
+    },
+
+    _fireScroll: function(){
+        var that = this, element = this.element, o = this.options;
+        var oldScroll = this.scroll;
+        this.scrollDir = this.scroll < element[0].scrollLeft ? "left" : "right";
+        this.scroll = element[0].scrollLeft;
+
+        Utils.exec(o.onEventsScroll, [element[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
+
+        element.fire("eventsscroll", {
+            scrollLeft: element[0].scrollLeft,
+            oldScroll: oldScroll,
+            scrollDir: that.scrollDir
+        });
     },
 
     _createEvents: function(){
@@ -19958,11 +19975,8 @@ var Streamer = {
             });
         }
 
-        element.find(".events-area").last().on("scroll", function(e){
-            var oldScroll = that.scroll;
-            that.scrollDir = that.scroll < this.scrollLeft ? "left" : "right";
-            that.scroll = this.scrollLeft;
-            Utils.exec(o.onEventsScroll, [this.scrollLeft, oldScroll, that.scrollDir], element[0]);
+        element.find(".events-area").last().on("scroll", function(){
+            that._fireScroll();
         });
 
         if (Utils.isTouchDevice() === true) {
