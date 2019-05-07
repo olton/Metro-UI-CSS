@@ -611,13 +611,13 @@ var Streamer = {
         this.changeSource();
     },
 
-    data: function(s){
+    dataSet: function(s){
         if (s === undefined) {
-            return this.options.source;
+            return this.options.data;
         }
 
         this.options.data = s;
-        this.changeData();
+        this.changeData(s);
     },
 
     getStreamerData: function(){
@@ -700,7 +700,10 @@ var Streamer = {
         var that = this, element = this.element, o = this.options;
         var old_data = this.data;
 
-        o.data =  data ? data : JSON.parse(element.attr("data-data"));
+        console.log(typeof data);
+        console.log(data);
+
+        o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
 
         this.data = o.data;
 
