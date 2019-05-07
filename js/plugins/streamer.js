@@ -700,9 +700,6 @@ var Streamer = {
         var that = this, element = this.element, o = this.options;
         var old_data = this.data;
 
-        console.log(typeof data);
-        console.log(data);
-
         o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
 
         this.data = o.data;

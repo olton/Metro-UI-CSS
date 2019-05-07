@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "07/05/2019 20:40:14",
+    compileTime: "07/05/2019 20:40:56",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20193,9 +20193,6 @@ var Streamer = {
     changeData: function(data){
         var that = this, element = this.element, o = this.options;
         var old_data = this.data;
-
-        console.log(typeof data);
-        console.log(data);
 
         o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
 
