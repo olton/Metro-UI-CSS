@@ -24,20 +24,14 @@ If you'd like to join them, please consider:
 <hr>
 
 <!--
-<h2 align="center">Platinum sponsors</h2>
+<h2 align="center">Platinum sponsor</h2>
 -->
 
-
-<h2 align="center">Gold sponsors</h2>
+<h2 align="center">Silver sponsor</h2>
 <div align="center">
-<a href="https://openbuilds.com/"><img src="https://metroui.org.ua/images/OpenBuilds_logo.png"></a>
+<a href="https://interactivity.com.ua"><img src="https://metroui.org.ua/images/Interactivity.png" style="height: 100px"></a>
 </div>
 
-<!--
-<h4 align="center">Silver sponsors</h4>
-<div align="center">
-</div>
--->
 
 <!--
 <h2 align="center">Bronze via Patreon</h2>
