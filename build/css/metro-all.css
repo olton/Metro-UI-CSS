@@ -1,6 +1,6 @@
 /*
- * Metro 4 Components Library v4.2.41  (https://metroui.org.ua)
- * Copyright 2019 Sergey Pimenov
+ * Metro 4 Components Library v4.2.42  (https://metroui.org.ua)
+ * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
 html,
@@ -25094,6 +25094,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   left: auto;
 }
 @media screen and (min-width: 0) {
+  .streamer.streamer-expand-fs .streams,
   .streamer.streamer-expand-fs .stream {
     width: 200px;
   }
@@ -25118,6 +25119,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 576px) {
+  .streamer.streamer-expand-sm .streams,
   .streamer.streamer-expand-sm .stream {
     width: 200px;
   }
@@ -25142,6 +25144,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 768px) {
+  .streamer.streamer-expand-md .streams,
   .streamer.streamer-expand-md .stream {
     width: 200px;
   }
@@ -25166,6 +25169,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 992px) {
+  .streamer.streamer-expand-lg .streams,
   .streamer.streamer-expand-lg .stream {
     width: 200px;
   }
@@ -25190,6 +25194,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 1200px) {
+  .streamer.streamer-expand-xl .streams,
   .streamer.streamer-expand-xl .stream {
     width: 200px;
   }
@@ -25214,6 +25219,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @media screen and (min-width: 1452px) {
+  .streamer.streamer-expand-xxl .streams,
   .streamer.streamer-expand-xxl .stream {
     width: 200px;
   }
@@ -31201,6 +31207,27 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 * + .card {
   margin-top: 1rem;
+}
+.card.flex-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column;
+          flex-flow: column;
+}
+.card.flex-card .card-header,
+.card.flex-card .card-footer {
+  height: 57px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+}
+.card.flex-card .card-footer {
+  margin-top: auto;
 }
 .tile-small,
 .tile-medium,

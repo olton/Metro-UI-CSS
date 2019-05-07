@@ -303,39 +303,45 @@ var Metro = {
             mutations.map(function(mutation){
 
                 if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
-                    var element = $(mutation.target);
-                    var mc = element.data('metroComponent');
-                    if (mc !== undefined) {
-                        $.each(mc, function(){
-                            'use strict';
-                            var plug = element.data(this);
-                            if (plug) plug.changeAttribute(mutation.attributeName);
-                        });
+                    if (mutation.attributeName === 'data-hotkey') {
+
+                        Metro.initHotkeys([mutation.target], true);
+
+                    } else {
+                        var element = $(mutation.target);
+                        var mc = element.data('metroComponent');
+                        if (mc !== undefined) {
+                            $.each(mc, function(){
+                                var plug = element.data(this);
+                                if (plug) plug.changeAttribute(mutation.attributeName);
+                            });
+                        }
                     }
                 } else
 
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    var i, obj, widgets = {}, plugins = {};
-                    var nodes = mutation.addedNodes;
+                    var i, widgets = [];
+                    var $node, node, nodes = mutation.addedNodes;
 
-                    for(i = 0; i < nodes.length; i++) {
+                    if (nodes.length) {
+                        for(i = 0; i < nodes.length; i++) {
+                            node = nodes[i];
+                            $node = $(node);
 
-                        var node = mutation.addedNodes[i];
+                            if ($node.attr("data-role") !== undefined) {
+                                widgets.push(node);
+                            }
 
-                        if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
-                            continue ;
+                            $.each($node.find("[data-role]"), function(){
+                                var o = this;
+                                if (widgets.indexOf(o) !== -1) {
+                                    return;
+                                }
+                                widgets.push(o);
+                            });
                         }
-                        obj = $(mutation.addedNodes[i]);
 
-                        plugins = obj.find("[data-role]");
-                        if (obj.data('role') !== undefined) {
-                            widgets = $.merge(plugins, obj);
-                        } else {
-                            widgets = plugins;
-                        }
-                        if (widgets.length) {
-                            Metro.initWidgets(widgets);
-                        }
+                        if (widgets.length) Metro.initWidgets(widgets, "observe");
                     }
 
                 } else  {
@@ -371,10 +377,9 @@ var Metro = {
         this.observe();
 
         this.initHotkeys(hotkeys);
-        this.initWidgets(widgets);
+        this.initWidgets(widgets, "init");
 
         if (METRO_SHOW_ABOUT) this.about(true);
-        // if (METRO_SHOW_COMPILE_TIME) this.showCompileTime();
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -389,9 +394,8 @@ var Metro = {
         return this;
     },
 
-    initHotkeys: function(hotkeys){
+    initHotkeys: function(hotkeys, redefine){
         $.each(hotkeys, function(){
-            'use strict';
             var element = $(this);
             var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
 
@@ -399,8 +403,12 @@ var Metro = {
                 return;
             }
 
-            if (element.data('hotKeyBonded') === true ) {
+            if (element.data('hotKeyBonded') === true && !Utils.bool(redefine)) {
                 return;
+            }
+
+            if (element.data('hotKeyBonded') === true && Utils.bool(redefine)) {
+                $(document).off(Metro.events.keyup, null, hotkey);
             }
 
             Metro.hotkeys.push(hotkey);
@@ -423,33 +431,37 @@ var Metro = {
         });
     },
 
-    initWidgets: function(widgets) {
-        var that = this;
-
+    initWidgets: function(widgets, a) {
         $.each(widgets, function () {
-            'use strict';
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
+
+                // console.log(a, func, Utils.bool($this.attr("data-role-"+func)));
+
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
-                    $.fn[func].call($this);
-                    $this.attr("data-role-"+func, true);
+                    try {
+                        $.fn[func].call($this);
+                        $this.attr("data-role-"+func, true);
 
-                    var mc = $this.data('metroComponent');
+                        var mc = $this.data('metroComponent');
 
-                    if (mc === undefined) {
-                        mc = [func];
-                    } else {
-                        mc.push(func);
+                        if (mc === undefined) {
+                            mc = [func];
+                        } else {
+                            mc.push(func);
+                        }
+                        $this.data('metroComponent', mc);
+                    } catch (e) {
+                        console.log(e.message + " in " + e.stack);
+                        throw e;
                     }
-                    $this.data('metroComponent', mc);
                 }
             });
         });
     },
 
     plugin: function(name, object){
-        'use strict';
         $.fn[name] = function( options ) {
             return this.each(function() {
                 $.data( this, name, Object.create(object).init(options, this ));

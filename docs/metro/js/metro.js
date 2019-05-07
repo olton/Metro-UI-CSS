@@ -1,6 +1,6 @@
 /*
- * Metro 4 Components Library v4.2.41  (https://metroui.org.ua)
- * Copyright 2019 Sergey Pimenov
+ * Metro 4 Components Library v4.2.42  (https://metroui.org.ua)
+ * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
 
@@ -118,9 +118,9 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.41",
-    compileTime: "27/04/2019 20:48:17",
-    buildNumber: "722",
+    version: "4.2.42",
+    compileTime: "07/05/2019 22:17:19",
+    buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -318,39 +318,45 @@ var Metro = {
             mutations.map(function(mutation){
 
                 if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
-                    var element = $(mutation.target);
-                    var mc = element.data('metroComponent');
-                    if (mc !== undefined) {
-                        $.each(mc, function(){
-                            'use strict';
-                            var plug = element.data(this);
-                            if (plug) plug.changeAttribute(mutation.attributeName);
-                        });
+                    if (mutation.attributeName === 'data-hotkey') {
+
+                        Metro.initHotkeys([mutation.target], true);
+
+                    } else {
+                        var element = $(mutation.target);
+                        var mc = element.data('metroComponent');
+                        if (mc !== undefined) {
+                            $.each(mc, function(){
+                                var plug = element.data(this);
+                                if (plug) plug.changeAttribute(mutation.attributeName);
+                            });
+                        }
                     }
                 } else
 
                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    var i, obj, widgets = {}, plugins = {};
-                    var nodes = mutation.addedNodes;
+                    var i, widgets = [];
+                    var $node, node, nodes = mutation.addedNodes;
 
-                    for(i = 0; i < nodes.length; i++) {
+                    if (nodes.length) {
+                        for(i = 0; i < nodes.length; i++) {
+                            node = nodes[i];
+                            $node = $(node);
 
-                        var node = mutation.addedNodes[i];
+                            if ($node.attr("data-role") !== undefined) {
+                                widgets.push(node);
+                            }
 
-                        if (node.tagName === 'SCRIPT' || node.tagName === 'STYLE') {
-                            continue ;
+                            $.each($node.find("[data-role]"), function(){
+                                var o = this;
+                                if (widgets.indexOf(o) !== -1) {
+                                    return;
+                                }
+                                widgets.push(o);
+                            });
                         }
-                        obj = $(mutation.addedNodes[i]);
 
-                        plugins = obj.find("[data-role]");
-                        if (obj.data('role') !== undefined) {
-                            widgets = $.merge(plugins, obj);
-                        } else {
-                            widgets = plugins;
-                        }
-                        if (widgets.length) {
-                            Metro.initWidgets(widgets);
-                        }
+                        if (widgets.length) Metro.initWidgets(widgets, "observe");
                     }
 
                 } else  {
@@ -386,10 +392,9 @@ var Metro = {
         this.observe();
 
         this.initHotkeys(hotkeys);
-        this.initWidgets(widgets);
+        this.initWidgets(widgets, "init");
 
         if (METRO_SHOW_ABOUT) this.about(true);
-        // if (METRO_SHOW_COMPILE_TIME) this.showCompileTime();
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -404,9 +409,8 @@ var Metro = {
         return this;
     },
 
-    initHotkeys: function(hotkeys){
+    initHotkeys: function(hotkeys, redefine){
         $.each(hotkeys, function(){
-            'use strict';
             var element = $(this);
             var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
 
@@ -414,8 +418,12 @@ var Metro = {
                 return;
             }
 
-            if (element.data('hotKeyBonded') === true ) {
+            if (element.data('hotKeyBonded') === true && !Utils.bool(redefine)) {
                 return;
+            }
+
+            if (element.data('hotKeyBonded') === true && Utils.bool(redefine)) {
+                $(document).off(Metro.events.keyup, null, hotkey);
             }
 
             Metro.hotkeys.push(hotkey);
@@ -438,33 +446,37 @@ var Metro = {
         });
     },
 
-    initWidgets: function(widgets) {
-        var that = this;
-
+    initWidgets: function(widgets, a) {
         $.each(widgets, function () {
-            'use strict';
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
+
+                // console.log(a, func, Utils.bool($this.attr("data-role-"+func)));
+
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
-                    $.fn[func].call($this);
-                    $this.attr("data-role-"+func, true);
+                    try {
+                        $.fn[func].call($this);
+                        $this.attr("data-role-"+func, true);
 
-                    var mc = $this.data('metroComponent');
+                        var mc = $this.data('metroComponent');
 
-                    if (mc === undefined) {
-                        mc = [func];
-                    } else {
-                        mc.push(func);
+                        if (mc === undefined) {
+                            mc = [func];
+                        } else {
+                            mc.push(func);
+                        }
+                        $this.data('metroComponent', mc);
+                    } catch (e) {
+                        console.log(e.message + " in " + e.stack);
+                        throw e;
                     }
-                    $this.data('metroComponent', mc);
                 }
             });
         });
     },
 
     plugin: function(name, object){
-        'use strict';
         $.fn[name] = function( options ) {
             return this.each(function() {
                 $.data( this, name, Object.create(object).init(options, this ));
@@ -14736,6 +14748,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var func;
 
+        node=$(node);
+
         if (!node.hasClass("node-group")) {
             return ;
         }
@@ -14775,6 +14789,8 @@ var ListView = {
         if (node === null) {
             target = element;
         } else {
+
+            node=$(node);
 
             if (!node.hasClass("node-group")) {
                 return ;
@@ -14834,6 +14850,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var new_node, parent_node, list;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         new_node = this._createNode(data);
@@ -14855,6 +14873,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var new_node, parent_node, list;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         new_node = this._createNode(data);
@@ -14875,6 +14895,8 @@ var ListView = {
     del: function(node){
         var element = this.element, o = this.options;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         var parent_list = node.closest("ul");
@@ -14893,6 +14915,8 @@ var ListView = {
 
     clean: function(node){
         var element = this.element, o = this.options;
+
+        node=$(node);
 
         if (!node.length) {return;}
 
@@ -17263,7 +17287,9 @@ var Select = {
             } else {
                 element.val(item.value);
                 input.html(html);
-                element.trigger("change");
+                element.fire("change", {
+                    val: item.value
+                });
                 l.addClass("active");
             }
         }
@@ -19497,6 +19523,7 @@ var StreamerDefaultConfig = {
     onStreamSelect: Metro.noop,
     onEventClick: Metro.noop,
     onEventSelect: Metro.noop,
+    onEventsScroll: Metro.noop,
     onStreamerCreate: Metro.noop
 };
 
@@ -19514,6 +19541,8 @@ var Streamer = {
         this.elem  = elem;
         this.element = $(elem);
         this.data = null;
+        this.scroll = 0;
+        this.scrollDir = "left";
 
         this._setOptionsFromDOM();
         this._create();
@@ -19679,7 +19708,13 @@ var Streamer = {
                         var custom_html = event_item.custom !== undefined ? event_item.custom : "";
                         var custom_html_open = event_item.custom_open !== undefined ? event_item.custom_open : "";
                         var custom_html_close = event_item.custom_close !== undefined ? event_item.custom_close : "";
-                        var event = $("<div>")
+                        var event;
+
+                        if (event_item.skip !== undefined && Utils.bool(event_item.skip)) {
+                            return ;
+                        }
+
+                        event = $("<div>")
                             .data("origin", event_item)
                             .data("sid", sid)
                             .data("data", event_item.data)
@@ -19810,6 +19845,23 @@ var Streamer = {
 
         Utils.exec(o.onStreamerCreate, null, element[0]);
         element.fire("streamercreate");
+
+        this._fireScroll();
+    },
+
+    _fireScroll: function(){
+        var that = this, element = this.element, o = this.options;
+        var oldScroll = this.scroll;
+        this.scrollDir = this.scroll < element[0].scrollLeft ? "left" : "right";
+        this.scroll = element[0].scrollLeft;
+
+        Utils.exec(o.onEventsScroll, [element[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
+
+        element.fire("eventsscroll", {
+            scrollLeft: element[0].scrollLeft,
+            oldScroll: oldScroll,
+            scrollDir: that.scrollDir
+        });
     },
 
     _createEvents: function(){
@@ -19908,19 +19960,24 @@ var Streamer = {
 
         if (Utils.isTouchDevice() !== true) {
             element.on(Metro.events.mousewheel, ".events-area", function(e) {
-                var acrollable = $(this);
+                var scroll, scrollable = $(this);
 
                 if (e.deltaY === undefined || e.deltaFactor === undefined) {
                     return ;
                 }
 
                 if (e.deltaFactor > 1) {
-                    var scroll = acrollable.scrollLeft() - ( e.deltaY * 30 );
-                    acrollable.scrollLeft(scroll);
-                    e.preventDefault();
+                    scroll = scrollable.scrollLeft() - ( e.deltaY * 30 );
+                    scrollable.scrollLeft(scroll);
                 }
+
+                e.preventDefault();
             });
         }
+
+        element.find(".events-area").last().on("scroll", function(){
+            that._fireScroll();
+        });
 
         if (Utils.isTouchDevice() === true) {
             element.on(Metro.events.click, ".stream", function(){
@@ -20036,21 +20093,25 @@ var Streamer = {
     },
 
     source: function(s){
+        var that = this, element = this.element, o = this.options;
+
         if (s === undefined) {
             return this.options.source;
         }
+
+        element.attr("data-source", s);
 
         this.options.source = s;
         this.changeSource();
     },
 
-    data: function(s){
+    dataSet: function(s){
         if (s === undefined) {
-            return this.options.source;
+            return this.options.data;
         }
 
         this.options.data = s;
-        this.changeData();
+        this.changeData(s);
     },
 
     getStreamerData: function(){
@@ -20133,7 +20194,7 @@ var Streamer = {
         var that = this, element = this.element, o = this.options;
         var old_data = this.data;
 
-        o.data =  data ? data : JSON.parse(element.attr("data-data"));
+        o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
 
         this.data = o.data;
 
@@ -20586,9 +20647,7 @@ var Table = {
 
         Utils.exec(o.onTableCreate, [element], element[0]);
 
-        setImmediate(function(){
-            element.fire("tablecreate");
-        })
+        element.fire("tablecreate");
     },
 
     _service: function(){
@@ -25547,7 +25606,6 @@ var TreeView = {
     },
 
     addTo: function(node, data){
-        node = $(node);
         var that = this, element = this.element, o = this.options;
         var target;
         var new_node;
@@ -25556,6 +25614,7 @@ var TreeView = {
         if (node === null) {
             target = element;
         } else {
+            node = $(node);
             target = node.children("ul");
             if (target.length === 0) {
                 target = $("<ul>").appendTo(node);
@@ -25569,32 +25628,42 @@ var TreeView = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node ? node[0] : null], element[0]);
         element.fire("nodeinsert", {
             node: new_node[0],
-            parent: node[0]
+            parent: node ? node[0] : null
         });
 
         return new_node;
     },
 
     insertBefore: function(node, data){
-        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
+
+        if (Utils.isNull(node)) {
+            return this.addTo(node, data);
+        }
+
+        node = $(node);
         new_node.insertBefore(node);
         Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
         element.fire("nodeinsert", {
             node: new_node[0],
-            parent: node[0]
+            parent: node ? node[0] : null
         });
         return new_node;
     },
 
     insertAfter: function(node, data){
-        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
+
+        if (Utils.isNull(node)) {
+            return this.addTo(node, data);
+        }
+
+        node = $(node);
         new_node.insertAfter(node);
         Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
         element.fire("nodeinsert", {

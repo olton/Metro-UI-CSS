@@ -216,6 +216,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var func;
 
+        node=$(node);
+
         if (!node.hasClass("node-group")) {
             return ;
         }
@@ -255,6 +257,8 @@ var ListView = {
         if (node === null) {
             target = element;
         } else {
+
+            node=$(node);
 
             if (!node.hasClass("node-group")) {
                 return ;
@@ -314,6 +318,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var new_node, parent_node, list;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         new_node = this._createNode(data);
@@ -335,6 +341,8 @@ var ListView = {
         var element = this.element, o = this.options;
         var new_node, parent_node, list;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         new_node = this._createNode(data);
@@ -355,6 +363,8 @@ var ListView = {
     del: function(node){
         var element = this.element, o = this.options;
 
+        node=$(node);
+
         if (!node.length) {return;}
 
         var parent_list = node.closest("ul");
@@ -373,6 +383,8 @@ var ListView = {
 
     clean: function(node){
         var element = this.element, o = this.options;
+
+        node=$(node);
 
         if (!node.length) {return;}
 

@@ -29,6 +29,7 @@ var StreamerDefaultConfig = {
     onStreamSelect: Metro.noop,
     onEventClick: Metro.noop,
     onEventSelect: Metro.noop,
+    onEventsScroll: Metro.noop,
     onStreamerCreate: Metro.noop
 };
 
@@ -46,6 +47,8 @@ var Streamer = {
         this.elem  = elem;
         this.element = $(elem);
         this.data = null;
+        this.scroll = 0;
+        this.scrollDir = "left";
 
         this._setOptionsFromDOM();
         this._create();
@@ -211,7 +214,13 @@ var Streamer = {
                         var custom_html = event_item.custom !== undefined ? event_item.custom : "";
                         var custom_html_open = event_item.custom_open !== undefined ? event_item.custom_open : "";
                         var custom_html_close = event_item.custom_close !== undefined ? event_item.custom_close : "";
-                        var event = $("<div>")
+                        var event;
+
+                        if (event_item.skip !== undefined && Utils.bool(event_item.skip)) {
+                            return ;
+                        }
+
+                        event = $("<div>")
                             .data("origin", event_item)
                             .data("sid", sid)
                             .data("data", event_item.data)
@@ -342,6 +351,23 @@ var Streamer = {
 
         Utils.exec(o.onStreamerCreate, null, element[0]);
         element.fire("streamercreate");
+
+        this._fireScroll();
+    },
+
+    _fireScroll: function(){
+        var that = this, element = this.element, o = this.options;
+        var oldScroll = this.scroll;
+        this.scrollDir = this.scroll < element[0].scrollLeft ? "left" : "right";
+        this.scroll = element[0].scrollLeft;
+
+        Utils.exec(o.onEventsScroll, [element[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
+
+        element.fire("eventsscroll", {
+            scrollLeft: element[0].scrollLeft,
+            oldScroll: oldScroll,
+            scrollDir: that.scrollDir
+        });
     },
 
     _createEvents: function(){
@@ -440,19 +466,24 @@ var Streamer = {
 
         if (Utils.isTouchDevice() !== true) {
             element.on(Metro.events.mousewheel, ".events-area", function(e) {
-                var acrollable = $(this);
+                var scroll, scrollable = $(this);
 
                 if (e.deltaY === undefined || e.deltaFactor === undefined) {
                     return ;
                 }
 
                 if (e.deltaFactor > 1) {
-                    var scroll = acrollable.scrollLeft() - ( e.deltaY * 30 );
-                    acrollable.scrollLeft(scroll);
-                    e.preventDefault();
+                    scroll = scrollable.scrollLeft() - ( e.deltaY * 30 );
+                    scrollable.scrollLeft(scroll);
                 }
+
+                e.preventDefault();
             });
         }
+
+        element.find(".events-area").last().on("scroll", function(){
+            that._fireScroll();
+        });
 
         if (Utils.isTouchDevice() === true) {
             element.on(Metro.events.click, ".stream", function(){
@@ -568,21 +599,25 @@ var Streamer = {
     },
 
     source: function(s){
+        var that = this, element = this.element, o = this.options;
+
         if (s === undefined) {
             return this.options.source;
         }
+
+        element.attr("data-source", s);
 
         this.options.source = s;
         this.changeSource();
     },
 
-    data: function(s){
+    dataSet: function(s){
         if (s === undefined) {
-            return this.options.source;
+            return this.options.data;
         }
 
         this.options.data = s;
-        this.changeData();
+        this.changeData(s);
     },
 
     getStreamerData: function(){
@@ -665,7 +700,7 @@ var Streamer = {
         var that = this, element = this.element, o = this.options;
         var old_data = this.data;
 
-        o.data =  data ? data : JSON.parse(element.attr("data-data"));
+        o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
 
         this.data = o.data;
 
