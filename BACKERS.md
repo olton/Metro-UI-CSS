@@ -24,16 +24,10 @@ If you'd like to join them, please consider:
 <hr>
 
 <!--
-<h2 align="center">Platinum sponsors</h2>
+<h2 align="center">Platinum sponsor</h2>
 -->
 
-
-<h2 align="center">Gold sponsors</h2>
-<div align="center">
-<a href="https://openbuilds.com/"><img src="https://metroui.org.ua/images/OpenBuilds_logo.png"></a>
-</div>
-
-<h3 align="center">Silver sponsors</h3>
+<h2 align="center">Silver sponsor</h2>
 <div align="center">
 <a href="https://interactivity.com.ua"><img src="https://metroui.org.ua/images/Interactivity.png" style="height: 100px"></a>
 </div>

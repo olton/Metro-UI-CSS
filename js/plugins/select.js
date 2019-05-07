@@ -93,7 +93,9 @@ var Select = {
             } else {
                 element.val(item.value);
                 input.html(html);
-                element.trigger("change");
+                element.fire("change", {
+                    val: item.value
+                });
                 l.addClass("active");
             }
         }

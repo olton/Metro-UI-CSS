@@ -309,9 +309,7 @@ var Table = {
 
         Utils.exec(o.onTableCreate, [element], element[0]);
 
-        setImmediate(function(){
-            element.fire("tablecreate");
-        })
+        element.fire("tablecreate");
     },
 
     _service: function(){

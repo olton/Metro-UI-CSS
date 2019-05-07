@@ -294,7 +294,6 @@ var TreeView = {
     },
 
     addTo: function(node, data){
-        node = $(node);
         var that = this, element = this.element, o = this.options;
         var target;
         var new_node;
@@ -303,6 +302,7 @@ var TreeView = {
         if (node === null) {
             target = element;
         } else {
+            node = $(node);
             target = node.children("ul");
             if (target.length === 0) {
                 target = $("<ul>").appendTo(node);
@@ -316,32 +316,42 @@ var TreeView = {
 
         new_node.appendTo(target);
 
-        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+        Utils.exec(o.onNodeInsert, [new_node[0], node ? node[0] : null], element[0]);
         element.fire("nodeinsert", {
             node: new_node[0],
-            parent: node[0]
+            parent: node ? node[0] : null
         });
 
         return new_node;
     },
 
     insertBefore: function(node, data){
-        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
+
+        if (Utils.isNull(node)) {
+            return this.addTo(node, data);
+        }
+
+        node = $(node);
         new_node.insertBefore(node);
         Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
         element.fire("nodeinsert", {
             node: new_node[0],
-            parent: node[0]
+            parent: node ? node[0] : null
         });
         return new_node;
     },
 
     insertAfter: function(node, data){
-        node = $(node);
         var element = this.element, o = this.options;
         var new_node = this._createNode(data);
+
+        if (Utils.isNull(node)) {
+            return this.addTo(node, data);
+        }
+
+        node = $(node);
         new_node.insertAfter(node);
         Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
         element.fire("nodeinsert", {
