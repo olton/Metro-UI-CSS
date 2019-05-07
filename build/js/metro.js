@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.42",
-    compileTime: "07/05/2019 13:42:45",
+    compileTime: "07/05/2019 20:25:28",
     buildNumber: "723",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20093,9 +20093,13 @@ var Streamer = {
     },
 
     source: function(s){
+        var that = this, element = this.element, o = this.options;
+
         if (s === undefined) {
             return this.options.source;
         }
+
+        element.attr("data-source", s);
 
         this.options.source = s;
         this.changeSource();
