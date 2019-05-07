@@ -6,6 +6,7 @@
 + [x] ListView: fix works methods with jQuery object and\or HTMLElement
 + [x] Streamer: add event `data-on-events-scroll` 
 + [x] Streamer: fix method `source` 
++ [x] Streamer: rename method `data` to `dataSet` 
 + [x] TreeView: fix methods for add nodes, issue #1150
 
 ### 4.2.41
