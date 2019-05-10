@@ -98,18 +98,83 @@
 
 .input {
     &.input-large {
-        height: 50px;
+        height: @input-lx;
 
         input {
-            height: 48px;
+            height: @input-lx - 2;
             font-size: 1.3rem;
             padding: 0 10px;
-            line-height: 48px;
+            line-height: @input-lx - 2;
         }
 
         .button {
-            height: 48px;
-            min-width: 48px;
+            height: @input-lx - 2;
+            min-width: @input-lx - 2;
+
+            font-size: 1.3rem;
+
+            [class*=mif-] {
+                font-size: 1.3rem;
+            }
+
+            .default-icon-cross, .default-icon-eye {
+                width: 21px;
+                height: 21px;
+            }
+
+            .input-clear-button, .input-reveal-button {
+                width: @input-lx - 2;
+                padding: 0;
+            }
         }
+    }
+}
+
+input {
+    &.input-large {
+        height:  @input-lx - 2;
+        font-size: 1.3rem;
+        padding: 0 10px;
+    }
+}
+
+.input {
+    &.input-small {
+        height: @input-sx;
+
+        input {
+            height: @input-sx - 2;
+            font-size: .9rem;
+            padding: 0 4px;
+            line-height: @input-sx - 2;
+        }
+
+        .button {
+            height: @input-sx - 2;
+            min-width: @input-sx - 2;
+            font-size: .9rem;
+
+            [class*=mif-] {
+                font-size: .9rem;
+            }
+
+            .default-icon-cross, .default-icon-eye {
+                width: 14px;
+                height: 14px;
+            }
+        }
+
+        .input-clear-button, .input-reveal-button {
+            width: @input-sx - 2;
+            padding: 0;
+        }
+    }
+}
+
+input {
+    &.input-small {
+        height:  @input-sx - 2;
+        font-size: .9rem;
+        padding: 0 4px;
     }
 }

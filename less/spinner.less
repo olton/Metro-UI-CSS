@@ -57,18 +57,57 @@
 
 .spinner {
     &.input-large {
-        height: 50px;
-        line-height: 50px;
+        height: @input-lx;
+        line-height: @input-lx;
 
         input {
             font-size: 1.3rem;
         }
 
         .spinner-button {
-            height: 48px;
-            width: 48px;
-            min-width: 48px;
-            line-height: 48px;
+            height: @input-lx - 2;
+            width: @input-lx - 2;
+            min-width: @input-lx - 2;
+            line-height: @input-lx - 2;
+
+            font-size: 1.3rem;
+
+            [class*=mif-] {
+                font-size: 1.3rem;
+            }
         }
+
+        .default-icon-plus, .default-icon-minus {
+            width: 21px;
+            height: 21px;
+        }
+    }
+
+    &.input-small {
+        height: @input-sx;
+        line-height: @input-sx;
+
+        input {
+            font-size: .9rem;
+        }
+
+        .spinner-button {
+            height: @input-sx - 2;
+            width: @input-sx - 2;
+            min-width: @input-sx - 2;
+            line-height: @input-sx - 2;
+
+            font-size: .9rem;
+
+            [class*=mif-] {
+                font-size: .9rem;
+            }
+        }
+
+        .default-icon-plus, .default-icon-minus {
+            width: 14px;
+            height: 14px;
+        }
+
     }
 }

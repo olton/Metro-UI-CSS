@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.42  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.43  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -21101,6 +21101,76 @@ form {
   display: block;
   position: relative;
 }
+.form-group {
+  display: block;
+  position: relative;
+}
+.form-group + .form-group {
+  margin-top: 1rem;
+}
+.inline-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.inline-form input[type=text],
+.inline-form input[type=password],
+.inline-form input[type=tel],
+.inline-form input[type=datetime-local],
+.inline-form input[type=email],
+.inline-form input[type=file],
+.inline-form input[type=month],
+.inline-form input[type=number],
+.inline-form input[type=search],
+.inline-form input[type=time],
+.inline-form input[type=url],
+.inline-form input[type=week],
+.inline-form input[type=file],
+.inline-form select,
+.inline-form textarea,
+.inline-form .file,
+.inline-form .input,
+.inline-form .textarea,
+.inline-form .select,
+.inline-form .tag-input,
+.inline-form .spinner {
+  width: auto;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+.inline-form .form-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row wrap;
+          flex-flow: row wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+form:disabled,
+fieldset:disabled,
+.form-group:disabled,
+form.disabled,
+fieldset.disabled,
+.form-group.disabled {
+  pointer-events: none;
+}
 input[type=text],
 input[type=password],
 input[type=tel],
@@ -21933,13 +22003,6 @@ input[type=reset] {
 label {
   margin-bottom: 0.5rem;
 }
-.form-group {
-  display: block;
-  position: relative;
-}
-.form-group + .form-group {
-  margin-top: 1rem;
-}
 .file .prepend,
 .input .prepend,
 .select .prepend,
@@ -21965,69 +22028,6 @@ label {
   top: 0;
   left: 0;
   opacity: 0;
-}
-.inline-form {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-.inline-form input[type=text],
-.inline-form input[type=password],
-.inline-form input[type=tel],
-.inline-form input[type=datetime-local],
-.inline-form input[type=email],
-.inline-form input[type=file],
-.inline-form input[type=month],
-.inline-form input[type=number],
-.inline-form input[type=search],
-.inline-form input[type=time],
-.inline-form input[type=url],
-.inline-form input[type=week],
-.inline-form input[type=file],
-.inline-form select,
-.inline-form textarea,
-.inline-form .file,
-.inline-form .input,
-.inline-form .textarea,
-.inline-form .select,
-.inline-form .tag-input,
-.inline-form .spinner {
-  width: auto;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-.inline-form .form-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-flow: row wrap;
-          flex-flow: row wrap;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-}
-form:disabled,
-fieldset:disabled,
-.form-group:disabled,
-form.disabled,
-fieldset.disabled,
-.form-group.disabled {
-  pointer-events: none;
 }
 .file:disabled input,
 .input:disabled input,
@@ -22302,10 +22302,12 @@ input:-webkit-autofill:active {
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
 .select.dropdown-toggle::before {
-  margin-left: -0.9rem;
+  margin-left: -1.1rem;
   left: 100%;
   top: 14px;
   margin-top: 0;
+  width: 0.4rem;
+  height: 0.4rem;
 }
 .select.disabled.dropdown-toggle:before {
   border-color: #ffffff;
@@ -22340,7 +22342,7 @@ input:-webkit-autofill:active {
           align-items: flex-start;
   position: relative;
   margin: 2px;
-  padding: 0 0 0 4px;
+  padding: 0;
   height: 26px;
   line-height: 26px;
   background-color: #f8f8f8;
@@ -22354,7 +22356,7 @@ input:-webkit-autofill:active {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-right: 4px;
+  margin: 0 4px;
 }
 .select .selected-item .remover {
   display: block;
@@ -22414,22 +22416,63 @@ input:-webkit-autofill:active {
   min-height: 48px;
 }
 .select.input-large.dropdown-toggle::before {
-  top: 22px;
+  top: 18px;
+  width: 0.6rem;
+  height: 0.6rem;
+  margin-left: -1.3rem;
 }
 .select.input-large .selected-item {
   margin: 2px 2px;
-  padding: 0 0 0 8px;
   height: 36px;
   line-height: 36px;
 }
 .select.input-large .selected-item .title {
   font-size: 1.3rem;
   line-height: 36px;
+  padding: 0 8px;
 }
 .select.input-large .selected-item .remover {
   width: 35px;
   height: 35px;
-  line-height: 35px;
+  line-height: 30px;
+  font-size: 1.6rem;
+}
+.select.input-small {
+  height: 28px;
+}
+.select.input-small .select-input {
+  height: 26px;
+  font-size: 0.9rem;
+  padding: 0 4px;
+  line-height: 26px;
+}
+.select.input-small.multiple {
+  min-height: 28px;
+  height: auto;
+}
+.select.input-small.multiple .select-input {
+  height: auto;
+  min-height: 26px;
+}
+.select.input-small.dropdown-toggle::before {
+  top: 10px;
+  width: 0.325rem;
+  height: 0.325rem;
+  margin-left: -0.9rem;
+}
+.select.input-small .selected-item {
+  height: 18px;
+  line-height: 18px;
+}
+.select.input-small .selected-item .title {
+  font-size: 0.7rem;
+  line-height: 18px;
+}
+.select.input-small .selected-item .remover {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 0.8rem;
 }
 .textarea,
 textarea {
@@ -22715,6 +22758,57 @@ textarea {
 .input.input-large .button {
   height: 48px;
   min-width: 48px;
+  font-size: 1.3rem;
+}
+.input.input-large .button [class*=mif-] {
+  font-size: 1.3rem;
+}
+.input.input-large .button .default-icon-cross,
+.input.input-large .button .default-icon-eye {
+  width: 21px;
+  height: 21px;
+}
+.input.input-large .button .input-clear-button,
+.input.input-large .button .input-reveal-button {
+  width: 48px;
+  padding: 0;
+}
+input.input-large {
+  height: 48px;
+  font-size: 1.3rem;
+  padding: 0 10px;
+}
+.input.input-small {
+  height: 28px;
+}
+.input.input-small input {
+  height: 26px;
+  font-size: 0.9rem;
+  padding: 0 4px;
+  line-height: 26px;
+}
+.input.input-small .button {
+  height: 26px;
+  min-width: 26px;
+  font-size: 0.9rem;
+}
+.input.input-small .button [class*=mif-] {
+  font-size: 0.9rem;
+}
+.input.input-small .button .default-icon-cross,
+.input.input-small .button .default-icon-eye {
+  width: 14px;
+  height: 14px;
+}
+.input.input-small .input-clear-button,
+.input.input-small .input-reveal-button {
+  width: 26px;
+  padding: 0;
+}
+input.input-small {
+  height: 26px;
+  font-size: 0.9rem;
+  padding: 0 4px;
 }
 .tag-input {
   display: -webkit-box;
@@ -22769,7 +22863,7 @@ textarea {
           align-items: flex-start;
   position: relative;
   margin: 2px;
-  padding: 0 0 0 4px;
+  padding: 0;
   height: 26px;
   line-height: 26px;
   background-color: #f8f8f8;
@@ -22783,24 +22877,24 @@ textarea {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin-right: 4px;
+  margin: 0 8px;
 }
 .tag-input .tag .remover {
   display: block;
   position: relative;
   width: 26px;
   height: 100%;
-  line-height: 24px;
+  line-height: 22px;
   text-align: center;
   cursor: pointer;
   background-color: #e4e4e4;
+  font-size: 1.2rem;
 }
 .tag-input.input-large {
   min-height: 50px;
 }
 .tag-input.input-large .tag {
   margin: 2px 2px;
-  padding: 0 0 0 8px;
   height: 36px;
   line-height: 36px;
 }
@@ -22811,13 +22905,39 @@ textarea {
 .tag-input.input-large .tag .remover {
   width: 35px;
   height: 35px;
-  line-height: 35px;
+  line-height: 30px;
+  font-size: 1.6rem;
 }
 .tag-input.input-large input {
   height: 48px;
   font-size: 1.3rem;
   padding: 0 10px;
   line-height: 48px;
+  min-width: 5em;
+}
+.tag-input.input-small {
+  min-height: 28px;
+}
+.tag-input.input-small .tag {
+  margin: 2px 2px;
+  height: 18px;
+  line-height: 18px;
+}
+.tag-input.input-small .tag .title {
+  font-size: 0.7rem;
+  line-height: 18px;
+}
+.tag-input.input-small .tag .remover {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 0.8rem;
+}
+.tag-input.input-small input {
+  height: 26px;
+  font-size: 0.9rem;
+  padding: 0 4px;
+  line-height: 26px;
   min-width: 5em;
 }
 .spinner {
@@ -22923,6 +23043,37 @@ textarea {
   width: 48px;
   min-width: 48px;
   line-height: 48px;
+  font-size: 1.3rem;
+}
+.spinner.input-large .spinner-button [class*=mif-] {
+  font-size: 1.3rem;
+}
+.spinner.input-large .default-icon-plus,
+.spinner.input-large .default-icon-minus {
+  width: 21px;
+  height: 21px;
+}
+.spinner.input-small {
+  height: 28px;
+  line-height: 28px;
+}
+.spinner.input-small input {
+  font-size: 0.9rem;
+}
+.spinner.input-small .spinner-button {
+  height: 26px;
+  width: 26px;
+  min-width: 26px;
+  line-height: 26px;
+  font-size: 0.9rem;
+}
+.spinner.input-small .spinner-button [class*=mif-] {
+  font-size: 0.9rem;
+}
+.spinner.input-small .default-icon-plus,
+.spinner.input-small .default-icon-minus {
+  width: 14px;
+  height: 14px;
 }
 .checkbox {
   display: -webkit-inline-box;
