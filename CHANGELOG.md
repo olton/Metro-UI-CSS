@@ -1,3 +1,7 @@
+### 4.2.43
++ [x] Inputs: add class `.input-small`
++ [ ] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
+
 ### 4.2.42
 + [x] General: improved components initialization
 + [x] Hotkeys: now you can add or change `hotkey` at runtime
