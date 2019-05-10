@@ -64,6 +64,7 @@ pre {
 #sidenav .toc-nav {
   list-style: none;
   font-size: 90%;
+  margin-top: 0;
 }
 .toc-wrapper .toc-nav li,
 #sidenav .toc-nav li {
