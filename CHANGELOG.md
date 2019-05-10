@@ -2,6 +2,8 @@
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
 + [x] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
 + [x] Panel: new method `customButtons()` for add custom buttons at runtime
++ [x] Table: add `margin-top: 1rem` for class `.table`
++ [x] Lists: add `margin-top: 1rem` for `ul`, `ol`, `dl`
 
 ### 4.2.42
 + [x] General: improved components initialization
