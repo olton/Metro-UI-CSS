@@ -16157,9 +16157,7 @@ p {
 dl,
 ul,
 ol {
-  margin-top: 0;
-  margin-bottom: 1rem;
-  margin-left: 1rem;
+  margin: 1rem;
   list-style-position: inside;
 }
 dl dl,
@@ -16226,11 +16224,6 @@ ul.unstyled-list,
 ol.unstyled-list {
   list-style: none inside;
   margin-left: 0;
-}
-ul,
-ol,
-dl {
-  margin-top: 1rem;
 }
 .inline-list {
   list-style: none;
