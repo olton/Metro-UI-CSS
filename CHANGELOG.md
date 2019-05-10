@@ -4,6 +4,7 @@
 + [x] Panel: new method `customButtons()` for add custom buttons at runtime
 + [x] Table: add `margin-top: 1rem` for class `.table`
 + [x] Lists: add `margin-top: 1rem` for `ul`, `ol`, `dl`
++ [x] Hotkey: full refactoring
 
 ### 4.2.42
 + [x] General: improved components initialization

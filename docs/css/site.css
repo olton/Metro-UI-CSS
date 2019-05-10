@@ -59,6 +59,7 @@ pre {
 .toc-wrapper > h5,
 #sidenav > h5 {
   color: #989898;
+  margin-top: 0;
 }
 .toc-wrapper .toc-nav,
 #sidenav .toc-nav {

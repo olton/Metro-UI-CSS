@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "10/05/2019 20:48:14",
+    compileTime: "10/05/2019 22:12:58",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -280,7 +280,7 @@ var Metro = {
         HIDE: 2
     },
 
-    hotkeys: [],
+    hotkeys: {},
 
     about: function(){
         console.log("Metro 4 - v" + this.version +". "+ this.showCompileTime());
@@ -412,7 +412,10 @@ var Metro = {
     initHotkeys: function(hotkeys, redefine){
         $.each(hotkeys, function(){
             var element = $(this);
-            var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
+            var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
+            var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
+
+            console.log(element);
 
             if (hotkey === false) {
                 return;
@@ -422,25 +425,7 @@ var Metro = {
                 return;
             }
 
-            if (element.data('hotKeyBonded') === true && Utils.bool(redefine)) {
-                $(document).off(Metro.events.keyup, null, hotkey);
-            }
-
-            Metro.hotkeys.push(hotkey);
-
-            $(document).on(Metro.events.keyup, null, hotkey, function(e){
-                if (element === undefined) return;
-
-                if (element[0].tagName === 'A' &&
-                    element.attr('href') !== undefined &&
-                    element.attr('href').trim() !== '' &&
-                    element.attr('href').trim() !== '#') {
-                    document.location.href = element.attr('href');
-                } else {
-                    element.click();
-                }
-                return METRO_HOTKEYS_BUBBLE_UP;
-            });
+            Metro.hotkeys[hotkey] = [this, fn];
 
             element.data('hotKeyBonded', true);
         });
@@ -451,9 +436,6 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
-
-                // console.log(a, func, Utils.bool($this.attr("data-role-"+func)));
-
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
                         $.fn[func].call($this);
@@ -706,6 +688,72 @@ var Animation = {
 };
 
 Metro['animation'] = Animation;
+
+// Source: js/utils/array-ext.js
+
+if (typeof Array.shuffle !== "function") {
+    Array.prototype.shuffle = function () {
+        var currentIndex = this.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = this[currentIndex];
+            this[currentIndex] = this[randomIndex];
+            this[randomIndex] = temporaryValue;
+        }
+
+        return this;
+    };
+}
+
+if (typeof Array.clone !== "function") {
+    Array.prototype.clone = function () {
+        return this.slice(0);
+    };
+}
+
+if (typeof Array.unique !== "function") {
+    Array.prototype.unique = function () {
+        var a = this.concat();
+        for (var i = 0; i < a.length; ++i) {
+            for (var j = i + 1; j < a.length; ++j) {
+                if (a[i] === a[j])
+                    a.splice(j--, 1);
+            }
+        }
+
+        return a;
+    };
+}
+
+if (typeof Array.from !== "function") {
+    Array.from = function(val) {
+        var i, a = [];
+
+        if (val.length === undefined && typeof val === "object") {
+            return Object.values(val);
+        }
+
+        if (val.length !== undefined) {
+            for(i = 0; i < val.length; i++) {
+                a.push(val[i]);
+            }
+            return a;
+        }
+
+        throw new Error("Value can not be converted to array");
+    };
+}
+
+if (typeof Array.contains !== "function") {
+    Array.prototype.contains = function(val, from){
+        return this.indexOf(val, from) > -1;
+    }
+}
+
 
 // Source: js/utils/colors.js
 
@@ -1587,509 +1635,7 @@ var Colors = {
 
 Metro['colors'] = Colors.init();
 
-// Source: js/utils/easing.js
-
-$.easing['jswing'] = $.easing['swing'];
-
-$.extend($.easing, {
-    def: 'easeOutQuad',
-    swing: function (x, t, b, c, d) {
-        //alert($.easing.default);
-        return $.easing[$.easing.def](x, t, b, c, d);
-    },
-    easeInQuad: function (x, t, b, c, d) {
-        return c * (t /= d) * t + b;
-    },
-    easeOutQuad: function (x, t, b, c, d) {
-        return -c * (t /= d) * (t - 2) + b;
-    },
-    easeInOutQuad: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-        return -c / 2 * ((--t) * (t - 2) - 1) + b;
-    },
-    easeInCubic: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-    },
-    easeOutCubic: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1) + b;
-    },
-    easeInOutCubic: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t + 2) + b;
-    },
-    easeInQuart: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t + b;
-    },
-    easeOutQuart: function (x, t, b, c, d) {
-        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
-    },
-    easeInOutQuart: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
-        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
-    },
-    easeInQuint: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    easeOutQuint: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    easeInOutQuint: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
-    },
-    easeInSine: function (x, t, b, c, d) {
-        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
-    },
-    easeOutSine: function (x, t, b, c, d) {
-        return c * Math.sin(t / d * (Math.PI / 2)) + b;
-    },
-    easeInOutSine: function (x, t, b, c, d) {
-        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
-    },
-    easeInExpo: function (x, t, b, c, d) {
-        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
-    },
-    easeOutExpo: function (x, t, b, c, d) {
-        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
-    },
-    easeInOutExpo: function (x, t, b, c, d) {
-        if (t == 0) return b;
-        if (t == d) return b + c;
-        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    },
-    easeInCirc: function (x, t, b, c, d) {
-        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
-    },
-    easeOutCirc: function (x, t, b, c, d) {
-        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
-    },
-    easeInOutCirc: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
-        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
-    },
-    easeInElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d) == 1) return b + c;
-        if (!p) p = d * .3;
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
-        }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-    },
-    easeOutElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d) == 1) return b + c;
-        if (!p) p = d * .3;
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
-        }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
-    },
-    easeInOutElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d / 2) == 2) return b + c;
-        if (!p) p = d * (.3 * 1.5);
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
-        }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
-    },
-    easeInBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * (t /= d) * t * ((s + 1) * t - s) + b;
-    },
-    easeOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
-    },
-    easeInOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
-        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
-    },
-    easeInBounce: function (x, t, b, c, d) {
-        return c - $.easing.easeOutBounce(x, d - t, 0, c, d) + b;
-    },
-    easeOutBounce: function (x, t, b, c, d) {
-        if ((t /= d) < (1 / 2.75)) {
-            return c * (7.5625 * t * t) + b;
-        } else if (t < (2 / 2.75)) {
-            return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
-        } else if (t < (2.5 / 2.75)) {
-            return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
-        } else {
-            return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
-        }
-    },
-    easeInOutBounce: function (x, t, b, c, d) {
-        if (t < d / 2) return $.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
-        return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
-    }
-});
-
-
-// Source: js/utils/export.js
-
-var Export = {
-
-    init: function(){
-        return this;
-    },
-
-    options: {
-        csvDelimiter: "\t",
-        csvNewLine: "\r\n",
-        includeHeader: true
-    },
-
-    setup: function(options){
-        this.options = $.extend({}, this.options, options);
-        return this;
-    },
-
-    base64: function(data){
-        return window.btoa(unescape(encodeURIComponent(data)));
-    },
-
-    b64toBlob: function (b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
-
-        var byteCharacters = window.atob(b64Data);
-        var byteArrays = [];
-
-        var offset;
-        for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-            var byteNumbers = new Array(slice.length);
-            var i;
-            for (i = 0; i < slice.length; i = i + 1) {
-                byteNumbers[i] = slice.charCodeAt(i);
-            }
-
-            var byteArray = new window.Uint8Array(byteNumbers);
-
-            byteArrays.push(byteArray);
-        }
-
-        return new Blob(byteArrays, {
-            type: contentType
-        });
-    },
-
-    tableToCSV: function(table, filename, options){
-        var that = this, o = this.options;
-        var body, head, data = "";
-        var i, j, row, cell;
-
-        o = $.extend({}, o, options);
-
-        if (Utils.isJQueryObject(table)) {
-            table = table[0];
-        }
-
-        if (Utils.bool(o.includeHeader)) {
-
-            head = table.querySelectorAll("thead")[0];
-
-            for(i = 0; i < head.rows.length; i++) {
-                row = head.rows[i];
-                for(j = 0; j < row.cells.length; j++){
-                    cell = row.cells[j];
-                    data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
-                }
-                data += o.csvNewLine;
-            }
-        }
-
-        body = table.querySelectorAll("tbody")[0];
-
-        for(i = 0; i < body.rows.length; i++) {
-            row = body.rows[i];
-            for(j = 0; j < row.cells.length; j++){
-                cell = row.cells[j];
-                data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
-            }
-            data += o.csvNewLine;
-        }
-
-        if (Utils.isValue(filename)) {
-            return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
-        }
-
-        return data;
-    },
-
-    createDownload: function (data, contentType, filename) {
-        var blob, anchor, url;
-
-        anchor = document.createElement('a');
-        anchor.style.display = "none";
-        document.body.appendChild(anchor);
-
-        blob = this.b64toBlob(data, contentType);
-
-        url = window.URL.createObjectURL(blob);
-        anchor.href = url;
-        anchor.download = filename || Utils.elementId("download");
-        anchor.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(anchor);
-        return true;
-    }
-};
-
-Metro['export'] = Export.init();
-
-
-// Source: js/utils/extensions.js
-
-$.fn.extend({
-    toggleAttr: function(a, v){
-        return this.each(function(){
-            var el = $(this);
-            if (v !== undefined) {
-                el.attr(a, v);
-            } else {
-                if (el.attr(a) !== undefined) {
-                    el.removeAttr(a);
-                } else {
-                    el.attr(a, ""+a);
-                }
-            }
-        });
-    },
-
-    clearClasses: function(){
-        return this.each(function(){
-            this.className = "";
-        });
-    },
-
-    fire: function(eventName, data){
-        return this.each(function(){
-            var el = this;
-            var e = document.createEvent('Events');
-            e.detail = data;
-            e.initEvent(eventName, true, false);
-            el.dispatchEvent(e);
-        });
-    }
-});
-
-Array.prototype.shuffle = function () {
-    var currentIndex = this.length, temporaryValue, randomIndex;
-
-    while (0 !== currentIndex) {
-
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-
-        temporaryValue = this[currentIndex];
-        this[currentIndex] = this[randomIndex];
-        this[randomIndex] = temporaryValue;
-    }
-
-    return this;
-};
-
-Array.prototype.clone = function () {
-    return this.slice(0);
-};
-
-Array.prototype.unique = function () {
-    var a = this.concat();
-    for (var i = 0; i < a.length; ++i) {
-        for (var j = i + 1; j < a.length; ++j) {
-            if (a[i] === a[j])
-                a.splice(j--, 1);
-        }
-    }
-
-    return a;
-};
-
-if (!Array.from) {
-    Array.from = function(val) {
-        var i, a = [];
-
-        if (val.length === undefined && typeof val === "object") {
-            return Object.values(val);
-        }
-
-        if (val.length !== undefined) {
-            for(i = 0; i < val.length; i++) {
-                a.push(val[i]);
-            }
-            return a;
-        }
-
-        throw new Error("Value can not be converted to array");
-    };
-}
-
-if (typeof Array.contains !== "function") {
-    Array.prototype.contains = function(val, from){
-        return this.indexOf(val, from) > -1;
-    }
-}
-
-/**
- * Number.prototype.format(n, x, s, c)
- *
- * @param  n: length of decimal
- * @param  x: length of whole part
- * @param  s: sections delimiter
- * @param  c: decimal delimiter
- */
-Number.prototype.format = function(n, x, s, c) {
-    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
-        num = this.toFixed(Math.max(0, ~~n));
-
-    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
-};
-
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
-String.prototype.contains = function() {
-    return !!~String.prototype.indexOf.apply(this, arguments);
-};
-
-String.prototype.toDate = function(format, locale) {
-    var result;
-    var normalized, normalizedFormat, formatItems, dateItems, checkValue;
-    var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
-    var year, month, day, hour, minute, second;
-    var parsedMonth;
-
-    locale = locale || "en-US";
-
-    var monthNameToNumber = function(month){
-        var d, months, index, i;
-
-        month = month.substr(0, 3);
-
-        if (
-               locale !== undefined
-            && locale !== "en-US"
-            && Locales !== undefined
-            && Locales[locale] !== undefined
-            && Locales[locale]['calendar'] !== undefined
-            && Locales[locale]['calendar']['months'] !== undefined
-        ) {
-            months = Locales[locale]['calendar']['months'];
-            for(i = 12; i < months.length; i++) {
-                if (months[i].toLowerCase() === month.toLowerCase()) {
-                    index = i - 12;
-                    break;
-                }
-            }
-            month = Locales["en-US"]['calendar']['months'][index];
-        }
-
-        d = Date.parse(month + " 1, 1972");
-        if(!isNaN(d)){
-            return new Date(d).getMonth() + 1;
-        }
-        return -1;
-    };
-
-    if (format === undefined || format === null || format === "") {
-        return new Date(this);
-    }
-
-    // normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
-    normalized      = this.replace(/[\/,.:\s]/g, '-');
-    normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
-    formatItems     = normalizedFormat.split('-');
-    dateItems       = normalized.split('-');
-    checkValue      = normalized.replace(/\-/g,"");
-
-    if (checkValue.trim() === "") {
-        return "Invalid Date";
-    }
-
-    monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
-    dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
-    yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
-    hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
-    minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
-    secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
-
-    if (monthIndex > -1 && dateItems[monthIndex] !== "") {
-        if (isNaN(parseInt(dateItems[monthIndex]))) {
-            dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
-            if (dateItems[monthIndex] === -1) {
-                return "Invalid Date";
-            }
-        } else {
-            parsedMonth = parseInt(dateItems[monthIndex]);
-            if (parsedMonth < 1 || parsedMonth > 12) {
-                return "Invalid Date";
-            }
-        }
-    } else {
-        return "Invalid Date";
-    }
-
-    year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
-    month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
-    day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
-
-    hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
-    minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
-    second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
-
-    result = new Date(year,month-1,day,hour,minute,second);
-
-    return result;
-};
-
-String.prototype.toArray = function(delimiter, type, format){
-    var str = this;
-    var a;
-
-    type = type || "string";
-    delimiter = delimiter || ",";
-    format = format === undefined || format === null ? false : format;
-
-    a = (""+str).split(delimiter);
-
-    return a.map(function(s){
-        var result;
-
-        switch (type) {
-            case "int":
-            case "integer": result = parseInt(s); break;
-            case "number":
-            case "float": result = parseFloat(s); break;
-            case "date": result = !format ? new Date(s) : s.toDate(format); break;
-            default: result = s.trim();
-        }
-
-        return result;
-    });
-};
+// Source: js/utils/date-ext.js
 
 Date.prototype.getWeek = function (dowOffset) {
     var nYear, nday, newYear, day, daynum, weeknum;
@@ -2221,186 +1767,203 @@ Date.prototype.addYears = function(n) {
 };
 
 
-// Source: js/utils/hotkeys.js
+// Source: js/utils/export.js
 
-var hotkeys = {
+var Export = {
 
-    specialKeys: {
-        8: "backspace",
-        9: "tab",
-        10: "return",
-        13: "return",
-        16: "shift",
-        17: "ctrl",
-        18: "alt",
-        19: "pause",
-        20: "capslock",
-        27: "esc",
-        32: "space",
-        33: "pageup",
-        34: "pagedown",
-        35: "end",
-        36: "home",
-        37: "left",
-        38: "up",
-        39: "right",
-        40: "down",
-        45: "insert",
-        46: "del",
-        59: ";",
-        61: "=",
-        96: "0",
-        97: "1",
-        98: "2",
-        99: "3",
-        100: "4",
-        101: "5",
-        102: "6",
-        103: "7",
-        104: "8",
-        105: "9",
-        106: "*",
-        107: "+",
-        109: "-",
-        110: ".",
-        111: "/",
-        112: "f1",
-        113: "f2",
-        114: "f3",
-        115: "f4",
-        116: "f5",
-        117: "f6",
-        118: "f7",
-        119: "f8",
-        120: "f9",
-        121: "f10",
-        122: "f11",
-        123: "f12",
-        144: "numlock",
-        145: "scroll",
-        173: "-",
-        186: ";",
-        187: "=",
-        188: ",",
-        189: "-",
-        190: ".",
-        191: "/",
-        192: "`",
-        219: "[",
-        220: "\\",
-        221: "]",
-        222: "'"
+    init: function(){
+        return this;
     },
-
-    shiftNums: {
-        "`": "~",
-        "1": "!",
-        "2": "@",
-        "3": "#",
-        "4": "$",
-        "5": "%",
-        "6": "^",
-        "7": "&",
-        "8": "*",
-        "9": "(",
-        "0": ")",
-        "-": "_",
-        "=": "+",
-        ";": ": ",
-        "'": "\"",
-        ",": "<",
-        ".": ">",
-        "/": "?",
-        "\\": "|"
-    },
-
-    // excludes: button, checkbox, file, hidden, image, password, radio, reset, search, submit, url
-    textAcceptingInputTypes: [
-        "text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime",
-        "datetime-local", "search", "color", "tel"],
-
-    // default input types not to bind to unless bound directly
-    textInputTypes: /textarea|input|select/i,
 
     options: {
-        filterInputAcceptingElements: METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS,
-        filterTextInputs: METRO_HOTKEYS_FILTER_TEXT_INPUTS,
-        filterContentEditable: METRO_HOTKEYS_FILTER_CONTENT_EDITABLE
+        csvDelimiter: "\t",
+        csvNewLine: "\r\n",
+        includeHeader: true
     },
 
-    keyHandler: function(handleObj){
-        if (typeof handleObj.data === "string") {
-            handleObj.data = {
-                keys: handleObj.data
-            };
+    setup: function(options){
+        this.options = $.extend({}, this.options, options);
+        return this;
+    },
+
+    base64: function(data){
+        return window.btoa(unescape(encodeURIComponent(data)));
+    },
+
+    b64toBlob: function (b64Data, contentType, sliceSize) {
+        contentType = contentType || '';
+        sliceSize = sliceSize || 512;
+
+        var byteCharacters = window.atob(b64Data);
+        var byteArrays = [];
+
+        var offset;
+        for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+            var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+            var byteNumbers = new Array(slice.length);
+            var i;
+            for (i = 0; i < slice.length; i = i + 1) {
+                byteNumbers[i] = slice.charCodeAt(i);
+            }
+
+            var byteArray = new window.Uint8Array(byteNumbers);
+
+            byteArrays.push(byteArray);
         }
 
-        // Only care when a possible input has been specified
-        if (!handleObj.data || !handleObj.data.keys || typeof handleObj.data.keys !== "string") {
-            return;
+        return new Blob(byteArrays, {
+            type: contentType
+        });
+    },
+
+    tableToCSV: function(table, filename, options){
+        var that = this, o = this.options;
+        var body, head, data = "";
+        var i, j, row, cell;
+
+        o = $.extend({}, o, options);
+
+        if (Utils.isJQueryObject(table)) {
+            table = table[0];
         }
 
-        var origHandler = handleObj.handler,
-            keys = handleObj.data.keys.toLowerCase().split(" ");
+        if (Utils.bool(o.includeHeader)) {
 
-        handleObj.handler = function(event) {
-            //      Don't fire in text-accepting inputs that we didn't directly bind to
-            if (this !== event.target &&
-                (hotkeys.options.filterInputAcceptingElements && hotkeys.textInputTypes.test(event.target.nodeName) ||
-                    (hotkeys.options.filterContentEditable && $(event.target).attr('contenteditable')) ||
-                    (hotkeys.options.filterTextInputs && $.inArray(event.target.type, hotkeys.textAcceptingInputTypes) > -1))
-            )
-            {
-                return;
-            }
+            head = table.querySelectorAll("thead")[0];
 
-            var special = event.type !== "keypress" && hotkeys.specialKeys[event.which],
-                character = String.fromCharCode(event.which).toLowerCase(),
-                modif = "",
-                possible = {};
-
-            $.each(["alt", "ctrl", "shift"], function(index, specialKey) {
-
-                if (event[specialKey + 'Key'] && special !== specialKey) {
-                    modif += specialKey + '+';
+            for(i = 0; i < head.rows.length; i++) {
+                row = head.rows[i];
+                for(j = 0; j < row.cells.length; j++){
+                    cell = row.cells[j];
+                    data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                 }
-            });
-
-            // metaKey is triggered off ctrlKey erronously
-            if (event.metaKey && !event.ctrlKey && special !== "meta") {
-                modif += "meta+";
+                data += o.csvNewLine;
             }
+        }
 
-            if (event.metaKey && special !== "meta" && modif.indexOf("alt+ctrl+shift+") > -1) {
-                modif = modif.replace("alt+ctrl+shift+", "hyper+");
-            }
+        body = table.querySelectorAll("tbody")[0];
 
-            if (special) {
-                possible[modif + special] = true;
+        for(i = 0; i < body.rows.length; i++) {
+            row = body.rows[i];
+            for(j = 0; j < row.cells.length; j++){
+                cell = row.cells[j];
+                data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
             }
-            else {
-                possible[modif + character] = true;
-                possible[modif + hotkeys.shiftNums[character]] = true;
+            data += o.csvNewLine;
+        }
 
-                // "$" can be triggered as "Shift+4" or "Shift+$" or just "$"
-                if (modif === "shift+") {
-                    possible[hotkeys.shiftNums[character]] = true;
-                }
-            }
+        if (Utils.isValue(filename)) {
+            return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
+        }
 
-            for (var i = 0, l = keys.length; i < l; i++) {
-                if (possible[keys[i]]) {
-                    return origHandler.apply(this, arguments);
-                }
-            }
-        };
+        return data;
+    },
+
+    createDownload: function (data, contentType, filename) {
+        var blob, anchor, url;
+
+        anchor = document.createElement('a');
+        anchor.style.display = "none";
+        document.body.appendChild(anchor);
+
+        blob = this.b64toBlob(data, contentType);
+
+        url = window.URL.createObjectURL(blob);
+        anchor.href = url;
+        anchor.download = filename || Utils.elementId("download");
+        anchor.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(anchor);
+        return true;
     }
 };
 
-$.each(["keydown", "keyup", "keypress"], function() {
-    $.event.special[this] = {
-        add: hotkeys.keyHandler
-    };
+Metro['export'] = Export.init();
+
+
+// Source: js/utils/hotkey.js
+
+var Hotkey = {
+    specialKeys: {
+        8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
+        20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home",
+        37: "left", 38: "up", 39: "right", 40: "down", 45: "insert", 46: "del",
+        96: "0", 97: "1", 98: "2", 99: "3", 100: "4", 101: "5", 102: "6", 103: "7",
+        104: "8", 105: "9", 106: "*", 107: "+", 109: "-", 110: ".", 111 : "/",
+        112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8",
+        120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 188: ",", 190: ".",
+        191: "/", 224: "meta" },
+
+    shiftNums: {
+        "~":"`", "!":"1", "@":"2", "#":"3", "$":"4", "%":"5", "^":"6", "&":"7",
+        "*":"8", "(":"9", ")":"0", "_":"-", "+":"=", ":":";", "\"":"'", "<":",",
+        ">":".",  "?":"/",   "|":"\\"
+    },
+
+    shiftNumsInverse: {
+        "`": "~", "1": "!", "2": "@", "3": "#", "4": "$", "5": "%", "6": "^", "7": "&",
+        "8": "*", "9": "(", "0": ")", "-": "_", "=": "+", ";": ": ", "'": "\"", ",": "<",
+        ".": ">",  "/": "?",  "\\": "|"
+    },
+
+    textAcceptingInputTypes: [
+        "text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime",
+        "datetime-local", "search", "color", "tel"
+    ],
+
+    getKey: function(e){
+        var key, k = e.keyCode, char = String.fromCharCode( k ).toLowerCase();
+        if( e.shiftKey ){
+            key = Hotkey.shiftNums[ char ] ? Hotkey.shiftNums[ char ] : char;
+        }
+        else {
+            key = Hotkey.specialKeys[ k ] === undefined
+                ? char
+                : Hotkey.specialKeys[ k ];
+        }
+
+        return Hotkey.getModifier(e).length ? Hotkey.getModifier(e).join("+") + "+" + key : key;
+    },
+
+    getModifier: function(e){
+        var m = [];
+        if (e.altKey) {m.push("alt");}
+        if (e.ctrlKey) {m.push("ctrl");}
+        if (e.shiftKey) {m.push("shift");}
+        return m;
+    }
+};
+
+$.fn.hotkey = function(key, fn){
+    return this.each(function(){
+        $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
+            var _key = Hotkey.getKey(e);
+            if (key === _key) Utils.exec(fn, [e, _key, key], this);
+        })
+    })
+};
+
+$(document).on(Metro.events.keyup + ".hotkey-data", function(e){
+    var el, fn, key;
+
+    if (
+        (METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS && /textarea|input|select/i.test(e.target.nodeName)) ||
+        (METRO_HOTKEYS_FILTER_CONTENT_EDITABLE && $(e.target).attr('contenteditable')) ||
+        (METRO_HOTKEYS_FILTER_TEXT_INPUTS && Hotkey.textAcceptingInputTypes.indexOf(e.target.type) > -1)
+    )
+    {
+        return;
+    }
+
+    key = Hotkey.getKey(e);
+
+    if (Utils.keyInObject(Metro.hotkeys, key)) {
+        el = Metro.hotkeys[key][0];
+        fn = Metro.hotkeys[key][1];
+
+        fn === false ? $(el).click() : Utils.exec(fn);
+    }
 });
 
 
@@ -2731,6 +2294,197 @@ var Locales = {
 };
 
 Metro['locales'] = Locales;
+
+
+// Source: js/utils/jquery-ext.js
+
+$.fn.extend({
+    toggleAttr: function(a, v){
+        return this.each(function(){
+            var el = $(this);
+            if (v !== undefined) {
+                el.attr(a, v);
+            } else {
+                if (el.attr(a) !== undefined) {
+                    el.removeAttr(a);
+                } else {
+                    el.attr(a, ""+a);
+                }
+            }
+        });
+    },
+
+    clearClasses: function(){
+        return this.each(function(){
+            this.className = "";
+        });
+    },
+
+    fire: function(eventName, data){
+        return this.each(function(){
+            var el = this;
+            var e = document.createEvent('Events');
+            e.detail = data;
+            e.initEvent(eventName, true, false);
+            el.dispatchEvent(e);
+        });
+    }
+});
+
+$.easing['jswing'] = $.easing['swing'];
+
+$.extend($.easing, {
+    def: 'easeOutQuad',
+    swing: function (x, t, b, c, d) {
+        //alert($.easing.default);
+        return $.easing[$.easing.def](x, t, b, c, d);
+    },
+    easeInQuad: function (x, t, b, c, d) {
+        return c * (t /= d) * t + b;
+    },
+    easeOutQuad: function (x, t, b, c, d) {
+        return -c * (t /= d) * (t - 2) + b;
+    },
+    easeInOutQuad: function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
+        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+    },
+    easeInCubic: function (x, t, b, c, d) {
+        return c * (t /= d) * t * t + b;
+    },
+    easeOutCubic: function (x, t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t + 1) + b;
+    },
+    easeInOutCubic: function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
+        return c / 2 * ((t -= 2) * t * t + 2) + b;
+    },
+    easeInQuart: function (x, t, b, c, d) {
+        return c * (t /= d) * t * t * t + b;
+    },
+    easeOutQuart: function (x, t, b, c, d) {
+        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+    },
+    easeInOutQuart: function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
+        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+    },
+    easeInQuint: function (x, t, b, c, d) {
+        return c * (t /= d) * t * t * t * t + b;
+    },
+    easeOutQuint: function (x, t, b, c, d) {
+        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+    },
+    easeInOutQuint: function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
+        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+    },
+    easeInSine: function (x, t, b, c, d) {
+        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+    },
+    easeOutSine: function (x, t, b, c, d) {
+        return c * Math.sin(t / d * (Math.PI / 2)) + b;
+    },
+    easeInOutSine: function (x, t, b, c, d) {
+        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+    },
+    easeInExpo: function (x, t, b, c, d) {
+        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
+    },
+    easeOutExpo: function (x, t, b, c, d) {
+        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
+    },
+    easeInOutExpo: function (x, t, b, c, d) {
+        if (t == 0) return b;
+        if (t == d) return b + c;
+        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
+        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
+    },
+    easeInCirc: function (x, t, b, c, d) {
+        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
+    },
+    easeOutCirc: function (x, t, b, c, d) {
+        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
+    },
+    easeInOutCirc: function (x, t, b, c, d) {
+        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
+        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
+    },
+    easeInElastic: function (x, t, b, c, d) {
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+        if (t == 0) return b;
+        if ((t /= d) == 1) return b + c;
+        if (!p) p = d * .3;
+        if (a < Math.abs(c)) {
+            a = c;
+            s = p / 4;
+        }
+        else s = p / (2 * Math.PI) * Math.asin(c / a);
+        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+    },
+    easeOutElastic: function (x, t, b, c, d) {
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+        if (t == 0) return b;
+        if ((t /= d) == 1) return b + c;
+        if (!p) p = d * .3;
+        if (a < Math.abs(c)) {
+            a = c;
+            s = p / 4;
+        }
+        else s = p / (2 * Math.PI) * Math.asin(c / a);
+        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+    },
+    easeInOutElastic: function (x, t, b, c, d) {
+        var s = 1.70158;
+        var p = 0;
+        var a = c;
+        if (t == 0) return b;
+        if ((t /= d / 2) == 2) return b + c;
+        if (!p) p = d * (.3 * 1.5);
+        if (a < Math.abs(c)) {
+            a = c;
+            s = p / 4;
+        }
+        else s = p / (2 * Math.PI) * Math.asin(c / a);
+        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+    },
+    easeInBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c * (t /= d) * t * ((s + 1) * t - s) + b;
+    },
+    easeOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+    },
+    easeInOutBack: function (x, t, b, c, d, s) {
+        if (s == undefined) s = 1.70158;
+        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
+        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+    },
+    easeInBounce: function (x, t, b, c, d) {
+        return c - $.easing.easeOutBounce(x, d - t, 0, c, d) + b;
+    },
+    easeOutBounce: function (x, t, b, c, d) {
+        if ((t /= d) < (1 / 2.75)) {
+            return c * (7.5625 * t * t) + b;
+        } else if (t < (2 / 2.75)) {
+            return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
+        } else if (t < (2.5 / 2.75)) {
+            return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+        } else {
+            return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+        }
+    },
+    easeInOutBounce: function (x, t, b, c, d) {
+        if (t < d / 2) return $.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
+        return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+    }
+});
 
 
 // Source: js/utils/md5.js
@@ -3286,6 +3040,24 @@ function shouldAdjustOldDeltas(orgEvent, absDelta) {
     return $.event.special.mousewheel.settings.adjustOldDeltas && orgEvent.type === 'mousewheel' && absDelta % 120 === 0;
 }
 
+// Source: js/utils/number-ext.js
+
+/**
+ * Number.prototype.format(n, x, s, c)
+ *
+ * @param  n: length of decimal
+ * @param  x: length of whole part
+ * @param  s: sections delimiter
+ * @param  c: decimal delimiter
+ */
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
+
+
 // Source: js/utils/pagination.js
 
 var createPagination = function(c){
@@ -3539,6 +3311,133 @@ Storage.init.prototype = Storage.prototype;
 
 Metro['storage'] = Storage(window.localStorage);
 Metro['session'] = Storage(window.sessionStorage);
+
+
+// Source: js/utils/string-ext.js
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
+String.prototype.contains = function() {
+    return !!~String.prototype.indexOf.apply(this, arguments);
+};
+
+String.prototype.toDate = function(format, locale) {
+    var result;
+    var normalized, normalizedFormat, formatItems, dateItems, checkValue;
+    var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
+    var year, month, day, hour, minute, second;
+    var parsedMonth;
+
+    locale = locale || "en-US";
+
+    var monthNameToNumber = function(month){
+        var d, months, index, i;
+
+        month = month.substr(0, 3);
+
+        if (
+            locale !== undefined
+            && locale !== "en-US"
+            && Locales !== undefined
+            && Locales[locale] !== undefined
+            && Locales[locale]['calendar'] !== undefined
+            && Locales[locale]['calendar']['months'] !== undefined
+        ) {
+            months = Locales[locale]['calendar']['months'];
+            for(i = 12; i < months.length; i++) {
+                if (months[i].toLowerCase() === month.toLowerCase()) {
+                    index = i - 12;
+                    break;
+                }
+            }
+            month = Locales["en-US"]['calendar']['months'][index];
+        }
+
+        d = Date.parse(month + " 1, 1972");
+        if(!isNaN(d)){
+            return new Date(d).getMonth() + 1;
+        }
+        return -1;
+    };
+
+    if (format === undefined || format === null || format === "") {
+        return new Date(this);
+    }
+
+    // normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
+    normalized      = this.replace(/[\/,.:\s]/g, '-');
+    normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
+    formatItems     = normalizedFormat.split('-');
+    dateItems       = normalized.split('-');
+    checkValue      = normalized.replace(/\-/g,"");
+
+    if (checkValue.trim() === "") {
+        return "Invalid Date";
+    }
+
+    monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
+    dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
+    yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
+    hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
+    minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
+    secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
+
+    if (monthIndex > -1 && dateItems[monthIndex] !== "") {
+        if (isNaN(parseInt(dateItems[monthIndex]))) {
+            dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
+            if (dateItems[monthIndex] === -1) {
+                return "Invalid Date";
+            }
+        } else {
+            parsedMonth = parseInt(dateItems[monthIndex]);
+            if (parsedMonth < 1 || parsedMonth > 12) {
+                return "Invalid Date";
+            }
+        }
+    } else {
+        return "Invalid Date";
+    }
+
+    year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
+    month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
+    day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
+
+    hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
+    minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
+    second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
+
+    result = new Date(year,month-1,day,hour,minute,second);
+
+    return result;
+};
+
+String.prototype.toArray = function(delimiter, type, format){
+    var str = this;
+    var a;
+
+    type = type || "string";
+    delimiter = delimiter || ",";
+    format = format === undefined || format === null ? false : format;
+
+    a = (""+str).split(delimiter);
+
+    return a.map(function(s){
+        var result;
+
+        switch (type) {
+            case "int":
+            case "integer": result = parseInt(s); break;
+            case "number":
+            case "float": result = parseFloat(s); break;
+            case "date": result = !format ? new Date(s) : s.toDate(format); break;
+            default: result = s.trim();
+        }
+
+        return result;
+    });
+};
 
 
 // Source: js/utils/tpl.js
