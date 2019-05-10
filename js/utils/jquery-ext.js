@@ -1,3 +1,36 @@
+$.fn.extend({
+    toggleAttr: function(a, v){
+        return this.each(function(){
+            var el = $(this);
+            if (v !== undefined) {
+                el.attr(a, v);
+            } else {
+                if (el.attr(a) !== undefined) {
+                    el.removeAttr(a);
+                } else {
+                    el.attr(a, ""+a);
+                }
+            }
+        });
+    },
+
+    clearClasses: function(){
+        return this.each(function(){
+            this.className = "";
+        });
+    },
+
+    fire: function(eventName, data){
+        return this.each(function(){
+            var el = this;
+            var e = document.createEvent('Events');
+            e.detail = data;
+            e.initEvent(eventName, true, false);
+            el.dispatchEvent(e);
+        });
+    }
+});
+
 $.easing['jswing'] = $.easing['swing'];
 
 $.extend($.easing, {

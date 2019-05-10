@@ -265,7 +265,7 @@ var Metro = {
         HIDE: 2
     },
 
-    hotkeys: [],
+    hotkeys: {},
 
     about: function(){
         console.log("Metro 4 - v" + this.version +". "+ this.showCompileTime());
@@ -397,7 +397,10 @@ var Metro = {
     initHotkeys: function(hotkeys, redefine){
         $.each(hotkeys, function(){
             var element = $(this);
-            var hotkey = element.data('hotkey') ? element.data('hotkey').toLowerCase() : false;
+            var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
+            var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
+
+            console.log(element);
 
             if (hotkey === false) {
                 return;
@@ -407,25 +410,7 @@ var Metro = {
                 return;
             }
 
-            if (element.data('hotKeyBonded') === true && Utils.bool(redefine)) {
-                $(document).off(Metro.events.keyup, null, hotkey);
-            }
-
-            Metro.hotkeys.push(hotkey);
-
-            $(document).on(Metro.events.keyup, null, hotkey, function(e){
-                if (element === undefined) return;
-
-                if (element[0].tagName === 'A' &&
-                    element.attr('href') !== undefined &&
-                    element.attr('href').trim() !== '' &&
-                    element.attr('href').trim() !== '#') {
-                    document.location.href = element.attr('href');
-                } else {
-                    element.click();
-                }
-                return METRO_HOTKEYS_BUBBLE_UP;
-            });
+            Metro.hotkeys[hotkey] = [this, fn];
 
             element.data('hotKeyBonded', true);
         });
@@ -436,9 +421,6 @@ var Metro = {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
-
-                // console.log(a, func, Utils.bool($this.attr("data-role-"+func)));
-
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
                         $.fn[func].call($this);

@@ -76,11 +76,11 @@
                 <div class="example">
                     <div class="clear mb-2">
                         <ul class="d-menu pos-static open">
-                            <li><a href="#" onclick="alert('Ctrl+1 is clicked')" data-hotkey="Ctrl+1">Press Ctrl+1</a></li>
+                            <li><a href="#" onclick="alert('Ctrl+1 is clicked')" data-hotkey="Ctrl+f1">Press Ctrl+1</a></li>
                         </ul>
                     </div>
                     <div class="clear mb-2">
-                        <button class="button" data-hotkey="Alt+2" onclick="alert('Alt+2 clicked!')">Press Alt+2</button>
+                        <button class="button" data-hotkey="alt+2" onclick="alert('Alt+2 clicked!')">Press Alt+2</button>
                     </div>
                     <div class="clear mb-2">
                         <a href="#" data-hotkey="Shift+3" onclick="alert('Shift+3 clicked!')">Press Shift+3</a>
@@ -159,31 +159,18 @@
 
                 <h3 id="_hk_custom">Custom binding</h3>
                 <p>
-                    For custom hotkeys you can use next supported event types: <code>keydown</code>, <code>keyup</code> and <code>keypress</code>. To create own event:
+                    For custom hotkeys you can use method <code>$(el).hotkey(key, fn)</code>. To create own event:
                 </p>
+                <div class="example">
+                    <input type="text" id="hotkey-input">
+                    <small>Type <kbd>$</kbd> to replace it to <code>EUR</code></small>
+                </div>
                 <pre><code class="javascript">
-                    <!-- bind, unbind -->
-                    $(expression).bind(types, keys, handler);
-                    $(expression).unbind(types, handler);
+                    &lt;input type="text" id="hotkey-input"&gt;
 
-                    $(document).bind('keydown', 'ctrl+a', fn);
-
-                    // e.g. replace '$' sign with 'EUR'
-                    $('input.foo').bind('keyup', '$', function(){
-                      this.value = this.value.replace('$', 'EUR');
-                    });
-                </code></pre>
-                <pre><code class="javascript">
-                    <!-- on, off -->
-                    $(expression).on(types, null, keys, handler);
-                    $(expression).off(types, handler);
-
-                    $(document).on('keydown', null, 'ctrl+a', fn);
-
-                    // e.g. replace '$' sign with 'EUR'
-                    $('input.foo').on('keyup', null, '$', function(){
-                      this.value = this.value.replace('$', 'EUR');
-                    });
+                    $("#hotkey-input").hotkey("shift+4", function(){
+                        return this.value = this.value.replace('$', 'EUR');
+                    })
                 </code></pre>
             </main>
         </div>
@@ -196,6 +183,11 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        $("#hotkey-input").hotkey("shift+4", function(){
+            return this.value = this.value.replace('$', 'EUR');
+        })
+    </script>
     <!-- ads-script -->
     <!-- ga-script -->
     <!-- hit-ua -->
