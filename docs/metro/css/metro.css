@@ -16227,6 +16227,11 @@ ol.unstyled-list {
   list-style: none inside;
   margin-left: 0;
 }
+ul,
+ol,
+dl {
+  margin-top: 1rem;
+}
 .inline-list {
   list-style: none;
   padding-left: 0;
@@ -18462,6 +18467,7 @@ aside::after {
 .table {
   width: 100%;
   margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 .table th,
 .table .th,
