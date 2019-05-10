@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "10/05/2019 18:05:37",
+    compileTime: "10/05/2019 18:42:18",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -15789,7 +15789,7 @@ var Panel = {
         }
 
         buttonsContainer = title.find(".custom-buttons");
-        
+
         if (buttonsContainer.length === 0) {
             buttonsContainer = $("<div>").addClass("custom-buttons").appendTo(title);
         } else {
