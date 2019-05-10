@@ -1,6 +1,6 @@
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
-+ [ ] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
++ [x] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
 
 ### 4.2.42
 + [x] General: improved components initialization
