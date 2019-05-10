@@ -88,6 +88,41 @@
                         }
                     &lt;/script&gt;
                 </code></pre>
+
+                <h3>Subscribing to the events</h3>
+                <p>
+                    Begin from <code>4.2.41</code> you can subscribe to components events with jQuery method <code>$.on(...)</code> and/or JS method <code>addEventListener(...)</code>.
+                </p>
+
+                <pre><code class="html">
+                    &lt;input data-role="keypad" id="keypad"&gt;
+
+                    &lt;script&gt;
+                        $("#keypad").on("shuffle", function(e){
+                            console.log(e.detail);
+                        })
+
+                        /* or */
+
+                        document.getElementById("keypad").addEventListener("shuffle", function(e){
+                            console.log(e.detail);
+                        })
+                    &lt;/script&gt;
+                </code></pre>
+
+                <p class="remark alert">
+                    Important! If you subscribe to the events, event you must define name without <strong>data-on-</strong>.
+                </p>
+
+                <pre><code>
+                    on html
+                    &lt;input data-role="keypad" id="keypad" data-on-shuffle="..."&gt;
+
+                    on js
+                    document.getElementById("keypad").addEventListener("shuffle", function(e){
+                        console.log(e.detail);
+                    })
+                </code></pre>
             </main>
         </div>
 
