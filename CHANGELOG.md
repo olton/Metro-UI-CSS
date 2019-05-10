@@ -1,6 +1,7 @@
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
 + [x] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
++ [x] Panel: new method `customButtons()` for add custom buttons at runtime
 
 ### 4.2.42
 + [x] General: improved components initialization
