@@ -85,9 +85,11 @@ var Panel = {
         }
 
         buttonsContainer = title.find(".custom-buttons");
+        
         if (buttonsContainer.length === 0) {
             buttonsContainer = $("<div>").addClass("custom-buttons").appendTo(title);
         } else {
+            buttonsContainer.find(".btn-custom").off(Metro.events.click);
             buttonsContainer.html("");
         }
 
