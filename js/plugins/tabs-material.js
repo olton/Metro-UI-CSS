@@ -117,8 +117,8 @@ var MaterialTabs = {
         });
 
         var addMouseWheel = function (){
-            $(element).mousewheel(function(event, delta, deltaX, deltaY){
-                var scroll_value = delta * METRO_SCROLL_MULTIPLE;
+            $(element).on(Metro.events.mousewheel, function(e){
+                var scroll_value = e.deltaX * METRO_SCROLL_MULTIPLE;
                 element.scrollLeft(element.scrollLeft() - scroll_value);
                 return false;
             });

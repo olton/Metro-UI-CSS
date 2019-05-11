@@ -5,6 +5,7 @@
 + [x] Table: add `margin-top: 1rem` for class `.table`
 + [x] Lists: add `margin-top: 1rem` for `ul`, `ol`, `dl`
 + [x] Hotkey: full refactoring
++ [x] Mousewheel: plugin was removed
 
 ### 4.2.42
 + [x] General: improved components initialization

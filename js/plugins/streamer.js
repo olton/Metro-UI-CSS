@@ -443,8 +443,6 @@ var Streamer = {
                 return;
             }
 
-            console.log(index, element.data("stream"));
-
             if (element.data("stream") === index) {
                 element.find(".stream-event").removeClass("disabled");
                 element.data("stream", -1);
@@ -465,7 +463,7 @@ var Streamer = {
         });
 
         if (Utils.isTouchDevice() !== true) {
-            element.on(Metro.events.mousewheel, ".events-area", function(e) {
+            element.find(".events-area").on(Metro.events.mousewheel, function(e) {
                 var scroll, scrollable = $(this);
 
                 if (e.deltaY === undefined || e.deltaFactor === undefined) {
