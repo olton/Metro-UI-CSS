@@ -7,7 +7,8 @@
 + [x] Hotkey: full refactoring
 + [x] Mousewheel: plugin was removed
 + [x] Datepicker: add attribute `data-input-format`
-+ [ ] Datepicker: fix hours timezone offset
++ [x] Datepicker: fix hours timezone offset
++ [x] Datepicker: now you can use attribute `value` to setup component date
 
 ### 4.2.42
 + [x] General: improved components initialization

@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "12/05/2019 21:33:11",
+    compileTime: "12/05/2019 22:07:41",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -9630,15 +9630,16 @@ var DatePicker = {
 
     _create: function(){
         var element = this.element, o = this.options;
+        var now = new Date();
 
         if (o.distance < 1) {
             o.distance = 1;
         }
 
-        // Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat)
-        // if (o.value !== null && Utils.isDate(o.value)) {
-        //     this.value = (new Date(o.value)).addHours(this.offset);
-        // }
+        if (Utils.isValue(element.val())) {
+            o.value = element.val();
+        }
+
         if (Utils.isValue(o.value)) {
             if (Utils.isValue(o.inputFormat)) {
                 this.value = (""+o.value).toDate(o.inputFormat);
@@ -9649,7 +9650,7 @@ var DatePicker = {
             }
         }
 
-        console.log(this.offset);
+        this.value.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
         this.value = this.value.addHours(this.offset);
 
         if (Metro.locales[o.locale] === undefined) {
