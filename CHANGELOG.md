@@ -6,6 +6,8 @@
 + [x] Lists: add `margin-top: 1rem` for `ul`, `ol`, `dl`
 + [x] Hotkey: full refactoring
 + [x] Mousewheel: plugin was removed
++ [x] Datepicker: add attribute `data-input-format`
++ [ ] Datepicker: fix hours timezone offset
 
 ### 4.2.42
 + [x] General: improved components initialization

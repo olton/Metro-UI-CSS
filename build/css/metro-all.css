@@ -16361,6 +16361,18 @@ pre code {
 .reduce-5 {
   font-size: 0.5em !important;
 }
+.reduce-6 {
+  font-size: 0.4em !important;
+}
+.reduce-7 {
+  font-size: 0.3em !important;
+}
+.reduce-8 {
+  font-size: 0.2em !important;
+}
+.reduce-9 {
+  font-size: 0.1em !important;
+}
 .enlarge {
   font-size: 1em!important;
 }
@@ -16378,6 +16390,27 @@ pre code {
 }
 .enlarge-5 {
   font-size: 1.5em !important;
+}
+.enlarge-6 {
+  font-size: 1.6em !important;
+}
+.enlarge-7 {
+  font-size: 1.7em !important;
+}
+.enlarge-8 {
+  font-size: 1.8em !important;
+}
+.enlarge-9 {
+  font-size: 1.9em !important;
+}
+.enlarge-2x {
+  font-size: 2em!important;
+}
+.enlarge-3x {
+  font-size: 3em!important;
+}
+.enlarge-4x {
+  font-size: 4em!important;
 }
 .align-size {
   font-size: 1em!important;
@@ -16446,6 +16479,18 @@ pre code {
   .reduce-5-fs {
     font-size: 0.5em !important;
   }
+  .reduce-6-fs {
+    font-size: 0.4em !important;
+  }
+  .reduce-7-fs {
+    font-size: 0.3em !important;
+  }
+  .reduce-8-fs {
+    font-size: 0.2em !important;
+  }
+  .reduce-9-fs {
+    font-size: 0.1em !important;
+  }
   .enlarge-fs {
     font-size: 1em!important;
   }
@@ -16463,6 +16508,27 @@ pre code {
   }
   .enlarge-5-fs {
     font-size: 1.5em !important;
+  }
+  .enlarge-6-fs {
+    font-size: 1.6em !important;
+  }
+  .enlarge-7-fs {
+    font-size: 1.7em !important;
+  }
+  .enlarge-8-fs {
+    font-size: 1.8em !important;
+  }
+  .enlarge-9-fs {
+    font-size: 1.9em !important;
+  }
+  .enlarge-2x-fs {
+    font-size: 2em!important;
+  }
+  .enlarge-3x-fs {
+    font-size: 3em!important;
+  }
+  .enlarge-4x-fs {
+    font-size: 4em!important;
   }
 }
 @media screen and (min-width: 576px) {
@@ -16526,6 +16592,18 @@ pre code {
   .reduce-5-sm {
     font-size: 0.5em !important;
   }
+  .reduce-6-sm {
+    font-size: 0.4em !important;
+  }
+  .reduce-7-sm {
+    font-size: 0.3em !important;
+  }
+  .reduce-8-sm {
+    font-size: 0.2em !important;
+  }
+  .reduce-9-sm {
+    font-size: 0.1em !important;
+  }
   .enlarge-sm {
     font-size: 1em!important;
   }
@@ -16543,6 +16621,27 @@ pre code {
   }
   .enlarge-5-sm {
     font-size: 1.5em !important;
+  }
+  .enlarge-6-sm {
+    font-size: 1.6em !important;
+  }
+  .enlarge-7-sm {
+    font-size: 1.7em !important;
+  }
+  .enlarge-8-sm {
+    font-size: 1.8em !important;
+  }
+  .enlarge-9-sm {
+    font-size: 1.9em !important;
+  }
+  .enlarge-2x-sm {
+    font-size: 2em!important;
+  }
+  .enlarge-3x-sm {
+    font-size: 3em!important;
+  }
+  .enlarge-4x-sm {
+    font-size: 4em!important;
   }
 }
 @media screen and (min-width: 768px) {
@@ -16606,6 +16705,18 @@ pre code {
   .reduce-5-md {
     font-size: 0.5em !important;
   }
+  .reduce-6-md {
+    font-size: 0.4em !important;
+  }
+  .reduce-7-md {
+    font-size: 0.3em !important;
+  }
+  .reduce-8-md {
+    font-size: 0.2em !important;
+  }
+  .reduce-9-md {
+    font-size: 0.1em !important;
+  }
   .enlarge-md {
     font-size: 1em!important;
   }
@@ -16623,6 +16734,27 @@ pre code {
   }
   .enlarge-5-md {
     font-size: 1.5em !important;
+  }
+  .enlarge-6-md {
+    font-size: 1.6em !important;
+  }
+  .enlarge-7-md {
+    font-size: 1.7em !important;
+  }
+  .enlarge-8-md {
+    font-size: 1.8em !important;
+  }
+  .enlarge-9-md {
+    font-size: 1.9em !important;
+  }
+  .enlarge-2x-md {
+    font-size: 2em!important;
+  }
+  .enlarge-3x-md {
+    font-size: 3em!important;
+  }
+  .enlarge-4x-md {
+    font-size: 4em!important;
   }
 }
 @media screen and (min-width: 992px) {
@@ -16686,6 +16818,18 @@ pre code {
   .reduce-5-lg {
     font-size: 0.5em !important;
   }
+  .reduce-6-lg {
+    font-size: 0.4em !important;
+  }
+  .reduce-7-lg {
+    font-size: 0.3em !important;
+  }
+  .reduce-8-lg {
+    font-size: 0.2em !important;
+  }
+  .reduce-9-lg {
+    font-size: 0.1em !important;
+  }
   .enlarge-lg {
     font-size: 1em!important;
   }
@@ -16703,6 +16847,27 @@ pre code {
   }
   .enlarge-5-lg {
     font-size: 1.5em !important;
+  }
+  .enlarge-6-lg {
+    font-size: 1.6em !important;
+  }
+  .enlarge-7-lg {
+    font-size: 1.7em !important;
+  }
+  .enlarge-8-lg {
+    font-size: 1.8em !important;
+  }
+  .enlarge-9-lg {
+    font-size: 1.9em !important;
+  }
+  .enlarge-2x-lg {
+    font-size: 2em!important;
+  }
+  .enlarge-3x-lg {
+    font-size: 3em!important;
+  }
+  .enlarge-4x-lg {
+    font-size: 4em!important;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -16766,6 +16931,18 @@ pre code {
   .reduce-5-xl {
     font-size: 0.5em !important;
   }
+  .reduce-6-xl {
+    font-size: 0.4em !important;
+  }
+  .reduce-7-xl {
+    font-size: 0.3em !important;
+  }
+  .reduce-8-xl {
+    font-size: 0.2em !important;
+  }
+  .reduce-9-xl {
+    font-size: 0.1em !important;
+  }
   .enlarge-xl {
     font-size: 1em!important;
   }
@@ -16783,6 +16960,27 @@ pre code {
   }
   .enlarge-5-xl {
     font-size: 1.5em !important;
+  }
+  .enlarge-6-xl {
+    font-size: 1.6em !important;
+  }
+  .enlarge-7-xl {
+    font-size: 1.7em !important;
+  }
+  .enlarge-8-xl {
+    font-size: 1.8em !important;
+  }
+  .enlarge-9-xl {
+    font-size: 1.9em !important;
+  }
+  .enlarge-2x-xl {
+    font-size: 2em!important;
+  }
+  .enlarge-3x-xl {
+    font-size: 3em!important;
+  }
+  .enlarge-4x-xl {
+    font-size: 4em!important;
   }
 }
 @media screen and (min-width: 1452px) {
@@ -16846,6 +17044,18 @@ pre code {
   .reduce-5-xxl {
     font-size: 0.5em !important;
   }
+  .reduce-6-xxl {
+    font-size: 0.4em !important;
+  }
+  .reduce-7-xxl {
+    font-size: 0.3em !important;
+  }
+  .reduce-8-xxl {
+    font-size: 0.2em !important;
+  }
+  .reduce-9-xxl {
+    font-size: 0.1em !important;
+  }
   .enlarge-xxl {
     font-size: 1em!important;
   }
@@ -16863,6 +17073,27 @@ pre code {
   }
   .enlarge-5-xxl {
     font-size: 1.5em !important;
+  }
+  .enlarge-6-xxl {
+    font-size: 1.6em !important;
+  }
+  .enlarge-7-xxl {
+    font-size: 1.7em !important;
+  }
+  .enlarge-8-xxl {
+    font-size: 1.8em !important;
+  }
+  .enlarge-9-xxl {
+    font-size: 1.9em !important;
+  }
+  .enlarge-2x-xxl {
+    font-size: 2em!important;
+  }
+  .enlarge-3x-xxl {
+    font-size: 3em!important;
+  }
+  .enlarge-4x-xxl {
+    font-size: 4em!important;
   }
 }
 .container,
