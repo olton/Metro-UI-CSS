@@ -74,10 +74,9 @@ If you want to make use of new features as they come in you should upgrade to a 
 - Styles created using the [less](http://lesscss.org) preprocessor by  [Alexis Sellier](https://github.com/cloudhead)
 - preCode by Leon Sorokin [preCode](https://github.com/leeoniya/preCode.js)
 - easing functions by George McGinley Smith [easing](http://gsgd.co.uk/sandbox/jquery/easing/)
-- mousewheel.js by Brandon Aaron [mousewheel](http://brandonaaron.net)
 - strftime by Tom Doan [strftime](https://github.com/thdoan/strftime)
 - jQuery Core [jquery](https://jquery.com/)
-- scrolStop by Ross Allen [ssorallen](https://github.com/ssorallen)
+- scrollStop by Ross Allen [ssorallen](https://github.com/ssorallen)
 - function b64toBlob by [Jeremy Banks](http://stackoverflow.com/users/1114/jeremy-banks)
 - Date.getWeek by [Nick Baicoianu](http://www.epoch-calendar.com)
 - Swipe component based on [Matt Bryson](https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)  TouchSwipe plugin

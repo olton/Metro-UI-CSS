@@ -1,6 +1,7 @@
 var DatePickerDefaultConfig = {
     gmt: 0,
     format: "%Y-%m-%d",
+    inputFormat: null,
     locale: METRO_LOCALE,
     value: null,
     distance: 3,
@@ -43,6 +44,11 @@ var DatePicker = {
         this.value = new Date();
         this.locale = Metro.locales[METRO_LOCALE]['calendar'];
         this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
+        this.listTimer = {
+            day: null,
+            month: null,
+            year: null
+        };
 
         this._setOptionsFromDOM();
         this._create();
@@ -71,9 +77,22 @@ var DatePicker = {
             o.distance = 1;
         }
 
-        if (o.value !== null && Utils.isDate(o.value)) {
-            this.value = (new Date(o.value)).addHours(this.offset);
+        // Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat)
+        // if (o.value !== null && Utils.isDate(o.value)) {
+        //     this.value = (new Date(o.value)).addHours(this.offset);
+        // }
+        if (Utils.isValue(o.value)) {
+            if (Utils.isValue(o.inputFormat)) {
+                this.value = (""+o.value).toDate(o.inputFormat);
+            } else {
+                if (Utils.isDate(o.value)) {
+                    this.value = new Date(o.value);
+                }
+            }
         }
+
+        console.log(this.offset);
+        this.value = this.value.addHours(this.offset);
 
         if (Metro.locales[o.locale] === undefined) {
             o.locale = METRO_LOCALE;
@@ -231,45 +250,37 @@ var DatePicker = {
             e.stopPropagation();
         });
 
-        this._addScrollEvents();
-    },
+        var scrollLatency = 150;
+        $.each(["month", "day", "year"], function(){
+            var part = this, list = picker.find(".sel-"+part);
 
-    _addScrollEvents: function(){
-        var picker = this.picker, o = this.options, element = this.element;
-        var lists = ['month', 'day', 'year'];
-        $.each(lists, function(){
-            var list_name = this;
-            var list = picker.find(".sel-" + list_name);
+            list.on("scroll", function(){
+                if (that.isOpen) {
+                    if (that.listTimer[part]) {
+                        clearTimeout(that.listTimer[part]);
+                        that.listTimer[part] = null;
+                    }
 
-            if (list.length === 0) return ;
+                    that.listTimer[part] = setTimeout(function () {
 
-            list.on(Metro.events.scrollStart, function(){
-                list.find(".active").removeClass("active");
-            });
-            list.on(Metro.events.scrollStop, {latency: 50}, function(){
-                var target = Math.round((Math.ceil(list.scrollTop()) / 40));
-                var target_element = list.find(".js-"+list_name+"-"+target);
-                var scroll_to = target_element.position().top - (o.distance * 40) + list.scrollTop() - 1;
+                        var target, targetElement, scrollTop, delta;
 
-                list.animate({
-                    scrollTop: scroll_to
-                }, 100, function(){
-                    target_element.addClass("active");
-                    Utils.exec(o.onScroll, [target_element, list, picker], list[0]);
-                    element.fire("scroll", {
-                        target: target_element,
-                        list: list
-                    });
-                });
-            });
-        });
-    },
+                        that.listTimer[part] = null;
 
-    _removeScrollEvents: function(){
-        var picker = this.picker;
-        var lists = ['month', 'day', 'year'];
-        $.each(lists, function(){
-            picker.find(".sel-" + this).off("scrollstart scrollstop");
+                        target = Math.round((Math.ceil(list.scrollTop()) / 40));
+
+                        targetElement = list.find(".js-" + part + "-" + target);
+                        scrollTop = targetElement.position().top - (o.distance * 40) + list.scrollTop() - 1;
+
+                        list.find(".active").removeClass("active");
+
+                        list[0].scrollTop = scrollTop;
+                        targetElement.addClass("active");
+                        Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
+
+                    }, scrollLatency);
+                }
+            })
         });
     },
 
@@ -307,15 +318,15 @@ var DatePicker = {
     },
 
     open: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var picker = this.picker;
         var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
-        var m_list, d_list, y_list;
+        var m_list, d_list, y_list, list, item, point;
         var select_wrapper = picker.find(".select-wrapper");
         var select_wrapper_in_viewport, select_wrapper_rect;
 
         select_wrapper.parent().removeClass("for-top for-bottom");
-        select_wrapper.show();
+        select_wrapper.show(0);
         picker.find("li").removeClass("active");
 
         select_wrapper_in_viewport = Utils.inViewport(select_wrapper);
@@ -328,6 +339,19 @@ var DatePicker = {
         if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
             select_wrapper.parent().addClass("for-top");
         }
+
+        // $.each(["month", "day", "year"], function(){
+        //     switch (this) {
+        //         case 'month': point = that.value.getMonth(); break;
+        //         case 'day': point = that.value.getDate()-1; break;
+        //         case 'year': point = that.value.getFullYear(); break;
+        //     }
+        //     if (o[this] === true) {
+        //         list = picker.find(".sel-"+this);
+        //         item = list.find("li.js-"+this+(this === 'year' ? '-real' : '')+"-"+point);
+        //         list.scrollTop(item.addClass("active").position().top - (40 * o.distance));
+        //     }
+        // });
 
         if (o.month === true) {
             m_list = picker.find(".sel-month");
@@ -405,7 +429,9 @@ var DatePicker = {
         var picker = this.picker;
         var parent = element.parent();
 
-        this._removeScrollEvents();
+        $.each(["moth", "day", "year"], function(){
+            picker.find(".sel-"+this).off("scroll");
+        });
 
         picker.off(Metro.events.start, ".select-block ul");
         picker.off(Metro.events.click);
