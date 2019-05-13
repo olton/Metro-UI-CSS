@@ -9,6 +9,7 @@
 + [x] Datepicker: add attribute `data-input-format`
 + [x] Datepicker: fix hours timezone offset
 + [x] Datepicker: now you can use attribute `value` to setup component date
++ [x] Pickers: change default scroll speed factor to `2` 
 
 ### 4.2.42
 + [x] General: improved components initialization

@@ -10,7 +10,7 @@ var DatePickerDefaultConfig = {
     year: true,
     minYear: null,
     maxYear: null,
-    scrollSpeed: 1,
+    scrollSpeed: 2,
     copyInlineStyles: true,
     clsPicker: "",
     clsPart: "",
