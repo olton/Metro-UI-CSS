@@ -383,7 +383,7 @@ var DatePicker = {
 
     close: function(){
         var picker = this.picker, o = this.options, element = this.element;
-        picker.find(".select-wrapper").hide();
+        picker.find(".select-wrapper").hide(0);
         this.isOpen = false;
         Utils.exec(o.onClose, [this.value, element, picker], element[0]);
         element.fire("close", {

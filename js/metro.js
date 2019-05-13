@@ -192,8 +192,6 @@ var Metro = {
         cut: 'cut.metro',
         paste: 'paste.metro',
         scroll: 'scroll.metro',
-        scrollStart: 'scrollstart.metro',
-        scrollStop: 'scrollstop.metro',
         mousewheel: 'mousewheel.metro',
         inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro",
         dragstart: "dragstart.metro",
