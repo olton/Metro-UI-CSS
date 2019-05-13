@@ -9,7 +9,7 @@ var TimePickerDefaultConfig = {
     minutes: true,
     seconds: true,
     showLabels: true,
-    scrollSpeed: 1,
+    scrollSpeed: 2,
     copyInlineStyles: true,
     clsPicker: "",
     clsPart: "",
