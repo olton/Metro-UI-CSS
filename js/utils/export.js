@@ -53,9 +53,7 @@ var Export = {
 
         o = $.extend({}, o, options);
 
-        if (Utils.isJQueryObject(table)) {
-            table = table[0];
-        }
+        table = $(table)[0];
 
         if (Utils.bool(o.includeHeader)) {
 

@@ -135,9 +135,7 @@ var Dropdown = {
 
     _close: function(el, immediate){
 
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
+        el = $(el);
 
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
@@ -160,9 +158,7 @@ var Dropdown = {
     },
 
     _open: function(el, immediate){
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
+        el = $(el);
 
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;

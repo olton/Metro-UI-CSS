@@ -38,20 +38,19 @@ var Desktop = {
     },
 
     createWindow: function(o){
-        var that = this;
-        o.onDragStart = function(pos){
+        o.onDragStart = function(){
             win = $(this);
             $(".window").css("z-index", 1);
             if (!win.hasClass("modal"))
                 win.css("z-index", 3);
         };
-        o.onDragStop = function(pos){
+        o.onDragStop = function(){
             win = $(this);
             if (!win.hasClass("modal"))
                 win.css("z-index", 2);
         };
         o.onWindowDestroy = function(win){
-            that.removeFromTaskBar($(win));
+            Desktop.removeFromTaskBar($(win));
         };
         var w = $("<div>").appendTo($(this.options.windowArea));
         var wnd = w.window(o).data("window");
@@ -68,6 +67,8 @@ var Desktop = {
         this.wins[win.attr("id")] = wnd;
         this.addToTaskBar(wnd);
         w.remove();
+
+        return wnd;
     }
 };
 
@@ -82,7 +83,7 @@ var w_titles = [
 
 function createWindow(){
     var index = Metro.utils.random(0, 3);
-    Desktop.createWindow({
+    var w = Desktop.createWindow({
         resizeable: true,
         draggable: true,
         width: 300,
@@ -90,6 +91,11 @@ function createWindow(){
         title: w_titles[index],
         content: "<div class='p-2'>This is desktop demo created with Metro 4 Components Library</div>"
     });
+
+    setTimeout(function(){
+        console.log(w);
+        w.setContent("New window content");
+    }, 3000);
 }
 
 function createWindowWithCustomButtons(){

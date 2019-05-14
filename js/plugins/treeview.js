@@ -209,9 +209,7 @@ var TreeView = {
         var element = this.element;
         var checked, node, checks;
 
-        if (!Utils.isJQueryObject(check)) {
-            check = $(check);
-        }
+        check = $(check);
 
         checked = check.is(":checked");
         node = check.closest("li");
@@ -263,12 +261,11 @@ var TreeView = {
         node.addClass("current");
     },
 
-    toggleNode: function(node){
+    toggleNode: function(n){
+        var node = $(n);
         var element = this.element, o = this.options;
         var func;
         var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
-
-        console.log(toBeExpanded);
 
         node.toggleClass("expanded");
         node.data("collapsed", toBeExpanded);

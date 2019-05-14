@@ -10,7 +10,10 @@
 + [x] Datepicker: fix hours timezone offset
 + [x] Datepicker: now you can use attribute `value` to setup component date
 + [x] Pickers: change default scroll speed factor to `2` 
-+ [x] ScrollEvents: plugin was removed
++ [x] ScrollEvents: plugin for `scrollStart`, `scrollStop` events was removed
++ [x] Window: fix methods `setContent`, `setTitle`, `setIcon`, `changePlace`
++ [x] Utils: rename method `isJQueryObject` to `isJQuery`
++ [x] Utils: add methods `isM4Q`, `isQ`. Method `isQ` return one of `isJQuery` or `isM4Q`
 
 ### 4.2.42
 + [x] General: improved components initialization

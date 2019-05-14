@@ -137,15 +137,20 @@ var Utils = {
         return true;
     },
 
-    isJQueryObject: function(el){
-        return (typeof jQuery === "function" && el instanceof jQuery);
+    isJQuery: function(el){
+        return (typeof jQuery !== "undefined" && el instanceof jQuery);
+    },
+
+    isM4Q: function(el){
+        return (typeof m4q !== "undefined" && el instanceof m4q);
+    },
+
+    isQ: function(el){
+        return Utils.isJQuery(el) || Utils.isM4Q(el);
     },
 
     embedObject: function(val){
-        if (typeof  val !== "string" ) {
-            val = Utils.isJQueryObject(val) ? val.html() : val.innerHTML;
-        }
-        return "<div class='embed-container'>" + val + "</div>";
+        return "<div class='embed-container'>" + $(val)[0].outerHTML + "</div>";
     },
 
     embedUrl: function(val){
@@ -243,8 +248,8 @@ var Utils = {
         return result;
     },
 
-    isOutsider: function(el) {
-        el = Utils.isJQueryObject(el) ? el : $(el);
+    isOutsider: function(element) {
+        var el = $(element);
         var rect;
         var clone = el.clone();
 
@@ -458,11 +463,8 @@ var Utils = {
         });
     },
 
-    coords: function(el){
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
-
+    coords: function(element){
+        var el = $(element)[0];
         var box = el.getBoundingClientRect();
 
         return {
@@ -527,10 +529,8 @@ var Utils = {
         }
     },
 
-    getStyle: function(el, pseudo){
-        if (Utils.isJQueryObject(el) === true) {
-            el  = el[0];
-        }
+    getStyle: function(element, pseudo){
+        var el = $(element)[0];
         return window.getComputedStyle(el, pseudo);
     },
 
@@ -605,12 +605,9 @@ var Utils = {
         return 'rgba(0,0,0,1)';
     },
 
-    getInlineStyles: function(el){
-        var styles = {};
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
-        for (var i = 0, l = el.style.length; i < l; i++) {
+    getInlineStyles: function(element){
+        var i, l, styles = {}, el = $(element)[0];
+        for (i = 0, l = el.style.length; i < l; i++) {
             var s = el.style[i];
             styles[s] = el.style[s];
         }
@@ -775,11 +772,8 @@ var Utils = {
         return Utils.parseCard(val);
     },
 
-    isVisible: function(el){
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
-
+    isVisible: function(element){
+        var el = $(element)[0];
         return Utils.getStyleOne(el, "display") !== "none" && Utils.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
     },
 
@@ -807,12 +801,9 @@ var Utils = {
         }
     },
 
-    copy: function(el){
+    copy: function(element){
         var body = document.body, range, sel;
-
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
+        var el = $(element)[0];
 
         if (document.createRange && window.getSelection) {
             range = document.createRange();
@@ -848,17 +839,14 @@ var Utils = {
         return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
     },
 
-    formData: function(form){
-        if (Utils.isNull(form)) {
-            return ;
-        }
-        if (Utils.isJQueryObject(form)) {
-            form = form[0];
-        }
+    formData: function(f){
+        var form = $(f)[0];
+        var i, j, q = {};
+
         if (!form || form.nodeName !== "FORM") {
             return;
         }
-        var i, j, q = {};
+
         for (i = form.elements.length - 1; i >= 0; i = i - 1) {
             if (form.elements[i].name === "") {
                 continue;

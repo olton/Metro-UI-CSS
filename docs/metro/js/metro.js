@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "13/05/2019 12:30:10",
+    compileTime: "14/05/2019 12:39:45",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -466,8 +466,9 @@ var Metro = {
 
     destroyPlugin: function(element, name){
         var p, mc;
-        element = Utils.isJQueryObject(element) ? element[0] : element;
-        p = $(element).data(name);
+        var el = $(element);
+
+        p = el.data(name);
 
         if (!Utils.isValue(p)) {
             throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
@@ -478,20 +479,19 @@ var Metro = {
         }
 
         p['destroy']();
-        mc = $(element).data("metroComponent");
+        mc = el.data("metroComponent");
         Utils.arrayDelete(mc, name);
-        $(element).data("metroComponent", mc);
-        $.removeData(element, name);
-        $(element).removeAttr("data-role-"+name);
+        el.data("metroComponent", mc);
+        $.removeData(el[0], name);
+        el.removeAttr("data-role-"+name);
     },
 
     destroyPluginAll: function(element){
-        element = Utils.isJQueryObject(element) ? element[0] : element;
-        var mc = $(element).data("metroComponent");
+        var el = $(element);
+        var mc = el.data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            'use strict';
-            Metro.destroyPlugin(element, this);
+            Metro.destroyPlugin(el[0], this);
         });
     },
 
@@ -1822,9 +1822,7 @@ var Export = {
 
         o = $.extend({}, o, options);
 
-        if (Utils.isJQueryObject(table)) {
-            table = table[0];
-        }
+        table = $(table)[0];
 
         if (Utils.bool(o.includeHeader)) {
 
@@ -3349,15 +3347,20 @@ var Utils = {
         return true;
     },
 
-    isJQueryObject: function(el){
-        return (typeof jQuery === "function" && el instanceof jQuery);
+    isJQuery: function(el){
+        return (typeof jQuery !== "undefined" && el instanceof jQuery);
+    },
+
+    isM4Q: function(el){
+        return (typeof m4q !== "undefined" && el instanceof m4q);
+    },
+
+    isQ: function(el){
+        return Utils.isJQuery(el) || Utils.isM4Q(el);
     },
 
     embedObject: function(val){
-        if (typeof  val !== "string" ) {
-            val = Utils.isJQueryObject(val) ? val.html() : val.innerHTML;
-        }
-        return "<div class='embed-container'>" + val + "</div>";
+        return "<div class='embed-container'>" + $(val)[0].outerHTML + "</div>";
     },
 
     embedUrl: function(val){
@@ -3455,8 +3458,8 @@ var Utils = {
         return result;
     },
 
-    isOutsider: function(el) {
-        el = Utils.isJQueryObject(el) ? el : $(el);
+    isOutsider: function(element) {
+        var el = $(element);
         var rect;
         var clone = el.clone();
 
@@ -3670,11 +3673,8 @@ var Utils = {
         });
     },
 
-    coords: function(el){
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
-
+    coords: function(element){
+        var el = $(element)[0];
         var box = el.getBoundingClientRect();
 
         return {
@@ -3739,10 +3739,8 @@ var Utils = {
         }
     },
 
-    getStyle: function(el, pseudo){
-        if (Utils.isJQueryObject(el) === true) {
-            el  = el[0];
-        }
+    getStyle: function(element, pseudo){
+        var el = $(element)[0];
         return window.getComputedStyle(el, pseudo);
     },
 
@@ -3817,12 +3815,9 @@ var Utils = {
         return 'rgba(0,0,0,1)';
     },
 
-    getInlineStyles: function(el){
-        var styles = {};
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
-        for (var i = 0, l = el.style.length; i < l; i++) {
+    getInlineStyles: function(element){
+        var i, l, styles = {}, el = $(element)[0];
+        for (i = 0, l = el.style.length; i < l; i++) {
             var s = el.style[i];
             styles[s] = el.style[s];
         }
@@ -3987,11 +3982,8 @@ var Utils = {
         return Utils.parseCard(val);
     },
 
-    isVisible: function(el){
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
-
+    isVisible: function(element){
+        var el = $(element)[0];
         return Utils.getStyleOne(el, "display") !== "none" && Utils.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
     },
 
@@ -4019,12 +4011,9 @@ var Utils = {
         }
     },
 
-    copy: function(el){
+    copy: function(element){
         var body = document.body, range, sel;
-
-        if (Utils.isJQueryObject(el)) {
-            el = el[0];
-        }
+        var el = $(element)[0];
 
         if (document.createRange && window.getSelection) {
             range = document.createRange();
@@ -4060,17 +4049,14 @@ var Utils = {
         return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
     },
 
-    formData: function(form){
-        if (Utils.isNull(form)) {
-            return ;
-        }
-        if (Utils.isJQueryObject(form)) {
-            form = form[0];
-        }
+    formData: function(f){
+        var form = $(f)[0];
+        var i, j, q = {};
+
         if (!form || form.nodeName !== "FORM") {
             return;
         }
-        var i, j, q = {};
+
         for (i = form.elements.length - 1; i >= 0; i = i - 1) {
             if (form.elements[i].name === "") {
                 continue;
@@ -10192,11 +10178,11 @@ var Dialog = {
             content.appendTo(element);
         }
 
-        if (!Utils.isJQueryObject(c) && Utils.isFunc(c)) {
+        if (!Utils.isQ(c) && Utils.isFunc(c)) {
             c = Utils.exec(c);
         }
 
-        if (Utils.isJQueryObject(c)) {
+        if (Utils.isQ(c)) {
             c.appendTo(content);
         } else {
             content.html(c);
@@ -10822,9 +10808,7 @@ var Dropdown = {
 
     _close: function(el, immediate){
 
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
+        el = $(el);
 
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
@@ -10847,9 +10831,7 @@ var Dropdown = {
     },
 
     _open: function(el, immediate){
-        if (Utils.isJQueryObject(el) === false) {
-            el = $(el);
-        }
+        el = $(el);
 
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
@@ -22077,9 +22059,7 @@ var MaterialTabs = {
 
     _applyColor: function(to, color, option){
 
-        if (!Utils.isJQueryObject(to)) {
-            to = $(to);
-        }
+        to = $(to);
 
         if (Utils.isValue(color)) {
             if (Utils.isColor(color)) {
@@ -22152,9 +22132,7 @@ var MaterialTabs = {
         var tabs = element.find("li"), element_scroll = element.scrollLeft();
         var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
 
-        if (!Utils.isJQueryObject(tab)) {
-            tab = $(tab);
-        }
+        tab = $(tab);
 
         $.each(tabs, function(){
             var target = $(this).find("a").attr("href");
@@ -25204,9 +25182,7 @@ var TreeView = {
         var element = this.element;
         var checked, node, checks;
 
-        if (!Utils.isJQueryObject(check)) {
-            check = $(check);
-        }
+        check = $(check);
 
         checked = check.is(":checked");
         node = check.closest("li");
@@ -25258,12 +25234,11 @@ var TreeView = {
         node.addClass("current");
     },
 
-    toggleNode: function(node){
+    toggleNode: function(n){
+        var node = $(n);
         var element = this.element, o = this.options;
         var func;
         var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
-
-        console.log(toBeExpanded);
 
         node.toggleClass("expanded");
         node.data("collapsed", toBeExpanded);
@@ -25528,7 +25503,7 @@ var ValidatorFuncs = {
     },
 
     reset_state: function(el){
-        var input = Utils.isJQueryObject(el) === false ? $(el) : el ;
+        var input = $(el);
         var is_control = ValidatorFuncs.is_control(input);
 
         if (is_control) {
@@ -25538,10 +25513,8 @@ var ValidatorFuncs = {
         }
     },
 
-    set_valid_state: function(input){
-        if (Utils.isJQueryObject(input) === false) {
-            input = $(input);
-        }
+    set_valid_state: function(el){
+        var input = $(el);
         var is_control = ValidatorFuncs.is_control(input);
 
         if (is_control) {
@@ -25551,10 +25524,8 @@ var ValidatorFuncs = {
         }
     },
 
-    set_invalid_state: function(input){
-        if (Utils.isJQueryObject(input) === false) {
-            input = $(input);
-        }
+    set_invalid_state: function(el){
+        var input = $(el);
         var is_control = ValidatorFuncs.is_control(input);
 
         if (is_control) {
@@ -26637,11 +26608,11 @@ var Window = {
                 o.content = Utils.embedUrl(o.content);
             }
 
-            if (!Utils.isJQueryObject(o.content) && Utils.isFunc(o.content)) {
+            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
                 o.content = Utils.exec(o.content);
             }
 
-            if (Utils.isJQueryObject(o.content)) {
+            if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {
                 content.html(o.content);
@@ -26944,14 +26915,14 @@ var Window = {
         }
     },
 
-    setContent: function(){
+    setContent: function(c){
         var element = this.element, win = this.win;
-        var content = element.attr("data-content");
+        var content = Utils.isValue(c) ? c : element.attr("data-content");
         var result;
 
-        if (!Utils.isJQueryObject(content) && Utils.isFunc(content)) {
+        if (!Utils.isQ(content) && Utils.isFunc(content)) {
             result = Utils.exec(content);
-        } else if (Utils.isJQueryObject(content)) {
+        } else if (Utils.isQ(content)) {
             result = content.html();
         } else {
             result = content;
@@ -26960,15 +26931,15 @@ var Window = {
         win.find(".window-content").html(result);
     },
 
-    setTitle: function(){
+    setTitle: function(t){
         var element = this.element, win = this.win;
-        var title = element.attr("data-title");
+        var title = Utils.isValue(t) ? t : element.attr("data-title");
         win.find(".window-caption .title").html(title);
     },
 
-    setIcon: function(){
+    setIcon: function(i){
         var element = this.element, win = this.win;
-        var icon = element.attr("data-icon");
+        var icon = Utils.isValue(i) ? i : element.attr("data-icon");
         win.find(".window-caption .icon").html(icon);
     },
 
@@ -27023,9 +26994,9 @@ var Window = {
         }
     },
 
-    changePlace: function () {
+    changePlace: function (p) {
         var element = this.element, win = this.win;
-        var place = element.attr("data-place");
+        var place = Utils.isValue(p) ? p : element.attr("data-place");
         win.addClass(place);
     },
 

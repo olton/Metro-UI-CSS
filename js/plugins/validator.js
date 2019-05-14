@@ -127,7 +127,7 @@ var ValidatorFuncs = {
     },
 
     reset_state: function(el){
-        var input = Utils.isJQueryObject(el) === false ? $(el) : el ;
+        var input = $(el);
         var is_control = ValidatorFuncs.is_control(input);
 
         if (is_control) {
@@ -137,10 +137,8 @@ var ValidatorFuncs = {
         }
     },
 
-    set_valid_state: function(input){
-        if (Utils.isJQueryObject(input) === false) {
-            input = $(input);
-        }
+    set_valid_state: function(el){
+        var input = $(el);
         var is_control = ValidatorFuncs.is_control(input);
 
         if (is_control) {
@@ -150,10 +148,8 @@ var ValidatorFuncs = {
         }
     },
 
-    set_invalid_state: function(input){
-        if (Utils.isJQueryObject(input) === false) {
-            input = $(input);
-        }
+    set_invalid_state: function(el){
+        var input = $(el);
         var is_control = ValidatorFuncs.is_control(input);
 
         if (is_control) {
