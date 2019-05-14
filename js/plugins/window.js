@@ -209,11 +209,11 @@ var Window = {
                 o.content = Utils.embedUrl(o.content);
             }
 
-            if (!Utils.isJQueryObject(o.content) && Utils.isFunc(o.content)) {
+            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
                 o.content = Utils.exec(o.content);
             }
 
-            if (Utils.isJQueryObject(o.content)) {
+            if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {
                 content.html(o.content);
@@ -516,14 +516,14 @@ var Window = {
         }
     },
 
-    setContent: function(){
+    setContent: function(c){
         var element = this.element, win = this.win;
-        var content = element.attr("data-content");
+        var content = Utils.isValue(c) ? c : element.attr("data-content");
         var result;
 
-        if (!Utils.isJQueryObject(content) && Utils.isFunc(content)) {
+        if (!Utils.isQ(content) && Utils.isFunc(content)) {
             result = Utils.exec(content);
-        } else if (Utils.isJQueryObject(content)) {
+        } else if (Utils.isQ(content)) {
             result = content.html();
         } else {
             result = content;
@@ -532,15 +532,15 @@ var Window = {
         win.find(".window-content").html(result);
     },
 
-    setTitle: function(){
+    setTitle: function(t){
         var element = this.element, win = this.win;
-        var title = element.attr("data-title");
+        var title = Utils.isValue(t) ? t : element.attr("data-title");
         win.find(".window-caption .title").html(title);
     },
 
-    setIcon: function(){
+    setIcon: function(i){
         var element = this.element, win = this.win;
-        var icon = element.attr("data-icon");
+        var icon = Utils.isValue(i) ? i : element.attr("data-icon");
         win.find(".window-caption .icon").html(icon);
     },
 
@@ -595,9 +595,9 @@ var Window = {
         }
     },
 
-    changePlace: function () {
+    changePlace: function (p) {
         var element = this.element, win = this.win;
-        var place = element.attr("data-place");
+        var place = Utils.isValue(p) ? p : element.attr("data-place");
         win.addClass(place);
     },
 

@@ -59,9 +59,7 @@ var MaterialTabs = {
 
     _applyColor: function(to, color, option){
 
-        if (!Utils.isJQueryObject(to)) {
-            to = $(to);
-        }
+        to = $(to);
 
         if (Utils.isValue(color)) {
             if (Utils.isColor(color)) {
@@ -134,9 +132,7 @@ var MaterialTabs = {
         var tabs = element.find("li"), element_scroll = element.scrollLeft();
         var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
 
-        if (!Utils.isJQueryObject(tab)) {
-            tab = $(tab);
-        }
+        tab = $(tab);
 
         $.each(tabs, function(){
             var target = $(this).find("a").attr("href");

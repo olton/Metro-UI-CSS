@@ -451,8 +451,9 @@ var Metro = {
 
     destroyPlugin: function(element, name){
         var p, mc;
-        element = Utils.isJQueryObject(element) ? element[0] : element;
-        p = $(element).data(name);
+        var el = $(element);
+
+        p = el.data(name);
 
         if (!Utils.isValue(p)) {
             throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
@@ -463,20 +464,19 @@ var Metro = {
         }
 
         p['destroy']();
-        mc = $(element).data("metroComponent");
+        mc = el.data("metroComponent");
         Utils.arrayDelete(mc, name);
-        $(element).data("metroComponent", mc);
-        $.removeData(element, name);
-        $(element).removeAttr("data-role-"+name);
+        el.data("metroComponent", mc);
+        $.removeData(el[0], name);
+        el.removeAttr("data-role-"+name);
     },
 
     destroyPluginAll: function(element){
-        element = Utils.isJQueryObject(element) ? element[0] : element;
-        var mc = $(element).data("metroComponent");
+        var el = $(element);
+        var mc = el.data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            'use strict';
-            Metro.destroyPlugin(element, this);
+            Metro.destroyPlugin(el[0], this);
         });
     },
 

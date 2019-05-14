@@ -249,11 +249,11 @@ var Dialog = {
             content.appendTo(element);
         }
 
-        if (!Utils.isJQueryObject(c) && Utils.isFunc(c)) {
+        if (!Utils.isQ(c) && Utils.isFunc(c)) {
             c = Utils.exec(c);
         }
 
-        if (Utils.isJQueryObject(c)) {
+        if (Utils.isQ(c)) {
             c.appendTo(content);
         } else {
             content.html(c);
