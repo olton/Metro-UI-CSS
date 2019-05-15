@@ -266,31 +266,30 @@ var Metro = {
     hotkeys: {},
 
     about: function(){
-        console.log("Metro 4 - v" + this.version +". "+ this.showCompileTime());
+        console.log("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
     },
 
     showCompileTime: function(){
-        return "Built at: " + this.compileTime;
+        return "Built at: " + Metro.compileTime;
     },
 
     aboutDlg: function(){
-        alert("Metro 4 - v" + this.version +". "+ this.showCompileTime());
+        alert("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
     },
 
     ver: function(){
-        return this.version;
+        return Metro.version;
     },
 
     build: function(){
-        return this.build;
+        return Metro.build;
     },
 
     compile: function(){
-        return this.compileTime;
+        return Metro.compileTime;
     },
 
     observe: function(){
-        'use strict';
         var observer, observerCallback;
         var observerConfig = {
             childList: true,
@@ -362,7 +361,7 @@ var Metro = {
             html.addClass("metro-no-touch-device");
         }
 
-        this.sheet = Utils.newCssSheet();
+        Metro.sheet = Utils.newCssSheet();
 
 
         window.METRO_MEDIA = [];
@@ -372,12 +371,12 @@ var Metro = {
             }
         });
 
-        this.observe();
+        Metro.observe();
 
-        this.initHotkeys(hotkeys);
-        this.initWidgets(widgets, "init");
+        Metro.initHotkeys(hotkeys);
+        Metro.initWidgets(widgets, "init");
 
-        if (METRO_SHOW_ABOUT) this.about(true);
+        if (METRO_SHOW_ABOUT) Metro.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -389,7 +388,7 @@ var Metro = {
             })
         }
 
-        return this;
+        return Metro;
     },
 
     initHotkeys: function(hotkeys, redefine){
