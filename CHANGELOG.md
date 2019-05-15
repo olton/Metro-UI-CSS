@@ -14,6 +14,7 @@
 + [x] Window: fix methods `setContent`, `setTitle`, `setIcon`, `changePlace`
 + [x] Utils: rename method `isJQueryObject` to `isJQuery`
 + [x] Utils: add methods `isM4Q`, `isQ`. Method `isQ` return one of `isJQuery` or `isM4Q`
++ [x] Streamer: fix scrolling with `apple magic mouse` and `firefox`
 
 ### 4.2.42
 + [x] General: improved components initialization

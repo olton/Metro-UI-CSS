@@ -791,22 +791,14 @@ var Colors = {
             case 'double':
                 scheme.push(hsv);
 
-                console.log(h);
-
                 h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
-
-                console.log(h);
 
                 h = this.hueShift(h, o.angle);
                 scheme.push({h: h, s: s, v: v});
 
-                console.log(h);
-
                 h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
-
-                console.log(h);
 
                 break;
 

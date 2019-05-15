@@ -25216,7 +25216,8 @@ figure img {
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  width: calc(100% - 48px);
+  width: auto;
+  max-width: calc(100% - 48px);
   height: 100%;
 }
 .streamer .stream-event-slide .slide-data .title,

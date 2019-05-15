@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "14/05/2019 12:39:45",
+    compileTime: "15/05/2019 22:12:46",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -281,31 +281,30 @@ var Metro = {
     hotkeys: {},
 
     about: function(){
-        console.log("Metro 4 - v" + this.version +". "+ this.showCompileTime());
+        console.log("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
     },
 
     showCompileTime: function(){
-        return "Built at: " + this.compileTime;
+        return "Built at: " + Metro.compileTime;
     },
 
     aboutDlg: function(){
-        alert("Metro 4 - v" + this.version +". "+ this.showCompileTime());
+        alert("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
     },
 
     ver: function(){
-        return this.version;
+        return Metro.version;
     },
 
     build: function(){
-        return this.build;
+        return Metro.build;
     },
 
     compile: function(){
-        return this.compileTime;
+        return Metro.compileTime;
     },
 
     observe: function(){
-        'use strict';
         var observer, observerCallback;
         var observerConfig = {
             childList: true,
@@ -377,7 +376,7 @@ var Metro = {
             html.addClass("metro-no-touch-device");
         }
 
-        this.sheet = Utils.newCssSheet();
+        Metro.sheet = Utils.newCssSheet();
 
 
         window.METRO_MEDIA = [];
@@ -387,12 +386,12 @@ var Metro = {
             }
         });
 
-        this.observe();
+        Metro.observe();
 
-        this.initHotkeys(hotkeys);
-        this.initWidgets(widgets, "init");
+        Metro.initHotkeys(hotkeys);
+        Metro.initWidgets(widgets, "init");
 
-        if (METRO_SHOW_ABOUT) this.about(true);
+        if (METRO_SHOW_ABOUT) Metro.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -404,7 +403,7 @@ var Metro = {
             })
         }
 
-        return this;
+        return Metro;
     },
 
     initHotkeys: function(hotkeys, redefine){
@@ -1548,22 +1547,14 @@ var Colors = {
             case 'double':
                 scheme.push(hsv);
 
-                console.log(h);
-
                 h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
-
-                console.log(h);
 
                 h = this.hueShift(h, o.angle);
                 scheme.push({h: h, s: s, v: v});
 
-                console.log(h);
-
                 h = this.hueShift(h, 180.0);
                 scheme.push({h: h, s: s, v: v});
-
-                console.log(h);
 
                 break;
 
@@ -19145,6 +19136,7 @@ Metro.plugin('stepper', Stepper);
 // Source: js/plugins/streamer.js
 
 var StreamerDefaultConfig = {
+    wheel: false,
     duration: METRO_ANIMATION_DURATION,
     defaultClosedIcon: "",
     defaultOpenIcon: "",
@@ -19258,8 +19250,6 @@ var Streamer = {
             this.data = o.data;
             this.build();
         }
-
-        this._createEvents();
 
         if (o.chromeNotice === true && Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
             $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
@@ -19489,6 +19479,8 @@ var Streamer = {
 
         element.data("stream", -1);
 
+        this._createEvents();
+
         if (o.startFrom !== null && o.slideToStart === true) {
             setTimeout(function(){
                 that.slideTo(o.startFrom);
@@ -19608,24 +19600,27 @@ var Streamer = {
             });
         });
 
-        if (Utils.isTouchDevice() !== true) {
+        if (o.wheel === true) {
             element.find(".events-area").on(Metro.events.mousewheel, function(e) {
                 var scroll, scrollable = $(this);
+                var ev = e.originalEvent;
+                var dir = ev.deltaY < 0 ? -1 : 1;
+                var step = 100;
 
-                if (e.deltaY === undefined || e.deltaFactor === undefined) {
+                console.log(ev.deltaY);
+
+                if (ev.deltaY === undefined) {
                     return ;
                 }
 
-                if (e.deltaFactor > 1) {
-                    scroll = scrollable.scrollLeft() - ( e.deltaY * 30 );
-                    scrollable.scrollLeft(scroll);
-                }
+                scroll = scrollable.scrollLeft() - ( dir * step);
+                scrollable.scrollLeft(scroll);
 
-                e.preventDefault();
+                ev.preventDefault();
             });
         }
 
-        element.find(".events-area").last().on("scroll", function(){
+        element.find(".events-area").last().on("scroll", function(e){
             that._fireScroll();
         });
 

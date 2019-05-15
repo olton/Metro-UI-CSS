@@ -1,4 +1,5 @@
 var StreamerDefaultConfig = {
+    wheel: false,
     duration: METRO_ANIMATION_DURATION,
     defaultClosedIcon: "",
     defaultOpenIcon: "",
@@ -112,8 +113,6 @@ var Streamer = {
             this.data = o.data;
             this.build();
         }
-
-        this._createEvents();
 
         if (o.chromeNotice === true && Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
             $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
@@ -343,6 +342,8 @@ var Streamer = {
 
         element.data("stream", -1);
 
+        this._createEvents();
+
         if (o.startFrom !== null && o.slideToStart === true) {
             setTimeout(function(){
                 that.slideTo(o.startFrom);
@@ -462,24 +463,27 @@ var Streamer = {
             });
         });
 
-        if (Utils.isTouchDevice() !== true) {
+        if (o.wheel === true) {
             element.find(".events-area").on(Metro.events.mousewheel, function(e) {
                 var scroll, scrollable = $(this);
+                var ev = e.originalEvent;
+                var dir = ev.deltaY < 0 ? -1 : 1;
+                var step = 100;
 
-                if (e.deltaY === undefined || e.deltaFactor === undefined) {
+                console.log(ev.deltaY);
+
+                if (ev.deltaY === undefined) {
                     return ;
                 }
 
-                if (e.deltaFactor > 1) {
-                    scroll = scrollable.scrollLeft() - ( e.deltaY * 30 );
-                    scrollable.scrollLeft(scroll);
-                }
+                scroll = scrollable.scrollLeft() - ( dir * step);
+                scrollable.scrollLeft(scroll);
 
-                e.preventDefault();
+                ev.preventDefault();
             });
         }
 
-        element.find(".events-area").last().on("scroll", function(){
+        element.find(".events-area").last().on("scroll", function(e){
             that._fireScroll();
         });
 
