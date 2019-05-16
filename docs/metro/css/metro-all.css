@@ -25068,11 +25068,12 @@ figure img {
   -webkit-box-direction: normal;
       -ms-flex-flow: column nowrap;
           flex-flow: column nowrap;
-  overflow-x: auto;
   padding-left: 40px;
   z-index: 1;
-  -webkit-overflow-scrolling: touch;
   position: relative;
+  white-space: nowrap;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: auto;
 }
 .streamer .streamer-timeline {
   height: 32px;
