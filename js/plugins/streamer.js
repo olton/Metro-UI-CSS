@@ -341,6 +341,7 @@ var Streamer = {
         }
 
         element.data("stream", -1);
+        element.find(".events-area").scrollLeft(0);
 
         this._createEvents();
 
@@ -358,14 +359,20 @@ var Streamer = {
 
     _fireScroll: function(){
         var that = this, element = this.element, o = this.options;
+        var scrollable = element.find(".events-area");
         var oldScroll = this.scroll;
-        this.scrollDir = this.scroll < element[0].scrollLeft ? "left" : "right";
-        this.scroll = element[0].scrollLeft;
 
-        Utils.exec(o.onEventsScroll, [element[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
+        if (scrollable.length === 0) {
+            return undefined;
+        }
+
+        this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
+        this.scroll = scrollable[0].scrollLeft;
+
+        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
 
         element.fire("eventsscroll", {
-            scrollLeft: element[0].scrollLeft,
+            scrollLeft: scrollable[0].scrollLeft,
             oldScroll: oldScroll,
             scrollDir: that.scrollDir
         });

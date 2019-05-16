@@ -124,11 +124,13 @@
         overflow: hidden;
         display: flex;
         flex-flow: column nowrap;
-        overflow-x: auto;
         padding-left: 40px;
         z-index: 1;
-        -webkit-overflow-scrolling: touch;
         position: relative;
+
+        white-space: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: auto;
     }
 
     .streamer-timeline {
