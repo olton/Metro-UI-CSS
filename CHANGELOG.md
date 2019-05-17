@@ -16,6 +16,7 @@
 + [x] Utils: add methods `isM4Q`, `isQ`. Method `isQ` return one of `isJQuery` or `isM4Q`
 + [x] Streamer: fix scrolling with `apple magic mouse` and `firefox`
 + [x] Streamer: fix scroll position for `events-area` when source changed
++ [x] TreeView: fix confused calls `expandNode` and `collapseNode` events
  
 ### 4.2.42
 + [x] General: improved components initialization

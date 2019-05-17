@@ -50,6 +50,7 @@ var Streamer = {
         this.data = null;
         this.scroll = 0;
         this.scrollDir = "left";
+        this.events = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -343,6 +344,8 @@ var Streamer = {
         element.data("stream", -1);
         element.find(".events-area").scrollLeft(0);
 
+        this.events = element.find(".stream-event");
+
         this._createEvents();
 
         if (o.startFrom !== null && o.slideToStart === true) {
@@ -369,19 +372,20 @@ var Streamer = {
         this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
         this.scroll = scrollable[0].scrollLeft;
 
-        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
+        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events], element[0]);
 
         element.fire("eventsscroll", {
             scrollLeft: scrollable[0].scrollLeft,
             oldScroll: oldScroll,
-            scrollDir: that.scrollDir
+            scrollDir: that.scrollDir,
+            events: this.events
         });
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.events.click, ".stream-event", function(e){
+        element.off(Metro.events.click, ".stream-event").on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
 
             if (o.excludeClass !== "" && event.hasClass(o.excludeClass)) {
@@ -443,7 +447,7 @@ var Streamer = {
             }
         });
 
-        element.on(Metro.events.click, ".stream", function(e){
+        element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(e){
             var stream = $(this);
             var index = stream.index();
 
@@ -471,6 +475,7 @@ var Streamer = {
         });
 
         if (o.wheel === true) {
+            element.find(".events-area").off(Metro.events.mousewheel);
             element.find(".events-area").on(Metro.events.mousewheel, function(e) {
                 var scroll, scrollable = $(this);
                 var ev = e.originalEvent;
@@ -490,12 +495,13 @@ var Streamer = {
             });
         }
 
+        element.find(".events-area").last().off("scroll");
         element.find(".events-area").last().on("scroll", function(e){
             that._fireScroll();
         });
 
         if (Utils.isTouchDevice() === true) {
-            element.on(Metro.events.click, ".stream", function(){
+            element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(){
                 var stream = $(this);
                 stream.toggleClass("focused");
                 $.each(element.find(".stream"), function () {
