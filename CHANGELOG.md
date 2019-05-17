@@ -17,6 +17,7 @@
 + [x] Streamer: fix scrolling with `apple magic mouse` and `firefox`
 + [x] Streamer: fix scroll position for `events-area` when source changed
 + [x] TreeView: fix confused calls `expandNode` and `collapseNode` events
++ [x] Dialog: add attribute `data-actions` for predefined dialog
  
 ### 4.2.42
 + [x] General: improved components initialization
