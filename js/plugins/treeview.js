@@ -275,7 +275,7 @@ var TreeView = {
         } else {
             func = toBeExpanded === true ? "fadeOut" : "fadeIn";
         }
-        if (toBeExpanded) {
+        if (!toBeExpanded) {
             Utils.exec(o.onExpandNode, [node[0]], element[0]);
             element.fire("expandnode", {
                 node: node[0]
