@@ -113,7 +113,7 @@ var Dialog = {
                 button.appendTo(buttons);
             }
 
-            $.each(o.actions, function(){
+            if (Utils.isObject(o.actions)) $.each(Utils.isObject(o.actions), function(){
                 var item = this;
                 button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
                 if (item.onclick !== undefined) button.on(Metro.events.click, function(){

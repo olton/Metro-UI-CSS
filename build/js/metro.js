@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "17/05/2019 13:58:06",
+    compileTime: "17/05/2019 19:39:41",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -10033,7 +10033,7 @@ var Dialog = {
                 button.appendTo(buttons);
             }
 
-            $.each(o.actions, function(){
+            if (Utils.isObject(o.actions)) $.each(Utils.isObject(o.actions), function(){
                 var item = this;
                 button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
                 if (item.onclick !== undefined) button.on(Metro.events.click, function(){
