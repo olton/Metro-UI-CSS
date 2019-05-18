@@ -18,6 +18,8 @@
 + [x] Streamer: fix scroll position for `events-area` when source changed
 + [x] TreeView: fix confused calls `expandNode` and `collapseNode` events
 + [x] Dialog: add attribute `data-actions` for predefined dialog
++ [x] DatePicker: fix scroll event handler
++ [x] TimePicker: fix scroll event handler
  
 ### 4.2.42
 + [x] General: improved components initialization

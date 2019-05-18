@@ -10,7 +10,7 @@ var DatePickerDefaultConfig = {
     year: true,
     minYear: null,
     maxYear: null,
-    scrollSpeed: 2,
+    scrollSpeed: 4,
     copyInlineStyles: true,
     clsPicker: "",
     clsPart: "",
@@ -262,7 +262,7 @@ var DatePicker = {
                         that.listTimer[part] = null;
                     }
 
-                    that.listTimer[part] = setTimeout(function () {
+                    if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
 
                         var target, targetElement, scrollTop, delta;
 
