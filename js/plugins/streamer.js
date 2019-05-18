@@ -372,13 +372,13 @@ var Streamer = {
         this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
         this.scroll = scrollable[0].scrollLeft;
 
-        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events], element[0]);
+        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events.toArray()], element[0]);
 
         element.fire("eventsscroll", {
             scrollLeft: scrollable[0].scrollLeft,
             oldScroll: oldScroll,
             scrollDir: that.scrollDir,
-            events: this.events
+            events: this.events.toArray()
         });
     },
 

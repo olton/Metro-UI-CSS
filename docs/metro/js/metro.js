@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "17/05/2019 19:39:41",
+    compileTime: "18/05/2019 10:12:24",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -9474,7 +9474,7 @@ var DatePickerDefaultConfig = {
     year: true,
     minYear: null,
     maxYear: null,
-    scrollSpeed: 2,
+    scrollSpeed: 4,
     copyInlineStyles: true,
     clsPicker: "",
     clsPart: "",
@@ -9726,7 +9726,7 @@ var DatePicker = {
                         that.listTimer[part] = null;
                     }
 
-                    that.listTimer[part] = setTimeout(function () {
+                    if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
 
                         var target, targetElement, scrollTop, delta;
 
@@ -19509,13 +19509,13 @@ var Streamer = {
         this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
         this.scroll = scrollable[0].scrollLeft;
 
-        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events], element[0]);
+        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events.toArray()], element[0]);
 
         element.fire("eventsscroll", {
             scrollLeft: scrollable[0].scrollLeft,
             oldScroll: oldScroll,
             scrollDir: that.scrollDir,
-            events: this.events
+            events: this.events.toArray()
         });
     },
 
@@ -23266,7 +23266,7 @@ var TimePickerDefaultConfig = {
     minutes: true,
     seconds: true,
     showLabels: true,
-    scrollSpeed: 2,
+    scrollSpeed: 4,
     copyInlineStyles: true,
     clsPicker: "",
     clsPart: "",
@@ -23534,7 +23534,7 @@ var TimePicker = {
                         that.listTimer[part] = null;
                     }
 
-                    that.listTimer[part] = setTimeout(function () {
+                    if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
 
                         var target, targetElement, scrollTop, delta;
 
