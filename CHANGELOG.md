@@ -18,6 +18,7 @@
 + [x] Dialog: add attribute `data-actions` for predefined dialog
 + [x] DatePicker: fix scroll event handler
 + [x] TimePicker: fix scroll event handler
++ [x] Tabs material: add event `data-on-tabs-scroll`
 + [x] ScrollEvents: plugin for `scrollStart`, `scrollStop` events was removed
 + [x] Mousewheel: plugin was removed
  
