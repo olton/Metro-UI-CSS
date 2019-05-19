@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "19/05/2019 21:14:36",
+    compileTime: "19/05/2019 21:20:10",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -412,7 +412,7 @@ var Metro = {
             var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
             var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
 
-            console.log(element);
+            //console.log(element);
 
             if (hotkey === false) {
                 return;
@@ -19619,7 +19619,7 @@ var Streamer = {
                 var dir = ev.deltaY < 0 ? -1 : 1;
                 var step = 100;
 
-                console.log(ev.deltaY);
+                //console.log(ev.deltaY);
 
                 if (ev.deltaY === undefined) {
                     return ;
@@ -26225,7 +26225,7 @@ var Video = {
         $(window).on(Metro.events.keyup + "_video", function(e){
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
-                console.log('esc');
+                //console.log('esc');
             }
         });
 

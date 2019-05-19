@@ -482,7 +482,7 @@ var Streamer = {
                 var dir = ev.deltaY < 0 ? -1 : 1;
                 var step = 100;
 
-                console.log(ev.deltaY);
+                //console.log(ev.deltaY);
 
                 if (ev.deltaY === undefined) {
                     return ;
