@@ -5,12 +5,10 @@
 + [x] Table: add `margin-top: 1rem` for class `.table`
 + [x] Lists: add `margin-top: 1rem` for `ul`, `ol`, `dl`
 + [x] Hotkey: full refactoring
-+ [x] Mousewheel: plugin was removed
 + [x] Datepicker: add attribute `data-input-format`
 + [x] Datepicker: fix hours timezone offset
 + [x] Datepicker: now you can use attribute `value` to setup component date
-+ [x] Pickers: change default scroll speed factor to `2` 
-+ [x] ScrollEvents: plugin for `scrollStart`, `scrollStop` events was removed
++ [x] Pickers: change default scroll speed factor to `4` 
 + [x] Window: fix methods `setContent`, `setTitle`, `setIcon`, `changePlace`
 + [x] Utils: rename method `isJQueryObject` to `isJQuery`
 + [x] Utils: add methods `isM4Q`, `isQ`. Method `isQ` return one of `isJQuery` or `isM4Q`
@@ -20,6 +18,8 @@
 + [x] Dialog: add attribute `data-actions` for predefined dialog
 + [x] DatePicker: fix scroll event handler
 + [x] TimePicker: fix scroll event handler
++ [x] ScrollEvents: plugin for `scrollStart`, `scrollStop` events was removed
++ [x] Mousewheel: plugin was removed
  
 ### 4.2.42
 + [x] General: improved components initialization
