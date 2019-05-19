@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.43",
-    compileTime: "19/05/2019 21:20:10",
+    compileTime: "19/05/2019 22:14:54",
     buildNumber: "724",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -22017,6 +22017,7 @@ var MaterialTabsDefaultConfig = {
 
     onBeforeTabOpen: Metro.noop_true,
     onTabOpen: Metro.noop,
+    onTabsScroll: Metro.noop,
     onTabsCreate: Metro.noop
 };
 
@@ -22034,6 +22035,8 @@ var MaterialTabs = {
         this.elem  = elem;
         this.element = $(elem);
         this.marker = null;
+        this.scroll = 0;
+        this.scrollDir = "left";
 
         this._setOptionsFromDOM();
         this._create();
@@ -22042,7 +22045,7 @@ var MaterialTabs = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -22056,7 +22059,7 @@ var MaterialTabs = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -22079,7 +22082,7 @@ var MaterialTabs = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var tabs = element.find("li"), active_tab = element.find("li.active");
 
         element.addClass("tabs-material").addClass(o.clsComponent);
@@ -22122,21 +22125,25 @@ var MaterialTabs = {
             }
         });
 
-        var addMouseWheel = function (){
-            $(element).on(Metro.events.mousewheel, function(e){
-                var scroll_value = e.deltaX * METRO_SCROLL_MULTIPLE;
-                element.scrollLeft(element.scrollLeft() - scroll_value);
-                return false;
-            });
-        };
+        element.on(Metro.events.scroll, function(){
+            var oldScroll = this.scroll;
 
-        if (!$('html').hasClass("metro-touch-device")) {
-            addMouseWheel();
-        }
+            this.scrollDir = this.scroll < element[0].scrollLeft ? "left" : "right";
+            this.scroll = element[0].scrollLeft;
+
+            Utils.exec(o.onTabsScroll, [element[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
+
+            element.fire("tabsscroll", {
+                scrollLeft: element[0].scrollLeft,
+                oldScroll: oldScroll,
+                scrollDir: that.scrollDir
+            });
+
+        });
     },
 
     openTab: function(tab, tab_next){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var tabs = element.find("li"), element_scroll = element.scrollLeft();
         var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
 
