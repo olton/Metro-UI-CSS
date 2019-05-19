@@ -397,7 +397,7 @@ var Metro = {
             var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
             var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
 
-            console.log(element);
+            //console.log(element);
 
             if (hotkey === false) {
                 return;

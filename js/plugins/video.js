@@ -391,7 +391,7 @@ var Video = {
         $(window).on(Metro.events.keyup + "_video", function(e){
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
-                console.log('esc');
+                //console.log('esc');
             }
         });
 
