@@ -4,6 +4,7 @@ var HtmlContainerDefaultConfig = {
     method: "get",
     htmlSource: null,
     requestData: null,
+    requestOptions: null,
     insertMode: "replace", // replace, append, prepend
     onHtmlLoad: Metro.noop,
     onHtmlLoadFail: Metro.noop,
@@ -24,6 +25,9 @@ var HtmlContainer = {
         this.options = $.extend( {}, HtmlContainerDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
+        this.data = {};
+        this.opt = {};
+        this.htmlSource = '';
 
         this._setOptionsFromDOM();
         this._create();
@@ -48,25 +52,37 @@ var HtmlContainer = {
     _create: function(){
         var element = this.element, o = this.options;
 
-        if (Utils.isValue(o.htmlSource)) {
-            this._load();
+        if (typeof o.requestData === 'string') {
+            o.requestData = JSON.parse(o.requestData);
+        }
+
+        if (Utils.isObject(o.requestData)) {
+            this.data = Utils.isObject(o.requestData);
+        }
+
+        if (typeof o.requestOptions === 'string') {
+            o.requestOptions = JSON.parse(o.requestOptions);
+        }
+
+        if (Utils.isObject(o.requestOptions)) {
+            this.opt = Utils.isObject(o.requestOptions);
         }
 
         o.method = o.method.toLowerCase();
+
+        if (Utils.isValue(o.htmlSource)) {
+            this.htmlSource = o.htmlSource;
+            this._load();
+        }
 
         Utils.exec(o.onHtmlContainerCreate, null, element[0]);
         element.fire("htmlcontainercreate");
     },
 
     _load: function(){
-        var element = this.element, o = this.options;
-        var data = element.attr("data-request-data");
+        var that = this, element = this.element, o = this.options;
 
-        if (!Utils.isValue(o.requestData)) {
-            data = {};
-        }
-
-        $[o.method](o.htmlSource, data, function(data){
+        $[o.method](this.htmlSource, this.data, this.opt).then(function(data){
             switch (o.insertMode.toLowerCase()) {
                 case "prepend": element.prepend(data); break;
                 case "append": element.append(data); break;
@@ -74,38 +90,36 @@ var HtmlContainer = {
                     element.html(data);
                 }
             }
-            Utils.exec(o.onHtmlLoad, [data, o.htmlSource], element[0]);
+            Utils.exec(o.onHtmlLoad, [data, o.htmlSource, that.data, that.opt], element[0]);
             element.fire("htmlload", {
                 data: data,
-                source: o.htmlSource
+                source: o.htmlSource,
+                requestData: that.data,
+                requestOptions: that.opt
             });
-        })
-        .fail(function(xhr){
+        }, function(xhr){
             Utils.exec(o.onHtmlLoadFail, [xhr], element[0]);
             element.fire("htmlloadfail", {
-                xhr: xhr
-            });
-        })
-        .always(function(xhr){
-            Utils.exec(o.onHtmlLoadDone, [xhr], element[0]);
-            element.fire("htmlloaddone", {
                 xhr: xhr
             });
         });
     },
 
-    load: function(source, data){
+    load: function(source, data, opt){
         var o = this.options;
+
         if (source) {
-            o.htmlSource = source;
+            this.htmlSource = source;
         }
+
         if (data) {
-            if (typeof data === 'string') {
-                o.requestData = JSON.parse(data);
-            } else {
-                o.requestData = data;
-            }
+            this.data = Utils.isObject(data);
         }
+
+        if (opt) {
+            this.opt = Utils.isObject(opt);
+        }
+
         this._load();
     },
 

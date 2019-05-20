@@ -378,13 +378,8 @@ var Utils = {
     },
 
     github: function(repo, callback){
-        var that = this;
-        $.ajax({
-            url: 'https://api.github.com/repos/' + repo,
-            dataType: 'jsonp'
-        })
-        .done(function(data){
-            that.callback(callback, [data.data]);
+        $.json('https://api.github.com/repos/' + repo).then(function(data){
+            Utils.exec(callback, [data]);
         });
     },
 
