@@ -2810,7 +2810,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 22:42:51",
+    compileTime: "20/05/2019 22:49:18",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13778,9 +13778,9 @@ var Hint = {
         this.setPosition();
 
         hint.appendTo($('body'));
-        Utils.exec(o.onHintShow, [element[0]], hint[0]);
+        Utils.exec(o.onHintShow, [hint[0]], element[0]);
         element.fire("hintshow", {
-            element: element[0]
+            hint: hint[0]
         });
     },
 
@@ -13823,9 +13823,9 @@ var Hint = {
 
         if (hint !== null) {
 
-            Utils.exec(options.onHintHide, [element[0]], hint[0]);
+            Utils.exec(options.onHintHide, [hint[0]], element[0]);
             element.fire("hinthide", {
-                element: element[0]
+                hint: hint[0]
             });
 
             setTimeout(function(){
