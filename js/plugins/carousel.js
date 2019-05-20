@@ -416,7 +416,6 @@ var Carousel = {
 
         element.find(".carousel-bullet").removeClass("bullet-on").removeClass(o.clsBulletOn);
         element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on").addClass(o.clsBulletOn);
-
     },
 
     _effect: function(current, next, effect, to, interval){
