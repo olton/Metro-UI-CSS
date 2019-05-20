@@ -522,7 +522,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 22:31:21";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 22:42:36";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -1299,6 +1299,9 @@
 
 	m4q.fn.extend({
 	    html: function(value){
+	        if (value instanceof m4q) {
+	            value = value.outerHTML();
+	        }
 	        return arguments.length === 0 ? this._prop('innerHTML') : this._prop('innerHTML', typeof value === "undefined" ? "" : value);
 	    },
 	
