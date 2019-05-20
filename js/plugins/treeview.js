@@ -67,7 +67,7 @@ var TreeView = {
 
         src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
         icon = $("<span>").addClass("icon");
-        icon.html(src);
+        icon.html(src.outerHTML());
 
         return icon;
     },
@@ -121,8 +121,10 @@ var TreeView = {
             }
 
             if (node.children("ul").length > 0) {
+
                 node.append(that._createToggle());
-                if (node.data("collapsed") !== true) {
+
+                if (Utils.bool(node.attr("data-collapsed")) !== true) {
                     node.addClass("expanded");
                 } else {
                     node.children("ul").hide();
@@ -223,14 +225,16 @@ var TreeView = {
 
         checks = [];
 
-        $.each(element.find(":checkbox"), function(){
+        $.each(element.find("input[type=checkbox]"), function(){
             checks.push(this);
         });
 
         $.each(checks.reverse(), function(){
             var ch = $(this);
-            var children = ch.closest("li").children("ul").find(":checkbox").length;
-            var children_checked = ch.closest("li").children("ul").find(":checkbox:checked").length;
+            var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
+            var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]").filter(function(el){
+                return el.checked;
+            }).length;
 
             if (children > 0 && children_checked === 0) {
                 ch.attr("data-indeterminate", false);
