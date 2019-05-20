@@ -84,15 +84,11 @@ var Animation = {
 
     fade: function(current, next, duration){
         if (duration === undefined) {duration = this.duration;}
-        current.animate({
-            opacity: 0
-        }, duration);
+        current.fadeOut(duration);
         next.css({
             top: 0,
             left: 0
-        }).animate({
-            opacity: 1
-        }, duration);
+        }).fadeIn(duration);
     }
 
 };

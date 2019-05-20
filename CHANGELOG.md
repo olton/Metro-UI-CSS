@@ -7,6 +7,7 @@
 + [x] Keypad: rename property `data-length` to `data-key-length`
 + [x] Slider: fix show/hide hint 
 + [x] Typo: fix `margin-top` for lists inside a lists, ex: `ul > ul` 
++ [x] Animation: fix `fadeIn`, `fadeOut`
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245

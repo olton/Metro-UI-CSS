@@ -2803,7 +2803,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 16:07:55",
+    compileTime: "20/05/2019 16:27:36",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3361,15 +3361,11 @@ var Animation = {
 
     fade: function(current, next, duration){
         if (duration === undefined) {duration = this.duration;}
-        current.animate({
-            opacity: 0
-        }, duration);
+        current.fadeOut(duration);
         next.css({
             top: 0,
             left: 0
-        }).animate({
-            opacity: 1
-        }, duration);
+        }).fadeIn(duration);
     }
 
 };
@@ -9737,7 +9733,6 @@ var Carousel = {
 
         element.find(".carousel-bullet").removeClass("bullet-on").removeClass(o.clsBulletOn);
         element.find(".carousel-bullet:nth-child("+(this.currentIndex+1)+")").addClass("bullet-on").addClass(o.clsBulletOn);
-
     },
 
     _effect: function(current, next, effect, to, interval){
