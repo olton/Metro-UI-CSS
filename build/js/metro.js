@@ -2803,7 +2803,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 19:16:25",
+    compileTime: "20/05/2019 20:28:27",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17471,7 +17471,7 @@ Metro.plugin('master', Master);
 
 var NavigationViewDefaultConfig = {
     compact: "md",
-    expanded: "lg",
+    expand: "lg",
     toggle: null,
     activeState: false,
     onMenuItemClick: Metro.noop,
@@ -17557,8 +17557,8 @@ var NavigationView = {
 
         element
             .addClass("navview")
-            .addClass(o.compact !== false ? "compact-"+o.compact : "")
-            .addClass(o.expanded !== false ? "expanded-"+o.expanded : "");
+            .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
+            .addClass(o.expand !== false ? "navview-expand-"+o.expand : "");
 
         pane = element.children(".navview-pane");
         content = element.children(".navview-content");
@@ -17608,7 +17608,7 @@ var NavigationView = {
 
         $(window).on(Metro.events.resize+ "-navview", function(){
 
-            element.removeClass("expand");
+            element.removeClass("expanded");
             that.pane.removeClass("open");
 
             if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
@@ -17647,8 +17647,8 @@ var NavigationView = {
             that.close();
         } else
 
-        if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
-            element.toggleClass("expand");
+        if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
+            element.toggleClass("expanded");
         } else
 
         if (element.hasClass("compacted") || !pane_compact) {
