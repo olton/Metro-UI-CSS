@@ -104,14 +104,13 @@ var MaterialTabs = {
         element.on(Metro.events.click, "li", function(e){
             var tab = $(this);
             var active_tab = element.find("li.active");
-            var tab_next = tabs.index(tab) > tabs.index(active_tab);
+            var tab_next = tab.index() > active_tab.index();
             var target = tab.children("a").attr("href");
 
             if (Utils.isValue(target) && target[0] === "#") {
                 if (tab.hasClass("active")) return;
                 if (tab.hasClass("disabled")) return;
                 if (Utils.exec(o.onBeforeTabOpen, [tab, target, tab_next], this) === false) return;
-                if (!Utils.isValue(target)) return;
                 that.openTab(tab, tab_next);
                 e.preventDefault();
             }
@@ -137,7 +136,7 @@ var MaterialTabs = {
     openTab: function(tab, tab_next){
         var element = this.element, o = this.options;
         var tabs = element.find("li"), element_scroll = element.scrollLeft();
-        var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
+        var magic = 48, shift, width, tab_width, target, tab_left, scroll, scrollLeft;
 
         tab = $(tab);
 
@@ -147,28 +146,30 @@ var MaterialTabs = {
             if (target.trim() !== "#" && $(target).length > 0) $(target).hide();
         });
 
+        width = element.width();
+        scroll = element.scrollLeft();
         tab_left = tab.position().left;
         tab_width = tab.width();
-        shift = tab.position().left + tab.width();
+        shift = tab_left + tab_width;
 
         tabs.removeClass("active").removeClass(o.clsTabActive);
         tab.addClass("active").addClass(o.clsTabActive);
 
-        if (shift + magic > width) {
-            element.animate({
-                scrollLeft: element_scroll + (shift - width) + (tab_width / 2)
-            });
+        if (shift + magic > width + scroll) {
+            scrollLeft = scroll + (magic * 2);
+        } else if (tab_left < scroll) {
+            scrollLeft = tab_left - magic * 2;
+        } else {
+            scrollLeft = scroll;
         }
 
-        if (tab_left - magic < 0) {
-            element.animate({
-                scrollLeft: tab_left + element_scroll - (tab_width / 2)
-            });
-        }
+        element.animate({
+            scrollLeft: scrollLeft
+        });
 
         this.marker.animate({
-            left: tab_left + element_scroll,
-            width: tab.width()
+            left: tab_left,
+            width: tab_width
         });
 
         target = tab.find("a").attr("href");

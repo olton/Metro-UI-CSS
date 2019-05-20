@@ -15,6 +15,8 @@
 + [x] NavView: rename attribute `data-expanded` to `data-expand`, fix for using with `m4q`
 + [x] Streamer: fix for using with `m4q`
 + [x] Splitter: fix for using with `m4q`
++ [x] Tabs material: fix for using with `m4q`
++ [x] Table: fix for using with `m4q`
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245

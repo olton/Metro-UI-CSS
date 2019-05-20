@@ -208,7 +208,7 @@ var Table = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
+            $.json(o.source).then(function(data){
                 if (typeof data !== "object") {
                     throw new Error("Data for table is not a object");
                 }
@@ -218,11 +218,11 @@ var Table = {
                     source: o.source,
                     data: data
                 })
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            }, function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
                     source: o.source,
-                    xhr: jqXHR
+                    xhr: xhr
                 })
             });
         } else {
@@ -273,25 +273,25 @@ var Table = {
             }
             this._final();
         } else {
-            $.get(
+
+            $.json(
                 o.viewSavePath,
                 {
                     id: id
-                },
-                function(view){
-                    if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
-                        that.view = view;
-                        Utils.exec(o.onViewGet, [view], element[0]);
-                        element.fire("viewget", {
-                            source: "server",
-                            view: view
-                        });
-                    }
-                    that._final();
+                })
+            .then(function(view){
+                if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
+                    that.view = view;
+                    Utils.exec(o.onViewGet, [view], element[0]);
+                    element.fire("viewget", {
+                        source: "server",
+                        view: view
+                    });
                 }
-            ).fail(function(jqXHR, textStatus) {
                 that._final();
-                console.log("Warning! View " + textStatus + " for table " + element.attr('id') + " ");
+            }, function(xhr){
+                that._final();
+                console.log("Warning! Error loading view for table " + element.attr('id') + " ");
             });
         }
     },
@@ -1674,8 +1674,7 @@ var Table = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
-
+            $.json(o.source).then(function(data){
                 that.items = [];
                 that.heads = [];
                 that.foots = [];
@@ -1689,11 +1688,11 @@ var Table = {
                     source: o.source,
                     data: data
                 })
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            }, function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
                     source: o.source,
-                    xhr: jqXHR
+                    xhr: xhr
                 })
             });
         }
