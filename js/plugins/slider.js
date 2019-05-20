@@ -169,10 +169,11 @@ var Slider = {
         var hint = slider.find(".hint");
 
         marker.on(Metro.events.startAll, function(){
+            if (o.hint === true && o.hintAlways !== true) {
+                hint.fadeIn(300);
+            }
+
             $(document).on(Metro.events.moveAll, function(e){
-                if (o.hint === true && o.hintAlways !== true) {
-                    hint.fadeIn();
-                }
                 that._move(e);
                 Utils.exec(o.onMove, [that.value, that.percent], element[0]);
                 element.fire("move", {
@@ -186,7 +187,7 @@ var Slider = {
                 $(document).off(Metro.events.stopAll);
 
                 if (o.hintAlways !== true) {
-                    hint.fadeOut();
+                    hint.fadeOut(300);
                 }
 
                 Utils.exec(o.onStop, [that.value, that.percent], element[0]);

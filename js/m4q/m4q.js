@@ -5,6 +5,7 @@
  * Licensed under MIT
  */
 
+'use strict';
 
 	function not(value){
 	    return value === undefined || value === null;
@@ -35,8 +36,8 @@
 	    return true;
 	}
 	
-	function isArrayLike (target){
-	    return target instanceof Object && 'length' in target;
+	function isArrayLike (o){
+	    return o instanceof Object && 'length' in o;
 	}
 	
 	function str2arr (str, sep) {
@@ -521,7 +522,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 12:32:12";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 15:51:48";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -791,8 +792,8 @@
 	m4q.each = function(ctx, cb){
 	    var index = 0;
 	    if (isArrayLike(ctx)) {
-	        [].forEach.call(ctx, function(el) {
-	            cb.apply(el, [arguments[1], arguments[0]]);
+	        [].forEach.call(ctx, function(val, key) {
+	            cb.apply(val, [key, val]);
 	        });
 	    } else {
 	        for(var key in ctx) {

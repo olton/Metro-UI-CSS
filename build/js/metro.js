@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.43  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.0  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -20,6 +20,7 @@
  * Licensed under MIT
  */
 
+'use strict';
 
 	function not(value){
 	    return value === undefined || value === null;
@@ -50,8 +51,8 @@
 	    return true;
 	}
 	
-	function isArrayLike (target){
-	    return target instanceof Object && 'length' in target;
+	function isArrayLike (o){
+	    return o instanceof Object && 'length' in o;
 	}
 	
 	function str2arr (str, sep) {
@@ -536,7 +537,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 12:32:12";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 15:51:48";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -806,8 +807,8 @@
 	m4q.each = function(ctx, cb){
 	    var index = 0;
 	    if (isArrayLike(ctx)) {
-	        [].forEach.call(ctx, function(el) {
-	            cb.apply(el, [arguments[1], arguments[0]]);
+	        [].forEach.call(ctx, function(val, key) {
+	            cb.apply(val, [key, val]);
 	        });
 	    } else {
 	        for(var key in ctx) {
@@ -2801,8 +2802,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.43",
-    compileTime: "20/05/2019 12:32:24",
+    version: "4.3.0",
+    compileTime: "20/05/2019 16:02:08",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4970,197 +4971,6 @@ var Locales = {
 };
 
 Metro['locales'] = Locales;
-
-
-// Source: js/utils/jquery-ext.js
-
-$.fn.extend({
-    toggleAttr: function(a, v){
-        return this.each(function(){
-            var el = $(this);
-            if (v !== undefined) {
-                el.attr(a, v);
-            } else {
-                if (el.attr(a) !== undefined) {
-                    el.removeAttr(a);
-                } else {
-                    el.attr(a, ""+a);
-                }
-            }
-        });
-    },
-
-    clearClasses: function(){
-        return this.each(function(){
-            this.className = "";
-        });
-    },
-
-    fire: function(eventName, data){
-        return this.each(function(){
-            var el = this;
-            var e = document.createEvent('Events');
-            e.detail = data;
-            e.initEvent(eventName, true, false);
-            el.dispatchEvent(e);
-        });
-    }
-});
-
-$.easing['jswing'] = $.easing['swing'];
-
-$.extend($.easing, {
-    def: 'easeOutQuad',
-    swing: function (x, t, b, c, d) {
-        //alert($.easing.default);
-        return $.easing[$.easing.def](x, t, b, c, d);
-    },
-    easeInQuad: function (x, t, b, c, d) {
-        return c * (t /= d) * t + b;
-    },
-    easeOutQuad: function (x, t, b, c, d) {
-        return -c * (t /= d) * (t - 2) + b;
-    },
-    easeInOutQuad: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-        return -c / 2 * ((--t) * (t - 2) - 1) + b;
-    },
-    easeInCubic: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t + b;
-    },
-    easeOutCubic: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1) + b;
-    },
-    easeInOutCubic: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t + 2) + b;
-    },
-    easeInQuart: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t + b;
-    },
-    easeOutQuart: function (x, t, b, c, d) {
-        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
-    },
-    easeInOutQuart: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
-        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
-    },
-    easeInQuint: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
-    },
-    easeOutQuint: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
-    },
-    easeInOutQuint: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
-    },
-    easeInSine: function (x, t, b, c, d) {
-        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
-    },
-    easeOutSine: function (x, t, b, c, d) {
-        return c * Math.sin(t / d * (Math.PI / 2)) + b;
-    },
-    easeInOutSine: function (x, t, b, c, d) {
-        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
-    },
-    easeInExpo: function (x, t, b, c, d) {
-        return (t == 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
-    },
-    easeOutExpo: function (x, t, b, c, d) {
-        return (t == d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
-    },
-    easeInOutExpo: function (x, t, b, c, d) {
-        if (t == 0) return b;
-        if (t == d) return b + c;
-        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    },
-    easeInCirc: function (x, t, b, c, d) {
-        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
-    },
-    easeOutCirc: function (x, t, b, c, d) {
-        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
-    },
-    easeInOutCirc: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
-        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
-    },
-    easeInElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d) == 1) return b + c;
-        if (!p) p = d * .3;
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
-        }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-    },
-    easeOutElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d) == 1) return b + c;
-        if (!p) p = d * .3;
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
-        }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
-    },
-    easeInOutElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t == 0) return b;
-        if ((t /= d / 2) == 2) return b + c;
-        if (!p) p = d * (.3 * 1.5);
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
-        }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
-    },
-    easeInBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * (t /= d) * t * ((s + 1) * t - s) + b;
-    },
-    easeOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
-    },
-    easeInOutBack: function (x, t, b, c, d, s) {
-        if (s == undefined) s = 1.70158;
-        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
-        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
-    },
-    easeInBounce: function (x, t, b, c, d) {
-        return c - $.easing.easeOutBounce(x, d - t, 0, c, d) + b;
-    },
-    easeOutBounce: function (x, t, b, c, d) {
-        if ((t /= d) < (1 / 2.75)) {
-            return c * (7.5625 * t * t) + b;
-        } else if (t < (2 / 2.75)) {
-            return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
-        } else if (t < (2.5 / 2.75)) {
-            return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
-        } else {
-            return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
-        }
-    },
-    easeInOutBounce: function (x, t, b, c, d) {
-        if (t < d / 2) return $.easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
-        return $.easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
-    }
-});
 
 
 // Source: js/utils/md5.js
@@ -15595,7 +15405,7 @@ var KeypadDefaultConfig = {
     keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
     copyInlineStyles: false,
     target: null,
-    length: 0,
+    keyLength: 0,
     shuffle: false,
     shuffleCount: 3,
     position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
@@ -15678,7 +15488,6 @@ var Keypad = {
 
     _createKeypad: function(){
         var element = this.element, o = this.options;
-        var prev = element.prev();
         var parent = element.parent();
         var keypad, keys;
 
@@ -15699,11 +15508,7 @@ var Keypad = {
             element.attr("type", "text");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(keypad);
-        } else {
-            keypad.insertAfter(prev);
-        }
+        keypad.insertBefore(element);
 
         element.attr("readonly", true);
         element.appendTo(keypad);
@@ -15787,7 +15592,7 @@ var Keypad = {
             });
         }
 
-        keys.width(width);
+        keys.outerWidth(width);
 
         if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {
             keypad.outerWidth(keys.outerWidth());
@@ -15799,29 +15604,12 @@ var Keypad = {
         var keypad = element.parent();
         var keys = keypad.find(".keys");
 
-        keypad.on(Metro.events.click, ".keys", function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        keypad.on(Metro.events.click, function(e){
-            if (o.open === true) {
-                return ;
-            }
-            if (keys.hasClass("open") === true) {
-                keys.removeClass("open");
-            } else {
-                keys.addClass("open");
-            }
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
         keypad.on(Metro.events.click, ".key", function(e){
             var key = $(this);
 
             if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
-                if (o.length > 0 && (String(that.value).length === o.length)) {
+
+                if (o.keyLength > 0 && (String(that.value).length === o.keyLength)) {
                     return false;
                 }
 
@@ -15866,6 +15654,24 @@ var Keypad = {
             element.trigger('change');
             Utils.exec(o.onChange, [that.value], element[0]);
 
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        keypad.on(Metro.events.click, ".keys", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        keypad.on(Metro.events.click, function(e){
+            if (o.open === true) {
+                return ;
+            }
+            if (keys.hasClass("open") === true) {
+                keys.removeClass("open");
+            } else {
+                keys.addClass("open");
+            }
             e.preventDefault();
             e.stopPropagation();
         });
@@ -20501,10 +20307,11 @@ var Slider = {
         var hint = slider.find(".hint");
 
         marker.on(Metro.events.startAll, function(){
+            if (o.hint === true && o.hintAlways !== true) {
+                hint.fadeIn(300);
+            }
+
             $(document).on(Metro.events.moveAll, function(e){
-                if (o.hint === true && o.hintAlways !== true) {
-                    hint.fadeIn();
-                }
                 that._move(e);
                 Utils.exec(o.onMove, [that.value, that.percent], element[0]);
                 element.fire("move", {
@@ -20518,7 +20325,7 @@ var Slider = {
                 $(document).off(Metro.events.stopAll);
 
                 if (o.hintAlways !== true) {
-                    hint.fadeOut();
+                    hint.fadeOut(300);
                 }
 
                 Utils.exec(o.onStop, [that.value, that.percent], element[0]);

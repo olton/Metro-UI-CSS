@@ -3,7 +3,7 @@ var KeypadDefaultConfig = {
     keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
     copyInlineStyles: false,
     target: null,
-    length: 0,
+    keyLength: 0,
     shuffle: false,
     shuffleCount: 3,
     position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
@@ -86,7 +86,6 @@ var Keypad = {
 
     _createKeypad: function(){
         var element = this.element, o = this.options;
-        var prev = element.prev();
         var parent = element.parent();
         var keypad, keys;
 
@@ -107,11 +106,7 @@ var Keypad = {
             element.attr("type", "text");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(keypad);
-        } else {
-            keypad.insertAfter(prev);
-        }
+        keypad.insertBefore(element);
 
         element.attr("readonly", true);
         element.appendTo(keypad);
@@ -195,7 +190,7 @@ var Keypad = {
             });
         }
 
-        keys.width(width);
+        keys.outerWidth(width);
 
         if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {
             keypad.outerWidth(keys.outerWidth());
@@ -207,29 +202,12 @@ var Keypad = {
         var keypad = element.parent();
         var keys = keypad.find(".keys");
 
-        keypad.on(Metro.events.click, ".keys", function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        keypad.on(Metro.events.click, function(e){
-            if (o.open === true) {
-                return ;
-            }
-            if (keys.hasClass("open") === true) {
-                keys.removeClass("open");
-            } else {
-                keys.addClass("open");
-            }
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
         keypad.on(Metro.events.click, ".key", function(e){
             var key = $(this);
 
             if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
-                if (o.length > 0 && (String(that.value).length === o.length)) {
+
+                if (o.keyLength > 0 && (String(that.value).length === o.keyLength)) {
                     return false;
                 }
 
@@ -274,6 +252,24 @@ var Keypad = {
             element.trigger('change');
             Utils.exec(o.onChange, [that.value], element[0]);
 
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        keypad.on(Metro.events.click, ".keys", function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        keypad.on(Metro.events.click, function(e){
+            if (o.open === true) {
+                return ;
+            }
+            if (keys.hasClass("open") === true) {
+                keys.removeClass("open");
+            } else {
+                keys.addClass("open");
+            }
             e.preventDefault();
             e.stopPropagation();
         });
