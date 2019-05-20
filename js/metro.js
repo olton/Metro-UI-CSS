@@ -57,7 +57,7 @@ if (window.METRO_LOCALE === undefined) {
     window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
 }
 if (window.METRO_ANIMATION_DURATION === undefined) {
-    window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 300;
+    window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 100;
 }
 if (window.METRO_CALLBACK_TIMEOUT === undefined) {
     window.METRO_CALLBACK_TIMEOUT = meta_callback_timeout !== undefined ? parseInt(meta_callback_timeout) : 500;

@@ -522,7 +522,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 15:51:48";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 20:52:27";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -961,7 +961,7 @@
 	
 	        elem = this[0];
 	
-	        if ( key === undefined ) {
+	        if ( arguments.length === 0 ) {
 	            if ( this.length ) {
 	                data = dataSet.get( elem );
 	
@@ -983,7 +983,7 @@
 	            return data;
 	        }
 	
-	        if (val === undefined) {
+	        if ( arguments.length === 1 ) {
 	            res = dataSet.get(elem, key);
 	            if (res === undefined) {
 	                if ( elem.nodeType === 1) {
@@ -1212,7 +1212,7 @@
 	                })
 	            });
 	        }
-
+	
 	        return this.each(function(){
 	            var el = this;
 	            m4q.each(str2arr(eventsList), function(){

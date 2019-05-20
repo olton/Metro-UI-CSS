@@ -537,7 +537,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 15:51:48";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 20:52:27";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -976,7 +976,7 @@
 	
 	        elem = this[0];
 	
-	        if ( key === undefined ) {
+	        if ( arguments.length === 0 ) {
 	            if ( this.length ) {
 	                data = dataSet.get( elem );
 	
@@ -998,7 +998,7 @@
 	            return data;
 	        }
 	
-	        if (val === undefined) {
+	        if ( arguments.length === 1 ) {
 	            res = dataSet.get(elem, key);
 	            if (res === undefined) {
 	                if ( elem.nodeType === 1) {
@@ -1227,7 +1227,7 @@
 	                })
 	            });
 	        }
-
+	
 	        return this.each(function(){
 	            var el = this;
 	            m4q.each(str2arr(eventsList), function(){
@@ -2751,7 +2751,7 @@ if (window.METRO_LOCALE === undefined) {
     window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
 }
 if (window.METRO_ANIMATION_DURATION === undefined) {
-    window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 300;
+    window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 100;
 }
 if (window.METRO_CALLBACK_TIMEOUT === undefined) {
     window.METRO_CALLBACK_TIMEOUT = meta_callback_timeout !== undefined ? parseInt(meta_callback_timeout) : 500;
@@ -2803,7 +2803,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 20:28:27",
+    compileTime: "20/05/2019 20:56:47",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21731,7 +21731,7 @@ var Streamer = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
+            $.json(o.source).then(function(data){
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
@@ -21739,7 +21739,7 @@ var Streamer = {
                 });
                 that.data = data;
                 that.build();
-            }).fail(function(xhr){
+            }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
                     source: o.source,
@@ -22008,13 +22008,13 @@ var Streamer = {
         this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
         this.scroll = scrollable[0].scrollLeft;
 
-        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events.toArray()], element[0]);
+        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, $.toArray(this.events)], element[0]);
 
         element.fire("eventsscroll", {
             scrollLeft: scrollable[0].scrollLeft,
             oldScroll: oldScroll,
             scrollDir: that.scrollDir,
-            events: this.events.toArray()
+            events: $.toArray(this.events)
         });
     },
 
@@ -22328,7 +22328,7 @@ var Streamer = {
             source: o.source
         });
 
-        $.get(o.source, function(data){
+        $.json(o.source).then(function(data){
             Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             element.fire("dataloaded", {
                 source: o.source,
@@ -22336,7 +22336,7 @@ var Streamer = {
             });
             that.data = data;
             that.build();
-        }).fail(function(xhr){
+        }, function(xhr){
             Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
             element.fire("dataloaderror", {
                 source: o.source,
