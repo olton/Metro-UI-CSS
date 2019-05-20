@@ -121,10 +121,11 @@ var Wizard = {
         element.on(Metro.events.click, ".wizard-btn-help", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onHelpClick, [that.current, page[0], element[0]]);
+
+            Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
             element.fire("helpclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
@@ -132,10 +133,10 @@ var Wizard = {
             that.prev();
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onPrevClick, [that.current, page[0]], element[0]);
+            Utils.exec(o.onPrevClick, [that.current, page], element[0]);
             element.fire("prevclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
@@ -143,20 +144,20 @@ var Wizard = {
             that.next();
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onNextClick, [that.current, page[0]], element[0]);
+            Utils.exec(o.onNextClick, [that.current, page], element[0]);
             element.fire("nextclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
         element.on(Metro.events.click, ".wizard-btn-finish", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onFinishClick, [that.current, page[0]], element[0]);
+            Utils.exec(o.onFinishClick, [that.current, page], element[0]);
             element.fire("finishclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 

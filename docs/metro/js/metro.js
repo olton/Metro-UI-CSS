@@ -537,7 +537,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 22:31:21";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 22:42:36";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -1314,6 +1314,9 @@
 
 	m4q.fn.extend({
 	    html: function(value){
+	        if (value instanceof m4q) {
+	            value = value.outerHTML();
+	        }
 	        return arguments.length === 0 ? this._prop('innerHTML') : this._prop('innerHTML', typeof value === "undefined" ? "" : value);
 	    },
 	
@@ -2807,7 +2810,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 22:33:30",
+    compileTime: "20/05/2019 22:42:51",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -29746,10 +29749,11 @@ var Wizard = {
         element.on(Metro.events.click, ".wizard-btn-help", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onHelpClick, [that.current, page[0], element[0]]);
+
+            Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
             element.fire("helpclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
@@ -29757,10 +29761,10 @@ var Wizard = {
             that.prev();
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onPrevClick, [that.current, page[0]], element[0]);
+            Utils.exec(o.onPrevClick, [that.current, page], element[0]);
             element.fire("prevclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
@@ -29768,20 +29772,20 @@ var Wizard = {
             that.next();
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onNextClick, [that.current, page[0]], element[0]);
+            Utils.exec(o.onNextClick, [that.current, page], element[0]);
             element.fire("nextclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
         element.on(Metro.events.click, ".wizard-btn-finish", function(){
             var pages = element.children("section");
             var page = pages.get(that.current - 1);
-            Utils.exec(o.onFinishClick, [that.current, page[0]], element[0]);
+            Utils.exec(o.onFinishClick, [that.current, page], element[0]);
             element.fire("finishclick", {
                 index: that.current,
-                page: page[0]
+                page: page
             });
         });
 
