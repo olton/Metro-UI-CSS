@@ -1227,7 +1227,7 @@
 	                })
 	            });
 	        }
-	
+
 	        return this.each(function(){
 	            var el = this;
 	            m4q.each(str2arr(eventsList), function(){
@@ -2803,7 +2803,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 16:27:36",
+    compileTime: "20/05/2019 19:16:25",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -5979,10 +5979,6 @@ var Utils = {
     },
 
     rect: function(el){
-        if (typeof jQuery === "function" && el instanceof jQuery) {
-            el = el[0];
-        }
-
         return el.getBoundingClientRect();
     },
 
@@ -14132,10 +14128,10 @@ var ImageCompare = {
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
 
-        slider.on(Metro.events.start, function(e){
+        slider.on(Metro.events.startAll, function(e){
             var w = element.width();
-            $(document).on(Metro.events.move + "-" + element.attr("id"), function(e){
-                var x = Utils.getCursorPositionX(element, e), left_pos;
+            $(document).on(Metro.events.moveAll, function(e){
+                var x = Utils.getCursorPositionX(element[0], e), left_pos;
                 if (x < 0) x = 0;
                 if (x > w) x = w;
                 overlay.css({
@@ -14151,13 +14147,13 @@ var ImageCompare = {
                     l: left_pos
                 });
             });
-            $(document).on(Metro.events.stop + "-" + element.attr("id"), function(){
-                $(document).off(Metro.events.move + "-" + element.attr("id"));
-                $(document).off(Metro.events.stop + "-" + element.attr("id"));
+            $(document).on(Metro.events.stopAll, function(){
+                $(document).off(Metro.events.moveAll);
+                $(document).off(Metro.events.stopAll);
             })
         });
 
-        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             var element_width = element.width(), element_height;
 
             if (o.width !== "100%") {
@@ -14193,7 +14189,7 @@ var ImageCompare = {
             });
 
             Utils.exec(o.onResize, [element_width, element_height], element[0]);
-            element.fire("resize", {
+            element.fire("comparerresize", {
                 width: element_width,
                 height: element_height
             });
@@ -15921,18 +15917,19 @@ var List = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
+
+            $.json(o.source).then(function(data){
                 that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
                 });
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            }, function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
-                    source: source,
-                    xhr: jqXHR
+                    source: o.source,
+                    xhr: xhr
                 });
             });
         } else {
@@ -16474,7 +16471,7 @@ var List = {
             source: o.source
         });
 
-        $.get(o.source, function(data){
+        $.json(o.source).then(function(data){
             Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             element.fire("dataloaded", {
                 source: o.source,
@@ -16511,12 +16508,11 @@ var List = {
             that.currentPage = 1;
 
             that.sorting(o.sortClass, o.sortDir, true);
-
-        }).fail(function( jqXHR, textStatus, errorThrown) {
-            Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+        }, function(xhr){
+            Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
             element.fire("dataloaderror", {
                 source: o.source,
-                xhr: jqXHR
+                xhr: xhr
             });
         });
     },
@@ -16721,7 +16717,7 @@ var ListView = {
 
         src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
         icon = $("<span>").addClass("icon");
-        icon.html(src);
+        icon.html(src.outerHTML());
 
         return icon;
     },
@@ -17149,7 +17145,7 @@ var Master = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -17163,7 +17159,7 @@ var Master = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.addClass("master").addClass(o.clsMaster);
         element.css({
@@ -17179,9 +17175,9 @@ var Master = {
     },
 
     _createControls: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var controls_position = ['top', 'bottom'];
-        var i, controls, title, pages = element.find(".page");
+        var controls, title, pages = element.find(".page");
 
         title = String(o.controlTitle).replace("$1", "1");
         title = String(title).replace("$2", pages.length);
@@ -17390,13 +17386,13 @@ var Master = {
         }
 
         function _slide(){
-            current.stop(true, true).animate({
+            current.stop(true).animate({
                 left: to === "next" ? -out : out
             }, o.duration, o.effectFunc, function(){
                 current.hide(0);
             });
 
-            next.stop(true, true).css({
+            next.stop(true).css({
                 left: to === "next" ? out : -out
             }).show(0).animate({
                 left: 0
@@ -17406,9 +17402,13 @@ var Master = {
         }
 
         function _switch(){
-            current.hide(0);
+            current.hide();
 
-            next.hide(0).css("left", 0).show(0, function(){
+            next.css({
+                top: 0,
+                left: 0,
+                opacity: 0
+            }).show(function(){
                 finish();
             });
         }
@@ -17416,7 +17416,11 @@ var Master = {
         function _fade(){
             current.fadeOut(o.duration);
 
-            next.hide(0).css("left", 0).fadeIn(o.duration, function(){
+            next.css({
+                top: 0,
+                left: 0,
+                opacity: 0
+            }).fadeIn(o.duration, "linear", function(){
                 finish();
             });
         }

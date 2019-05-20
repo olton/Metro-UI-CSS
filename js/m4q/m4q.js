@@ -1212,7 +1212,7 @@
 	                })
 	            });
 	        }
-	
+
 	        return this.each(function(){
 	            var el = this;
 	            m4q.each(str2arr(eventsList), function(){
