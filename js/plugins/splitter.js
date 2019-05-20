@@ -122,7 +122,7 @@ var Splitter = {
             var next_block = gutter.next(".split-block");
             var prev_block_size = 100 * (o.splitMode === "horizontal" ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
             var next_block_size = 100 * (o.splitMode === "horizontal" ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
-            var start_pos = Utils.getCursorPosition(element, e);
+            var start_pos = Utils.getCursorPosition(element[0], e);
 
             gutter.addClass("active");
 
@@ -138,7 +138,7 @@ var Splitter = {
             });
 
             $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
-                var pos = Utils.getCursorPosition(element, e);
+                var pos = Utils.getCursorPosition(element[0], e);
                 var new_pos;
 
                 if (o.splitMode === "horizontal") {
@@ -173,7 +173,7 @@ var Splitter = {
                 $(window).off(Metro.events.move + "-" + element.attr("id"));
                 $(window).off(Metro.events.stop + "-" + element.attr("id"));
 
-                cur_pos = Utils.getCursorPosition(element, e);
+                cur_pos = Utils.getCursorPosition(element[0], e);
 
                 Utils.exec(o.onResizeStop, [cur_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
                 element.fire("resizestop", {
