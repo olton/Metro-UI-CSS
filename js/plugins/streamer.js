@@ -95,7 +95,7 @@ var Streamer = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
+            $.json(o.source).then(function(data){
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
@@ -103,7 +103,7 @@ var Streamer = {
                 });
                 that.data = data;
                 that.build();
-            }).fail(function(xhr){
+            }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
                     source: o.source,
@@ -372,13 +372,13 @@ var Streamer = {
         this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
         this.scroll = scrollable[0].scrollLeft;
 
-        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, this.events.toArray()], element[0]);
+        Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, $.toArray(this.events)], element[0]);
 
         element.fire("eventsscroll", {
             scrollLeft: scrollable[0].scrollLeft,
             oldScroll: oldScroll,
             scrollDir: that.scrollDir,
-            events: this.events.toArray()
+            events: $.toArray(this.events)
         });
     },
 
@@ -692,7 +692,7 @@ var Streamer = {
             source: o.source
         });
 
-        $.get(o.source, function(data){
+        $.json(o.source).then(function(data){
             Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
             element.fire("dataloaded", {
                 source: o.source,
@@ -700,7 +700,7 @@ var Streamer = {
             });
             that.data = data;
             that.build();
-        }).fail(function(xhr){
+        }, function(xhr){
             Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
             element.fire("dataloaderror", {
                 source: o.source,
