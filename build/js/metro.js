@@ -2803,7 +2803,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 21:02:54",
+    compileTime: "20/05/2019 22:11:59",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -22703,7 +22703,7 @@ var Table = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
+            $.json(o.source).then(function(data){
                 if (typeof data !== "object") {
                     throw new Error("Data for table is not a object");
                 }
@@ -22713,11 +22713,11 @@ var Table = {
                     source: o.source,
                     data: data
                 })
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            }, function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
                     source: o.source,
-                    xhr: jqXHR
+                    xhr: xhr
                 })
             });
         } else {
@@ -22768,25 +22768,25 @@ var Table = {
             }
             this._final();
         } else {
-            $.get(
+
+            $.json(
                 o.viewSavePath,
                 {
                     id: id
-                },
-                function(view){
-                    if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
-                        that.view = view;
-                        Utils.exec(o.onViewGet, [view], element[0]);
-                        element.fire("viewget", {
-                            source: "server",
-                            view: view
-                        });
-                    }
-                    that._final();
+                })
+            .then(function(view){
+                if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
+                    that.view = view;
+                    Utils.exec(o.onViewGet, [view], element[0]);
+                    element.fire("viewget", {
+                        source: "server",
+                        view: view
+                    });
                 }
-            ).fail(function(jqXHR, textStatus) {
                 that._final();
-                console.log("Warning! View " + textStatus + " for table " + element.attr('id') + " ");
+            }, function(xhr){
+                that._final();
+                console.log("Warning! Error loading view for table " + element.attr('id') + " ");
             });
         }
     },
@@ -24169,8 +24169,7 @@ var Table = {
                 source: o.source
             });
 
-            $.get(o.source, function(data){
-
+            $.json(o.source).then(function(data){
                 that.items = [];
                 that.heads = [];
                 that.foots = [];
@@ -24184,11 +24183,11 @@ var Table = {
                     source: o.source,
                     data: data
                 })
-            }).fail(function( jqXHR, textStatus, errorThrown) {
-                Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
+            }, function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
                     source: o.source,
-                    xhr: jqXHR
+                    xhr: xhr
                 })
             });
         }
@@ -24611,14 +24610,13 @@ var MaterialTabs = {
         element.on(Metro.events.click, "li", function(e){
             var tab = $(this);
             var active_tab = element.find("li.active");
-            var tab_next = tabs.index(tab) > tabs.index(active_tab);
+            var tab_next = tab.index() > active_tab.index();
             var target = tab.children("a").attr("href");
 
             if (Utils.isValue(target) && target[0] === "#") {
                 if (tab.hasClass("active")) return;
                 if (tab.hasClass("disabled")) return;
                 if (Utils.exec(o.onBeforeTabOpen, [tab, target, tab_next], this) === false) return;
-                if (!Utils.isValue(target)) return;
                 that.openTab(tab, tab_next);
                 e.preventDefault();
             }
@@ -24644,7 +24642,7 @@ var MaterialTabs = {
     openTab: function(tab, tab_next){
         var element = this.element, o = this.options;
         var tabs = element.find("li"), element_scroll = element.scrollLeft();
-        var magic = 32, shift, width = element.width(), tab_width, target, tab_left;
+        var magic = 48, shift, width, tab_width, target, tab_left, scroll, scrollLeft;
 
         tab = $(tab);
 
@@ -24654,28 +24652,30 @@ var MaterialTabs = {
             if (target.trim() !== "#" && $(target).length > 0) $(target).hide();
         });
 
+        width = element.width();
+        scroll = element.scrollLeft();
         tab_left = tab.position().left;
         tab_width = tab.width();
-        shift = tab.position().left + tab.width();
+        shift = tab_left + tab_width;
 
         tabs.removeClass("active").removeClass(o.clsTabActive);
         tab.addClass("active").addClass(o.clsTabActive);
 
-        if (shift + magic > width) {
-            element.animate({
-                scrollLeft: element_scroll + (shift - width) + (tab_width / 2)
-            });
+        if (shift + magic > width + scroll) {
+            scrollLeft = scroll + (magic * 2);
+        } else if (tab_left < scroll) {
+            scrollLeft = tab_left - magic * 2;
+        } else {
+            scrollLeft = scroll;
         }
 
-        if (tab_left - magic < 0) {
-            element.animate({
-                scrollLeft: tab_left + element_scroll - (tab_width / 2)
-            });
-        }
+        element.animate({
+            scrollLeft: scrollLeft
+        });
 
         this.marker.animate({
-            left: tab_left + element_scroll,
-            width: tab.width()
+            left: tab_left,
+            width: tab_width
         });
 
         target = tab.find("a").attr("href");
