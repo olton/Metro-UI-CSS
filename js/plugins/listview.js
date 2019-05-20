@@ -65,7 +65,7 @@ var ListView = {
 
         src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
         icon = $("<span>").addClass("icon");
-        icon.html(src);
+        icon.html(src.outerHTML());
 
         return icon;
     },

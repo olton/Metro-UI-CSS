@@ -283,10 +283,6 @@ var Utils = {
     },
 
     rect: function(el){
-        if (typeof jQuery === "function" && el instanceof jQuery) {
-            el = el[0];
-        }
-
         return el.getBoundingClientRect();
     },
 

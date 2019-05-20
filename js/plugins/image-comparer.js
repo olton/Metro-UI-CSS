@@ -107,10 +107,10 @@ var ImageCompare = {
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
 
-        slider.on(Metro.events.start, function(e){
+        slider.on(Metro.events.startAll, function(e){
             var w = element.width();
-            $(document).on(Metro.events.move + "-" + element.attr("id"), function(e){
-                var x = Utils.getCursorPositionX(element, e), left_pos;
+            $(document).on(Metro.events.moveAll, function(e){
+                var x = Utils.getCursorPositionX(element[0], e), left_pos;
                 if (x < 0) x = 0;
                 if (x > w) x = w;
                 overlay.css({
@@ -126,13 +126,13 @@ var ImageCompare = {
                     l: left_pos
                 });
             });
-            $(document).on(Metro.events.stop + "-" + element.attr("id"), function(){
-                $(document).off(Metro.events.move + "-" + element.attr("id"));
-                $(document).off(Metro.events.stop + "-" + element.attr("id"));
+            $(document).on(Metro.events.stopAll, function(){
+                $(document).off(Metro.events.moveAll);
+                $(document).off(Metro.events.stopAll);
             })
         });
 
-        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             var element_width = element.width(), element_height;
 
             if (o.width !== "100%") {
@@ -168,7 +168,7 @@ var ImageCompare = {
             });
 
             Utils.exec(o.onResize, [element_width, element_height], element[0]);
-            element.fire("resize", {
+            element.fire("comparerresize", {
                 width: element_width,
                 height: element_height
             });
