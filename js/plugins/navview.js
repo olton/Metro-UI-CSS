@@ -1,6 +1,6 @@
 var NavigationViewDefaultConfig = {
     compact: "md",
-    expanded: "lg",
+    expand: "lg",
     toggle: null,
     activeState: false,
     onMenuItemClick: Metro.noop,
@@ -86,8 +86,8 @@ var NavigationView = {
 
         element
             .addClass("navview")
-            .addClass(o.compact !== false ? "compact-"+o.compact : "")
-            .addClass(o.expanded !== false ? "expanded-"+o.expanded : "");
+            .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
+            .addClass(o.expand !== false ? "navview-expand-"+o.expand : "");
 
         pane = element.children(".navview-pane");
         content = element.children(".navview-content");
@@ -137,7 +137,7 @@ var NavigationView = {
 
         $(window).on(Metro.events.resize+ "-navview", function(){
 
-            element.removeClass("expand");
+            element.removeClass("expanded");
             that.pane.removeClass("open");
 
             if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
@@ -176,8 +176,8 @@ var NavigationView = {
             that.close();
         } else
 
-        if ((pane_compact || element.hasClass("expand")) && !element.hasClass("compacted")) {
-            element.toggleClass("expand");
+        if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
+            element.toggleClass("expanded");
         } else
 
         if (element.hasClass("compacted") || !pane_compact) {

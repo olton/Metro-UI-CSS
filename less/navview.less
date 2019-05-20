@@ -242,7 +242,8 @@
 }
 
 .navview {
-    &.expand {
+    &.expanded {
+
         .navview-pane {
             width: @navviewPaneWidth!important;
 
@@ -364,10 +365,10 @@
         .navview-margin-compact-@{m} {margin-left: @navviewPaneWidthCompact;}
 
         .navview {
-            &.compact-@{m} {
+            &.navview-compact-@{m} {
                 .navview-compact();
             }
-            &.expanded-@{m} {
+            &.navview-expand-@{m} {
                 .navview-expanded();
             }
         }
@@ -377,7 +378,7 @@
 }
 
 .navview {
-    &.compacted, &.js-compact:not(.expand) {
+    &.compacted, &.js-compact:not(.expanded) {
 
         .navview-pane > .navview-menu {
             overflow: visible;
