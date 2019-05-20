@@ -135,8 +135,8 @@
                         <td>Selector (class or id) for additional target for value.</td>
                     </tr>
                     <tr>
-                        <td>length</td>
-                        <td><code>data-length</code></td>
+                        <td>keyLength</td>
+                        <td><code>data-key-length</code></td>
                         <td>0</td>
                         <td>Can be a number. This is an internal constraint. If value more than 0, a user can't enter a value with length more then length value.</td>
                     </tr>
@@ -316,14 +316,14 @@
 
                 <h4 id="_keypad_options_constraints">Constraints</h4>
                 <p>
-                    You can set attribute <code>data-length</code> to limit the number of characters to be entered.
+                    You can set attribute <code>data-key-length</code> to limit the number of characters to be entered.
                 </p>
                 <div class="example">
-                    <input type="text" data-role="keypad" placeholder="Enter the six-digit pin" data-length="6">
+                    <input type="text" data-role="keypad" placeholder="Enter the six-digit pin" data-key-length="6">
                 </div>
                 <pre><code>
                     &lt;input type="text" data-role="keypad"
-                        placeholder="Enter the six-digit pin" data-length="6"&gt;
+                        placeholder="Enter the six-digit pin" data-key-length="6"&gt;
                 </code></pre>
 
                 <h4 id="_keypad_options_shuffle">Shuffle</h4>
