@@ -90,9 +90,9 @@ var Hint = {
         this.setPosition();
 
         hint.appendTo($('body'));
-        Utils.exec(o.onHintShow, [element[0]], hint[0]);
+        Utils.exec(o.onHintShow, [hint[0]], element[0]);
         element.fire("hintshow", {
-            element: element[0]
+            hint: hint[0]
         });
     },
 
@@ -135,9 +135,9 @@ var Hint = {
 
         if (hint !== null) {
 
-            Utils.exec(options.onHintHide, [element[0]], hint[0]);
+            Utils.exec(options.onHintHide, [hint[0]], element[0]);
             element.fire("hinthide", {
-                element: element[0]
+                hint: hint[0]
             });
 
             setTimeout(function(){

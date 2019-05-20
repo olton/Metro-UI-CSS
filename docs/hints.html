@@ -352,15 +352,15 @@
     <script src="js/site.js"></script>
     <script>
         var hintRoutines = {
-            showHint: function(hint, element){
-                hint.addClass("showHint");
+            showHint: function(hint){
+                $(hint).addClass("showHint");
                 setTimeout(function(){
-                    hint.removeClass("showHint");
+                    $(hint).removeClass("showHint");
                 }, 500)
             },
 
-            hideHint: function(hint, element){
-                hint.addClass("hideHint");
+            hideHint: function(hint){
+                $(hint).addClass("hideHint");
             }
         }
     </script>
