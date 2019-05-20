@@ -537,7 +537,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 20/05/2019 20:52:27";
+	var m4qVersion = "v1.0.0. Built at 20/05/2019 22:31:21";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -670,6 +670,10 @@
 	
 	        if (s === ":selected") {
 	            return this[0].selected;
+	        } else
+	
+	        if (s === ":checked") {
+	            return this[0].checked;
 	        } else
 	
 	        if (isArrayLike(s)) {
@@ -2803,7 +2807,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/05/2019 22:11:59",
+    compileTime: "20/05/2019 22:33:30",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -27554,7 +27558,7 @@ var TreeView = {
 
         src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
         icon = $("<span>").addClass("icon");
-        icon.html(src);
+        icon.html(src.outerHTML());
 
         return icon;
     },
@@ -27608,8 +27612,10 @@ var TreeView = {
             }
 
             if (node.children("ul").length > 0) {
+
                 node.append(that._createToggle());
-                if (node.data("collapsed") !== true) {
+
+                if (Utils.bool(node.attr("data-collapsed")) !== true) {
                     node.addClass("expanded");
                 } else {
                     node.children("ul").hide();
@@ -27710,14 +27716,16 @@ var TreeView = {
 
         checks = [];
 
-        $.each(element.find(":checkbox"), function(){
+        $.each(element.find("input[type=checkbox]"), function(){
             checks.push(this);
         });
 
         $.each(checks.reverse(), function(){
             var ch = $(this);
-            var children = ch.closest("li").children("ul").find(":checkbox").length;
-            var children_checked = ch.closest("li").children("ul").find(":checkbox:checked").length;
+            var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
+            var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]").filter(function(el){
+                return el.checked;
+            }).length;
 
             if (children > 0 && children_checked === 0) {
                 ch.attr("data-indeterminate", false);
