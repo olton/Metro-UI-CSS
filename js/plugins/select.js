@@ -129,7 +129,7 @@ var Select = {
     },
 
     _createSelect: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var prev = element.prev();
         var parent = element.parent();
@@ -194,12 +194,7 @@ var Select = {
 
                 target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
                 if (target !== undefined) {
-                    list.scrollTop(0);
-                    setTimeout(function(){
-                        list.animate({
-                            scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
-                        }, 100);
-                    }, 200);
+                    list[0].scrollTop = target.position().top - ( (list.height() - target.height() )/ 2);
                 }
 
                 Utils.exec(o.onDrop, [list[0]], element[0]);
@@ -260,7 +255,7 @@ var Select = {
             e.stopPropagation();
         });
 
-        input.on(Metro.events.click, function(e){
+        input.on(Metro.events.click, function(){
             $(".focused").removeClass("focused");
             container.addClass("focused");
         });
@@ -273,7 +268,7 @@ var Select = {
             }
             var leaf = $(this);
             var val = leaf.data('value');
-            var txt = leaf.data('text');
+            // var txt = leaf.data('text');
             var html = leaf.children('a').html();
             var selected_item, selected;
             var option = leaf.data("option");
@@ -406,15 +401,15 @@ var Select = {
         var element = this.element;
         var result = [];
 
-        element.find("option:selected").each(function(){
-            result.push(this.value);
+        element.find("option").each(function(){
+            if (this.selected) result.push(this.value);
         });
 
         return result;
     },
 
     val: function(val){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var input = element.siblings(".select-input");
         var options = element.find("option");
         var list_items = this.list.find("li");
@@ -486,7 +481,7 @@ var Select = {
         } else if (Utils.isObject(op)) {
             $.each(op, function(key, val){
                 if (Utils.isObject(val)) {
-                    option_group = $("<optgroup>").attr("label", key).appendTo(element);
+                    option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
                     $.each(val, function(key2, val2){
                         $("<option>").attr("value", key2).text(val2).appendTo(option_group);
                     });
@@ -500,8 +495,8 @@ var Select = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case 'disabled': this.toggleState(); break;
+        if (attributeName === 'disabled') {
+            this.toggleState();
         }
     },
 

@@ -8,6 +8,7 @@ module.exports = function(grunt) {
     var watch_files = [
         'js/i18n/*.json',
         'js/*.js',
+        'js/m4q/*.js',
         'js/utils/*.js',
         'js/plugins/*js',
         'less/*.less',
@@ -45,11 +46,11 @@ module.exports = function(grunt) {
 
         requirejs_banner: "\n(function( factory ) {\n"+
         "    if ( typeof define === 'function' && define.amd ) {\n" +
-        "        define([ 'jquery' ], factory );\n"+
+        "        define('metro4', factory );\n"+
         "    } else {\n" +
-        "        factory( jQuery );\n"+
+        "        factory( );\n"+
         "    }\n"+
-        "}(function( jQuery ) { ",
+        "}(function( ) { ",
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
@@ -68,6 +69,7 @@ module.exports = function(grunt) {
                     }
                 },
                 src: [
+                    'js/m4q/*.js',
                     'js/*.js',
                     'js/utils/*.js',
                     'js/plugins/*.js'

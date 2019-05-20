@@ -110,7 +110,7 @@ var File = {
         var files = container.find(".files");
 
         container.on(Metro.events.click, "button", function(){
-            element.trigger("click");
+            element[0].click();
         });
 
         element.on(Metro.events.change, function(){
@@ -158,7 +158,7 @@ var File = {
             });
 
             container.on('drop', function(e){
-                element[0].files = e.originalEvent.dataTransfer.files;
+                element[0].files = e.dataTransfer.files;
                 files.html(element[0].files.length + " " +o.filesTitle);
                 container.removeClass("drop-on");
                 element.trigger("change");

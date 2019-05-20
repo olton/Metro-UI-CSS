@@ -1,9 +1,9 @@
 'use strict';
 
-var $ = jQuery;
+var $ = m4q;
 
-if (typeof jQuery === 'undefined') {
-    throw new Error('Metro 4 requires jQuery!');
+if (typeof m4q === 'undefined') {
+    throw new Error('Metro 4 requires m4q helper!');
 }
 
 if ('MutationObserver' in window === false) {
@@ -21,6 +21,11 @@ var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
 var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
 var meta_cloak = $("meta[name='metro4:cloak']").attr("content"); //default or fade
 var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"); //100
+
+var meta_jquery = $("meta[name='metro4:jquery']").attr("content"); //undefined
+if (window.METRO_JQUERY === undefined) {
+    window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : false;
+}
 
 /* Added by Ken Kitay https://github.com/kens-code*/
 var meta_about = $("meta[name='metro4:about']").attr("content");
@@ -267,6 +272,7 @@ var Metro = {
 
     about: function(){
         console.log("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+        console.log("m4q - " + m4q.version);
     },
 
     showCompileTime: function(){
@@ -446,6 +452,12 @@ var Metro = {
                 $.data( this, name, Object.create(object).init(options, this ));
             });
         };
+
+        if (METRO_JQUERY && typeof jQuery !== 'undefined') jQuery.fn[name] = function( options ) {
+            return this.each(function() {
+                jQuery.data( this, name, Object.create(object).init(options, this ));
+            });
+        };
     },
 
     destroyPlugin: function(element, name){
@@ -509,7 +521,6 @@ var Metro = {
         var mc = $(element).data("metroComponent");
 
         if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            'use strict';
             Metro.reinitPlugin(element, this);
         });
     },

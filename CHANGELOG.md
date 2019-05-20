@@ -1,3 +1,10 @@
+### 4.3.0
++ [x] jQuery: remove dependency
++ [x] Utils: fix method `github` for using with `m4q` 
++ [x] Html container: fix for using with `m4q` 
++ [x] Select: fix for using with `m4q`
++ [x] File: fix for using with `m4q`
+
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
 + [x] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
