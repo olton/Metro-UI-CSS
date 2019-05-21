@@ -58,7 +58,7 @@
 <div class="container-fluid">
 
     <div class="row flex-xl-nowrap">
-        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-load="initDocSearchEngine()"></div>
 
             <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
                 <h5>Table of contents</h5>
@@ -93,28 +93,23 @@
                     Easing can really bring life to an effect. Easing controls how an animation progresses over time by manipulating its acceleration.
                 </p>
                 <p>
-                    Easing can be applied when using the jQuery .animate() method.
-                    The effects helper methods like .show('fast'), .toggle('fast'), fadeIn('fast'), and so on all just use the default easing, "swing."
+                    Easing can be applied when using the <code>m4q.animate()</code> method.
                 </p>
 
                 <h3 id="_easing_default">Default easing</h3>
                 <p>
-                    The default easing function is <code>swing</code>. To change default easing you can write:
+                    The default easing function is <code>linear</code>.
                 </p>
-                <pre><code class="javascript">
-                    $.easing.def = "easeOutQuart";
-                </code></pre>
 
                 <h3 id="_easing_example">Example of usage</h3>
                 <pre class=""><code>
-                    $('#myDiv').animate(
-                        { opacity: 0 }, // what we are animating
-                        'fast', // how fast we are animating
-                        'easeInExpo', // the type of easing
-                        function() { // the callback
-                            alert('done');
-                        }
-                    );
+                    var duration = 3000, easing = 'linear';
+                    var callback = function(){
+                        console.log('animation done');
+                    };
+                    $('#myDiv').animate(function(complete){
+                        this.style.left = 100 * complete + '%'
+                    }, duration, easing, callback);
                 </code></pre>
 
                 <h3 id="_easing_funcs">Metro 4 easing funcs</h3>
@@ -127,13 +122,21 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td>swing</td>
+                        <td>linear</td>
                         <td>
                             <div class="bg-dark js-demo-cube-container">
-                                <div class="js-demo-cube bg-white" data-easing="swing"></div>
+                                <div class="js-demo-cube bg-white" data-easing="linear"></div>
                             </div>
                         </td>
                     </tr>
+<!--                    <tr>-->
+<!--                        <td>swing</td>-->
+<!--                        <td>-->
+<!--                            <div class="bg-dark js-demo-cube-container">-->
+<!--                                <div class="js-demo-cube bg-white" data-easing="swing"></div>-->
+<!--                            </div>-->
+<!--                        </td>-->
+<!--                    </tr>-->
                     <tr>
                         <td>easeInQuad</td>
                         <td>
@@ -390,26 +393,29 @@
     </div>
 
     <script src="docsearch/docsearch.min.js"></script>
-
     <script src="metro/js/metro.js?ver=@@b-version"></script>
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
 
     <script>
-        $(function(){
             var cubes = $('.js-demo-cube');
-            var i_cubes = setInterval(function(){
+
+            setInterval(function(){
                 $.each(cubes, function(){
                     var cube = $(this);
                     cube.css({
                         left: 10
-                    }).animate({
-                        left: 100
+                    }).animate(function(p){
+                        $(this).css({
+                            left: (120 - cube.width() - 10) * p
+                        })
                     }, 1500, cube.data('easing'));
                 });
             }, 3000);
-        });
+
+
+        // console.log($.easing);
     </script>
     <!-- ads-script -->
     <!-- ga-script -->
