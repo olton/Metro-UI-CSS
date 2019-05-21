@@ -22,6 +22,7 @@
 + [x] Hint: fix for using with `m4q`
 + [x] Notify: fix for using with `m4q`
 + [x] Calendar picker: fix for using with `m4q`
++ [x] Date nad time picker: fix for using with `m4q`
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245

@@ -56,7 +56,7 @@ var TimePicker = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -70,8 +70,7 @@ var TimePicker = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var picker = this.picker;
+        var element = this.element, o = this.options;
         var i;
 
         if (o.distance < 1) {
@@ -132,8 +131,8 @@ var TimePicker = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var picker, hours, minutes, seconds, ampm, select, i;
+        var element = this.element, o = this.options;
+        var picker, hours, minutes, seconds, i;
         var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
         var prev = element.prev();
@@ -213,7 +212,7 @@ var TimePicker = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, o = this.options;
         var picker = this.picker;
 
         picker.on(Metro.events.start, ".select-block ul", function(e){
@@ -232,7 +231,7 @@ var TimePicker = {
                 pageY = Utils.pageXY(e).y;
             });
 
-            $(document).on(Metro.events.stop + "-picker", function(e){
+            $(document).on(Metro.events.stop + "-picker", function(){
                 $(document).off(Metro.events.move + "-picker");
                 $(document).off(Metro.events.stop + "-picker");
             });
@@ -244,7 +243,7 @@ var TimePicker = {
         });
 
         picker.on(Metro.events.click, ".action-ok", function(e){
-            var h, m, s, a;
+            var h, m, s;
             var sh = picker.find(".sel-hours li.active"),
                 sm = picker.find(".sel-minutes li.active"),
                 ss = picker.find(".sel-seconds li.active");
@@ -279,14 +278,14 @@ var TimePicker = {
 
                     if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
 
-                        var target, targetElement, scrollTop, delta;
+                        var target, targetElement, scrollTop;
 
                         that.listTimer[part] = null;
 
                         target = Math.round((Math.ceil(list.scrollTop()) / 40));
 
                         targetElement = list.find(".js-" + part + "-" + target);
-                        scrollTop = targetElement.position().top - (o.distance * 40) + list.scrollTop() - 1;
+                        scrollTop = targetElement.position().top - (o.distance * 40);
 
                         list.find(".active").removeClass("active");
 
@@ -301,7 +300,7 @@ var TimePicker = {
     },
 
     _set: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var h = "00", m = "00", s = "00";
 
@@ -337,7 +336,7 @@ var TimePicker = {
     },
 
     open: function(){
-        var that  = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var h, m, s;
         var h_list, m_list, s_list;
@@ -350,8 +349,8 @@ var TimePicker = {
         select_wrapper.show(0);
         items.removeClass("active");
 
-        select_wrapper_in_viewport = Utils.inViewport(select_wrapper);
-        select_wrapper_rect = Utils.rect(select_wrapper);
+        select_wrapper_in_viewport = Utils.inViewport(select_wrapper[0]);
+        select_wrapper_rect = Utils.rect(select_wrapper[0]);
 
         if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
             select_wrapper.parent().addClass("for-bottom");
@@ -465,8 +464,8 @@ var TimePicker = {
             that.val(element.attr("data-value"));
         };
 
-        switch (attributeName) {
-            case "data-value": changeValueAttribute(); break;
+        if (attributeName === "data-value") {
+            changeValueAttribute();
         }
     },
 
@@ -492,7 +491,7 @@ var TimePicker = {
 
 Metro.plugin('timepicker', TimePicker);
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $.each($(".time-picker"), function(){
         $(this).find("input").data("timepicker").close();
     });
