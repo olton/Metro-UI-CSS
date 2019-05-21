@@ -1,5 +1,6 @@
 var CalendarPickerDefaultConfig = {
     nullValue: true,
+    useNow: false,
 
     prepend: "",
 
@@ -106,8 +107,6 @@ var CalendarPicker = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
@@ -118,21 +117,16 @@ var CalendarPicker = {
         }
 
         if (!Utils.isValue(curr)) {
-            //this.value = new Date();
+            if (o.useNow) this.value = new Date();
         } else {
-            this.value = Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat);
+            this.value = !Utils.isValue(o.inputFormat) ? new Date(curr) : curr.toDate(o.inputFormat, o.locale);
         }
 
         if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
 
         element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : this.value.format(o.format));
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
         cal.appendTo(container);
@@ -361,7 +355,7 @@ var CalendarPicker = {
 
         if (Utils.isDate(v, o.inputFormat) === true) {
             this.calendar.data("calendar").clearSelected();
-            this.value = typeof v === 'string' ? v.toDate(o.inputFormat) : v;
+            this.value = typeof v === 'string' ? v.toDate(o.inputFormat, o.locale) : v;
             element.val(this.value.format(o.format));
             element.trigger("change");
         }
@@ -396,7 +390,7 @@ var CalendarPicker = {
             return false;
         }
 
-        hidden = cal.is(':hidden');
+        hidden = cal[0].hidden;
         if (hidden) {
             cal.css({
                 visibility: "hidden",

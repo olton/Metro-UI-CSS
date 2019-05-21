@@ -522,7 +522,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 21/05/2019 12:03:27";
+	var m4qVersion = "v1.0.0. Built at 21/05/2019 13:12:59";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -659,6 +659,10 @@
 	
 	        if (s === ":checked") {
 	            return this[0].checked;
+	        } else
+	
+	        if (s === ":hidden") {
+	            return this[0].hidden;
 	        } else
 	
 	        if (isArrayLike(s)) {

@@ -18,6 +18,10 @@ String.prototype.toDate = function(format, locale) {
     var monthNameToNumber = function(month){
         var d, months, index, i;
 
+        if (!Utils.isValue(month)) {
+            return -1;
+        }
+
         month = month.substr(0, 3);
 
         if (
