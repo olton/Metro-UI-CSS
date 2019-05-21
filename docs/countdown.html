@@ -75,7 +75,18 @@
                     To create <code>countdown</code> add <code>data-role="countdown"</code> attribute to element and <code>setup options</code>.
                 </p>
                 <div class="example">
-                    <div data-role="countdown" data-hours="90" data-on-alarm="console.log('alarm')"></div>
+                    <div class="row">
+                        <div data-role="countdown" data-hours="90" style="font-size: 48px;"></div>
+                        <div class="cell-md-4">
+                            <div data-role="countdown" data-hours="90" data-animate="slide" style="font-size: 32px;"></div>
+                        </div>
+                        <div class="cell-md-4">
+                            <div data-role="countdown" data-hours="90" data-animate="fade" style="font-size: 32px;"></div>
+                        </div>
+                        <div class="cell-md-4">
+                            <div data-role="countdown" data-hours="90" data-animate="zoom" style="font-size: 32px;"></div>
+                        </div>
+                    </div>
                 </div>
                 <pre><code class="html">
                     &lt;div data-role="countdown" data-hours="90"&gt;&lt;/div&gt;
