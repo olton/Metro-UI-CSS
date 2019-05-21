@@ -537,7 +537,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 21/05/2019 12:03:27";
+	var m4qVersion = "v1.0.0. Built at 21/05/2019 13:12:59";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -674,6 +674,10 @@
 	
 	        if (s === ":checked") {
 	            return this[0].checked;
+	        } else
+	
+	        if (s === ":hidden") {
+	            return this[0].hidden;
 	        } else
 	
 	        if (isArrayLike(s)) {
@@ -2935,7 +2939,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "21/05/2019 12:40:47",
+    compileTime: "21/05/2019 13:13:14",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -5676,6 +5680,10 @@ String.prototype.toDate = function(format, locale) {
 
     var monthNameToNumber = function(month){
         var d, months, index, i;
+
+        if (!Utils.isValue(month)) {
+            return -1;
+        }
 
         month = month.substr(0, 3);
 
@@ -8978,6 +8986,7 @@ Metro.plugin('calendar', Calendar);
 
 var CalendarPickerDefaultConfig = {
     nullValue: true,
+    useNow: false,
 
     prepend: "",
 
@@ -9084,8 +9093,6 @@ var CalendarPicker = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
@@ -9096,21 +9103,16 @@ var CalendarPicker = {
         }
 
         if (!Utils.isValue(curr)) {
-            //this.value = new Date();
+            if (o.useNow) this.value = new Date();
         } else {
-            this.value = Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat);
+            this.value = !Utils.isValue(o.inputFormat) ? new Date(curr) : curr.toDate(o.inputFormat, o.locale);
         }
 
         if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
 
         element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : this.value.format(o.format));
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
         cal.appendTo(container);
@@ -9339,7 +9341,7 @@ var CalendarPicker = {
 
         if (Utils.isDate(v, o.inputFormat) === true) {
             this.calendar.data("calendar").clearSelected();
-            this.value = typeof v === 'string' ? v.toDate(o.inputFormat) : v;
+            this.value = typeof v === 'string' ? v.toDate(o.inputFormat, o.locale) : v;
             element.val(this.value.format(o.format));
             element.trigger("change");
         }
@@ -9374,7 +9376,7 @@ var CalendarPicker = {
             return false;
         }
 
-        hidden = cal.is(':hidden');
+        hidden = cal[0].hidden;
         if (hidden) {
             cal.css({
                 visibility: "hidden",
