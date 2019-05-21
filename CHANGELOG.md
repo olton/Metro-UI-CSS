@@ -20,6 +20,7 @@
 + [x] TreeView: fix for using with `m4q`
 + [x] Wizard: fix for using with `m4q`
 + [x] Hint: fix for using with `m4q`
++ [x] Notify: fix for using with `m4q`
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
