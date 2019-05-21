@@ -1,7 +1,7 @@
 var CountdownDefaultConfig = {
     stopOnBlur: true,
     animate: "none",
-    animationFunc: "swing",
+    animationFunc: "line",
     inputFormat: null,
     locale: METRO_LOCALE,
     days: 0,
@@ -283,36 +283,32 @@ var Countdown = {
     },
 
     draw: function(part, value){
-        var that = this, element = this.element, o = this.options;
-        var digits, digits_length, digit_value, digit_current, digit, digit_copy;
-        var len, i, duration = 900, height;
-
-        var removeOldDigit = function(_digit){
-            if (!document.hidden) {
-                setTimeout(function(){
-                    _digit.remove();
-                }, 500);
-            } else {
-                _digit.remove();
-            }
-        };
+        var element = this.element, o = this.options;
+        var digits, digits_length, digit_value, digit_current, digit;
+        var len, i, duration = 900;
 
         var slideDigit = function(digit){
             var digit_copy, height = digit.height();
+
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
-                top: -1 * height,
-                opacity: .5
+                top: -1 * height + 'px'
             });
 
-            digit.addClass("-old-digit").animate({
-                top: height,
-                opacity: 0
-            }, duration, o.animationFunc, removeOldDigit(digit));
+            digit.addClass("-old-digit").animate(function(p){
+                $(this).css({
+                    top: (height * p) + 'px',
+                    opacity: 1 - p
+                });
+            }, duration, o.animationFunc, function(){
+                digit.remove();
+            });
 
-            digit_copy.html(digit_value).animate({
-                top: 0,
-                opacity: 1
+            digit_copy.html(digit_value).animate(function(p){
+                $(this).css({
+                    top: (-height + (height * p)) + 'px',
+                    opacity: p
+                })
             }, duration, o.animationFunc);
         };
 
@@ -323,48 +319,38 @@ var Countdown = {
                 opacity: 0
             });
 
-            digit.addClass("-old-digit").animate({
-                opacity: 0
-            }, duration, o.animationFunc, removeOldDigit(digit));
+            digit.addClass("-old-digit").fadeOut(duration / 2, "linear", function(){
+                digit.remove();
+            });
 
-            digit_copy.html(digit_value).animate({
-                opacity: 1
-            }, duration, o.animationFunc);
+            digit_copy.html(digit_value).fadeIn(duration, "linear");
         };
 
         var zoomDigit = function(digit){
-            var digit_copy,
-                height = digit.height(),
-                width = digit.width(),
-                fs = parseInt(Utils.getStyleOne(digit, "font-size"));
-
-            if (fs === 0 && fs < that.fontSize) {
-                fs = that.fontSize;
-                digit.css({
-                    fontSize: that.fontSize
-                });
-            }
+            var digit_copy, height = digit.height(), fs = parseInt(Utils.getStyleOne(digit, "font-size"));
 
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
-                opacity: 0,
-                fontSize: 0,
-                top: height/2,
-                left: width/2
-            });
-
-            digit.addClass("-old-digit").animate({
-                opacity: 0,
-                fontSize: 0,
-                top: height,
-                left: width/2
-            }, duration, o.animationFunc, removeOldDigit(digit));
-
-            digit_copy.html(digit_value).animate({
-                opacity: 1,
-                fontSize: fs,
                 top: 0,
                 left: 0
+            });
+
+            digit.addClass("-old-digit").animate(function(p){
+                $(this).css({
+                    top: (height * p) + 'px',
+                    opacity: 1 - p,
+                    fontSize: fs * (1 - p) + 'px'
+                });
+            }, duration, o.animationFunc, function(){
+                digit.remove();
+            });
+
+            digit_copy.html(digit_value).animate(function(p){
+                $(this).css({
+                    top: (-height + (height * p)) + 'px',
+                    opacity: p,
+                    fontSize: fs * p + 'px'
+                })
             }, duration, o.animationFunc);
         };
 
@@ -377,10 +363,11 @@ var Countdown = {
         len = value.length;
 
         digits = element.find("."+part+" .digit");
-        digits_length = digits.length;
+        digits_length = digits.length - 1;
 
         for(i = 0; i < len; i++){
-            digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
+            // digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
+            digit = $(digits[digits_length]).find(".digit-value");
             digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
