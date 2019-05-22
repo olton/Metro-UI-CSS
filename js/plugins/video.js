@@ -347,10 +347,9 @@ var Video = {
             that._toggleLoop();
         });
 
-        player.on(Metro.events.click, ".full", function(e){
+        player.on(Metro.events.click, ".full", function(){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
-
             if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
                 if (that.fullscreen === true) {
                     player.addClass("full-screen");
@@ -377,49 +376,55 @@ var Video = {
             }
 
             // if (that.fullscreen === true) {
-            //     $(document).on(Metro.events.keyup + "_video", function(e){
+            //     $(document).on(Metro.events.keyup + ".video-player", function(e){
             //         if (e.keyCode === 27) {
             //             player.find(".full").click();
-            //             console.log('esc');
             //         }
             //     });
             // } else {
-            //     $(document).off(Metro.events.keyup + "_video");
+            //     $(document).off(Metro.events.keyup + ".video-player");
             // }
         });
 
         $(window).on(Metro.events.keyup + "_video", function(e){
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
-                //console.log('esc');
             }
         });
 
         $(window).resize(function(){
             that._setAspectRatio();
         });
+
     },
 
     _onMouse: function(){
-        var that = this, player = this.player, o = this.options;
+        var that = this, o = this.options, player = this.player;
 
-        if (o.controlsHide > 0) {
-            player.on(Metro.events.enter, function(){
-                player.find(".controls").fadeIn();
-            });
+        player.on(Metro.events.enter, function(){
+            var controls = player.find(".controls");
+            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 0) {
+                controls.stop(true).fadeIn(500, function(){
+                    controls.css("display", "flex");
+                });
+            }
+        });
 
-            player.on(Metro.events.leave, function(){
-                setTimeout(function(){
-                    if (that.isPlaying) player.find(".controls").fadeOut();
+        player.on(Metro.events.leave, function(){
+            var controls = player.find(".controls");
+            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 1) {
+                setTimeout(function () {
+                    controls.stop(true).fadeOut(500);
                 }, o.controlsHide);
-            });
-        }
+            }
+        });
     },
 
     _offMouse: function(){
-        this.player.off(Metro.events.enter);
-        this.player.off(Metro.events.leave);
-        this.player.find(".controls").fadeIn();
+        var player = this.player;
+
+        player.off(Metro.events.enter);
+        player.off(Metro.events.leave);
     },
 
     _toggleLoop: function(){

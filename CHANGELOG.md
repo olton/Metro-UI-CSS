@@ -24,6 +24,7 @@
 + [x] Calendar picker: fix for using with `m4q`
 + [x] Date nad time picker: fix for using with `m4q`
 + [x] Countdown: fix for using with `m4q`
++ [x] Validator: fix for using with `m4q`
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
