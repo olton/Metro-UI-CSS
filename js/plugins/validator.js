@@ -388,12 +388,16 @@ var Validator = {
         var that = this, element = this.element, o = this.options;
         var form = this.elem;
         var inputs = element.find("[data-validate]");
-        var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
+        var submit = element.find("input[type=submit], button[type=submit]");
         var result = {
             val: 0,
             log: []
         };
         var formData = Utils.formData(element);
+
+        if (submit.length > 0) {
+            submit.attr('disabled', 'disabled').addClass('disabled');
+        }
 
         $.each(inputs, function(){
             ValidatorFuncs.validate(this, result, o.onValidate, o.onError, o.requiredMode);

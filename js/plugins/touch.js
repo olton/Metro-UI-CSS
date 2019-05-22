@@ -133,10 +133,10 @@ var Touch = {
         }
 
         try {
-            element.bind(this.START_EV, $.proxy(this.touchStart, that));
-            element.bind(this.CANCEL_EV, $.proxy(this.touchCancel, that));
+            element.on(this.START_EV, $.proxy(this.touchStart, that));
+            element.on(this.CANCEL_EV, $.proxy(this.touchCancel, that));
         } catch (e) {
-            $.error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
+            throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
         }
 
         Utils.exec(o.onSwipeCreate, null, element[0]);
@@ -152,13 +152,13 @@ var Touch = {
         }
 
         //Check if this element matches any in the excluded elements selectors,  or its parent is excluded, if so, DON'T swipe
-        if ($(e.target).closest(options.excludedElements, element).length > 0) {
+        if ($(e.target).closest(options.excludedElements).length > 0) {
             return;
         }
 
         //As we use Jquery bind for events, we need to target the original event object
         //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e;
+        var event = e;
 
         var ret,
             touches = event.touches,
@@ -242,7 +242,7 @@ var Touch = {
     touchMove: function(e) {
         //As we use Jquery bind for events, we need to target the original event object
         //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e;
+        var event = e;
 
         //If we are ending, cancelling, or within the threshold of 2 fingers being released, don't track anything..
         if (this.phase === TouchConst.PHASE_END || this.phase === TouchConst.PHASE_CANCEL || this.inMultiFingerRelease())
@@ -348,7 +348,7 @@ var Touch = {
     touchEnd: function(e) {
         //As we use Jquery bind for events, we need to target the original event object
         //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e,
+        var event = e,
             touches = event.touches;
 
         //If we are still in a touch with the device wait a fraction and see if the other finger comes up
@@ -419,13 +419,9 @@ var Touch = {
     },
 
     touchLeave: function(e) {
-        //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e;
-
-        //If we have the trigger on leave property set....
         if (this.options.triggerOnTouchLeave) {
             this.phase = this.getNextPhase(TouchConst.PHASE_END);
-            this.triggerHandler(event, this.phase);
+            this.triggerHandler(e, this.phase);
         }
     },
 
@@ -951,21 +947,21 @@ var Touch = {
 
         //Add or remove event listeners depending on touch status
         if (val === true) {
-            element.bind(this.MOVE_EV, $.proxy(this.touchMove, this));
-            element.bind(this.END_EV, $.proxy(this.touchEnd, this));
+            element.on(this.MOVE_EV, $.proxy(this.touchMove, this));
+            element.on(this.END_EV, $.proxy(this.touchEnd, this));
 
             //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
             if (this.LEAVE_EV) {
-                element.bind(this.LEAVE_EV, $.proxy(this.touchLeave, this));
+                element.on(this.LEAVE_EV, $.proxy(this.touchLeave, this));
             }
         } else {
 
-            element.unbind(this.MOVE_EV, this.touchMove, false);
-            element.unbind(this.END_EV, this.touchEnd, false);
+            element.off(this.MOVE_EV);
+            element.off(this.END_EV);
 
             //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
             if (this.LEAVE_EV) {
-                element.unbind(this.LEAVE_EV, this.touchLeave, false);
+                element.off(this.LEAVE_EV);
             }
         }
 
@@ -1131,14 +1127,14 @@ var Touch = {
     removeListeners: function() {
         var element = this.element;
 
-        element.unbind(this.START_EV, this.touchStart, this);
-        element.unbind(this.CANCEL_EV, this.touchCancel, this);
-        element.unbind(this.MOVE_EV, this.touchMove, this);
-        element.unbind(this.END_EV, this.touchEnd, this);
+        element.off(this.START_EV);
+        element.off(this.CANCEL_EV);
+        element.off(this.MOVE_EV);
+        element.off(this.END_EV);
 
         //we only have leave events on desktop, we manually calculate leave on touch as its not supported in webkit
         if (this.LEAVE_EV) {
-            element.unbind(this.LEAVE_EV, this.touchLeave, this);
+            element.off(this.LEAVE_EV);
         }
 
         this.setTouchInProgress(false);
@@ -1146,8 +1142,8 @@ var Touch = {
 
     enable: function(){
         this.disable();
-        this.element.bind(this.START_EV, this.touchStart);
-        this.element.bind(this.CANCEL_EV, this.touchCancel);
+        this.element.on(this.START_EV, this.touchStart);
+        this.element.on(this.CANCEL_EV, this.touchCancel);
         return this.element;
     },
 

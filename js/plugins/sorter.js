@@ -112,7 +112,7 @@ var Sorter = {
     sort: function(dir){
         var that = this, element = this.element, o = this.options;
         var items;
-        var id = Utils.uniqueId();
+        var id = Utils.elementId("temp");
         var prev;
 
         if (dir !== undefined) {

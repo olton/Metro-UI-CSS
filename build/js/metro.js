@@ -2939,7 +2939,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "21/05/2019 16:09:33",
+    compileTime: "22/05/2019 22:26:30",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20931,7 +20931,7 @@ var Sorter = {
     sort: function(dir){
         var that = this, element = this.element, o = this.options;
         var items;
-        var id = Utils.uniqueId();
+        var id = Utils.elementId("temp");
         var prev;
 
         if (dir !== undefined) {
@@ -26569,10 +26569,10 @@ var Touch = {
         }
 
         try {
-            element.bind(this.START_EV, $.proxy(this.touchStart, that));
-            element.bind(this.CANCEL_EV, $.proxy(this.touchCancel, that));
+            element.on(this.START_EV, $.proxy(this.touchStart, that));
+            element.on(this.CANCEL_EV, $.proxy(this.touchCancel, that));
         } catch (e) {
-            $.error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
+            throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
         }
 
         Utils.exec(o.onSwipeCreate, null, element[0]);
@@ -26588,13 +26588,13 @@ var Touch = {
         }
 
         //Check if this element matches any in the excluded elements selectors,  or its parent is excluded, if so, DON'T swipe
-        if ($(e.target).closest(options.excludedElements, element).length > 0) {
+        if ($(e.target).closest(options.excludedElements).length > 0) {
             return;
         }
 
         //As we use Jquery bind for events, we need to target the original event object
         //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e;
+        var event = e;
 
         var ret,
             touches = event.touches,
@@ -26678,7 +26678,7 @@ var Touch = {
     touchMove: function(e) {
         //As we use Jquery bind for events, we need to target the original event object
         //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e;
+        var event = e;
 
         //If we are ending, cancelling, or within the threshold of 2 fingers being released, don't track anything..
         if (this.phase === TouchConst.PHASE_END || this.phase === TouchConst.PHASE_CANCEL || this.inMultiFingerRelease())
@@ -26784,7 +26784,7 @@ var Touch = {
     touchEnd: function(e) {
         //As we use Jquery bind for events, we need to target the original event object
         //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e,
+        var event = e,
             touches = event.touches;
 
         //If we are still in a touch with the device wait a fraction and see if the other finger comes up
@@ -26855,13 +26855,9 @@ var Touch = {
     },
 
     touchLeave: function(e) {
-        //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e.originalEvent ? e.originalEvent : e;
-
-        //If we have the trigger on leave property set....
         if (this.options.triggerOnTouchLeave) {
             this.phase = this.getNextPhase(TouchConst.PHASE_END);
-            this.triggerHandler(event, this.phase);
+            this.triggerHandler(e, this.phase);
         }
     },
 
@@ -27387,21 +27383,21 @@ var Touch = {
 
         //Add or remove event listeners depending on touch status
         if (val === true) {
-            element.bind(this.MOVE_EV, $.proxy(this.touchMove, this));
-            element.bind(this.END_EV, $.proxy(this.touchEnd, this));
+            element.on(this.MOVE_EV, $.proxy(this.touchMove, this));
+            element.on(this.END_EV, $.proxy(this.touchEnd, this));
 
             //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
             if (this.LEAVE_EV) {
-                element.bind(this.LEAVE_EV, $.proxy(this.touchLeave, this));
+                element.on(this.LEAVE_EV, $.proxy(this.touchLeave, this));
             }
         } else {
 
-            element.unbind(this.MOVE_EV, this.touchMove, false);
-            element.unbind(this.END_EV, this.touchEnd, false);
+            element.off(this.MOVE_EV);
+            element.off(this.END_EV);
 
             //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
             if (this.LEAVE_EV) {
-                element.unbind(this.LEAVE_EV, this.touchLeave, false);
+                element.off(this.LEAVE_EV);
             }
         }
 
@@ -27567,14 +27563,14 @@ var Touch = {
     removeListeners: function() {
         var element = this.element;
 
-        element.unbind(this.START_EV, this.touchStart, this);
-        element.unbind(this.CANCEL_EV, this.touchCancel, this);
-        element.unbind(this.MOVE_EV, this.touchMove, this);
-        element.unbind(this.END_EV, this.touchEnd, this);
+        element.off(this.START_EV);
+        element.off(this.CANCEL_EV);
+        element.off(this.MOVE_EV);
+        element.off(this.END_EV);
 
         //we only have leave events on desktop, we manually calculate leave on touch as its not supported in webkit
         if (this.LEAVE_EV) {
-            element.unbind(this.LEAVE_EV, this.touchLeave, this);
+            element.off(this.LEAVE_EV);
         }
 
         this.setTouchInProgress(false);
@@ -27582,8 +27578,8 @@ var Touch = {
 
     enable: function(){
         this.disable();
-        this.element.bind(this.START_EV, this.touchStart);
-        this.element.bind(this.CANCEL_EV, this.touchCancel);
+        this.element.on(this.START_EV, this.touchStart);
+        this.element.on(this.CANCEL_EV, this.touchCancel);
         return this.element;
     },
 
@@ -28403,12 +28399,16 @@ var Validator = {
         var that = this, element = this.element, o = this.options;
         var form = this.elem;
         var inputs = element.find("[data-validate]");
-        var submit = element.find(":submit").attr('disabled', 'disabled').addClass('disabled');
+        var submit = element.find("input[type=submit], button[type=submit]");
         var result = {
             val: 0,
             log: []
         };
         var formData = Utils.formData(element);
+
+        if (submit.length > 0) {
+            submit.attr('disabled', 'disabled').addClass('disabled');
+        }
 
         $.each(inputs, function(){
             ValidatorFuncs.validate(this, result, o.onValidate, o.onError, o.requiredMode);
@@ -28812,10 +28812,9 @@ var Video = {
             that._toggleLoop();
         });
 
-        player.on(Metro.events.click, ".full", function(e){
+        player.on(Metro.events.click, ".full", function(){
             that.fullscreen = !that.fullscreen;
             player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
-
             if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
                 if (that.fullscreen === true) {
                     player.addClass("full-screen");
@@ -28842,49 +28841,55 @@ var Video = {
             }
 
             // if (that.fullscreen === true) {
-            //     $(document).on(Metro.events.keyup + "_video", function(e){
+            //     $(document).on(Metro.events.keyup + ".video-player", function(e){
             //         if (e.keyCode === 27) {
             //             player.find(".full").click();
-            //             console.log('esc');
             //         }
             //     });
             // } else {
-            //     $(document).off(Metro.events.keyup + "_video");
+            //     $(document).off(Metro.events.keyup + ".video-player");
             // }
         });
 
         $(window).on(Metro.events.keyup + "_video", function(e){
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
-                //console.log('esc');
             }
         });
 
         $(window).resize(function(){
             that._setAspectRatio();
         });
+
     },
 
     _onMouse: function(){
-        var that = this, player = this.player, o = this.options;
+        var that = this, o = this.options, player = this.player;
 
-        if (o.controlsHide > 0) {
-            player.on(Metro.events.enter, function(){
-                player.find(".controls").fadeIn();
-            });
+        player.on(Metro.events.enter, function(){
+            var controls = player.find(".controls");
+            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 0) {
+                controls.stop(true).fadeIn(500, function(){
+                    controls.css("display", "flex");
+                });
+            }
+        });
 
-            player.on(Metro.events.leave, function(){
-                setTimeout(function(){
-                    if (that.isPlaying) player.find(".controls").fadeOut();
+        player.on(Metro.events.leave, function(){
+            var controls = player.find(".controls");
+            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 1) {
+                setTimeout(function () {
+                    controls.stop(true).fadeOut(500);
                 }, o.controlsHide);
-            });
-        }
+            }
+        });
     },
 
     _offMouse: function(){
-        this.player.off(Metro.events.enter);
-        this.player.off(Metro.events.leave);
-        this.player.find(".controls").fadeIn();
+        var player = this.player;
+
+        player.off(Metro.events.enter);
+        player.off(Metro.events.leave);
     },
 
     _toggleLoop: function(){
