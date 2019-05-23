@@ -24,7 +24,6 @@ var Desktop = {
     },
 
     removeFromTaskBar: function(wnd){
-        console.log(wnd);
         var wID = wnd.attr("id");
         var items = $(".task-bar-item");
         var that = this;
@@ -41,8 +40,10 @@ var Desktop = {
         o.onDragStart = function(){
             win = $(this);
             $(".window").css("z-index", 1);
-            if (!win.hasClass("modal"))
+
+            if (!win.hasClass("modal")) {
                 win.css("z-index", 3);
+            }
         };
         o.onDragStop = function(){
             win = $(this);
@@ -93,7 +94,6 @@ function createWindow(){
     });
 
     setTimeout(function(){
-        console.log(w);
         w.setContent("New window content");
     }, 3000);
 }
@@ -141,12 +141,14 @@ function createWindowModal(){
         modal: true,
         place: "center",
         onShow: function(win){
+            var win = $(win);
             win.addClass("ani-swoopInTop");
             setTimeout(function(){
                 win.removeClass("ani-swoopInTop");
             }, 1000);
         },
         onClose: function(win){
+            var win = $(win);
             win.addClass("ani-swoopOutTop");
         }
     });

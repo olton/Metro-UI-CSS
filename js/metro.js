@@ -423,7 +423,11 @@ var Metro = {
         $.each(widgets, function () {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
+
             roles.map(function (func) {
+
+                var $$ = METRO_JQUERY && typeof jQuery !== 'undefined' ? jQuery : $;
+
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
                         $.fn[func].call($this);
@@ -453,11 +457,13 @@ var Metro = {
             });
         };
 
-        if (METRO_JQUERY && typeof jQuery !== 'undefined') jQuery.fn[name] = function( options ) {
-            return this.each(function() {
-                jQuery.data( this, name, Object.create(object).init(options, this ));
-            });
-        };
+        if (METRO_JQUERY && typeof jQuery !== 'undefined') {
+            jQuery.fn[name] = function (options) {
+                return this.each(function () {
+                    jQuery.data(this, name, Object.create(object).init(options, this));
+                });
+            };
+        }
     },
 
     destroyPlugin: function(element, name){

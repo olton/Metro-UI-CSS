@@ -537,7 +537,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 21/05/2019 13:12:59";
+	var m4qVersion = "v1.0.0. Built at 23/05/2019 21:03:36";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -1461,10 +1461,20 @@
 	    }
 	});
 	
+	m4q.fn.extend({
+	    load: function(url, data, options){
+	        var that = this;
+	        m4q.get(url, data, options).then(function(data){
+	            that.each(function(){
+	                this.innerHTML = data;
+	            });
+	        });
+	    }
+	});
 
 	
 	//var nonDigit = /[^0-9.\-]/;
-	var numProps = ['opacity'];
+	var numProps = ['opacity', 'zIndex'];
 	
 	m4q.fn.extend({
 	    style: function(name){
@@ -1490,26 +1500,27 @@
 	            return  el.style[o] ? el.style[o] : getComputedStyle(el, null)[o];
 	        }
 	
-	        this.each(function(){
+	        return this.each(function(){
 	            var el = this;
 	            if (typeof o === "object") {
 	                for (var key in o) {
-	                    if (["scrollLeft", "scrollTop"].indexOf(key) > -1) {
-	                        m4q(el)[name](parseInt(o[key]));
-	                    } else {
-	                        el.style[key] = o[key] === "" ? o[key] : isNaN(o[key]) || numProps.indexOf(key) > -1 ? o[key] : o[key] + 'px';
+	                    if (o.hasOwnProperty(key)) {
+	                        if (["scrollLeft", "scrollTop"].indexOf(key) > -1) {
+	                            m4q(el)[name](parseInt(o[key]));
+	                        } else {
+	                            el.style[camelCase(key)] = isNaN(o[key]) || numProps.indexOf(key) > -1 ? o[key] : o[key] + 'px';
+	                        }
 	                    }
 	                }
 	            } else if (typeof o === "string") {
+	                o = camelCase(o);
 	                if (["scrollLeft", "scrollTop"].indexOf(o) > -1) {
 	                    m4q(el)[o](parseInt(v));
 	                } else {
-	                    el.style[o] = v === "" ? v : isNaN(v) || numProps.indexOf(o) > -1 ? v : v + 'px';
+	                    el.style[o] = isNaN(v) || numProps.indexOf(o) > -1 ? v : v + 'px';
 	                }
 	            }
 	        });
-	
-	        return this;
 	    },
 	
 	    scrollTop: function(val){
@@ -2939,7 +2950,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "22/05/2019 22:41:13",
+    compileTime: "23/05/2019 22:02:05",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3253,7 +3264,11 @@ var Metro = {
         $.each(widgets, function () {
             var $this = $(this), w = this;
             var roles = $this.data('role').split(/\s*,\s*/);
+
             roles.map(function (func) {
+
+                var $$ = METRO_JQUERY && typeof jQuery !== 'undefined' ? jQuery : $;
+
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
                         $.fn[func].call($this);
@@ -3283,11 +3298,13 @@ var Metro = {
             });
         };
 
-        if (METRO_JQUERY && typeof jQuery !== 'undefined') jQuery.fn[name] = function( options ) {
-            return this.each(function() {
-                jQuery.data( this, name, Object.create(object).init(options, this ));
-            });
-        };
+        if (METRO_JQUERY && typeof jQuery !== 'undefined') {
+            jQuery.fn[name] = function (options) {
+                return this.each(function () {
+                    jQuery.data(this, name, Object.create(object).init(options, this));
+                });
+            };
+        }
     },
 
     destroyPlugin: function(element, name){
@@ -29174,9 +29191,9 @@ var Window = {
             if (o.hidden !== true) {
                 that.win.removeClass("no-visible");
             }
-            Utils.exec(o.onShow, [win[0]], element[0]);
+            Utils.exec(o.onShow, [that.win[0]], element[0]);
             element.fire("show", {
-                win: win[0]
+                win: that.win[0]
             });
         }, 100);
     },
@@ -29482,16 +29499,30 @@ var Window = {
     },
 
     hide: function(){
+        var element = this.element, o = this.options;
         this.win.css({
             display: "none"
         });
+        Utils.exec(o.onHide, [this.win[0]], element[0]);
+        element.fire("hide", {
+            win: this.win[0]
+        });
     },
+
     show: function(){
+        var element = this.element, o = this.options;
+
         this.win.removeClass("no-visible");
         this.win.css({
             display: "flex"
         });
+
+        Utils.exec(o.onShow, [this.win[0]], element[0]);
+        element.fire("show", {
+            win: this.win[0]
+        });
     },
+
     toggle: function(){
         if (this.win.css("display") === "none" || this.win.hasClass("no-visible")) {
             this.show();
@@ -29499,12 +29530,15 @@ var Window = {
             this.hide();
         }
     },
+
     isOpen: function(){
         return this.win.hasClass("no-visible");
     },
+
     min: function(a){
         a ? this.win.addClass("minimized") : this.win.removeClass("minimized");
     },
+
     max: function(a){
         a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
     },

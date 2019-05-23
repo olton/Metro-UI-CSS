@@ -25631,7 +25631,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .draggable {
   -webkit-animation: drag-flush 1s ease infinite;
           animation: drag-flush 1s ease infinite;
-  z-index: 1079 !important;
 }
 @-webkit-keyframes drag-flush {
   0% {
