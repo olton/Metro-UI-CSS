@@ -522,7 +522,7 @@
 	    }
 	}(window));
 
-	var m4qVersion = "v1.0.0. Built at 21/05/2019 13:12:59";
+	var m4qVersion = "v1.0.0. Built at 23/05/2019 21:03:36";
 	var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 	
 	var matches = Element.prototype.matches
@@ -1446,10 +1446,20 @@
 	    }
 	});
 	
+	m4q.fn.extend({
+	    load: function(url, data, options){
+	        var that = this;
+	        m4q.get(url, data, options).then(function(data){
+	            that.each(function(){
+	                this.innerHTML = data;
+	            });
+	        });
+	    }
+	});
 
 	
 	//var nonDigit = /[^0-9.\-]/;
-	var numProps = ['opacity'];
+	var numProps = ['opacity', 'zIndex'];
 	
 	m4q.fn.extend({
 	    style: function(name){
@@ -1475,26 +1485,27 @@
 	            return  el.style[o] ? el.style[o] : getComputedStyle(el, null)[o];
 	        }
 	
-	        this.each(function(){
+	        return this.each(function(){
 	            var el = this;
 	            if (typeof o === "object") {
 	                for (var key in o) {
-	                    if (["scrollLeft", "scrollTop"].indexOf(key) > -1) {
-	                        m4q(el)[name](parseInt(o[key]));
-	                    } else {
-	                        el.style[key] = o[key] === "" ? o[key] : isNaN(o[key]) || numProps.indexOf(key) > -1 ? o[key] : o[key] + 'px';
+	                    if (o.hasOwnProperty(key)) {
+	                        if (["scrollLeft", "scrollTop"].indexOf(key) > -1) {
+	                            m4q(el)[name](parseInt(o[key]));
+	                        } else {
+	                            el.style[camelCase(key)] = isNaN(o[key]) || numProps.indexOf(key) > -1 ? o[key] : o[key] + 'px';
+	                        }
 	                    }
 	                }
 	            } else if (typeof o === "string") {
+	                o = camelCase(o);
 	                if (["scrollLeft", "scrollTop"].indexOf(o) > -1) {
 	                    m4q(el)[o](parseInt(v));
 	                } else {
-	                    el.style[o] = v === "" ? v : isNaN(v) || numProps.indexOf(o) > -1 ? v : v + 'px';
+	                    el.style[o] = isNaN(v) || numProps.indexOf(o) > -1 ? v : v + 'px';
 	                }
 	            }
 	        });
-	
-	        return this;
 	    },
 	
 	    scrollTop: function(val){

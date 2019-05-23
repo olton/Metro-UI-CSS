@@ -131,9 +131,9 @@ var Window = {
             if (o.hidden !== true) {
                 that.win.removeClass("no-visible");
             }
-            Utils.exec(o.onShow, [win[0]], element[0]);
+            Utils.exec(o.onShow, [that.win[0]], element[0]);
             element.fire("show", {
-                win: win[0]
+                win: that.win[0]
             });
         }, 100);
     },
@@ -439,16 +439,30 @@ var Window = {
     },
 
     hide: function(){
+        var element = this.element, o = this.options;
         this.win.css({
             display: "none"
         });
+        Utils.exec(o.onHide, [this.win[0]], element[0]);
+        element.fire("hide", {
+            win: this.win[0]
+        });
     },
+
     show: function(){
+        var element = this.element, o = this.options;
+
         this.win.removeClass("no-visible");
         this.win.css({
             display: "flex"
         });
+
+        Utils.exec(o.onShow, [this.win[0]], element[0]);
+        element.fire("show", {
+            win: this.win[0]
+        });
     },
+
     toggle: function(){
         if (this.win.css("display") === "none" || this.win.hasClass("no-visible")) {
             this.show();
@@ -456,12 +470,15 @@ var Window = {
             this.hide();
         }
     },
+
     isOpen: function(){
         return this.win.hasClass("no-visible");
     },
+
     min: function(a){
         a ? this.win.addClass("minimized") : this.win.removeClass("minimized");
     },
+
     max: function(a){
         a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
     },
