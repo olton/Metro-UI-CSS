@@ -139,6 +139,47 @@
                 <h5 id="_m4q_selecting_by_tag_name">Select elements by tag name</h5>
                 <pre><code>
                     var divs = $("div");
+                    var p = $("div > p");
+                    var a = $("ul a");
+                </code></pre>
+
+                <h5 id="_m4q_selecting_by_class_name">Select elements by class name</h5>
+                <pre><code>
+                    var el = $(".my-class");
+                    var el = $(".class-parent .class-child");
+                    var el = $(".class.subclass");
+                </code></pre>
+
+                <h5 id="_m4q_selecting_by_id">Select elements by id</h5>
+                <pre><code>
+                    var el = $("#elem");
+                    var el = $(".class-parent #child");
+                </code></pre>
+
+                <h5 id="_m4q_copy">M4Q object as constructor argument</h5>
+                <p>
+                    If you specify <code>m4q</code> object as constructor argument, M4Q return <code>new m4q object</code> with same elements.
+                </p>
+
+                <h5 id="_m4q_import_from_jquery">jQuery object as constructor argument</h5>
+                <p>
+                    If you specify <code>jQuery</code> object as constructor argument, M4Q imports elements from jQuery object and return <code>new m4q object</code> with same elements.
+                </p>
+
+                <h5 id="_m4q_document_ready">Creating document.ready function</h5>
+                <p>
+                    You can specify function as constructor argument and receive document.ready function.
+                </p>
+                <pre><code>
+                    $(function(){
+                        ...
+                    });
+
+                    // equals to
+
+                    document.addEventListener('DOMContentLoaded', function(){
+                        ...
+                    });
                 </code></pre>
             </main>
         </div>
