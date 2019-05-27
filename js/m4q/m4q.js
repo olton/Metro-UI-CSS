@@ -541,7 +541,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 25/05/2019 12:28:06";
+var m4qVersion = "v1.0.0. Built at 27/05/2019 11:13:28";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -594,8 +594,42 @@ $.fn = $.prototype = {
         return $.toArray(this);
     },
 
+    push: [].push,
+    sort: [].sort,
+    splice: [].splice,
+    indexOf: [].indexOf
+};
+
+$.extend = $.fn.extend = function(){
+    var options, name,
+        target = arguments[ 0 ] || {},
+        i = 1,
+        length = arguments.length;
+
+    if ( typeof target !== "object" && typeof target !== "function" ) {
+        target = {};
+    }
+
+    if ( i === length ) {
+        target = this;
+        i--;
+    }
+
+    for ( ; i < length; i++ ) {
+        if ( ( options = arguments[ i ] ) != null ) {
+            for ( name in options ) {
+                if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
+            }
+        }
+    }
+
+    return target;
+};
+
+
+$.fn.extend({
     // TODO add element as argument
-    index: function(selector){
+    index: function(sel){
         var res = [];
 
         if (this.length === 0) {
@@ -604,8 +638,8 @@ $.fn = $.prototype = {
 
         $.each(this[0].parentNode.children, function(){
             var el = this;
-            if (selector) {
-                if (matches.call(el, selector)) res.push(el);
+            if (sel) {
+                if (matches.call(el, sel)) res.push(el);
             } else {
                 res.push(el);
             }
@@ -633,26 +667,6 @@ $.fn = $.prototype = {
         return $.merge(out, res);
     },
 
-    origin: function(name, value, def){
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (not(name) && not(value)) {
-            return $.data(this[0]);
-        }
-
-        if (not(value)) {
-            var res = $.data(this[0], "origin-"+name);
-            return !not(res) ? res : def;
-        }
-
-        this.data("origin-"+name, value);
-
-        return this;
-    },
-
     contains: function(s){
         return this.find(s).length > 0;
     },
@@ -662,6 +676,10 @@ $.fn = $.prototype = {
 
         if (this.length === 0) {
             return ;
+        }
+
+        if (s instanceof $) {
+            return this.same(s);
         }
 
         if (typeof  s === "string" && [':selected'].indexOf(s) === -1) {
@@ -707,6 +725,17 @@ $.fn = $.prototype = {
         return result;
     },
 
+    same: function(o){
+        var result = true;
+        if (!o instanceof $ || this.length !== o.length) return false;
+        this.each(function(){
+            if (o.items().indexOf(this) === -1) {
+                result = false;
+            }
+        });
+        return result;
+    },
+
     last: function(){
         return this.ind(this.length - 1);
     },
@@ -732,8 +761,10 @@ $.fn = $.prototype = {
         return $.merge($(), this.filter(function(el, i){
             return i % 2 !== 0;
         }));
-    },
+    }
+});
 
+$.fn.extend({
     _prop: function(prop, value){
         if (this.length === 0) {
             return ;
@@ -771,53 +802,10 @@ $.fn = $.prototype = {
         return this;
     },
 
-    val: function(value){
-        return arguments.length === 0 ? this._prop('value') : this._prop('value', typeof value === "undefined" ? "" : value);
-    },
-
     prop: function(prop, value){
         return arguments.length === 0 ? this._prop(prop) : this._prop(prop, typeof value === "undefined" ? "" : value);
-    },
-
-    id: function(){
-        if (this.length === 0) {
-            return ;
-        }
-        return this[0].getAttribute("id");
-    },
-
-    push: [].push,
-    sort: [].sort,
-    splice: [].splice,
-    indexOf: [].indexOf
-};
-
-$.extend = $.fn.extend = function(){
-    var options, name,
-        target = arguments[ 0 ] || {},
-        i = 1,
-        length = arguments.length;
-
-    if ( typeof target !== "object" && typeof target !== "function" ) {
-        target = {};
     }
-
-    if ( i === length ) {
-        target = this;
-        i--;
-    }
-
-    for ( ; i < length; i++ ) {
-        if ( ( options = arguments[ i ] ) != null ) {
-            for ( name in options ) {
-                if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
-            }
-        }
-    }
-
-    return target;
-};
-
+});
 
 $.each = function(ctx, cb){
     var index = 0;
@@ -978,6 +966,13 @@ $.extend({
 
     removeData: function(elem, name){
         return dataSet.remove(elem, name);
+    },
+
+    dataSet: function(ns){
+        if (['INTERNAL', 'M4Q'].indexOf(ns.toUpperCase()) > -1) {
+            throw Error("You can not use reserved name for your dataset");
+        }
+        return new Data(ns);
     }
 });
 
@@ -1034,6 +1029,26 @@ $.fn.extend({
         return this.each( function() {
             dataSet.remove( this, key );
         } );
+    },
+
+    origin: function(name, value, def){
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (not(name) && not(value)) {
+            return $.data(this[0]);
+        }
+
+        if (not(value)) {
+            var res = $.data(this[0], "origin-"+name);
+            return !not(res) ? res : def;
+        }
+
+        this.data("origin-"+name, value);
+
+        return this;
     }
 });
 
@@ -1062,14 +1077,7 @@ $.extend({
     isArrayLike: function(obj){return isArrayLike(obj);},
     acceptData: function(owner){return acceptData(owner);},
     not: function(val){return not(val)},
-    parseUnit: function(str, out){return parseUnit(str, out)},
-
-    dataSet: function(ns){
-        if (['INTERNAL', 'M4Q'].indexOf(ns.toUpperCase()) > -1) {
-            throw Error("You can not use reserved name for your dataset");
-        }
-        return new Data(ns);
-    }
+    parseUnit: function(str, out){return parseUnit(str, out)}
 });
 
 
@@ -1352,6 +1360,12 @@ $.fn.extend({
 
 
 
+$.fn.extend({
+    val: function(value){
+        return this.prop("value", value);
+    }
+});
+
 $.ajax = function(p){
     return new Promise(function(resolve, reject){
         var xhr = new XMLHttpRequest(), data;
@@ -1406,6 +1420,8 @@ $.ajax = function(p){
             if (headers.indexOf("Content-type") === -1) {
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             }
+        } else if (p.data instanceof FormData) {
+            data = p.data;
         } else {
             data = new FormData();
             data.append("_data", JSON.stringify(p.data));
@@ -1417,42 +1433,19 @@ $.ajax = function(p){
             if (xhr.readyState === 4 && xhr.status < 300) {
                 var _return = p.returnValue && p.returnValue === 'xhr' ? xhr : p.parseJson ? JSON.parse(xhr.response) : xhr.response;
                 exec(resolve, [_return]);
-                if (p['onSuccess'] !== undefined) exec(p['onSuccess'], [e, xhr]);
+                exec(p['onSuccess'], [e, xhr]);
             } else {
                 exec(reject, [xhr]);
-                if (p['onFail'] !== undefined) exec(p['onFail'], [e, xhr]);
+                exec(p['onFail'], [e, xhr]);
             }
-            if (p['onLoad'] !== undefined) exec(p['onLoad'], [e, xhr]);
+            exec(p['onLoad'], [e, xhr]);
         });
 
-        xhr.addEventListener("readystatechange", function(e){
-            if (p['onStateChange'] !== undefined) exec(p['onStateChange'], [e, xhr]);
-        });
-
-        xhr.addEventListener("error", function(e){
-            exec(reject, [xhr]);
-            if (p['onError'] !== undefined) exec(p['onError'], [e, xhr]);
-        });
-
-        xhr.addEventListener("timeout", function(e){
-            exec(reject, [xhr]);
-            if (p['onTimeout'] !== undefined) exec(p['onTimeout'], [e, xhr]);
-        });
-
-        xhr.addEventListener("progress", function(e){
-            if (p['onProgress'] !== undefined) exec(p['onProgress'], [e, xhr]);
-        });
-
-        xhr.addEventListener("loadstart", function(e){
-            if (p['onLoadStart'] !== undefined) exec(p['onLoadStart'], [e, xhr]);
-        });
-
-        xhr.addEventListener("loadend", function(e){
-            if (p['onLoadEnd'] !== undefined) exec(p['onLoadEnd'], [e, xhr]);
-        });
-
-        xhr.addEventListener("abort", function(e){
-            if (p['onAbort'] !== undefined) exec(p['onAbort'], [e, xhr]);
+        $.each(["readystatechange", "error", "timeout", "progress", "loadstart", "loadend", "abort"], function(){
+            var ev = camelCase("on-"+(this === 'readystatechange' ? 'state' : this));
+            xhr.addEventListener(ev, function(e){
+                exec(p[ev], [e, xhr]);
+            });
         });
     });
 };
@@ -1473,7 +1466,7 @@ $.ajax = function(p){
 $.fn.extend({
     load: function(url, data, options){
         var that = this;
-        $.get(url, data, options).then(function(data){
+        return $.get(url, data, options).then(function(data){
             that.each(function(){
                 this.innerHTML = data;
             });
@@ -2033,6 +2026,10 @@ $.fn.extend({
             }
 
         });
+    },
+
+    id: function(val){
+        return $(this[0]).attr("id", val);
     }
 });
 
@@ -2231,152 +2228,253 @@ var Easing = {
 
     def: "linear",
 
-    linear: function (x, t, b, c, d) { return x },
+    linear: function( t ) {
+        return t;
+    },
 
-    easeInQuad: function (x, t, b, c, d) {
-        return c * (t /= d) * t + b;
+    easeInSine: function( t ) {
+        return -1 * Math.cos( t * ( Math.PI / 2 ) ) + 1;
     },
-    easeOutQuad: function (x, t, b, c, d) {
-        return -c * (t /= d) * (t - 2) + b;
+
+    easeOutSine: function( t ) {
+        return Math.sin( t * ( Math.PI / 2 ) );
     },
-    easeInOutQuad: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t + b;
-        return -c / 2 * ((--t) * (t - 2) - 1) + b;
+
+    easeInOutSine: function( t ) {
+        return -0.5 * ( Math.cos( Math.PI * t ) - 1 );
     },
-    easeInCubic: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t + b;
+
+    easeInQuad: function( t ) {
+        return t * t;
     },
-    easeOutCubic: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t + 1) + b;
+
+    easeOutQuad: function( t ) {
+        return t * ( 2 - t );
     },
-    easeInOutCubic: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t + 2) + b;
+
+    easeInOutQuad: function( t ) {
+        return t < 0.5 ? 2 * t * t : - 1 + ( 4 - 2 * t ) * t;
     },
-    easeInQuart: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t + b;
+
+    easeInCubic: function( t ) {
+        return t * t * t;
     },
-    easeOutQuart: function (x, t, b, c, d) {
-        return -c * ((t = t / d - 1) * t * t * t - 1) + b;
+
+    easeOutCubic: function( t ) {
+        var t1 = t - 1;
+        return t1 * t1 * t1 + 1;
     },
-    easeInOutQuart: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t + b;
-        return -c / 2 * ((t -= 2) * t * t * t - 2) + b;
+
+    easeInOutCubic: function( t ) {
+        return t < 0.5 ? 4 * t * t * t : ( t - 1 ) * ( 2 * t - 2 ) * ( 2 * t - 2 ) + 1;
     },
-    easeInQuint: function (x, t, b, c, d) {
-        return c * (t /= d) * t * t * t * t + b;
+
+    easeInQuart: function( t ) {
+        return t * t * t * t;
     },
-    easeOutQuint: function (x, t, b, c, d) {
-        return c * ((t = t / d - 1) * t * t * t * t + 1) + b;
+
+    easeOutQuart: function( t ) {
+        var t1 = t - 1;
+        return 1 - t1 * t1 * t1 * t1;
     },
-    easeInOutQuint: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return c / 2 * t * t * t * t * t + b;
-        return c / 2 * ((t -= 2) * t * t * t * t + 2) + b;
+
+    easeInOutQuart: function( t ) {
+        var t1 = t - 1;
+        return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * t1 * t1 * t1 * t1;
     },
-    easeInSine: function (x, t, b, c, d) {
-        return -c * Math.cos(t / d * (Math.PI / 2)) + c + b;
+
+    easeInQuint: function( t ) {
+        return t * t * t * t * t;
     },
-    easeOutSine: function (x, t, b, c, d) {
-        return c * Math.sin(t / d * (Math.PI / 2)) + b;
+
+    easeOutQuint: function( t ) {
+        var t1 = t - 1;
+        return 1 + t1 * t1 * t1 * t1 * t1;
     },
-    easeInOutSine: function (x, t, b, c, d) {
-        return -c / 2 * (Math.cos(Math.PI * t / d) - 1) + b;
+
+    easeInOutQuint: function( t ) {
+        var t1 = t - 1;
+        return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * t1 * t1 * t1 * t1 * t1;
     },
-    easeInExpo: function (x, t, b, c, d) {
-        return (t === 0) ? b : c * Math.pow(2, 10 * (t / d - 1)) + b;
-    },
-    easeOutExpo: function (x, t, b, c, d) {
-        return (t === d) ? b + c : c * (-Math.pow(2, -10 * t / d) + 1) + b;
-    },
-    easeInOutExpo: function (x, t, b, c, d) {
-        if (t === 0) return b;
-        if (t === d) return b + c;
-        if ((t /= d / 2) < 1) return c / 2 * Math.pow(2, 10 * (t - 1)) + b;
-        return c / 2 * (-Math.pow(2, -10 * --t) + 2) + b;
-    },
-    easeInCirc: function (x, t, b, c, d) {
-        return -c * (Math.sqrt(1 - (t /= d) * t) - 1) + b;
-    },
-    easeOutCirc: function (x, t, b, c, d) {
-        return c * Math.sqrt(1 - (t = t / d - 1) * t) + b;
-    },
-    easeInOutCirc: function (x, t, b, c, d) {
-        if ((t /= d / 2) < 1) return -c / 2 * (Math.sqrt(1 - t * t) - 1) + b;
-        return c / 2 * (Math.sqrt(1 - (t -= 2) * t) + 1) + b;
-    },
-    easeInElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t === 0) return b;
-        if ((t /= d) === 1) return b + c;
-        if (!p) p = d * .3;
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
+
+    easeInExpo: function( t ) {
+        if( t === 0 ) {
+            return 0;
         }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        return -(a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
+        return Math.pow( 2, 10 * ( t - 1 ) );
     },
-    easeOutElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t === 0) return b;
-        if ((t /= d) === 1) return b + c;
-        if (!p) p = d * .3;
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
+
+    easeOutExpo: function( t ) {
+        if( t === 1 ) {
+            return 1;
         }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        return a * Math.pow(2, -10 * t) * Math.sin((t * d - s) * (2 * Math.PI) / p) + c + b;
+
+        return ( -Math.pow( 2, -10 * t ) + 1 );
     },
-    easeInOutElastic: function (x, t, b, c, d) {
-        var s = 1.70158;
-        var p = 0;
-        var a = c;
-        if (t === 0) return b;
-        if ((t /= d / 2) === 2) return b + c;
-        if (!p) p = d * (.3 * 1.5);
-        if (a < Math.abs(c)) {
-            a = c;
-            s = p / 4;
+
+    easeInOutExpo: function( t ) {
+        if( t === 0 || t === 1 ) {
+            return t;
         }
-        else s = p / (2 * Math.PI) * Math.asin(c / a);
-        if (t < 1) return -.5 * (a * Math.pow(2, 10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p)) + b;
-        return a * Math.pow(2, -10 * (t -= 1)) * Math.sin((t * d - s) * (2 * Math.PI) / p) * .5 + c + b;
+
+        var scaledTime = t * 2;
+        var scaledTime1 = scaledTime - 1;
+
+        if( scaledTime < 1 ) {
+            return 0.5 * Math.pow( 2, 10 * ( scaledTime1 ) );
+        }
+
+        return 0.5 * ( -Math.pow( 2, -10 * scaledTime1 ) + 2 );
     },
-    easeInBack: function (x, t, b, c, d, s) {
-        if (s === undefined) s = 1.70158;
-        return c * (t /= d) * t * ((s + 1) * t - s) + b;
+
+    easeInCirc: function( t ) {
+        var scaledTime = t / 1;
+        return -1 * ( Math.sqrt( 1 - scaledTime * t ) - 1 );
     },
-    easeOutBack: function (x, t, b, c, d, s) {
-        if (s === undefined) s = 1.70158;
-        return c * ((t = t / d - 1) * t * ((s + 1) * t + s) + 1) + b;
+
+    easeOutCirc: function( t ) {
+        var t1 = t - 1;
+        return Math.sqrt( 1 - t1 * t1 );
     },
-    easeInOutBack: function (x, t, b, c, d, s) {
-        if (s === undefined) s = 1.70158;
-        if ((t /= d / 2) < 1) return c / 2 * (t * t * (((s *= (1.525)) + 1) * t - s)) + b;
-        return c / 2 * ((t -= 2) * t * (((s *= (1.525)) + 1) * t + s) + 2) + b;
+
+    easeInOutCirc: function( t ) {
+        var scaledTime = t * 2;
+        var scaledTime1 = scaledTime - 2;
+
+        if( scaledTime < 1 ) {
+            return -0.5 * ( Math.sqrt( 1 - scaledTime * scaledTime ) - 1 );
+        }
+
+        return 0.5 * ( Math.sqrt( 1 - scaledTime1 * scaledTime1 ) + 1 );
     },
-    easeInBounce: function (x, t, b, c, d) {
-        return c - Easing.easeOutBounce(x, d - t, 0, c, d) + b;
+
+    easeInBack: function(t, m) {
+        m = m || 1.70158;
+        return t * t * ( ( m + 1 ) * t - m );
     },
-    easeOutBounce: function (x, t, b, c, d) {
-        if ((t /= d) < (1 / 2.75)) {
-            return c * (7.5625 * t * t) + b;
-        } else if (t < (2 / 2.75)) {
-            return c * (7.5625 * (t -= (1.5 / 2.75)) * t + .75) + b;
-        } else if (t < (2.5 / 2.75)) {
-            return c * (7.5625 * (t -= (2.25 / 2.75)) * t + .9375) + b;
+
+    easeOutBack: function(t, m) {
+        m = m || 1.70158;
+        var scaledTime = ( t / 1 ) - 1;
+
+        return (
+            scaledTime * scaledTime * ( ( m + 1 ) * scaledTime + m )
+        ) + 1;
+    },
+
+    easeInOutBack: function( t, m ) {
+        m = m || 1.70158;
+        var scaledTime = t * 2;
+        var scaledTime2 = scaledTime - 2;
+        var s = m * 1.525;
+
+        if( scaledTime < 1) {
+            return 0.5 * scaledTime * scaledTime * (
+                ( ( s + 1 ) * scaledTime ) - s
+            );
+        }
+
+        return 0.5 * (
+            scaledTime2 * scaledTime2 * ( ( s + 1 ) * scaledTime2 + s ) + 2
+        );
+    },
+
+    easeInElastic: function( t, m ) {
+        m  = m || 0.7;
+        if( t === 0 || t === 1 ) {
+            return t;
+        }
+
+        var scaledTime = t / 1;
+        var scaledTime1 = scaledTime - 1;
+
+        var p = 1 - m;
+        var s = p / ( 2 * Math.PI ) * Math.asin( 1 );
+
+        return -(
+            Math.pow( 2, 10 * scaledTime1 ) *
+            Math.sin( ( scaledTime1 - s ) * ( 2 * Math.PI ) / p )
+        );
+    },
+
+    easeOutElastic: function( t, m ) {
+        m = m || 0.7;
+        var p = 1 - m;
+        var scaledTime = t * 2;
+
+        if( t === 0 || t === 1 ) {
+            return t;
+        }
+
+        var s = p / ( 2 * Math.PI ) * Math.asin( 1 );
+        return (
+            Math.pow( 2, -10 * scaledTime ) *
+            Math.sin( ( scaledTime - s ) * ( 2 * Math.PI ) / p )
+        ) + 1;
+
+    },
+
+    easeInOutElastic: function( t, m ) {
+        m = m || 0.65;
+        var p = 1 - m;
+
+        if( t === 0 || t === 1 ) {
+            return t;
+        }
+
+        var scaledTime = t * 2;
+        var scaledTime1 = scaledTime - 1;
+
+        var s = p / ( 2 * Math.PI ) * Math.asin( 1 );
+
+        if( scaledTime < 1 ) {
+            return -0.5 * (
+                Math.pow( 2, 10 * scaledTime1 ) *
+                Math.sin( ( scaledTime1 - s ) * ( 2 * Math.PI ) / p )
+            );
+        }
+
+        return (
+            Math.pow( 2, -10 * scaledTime1 ) *
+            Math.sin( ( scaledTime1 - s ) * ( 2 * Math.PI ) / p ) * 0.5
+        ) + 1;
+
+    },
+
+    easeOutBounce: function( t ) {
+        var scaledTime2, scaledTime = t / 1;
+
+        if( scaledTime < ( 1 / 2.75 ) ) {
+
+            return 7.5625 * scaledTime * scaledTime;
+
+        } else if( scaledTime < ( 2 / 2.75 ) ) {
+
+            scaledTime2 = scaledTime - ( 1.5 / 2.75 );
+            return ( 7.5625 * scaledTime2 * scaledTime2 ) + 0.75;
+
+        } else if( scaledTime < ( 2.5 / 2.75 ) ) {
+
+            scaledTime2 = scaledTime - ( 2.25 / 2.75 );
+            return ( 7.5625 * scaledTime2 * scaledTime2 ) + 0.9375;
+
         } else {
-            return c * (7.5625 * (t -= (2.625 / 2.75)) * t + .984375) + b;
+
+            scaledTime2 = scaledTime - ( 2.625 / 2.75 );
+            return ( 7.5625 * scaledTime2 * scaledTime2 ) + 0.984375;
+
         }
     },
-    easeInOutBounce: function (x, t, b, c, d) {
-        if (t < d / 2) return Easing.easeInBounce(x, t * 2, 0, c, d) * .5 + b;
-        return Easing.easeOutBounce(x, t * 2 - d, 0, c, d) * .5 + c * .5 + b;
+
+    easeInBounce: function( t ) {
+        return 1 - Easing.easeOutBounce( 1 - t );
+    },
+
+    easeInOutBounce: function( t ) {
+        if( t < 0.5 ) {
+            return Easing.easeInBounce( t * 2 ) * 0.5;
+        }
+        return ( Easing.easeOutBounce( ( t * 2 ) - 1 ) * 0.5 ) + 0.5;
     }
 };
 
@@ -2388,6 +2486,10 @@ $.extend({
     animate: function(el, draw, dur, timing, cb){
         var $el = $(el), start = performance.now();
         var key, from, to, delta, unit, mapProps = {};
+
+        if (dur === 0 || $.fx.off) {
+            dur = 1;
+        }
 
         dur = dur || 300;
         timing = timing || this.easing.def;
@@ -2423,36 +2525,38 @@ $.extend({
             }
 
             t = (time - start) / dur;
+
             if (t > 1) t = 1;
+            if (t < 0) t = 0;
 
             var fn = typeof timing === "string" ? $.easing[timing] ? $.easing[timing] : $.easing[$.easing.def] : timing;
 
-            p = fn(t, dur * t, 0, 1, dur);
+            p = fn(t);
 
             if (typeof draw === "function") {
 
-                $.proxy(draw, $el[0])(p);
+                $.proxy(draw, $el[0])(t, p);
 
             } else if (isPlainObject(draw)) {
 
-                (function(p){
+                (function(t, p){
 
                     for (key in mapProps) {
                         if (mapProps.hasOwnProperty(key))
                             $el.css(key, mapProps[key][0] + (mapProps[key][2] * p) + mapProps[key][3]);
                     }
 
-                })(p);
+                })(t, p);
 
             } else {
                 throw new Error("Unknown draw object. Must be a function or plain object");
             }
 
-            if (p === 1 && typeof cb === "function") {
+            if (t === 1 && typeof cb === "function") {
                 $.proxy(cb, el);
                 cb.call(el, arguments);
             }
-            if (p < 1) {
+            if (t < 1) {
                 $el.origin("animation", requestAnimationFrame(animate));
             }
         }));
@@ -2481,6 +2585,12 @@ $.fn.extend({
 
 
 $.extend({
+
+    fx: {
+        off: false,
+        hideOnFadeOut: true
+    },
+
     hide: function(el, cb){
         var $el = $(el);
         if (!!el.style.display) {
@@ -2553,7 +2663,7 @@ $.extend({
 
         return this.animate(el, function(p){
             el.style.opacity = originOpacity * p;
-            if (p === 1) {
+            if (p === 1 && el.style.display === 'none') {
                 el.style.display = originDisplay;
             }
         }, dur, easing, cb);
@@ -2582,7 +2692,7 @@ $.extend({
 
         return this.animate(el, function(p){
             el.style.opacity = (1 - p) * opacity;
-            if (p === 1) {
+            if (p === 1 && $.fx.hideOnFadeOut) {
                 el.style.display = 'none';
             }
         }, dur, easing, cb);
@@ -2756,12 +2866,20 @@ $.init = function(sel, ctx){
         return $.import(sel);
     }
 
-    if (sel === "document") {
+    if (typeof sel === 'string' && sel === "document") {
         sel = document;
     }
 
-    if (sel === "body") {
+    if (typeof sel === 'string' && sel === "body") {
         sel = document.body;
+    }
+
+    if (typeof sel === 'string' && sel === "html") {
+        sel = document.documentElement;
+    }
+
+    if (typeof sel === 'string' && sel === "doctype") {
+        sel = document.doctype;
     }
 
     if (sel.nodeType || sel.self === window) {

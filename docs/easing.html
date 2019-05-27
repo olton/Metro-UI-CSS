@@ -406,10 +406,8 @@
                     var cube = $(this);
                     cube.css({
                         left: 10
-                    }).animate(function(p){
-                        $(this).css({
-                            left: (120 - cube.width() - 10) * p
-                        })
+                    }).animate({
+                        left: 120 - cube.width() - 10
                     }, 1500, cube.data('easing'));
                 });
             }, 3000);
