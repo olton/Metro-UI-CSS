@@ -541,7 +541,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 27/05/2019 11:13:28";
+var m4qVersion = "v1.0.0. Built at 28/05/2019 22:38:11";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1309,7 +1309,7 @@ $.fn.extend({
     }
 });
 
-( "blur focus resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu load touchstart touchend touchmove touchcancel" )
+( "blur focus resize scroll click dblclick mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave change select submit keydown keypress keyup contextmenu touchstart touchend touchmove touchcancel" )
     .split( " " )
     .forEach(
     function( name ) {
@@ -1362,7 +1362,17 @@ $.fn.extend({
 
 $.fn.extend({
     val: function(value){
-        return this.prop("value", value);
+        if (this.length === 0) return ;
+
+        if (not(value) && typeof this[0].value !== "undefined") {
+            return this[0].value;
+        }
+
+        return this.each(function(){
+            if (typeof this.value !== "undefined") {
+                this.value = value;
+            }
+        });
     }
 });
 
@@ -2036,6 +2046,14 @@ $.fn.extend({
 $.extend({
     meta: function(name){
         return not(name) ? $("meta") : $("meta[name='$name']".replace("$name", name));
+    },
+
+    doctype: function(){
+        return $("doctype");
+    },
+
+    html: function(){
+        return $("html");
     }
 });
 
@@ -2493,6 +2511,17 @@ $.extend({
 
         dur = dur || 300;
         timing = timing || this.easing.def;
+
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = 300;
+            timing = "linear";
+        }
+
+        if (typeof timing === "function") {
+            cb = timing;
+            timing = this.easing.def
+        }
 
         $(el).origin("animation-stop", 0);
 

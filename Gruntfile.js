@@ -50,7 +50,8 @@ module.exports = function(grunt) {
         "    } else {\n" +
         "        factory( );\n"+
         "    }\n"+
-        "}(function( ) { ",
+        "}(function( ) { \n"+
+        "'use strict';",
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']

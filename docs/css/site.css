@@ -302,17 +302,28 @@ pre .copy-button {
 .options-table {
   font-size: 14px;
 }
-.special-thanks {
+.special-thanks,
+.who-uses {
   justify-content: space-between;
   align-items: center;
 }
-.special-thanks [class*=cell-] {
+.special-thanks [class*=cell-],
+.who-uses [class*=cell-] {
   text-align: center;
   margin-top: 20px;
 }
-.special-thanks img {
+.special-thanks img,
+.who-uses img {
   width: 124px;
   max-height: 64px;
+}
+.who-uses {
+  margin-bottom: 10px;
+}
+.who-uses img {
+  height: 200px;
+  width: auto;
+  max-width: 300px;
 }
 main {
   padding-bottom: 20px!important;
@@ -332,18 +343,6 @@ body {
 }
 .hero {
   padding: 40px;
-}
-.neb-hero {
-  z-index: 6;
-}
-.neb-white {
-  z-index: 5;
-}
-.neb-light {
-  z-index: 4;
-}
-.neb-feature {
-  z-index: 3;
 }
 .neb-commercial {
   z-index: 2;
@@ -370,6 +369,10 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 11;
+}
+.neb-hero.neb::after {
+  z-index: 0;
 }
 .neb-hero::after {
   border-color: #d934c3 transparent transparent transparent;
@@ -417,18 +420,6 @@ footer a:hover {
 #footer-menu li {
   margin: 0 20px;
 }
-.special-thanks {
-  justify-content: space-between;
-  align-items: center;
-}
-.special-thanks [class*=cell-] {
-  text-align: center;
-  margin-top: 20px;
-}
-.special-thanks img {
-  width: 124px;
-  max-height: 64px;
-}
 @media all and (min-width: 768px) {
   .hero {
     padding: 160px 80px 300px;
@@ -438,9 +429,6 @@ footer a:hover {
   }
   .feature-table {
     top: -280px;
-  }
-  .neb-white {
-    height: 360px;
   }
   .info-panel {
     height: 470px;
