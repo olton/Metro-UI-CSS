@@ -77,6 +77,7 @@ If you want to make use of new features as they come in you should upgrade to a 
 - function b64toBlob by [Jeremy Banks](http://stackoverflow.com/users/1114/jeremy-banks)
 - Date.getWeek by [Nick Baicoianu](http://www.epoch-calendar.com)
 - Swipe component based on [Matt Bryson](https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)  TouchSwipe plugin
+- Easing utils by [Andrew Ray](https://github.com/AndrewRayCode/easing-utils)
 - All who brought something good 
 
 ### Browser Compatibility

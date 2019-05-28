@@ -145,7 +145,7 @@ var Sidebar = {
             element.data("opened", false).removeClass('open');
             if (o.shift !== null) {
                 $.each(o.shift.split(","), function(){
-                    $(this).css({left: 0}, o.duration);
+                    $(""+this).animate({left: 0}, o.duration);
                 });
             }
             Utils.exec(o.onStaticSet, null, element[0]);
