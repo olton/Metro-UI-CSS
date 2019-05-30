@@ -1,3 +1,6 @@
+### 4.2.44
++ [x] Calendar: fix methods `setMaxDate`, `setminDate`
+
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
 + [x] Events: upd docs for subscribing events with `$.on` and `addEventListener()`
