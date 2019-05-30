@@ -77,6 +77,9 @@ var ImageCompare = {
             height: element_height
         });
 
+        console.log(element.style("width"), element.style("height"));
+        console.log(element_width, element_height);
+
         container = $("<div>").addClass("image-container").appendTo(element);
         container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
             width: element_width / 2

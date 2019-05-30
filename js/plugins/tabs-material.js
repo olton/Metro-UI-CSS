@@ -135,8 +135,8 @@ var MaterialTabs = {
 
     openTab: function(tab, tab_next){
         var element = this.element, o = this.options;
-        var tabs = element.find("li"), element_scroll = element.scrollLeft();
-        var magic = 48, shift, width, tab_width, target, tab_left, scroll, scrollLeft;
+        var tabs = element.find("li");
+        var magic = 52, shift, width, tab_width, target, tab_left, scroll, scrollLeft;
 
         tab = $(tab);
 
