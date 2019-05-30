@@ -557,7 +557,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 28/05/2019 22:38:11";
+var m4qVersion = "v1.0.0. Built at 30/05/2019 11:36:11";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1656,19 +1656,17 @@ $.parseHTML = function(data, context){
 
 $.fn.extend({
     _size: function(prop, val){
-        if (this.length === 0) {
-            return ;
-        }
+        if (this.length === 0) return ;
 
-        if (val === undefined) {
+        if (not(val)) {
 
             var el = this[0];
 
             if (prop === 'height') {
-                return el === window ? window.innerHeight : el === document ? el.body.clientHeight : el.clientHeight;
+                return el === window ? window.innerHeight : el === document ? el.body.clientHeight : parseInt(getComputedStyle(el)["height"]);
             }
             if (prop === 'width') {
-                return el === window ? window.innerWidth : el === document ? el.body.clientWidth : el.clientWidth;
+                return el === window ? window.innerWidth : el === document ? el.body.clientWidth : parseInt(getComputedStyle(el)["width"]);
             }
         }
 
@@ -1720,6 +1718,24 @@ $.fn.extend({
 
     outerHeight: function(val){
         return this._sizeOut.call(this, 'height', val);
+    },
+
+    padding: function(){
+        return this.length === 0 ? undefined : {
+            top: parseInt(getComputedStyle(this[0])["padding-top"]),
+            right: parseInt(getComputedStyle(this[0])["padding-right"]),
+            bottom: parseInt(getComputedStyle(this[0])["padding-bottom"]),
+            left: parseInt(getComputedStyle(this[0])["padding-left"])
+        }
+    },
+
+    margin: function(){
+        return this.length === 0 ? undefined : {
+            top: parseInt(getComputedStyle(this[0])["margin-top"]),
+            right: parseInt(getComputedStyle(this[0])["margin-right"]),
+            bottom: parseInt(getComputedStyle(this[0])["margin-bottom"]),
+            left: parseInt(getComputedStyle(this[0])["margin-left"])
+        }
     }
 });
 
@@ -1747,7 +1763,12 @@ $.fn.extend({
     position: function(margin){
         var ml = 0, mt = 0;
 
-        margin = !!margin;
+        // margin = !!margin;
+        if (not(margin)) {
+            margin = false;
+        } else {
+            margin = !!margin;
+        }
 
         if (this.length === 0) {
             return ;
@@ -1761,6 +1782,50 @@ $.fn.extend({
         return {
             left: this[0].offsetLeft - ml,
             top: this[0].offsetTop - mt
+        }
+    },
+
+    left: function(val, margin){
+        if (this.length === 0) return ;
+        if (not(val)) {
+            return this.position(margin).left;
+        }
+        if (typeof val === "boolean") {
+            margin = val;
+            return this.position(margin).left;
+        }
+        return this.each(function(){
+            $(this).css({
+                left: val
+            })
+        });
+    },
+
+    top: function(val, margin){
+        if (this.length === 0) return ;
+        if (not(val)) {
+            return this.position(margin).top;
+        }
+        if (typeof val === "boolean") {
+            margin = val;
+            return this.position(margin).top;
+        }
+        return this.each(function(){
+            $(this).css({
+                top: val
+            })
+        });
+    },
+
+    coord: function(){
+        return this.length === 0 ? undefined : this[0].getBoundingClientRect();
+    },
+
+    pos: function(){
+        if (this.length === 0) return ;
+        return {
+            top: parseInt($(this[0]).style("top")),
+            left: parseInt($(this[0]).style("left"))
         }
     }
 });
@@ -2539,7 +2604,7 @@ $.extend({
             timing = this.easing.def
         }
 
-        $(el).origin("animation-stop", 0);
+        $el.origin("animation-stop", 0);
 
         if (isPlainObject(draw)) {
             // TODO add prop value as array [from, to]
@@ -2561,7 +2626,7 @@ $.extend({
 
         $el.origin("animation", requestAnimationFrame(function animate(time) {
             var p, t;
-            var stop = $(el).origin("animation-stop");
+            var stop = $el.origin("animation-stop");
 
             if ( stop > 0) {
                 if (stop === 2) $.proxy(draw, $el[0])(1);
@@ -2598,8 +2663,8 @@ $.extend({
             }
 
             if (t === 1 && typeof cb === "function") {
-                $.proxy(cb, el);
-                cb.call(el, arguments);
+                $.proxy(cb, $el[0]);
+                cb.call($el[0], arguments);
             }
             if (t < 1) {
                 $el.origin("animation", requestAnimationFrame(animate));
@@ -3118,7 +3183,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "28/05/2019 22:49:14",
+    compileTime: "30/05/2019 14:23:30",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14391,6 +14456,9 @@ var ImageCompare = {
             height: element_height
         });
 
+        console.log(element.style("width"), element.style("height"));
+        console.log(element_width, element_height);
+
         container = $("<div>").addClass("image-container").appendTo(element);
         container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
             width: element_width / 2
@@ -24948,8 +25016,8 @@ var MaterialTabs = {
 
     openTab: function(tab, tab_next){
         var element = this.element, o = this.options;
-        var tabs = element.find("li"), element_scroll = element.scrollLeft();
-        var magic = 48, shift, width, tab_width, target, tab_left, scroll, scrollLeft;
+        var tabs = element.find("li");
+        var magic = 52, shift, width, tab_width, target, tab_left, scroll, scrollLeft;
 
         tab = $(tab);
 

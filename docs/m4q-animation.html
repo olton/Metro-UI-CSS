@@ -77,7 +77,7 @@
 
                 <h3>Animation</h3>
                 <p>
-                    To animate element properties, you can use <code>$.animate</code> function. Global function receive next arguments:
+                    To animate element, you can use <code>$.animate</code> function. Global function receive next arguments:
                 </p>
                 <pre><code>
                     $.animate(element, draw, duration, timing, callback);
@@ -99,11 +99,14 @@
                     <script>
                         function goCube1(btn){
                             var el = $("#demo-cube-1");
-                            var maxLeft = el.parent().width() - 62;
+                            var startPos = parseInt(el.style("left"));
+                            var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
+                            var delta = maxLeft - startPos;
+
                             btn.disabled = true;
 
-                            $.animate(el[0], function(t, p){
-                                this.style.left = maxLeft * p + "px"
+                            $.animate(el, function(t, p){
+                                el.css("left", startPos + (delta * p) + "px");
                             }, 3000, "linear", function(){
                                 btn.disabled = false;
                             });
@@ -112,10 +115,17 @@
                 </div>
                 <pre><code>
                     var el = $("#demo-cube-1");
-                    var maxLeft = el.parent().width() - 132;
-                    $.animate(el[0], function(t, p){
-                        this.style.left = maxLeft * p + "px"
-                    }, 3000);
+                    var startPos = parseInt(el.style("left"));
+                    var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
+                    var delta = maxLeft - startPos;
+
+                    btn.disabled = true;
+
+                    $.animate(el, function(t, p){
+                        el.css("left", startPos + (delta * p) + "px");
+                    }, 3000, "linear", function(){
+                        btn.disabled = false;
+                    });
                 </code></pre>
 
                 <h5>Draw object</h5>
@@ -127,10 +137,12 @@
                     <script>
                         function goCube2(btn){
                             var el = $("#demo-cube-2");
-                            var maxLeft = el.parent().width() - 62;
+                            var startPos = parseInt(el.style("left"));
+                            var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
+
                             btn.disabled = true;
-                            $(el).css("left", 0);
-                            $.animate(el[0], {
+
+                            $.animate(el, {
                                 left: maxLeft
                             }, 3000, function(){
                                 btn.disabled = false;
@@ -140,10 +152,16 @@
                 </div>
                 <pre><code>
                     var el = $("#demo-cube-2");
-                    var maxLeft = el.parent().width() - 132;
-                    $.animate(el[0], {
+                    var startPos = parseInt(el.style("left"));
+                    var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
+
+                    btn.disabled = true;
+
+                    $.animate(el, {
                         left: maxLeft
-                    }, 3000);
+                    }, 3000, function(){
+                        btn.disabled = false;
+                    });
                 </code></pre>
 
                 <h3>Animate elements set</h3>
@@ -166,9 +184,12 @@
                     <script>
                         function goCube3(btn){
                             var el = $(".c1, .c2, .c3");
-                            var maxLeft = el.parent().width() - 62;
+                            var startPos = parseInt(el.style("left"));
+                            var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
+
                             btn.disabled = true;
-                            el.stop().css("left", 0).animate({
+
+                            el.animate({
                                 left: maxLeft
                             }, 3000, function(){
                                 btn.disabled = false;
@@ -178,11 +199,16 @@
                 </div>
                 <pre><code>
                     var el = $(".c1, .c2, .c3");
-                    var maxLeft = el.parent().width() - 62;
+                    var startPos = parseInt(el.style("left"));
+                    var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
 
-                    el.stop().css("left", 0).animate({
+                    btn.disabled = true;
+
+                    el.animate({
                         left: maxLeft
-                    }, 3000);
+                    }, 3000, function(){
+                        btn.disabled = false;
+                    });
                 </code></pre>
 
                 <h3>Easing function for timing</h3>
