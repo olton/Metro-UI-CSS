@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.43  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.44  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -118,9 +118,9 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.43",
-    compileTime: "19/05/2019 22:19:38",
-    buildNumber: "724",
+    version: "4.2.44",
+    compileTime: "30/05/2019 14:46:53",
+    buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -6268,7 +6268,10 @@ var Calendar = {
     setMinDate: function(date){
         var that = this, element = this.element, o = this.options;
 
-        o.minDate = date !== null ? date : element.attr("data-min-date");
+        o.minDate = Utils.isValue(date) ? date : element.attr("data-min-date");
+        if (Utils.isValue(o.minDate) && Utils.isDate(o.minDate, o.inputFormat)) {
+            this.min = Utils.isValue(o.inputFormat) ? o.minDate.toDate(o.inputFormat) : (new Date(o.minDate));
+        }
 
         this._drawContent();
     },
@@ -6276,7 +6279,10 @@ var Calendar = {
     setMaxDate: function(date){
         var that = this, element = this.element, o = this.options;
 
-        o.maxDate = date !== null ? date : element.attr("data-max-date");
+        o.maxDate = Utils.isValue(date) ? date : element.attr("data-max-date");
+        if (Utils.isValue(o.maxDate) && Utils.isDate(o.maxDate, o.inputFormat)) {
+            this.max = Utils.isValue(o.inputFormat) ? o.maxDate.toDate(o.inputFormat) : (new Date(o.maxDate));
+        }
 
         this._drawContent();
     },
