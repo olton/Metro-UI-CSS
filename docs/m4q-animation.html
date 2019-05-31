@@ -41,6 +41,21 @@
             height: 30px;
             margin: 2px;
         }
+
+        .easing-table tr td:nth-child(even) {
+            width: 140px;
+        }
+        .js-demo-cube-container {
+            padding: 10px;
+            width: 120px;
+            position: relative;
+        }
+        .js-demo-cube {
+            width: 5px;
+            height: 5px;
+            position: relative;
+            background: white;
+        }
     </style>
 </head>
 <body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
@@ -91,44 +106,66 @@
                 </ul>
 
                 <h5>Draw function</h5>
+                <p>
+                    Using the function gives you more control over what happens during the animation. Function receive two arguments: <code>normalized timing</code> and <code>timing with apply easing</code>.
+                </p>
+                <p>
+                    Normalized timing has value from 0 to 1. Timing with easing has value from 0 to 1 multiplied by the value of the easing function.
+                </p>
                 <div class="example">
                     <div class="text-center m-2">
                         <button class="button" onclick="goCube1(this)">Go</button>
                     </div>
-                    <div class="animate-demo-cube bg-red" id="demo-cube-1"></div>
+                    <div class="animate-demo-cube bg-red" id="dc-1"></div>
+                    <div class="animate-demo-cube bg-red" id="dc-2"></div>
                     <script>
                         function goCube1(btn){
-                            var el = $("#demo-cube-1");
+                            var el = $("#dc-1, #dc-2");
                             var startPos = parseInt(el.style("left"));
                             var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
                             var delta = maxLeft - startPos;
 
                             btn.disabled = true;
 
-                            $.animate(el, function(t, p){
-                                el.css("left", startPos + (delta * p) + "px");
-                            }, 3000, "linear", function(){
-                                btn.disabled = false;
+                            $.each(el, function(){
+                                var element = this;
+                                $.animate(element, function(t, p){
+
+                                    var m = $(element).id() === 'dc-1' ? t : p;
+                                    $(element).css("left", startPos + (delta * m) + "px");
+
+                                }, 3000, "easeInOutBounce", function(){
+                                    btn.disabled = false;
+                                });
                             });
                         }
                     </script>
                 </div>
                 <pre><code>
-                    var el = $("#demo-cube-1");
+                    var el = $("#dc-1, #dc-2");
                     var startPos = parseInt(el.style("left"));
                     var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
                     var delta = maxLeft - startPos;
 
                     btn.disabled = true;
 
-                    $.animate(el, function(t, p){
-                        el.css("left", startPos + (delta * p) + "px");
-                    }, 3000, "linear", function(){
-                        btn.disabled = false;
+                    $.each(el, function(){
+                        var element = this;
+                        $.animate(element, function(t, p){
+
+                            var m = $(element).id() === 'dc-1' ? t : p;
+                            $(element).css("left", startPos + (delta * m) + "px");
+
+                        }, 3000, "easeInOutBounce", function(){
+                            btn.disabled = false;
+                        });
                     });
                 </code></pre>
 
                 <h5>Draw object</h5>
+                <p>
+                    You can use a plane object for setup animation rules. If you use an object, you must define end value for each property, which is going to animate.
+                </p>
                 <div class="example">
                     <div class="text-center m-2">
                         <button class="button" onclick="goCube2(this)">Go</button>
@@ -166,12 +203,8 @@
 
                 <h3>Animate elements set</h3>
                 <p>
-                    To animate elements set, you must:
+                    You can animate elements set. To animate elements set, you must use set animate function to animate elements set - <code>$(selector).animate(...)</code>
                 </p>
-                <ol class="decimal">
-                    <li>Select elements to m4q set with m4q constructor - $(...)</li>
-                    <li>Use set animate function to animate elements set</li>
-                </ol>
                 <div class="example">
                     <div class="text-center m-2">
                         <button class="button" onclick="goCube3(this)">Go</button>
@@ -213,6 +246,284 @@
 
                 <h3>Easing function for timing</h3>
 
+                <p class="text-small text-muted m-0">
+                    Thanks to <span class="fg-dark">Andrew Ray</span> for <a href="https://github.com/AndrewRayCode/easing-utils">easing utils</a>
+                </p>
+                <p>
+                    Easing can really bring life to an effect. Easing controls how an animation progresses over time by manipulating its acceleration.
+                    Easing can be applied when using the <code>m4q.animate()</code> method.
+                </p>
+                <p>
+                    The default easing function is <code>linear</code>.
+                </p>
+
+                <table class="table border bordered striped hovered easing-table">
+                    <thead>
+                    <tr>
+                        <td>Func name</td>
+                        <td>Demo</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>linear</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="linear"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInQuad</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInQuad"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutQuad</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutQuad"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutQuad</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutQuad"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInCubic</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInCubic"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutCubic</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutCubic"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutCubic</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutCubic"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInQuart</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInQuart"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutQuart</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutQuart"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutQuart</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutQuart"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInQuint</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInQuint"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutQuint</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutQuint"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutQuint</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutQuint"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInSine</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInSine"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutSine</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutSine"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutSine</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutSine"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInExpo</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInExpo"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutExpo</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutExpo"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutExpo</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutExpo"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInCirc</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInCirc"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutCirc</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutCirc"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutCirc</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutCirc"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInElastic</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInElastic"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutElastic</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutElastic"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutElastic</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutElastic"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInBack</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInBack"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutBack</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutBack"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutBack</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutBack"></div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>easeInBounce</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInBounce"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeOutBounce</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeOutBounce"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>easeInOutBounce</td>
+                        <td>
+                            <div class="bg-dark js-demo-cube-container">
+                                <div class="js-demo-cube bg-white" data-easing="easeInOutBounce"></div>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </main>
         </div>
 
@@ -224,6 +535,19 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        var cubes = $('.js-demo-cube');
+
+        setInterval(function(){
+            $.each(cubes, function(){
+                var cube = $(this);
+                var endValue = parseInt(cube.style("left")) <20 ? 120 - cube.width() - 20 : 0;
+                cube.animate({
+                    left: endValue
+                }, 1000, cube.data('easing'));
+            });
+        }, 3000);
+    </script>
     <!-- ads-script -->
     <!-- ga-script -->
     <!-- hit-ua -->
