@@ -244,8 +244,38 @@
                     });
                 </code></pre>
 
-                <h3>Easing function for timing</h3>
+                <h3>Stopping animation</h3>
+                <p>
+                    You can stop animation with special method <code>$(selector).stop([complete])</code>. The <code>complete</code> optional argument must be boolean and guarantee the end of the animation when <code>true</code>.
+                </p>
+                <div class="example">
+                    <div class="text-center m-2">
+                        <button class="button" onclick="goCube4(this)">Go</button>
+                        <button class="button" onclick="$('#stop-cube-1').stop();">Stop</button>
+                        <button class="button" onclick="$('#stop-cube-1').stop(true);">Stop and complete</button>
+                    </div>
 
+                    <div class="animate-demo-cube bg-red" id="stop-cube-1"></div>
+
+                    <script>
+                        function goCube4(btn){
+                            var el = $("#stop-cube-1");
+                            var startPos = parseInt(el.style("left"));
+                            var maxLeft = startPos === 0 ? el.parent().width() - 62 : 0;
+
+                            btn.disabled = true;
+
+                            el.animate({
+                                left: maxLeft
+                            }, 3000, function(){
+                                btn.disabled = false;
+                            });
+                        }
+                    </script>
+                </div>
+
+
+                <h3>Easing function for timing</h3>
                 <p class="text-small text-muted m-0">
                     Thanks to <span class="fg-dark">Andrew Ray</span> for <a href="https://github.com/AndrewRayCode/easing-utils">easing utils</a>
                 </p>
