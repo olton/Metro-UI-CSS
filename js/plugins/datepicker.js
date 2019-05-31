@@ -92,8 +92,8 @@ var DatePicker = {
             }
         }
 
-        this.value.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
-        this.value = this.value.addHours(this.offset);
+        // this.value.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
+        // this.value = this.value.addHours(this.offset);
 
         if (Metro.locales[o.locale] === undefined) {
             o.locale = METRO_LOCALE;
@@ -378,14 +378,20 @@ var DatePicker = {
         });
     },
 
-    val: function(t){
-        if (t === undefined) {
+    val: function(value){
+        var o = this.options;
+
+        if (!Utils.isValue(value)) {
             return this.element.val();
         }
-        if (Utils.isDate(t) === false) {
-            return false;
+
+        if (Utils.isValue(o.inputFormat)) {
+            this.value = (""+value).toDate(o.inputFormat);
+        } else {
+            this.value = new Date(value);
         }
-        this.value = (new Date(t)).addHours(this.offset);
+
+        // this.value = (new Date(t)).addHours(this.offset);
         this._set();
     },
 

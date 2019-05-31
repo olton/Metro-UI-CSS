@@ -3183,7 +3183,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "30/05/2019 14:58:40",
+    compileTime: "31/05/2019 12:22:42",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12418,8 +12418,8 @@ var DatePicker = {
             }
         }
 
-        this.value.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
-        this.value = this.value.addHours(this.offset);
+        // this.value.setHours(now.getHours(), now.getMinutes(), now.getSeconds());
+        // this.value = this.value.addHours(this.offset);
 
         if (Metro.locales[o.locale] === undefined) {
             o.locale = METRO_LOCALE;
@@ -12704,14 +12704,20 @@ var DatePicker = {
         });
     },
 
-    val: function(t){
-        if (t === undefined) {
+    val: function(value){
+        var o = this.options;
+
+        if (!Utils.isValue(value)) {
             return this.element.val();
         }
-        if (Utils.isDate(t) === false) {
-            return false;
+
+        if (Utils.isValue(o.inputFormat)) {
+            this.value = (""+value).toDate(o.inputFormat);
+        } else {
+            this.value = new Date(value);
         }
-        this.value = (new Date(t)).addHours(this.offset);
+
+        // this.value = (new Date(t)).addHours(this.offset);
         this._set();
     },
 

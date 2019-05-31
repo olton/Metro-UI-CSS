@@ -28,8 +28,9 @@
 + [x] Examples: upd `start screen`
 
 ### 4.2.44
-+ [x] Calendar: fix methods `setMaxDate`, `setminDate`
-
++ [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
++ [x] Datepicker: fix offset for timezones, issue #1372
++ [x] Datepicker: fix `val()` method 
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
