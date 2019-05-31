@@ -33,7 +33,15 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>M4Q Loops - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>M4Q Visibility - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .demo-box {
+            width: 100px;
+            height: 100px;
+            margin: 10px auto;
+        }
+    </style>
 </head>
 <body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
 <div class="container-fluid">
@@ -55,91 +63,65 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>M4Q Loops</h1>
+                <h1>M4Q Visibility</h1>
                 <p class="text-leader">
-                    M4Q's each() function is used to loop through each element of the target M4Q object.
+                    You can control element visibility with special visibility functions.
                 </p>
 
                 <!-- ads-html -->
 
                 <h3>About</h3>
                 <p>
-                    The <code>m4q</code> object is an object that contains one or more DOM elements, and exposes all <code>m4q</code> functions.
-                    It’s very useful for multi-element DOM manipulation, looping arbitrary arrays, and object properties.
-                    In addition to this function, <code>m4q</code> provides a helper function with the same name that can be called without having previously selected or created DOM elements.
-                    M4Q's <code>each()</code> function is used to loop through each element of the target <code>m4q</code> object.
+                    You can control element visibility with special visibility functions:
+                        <code>toggle()</code>,
+                        <code>hide()</code>,
+                        <code>show()</code>,
+                        <code>visible()</code>.
                 </p>
 
-                <pre><code>
-                    $.each($(...), function(...){
-
-                    })
-                </code></pre>
-                <pre><code>
-                    $(...).each(function(...){
-
-                    })
-                </code></pre>
-
-                <h3>Context</h3>
+                <h5>toggle()</h5>
                 <p>
-                    Context for iteration function is a element. For access to the context you can use <code>this</code>.
+                    To toggle element <code>display</code> property, you can use function <code>toggle()</code>.
                 </p>
+                <div class="example text-center" style="height: 192px">
+                    <button class="button" onclick="$('#div-toggle').toggle()">Toggle</button>
+                    <div id="div-toggle" class="demo-box bg-red"></div>
+                </div>
                 <pre><code>
-                    var array = ['one', 'two', 'three'];
-                    $.each(array, function(){
-                        console.log(this);
-                    });
-                    // Outputs: one two three
+                    &lt;button class="button" onclick="$('#div-toggle').toggle()"&gt;Toggle&lt;/button&gt;
+                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
                 </code></pre>
 
-                <h3>Arguments</h3>
+                <h5>hide(), show()</h5>
                 <p>
-                    Iteration functions receive arguments.
-                    For array like object or plain object, function receive <code>element index</code> and <code>element</code>.
-                    For json, function receive <code>element key</code>, <code>element</code> and <code>element index</code>.
+                    To hide element (set <code>display</code> to <code>none</code>), you can use function <code>hide()</code>.
+                    To show element (set <code>display</code> to <code>your initial</code>), you can use function <code>show()</code>.
                 </p>
-
-                <h5>Array like</h5>
+                <div class="example text-center" style="height: 192px">
+                    <button class="button" onclick="$('#div-hide').hide()">Hide</button>
+                    <button class="button" onclick="$('#div-hide').show()">Show</button>
+                    <div id="div-hide" class="demo-box bg-red"></div>
+                </div>
                 <pre><code>
-                    var array = ['one', 'two', 'three'];
-                    $.each(array, function(i, v){
-                        console.log(i+">"+v);
-                    });
-                    // Outputs: 0>one 1>two 2>three
+                    &lt;button class="button" onclick="$('#div-hide').hide()"&gt;Hide&lt;/button&gt;
+                    &lt;button class="button" onclick="$('#div-hide').show()"&gt;Show&lt;/button&gt;
+                    &lt;div id="div-hide"&gt;&lt;/div&gt;
                 </code></pre>
 
-                <h5>JSON</h5>
-                <pre><code>
-                    var json = {
-                        name: "Vasya",
-                        email: vasya@domain.com,
-                        tel: "123456789"
-                    };
-                    $.each(element, function(k, v, i){
-                        console.log(i+">"+k+">"+v);
-                    });
-                    // Outputs: 0>name>vasya 1>email>vasya@domain.com 2>tel>123456789
-                </code></pre>
-
-                <h3>Set helper</h3>
+                <h5>visible()</h5>
                 <p>
-                    If you already selects elements with m4q constructor, you can use helper m4q function <code>each()</code> to iterate by elements.
+                    To toggle element <code>visibility</code> property, you can use function <code>visible()</code>.
                 </p>
+                <div class="example text-center" style="height: 192px">
+                    <button class="button" onclick="$('#div-visible').visible(false)">Hidden</button>
+                    <button class="button" onclick="$('#div-visible').visible(true)">Visible</button>
+                    <div id="div-visible" class="demo-box bg-red"></div>
+                </div>
                 <pre><code>
-                    &lt;ul&gt;
-                        &lt;li&gt;Item 1&lt;/li&gt;
-                        &lt;li&gt;Item 2&lt;/li&gt;
-                        &lt;li&gt;Item 3&lt;/li&gt;
-                    &lt;/ul&gt;
+                    &lt;button class="button" onclick="$('#div-visible').visible(false)"&gt;Hidden&lt;/button&gt;
+                    &lt;button class="button" onclick="$('#div-visible').visible(true)"&gt;Visible&lt;/button&gt;
+                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
                 </code></pre>
-                <pre><code>
-                    $("li").each(function(i, el){
-                        console.log(this); // HTMLElement li
-                        console.log(i, el); // index 0, 1, 2, HTMLElement li
-                    });
-                </code></pre>
-
             </main>
         </div>
 
