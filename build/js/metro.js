@@ -557,7 +557,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 30/05/2019 11:36:11";
+var m4qVersion = "v1.0.0. Built at 31/05/2019 15:19:16";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1087,13 +1087,19 @@ $.extend({
         return Object.prototype.toString.call(obj).replace(/^\[object (.+)]$/, '$1').toLowerCase();
     },
 
+    sleep: function(ms) {
+        ms += new Date().getTime();
+        while (new Date() < ms){}
+    },
+
     camelCase: function(string){return camelCase(string);},
     isPlainObject: function(obj){return isPlainObject(obj);},
     isEmptyObject: function(obj){return isEmptyObject(obj);},
     isArrayLike: function(obj){return isArrayLike(obj);},
     acceptData: function(owner){return acceptData(owner);},
     not: function(val){return not(val)},
-    parseUnit: function(str, out){return parseUnit(str, out)}
+    parseUnit: function(str, out){return parseUnit(str, out)},
+    unit: function(str, out){return parseUnit(str, out)}
 });
 
 
@@ -2629,8 +2635,27 @@ $.extend({
             var stop = $el.origin("animation-stop");
 
             if ( stop > 0) {
-                if (stop === 2) $.proxy(draw, $el[0])(1);
+
+                if (stop === 2) {
+                    if (typeof draw === "function") {
+                        $.proxy(draw, $el[0])(1, 1);
+                    } else if (isPlainObject(draw)) {
+                        (function(t, p){
+
+                            for (key in mapProps) {
+                                if (mapProps.hasOwnProperty(key))
+                                    $el.css(key, mapProps[key][0] + (mapProps[key][2] * p) + mapProps[key][3]);
+                            }
+
+                        })(1, 1);
+                    }
+                }
+
                 cancelAnimationFrame($(el).origin("animation"));
+                if (typeof cb === "function") {
+                    $.proxy(cb, $el[0]);
+                    cb.call($el[0], arguments);
+                }
                 return;
             }
 
@@ -3183,7 +3208,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "31/05/2019 12:22:42",
+    compileTime: "31/05/2019 15:20:51",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
