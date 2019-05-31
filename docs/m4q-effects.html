@@ -33,7 +33,7 @@
     <link href="docsearch/docsearch.min.css" rel="stylesheet">
     <link href="css/site.css" rel="stylesheet">
 
-    <title>M4Q Visibility - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>M4Q Effects - Metro 4 :: Popular HTML, CSS and JS library</title>
 
     <style>
         .demo-box {
@@ -63,9 +63,9 @@
                     <img src="images/logo.png" class="w-100">
                 </div>
 
-                <h1>M4Q Visibility</h1>
+                <h1>M4Q Effects</h1>
                 <p class="text-leader">
-                    You can control element visibility with special visibility functions.
+                    You can control element visibility with special effects functions.
                 </p>
 
                 <!-- ads-html -->
@@ -73,67 +73,68 @@
                 <h3>About</h3>
                 <p>
                     You can control element visibility with special visibility functions:
-                        <code>toggle()</code>,
-                        <code>hide()</code>,
-                        <code>show()</code>,
-                        <code>visible()</code>.
+                        <code>fadeIn()</code>,
+                        <code>fadeOut()</code>,
+                        <code>slideIn()</code>,
+                        <code>slideOut()</code>.
                 </p>
 
-                <h5>toggle()</h5>
+                <h3>Fade effect</h3>
                 <p>
-                    To toggle element <code>display</code> property, you can use function <code>toggle()</code>.
+                    To toggle element <code>display</code> property with <code>fade</code> effect, you can use functions <code>fadeIn()</code> and <code>fadeOut()</code>.
                 </p>
                 <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-toggle').toggle()">Toggle</button>
-                    <div id="div-toggle" class="demo-box bg-red"></div>
+                    <button class="button" onclick="$('#div-fade').fadeIn()">Fade In</button>
+                    <button class="button" onclick="$('#div-fade').fadeOut()">Fade Out</button>
+                    <div id="div-fade" class="demo-box bg-red"></div>
                 </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-toggle').toggle()"&gt;Toggle&lt;/button&gt;
-                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
+                    &lt;button class="button" onclick="$('#div-fade').fadeIn()"&gt;Fade In&lt;/button&gt;
+                    &lt;button class="button" onclick="$('#div-fade').fadeOut()"&gt;Fade Out&lt;/button&gt;
+                    &lt;div id="div-fade" class="demo-box bg-red"&gt;&lt;/div&gt;
                 </code></pre>
 
-                <h5>hide(), show()</h5>
+                <h3>Slide effect</h3>
                 <p>
-                    To hide element (set <code>display</code> to <code>none</code>), you can use function <code>hide()</code>.
-                    To show element (set <code>display</code> to <code>your initial</code>), you can use function <code>show()</code>.
+                    To toggle element <code>display</code> property with <code>slide</code> effect, you can use functions <code>slideDown()</code> and <code>slideUp()</code>.
                 </p>
                 <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-hide').hide()">Hide</button>
-                    <button class="button" onclick="$('#div-hide').show()">Show</button>
-                    <div id="div-hide" class="demo-box bg-red"></div>
+                    <button class="button" onclick="$('#div-slide').slideUp()">Slide Up</button>
+                    <button class="button" onclick="$('#div-slide').slideDown()">Slide Down</button>
+                    <div id="div-slide" class="demo-box bg-red"></div>
                 </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-hide').hide()"&gt;Hide&lt;/button&gt;
-                    &lt;button class="button" onclick="$('#div-hide').show()"&gt;Show&lt;/button&gt;
-                    &lt;div id="div-hide"&gt;&lt;/div&gt;
+                    &lt;button class="button" onclick="$('#div-slide').slideUp()"&gt;Slide Up&lt;/button&gt;
+                    &lt;button class="button" onclick="$('#div-slide').slideDown()"&gt;Slide Down&lt;/button&gt;
+                    &lt;div id="div-slide" class="demo-box bg-red"&gt;&lt;/div&gt;
                 </code></pre>
 
-                <h5>visible()</h5>
+                <h3>Function arguments</h3>
                 <p>
-                    To toggle element <code>visibility</code> property, you can use function <code>visible()</code>.
+                    Each effect function may take the following arguments:
                 </p>
-                <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-visible').visible(false)">Hidden</button>
-                    <button class="button" onclick="$('#div-visible').visible(true)">Visible</button>
-                    <div id="div-visible" class="demo-box bg-red"></div>
-                </div>
+                <ul>
+                    <li><b>duration</b> - animation duration</li>
+                    <li><b>easing</b> - easing function name</li>
+                    <li><b>callback</b> - function was executed when animation finished</li>
+                </ul>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-visible').visible(false)"&gt;Hidden&lt;/button&gt;
-                    &lt;button class="button" onclick="$('#div-visible').visible(true)"&gt;Visible&lt;/button&gt;
-                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
+                    $(...).fadeIn(1000, 'linear', function(){
+                       console.log('Animation done');
+                    })
                 </code></pre>
-
-                <h5>Callback</h5>
-                <p>
-                    With each visibility functions, you can use your own callback function. This function will be executed when the visibility function works done.
-                </p>
                 <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-cb').toggle(function(){alert('This is callback')})">Callback</button>
-                    <div id="div-cb" class="demo-box bg-red"></div>
+                    <button class="button" onclick="$('#div-slide2').slideUp(1000, 'easeOutBounce')">Slide Up</button>
+                    <button class="button" onclick="$('#div-slide2').slideDown(1000, 'easeOutBounce')">Slide Down</button>
+                    <div id="div-slide2" class="demo-box bg-red"></div>
                 </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-toggle').toggle()"&gt;Toggle&lt;/button&gt;
-                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
+                    &lt;button class="button"
+                        onclick="$('#div-slide2').slideUp(1000, 'easeOutBounce')"&gt;Slide Up&lt;/button&gt;
+                    &lt;button class="button"
+                        onclick="$('#div-slide2').slideDown(1000, 'easeOutBounce')"&gt;Slide Down&lt;/button&gt;
+                    
+                    &lt;div id="div-slide2" class="demo-box bg-red"&gt;&lt;/div&gt;
                 </code></pre>
 
             </main>
@@ -147,6 +148,10 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        $('#div-slide').origin("slidedown", true);
+        $('#div-slide2').origin("slidedown", true);
+    </script>
     <!-- ads-script -->
     <!-- ga-script -->
     <!-- hit-ua -->
