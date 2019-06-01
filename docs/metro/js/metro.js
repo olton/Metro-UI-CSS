@@ -557,7 +557,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 31/05/2019 20:42:03";
+var m4qVersion = "v1.0.0. Built at 01/06/2019 16:42:26";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -644,24 +644,20 @@ $.extend = $.fn.extend = function(){
 
 
 $.fn.extend({
-    // TODO add element as argument
     index: function(sel){
-        var res = [];
+        var el, _index = undefined;
 
         if (this.length === 0) {
             return -1;
         }
 
-        $.each(this[0].parentNode.children, function(){
-            var el = this;
-            if (sel) {
-                if (matches.call(el, sel)) res.push(el);
-            } else {
-                res.push(el);
+        el = not(sel) ? this[0] : $(sel)[0];
+        $.each(el.parentNode.children, function(i){
+            if (this === el) {
+                _index = i;
             }
         });
-
-        return res.indexOf(this[0]);
+        return _index;
     },
 
     get: function(i){
@@ -673,14 +669,6 @@ $.fn.extend({
 
     eq: function(i){
         return $(this.get(i >= 0 ? i : this.length + i));
-    },
-
-    clone: function(){
-        var res = [], out = $();
-        this.each(function(){
-            res.push(this.cloneNode(true));
-        });
-        return $.merge(out, res);
     },
 
     contains: function(s){
@@ -777,7 +765,235 @@ $.fn.extend({
         return $.merge($(), this.filter(function(el, i){
             return i % 2 !== 0;
         }));
+    },
+
+    // ? maybe return a m4q object?
+    filter: function(fn){
+        return [].filter.call(this, fn);
+    },
+
+    find: function(s){
+        var res = [], out = $();
+
+        if (s instanceof $) return s;
+
+        if (this.length === 0) {
+            return this;
+        }
+
+        this.each(function () {
+            var el = this;
+            if (typeof el.querySelectorAll !== "undefined") res = [].slice.call(el.querySelectorAll(s));
+        });
+        return $.merge(out, res);
+    },
+
+    children: function(s){
+        var i, res = [], out = $();
+
+        if (s instanceof $) return s;
+
+        this.each(function(){
+            var el = this;
+            for(i = 0; i < el.children.length; i++) {
+                if (el.children[i].nodeType === 1)
+                    res.push(el.children[i]);
+            }
+        });
+        res = s ? res.filter(function(el){
+            return matches.call(el, s);
+        }) : res;
+        return $.merge(out, res);
+    },
+
+    parent: function(s){
+        var res = [], out = $();
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (s instanceof $) return s;
+
+        this.each(function(){
+            if (this.parentNode) {
+                res.push(this.parentNode);
+            }
+        });
+        res = s ? res.filter(function(el){
+            return matches.call(el, s);
+        }) : res;
+        return $.merge(out, res);
+    },
+
+    parents: function(s){
+        var res = [], out = $();
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (s instanceof $) return s;
+
+        this.each(function(){
+            var par = this.parentNode;
+            while (par) {
+                if (par.nodeType === 1) {
+
+                    if (!not(s)) {
+                        if (matches.call(par, s)) {
+                            res.push(par);
+                        }
+                    } else {
+                        res.push(par);
+                    }
+
+
+                }
+                par = par.parentNode;
+            }
+        });
+
+        return $.merge(out, res);
+    },
+
+    siblings: function(s){
+        var res = [], out = $();
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (s instanceof $) return s;
+
+        this.each(function(){
+            var el = this, elems = [].filter.call(el.parentNode.children, function(child){
+                return child !== el && (s ? matches.call(child, s) : true);
+            });
+
+            elems.forEach(function(el){
+                res.push(el);
+            })
+        });
+
+        return $.merge(out, res);
+    },
+
+    _siblingAll: function(dir, s){
+        var out = $();
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (s instanceof $) return s;
+
+        this.each(function(){
+            var el = this;
+            while (el) {
+                el = el[dir];
+                if (!el) break;
+                if (!s) {
+                    $.merge(out, $(el));
+                } else {
+                    if (matches.call(el, s)) {
+                        $.merge(out, $(el));
+                    }
+                }
+            }
+        });
+
+        return out;
+    },
+
+    _sibling: function(dir, s){
+        var out = $();
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (s instanceof $) return s;
+
+        out = $();
+
+        this.each(function(){
+            var sib = this[dir];
+            if (sib && sib.nodeType === 1) {
+                if (not(s)) {
+                    $.merge(out, $(sib));
+                } else {
+                    if (matches.call(sib, s)) {
+                        $.merge(out, $(sib));
+                    }
+                }
+            }
+        });
+
+        return out;
+    },
+
+    prev: function(s){
+        return this._sibling('previousElementSibling', s);
+    },
+
+    next: function(s){
+        return this._sibling('nextElementSibling', s);
+    },
+
+    prevAll: function(s){
+        return this._siblingAll('previousElementSibling', s);
+    },
+
+    nextAll: function(s){
+        return this._siblingAll('nextElementSibling', s);
+    },
+
+    closest: function(s){
+        var out = $();
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        if (s instanceof $) return s;
+
+        if (!s) {
+            return this.parent(s);
+        }
+
+        this.each(function(){
+            var el = this;
+            while (el) {
+                el = el.parentElement;
+                if (!el) break;
+                if (matches.call(el, s)) {
+                    $.merge(out, $(el));
+                    return ;
+                }
+            }
+        });
+
+        return out;
+    },
+
+    has: function(selector){
+        var out = $();
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        this.each(function(){
+            var el = $(this);
+            var child = el.children(selector);
+            if (child.length > 0) {
+                $.merge(out, el);
+            }
+        });
+
+        return out;
     }
+
 });
 
 $.fn.extend({
@@ -1102,7 +1318,15 @@ $.extend({
     unit: function(str, out){return parseUnit(str, out)}
 });
 
-
+$.fn.extend({
+    clone: function(){
+        var res = [], out = $();
+        this.each(function(){
+            res.push(this.cloneNode(true));
+        });
+        return $.merge(out, res);
+    }
+});
 
 (function () {
     if ( typeof window.CustomEvent === "function" ) return false;
@@ -1833,234 +2057,6 @@ $.fn.extend({
             top: parseInt($(this[0]).style("top")),
             left: parseInt($(this[0]).style("left"))
         }
-    }
-});
-
-$.fn.extend({
-    filter: function(fn){
-        return [].filter.call(this, fn);
-    },
-
-    find: function(s){
-        var res = [], out = $();
-
-        if (s instanceof $) return s;
-
-        if (this.length === 0) {
-            return this;
-        }
-
-        this.each(function () {
-            var el = this;
-            if (typeof el.querySelectorAll !== "undefined") res = [].slice.call(el.querySelectorAll(s));
-        });
-        return $.merge(out, res);
-    },
-
-    children: function(s){
-        var i, res = [], out = $();
-
-        if (s instanceof $) return s;
-
-        this.each(function(){
-            var el = this;
-            for(i = 0; i < el.children.length; i++) {
-                if (el.children[i].nodeType === 1)
-                    res.push(el.children[i]);
-            }
-        });
-        res = s ? res.filter(function(el){
-            return matches.call(el, s);
-        }) : res;
-        return $.merge(out, res);
-    },
-
-    parent: function(s){
-        var res = [], out = $();
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (s instanceof $) return s;
-
-        this.each(function(){
-            if (this.parentNode) {
-                res.push(this.parentNode);
-            }
-        });
-        res = s ? res.filter(function(el){
-            return matches.call(el, s);
-        }) : res;
-        return $.merge(out, res);
-    },
-
-    parents: function(s){
-        var res = [], out = $();
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (s instanceof $) return s;
-
-        this.each(function(){
-            var par = this.parentNode;
-            while (par) {
-                if (par.nodeType === 1) {
-
-                    if (!not(s)) {
-                        if (matches.call(par, s)) {
-                            res.push(par);
-                        }
-                    } else {
-                        res.push(par);
-                    }
-
-
-                }
-                par = par.parentNode;
-            }
-        });
-
-        return $.merge(out, res);
-    },
-
-    siblings: function(s){
-        var res = [], out = $();
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (s instanceof $) return s;
-
-        this.each(function(){
-            var el = this, elems = [].filter.call(el.parentNode.children, function(child){
-                return child !== el && (s ? matches.call(child, s) : true);
-            });
-
-            elems.forEach(function(el){
-                res.push(el);
-            })
-        });
-
-        return $.merge(out, res);
-    },
-
-    _siblingAll: function(dir, s){
-        var out = $();
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (s instanceof $) return s;
-
-        this.each(function(){
-            var el = this;
-            while (el) {
-                el = el[dir];
-                if (!el) break;
-                if (!s) {
-                    $.merge(out, $(el));
-                } else {
-                    if (matches.call(el, s)) {
-                        $.merge(out, $(el));
-                    }
-                }
-            }
-        });
-
-        return out;
-    },
-
-    _sibling: function(dir, s){
-        var out = $();
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (s instanceof $) return s;
-
-        out = $();
-
-        this.each(function(){
-            var sib = this[dir];
-            if (sib && sib.nodeType === 1) {
-                if (not(s)) {
-                    $.merge(out, $(sib));
-                } else {
-                    if (matches.call(sib, s)) {
-                        $.merge(out, $(sib));
-                    }
-                }
-            }
-        });
-
-        return out;
-    },
-
-    prev: function(s){
-        return this._sibling('previousElementSibling', s);
-    },
-
-    next: function(s){
-        return this._sibling('nextElementSibling', s);
-    },
-
-    prevAll: function(s){
-        return this._siblingAll('previousElementSibling', s);
-    },
-
-    nextAll: function(s){
-        return this._siblingAll('nextElementSibling', s);
-    },
-
-    closest: function(s){
-        var out = $();
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        if (s instanceof $) return s;
-
-        if (!s) {
-            return this.parent(s);
-        }
-
-        this.each(function(){
-            var el = this;
-            while (el) {
-                el = el.parentElement;
-                if (!el) break;
-                if (matches.call(el, s)) {
-                    $.merge(out, $(el));
-                    return ;
-                }
-            }
-        });
-
-        return out;
-    },
-
-    has: function(selector){
-        var out = $();
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        this.each(function(){
-            var el = $(this);
-            var child = el.children(selector);
-            if (child.length > 0) {
-                $.merge(out, el);
-            }
-        });
-
-        return out;
     }
 });
 
@@ -3218,7 +3214,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "31/05/2019 20:47:33",
+    compileTime: "01/06/2019 16:47:34",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
