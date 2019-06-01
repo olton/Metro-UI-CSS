@@ -72,90 +72,151 @@
 
                 <h3>About</h3>
                 <p>
-                    M4Q implements a set of functions to search for sub-items in the set.
+                    M4Q implements a set of functions to search for sub-items in the set:
+                    <code>index()</code>,
+                    <code>get()</code>,
+                    <code>eq()</code>,
+                    <code>contains()</code>,
+                    <code>is()</code>,
+                    <code>same()</code>,
+                    <code>find()</code>,
+                    <code>children()</code>,
+                    <code>parent()</code>,
+                    <code>parents()</code>,
+                    <code>closest()</code>,
+                    <code>siblings()</code>,
+                    <code>prev()</code>,
+                    <code>prevAll()</code>,
+                    <code>next()</code>,
+                    <code>nextAll()</code>,
+                    <code>filter()</code>,
+                    <code>last()</code>,
+                    <code>first()</code>,
+                    <code>even()</code>,
+                    <code>odd()</code>,
+                    <code>clone()</code>.
                 </p>
-                <ul>
-                    <li><code>index()</code></li>
-                    <li><code>ind()</code></li>
-                    <li><code>get()</code></li>
-                    <li><code>eq()</code></li>
-                    <li><code>contains()</code></li>
-                    <li><code>is()</code></li>
-                    <li><code>same()</code></li>
-                    <li><code>find()</code></li>
-                    <li><code>children()</code></li>
-                    <li><code>parent()</code></li>
-                    <li><code>parents()</code></li>
-                    <li><code>closest()</code></li>
-                    <li><code>siblings()</code></li>
-                    <li><code>prev()</code></li>
-                    <li><code>prevAll()</code></li>
-                    <li><code>next()</code></li>
-                    <li><code>nextAll()</code></li>
-                    <li><code>filter()</code></li>
-                    <li><code>last()</code></li>
-                    <li><code>first()</code></li>
-                    <li><code>even()</code></li>
-                    <li><code>odd()</code></li>
-                    <li><code>clone()</code></li>
-                </ul>
 
-                <h5>toggle()</h5>
+                <h3>index()</h3>
                 <p>
-                    To toggle element <code>display</code> property, you can use function <code>toggle()</code>.
+                    Return value is an integer indicating the position of the first element.
                 </p>
-                <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-toggle').toggle()">Toggle</button>
-                    <div id="div-toggle" class="demo-box bg-red"></div>
-                </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-toggle').toggle()"&gt;Toggle&lt;/button&gt;
-                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
+                    &lt;ul&gt;
+                      &lt;li id="foo"&gt;foo&lt;/li&gt;
+                      &lt;li id="bar"&gt;bar&lt;/li&gt;
+                      &lt;li id="baz"&gt;baz&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    var listItem = $( "#bar" );
+                    alert( "Index: " + listItem.index() ); // Index: 1
+                </code></pre>
+                <pre><code>
+                    var listItem = document.getElementById( "bar" );
+                    alert( "Index: " + $( "li" ).index( listItem ) ); // Index: 1
+                </code></pre>
+                <pre><code>
+                    var listItem = $( "#bar" );
+                    alert( "Index: " + $( "li" ).index( listItem ) ); // Index: 1
                 </code></pre>
 
-                <h5>hide(), show()</h5>
+                <h3>eq()</h3>
                 <p>
-                    To hide element (set <code>display</code> to <code>none</code>), you can use function <code>hide()</code>.
-                    To show element (set <code>display</code> to <code>your initial</code>), you can use function <code>show()</code>.
+                    Reduce the set of matched elements to the one at the specified index.
                 </p>
-                <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-hide').hide()">Hide</button>
-                    <button class="button" onclick="$('#div-hide').show()">Show</button>
-                    <div id="div-hide" class="demo-box bg-red"></div>
-                </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-hide').hide()"&gt;Hide&lt;/button&gt;
-                    &lt;button class="button" onclick="$('#div-hide').show()"&gt;Show&lt;/button&gt;
-                    &lt;div id="div-hide"&gt;&lt;/div&gt;
+                    &lt;ul&gt;
+                      &lt;li id="foo"&gt;foo&lt;/li&gt;
+                      &lt;li id="bar"&gt;bar&lt;/li&gt;
+                      &lt;li id="baz"&gt;baz&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).eq(1) ); // [li#bar, ...]
+                    console.log( $( "li" ).eq(-1) ); // [li#baz, ...]
                 </code></pre>
 
-                <h5>visible()</h5>
+                <h3>get()</h3>
                 <p>
-                    To toggle element <code>visibility</code> property, you can use function <code>visible()</code>.
+                    Return element as HTMLElement by index. When index is negative, function return element from and of array of elements
                 </p>
-                <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-visible').visible(false)">Hidden</button>
-                    <button class="button" onclick="$('#div-visible').visible(true)">Visible</button>
-                    <div id="div-visible" class="demo-box bg-red"></div>
-                </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-visible').visible(false)"&gt;Hidden&lt;/button&gt;
-                    &lt;button class="button" onclick="$('#div-visible').visible(true)"&gt;Visible&lt;/button&gt;
-                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
+                    &lt;ul&gt;
+                      &lt;li id="foo"&gt;foo&lt;/li&gt;
+                      &lt;li id="bar"&gt;bar&lt;/li&gt;
+                      &lt;li id="baz"&gt;baz&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).get(1) ); // &lt;li id="bar"&gt;
+                    console.log( $( "li" ).get(-1) ); // &lt;li id="baz"&gt;
                 </code></pre>
 
-                <h5>Callback</h5>
+                <h3>is()</h3>
+                <h3>same()</h3>
+
+                <h3>find()</h3>
                 <p>
-                    With each visibility functions, you can use your own callback function. This function will be executed when the visibility function works done.
+                    Get the descendants of each element in the current set of matched elements, filtered by a selector.
                 </p>
-                <div class="example text-center" style="height: 192px">
-                    <button class="button" onclick="$('#div-cb').toggle(function(){alert('This is callback')})">Callback</button>
-                    <div id="div-cb" class="demo-box bg-red"></div>
-                </div>
                 <pre><code>
-                    &lt;button class="button" onclick="$('#div-toggle').toggle()"&gt;Toggle&lt;/button&gt;
-                    &lt;div id="div-toggle"&gt;&lt;/div&gt;
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
                 </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).find("span") ); // [span, span, span, ...]
+                    console.log( $( "ul" ).find(".bar, .baz") ) // [span.bar, .span.baz, ...];
+                </code></pre>
+
+                <h3>children()</h3>
+                <p>
+                    Get the children of each element in the set of matched elements, optionally filtered by a selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).children(".bar") ); // [span.bar, ...]
+                    console.log( $( "ul" ).children("#bar") ) // [li#bar, ...];
+                </code></pre>
+
+                <h3>contains()</h3>
+                <p>
+                    Return <code>true</code>, if m4q object contains elements filtered by selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).contains(".bar") ); // true
+                    console.log( $( "li" ).contains("#bar") ); // false
+                </code></pre>
+
+                <h3>parent()</h3>
+                <h3>parents()</h3>
+                <h3>closest()</h3>
+                <h3>siblings()</h3>
+                <h3>prev()</h3>
+                <h3>prevAll()</h3>
+                <h3>next()</h3>
+                <h3>nextAll()</h3>
+                <h3>filter()</h3>
+                <h3>last()</h3>
+                <h3>first()</h3>
+                <h3>even()</h3>
+                <h3>add()</h3>
 
             </main>
         </div>
