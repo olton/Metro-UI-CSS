@@ -541,7 +541,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 01/06/2019 16:57:47";
+var m4qVersion = "v1.0.0. Built at 01/06/2019 18:11:51";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -725,18 +725,11 @@ $.fn.extend({
     },
 
     last: function(){
-        return this.ind(this.length - 1);
+        return this.eq(this.length - 1);
     },
 
     first: function(){
-        return this.ind(0);
-    },
-
-    ind: function(i){
-        if (this.length === 0) return $();
-        if (not(i)) return ;
-        if (i  > this.length) i = this.length - 1;
-        return i < 0 ?  $(this[i + this.length]) : $(this[i]);
+        return this.eq(0);
     },
 
     odd: function(){
@@ -751,7 +744,6 @@ $.fn.extend({
         });
     },
 
-    // ? maybe return a m4q object?
     filter: function(fn){
         if (typeof fn === "string") {
             var sel = fn;
@@ -773,7 +765,7 @@ $.fn.extend({
 
         this.each(function () {
             var el = this;
-            if (typeof el.querySelectorAll !== "undefined") res = [].slice.call(el.querySelectorAll(s));
+            if (typeof el.querySelectorAll !== "undefined") res = res.concat([].slice.call(el.querySelectorAll(s)));
         });
         return $.merge(out, res);
     },
