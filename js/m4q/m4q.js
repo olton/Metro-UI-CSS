@@ -541,7 +541,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 01/06/2019 16:42:26";
+var m4qVersion = "v1.0.0. Built at 01/06/2019 16:57:47";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -740,20 +740,26 @@ $.fn.extend({
     },
 
     odd: function(){
-        return $.merge($(), this.filter(function(el, i){
+        return this.filter(function(el, i){
             return i % 2 === 0;
-        }));
+        });
     },
 
     even: function(){
-        return $.merge($(), this.filter(function(el, i){
+        return this.filter(function(el, i){
             return i % 2 !== 0;
-        }));
+        });
     },
 
     // ? maybe return a m4q object?
     filter: function(fn){
-        return [].filter.call(this, fn);
+        if (typeof fn === "string") {
+            var sel = fn;
+            fn = function(el){
+                return matches.call(el, sel);
+            };
+        }
+        return $.merge($(), [].filter.call(this, fn));
     },
 
     find: function(s){
