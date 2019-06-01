@@ -557,7 +557,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 01/06/2019 18:11:51";
+var m4qVersion = "v1.0.0. Built at 01/06/2019 20:38:02";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -686,14 +686,6 @@ $.fn.extend({
             return this.same(s);
         }
 
-        if (typeof  s === "string" && [':selected'].indexOf(s) === -1) {
-            this.each(function(){
-                if (matches.call(this, s)) {
-                    result = true;
-                }
-            });
-        } else
-
         if (s === ":selected") {
             return this[0].selected;
         } else
@@ -703,7 +695,16 @@ $.fn.extend({
         } else
 
         if (s === ":hidden") {
-            return this[0].hidden;
+            var styles = getComputedStyle(this[0]);
+            return this[0].hidden || styles['display'] === 'none' || styles['visibility'] === 'hidden' || parseInt(styles['opacity']) === 0;
+        } else
+
+        if (typeof  s === "string" && [':selected'].indexOf(s) === -1) {
+            this.each(function(){
+                if (matches.call(this, s)) {
+                    result = true;
+                }
+            });
         } else
 
         if (isArrayLike(s)) {
@@ -3212,7 +3213,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "01/06/2019 18:13:26",
+    compileTime: "01/06/2019 20:38:36",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
