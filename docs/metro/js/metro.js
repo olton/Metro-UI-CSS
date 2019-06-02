@@ -557,7 +557,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 02/06/2019 18:08:54";
+var m4qVersion = "v1.0.0. Built at 02/06/2019 22:09:03";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2099,8 +2099,26 @@ $.fn.extend({
     },
 
     removeAttr: function(name){
+        var attributes;
+
+        if (not(name)) {
+            return this.each(function(){
+                var el = this;
+                $.each($(el).attr(), function(key){
+                    el.removeAttribute(key);
+                })
+            });
+        }
+
+        attributes = typeof name === "string" ? name.split(",").map(function(el){
+            return el.trim();
+        }) : name;
+
         return this.each(function(){
-            if (this.hasAttribute(name)) this.removeAttribute(name);
+            var el = this;
+            $.each(attributes, function(){
+                if (el.hasAttribute(this)) el.removeAttribute(this);
+            });
         });
     },
 
@@ -2136,6 +2154,14 @@ $.extend({
 
     html: function(){
         return $("html");
+    },
+
+    charset: function(val){
+        var meta = $("meta[charset]");
+        if (val) {
+            meta.attr("charset", val)
+        }
+        return meta.attr("charset");
     }
 });
 
@@ -3213,7 +3239,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "02/06/2019 18:20:42",
+    compileTime: "02/06/2019 22:23:47",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
