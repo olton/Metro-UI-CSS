@@ -557,7 +557,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 01/06/2019 20:38:02";
+var m4qVersion = "v1.0.0. Built at 02/06/2019 18:08:54";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -605,10 +605,6 @@ $.fn = $.prototype = {
     constructor: $,
     length: 0,
     uid: "",
-
-    items: function(){
-        return $.toArray(this);
-    },
 
     push: [].push,
     sort: [].sort,
@@ -837,7 +833,6 @@ $.fn.extend({
             var par = this.parentNode;
             while (par) {
                 if (par.nodeType === 1) {
-
                     if (!not(s)) {
                         if (matches.call(par, s)) {
                             res.push(par);
@@ -845,8 +840,6 @@ $.fn.extend({
                     } else {
                         res.push(par);
                     }
-
-
                 }
                 par = par.parentNode;
             }
@@ -856,7 +849,7 @@ $.fn.extend({
     },
 
     siblings: function(s){
-        var res = [], out = $();
+        var res = [];
 
         if (this.length === 0) {
             return ;
@@ -865,20 +858,25 @@ $.fn.extend({
         if (s instanceof $) return s;
 
         this.each(function(){
-            var el = this, elems = [].filter.call(el.parentNode.children, function(child){
-                return child !== el && (s ? matches.call(child, s) : true);
-            });
-
-            elems.forEach(function(el){
-                res.push(el);
-            })
+            var el = this;
+            if (el.parentNode) {
+                $.each(el.parentNode.children, function(){
+                    if (el !== this) res.push(this)
+                });
+            }
         });
 
-        return $.merge(out, res);
+        if (s) {
+            res = res.filter(function(el){
+                return matches.call(el, s);
+            })
+        }
+
+        return $.merge($(), res);
     },
 
     _siblingAll: function(dir, s){
-        var out = $();
+        var res = [];
 
         if (this.length === 0) {
             return ;
@@ -891,21 +889,21 @@ $.fn.extend({
             while (el) {
                 el = el[dir];
                 if (!el) break;
-                if (!s) {
-                    $.merge(out, $(el));
-                } else {
-                    if (matches.call(el, s)) {
-                        $.merge(out, $(el));
-                    }
-                }
+                res.push(el);
             }
         });
 
-        return out;
+        if (s) {
+            res = res.filter(function(el){
+                return matches.call(el, s);
+            })
+        }
+
+        return $.merge($(), res);
     },
 
     _sibling: function(dir, s){
-        var out = $();
+        var res = [];
 
         if (this.length === 0) {
             return ;
@@ -913,22 +911,20 @@ $.fn.extend({
 
         if (s instanceof $) return s;
 
-        out = $();
-
         this.each(function(){
-            var sib = this[dir];
-            if (sib && sib.nodeType === 1) {
-                if (not(s)) {
-                    $.merge(out, $(sib));
-                } else {
-                    if (matches.call(sib, s)) {
-                        $.merge(out, $(sib));
-                    }
-                }
+            var el = this[dir];
+            if (el && el.nodeType === 1) {
+                res.push(el);
             }
         });
 
-        return out;
+        if (s) {
+            res = res.filter(function(el){
+                return matches.call(el, s);
+            })
+        }
+
+        return $.merge($(), res);
     },
 
     prev: function(s){
@@ -948,7 +944,7 @@ $.fn.extend({
     },
 
     closest: function(s){
-        var out = $();
+        var res = [];
 
         if (this.length === 0) {
             return ;
@@ -963,16 +959,16 @@ $.fn.extend({
         this.each(function(){
             var el = this;
             while (el) {
-                el = el.parentElement;
                 if (!el) break;
                 if (matches.call(el, s)) {
-                    $.merge(out, $(el));
+                    res.push(el);
                     return ;
                 }
+                el = el.parentElement;
             }
         });
 
-        return out;
+        return $.merge($(), res.reverse());
     },
 
     has: function(selector){
@@ -1318,6 +1314,10 @@ $.extend({
 });
 
 $.fn.extend({
+    items: function(){
+        return $.toArray(this);
+    },
+
     clone: function(){
         var res = [], out = $();
         this.each(function(){
@@ -3213,7 +3213,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "01/06/2019 20:38:36",
+    compileTime: "02/06/2019 18:20:42",
     buildNumber: "725",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
