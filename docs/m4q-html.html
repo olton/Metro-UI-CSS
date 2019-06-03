@@ -46,7 +46,12 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">About</a></li>
+                    <li class="toc-entry"><a href="#_func_html">html()</a></li>
+                    <li class="toc-entry"><a href="#_func_outer_html">outerHTML()</a></li>
+                    <li class="toc-entry"><a href="#_func_text">text()</a></li>
+                    <li class="toc-entry"><a href="#_func_inner_text">innerText()</a></li>
+                    <li class="toc-entry"><a href="#_func_val">val()</a></li>
+                    <li class="toc-entry"><a href="#_func_empty">empty()</a></li>
                 </ul>
 
             </div>
@@ -63,18 +68,7 @@
 
                 <!-- ads-html -->
 
-                <h3>About</h3>
-                <p>
-                    You can control element visibility with special visibility functions:
-                        <code>html()</code>,
-                        <code>text()</code>,
-                        <code>innerText()</code>,
-                        <code>outerHtml()</code>,
-                        <code>empty()</code>,
-                        <code>val()</code>.
-                </p>
-
-                <h3>html()</h3>
+                <h3 id="_func_html">html()</h3>
                 <p>
                     Set and get element <code>innerHtml</code> property.
                     You can get <code>innerHtml</code> property for first element in matched set, and set it to each element in set with function <code>html()</code>.
@@ -98,6 +92,64 @@
                     div.html("&lt;p&gt;New html&lt;/p&gt;"); // Set div innerHtml
                     div.html($("#list")); // copy ul into div
                     div.html(""); // clear div innerHtml
+                </code></pre>
+
+                <h3 id="_func_outer_html">outerHTML()</h3>
+                <p>
+                    Get <code>outerHTML</code> element property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").outerHTML() ); // Outputs: "&lt;div&gt;This a example text&lt;/div&gt;"
+                </code></pre>
+
+                <h3 id="_func_text">text()</h3>
+                <p>
+                    Get and set <code>textContent</code> element property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").text() ); // Outputs: "This a example text"
+                    $("div").text("Other text"); // Set textContent for div
+                </code></pre>
+
+                <h3 id="_func_inner_text">innerText()</h3>
+                <p>
+                    Get and set <code>innerText</code> element property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").innerText() ); // Outputs: "This a example text"
+                    $("div").innerText("Other text"); // Set innerText for div
+                </code></pre>
+
+                <h3 id="_func_val">val()</h3>
+                <p>
+                    Get and set <code>value</code> element property. You can use this method with input element and textarea. If element not supported <code>value</code> property, the function action will not have a result.
+                </p>
+                <pre><code>
+                    &lt;input id="inp" type="text" value="This is a input value"&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("#inp").val() ); // Outputs: "This a input value"
+                    $("#inp").val("123"); // Now input has value 123
+                </code></pre>
+
+                <h3 id="_func_empty">empty()</h3>
+                <p>
+                    Clear element <code>innerHTML</code> property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $("div").empty(); // Now div is: &lt;div&gt;&lt;/div&gt;
                 </code></pre>
 
             </main>

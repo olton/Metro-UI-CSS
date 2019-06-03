@@ -46,7 +46,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 ### Donation
 
-![Donations on Patreon](https://img.shields.io/badge/Patreon-$28-red.svg)
+![Donations on Patreon](https://img.shields.io/badge/Patreon-$119-red.svg)
 ![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$0-darklime.svg)
 
 ### Community
@@ -79,6 +79,7 @@ If you want to make use of new features as they come in you should upgrade to a 
 - Swipe component based on [Matt Bryson](https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)  TouchSwipe plugin
 - Easing utils by [Andrew Ray](https://github.com/AndrewRayCode/easing-utils)
 - All who brought something good 
+- Thank you jQuery and Goodbye!
 
 ### Browser Compatibility
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
