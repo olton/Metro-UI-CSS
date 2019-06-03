@@ -1,5 +1,6 @@
 ### 4.3.0
 + [x] jQuery: remove dependency
++ [x] M4Q: now built in for DOM manipulation and animation
 + [x] Utils: fix method `github` for using with `m4q` 
 + [x] Html container: fix for using with `m4q` 
 + [x] Select: fix for using with `m4q`
@@ -26,6 +27,7 @@
 + [x] Countdown: fix for using with `m4q`
 + [x] Validator: fix for using with `m4q`
 + [x] Examples: upd `start screen`
++ [x] Calendar picker: fix using locale for initial value, issue #1376
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
