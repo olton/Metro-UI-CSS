@@ -31,7 +31,10 @@ var Toast = {
         toast.css({
             'left': '50%',
             'margin-left': -(width / 2)
-        }).addClass(o.clsToast).addClass(cls).fadeIn(METRO_ANIMATION_DURATION);
+        });
+        toast.addClass(o.clsToast);
+        toast.addClass(cls);
+        toast.fadeIn(METRO_ANIMATION_DURATION);
 
         timer = setTimeout(function(){
             timer = null;

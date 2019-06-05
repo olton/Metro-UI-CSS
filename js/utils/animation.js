@@ -1,7 +1,7 @@
 var Animation = {
 
     duration: METRO_ANIMATION_DURATION,
-    func: "swing",
+    func: "linear",
 
     switch: function(current, next){
         current.hide();
@@ -84,11 +84,18 @@ var Animation = {
 
     fade: function(current, next, duration){
         if (duration === undefined) {duration = this.duration;}
-        current.fadeOut(duration);
+
+        current.animate({
+            opacity: 0
+        }, duration);
+
         next.css({
             top: 0,
-            left: 0
-        }).fadeIn(duration);
+            left: 0,
+            opacity: 0
+        }).animate({
+            opacity: 1
+        }, duration);
     }
 
 };

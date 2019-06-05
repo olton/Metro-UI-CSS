@@ -95,7 +95,7 @@ var Cube = {
     ],
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -109,7 +109,7 @@ var Cube = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (o.rules === null) {
             this.rules = this.default_rules;
@@ -145,7 +145,7 @@ var Cube = {
     },
 
     _createCube: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var sides = ['left', 'right', 'top'];
         var id = Utils.elementId("cube");
         var cells_count = Math.pow(o.cells, 2);
@@ -233,7 +233,7 @@ var Cube = {
     },
 
     _createCssForCellSize: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var sheet = Metro.sheet;
         var width;
         var cell_size;
@@ -248,7 +248,7 @@ var Cube = {
     },
 
     _createCssForFlashColor: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var sheet = Metro.sheet;
         var rule1;
         var rule2;
@@ -296,8 +296,7 @@ var Cube = {
     },
 
     _start: function(){
-        var that = this, element = this.element, o = this.options;
-        var sides = ['left', 'right', 'top'];
+        var that = this, element = this.element;
 
         element.find(".cube-cell").removeClass("light");
 
@@ -376,7 +375,7 @@ var Cube = {
     },
 
     _execRule: function(index, rule, speed){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var sides = ['left', 'right', 'top'];
 
         this._tick(index, speed);
@@ -423,7 +422,7 @@ var Cube = {
     },
 
     changeRules: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var rules = element.attr("data-rules");
         if (this._parseRules(rules) !== true) {
             return ;
@@ -435,14 +434,14 @@ var Cube = {
     },
 
     changeAxisVisibility: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var visibility = JSON.parse(element.attr("data-show-axis")) === true;
         var func = visibility ? "show" : "hide";
         element.find(".axis")[func]();
     },
 
     changeAxisStyle: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var style = element.attr("data-axis-style");
 
         element.find(".axis").removeClass("arrow line no-style").addClass(style);
@@ -457,7 +456,7 @@ var Cube = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         clearInterval(this.interval);
         this.interval = null;

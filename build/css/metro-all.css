@@ -33043,6 +33043,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   z-index: 1;
   color: inherit;
 }
+[class*=tile-].image-set {
+  background-size: contain;
+  background-position: center;
+}
 [class*=tile-].image-set .img {
   width: 25%;
   height: 50%;
