@@ -40,6 +40,10 @@
 
 'use strict';
 
+function isVisible(elem) {
+    return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
+}
+
 function not(value){
     return value === undefined || value === null;
 }
@@ -486,7 +490,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 05/06/2019 21:40:35";
+var m4qVersion = "v1.0.0. Built at 05/06/2019 22:26:55";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1307,7 +1311,8 @@ $.extend({
     acceptData: function(owner){return acceptData(owner);},
     not: function(val){return not(val)},
     parseUnit: function(str, out){return parseUnit(str, out)},
-    unit: function(str, out){return parseUnit(str, out)}
+    unit: function(str, out){return parseUnit(str, out)},
+    isVisible: function(elem) {return isVisible(elem)}
 });
 
 $.fn.extend({
@@ -2878,9 +2883,9 @@ $.extend({
     },
 
     fadeIn: function(el, dur, easing, cb){
-        var $el = $(el), s = $el.style();
+        var $el = $(el);
 
-        if ( s["display"] !== 'none' ) return ;
+        if ( isVisible($el[0]) ) return ;
 
         if (not(dur) && not(easing) && not(cb)) {
             cb = null;
@@ -2914,9 +2919,9 @@ $.extend({
     },
 
     fadeOut: function(el, dur, easing, cb){
-        var $el = $(el), s = $el.style();
+        var $el = $(el);
 
-        if ( s["display"] === 'none' ||  parseInt(s["opacity"]) === 0) return ;
+        if ( !isVisible($el[0]) ) return ;
 
         if (not(dur) && not(easing) && not(cb)) {
             cb = null;
@@ -3268,7 +3273,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "05/06/2019 22:07:48",
+    compileTime: "05/06/2019 22:28:40",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
