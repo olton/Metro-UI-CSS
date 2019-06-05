@@ -18,8 +18,8 @@ Metro.accordionSetup = function(options){
     AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
 };
 
-if (typeof window.metroAccordionSetup !== undefined) {
-    Metro.accordionSetup(window.metroAccordionSetup);
+if (typeof window["metroAccordionSetup"] !== undefined) {
+    Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
 var Accordion = {
@@ -35,7 +35,7 @@ var Accordion = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -125,7 +125,7 @@ var Accordion = {
         }
 
         if (o.oneFrame === true) {
-            this._closeAll();
+            this._closeAll(frame[0]);
         }
 
         frame.addClass("active " + o.activeFrameClass);
@@ -140,7 +140,7 @@ var Accordion = {
     },
 
     _closeFrame: function(f){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var frame = $(f);
 
         if (!frame.hasClass("active")) {
@@ -162,26 +162,27 @@ var Accordion = {
         });
     },
 
-    _closeAll: function(){
-        var that = this, element = this.element, o = this.options;
+    _closeAll: function(skip){
+        var that = this, element = this.element;
         var frames = element.children(".frame");
 
         $.each(frames, function(){
+            if (skip === this) return;
             that._closeFrame(this);
         });
     },
 
     _hideAll: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var frames = element.children(".frame");
 
         $.each(frames, function(){
-            $(this).children(".content").hide(0);
+            $(this).children(".content").hide();
         });
     },
 
     _openAll: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var frames = element.children(".frame");
 
         $.each(frames, function(){

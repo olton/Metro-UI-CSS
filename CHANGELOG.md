@@ -1,31 +1,11 @@
 ### 4.3.0
-+ [x] jQuery: remove dependency
++ [x] jQuery: Goodbye!!!
 + [x] M4Q: now built in for DOM manipulation and animation
-+ [x] Utils: fix method `github` for using with `m4q` 
-+ [x] Html container: fix for using with `m4q` 
-+ [x] Select: fix for using with `m4q`
-+ [x] File: fix for using with `m4q`
 + [x] Keypad: rename property `data-length` to `data-key-length`
 + [x] Slider: fix show/hide hint 
 + [x] Typo: fix `margin-top` for lists inside a lists, ex: `ul > ul` 
 + [x] Animation: fix `fadeIn`, `fadeOut`
-+ [x] Image compare: fix for using with `m4q`
-+ [x] List: fix for using with `m4q`
-+ [x] ListView: fix for using with `m4q`
-+ [x] Master: fix for using with `m4q`
-+ [x] NavView: rename attribute `data-expanded` to `data-expand`, fix for using with `m4q`
-+ [x] Streamer: fix for using with `m4q`
-+ [x] Splitter: fix for using with `m4q`
-+ [x] Tabs material: fix for using with `m4q`
-+ [x] Table: fix for using with `m4q`
-+ [x] TreeView: fix for using with `m4q`
-+ [x] Wizard: fix for using with `m4q`
-+ [x] Hint: fix for using with `m4q`
-+ [x] Notify: fix for using with `m4q`
-+ [x] Calendar picker: fix for using with `m4q`
-+ [x] Date nad time picker: fix for using with `m4q`
-+ [x] Countdown: fix for using with `m4q`
-+ [x] Validator: fix for using with `m4q`
++ [x] NavView: rename attribute `data-expanded` to `data-expand`
 + [x] Examples: upd `start screen`
 + [x] Calendar picker: fix using locale for initial value, issue #1376
 

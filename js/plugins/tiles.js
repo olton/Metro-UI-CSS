@@ -37,7 +37,7 @@ var Tile = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -51,7 +51,7 @@ var Tile = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createTile();
         this._createEvents();
@@ -61,13 +61,13 @@ var Tile = {
     },
 
     _createTile: function(){
-        function switchImage(el, img_src){
-            setTimeout(function(){
+        function switchImage(el, img_src, i){
+            $.setTimeout(function(){
                 el.fadeOut(500, function(){
                     el.css("background-image", "url(" + img_src + ")");
                     el.fadeIn();
                 });
-            }, Utils.random(0,1000));
+            }, Utils.random(300,1000));
         }
 
         var that = this, element = this.element, o = this.options;
@@ -115,10 +115,11 @@ var Tile = {
 
         if (o.effect === "image-set") {
             element.addClass("image-set");
+
             $.each(element.children("img"), function(){
                 var img = $(this);
                 var src = this.src;
-                var div = $("<div>").addClass("img");
+                var div;
 
                 if (img.hasClass("icon")) {
                     return ;
@@ -126,19 +127,27 @@ var Tile = {
 
                 that.images.push(this);
 
+                div = $("<div>").addClass("img");
                 div.css("background-image", "url("+src+")");
                 element.prepend(div);
                 img.remove();
             });
 
-            setInterval(function(){
+            // var imageIndex = Utils.random(0, this.images.length - 1);
+            // element.css("background-image", "url("+this.images[imageIndex]['src']+")");
+
+            $.setInterval(function(){
                 var temp = that.images.slice();
+
                 for(var i = 0; i < element.find(".img").length; i++) {
                     var rnd_index = Utils.random(0, temp.length - 1);
                     var div = $(element.find(".img").get(i));
                     switchImage(div, temp[rnd_index].src);
                     temp.splice(rnd_index, 1);
                 }
+
+                // var imageIndex = Utils.random(0, that.images.length - 1);
+                // element.css("background-image", "url("+that.images[imageIndex]['src']+")");
             }, 3000);
         }
     },
@@ -146,7 +155,7 @@ var Tile = {
     _runEffects: function(){
         var that = this, o = this.options;
 
-        if (this.effectInterval === false) this.effectInterval = setInterval(function(){
+        if (this.effectInterval === false) this.effectInterval = $.setInterval(function(){
             var current, next;
 
             current = $(that.slides[that.currentSlide]);
@@ -168,7 +177,7 @@ var Tile = {
     },
 
     _stopEffects: function(){
-        clearInterval(this.effectInterval);
+        $.clearInterval(this.effectInterval);
         this.effectInterval = false;
     },
 
@@ -221,7 +230,7 @@ var Tile = {
             }
         });
 
-        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(e){
+        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(){
             $(this)
                 .removeClass("transform-left")
                 .removeClass("transform-right")
@@ -230,10 +239,10 @@ var Tile = {
         });
 
         $(window).on(Metro.events.blur, function(){
-            that._stopEffects();
+            // that._stopEffects();
         });
         $(window).on(Metro.events.focus, function(){
-            that._runEffects();
+            // that._runEffects();
         });
     },
 

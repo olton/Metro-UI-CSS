@@ -1,6 +1,5 @@
 var DropdownDefaultConfig = {
     dropFilter: null,
-    effect: 'slide',
     toggleElement: null,
     noClose: false,
     duration: 100,
@@ -13,8 +12,8 @@ Metro.dropdownSetup = function (options) {
     DropdownDefaultConfig = $.extend({}, DropdownDefaultConfig, options);
 };
 
-if (typeof window.metroDropdownSetup !== undefined) {
-    Metro.dropdownSetup(window.metroDropdownSetup);
+if (typeof window["metroDropdownSetup"] !== undefined) {
+    Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
 var Dropdown = {
@@ -32,7 +31,7 @@ var Dropdown = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -61,7 +60,7 @@ var Dropdown = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var toggle;
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
@@ -140,7 +139,7 @@ var Dropdown = {
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
-        var func = options.effect === "slide" ? "slideUp" : "fadeOut";
+        var func = "slideUp";
 
         toggle.removeClass('active-toggle').removeClass("active-control");
         dropdown.element.parent().removeClass("active-container");
@@ -163,7 +162,7 @@ var Dropdown = {
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
-        var func = options.effect === "slide" ? "slideDown" : "fadeIn";
+        var func = "slideDown";
 
         toggle.addClass('active-toggle').addClass("active-control");
 
@@ -172,7 +171,7 @@ var Dropdown = {
         }
 
         el[func](immediate ? 0 : options.duration, function(){
-            el.trigger("onOpen", null, el);
+            el.fire("onopen");
         });
 
         Utils.exec(options.onDrop, null, el[0]);
@@ -196,7 +195,7 @@ var Dropdown = {
     }
 };
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 

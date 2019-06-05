@@ -191,10 +191,8 @@
                     <li><code>$(...).addClass()</code></li>
                     <li><code>$(...).removeClass()</code></li>
                     <li><code>$(...).toggleClass()</code></li>
-                    <li><code>$(...).containsClass()</code></li>
                     <li><code>$(...).hasClass()</code></li>
                     <li><code>$(...).clearClasses()</code></li>
-                    <li><code>$(...).id()</code></li>
                 </ul>
 
                 <h5>Position and size</h5>
@@ -234,11 +232,6 @@
                     <li><code>$(...).removeData(key)</code></li>
                 </ul>
 
-                <h5>Proximity</h5>
-                <ul>
-                    <li><code>$.proxy( fn, context )</code></li>
-                </ul>
-
                 <h5>Events</h5>
                 <ul>
                     <li><code>$(...).on( )</code></li>
@@ -269,15 +262,19 @@
                     <li><code>$(...).contextmenu( )</code></li>
                 </ul>
 
-                <h5>Promising</h5>
+                <h5>Promise</h5>
                 <ul>
                     <li><code>new Promise( resolve, reject )</code></li>
                 </ul>
 
                 <h5>Async</h5>
                 <ul>
-                    <li><code>setImmediate( func, [, arg1, ...] )</code></li>
-                    <li><code>clearImmediate( handler )</code></li>
+                    <li><code>setImmediate( func [, arg1, ...] )</code></li>
+                    <li><code>clearImmediate( id )</code></li>
+                    <li><code>$.setTimeout( fn, interval )</code></li>
+                    <li><code>$.clearTimeout( id )</code></li>
+                    <li><code>$.setInterval( fn, interval )</code></li>
+                    <li><code>$.clearInterval( id )</code></li>
                 </ul>
 
                 <h5>Utils</h5>
@@ -291,6 +288,10 @@
                     <li><code>$.isArrayLike( ... )</code></li>
                     <li><code>$.not( ... )</code></li>
                     <li><code>$.parseUnit( ... )</code></li>
+                    <li><code>$.proxy( fn, context )</code></li>
+                    <li><code>$.sleep( ms )</code></li>
+                    <li><code>$.fn.items( )</code></li>
+                    <li><code>$.fn.close( )</code></li>
                 </ul>
             </main>
         </div>

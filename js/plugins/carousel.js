@@ -50,8 +50,8 @@ Metro.carouselSetup = function (options) {
     CarouselDefaultConfig = $.extend({}, CarouselDefaultConfig, options);
 };
 
-if (typeof window.metroCarouselSetup !== undefined) {
-    Metro.carouselSetup(window.metroCarouselSetup);
+if (typeof window["metroCarouselSetup"] !== undefined) {
+    Metro.carouselSetup(window["metroCarouselSetup"]);
 }
 
 var Carousel = {

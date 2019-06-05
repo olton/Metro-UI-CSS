@@ -1,5 +1,4 @@
 var TreeViewDefaultConfig = {
-    effect: "slide",
     duration: 100,
     onNodeClick: Metro.noop,
     onNodeDblClick: Metro.noop,
@@ -34,7 +33,7 @@ var TreeView = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -65,7 +64,7 @@ var TreeView = {
     _createIcon: function(data){
         var icon, src;
 
-        src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
+        src = Utils.isTag(data) ? $(data) : $("<img src='' alt=''>").attr("src", data);
         icon = $("<span>").addClass("icon");
         icon.html(src.outerHTML());
 
@@ -103,7 +102,7 @@ var TreeView = {
     },
 
     _createTree: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var nodes = element.find("li");
 
         element.addClass("treeview");
@@ -176,7 +175,7 @@ var TreeView = {
             e.preventDefault();
         });
 
-        element.on(Metro.events.click, "input[type=radio]", function(e){
+        element.on(Metro.events.click, "input[type=radio]", function(){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -191,7 +190,7 @@ var TreeView = {
             });
         });
 
-        element.on(Metro.events.click, "input[type=checkbox]", function(e){
+        element.on(Metro.events.click, "input[type=checkbox]", function(){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -255,7 +254,7 @@ var TreeView = {
     },
 
     current: function(node){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         if (node === undefined) {
             return element.find("li.current")
@@ -274,11 +273,8 @@ var TreeView = {
         node.toggleClass("expanded");
         node.data("collapsed", toBeExpanded);
 
-        if (o.effect === "slide") {
-            func = toBeExpanded === true ? "slideUp" : "slideDown";
-        } else {
-            func = toBeExpanded === true ? "fadeOut" : "fadeIn";
-        }
+        func = toBeExpanded === true ? "slideUp" : "slideDown";
+
         if (!toBeExpanded) {
             Utils.exec(o.onExpandNode, [node[0]], element[0]);
             element.fire("expandnode", {
@@ -295,7 +291,7 @@ var TreeView = {
     },
 
     addTo: function(node, data){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target;
         var new_node;
         var toggle;
@@ -395,9 +391,7 @@ var TreeView = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            default: ;
-        }
+
     }
 };
 

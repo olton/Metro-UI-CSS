@@ -100,7 +100,6 @@ function parseUnit(str, out) {
     var nextHandle = 1;
     var tasksByHandle = {};
     var currentlyRunningATask = false;
-    var doc = global.document;
     var registerImmediate;
 
     function setImmediate(callback) {
@@ -159,25 +158,6 @@ function parseUnit(str, out) {
         }
     }
 
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
     function installPostMessageImplementation() {
         var messagePrefix = "setImmediate$" + Math.random() + "$";
         var onGlobalMessage = function(event) {
@@ -195,61 +175,10 @@ function parseUnit(str, out) {
         };
     }
 
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
     var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
     attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
 
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
+    installPostMessageImplementation();
 
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
@@ -557,7 +486,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 03/06/2019 15:01:38";
+var m4qVersion = "v1.0.0. Built at 05/06/2019 21:40:35";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -638,6 +567,74 @@ $.extend = $.fn.extend = function(){
     return target;
 };
 
+
+var now = function(){
+    return Date.now();
+};
+
+$.extend({
+
+    intervalId: -1,
+    intervalQueue: [],
+    intervalTicking: false,
+    intervalTickId: null,
+
+    setInterval: function(fn, int){
+        var that = this;
+
+        this.intervalId++;
+
+        this.intervalQueue.push({
+            id: this.intervalId,
+            fn: fn,
+            interval: int,
+            lastTime: now()
+        });
+
+        if (!this.intervalTicking) {
+            var tick = function(){
+                that.intervalTickId = requestAnimationFrame(tick);
+                $.each(that.intervalQueue, function(){
+                    var item = this;
+                    if (item.interval < 17 || now() - item.lastTime >= item.interval) {
+                        item.fn();
+                        item.lastTime = now();
+                    }
+                });
+            };
+            this.intervalTicking = true;
+            tick();
+        }
+
+        return this.intervalId;
+    },
+
+    clearInterval: function(id){
+        for(var i = 0; i < this.intervalQueue.length; i++){
+            if (id === this.intervalQueue[i].id) {
+                this.intervalQueue.splice(i, 1);
+                break;
+            }
+        }
+        if (this.intervalQueue.length === 0) {
+            cancelAnimationFrame(this.intervalTickId);
+            this.intervalTicking = false;
+        }
+    },
+
+    setTimeout: function(fn, interval){
+        var that = this, id = this.setInterval(function(){
+            that.clearInterval(id);
+            fn();
+        }, interval);
+
+        return id;
+    },
+
+    clearTimeout: function(id){
+        return this.clearInterval(id);
+    }
+});
 
 $.fn.extend({
     index: function(sel){
@@ -1746,16 +1743,41 @@ $.fn.extend({
 var numProps = ['opacity', 'zIndex'];
 
 $.fn.extend({
-    style: function(name){
+    style: function(name, pseudo){
         if (this.length === 0) {
             return this;
         }
         var el = this[0];
-        if (arguments.length === 0 || name === undefined) {
-            return el.style ? el.style : getComputedStyle(el, null);
+        if (not(name)) {
+            return getComputedStyle(el, pseudo);
         } else {
-            return ["scrollLeft", "scrollTop"].indexOf(name) > -1 ? $(el)[name]() : el.style[name] ? el.style[name] : getComputedStyle(el, null)[name];
+            var result = {}, names = name.split(", ").map(function(el){
+                return (""+el).trim();
+            });
+            if (names.length === 1)  {
+                return ["scrollLeft", "scrollTop"].indexOf(names[0]) > -1 ? $(el)[names[0]]() : getComputedStyle(el, pseudo)[names[0]];
+            } else {
+                $.each(names, function () {
+                    result[this] = ["scrollLeft", "scrollTop"].indexOf(this) > -1 ? $(el)[this]() : getComputedStyle(el, pseudo)[this];
+                });
+                return result;
+            }
         }
+    },
+
+    removeStyleProperty: function(name){
+        var that = this;
+        if (not(name) || this.length === 0) return ;
+        var names = name.split(", ").map(function(el){
+            return (""+el).trim();
+        });
+        $.each(names, function(){
+            var prop = this;
+            that.each(function(){
+                var el = this;
+                el.style.removeProperty(prop);
+            })
+        });
     },
 
     css: function(o, v){
@@ -1763,10 +1785,8 @@ $.fn.extend({
             return this;
         }
 
-        var el = this[0];
-
-        if (typeof o === "string" && v === undefined) {
-            return  el.style[o] ? el.style[o] : getComputedStyle(el, null)[o];
+        if (not(o) || (typeof o === "string" && not(v))) {
+            return  this.style(o);
         }
 
         return this.each(function(){
@@ -1920,11 +1940,11 @@ $.fn.extend({
     },
 
     height: function(val){
-        return this._size.call(this, 'height', val);
+        return this._size('height', val);
     },
 
     width: function(val){
-        return this._size.call(this, 'width', val);
+        return this._size('width', val);
     },
 
     _sizeOut: function(prop, val){
@@ -1934,16 +1954,16 @@ $.fn.extend({
             return ;
         }
 
-        if (val !== undefined && typeof val !== "boolean") {
+        if (!not(val) && typeof val !== "boolean") {
             return this.each(function(){
                 var el = this;
                 if (el === window || el === document) {return ;}
-                var style = getComputedStyle(el, null),
+                var h, style = getComputedStyle(el),
                     bs = prop === 'width' ? parseInt(style['border-left-width']) + parseInt(style['border-right-width']) : parseInt(style['border-top-width']) + parseInt(style['border-bottom-width']),
                     pa = prop === 'width' ? parseInt(style['padding-left']) + parseInt(style['padding-right']) : parseInt(style['padding-top']) + parseInt(style['padding-bottom']);
 
-                val = parseInt(val);
-                el.style[prop] = val + bs + pa + 'px';
+                h = $(this)[prop](val)[prop]() - bs - pa;
+                el.style[prop] = h + 'px';
             });
         }
 
@@ -1955,11 +1975,11 @@ $.fn.extend({
     },
 
     outerWidth: function(val){
-        return this._sizeOut.call(this, 'width', val);
+        return this._sizeOut('width', val);
     },
 
     outerHeight: function(val){
-        return this._sizeOut.call(this, 'height', val);
+        return this._sizeOut('height', val);
     },
 
     padding: function(){
@@ -2657,7 +2677,7 @@ $.extend({
                         from = parseUnit(draw[key][0]);
                         to = parseUnit(draw[key][1]);
                     }
-                    unit = to[1] === '' ? 'px' : to[1];
+                    unit = to[1] === '' && numProps.indexOf(key)===-1 ? 'px' : to[1];
                     delta = to[0] - from[0];
                     mapProps[key] = [from[0], to[0], delta, unit];
                 }
@@ -2677,8 +2697,9 @@ $.extend({
                         (function(t, p){
 
                             for (key in mapProps) {
-                                if (mapProps.hasOwnProperty(key))
+                                if (mapProps.hasOwnProperty(key)) {
                                     $el.css(key, mapProps[key][0] + (mapProps[key][2] * p) + mapProps[key][3]);
+                                }
                             }
 
                         })(1, 1);
@@ -2686,10 +2707,11 @@ $.extend({
                 }
 
                 cancelAnimationFrame($(el).origin("animation"));
+
                 if (typeof cb === "function") {
-                    $.proxy(cb, $el[0]);
-                    cb.call($el[0], arguments);
+                    $.proxy(cb, $el[0])();
                 }
+
                 return;
             }
 
@@ -2711,8 +2733,9 @@ $.extend({
                 (function(t, p){
 
                     for (key in mapProps) {
-                        if (mapProps.hasOwnProperty(key))
+                        if (mapProps.hasOwnProperty(key)) {
                             $el.css(key, mapProps[key][0] + (mapProps[key][2] * p) + mapProps[key][3]);
+                        }
                     }
 
                 })(t, p);
@@ -2722,8 +2745,7 @@ $.extend({
             }
 
             if (t === 1 && typeof cb === "function") {
-                $.proxy(cb, $el[0]);
-                cb.call($el[0], arguments);
+                $.proxy(cb, $el[0])();
             }
             if (t < 1) {
                 $el.origin("animation", requestAnimationFrame(animate));
@@ -2754,12 +2776,6 @@ $.fn.extend({
 
 
 $.extend({
-
-    fx: {
-        off: false,
-        hideOnFadeOut: true
-    },
-
     hide: function(el, cb){
         var $el = $(el);
         if (!!el.style.display) {
@@ -2806,154 +2822,6 @@ $.extend({
             func = 'show';
         }
         return $[func](el, cb);
-    },
-
-    fadeIn: function(el, dur, easing, cb){
-        var $el = $(el), opacity;
-
-        if ($el.origin("fadeout") === false || $el.origin("fadeout") === undefined) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 1000;
-        } else
-
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 1000;
-        }
-
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        var originDisplay = $(el).origin("display", undefined, 'block');
-        var originOpacity = $(el).origin("opacity", undefined, 1);
-
-        el.style.opacity = 0;
-        el.style.display = originDisplay;
-
-        return this.animate(el, function(t, p){
-            el.style.opacity = originOpacity * p;
-            if (t === 1) {
-                el.style.display = originDisplay;
-                $el.origin("fadeout", false);
-            }
-        }, dur, easing, cb);
-    },
-
-    fadeOut: function(el, dur, easing, cb){
-        var $el = $(el), opacity;
-
-        if ($el.origin("fadeout") === true) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 1000;
-        } else
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 1000;
-        }
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        opacity = $(el).style('opacity');
-
-        $el.origin("display", $(el).style('display'));
-        $el.origin("opacity", opacity);
-
-        return this.animate(el, function(t, p){
-            el.style.opacity = (1 - p) * opacity;
-            if (t === 1) {
-                if ($.fx.hideOnFadeOut) el.style.display = 'none';
-                $el.origin("fadeout", true);
-            }
-        }, dur, easing, cb);
-    },
-
-    slideDown: function(el, dur, easing, cb) {
-        var $el = $(el);
-        var targetHeight, originDisplay;
-
-        if ($el.origin("slidedown") === true) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 100;
-        } else
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 100;
-        }
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        $el.show().visible(false);
-        targetHeight = $el.origin("height", undefined, $el.height());
-        originDisplay = $el.origin("display", $(el).style('display'), "block");
-        $el.height(0).visible(true);
-
-        $el.css({
-            overflow: "hidden",
-            display: originDisplay === "none" ? "block" : originDisplay
-        });
-
-        return this.animate(el, function(t, p){
-            el.style.height = (targetHeight * p) + "px";
-            if (t === 1) {
-                $el.css({
-                    overflow: "",
-                    height: "",
-                    visibility: ""
-                });
-                $el.origin("slidedown", true);
-            }
-        }, dur, easing, cb);
-    },
-
-    slideUp: function(el, dur, easing, cb) {
-        var $el = $(el);
-        var currHeight;
-
-        if ($el.origin("slidedown") === false || $el.origin("slidedown") === undefined) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 100;
-        } else
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 100;
-        }
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        currHeight = $el.height();
-        $el.origin("height", currHeight);
-        $el.origin("display", $(el).style('display'));
-
-        $el.css({
-            overflow: "hidden"
-        });
-
-        return this.animate(el, function(t, p){
-            el.style.height = (1 - p) * currHeight + 'px';
-            if (t === 1) {
-                $el.hide().css({
-                    overflow: "",
-                    height: ""
-                });
-                $el.origin("slidedown", false);
-            }
-        }, dur, easing, cb);
     }
 });
 
@@ -2999,8 +2867,158 @@ $.fn.extend({
         return this.each(function(){
             $.toggle(this, cb);
         })
+    }
+});
+
+
+
+$.extend({
+    fx: {
+        off: false
     },
 
+    fadeIn: function(el, dur, easing, cb){
+        var $el = $(el), s = $el.style();
+
+        if ( s["display"] !== 'none' ) return ;
+
+        if (not(dur) && not(easing) && not(cb)) {
+            cb = null;
+            dur = 1000;
+        } else
+
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = 1000;
+        }
+
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = "linear";
+        }
+
+        var originDisplay = $(el).origin("display", undefined, 'block');
+
+        el.style.opacity = "0";
+        el.style.display = originDisplay;
+
+        return this.animate(el, {
+            opacity: 1
+        }, dur, easing, function(){
+            this.style.removeProperty('opacity');
+
+            if (typeof cb === 'function') {
+                $.proxy(cb, this)();
+            }
+        });
+    },
+
+    fadeOut: function(el, dur, easing, cb){
+        var $el = $(el), s = $el.style();
+
+        if ( s["display"] === 'none' ||  parseInt(s["opacity"]) === 0) return ;
+
+        if (not(dur) && not(easing) && not(cb)) {
+            cb = null;
+            dur = 1000;
+        } else
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = 1000;
+        }
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = "linear";
+        }
+
+        $el.origin("display", $(el).style('display'));
+
+        return this.animate(el, {
+            opacity: 0
+        }, dur, easing, function(){
+            this.style.display = 'none';
+            this.style.removeProperty('opacity');
+
+            if (typeof cb === 'function') {
+                $.proxy(cb, this)();
+            }
+        });
+    },
+
+    slideDown: function(el, dur, easing, cb) {
+        var $el = $(el);
+        var targetHeight, originDisplay;
+
+        if (!isNaN($el.height()) && $el.height() !== 0) return ;
+
+        if (not(dur) && not(easing) && not(cb)) {
+            cb = null;
+            dur = 100;
+        } else
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = 100;
+        }
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = "linear";
+        }
+
+        $el.show().visible(false);
+        targetHeight = $el.origin("height", undefined, $el.height());
+        originDisplay = $el.origin("display", $(el).style('display'), "block");
+        $el.height(0).visible(true);
+
+        $el.css({
+            overflow: "hidden",
+            display: originDisplay === "none" ? "block" : originDisplay
+        });
+
+        return this.animate(el, function(t, p){
+            el.style.height = (targetHeight * p) + "px";
+            if (t === 1) {
+                $(el).removeStyleProperty("overflow, height, visibility");
+            }
+        }, dur, easing, cb);
+    },
+
+    slideUp: function(el, dur, easing, cb) {
+        var $el = $(el);
+        var currHeight;
+
+        if ($el.height() === 0) return ;
+
+        if (not(dur) && not(easing) && not(cb)) {
+            cb = null;
+            dur = 100;
+        } else
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = 100;
+        }
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = "linear";
+        }
+
+        currHeight = $el.height();
+        $el.origin("height", currHeight);
+        $el.origin("display", $(el).style('display'));
+
+        $el.css({
+            overflow: "hidden"
+        });
+
+        return this.animate(el, function(t, p){
+            el.style.height = (1 - p) * currHeight + 'px';
+            if (t === 1) {
+                $el.hide().removeStyleProperty("overflow, height");
+            }
+        }, dur, easing, cb);
+    }
+});
+
+$.fn.extend({
     fadeIn: function(dur, easing, cb){
         return this.each(function(){
             $.fadeIn(this, dur, easing, cb);
@@ -3025,8 +3043,6 @@ $.fn.extend({
         })
     }
 });
-
-
 
 $.init = function(sel, ctx){
     var parsed;
@@ -3252,7 +3268,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "03/06/2019 16:12:52",
+    compileTime: "05/06/2019 22:01:57",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3733,7 +3749,7 @@ $(window).on(Metro.events.resize, function(){
 var Animation = {
 
     duration: METRO_ANIMATION_DURATION,
-    func: "swing",
+    func: "linear",
 
     switch: function(current, next){
         current.hide();
@@ -3816,11 +3832,18 @@ var Animation = {
 
     fade: function(current, next, duration){
         if (duration === undefined) {duration = this.duration;}
-        current.fadeOut(duration);
+
+        current.animate({
+            opacity: 0
+        }, duration);
+
         next.css({
             top: 0,
-            left: 0
-        }).fadeIn(duration);
+            left: 0,
+            opacity: 0
+        }).animate({
+            opacity: 1
+        }, duration);
     }
 
 };
@@ -7075,8 +7098,8 @@ Metro.accordionSetup = function(options){
     AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
 };
 
-if (typeof window.metroAccordionSetup !== undefined) {
-    Metro.accordionSetup(window.metroAccordionSetup);
+if (typeof window["metroAccordionSetup"] !== undefined) {
+    Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
 var Accordion = {
@@ -7092,7 +7115,7 @@ var Accordion = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -7182,7 +7205,7 @@ var Accordion = {
         }
 
         if (o.oneFrame === true) {
-            this._closeAll();
+            this._closeAll(frame[0]);
         }
 
         frame.addClass("active " + o.activeFrameClass);
@@ -7197,7 +7220,7 @@ var Accordion = {
     },
 
     _closeFrame: function(f){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var frame = $(f);
 
         if (!frame.hasClass("active")) {
@@ -7219,26 +7242,27 @@ var Accordion = {
         });
     },
 
-    _closeAll: function(){
-        var that = this, element = this.element, o = this.options;
+    _closeAll: function(skip){
+        var that = this, element = this.element;
         var frames = element.children(".frame");
 
         $.each(frames, function(){
+            if (skip === this) return;
             that._closeFrame(this);
         });
     },
 
     _hideAll: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var frames = element.children(".frame");
 
         $.each(frames, function(){
-            $(this).children(".content").hide(0);
+            $(this).children(".content").hide();
         });
     },
 
     _openAll: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var frames = element.children(".frame");
 
         $.each(frames, function(){
@@ -7270,8 +7294,8 @@ Metro.activitySetup = function(options){
     ActivityDefaultConfig = $.extend({}, ActivityDefaultConfig, options);
 };
 
-if (typeof window.metroActivitySetup !== undefined) {
-    Metro.activitySetup(window.metroActivitySetup);
+if (typeof window["metroActivitySetup"] !== undefined) {
+    Metro.activitySetup(window["metroActivitySetup"]);
 }
 
 var Activity = {
@@ -9822,8 +9846,8 @@ Metro.carouselSetup = function (options) {
     CarouselDefaultConfig = $.extend({}, CarouselDefaultConfig, options);
 };
 
-if (typeof window.metroCarouselSetup !== undefined) {
-    Metro.carouselSetup(window.metroCarouselSetup);
+if (typeof window["metroCarouselSetup"] !== undefined) {
+    Metro.carouselSetup(window["metroCarouselSetup"]);
 }
 
 var Carousel = {
@@ -11555,21 +11579,22 @@ var Countdown = {
         var slideDigit = function(digit){
             var digit_copy, height = digit.height();
 
+            digit.siblings(".-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: -1 * height + 'px'
             });
 
-            digit.addClass("-old-digit").animate(function(p){
+            digit.addClass("-old-digit").animate(function(t, p){
                 $(this).css({
                     top: (height * p) + 'px',
                     opacity: 1 - p
                 });
             }, duration, o.animationFunc, function(){
-                digit.remove();
+                $(this).remove();
             });
 
-            digit_copy.html(digit_value).animate(function(p){
+            digit_copy.html(digit_value).animate(function(t, p){
                 $(this).css({
                     top: (-height + (height * p)) + 'px',
                     opacity: p
@@ -11579,38 +11604,48 @@ var Countdown = {
 
         var fadeDigit = function(digit){
             var digit_copy;
+            digit.siblings(".-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0
             });
 
-            digit.addClass("-old-digit").fadeOut(duration / 2, "linear", function(){
-                digit.remove();
+            digit.addClass("-old-digit").animate(function(t, p){
+                $(this).css({
+                    opacity: 1 - p
+                });
+            }, duration / 2, o.animationFunc, function(){
+                $(this).remove();
             });
 
-            digit_copy.html(digit_value).fadeIn(duration, "linear");
+            digit_copy.html(digit_value).animate(function(t, p){
+                $(this).css({
+                    opacity: p
+                })
+            }, duration, o.animationFunc);
         };
 
         var zoomDigit = function(digit){
-            var digit_copy, height = digit.height(), fs = parseInt(Utils.getStyleOne(digit, "font-size"));
+            var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
+            digit.siblings(".-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: 0,
                 left: 0
             });
 
-            digit.addClass("-old-digit").animate(function(p){
+            digit.addClass("-old-digit").animate(function(t, p){
                 $(this).css({
                     top: (height * p) + 'px',
                     opacity: 1 - p,
                     fontSize: fs * (1 - p) + 'px'
                 });
             }, duration, o.animationFunc, function(){
-                digit.remove();
+                $(this).remove();
             });
 
-            digit_copy.html(digit_value).animate(function(p){
+            digit_copy.html(digit_value).animate(function(t, p){
                 $(this).css({
                     top: (-height + (height * p)) + 'px',
                     opacity: p,
@@ -11627,20 +11662,19 @@ var Countdown = {
 
         len = value.length;
 
-        digits = element.find("."+part+" .digit");
-        digits_length = digits.length - 1;
+        digits = element.find("."+part+" .digit:not(-old-digit)");
+        digits_length = digits.length;
 
         for(i = 0; i < len; i++){
-            // digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
-            digit = $(digits[digits_length]).find(".digit-value");
+            digit = digits.eq(digits_length - 1).find(".digit-value");
             digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
+            if (digit_current === digit_value) {
                 continue;
             }
 
-            switch (String(o.animate).toLowerCase()) {
+            switch ((""+o.animate).toLowerCase()) {
                 case "slide": slideDigit(digit); break;
                 case "fade": fadeDigit(digit); break;
                 case "zoom": zoomDigit(digit); break;
@@ -11657,7 +11691,6 @@ var Countdown = {
         if (element.data("paused") === false) {
             return;
         }
-
 
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
@@ -12013,7 +12046,7 @@ var Cube = {
     ],
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -12027,7 +12060,7 @@ var Cube = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (o.rules === null) {
             this.rules = this.default_rules;
@@ -12063,7 +12096,7 @@ var Cube = {
     },
 
     _createCube: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var sides = ['left', 'right', 'top'];
         var id = Utils.elementId("cube");
         var cells_count = Math.pow(o.cells, 2);
@@ -12151,7 +12184,7 @@ var Cube = {
     },
 
     _createCssForCellSize: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var sheet = Metro.sheet;
         var width;
         var cell_size;
@@ -12166,7 +12199,7 @@ var Cube = {
     },
 
     _createCssForFlashColor: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var sheet = Metro.sheet;
         var rule1;
         var rule2;
@@ -12214,8 +12247,7 @@ var Cube = {
     },
 
     _start: function(){
-        var that = this, element = this.element, o = this.options;
-        var sides = ['left', 'right', 'top'];
+        var that = this, element = this.element;
 
         element.find(".cube-cell").removeClass("light");
 
@@ -12294,7 +12326,7 @@ var Cube = {
     },
 
     _execRule: function(index, rule, speed){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var sides = ['left', 'right', 'top'];
 
         this._tick(index, speed);
@@ -12341,7 +12373,7 @@ var Cube = {
     },
 
     changeRules: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var rules = element.attr("data-rules");
         if (this._parseRules(rules) !== true) {
             return ;
@@ -12353,14 +12385,14 @@ var Cube = {
     },
 
     changeAxisVisibility: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var visibility = JSON.parse(element.attr("data-show-axis")) === true;
         var func = visibility ? "show" : "hide";
         element.find(".axis")[func]();
     },
 
     changeAxisStyle: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var style = element.attr("data-axis-style");
 
         element.find(".axis").removeClass("arrow line no-style").addClass(style);
@@ -12375,7 +12407,7 @@ var Cube = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         clearInterval(this.interval);
         this.interval = null;
@@ -13588,7 +13620,6 @@ Metro.plugin('draggable', Draggable);
 
 var DropdownDefaultConfig = {
     dropFilter: null,
-    effect: 'slide',
     toggleElement: null,
     noClose: false,
     duration: 100,
@@ -13601,8 +13632,8 @@ Metro.dropdownSetup = function (options) {
     DropdownDefaultConfig = $.extend({}, DropdownDefaultConfig, options);
 };
 
-if (typeof window.metroDropdownSetup !== undefined) {
-    Metro.dropdownSetup(window.metroDropdownSetup);
+if (typeof window["metroDropdownSetup"] !== undefined) {
+    Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
 var Dropdown = {
@@ -13620,7 +13651,7 @@ var Dropdown = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -13649,7 +13680,7 @@ var Dropdown = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var toggle;
         toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
@@ -13728,7 +13759,7 @@ var Dropdown = {
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
-        var func = options.effect === "slide" ? "slideUp" : "fadeOut";
+        var func = "slideUp";
 
         toggle.removeClass('active-toggle').removeClass("active-control");
         dropdown.element.parent().removeClass("active-container");
@@ -13751,7 +13782,7 @@ var Dropdown = {
         var dropdown  = el.data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
-        var func = options.effect === "slide" ? "slideDown" : "fadeIn";
+        var func = "slideDown";
 
         toggle.addClass('active-toggle').addClass("active-control");
 
@@ -13760,7 +13791,7 @@ var Dropdown = {
         }
 
         el[func](immediate ? 0 : options.duration, function(){
-            el.trigger("onOpen", null, el);
+            el.fire("onopen");
         });
 
         Utils.exec(options.onDrop, null, el[0]);
@@ -13784,7 +13815,7 @@ var Dropdown = {
     }
 };
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){
         var el = $(this);
 
@@ -26008,7 +26039,7 @@ var Tile = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -26022,7 +26053,7 @@ var Tile = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createTile();
         this._createEvents();
@@ -26032,13 +26063,13 @@ var Tile = {
     },
 
     _createTile: function(){
-        function switchImage(el, img_src){
-            setTimeout(function(){
+        function switchImage(el, img_src, i){
+            $.setTimeout(function(){
                 el.fadeOut(500, function(){
                     el.css("background-image", "url(" + img_src + ")");
                     el.fadeIn();
                 });
-            }, Utils.random(0,1000));
+            }, Utils.random(300,1000));
         }
 
         var that = this, element = this.element, o = this.options;
@@ -26086,10 +26117,11 @@ var Tile = {
 
         if (o.effect === "image-set") {
             element.addClass("image-set");
+
             $.each(element.children("img"), function(){
                 var img = $(this);
                 var src = this.src;
-                var div = $("<div>").addClass("img");
+                var div;
 
                 if (img.hasClass("icon")) {
                     return ;
@@ -26097,19 +26129,27 @@ var Tile = {
 
                 that.images.push(this);
 
+                div = $("<div>").addClass("img");
                 div.css("background-image", "url("+src+")");
                 element.prepend(div);
                 img.remove();
             });
 
-            setInterval(function(){
+            // var imageIndex = Utils.random(0, this.images.length - 1);
+            // element.css("background-image", "url("+this.images[imageIndex]['src']+")");
+
+            $.setInterval(function(){
                 var temp = that.images.slice();
+
                 for(var i = 0; i < element.find(".img").length; i++) {
                     var rnd_index = Utils.random(0, temp.length - 1);
                     var div = $(element.find(".img").get(i));
                     switchImage(div, temp[rnd_index].src);
                     temp.splice(rnd_index, 1);
                 }
+
+                // var imageIndex = Utils.random(0, that.images.length - 1);
+                // element.css("background-image", "url("+that.images[imageIndex]['src']+")");
             }, 3000);
         }
     },
@@ -26117,7 +26157,7 @@ var Tile = {
     _runEffects: function(){
         var that = this, o = this.options;
 
-        if (this.effectInterval === false) this.effectInterval = setInterval(function(){
+        if (this.effectInterval === false) this.effectInterval = $.setInterval(function(){
             var current, next;
 
             current = $(that.slides[that.currentSlide]);
@@ -26139,7 +26179,7 @@ var Tile = {
     },
 
     _stopEffects: function(){
-        clearInterval(this.effectInterval);
+        $.clearInterval(this.effectInterval);
         this.effectInterval = false;
     },
 
@@ -26192,7 +26232,7 @@ var Tile = {
             }
         });
 
-        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(e){
+        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(){
             $(this)
                 .removeClass("transform-left")
                 .removeClass("transform-right")
@@ -26201,10 +26241,10 @@ var Tile = {
         });
 
         $(window).on(Metro.events.blur, function(){
-            that._stopEffects();
+            // that._stopEffects();
         });
         $(window).on(Metro.events.focus, function(){
-            that._runEffects();
+            // that._runEffects();
         });
     },
 
@@ -26752,7 +26792,10 @@ var Toast = {
         toast.css({
             'left': '50%',
             'margin-left': -(width / 2)
-        }).addClass(o.clsToast).addClass(cls).fadeIn(METRO_ANIMATION_DURATION);
+        });
+        toast.addClass(o.clsToast);
+        toast.addClass(cls);
+        toast.fadeIn(METRO_ANIMATION_DURATION);
 
         timer = setTimeout(function(){
             timer = null;
@@ -27937,7 +27980,6 @@ Metro.plugin('touch', Touch);
 // Source: js/plugins/treeview.js
 
 var TreeViewDefaultConfig = {
-    effect: "slide",
     duration: 100,
     onNodeClick: Metro.noop,
     onNodeDblClick: Metro.noop,
@@ -27972,7 +28014,7 @@ var TreeView = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -28003,7 +28045,7 @@ var TreeView = {
     _createIcon: function(data){
         var icon, src;
 
-        src = Utils.isTag(data) ? $(data) : $("<img>").attr("src", data);
+        src = Utils.isTag(data) ? $(data) : $("<img src='' alt=''>").attr("src", data);
         icon = $("<span>").addClass("icon");
         icon.html(src.outerHTML());
 
@@ -28041,7 +28083,7 @@ var TreeView = {
     },
 
     _createTree: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var nodes = element.find("li");
 
         element.addClass("treeview");
@@ -28114,7 +28156,7 @@ var TreeView = {
             e.preventDefault();
         });
 
-        element.on(Metro.events.click, "input[type=radio]", function(e){
+        element.on(Metro.events.click, "input[type=radio]", function(){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -28129,7 +28171,7 @@ var TreeView = {
             });
         });
 
-        element.on(Metro.events.click, "input[type=checkbox]", function(e){
+        element.on(Metro.events.click, "input[type=checkbox]", function(){
             var check = $(this);
             var checked = check.is(":checked");
             var node = check.closest("li");
@@ -28193,7 +28235,7 @@ var TreeView = {
     },
 
     current: function(node){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         if (node === undefined) {
             return element.find("li.current")
@@ -28212,11 +28254,8 @@ var TreeView = {
         node.toggleClass("expanded");
         node.data("collapsed", toBeExpanded);
 
-        if (o.effect === "slide") {
-            func = toBeExpanded === true ? "slideUp" : "slideDown";
-        } else {
-            func = toBeExpanded === true ? "fadeOut" : "fadeIn";
-        }
+        func = toBeExpanded === true ? "slideUp" : "slideDown";
+
         if (!toBeExpanded) {
             Utils.exec(o.onExpandNode, [node[0]], element[0]);
             element.fire("expandnode", {
@@ -28233,7 +28272,7 @@ var TreeView = {
     },
 
     addTo: function(node, data){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target;
         var new_node;
         var toggle;
@@ -28333,9 +28372,7 @@ var TreeView = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            default: ;
-        }
+
     }
 };
 
@@ -28942,7 +28979,7 @@ var Video = {
             style: "color"
         });
 
-        preloader.hide(0);
+        preloader.hide();
 
         this.preloader = preloader;
 
@@ -29065,7 +29102,7 @@ var Video = {
         var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
 
         element.on("loadstart", function(){
-            that.preloader.fadeIn();
+            that.preloader.show();
         });
 
         element.on("loadedmetadata", function(){
@@ -29076,7 +29113,7 @@ var Video = {
 
         element.on("canplay", function(){
             that._setBuffer();
-            that.preloader.fadeOut();
+            that.preloader.hide();
         });
 
         element.on("progress", function(){
@@ -29091,7 +29128,7 @@ var Video = {
         });
 
         element.on("waiting", function(){
-            that.preloader.fadeIn();
+            that.preloader.show();
         });
 
         element.on("loadeddata", function(){
@@ -29202,7 +29239,7 @@ var Video = {
 
         player.on(Metro.events.enter, function(){
             var controls = player.find(".controls");
-            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 0) {
+            if (o.controlsHide > 0 && controls.style('display') === 'none') {
                 controls.stop(true).fadeIn(500, function(){
                     controls.css("display", "flex");
                 });
@@ -29220,10 +29257,17 @@ var Video = {
     },
 
     _offMouse: function(){
-        var player = this.player;
+        var player = this.player, o = this.options;
+        var controls = player.find(".controls");
 
         player.off(Metro.events.enter);
         player.off(Metro.events.leave);
+
+        if (o.controlsHide > 0 && controls.style('display') === 'none') {
+            controls.stop(true).fadeIn(500, function(){
+                controls.css("display", "flex");
+            });
+        }
     },
 
     _toggleLoop: function(){

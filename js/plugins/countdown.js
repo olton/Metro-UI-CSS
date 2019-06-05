@@ -290,21 +290,22 @@ var Countdown = {
         var slideDigit = function(digit){
             var digit_copy, height = digit.height();
 
+            digit.siblings(".-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: -1 * height + 'px'
             });
 
-            digit.addClass("-old-digit").animate(function(p){
+            digit.addClass("-old-digit").animate(function(t, p){
                 $(this).css({
                     top: (height * p) + 'px',
                     opacity: 1 - p
                 });
             }, duration, o.animationFunc, function(){
-                digit.remove();
+                $(this).remove();
             });
 
-            digit_copy.html(digit_value).animate(function(p){
+            digit_copy.html(digit_value).animate(function(t, p){
                 $(this).css({
                     top: (-height + (height * p)) + 'px',
                     opacity: p
@@ -314,38 +315,48 @@ var Countdown = {
 
         var fadeDigit = function(digit){
             var digit_copy;
+            digit.siblings(".-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0
             });
 
-            digit.addClass("-old-digit").fadeOut(duration / 2, "linear", function(){
-                digit.remove();
+            digit.addClass("-old-digit").animate(function(t, p){
+                $(this).css({
+                    opacity: 1 - p
+                });
+            }, duration / 2, o.animationFunc, function(){
+                $(this).remove();
             });
 
-            digit_copy.html(digit_value).fadeIn(duration, "linear");
+            digit_copy.html(digit_value).animate(function(t, p){
+                $(this).css({
+                    opacity: p
+                })
+            }, duration, o.animationFunc);
         };
 
         var zoomDigit = function(digit){
-            var digit_copy, height = digit.height(), fs = parseInt(Utils.getStyleOne(digit, "font-size"));
+            var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
+            digit.siblings(".-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: 0,
                 left: 0
             });
 
-            digit.addClass("-old-digit").animate(function(p){
+            digit.addClass("-old-digit").animate(function(t, p){
                 $(this).css({
                     top: (height * p) + 'px',
                     opacity: 1 - p,
                     fontSize: fs * (1 - p) + 'px'
                 });
             }, duration, o.animationFunc, function(){
-                digit.remove();
+                $(this).remove();
             });
 
-            digit_copy.html(digit_value).animate(function(p){
+            digit_copy.html(digit_value).animate(function(t, p){
                 $(this).css({
                     top: (-height + (height * p)) + 'px',
                     opacity: p,
@@ -362,20 +373,19 @@ var Countdown = {
 
         len = value.length;
 
-        digits = element.find("."+part+" .digit");
-        digits_length = digits.length - 1;
+        digits = element.find("."+part+" .digit:not(-old-digit)");
+        digits_length = digits.length;
 
         for(i = 0; i < len; i++){
-            // digit = element.find("." + part + " .digit:eq("+ (digits_length - 1) +") .digit-value");
-            digit = $(digits[digits_length]).find(".digit-value");
+            digit = digits.eq(digits_length - 1).find(".digit-value");
             digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
             digit_current = parseInt(digit.text());
 
-            if (parseInt(digit_current) !== 0 && digit_current === digit_value) {
+            if (digit_current === digit_value) {
                 continue;
             }
 
-            switch (String(o.animate).toLowerCase()) {
+            switch ((""+o.animate).toLowerCase()) {
                 case "slide": slideDigit(digit); break;
                 case "fade": fadeDigit(digit); break;
                 case "zoom": zoomDigit(digit); break;
@@ -392,7 +402,6 @@ var Countdown = {
         if (element.data("paused") === false) {
             return;
         }
-
 
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);

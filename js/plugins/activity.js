@@ -10,8 +10,8 @@ Metro.activitySetup = function(options){
     ActivityDefaultConfig = $.extend({}, ActivityDefaultConfig, options);
 };
 
-if (typeof window.metroActivitySetup !== undefined) {
-    Metro.activitySetup(window.metroActivitySetup);
+if (typeof window["metroActivitySetup"] !== undefined) {
+    Metro.activitySetup(window["metroActivitySetup"]);
 }
 
 var Activity = {

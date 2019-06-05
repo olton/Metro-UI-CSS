@@ -143,7 +143,7 @@ var Video = {
             style: "color"
         });
 
-        preloader.hide(0);
+        preloader.hide();
 
         this.preloader = preloader;
 
@@ -266,7 +266,7 @@ var Video = {
         var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
 
         element.on("loadstart", function(){
-            that.preloader.fadeIn();
+            that.preloader.show();
         });
 
         element.on("loadedmetadata", function(){
@@ -277,7 +277,7 @@ var Video = {
 
         element.on("canplay", function(){
             that._setBuffer();
-            that.preloader.fadeOut();
+            that.preloader.hide();
         });
 
         element.on("progress", function(){
@@ -292,7 +292,7 @@ var Video = {
         });
 
         element.on("waiting", function(){
-            that.preloader.fadeIn();
+            that.preloader.show();
         });
 
         element.on("loadeddata", function(){
@@ -403,7 +403,7 @@ var Video = {
 
         player.on(Metro.events.enter, function(){
             var controls = player.find(".controls");
-            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 0) {
+            if (o.controlsHide > 0 && controls.style('display') === 'none') {
                 controls.stop(true).fadeIn(500, function(){
                     controls.css("display", "flex");
                 });
@@ -421,10 +421,17 @@ var Video = {
     },
 
     _offMouse: function(){
-        var player = this.player;
+        var player = this.player, o = this.options;
+        var controls = player.find(".controls");
 
         player.off(Metro.events.enter);
         player.off(Metro.events.leave);
+
+        if (o.controlsHide > 0 && controls.style('display') === 'none') {
+            controls.stop(true).fadeIn(500, function(){
+                controls.css("display", "flex");
+            });
+        }
     },
 
     _toggleLoop: function(){
