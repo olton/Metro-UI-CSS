@@ -1,7 +1,6 @@
 var ListViewDefaultConfig = {
     selectable: false,
     checkStyle: 1,
-    effect: "slide",
     duration: 100,
     view: Metro.listView.LIST,
     selectCurrent: true,
@@ -20,8 +19,8 @@ Metro.listViewSetup = function (options) {
     ListViewDefaultConfig = $.extend({}, ListViewDefaultConfig, options);
 };
 
-if (typeof window.metroListViewSetup !== undefined) {
-    Metro.listViewSetup(window.metroListViewSetup);
+if (typeof window["metroListViewSetup"] !== undefined) {
+    Metro.listViewSetup(window["metroListViewSetup"]);
 }
 
 var ListView = {
@@ -224,19 +223,11 @@ var ListView = {
 
         node.toggleClass("expanded");
 
-        if (o.effect === "slide") {
-            func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
-            Utils.exec(o.onCollapseNode, [node], element[0]);
-            element.fire("collapsenode", {
-                node: node
-            });
-        } else {
-            func = node.hasClass("expanded") !== true ? "fadeOut" : "fadeIn";
-            Utils.exec(o.onExpandNode, [node], element[0]);
-            element.fire("expandnode", {
-                node: node
-            });
-        }
+        func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
+        Utils.exec(o.onCollapseNode, [node], element[0]);
+        element.fire("collapsenode", {
+            node: node
+        });
 
         node.children("ul")[func](o.duration);
     },
