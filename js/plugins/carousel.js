@@ -92,7 +92,6 @@ var Carousel = {
         var element = this.element, o = this.options;
         var slides = element.find(".slide");
         var slides_container = element.find(".slides");
-        var maxHeight = 0;
         var id = Utils.elementId("carousel");
 
         if (element.attr("id") === undefined) {
@@ -121,8 +120,8 @@ var Carousel = {
             this._resize();
 
             if (o.controlsOnMouse === true) {
-                element.find("[class*=carousel-switch]").hide();
-                element.find(".carousel-bullets").hide();
+                element.find("[class*=carousel-switch]").fadeOut(0);
+                element.find(".carousel-bullets").fadeOut(0);
             }
 
             if (o.autoStart === true) {
@@ -168,7 +167,7 @@ var Carousel = {
     },
 
     _resize: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var width = element.outerWidth();
         var height;
         var medias = [];
@@ -323,18 +322,10 @@ var Carousel = {
 
         if (o.stopOnMouse === true && o.autoStart === true) {
             element.on(Metro.events.enter, function (e) {
-                if (o.controlsOnMouse === true) {
-                    element.find("[class*=carousel-switch]").fadeIn();
-                    element.find(".carousel-bullets").fadeIn();
-                }
                 that._stop();
                 Utils.exec(o.onMouseEnter, [element, e]);
             });
             element.on(Metro.events.leave, function (e) {
-                if (o.controlsOnMouse === true) {
-                    element.find("[class*=carousel-switch]").fadeOut();
-                    element.find(".carousel-bullets").fadeOut();
-                }
                 that._start();
                 Utils.exec(o.onMouseLeave, [element, e])
             });
@@ -389,7 +380,7 @@ var Carousel = {
     },
 
     _slideTo: function(to, interval){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var current, next;
 
         if (to === undefined) {
@@ -515,7 +506,7 @@ var Carousel = {
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.off(Metro.events.click, ".carousel-bullet");
         element.off(Metro.events.click, ".carousel-switch-next");
