@@ -18,8 +18,8 @@ Metro.tagInputSetup = function (options) {
     TagInputDefaultConfig = $.extend({}, TagInputDefaultConfig, options);
 };
 
-if (typeof window.metroTagInputSetup !== undefined) {
-    Metro.tagInputSetup(window.metroTagInputSetup);
+if (typeof window["metroTagInputSetup"] !== undefined) {
+    Metro.tagInputSetup(window["metroTagInputSetup"]);
 }
 
 var TagInput = {
