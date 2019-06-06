@@ -3274,7 +3274,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "06/06/2019 11:06:28",
+    compileTime: "06/06/2019 11:19:34",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -18164,6 +18164,14 @@ var NotifyDefaultConfig = {
 
 };
 
+Metro.notifySetup = function(options){
+    NotifyDefaultConfig = $.extend({}, NotifyDefaultConfig, options);
+};
+
+if (typeof window["metroNotifySetup"] !== undefined) {
+    Metro.notifySetup(window["metroNotifySetup"]);
+}
+
 var Notify = {
 
     container: null,
@@ -18263,7 +18271,7 @@ var Notify = {
                 var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
 
                 notify.animate({
-                    marginTop: ".25rem"
+                    marginTop: 4
                 }, duration, animation, function(){
 
                     Utils.exec(o.onNotifyCreate, null, this);
