@@ -474,7 +474,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 05/06/2019 22:26:55";
+var m4qVersion = "v1.0.0. Built at 06/06/2019 10:41:27";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2866,40 +2866,41 @@ $.extend({
         off: false
     },
 
-    fadeIn: function(el, dur, easing, cb){
+    fadeIn: function(el, dur, easing, cb) {
         var $el = $(el);
 
-        if ( isVisible($el[0]) ) return ;
+        if (!isVisible($el[0]) || (isVisible($el[0]) && parseInt($el.style('opacity')) === 0)) {
 
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 1000;
-        } else
-
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 1000;
-        }
-
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        var originDisplay = $(el).origin("display", undefined, 'block');
-
-        el.style.opacity = "0";
-        el.style.display = originDisplay;
-
-        return this.animate(el, {
-            opacity: 1
-        }, dur, easing, function(){
-            this.style.removeProperty('opacity');
-
-            if (typeof cb === 'function') {
-                $.proxy(cb, this)();
+            if (not(dur) && not(easing) && not(cb)) {
+                cb = null;
+                dur = 1000;
+            } else if (typeof dur === "function") {
+                cb = dur;
+                dur = 1000;
             }
-        });
+
+            if (typeof easing === "function") {
+                cb = easing;
+                easing = "linear";
+            }
+
+            var originDisplay = $(el).origin("display", undefined, 'block');
+
+            el.style.opacity = "0";
+            el.style.display = originDisplay;
+
+            return this.animate(el, {
+                opacity: 1
+            }, dur, easing, function () {
+                this.style.removeProperty('opacity');
+
+                if (typeof cb === 'function') {
+                    $.proxy(cb, this)();
+                }
+            });
+        }
+
+        return this;
     },
 
     fadeOut: function(el, dur, easing, cb){
