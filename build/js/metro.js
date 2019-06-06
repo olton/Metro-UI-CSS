@@ -3274,7 +3274,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "06/06/2019 11:19:34",
+    compileTime: "06/06/2019 12:06:41",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -25488,8 +25488,8 @@ Metro.tagInputSetup = function (options) {
     TagInputDefaultConfig = $.extend({}, TagInputDefaultConfig, options);
 };
 
-if (typeof window.metroTagInputSetup !== undefined) {
-    Metro.tagInputSetup(window.metroTagInputSetup);
+if (typeof window["metroTagInputSetup"] !== undefined) {
+    Metro.tagInputSetup(window["metroTagInputSetup"]);
 }
 
 var TagInput = {
@@ -26065,7 +26065,7 @@ var Tile = {
                     el.css("background-image", "url(" + img_src + ")");
                     el.fadeIn();
                 });
-            }, Utils.random(300,1000));
+            }, /*Utils.random(300,1000)*/ i * 300);
         }
 
         var that = this, element = this.element, o = this.options;
@@ -26114,39 +26114,38 @@ var Tile = {
         if (o.effect === "image-set") {
             element.addClass("image-set");
 
-            $.each(element.children("img"), function(){
-                var img = $(this);
-                var src = this.src;
-                var div;
-
-                if (img.hasClass("icon")) {
-                    return ;
-                }
-
+            $.each(element.children("img"), function(i){
                 that.images.push(this);
-
-                div = $("<div>").addClass("img");
-                div.css("background-image", "url("+src+")");
-                element.prepend(div);
-                img.remove();
+                $(this).remove();
             });
 
-            // var imageIndex = Utils.random(0, this.images.length - 1);
-            // element.css("background-image", "url("+this.images[imageIndex]['src']+")");
+            var temp = this.images.slice();
+
+            for(var i = 0; i < 5; i++) {
+                var rnd_index = Utils.random(0, temp.length - 1);
+                var div = $("<div>").addClass("img -js-img-"+i).css("background-image", "url("+temp[rnd_index].src+")");
+                element.prepend(div);
+                temp.splice(rnd_index, 1);
+            }
+
+            var a = [0, 1, 4, 3, 2];
 
             $.setInterval(function(){
                 var temp = that.images.slice();
+                var colors = Colors.colors(Colors.PALETTES.ALL), bg;
+                bg = colors[Utils.random(0, colors.length - 1)];
 
-                for(var i = 0; i < element.find(".img").length; i++) {
+                element.css("background-color", bg);
+
+                for(var i = 0; i < a.length; i++) {
                     var rnd_index = Utils.random(0, temp.length - 1);
-                    var div = $(element.find(".img").get(i));
-                    switchImage(div, temp[rnd_index].src);
+                    var div = element.find(".-js-img-"+a[i]);
+                    switchImage(div, temp[rnd_index].src, i);
                     temp.splice(rnd_index, 1);
                 }
 
-                // var imageIndex = Utils.random(0, that.images.length - 1);
-                // element.css("background-image", "url("+that.images[imageIndex]['src']+")");
-            }, 3000);
+                a = a.reverse();
+            }, 5000);
         }
     },
 
