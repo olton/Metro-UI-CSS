@@ -490,7 +490,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 06/06/2019 10:41:27";
+var m4qVersion = "v1.0.0. Built at 06/06/2019 13:57:25";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2003,6 +2003,15 @@ $.fn.extend({
             bottom: parseInt(getComputedStyle(this[0])["margin-bottom"]),
             left: parseInt(getComputedStyle(this[0])["margin-left"])
         }
+    },
+
+    border: function(){
+        return this.length === 0 ? undefined : {
+            top: parseInt(getComputedStyle(this[0])["border-top-width"]),
+            right: parseInt(getComputedStyle(this[0])["border-right-width"]),
+            bottom: parseInt(getComputedStyle(this[0])["border-bottom-width"]),
+            left: parseInt(getComputedStyle(this[0])["border-left-width"])
+        }
     }
 });
 
@@ -3263,18 +3272,12 @@ if (typeof Object.values !== 'function') {
     }
 }
 
-if (typeof window.setImmediate !== 'function') {
-    window.setImmediate = function(fn){
-        return setTimeout(fn, 0);
-    }
-}
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "06/06/2019 12:06:41",
+    compileTime: "06/06/2019 16:53:49",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7043,9 +7046,9 @@ var Utils = {
                                 q[form.elements[i].name] = form.elements[i].value;
                             }
                             break;
+                        case 'file':
+                            break;
                     }
-                    break;
-                case 'file':
                     break;
                 case 'TEXTAREA':
                     q[form.elements[i].name] = form.elements[i].value;
@@ -15862,7 +15865,7 @@ $(document).on(Metro.events.click, function(e){
 // Source: js/plugins/keypad.js
 
 var KeypadDefaultConfig = {
-    keySize: 32,
+    keySize: 48,
     keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
     copyInlineStyles: false,
     target: null,
@@ -15896,8 +15899,8 @@ Metro.keypadSetup = function (options) {
     KeypadDefaultConfig = $.extend({}, KeypadDefaultConfig, options);
 };
 
-if (typeof window.metroKeypadSetup !== undefined) {
-    Metro.keypadSetup(window.metroKeypadSetup);
+if (typeof window["metroKeypadSetup"] !== undefined) {
+    Metro.keypadSetup(window["metroKeypadSetup"]);
 }
 
 var Keypad = {
@@ -16015,10 +16018,10 @@ var Keypad = {
     _createKeys: function(){
         var element = this.element, o = this.options;
         var keypad = element.parent();
+        var key, keys = keypad.find(".keys");
         var factor = Math.round(Math.sqrt(this.keys.length + 2));
         var key_size = o.keySize;
-        var width = factor * key_size + factor * 4;
-        var key, keys = keypad.find(".keys");
+        var width;
 
         keys.html("");
 
@@ -16028,7 +16031,7 @@ var Keypad = {
             key.css({
                 width: o.keySize,
                 height: o.keySize,
-                lineHeight: o.keySize - 4 + "px"
+                lineHeight: o.keySize - 4
             }).appendTo(keys);
         });
 
@@ -16048,11 +16051,12 @@ var Keypad = {
                 key.css({
                     width: o.keySize,
                     height: o.keySize,
-                    lineHeight: o.keySize - 4 + "px"
+                    lineHeight: o.keySize - 4
                 }).appendTo(keys);
             });
         }
 
+        width = factor * (key_size + 2) - 6;
         keys.outerWidth(width);
 
         if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {

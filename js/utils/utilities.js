@@ -859,9 +859,9 @@ var Utils = {
                                 q[form.elements[i].name] = form.elements[i].value;
                             }
                             break;
+                        case 'file':
+                            break;
                     }
-                    break;
-                case 'file':
                     break;
                 case 'TEXTAREA':
                     q[form.elements[i].name] = form.elements[i].value;

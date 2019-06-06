@@ -96,12 +96,6 @@ if (typeof Object.values !== 'function') {
     }
 }
 
-if (typeof window.setImmediate !== 'function') {
-    window.setImmediate = function(fn){
-        return setTimeout(fn, 0);
-    }
-}
-
 var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
 
 var Metro = {

@@ -1,5 +1,5 @@
 var KeypadDefaultConfig = {
-    keySize: 32,
+    keySize: 48,
     keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
     copyInlineStyles: false,
     target: null,
@@ -33,8 +33,8 @@ Metro.keypadSetup = function (options) {
     KeypadDefaultConfig = $.extend({}, KeypadDefaultConfig, options);
 };
 
-if (typeof window.metroKeypadSetup !== undefined) {
-    Metro.keypadSetup(window.metroKeypadSetup);
+if (typeof window["metroKeypadSetup"] !== undefined) {
+    Metro.keypadSetup(window["metroKeypadSetup"]);
 }
 
 var Keypad = {
@@ -152,10 +152,10 @@ var Keypad = {
     _createKeys: function(){
         var element = this.element, o = this.options;
         var keypad = element.parent();
+        var key, keys = keypad.find(".keys");
         var factor = Math.round(Math.sqrt(this.keys.length + 2));
         var key_size = o.keySize;
-        var width = factor * key_size + factor * 4;
-        var key, keys = keypad.find(".keys");
+        var width;
 
         keys.html("");
 
@@ -165,7 +165,7 @@ var Keypad = {
             key.css({
                 width: o.keySize,
                 height: o.keySize,
-                lineHeight: o.keySize - 4 + "px"
+                lineHeight: o.keySize - 4
             }).appendTo(keys);
         });
 
@@ -185,11 +185,12 @@ var Keypad = {
                 key.css({
                     width: o.keySize,
                     height: o.keySize,
-                    lineHeight: o.keySize - 4 + "px"
+                    lineHeight: o.keySize - 4
                 }).appendTo(keys);
             });
         }
 
+        width = factor * (key_size + 2) - 6;
         keys.outerWidth(width);
 
         if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {

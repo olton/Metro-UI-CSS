@@ -30538,8 +30538,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   float: left;
   background-color: inherit;
   color: inherit;
-  border: 1px solid #dfdfdf;
-  padding: 0.625rem;
+  border: none;
+  padding: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -30554,8 +30554,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   background-color: inherit;
   width: 10px;
   height: 10px;
-  border: 1px solid;
-  border-color: inherit;
+  border: 1px solid #dfdfdf;
   z-index: 2;
   left: -5px;
   top: 50%;
@@ -30683,10 +30682,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   float: left;
   background-color: inherit;
   color: inherit;
-  margin: 0.125rem;
+  margin: 0;
   text-align: center;
-  border: 1px solid;
-  border-color: inherit;
+  border: 1px solid #dfdfdf;
   font-size: 1rem;
   cursor: pointer;
   -webkit-transition: all 0.3s ease-in-out;
@@ -30697,6 +30695,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   transition: all 0.3s ease-in-out;
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+  z-index: 2;
 }
 .keypad .key.service-key {
   background-color: #f8f8f8;
