@@ -474,7 +474,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 06/06/2019 13:57:25";
+var m4qVersion = "v1.0.0. Built at 06/06/2019 21:22:56";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1971,30 +1971,39 @@ $.fn.extend({
         return this._sizeOut('height', val);
     },
 
-    padding: function(){
-        return this.length === 0 ? undefined : {
-            top: parseInt(getComputedStyle(this[0])["padding-top"]),
-            right: parseInt(getComputedStyle(this[0])["padding-right"]),
-            bottom: parseInt(getComputedStyle(this[0])["padding-bottom"]),
-            left: parseInt(getComputedStyle(this[0])["padding-left"])
+    padding: function(p){
+        if (this.length === 0) return;
+        var s = getComputedStyle(this[0], p);
+
+        return {
+            top: parseInt(s["padding-top"]),
+            right: parseInt(s["padding-right"]),
+            bottom: parseInt(s["padding-bottom"]),
+            left: parseInt(s["padding-left"])
         }
     },
 
-    margin: function(){
-        return this.length === 0 ? undefined : {
-            top: parseInt(getComputedStyle(this[0])["margin-top"]),
-            right: parseInt(getComputedStyle(this[0])["margin-right"]),
-            bottom: parseInt(getComputedStyle(this[0])["margin-bottom"]),
-            left: parseInt(getComputedStyle(this[0])["margin-left"])
+    margin: function(p){
+        if (this.length === 0) return;
+        var s = getComputedStyle(this[0], p);
+
+        return {
+            top: parseInt(s["margin-top"]),
+            right: parseInt(s["margin-right"]),
+            bottom: parseInt(s["margin-bottom"]),
+            left: parseInt(s["margin-left"])
         }
     },
 
-    border: function(){
-        return this.length === 0 ? undefined : {
-            top: parseInt(getComputedStyle(this[0])["border-top-width"]),
-            right: parseInt(getComputedStyle(this[0])["border-right-width"]),
-            bottom: parseInt(getComputedStyle(this[0])["border-bottom-width"]),
-            left: parseInt(getComputedStyle(this[0])["border-left-width"])
+    border: function(p){
+        if (this.length === 0) return;
+        var s = getComputedStyle(this[0], p);
+
+        return {
+            top: parseInt(s["border-top-width"]),
+            right: parseInt(s["border-right-width"]),
+            bottom: parseInt(s["border-bottom-width"]),
+            left: parseInt(s["border-left-width"])
         }
     }
 });

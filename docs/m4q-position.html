@@ -138,6 +138,48 @@
                     $("#div").outerWidth("4rem"); // set width to 64px, if 1rem eq 16px;
                 </code></pre>
 
+                <h3 id="_func_padding">padding()</h3>
+                <p>
+                    Get the current computed padding for the first element. Element must be visible. Returned value contains integer values for side padding.
+                </p>
+                <pre><code>
+                    &lt;div id="div" style="padding: 10px 20px;"&gt;
+                        This a example text
+                    &lt;/div&gt;
+
+                    console.log($('#div').padding()); // Outputs: {left: 20, right: 20, top: 10, bottom: 10}
+                    console.log($('#div').padding('before')); // Outputs: return padding for pseudo element
+                    console.log($('#div').padding('after')); // Outputs: return padding for pseudo element
+                </code></pre>
+
+                <h3 id="_func_margin">margin()</h3>
+                <p>
+                    Get the current computed margin for the first element. Element must be visible. Returned value contains integer values for side padding.
+                </p>
+                <pre><code>
+                    &lt;div id="div" style="margin: 10px 20px;"&gt;
+                        This a example text
+                    &lt;/div&gt;
+
+                    console.log($('#div').margin()); // Outputs: {left: 20, right: 20, top: 10, bottom: 10}
+                    console.log($('#div').margin('before')); // Outputs: return padding for pseudo element
+                    console.log($('#div').margin('after')); // Outputs: return padding for pseudo element
+                </code></pre>
+
+                <h3 id="_func_border">border()</h3>
+                <p>
+                    Get the current computed border width for the first element. Element must be visible. Returned value contains integer values for side padding.
+                </p>
+                <pre><code>
+                    &lt;div id="div" style="border: 4px solid red;"&gt;
+                        This a example text
+                    &lt;/div&gt;
+
+                    console.log($('#div').border()); // Outputs: {left: 4, right: 4, top: 4, bottom: 4}
+                    console.log($('#div').border('before')); // Outputs: return padding for pseudo element
+                    console.log($('#div').border('after')); // Outputs: return padding for pseudo element
+                </code></pre>
+
             </main>
         </div>
 
