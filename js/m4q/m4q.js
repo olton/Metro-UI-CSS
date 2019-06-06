@@ -474,7 +474,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 06/06/2019 10:41:27";
+var m4qVersion = "v1.0.0. Built at 06/06/2019 13:57:25";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1986,6 +1986,15 @@ $.fn.extend({
             right: parseInt(getComputedStyle(this[0])["margin-right"]),
             bottom: parseInt(getComputedStyle(this[0])["margin-bottom"]),
             left: parseInt(getComputedStyle(this[0])["margin-left"])
+        }
+    },
+
+    border: function(){
+        return this.length === 0 ? undefined : {
+            top: parseInt(getComputedStyle(this[0])["border-top-width"]),
+            right: parseInt(getComputedStyle(this[0])["border-right-width"]),
+            bottom: parseInt(getComputedStyle(this[0])["border-bottom-width"]),
+            left: parseInt(getComputedStyle(this[0])["border-left-width"])
         }
     }
 });

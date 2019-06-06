@@ -22,8 +22,8 @@
         float: left;
         background-color: inherit;
         color: inherit;
-        border: 1px solid @borderColor;
-        padding: .625rem;
+        border: none;
+        padding: 0;
         user-select: none;
         transition: @transition-base;
         z-index: @zindex-dropdown;
@@ -34,8 +34,7 @@
             background-color: inherit;
             width: 10px;
             height: 10px;
-            border: 1px solid;
-            border-color: inherit;
+            border: 1px solid @borderColor;
             z-index: 2;
             left: -5px;
             top: 50%;
@@ -160,10 +159,9 @@
         float: left;
         background-color: inherit;
         color: inherit;
-        margin: .125rem;
+        margin: 0;
         text-align: center;
-        border: 1px solid;
-        border-color: inherit;
+        border: 1px solid @borderColor;
         font-size: 1rem;
         cursor: pointer;
         transition: @transition-base;
@@ -171,6 +169,8 @@
         &:hover {
             transition: @transition-base;
             .focus-show(@lightGray);
+            transform: scale(1.2);
+            z-index: 2;
         }
 
         &.service-key {
