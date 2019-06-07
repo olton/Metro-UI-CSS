@@ -490,7 +490,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 07/06/2019 12:52:48";
+var m4qVersion = "v1.0.0. Built at 07/06/2019 19:34:57";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -502,33 +502,6 @@ var matches = Element.prototype.matches
 
 var $ = function(selector, context){
     return new $.init(selector, context);
-};
-
-$.uniqueId = function () {
-    var d = new Date().getTime();
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        var r = (d + Math.random() * 16) % 16 | 0;
-        d = Math.floor(d / 16);
-        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-    });
-};
-
-$.toArray = function(n){
-    var i, out = [];
-
-    for (i = 0 ; i < n.length; i++ ) {
-        out.push(n[i]);
-    }
-
-    return out;
-};
-
-$.import = function(ctx){
-    var res = [], out = $();
-    this.each(ctx, function(){
-        res.push(this);
-    });
-    return this.merge(out, res);
 };
 
 $.version = m4qVersion;
@@ -1281,6 +1254,33 @@ $.fn.extend({
 });
 
 $.extend({
+    uniqueId: function () {
+        var d = new Date().getTime();
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+        });
+    },
+
+    toArray: function(n){
+        var i, out = [];
+
+        for (i = 0 ; i < n.length; i++ ) {
+            out.push(n[i]);
+        }
+
+        return out;
+    },
+
+    import: function(ctx){
+        var res = [];
+        this.each(ctx, function(){
+            res.push(this);
+        });
+        return this.merge($(), res);
+    },
+
     merge: function( first, second ) {
         var len = +second.length,
             j = 0,
@@ -1337,14 +1337,6 @@ $.extend({
 $.fn.extend({
     items: function(){
         return $.toArray(this);
-    },
-
-    clone: function(){
-        var res = [], out = $();
-        this.each(function(){
-            res.push(this.cloneNode(true));
-        });
-        return $.merge(out, res);
     }
 });
 
@@ -2404,10 +2396,13 @@ $.fn.extend({
         });
     },
 
-    clone: function(){
+    clone: function(deep){
         var res = [];
+        if (not(deep)) {
+            deep = false;
+        }
         this.each(function(){
-            res.push(this.cloneNode(true));
+            res.push(this.cloneNode(deep));
         });
         return $.merge($(), res);
     },
@@ -3313,7 +3308,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "07/06/2019 12:59:03",
+    compileTime: "07/06/2019 19:36:05",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
