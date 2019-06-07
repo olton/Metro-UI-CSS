@@ -219,6 +219,114 @@
                     &lt;/div&gt;
                 </code></pre>
 
+                <h3 id="_func_after">after()</h3>
+                <p>
+                    Insert content, specified by the parameter, after each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).after("123");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        123
+                        &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                        123
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_before">before()</h3>
+                <p>
+                    Insert content, specified by the parameter, before each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).before("123");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        123
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        123
+                        &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_remove">remove()</h3>
+                <p>
+                    Remove the set of matched elements from the DOM.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        &lt;div class="inner second"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>Remove all matched</p>
+                <pre><code>
+                    $( ".inner" ).remove();
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>Remove filtered by selector</p>
+                <pre><code>
+                    $( ".inner" ).remove(".second");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_clone">clone()</h3>
+                <p>
+                    Create a deep copy of the set of matched elements. If you set function argument to true,  the whole subtree (including text that may be in child Text nodes) is copied too.
+                    Cloning a node copies all of its attributes and their values, including intrinsic (in–line) listeners.
+                    It does not copy event listeners added using addEventListener() or those assigned to element properties (e.g., node.onclick = fn).
+                    Moreover, for a &lt;canvas&gt; element, the painted image is not copied.
+                </p>
+                <p>
+                    The duplicate node returned by <code>clone()</code> is not part of the <code>document</code> until it is added to another node that is part of the document using manipulation methods.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).clone().appendTo(".container");
+                    --------------------------------------------
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="inner"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).clone(true).appendTo(".container");
+                    --------------------------------------------
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
             </main>
         </div>
 

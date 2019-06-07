@@ -8,6 +8,7 @@
 + [x] NavView: rename attribute `data-expanded` to `data-expand`
 + [x] Examples: upd `start screen`
 + [x] Calendar picker: fix using locale for initial value, issue #1376
++ [x] Typo: set line-height for paragraph to 1.5
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
