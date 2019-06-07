@@ -14,8 +14,8 @@ Metro.checkboxSetup = function (options) {
     CheckboxDefaultConfig = $.extend({}, CheckboxDefaultConfig, options);
 };
 
-if (typeof window.metroCheckboxSetup !== undefined) {
-    Metro.checkboxSetup(window.metroCheckboxSetup);
+if (typeof window["metroCheckboxSetup"] !== undefined) {
+    Metro.checkboxSetup(window["metroCheckboxSetup"]);
 }
 
 var Checkbox = {
