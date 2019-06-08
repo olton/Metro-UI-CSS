@@ -64,8 +64,8 @@ Metro.listSetup = function (options) {
     ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
 };
 
-if (typeof window.metroListSetup !== undefined) {
-    Metro.listSetup(window.metroListSetup);
+if (typeof window["metroListSetup"] !== undefined) {
+    Metro.listSetup(window["metroListSetup"]);
 }
 
 var List = {
@@ -127,12 +127,12 @@ var List = {
 
 
             $.json(o.source).then(function(data){
-                that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
                 });
+                that._build(data);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {

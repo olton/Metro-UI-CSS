@@ -3308,7 +3308,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "07/06/2019 19:36:05",
+    compileTime: "08/06/2019 10:35:03",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -16361,8 +16361,8 @@ Metro.listSetup = function (options) {
     ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
 };
 
-if (typeof window.metroListSetup !== undefined) {
-    Metro.listSetup(window.metroListSetup);
+if (typeof window["metroListSetup"] !== undefined) {
+    Metro.listSetup(window["metroListSetup"]);
 }
 
 var List = {
@@ -16424,12 +16424,12 @@ var List = {
 
 
             $.json(o.source).then(function(data){
-                that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
                 });
+                that._build(data);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
@@ -23225,12 +23225,12 @@ var Table = {
                 if (typeof data !== "object") {
                     throw new Error("Data for table is not a object");
                 }
-                that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
-                })
+                });
+                that._build(data);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
@@ -24692,15 +24692,13 @@ var Table = {
                 that.heads = [];
                 that.foots = [];
 
-                that._createItemsFromJSON(data);
-
-                that._rebuild(review);
-
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
-                })
+                });
+                that._createItemsFromJSON(data);
+                that._rebuild(review);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
