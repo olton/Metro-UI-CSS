@@ -212,12 +212,12 @@ var Table = {
                 if (typeof data !== "object") {
                     throw new Error("Data for table is not a object");
                 }
-                that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
-                })
+                });
+                that._build(data);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
@@ -1679,15 +1679,13 @@ var Table = {
                 that.heads = [];
                 that.foots = [];
 
-                that._createItemsFromJSON(data);
-
-                that._rebuild(review);
-
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
-                })
+                });
+                that._createItemsFromJSON(data);
+                that._rebuild(review);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
                 element.fire("dataloaderror", {
