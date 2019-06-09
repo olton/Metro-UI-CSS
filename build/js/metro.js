@@ -119,8 +119,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.44",
-    compileTime: "03/06/2019 10:32:10",
-    buildNumber: "725",
+    compileTime: "09/06/2019 16:49:50",
+    buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -6486,7 +6486,7 @@ var CalendarPicker = {
         if (!Utils.isValue(curr)) {
             //this.value = new Date();
         } else {
-            this.value = Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat);
+            this.value = Utils.isValue(o.inputFormat) === false ? new Date(curr) : curr.toDate(o.inputFormat, o.locale);
         }
 
         if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
@@ -20220,12 +20220,12 @@ var Table = {
                 if (typeof data !== "object") {
                     throw new Error("Data for table is not a object");
                 }
-                that._build(data);
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
-                })
+                });
+                that._build(data);
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
                 element.fire("dataloaderror", {
@@ -21688,15 +21688,14 @@ var Table = {
                 that.heads = [];
                 that.foots = [];
 
-                that._createItemsFromJSON(data);
-
-                that._rebuild(review);
-
                 Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
                 element.fire("dataloaded", {
                     source: o.source,
                     data: data
-                })
+                });
+
+                that._createItemsFromJSON(data);
+                that._rebuild(review);
             }).fail(function( jqXHR, textStatus, errorThrown) {
                 Utils.exec(o.onDataLoadError, [o.source, jqXHR, textStatus, errorThrown], element[0]);
                 element.fire("dataloaderror", {
