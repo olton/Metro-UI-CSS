@@ -25,6 +25,9 @@
   },
   "license": "MIT",
   "main": "build/js/metro.js",
+  "browserslist": [
+    "last 2 versions"
+  ],
   "devDependencies": {
     "autoprefixer": "^9.5.1",
     "grunt": "^1.0.4",

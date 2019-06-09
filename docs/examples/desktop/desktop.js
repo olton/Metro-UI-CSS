@@ -141,13 +141,13 @@ function createWindowModal(){
         modal: true,
         place: "center",
         onShow: function(win){
-            win.addClass("ani-swoopInTop");
+            $(win).addClass("ani-swoopInTop");
             setTimeout(function(){
-                win.removeClass("ani-swoopInTop");
+                $(win).removeClass("ani-swoopInTop");
             }, 1000);
         },
         onClose: function(win){
-            win.addClass("ani-swoopOutTop");
+            $(win).addClass("ani-swoopOutTop");
         }
     });
 }

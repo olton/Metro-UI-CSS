@@ -1,3 +1,9 @@
+### 4.2.45
++ [x] Calendar picker: fix initial value for i18n
++ [x] Typography: set `line-height: 1.5` for `p` 
++ [x] Examples: fix desktop demo
++ [x] Examples: fix start screen demo
+
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
 + [x] Datepicker: fix offset for timezones, issue #1372
