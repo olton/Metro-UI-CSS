@@ -474,7 +474,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 09/06/2019 09:37:03";
+var m4qVersion = "v1.0.0. Built at 09/06/2019 10:03:31";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2410,7 +2410,7 @@ $.fn.extend({
         return $.merge($(), res);
     },
 
-    remove: function(selector){ //check it
+    remove: function(selector){
         var i = 0, node, out, res = [];
 
         if (this.length === 0) {
@@ -2424,6 +2424,7 @@ $.fn.extend({
         for ( ; ( node = out[ i ] ) != null; i++ ) {
             if (node.parentNode) {
                 res.push(node.parentNode.removeChild(node));
+                $.removeData(node);
             }
         }
 
