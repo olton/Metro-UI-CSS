@@ -490,7 +490,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 07/06/2019 19:34:57";
+var m4qVersion = "v1.0.0. Built at 09/06/2019 09:37:03";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1047,7 +1047,7 @@ function getData(data){
 function dataAttr(elem, key, data){
     var name;
 
-    if ( data === undefined && elem.nodeType === 1 ) {
+    if ( not(data) && elem.nodeType === 1 ) {
         name = "data-" + key.replace( /[A-Z]/g, "-$&" ).toLowerCase();
         data = elem.getAttribute( name );
 
@@ -1069,7 +1069,7 @@ var Data = function(ns){
     Data.uid++;
 };
 
-Data.uid = 1;
+Data.uid = -1;
 
 Data.prototype = {
     cache: function(owner){
@@ -1161,12 +1161,12 @@ $.extend({
         return dataSet.hasData(elem);
     },
 
-    data: function(elem, name, data){
-        return dataSet.access(elem, name, data);
+    data: function(elem, key, val){
+        return dataSet.access(elem, key, val);
     },
 
-    removeData: function(elem, name){
-        return dataSet.remove(elem, name);
+    removeData: function(elem, key){
+        return dataSet.remove(elem, key);
     },
 
     dataSet: function(ns){
@@ -2407,22 +2407,43 @@ $.fn.extend({
         return $.merge($(), res);
     },
 
-    remove: function(selector){
-        var i = 0, node, out = [];
+    import: function(deep){
+        var res = [];
+        if (not(deep)) {
+            deep = false;
+        }
+        this.each(function(){
+            res.push(document.importNode(this, deep));
+        });
+        return $.merge($(), res);
+    },
+
+    adopt: function(){
+        var res = [];
+        this.each(function(){
+            res.push(document.adoptNode(this));
+        });
+        return $.merge($(), res);
+    },
+
+    remove: function(selector){ //check it
+        var i = 0, node, out, res = [];
 
         if (this.length === 0) {
             return ;
         }
 
-        for ( ; ( node = this[ i ] ) != null; i++ ) {
+        out = selector ? this.filter(function(el){
+            return matches.call(el, selector);
+        }) : this.items();
+
+        for ( ; ( node = out[ i ] ) != null; i++ ) {
             if (node.parentNode) {
-                out.push(node.parentNode.removeChild(node));
+                res.push(node.parentNode.removeChild(node));
             }
         }
 
-        return selector ? out.filter(function(el){
-            return matches.call(el, selector);
-        }) : out;
+        return $.merge($(), res);
     }
 });
 
@@ -3308,7 +3329,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "08/06/2019 10:35:03",
+    compileTime: "09/06/2019 16:39:26",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
