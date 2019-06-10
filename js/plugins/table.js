@@ -863,24 +863,26 @@ var Table = {
 
             var col = $(this);
 
-            that.activity.show(o.activityTimeout, function(){
-                that.currentPage = 1;
-                that.sort.colIndex = col.data("index");
-                if (!col.hasClass("sort-asc") && !col.hasClass("sort-desc")) {
-                    that.sort.dir = o.sortDir;
-                } else {
-                    if (col.hasClass("sort-asc")) {
-                        that.sort.dir = "desc";
+            that.activity.show(function(){
+                setImmediate(function(){
+                    that.currentPage = 1;
+                    that.sort.colIndex = col.data("index");
+                    if (!col.hasClass("sort-asc") && !col.hasClass("sort-desc")) {
+                        that.sort.dir = o.sortDir;
                     } else {
-                        that.sort.dir = "asc";
+                        if (col.hasClass("sort-asc")) {
+                            that.sort.dir = "desc";
+                        } else {
+                            that.sort.dir = "asc";
+                        }
                     }
-                }
-                that._resetSortClass(element.find(".sortable-column"));
-                col.addClass("sort-"+that.sort.dir);
-                that.sorting();
-                that._draw(function(){
-                    that.busy = false;
-                    if (o.muteTable === true) element.removeClass("disabled");
+                    that._resetSortClass(element.find(".sortable-column"));
+                    col.addClass("sort-"+that.sort.dir);
+                    that.sorting();
+                    that._draw(function(){
+                        that.busy = false;
+                        if (o.muteTable === true) element.removeClass("disabled");
+                    });
                 });
             });
         });
