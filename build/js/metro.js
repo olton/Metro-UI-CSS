@@ -3402,7 +3402,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "10/06/2019 23:53:47",
+    compileTime: "11/06/2019 00:07:44",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -23971,24 +23971,26 @@ var Table = {
 
             var col = $(this);
 
-            that.activity.show(o.activityTimeout, function(){
-                that.currentPage = 1;
-                that.sort.colIndex = col.data("index");
-                if (!col.hasClass("sort-asc") && !col.hasClass("sort-desc")) {
-                    that.sort.dir = o.sortDir;
-                } else {
-                    if (col.hasClass("sort-asc")) {
-                        that.sort.dir = "desc";
+            that.activity.show(function(){
+                setImmediate(function(){
+                    that.currentPage = 1;
+                    that.sort.colIndex = col.data("index");
+                    if (!col.hasClass("sort-asc") && !col.hasClass("sort-desc")) {
+                        that.sort.dir = o.sortDir;
                     } else {
-                        that.sort.dir = "asc";
+                        if (col.hasClass("sort-asc")) {
+                            that.sort.dir = "desc";
+                        } else {
+                            that.sort.dir = "asc";
+                        }
                     }
-                }
-                that._resetSortClass(element.find(".sortable-column"));
-                col.addClass("sort-"+that.sort.dir);
-                that.sorting();
-                that._draw(function(){
-                    that.busy = false;
-                    if (o.muteTable === true) element.removeClass("disabled");
+                    that._resetSortClass(element.find(".sortable-column"));
+                    col.addClass("sort-"+that.sort.dir);
+                    that.sorting();
+                    that._draw(function(){
+                        that.busy = false;
+                        if (o.muteTable === true) element.removeClass("disabled");
+                    });
                 });
             });
         });
