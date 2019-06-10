@@ -495,7 +495,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 10/06/2019 22:03:02";
+var m4qVersion = "v1.0.0. Built at 10/06/2019 22:33:03";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1665,7 +1665,7 @@ $.fn.extend({
     html: function(value){
         var that = this, v = [];
 
-        if (arguments.length === 0 || not(value)) {
+        if (arguments.length === 0) {
             return this._prop('innerHTML');
         }
 
@@ -3402,7 +3402,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "10/06/2019 22:06:33",
+    compileTime: "10/06/2019 22:34:23",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14289,8 +14289,8 @@ Metro.hintSetup = function (options) {
     HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
 };
 
-if (typeof window.metroHintSetup !== undefined) {
-    Metro.hintSetup(window.metroHintSetup);
+if (typeof window["metroHintSetup"] !== undefined) {
+    Metro.hintSetup(window["metroHintSetup"]);
 }
 
 var Hint = {
@@ -14311,7 +14311,7 @@ var Hint = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -14349,7 +14349,7 @@ var Hint = {
     },
 
     createHint: function(){
-        var that = this, elem = this.elem, element = this.element, o = this.options;
+        var elem = this.elem, element = this.element, o = this.options;
         var hint = $("<div>").addClass("hint").addClass(o.clsHint).html(o.hintText);
 
         this.hint = hint;
@@ -14399,6 +14399,7 @@ var Hint = {
                 top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
+            console.log(element.offset().top, $(window).scrollTop(), hint_size.height, o.hintOffset)
         }
     },
 
@@ -14430,13 +14431,13 @@ var Hint = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-hint-text": this.changeText(); break;
+        if (attributeName === "data-hint-text") {
+            this.changeText();
         }
     },
 
     destroy: function(){
-        var that = this, elem = this.elem, element = this.element, o = this.options;
+        var element = this.element;
         this.removeHint();
         element.off(Metro.events.enter + "-hint");
         element.off(Metro.events.leave + "-hint");

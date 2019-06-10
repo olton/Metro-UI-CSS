@@ -13,8 +13,8 @@ Metro.hintSetup = function (options) {
     HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
 };
 
-if (typeof window.metroHintSetup !== undefined) {
-    Metro.hintSetup(window.metroHintSetup);
+if (typeof window["metroHintSetup"] !== undefined) {
+    Metro.hintSetup(window["metroHintSetup"]);
 }
 
 var Hint = {
@@ -35,7 +35,7 @@ var Hint = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -73,7 +73,7 @@ var Hint = {
     },
 
     createHint: function(){
-        var that = this, elem = this.elem, element = this.element, o = this.options;
+        var elem = this.elem, element = this.element, o = this.options;
         var hint = $("<div>").addClass("hint").addClass(o.clsHint).html(o.hintText);
 
         this.hint = hint;
@@ -123,6 +123,7 @@ var Hint = {
                 top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
                 left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
             });
+            console.log(element.offset().top, $(window).scrollTop(), hint_size.height, o.hintOffset)
         }
     },
 
@@ -154,13 +155,13 @@ var Hint = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-hint-text": this.changeText(); break;
+        if (attributeName === "data-hint-text") {
+            this.changeText();
         }
     },
 
     destroy: function(){
-        var that = this, elem = this.elem, element = this.element, o = this.options;
+        var element = this.element;
         this.removeHint();
         element.off(Metro.events.enter + "-hint");
         element.off(Metro.events.leave + "-hint");

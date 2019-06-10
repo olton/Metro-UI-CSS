@@ -479,7 +479,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 10/06/2019 22:03:02";
+var m4qVersion = "v1.0.0. Built at 10/06/2019 22:33:03";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1649,7 +1649,7 @@ $.fn.extend({
     html: function(value){
         var that = this, v = [];
 
-        if (arguments.length === 0 || not(value)) {
+        if (arguments.length === 0) {
             return this._prop('innerHTML');
         }
 
