@@ -28,6 +28,11 @@ function isVisible(elem) {
     return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 }
 
+function isHidden(elem) {
+    var s = getComputedStyle(elem);
+    return !isVisible(elem) || +s['opacity'] === 0 || elem.hidden || s['visibility'] === "hidden";
+}
+
 function not(value){
     return value === undefined || value === null;
 }
@@ -474,7 +479,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 10/06/2019 17:45:55";
+var m4qVersion = "v1.0.0. Built at 10/06/2019 22:03:02";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1304,7 +1309,7 @@ $.extend({
     },
 
     remove: function(s){
-        $(s).remove();
+        return $(s).remove();
     },
 
     camelCase: function(string){return camelCase(string);},
@@ -1315,7 +1320,8 @@ $.extend({
     not: function(val){return not(val)},
     parseUnit: function(str, out){return parseUnit(str, out)},
     unit: function(str, out){return parseUnit(str, out)},
-    isVisible: function(elem) {return isVisible(elem)}
+    isVisible: function(elem) {return isVisible(elem)},
+    isHidden: function(elem) {return isHidden(elem)}
 });
 
 $.fn.extend({
