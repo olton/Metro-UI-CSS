@@ -490,7 +490,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 09/06/2019 10:03:31";
+var m4qVersion = "v1.0.0. Built at 10/06/2019 11:40:26";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1375,9 +1375,12 @@ $.extend({
     events: [],
     eventHook: {},
 
-    eventUID: 0,
+    eventUID: -1,
 
-    setEventHandler: function(el, eventName, handler, selector, ns, id){
+    /*
+    * el, eventName, handler, selector, ns, id
+    * */
+    setEventHandler: function(obj){
         var i, freeIndex = -1, eventObj, resultIndex;
         if (this.events.length > 0) {
             for(i = 0; i < this.events.length; i++) {
@@ -1389,12 +1392,12 @@ $.extend({
         }
 
         eventObj = {
-            element: el,
-            eventName: eventName,
-            handler: handler,
-            selector: selector,
-            ns: ns,
-            id: id
+            element: obj.el,
+            event: obj.eventName,
+            handler: obj.handler,
+            selector: obj.selector,
+            ns: obj.ns,
+            id: obj.id
         };
 
         if (freeIndex === -1) {
@@ -1418,7 +1421,7 @@ $.extend({
 
     off: function(){
         $.each(this.events, function(){
-            this.element.removeEventListener(this.eventName, this.handler);
+            this.element.removeEventListener(this.event, this.handler);
         });
         this.events = [];
         return this;
@@ -1435,24 +1438,29 @@ $.extend({
 });
 
 $.fn.extend({
-    on: function(eventsList, sel, handler, options){
-        var eventOptions;
 
+    /**
+     * $.on('click', function)
+     * $.on('click', function, options)
+     * $.on('click', sel, function)
+     * $.on('click', sel, function, options)
+     */
+
+    on: function(eventsList, sel, handler, data, options){
         if (this.length === 0) {
             return ;
         }
 
-        if (typeof sel === "function") {
+        if (typeof sel === 'function') {
+            options = data;
+            data = handler;
             handler = sel;
-            options = handler;
             sel = undefined;
         }
 
-        options = isPlainObject(options) ? options : {};
-
-        eventOptions = {
-            once: options.once && options.once === true
-        };
+        if (!isPlainObject(options)) {
+            options = {};
+        }
 
         return this.each(function(){
             var el = this;
@@ -1463,31 +1471,55 @@ $.fn.extend({
                     ns = event[1],
                     index, originEvent;
 
-                h = !sel ? handler : function(e){
+                h = function(e){
                     var target = e.target;
 
-                    while (target && target !== el) {
-                        if (matches.call(target, sel)) {
-                            handler.call(target, e);
-                            if (e.isPropagationStopped) {
-                                e.stop(true);
+                    Object.defineProperty(e, 'customData', {
+                        value: data
+                    });
+
+                    if (!sel) {
+                        handler.call(target, e);
+                    } else {
+                        while (target && target !== el) {
+                            if (matches.call(target, sel)) {
+                                handler.call(target, e);
+                                if (e.isPropagationStopped) {
+                                    e.stop(true);
+                                }
                             }
+                            target = target.parentNode;
                         }
-                        target = target.parentNode;
+                    }
+                    if (options.once) {
+                        index = +$(el).origin( "event-"+e.type+(sel ? ":"+sel:"")+(ns ? ":"+ns:"") );
+                        if (!isNaN(index)) $.events.splice(index, 1);
                     }
                 };
 
                 $.eventUID++;
+
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
-                el.addEventListener(name, h, eventOptions);
-                index = $.setEventHandler(el, name, h, sel, ns, $.eventUID);
+                el.addEventListener(name, h, options);
+                index = $.setEventHandler({
+                    el: el,
+                    event: name,
+                    handler: h,
+                    selector: sel,
+                    ns: ns,
+                    id: $.eventUID
+                });
                 $(el).origin('event-'+originEvent, index);
             });
         });
     },
 
-    one: function(events, sel, handler){
-        return this.on(events, sel, handler,{once: true})
+    one: function(events, sel, handler, data){
+        var args = [].slice.call(arguments).filter(function(el){
+            return !not(el);
+        });
+        args.push({once: true});
+        return this["on"].apply(this, args);
     },
 
     off: function(eventsList, sel){
@@ -1501,7 +1533,7 @@ $.fn.extend({
                 $.each($.events, function(){
                     var e = this;
                     if (e.element === el) {
-                        el.removeEventListener(e.eventName, e.handler);
+                        el.removeEventListener(e.event, e.handler);
                         e.handler = null;
                         $(el).origin("event-"+name+(e.selector ? ":"+e.selector:"")+(e.ns ? ":"+e.ns:""), null);
                     }
@@ -3330,7 +3362,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "09/06/2019 16:41:42",
+    compileTime: "10/06/2019 11:42:19",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
