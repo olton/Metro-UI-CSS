@@ -2097,7 +2097,7 @@ $.fn.extend({
         if (this.length === 0) {
             return ;
         }
-        if (arguments.length === 0) {
+        if (not(val)) {
             rect = this[0].getBoundingClientRect();
             return {
                 top: rect.top + pageYOffset,
