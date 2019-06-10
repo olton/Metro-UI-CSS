@@ -499,7 +499,8 @@ var Utils = {
     },
 
     hiddenElementSize: function(el, includeMargin){
-        var clone = $(el).clone();
+        var width, height, clone = $(el).clone(true);
+
         clone.removeAttr("data-role").css({
             visibility: "hidden",
             position: "absolute",
@@ -507,12 +508,12 @@ var Utils = {
         });
         $("body").append(clone);
 
-        if (includeMargin === undefined) {
+        if (!Utils.isValue(includeMargin)) {
             includeMargin = false;
         }
 
-        var width = clone.outerWidth(includeMargin);
-        var height = clone.outerHeight(includeMargin);
+        width = clone.outerWidth(includeMargin);
+        height = clone.outerHeight(includeMargin);
         clone.remove();
         return {
             width: width,
