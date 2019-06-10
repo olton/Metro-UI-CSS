@@ -2113,7 +2113,7 @@ $.fn.extend({
         if (this.length === 0) {
             return ;
         }
-        if (arguments.length === 0) {
+        if (not(val)) {
             rect = this[0].getBoundingClientRect();
             return {
                 top: rect.top + pageYOffset,
@@ -3402,7 +3402,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "10/06/2019 23:52:50",
+    compileTime: "10/06/2019 23:53:47",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
