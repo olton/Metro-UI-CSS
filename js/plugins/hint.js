@@ -51,7 +51,7 @@ var Hint = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        element.on(Metro.events.enter + "-hint", function(){
+        element.on(Metro.events.enter, function(){
             that.createHint();
             if (o.hintHide > 0) {
                 setTimeout(function(){
@@ -60,11 +60,11 @@ var Hint = {
             }
         });
 
-        element.on(Metro.events.leave + "-hint", function(){
-            that.removeHint();
+        element.on(Metro.events.leave, function(){
+            //that.removeHint();
         });
 
-        $(window).on(Metro.events.scroll + "-hint", function(){
+        $(window).on(Metro.events.scroll, function(){
             if (that.hint !== null) that.setPosition();
         });
 
@@ -121,9 +121,8 @@ var Hint = {
             hint.addClass('top');
             hint.css({
                 top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
-                left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
+                left: element.offset().left - $(window).scrollLeft() + element.outerWidth()/2 - hint_size.width/2
             });
-            console.log(element.offset().top, $(window).scrollTop(), hint_size.height, o.hintOffset)
         }
     },
 
