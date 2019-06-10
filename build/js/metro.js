@@ -490,7 +490,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 10/06/2019 11:40:26";
+var m4qVersion = "v1.0.0. Built at 10/06/2019 17:45:55";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1373,7 +1373,7 @@ Event.prototype.stop = function(immediate){
 
 $.extend({
     events: [],
-    eventHook: {},
+    eventHooks: {},
 
     eventUID: -1,
 
@@ -1393,7 +1393,7 @@ $.extend({
 
         eventObj = {
             element: obj.el,
-            event: obj.eventName,
+            event: obj.event,
             handler: obj.handler,
             selector: obj.selector,
             ns: obj.ns,
@@ -1431,21 +1431,44 @@ $.extend({
         return this.events;
     },
 
-    addEventHook: function(event, handler){},
-    removeEventHook: function(event, index){},
-    removeEventHooks: function(event){},
-    clearEventHooks: function(){}
+    getEventHooks: function(){
+        return this.eventHooks;
+    },
+
+    addEventHook: function(event, handler, type){
+        if (not(type)) {
+            type = "before";
+        }
+        $.each(str2arr(event), function(){
+            this.eventHooks[camelCase(type+"-"+this)] = handler;
+        });
+        return this;
+    },
+
+    removeEventHook: function(event, type){
+        if (not(type)) {
+            type = "before";
+        }
+        $.each(str2arr(event), function(){
+            delete this.eventHooks[camelCase(type+"-"+this)];
+        });
+        return this;
+    },
+
+    removeEventHooks: function(event){
+        var that = this;
+        if (not(event)) {
+            this.eventHooks = {};
+        } else {
+            $.each(str2arr(event), function(){
+                delete that.eventHooks[camelCase(type+"-"+this)];
+            });
+        }
+        return this;
+    }
 });
 
 $.fn.extend({
-
-    /**
-     * $.on('click', function)
-     * $.on('click', function, options)
-     * $.on('click', sel, function)
-     * $.on('click', sel, function, options)
-     */
-
     on: function(eventsList, sel, handler, data, options){
         if (this.length === 0) {
             return ;
@@ -1473,10 +1496,16 @@ $.fn.extend({
 
                 h = function(e){
                     var target = e.target;
+                    var beforeHook = $.eventHooks[camelCase("before-"+name)];
+                    var afterHook = $.eventHooks[camelCase("after-"+name)];
 
                     Object.defineProperty(e, 'customData', {
                         value: data
                     });
+
+                    if (typeof beforeHook === "function") {
+                        beforeHook.call(target, e);
+                    }
 
                     if (!sel) {
                         handler.call(target, e);
@@ -1491,6 +1520,11 @@ $.fn.extend({
                             target = target.parentNode;
                         }
                     }
+
+                    if (typeof afterHook === "function") {
+                        afterHook.call(target, e);
+                    }
+
                     if (options.once) {
                         index = +$(el).origin( "event-"+e.type+(sel ? ":"+sel:"")+(ns ? ":"+ns:"") );
                         if (!isNaN(index)) $.events.splice(index, 1);
@@ -1527,7 +1561,7 @@ $.fn.extend({
             return ;
         }
 
-        if (eventsList.toLowerCase() === 'all') {
+        if (not(eventsList) || eventsList.toLowerCase() === 'all') {
             return this.each(function(){
                 var el = this;
                 $.each($.events, function(){
@@ -1603,10 +1637,10 @@ $.fn.extend({
     .split( " " )
     .forEach(
     function( name ) {
-        $.fn[ name ] = function( sel, fn, opt ) {
+        $.fn[ name ] = function( sel, fn, data, opt ) {
             return arguments.length > 0 ?
-                this.on( name, sel, fn, opt ) :
-                this.trigger( name );
+                this.on( name, sel, fn, data, opt ) :
+                this.trigger( name, data );
         };
 });
 
@@ -3362,7 +3396,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "10/06/2019 11:42:19",
+    compileTime: "10/06/2019 17:54:54",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
