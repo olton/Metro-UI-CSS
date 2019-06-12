@@ -22,7 +22,7 @@ var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"
 
 var meta_jquery = $("meta[name='metro4:jquery']").attr("content"); //undefined
 if (window.METRO_JQUERY === undefined) {
-    window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : false;
+    window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
 }
 
 /* Added by Ken Kitay https://github.com/kens-code*/

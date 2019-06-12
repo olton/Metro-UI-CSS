@@ -57,6 +57,9 @@
                     <li class="toc-entry"><a href="#_func_remove_event_hooks">removeEventHooks()</a></li>
                     <li class="toc-entry"><a href="#_func_aliases">Event aliases()</a></li>
                     <li class="toc-entry"><a href="#_func_ready">Document ready</a></li>
+                    <li class="toc-entry"><a href="#_func_load">Load</a></li>
+                    <li class="toc-entry"><a href="#_func_unload">UnLoad</a></li>
+                    <li class="toc-entry"><a href="#_func_beforeunload">BeforeUnLoad</a></li>
                 </ul>
 
             </div>
@@ -246,6 +249,81 @@
                 equals to
                 <pre><code>
                     document.addEventListener('DOMContentLoaded', function(){
+                        ...
+                    });
+                </code></pre>
+
+                <h3 id="_func_load">$.load</h3>
+                <p>
+                    Create <code>window.load</code> function.
+                </p>
+                <pre><code>
+                    $.load(function(e){
+                        ...
+                    });
+
+                    or
+
+                    $(window).load(function(e){
+                        ...
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    window.onload = function(e){
+                        ...
+                    });
+                </code></pre>
+
+                <h3 id="_func_unload">$.unload</h3>
+                <p>
+                    Create <code>window.unload</code> function.
+                </p>
+                <pre><code>
+                    $.unload(function(e){
+                        ...
+                    });
+
+                    or
+
+                    $(window).unload(function(e){
+                        ...
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    window.onunload = function(e){
+                        ...
+                    });
+                </code></pre>
+
+                <h3 id="_func_beforeunload">$.beforeunload</h3>
+                <p>
+                    Create <code>window.beforeunload</code> function.
+                </p>
+                <pre><code>
+                    $.beforeunload("Do you really want to leave the page?");
+                </code></pre>
+                <pre><code>
+                    $.beforeunload(function(e){
+                        var str = "Do you really want to leave the page?";
+                        e.returnValue = str;
+                        return str;
+                    });
+                </code></pre>
+                <pre><code>
+                    $(window).beforeunload("Do you really want to leave the page?");
+                </code></pre>
+                <pre><code>
+                    $(window).beforeunload(function(e){
+                        var str = "Do you really want to leave the page?";
+                        e.returnValue = str;
+                        return str;
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    window.onbeforeunload = function(e){
                         ...
                     });
                 </code></pre>
