@@ -102,21 +102,37 @@
 
                 <h3>Populate Metro 4 components to the jQuery.fn</h3>
                 <p>
-                    If you have work with Metro 4 components with jQuery, you must define it with special meta tag:
+                    Metro 4 by default delegates functions to <code>jquery.fn</code> if jQuery is present.
+                    If you don't have work with Metro 4 components with jQuery, you must define it with special meta tag and set it to false (default value is true).
                 </p>
+                <pre><code>
+                    &lt;meta name="metro4:jquery" content="false"&gt;
+                </code></pre>
                 <pre><code>
                     &lt;meta name="metro4:jquery" content="true"&gt;
-                </code></pre>
-                <p>
-                    Now you can initialize components with jquery.
-                </p>
-                <pre><code>
+
                     &lt;div id="a1"&gt;
                         ...
                     &lt;/div&gt;
 
+                    &lt;script src="jquery.js"&gt;&lt;/script&gt;
+                    &lt;script src="metro.js"&gt;&lt;/script&gt;
                     &lt;script&gt;
-                        $("#a1").accordion();
+                        jQuery("#a1").accordion(); // init with jquery
+                    &lt;/script&gt;
+                </code></pre>
+
+                <pre><code>
+                    &lt;meta name="metro4:jquery" content="false"&gt;
+
+                    &lt;div id="a1"&gt;
+                        ...
+                    &lt;/div&gt;
+
+                    &lt;script src="jquery.js"&gt;&lt;/script&gt;
+                    &lt;script src="metro.js"&gt;&lt;/script&gt;
+                    &lt;script&gt;
+                        m4q("#a1").accordion(); // init with m4q
                     &lt;/script&gt;
                 </code></pre>
             </main>
