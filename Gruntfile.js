@@ -51,7 +51,7 @@ module.exports = function(grunt) {
         "        factory( );\n"+
         "    }\n"+
         "}(function( ) { \n"+
-        "'use strict';",
+        "'use strict';\n\n",
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
@@ -63,24 +63,24 @@ module.exports = function(grunt) {
                     banner: '<%= banner %>' + '<%= requirejs_banner%>',
                     footer: "\n\nreturn METRO_INIT === true ? Metro.init() : Metro;\n\n}));",
                     stripBanners: true,
-                    process: function(src, filepath) {
-                        return '\n// Source: ' + filepath + '\n\n' + src;
-                        // return '\n// Source: ' + filepath + '\n' + src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
-                        // return '\n// Source: ' + filepath + '\n' + src.replace(/(^|\n)[ \t]*();?\s*/g, '$1');
-                    }
+                    separator: "\n\n"
                 },
                 src: [
-                    'js/m4q/*.js',
-                    'js/*.js',
-                    'js/utils/*.js',
-                    'js/plugins/*.js'
+                    'source/m4q/*.js',
+                    'source/metro.js',
+                    'source/common/js/*.js',
+                    'source/components/**/*.js'
                 ],
                 dest: 'build/js/metro.js'
             },
             css: {
                 options: {
                     stripBanners: true,
-                    banner: '<%= banner %>'
+                    separator: "\n\n",
+                    banner: '<%= banner %>',
+                    process: function(src) {
+                        return src.replace(/\n/g, '\n');
+                    }
                 },
                 src: [
                     'build/css/metro.css',
@@ -107,28 +107,28 @@ module.exports = function(grunt) {
 
         less: {
             options: {
-                paths: "less/",
+                paths: "source/",
                 strictMath: false,
                 sourceMap: false,
                 banner: '<%= banner %>'
             },
             src: {
                 expand: true,
-                cwd: "less/",
+                cwd: "source/",
                 src: ["metro.less", "metro-rtl.less", "metro-colors.less", "metro-icons.less"],
                 ext: ".css",
                 dest: "build/css"
             },
             schemes: {
                 expand: true,
-                cwd: "less/schemes/",
+                cwd: "source/schemes/",
                 src: ["*.less"],
                 ext: ".css",
                 dest: "build/css/schemes"
             },
             third: {
                 expand: true,
-                cwd: "less/third-party/",
+                cwd: "source/third-party/",
                 src: ["*.less"],
                 ext: ".css",
                 dest: "build/css/third-party"
