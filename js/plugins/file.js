@@ -166,6 +166,12 @@ var File = {
         }
     },
 
+    clear: function(){
+        var element = this.element;
+        element.siblings(".caption").html("");
+        element.val("");
+    },
+
     disable: function(){
         this.element.data("disabled", true);
         this.element.parent().addClass("disabled");

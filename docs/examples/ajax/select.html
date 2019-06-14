@@ -43,13 +43,13 @@
         </select>
     </div>
 
-    <script src="../../js/jquery-3.3.1.min.js"></script>
     <script src="../../metro/js/metro.js"></script>
     <script>
         function updateSelect(v){
-            $.get("data/"+v, function(response){
+            $.get("data/"+v).then(function(response){
+                console.log(response);
                 var select = $("#select1").data("select");
-                select.data(response);
+                select.data(v.indexOf("json") === -1 ? response : JSON.parse(response));
             });
         }
     </script>
