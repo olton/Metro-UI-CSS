@@ -18583,260 +18583,6 @@ input:-webkit-autofill:active {
   -webkit-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
-.d-menu,
-.v-menu {
-  position: absolute;
-  display: none;
-  float: left;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  list-style: none inside none;
-  background-color: #ffffff;
-  color: #1d1d1d;
-}
-.d-menu.open,
-.v-menu.open {
-  display: block!important;
-}
-.d-menu.place-right,
-.v-menu.place-right {
-  left: auto;
-  right: 0;
-}
-.d-menu {
-  z-index: 1000;
-}
-.d-menu li,
-.v-menu li,
-.d-menu a,
-.v-menu a {
-  display: block;
-  float: none;
-  position: relative;
-  cursor: pointer;
-  color: inherit;
-  background-color: inherit;
-  height: auto;
-}
-.d-menu li a,
-.v-menu li a {
-  font-size: 0.875rem;
-  padding: 0 2rem 0 2.5rem;
-  line-height: 45px;
-  height: 45px;
-  text-decoration: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  border: none;
-}
-.d-menu li a img,
-.v-menu li a img,
-.d-menu li a .icon,
-.v-menu li a .icon {
-  display: block;
-  position: absolute;
-  vertical-align: middle;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.2rem;
-  left: 0.5rem;
-  top: 50%;
-  margin-top: -0.6rem;
-  width: 1.2rem;
-  height: 1.2rem;
-  color: inherit;
-}
-.d-menu li a img::before,
-.v-menu li a img::before,
-.d-menu li a .icon::before,
-.v-menu li a .icon::before {
-  position: absolute;
-  top: 0;
-  left: 0;
-  line-height: 1.2rem;
-}
-.d-menu li.active,
-.v-menu li.active {
-  border-left: 2px solid;
-  border-color: #dfdfdf;
-}
-.d-menu li.active > a,
-.v-menu li.active > a {
-  background-color: #5ebdec;
-  color: #ffffff;
-  font-weight: bold;
-}
-.d-menu li:hover,
-.v-menu li:hover {
-  text-decoration: none;
-  background-color: rgba(29, 29, 29, 0.1);
-}
-.d-menu li:hover > a,
-.v-menu li:hover > a,
-.d-menu li:hover .icon,
-.v-menu li:hover .icon {
-  color: inherit;
-}
-.d-menu li a[data-hotkey],
-.v-menu li a[data-hotkey] {
-  padding-right: 4rem;
-}
-.d-menu li a[data-hotkey]::after,
-.v-menu li a[data-hotkey]::after {
-  content: attr(data-hotkey);
-  position: absolute;
-  right: 1.2rem;
-  width: auto;
-  font-size: 0.8em;
-}
-.d-menu li a.dropdown-toggle::before,
-.v-menu li a.dropdown-toggle::before {
-  -webkit-transform: rotate(-135deg);
-          transform: rotate(-135deg);
-}
-.d-menu li a.dropdown-toggle.active-toggle::before,
-.v-menu li a.dropdown-toggle.active-toggle::before {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-.d-menu .divider,
-.v-menu .divider {
-  padding: 0;
-  height: 1px;
-  margin: 0 1px;
-  overflow: hidden;
-  background-color: #f2f2f2;
-  cursor: default;
-  pointer-events: none;
-}
-.d-menu .divider:hover,
-.v-menu .divider:hover {
-  background-color: #f2f2f2;
-}
-.d-menu.disabled,
-.v-menu.disabled {
-  cursor: default;
-  pointer-events: none;
-}
-.d-menu.disabled a,
-.v-menu.disabled a {
-  color: #e4e4e4;
-}
-.d-menu {
-  -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
-          box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
-}
-.d-menu.context li a {
-  height: 32px;
-  line-height: 32px;
-  font-size: 0.75rem;
-  padding: 0 2rem 0 2.5rem;
-}
-.d-menu.context li a .icon {
-  width: 0.92rem;
-  height: 0.92rem;
-  font-size: 0.92rem;
-}
-.v-menu {
-  display: block;
-  position: relative;
-  width: 100%;
-  float: none;
-}
-.v-menu.for-dropdown {
-  width: auto;
-  float: left;
-  display: none;
-}
-.v-menu .v-menu {
-  display: none;
-  min-width: 0;
-  position: relative;
-  width: 100%;
-  left: 0 ;
-  right: 0 ;
-  top: 100%;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  float: none;
-}
-.v-menu .menu-title {
-  background-color: #f6f7f8;
-  font-size: 12px;
-  line-height: 22px;
-  height: 22px;
-  padding: 0 8px;
-  border: 0;
-  color: #646464;
-  font-weight: bold;
-  pointer-events: none;
-}
-.v-menu .menu-title:first-child {
-  margin: 0;
-  border-top-width: 0;
-}
-.v-menu .menu-title:first-child:hover {
-  border-top-width: 0;
-}
-.v-menu .menu-title:hover {
-  background-color: #f6f7f8;
-  cursor: default;
-  border: 0;
-}
-.v-menu.dropdown {
-  position: absolute;
-  float: left;
-  width: auto;
-  top: 100%;
-  border: 1px solid #dfdfdf;
-}
-.d-menu .d-menu {
-  left: 100%;
-  top: -0.5rem;
-}
-@media screen and (min-width: 0) {
-  .d-menu.place-right-fs,
-  .v-menu.place-right-fs {
-    left: auto;
-    right: 0;
-  }
-}
-@media screen and (min-width: 576px) {
-  .d-menu.place-right-sm,
-  .v-menu.place-right-sm {
-    left: auto;
-    right: 0;
-  }
-}
-@media screen and (min-width: 768px) {
-  .d-menu.place-right-md,
-  .v-menu.place-right-md {
-    left: auto;
-    right: 0;
-  }
-}
-@media screen and (min-width: 992px) {
-  .d-menu.place-right-lg,
-  .v-menu.place-right-lg {
-    left: auto;
-    right: 0;
-  }
-}
-@media screen and (min-width: 1200px) {
-  .d-menu.place-right-xl,
-  .v-menu.place-right-xl {
-    left: auto;
-    right: 0;
-  }
-}
-@media screen and (min-width: 1452px) {
-  .d-menu.place-right-xxl,
-  .v-menu.place-right-xxl {
-    left: auto;
-    right: 0;
-  }
-}
 .no-shadow {
   -webkit-box-shadow: none!important;
           box-shadow: none!important;
@@ -37985,6 +37731,260 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .h-menu.mega .mega-container * {
   color: inherit;
+}
+.d-menu,
+.v-menu {
+  position: absolute;
+  display: none;
+  float: left;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  list-style: none inside none;
+  background-color: #ffffff;
+  color: #1d1d1d;
+}
+.d-menu.open,
+.v-menu.open {
+  display: block!important;
+}
+.d-menu.place-right,
+.v-menu.place-right {
+  left: auto;
+  right: 0;
+}
+.d-menu {
+  z-index: 1000;
+}
+.d-menu li,
+.v-menu li,
+.d-menu a,
+.v-menu a {
+  display: block;
+  float: none;
+  position: relative;
+  cursor: pointer;
+  color: inherit;
+  background-color: inherit;
+  height: auto;
+}
+.d-menu li a,
+.v-menu li a {
+  font-size: 0.875rem;
+  padding: 0 2rem 0 2.5rem;
+  line-height: 45px;
+  height: 45px;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  border: none;
+}
+.d-menu li a img,
+.v-menu li a img,
+.d-menu li a .icon,
+.v-menu li a .icon {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+  left: 0.5rem;
+  top: 50%;
+  margin-top: -0.6rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: inherit;
+}
+.d-menu li a img::before,
+.v-menu li a img::before,
+.d-menu li a .icon::before,
+.v-menu li a .icon::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  line-height: 1.2rem;
+}
+.d-menu li.active,
+.v-menu li.active {
+  border-left: 2px solid;
+  border-color: #dfdfdf;
+}
+.d-menu li.active > a,
+.v-menu li.active > a {
+  background-color: #5ebdec;
+  color: #ffffff;
+  font-weight: bold;
+}
+.d-menu li:hover,
+.v-menu li:hover {
+  text-decoration: none;
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.d-menu li:hover > a,
+.v-menu li:hover > a,
+.d-menu li:hover .icon,
+.v-menu li:hover .icon {
+  color: inherit;
+}
+.d-menu li a[data-hotkey],
+.v-menu li a[data-hotkey] {
+  padding-right: 4rem;
+}
+.d-menu li a[data-hotkey]::after,
+.v-menu li a[data-hotkey]::after {
+  content: attr(data-hotkey);
+  position: absolute;
+  right: 1.2rem;
+  width: auto;
+  font-size: 0.8em;
+}
+.d-menu li a.dropdown-toggle::before,
+.v-menu li a.dropdown-toggle::before {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+}
+.d-menu li a.dropdown-toggle.active-toggle::before,
+.v-menu li a.dropdown-toggle.active-toggle::before {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+.d-menu .divider,
+.v-menu .divider {
+  padding: 0;
+  height: 1px;
+  margin: 0 1px;
+  overflow: hidden;
+  background-color: #f2f2f2;
+  cursor: default;
+  pointer-events: none;
+}
+.d-menu .divider:hover,
+.v-menu .divider:hover {
+  background-color: #f2f2f2;
+}
+.d-menu.disabled,
+.v-menu.disabled {
+  cursor: default;
+  pointer-events: none;
+}
+.d-menu.disabled a,
+.v-menu.disabled a {
+  color: #e4e4e4;
+}
+.d-menu {
+  -webkit-box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+          box-shadow: 2px 2px 2px 0 rgba(227, 228, 229, 0.7), -0.5px 0 1px 0 rgba(227, 228, 229, 0.7);
+}
+.d-menu.context li a {
+  height: 32px;
+  line-height: 32px;
+  font-size: 0.75rem;
+  padding: 0 2rem 0 2.5rem;
+}
+.d-menu.context li a .icon {
+  width: 0.92rem;
+  height: 0.92rem;
+  font-size: 0.92rem;
+}
+.v-menu {
+  display: block;
+  position: relative;
+  width: 100%;
+  float: none;
+}
+.v-menu.for-dropdown {
+  width: auto;
+  float: left;
+  display: none;
+}
+.v-menu .v-menu {
+  display: none;
+  min-width: 0;
+  position: relative;
+  width: 100%;
+  left: 0 ;
+  right: 0 ;
+  top: 100%;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  float: none;
+}
+.v-menu .menu-title {
+  background-color: #f6f7f8;
+  font-size: 12px;
+  line-height: 22px;
+  height: 22px;
+  padding: 0 8px;
+  border: 0;
+  color: #646464;
+  font-weight: bold;
+  pointer-events: none;
+}
+.v-menu .menu-title:first-child {
+  margin: 0;
+  border-top-width: 0;
+}
+.v-menu .menu-title:first-child:hover {
+  border-top-width: 0;
+}
+.v-menu .menu-title:hover {
+  background-color: #f6f7f8;
+  cursor: default;
+  border: 0;
+}
+.v-menu.dropdown {
+  position: absolute;
+  float: left;
+  width: auto;
+  top: 100%;
+  border: 1px solid #dfdfdf;
+}
+.d-menu .d-menu {
+  left: 100%;
+  top: -0.5rem;
+}
+@media screen and (min-width: 0) {
+  .d-menu.place-right-fs,
+  .v-menu.place-right-fs {
+    left: auto;
+    right: 0;
+  }
+}
+@media screen and (min-width: 576px) {
+  .d-menu.place-right-sm,
+  .v-menu.place-right-sm {
+    left: auto;
+    right: 0;
+  }
+}
+@media screen and (min-width: 768px) {
+  .d-menu.place-right-md,
+  .v-menu.place-right-md {
+    left: auto;
+    right: 0;
+  }
+}
+@media screen and (min-width: 992px) {
+  .d-menu.place-right-lg,
+  .v-menu.place-right-lg {
+    left: auto;
+    right: 0;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .d-menu.place-right-xl,
+  .v-menu.place-right-xl {
+    left: auto;
+    right: 0;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .d-menu.place-right-xxl,
+  .v-menu.place-right-xxl {
+    left: auto;
+    right: 0;
+  }
 }
 .dropdown-toggle {
   position: relative;
