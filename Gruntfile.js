@@ -6,16 +6,10 @@ module.exports = function(grunt) {
     var develop = grunt.option('develop');
     var tasks = ['clean', 'less', 'postcss', 'concat'];
     var watch_files = [
-        'js/i18n/*.json',
-        'js/*.js',
-        'js/m4q/*.js',
-        'js/utils/*.js',
-        'js/plugins/*js',
-        'less/*.less',
-        'less/include/*.less',
-        'less/third-party/*.less',
-        'less/schemes/*.less',
-        'less/schemes/builder/*.less',
+        'source/i18n/*.json',
+        'source/*.js',
+        'source/**/*.js',
+        'source/**/*.less',
         'Gruntfile.js'
     ];
     var time = new Date(), day = time.getDate(), month = time.getMonth()+1, year = time.getFullYear(), hour = time.getHours(), mins = time.getMinutes(), sec = time.getSeconds();
@@ -86,7 +80,8 @@ module.exports = function(grunt) {
                     'build/css/metro.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
-                    'build/css/metro-icons.css'
+                    'build/css/metro-icons.css',
+                    'build/css/metro-third.css'
                 ],
                 dest: 'build/css/metro-all.css'
             }
@@ -115,7 +110,13 @@ module.exports = function(grunt) {
             src: {
                 expand: true,
                 cwd: "source/",
-                src: ["metro.less", "metro-rtl.less", "metro-colors.less", "metro-icons.less"],
+                src: [
+                    "metro.less",
+                    "metro-rtl.less",
+                    "metro-colors.less",
+                    "metro-icons.less",
+                    "metro-third.less"
+                ],
                 ext: ".css",
                 dest: "build/css"
             },
@@ -125,13 +126,6 @@ module.exports = function(grunt) {
                 src: ["*.less"],
                 ext: ".css",
                 dest: "build/css/schemes"
-            },
-            third: {
-                expand: true,
-                cwd: "source/third-party/",
-                src: ["*.less"],
-                ext: ".css",
-                dest: "build/css/third-party"
             },
             docs: {
                 expand: true,
@@ -156,9 +150,6 @@ module.exports = function(grunt) {
             },
             schemes: {
                 src: 'build/css/schemes/*.css'
-            },
-            third: {
-                src: 'build/css/third-party/*.css'
             }
         },
 
@@ -175,13 +166,6 @@ module.exports = function(grunt) {
                 cwd: "build/css/schemes",
                 src: ['*.css', '!*.min.css'],
                 dest: "build/css/schemes",
-                ext: ".min.css"
-            },
-            third: {
-                expand: true,
-                cwd: "build/css/third-party",
-                src: ['*.css', '!*.min.css'],
-                dest: "build/css/third-party",
                 ext: ".min.css"
             }
         },
