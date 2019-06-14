@@ -30,6 +30,7 @@
     "grunt": "^1.0.4",
     "grunt-build-number": "^1.0.0",
     "grunt-bump": "^0.8.0",
+    "grunt-concurrent": "^2.3.1",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compress": "^1.5.0",
     "grunt-contrib-concat": "^1.0.1",

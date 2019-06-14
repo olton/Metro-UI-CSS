@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 
     var watching = grunt.option('watching');
     var develop = grunt.option('develop');
-    var tasks = ['clean', 'less', 'postcss', 'concat'];
+    var tasks = ['clean', 'less', 'postcss', 'concat', 'uglify', 'cssmin', 'replace', 'copy', 'watch'];
     var watch_files = [
         'source/i18n/*.json',
         'source/*.js',
@@ -16,18 +16,6 @@ module.exports = function(grunt) {
     var timestamp = (day < 10 ? "0"+day:day) + "/" + (month < 10 ? "0"+month:month) + "/" + (year) + " " + (hour<10?"0"+hour:hour) + ":" + (mins<10?"0"+mins:mins) + ":" + (sec<10?"0"+sec:sec);
 
     require('load-grunt-tasks')(grunt);
-
-    if (!develop) {
-        tasks.push('uglify');
-        tasks.push('cssmin');
-    }
-
-    tasks.push('replace');
-    tasks.push('copy');
-
-    if (watching) {
-        tasks.push('watch');
-    }
 
     grunt.initConfig({
         docsDir: 'G:\\Projects\\Metro4-Docs\\public_html\\metro',
@@ -222,6 +210,20 @@ module.exports = function(grunt) {
             }
         },
 
+        concurrent: {
+            options: {
+                limit: 4 
+            },
+            clean: ['clean'],
+            compile_less: ['less:src', 'less:schemes', 'less:docs'],
+            postcss: ['postcss'],
+            concat: ['concat:js', 'concat:css'],
+            min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
+            replace: ['replace'],
+            copy: ['copy'],
+            watch: ['watch']
+        },
+
         watch: {
             scripts: {
                 files: watch_files,
@@ -230,6 +232,16 @@ module.exports = function(grunt) {
         }
     });
 
-    grunt.registerTask('default', tasks);
+    // grunt.registerTask('default', tasks);
+    grunt.registerTask('default', [
+        'concurrent:clean',
+        'concurrent:compile_less',
+        'concurrent:postcss',
+        'concurrent:concat',
+        'concurrent:min',
+        'concurrent:replace',
+        'concurrent:copy',
+        'watch'
+    ]);
 
 };
