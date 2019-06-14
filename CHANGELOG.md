@@ -10,6 +10,8 @@
 + [x] Calendar picker: fix using locale for initial value, issue #1376
 + [x] Typo: set line-height for paragraph to 1.5
 + [x] Table: fire event onDataLoaded before table build
++ [x] Dialog: fix hide method
++ [x] File: add method "clear"
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374

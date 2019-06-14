@@ -3438,7 +3438,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "12/06/2019 09:38:00",
+    compileTime: "12/06/2019 14:50:06",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13075,8 +13075,8 @@ Metro.dialogSetup = function (options) {
     DialogDefaultConfig = $.extend({}, DialogDefaultConfig, options);
 };
 
-if (typeof window.metroDialogSetup !== undefined) {
-    Metro.dialogSetup(window.metroDialogSetup);
+if (typeof window["metroDialogSetup"] !== undefined) {
+    Metro.dialogSetup(window["metroDialogSetup"]);
 }
 
 var Dialog = {
@@ -13096,7 +13096,7 @@ var Dialog = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -13209,7 +13209,7 @@ var Dialog = {
     },
 
     _overlay: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         var overlay = $("<div>");
         overlay.addClass("overlay").addClass(o.clsOverlay);
@@ -13226,19 +13226,19 @@ var Dialog = {
     },
 
     hide: function(callback){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var timeout = 0;
         if (o.onHide !== Metro.noop) {
-            timeout = 300;
+            timeout = 500;
+            Utils.exec(o.onHide, null, element[0]);
+            element.fire("hide");
         }
         setTimeout(function(){
+            Utils.callback(callback);
             element.css({
                 visibility: "hidden",
                 top: "100%"
             });
-            Utils.exec(o.onHide, [that], element[0]);
-            element.fire("hide");
-            Utils.callback(callback);
         }, timeout);
     },
 
@@ -13280,7 +13280,7 @@ var Dialog = {
     },
 
     setContent: function(c){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var content = element.find(".dialog-content");
         if (content.length === 0) {
             content = $("<div>").addClass("dialog-content");
@@ -13299,7 +13299,7 @@ var Dialog = {
     },
 
     setTitle: function(t){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var title = element.find(".dialog-title");
         if (title.length === 0) {
             title = $("<div>").addClass("dialog-title");
@@ -13309,7 +13309,7 @@ var Dialog = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (!Utils.bool(o.leaveOverlayOnClose)) {
             $('body').find('.overlay').remove();
@@ -14157,6 +14157,12 @@ var File = {
                 element.trigger("change");
             });
         }
+    },
+
+    clear: function(){
+        var element = this.element;
+        element.siblings(".caption").html("");
+        element.val("");
     },
 
     disable: function(){

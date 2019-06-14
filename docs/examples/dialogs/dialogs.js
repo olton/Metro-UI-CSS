@@ -21,17 +21,20 @@ function animateDemo(){
     Metro.dialog.create({
         title: "Animation demo",
         content: "<div>This dialog animated with onShow, onHide events</div>",
-        onShow: function(el){
+        onShow: function(){
+            var el = $(this);
             el.addClass("ani-swoopInTop");
             setTimeout(function(){
                 el.removeClass("ani-swoopInTop");
             }, 500);
         },
-        onHide: function(el){
+        onHide: function(){
+            console.log("hide");
+            var el = $(this);
             el.addClass("ani-swoopOutTop");
             setTimeout(function(){
-                el.removeClass("ani-swoopOutTop");
-            }, 500);
+                //el.removeClass("ani-swoopOutTop");
+            }, 5000);
         }
     });
 }
