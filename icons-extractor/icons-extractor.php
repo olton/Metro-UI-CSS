@@ -1,5 +1,5 @@
 <?php
-$svg_file = dirname(dirname(__FILE__))."/icons/metro.svg";
+$svg_file = dirname(dirname(__FILE__))."/source/mif/metro.svg";
 $svg = file_get_contents($svg_file);
 $xml = simplexml_load_string($svg);
 $icons = [];
