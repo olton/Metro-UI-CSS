@@ -15165,31 +15165,153 @@ code.light.outline:hover,
   color: #1d1d1d;
 }
 .remark.primary {
-  border-left: 4px solid #0366d6;
+  background: #75b5fd;
+  border: 1px solid #75b5fd;
+}
+.remark.primary::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #0366d6;
+}
+.remark.primary {
+  background: #daebfe;
+  border: 1px solid #daebfe;
 }
 .remark.secondary {
-  border-left: 4px solid #607d8b;
+  background: #b7c6cd;
+  border: 1px solid #b7c6cd;
+}
+.remark.secondary::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #607d8b;
+}
+.remark.secondary {
+  background: #f3f6f7;
+  border: 1px solid #f3f6f7;
 }
 .remark.success {
-  border-left: 4px solid #60a917;
+  background: #adeb6e;
+  border: 1px solid #adeb6e;
+}
+.remark.success::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #60a917;
+}
+.remark.success {
+  background: #ecfbde;
+  border: 1px solid #ecfbde;
 }
 .remark.alert {
-  border-left: 4px solid #CE352C;
+  background: #ecaba7;
+  border: 1px solid #ecaba7;
+}
+.remark.alert::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #CE352C;
+}
+.remark.alert {
+  background: #fae7e6;
+  border: 1px solid #fae7e6;
 }
 .remark.warning {
-  border-left: 4px solid #ff9447;
+  background: #ffede1;
+  border: 1px solid #ffede1;
+}
+.remark.warning::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #ff9447;
+}
+.remark.warning {
+  background: #ffede1;
+  border: 1px solid #ffede1;
 }
 .remark.yellow {
-  border-left: 4px solid #ffe484;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+}
+.remark.yellow::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #ffe484;
+}
+.remark.yellow {
+  background: #fff7db;
+  border: 1px solid #fff7db;
 }
 .remark.info {
-  border-left: 4px solid #5ebdec;
+  background: #e6f5fc;
+  border: 1px solid #e6f5fc;
+}
+.remark.info::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #5ebdec;
+}
+.remark.info {
+  background: #e6f5fc;
+  border: 1px solid #e6f5fc;
 }
 .remark.dark {
-  border-left: 4px solid #505050;
+  background: #9d9d9d;
+  border: 1px solid #9d9d9d;
+}
+.remark.dark::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #505050;
+}
+.remark.dark {
+  background: #e9e9e9;
+  border: 1px solid #e9e9e9;
 }
 .remark.light {
-  border-left: 4px solid #f8f8f8;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+}
+.remark.light::before {
+  position: absolute;
+  top: 0;
+  left: -4px;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #f8f8f8;
 }
 input[type=text].primary,
 input[type=password].primary,
