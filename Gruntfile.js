@@ -3,8 +3,7 @@ module.exports = function(grunt) {
     "use strict";
 
     var watching = grunt.option('watching');
-    var develop = grunt.option('develop');
-    var tasks = ['clean', 'less', 'postcss', 'concat', 'uglify', 'cssmin', 'replace', 'copy', 'watch'];
+    var tasks;
     var watch_files = [
         'source/i18n/*.json',
         'source/*.js',
@@ -212,7 +211,7 @@ module.exports = function(grunt) {
 
         concurrent: {
             options: {
-                limit: 4 
+                limit: 8
             },
             clean: ['clean'],
             compile_less: ['less:src', 'less:schemes', 'less:docs'],
@@ -232,16 +231,21 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.registerTask('default', tasks);
-    grunt.registerTask('default', [
+    tasks = [
         'concurrent:clean',
         'concurrent:compile_less',
         'concurrent:postcss',
         'concurrent:concat',
         'concurrent:min',
         'concurrent:replace',
-        'concurrent:copy',
-        'watch'
-    ]);
+        'concurrent:copy'
+    ];
+
+    if (watching) {
+        tasks.push('watch');
+    }
+
+    // grunt.registerTask('default', tasks);
+    grunt.registerTask('default', tasks);
 
 };

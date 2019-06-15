@@ -12,6 +12,8 @@
 + [x] Table: fire event onDataLoaded before table build
 + [x] Dialog: fix hide method
 + [x] File: add method "clear"
++ [x] Source: structure refactoring
++ [x] Typography: add background to `remark` with `accent` color 
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374

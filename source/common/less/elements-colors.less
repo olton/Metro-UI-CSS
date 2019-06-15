@@ -124,7 +124,60 @@ tbody tr, tbody td,
         @color: "@{value}Color";
 
         &.@{value} {
-            border-left: 4px solid @@color;
+            @c: lighten(@@color, 30%);
+            background: @c;
+            border: 1px solid @c;
+
+            &::before {
+                position: absolute;
+                top: 0;
+                left: -4px;
+                width: 4px;
+                height: 100%;
+                content: " ";
+                background-color: @@color;
+            }
+        }
+
+        &.@{value} when(@color = 'primaryColor' ) {
+            @c: lighten(@@color, 50%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'secondaryColor' ) {
+            @c: lighten(@@color, 50%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'successColor' ) {
+            @c: lighten(@@color, 55%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'alertColor' ) {
+            @c: lighten(@@color, 45%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'warningColor' ) {
+            @c: lighten(@@color, 30%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'infoColor' ) {
+            @c: lighten(@@color, 30%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'yellowColor' ) {
+            @c: lighten(@@color, 17%);
+            background: @c;
+            border: 1px solid @c;
+        }
+        &.@{value} when(@color = 'darkColor' ) {
+            @c: lighten(@@color, 60%);
+            background: @c;
+            border: 1px solid @c;
         }
     })
 }
