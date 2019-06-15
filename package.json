@@ -26,7 +26,7 @@
   "license": "MIT",
   "main": "build/js/metro.js",
   "scripts": {
-    "test:components": "cypress open"
+    "test": "cypress open"
   },
   "devDependencies": {
     "autoprefixer": "^9.6.0",
