@@ -5,16 +5,7 @@ addons:
   apt:
     packages:
       - libgconf-2-4
-cache:
-  directories:
-    - ~/.npm
-    - ~/.cache
-  override:
-    - npm ci
-    - npm run cy:verify
 before_script:
   - npm install grunt-cli -g
-install:
-  - npm ci
 script:
   - $(npm bin)/cypress run
