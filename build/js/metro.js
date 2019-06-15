@@ -3428,7 +3428,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "15/06/2019 16:46:25",
+    compileTime: "15/06/2019 21:48:18",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -18099,6 +18099,110 @@ var Notify = {
 
 Metro['notify'] = Notify.setup();
 
+var createPagination = function(c){
+    var defConf = {
+        length: 0,
+        rows: 0,
+        current: 0,
+        target: "body",
+        clsPagination: "",
+        prevTitle: "Prev",
+        nextTitle: "Next",
+        distance: 5
+    }, conf;
+    var pagination;
+    var pagination_wrapper;
+    var i, prev, next;
+    var shortDistance;
+
+    conf = $.extend( {}, defConf, c);
+
+    shortDistance = parseInt(conf.distance);
+    pagination_wrapper = $(conf.target);
+    pagination_wrapper.html("");
+    pagination = $("<ul>").addClass("pagination").addClass(conf.clsPagination).appendTo(pagination_wrapper);
+
+    if (conf.length === 0) {
+        return ;
+    }
+
+    if (conf.rows === -1) {
+        return ;
+    }
+
+    conf.pages = Math.ceil(conf.length / conf.rows);
+
+    var add_item = function(item_title, item_type, data){
+        var li, a;
+
+        li = $("<li>").addClass("page-item").addClass(item_type);
+        a  = $("<a>").addClass("page-link").html(item_title);
+        a.data("page", data);
+        a.appendTo(li);
+
+        return li;
+    };
+
+    prev = add_item(conf.prevTitle, "service prev-page", "prev");
+    pagination.append(prev);
+
+    pagination.append(add_item(1, conf.current === 1 ? "active" : "", 1));
+
+    if (shortDistance === 0 || conf.pages <= 7) {
+        for (i = 2; i < conf.pages; i++) {
+            pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+        }
+    } else {
+        if (conf.current < shortDistance) {
+            for (i = 2; i <= shortDistance; i++) {
+                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+            }
+
+            if (conf.pages > shortDistance) {
+                pagination.append(add_item("...", "no-link", null));
+            }
+        } else if (conf.current <= conf.pages && conf.current > conf.pages - shortDistance + 1) {
+            if (conf.pages > shortDistance) {
+                pagination.append(add_item("...", "no-link", null));
+            }
+
+            for (i = conf.pages - shortDistance + 1; i < conf.pages; i++) {
+                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+            }
+        } else {
+            pagination.append(add_item("...", "no-link", null));
+
+            pagination.append(add_item(conf.current - 1, "", conf.current - 1));
+            pagination.append(add_item(conf.current, "active", conf.current));
+            pagination.append(add_item(conf.current + 1, "", conf.current + 1));
+
+            pagination.append(add_item("...", "no-link", null));
+        }
+    }
+
+    if (conf.pages > 1 || conf.current < conf.pages) pagination.append(add_item(conf.pages, conf.current === conf.pages ? "active" : "", conf.pages));
+
+    next = add_item(conf.nextTitle, "service next-page", "next");
+    pagination.append(next);
+
+    if (conf.current === 1) {
+        prev.addClass("disabled");
+    }
+
+    if (conf.current === conf.pages) {
+        next.addClass("disabled");
+    }
+
+    if (conf.length === 0) {
+        pagination.addClass("disabled");
+        pagination.children().addClass("disabled");
+    }
+
+    return pagination;
+};
+
+Metro['pagination'] = createPagination;
+
 var PanelDefaultConfig = {
     id: null,
     titleCaption: "",
@@ -21872,6 +21976,84 @@ var Stepper = {
 };
 
 Metro.plugin('stepper', Stepper);
+
+var Storage = function(type){
+    return new Storage.init(type);
+};
+
+Storage.prototype = {
+    setKey: function(key){
+        this.key = key
+    },
+
+    getKey: function(){
+        return this.key;
+    },
+
+    setItem: function(key, value){
+        this.storage.setItem(this.key + ":" + key, JSON.stringify(value));
+    },
+
+    getItem: function(key, default_value, reviver){
+        var result, value;
+
+        value = this.storage.getItem(this.key + ":" + key);
+
+        try {
+            result = JSON.parse(value, reviver);
+        } catch (e) {
+            result = null;
+        }
+        return Utils.nvl(result, default_value);
+    },
+
+    getItemPart: function(key, sub_key, default_value, reviver){
+        var i;
+        var val = this.getItem(key, default_value, reviver);
+
+        sub_key = sub_key.split("->");
+        for(i = 0; i < sub_key.length; i++) {
+            val = val[sub_key[i]];
+        }
+        return val;
+    },
+
+    delItem: function(key){
+        this.storage.removeItem(this.key + ":" + key)
+    },
+
+    size: function(unit){
+        var divider;
+        switch (unit) {
+            case 'm':
+            case 'M': {
+                divider = 1024 * 1024;
+                break;
+            }
+            case 'k':
+            case 'K': {
+                divider = 1024;
+                break;
+            }
+            default: divider = 1;
+        }
+        return JSON.stringify(this.storage).length / divider;
+    }
+};
+
+Storage.init = function(type){
+
+    this.key = "";
+    this.storage = type ? type : window.localStorage;
+
+    return this;
+};
+
+Storage.init.prototype = Storage.prototype;
+
+Metro['storage'] = Storage(window.localStorage);
+Metro['session'] = Storage(window.sessionStorage);
+
 
 var StreamerDefaultConfig = {
     wheel: false,
