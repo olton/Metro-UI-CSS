@@ -297,7 +297,7 @@
     <script>
         $(".version-number").html(Metro.ver());
         $(".version-number-full").html(Metro.ver(true));
-        Metro.utils.github("olton/Metro-UI-CSS", function(data){
+        if (!Metro.utils.isLocalhost()) Metro.utils.github("olton/Metro-UI-CSS", function(data){
             $("#github-forks").attr("data-value", data.forks).data("counter").start();
             $("#github-stars").attr("data-value", data.stargazers_count).data("counter").start();
             $("#github-watchers").attr("data-value", data.subscribers_count).data("counter").start();

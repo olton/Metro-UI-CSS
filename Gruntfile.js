@@ -14,6 +14,20 @@ module.exports = function(grunt) {
     var time = new Date(), day = time.getDate(), month = time.getMonth()+1, year = time.getFullYear(), hour = time.getHours(), mins = time.getMinutes(), sec = time.getSeconds();
     var timestamp = (day < 10 ? "0"+day:day) + "/" + (month < 10 ? "0"+month:month) + "/" + (year) + " " + (hour<10?"0"+hour:hour) + ":" + (mins<10?"0"+mins:mins) + ":" + (sec<10?"0"+sec:sec);
 
+    tasks = [
+        'concurrent:clean',
+        'concurrent:compile_less',
+        'concurrent:postcss',
+        'concurrent:concat',
+        'concurrent:min',
+        'concurrent:replace',
+        'concurrent:copy'
+    ];
+
+    if (watching) {
+        tasks.push('watch');
+    }
+
     require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
@@ -230,20 +244,6 @@ module.exports = function(grunt) {
             }
         }
     });
-
-    tasks = [
-        'concurrent:clean',
-        'concurrent:compile_less',
-        'concurrent:postcss',
-        'concurrent:concat',
-        'concurrent:min',
-        'concurrent:replace',
-        'concurrent:copy'
-    ];
-
-    if (watching) {
-        tasks.push('watch');
-    }
 
     // grunt.registerTask('default', tasks);
     grunt.registerTask('default', tasks);

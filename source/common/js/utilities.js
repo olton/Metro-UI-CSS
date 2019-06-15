@@ -827,8 +827,9 @@ var Utils = {
         }
     },
 
-    isLocalhost: function(){
-        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
+    isLocalhost: function(pattern){
+        pattern = pattern || ".local";
+        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "" || location.hostname.indexOf(pattern) !== -1)
     },
 
     formData: function(f){
