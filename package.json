@@ -25,8 +25,12 @@
   },
   "license": "MIT",
   "main": "build/js/metro.js",
+  "scripts": {
+    "test:components": "cypress open"
+  },
   "devDependencies": {
     "autoprefixer": "^9.6.0",
+    "cypress": "^3.3.1",
     "grunt": "^1.0.4",
     "grunt-build-number": "^1.0.0",
     "grunt-bump": "^0.8.0",
