@@ -7,9 +7,4 @@ addons:
       - libgconf-2-4
 before_script:
   - npm install grunt-cli -g
-#branches:
-#  only:
-#    - master
-#    - stable
-#script:
-#  - $(npm bin)/cypress run
+  - npm install http-server -g

@@ -14,11 +14,10 @@ var Utils = {
     isEmbedObject: function(val){
         var embed = ["iframe", "object", "embed", "video"];
         var result = false;
-        $.each(embed, function(i, v){
-            'use strict';
-            if (typeof val === "string" && val.toLowerCase() === v) {
+        $.each(embed, function(){
+            if (typeof val === "string" && val.toLowerCase() === this) {
                 result = true;
-            } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === v) {
+            } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === this) {
                 result = true;
             }
         });
