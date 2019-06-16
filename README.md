@@ -28,9 +28,9 @@ It's an independent project with its ongoing development made possible entirely 
 ## Current Version 4.3.0
 
 ### Status
-<!--[![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)-->
-<!--[![devDependencies Status](https://david-dm.org/olton/Metro-UI-CSS/dev-status.svg)](https://david-dm.org/olton/Metro-UI-CSS?type=dev)-->
+[![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
+[![devDependencies Status](https://david-dm.org/olton/Metro-UI-CSS/dev-status.svg)](https://david-dm.org/olton/Metro-UI-CSS?type=dev)
 [![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/css/metro-all.min.css)
 [![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
