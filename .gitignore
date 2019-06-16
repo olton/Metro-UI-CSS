@@ -83,3 +83,4 @@ Update_Builder.js
 docs/test
 /.vs
 copy-dist.bat
+cypress/video
