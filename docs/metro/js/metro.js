@@ -13,22 +13,7 @@
 }(function( ) { 
 'use strict';
 
-( function( global, factory ) {
-	if ( typeof module === "object" && typeof module.exports === "object" ) {
-
-		module.exports = global.document ?
-			factory( global, true ) :
-			function( w ) {
-				if ( !w.document ) {
-					throw new Error( "m4q requires a window with a document" );
-				}
-				return factory( w );
-			};
-	} else {
-		factory( global );
-	}
-} )( typeof window !== "undefined" ? window : this, function( window ) {
-	
+(function (global, undefined) {
 
 'use strict';
 
@@ -487,7 +472,7 @@ function parseUnit(str, out) {
     }
 }(window));
 
-var m4qVersion = "v1.0.0. Built at 12/06/2019 09:20:39";
+var m4qVersion = "v1.0.0. Built at 16/06/2019 12:36:32";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -3320,9 +3305,7 @@ m4q.noConflict = function(deep) {
 
     return $;
 };
-
-	return m4q; 
-});
+}(window));
 
 
 var $ = m4q;
@@ -3428,7 +3411,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "16/06/2019 11:33:10",
+    compileTime: "16/06/2019 18:12:47",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6051,11 +6034,10 @@ var Utils = {
     isEmbedObject: function(val){
         var embed = ["iframe", "object", "embed", "video"];
         var result = false;
-        $.each(embed, function(i, v){
-            'use strict';
-            if (typeof val === "string" && val.toLowerCase() === v) {
+        $.each(embed, function(){
+            if (typeof val === "string" && val.toLowerCase() === this) {
                 result = true;
-            } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === v) {
+            } else if (val.nodeType !== undefined && val.tagName.toLowerCase() === this) {
                 result = true;
             }
         });
