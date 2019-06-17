@@ -8,6 +8,7 @@
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
 + [x] Datepicker: fix offset for timezones, issue #1372
 + [x] Datepicker: fix `val()` method 
++ [x] Notify system: fix minor bug for creating notify after setup
 
 ### 4.2.43
 + [x] Inputs: add class `.input-small` for using with `input`, `select`, `spinner`, `tag-input`, `keypad`, `file` , issue #1245
