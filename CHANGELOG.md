@@ -14,6 +14,7 @@
 + [x] File: add method "clear"
 + [x] Source: structure refactoring
 + [x] Typography: add background to `remark` with `accent` color 
++ [x] Tests: begin tests with `cypress`
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
