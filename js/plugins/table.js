@@ -1436,7 +1436,7 @@ var Table = {
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        if (Utils.isValue(format)) {
+        if (Utils.isValue(result) && Utils.isValue(format)) {
 
             if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
                 result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);
