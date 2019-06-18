@@ -3411,7 +3411,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "16/06/2019 18:12:47",
+    compileTime: "18/06/2019 11:45:10",
     buildNumber: "726",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13363,6 +13363,7 @@ var Draggable = {
             });
 
             $(document).on(Metro.events.moveAll, function(e){
+                e.preventDefault();
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
                 element.fire("dragmove", {

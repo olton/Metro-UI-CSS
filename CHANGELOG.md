@@ -15,6 +15,7 @@
 + [x] Source: structure refactoring
 + [x] Typography: add background to `remark` with `accent` color 
 + [x] Tests: begin tests with `cypress`
++ [x] Draggable: minor improve for `mouseMove` 
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374
