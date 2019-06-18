@@ -130,6 +130,7 @@ var Draggable = {
             });
 
             $(document).on(Metro.events.moveAll, function(e){
+                e.preventDefault();
                 moveElement(e);
                 Utils.exec(o.onDragMove, [position], elem);
                 element.fire("dragmove", {
