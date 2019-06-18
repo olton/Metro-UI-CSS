@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.45",
-    compileTime: "18/06/2019 17:56:26",
+    compileTime: "18/06/2019 18:08:00",
     buildNumber: "727",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21458,7 +21458,7 @@ var Table = {
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        if (Utils.isValue(format)) {
+        if (Utils.isValue(result) && Utils.isValue(format)) {
 
             if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
                 result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);

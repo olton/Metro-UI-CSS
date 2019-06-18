@@ -1,3 +1,6 @@
+### 4.2.46
++ [x] Table: fixed format value for sorting when value is empty, null or undefined
+
 ### 4.2.45
 + [x] Calendar picker: fix initial value for i18n
 + [x] Typography: set `line-height: 1.5` for `p` 
