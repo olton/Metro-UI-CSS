@@ -54,9 +54,10 @@ var Dropdown = {
         element.fire("dropdowncreate");
 
         if (element.hasClass("open")) {
-            setTimeout(function(){
+            element.removeClass("open");
+            setImmediate(function(){
                 that.open(true);
-            }, 500)
+            })
         }
     },
 
