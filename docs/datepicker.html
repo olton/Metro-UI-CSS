@@ -133,6 +133,32 @@
                 <pre><code class="html">
                     &lt;input data-role="datepicker" data-locale="uk-UA"&gt;
                 </code></pre>
+                <p>
+                    You can change <code>locale</code> at runtime. Metro 4 monitors the data-locale attribute change and redraws the component when the attribute value changes.
+                </p>
+                <div class="example">
+                    <div class="text-center p-4">
+                        <button class="button" onclick="changeLocale(this)">en-US</button>
+                        <button class="button" onclick="changeLocale(this)">uk-UA</button>
+                        <button class="button" onclick="changeLocale(this)">de-DE</button>
+
+                        <script>
+                            function changeLocale(btn){
+                                var locale = $(btn).text();
+                                $("#changeLocaleDatePicker").attr("data-locale", locale);
+                            }
+                        </script>
+                    </div>
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-min-year="2014" data-max-year="2020" id="changeLocaleDatePicker">
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                </div>
 
                 <h3 id="_datepicker_min-max-years">Min &amp; max years</h3>
                 <p>

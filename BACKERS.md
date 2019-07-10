@@ -27,10 +27,9 @@ If you'd like to join them, please consider:
 <h2 align="center">Platinum sponsor</h2>
 -->
 
+<!--
 <h2 align="center">Silver sponsor</h2>
-<div align="center">
-<a href="https://interactivity.com.ua"><img src="https://metroui.org.ua/images/Interactivity.png" style="height: 100px"></a>
-</div>
+-->
 
 <h2 align="center">Bronze sponsor</h2>
 <div align="center">
@@ -45,6 +44,7 @@ If you'd like to join them, please consider:
 
  - [Jonathan](https://www.patreon.com/user/creators?u=10019621) 
  - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
+ - [Marcel Wehrstedt](https://www.patreon.com/user/creators?u=16353488)
 
 
 <hr>
