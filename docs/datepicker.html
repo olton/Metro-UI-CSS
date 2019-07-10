@@ -141,13 +141,6 @@
                         <button class="button" onclick="changeLocale(this)">en-US</button>
                         <button class="button" onclick="changeLocale(this)">uk-UA</button>
                         <button class="button" onclick="changeLocale(this)">de-DE</button>
-
-                        <script>
-                            function changeLocale(btn){
-                                var locale = $(btn).text();
-                                $("#changeLocaleDatePicker").attr("data-locale", locale);
-                            }
-                        </script>
                     </div>
                     <div class="row">
                         <div class="cell-md-4">
@@ -210,6 +203,28 @@
                     &lt;input data-role="datepicker" data-value="Mon, 25 Dec 1995"&gt;
                     &lt;input data-role="datepicker" data-value="2018-02"&gt;
                 </code></pre>
+
+                <p>
+                    You can change <code>format</code> at runtime. Metro 4 monitors the <code>data-format</code> attribute change and change element value when the attribute changes.
+                </p>
+
+                <div class="example">
+                    <div class="text-center p-4">
+                        <button class="button" onclick="changeFormat(this)">%Y-%m-%d</button>
+                        <button class="button" onclick="changeFormat(this)">%d-%m-%Y</button>
+                        <button class="button" onclick="changeFormat(this)">%B, %d %Y</button>
+                    </div>
+                    <div class="row">
+                        <div class="cell-md-4">
+                        </div>
+                        <div class="cell-md-4">
+                            <input data-role="datepicker" data-min-year="2014" data-max-year="2020" id="changeFormatDatePicker">
+                        </div>
+                        <div class="cell-md-4">
+                        </div>
+                    </div>
+                    <div id="changeFormatDatePickerOutput" class="text-center p-4"></div>
+                </div>
 
                 <!-- ads-html -->
 
@@ -362,6 +377,22 @@
     <script src="highlight/highlight.pack.js"></script>
     <script src="js/clipboard.min.js"></script>
     <script src="js/site.js"></script>
+    <script>
+        function changeLocale(btn){
+            var locale = $(btn).text();
+            $("#changeLocaleDatePicker").attr("data-locale", locale);
+        }
+
+        $("#changeFormatDatePicker").on("set", function(){
+            $("#changeFormatDatePickerOutput").html(this.value);
+        });
+
+        function changeFormat(btn){
+            var format = $(btn).text();
+            var element = $("#changeFormatDatePicker");
+            element.attr("data-format", format);
+        }
+    </script>
     <!-- ads-script -->
     <!-- ga-script -->
     <!-- hit-ua -->

@@ -450,9 +450,16 @@ var DatePicker = {
             that.i18n(that.element.attr("data-locale"));
         }
 
+        function changeFormat() {
+            that.options.format = that.element.attr("data-format");
+            // that.element.val(that.value.format(that.options.format, that.options.locale)).trigger("change");
+            that._set();
+        }
+
         switch (attributeName) {
             case "data-value": changeValue(); break;
             case "data-locale": changeLocale(); break;
+            case "data-format": changeFormat(); break;
         }
     },
 

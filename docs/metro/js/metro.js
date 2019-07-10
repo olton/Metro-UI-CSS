@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.46",
-    compileTime: "10/07/2019 12:10:28",
+    compileTime: "10/07/2019 12:31:31",
     buildNumber: "727",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -9920,9 +9920,16 @@ var DatePicker = {
             that.i18n(that.element.attr("data-locale"));
         }
 
+        function changeFormat() {
+            that.options.format = that.element.attr("data-format");
+            // that.element.val(that.value.format(that.options.format, that.options.locale)).trigger("change");
+            that._set();
+        }
+
         switch (attributeName) {
             case "data-value": changeValue(); break;
             case "data-locale": changeLocale(); break;
+            case "data-format": changeFormat(); break;
         }
     },
 
