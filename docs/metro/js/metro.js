@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.46",
-    compileTime: "19/06/2019 17:22:20",
+    compileTime: "10/07/2019 12:10:28",
     buildNumber: "727",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7621,8 +7621,8 @@ Metro.chatSetup = function (options) {
     ChatDefaultConfig = $.extend({}, ChatDefaultConfig, options);
 };
 
-if (typeof window.metroChatSetup !== undefined) {
-    Metro.chatSetup(window.metroChatSetup);
+if (typeof window["metroChatSetup"] !== undefined) {
+    Metro.chatSetup(window["metroChatSetup"]);
 }
 
 var Chat = {
@@ -9500,8 +9500,8 @@ Metro.datePickerSetup = function (options) {
     DatePickerDefaultConfig = $.extend({}, DatePickerDefaultConfig, options);
 };
 
-if (typeof window.metroDatePickerSetup !== undefined) {
-    Metro.datePickerSetup(window.metroDatePickerSetup);
+if (typeof window["metroDatePickerSetup"] !== undefined) {
+    Metro.datePickerSetup(window["metroDatePickerSetup"]);
 }
 
 var DatePicker = {
@@ -9512,7 +9512,7 @@ var DatePicker = {
         this.picker = null;
         this.isOpen = false;
         this.value = new Date();
-        this.locale = Metro.locales[METRO_LOCALE]['calendar'];
+        this.locale = Metro.locales[this.options.locale]['calendar'];
         this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
         this.listTimer = {
             day: null,
@@ -9542,7 +9542,6 @@ var DatePicker = {
 
     _create: function(){
         var element = this.element, o = this.options;
-        var now = new Date();
 
         if (o.distance < 1) {
             o.distance = 1;
@@ -9734,7 +9733,7 @@ var DatePicker = {
 
                     if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
 
-                        var target, targetElement, scrollTop, delta;
+                        var target, targetElement, scrollTop;
 
                         that.listTimer[part] = null;
 
@@ -9789,10 +9788,10 @@ var DatePicker = {
     },
 
     open: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var picker = this.picker;
         var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
-        var m_list, d_list, y_list, list, item, point;
+        var m_list, d_list, y_list;
         var select_wrapper = picker.find(".select-wrapper");
         var select_wrapper_in_viewport, select_wrapper_rect;
 
@@ -9891,13 +9890,39 @@ var DatePicker = {
         }
     },
 
-    changeValueAttribute: function(){
-        this.val(this.element.attr("data-value"));
+    i18n: function(locale){
+        var element = this.element, o = this.options;
+        var month, i;
+
+        o.locale = locale ? locale : element.attr("data-locale");
+        this.locale = Metro.locales[o.locale]['calendar'];
+
+        if (o.month === true) {
+            month =  element.closest(".date-picker").find(".sel-month").html("");
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
+            for (i = 0; i < 12; i++) {
+                $("<li>").addClass("js-month-"+i+" js-month-real-"+this.locale['months'][i].toLowerCase()).html(this.locale['months'][i]).data("value", i).appendTo(month);
+            }
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
+        }
+
+        this._set();
     },
 
     changeAttribute: function(attributeName){
-        if (attributeName === "data-value") {
-            this.changeValueAttribute();
+        var that = this;
+
+        function changeValue() {
+            that.val(that.element.attr("data-value"));
+        }
+
+        function changeLocale() {
+            that.i18n(that.element.attr("data-locale"));
+        }
+
+        switch (attributeName) {
+            case "data-value": changeValue(); break;
+            case "data-locale": changeLocale(); break;
         }
     },
 

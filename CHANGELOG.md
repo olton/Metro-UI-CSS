@@ -1,6 +1,7 @@
 ### 4.2.46
 + [x] Table: fixed format value for sorting when value is empty, null or undefined
-+ [x] Dropdown: fix set open on init 
++ [x] Dropdown: fix set open on init
++ [x] DatePicker: add observation for attribute `data-locale` 
 
 ### 4.2.45
 + [x] Calendar picker: fix initial value for i18n
