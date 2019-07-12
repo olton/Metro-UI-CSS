@@ -836,7 +836,11 @@ var Utils = {
     },
 
     isLocalhost: function(){
-        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
+        return window.location.hostname === 'localhost' ||
+            window.location.hostname === '[::1]' ||
+            window.location.hostname.match(
+                /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+            );
     },
 
     formData: function(f){
