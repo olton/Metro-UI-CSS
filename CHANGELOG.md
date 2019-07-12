@@ -4,7 +4,7 @@
 + [x] DatePicker: add observation for attribute `data-locale` 
 + [x] DatePicker: add observation for attribute `data-format`
 + [x] Utils: upd func `isLocalhost`
-+ [ ] Windows: Bug in `Metro.window.create` bad return object  
++ [x] Windows: Bug in `Metro.window.create` bad return object   
 
 ### 4.2.45
 + [x] Calendar picker: fix initial value for i18n
