@@ -24520,6 +24520,7 @@ figure img {
   text-overflow: ellipsis;
   width: 100%;
   padding-left: 4px;
+  color: inherit;
 }
 .window-caption .icon {
   width: 34px;
@@ -24529,6 +24530,7 @@ figure img {
       flex-shrink: 0;
   display: block;
   position: relative;
+  color: inherit;
 }
 .window-caption .icon * {
   width: 1rem;

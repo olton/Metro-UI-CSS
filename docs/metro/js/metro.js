@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.46",
-    compileTime: "10/07/2019 12:31:31",
+    compileTime: "12/07/2019 11:20:26",
     buildNumber: "727",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -320,8 +320,10 @@ var Metro = {
                         Metro.initHotkeys([mutation.target], true);
 
                     } else {
+
                         var element = $(mutation.target);
                         var mc = element.data('metroComponent');
+
                         if (mc !== undefined) {
                             $.each(mc, function(){
                                 var plug = element.data(this);
@@ -428,9 +430,9 @@ var Metro = {
         });
     },
 
-    initWidgets: function(widgets, a) {
+    initWidgets: function(widgets) {
         $.each(widgets, function () {
-            var $this = $(this), w = this;
+            var $this = $(this);
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
@@ -4037,7 +4039,11 @@ var Utils = {
     },
 
     isLocalhost: function(){
-        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "")
+        return window.location.hostname === 'localhost' ||
+            window.location.hostname === '[::1]' ||
+            window.location.hostname.match(
+                /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+            );
     },
 
     formData: function(f){
@@ -26477,16 +26483,13 @@ var WindowDefaultConfig = {
     btnClose: true,
     btnMin: true,
     btnMax: true,
-    clsCaption: "",
-    clsContent: "",
-    clsWindow: "",
     draggable: true,
     dragElement: ".window-caption .icon, .window-caption .title",
     dragArea: "parent",
     shadow: false,
     icon: "",
     title: "Window",
-    content: "default",
+    content: null,
     resizable: true,
     overlay: false,
     overlayColor: 'transparent',
@@ -26499,7 +26502,14 @@ var WindowDefaultConfig = {
     place: "auto",
     closeAction: Metro.actions.REMOVE,
     customButtons: null,
+
     clsCustomButton: "",
+    clsCaption: "",
+    clsContent: "",
+    clsWindow: "",
+
+    _runtime: false,
+
     minWidth: 0,
     minHeight: 0,
     maxWidth: 0,
@@ -26525,8 +26535,8 @@ Metro.windowSetup = function (options) {
     WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
 };
 
-if (typeof window.metroWindowSetup !== undefined) {
-    Metro.windowSetup(window.metroWindowSetup);
+if (typeof window["metroWindowSetup"] !== undefined) {
+    Metro.windowSetup(window["metroWindowSetup"]);
 }
 
 var Window = {
@@ -26575,8 +26585,23 @@ var Window = {
             o.resizable = false;
         }
 
-        if (o.content === "default") {
-            o.content = element;
+        o.content = !Utils.isNull(o.content) ? element.append(o.content) : element;
+
+        element.attr("data-cls-caption", o.clsCaption);
+        element.attr("data-cls-window", o.clsWindow);
+        element.attr("data-cls-content", o.clsContent);
+        element.attr("data-cls-custom-button", o.clsCustomButton);
+
+        if (o._runtime === true) {
+            element.attr("data-role-window", true);
+            var mc = element.data('metroComponent');
+
+            if (mc === undefined) {
+                mc = ["window"];
+            } else {
+                mc.push("window");
+            }
+            element.data('metroComponent', mc);
         }
 
         win = this._window(o);
@@ -26675,7 +26700,7 @@ var Window = {
         title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
         title.appendTo(caption);
 
-        if (o.content !== undefined && o.content !== 'original') {
+        if (!Utils.isNull(o.content)) {
 
             if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
                 o.content = Utils.embedUrl(o.content);
@@ -26967,6 +26992,7 @@ var Window = {
 
     changeClass: function(a){
         var element = this.element, win = this.win, o = this.options;
+
         if (a === "data-cls-window") {
             win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
         }
@@ -27167,6 +27193,8 @@ Metro['window'] = {
 
         var w_options = $.extend({}, {
         }, (options !== undefined ? options : {}));
+
+        w_options._runtime = true;
 
         return w.window(w_options);
     }

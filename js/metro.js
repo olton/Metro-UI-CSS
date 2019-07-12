@@ -305,8 +305,10 @@ var Metro = {
                         Metro.initHotkeys([mutation.target], true);
 
                     } else {
+
                         var element = $(mutation.target);
                         var mc = element.data('metroComponent');
+
                         if (mc !== undefined) {
                             $.each(mc, function(){
                                 var plug = element.data(this);
@@ -413,9 +415,9 @@ var Metro = {
         });
     },
 
-    initWidgets: function(widgets, a) {
+    initWidgets: function(widgets) {
         $.each(widgets, function () {
-            var $this = $(this), w = this;
+            var $this = $(this);
             var roles = $this.data('role').split(/\s*,\s*/);
             roles.map(function (func) {
                 if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
