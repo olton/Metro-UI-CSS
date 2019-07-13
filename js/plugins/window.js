@@ -115,15 +115,7 @@ var Window = {
         element.attr("data-cls-custom-button", o.clsCustomButton);
 
         if (o._runtime === true) {
-            element.attr("data-role-window", true);
-            var mc = element.data('metroComponent');
-
-            if (mc === undefined) {
-                mc = ["window"];
-            } else {
-                mc.push("window");
-            }
-            element.data('metroComponent', mc);
+            Metro.makeRuntime(element, "window");
         }
 
         win = this._window(o);

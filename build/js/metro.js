@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.46",
-    compileTime: "12/07/2019 11:20:26",
+    compileTime: "13/07/2019 11:07:56",
     buildNumber: "727",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -569,6 +569,19 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
         return fsm !== undefined;
+    },
+
+    makeRuntime: function(el, role){
+        var element = $(el);
+        element.attr("data-role-"+role, true);
+        var mc = element.data('metroComponent');
+
+        if (mc === undefined) {
+            mc = [role];
+        } else {
+            mc.push(role);
+        }
+        element.data('metroComponent', mc);
     }
 };
 
@@ -9996,6 +10009,9 @@ var DialogDefaultConfig = {
     autoHide: 0,
     removeOnClose: false,
     show: false,
+
+    _runtime: false,
+
     onShow: Metro.noop,
     onHide: Metro.noop,
     onOpen: Metro.noop,
@@ -10007,8 +10023,8 @@ Metro.dialogSetup = function (options) {
     DialogDefaultConfig = $.extend({}, DialogDefaultConfig, options);
 };
 
-if (typeof window.metroDialogSetup !== undefined) {
-    Metro.dialogSetup(window.metroDialogSetup);
+if (typeof window["metroDialogSetup"] !== undefined) {
+    Metro.dialogSetup(window["metroDialogSetup"]);
 }
 
 var Dialog = {
@@ -10028,7 +10044,7 @@ var Dialog = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -10042,8 +10058,13 @@ var Dialog = {
     },
 
     _create: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "dialog");
+        }
+
         this._build();
     },
 
@@ -10141,7 +10162,7 @@ var Dialog = {
     },
 
     _overlay: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         var overlay = $("<div>");
         overlay.addClass("overlay").addClass(o.clsOverlay);
@@ -10212,7 +10233,7 @@ var Dialog = {
     },
 
     setContent: function(c){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var content = element.find(".dialog-content");
         if (content.length === 0) {
             content = $("<div>").addClass("dialog-content");
@@ -10231,7 +10252,7 @@ var Dialog = {
     },
 
     setTitle: function(t){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var title = element.find(".dialog-title");
         if (title.length === 0) {
             title = $("<div>").addClass("dialog-title");
@@ -10241,7 +10262,7 @@ var Dialog = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (!Utils.bool(o.leaveOverlayOnClose)) {
             $('body').find('.overlay').remove();
@@ -10363,6 +10384,8 @@ Metro['dialog'] = {
             closeAction: true,
             removeOnClose: true
         }, (options !== undefined ? options : {}));
+
+        dlg_options._runtime = true;
 
         return dlg.dialog(dlg_options);
     }
@@ -12070,6 +12093,10 @@ var InfoBox = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "infobox");
+        }
+
         this._createStructure();
         this._createEvents();
 
@@ -12315,7 +12342,10 @@ Metro['infobox'] = {
             type: box_type
         }, (o !== undefined ? o : {}));
 
+        ib_options._runtime = true;
+
         el.infobox(ib_options);
+
         ib = el.data('infobox');
         ib.setContent(c);
         if (open !== false) {
@@ -26593,15 +26623,7 @@ var Window = {
         element.attr("data-cls-custom-button", o.clsCustomButton);
 
         if (o._runtime === true) {
-            element.attr("data-role-window", true);
-            var mc = element.data('metroComponent');
-
-            if (mc === undefined) {
-                mc = ["window"];
-            } else {
-                mc.push("window");
-            }
-            element.data('metroComponent', mc);
+            Metro.makeRuntime(element, "window");
         }
 
         win = this._window(o);
