@@ -54,6 +54,10 @@ var InfoBox = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "infobox");
+        }
+
         this._createStructure();
         this._createEvents();
 
@@ -299,7 +303,10 @@ Metro['infobox'] = {
             type: box_type
         }, (o !== undefined ? o : {}));
 
+        ib_options._runtime = true;
+
         el.infobox(ib_options);
+
         ib = el.data('infobox');
         ib.setContent(c);
         if (open !== false) {

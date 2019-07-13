@@ -554,6 +554,19 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
         return fsm !== undefined;
+    },
+
+    makeRuntime: function(el, role){
+        var element = $(el);
+        element.attr("data-role-"+role, true);
+        var mc = element.data('metroComponent');
+
+        if (mc === undefined) {
+            mc = [role];
+        } else {
+            mc.push(role);
+        }
+        element.data('metroComponent', mc);
     }
 };
 
