@@ -50,11 +50,11 @@ var Utils = {
     },
 
     isInt: function(n){
-        return Number(n) === n && n % 1 === 0;
+        return !isNaN(n) && +n % 1 === 0;
     },
 
     isFloat: function(n){
-        return Number(n) === n && n % 1 !== 0;
+        return !isNaN(n) && +n % 1 !== 0;
     },
 
     isTouchDevice: function() {
