@@ -6,7 +6,8 @@
 + [x] Utils: upd func `isLocalhost`
 + [x] Windows: fix make runtime   
 + [x] Dialog: fix make runtime   
-+ [x] InfoBox: fix make runtime   
++ [x] InfoBox: fix make runtime
++ [x] Validator: fix validating for interger and float rules, issue #1388   
 
 ### 4.2.45
 + [x] Calendar picker: fix initial value for i18n

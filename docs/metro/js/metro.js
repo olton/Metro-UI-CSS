@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.46",
-    compileTime: "13/07/2019 11:07:56",
+    compileTime: "13/07/2019 14:43:10",
     buildNumber: "727",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3266,11 +3266,11 @@ var Utils = {
     },
 
     isInt: function(n){
-        return Number(n) === n && n % 1 === 0;
+        return !isNaN(n) && +n % 1 === 0;
     },
 
     isFloat: function(n){
-        return Number(n) === n && n % 1 !== 0;
+        return !isNaN(n) && +n % 1 !== 0;
     },
 
     isTouchDevice: function() {
