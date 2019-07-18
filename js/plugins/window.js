@@ -73,6 +73,7 @@ var Window = {
             left: 0
         };
         this.hidden = false;
+        this.content = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -107,12 +108,23 @@ var Window = {
             o.resizable = false;
         }
 
-        o.content = !Utils.isNull(o.content) ? element.append(o.content) : element;
+        //o.content = !Utils.isNull(o.content) ? element.append(o.content) : element;
 
-        element.attr("data-cls-caption", o.clsCaption);
-        element.attr("data-cls-window", o.clsWindow);
-        element.attr("data-cls-content", o.clsContent);
-        element.attr("data-cls-custom-button", o.clsCustomButton);
+        if (Utils.isNull(o.content)) {
+            o.content = element;
+        } else {
+            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+                o.content = Utils.embedUrl(o.content);
+            }
+
+            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+                o.content = Utils.exec(o.content);
+            }
+
+            element.append(o.content);
+            o.content = element;
+            // console.log(o.content);
+        }
 
         if (o._runtime === true) {
             Metro.makeRuntime(element, "window");
@@ -181,7 +193,7 @@ var Window = {
     },
 
     _window: function(o){
-        var that = this;
+        var that = this, element = this.element;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
         var width = o.width, height = o.height;
 
@@ -216,14 +228,14 @@ var Window = {
 
         if (!Utils.isNull(o.content)) {
 
-            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
-                o.content = Utils.embedUrl(o.content);
-            }
-
-            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
-                o.content = Utils.exec(o.content);
-            }
-
+            // if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+            //     o.content = Utils.embedUrl(o.content);
+            // }
+            //
+            // if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+            //     o.content = Utils.exec(o.content);
+            // }
+            //
             if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {

@@ -9,6 +9,7 @@
 + [x] InfoBox: fix make runtime
 + [x] Validator: fix validating for `integer` and `float` rules, issue #1388 
 + [x] Builder: fix builder `config`  
++ [x] Embed objects: set default width and height to `100%`
 
 ### 4.2.45
 + [x] Calendar picker: fix initial value for i18n
