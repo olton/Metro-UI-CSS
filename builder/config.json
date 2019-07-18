@@ -155,26 +155,17 @@
                 "name": "Animation",
                 "js": ["utils/animation"]
             },
+            "array_ext_js":{
+                "name": "Array ext",
+                "js": ["utils/array-ext"]
+            },
             "colors_js":{
                 "name": "Color module",
                 "js": ["utils/colors"]
             },
-            "easing_js":{
-                "name": "Easing functions",
-                "js": ["utils/easing"]
-            },
-            "export_js":{
-                "name": "Export module",
-                "js": ["utils/export"]
-            },
-            "extensions_js":{
-                "name": "Objects extensions",
-                "js": ["utils/extensions"],
-                "dependencies": {
-                    "js": [
-                        "utils/i18n"
-                    ]
-                }
+            "date_ext_js":{
+                "name": "Date ext",
+                "js": ["utils/date-ext"]
             },
             "hotkeys_js":{
                 "name": "Hotkeys",
@@ -184,17 +175,25 @@
                 "name": "i18n",
                 "js": ["utils/i18n"]
             },
+            "jquery_ext_js":{
+                "name": "jQuery ext",
+                "js": ["utils/jquery-ext"]
+            },
             "md5_js":{
                 "name": "MD5",
                 "js": ["utils/md5"]
             },
-            "mousewheel_js":{
-                "name": "Mouse wheel",
-                "js": ["utils/mousewheel"]
+            "number_ext_js":{
+                "name": "Number ext",
+                "js": ["utils/number-ext"]
             },
-            "scroll_events_js":{
-                "name": "Scroll events",
-                "js": ["utils/scroll-events"]
+            "pagination_js":{
+                "name": "Pagination",
+                "js": ["utils/pagination"]
+            },
+            "string_ext_js":{
+                "name": "String ext",
+                "js": ["utils/string-ext"]
             },
             "storage_js":{
                 "name": "Storage &amp; Session storage",
@@ -459,7 +458,13 @@
             },
             "list_comp":{
                 "name": "List",
-                "js": ["plugins/list"]
+                "js": ["plugins/list"],
+                "dependencies": {
+                    "js": [
+                        "utils/pagination"
+                    ],
+                    "less": ["pagination"]
+                }
             },
             "listview_comp":{
                 "name": "ListView",
@@ -500,7 +505,8 @@
             },
             "pagination_comp":{
                 "name": "Pagination",
-                "less": ["pagination"]
+                "less": ["pagination"],
+                "js": ["utils/pagination"]
             },
             "panel_comp":{
                 "name": "Panel",
@@ -632,10 +638,10 @@
                 "js": ["plugins/table"],
                 "dependencies": {
                     "js": [
-                        "utils/i18n", "utils/export", "plugins/checkbox", "plugins/radio", "plugins/spinner", "plugins/input"
+                        "utils/i18n", "utils/export", "utils/pagination", "plugins/checkbox", "plugins/radio", "plugins/spinner", "plugins/input"
                     ],
                     "less": [
-                        "buttons", "inputs"
+                        "buttons", "inputs", "pagination"
                     ]
                 }
             },
