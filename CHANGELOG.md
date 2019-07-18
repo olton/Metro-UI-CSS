@@ -7,7 +7,8 @@
 + [x] Windows: fix make runtime   
 + [x] Dialog: fix make runtime   
 + [x] InfoBox: fix make runtime
-+ [x] Validator: fix validating for interger and float rules, issue #1388   
++ [x] Validator: fix validating for `integer` and `float` rules, issue #1388 
++ [x] Builder: fix builder `config`  
 
 ### 4.2.45
 + [x] Calendar picker: fix initial value for i18n
