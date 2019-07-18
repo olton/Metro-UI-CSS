@@ -52,6 +52,7 @@ var Desktop = {
         o.onWindowDestroy = function(win){
             Desktop.removeFromTaskBar($(win));
         };
+
         var w = $("<div>").appendTo($(this.options.windowArea));
         var wnd = w.window(o).data("window");
 
@@ -66,7 +67,6 @@ var Desktop = {
         }
         this.wins[win.attr("id")] = wnd;
         this.addToTaskBar(wnd);
-        w.remove();
 
         return wnd;
     }
@@ -94,7 +94,7 @@ function createWindow(){
 
     setTimeout(function(){
         console.log(w);
-        w.setContent("New window content");
+        //w.setContent("New window content");
     }, 3000);
 }
 
@@ -159,7 +159,7 @@ function createWindowYoutube(){
         width: 500,
         icon: "<span class='mif-youtube'></span>",
         title: "Youtube video",
-        content: "https://youtu.be/S9MeTn1i72g",
+        content: "https://youtu.be/ZlhUJ6QkvL8",
         clsContent: "bg-dark"
     });
 }

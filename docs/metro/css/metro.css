@@ -26798,6 +26798,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   display: block;
   padding: 0;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 .embed-container::before {
   padding-top: 56.25%;
