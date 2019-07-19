@@ -32,14 +32,14 @@
         }
 
         if (b.length === 0) {
-            div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
-            div.insertAfter(target);
+            // div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
+            // div.insertAfter(target);
         } else {
             $.each(b, function(){
                 var bl = $(this);
                 if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
-                    div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
-                    div.insertAfter(target);
+                    // div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
+                    // div.insertAfter(target);
                 }
             });
         }
