@@ -119,8 +119,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.46",
-    compileTime: "19/07/2019 18:41:49",
-    buildNumber: "729",
+    compileTime: "24/07/2019 21:15:02",
+    buildNumber: "730",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -12553,8 +12553,8 @@ Metro.inputSetup = function (options) {
     InputDefaultConfig = $.extend({}, InputDefaultConfig, options);
 };
 
-if (typeof window.metroInputSetup !== undefined) {
-    Metro.inputSetup(window.metroInputSetup);
+if (typeof window["metroInputSetup"] !== undefined) {
+    Metro.inputSetup(window["metroInputSetup"]);
 }
 
 var Input = {
@@ -12642,12 +12642,12 @@ var Input = {
             searchButton.appendTo(buttons);
         }
 
-        if (o.prepend !== "") {
+        if (Utils.isValue(o.prepend)) {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
-        if (o.append !== "") {
+        if (Utils.isValue(o.append)) {
             var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
@@ -12724,7 +12724,7 @@ var Input = {
 
         container.on(Metro.events.click, ".input-clear-button", function(){
             var curr = element.val();
-            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").fire('clear').fire('change').fire('keyup').focus();
             if (autocompleteList.length > 0) {
                 autocompleteList.css({
                     display: "none"
