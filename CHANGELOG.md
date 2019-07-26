@@ -1,5 +1,6 @@
 ### 4.2.47
-+ [ ] Input: triggering `change` event
++ [x] Input: fix triggering `change` event, add trigger event `clear` when clear button is pressed
++ [x] Accordion: fix glitch for opening frames when accordion initiated 
 
 ### 4.2.46
 + [x] Table: fixed format value for sorting when value is empty, null or undefined
