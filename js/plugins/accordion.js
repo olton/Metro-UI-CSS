@@ -18,8 +18,8 @@ Metro.accordionSetup = function(options){
     AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
 };
 
-if (typeof window.metroAccordionSetup !== undefined) {
-    Metro.accordionSetup(window.metroAccordionSetup);
+if (typeof window["metroAccordionSetup"] !== undefined) {
+    Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
 var Accordion = {
@@ -176,7 +176,7 @@ var Accordion = {
         var frames = element.children(".frame");
 
         $.each(frames, function(){
-            $(this).children(".content").hide(0);
+            $(this).children(".content").css("display", "none");
         });
     },
 

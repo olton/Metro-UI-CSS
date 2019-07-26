@@ -4,13 +4,13 @@
   </a>
 
   <h3 align="center">Metro 4 Components Library</h3>
+</p>
 
-  <p align="center">
+<p align="center">
     Sleek, intuitive, and powerful front-end framework for faster and easier web development.
  Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
     <br>
     <a href="https://metroui.org.ua/"><strong>Explore Metro 4 docs »</strong></a>
-  </p>
 </p>
 
 <p align="center">
@@ -25,7 +25,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.2.46
+## Current Version 4.2.47
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)

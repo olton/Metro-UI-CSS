@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.46  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.47  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -118,8 +118,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.46",
-    compileTime: "24/07/2019 21:15:02",
+    version: "4.2.47",
+    compileTime: "26/07/2019 18:27:44",
     buildNumber: "730",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4149,8 +4149,8 @@ Metro.accordionSetup = function(options){
     AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
 };
 
-if (typeof window.metroAccordionSetup !== undefined) {
-    Metro.accordionSetup(window.metroAccordionSetup);
+if (typeof window["metroAccordionSetup"] !== undefined) {
+    Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
 var Accordion = {
@@ -4307,7 +4307,7 @@ var Accordion = {
         var frames = element.children(".frame");
 
         $.each(frames, function(){
-            $(this).children(".content").hide(0);
+            $(this).children(".content").css("display", "none");
         });
     },
 

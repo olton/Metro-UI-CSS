@@ -557,7 +557,7 @@
                         "plugins/dropdown"
                     ],
                     "less": [
-                        "inputs"
+                        "inputs", "menu", "drop-utils"
                     ]
                 }
             },
