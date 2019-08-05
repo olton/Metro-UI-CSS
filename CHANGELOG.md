@@ -1,5 +1,6 @@
 ### 4.2.48
-
++ [x] Select: fix error when using with pair to Select from Metro 4 for React
+ 
 ### 4.2.47
 + [x] Input: fix triggering `change` event, add trigger event `clear` when clear button is pressed
 + [x] Accordion: fixed glitch for frames who must be closed, but initiated as open 
