@@ -187,7 +187,10 @@ var Select = {
                     if (drop.is(drop_container)) {
                         return ;
                     }
-                    drop.data('dropdown').close();
+                    var dataDrop = drop.data('dropdown');
+                    if (dataDrop && dataDrop.close) {
+                        dataDrop.close();
+                    }
                 });
 
                 filter_input.val("").trigger(Metro.events.keyup).focus();
