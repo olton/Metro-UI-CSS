@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.47  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.2.48  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -118,9 +118,9 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 
 var Metro = {
 
-    version: "4.2.47",
-    compileTime: "29/07/2019 19:33:29",
-    buildNumber: "731",
+    version: "4.2.48",
+    compileTime: "05/08/2019 18:13:16",
+    buildNumber: "732",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -17119,7 +17119,10 @@ var Select = {
                     if (drop.is(drop_container)) {
                         return ;
                     }
-                    drop.data('dropdown').close();
+                    var dataDrop = drop.data('dropdown');
+                    if (dataDrop && dataDrop.close) {
+                        dataDrop.close();
+                    }
                 });
 
                 filter_input.val("").trigger(Metro.events.keyup).focus();
@@ -17464,7 +17467,8 @@ var Select = {
 $(document).on(Metro.events.click, function(){
     var selects = $(".select .drop-container");
     $.each(selects, function(){
-        $(this).data('dropdown').close();
+        var drop = $(this).data('dropdown');
+        if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");
 });
