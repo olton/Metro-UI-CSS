@@ -96,7 +96,7 @@ Sauce Labs ensures your favorite mobile apps and websites work flawlessly on eve
 Cross-browser Testing Platform Provided by [BrowserStack](https://www.browserstack.com/).
 Seamless experience by testing on 2000+ real devices and browsers.
 <p>
-<a href="https://www.browserstack.com/"><img src="https://metroui.org.ua/images/Browserstack-logo.svg" style="width: 100px;"></a>
+<a href="https://www.browserstack.com/"><img src="https://metroui.org.ua/images/Browserstack-logo.svg" width="100"></a>
 </p>
 
 ### License
