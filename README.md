@@ -93,6 +93,12 @@ Sauce Labs ensures your favorite mobile apps and websites work flawlessly on eve
 <a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" style="width: 100px;"></a>
 </p>
 
+Cross-browser Testing Platform Provided by [BrowserStack](https://www.browserstack.com/).
+Seamless experience by testing on 2000+ real devices and browsers.
+<p>
+<a href="https://www.browserstack.com/"><img src="https://metroui.org.ua/images/Browserstack-logo.svg" style="width: 100px;"></a>
+</p>
+
 ### License
 Metro 4 has [MIT License](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
 
