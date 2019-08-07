@@ -206,9 +206,7 @@ var Carousel = {
             var slide = $(this);
             if (slide.data("cover") !== undefined) {
                 slide.css({
-                    backgroundImage: "url("+slide.data('cover')+")",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat"
+                    backgroundImage: "url("+slide.data('cover')+")"
                 });
             }
 

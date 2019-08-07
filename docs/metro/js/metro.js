@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.48",
-    compileTime: "05/08/2019 18:13:16",
+    compileTime: "07/08/2019 10:38:09",
     buildNumber: "732",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7058,9 +7058,7 @@ var Carousel = {
             var slide = $(this);
             if (slide.data("cover") !== undefined) {
                 slide.css({
-                    backgroundImage: "url("+slide.data('cover')+")",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat"
+                    backgroundImage: "url("+slide.data('cover')+")"
                 });
             }
 
