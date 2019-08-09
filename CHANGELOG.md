@@ -2,6 +2,8 @@
 + [x] Select: fix error when using with pair to Select from Metro 4 for React
 + [x] Carousel: moved style props for slide background image from js to css
 + [x] Input: add attribute `data-exclaim` for defining exclamation symbol
++ [x] Input: fix no display clear button when input is readOnly 
++ [x] Textarea: fix no display clear button when input is readOnly 
  
 ### 4.2.47
 + [x] Input: fix triggering `change` event, add trigger event `clear` when clear button is pressed

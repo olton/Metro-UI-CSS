@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.48",
-    compileTime: "09/08/2019 14:07:24",
+    compileTime: "09/08/2019 14:20:31",
     buildNumber: "732",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12627,7 +12627,7 @@ var Input = {
             element.val(o.defaultValue);
         }
 
-        if (o.clearButton === true) {
+        if (o.clearButton === true && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(buttons);
         }
@@ -22922,8 +22922,8 @@ Metro.textareaSetup = function (options) {
     TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
 };
 
-if (typeof window.metroTextareaSetup !== undefined) {
-    Metro.textareaSetup(window.metroTextareaSetup);
+if (typeof window["metroTextareaSetup"] !== undefined) {
+    Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
 var Textarea = {
@@ -22976,7 +22976,7 @@ var Textarea = {
             container.insertAfter(prev);
         }
 
-        if (o.clearButton !== false) {
+        if (o.clearButton !== false && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(container);
         }

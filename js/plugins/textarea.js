@@ -20,8 +20,8 @@ Metro.textareaSetup = function (options) {
     TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
 };
 
-if (typeof window.metroTextareaSetup !== undefined) {
-    Metro.textareaSetup(window.metroTextareaSetup);
+if (typeof window["metroTextareaSetup"] !== undefined) {
+    Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
 var Textarea = {
@@ -74,7 +74,7 @@ var Textarea = {
             container.insertAfter(prev);
         }
 
-        if (o.clearButton !== false) {
+        if (o.clearButton !== false && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(container);
         }
