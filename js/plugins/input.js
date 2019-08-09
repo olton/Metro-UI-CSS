@@ -166,6 +166,10 @@ var Input = {
             });
         }
 
+        if (Utils.isValue(element.attr('data-exclaim'))) {
+            container.attr('data-exclaim', element.attr('data-exclaim'));
+        }
+
         if (element.attr('dir') === 'rtl' ) {
             container.addClass("rtl").attr("dir", "rtl");
         }

@@ -120,14 +120,14 @@
                             </div>
                             <div class="cell-md-6">
                                 <label>Email</label>
-                                <input type="email" data-validate="required email" placeholder="Enter email" data-role="input">
+                                <input type="email" data-validate="required email" placeholder="Enter email" data-role="input" data-exclaim="*">
                                 <span class="invalid_feedback">Input correct email address</span>
                             </div>
                         </div>
 
                         <div class="mt-2 mb-2">
                             <label>Select option</label>
-                            <select data-role="select" data-validate="required not=-1">
+                            <select data-role="select" data-validate="required not=-1" data-exclaim="!" class="exclaim-right">
                                 <option value="-1" class="d-none"></option>
                                 <option value="1">Value 1</option>
                                 <option value="2">Value 2</option>
