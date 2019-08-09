@@ -22147,7 +22147,7 @@ textarea.invalid::after,
 .tag-input.invalid::after,
 .spinner.invalid::after {
   position: absolute;
-  content: "!";
+  content: attr(data-exclaim);
   color: #CE352C;
   left: -16px;
   top: 0;

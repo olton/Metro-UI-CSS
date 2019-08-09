@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.48",
-    compileTime: "07/08/2019 10:38:09",
+    compileTime: "09/08/2019 14:07:24",
     buildNumber: "732",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12671,6 +12671,10 @@ var Input = {
 
                 customButton.appendTo(buttons);
             });
+        }
+
+        if (Utils.isValue(element.attr('data-exclaim'))) {
+            container.attr('data-exclaim', element.attr('data-exclaim'));
         }
 
         if (element.attr('dir') === 'rtl' ) {
