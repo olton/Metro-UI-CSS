@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.48",
-    compileTime: "09/08/2019 14:20:31",
+    compileTime: "12/08/2019 20:11:37",
     buildNumber: "732",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -10966,8 +10966,8 @@ Metro.fileSetup = function (options) {
     FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
 };
 
-if (typeof window.metroFileSetup !== undefined) {
-    Metro.fileSetup(window.metroFileSetup);
+if (typeof window["metroFileSetup"] !== undefined) {
+    Metro.fileSetup(window["metroFileSetup"]);
 }
 
 var File = {
