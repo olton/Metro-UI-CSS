@@ -464,3 +464,6 @@ h1 + .text-leader {
 .algolia-autocomplete {
   width: 100%;
 }
+.toc-entry ul {
+  margin-top: 0;
+}

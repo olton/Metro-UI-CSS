@@ -49,17 +49,17 @@ var Utils = {
     },
 
     isInt: function(n){
-        return Number(n) === n && n % 1 === 0;
+        return !isNaN(n) && +n % 1 === 0;
     },
 
     isFloat: function(n){
-        return Number(n) === n && n % 1 !== 0;
+        return !isNaN(n) && +n % 1 !== 0;
     },
 
     isTouchDevice: function() {
         return (('ontouchstart' in window)
-            || (navigator.MaxTouchPoints > 0)
-            || (navigator.msMaxTouchPoints > 0));
+            || (navigator["MaxTouchPoints"] > 0)
+            || (navigator["msMaxTouchPoints"] > 0));
     },
 
     isFunc: function(f){
@@ -828,7 +828,14 @@ var Utils = {
 
     isLocalhost: function(pattern){
         pattern = pattern || ".local";
-        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "" || location.hostname.indexOf(pattern) !== -1)
+        return (
+            location.hostname === "localhost" ||
+            location.hostname === "127.0.0.1" ||
+            location.hostname === "[::1]" ||
+            location.hostname === "" ||
+            window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
+            location.hostname.indexOf(pattern) !== -1
+        )
     },
 
     formData: function(f){

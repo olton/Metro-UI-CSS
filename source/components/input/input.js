@@ -44,8 +44,8 @@ Metro.inputSetup = function (options) {
     InputDefaultConfig = $.extend({}, InputDefaultConfig, options);
 };
 
-if (typeof window.metroInputSetup !== undefined) {
-    Metro.inputSetup(window.metroInputSetup);
+if (typeof window["metroInputSetup"] !== undefined) {
+    Metro.inputSetup(window["metroInputSetup"]);
 }
 
 var Input = {
@@ -120,7 +120,7 @@ var Input = {
             element.val(o.defaultValue);
         }
 
-        if (o.clearButton === true) {
+        if (o.clearButton === true && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(buttons);
         }
@@ -133,12 +133,12 @@ var Input = {
             searchButton.appendTo(buttons);
         }
 
-        if (o.prepend !== "") {
+        if (Utils.isValue(o.prepend)) {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
-        if (o.append !== "") {
+        if (Utils.isValue(o.append)) {
             var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
@@ -164,6 +164,10 @@ var Input = {
 
                 customButton.appendTo(buttons);
             });
+        }
+
+        if (Utils.isValue(element.attr('data-exclaim'))) {
+            container.attr('data-exclaim', element.attr('data-exclaim'));
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -215,7 +219,7 @@ var Input = {
 
         container.on(Metro.events.click, ".input-clear-button", function(){
             var curr = element.val();
-            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").fire('clear').fire('change').fire('keyup').focus();
             if (autocompleteList.length > 0) {
                 autocompleteList.css({
                     display: "none"

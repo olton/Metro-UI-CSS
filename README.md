@@ -4,13 +4,13 @@
   </a>
 
   <h3 align="center">Metro 4 Components Library</h3>
+</p>
 
-  <p align="center">
+<p align="center">
     Sleek, intuitive, and powerful front-end framework for faster and easier web development.
  Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
     <br>
     <a href="https://metroui.org.ua/"><strong>Explore Metro 4 docs »</strong></a>
-  </p>
 </p>
 
 <p align="center">
@@ -25,6 +25,7 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
+
 ## Current Version 4.3.0
 
 ### Status
@@ -90,7 +91,13 @@ Latest ✔ | Latest ✔ | Latest ✔ | 11+ ✔ | 9.1+ ✔ | Latest ✔ |
 Cross-browser Testing Platform and Open Source Provided by [Sauce Labs](https://saucelabs.com).
 Sauce Labs ensures your favorite mobile apps and websites work flawlessly on every browser, operating system, and device.
 <p>
-<a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" style="width: 100px;"></a>
+<a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" width="200"></a>
+</p>
+
+Cross-browser Testing Platform Provided by [BrowserStack](https://www.browserstack.com/).
+Seamless experience by testing on 2000+ real devices and browsers.
+<p>
+<a href="https://www.browserstack.com/"><img src="https://metroui.org.ua/images/Browserstack-logo.svg" width="200"></a>
 </p>
 
 ### License

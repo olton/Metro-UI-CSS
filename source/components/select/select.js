@@ -187,7 +187,10 @@ var Select = {
                     if (drop.is(drop_container)) {
                         return ;
                     }
-                    drop.data('dropdown').close();
+                    var dataDrop = drop.data('dropdown');
+                    if (dataDrop && dataDrop.close) {
+                        dataDrop.close();
+                    }
                 });
 
                 filter_input.val("").trigger(Metro.events.keyup).focus();
@@ -527,7 +530,8 @@ var Select = {
 $(document).on(Metro.events.click, function(){
     var selects = $(".select .drop-container");
     $.each(selects, function(){
-        $(this).data('dropdown').close();
+        var drop = $(this).data('dropdown');
+        if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");
 });

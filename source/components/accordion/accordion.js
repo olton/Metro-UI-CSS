@@ -178,6 +178,7 @@ var Accordion = {
 
         $.each(frames, function(){
             $(this).children(".content").hide();
+            // $(this).children(".content").css("display", "none");
         });
     },
 
