@@ -1,3 +1,5 @@
+### 4.2.49
+
 ### 4.2.48
 + [x] Select: fix error when using with pair to Select from Metro 4 for React
 + [x] Carousel: moved style props for slide background image from js to css
