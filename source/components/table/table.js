@@ -606,9 +606,13 @@ var Table = {
                     classes.push("sort-" + item.sortDir);
                 }
             }
-            if (Utils.isValue(item.cls)) {classes.push(item.cls);}
+            if (Utils.isValue(item.cls)) {
+                $.each(item.cls.toArray(), function () {
+                    classes.push(this);
+                });
+            }
             if (Utils.bool(view[cell_index]['show']) === false) {
-                classes.push("hidden");
+                if (classes.indexOf('hidden') === -1) classes.push("hidden");
             }
 
             classes.push(o.clsHeadCell);
@@ -1090,7 +1094,7 @@ var Table = {
             if (status) {
                 $.each(op, function(){
                     var a;
-                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this]) : [];
+                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this], " ") : [];
                     Utils.arrayDelete(a, "hidden");
                     that.heads[index][this] = a.join(" ");
                     that.view[index]['show'] = true;
@@ -1099,7 +1103,7 @@ var Table = {
                 $.each(op, function(){
                     var a;
 
-                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this]) : [];
+                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this], " ") : [];
                     if (a.indexOf("hidden") === -1) {
                         a.push("hidden");
                     }
@@ -1438,7 +1442,7 @@ var Table = {
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        if (Utils.isValue(format)) {
+        if (Utils.isValue(result) && Utils.isValue(format)) {
 
             if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
                 result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);
@@ -1690,6 +1694,8 @@ var Table = {
                 that._rebuild(review);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+                that._createItemsFromJSON(data);
+                that._rebuild(review);
                 element.fire("dataloaderror", {
                     source: o.source,
                     xhr: xhr

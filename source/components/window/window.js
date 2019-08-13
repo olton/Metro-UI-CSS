@@ -5,16 +5,13 @@ var WindowDefaultConfig = {
     btnClose: true,
     btnMin: true,
     btnMax: true,
-    clsCaption: "",
-    clsContent: "",
-    clsWindow: "",
     draggable: true,
     dragElement: ".window-caption .icon, .window-caption .title",
     dragArea: "parent",
     shadow: false,
     icon: "",
     title: "Window",
-    content: "default",
+    content: null,
     resizable: true,
     overlay: false,
     overlayColor: 'transparent',
@@ -27,7 +24,14 @@ var WindowDefaultConfig = {
     place: "auto",
     closeAction: Metro.actions.REMOVE,
     customButtons: null,
+
     clsCustomButton: "",
+    clsCaption: "",
+    clsContent: "",
+    clsWindow: "",
+
+    _runtime: false,
+
     minWidth: 0,
     minHeight: 0,
     maxWidth: 0,
@@ -53,8 +57,8 @@ Metro.windowSetup = function (options) {
     WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
 };
 
-if (typeof window.metroWindowSetup !== undefined) {
-    Metro.windowSetup(window.metroWindowSetup);
+if (typeof window["metroWindowSetup"] !== undefined) {
+    Metro.windowSetup(window["metroWindowSetup"]);
 }
 
 var Window = {
@@ -69,6 +73,7 @@ var Window = {
             left: 0
         };
         this.hidden = false;
+        this.content = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -103,8 +108,26 @@ var Window = {
             o.resizable = false;
         }
 
-        if (o.content === "default") {
+        //o.content = !Utils.isNull(o.content) ? element.append(o.content) : element;
+
+        if (Utils.isNull(o.content)) {
             o.content = element;
+        } else {
+            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+                o.content = Utils.embedUrl(o.content);
+            }
+
+            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+                o.content = Utils.exec(o.content);
+            }
+
+            element.append(o.content);
+            o.content = element;
+            // console.log(o.content);
+        }
+
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "window");
         }
 
         win = this._window(o);
@@ -170,7 +193,7 @@ var Window = {
     },
 
     _window: function(o){
-        var that = this;
+        var that = this, element = this.element;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
         var width = o.width, height = o.height;
 
@@ -203,16 +226,16 @@ var Window = {
         title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
         title.appendTo(caption);
 
-        if (o.content !== undefined && o.content !== 'original') {
+        if (!Utils.isNull(o.content)) {
 
-            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
-                o.content = Utils.embedUrl(o.content);
-            }
-
-            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
-                o.content = Utils.exec(o.content);
-            }
-
+            // if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+            //     o.content = Utils.embedUrl(o.content);
+            // }
+            //
+            // if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+            //     o.content = Utils.exec(o.content);
+            // }
+            //
             if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {
@@ -512,6 +535,7 @@ var Window = {
 
     changeClass: function(a){
         var element = this.element, win = this.win, o = this.options;
+
         if (a === "data-cls-window") {
             win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
         }
@@ -712,6 +736,8 @@ Metro['window'] = {
 
         var w_options = $.extend({}, {
         }, (options !== undefined ? options : {}));
+
+        w_options._runtime = true;
 
         return w.window(w_options);
     }

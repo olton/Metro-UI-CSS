@@ -25,12 +25,12 @@ describe("Test metro 4 initialization", function(){
         'animation', 'border', 'clear', 'colors', 'cursors', 'display', 'embed', 'extensions', 'flex', 'functions', 'float', 'position', 'sizing', 'spacing',
 
         'icons', 'color-schemes'
-    ]
+    ];
 
     targets.forEach((target) => {
         it('Target - ' + target, function(){
-            cy.visit(target === 'index' ? '/' : '/' + target + '.html');
+            cy.visit(target + '.html');
         })
     })
 
-})
+});

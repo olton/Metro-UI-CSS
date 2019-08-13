@@ -26,6 +26,9 @@ var DialogDefaultConfig = {
     autoHide: 0,
     removeOnClose: false,
     show: false,
+
+    _runtime: false,
+
     onShow: Metro.noop,
     onHide: Metro.noop,
     onOpen: Metro.noop,
@@ -72,8 +75,13 @@ var Dialog = {
     },
 
     _create: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "dialog");
+        }
+
         this._build();
     },
 
@@ -393,6 +401,8 @@ Metro['dialog'] = {
             closeAction: true,
             removeOnClose: true
         }, (options !== undefined ? options : {}));
+
+        dlg_options._runtime = true;
 
         return dlg.dialog(dlg_options);
     }

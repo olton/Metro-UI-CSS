@@ -33,7 +33,7 @@ var Notify = {
     setup: function(options){
         this.options = $.extend({}, NotifyDefaultConfig, options);
 
-        if (this.options.container === null) {
+        if (Notify.container === null) {
             Notify.container = Notify._createContainer();
         }
 
@@ -141,7 +141,6 @@ var Notify = {
 
     kill: function(notify, callback){
         var that = this, o = this.options;
-
         notify.off(Metro.events.click);
         notify.fadeOut(o.duration, 'linear', function(){
             Utils.exec(Utils.isValue(callback) ? callback : that.options.onClose, null, notify[0]);

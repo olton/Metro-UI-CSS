@@ -3411,8 +3411,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "19/06/2019 17:26:57",
-    buildNumber: "726",
+    compileTime: "13/08/2019 11:44:10",
+    buildNumber: "734",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3613,8 +3613,10 @@ var Metro = {
                         Metro.initHotkeys([mutation.target], true);
 
                     } else {
+
                         var element = $(mutation.target);
                         var mc = element.data('metroComponent');
+
                         if (mc !== undefined) {
                             $.each(mc, function(){
                                 var plug = element.data(this);
@@ -3721,9 +3723,9 @@ var Metro = {
         });
     },
 
-    initWidgets: function(widgets, a) {
+    initWidgets: function(widgets) {
         $.each(widgets, function () {
-            var $this = $(this), w = this;
+            var $this = $(this);
             var roles = $this.data('role').split(/\s*,\s*/);
 
             roles.map(function (func) {
@@ -3871,6 +3873,19 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
         return fsm !== undefined;
+    },
+
+    makeRuntime: function(el, role){
+        var element = $(el);
+        element.attr("data-role-"+role, true);
+        var mc = element.data('metroComponent');
+
+        if (mc === undefined) {
+            mc = [role];
+        } else {
+            mc.push(role);
+        }
+        element.data('metroComponent', mc);
     }
 };
 
@@ -6069,17 +6084,17 @@ var Utils = {
     },
 
     isInt: function(n){
-        return Number(n) === n && n % 1 === 0;
+        return !isNaN(n) && +n % 1 === 0;
     },
 
     isFloat: function(n){
-        return Number(n) === n && n % 1 !== 0;
+        return !isNaN(n) && +n % 1 !== 0;
     },
 
     isTouchDevice: function() {
         return (('ontouchstart' in window)
-            || (navigator.MaxTouchPoints > 0)
-            || (navigator.msMaxTouchPoints > 0));
+            || (navigator["MaxTouchPoints"] > 0)
+            || (navigator["msMaxTouchPoints"] > 0));
     },
 
     isFunc: function(f){
@@ -6848,7 +6863,14 @@ var Utils = {
 
     isLocalhost: function(pattern){
         pattern = pattern || ".local";
-        return (location.hostname === "localhost" || location.hostname === "127.0.0.1" || location.hostname === "" || location.hostname.indexOf(pattern) !== -1)
+        return (
+            location.hostname === "localhost" ||
+            location.hostname === "127.0.0.1" ||
+            location.hostname === "[::1]" ||
+            location.hostname === "" ||
+            window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
+            location.hostname.indexOf(pattern) !== -1
+        )
     },
 
     formData: function(f){
@@ -7099,6 +7121,7 @@ var Accordion = {
 
         $.each(frames, function(){
             $(this).children(".content").hide();
+            // $(this).children(".content").css("display", "none");
         });
     },
 
@@ -9434,7 +9457,7 @@ var CalendarPicker = {
         });
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
-            element.val("").trigger('change').blur();
+            element.val("").trigger('change').blur(); // TODO change blur
             that.value = null;
             e.preventDefault();
             e.stopPropagation();
@@ -9569,7 +9592,7 @@ var CalendarPicker = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var cal = this.calendar.data("calendar");
 
         var changeAttrLocale = function(){
@@ -9826,9 +9849,7 @@ var Carousel = {
             var slide = $(this);
             if (slide.data("cover") !== undefined) {
                 slide.css({
-                    backgroundImage: "url("+slide.data('cover')+")",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat"
+                    backgroundImage: "url("+slide.data('cover')+")"
                 });
             }
 
@@ -10395,8 +10416,8 @@ Metro.chatSetup = function (options) {
     ChatDefaultConfig = $.extend({}, ChatDefaultConfig, options);
 };
 
-if (typeof window.metroChatSetup !== undefined) {
-    Metro.chatSetup(window.metroChatSetup);
+if (typeof window["metroChatSetup"] !== undefined) {
+    Metro.chatSetup(window["metroChatSetup"]);
 }
 
 var Chat = {
@@ -12255,8 +12276,8 @@ Metro.datePickerSetup = function (options) {
     DatePickerDefaultConfig = $.extend({}, DatePickerDefaultConfig, options);
 };
 
-if (typeof window.metroDatePickerSetup !== undefined) {
-    Metro.datePickerSetup(window.metroDatePickerSetup);
+if (typeof window["metroDatePickerSetup"] !== undefined) {
+    Metro.datePickerSetup(window["metroDatePickerSetup"]);
 }
 
 var DatePicker = {
@@ -12267,7 +12288,7 @@ var DatePicker = {
         this.picker = null;
         this.isOpen = false;
         this.value = new Date();
-        this.locale = Metro.locales[METRO_LOCALE]['calendar'];
+        this.locale = Metro.locales[this.options.locale]['calendar'];
         this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
         this.listTimer = {
             day: null,
@@ -12297,7 +12318,6 @@ var DatePicker = {
 
     _create: function(){
         var element = this.element, o = this.options;
-        var now = new Date();
 
         if (o.distance < 1) {
             o.distance = 1;
@@ -12633,13 +12653,46 @@ var DatePicker = {
         }
     },
 
-    changeValueAttribute: function(){
-        this.val(this.element.attr("data-value"));
+    i18n: function(locale){
+        var element = this.element, o = this.options;
+        var month, i;
+
+        o.locale = locale ? locale : element.attr("data-locale");
+        this.locale = Metro.locales[o.locale]['calendar'];
+
+        if (o.month === true) {
+            month =  element.closest(".date-picker").find(".sel-month").html("");
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
+            for (i = 0; i < 12; i++) {
+                $("<li>").addClass("js-month-"+i+" js-month-real-"+this.locale['months'][i].toLowerCase()).html(this.locale['months'][i]).data("value", i).appendTo(month);
+            }
+            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
+        }
+
+        this._set();
     },
 
     changeAttribute: function(attributeName){
-        if (attributeName === "data-value") {
-            this.changeValueAttribute();
+        var that = this;
+
+        function changeValue() {
+            that.val(that.element.attr("data-value"));
+        }
+
+        function changeLocale() {
+            that.i18n(that.element.attr("data-locale"));
+        }
+
+        function changeFormat() {
+            that.options.format = that.element.attr("data-format");
+            // that.element.val(that.value.format(that.options.format, that.options.locale)).trigger("change");
+            that._set();
+        }
+
+        switch (attributeName) {
+            case "data-value": changeValue(); break;
+            case "data-locale": changeLocale(); break;
+            case "data-format": changeFormat(); break;
         }
     },
 
@@ -12698,6 +12751,9 @@ var DialogDefaultConfig = {
     autoHide: 0,
     removeOnClose: false,
     show: false,
+
+    _runtime: false,
+
     onShow: Metro.noop,
     onHide: Metro.noop,
     onOpen: Metro.noop,
@@ -12744,8 +12800,13 @@ var Dialog = {
     },
 
     _create: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "dialog");
+        }
+
         this._build();
     },
 
@@ -13065,6 +13126,8 @@ Metro['dialog'] = {
             closeAction: true,
             removeOnClose: true
         }, (options !== undefined ? options : {}));
+
+        dlg_options._runtime = true;
 
         return dlg.dialog(dlg_options);
     }
@@ -13464,9 +13527,10 @@ var Dropdown = {
         element.fire("dropdowncreate");
 
         if (element.hasClass("open")) {
-            setTimeout(function(){
+            element.removeClass("open");
+            setImmediate(function(){
                 that.open(true);
-            }, 500)
+            })
         }
     },
 
@@ -13638,8 +13702,8 @@ Metro.fileSetup = function (options) {
     FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
 };
 
-if (typeof window.metroFileSetup !== undefined) {
-    Metro.fileSetup(window.metroFileSetup);
+if (typeof window["metroFileSetup"] !== undefined) {
+    Metro.fileSetup(window["metroFileSetup"]);
 }
 
 var File = {
@@ -14857,6 +14921,10 @@ var InfoBox = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "infobox");
+        }
+
         this._createStructure();
         this._createEvents();
 
@@ -15102,7 +15170,10 @@ Metro['infobox'] = {
             type: box_type
         }, (o !== undefined ? o : {}));
 
+        ib_options._runtime = true;
+
         el.infobox(ib_options);
+
         ib = el.data('infobox');
         ib.setContent(c);
         if (open !== false) {
@@ -15306,8 +15377,8 @@ Metro.inputSetup = function (options) {
     InputDefaultConfig = $.extend({}, InputDefaultConfig, options);
 };
 
-if (typeof window.metroInputSetup !== undefined) {
-    Metro.inputSetup(window.metroInputSetup);
+if (typeof window["metroInputSetup"] !== undefined) {
+    Metro.inputSetup(window["metroInputSetup"]);
 }
 
 var Input = {
@@ -15382,7 +15453,7 @@ var Input = {
             element.val(o.defaultValue);
         }
 
-        if (o.clearButton === true) {
+        if (o.clearButton === true && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(buttons);
         }
@@ -15395,12 +15466,12 @@ var Input = {
             searchButton.appendTo(buttons);
         }
 
-        if (o.prepend !== "") {
+        if (Utils.isValue(o.prepend)) {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
-        if (o.append !== "") {
+        if (Utils.isValue(o.append)) {
             var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
@@ -15426,6 +15497,10 @@ var Input = {
 
                 customButton.appendTo(buttons);
             });
+        }
+
+        if (Utils.isValue(element.attr('data-exclaim'))) {
+            container.attr('data-exclaim', element.attr('data-exclaim'));
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -15477,7 +15552,7 @@ var Input = {
 
         container.on(Metro.events.click, ".input-clear-button", function(){
             var curr = element.val();
-            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").fire('clear').fire('change').fire('keyup').focus();
             if (autocompleteList.length > 0) {
                 autocompleteList.css({
                     display: "none"
@@ -18038,7 +18113,7 @@ var Notify = {
     setup: function(options){
         this.options = $.extend({}, NotifyDefaultConfig, options);
 
-        if (this.options.container === null) {
+        if (Notify.container === null) {
             Notify.container = Notify._createContainer();
         }
 
@@ -18146,7 +18221,6 @@ var Notify = {
 
     kill: function(notify, callback){
         var that = this, o = this.options;
-
         notify.off(Metro.events.click);
         notify.fadeOut(o.duration, 'linear', function(){
             Utils.exec(Utils.isValue(callback) ? callback : that.options.onClose, null, notify[0]);
@@ -19950,7 +20024,10 @@ var Select = {
                     if (drop.is(drop_container)) {
                         return ;
                     }
-                    drop.data('dropdown').close();
+                    var dataDrop = drop.data('dropdown');
+                    if (dataDrop && dataDrop.close) {
+                        dataDrop.close();
+                    }
                 });
 
                 filter_input.val("").trigger(Metro.events.keyup).focus();
@@ -20290,7 +20367,8 @@ var Select = {
 $(document).on(Metro.events.click, function(){
     var selects = $(".select .drop-container");
     $.each(selects, function(){
-        $(this).data('dropdown').close();
+        var drop = $(this).data('dropdown');
+        if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");
 });
@@ -23584,9 +23662,13 @@ var Table = {
                     classes.push("sort-" + item.sortDir);
                 }
             }
-            if (Utils.isValue(item.cls)) {classes.push(item.cls);}
+            if (Utils.isValue(item.cls)) {
+                $.each(item.cls.toArray(), function () {
+                    classes.push(this);
+                });
+            }
             if (Utils.bool(view[cell_index]['show']) === false) {
-                classes.push("hidden");
+                if (classes.indexOf('hidden') === -1) classes.push("hidden");
             }
 
             classes.push(o.clsHeadCell);
@@ -24068,7 +24150,7 @@ var Table = {
             if (status) {
                 $.each(op, function(){
                     var a;
-                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this]) : [];
+                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this], " ") : [];
                     Utils.arrayDelete(a, "hidden");
                     that.heads[index][this] = a.join(" ");
                     that.view[index]['show'] = true;
@@ -24077,7 +24159,7 @@ var Table = {
                 $.each(op, function(){
                     var a;
 
-                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this]) : [];
+                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this], " ") : [];
                     if (a.indexOf("hidden") === -1) {
                         a.push("hidden");
                     }
@@ -24416,7 +24498,7 @@ var Table = {
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
-        if (Utils.isValue(format)) {
+        if (Utils.isValue(result) && Utils.isValue(format)) {
 
             if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
                 result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);
@@ -24668,6 +24750,8 @@ var Table = {
                 that._rebuild(review);
             }, function(xhr){
                 Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+                that._createItemsFromJSON(data);
+                that._rebuild(review);
                 element.fire("dataloaderror", {
                     source: o.source,
                     xhr: xhr
@@ -25792,8 +25876,8 @@ Metro.textareaSetup = function (options) {
     TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
 };
 
-if (typeof window.metroTextareaSetup !== undefined) {
-    Metro.textareaSetup(window.metroTextareaSetup);
+if (typeof window["metroTextareaSetup"] !== undefined) {
+    Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
 var Textarea = {
@@ -25846,7 +25930,7 @@ var Textarea = {
             container.insertAfter(prev);
         }
 
-        if (o.clearButton !== false) {
+        if (o.clearButton !== false && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(container);
         }
@@ -29397,16 +29481,13 @@ var WindowDefaultConfig = {
     btnClose: true,
     btnMin: true,
     btnMax: true,
-    clsCaption: "",
-    clsContent: "",
-    clsWindow: "",
     draggable: true,
     dragElement: ".window-caption .icon, .window-caption .title",
     dragArea: "parent",
     shadow: false,
     icon: "",
     title: "Window",
-    content: "default",
+    content: null,
     resizable: true,
     overlay: false,
     overlayColor: 'transparent',
@@ -29419,7 +29500,14 @@ var WindowDefaultConfig = {
     place: "auto",
     closeAction: Metro.actions.REMOVE,
     customButtons: null,
+
     clsCustomButton: "",
+    clsCaption: "",
+    clsContent: "",
+    clsWindow: "",
+
+    _runtime: false,
+
     minWidth: 0,
     minHeight: 0,
     maxWidth: 0,
@@ -29445,8 +29533,8 @@ Metro.windowSetup = function (options) {
     WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
 };
 
-if (typeof window.metroWindowSetup !== undefined) {
-    Metro.windowSetup(window.metroWindowSetup);
+if (typeof window["metroWindowSetup"] !== undefined) {
+    Metro.windowSetup(window["metroWindowSetup"]);
 }
 
 var Window = {
@@ -29461,6 +29549,7 @@ var Window = {
             left: 0
         };
         this.hidden = false;
+        this.content = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -29495,8 +29584,26 @@ var Window = {
             o.resizable = false;
         }
 
-        if (o.content === "default") {
+        //o.content = !Utils.isNull(o.content) ? element.append(o.content) : element;
+
+        if (Utils.isNull(o.content)) {
             o.content = element;
+        } else {
+            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+                o.content = Utils.embedUrl(o.content);
+            }
+
+            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+                o.content = Utils.exec(o.content);
+            }
+
+            element.append(o.content);
+            o.content = element;
+            // console.log(o.content);
+        }
+
+        if (o._runtime === true) {
+            Metro.makeRuntime(element, "window");
         }
 
         win = this._window(o);
@@ -29562,7 +29669,7 @@ var Window = {
     },
 
     _window: function(o){
-        var that = this;
+        var that = this, element = this.element;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
         var width = o.width, height = o.height;
 
@@ -29595,16 +29702,16 @@ var Window = {
         title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
         title.appendTo(caption);
 
-        if (o.content !== undefined && o.content !== 'original') {
+        if (!Utils.isNull(o.content)) {
 
-            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
-                o.content = Utils.embedUrl(o.content);
-            }
-
-            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
-                o.content = Utils.exec(o.content);
-            }
-
+            // if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+            //     o.content = Utils.embedUrl(o.content);
+            // }
+            //
+            // if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+            //     o.content = Utils.exec(o.content);
+            // }
+            //
             if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {
@@ -29904,6 +30011,7 @@ var Window = {
 
     changeClass: function(a){
         var element = this.element, win = this.win, o = this.options;
+
         if (a === "data-cls-window") {
             win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
         }
@@ -30104,6 +30212,8 @@ Metro['window'] = {
 
         var w_options = $.extend({}, {
         }, (options !== undefined ? options : {}));
+
+        w_options._runtime = true;
 
         return w.window(w_options);
     }

@@ -39,7 +39,6 @@
 <body class="m4-cloak" style="padding-top: 50px">
     <div class="container-fluid bg-darkMagenta fg-white pos-fixed fixed-top z-top">
         <header class="app-bar container bg-darkMagenta fg-white pos-relative" data-role="appbar" data-expand-point="md">
-<!--            <a href="index.html" class="d-block d-none-md brand fg-white no-hover"><span class="border bd-white border-radius p-2">m<sup>4</sup></span></a>-->
             <a href="index.html" class="brand fg-white no-hover">METRO 4</a>
             <ul class="app-bar-menu ml-auto text-upper">
                 <li><a href="intro.html">Guide</a></li>
@@ -107,7 +106,7 @@
                         <div class="info-panel-header bg-orange fg-white">For developers</div>
                         <div class="info-panel-content">
                             <div class="mx-10 my-6"><span class="mif-github mif-8x fg-orange"></span></div>
-                            <span class="text-leader2">Metro 4 is easily expandable to our own needs</span>
+                            <span class="text-leader2">Metro 4 is easily expandable to your own needs</span>
                         </div>
                         <div class="info-panel-footer">
                             <a href="https://github.com/olton/Metro-UI-CSS" class="button large outline warning rounded">Get source</a>
@@ -278,7 +277,7 @@
             </div>
 
             <div class="text-center mt-10 reduce-1">
-                Metro 4 (Metro UI CSS) &copy; 2012-2018 by <a href="mailto:sergey@pimenov.com.ua" class="no-wrap">Sergey Pimenov</a>.
+                Metro 4 (Metro UI CSS) &copy; 2012-2019 by <a href="mailto:sergey@pimenov.com.ua" class="no-wrap">Sergey Pimenov</a>.
                 <br />
                 <span class="no-wrap">Domain by <a href="https://imena.ua/">Imena.ua</a>.</span>
                 <span class="no-wrap">Hosting by <a href="https://mirohost.net/">Mirohost</a>.</span>
@@ -317,12 +316,12 @@
             }
 
             if (b.length === 0) {
-                div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
+                // div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
             } else {
                 $.each(b, function(){
                     var bl = $(this);
                     if (bl.height() < 50 || Metro.utils.getStyleOne(bl, 'display') === 'none') {
-                        div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
+                        // div.html("<div class='bg-red fg-white p-4 text-center h3 text-light'>With your help, I can make Metro 4 even better! Please, disable AdBlock or AdGuard.<br>Thank you for your support!</div>");
                     }
                 });
             }

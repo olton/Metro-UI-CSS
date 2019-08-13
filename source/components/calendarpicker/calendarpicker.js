@@ -272,7 +272,7 @@ var CalendarPicker = {
         });
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
-            element.val("").trigger('change').blur();
+            element.val("").trigger('change').blur(); // TODO change blur
             that.value = null;
             e.preventDefault();
             e.stopPropagation();
@@ -407,7 +407,7 @@ var CalendarPicker = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var cal = this.calendar.data("calendar");
 
         var changeAttrLocale = function(){

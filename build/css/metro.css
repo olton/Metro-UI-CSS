@@ -18430,7 +18430,7 @@ textarea.invalid::after,
 .tag-input.invalid::after,
 .spinner.invalid::after {
   position: absolute;
-  content: "!";
+  content: attr(data-exclaim);
   color: #CE352C;
   left: -16px;
   top: 0;
@@ -20011,6 +20011,8 @@ figure img {
   display: block;
   padding: 0;
   overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 .embed-container::before {
   padding-top: 56.25%;
@@ -28341,6 +28343,7 @@ input.input-small {
   text-overflow: ellipsis;
   width: 100%;
   padding-left: 4px;
+  color: inherit;
 }
 .window-caption .icon {
   width: 34px;
@@ -28350,6 +28353,7 @@ input.input-small {
       flex-shrink: 0;
   display: block;
   position: relative;
+  color: inherit;
 }
 .window-caption .icon * {
   width: 1rem;
@@ -30787,6 +30791,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 100%;
   height: 100%;
   overflow: hidden;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .carousel.fixed-size .slide {
   overflow: hidden;

@@ -28,6 +28,7 @@ module.exports = function(grunt) {
         tasks.push('watch');
     }
 
+    require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
