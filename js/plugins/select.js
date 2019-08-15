@@ -216,7 +216,7 @@ var Select = {
                     list: list[0]
                 });
             }
-        });
+        }).attr("data-dropdown", true).attr("data-role", "dropdown");
 
         this.list = list;
 
