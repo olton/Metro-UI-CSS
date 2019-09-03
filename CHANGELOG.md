@@ -1,6 +1,7 @@
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown
 + [x] Docs: upd docs for cards, add `icon-box`, `more-info-box`, `skill-box`, `social-box`
++ [x] Sidebar: fix setup global function name
 
 ### 4.2.48
 + [x] Select: fix error when using with pair to Select from Metro 4 for React

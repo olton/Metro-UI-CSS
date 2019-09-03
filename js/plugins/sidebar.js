@@ -20,8 +20,8 @@ Metro.sidebarSetup = function (options) {
     SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
 };
 
-if (typeof window.metroSidebarSetup !== undefined) {
-    Metro.selectSetup(window.metroSidebarSetup);
+if (typeof window["metroSidebarSetup"] !== undefined) {
+    Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
 var Sidebar = {
