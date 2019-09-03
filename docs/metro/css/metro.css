@@ -22723,15 +22723,30 @@ textarea {
   width: 100%;
   padding: 0;
 }
+.textarea .fake-textarea {
+  opacity: 0;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: lightblue;
+  border: 1px solid red;
+}
 .textarea textarea {
   min-height: 4rem;
   overflow-y: hidden;
   resize: none;
   border: none!important;
+  -webkit-transition: height 0.1s linear;
+  transition: height 0.1s linear;
 }
 .textarea textarea:focus {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+.textarea.no-scroll-vertical textarea {
+  overflow-y: hidden!important;
 }
 .textarea .input-clear-button {
   position: absolute;

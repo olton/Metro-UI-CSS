@@ -17,14 +17,31 @@ textarea {
     width: 100%;
     padding: 0;
 
+    .fake-textarea {
+        opacity: 0;
+        z-index: -1;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: lightblue;
+        border: 1px solid red;
+    }
+
     textarea {
         min-height: 4rem;
         overflow-y: hidden;
         resize: none;
         border: none!important;
+        transition: height .1s linear;
         &:focus {
             box-shadow: none;
         }
+
+    }
+
+    &.no-scroll-vertical textarea{
+        overflow-y: hidden!important;
     }
 
     .input-clear-button {
