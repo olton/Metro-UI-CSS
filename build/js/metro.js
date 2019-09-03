@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.49",
-    compileTime: "15/08/2019 14:46:55",
+    compileTime: "03/09/2019 09:41:44",
     buildNumber: "734",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17540,8 +17540,8 @@ Metro.sidebarSetup = function (options) {
     SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
 };
 
-if (typeof window.metroSidebarSetup !== undefined) {
-    Metro.selectSetup(window.metroSidebarSetup);
+if (typeof window["metroSidebarSetup"] !== undefined) {
+    Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
 var Sidebar = {
