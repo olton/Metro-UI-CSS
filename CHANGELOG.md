@@ -4,6 +4,7 @@
 + [x] Sidebar: fix setup global function name
 + [x] Textarea: fix issue #1400
 + [x] MaterialTabs: fix issue #1402 
++ [x] MaterialTabs: add method `open(tab_num)` for issue #1399
 
 ### 4.2.48
 + [x] Select: fix error when using with pair to Select from Metro 4 for React

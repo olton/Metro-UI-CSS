@@ -188,6 +188,15 @@ var MaterialTabs = {
         });
     },
 
+    open: function(tab_num){
+        var element = this.element;
+        var tabs = element.find("li");
+        var active_tab = element.find("li.active");
+        var tab = tabs.eq(tab_num - 1);
+        var tab_next = tabs.index(tab) > tabs.index(active_tab);
+        this.openTab(tab, tab_next);
+    },
+
     changeAttribute: function(attributeName){
 
     },
