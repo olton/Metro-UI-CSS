@@ -3,6 +3,7 @@
 + [x] Docs: upd docs for cards, add `icon-box`, `more-info-box`, `skill-box`, `social-box`
 + [x] Sidebar: fix setup global function name
 + [x] Textarea: fix issue #1400
++ [x] MaterialTabs: fix issue #1402 
 
 ### 4.2.48
 + [x] Select: fix error when using with pair to Select from Metro 4 for React
