@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.49",
-    compileTime: "04/09/2019 17:44:31",
+    compileTime: "05/09/2019 16:36:08",
     buildNumber: "734",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -10785,8 +10785,8 @@ Metro.dropdownSetup = function (options) {
     DropdownDefaultConfig = $.extend({}, DropdownDefaultConfig, options);
 };
 
-if (typeof window.metroDropdownSetup !== undefined) {
-    Metro.dropdownSetup(window.metroDropdownSetup);
+if (typeof window["metroDropdownSetup"] !== undefined) {
+    Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
 var Dropdown = {
@@ -17102,8 +17102,6 @@ var Select = {
     _createSelect: function(){
         var that = this, element = this.element, o = this.options;
 
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
@@ -17116,12 +17114,7 @@ var Select = {
             container.addClass("multiple");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
 
@@ -17150,6 +17143,7 @@ var Select = {
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
+                console.log("dropped");
                 var dropped, target;
 
                 dropped = $(".select .drop-container");
@@ -17187,7 +17181,7 @@ var Select = {
                     list: list[0]
                 });
             }
-        }).attr("data-dropdown", true).attr("data-role", "dropdown");
+        }).attr("data-role-dropdown", true).attr("data-role", "dropdown");
 
         this.list = list;
 

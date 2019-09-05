@@ -13,8 +13,8 @@ Metro.dropdownSetup = function (options) {
     DropdownDefaultConfig = $.extend({}, DropdownDefaultConfig, options);
 };
 
-if (typeof window.metroDropdownSetup !== undefined) {
-    Metro.dropdownSetup(window.metroDropdownSetup);
+if (typeof window["metroDropdownSetup"] !== undefined) {
+    Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
 var Dropdown = {
