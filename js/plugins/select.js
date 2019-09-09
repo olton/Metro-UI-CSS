@@ -172,7 +172,6 @@ var Select = {
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
-                console.log("dropped");
                 var dropped, target;
 
                 dropped = $(".select .drop-container");

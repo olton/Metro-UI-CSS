@@ -113,6 +113,8 @@ var Textarea = {
             this.enable();
         }
 
+        fakeTextarea.val(element.val());
+
         if (o.autoSize === true) {
 
             container.addClass("autosize no-scroll-vertical");
@@ -120,7 +122,7 @@ var Textarea = {
             timer = setTimeout(function(){
                 timer = null;
                 that.resize();
-            }, 0);
+            }, 100);
         }
     },
 

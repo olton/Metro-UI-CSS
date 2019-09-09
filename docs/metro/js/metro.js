@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.49",
-    compileTime: "05/09/2019 16:36:08",
+    compileTime: "09/09/2019 13:12:13",
     buildNumber: "734",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17143,7 +17143,6 @@ var Select = {
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
-                console.log("dropped");
                 var dropped, target;
 
                 dropped = $(".select .drop-container");
@@ -23059,6 +23058,8 @@ var Textarea = {
             this.enable();
         }
 
+        fakeTextarea.val(element.val());
+
         if (o.autoSize === true) {
 
             container.addClass("autosize no-scroll-vertical");
@@ -23066,7 +23067,7 @@ var Textarea = {
             timer = setTimeout(function(){
                 timer = null;
                 that.resize();
-            }, 0);
+            }, 100);
         }
     },
 
