@@ -119,7 +119,7 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.2.49",
-    compileTime: "09/09/2019 13:12:13",
+    compileTime: "11/09/2019 17:30:09",
     buildNumber: "734",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -11052,7 +11052,7 @@ var File = {
         if (o.mode === "input") {
             caption.insertBefore(element);
 
-            button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.buttonTitle);
+            button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
             button.appendTo(container);
             button.addClass(o.clsButton);
 

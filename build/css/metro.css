@@ -22799,7 +22799,10 @@ textarea {
   margin-bottom: 0;
   padding: 0;
 }
-.file button > * {
+.file .button {
+  border: none;
+}
+.file .button > * {
   height: 24px;
   max-width: 24px;
 }
@@ -22812,7 +22815,7 @@ textarea {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.file.disabled button {
+.file.disabled .button {
   background-color: #f8f8f8;
   color: #dfdfdf;
 }
@@ -22831,7 +22834,7 @@ textarea {
       -ms-flex-order: 2;
           order: 2;
 }
-.file button {
+.file .button {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
