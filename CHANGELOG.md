@@ -6,6 +6,8 @@
 + [x] MaterialTabs: fix issue #1402 
 + [x] MaterialTabs: add method `open(tab_num)` for issue #1399
 + [x] Select: fix input autofocus when dropdown
++ [x] Textarea: fix resize when component was created
++ [x] File: fix firing `change` event on Safari
 
 ### 4.2.48
 + [x] Select: fix error when using with pair to Select from Metro 4 for React
