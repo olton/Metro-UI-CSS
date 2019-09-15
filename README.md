@@ -30,14 +30,18 @@ It's an independent project with its ongoing development made possible entirely 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
-[![devDependencies Status](https://david-dm.org/olton/Metro-UI-CSS/dev-status.svg)](https://david-dm.org/olton/Metro-UI-CSS?type=dev)
 [![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/css/metro-all.min.css)
 [![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
-![GitHub release](https://img.shields.io/github/release/olton/Metro-UI-CSS.svg?color=darklime)
+![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?color=darkLime)
 [![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
 ![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
+
+### Release
+![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS)
+![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?include_prereleases&label=pre-release)
+
 
 ###  Info
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
