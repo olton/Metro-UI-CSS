@@ -14,8 +14,8 @@ Metro.counterSetup = function (options) {
     CounterDefaultConfig = $.extend({}, CounterDefaultConfig, options);
 };
 
-if (typeof window.metroCounterSetup !== undefined) {
-    Metro.counterSetup(window.metroCounterSetup);
+if (typeof window["metroCounterSetup"] !== undefined) {
+    Metro.counterSetup(window["metroCounterSetup"]);
 }
 
 var Counter = {
@@ -112,12 +112,14 @@ var Counter = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-value": this.setValueAttribute(); break;
+        if (attributeName === "data-value") {
+            this.setValueAttribute();
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        this.element.remove();
+    }
 };
 
 Metro.plugin('counter', Counter);

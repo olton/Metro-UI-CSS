@@ -60,8 +60,8 @@ Metro.calendarPickerSetup = function (options) {
     CalendarPickerDefaultConfig = $.extend({}, CalendarPickerDefaultConfig, options);
 };
 
-if (typeof window.metroCalendarPickerSetup !== undefined) {
-    Metro.calendarPickerSetup(window.metroCalendarPickerSetup);
+if (typeof window["metroCalendarPickerSetup"] !== undefined) {
+    Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
 }
 
 var CalendarPicker = {
@@ -111,6 +111,9 @@ var CalendarPicker = {
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
         var curr = element.val().trim();
+        var id = Utils.elementId("calendarpicker");
+
+        container.attr("id", id);
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
@@ -269,7 +272,7 @@ var CalendarPicker = {
                     container.removeClass("dialog-mode");
                 }
             }
-        });
+        }, {ns: "calendarpicker-"+container.attr("id")});
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
             element.val("").trigger('change').blur(); // TODO change blur
@@ -443,6 +446,23 @@ var CalendarPicker = {
             case 'data-min-date': changeAttrMinDate(); break;
             case 'data-max-date': changeAttrMaxDate(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var container = element.parent();
+        var clear = container.find(".input-clear-button");
+
+        $(window).off(Metro.events.resize, {ns: "calendarpicker-"+container.attr("id")});
+        if (clear.length > 0) clear.off(Metro.events.click);
+        container.off(Metro.events.click, "button, input");
+        element.off(Metro.events.blur);
+        element.off(Metro.events.focus);
+        element.on(Metro.events.change);
+
+        this.calendar.data("calendar").destroy();
+
+        element.remove();
     }
 };
 

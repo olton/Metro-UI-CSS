@@ -195,7 +195,9 @@ var Accordion = {
     },
 
     destroy: function(){
-        this.element.off(Metro.events.click, ".heading");
+        var element = this.element;
+        element.off(Metro.events.click, ".heading");
+        element.remove();
     }
 };
 

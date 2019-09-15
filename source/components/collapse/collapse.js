@@ -11,8 +11,8 @@ Metro.collapseSetup = function (options) {
     CollapseDefaultConfig = $.extend({}, CollapseDefaultConfig, options);
 };
 
-if (typeof window.metroCollapseSetup !== undefined) {
-    Metro.collapseSetup(window.metroCollapseSetup);
+if (typeof window["metroCollapseSetup"] !== undefined) {
+    Metro.collapseSetup(window["metroCollapseSetup"]);
 }
 
 var Collapse = {
@@ -29,7 +29,7 @@ var Collapse = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -145,7 +145,7 @@ var Collapse = {
 
     destroy: function(){
         this.toggle.off(Metro.events.click);
-        this.element.show();
+        // TODO check roles, if one - remove element
     }
 };
 

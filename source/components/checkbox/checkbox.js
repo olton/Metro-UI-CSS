@@ -143,13 +143,7 @@ var Checkbox = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var parent = element.parent();
-
-        element[0].className = this.origin.className;
-        element.insertBefore(parent);
-
-        parent.remove();
+        this.element.closest(".checkbox").remove();
     }
 };
 

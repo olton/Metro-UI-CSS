@@ -58,7 +58,6 @@
 + [x] Examples: fix desktop demo
 + [x] Examples: fix start screen demo
 + [x] Notify system: fix minor bug for creating notify after setup
->>>>>>> master
 
 ### 4.2.44
 + [x] Calendar: fix methods `setMaxDate`, `setMinDate`, issue #1374

@@ -11,8 +11,8 @@ Metro.buttonGroupSetup = function(options){
     ButtonGroupDefaultConfig = $.extend({}, ButtonGroupDefaultConfig, options);
 };
 
-if (typeof window.metroButtonGroupSetup !== undefined) {
-    Metro.buttonGroupSetup(window.metroButtonGroupSetup);
+if (typeof window["metroButtonGroupSetup"] !== undefined) {
+    Metro.buttonGroupSetup(window["metroButtonGroupSetup"]);
 }
 
 var ButtonGroup = {
@@ -29,7 +29,7 @@ var ButtonGroup = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -43,7 +43,7 @@ var ButtonGroup = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createGroup();
         this._createEvents();
@@ -53,8 +53,8 @@ var ButtonGroup = {
     },
 
     _createGroup: function(){
-        var that = this, element = this.element, o = this.options;
-        var cls, buttons, buttons_active, id = Utils.elementId("button-group");
+        var element = this.element, o = this.options;
+        var buttons, buttons_active, id = Utils.elementId("button-group");
 
         if (element.attr("id") === undefined) {
             element.attr("id", id);
@@ -78,7 +78,7 @@ var ButtonGroup = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.on(Metro.events.click, o.targets, function(){
             var el = $(this);
@@ -103,13 +103,12 @@ var ButtonGroup = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
         var element = this.element, o = this.options;
         element.off(Metro.events.click, o.targets);
-        element.find(o.targets).removeClass(o.clsActive).removeClass("js-active");
+        element.remove();
     }
 
 };

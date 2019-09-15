@@ -4,35 +4,36 @@ if (typeof m4q === 'undefined') {
     throw new Error('Metro 4 requires m4q helper!');
 }
 
-if ('MutationObserver' in window === false) {
+if (!'MutationObserver' in window) {
     throw new Error('Metro 4 requires MutationObserver!');
 }
 
-var meta_init = $("meta[name='metro4:init']").attr("content");
-var meta_locale = $("meta[name='metro4:locale']").attr("content");
-var meta_week_start = $("meta[name='metro4:week_start']").attr("content");
-var meta_date_format = $("meta[name='metro4:date_format']").attr("content");
-var meta_date_format_input = $("meta[name='metro4:date_format_input']").attr("content");
-var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
-var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
-var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
-var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
-var meta_cloak = $("meta[name='metro4:cloak']").attr("content"); //default or fade
-var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"); //100
+var meta_init = $.meta('metro4:init').attr("content");
+var meta_locale = $.meta('metro4:locale').attr("content");
+var meta_week_start = $.meta('metro4:week_start').attr("content");
+var meta_date_format = $.meta('metro4:date_format').attr("content");
+var meta_date_format_input = $.meta('metro4:date_format_input').attr("content");
+var meta_animation_duration = $.meta('metro4:animation_duration').attr("content");
+var meta_callback_timeout = $.meta('metro4:callback_timeout').attr("content");
+var meta_timeout = $.meta('metro4:timeout').attr("content");
+var meta_scroll_multiple = $.meta('metro4:scroll_multiple').attr("content");
+var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
+var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
 
-var meta_jquery = $("meta[name='metro4:jquery']").attr("content"); //undefined
+var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
+var jquery_present = typeof jQuery !== "undefined";
 if (window.METRO_JQUERY === undefined) {
     window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
 }
 
 /* Added by Ken Kitay https://github.com/kens-code*/
-var meta_about = $("meta[name='metro4:about']").attr("content");
+var meta_about = $.meta('metro4:about').attr("content");
 if (window.METRO_SHOW_ABOUT === undefined) {
     window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
 }
 /* --- end ---*/
 
-var meta_compile = $("meta[name='metro4:compile']").attr("content");
+var meta_compile = $.meta('metro4:compile').attr("content");
 if (window.METRO_SHOW_COMPILE_TIME === undefined) {
     window.METRO_SHOW_COMPILE_TIME = meta_compile !== undefined ? JSON.parse(meta_compile) : true;
 }
@@ -96,7 +97,7 @@ if (typeof Object.values !== 'function') {
     }
 }
 
-var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
 var Metro = {
 
@@ -166,38 +167,38 @@ var Metro = {
     },
 
     events: {
-        click: 'click.metro',
-        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+        click: 'click',
+        start: isTouch ? 'touchstart' : 'mousedown',
+        stop: isTouch ? 'touchend' : 'mouseup',
+        move: isTouch ? 'touchmove' : 'mousemove',
+        enter: isTouch ? 'touchstart' : 'mouseenter',
 
-        startAll: 'mousedown.metro touchstart.metro',
-        stopAll: 'mouseup.metro touchend.metro',
-        moveAll: 'mousemove.metro touchmove.metro',
+        startAll: 'mousedown touchstart',
+        stopAll: 'mouseup touchend',
+        moveAll: 'mousemove touchmove',
 
-        leave: 'mouseleave.metro',
-        focus: 'focus.metro',
-        blur: 'blur.metro',
-        resize: 'resize.metro',
-        keyup: 'keyup.metro',
-        keydown: 'keydown.metro',
-        keypress: 'keypress.metro',
-        dblclick: 'dblclick.metro',
-        input: 'input.metro',
-        change: 'change.metro',
-        cut: 'cut.metro',
-        paste: 'paste.metro',
-        scroll: 'scroll.metro',
-        mousewheel: 'mousewheel.metro',
-        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro drop.metro",
-        dragstart: "dragstart.metro",
-        dragend: "dragend.metro",
-        dragenter: "dragenter.metro",
-        dragover: "dragover.metro",
-        dragleave: "dragleave.metro",
-        drop: 'drop.metro',
-        drag: 'drag.metro'
+        leave: 'mouseleave',
+        focus: 'focus',
+        blur: 'blur',
+        resize: 'resize',
+        keyup: 'keyup',
+        keydown: 'keydown',
+        keypress: 'keypress',
+        dblclick: 'dblclick',
+        input: 'input',
+        change: 'change',
+        cut: 'cut',
+        paste: 'paste',
+        scroll: 'scroll',
+        mousewheel: 'mousewheel',
+        inputchange: "change input propertychange cut paste copy drop",
+        dragstart: "dragstart",
+        dragend: "dragend",
+        dragenter: "dragenter",
+        dragover: "dragover",
+        dragleave: "dragleave",
+        drop: 'drop',
+        drag: 'drag'
     },
 
     keyCode: {
@@ -420,11 +421,11 @@ var Metro = {
 
             roles.map(function (func) {
 
-                var $$ = METRO_JQUERY && typeof jQuery !== 'undefined' ? jQuery : $;
+                var $$ = METRO_JQUERY && jquery_present ? jQuery : $;
 
-                if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
+                if ($$.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
-                        $.fn[func].call($this);
+                        $$.fn[func].call($this);
                         $this.attr("data-role-"+func, true);
 
                         var mc = $this.data('metroComponent');
@@ -460,70 +461,70 @@ var Metro = {
         }
     },
 
-    destroyPlugin: function(element, name){
-        var p, mc;
-        var el = $(element);
+    // destroyPlugin: function(element, name){
+    //     var p, mc;
+    //     var el = $(element);
+    //
+    //     p = el.data(name);
+    //
+    //     if (!Utils.isValue(p)) {
+    //         throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
+    //     }
+    //
+    //     if (!Utils.isFunc(p['destroy'])) {
+    //         throw new Error("Component can not be destroyed: method destroy not found.");
+    //     }
+    //
+    //     p['destroy']();
+    //     mc = el.data("metroComponent");
+    //     Utils.arrayDelete(mc, name);
+    //     el.data("metroComponent", mc);
+    //     $.removeData(el[0], name);
+    //     el.removeAttr("data-role-"+name);
+    // },
 
-        p = el.data(name);
+    // destroyPluginAll: function(element){
+    //     var el = $(element);
+    //     var mc = el.data("metroComponent");
+    //
+    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+    //         Metro.destroyPlugin(el[0], this);
+    //     });
+    // },
 
-        if (!Utils.isValue(p)) {
-            throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
-        }
+    // initPlugin: function(element, name){
+    //     element = $(element);
+    //     try {
+    //         if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
+    //             $.fn[name].call(element);
+    //             element.attr("data-role-"+name, true);
+    //
+    //             var mc = element.data('metroComponent');
+    //
+    //             if (mc === undefined) {
+    //                 mc = [name];
+    //             } else {
+    //                 mc.push(name);
+    //             }
+    //             element.data('metroComponent', mc);
+    //         }
+    //     } catch (e) {
+    //         console.log(e.message, e.stack);
+    //     }
+    // },
 
-        if (!Utils.isFunc(p['destroy'])) {
-            throw new Error("Component can not be destroyed: method destroy not found.");
-        }
-
-        p['destroy']();
-        mc = el.data("metroComponent");
-        Utils.arrayDelete(mc, name);
-        el.data("metroComponent", mc);
-        $.removeData(el[0], name);
-        el.removeAttr("data-role-"+name);
-    },
-
-    destroyPluginAll: function(element){
-        var el = $(element);
-        var mc = el.data("metroComponent");
-
-        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            Metro.destroyPlugin(el[0], this);
-        });
-    },
-
-    initPlugin: function(element, name){
-        element = $(element);
-        try {
-            if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
-                $.fn[name].call(element);
-                element.attr("data-role-"+name, true);
-
-                var mc = element.data('metroComponent');
-
-                if (mc === undefined) {
-                    mc = [name];
-                } else {
-                    mc.push(name);
-                }
-                element.data('metroComponent', mc);
-            }
-        } catch (e) {
-            console.log(e.message, e.stack);
-        }
-    },
-
-    reinitPlugin: function(element, name){
-        this.destroyPlugin(element, name);
-        this.initPlugin(element, name);
-    },
-
-    reinitPluginAll: function(element){
-        var mc = $(element).data("metroComponent");
-
-        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            Metro.reinitPlugin(element, this);
-        });
-    },
+    // reinitPlugin: function(element, name){
+    //     this.destroyPlugin(element, name);
+    //     this.initPlugin(element, name);
+    // },
+    //
+    // reinitPluginAll: function(element){
+    //     var mc = $(element).data("metroComponent");
+    //
+    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+    //         Metro.reinitPlugin(element, this);
+    //     });
+    // },
 
     noop: function(){},
     noop_true: function(){return true;},
@@ -535,33 +536,37 @@ var Metro = {
     },
 
     requestFullScreen: function(element){
-        if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-        } else if (element.webkitRequestFullScreen) {
-            element.webkitRequestFullScreen();
-        } else if (element.msRequestFullscreen) {
-            element.msRequestFullscreen();
+        if (element["mozRequestFullScreen"]) {
+            element["mozRequestFullScreen"]();
+        } else if (element["webkitRequestFullScreen"]) {
+            element["webkitRequestFullScreen"]();
+        } else if (element["msRequestFullscreen"]) {
+            element["msRequestFullscreen"]();
         } else {
-            element.requestFullscreen();
+            element.requestFullscreen().catch( function(err){
+                console.log("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
+            });
         }
     },
 
     exitFullScreen: function(){
-        if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
+        if (document["mozCancelFullScreen"]) {
+            document["mozCancelFullScreen"]();
         }
-        else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
+        else if (document["webkitCancelFullScreen"]) {
+            document["webkitCancelFullScreen"]();
         }
-        else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
+        else if (document["msExitFullscreen"]) {
+            document["msExitFullscreen"]();
         } else {
-            document.exitFullscreen();
+            document.exitFullscreen().catch( function(err){
+                console.log("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
+            });
         }
     },
 
     inFullScreen: function(){
-        var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+        var fsm = (document.fullscreenElement || document["webkitFullscreenElement"] || document["mozFullScreenElement"] || document["msFullscreenElement"]);
         return fsm !== undefined;
     },
 

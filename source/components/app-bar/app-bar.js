@@ -9,8 +9,8 @@ Metro.appBarSetup = function(options){
     AppBarDefaultConfig = $.extend({}, AppBarDefaultConfig, options);
 };
 
-if (typeof window.metroAppBarSetup !== undefined) {
-    Metro.appBarSetup(window.metroAppBarSetup);
+if (typeof window["metroAppBarSetup"] !== undefined) {
+    Metro.appBarSetup(window["metroAppBarSetup"]);
 }
 
 var AppBar = {
@@ -26,7 +26,7 @@ var AppBar = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -40,7 +40,7 @@ var AppBar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -50,7 +50,7 @@ var AppBar = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var id = Utils.elementId("app-bar");
         var hamburger, menu;
 
@@ -141,7 +141,7 @@ var AppBar = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
@@ -152,7 +152,7 @@ var AppBar = {
     },
 
     open: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
@@ -163,13 +163,13 @@ var AppBar = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
         $(window).off(Metro.events.resize+"-"+element.attr("id"));
+        element.remove();
     }
 };
 

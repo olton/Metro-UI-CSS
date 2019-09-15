@@ -109,6 +109,9 @@ function dataAttr(elem, key, data){
     return data;
 }
 
+function iif(val1, val2, val3){
+    return val1 ? val1 : val2 ? val2 : val3;
+}
 
 // Source: src/setimmediate.js
 
@@ -525,7 +528,7 @@ function dataAttr(elem, key, data){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.0. Built at 15/09/2019 12:02:55";
+var m4qVersion = "v1.0.0. Built at 15/09/2019 21:51:34";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1539,7 +1542,6 @@ $.extend({
 
     off: function(){
         $.each(this.events, function(){
-            // TODO add useCapture param
             this.element.removeEventListener(this.event, this.handler);
         });
         this.events = [];
@@ -1588,14 +1590,13 @@ $.extend({
 });
 
 $.fn.extend({
-    on: function(eventsList, sel, handler, data, options){
+    on: function(eventsList, sel, handler, options){
         if (this.length === 0) {
             return ;
         }
 
         if (typeof sel === 'function') {
-            options = data;
-            data = handler;
+            options = handler;
             handler = sel;
             sel = undefined;
         }
@@ -1619,10 +1620,6 @@ $.fn.extend({
                     var target = e.target;
                     var beforeHook = $.eventHooks[camelCase("before-"+name)];
                     var afterHook = $.eventHooks[camelCase("after-"+name)];
-
-                    Object.defineProperty(e, 'customData', {
-                        value: data
-                    });
 
                     if (typeof beforeHook === "function") {
                         beforeHook.call(target, e);
@@ -1656,8 +1653,6 @@ $.fn.extend({
                     value: handler.name.trim() !== "" ? handler.name : "func_event_"+name+"_"+$.eventUID
                 });
 
-                // console.log(h.name);
-
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
 
                 el.addEventListener(name, h, options);
@@ -1675,7 +1670,7 @@ $.fn.extend({
         });
     },
 
-    one: function(events, sel, handler, data){
+    one: function(events, sel, handler, options){
         var args = [].slice.call(arguments).filter(function(el){
             return !not(el);
         });
@@ -1686,6 +1681,11 @@ $.fn.extend({
     off: function(eventsList, sel, options){
         if (!isPlainObject(options)) {
             options = {};
+        }
+
+        if (isPlainObject(sel)) {
+            options = sel;
+            sel = null;
         }
 
         if (not(eventsList) || eventsList.toLowerCase() === 'all') {
@@ -1764,10 +1764,10 @@ $.fn.extend({
     .split( " " )
     .forEach(
     function( name ) {
-        $.fn[ name ] = function( sel, fn, data, opt ) {
+        $.fn[ name ] = function( sel, fn, opt ) {
             return arguments.length > 0 ?
-                this.on( name, sel, fn, data, opt ) :
-                this.trigger( name, data );
+                this.on( name, sel, fn, opt ) :
+                this.trigger( name );
         };
 });
 

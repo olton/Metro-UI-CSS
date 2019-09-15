@@ -29,8 +29,8 @@ Metro.countdownSetup = function (options) {
     CountdownDefaultConfig = $.extend({}, CountdownDefaultConfig, options);
 };
 
-if (typeof window.metroCountdownSetup !== undefined) {
-    Metro.countdownSetup(window.metroCountdownSetup);
+if (typeof window["metroCountdownSetup"] !== undefined) {
+    Metro.countdownSetup(window["metroCountdownSetup"]);
 }
 
 var Countdown = {
@@ -116,6 +116,10 @@ var Countdown = {
         var now = (new Date()).getTime();
         var digit;
 
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("countdown"));
+        }
+
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", Utils.elementId("countdown"));
         }
@@ -163,13 +167,13 @@ var Countdown = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        document.addEventListener("visibilitychange", function() {
+        $(document).on("visibilitychange", function() {
             if (document.hidden) {
                 that.pause();
             } else {
                 that.resume();
             }
-        });
+        }, {ns: element.attr("id")});
     },
 
     blink: function(){
@@ -525,8 +529,9 @@ var Countdown = {
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
-        this.element.html("");
-        this.element.removeClass("countdown").removeClass(this.options.clsCountdown);
+        $(document).off("visibilitychange", {ns: element.attr("id")});
+
+        this.element.remove();
     }
 };
 

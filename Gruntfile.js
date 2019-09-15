@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         'source/*.js',
         'source/**/*.js',
         'source/**/*.less',
+        'docs/css/*.less',
         'Gruntfile.js'
     ];
     var time = new Date(), day = time.getDate(), month = time.getMonth()+1, year = time.getFullYear(), hour = time.getHours(), mins = time.getMinutes(), sec = time.getSeconds();
