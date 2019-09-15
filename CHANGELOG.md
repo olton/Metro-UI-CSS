@@ -17,6 +17,17 @@
 + [x] Tests: begin tests with `cypress`
 + [x] Draggable: minor improve for `mouseMove` 
 
+### 4.2.49
++ [x] Select: extended to interop with role=dropdown
++ [x] Docs: upd docs for cards, add `icon-box`, `more-info-box`, `skill-box`, `social-box`
++ [x] Sidebar: fix setup global function name
++ [x] Textarea: fix issue #1400
++ [x] MaterialTabs: fix issue #1402 
++ [x] MaterialTabs: add method `open(tab_num)` for issue #1399
++ [x] Select: fix input autofocus when dropdown
++ [x] Textarea: fix resize when component was created
++ [x] File: fix firing `change` event on Safari
+
 ### 4.2.48
 + [x] Select: fix error when using with pair to Select from Metro 4 for React
 + [x] Carousel: moved style props for slide background image from js to css
