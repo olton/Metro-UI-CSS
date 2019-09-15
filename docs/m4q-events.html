@@ -121,6 +121,17 @@
                     $(...).off("mousedown touchstart");
                     $(...).one("click", "selector");
                 </code></pre>
+                <p class="remark info">
+                    In M4Q, when you call <code>off</code> method, this method remove event handler, including, anonymous function for handler.
+                </p>
+                <pre><code>
+                    // add anonymous click handler
+                    $(el).on("click", function(){
+                        console.log("ku");
+                    });
+
+                    $(el).off("click"); // This call remove anonymous click handler from element.
+                </code></pre>
 
                 <h3 id="_func_trigger">trigger()</h3>
                 <p>
