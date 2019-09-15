@@ -12,8 +12,8 @@ Metro.charmsSetup = function (options) {
     CharmsDefaultConfig = $.extend({}, CharmsDefaultConfig, options);
 };
 
-if (typeof window.metroCharmsSetup !== undefined) {
-    Metro.charmsSetup(window.metroCharmsSetup);
+if (typeof window["metroCharmsSetup"] !== undefined) {
+    Metro.charmsSetup(window["metroCharmsSetup"]);
 }
 
 var Charms = {
@@ -71,10 +71,6 @@ var Charms = {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
-
-        element.on(Metro.events.click, function(e){
-        });
     },
 
     open: function(){
@@ -137,16 +133,7 @@ var Charms = {
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
-
-        element.off(Metro.events.click);
-
-        element
-            .removeClass("charms")
-            .removeClass(o.position + "-side")
-            .removeClass(o.clsCharms);
-
-        element.css("background-color", this.origin.background);
+        this.element.remove();
     }
 };
 

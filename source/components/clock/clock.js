@@ -14,8 +14,8 @@ Metro.clockSetup = function (options) {
     ClockDefaultConfig = $.extend({}, ClockDefaultConfig, options);
 };
 
-if (typeof window.metroClockSetup !== undefined) {
-    Metro.clockSetup(window.metroClockSetup);
+if (typeof window["metroClockSetup"] !== undefined) {
+    Metro.clockSetup(window["metroClockSetup"]);
 }
 
 var Clock = {
@@ -31,7 +31,7 @@ var Clock = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -63,9 +63,8 @@ var Clock = {
     },
 
     _tick: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var timestamp = new Date();
-        var time = timestamp.getTime();
         var result = "";
         var h = timestamp.getHours(),
             i = timestamp.getMinutes(),
@@ -127,7 +126,7 @@ var Clock = {
     destroy: function(){
         clearInterval(this._clockInterval);
         this._clockInterval = null;
-        this.element.html("");
+        this.element.remove();
     }
 };
 

@@ -523,10 +523,7 @@ var Carousel = {
         element.off(Metro.events.click, ".slide");
         $(window).off(Metro.events.resize + "-" + element.attr("id"));
 
-        element.removeClass("carousel").removeClass(o.clsCarousel);
-        if (o.controlsOutside === true) {
-            element.removeClass("controls-outside");
-        }
+        element.remove();
     }
 };
 

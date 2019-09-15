@@ -89,15 +89,10 @@ var Activity = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
-
-        element.html('')
-            .removeClass(o.style + "-style")
-            .removeClass("activity-" + o.type);
+        this.element.remove();
     }
 };
 

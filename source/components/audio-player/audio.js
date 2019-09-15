@@ -57,8 +57,8 @@ Metro.audioSetup = function(options){
     AudioDefaultConfig = $.extend({}, AudioDefaultConfig, options);
 };
 
-if (typeof window.metroAudioSetup !== undefined) {
-    Metro.audioSetup(window.metroAudioSetup);
+if (typeof window["metroAudioSetup"] !== undefined) {
+    Metro.audioSetup(window["metroAudioSetup"]);
 }
 
 var Audio = {
@@ -81,7 +81,7 @@ var Audio = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -95,7 +95,7 @@ var Audio = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options, audio = this.audio;
+        var element = this.element, o = this.options;
 
         this._createPlayer();
         this._createControls();
@@ -110,7 +110,7 @@ var Audio = {
     },
 
     _createPlayer: function(){
-        var that = this, element = this.element, o = this.options, audio = this.audio;
+        var element = this.element, o = this.options, audio = this.audio;
 
         var prev = element.prev();
         var parent = element.parent();
@@ -158,7 +158,7 @@ var Audio = {
     },
 
     _createControls: function(){
-        var that = this, element = this.element, o = this.options, audio = this.elem, player = this.player;
+        var that = this, element = this.element, o = this.options, audio = this.elem;
 
         var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
 
@@ -225,12 +225,12 @@ var Audio = {
             volume.hide();
         }
 
-        var loop, play, stop, mute, full;
+        var loop;
 
         if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button square loop").html(o.loopIcon).appendTo(controls);
-        if (o.showPlay === true) play = $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
-        if (o.showStop === true) stop = $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
-        if (o.showMute === true) mute = $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
+        if (o.showPlay === true) $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
+        if (o.showStop === true) $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
+        if (o.showMute === true) $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
 
         if (o.loop === true) {
             loop.addClass("active");
@@ -464,11 +464,10 @@ var Audio = {
         player.off(Metro.events.click, ".mute");
         player.off(Metro.events.click, ".loop");
 
-        Metro.destroyPlugin(this.stream, "slider");
-        Metro.destroyPlugin(this.volume, "slider");
+        this.stream.data("slider").destroy();
+        this.volume.data("slider").destroy();
 
-        element.insertBefore(player);
-        player.html("").remove();
+        player.remove();
     }
 };
 

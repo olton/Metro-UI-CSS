@@ -124,6 +124,9 @@ function dataAttr(elem, key, data){
     return data;
 }
 
+function iif(val1, val2, val3){
+    return val1 ? val1 : val2 ? val2 : val3;
+}
 
 // Source: src/setimmediate.js
 
@@ -540,7 +543,7 @@ function dataAttr(elem, key, data){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.0. Built at 15/09/2019 12:02:55";
+var m4qVersion = "v1.0.0. Built at 15/09/2019 21:51:34";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1554,7 +1557,6 @@ $.extend({
 
     off: function(){
         $.each(this.events, function(){
-            // TODO add useCapture param
             this.element.removeEventListener(this.event, this.handler);
         });
         this.events = [];
@@ -1603,14 +1605,13 @@ $.extend({
 });
 
 $.fn.extend({
-    on: function(eventsList, sel, handler, data, options){
+    on: function(eventsList, sel, handler, options){
         if (this.length === 0) {
             return ;
         }
 
         if (typeof sel === 'function') {
-            options = data;
-            data = handler;
+            options = handler;
             handler = sel;
             sel = undefined;
         }
@@ -1634,10 +1635,6 @@ $.fn.extend({
                     var target = e.target;
                     var beforeHook = $.eventHooks[camelCase("before-"+name)];
                     var afterHook = $.eventHooks[camelCase("after-"+name)];
-
-                    Object.defineProperty(e, 'customData', {
-                        value: data
-                    });
 
                     if (typeof beforeHook === "function") {
                         beforeHook.call(target, e);
@@ -1671,8 +1668,6 @@ $.fn.extend({
                     value: handler.name.trim() !== "" ? handler.name : "func_event_"+name+"_"+$.eventUID
                 });
 
-                // console.log(h.name);
-
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
 
                 el.addEventListener(name, h, options);
@@ -1690,7 +1685,7 @@ $.fn.extend({
         });
     },
 
-    one: function(events, sel, handler, data){
+    one: function(events, sel, handler, options){
         var args = [].slice.call(arguments).filter(function(el){
             return !not(el);
         });
@@ -1701,6 +1696,11 @@ $.fn.extend({
     off: function(eventsList, sel, options){
         if (!isPlainObject(options)) {
             options = {};
+        }
+
+        if (isPlainObject(sel)) {
+            options = sel;
+            sel = null;
         }
 
         if (not(eventsList) || eventsList.toLowerCase() === 'all') {
@@ -1779,10 +1779,10 @@ $.fn.extend({
     .split( " " )
     .forEach(
     function( name ) {
-        $.fn[ name ] = function( sel, fn, data, opt ) {
+        $.fn[ name ] = function( sel, fn, opt ) {
             return arguments.length > 0 ?
-                this.on( name, sel, fn, data, opt ) :
-                this.trigger( name, data );
+                this.on( name, sel, fn, opt ) :
+                this.trigger( name );
         };
 });
 
@@ -3488,35 +3488,36 @@ if (typeof m4q === 'undefined') {
     throw new Error('Metro 4 requires m4q helper!');
 }
 
-if ('MutationObserver' in window === false) {
+if (!'MutationObserver' in window) {
     throw new Error('Metro 4 requires MutationObserver!');
 }
 
-var meta_init = $("meta[name='metro4:init']").attr("content");
-var meta_locale = $("meta[name='metro4:locale']").attr("content");
-var meta_week_start = $("meta[name='metro4:week_start']").attr("content");
-var meta_date_format = $("meta[name='metro4:date_format']").attr("content");
-var meta_date_format_input = $("meta[name='metro4:date_format_input']").attr("content");
-var meta_animation_duration = $("meta[name='metro4:animation_duration']").attr("content");
-var meta_callback_timeout = $("meta[name='metro4:callback_timeout']").attr("content");
-var meta_timeout = $("meta[name='metro4:timeout']").attr("content");
-var meta_scroll_multiple = $("meta[name='metro4:scroll_multiple']").attr("content");
-var meta_cloak = $("meta[name='metro4:cloak']").attr("content"); //default or fade
-var meta_cloak_duration = $("meta[name='metro4:cloak_duration']").attr("content"); //100
+var meta_init = $.meta('metro4:init').attr("content");
+var meta_locale = $.meta('metro4:locale').attr("content");
+var meta_week_start = $.meta('metro4:week_start').attr("content");
+var meta_date_format = $.meta('metro4:date_format').attr("content");
+var meta_date_format_input = $.meta('metro4:date_format_input').attr("content");
+var meta_animation_duration = $.meta('metro4:animation_duration').attr("content");
+var meta_callback_timeout = $.meta('metro4:callback_timeout').attr("content");
+var meta_timeout = $.meta('metro4:timeout').attr("content");
+var meta_scroll_multiple = $.meta('metro4:scroll_multiple').attr("content");
+var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
+var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
 
-var meta_jquery = $("meta[name='metro4:jquery']").attr("content"); //undefined
+var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
+var jquery_present = typeof jQuery !== "undefined";
 if (window.METRO_JQUERY === undefined) {
     window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
 }
 
 /* Added by Ken Kitay https://github.com/kens-code*/
-var meta_about = $("meta[name='metro4:about']").attr("content");
+var meta_about = $.meta('metro4:about').attr("content");
 if (window.METRO_SHOW_ABOUT === undefined) {
     window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
 }
 /* --- end ---*/
 
-var meta_compile = $("meta[name='metro4:compile']").attr("content");
+var meta_compile = $.meta('metro4:compile').attr("content");
 if (window.METRO_SHOW_COMPILE_TIME === undefined) {
     window.METRO_SHOW_COMPILE_TIME = meta_compile !== undefined ? JSON.parse(meta_compile) : true;
 }
@@ -3580,12 +3581,12 @@ if (typeof Object.values !== 'function') {
     }
 }
 
-var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "15/09/2019 12:03:22",
+    compileTime: "15/09/2019 22:03:04",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3650,38 +3651,38 @@ var Metro = {
     },
 
     events: {
-        click: 'click.metro',
-        start: isTouch ? 'touchstart.metro' : 'mousedown.metro',
-        stop: isTouch ? 'touchend.metro' : 'mouseup.metro',
-        move: isTouch ? 'touchmove.metro' : 'mousemove.metro',
-        enter: isTouch ? 'touchstart.metro' : 'mouseenter.metro',
+        click: 'click',
+        start: isTouch ? 'touchstart' : 'mousedown',
+        stop: isTouch ? 'touchend' : 'mouseup',
+        move: isTouch ? 'touchmove' : 'mousemove',
+        enter: isTouch ? 'touchstart' : 'mouseenter',
 
-        startAll: 'mousedown.metro touchstart.metro',
-        stopAll: 'mouseup.metro touchend.metro',
-        moveAll: 'mousemove.metro touchmove.metro',
+        startAll: 'mousedown touchstart',
+        stopAll: 'mouseup touchend',
+        moveAll: 'mousemove touchmove',
 
-        leave: 'mouseleave.metro',
-        focus: 'focus.metro',
-        blur: 'blur.metro',
-        resize: 'resize.metro',
-        keyup: 'keyup.metro',
-        keydown: 'keydown.metro',
-        keypress: 'keypress.metro',
-        dblclick: 'dblclick.metro',
-        input: 'input.metro',
-        change: 'change.metro',
-        cut: 'cut.metro',
-        paste: 'paste.metro',
-        scroll: 'scroll.metro',
-        mousewheel: 'mousewheel.metro',
-        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro drop.metro",
-        dragstart: "dragstart.metro",
-        dragend: "dragend.metro",
-        dragenter: "dragenter.metro",
-        dragover: "dragover.metro",
-        dragleave: "dragleave.metro",
-        drop: 'drop.metro',
-        drag: 'drag.metro'
+        leave: 'mouseleave',
+        focus: 'focus',
+        blur: 'blur',
+        resize: 'resize',
+        keyup: 'keyup',
+        keydown: 'keydown',
+        keypress: 'keypress',
+        dblclick: 'dblclick',
+        input: 'input',
+        change: 'change',
+        cut: 'cut',
+        paste: 'paste',
+        scroll: 'scroll',
+        mousewheel: 'mousewheel',
+        inputchange: "change input propertychange cut paste copy drop",
+        dragstart: "dragstart",
+        dragend: "dragend",
+        dragenter: "dragenter",
+        dragover: "dragover",
+        dragleave: "dragleave",
+        drop: 'drop',
+        drag: 'drag'
     },
 
     keyCode: {
@@ -3904,11 +3905,11 @@ var Metro = {
 
             roles.map(function (func) {
 
-                var $$ = METRO_JQUERY && typeof jQuery !== 'undefined' ? jQuery : $;
+                var $$ = METRO_JQUERY && jquery_present ? jQuery : $;
 
-                if ($.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
+                if ($$.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
-                        $.fn[func].call($this);
+                        $$.fn[func].call($this);
                         $this.attr("data-role-"+func, true);
 
                         var mc = $this.data('metroComponent');
@@ -3944,70 +3945,70 @@ var Metro = {
         }
     },
 
-    destroyPlugin: function(element, name){
-        var p, mc;
-        var el = $(element);
+    // destroyPlugin: function(element, name){
+    //     var p, mc;
+    //     var el = $(element);
+    //
+    //     p = el.data(name);
+    //
+    //     if (!Utils.isValue(p)) {
+    //         throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
+    //     }
+    //
+    //     if (!Utils.isFunc(p['destroy'])) {
+    //         throw new Error("Component can not be destroyed: method destroy not found.");
+    //     }
+    //
+    //     p['destroy']();
+    //     mc = el.data("metroComponent");
+    //     Utils.arrayDelete(mc, name);
+    //     el.data("metroComponent", mc);
+    //     $.removeData(el[0], name);
+    //     el.removeAttr("data-role-"+name);
+    // },
 
-        p = el.data(name);
+    // destroyPluginAll: function(element){
+    //     var el = $(element);
+    //     var mc = el.data("metroComponent");
+    //
+    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+    //         Metro.destroyPlugin(el[0], this);
+    //     });
+    // },
 
-        if (!Utils.isValue(p)) {
-            throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
-        }
+    // initPlugin: function(element, name){
+    //     element = $(element);
+    //     try {
+    //         if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
+    //             $.fn[name].call(element);
+    //             element.attr("data-role-"+name, true);
+    //
+    //             var mc = element.data('metroComponent');
+    //
+    //             if (mc === undefined) {
+    //                 mc = [name];
+    //             } else {
+    //                 mc.push(name);
+    //             }
+    //             element.data('metroComponent', mc);
+    //         }
+    //     } catch (e) {
+    //         console.log(e.message, e.stack);
+    //     }
+    // },
 
-        if (!Utils.isFunc(p['destroy'])) {
-            throw new Error("Component can not be destroyed: method destroy not found.");
-        }
-
-        p['destroy']();
-        mc = el.data("metroComponent");
-        Utils.arrayDelete(mc, name);
-        el.data("metroComponent", mc);
-        $.removeData(el[0], name);
-        el.removeAttr("data-role-"+name);
-    },
-
-    destroyPluginAll: function(element){
-        var el = $(element);
-        var mc = el.data("metroComponent");
-
-        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            Metro.destroyPlugin(el[0], this);
-        });
-    },
-
-    initPlugin: function(element, name){
-        element = $(element);
-        try {
-            if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
-                $.fn[name].call(element);
-                element.attr("data-role-"+name, true);
-
-                var mc = element.data('metroComponent');
-
-                if (mc === undefined) {
-                    mc = [name];
-                } else {
-                    mc.push(name);
-                }
-                element.data('metroComponent', mc);
-            }
-        } catch (e) {
-            console.log(e.message, e.stack);
-        }
-    },
-
-    reinitPlugin: function(element, name){
-        this.destroyPlugin(element, name);
-        this.initPlugin(element, name);
-    },
-
-    reinitPluginAll: function(element){
-        var mc = $(element).data("metroComponent");
-
-        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            Metro.reinitPlugin(element, this);
-        });
-    },
+    // reinitPlugin: function(element, name){
+    //     this.destroyPlugin(element, name);
+    //     this.initPlugin(element, name);
+    // },
+    //
+    // reinitPluginAll: function(element){
+    //     var mc = $(element).data("metroComponent");
+    //
+    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+    //         Metro.reinitPlugin(element, this);
+    //     });
+    // },
 
     noop: function(){},
     noop_true: function(){return true;},
@@ -4019,33 +4020,37 @@ var Metro = {
     },
 
     requestFullScreen: function(element){
-        if (element.mozRequestFullScreen) {
-            element.mozRequestFullScreen();
-        } else if (element.webkitRequestFullScreen) {
-            element.webkitRequestFullScreen();
-        } else if (element.msRequestFullscreen) {
-            element.msRequestFullscreen();
+        if (element["mozRequestFullScreen"]) {
+            element["mozRequestFullScreen"]();
+        } else if (element["webkitRequestFullScreen"]) {
+            element["webkitRequestFullScreen"]();
+        } else if (element["msRequestFullscreen"]) {
+            element["msRequestFullscreen"]();
         } else {
-            element.requestFullscreen();
+            element.requestFullscreen().catch( function(err){
+                console.log("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
+            });
         }
     },
 
     exitFullScreen: function(){
-        if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
+        if (document["mozCancelFullScreen"]) {
+            document["mozCancelFullScreen"]();
         }
-        else if (document.webkitCancelFullScreen) {
-            document.webkitCancelFullScreen();
+        else if (document["webkitCancelFullScreen"]) {
+            document["webkitCancelFullScreen"]();
         }
-        else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
+        else if (document["msExitFullscreen"]) {
+            document["msExitFullscreen"]();
         } else {
-            document.exitFullscreen();
+            document.exitFullscreen().catch( function(err){
+                console.log("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
+            });
         }
     },
 
     inFullScreen: function(){
-        var fsm = (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement);
+        var fsm = (document.fullscreenElement || document["webkitFullscreenElement"] || document["mozFullScreenElement"] || document["msFullscreenElement"]);
         return fsm !== undefined;
     },
 
@@ -7349,7 +7354,9 @@ var Accordion = {
     },
 
     destroy: function(){
-        this.element.off(Metro.events.click, ".heading");
+        var element = this.element;
+        element.off(Metro.events.click, ".heading");
+        element.remove();
     }
 };
 
@@ -7446,15 +7453,10 @@ var Activity = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
-
-        element.html('')
-            .removeClass(o.style + "-style")
-            .removeClass("activity-" + o.type);
+        this.element.remove();
     }
 };
 
@@ -7495,8 +7497,8 @@ Metro.appBarSetup = function(options){
     AppBarDefaultConfig = $.extend({}, AppBarDefaultConfig, options);
 };
 
-if (typeof window.metroAppBarSetup !== undefined) {
-    Metro.appBarSetup(window.metroAppBarSetup);
+if (typeof window["metroAppBarSetup"] !== undefined) {
+    Metro.appBarSetup(window["metroAppBarSetup"]);
 }
 
 var AppBar = {
@@ -7512,7 +7514,7 @@ var AppBar = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -7526,7 +7528,7 @@ var AppBar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -7536,7 +7538,7 @@ var AppBar = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var id = Utils.elementId("app-bar");
         var hamburger, menu;
 
@@ -7627,7 +7629,7 @@ var AppBar = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
@@ -7638,7 +7640,7 @@ var AppBar = {
     },
 
     open: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
@@ -7649,13 +7651,13 @@ var AppBar = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
         $(window).off(Metro.events.resize+"-"+element.attr("id"));
+        element.remove();
     }
 };
 
@@ -7720,8 +7722,8 @@ Metro.audioSetup = function(options){
     AudioDefaultConfig = $.extend({}, AudioDefaultConfig, options);
 };
 
-if (typeof window.metroAudioSetup !== undefined) {
-    Metro.audioSetup(window.metroAudioSetup);
+if (typeof window["metroAudioSetup"] !== undefined) {
+    Metro.audioSetup(window["metroAudioSetup"]);
 }
 
 var Audio = {
@@ -7744,7 +7746,7 @@ var Audio = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -7758,7 +7760,7 @@ var Audio = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options, audio = this.audio;
+        var element = this.element, o = this.options;
 
         this._createPlayer();
         this._createControls();
@@ -7773,7 +7775,7 @@ var Audio = {
     },
 
     _createPlayer: function(){
-        var that = this, element = this.element, o = this.options, audio = this.audio;
+        var element = this.element, o = this.options, audio = this.audio;
 
         var prev = element.prev();
         var parent = element.parent();
@@ -7821,7 +7823,7 @@ var Audio = {
     },
 
     _createControls: function(){
-        var that = this, element = this.element, o = this.options, audio = this.elem, player = this.player;
+        var that = this, element = this.element, o = this.options, audio = this.elem;
 
         var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
 
@@ -7888,12 +7890,12 @@ var Audio = {
             volume.hide();
         }
 
-        var loop, play, stop, mute, full;
+        var loop;
 
         if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button square loop").html(o.loopIcon).appendTo(controls);
-        if (o.showPlay === true) play = $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
-        if (o.showStop === true) stop = $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
-        if (o.showMute === true) mute = $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
+        if (o.showPlay === true) $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
+        if (o.showStop === true) $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
+        if (o.showMute === true) $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
 
         if (o.loop === true) {
             loop.addClass("active");
@@ -8127,11 +8129,10 @@ var Audio = {
         player.off(Metro.events.click, ".mute");
         player.off(Metro.events.click, ".loop");
 
-        Metro.destroyPlugin(this.stream, "slider");
-        Metro.destroyPlugin(this.volume, "slider");
+        this.stream.data("slider").destroy();
+        this.volume.data("slider").destroy();
 
-        element.insertBefore(player);
-        player.html("").remove();
+        player.remove();
     }
 };
 
@@ -8149,8 +8150,8 @@ Metro.bottomSheetSetup = function(options){
     BottomSheetDefaultConfig = $.extend({}, BottomSheetDefaultConfig, options);
 };
 
-if (typeof window.metroBottomSheetSetup !== undefined) {
-    Metro.bottomSheetSetup(window.metroBottomSheetSetup);
+if (typeof window["metroBottomSheetSetup"] !== undefined) {
+    Metro.bottomSheetSetup(window["metroBottomSheetSetup"]);
 }
 
 var BottomSheet = {
@@ -8167,7 +8168,7 @@ var BottomSheet = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -8181,7 +8182,7 @@ var BottomSheet = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -8191,7 +8192,7 @@ var BottomSheet = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element
             .addClass("bottom-sheet")
@@ -8203,7 +8204,7 @@ var BottomSheet = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
 
         if (Utils.isValue(this.toggle)) {
             this.toggle.on(Metro.events.click, function(){
@@ -8252,7 +8253,16 @@ var BottomSheet = {
 
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+
+        if (Utils.isValue(this.toggle)) {
+            this.toggle.off(Metro.events.click);
+        }
+
+        element.off(Metro.events.click, "li");
+        element.remove();
+    }
 };
 
 Metro.plugin('bottomsheet', BottomSheet);
@@ -8311,8 +8321,8 @@ Metro.buttonGroupSetup = function(options){
     ButtonGroupDefaultConfig = $.extend({}, ButtonGroupDefaultConfig, options);
 };
 
-if (typeof window.metroButtonGroupSetup !== undefined) {
-    Metro.buttonGroupSetup(window.metroButtonGroupSetup);
+if (typeof window["metroButtonGroupSetup"] !== undefined) {
+    Metro.buttonGroupSetup(window["metroButtonGroupSetup"]);
 }
 
 var ButtonGroup = {
@@ -8329,7 +8339,7 @@ var ButtonGroup = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -8343,7 +8353,7 @@ var ButtonGroup = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createGroup();
         this._createEvents();
@@ -8353,8 +8363,8 @@ var ButtonGroup = {
     },
 
     _createGroup: function(){
-        var that = this, element = this.element, o = this.options;
-        var cls, buttons, buttons_active, id = Utils.elementId("button-group");
+        var element = this.element, o = this.options;
+        var buttons, buttons_active, id = Utils.elementId("button-group");
 
         if (element.attr("id") === undefined) {
             element.attr("id", id);
@@ -8378,7 +8388,7 @@ var ButtonGroup = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.on(Metro.events.click, o.targets, function(){
             var el = $(this);
@@ -8403,13 +8413,12 @@ var ButtonGroup = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
         var element = this.element, o = this.options;
         element.off(Metro.events.click, o.targets);
-        element.find(o.targets).removeClass(o.clsActive).removeClass("js-active");
+        element.remove();
     }
 
 };
@@ -8482,8 +8491,8 @@ Metro.calendarSetup = function (options) {
     CalendarDefaultConfig = $.extend({}, CalendarDefaultConfig, options);
 };
 
-if (typeof window.metroCalendarSetup !== undefined) {
-    Metro.calendarSetup(window.metroCalendarSetup);
+if (typeof window["metroCalendarSetup"] !== undefined) {
+    Metro.calendarSetup(window["metroCalendarSetup"]);
 }
 
 var Calendar = {
@@ -8533,7 +8542,11 @@ var Calendar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("calendar"));
+        }
 
         element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
 
@@ -8646,6 +8659,17 @@ var Calendar = {
                     element.removeClass("calendar-wide");
                 }
             }
+        }, {ns: element.attr("id")});
+
+        element.on(Metro.events.click, function(e){
+            var months = element.find(".calendar-months");
+            var years = element.find(".calendar-years");
+            if (months.hasClass("open")) {
+                months.removeClass("open");
+            }
+            if (years.hasClass("open")) {
+                years.removeClass("open");
+            }
         });
 
         element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
@@ -8696,9 +8720,6 @@ var Calendar = {
                     });
                 }
             }, o.ripple ? 300 : 1);
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.today", function(e){
@@ -8707,9 +8728,6 @@ var Calendar = {
             element.fire("today", {
                 today: that.today
             });
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.clear", function(e){
@@ -8717,27 +8735,18 @@ var Calendar = {
             that._drawContent();
             Utils.exec(o.onClear, [element]);
             element.fire("clear");
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.cancel", function(e){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
             element.fire("cancel");
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.done", function(e){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
             element.fire("done");
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         if (o.weekDayClick === true) {
@@ -8863,6 +8872,8 @@ var Calendar = {
             var target;
             var list = element.find(".months-list");
 
+            console.log("ku");
+
             list.find(".active").removeClass("active");
             list.scrollTop(0);
             element.find(".calendar-months").addClass("open");
@@ -8919,19 +8930,6 @@ var Calendar = {
                 current: that.current
             });
             element.find(".calendar-years").removeClass("open");
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        element.on(Metro.events.click, function(e){
-            var months = element.find(".calendar-months");
-            var years = element.find(".calendar-years");
-            if (months.hasClass("open")) {
-                months.removeClass("open");
-            }
-            if (years.hasClass("open")) {
-                years.removeClass("open");
-            }
             e.preventDefault();
             e.stopPropagation();
         });
@@ -9248,7 +9246,7 @@ var Calendar = {
     },
 
     setExclude: function(exclude){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         if (Utils.isNull(exclude) && Utils.isNull(element.attr("data-exclude"))) {
             return ;
         }
@@ -9258,7 +9256,7 @@ var Calendar = {
     },
 
     setPreset: function(preset){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         if (Utils.isNull(preset) && Utils.isNull(element.attr("data-preset"))) {
             return ;
         }
@@ -9269,7 +9267,7 @@ var Calendar = {
     },
 
     setSpecial: function(special){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         if (Utils.isNull(special) && Utils.isNull(element.attr("data-special"))) {
             return ;
         }
@@ -9279,7 +9277,7 @@ var Calendar = {
     },
 
     setShow: function(show){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (Utils.isNull(show) && Utils.isNull(element.attr("data-show"))) {
             return ;
@@ -9298,7 +9296,7 @@ var Calendar = {
     },
 
     setMinDate: function(date){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         o.minDate = Utils.isValue(date) ? date : element.attr("data-min-date");
         if (Utils.isValue(o.minDate) && Utils.isDate(o.minDate, o.inputFormat)) {
@@ -9309,7 +9307,7 @@ var Calendar = {
     },
 
     setMaxDate: function(date){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         o.maxDate = Utils.isValue(date) ? date : element.attr("data-max-date");
         if (Utils.isValue(o.maxDate) && Utils.isDate(o.maxDate, o.inputFormat)) {
@@ -9320,7 +9318,7 @@ var Calendar = {
     },
 
     setToday: function(val){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         if (!Utils.isValue(val)) {
             val = new Date();
@@ -9332,7 +9330,7 @@ var Calendar = {
     },
 
     i18n: function(val){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
         if (val === undefined) {
             return o.locale;
         }
@@ -9345,7 +9343,7 @@ var Calendar = {
     },
 
     changeAttrLocale: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         this.i18n(element.attr("data-locale"));
     },
 
@@ -9377,9 +9375,11 @@ var Calendar = {
         element.off(Metro.events.click, ".calendar-years li");
         element.off(Metro.events.click);
 
-        if (o.ripple === true) Metro.destroyPlugin(element, "ripple");
+        if (o.ripple === true) {
+            element.data("ripple").destroy();
+        }
 
-        element.html("");
+        element.remove();
     }
 };
 
@@ -9456,8 +9456,8 @@ Metro.calendarPickerSetup = function (options) {
     CalendarPickerDefaultConfig = $.extend({}, CalendarPickerDefaultConfig, options);
 };
 
-if (typeof window.metroCalendarPickerSetup !== undefined) {
-    Metro.calendarPickerSetup(window.metroCalendarPickerSetup);
+if (typeof window["metroCalendarPickerSetup"] !== undefined) {
+    Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
 }
 
 var CalendarPicker = {
@@ -9507,6 +9507,9 @@ var CalendarPicker = {
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
         var curr = element.val().trim();
+        var id = Utils.elementId("calendarpicker");
+
+        container.attr("id", id);
 
         if (element.attr("type") === undefined) {
             element.attr("type", "text");
@@ -9665,7 +9668,7 @@ var CalendarPicker = {
                     container.removeClass("dialog-mode");
                 }
             }
-        });
+        }, {ns: "calendarpicker-"+container.attr("id")});
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
             element.val("").trigger('change').blur(); // TODO change blur
@@ -9839,6 +9842,23 @@ var CalendarPicker = {
             case 'data-min-date': changeAttrMinDate(); break;
             case 'data-max-date': changeAttrMaxDate(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var container = element.parent();
+        var clear = container.find(".input-clear-button");
+
+        $(window).off(Metro.events.resize, {ns: "calendarpicker-"+container.attr("id")});
+        if (clear.length > 0) clear.off(Metro.events.click);
+        container.off(Metro.events.click, "button, input");
+        element.off(Metro.events.blur);
+        element.off(Metro.events.focus);
+        element.on(Metro.events.change);
+
+        this.calendar.data("calendar").destroy();
+
+        element.remove();
     }
 };
 
@@ -10378,10 +10398,7 @@ var Carousel = {
         element.off(Metro.events.click, ".slide");
         $(window).off(Metro.events.resize + "-" + element.attr("id"));
 
-        element.removeClass("carousel").removeClass(o.clsCarousel);
-        if (o.controlsOutside === true) {
-            element.removeClass("controls-outside");
-        }
+        element.remove();
     }
 };
 
@@ -10401,8 +10418,8 @@ Metro.charmsSetup = function (options) {
     CharmsDefaultConfig = $.extend({}, CharmsDefaultConfig, options);
 };
 
-if (typeof window.metroCharmsSetup !== undefined) {
-    Metro.charmsSetup(window.metroCharmsSetup);
+if (typeof window["metroCharmsSetup"] !== undefined) {
+    Metro.charmsSetup(window["metroCharmsSetup"]);
 }
 
 var Charms = {
@@ -10460,10 +10477,6 @@ var Charms = {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
-
-        element.on(Metro.events.click, function(e){
-        });
     },
 
     open: function(){
@@ -10526,16 +10539,7 @@ var Charms = {
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
-
-        element.off(Metro.events.click);
-
-        element
-            .removeClass("charms")
-            .removeClass(o.position + "-side")
-            .removeClass(o.clsCharms);
-
-        element.css("background-color", this.origin.background);
+        this.element.remove();
     }
 };
 
@@ -10870,10 +10874,18 @@ var Chat = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+        var sendButton = element.find(".js-chat-send-button");
+        var input = element.find("input[type=text]");
+
+        sendButton.off(Metro.events.click);
+        input.off(Metro.events.keyup);
+
+        element.remove();
+    }
 };
 
 Metro.plugin('chat', Chat);
@@ -11023,13 +11035,7 @@ var Checkbox = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var parent = element.parent();
-
-        element[0].className = this.origin.className;
-        element.insertBefore(parent);
-
-        parent.remove();
+        this.element.closest(".checkbox").remove();
     }
 };
 
@@ -11051,8 +11057,8 @@ Metro.clockSetup = function (options) {
     ClockDefaultConfig = $.extend({}, ClockDefaultConfig, options);
 };
 
-if (typeof window.metroClockSetup !== undefined) {
-    Metro.clockSetup(window.metroClockSetup);
+if (typeof window["metroClockSetup"] !== undefined) {
+    Metro.clockSetup(window["metroClockSetup"]);
 }
 
 var Clock = {
@@ -11068,7 +11074,7 @@ var Clock = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -11100,9 +11106,8 @@ var Clock = {
     },
 
     _tick: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var timestamp = new Date();
-        var time = timestamp.getTime();
         var result = "";
         var h = timestamp.getHours(),
             i = timestamp.getMinutes(),
@@ -11164,7 +11169,7 @@ var Clock = {
     destroy: function(){
         clearInterval(this._clockInterval);
         this._clockInterval = null;
-        this.element.html("");
+        this.element.remove();
     }
 };
 
@@ -11183,8 +11188,8 @@ Metro.collapseSetup = function (options) {
     CollapseDefaultConfig = $.extend({}, CollapseDefaultConfig, options);
 };
 
-if (typeof window.metroCollapseSetup !== undefined) {
-    Metro.collapseSetup(window.metroCollapseSetup);
+if (typeof window["metroCollapseSetup"] !== undefined) {
+    Metro.collapseSetup(window["metroCollapseSetup"]);
 }
 
 var Collapse = {
@@ -11201,7 +11206,7 @@ var Collapse = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -11317,7 +11322,7 @@ var Collapse = {
 
     destroy: function(){
         this.toggle.off(Metro.events.click);
-        this.element.show();
+        // TODO check roles, if one - remove element
     }
 };
 
@@ -11354,8 +11359,8 @@ Metro.countdownSetup = function (options) {
     CountdownDefaultConfig = $.extend({}, CountdownDefaultConfig, options);
 };
 
-if (typeof window.metroCountdownSetup !== undefined) {
-    Metro.countdownSetup(window.metroCountdownSetup);
+if (typeof window["metroCountdownSetup"] !== undefined) {
+    Metro.countdownSetup(window["metroCountdownSetup"]);
 }
 
 var Countdown = {
@@ -11441,6 +11446,10 @@ var Countdown = {
         var now = (new Date()).getTime();
         var digit;
 
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("countdown"));
+        }
+
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", Utils.elementId("countdown"));
         }
@@ -11488,13 +11497,13 @@ var Countdown = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        document.addEventListener("visibilitychange", function() {
+        $(document).on("visibilitychange", function() {
             if (document.hidden) {
                 that.pause();
             } else {
                 that.resume();
             }
-        });
+        }, {ns: element.attr("id")});
     },
 
     blink: function(){
@@ -11850,8 +11859,9 @@ var Countdown = {
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
-        this.element.html("");
-        this.element.removeClass("countdown").removeClass(this.options.clsCountdown);
+        $(document).off("visibilitychange", {ns: element.attr("id")});
+
+        this.element.remove();
     }
 };
 
@@ -11873,8 +11883,8 @@ Metro.counterSetup = function (options) {
     CounterDefaultConfig = $.extend({}, CounterDefaultConfig, options);
 };
 
-if (typeof window.metroCounterSetup !== undefined) {
-    Metro.counterSetup(window.metroCounterSetup);
+if (typeof window["metroCounterSetup"] !== undefined) {
+    Metro.counterSetup(window["metroCounterSetup"]);
 }
 
 var Counter = {
@@ -11971,12 +11981,14 @@ var Counter = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-value": this.setValueAttribute(); break;
+        if (attributeName === "data-value") {
+            this.setValueAttribute();
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        this.element.remove();
+    }
 };
 
 Metro.plugin('counter', Counter);
@@ -12020,8 +12032,8 @@ Metro.cubeSetup = function (options) {
     CubeDefaultConfig = $.extend({}, CubeDefaultConfig, options);
 };
 
-if (typeof window.metroCubeSetup !== undefined) {
-    Metro.cubeSetup(window.metroCubeSetup);
+if (typeof window["metroCubeSetup"] !== undefined) {
+    Metro.cubeSetup(window["metroCubeSetup"]);
 }
 
 var Cube = {
@@ -12135,7 +12147,7 @@ var Cube = {
 
         element.addClass("cube").addClass(o.clsCube);
 
-        if (element.attr('id') === undefined) {
+        if (!element.attr('id')) {
             element.attr('id', id);
         }
 
@@ -12258,17 +12270,17 @@ var Cube = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        $(window).on(Metro.events.blur + "-" + element.attr("id"), function(){
+        $(window).on(Metro.events.blur, function(){
             if (o.stopOnBlur === true && that.running === true) {
                 that._stop();
             }
-        });
+        }, {ns: element.attr("id")});
 
-        $(window).on(Metro.events.focus + "-" + element.attr("id"), function(){
+        $(window).on(Metro.events.focus, function(){
             if (o.stopOnBlur === true && that.running === false) {
                 that._start();
             }
-        });
+        }, {ns: element.attr("id")});
 
         element.on(Metro.events.click, ".cube-cell", function(){
             if (o.cellClick === true) {
@@ -12444,12 +12456,12 @@ var Cube = {
         clearInterval(this.interval);
         this.interval = null;
 
-        $(window).off(Metro.events.blur + "-" + element.attr("id"));
-        $(window).off(Metro.events.focus + "-" + element.attr("id"));
+        $(window).off(Metro.events.blur, {ns: element.attr("id")});
+        $(window).off(Metro.events.focus,{ns: element.attr("id")});
+
         element.off(Metro.events.click, ".cube-cell");
 
-        element.html("");
-        element.removeClass("cube").removeClass(o.clsCube);
+        element.remove();
     }
 };
 
@@ -19958,8 +19970,8 @@ Metro.rippleSetup = function (options) {
     RippleDefaultConfig = $.extend({}, RippleDefaultConfig, options);
 };
 
-if (typeof window.metroRippleSetup !== undefined) {
-    Metro.rippleSetup(window.metroRippleSetup);
+if (typeof window["metroRippleSetup"] !== undefined) {
+    Metro.rippleSetup(window["metroRippleSetup"]);
 }
 
 var Ripple = {
@@ -19975,7 +19987,7 @@ var Ripple = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -19989,7 +20001,7 @@ var Ripple = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
@@ -20041,6 +20053,12 @@ var Ripple = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
+        element.off(Metro.events.click, target);
     }
 };
 
@@ -20879,8 +20897,8 @@ Metro.sliderSetup = function (options) {
     SliderDefaultConfig = $.extend({}, SliderDefaultConfig, options);
 };
 
-if (typeof window.metroSliderSetup !== undefined) {
-    Metro.sliderSetup(window.metroSliderSetup);
+if (typeof window["metroSliderSetup"] !== undefined) {
+    Metro.sliderSetup(window["metroSliderSetup"]);
 }
 
 var Slider = {
@@ -20938,8 +20956,14 @@ var Slider = {
         var buffer = $("<div>").addClass("buffer").addClass(o.clsBuffer);
         var marker = $("<button>").attr("type", "button").addClass("marker").addClass(o.clsMarker);
         var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
-        var id = Utils.uniqueId();
+        var id = Utils.elementId("slider");
         var i;
+
+        if (!element.attr("data-role-slider")) {
+            element
+                .attr("data-role-slider", true)
+                .attr("data-role", "slide");
+        }
 
         slider.attr("id", id);
 
@@ -21389,7 +21413,9 @@ var Slider = {
             case "data-buffer": this.changeBuffer(); break;
             case 'disabled': this.toggleState(); break;
         }
-    }
+    },
+
+    destroy: function(){}
 };
 
 Metro.plugin('slider', Slider);

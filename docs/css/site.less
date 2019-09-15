@@ -389,15 +389,15 @@ body {
     padding-top: 64px;
 }
 
+@heroPrimaryColor: rgb(140, 12, 29);
+@heroSecondaryColor: rgb(217, 85, 85);
+
+.bg-hero {background-color: @heroPrimaryColor;}
+.fg-react {color: #61dafb!important;}
+
 .hero-bg {
-    background: rgba(140,0,75,1);
-    background: -moz-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(140,0,75,1)), color-stop(100%, rgba(217,52,195,1)));
-    background: -webkit-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: -o-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: -ms-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: linear-gradient(to bottom, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c004b', endColorstr='#d934c3', GradientType=0 );
+    background: rgb(140, 12, 29);
+    background: linear-gradient(to bottom, @heroPrimaryColor 0%, @heroSecondaryColor 100%);
 }
 
 .hero {

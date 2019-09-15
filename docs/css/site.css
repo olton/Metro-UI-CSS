@@ -331,15 +331,15 @@ main {
 body {
   padding-top: 64px;
 }
+.bg-hero {
+  background-color: #8c0c1d;
+}
+.fg-react {
+  color: #61dafb !important;
+}
 .hero-bg {
-  background: #8c004b;
-  background: -moz-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #8c004b), color-stop(100%, #d934c3));
-  background: -webkit-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: -o-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: -ms-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: linear-gradient(to bottom, #8c004b 0%, #d934c3 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c004b', endColorstr='#d934c3', GradientType=0);
+  background: #8c0c1d;
+  background: linear-gradient(to bottom, #8c0c1d 0%, #d95555 100%);
 }
 .hero {
   padding: 40px;

@@ -49,7 +49,6 @@ It's an independent project with its ongoing development made possible entirely 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
 
 ### Donation
-
 ![Donations on Patreon](https://img.shields.io/badge/Patreon-$119-red.svg)
 ![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$0-darklime.svg)
 

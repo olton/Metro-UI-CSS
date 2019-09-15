@@ -10,8 +10,8 @@ Metro.bottomSheetSetup = function(options){
     BottomSheetDefaultConfig = $.extend({}, BottomSheetDefaultConfig, options);
 };
 
-if (typeof window.metroBottomSheetSetup !== undefined) {
-    Metro.bottomSheetSetup(window.metroBottomSheetSetup);
+if (typeof window["metroBottomSheetSetup"] !== undefined) {
+    Metro.bottomSheetSetup(window["metroBottomSheetSetup"]);
 }
 
 var BottomSheet = {
@@ -28,7 +28,7 @@ var BottomSheet = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -42,7 +42,7 @@ var BottomSheet = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -52,7 +52,7 @@ var BottomSheet = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element
             .addClass("bottom-sheet")
@@ -64,7 +64,7 @@ var BottomSheet = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
 
         if (Utils.isValue(this.toggle)) {
             this.toggle.on(Metro.events.click, function(){
@@ -113,7 +113,16 @@ var BottomSheet = {
 
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+
+        if (Utils.isValue(this.toggle)) {
+            this.toggle.off(Metro.events.click);
+        }
+
+        element.off(Metro.events.click, "li");
+        element.remove();
+    }
 };
 
 Metro.plugin('bottomsheet', BottomSheet);

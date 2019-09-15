@@ -9,8 +9,8 @@ Metro.rippleSetup = function (options) {
     RippleDefaultConfig = $.extend({}, RippleDefaultConfig, options);
 };
 
-if (typeof window.metroRippleSetup !== undefined) {
-    Metro.rippleSetup(window.metroRippleSetup);
+if (typeof window["metroRippleSetup"] !== undefined) {
+    Metro.rippleSetup(window["metroRippleSetup"]);
 }
 
 var Ripple = {
@@ -26,7 +26,7 @@ var Ripple = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -40,7 +40,7 @@ var Ripple = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
@@ -92,6 +92,12 @@ var Ripple = {
 
     changeAttribute: function(attributeName){
 
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
+        element.off(Metro.events.click, target);
     }
 };
 

@@ -64,8 +64,8 @@ Metro.calendarSetup = function (options) {
     CalendarDefaultConfig = $.extend({}, CalendarDefaultConfig, options);
 };
 
-if (typeof window.metroCalendarSetup !== undefined) {
-    Metro.calendarSetup(window.metroCalendarSetup);
+if (typeof window["metroCalendarSetup"] !== undefined) {
+    Metro.calendarSetup(window["metroCalendarSetup"]);
 }
 
 var Calendar = {
@@ -115,7 +115,11 @@ var Calendar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("calendar"));
+        }
 
         element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
 
@@ -228,6 +232,17 @@ var Calendar = {
                     element.removeClass("calendar-wide");
                 }
             }
+        }, {ns: element.attr("id")});
+
+        element.on(Metro.events.click, function(e){
+            var months = element.find(".calendar-months");
+            var years = element.find(".calendar-years");
+            if (months.hasClass("open")) {
+                months.removeClass("open");
+            }
+            if (years.hasClass("open")) {
+                years.removeClass("open");
+            }
         });
 
         element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
@@ -278,9 +293,6 @@ var Calendar = {
                     });
                 }
             }, o.ripple ? 300 : 1);
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.today", function(e){
@@ -289,9 +301,6 @@ var Calendar = {
             element.fire("today", {
                 today: that.today
             });
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.clear", function(e){
@@ -299,27 +308,18 @@ var Calendar = {
             that._drawContent();
             Utils.exec(o.onClear, [element]);
             element.fire("clear");
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.cancel", function(e){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
             element.fire("cancel");
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         element.on(Metro.events.click, ".button.done", function(e){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
             element.fire("done");
-
-            e.preventDefault();
-            e.stopPropagation();
         });
 
         if (o.weekDayClick === true) {
@@ -445,6 +445,8 @@ var Calendar = {
             var target;
             var list = element.find(".months-list");
 
+            console.log("ku");
+
             list.find(".active").removeClass("active");
             list.scrollTop(0);
             element.find(".calendar-months").addClass("open");
@@ -501,19 +503,6 @@ var Calendar = {
                 current: that.current
             });
             element.find(".calendar-years").removeClass("open");
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        element.on(Metro.events.click, function(e){
-            var months = element.find(".calendar-months");
-            var years = element.find(".calendar-years");
-            if (months.hasClass("open")) {
-                months.removeClass("open");
-            }
-            if (years.hasClass("open")) {
-                years.removeClass("open");
-            }
             e.preventDefault();
             e.stopPropagation();
         });
@@ -830,7 +819,7 @@ var Calendar = {
     },
 
     setExclude: function(exclude){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         if (Utils.isNull(exclude) && Utils.isNull(element.attr("data-exclude"))) {
             return ;
         }
@@ -840,7 +829,7 @@ var Calendar = {
     },
 
     setPreset: function(preset){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         if (Utils.isNull(preset) && Utils.isNull(element.attr("data-preset"))) {
             return ;
         }
@@ -851,7 +840,7 @@ var Calendar = {
     },
 
     setSpecial: function(special){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         if (Utils.isNull(special) && Utils.isNull(element.attr("data-special"))) {
             return ;
         }
@@ -861,7 +850,7 @@ var Calendar = {
     },
 
     setShow: function(show){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (Utils.isNull(show) && Utils.isNull(element.attr("data-show"))) {
             return ;
@@ -880,7 +869,7 @@ var Calendar = {
     },
 
     setMinDate: function(date){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         o.minDate = Utils.isValue(date) ? date : element.attr("data-min-date");
         if (Utils.isValue(o.minDate) && Utils.isDate(o.minDate, o.inputFormat)) {
@@ -891,7 +880,7 @@ var Calendar = {
     },
 
     setMaxDate: function(date){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         o.maxDate = Utils.isValue(date) ? date : element.attr("data-max-date");
         if (Utils.isValue(o.maxDate) && Utils.isDate(o.maxDate, o.inputFormat)) {
@@ -902,7 +891,7 @@ var Calendar = {
     },
 
     setToday: function(val){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         if (!Utils.isValue(val)) {
             val = new Date();
@@ -914,7 +903,7 @@ var Calendar = {
     },
 
     i18n: function(val){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
         if (val === undefined) {
             return o.locale;
         }
@@ -927,7 +916,7 @@ var Calendar = {
     },
 
     changeAttrLocale: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         this.i18n(element.attr("data-locale"));
     },
 
@@ -959,9 +948,11 @@ var Calendar = {
         element.off(Metro.events.click, ".calendar-years li");
         element.off(Metro.events.click);
 
-        if (o.ripple === true) Metro.destroyPlugin(element, "ripple");
+        if (o.ripple === true) {
+            element.data("ripple").destroy();
+        }
 
-        element.html("");
+        element.remove();
     }
 };
 

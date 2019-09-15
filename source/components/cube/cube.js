@@ -37,8 +37,8 @@ Metro.cubeSetup = function (options) {
     CubeDefaultConfig = $.extend({}, CubeDefaultConfig, options);
 };
 
-if (typeof window.metroCubeSetup !== undefined) {
-    Metro.cubeSetup(window.metroCubeSetup);
+if (typeof window["metroCubeSetup"] !== undefined) {
+    Metro.cubeSetup(window["metroCubeSetup"]);
 }
 
 var Cube = {
@@ -152,7 +152,7 @@ var Cube = {
 
         element.addClass("cube").addClass(o.clsCube);
 
-        if (element.attr('id') === undefined) {
+        if (!element.attr('id')) {
             element.attr('id', id);
         }
 
@@ -275,17 +275,17 @@ var Cube = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
-        $(window).on(Metro.events.blur + "-" + element.attr("id"), function(){
+        $(window).on(Metro.events.blur, function(){
             if (o.stopOnBlur === true && that.running === true) {
                 that._stop();
             }
-        });
+        }, {ns: element.attr("id")});
 
-        $(window).on(Metro.events.focus + "-" + element.attr("id"), function(){
+        $(window).on(Metro.events.focus, function(){
             if (o.stopOnBlur === true && that.running === false) {
                 that._start();
             }
-        });
+        }, {ns: element.attr("id")});
 
         element.on(Metro.events.click, ".cube-cell", function(){
             if (o.cellClick === true) {
@@ -461,12 +461,12 @@ var Cube = {
         clearInterval(this.interval);
         this.interval = null;
 
-        $(window).off(Metro.events.blur + "-" + element.attr("id"));
-        $(window).off(Metro.events.focus + "-" + element.attr("id"));
+        $(window).off(Metro.events.blur, {ns: element.attr("id")});
+        $(window).off(Metro.events.focus,{ns: element.attr("id")});
+
         element.off(Metro.events.click, ".cube-cell");
 
-        element.html("");
-        element.removeClass("cube").removeClass(o.clsCube);
+        element.remove();
     }
 };
 

@@ -274,10 +274,18 @@ var Chat = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+        var sendButton = element.find(".js-chat-send-button");
+        var input = element.find("input[type=text]");
+
+        sendButton.off(Metro.events.click);
+        input.off(Metro.events.keyup);
+
+        element.remove();
+    }
 };
 
 Metro.plugin('chat', Chat);

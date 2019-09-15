@@ -41,8 +41,8 @@ Metro.sliderSetup = function (options) {
     SliderDefaultConfig = $.extend({}, SliderDefaultConfig, options);
 };
 
-if (typeof window.metroSliderSetup !== undefined) {
-    Metro.sliderSetup(window.metroSliderSetup);
+if (typeof window["metroSliderSetup"] !== undefined) {
+    Metro.sliderSetup(window["metroSliderSetup"]);
 }
 
 var Slider = {
@@ -100,8 +100,14 @@ var Slider = {
         var buffer = $("<div>").addClass("buffer").addClass(o.clsBuffer);
         var marker = $("<button>").attr("type", "button").addClass("marker").addClass(o.clsMarker);
         var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
-        var id = Utils.uniqueId();
+        var id = Utils.elementId("slider");
         var i;
+
+        if (!element.attr("data-role-slider")) {
+            element
+                .attr("data-role-slider", true)
+                .attr("data-role", "slide");
+        }
 
         slider.attr("id", id);
 
@@ -551,7 +557,9 @@ var Slider = {
             case "data-buffer": this.changeBuffer(); break;
             case 'disabled': this.toggleState(); break;
         }
-    }
+    },
+
+    destroy: function(){}
 };
 
 Metro.plugin('slider', Slider);
