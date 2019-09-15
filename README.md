@@ -39,6 +39,10 @@ It's an independent project with its ongoing development made possible entirely 
 ![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
 
+### Release
+![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS)
+![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?include_prereleases&label=pre-release)
+
 ###  Info
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
