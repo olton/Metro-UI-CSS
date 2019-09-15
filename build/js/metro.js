@@ -3411,8 +3411,8 @@ var isTouch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "13/08/2019 11:44:49",
-    buildNumber: "734",
+    compileTime: "15/09/2019 11:17:01",
+    buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3500,7 +3500,7 @@ var Metro = {
         paste: 'paste.metro',
         scroll: 'scroll.metro',
         mousewheel: 'mousewheel.metro',
-        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro",
+        inputchange: "change.metro input.metro propertychange.metro cut.metro paste.metro copy.metro drop.metro",
         dragstart: "dragstart.metro",
         dragend: "dragend.metro",
         dragenter: "dragenter.metro",
@@ -5216,6 +5216,43 @@ var Locales = {
             "random": "Random",
             "save": "Save",
             "reset": "Reset"
+        }
+    },
+    
+    'tw-ZH': {
+        "calendar": {
+            "months": [
+                "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
+                "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
+            ],
+            "days": [
+                "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
+                "日", "一", "二", "三", "四", "五", "六",
+                "週日", "週一", "週二", "週三", "週四", "週五", "週六"
+            ],
+            "time": {
+                "days": "天",
+                "hours": "時",
+                "minutes": "分",
+                "seconds": "秒",
+                "month": "月",
+                "day": "日",
+                "year": "年"
+            }
+        },
+        "buttons": {
+            "ok": "確認",
+            "cancel": "取消",
+            "done": "完成",
+            "today": "今天",
+            "now": "現在",
+            "clear": "清除",
+            "help": "幫助",
+            "yes": "是",
+            "no": "否",
+            "random": "隨機",
+            "save": "保存",
+            "reset": "重啟"
         }
     },
     
@@ -13751,7 +13788,7 @@ var File = {
         if (o.mode === "input") {
             caption.insertBefore(element);
 
-            button = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.buttonTitle);
+            button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
             button.appendTo(container);
             button.addClass(o.clsButton);
 
@@ -19968,8 +20005,6 @@ var Select = {
     _createSelect: function(){
         var element = this.element, o = this.options;
 
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
@@ -19982,12 +20017,7 @@ var Select = {
             container.addClass("multiple");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
 
@@ -20048,7 +20078,7 @@ var Select = {
                     list: list[0]
                 });
             }
-        });
+        }).attr("data-role-dropdown", true).attr("data-role", "dropdown");
 
         this.list = list;
 
@@ -20399,8 +20429,8 @@ Metro.sidebarSetup = function (options) {
     SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
 };
 
-if (typeof window.metroSidebarSetup !== undefined) {
-    Metro.selectSetup(window.metroSidebarSetup);
+if (typeof window["metroSidebarSetup"] !== undefined) {
+    Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
 var Sidebar = {
@@ -25214,7 +25244,9 @@ var MaterialTabs = {
         $.each(tabs, function(){
             var target = $(this).find("a").attr("href");
             if (!Utils.isValue(target)) return;
-            if (target.trim() !== "#" && $(target).length > 0) $(target).hide();
+            if (target[0] === "#" && target.length > 1) {
+                $(target).hide();
+            }
         });
 
         width = element.width();
@@ -25245,7 +25277,9 @@ var MaterialTabs = {
 
         target = tab.find("a").attr("href");
         if (Utils.isValue(target)) {
-            if (target.trim() !== "#" && $(target).length > 0) $(target).show();
+            if (target[0] === "#" && target.length > 1) {
+                $(target).show();
+            }
         }
 
         Utils.exec(o.onTabOpen, [tab[0], target, tab_next], element[0]);
@@ -25254,6 +25288,15 @@ var MaterialTabs = {
             target: target,
             tab_next: tab_next
         });
+    },
+
+    open: function(tab_num){
+        var element = this.element;
+        var tabs = element.find("li");
+        var active_tab = element.find("li.active");
+        var tab = tabs.eq(tab_num - 1);
+        var tab_next = tabs.index(tab) > tabs.index(active_tab);
+        this.openTab(tab, tab_next);
     },
 
     changeAttribute: function(attributeName){
@@ -25917,34 +25960,19 @@ var Textarea = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var that = this, element = this.element, elem = this.elem, o = this.options;
         var container = $("<div>").addClass("textarea " + element[0].className);
+        var fakeTextarea = $("<textarea>").addClass("fake-textarea");
         var clearButton;
         var timer = null;
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
+        container.insertBefore(element);
+        element.appendTo(container);
+        fakeTextarea.appendTo(container);
 
         if (o.clearButton !== false && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(container);
-        }
-
-        element.appendTo(container);
-
-        if (o.autoSize) {
-
-            container.addClass("autosize");
-
-            timer = setTimeout(function(){
-                timer = null;
-                that.resize();
-            }, 0);
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -25964,10 +25992,10 @@ var Textarea = {
             });
         }
 
-        element[0].className = '';
+        elem.className = '';
         if (o.copyInlineStyles === true) {
-            for (var i = 0, l = element[0].style.length; i < l; i++) {
-                container.css(element[0].style[i], element.css(element[0].style[i]));
+            for (var i = 0, l = elem.style.length; i < l; i++) {
+                container.css(elem.style[i], element.css(elem.style[i]));
             }
         }
 
@@ -25983,11 +26011,24 @@ var Textarea = {
         } else {
             this.enable();
         }
+
+        fakeTextarea.val(element.val());
+
+        if (o.autoSize === true) {
+
+            container.addClass("autosize no-scroll-vertical");
+
+            timer = setTimeout(function(){
+                timer = null;
+                that.resize();
+            }, 100);
+        }
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var textarea = element.closest(".textarea");
+        var fakeTextarea = textarea.find(".fake-textarea");
         var chars_counter = $(o.charsCounter);
 
         textarea.on(Metro.events.click, ".input-clear-button", function(){
@@ -25995,13 +26036,10 @@ var Textarea = {
         });
 
         if (o.autoSize) {
-            element.on(Metro.events.keyup, $.proxy(this.resize, that));
-            element.on(Metro.events.keydown, $.proxy(this.resize, that));
-            element.on(Metro.events.change, $.proxy(this.resize, that));
-            element.on(Metro.events.focus, $.proxy(this.resize, that));
-            element.on(Metro.events.cut, $.proxy(this.resize, that));
-            element.on(Metro.events.paste, $.proxy(this.resize, that));
-            element.on(Metro.events.drop, $.proxy(this.resize, that));
+            element.on(Metro.events.inputchange + " " + Metro.events.keyup, function(){
+                fakeTextarea.val(this.value);
+                that.resize();
+            });
         }
 
         element.on(Metro.events.blur, function(){textarea.removeClass("focused");});
@@ -26024,10 +26062,14 @@ var Textarea = {
     },
 
     resize: function(){
-        var element = this.element;
+        var element = this.element,
+            textarea = element.closest(".textarea"),
+            fakeTextarea = textarea.find(".fake-textarea");
 
-        element[0].style.cssText = 'height:auto;';
-        element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
+        fakeTextarea[0].style.cssText = 'height:auto;';
+        fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
+        element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
+
     },
 
     clear: function(){

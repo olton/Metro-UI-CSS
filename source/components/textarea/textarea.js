@@ -61,34 +61,19 @@ var Textarea = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
+        var that = this, element = this.element, elem = this.elem, o = this.options;
         var container = $("<div>").addClass("textarea " + element[0].className);
+        var fakeTextarea = $("<textarea>").addClass("fake-textarea");
         var clearButton;
         var timer = null;
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
+        container.insertBefore(element);
+        element.appendTo(container);
+        fakeTextarea.appendTo(container);
 
         if (o.clearButton !== false && !element[0].readOnly) {
             clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
             clearButton.appendTo(container);
-        }
-
-        element.appendTo(container);
-
-        if (o.autoSize) {
-
-            container.addClass("autosize");
-
-            timer = setTimeout(function(){
-                timer = null;
-                that.resize();
-            }, 0);
         }
 
         if (element.attr('dir') === 'rtl' ) {
@@ -108,10 +93,10 @@ var Textarea = {
             });
         }
 
-        element[0].className = '';
+        elem.className = '';
         if (o.copyInlineStyles === true) {
-            for (var i = 0, l = element[0].style.length; i < l; i++) {
-                container.css(element[0].style[i], element.css(element[0].style[i]));
+            for (var i = 0, l = elem.style.length; i < l; i++) {
+                container.css(elem.style[i], element.css(elem.style[i]));
             }
         }
 
@@ -127,11 +112,24 @@ var Textarea = {
         } else {
             this.enable();
         }
+
+        fakeTextarea.val(element.val());
+
+        if (o.autoSize === true) {
+
+            container.addClass("autosize no-scroll-vertical");
+
+            timer = setTimeout(function(){
+                timer = null;
+                that.resize();
+            }, 100);
+        }
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var textarea = element.closest(".textarea");
+        var fakeTextarea = textarea.find(".fake-textarea");
         var chars_counter = $(o.charsCounter);
 
         textarea.on(Metro.events.click, ".input-clear-button", function(){
@@ -139,13 +137,10 @@ var Textarea = {
         });
 
         if (o.autoSize) {
-            element.on(Metro.events.keyup, $.proxy(this.resize, that));
-            element.on(Metro.events.keydown, $.proxy(this.resize, that));
-            element.on(Metro.events.change, $.proxy(this.resize, that));
-            element.on(Metro.events.focus, $.proxy(this.resize, that));
-            element.on(Metro.events.cut, $.proxy(this.resize, that));
-            element.on(Metro.events.paste, $.proxy(this.resize, that));
-            element.on(Metro.events.drop, $.proxy(this.resize, that));
+            element.on(Metro.events.inputchange + " " + Metro.events.keyup, function(){
+                fakeTextarea.val(this.value);
+                that.resize();
+            });
         }
 
         element.on(Metro.events.blur, function(){textarea.removeClass("focused");});
@@ -168,10 +163,14 @@ var Textarea = {
     },
 
     resize: function(){
-        var element = this.element;
+        var element = this.element,
+            textarea = element.closest(".textarea"),
+            fakeTextarea = textarea.find(".fake-textarea");
 
-        element[0].style.cssText = 'height:auto;';
-        element[0].style.cssText = 'height:' + element[0].scrollHeight + 'px';
+        fakeTextarea[0].style.cssText = 'height:auto;';
+        fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
+        element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
+
     },
 
     clear: function(){

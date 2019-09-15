@@ -25,7 +25,6 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-
 ## Current Version 4.3.0
 
 ### Status
