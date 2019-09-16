@@ -27194,9 +27194,10 @@ textarea {
   height: 34px;
   min-width: 34px;
 }
-.input .button:focus {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+.input .button:focus,
+.input .button:active {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
 }
 .input .button:hover {
   background-color: #f8f8f8;
@@ -27522,6 +27523,7 @@ input.input-small {
   -webkit-box-ordinal-group: 4;
       -ms-flex-order: 3;
           order: 3;
+  text-align: right;
 }
 .spinner.buttons-right .spinner-button-plus {
   -webkit-box-ordinal-group: 4;
@@ -27537,6 +27539,7 @@ input.input-small {
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
+  text-align: left;
 }
 .spinner.input-large {
   height: 50px;
@@ -31710,6 +31713,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 16px;
   height: 16px;
   font-size: 16px;
+}
+.panel .panel-title .btn-custom:focus,
+.panel .panel-title .btn-custom:active {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
 }
 .panel .panel-content {
   display: block;

@@ -11,8 +11,8 @@ Metro.navigationViewSetup = function (options) {
     NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
 };
 
-if (typeof window.metroNavigationViewSetup !== undefined) {
-    Metro.navigationViewSetup(window.metroNavigationSetup);
+if (typeof window["metroNavigationViewSetup"] !== undefined) {
+    Metro.navigationViewSetup(window["metroNavigationSetup"]);
 }
 
 var NavigationView = {
@@ -84,6 +84,10 @@ var NavigationView = {
         var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
 
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("navview"));
+        }
+
         element
             .addClass("navview")
             .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
@@ -135,7 +139,7 @@ var NavigationView = {
             })
         }
 
-        $(window).on(Metro.events.resize+ "-navview", function(){
+        $(window).on(Metro.events.resize, function(){
 
             element.removeClass("expanded");
             that.pane.removeClass("open");
@@ -154,7 +158,7 @@ var NavigationView = {
                 }
             }, 200);
 
-        })
+        }, {ns: element.attr("id")})
     },
 
     pullClick: function(el){
@@ -209,7 +213,20 @@ var NavigationView = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+
+        element.off('all');
+
+        if (this.paneToggle !== null) {
+            this.paneToggle.off('all')
+        }
+
+        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+
+        element.remove();
     }
 };
 

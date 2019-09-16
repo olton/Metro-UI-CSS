@@ -41,8 +41,8 @@
         color: @dark;
         height: 34px;
         min-width: 34px;
-        &:focus {
-            box-shadow: none;
+        &:focus, &:active {
+            box-shadow: none!important;
         }
         &:hover {
             background-color: @light;

@@ -272,7 +272,7 @@ var CalendarPicker = {
                     container.removeClass("dialog-mode");
                 }
             }
-        }, {ns: "calendarpicker-"+container.attr("id")});
+        }, {ns: container.attr("id")});
 
         if (clear.length > 0) clear.on(Metro.events.click, function(e){
             element.val("").trigger('change').blur(); // TODO change blur
@@ -453,7 +453,7 @@ var CalendarPicker = {
         var container = element.parent();
         var clear = container.find(".input-clear-button");
 
-        $(window).off(Metro.events.resize, {ns: "calendarpicker-"+container.attr("id")});
+        $(window).off(Metro.events.resize, {ns: container.attr("id")});
         if (clear.length > 0) clear.off(Metro.events.click);
         container.off(Metro.events.click, "button, input");
         element.off(Metro.events.blur);

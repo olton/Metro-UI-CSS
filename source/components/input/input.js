@@ -232,15 +232,20 @@ var Input = {
             });
         });
 
-        container.on(Metro.events.start, ".input-reveal-button", function(){
-            element.attr('type', 'text');
+        container.on(Metro.events.click, ".input-reveal-button", function(){
+            if (element.attr('type') === 'password') {
+                element.attr('type', 'text');
+            } else {
+                element.attr('type', 'password');
+            }
+
             Utils.exec(o.onRevealClick, [element.val()], element[0]);
             element.fire("revealclick", {
                 val: element.val()
             });
         });
 
-        container.on(Metro.events.start, ".input-search-button", function(){
+        container.on(Metro.events.click, ".input-search-button", function(){
             if (o.searchButtonClick !== 'submit') {
                 Utils.exec(o.onSearchButtonClick, [element.val()], this);
                 element.fire("searchbuttonclick", {
@@ -252,11 +257,11 @@ var Input = {
             }
         });
 
-        container.on(Metro.events.stop, ".input-reveal-button", function(){
-            element.attr('type', 'password').focus();
-        });
+        // container.on(Metro.events.stop, ".input-reveal-button", function(){
+        //     element.attr('type', 'password').focus();
+        // });
 
-        container.on(Metro.events.stop, ".input-custom-button", function(){
+        container.on(Metro.events.click, ".input-custom-button", function(){
             var button = $(this);
             var action = button.data("action");
             Utils.exec(action, [element.val(), button], this);

@@ -29,8 +29,8 @@ Metro.spinnerSetup = function (options) {
     SpinnerDefaultConfig = $.extend({}, SpinnerDefaultConfig, options);
 };
 
-if (typeof window.metroSpinnerSetup !== undefined) {
-    Metro.spinnerSetup(window.metroSpinnerSetup);
+if (typeof window["metroSpinnerSetup"] !== undefined) {
+    Metro.spinnerSetup(window["metroSpinnerSetup"]);
 }
 
 var Spinner = {
@@ -166,9 +166,10 @@ var Spinner = {
         });
 
         spinner_buttons.on(Metro.events.start, function(e){
+            var plus = $(this).closest(".spinner-button").hasClass("spinner-button-plus");
             e.preventDefault();
             that.repeat_timer = true;
-            spinnerButtonClick($(this).hasClass("spinner-button-plus"), o.repeatThreshold);
+            spinnerButtonClick(plus, o.repeatThreshold);
         });
 
         spinner_buttons.on(Metro.events.stop, function(){
@@ -269,9 +270,12 @@ var Spinner = {
     destroy: function(){
         var element = this.element;
         var spinner = element.closest(".spinner");
+        var spinner_buttons = spinner.find(".spinner-button");
 
-        spinner.off(Metro.events.click, ".spinner-button");
-        element.insertBefore(spinner);
+        spinner.off('all');
+        spinner_buttons.off('all');
+        element.off('all');
+
         spinner.remove();
     }
 };
