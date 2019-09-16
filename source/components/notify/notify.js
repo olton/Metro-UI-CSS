@@ -100,7 +100,7 @@ var Notify = {
 
         notify.on(Metro.events.click, function(){
             Utils.exec(Utils.isValue(options.onClick) ? options.onClick : o.onClick, null, this);
-            that.kill($(this), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
+            that.kill($(this).closest(".notify"), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
         });
 
         // Show

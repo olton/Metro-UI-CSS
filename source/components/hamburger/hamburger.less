@@ -37,8 +37,7 @@
 }
 
 .hamburger {
-    &.menu-down {
-
+    &.menu-down, &.chevron-down {
         .line:nth-child(2) {
             transition-delay: .3s;
         }
@@ -65,6 +64,68 @@
             .line:nth-child(3) {
                 .rotate(-45deg);
                 .translateY(-6px);
+            }
+        }
+    }
+    &.menu-up, &.chevron-up {
+        .line:nth-child(2) {
+            transition-delay: .3s;
+        }
+
+        &.active {
+            .rotate(-90deg);
+
+            .line:nth-child(2) {
+                opacity: 0;
+                transition: none;
+            }
+
+            .line:nth-child(1), .line:nth-child(3) {
+                width: 20px;
+                transform-origin: right;
+                margin: -4px 8px;
+            }
+
+            .line:nth-child(1) {
+                .rotate(45deg);
+                .translateY(6px);
+            }
+
+            .line:nth-child(3) {
+                .rotate(-45deg);
+                .translateY(-6px);
+            }
+        }
+    }
+    &.arrow-left {
+        &.active {
+            .line:nth-child(1), .line:nth-child(3) {
+                width: 20px;
+                margin-left: 0;
+            }
+
+            .line:nth-child(1) {
+                .rotate(-45deg);
+            }
+
+            .line:nth-child(3) {
+                .rotate(45deg);
+            }
+        }
+    }
+    &.arrow-right {
+        &.active {
+            .line:nth-child(1), .line:nth-child(3) {
+                width: 20px;
+                margin-right: 0;
+            }
+
+            .line:nth-child(1) {
+                .rotate(45deg);
+            }
+
+            .line:nth-child(3) {
+                .rotate(-45deg);
             }
         }
     }
