@@ -16,6 +16,7 @@
 + [x] Typography: add background to `remark` with `accent` color 
 + [x] Tests: begin tests with `cypress`
 + [x] Draggable: minor improve for `mouseMove` 
++ [x] Chat: add attribute `data-readonly` and method `toggleReadonly`
 
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown
