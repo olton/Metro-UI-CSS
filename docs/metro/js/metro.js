@@ -3592,7 +3592,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "16/09/2019 11:37:05",
+    compileTime: "16/09/2019 12:20:53",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12598,7 +12598,7 @@ var DatePicker = {
 
         var prev = element.prev();
         var parent = element.parent();
-        var id = Utils.elementId("date-picker");
+        var id = Utils.elementId("datepicker");
 
         picker = $("<div>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
 
@@ -12684,17 +12684,17 @@ var DatePicker = {
             var target = this;
             var pageY = Utils.pageXY(e).y;
 
-            $(document).on(Metro.events.move + "-picker", function(e){
+            $(document).on(Metro.events.move, function(e){
 
                 target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
 
                 pageY = Utils.pageXY(e).y;
-            });
+            }, {ns: picker.attr("id")});
 
-            $(document).on(Metro.events.stop + "-picker", function(){
-                $(document).off(Metro.events.move + "-picker");
-                $(document).off(Metro.events.stop + "-picker");
-            });
+            $(document).on(Metro.events.stop, function(){
+                $(document).off(Metro.events.move, {ns: picker.attr("id")});
+                $(document).off(Metro.events.stop, {ns: picker.attr("id")});
+            }, {ns: picker.attr("id")});
         });
 
         picker.on(Metro.events.click, function(e){
@@ -18426,7 +18426,7 @@ var Notify = {
 
         notify.on(Metro.events.click, function(){
             Utils.exec(Utils.isValue(options.onClick) ? options.onClick : o.onClick, null, this);
-            that.kill($(this), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
+            that.kill($(this).closest(".notify"), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
         });
 
         // Show
@@ -26624,8 +26624,8 @@ Metro.timePickerSetup = function (options) {
     TimePickerDefaultConfig = $.extend({}, TimePickerDefaultConfig, options);
 };
 
-if (typeof window.metroTimePickerSetup !== undefined) {
-    Metro.timePickerSetup(window.metroTimePickerSetup);
+if (typeof window["metroTimePickerSetup"] !== undefined) {
+    Metro.timePickerSetup(window["metroTimePickerSetup"]);
 }
 
 var TimePicker = {
@@ -26819,17 +26819,17 @@ var TimePicker = {
             var target = this;
             var pageY = Utils.pageXY(e).y;
 
-            $(document).on(Metro.events.move + "-picker", function(e){
+            $(document).on(Metro.events.move, function(e){
 
                 target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
 
                 pageY = Utils.pageXY(e).y;
-            });
+            }, {ns: picker.attr("id")});
 
-            $(document).on(Metro.events.stop + "-picker", function(){
-                $(document).off(Metro.events.move + "-picker");
-                $(document).off(Metro.events.stop + "-picker");
-            });
+            $(document).on(Metro.events.stop, function(){
+                $(document).off(Metro.events.move, {ns: picker.attr("id")});
+                $(document).off(Metro.events.stop, {ns: picker.attr("id")});
+            }, {ns: picker.attr("id")});
         });
 
         picker.on(Metro.events.click, function(e){
