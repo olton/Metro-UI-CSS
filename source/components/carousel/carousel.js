@@ -94,6 +94,8 @@ var Carousel = {
         var slides_container = element.find(".slides");
         var id = Utils.elementId("carousel");
 
+        Metro.checkRuntime(element, "carousel");
+
         if (element.attr("id") === undefined) {
             element.attr("id", id);
         }

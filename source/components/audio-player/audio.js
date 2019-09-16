@@ -97,6 +97,8 @@ var Audio = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "audio");
+
         this._createPlayer();
         this._createControls();
         this._createEvents();

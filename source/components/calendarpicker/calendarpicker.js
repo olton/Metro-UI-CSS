@@ -101,6 +101,8 @@ var CalendarPicker = {
 
     _create: function(){
 
+        Metro.checkRuntime(element, "calendarpicker");
+
         this._createStructure();
         this._createEvents();
     },

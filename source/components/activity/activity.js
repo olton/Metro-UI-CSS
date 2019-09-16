@@ -44,6 +44,8 @@ var Activity = {
         var element = this.element, o = this.options;
         var i, wrap;
 
+        Metro.checkRuntime(element, "activity");
+
         element
             .html('')
             .addClass(o.style + "-style")
