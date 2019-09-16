@@ -12,4 +12,4 @@ cache:
 before_script:
   - npm install grunt-cli -g
   - npm install http-server -g
-  - npm install
+  - npm ci
