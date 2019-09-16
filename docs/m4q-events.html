@@ -45,7 +45,7 @@
                 <h5>Table of contents</h5>
                 <hr/>
                 <ul class="toc-nav">
-                    <li class="toc-entry"><a href="#">About</a></li>
+                    <li class="toc-entry"><a href="#_about">About</a></li>
                     <li class="toc-entry"><a href="#_func_on">on()</a></li>
                     <li class="toc-entry"><a href="#_func_one">one()</a></li>
                     <li class="toc-entry"><a href="#_func_off">off()</a></li>
@@ -76,22 +76,37 @@
 
                 <!-- ads-html -->
 
+                <h3 id="_about">About</h3>
+                <p>
+                    You can use built in methods: <code>on</code>, <code>one</code>, <code>off</code>, <code>trigger</code> and <code>fire</code> for works with events.
+                </p>
+
                 <h3 id="_func_on">on()</h3>
                 <p>
                     Attach an event handler function for one or more events to the selected elements.
                     You can define more than one event, with space-separated event types and optional namespaces.
-                    Also, you can define custom data and push it to the event with <code>data</code> argument.
-                    If you define custom event data, you can access to it with <code>e.customData</code> property in the handler.
+                    Also, you can add <code>options</code> to you your event with last argument <code>option</code>.
+                    Argument <code>option</code> must be a plain object and can contains:
                 </p>
+                <ul>
+                    <li><code>ns</code> - namespace for event</li>
+                    <li><code>once</code> - false (default) or true to define once fired event</li>
+                </ul>
+
                 <pre><code>
                     var data = {...};
 
                     $(...).on("click", function(e){...});
                     $(...).on("mousedown touchstart", function(e){...});
-                    $(...).on("click", function(e){...}, data);
+                    $(...).on("click", function(e){...}, {once: true});
                     $(...).on("click", "selector", function(e){...});
-                    $(...).on("click", "selector", function(e){...}, data);
+                    $(...).on("click", "selector", function(e){...}, {ns: "unique_ns"});
                 </code></pre>
+
+                <p class="remark info">
+                    Also, you can define <code>ns</code> for event with point notation: <code>event_name.ns_name</code>.
+                </p>
+                <pre><code>$(...).on("click.ns_name", function(e){...});</code></pre>
 
                 <h3 id="_func_one">one()</h3>
                 <p>
@@ -104,9 +119,9 @@
 
                     $(...).one("click", function(e){...});
                     $(...).one("mousedown touchstart", function(e){...});
-                    $(...).one("click", function(e){...}, data);
+                    $(...).one("click", function(e){...}, options);
                     $(...).one("click", "selector", function(e){...});
-                    $(...).one("click", "selector", function(e){...}, data);
+                    $(...).one("click", "selector", function(e){...}, options);
                 </code></pre>
 
                 <h3 id="_func_off">off()</h3>
@@ -119,7 +134,8 @@
                     $(...).off();
                     $(...).off("click");
                     $(...).off("mousedown touchstart");
-                    $(...).one("click", "selector");
+                    $(...).off("click", "selector");
+                    $(...).off("click", "selector", {ns: "ns_name"});
                 </code></pre>
                 <p class="remark info">
                     In M4Q, when you call <code>off</code> method, this method remove event handler, including, anonymous function for handler.

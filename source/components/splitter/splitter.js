@@ -16,8 +16,8 @@ Metro.splitterSetup = function (options) {
     SplitterDefaultConfig = $.extend({}, SplitterDefaultConfig, options);
 };
 
-if (typeof window.metroSplitterSetup !== undefined) {
-    Metro.splitterSetup(window.metroSplitterSetup);
+if (typeof window["metroSplitterSetup"] !== undefined) {
+    Metro.splitterSetup(window["metroSplitterSetup"]);
 }
 
 var Splitter = {
@@ -35,7 +35,7 @@ var Splitter = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -49,7 +49,7 @@ var Splitter = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this._createStructure();
         this._createEvents();
@@ -59,7 +59,7 @@ var Splitter = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var children = element.children(o.children).addClass("split-block");
         var i, children_sizes = [];
         var gutters, resizeProp = o.splitMode === "horizontal" ? "width" : "height";
@@ -137,7 +137,7 @@ var Splitter = {
                 nextBlock: next_block[0]
             });
 
-            $(window).on(Metro.events.move + "-" + element.attr("id"), function(e){
+            $(window).on(Metro.events.move, function(e){
                 var pos = Utils.getCursorPosition(element[0], e);
                 var new_pos;
 
@@ -158,9 +158,9 @@ var Splitter = {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
-            });
+            }, {ns: element.attr("id")});
 
-            $(window).on(Metro.events.stop + "-" + element.attr("id"), function(e){
+            $(window).on(Metro.events.stop, function(e){
                 var cur_pos;
 
                 prev_block.removeClass("stop-select stop-pointer");
@@ -170,8 +170,8 @@ var Splitter = {
 
                 gutter.removeClass("active");
 
-                $(window).off(Metro.events.move + "-" + element.attr("id"));
-                $(window).off(Metro.events.stop + "-" + element.attr("id"));
+                $(window).off(Metro.events.move,{ns: element.attr("id")});
+                $(window).off(Metro.events.stop,{ns: element.attr("id")});
 
                 cur_pos = Utils.getCursorPosition(element[0], e);
 
@@ -182,7 +182,7 @@ var Splitter = {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
-            })
+            }, {ns: element.attr("id")})
         });
     },
 

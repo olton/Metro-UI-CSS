@@ -528,7 +528,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.0. Built at 15/09/2019 21:51:34";
+var m4qVersion = "v1.0.0. Built at 16/09/2019 10:40:33";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1655,6 +1655,10 @@ $.fn.extend({
 
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
 
+                if (options.capture === undefined) {
+                    options.capture = false;
+                }
+
                 el.addEventListener(name, h, options);
 
                 index = $.setEventHandler({
@@ -1671,11 +1675,13 @@ $.fn.extend({
     },
 
     one: function(events, sel, handler, options){
-        var args = [].slice.call(arguments).filter(function(el){
-            return !not(el);
-        });
-        args.push({once: true});
-        return this["on"].apply(this, args);
+        if (!isPlainObject(options)) {
+            options = {};
+        }
+
+        options.once = true;
+
+        return this["on"].apply(this, [events, sel, handler, options]);
     },
 
     off: function(eventsList, sel, options){

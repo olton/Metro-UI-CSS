@@ -114,7 +114,7 @@ var AppBar = {
             }
         });
 
-        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
 
             if (o.expand !== true) {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
@@ -137,7 +137,7 @@ var AppBar = {
                     menu.hide().addClass("collapsed");
                 }
             }
-        });
+        }, {ns: element.attr("id")});
     },
 
     close: function(){

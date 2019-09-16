@@ -348,9 +348,9 @@ var Carousel = {
             });
         });
 
-        $(window).on(Metro.events.resize + "-" + element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             that._resize();
-        });
+        }, {ns: element.attr("id")});
     },
 
     _slideToSlide: function(index){

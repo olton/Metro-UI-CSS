@@ -203,7 +203,7 @@ var Keypad = {
         var keypad = element.parent();
         var keys = keypad.find(".keys");
 
-        keypad.on(Metro.events.click, ".key", function(e){
+        keys.on(Metro.events.click, ".key", function(e){
             var key = $(this);
 
             if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
@@ -257,20 +257,17 @@ var Keypad = {
             e.stopPropagation();
         });
 
-        keypad.on(Metro.events.click, ".keys", function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
         keypad.on(Metro.events.click, function(e){
             if (o.open === true) {
                 return ;
             }
+
             if (keys.hasClass("open") === true) {
                 keys.removeClass("open");
             } else {
                 keys.addClass("open");
             }
+
             e.preventDefault();
             e.stopPropagation();
         });
@@ -372,14 +369,12 @@ var Keypad = {
     },
 
     destroy: function(){
-        var element = this.element, keypad = this.keypad;
+        var element = this.element, keypad = this.keypad, keys = keypad.find(".keys");
 
-        keypad.off(Metro.events.click, ".keys");
         keypad.off(Metro.events.click);
-        keypad.off(Metro.events.click, ".key");
+        keys.off(Metro.events.click, ".key");
         element.off(Metro.events.change);
 
-        element.insertBefore(keypad);
         keypad.remove();
     }
 };
