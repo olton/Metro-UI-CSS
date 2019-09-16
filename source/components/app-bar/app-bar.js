@@ -42,6 +42,8 @@ var AppBar = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "appbar");
+
         this._createStructure();
         this._createEvents();
 

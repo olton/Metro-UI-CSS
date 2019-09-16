@@ -51,6 +51,8 @@ var Accordion = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "accordion");
+
         this._createStructure();
         this._createEvents();
 

@@ -570,6 +570,13 @@ var Metro = {
         return fsm !== undefined;
     },
 
+    checkRuntime: function(el, role){
+        var element = $(el);
+        if (!element.attr("data-role-"+role)) {
+            Metro.makeRuntime(element, name);
+        }
+    },
+
     makeRuntime: function(el, role){
         var element = $(el);
         element.attr("data-role-"+role, true);

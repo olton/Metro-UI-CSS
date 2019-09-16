@@ -3592,7 +3592,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "16/09/2019 12:20:53",
+    compileTime: "16/09/2019 21:24:22",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4058,6 +4058,13 @@ var Metro = {
     inFullScreen: function(){
         var fsm = (document.fullscreenElement || document["webkitFullscreenElement"] || document["mozFullScreenElement"] || document["msFullscreenElement"]);
         return fsm !== undefined;
+    },
+
+    checkRuntime: function(el, role){
+        var element = $(el);
+        if (!element.attr("data-role-"+role)) {
+            Metro.makeRuntime(element, name);
+        }
     },
 
     makeRuntime: function(el, role){
@@ -7216,6 +7223,8 @@ var Accordion = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "accordion");
+
         this._createStructure();
         this._createEvents();
 
@@ -7414,6 +7423,8 @@ var Activity = {
         var element = this.element, o = this.options;
         var i, wrap;
 
+        Metro.checkRuntime(element, "activity");
+
         element
             .html('')
             .addClass(o.style + "-style")
@@ -7535,6 +7546,8 @@ var AppBar = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "appbar");
 
         this._createStructure();
         this._createEvents();
@@ -7767,6 +7780,8 @@ var Audio = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "audio");
 
         this._createPlayer();
         this._createControls();
@@ -8190,6 +8205,8 @@ var BottomSheet = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "bottomsheet");
+
         this._createStructure();
         this._createEvents();
 
@@ -8360,6 +8377,8 @@ var ButtonGroup = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "buttongroup");
 
         this._createGroup();
         this._createEvents();
@@ -8549,6 +8568,8 @@ var Calendar = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "calendar");
 
         if (!element.attr("id")) {
             element.attr("id", Utils.elementId("calendar"));
@@ -9503,6 +9524,8 @@ var CalendarPicker = {
 
     _create: function(){
 
+        Metro.checkRuntime(element, "calendarpicker");
+
         this._createStructure();
         this._createEvents();
     },
@@ -9974,6 +9997,8 @@ var Carousel = {
         var slides = element.find(".slide");
         var slides_container = element.find(".slides");
         var id = Utils.elementId("carousel");
+
+        Metro.checkRuntime(element, "carousel");
 
         if (element.attr("id") === undefined) {
             element.attr("id", id);
@@ -10460,6 +10485,8 @@ var Charms = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "charms");
+
         this._createStructure();
         this._createEvents();
 
@@ -10618,6 +10645,7 @@ var ChatDefaultConfig = {
     randomColor: false,
     messages: null,
     sendButtonTitle: "Send",
+    readonly: false,
 
     clsChat: "",
     clsName: "",
@@ -10672,6 +10700,8 @@ var Chat = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "chat");
 
         this._createStructure();
         this._createEvents();
@@ -10731,6 +10761,8 @@ var Chat = {
                 that.add(this);
             });
         }
+
+        element.find(".message-input")[o.readonly ? 'addClass':'removeClass']("disabled");
     },
 
     _createEvents: function(){
@@ -10879,7 +10911,16 @@ var Chat = {
         this.lastMessage = null;
     },
 
+    toggleReadonly: function(readonly){
+        var element = this.element, o = this.options;
+        o.readonly = typeof readonly === "undefined" ? !o.readonly : readonly;
+        element.find(".message-input")[o.readonly ? 'addClass':'removeClass']("disabled");
+    },
+
     changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-readonly": this.toggleReadonly(); break;
+        }
     },
 
     destroy: function(){

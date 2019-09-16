@@ -44,6 +44,8 @@ var BottomSheet = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "bottomsheet");
+
         this._createStructure();
         this._createEvents();
 

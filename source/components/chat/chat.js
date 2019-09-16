@@ -12,6 +12,7 @@ var ChatDefaultConfig = {
     randomColor: false,
     messages: null,
     sendButtonTitle: "Send",
+    readonly: false,
 
     clsChat: "",
     clsName: "",
@@ -66,6 +67,8 @@ var Chat = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "chat");
 
         this._createStructure();
         this._createEvents();
@@ -125,6 +128,8 @@ var Chat = {
                 that.add(this);
             });
         }
+
+        element.find(".message-input")[o.readonly ? 'addClass':'removeClass']("disabled");
     },
 
     _createEvents: function(){
@@ -273,7 +278,16 @@ var Chat = {
         this.lastMessage = null;
     },
 
+    toggleReadonly: function(readonly){
+        var element = this.element, o = this.options;
+        o.readonly = typeof readonly === "undefined" ? !o.readonly : readonly;
+        element.find(".message-input")[o.readonly ? 'addClass':'removeClass']("disabled");
+    },
+
     changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-readonly": this.toggleReadonly(); break;
+        }
     },
 
     destroy: function(){

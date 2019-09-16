@@ -117,6 +117,8 @@ var Calendar = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "calendar");
+
         if (!element.attr("id")) {
             element.attr("id", Utils.elementId("calendar"));
         }

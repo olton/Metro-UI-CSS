@@ -45,6 +45,8 @@ var ButtonGroup = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "buttongroup");
+
         this._createGroup();
         this._createEvents();
 

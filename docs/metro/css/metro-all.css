@@ -38470,6 +38470,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin-top: auto;
   padding: 8px;
 }
+.chat .message-input.disabled {
+  opacity: 0.5;
+}
 .chat .message .message-item .message-text.primary {
   border-color: #0366d6;
   background-color: #0366d6;
