@@ -697,6 +697,10 @@ textarea.focused,
 }
 .table tfoot {
   border-top-color: #585b5d;
+  border-bottom-color: #585b5d;
+}
+.table tfoot th {
+  color: #ffffff;
 }
 .table .sortable-column.sort-asc,
 .table .sortable-column.sort-desc {
