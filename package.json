@@ -30,8 +30,7 @@
     "cy:test": "cypress open --config fileServerFolder=docs,baseUrl=http://localhost:8080",
     "cy:run": "cypress run --config fileServerFolder=docs,baseUrl=http://localhost:8080",
     "start": "http-server ./docs -c-1 -s",
-    "autotest": "start-server-and-test start http://localhost:8080 cy:run",
-    "test": "start-server-and-test start http://localhost:8080 cy:test"
+    "test": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "browserslist": [
     "last 2 versions"
