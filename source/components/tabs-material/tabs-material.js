@@ -17,8 +17,8 @@ Metro.materialTabsSetup = function (options) {
     MaterialTabsDefaultConfig = $.extend({}, MaterialTabsDefaultConfig, options);
 };
 
-if (typeof window.metroMaterialTabsSetup !== undefined) {
-    Metro.materialTabsSetup(window.metroMaterialTabsSetup);
+if (typeof window["metroMaterialTabsSetup"] !== undefined) {
+    Metro.materialTabsSetup(window["metroMaterialTabsSetup"]);
 }
 
 var MaterialTabs = {
@@ -52,6 +52,8 @@ var MaterialTabs = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "materialtabs");
 
         this._createStructure();
         this._createEvents();

@@ -46,6 +46,8 @@ var Collapse = {
         var that = this, element = this.element, o = this.options;
         var toggle;
 
+        Metro.checkRuntime(element, "collapse");
+
         toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.collapse-toggle').length > 0 ? element.siblings('.collapse-toggle') : element.siblings('a:nth-child(1)');
 
         if (o.collapsed === true || element.attr("collapsed") === true) {

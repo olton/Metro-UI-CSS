@@ -21,8 +21,8 @@ Metro.donutSetup = function (options) {
     DonutDefaultConfig = $.extend({}, DonutDefaultConfig, options);
 };
 
-if (typeof window.metroDonutSetup !== undefined) {
-    Metro.donutSetup(window.metroDonutSetup);
+if (typeof window["metroDonutSetup"] !== undefined) {
+    Metro.donutSetup(window["metroDonutSetup"]);
 }
 
 var Donut = {
@@ -62,6 +62,8 @@ var Donut = {
         var strokeDasharray = ((o.value * circumference) / o.total) + ' ' + circumference;
         var transform = 'rotate(-90 ' + o.radius + ',' + o.radius + ')';
         var fontSize = r * o.hole * 0.6;
+
+        Metro.checkRuntime(element, "donut");
 
         element.addClass("donut");
 
@@ -153,7 +155,7 @@ var Donut = {
     },
 
     destroy: function(){
-        this.element.removeClass("donut").html("");
+        this.element.remove();
     }
 };
 

@@ -18,6 +18,7 @@
 + [x] Draggable: minor improve for `mouseMove` 
 + [x] Chat: add attribute `data-readonly` and method `toggleReadonly`
 + [x] Schemes: fix colors for table `tfoot`
++ [x] Add `checkRuntime` to components
 
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown

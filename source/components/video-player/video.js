@@ -49,8 +49,8 @@ Metro.videoSetup = function (options) {
     VideoDefaultConfig = $.extend({}, VideoDefaultConfig, options);
 };
 
-if (typeof window.metroVideoSetup !== undefined) {
-    Metro.videoSetup(window.metroVideoSetup);
+if (typeof window["metroVideoSetup"] !== undefined) {
+    Metro.videoSetup(window["metroVideoSetup"]);
 }
 
 var Video = {
@@ -91,6 +91,8 @@ var Video = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options, video = this.video;
+
+        Metro.checkRuntime(element, "video");
 
         if (Metro.fullScreenEnabled === false) {
             o.fullScreenMode = Metro.fullScreenMode.WINDOW;

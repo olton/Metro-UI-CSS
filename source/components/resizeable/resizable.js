@@ -16,8 +16,8 @@ Metro.resizeableSetup = function (options) {
     ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
 };
 
-if (typeof window.metroResizeableSetup !== undefined) {
-    Metro.resizeableSetup(window.metroResizeableSetup);
+if (typeof window["metroResizeableSetup"] !== undefined) {
+    Metro.resizeableSetup(window["metroResizeableSetup"]);
 }
 
 var Resizable = {
@@ -49,6 +49,8 @@ var Resizable = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "resizeable");
 
         this._createStructure();
         this._createEvents();

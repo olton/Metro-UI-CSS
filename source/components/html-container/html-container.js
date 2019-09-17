@@ -16,8 +16,8 @@ Metro.htmlContainerSetup = function (options) {
     HtmlContainerDefaultConfig = $.extend({}, HtmlContainerDefaultConfig, options);
 };
 
-if (typeof window.metroHtmlContainerSetup !== undefined) {
-    Metro.htmlContainerSetup(window.metroHtmlContainerSetup);
+if (typeof window["metroHtmlContainerSetup"] !== undefined) {
+    Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
 }
 
 var HtmlContainer = {
@@ -51,6 +51,8 @@ var HtmlContainer = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "htmlcontainer");
 
         if (typeof o.requestData === 'string') {
             o.requestData = JSON.parse(o.requestData);

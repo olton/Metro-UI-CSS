@@ -111,6 +111,8 @@ var Cube = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "cube");
+
         if (o.rules === null) {
             this.rules = this.default_rules;
         } else {

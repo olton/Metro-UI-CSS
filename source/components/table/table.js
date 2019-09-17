@@ -122,8 +122,8 @@ Metro.tableSetup = function(options){
     TableDefaultConfig = $.extend({}, TableDefaultConfig, options);
 };
 
-if (typeof window.metroTableSetup !== undefined) {
-    Metro.tableSetup(window.metroTableSetup);
+if (typeof window["metroTableSetup"] !== undefined) {
+    Metro.tableSetup(window["metroTableSetup"]);
 }
 
 var Table = {
@@ -189,6 +189,8 @@ var Table = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var id = Utils.elementId("table");
+
+        Metro.checkRuntime(element, "table");
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", id);

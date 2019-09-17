@@ -16,8 +16,8 @@ Metro.sorterSetup = function (options) {
     SorterDefaultConfig = $.extend({}, SorterDefaultConfig, options);
 };
 
-if (typeof window.metroSorterSetup !== undefined) {
-    Metro.sorterSetup(window.metroSorterSetup);
+if (typeof window["metroSorterSetup"] !== undefined) {
+    Metro.sorterSetup(window["metroSorterSetup"]);
 }
 
 var Sorter = {
@@ -49,6 +49,8 @@ var Sorter = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "sorter");
 
         this._createStructure();
 

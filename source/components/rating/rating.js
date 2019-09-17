@@ -21,8 +21,8 @@ Metro.ratingSetup = function (options) {
     RatingDefaultConfig = $.extend({}, RatingDefaultConfig, options);
 };
 
-if (typeof window.metroRatingSetup !== undefined) {
-    Metro.ratingSetup(window.metroRatingSetup);
+if (typeof window["metroRatingSetup"] !== undefined) {
+    Metro.ratingSetup(window["metroRatingSetup"]);
 }
 
 var Rating = {
@@ -59,6 +59,8 @@ var Rating = {
     _create: function(){
         var element = this.element, o = this.options;
         var i;
+
+        Metro.checkRuntime(element, "rating");
 
         if (isNaN(o.value)) {
             o.value = 0;

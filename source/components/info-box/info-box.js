@@ -20,8 +20,8 @@ Metro.infoBoxSetup = function (options) {
     InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
 };
 
-if (typeof window.metroInfoBoxSetup !== undefined) {
-    Metro.infoBoxSetup(window.metroInfoBoxSetup);
+if (typeof window["metroInfoBoxSetup"] !== undefined) {
+    Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
 }
 
 var InfoBox = {
@@ -52,11 +52,9 @@ var InfoBox = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
-        if (o._runtime === true) {
-            Metro.makeRuntime(element, "infobox");
-        }
+        Metro.checkRuntime(element, "infobox");
 
         this._createStructure();
         this._createEvents();
@@ -133,9 +131,9 @@ var InfoBox = {
             that.close();
         });
 
-        $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             that.reposition();
-        });
+        }, {ns: element.attr("id")});
     },
 
     _setPosition: function(){
@@ -151,7 +149,7 @@ var InfoBox = {
     },
 
     setContent: function(c){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var content = element.find(".info-box-content");
         if (content.length === 0) {
             return ;
@@ -161,7 +159,7 @@ var InfoBox = {
     },
 
     setType: function(t){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         element.removeClass("success info alert warning").addClass(t);
     },
 
@@ -190,7 +188,7 @@ var InfoBox = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (o.overlay === true) {
             $('body').find('.overlay').remove();
@@ -217,15 +215,15 @@ var InfoBox = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
-        element.off(Metro.events.click, ".closer");
-        element.off(Metro.events.click, ".js-dialog-close");
-        $(window).off(Metro.events.resize + "_" + element.attr("id"));
+        element.off("all");
+        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+
+        element.remove();
     }
 };
 
@@ -291,7 +289,7 @@ Metro['infobox'] = {
     },
 
     create: function(c, t, o, open){
-        var el, ib, box_type, con;
+        var el, ib, box_type;
 
         box_type = t !== undefined ? t : "";
 

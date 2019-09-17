@@ -28,8 +28,8 @@ Metro.masterSetup = function (options) {
     MasterDefaultConfig = $.extend({}, MasterDefaultConfig, options);
 };
 
-if (typeof window.metroMasterSetup !== undefined) {
-    Metro.masterSetup(window.metroMasterSetup);
+if (typeof window["metroMasterSetup"] !== undefined) {
+    Metro.masterSetup(window["metroMasterSetup"]);
 }
 
 var Master = {
@@ -63,6 +63,8 @@ var Master = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "master");
 
         element.addClass("master").addClass(o.clsMaster);
         element.css({

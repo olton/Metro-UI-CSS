@@ -10,8 +10,8 @@ Metro.imageCompareSetup = function (options) {
     ImageCompareDefaultConfig = $.extend({}, ImageCompareDefaultConfig, options);
 };
 
-if (typeof window.metroImageCompareSetup !== undefined) {
-    Metro.imageCompareSetup(window.metroImageCompareSetup);
+if (typeof window["metroImageCompareSetup"] !== undefined) {
+    Metro.imageCompareSetup(window["metroImageCompareSetup"]);
 }
 
 var ImageCompare = {
@@ -41,7 +41,9 @@ var ImageCompare = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "imagecompare");
 
         this._createStructure();
         this._createEvents();
@@ -51,7 +53,7 @@ var ImageCompare = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var container, container_overlay, slider;
         var images, element_width, element_height;
 
@@ -76,9 +78,6 @@ var ImageCompare = {
         element.css({
             height: element_height
         });
-
-        console.log(element.style("width"), element.style("height"));
-        console.log(element_width, element_height);
 
         container = $("<div>").addClass("image-container").appendTo(element);
         container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
@@ -105,7 +104,7 @@ var ImageCompare = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
@@ -175,18 +174,19 @@ var ImageCompare = {
                 width: element_width,
                 height: element_height
             });
-        });
+        }, {ns: element.attr("id")});
     },
 
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
         var element = this.element;
 
         element.off(Metro.events.start);
-        $(window).off(Metro.events.resize+"-"+element.attr("id"));
+        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+
+        element.remove();
     }
 };
 

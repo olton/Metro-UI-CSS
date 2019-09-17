@@ -78,9 +78,7 @@ var Dialog = {
         var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
-        if (o._runtime === true) {
-            Metro.makeRuntime(element, "dialog");
-        }
+        Metro.checkRuntime(element, "dialog");
 
         this._build();
     },

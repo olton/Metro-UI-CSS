@@ -53,6 +53,8 @@ var Textarea = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "textarea");
+
         this._createStructure();
         this._createEvents();
 

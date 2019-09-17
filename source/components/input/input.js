@@ -78,7 +78,9 @@ var Input = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "input");
 
         this._createStructure();
         this._createEvents();
@@ -459,13 +461,12 @@ var Input = {
         element.off(Metro.events.blur);
         element.off(Metro.events.focus);
 
-        element.insertBefore(parent);
         parent.remove();
     }
 };
 
 Metro.plugin('input', Input);
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $('.input .autocomplete-list').hide();
 });

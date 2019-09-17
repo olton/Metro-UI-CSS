@@ -18,8 +18,8 @@ Metro.popoverSetup = function (options) {
     PopoverDefaultConfig = $.extend({}, PopoverDefaultConfig, options);
 };
 
-if (typeof window.metroPopoverSetup !== undefined) {
-    Metro.popoverSetup(window.metroPopoverSetup);
+if (typeof window["metroPopoverSetup"] !== undefined) {
+    Metro.popoverSetup(window["metroPopoverSetup"]);
 }
 
 var Popover = {

@@ -47,6 +47,8 @@ var NavigationView = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "navview");
+
         this._createView();
         this._createEvents();
 

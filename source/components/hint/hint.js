@@ -51,6 +51,8 @@ var Hint = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "hint");
+
         element.on(Metro.events.enter, function(){
             that.createHint();
             if (o.hintHide > 0) {

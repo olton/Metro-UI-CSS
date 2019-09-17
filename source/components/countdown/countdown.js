@@ -78,8 +78,11 @@ var Countdown = {
     },
 
     _create: function(){
-        var o = this.options;
+        var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+        Metro.checkRuntime(element, "countdown");
+
         this._build();
         this._createEvents();
     },

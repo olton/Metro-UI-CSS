@@ -9,8 +9,8 @@ Metro.gravatarSetup = function (options) {
     GravatarDefaultConfig = $.extend({}, GravatarDefaultConfig, options);
 };
 
-if (typeof window.metroGravatarSetup !== undefined) {
-    Metro.bottomSheetSetup(window.metroGravatarSetup);
+if (typeof window["metroGravatarSetup"] !== undefined) {
+    Metro.bottomSheetSetup(window["metroGravatarSetup"]);
 }
 
 var Gravatar = {
@@ -26,7 +26,7 @@ var Gravatar = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -40,6 +40,7 @@ var Gravatar = {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, "gravatar");
         this.get();
     },
 

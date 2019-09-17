@@ -17,8 +17,8 @@ Metro.progressSetup = function (options) {
     ProgressDefaultConfig = $.extend({}, ProgressDefaultConfig, options);
 };
 
-if (typeof window.metroProgressSetup !== undefined) {
-    Metro.bottomSheetSetup(window.metroProgressSetup);
+if (typeof window["metroProgressSetup"] !== undefined) {
+    Metro.bottomSheetSetup(window["metroProgressSetup"]);
 }
 
 var Progress = {
@@ -50,7 +50,9 @@ var Progress = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "progress");
 
         element
             .html("")

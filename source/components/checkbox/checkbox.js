@@ -53,6 +53,8 @@ var Checkbox = {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
+        Metro.checkRuntime(element, "checkbox");
+
         if (element.attr('id') === undefined) {
             element.attr('id', Utils.elementId("checkbox"));
         }

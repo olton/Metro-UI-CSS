@@ -13,8 +13,8 @@ Metro.switchSetup = function (options) {
     SwitchDefaultConfig = $.extend({}, SwitchDefaultConfig, options);
 };
 
-if (typeof window.metroSwitchSetup !== undefined) {
-    Metro.switchSetup(window.metroSwitchSetup);
+if (typeof window["metroSwitchSetup"] !== undefined) {
+    Metro.switchSetup(window["metroSwitchSetup"]);
 }
 
 var Switch = {
@@ -48,6 +48,8 @@ var Switch = {
         var container = $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className);
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
+
+        Metro.checkRuntime(element, "switch");
 
         element.attr("type", "checkbox");
 
