@@ -80,6 +80,8 @@ var Slider = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "slider");
+
         this._createSlider();
         this._createEvents();
         this.buff(o.buffer);

@@ -12,8 +12,8 @@ Metro.draggableSetup = function (options) {
     DraggableDefaultConfig = $.extend({}, DraggableDefaultConfig, options);
 };
 
-if (typeof window.metroDraggableSetup !== undefined) {
-    Metro.draggableSetup(window.metroDraggableSetup);
+if (typeof window["metroDraggableSetup"] !== undefined) {
+    Metro.draggableSetup(window["metroDraggableSetup"]);
 }
 
 var Draggable = {
@@ -60,6 +60,8 @@ var Draggable = {
             y: 0
         };
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
+
+        Metro.checkRuntime(element, "draggable");
 
         dragElement[0].ondragstart = function(){return false;};
 

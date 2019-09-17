@@ -49,6 +49,8 @@ var Counter = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "counter");
+
         this._calcArray();
 
         Utils.exec(o.onCounterCreate, [element], this.elem);

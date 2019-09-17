@@ -102,6 +102,8 @@ var Window = {
         var win, overlay;
         var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
 
+        Metro.checkRuntime(element, "window");
+
         if (o.modal === true) {
             o.btnMax = false;
             o.btnMin = false;

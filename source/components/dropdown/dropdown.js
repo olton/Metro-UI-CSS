@@ -46,6 +46,9 @@ var Dropdown = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "dropdown");
+
         this._createStructure();
         this._createEvents();
 

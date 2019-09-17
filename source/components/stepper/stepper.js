@@ -16,8 +16,8 @@ Metro.stepperSetup = function (options) {
     StepperDefaultConfig = $.extend({}, StepperDefaultConfig, options);
 };
 
-if (typeof window.metroStepperSetup !== undefined) {
-    Metro.stepperSetup(window.metroStepperSetup);
+if (typeof window["metroStepperSetup"] !== undefined) {
+    Metro.stepperSetup(window["metroStepperSetup"]);
 }
 
 var Stepper = {
@@ -34,7 +34,7 @@ var Stepper = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -48,7 +48,9 @@ var Stepper = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "stepper");
 
         if (o.step <= 0) {
             o.step = 1;
@@ -62,7 +64,7 @@ var Stepper = {
     },
 
     _createStepper: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var i;
 
         element.addClass("stepper").addClass(o.view).addClass(o.clsStepper);

@@ -19,8 +19,8 @@ Metro.materialInputSetup = function (options) {
     MaterialInputDefaultConfig = $.extend({}, MaterialInputDefaultConfig, options);
 };
 
-if (typeof window.metroMaterialInputSetup !== undefined) {
-    Metro.materialInputSetup(window.metroMaterialInputSetup);
+if (typeof window["metroMaterialInputSetup"] !== undefined) {
+    Metro.materialInputSetup(window["metroMaterialInputSetup"]);
 }
 
 var MaterialInput = {
@@ -53,6 +53,8 @@ var MaterialInput = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "materialinput");
 
         this._createStructure();
         this._createEvents();
@@ -129,8 +131,8 @@ var MaterialInput = {
     },
 
     changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case 'disabled': this.toggleState(); break;
+        if (attributeName === 'disabled') {
+            this.toggleState();
         }
     },
 
@@ -138,7 +140,6 @@ var MaterialInput = {
         var element = this.element;
         var parent = element.parent();
 
-        element.insertBefore(parent);
         parent.remove();
     }
 };

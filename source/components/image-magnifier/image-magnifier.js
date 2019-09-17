@@ -19,8 +19,8 @@ Metro.imageMagnifierSetup = function (options) {
     ImageMagnifierDefaultConfig = $.extend({}, ImageMagnifierDefaultConfig, options);
 };
 
-if (typeof window.metroImageMagnifierSetup !== undefined) {
-    Metro.imageMagnifierSetup(window.metroImageMagnifierSetup);
+if (typeof window["metroImageMagnifierSetup"] !== undefined) {
+    Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
 }
 
 var ImageMagnifier = {
@@ -52,6 +52,8 @@ var ImageMagnifier = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "imagemagnifier");
 
         this._createStructure();
         this._createEvents();
@@ -241,7 +243,11 @@ var ImageMagnifier = {
 
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+        element.off("all");
+        element.remove();
+    }
 };
 
 Metro.plugin('imagemagnifier', ImageMagnifier);

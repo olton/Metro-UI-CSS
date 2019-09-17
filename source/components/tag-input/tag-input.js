@@ -52,6 +52,8 @@ var TagInput = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "taginput");
+
         this._createStructure();
         this._createEvents();
 

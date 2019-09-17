@@ -573,7 +573,7 @@ var Metro = {
     checkRuntime: function(el, role){
         var element = $(el);
         if (!element.attr("data-role-"+role)) {
-            Metro.makeRuntime(element, name);
+            Metro.makeRuntime(element, role);
         }
     },
 

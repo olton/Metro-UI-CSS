@@ -63,6 +63,8 @@ var Spinner = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "spinner");
+
         this._createStructure();
         this._createEvents();
 

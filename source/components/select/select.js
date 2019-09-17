@@ -31,8 +31,8 @@ Metro.selectSetup = function (options) {
     SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
 };
 
-if (typeof window.metroSelectSetup !== undefined) {
-    Metro.selectSetup(window.metroSelectSetup);
+if (typeof window["metroSelectSetup"] !== undefined) {
+    Metro.selectSetup(window["metroSelectSetup"]);
 }
 
 var Select = {
@@ -64,6 +64,8 @@ var Select = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "select");
 
         this._createSelect();
         this._createEvents();

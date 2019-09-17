@@ -47,6 +47,8 @@ var Clock = {
     _create: function(){
         var that = this, element = this.element;
 
+        Metro.checkRuntime(element, "clock");
+
         this._tick();
 
         Utils.exec(this.options.onClockCreate, [this.element]);

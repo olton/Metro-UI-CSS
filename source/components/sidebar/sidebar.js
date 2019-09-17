@@ -38,7 +38,7 @@ var Sidebar = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -52,7 +52,9 @@ var Sidebar = {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "sidebar");
 
         this._createStructure();
         this._createEvents();
@@ -64,7 +66,7 @@ var Sidebar = {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var header = element.find(".sidebar-header");
         var sheet = Metro.sheet;
 
@@ -116,7 +118,7 @@ var Sidebar = {
         var toggle = this.toggle_element;
 
         if (toggle !== null) {
-            toggle.on(Metro.events.click, function(e){
+            toggle.on(Metro.events.click, function(){
                 that.toggle();
             });
         }
@@ -163,7 +165,7 @@ var Sidebar = {
     },
 
     open: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (element.hasClass("static")) {
             return ;
@@ -182,7 +184,7 @@ var Sidebar = {
     },
 
     close: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (element.hasClass("static")) {
             return ;

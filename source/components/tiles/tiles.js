@@ -15,8 +15,8 @@ Metro.tileSetup = function (options) {
     TileDefaultConfig = $.extend({}, TileDefaultConfig, options);
 };
 
-if (typeof window.metroTileSetup !== undefined) {
-    Metro.tileSetup(window.metroTileSetup);
+if (typeof window["metroTileSetup"] !== undefined) {
+    Metro.tileSetup(window["metroTileSetup"]);
 }
 
 var Tile = {
@@ -52,6 +52,8 @@ var Tile = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "tile");
 
         this._createTile();
         this._createEvents();

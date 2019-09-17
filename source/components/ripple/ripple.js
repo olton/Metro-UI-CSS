@@ -44,6 +44,8 @@ var Ripple = {
 
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
+        Metro.checkRuntime(element, "ripple");
+
         element.on(Metro.events.click, target, function(e){
             var el = $(this);
             var timer = null;

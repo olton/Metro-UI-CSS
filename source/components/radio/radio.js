@@ -13,8 +13,8 @@ Metro.radioSetup = function (options) {
     RadioDefaultConfig = $.extend({}, RadioDefaultConfig, options);
 };
 
-if (typeof window.metroRadioSetup !== undefined) {
-    Metro.radioSetup(window.metroRadioSetup);
+if (typeof window["metroRadioSetup"] !== undefined) {
+    Metro.radioSetup(window["metroRadioSetup"]);
 }
 
 var Radio = {
@@ -51,6 +51,8 @@ var Radio = {
         var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
+
+        Metro.checkRuntime(element, "radio");
 
         element.attr("type", "radio");
 
@@ -124,8 +126,6 @@ var Radio = {
     destroy: function(){
         var element = this.element;
         var parent = element.parent();
-        element[0].className = this.origin.className;
-        element.insertBefore(parent);
         parent.remove();
     }
 };

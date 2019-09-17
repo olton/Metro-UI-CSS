@@ -119,6 +119,8 @@ var List = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "list");
+
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
             element.fire("dataload", {

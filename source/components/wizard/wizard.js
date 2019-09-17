@@ -35,8 +35,8 @@ Metro.wizardSetup = function (options) {
     WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
 };
 
-if (typeof window.metroWizardSetup !== undefined) {
-    Metro.wizardSetup(window.metroWizardSetup);
+if (typeof window["metroWizardSetup"] !== undefined) {
+    Metro.wizardSetup(window["metroWizardSetup"]);
 }
 
 var Wizard = {
@@ -67,6 +67,8 @@ var Wizard = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "wizard");
 
         this._createWizard();
         this._createEvents();

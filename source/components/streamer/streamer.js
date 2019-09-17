@@ -38,8 +38,8 @@ Metro.streamerSetup = function (options) {
     StreamerDefaultConfig = $.extend({}, StreamerDefaultConfig, options);
 };
 
-if (typeof window.metroStreamerSetup !== undefined) {
-    Metro.streamerSetup(window.metroStreamerSetup);
+if (typeof window["metroStreamerSetup"] !== undefined) {
+    Metro.streamerSetup(window["metroStreamerSetup"]);
 }
 
 var Streamer = {
@@ -74,6 +74,8 @@ var Streamer = {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "streamer");
 
         element.addClass("streamer");
 

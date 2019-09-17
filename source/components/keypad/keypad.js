@@ -73,6 +73,8 @@ var Keypad = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "keypad");
+
         this._createKeypad();
         if (o.shuffle === true) {
             this.shuffle();

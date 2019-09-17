@@ -73,6 +73,8 @@ var TimePicker = {
         var element = this.element, o = this.options;
         var i;
 
+        Metro.checkRuntime(element, "timepicker");
+
         if (o.distance < 1) {
             o.distance = 1;
         }

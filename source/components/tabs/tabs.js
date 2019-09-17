@@ -18,8 +18,8 @@ Metro.tabsSetup = function (options) {
     TabsDefaultConfig = $.extend({}, TabsDefaultConfig, options);
 };
 
-if (typeof window.metroTabsSetup !== undefined) {
-    Metro.tabsSetup(window.metroTabsSetup);
+if (typeof window["metroTabsSetup"] !== undefined) {
+    Metro.tabsSetup(window["metroTabsSetup"]);
 }
 
 var Tabs = {
@@ -52,6 +52,8 @@ var Tabs = {
     _create: function(){
         var element = this.element, o = this.options;
         var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
+
+        Metro.checkRuntime(element, "tabs");
 
         this._createStructure();
         this._createEvents();

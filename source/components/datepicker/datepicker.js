@@ -73,6 +73,8 @@ var DatePicker = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "datepicker");
+
         if (o.distance < 1) {
             o.distance = 1;
         }

@@ -49,6 +49,10 @@ var File = {
     },
 
     _create: function(){
+        var element = this.element;
+
+        Metro.checkRuntime(element, "file");
+
         this._createStructure();
         this._createEvents();
     },
@@ -210,7 +214,6 @@ var File = {
         var parent = element.parent();
         element.off(Metro.events.change);
         parent.off(Metro.events.click, "button");
-        element.insertBefore(parent);
         parent.remove();
     }
 };

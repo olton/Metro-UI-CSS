@@ -31,8 +31,8 @@ Metro.panelSetup = function (options) {
     PanelDefaultConfig = $.extend({}, PanelDefaultConfig, options);
 };
 
-if (typeof window.metroPanelSetup !== undefined) {
-    Metro.panelSetup(window.metroPanelSetup);
+if (typeof window["metroPanelSetup"] !== undefined) {
+    Metro.panelSetup(window["metroPanelSetup"]);
 }
 
 var Panel = {
@@ -126,6 +126,7 @@ var Panel = {
         var original_classes = element[0].className;
         var title;
 
+        Metro.checkRuntime(element, "panel");
 
         panel.attr("id", id).addClass(original_classes);
         panel.insertBefore(element);

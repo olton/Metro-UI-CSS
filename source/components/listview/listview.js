@@ -52,6 +52,8 @@ var ListView = {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, "listview");
+
         this._createView();
         this._createEvents();
 
