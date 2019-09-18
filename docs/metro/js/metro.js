@@ -543,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.0. Built at 16/09/2019 10:40:33";
+var m4qVersion = "v1.0.0. Built at 18/09/2019 07:05:45";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1465,7 +1465,8 @@ $.extend({
     parseUnit: function(str, out){return parseUnit(str, out)},
     unit: function(str, out){return parseUnit(str, out)},
     isVisible: function(elem) {return isVisible(elem)},
-    isHidden: function(elem) {return isHidden(elem)}
+    isHidden: function(elem) {return isHidden(elem)},
+    iif: function(v1, v2, v3){return iif(v1, v2, v3);}
 });
 
 $.fn.extend({
@@ -3592,7 +3593,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "17/09/2019 11:03:59",
+    compileTime: "18/09/2019 08:26:14",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -23426,6 +23427,7 @@ var Switch = {
 Metro.plugin('switch', Switch);
 
 var TableDefaultConfig = {
+    emptyTableTitle: "Nothing to show",
     templateBeginToken: "<%",
     templateEndToken: "%>",
     paginationDistance: 5,
@@ -23520,6 +23522,8 @@ var TableDefaultConfig = {
     clsEvenRow: "",
     clsOddRow: "",
     clsRow: "",
+
+    clsEmptyTableTitle: "",
 
     onDraw: Metro.noop,
     onDrawRow: Metro.noop,
@@ -24726,7 +24730,7 @@ var Table = {
     _draw: function(cb){
         var that = this, element = this.element, o = this.options;
         var body = element.find("tbody");
-        var i;
+        var i, j, tr, td, check, cells, tds, is_even_row;
         var start = parseInt(o.rows) === -1 ? 0 : o.rows * (this.currentPage - 1),
             stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
         var items;
@@ -24738,115 +24742,127 @@ var Table = {
 
         items = this._filter();
 
-        for (i = start; i <= stop; i++) {
-            var j, tr, td, check, cells = items[i], tds = [], is_even_row;
-            if (!Utils.isValue(cells)) {continue;}
-            tr = $("<tr>").addClass(o.clsBodyRow);
-            tr.data('original', cells);
+        if (items.length > 0) {
+            for (i = start; i <= stop; i++) {
+                cells = items[i];
+                tds = [];
+                if (!Utils.isValue(cells)) {continue;}
+                tr = $("<tr>").addClass(o.clsBodyRow);
+                tr.data('original', cells);
 
-            // Rownum
+                // Rownum
 
-            is_even_row = i % 2 === 0;
+                is_even_row = i % 2 === 0;
 
-            td = $("<td>").html(i + 1);
-            if (that.service[0].clsColumn !== undefined) {
-                td.addClass(that.service[0].clsColumn);
-            }
-            td.appendTo(tr);
+                td = $("<td>").html(i + 1);
+                if (that.service[0].clsColumn !== undefined) {
+                    td.addClass(that.service[0].clsColumn);
+                }
+                td.appendTo(tr);
 
-            // Checkbox
-            td = $("<td>");
-            if (o.checkType === "checkbox") {
-                check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
-            } else {
-                check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
-            }
+                // Checkbox
+                td = $("<td>");
+                if (o.checkType === "checkbox") {
+                    check = $("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "[]' value='" + items[i][o.checkColIndex] + "'>");
+                } else {
+                    check = $("<input type='radio' data-style='"+o.checkStyle+"' data-role='radio' name='" + (Utils.isValue(o.checkName) ? o.checkName : 'table_row_check') + "' value='" + items[i][o.checkColIndex] + "'>");
+                }
 
-            if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
-                check.prop("checked", true);
-            }
+                if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
+                    check.prop("checked", true);
+                }
 
-            check.addClass("table-service-check");
-            Utils.exec(o.onCheckDraw, [check], check[0]);
-            element.fire("checkdraw", {
-                check: check
-            });
-            check.appendTo(td);
-            if (that.service[1].clsColumn !== undefined) {
-                td.addClass(that.service[1].clsColumn);
-            }
-            td.appendTo(tr);
+                check.addClass("table-service-check");
+                Utils.exec(o.onCheckDraw, [check], check[0]);
+                element.fire("checkdraw", {
+                    check: check
+                });
+                check.appendTo(td);
+                if (that.service[1].clsColumn !== undefined) {
+                    td.addClass(that.service[1].clsColumn);
+                }
+                td.appendTo(tr);
 
-            for (j = 0; j < cells.length; j++){
-                tds[j] = null;
-            }
+                for (j = 0; j < cells.length; j++){
+                    tds[j] = null;
+                }
 
-            $.each(cells, function(cell_index){
-                var val = this;
+                $.each(cells, function(cell_index){
+                    var val = this;
+                    var td = $("<td>");
 
-                if (Utils.isValue(that.heads[cell_index].template)) {
-                    val = TemplateEngine(that.heads[cell_index].template, {cellValue: val}, {
-                        beginToken: o.templateBeginToken,
-                        endToken: o.templateEndToken
+                    if (Utils.isValue(that.heads[cell_index].template)) {
+                        val = TemplateEngine(that.heads[cell_index].template, {value: val}, {
+                            beginToken: o.templateBeginToken,
+                            endToken: o.templateEndToken
+                        })
+                    }
+
+                    if (o.cellWrapper === true) {
+                        val = $("<div>").addClass("data-wrapper").addClass(o.clsCellWrapper).html(val);
+                    }
+                    td.html(val);
+
+                    td.addClass(o.clsBodyCell);
+                    if (Utils.isValue(that.heads[cell_index].clsColumn)) {
+                        td.addClass(that.heads[cell_index].clsColumn);
+                    }
+
+                    if (Utils.bool(view[cell_index].show) === false) {
+                        td.addClass("hidden");
+                    }
+
+                    if (Utils.bool(view[cell_index].show)) {
+                        td.removeClass("hidden");
+                    }
+
+                    td.data('original',this);
+
+                    tds[view[cell_index]['index-view']] = td;
+                    Utils.exec(o.onDrawCell, [td, val, cell_index, that.heads[cell_index], cells], td[0]);
+                    element.fire("drawcell", {
+                        td: td,
+                        val: val,
+                        cellIndex: cell_index,
+                        head: that.heads[cell_index],
+                        items: cells
+                    });
+                });
+
+                for (j = 0; j < cells.length; j++){
+                    tds[j].appendTo(tr);
+                    Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0]);
+                    element.fire("appendcell", {
+                        td: tds[j],
+                        tr: tr,
+                        index: j
                     })
                 }
 
-                if (o.cellWrapper === true) {
-                    td = $("<td>");
-                    $("<div>").addClass("cell-wrapper").addClass(o.clsCellWrapper).html(val).appendTo(td);
-                } else {
-                    td = $("<td>").html(val);
-                }
-                td.addClass(o.clsBodyCell);
-                if (Utils.isValue(that.heads[cell_index].clsColumn)) {
-                    td.addClass(that.heads[cell_index].clsColumn);
-                }
-
-                if (Utils.bool(view[cell_index].show) === false) {
-                    td.addClass("hidden");
-                }
-
-                if (Utils.bool(view[cell_index].show)) {
-                    td.removeClass("hidden");
-                }
-
-                td.data('original',this);
-
-                tds[view[cell_index]['index-view']] = td;
-                Utils.exec(o.onDrawCell, [td, val, cell_index, that.heads[cell_index], cells], td[0]);
-                element.fire("drawcell", {
-                    td: td,
-                    val: val,
-                    cellIndex: cell_index,
-                    head: that.heads[cell_index],
+                Utils.exec(o.onDrawRow, [tr, that.view, that.heads, cells], tr[0]);
+                element.fire("drawrow", {
+                    tr: tr,
+                    view: that.view,
+                    heads: that.heads,
                     items: cells
                 });
-            });
 
-            for (j = 0; j < cells.length; j++){
-                tds[j].appendTo(tr);
-                Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0]);
-                element.fire("appendcell", {
-                    td: tds[j],
-                    tr: tr,
-                    index: j
-                })
+                tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
+
+                Utils.exec(o.onAppendRow, [tr, element], tr[0]);
+                element.fire("appendrow", {
+                    tr: tr
+                });
             }
 
-            Utils.exec(o.onDrawRow, [tr, that.view, that.heads, cells], tr[0]);
-            element.fire("drawrow", {
-                tr: tr,
-                view: that.view,
-                heads: that.heads,
-                items: cells
+        } else {
+            j = 0;
+            $.each(view, function(){
+                if (this.show) j++;
             });
-
-            tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
-
-            Utils.exec(o.onAppendRow, [tr, element], tr[0]);
-            element.fire("appendrow", {
-                tr: tr
-            });
+            tr = $("<tr>").addClass(o.clsBodyRow).appendTo(body);
+            td = $("<td>").attr("colspan", j).addClass("text-center").html($("<span>").addClass(o.clsEmptyTableTitle).html(o.emptyTableTitle));
+            td.appendTo(tr);
         }
 
         this._info(start + 1, stop + 1, items.length);
@@ -24864,17 +24880,19 @@ var Table = {
     },
 
     _getItemContent: function(row){
+        var o = this.options;
         var result, col = row[this.sort.colIndex];
         var format = this.heads[this.sort.colIndex].format;
         var formatMask = !Utils.isNull(this.heads) && !Utils.isNull(this.heads[this.sort.colIndex]) && Utils.isValue(this.heads[this.sort.colIndex]['formatMask']) ? this.heads[this.sort.colIndex]['formatMask'] : "%Y-%m-%d";
-        var o = this.options;
+        var thousandSeparator = $.iif(this.heads && this.heads[this.sort.colIndex], this.heads[this.sort.colIndex]["thousandSeparator"], o.thousandSeparator);
+        var decimalSeparator  = $.iif(this.heads && this.heads[this.sort.colIndex], this.heads[this.sort.colIndex]["decimalSeparator"], o.decimalSeparator);
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
         if (Utils.isValue(result) && Utils.isValue(format)) {
 
-            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
-                result = Utils.parseNumber(result, o.thousandSeparator, o.decimalSeparator);
+            if (['number', 'int', 'float', 'money'].indexOf(format) !== -1) {
+                result = Utils.parseNumber(result, thousandSeparator, decimalSeparator);
             }
 
             switch (format) {

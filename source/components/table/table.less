@@ -67,6 +67,7 @@
     .sortable-column, .sorting {
         position: relative;
         cursor: pointer;
+        padding-right: 30px;
         &:after {
             position: absolute;
             content: "\21C5";
@@ -109,7 +110,8 @@
 
     &.sortable-markers-on-left {
         .sortable-column, .sorting {
-            .px2rem(padding-left, 30px);
+            padding-left: 30px;
+
             &:before, &:after {
                 left: 0;
                 .px2rem(margin-left, 10px);
@@ -235,7 +237,7 @@
         }
     }
 
-    .cell-wrapper {
+    .data-wrapper {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
