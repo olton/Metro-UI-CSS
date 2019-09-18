@@ -124,9 +124,9 @@ var Sidebar = {
         }
 
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-            $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+            $(window).on(Metro.events.resize,function(){
                 that._checkStatic();
-            });
+            }, {ns: element.attr("id")});
         }
 
         if (o.menuItemClick === true) {
@@ -213,10 +213,28 @@ var Sidebar = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle = this.toggle_element;
+
+        if (toggle !== null) {
+            toggle.off(Metro.events.click);
+        }
+
+        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
+            $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        }
+
+        if (o.menuItemClick === true) {
+            element.off(Metro.events.click, ".sidebar-menu li > a");
+        }
+
+        element.off(Metro.events.click, ".sidebar-menu .js-sidebar-close");
+
+        return element;
+    }
 };
 
 Metro.plugin('sidebar', Sidebar);

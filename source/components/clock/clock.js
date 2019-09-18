@@ -128,7 +128,7 @@ var Clock = {
     destroy: function(){
         clearInterval(this._clockInterval);
         this._clockInterval = null;
-        this.element.remove();
+        return this.element;
     }
 };
 

@@ -123,7 +123,7 @@ var BottomSheet = {
         }
 
         element.off(Metro.events.click, "li");
-        element.remove();
+        return element;
     }
 };
 

@@ -515,10 +515,9 @@ var Select = {
         filter_input.off(Metro.events.keyup);
         drop_container.off(Metro.events.click);
 
-        Metro.destroyPlugin(drop_container, "dropdown");
+        drop_container.data("dropdown").destroy();
 
-        element.insertBefore(container);
-        container.remove();
+        return element;
     }
 };
 
@@ -529,7 +528,7 @@ $(document).on(Metro.events.click, function(){
         if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");
-});
+}, {ns: "close-select-elements"});
 
 Metro.plugin('select', Select);
 

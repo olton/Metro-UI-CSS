@@ -223,7 +223,7 @@ var InfoBox = {
         element.off("all");
         $(window).off(Metro.events.resize, {ns: element.attr("id")});
 
-        element.remove();
+        return element;
     }
 };
 

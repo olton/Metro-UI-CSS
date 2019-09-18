@@ -145,7 +145,7 @@ var Checkbox = {
     },
 
     destroy: function(){
-        this.element.closest(".checkbox").remove();
+        return this.element;
     }
 };
 

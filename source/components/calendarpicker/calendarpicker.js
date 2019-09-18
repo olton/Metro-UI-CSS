@@ -456,15 +456,15 @@ var CalendarPicker = {
         var clear = container.find(".input-clear-button");
 
         $(window).off(Metro.events.resize, {ns: container.attr("id")});
-        if (clear.length > 0) clear.off(Metro.events.click);
+        clear.off(Metro.events.click);
         container.off(Metro.events.click, "button, input");
         element.off(Metro.events.blur);
         element.off(Metro.events.focus);
-        element.on(Metro.events.change);
+        element.off(Metro.events.change);
 
         this.calendar.data("calendar").destroy();
 
-        element.remove();
+        return element;
     }
 };
 

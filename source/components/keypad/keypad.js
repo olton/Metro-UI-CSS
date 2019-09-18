@@ -377,7 +377,7 @@ var Keypad = {
         keys.off(Metro.events.click, ".key");
         element.off(Metro.events.change);
 
-        keypad.remove();
+        return element;
     }
 };
 

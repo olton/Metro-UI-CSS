@@ -82,6 +82,9 @@ var Draggable = {
             }
         });
 
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("draggable"));
+        }
 
         dragElement.on(Metro.events.startAll, function(e){
 
@@ -139,7 +142,7 @@ var Draggable = {
                     position: position
                 });
                 //e.preventDefault();
-            });
+            }, {ns: element.attr("id")});
 
             $(document).on(Metro.events.stopAll, function(){
                 element.css({
@@ -148,8 +151,8 @@ var Draggable = {
                 }).removeClass("draggable");
 
                 if (that.drag) {
-                    $(document).off(Metro.events.moveAll);
-                    $(document).off(Metro.events.stopAll);
+                    $(document).off(Metro.events.moveAll, {ns: element.attr("id")});
+                    $(document).off(Metro.events.stopAll, {ns: element.attr("id")});
                 }
 
                 that.drag = false;
@@ -159,7 +162,7 @@ var Draggable = {
                 element.fire("dragstop", {
                     position: position
                 });
-            });
+            }, {ns: element.attr("id")});
         });
     },
 
@@ -172,7 +175,13 @@ var Draggable = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
+        dragElement.off(Metro.events.startAll,{ns: element.attr("id")});
+        return element;
     }
 };
 

@@ -124,9 +124,7 @@ var Radio = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var parent = element.parent();
-        parent.remove();
+        return this.element;
     }
 };
 

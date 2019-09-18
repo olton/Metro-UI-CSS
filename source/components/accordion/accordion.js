@@ -199,7 +199,7 @@ var Accordion = {
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".heading");
-        element.remove();
+        return element;
     }
 };
 

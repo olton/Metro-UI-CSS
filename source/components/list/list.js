@@ -853,7 +853,28 @@ var List = {
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var that = this, element = this.element;
+        var component = element.parent();
+        var search = component.find(".list-search-block input");
+        var customSearch;
+
+        search.off(Metro.events.inputchange);
+        if (Utils.isValue(this.wrapperSearch)) {
+            customSearch = this.wrapperSearch.find("input");
+            if (customSearch.length > 0) {
+                customSearch.off(Metro.events.inputchange);
+            }
+        }
+
+        component.off(Metro.events.click, ".pagination .page-link");
+
+        if (Utils.isValue(this.wrapperPagination)) {
+            this.wrapperPagination.off(Metro.events.click, ".pagination .page-link");
+        }
+
+        return element;
+    }
 };
 
 Metro.plugin('list', List);

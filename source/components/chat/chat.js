@@ -298,7 +298,7 @@ var Chat = {
         sendButton.off(Metro.events.click);
         input.off(Metro.events.keyup);
 
-        element.remove();
+        return element;
     }
 };
 

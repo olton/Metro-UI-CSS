@@ -120,7 +120,7 @@ var Counter = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 

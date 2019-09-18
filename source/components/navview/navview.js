@@ -218,17 +218,19 @@ var NavigationView = {
     },
 
     destroy: function(){
-        var element = this.element;
+        var that = this, element = this.element, o = this.options;
 
-        element.off('all');
+        element.off(Metro.events.click, ".pull-button, .holder");
+        element.off(Metro.events.click, ".navview-menu li");
+        element.off(Metro.events.click, ".navview-menu li > a");
 
         if (this.paneToggle !== null) {
-            this.paneToggle.off('all')
+            this.paneToggle.off(Metro.events.click);
         }
 
         $(window).off(Metro.events.resize,{ns: element.attr("id")});
 
-        element.remove();
+        return element;
     }
 };
 

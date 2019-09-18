@@ -291,10 +291,10 @@ var Slider = {
             });
         });
 
-        $(window).resize(function(){
+        $(window).on(Metro.events.resize,function(){
             that.val(that.value);
             that.buff(that.buffer);
-        });
+        }, {ns: slider.attr("id")});
     },
 
     _convert: function(v, how){
@@ -561,7 +561,20 @@ var Slider = {
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element, slider = this.slider;
+        var marker = slider.find(".marker");
+
+        marker.off(Metro.events.startAll);
+        marker.off(Metro.events.focus);
+        marker.off(Metro.events.blur);
+        marker.off(Metro.events.keydown);
+        marker.off(Metro.events.keyup);
+        slider.off(Metro.events.click);
+        $(window).off(Metro.events.resize, {ns: slider.attr("id")});
+
+        return element;
+    }
 };
 
 Metro.plugin('slider', Slider);

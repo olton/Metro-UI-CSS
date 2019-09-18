@@ -288,6 +288,15 @@ var Rating = {
             case "data-message": this.changeAttributeMessage(); break;
             case "data-static": this.changeAttributeStatic(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var rating = this.rating;
+
+        rating.off(Metro.events.click, ".stars li");
+
+        return element;
     }
 };
 

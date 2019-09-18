@@ -170,8 +170,8 @@ var AppBar = {
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
-        $(window).off(Metro.events.resize+"-"+element.attr("id"));
-        element.remove();
+        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        return element;
     }
 };
 
