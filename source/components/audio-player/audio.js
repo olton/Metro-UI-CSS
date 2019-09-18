@@ -449,27 +449,13 @@ var Audio = {
     destroy: function(){
         var element = this.element, player = this.player;
 
-        element.off("loadstart");
-        element.off("loadedmetadata");
-        element.off("canplay");
-        element.off("progress");
-        element.off("timeupdate");
-        element.off("waiting");
-        element.off("loadeddata");
-        element.off("play");
-        element.off("pause");
-        element.off("stop");
-        element.off("ended");
-        element.off("volumechange");
-        player.off(Metro.events.click, ".play");
-        player.off(Metro.events.click, ".stop");
-        player.off(Metro.events.click, ".mute");
-        player.off(Metro.events.click, ".loop");
+        element.off("all");
+        player.off("all");
 
         this.stream.data("slider").destroy();
         this.volume.data("slider").destroy();
 
-        player.remove();
+        return element;
     }
 };
 

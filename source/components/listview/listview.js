@@ -429,6 +429,17 @@ var ListView = {
             case "data-view": changeView(); break;
             case "data-selectable": changeSelectable(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, ".node");
+        element.off(Metro.events.click, ".node-toggle");
+        element.off(Metro.events.click, ".node-group > .data > .caption");
+        element.off(Metro.events.dblclick, ".node-group > .data > .caption");
+
+        return element;
     }
 };
 

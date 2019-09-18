@@ -453,9 +453,7 @@ var DatePicker = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var picker = this.picker;
-        var parent = element.parent();
+        var element = this.element, picker = this.picker;
 
         $.each(["moth", "day", "year"], function(){
             picker.find(".sel-"+this).off("scroll");
@@ -466,8 +464,7 @@ var DatePicker = {
         picker.off(Metro.events.click, ".action-ok");
         picker.off(Metro.events.click, ".action-cancel");
 
-        element.insertBefore(parent);
-        parent.remove();
+        return element;
     }
 };
 

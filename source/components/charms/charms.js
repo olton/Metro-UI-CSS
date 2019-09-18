@@ -135,7 +135,7 @@ var Charms = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 

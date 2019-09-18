@@ -168,9 +168,9 @@ var Dialog = {
             this.open();
         }
 
-        $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             that.setPosition();
-        });
+        }, {ns: element.attr('id')});
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
         element.fire("dialogcreate");
@@ -331,6 +331,16 @@ var Dialog = {
     },
 
     changeAttribute: function(attributeName){
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+
+        element.off(Metro.events.click, ".js-dialog-close");
+        element.find(".button").off(Metro.events.click);
+        $(window).off(Metro.events.resize,{ns: element.attr('id')});
+
+        return element;
     }
 };
 

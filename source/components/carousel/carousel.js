@@ -525,7 +525,7 @@ var Carousel = {
         element.off(Metro.events.click, ".slide");
         $(window).off(Metro.events.resize + "-" + element.attr("id"));
 
-        element.remove();
+        return element;
     }
 };
 

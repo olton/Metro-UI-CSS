@@ -34,6 +34,8 @@ var Popover = {
             height: 0
         };
 
+        this.id = Utils.elementId("popover");
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -55,9 +57,7 @@ var Popover = {
     },
 
     _create: function(){
-
         this._createEvents();
-
     },
 
     _createEvents: function(){
@@ -98,8 +98,7 @@ var Popover = {
 
         $(window).on(Metro.events.scroll, function(){
             if (that.popover !== null) that.setPosition();
-        });
-
+        }, {ns: this.id});
     },
 
     setPosition: function(){
@@ -261,6 +260,27 @@ var Popover = {
             case "data-popover-text": changeText(); break;
             case "data-popover-position": changePosition(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var event;
+
+        switch (o.popoverTrigger) {
+            case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
+            case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
+            default: event = Metro.events.enter;
+        }
+
+        element.off(event);
+
+        if (o.hideOnLeave === true) {
+            element.off(Metro.events.leave);
+        }
+
+        $(window).off(Metro.events.scroll,{ns: this.id});
+
+        return element;
     }
 };
 

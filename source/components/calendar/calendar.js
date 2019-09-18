@@ -954,7 +954,7 @@ var Calendar = {
             element.data("ripple").destroy();
         }
 
-        element.remove();
+        return element;
     }
 };
 

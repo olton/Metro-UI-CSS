@@ -3593,7 +3593,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "18/09/2019 10:05:06",
+    compileTime: "18/09/2019 13:54:57",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7372,7 +7372,7 @@ var Accordion = {
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".heading");
-        element.remove();
+        return element;
     }
 };
 
@@ -7474,7 +7474,7 @@ var Activity = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 
@@ -7676,8 +7676,8 @@ var AppBar = {
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
-        $(window).off(Metro.events.resize+"-"+element.attr("id"));
-        element.remove();
+        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        return element;
     }
 };
 
@@ -8134,27 +8134,13 @@ var Audio = {
     destroy: function(){
         var element = this.element, player = this.player;
 
-        element.off("loadstart");
-        element.off("loadedmetadata");
-        element.off("canplay");
-        element.off("progress");
-        element.off("timeupdate");
-        element.off("waiting");
-        element.off("loadeddata");
-        element.off("play");
-        element.off("pause");
-        element.off("stop");
-        element.off("ended");
-        element.off("volumechange");
-        player.off(Metro.events.click, ".play");
-        player.off(Metro.events.click, ".stop");
-        player.off(Metro.events.click, ".mute");
-        player.off(Metro.events.click, ".loop");
+        element.off("all");
+        player.off("all");
 
         this.stream.data("slider").destroy();
         this.volume.data("slider").destroy();
 
-        player.remove();
+        return element;
     }
 };
 
@@ -8285,7 +8271,7 @@ var BottomSheet = {
         }
 
         element.off(Metro.events.click, "li");
-        element.remove();
+        return element;
     }
 };
 
@@ -8444,7 +8430,7 @@ var ButtonGroup = {
     destroy: function(){
         var element = this.element, o = this.options;
         element.off(Metro.events.click, o.targets);
-        element.remove();
+        return element;
     }
 
 };
@@ -9407,7 +9393,7 @@ var Calendar = {
             element.data("ripple").destroy();
         }
 
-        element.remove();
+        return element;
     }
 };
 
@@ -9880,15 +9866,15 @@ var CalendarPicker = {
         var clear = container.find(".input-clear-button");
 
         $(window).off(Metro.events.resize, {ns: container.attr("id")});
-        if (clear.length > 0) clear.off(Metro.events.click);
+        clear.off(Metro.events.click);
         container.off(Metro.events.click, "button, input");
         element.off(Metro.events.blur);
         element.off(Metro.events.focus);
-        element.on(Metro.events.change);
+        element.off(Metro.events.change);
 
         this.calendar.data("calendar").destroy();
 
-        element.remove();
+        return element;
     }
 };
 
@@ -10430,7 +10416,7 @@ var Carousel = {
         element.off(Metro.events.click, ".slide");
         $(window).off(Metro.events.resize + "-" + element.attr("id"));
 
-        element.remove();
+        return element;
     }
 };
 
@@ -10573,7 +10559,7 @@ var Charms = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 
@@ -10932,7 +10918,7 @@ var Chat = {
         sendButton.off(Metro.events.click);
         input.off(Metro.events.keyup);
 
-        element.remove();
+        return element;
     }
 };
 
@@ -11085,7 +11071,7 @@ var Checkbox = {
     },
 
     destroy: function(){
-        this.element.closest(".checkbox").remove();
+        return this.element;
     }
 };
 
@@ -11221,7 +11207,7 @@ var Clock = {
     destroy: function(){
         clearInterval(this._clockInterval);
         this._clockInterval = null;
-        this.element.remove();
+        return this.element;
     }
 };
 
@@ -11376,7 +11362,7 @@ var Collapse = {
 
     destroy: function(){
         this.toggle.off(Metro.events.click);
-        // TODO check roles, if one - remove element
+        return this.element;
     }
 };
 
@@ -11918,7 +11904,7 @@ var Countdown = {
 
         $(document).off("visibilitychange", {ns: element.attr("id")});
 
-        this.element.remove();
+        return this.element;
     }
 };
 
@@ -12046,7 +12032,7 @@ var Counter = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 
@@ -12512,7 +12498,7 @@ var Cube = {
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         clearInterval(this.interval);
         this.interval = null;
@@ -12522,7 +12508,7 @@ var Cube = {
 
         element.off(Metro.events.click, ".cube-cell");
 
-        element.remove();
+        return element;
     }
 };
 
@@ -12983,9 +12969,7 @@ var DatePicker = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var picker = this.picker;
-        var parent = element.parent();
+        var element = this.element, picker = this.picker;
 
         $.each(["moth", "day", "year"], function(){
             picker.find(".sel-"+this).off("scroll");
@@ -12996,8 +12980,7 @@ var DatePicker = {
         picker.off(Metro.events.click, ".action-ok");
         picker.off(Metro.events.click, ".action-cancel");
 
-        element.insertBefore(parent);
-        parent.remove();
+        return element;
     }
 };
 
@@ -13179,9 +13162,9 @@ var Dialog = {
             this.open();
         }
 
-        $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             that.setPosition();
-        });
+        }, {ns: element.attr('id')});
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
         element.fire("dialogcreate");
@@ -13342,6 +13325,16 @@ var Dialog = {
     },
 
     changeAttribute: function(attributeName){
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+
+        element.off(Metro.events.click, ".js-dialog-close");
+        element.find(".button").off(Metro.events.click);
+        $(window).off(Metro.events.resize,{ns: element.attr('id')});
+
+        return element;
     }
 };
 
@@ -13574,7 +13567,7 @@ var Donut = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 
@@ -13664,6 +13657,9 @@ var Draggable = {
             }
         });
 
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("draggable"));
+        }
 
         dragElement.on(Metro.events.startAll, function(e){
 
@@ -13721,7 +13717,7 @@ var Draggable = {
                     position: position
                 });
                 //e.preventDefault();
-            });
+            }, {ns: element.attr("id")});
 
             $(document).on(Metro.events.stopAll, function(){
                 element.css({
@@ -13730,8 +13726,8 @@ var Draggable = {
                 }).removeClass("draggable");
 
                 if (that.drag) {
-                    $(document).off(Metro.events.moveAll);
-                    $(document).off(Metro.events.stopAll);
+                    $(document).off(Metro.events.moveAll, {ns: element.attr("id")});
+                    $(document).off(Metro.events.stopAll, {ns: element.attr("id")});
                 }
 
                 that.drag = false;
@@ -13741,7 +13737,7 @@ var Draggable = {
                 element.fire("dragstop", {
                     position: position
                 });
-            });
+            }, {ns: element.attr("id")});
         });
     },
 
@@ -13754,7 +13750,13 @@ var Draggable = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
+        dragElement.off(Metro.events.startAll,{ns: element.attr("id")});
+        return element;
     }
 };
 
@@ -14189,7 +14191,7 @@ var File = {
         var parent = element.parent();
         element.off(Metro.events.change);
         parent.off(Metro.events.click, "button");
-        parent.remove();
+        return element;
     }
 };
 
@@ -14290,10 +14292,7 @@ var Gravatar = {
     },
 
     destroy: function(){
-        var element = this.element;
-        if (element[0].tagName.toLowerCase() !== "img") {
-            element.html("");
-        }
+        return this.element;
     }
 };
 
@@ -14555,6 +14554,7 @@ $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
     }
 });
 
+// TODO add destroy
 
 // TODO source as array, mode as array
 
@@ -14910,7 +14910,7 @@ var ImageCompare = {
         element.off(Metro.events.start);
         $(window).off(Metro.events.resize, {ns: element.attr("id")});
 
-        element.remove();
+        return element;
     }
 };
 
@@ -15163,8 +15163,9 @@ var ImageMagnifier = {
 
     destroy: function(){
         var element = this.element;
-        element.off("all");
-        element.remove();
+        element.off(Metro.events.move);
+        element.off(Metro.events.leave);
+        return element;
     }
 };
 
@@ -15395,7 +15396,7 @@ var InfoBox = {
         element.off("all");
         $(window).off(Metro.events.resize, {ns: element.attr("id")});
 
-        element.remove();
+        return element;
     }
 };
 
@@ -15627,9 +15628,8 @@ var MaterialInput = {
 
     destroy: function(){
         var element = this.element;
-        var parent = element.parent();
 
-        parent.remove();
+        return element;
     }
 };
 
@@ -16098,7 +16098,7 @@ var Input = {
         element.off(Metro.events.blur);
         element.off(Metro.events.focus);
 
-        parent.remove();
+        return element;
     }
 };
 
@@ -16488,7 +16488,7 @@ var Keypad = {
         keys.off(Metro.events.click, ".key");
         element.off(Metro.events.change);
 
-        keypad.remove();
+        return element;
     }
 };
 
@@ -17359,7 +17359,28 @@ var List = {
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var that = this, element = this.element;
+        var component = element.parent();
+        var search = component.find(".list-search-block input");
+        var customSearch;
+
+        search.off(Metro.events.inputchange);
+        if (Utils.isValue(this.wrapperSearch)) {
+            customSearch = this.wrapperSearch.find("input");
+            if (customSearch.length > 0) {
+                customSearch.off(Metro.events.inputchange);
+            }
+        }
+
+        component.off(Metro.events.click, ".pagination .page-link");
+
+        if (Utils.isValue(this.wrapperPagination)) {
+            this.wrapperPagination.off(Metro.events.click, ".pagination .page-link");
+        }
+
+        return element;
+    }
 };
 
 Metro.plugin('list', List);
@@ -17795,6 +17816,17 @@ var ListView = {
             case "data-view": changeView(); break;
             case "data-selectable": changeSelectable(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, ".node");
+        element.off(Metro.events.click, ".node-toggle");
+        element.off(Metro.events.click, ".node-group > .data > .caption");
+        element.off(Metro.events.dblclick, ".node-group > .data > .caption");
+
+        return element;
     }
 };
 
@@ -17994,9 +18026,9 @@ var Master = {
             }
         });
 
-        $(window).on(Metro.events.resize + "-master" + element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
             element.find(".pages").height(that.pages[that.currentIndex].outerHeight(true) + 2);
-        });
+        }, {ns: element.attr("id")});
     },
 
     _slideToPage: function(index){
@@ -18169,6 +18201,16 @@ var Master = {
             case "data-effect-func": this.changeEffectFunc(); break;
             case "data-duration": this.changeEffectDuration(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, ".controls .prev");
+        element.off(Metro.events.click, ".controls .next");
+        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+
+        return element;
     }
 };
 
@@ -18394,17 +18436,19 @@ var NavigationView = {
     },
 
     destroy: function(){
-        var element = this.element;
+        var that = this, element = this.element, o = this.options;
 
-        element.off('all');
+        element.off(Metro.events.click, ".pull-button, .holder");
+        element.off(Metro.events.click, ".navview-menu li");
+        element.off(Metro.events.click, ".navview-menu li > a");
 
         if (this.paneToggle !== null) {
-            this.paneToggle.off('all')
+            this.paneToggle.off(Metro.events.click);
         }
 
         $(window).off(Metro.events.resize,{ns: element.attr("id")});
 
-        element.remove();
+        return element;
     }
 };
 
@@ -18897,6 +18941,20 @@ var Panel = {
     },
 
     changeAttribute: function(attributeName){
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        if (o.collapsible === true) {
+            element.data("collapse").destroy();
+        }
+
+        if (o.draggable === true) {
+            element.data("draggable").destroy();
+        }
+
+        return element;
     }
 };
 
@@ -18938,6 +18996,8 @@ var Popover = {
             height: 0
         };
 
+        this.id = Utils.elementId("popover");
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -18959,9 +19019,7 @@ var Popover = {
     },
 
     _create: function(){
-
         this._createEvents();
-
     },
 
     _createEvents: function(){
@@ -19002,8 +19060,7 @@ var Popover = {
 
         $(window).on(Metro.events.scroll, function(){
             if (that.popover !== null) that.setPosition();
-        });
-
+        }, {ns: this.id});
     },
 
     setPosition: function(){
@@ -19165,6 +19222,27 @@ var Popover = {
             case "data-popover-text": changeText(); break;
             case "data-popover-position": changePosition(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var event;
+
+        switch (o.popoverTrigger) {
+            case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
+            case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
+            default: event = Metro.events.enter;
+        }
+
+        element.off(event);
+
+        if (o.hideOnLeave === true) {
+            element.off(Metro.events.leave);
+        }
+
+        $(window).off(Metro.events.scroll,{ns: this.id});
+
+        return element;
     }
 };
 
@@ -19345,6 +19423,10 @@ var Progress = {
             case 'data-value': this.changeValue(); break;
             case 'data-buffer': this.changeBuffer(); break;
         }
+    },
+
+    destroy: function(){
+        return this.element;
     }
 };
 
@@ -19476,9 +19558,7 @@ var Radio = {
     },
 
     destroy: function(){
-        var element = this.element;
-        var parent = element.parent();
-        parent.remove();
+        return this.element;
     }
 };
 
@@ -19774,6 +19854,15 @@ var Rating = {
             case "data-message": this.changeAttributeMessage(); break;
             case "data-static": this.changeAttributeStatic(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var rating = this.rating;
+
+        rating.off(Metro.events.click, ".stars li");
+
+        return element;
     }
 };
 
@@ -19855,7 +19944,7 @@ var Resizable = {
     _createEvents: function(){
         var element = this.element, o = this.options;
 
-        this.resizer.on(Metro.events.start + "-resize-element", function(e){
+        this.resizer.on(Metro.events.start, function(e){
 
             if (element.data('canResize') === false) {
                 return ;
@@ -19871,7 +19960,7 @@ var Resizable = {
                 size: size
             });
 
-            $(document).on(Metro.events.move + "-resize-element", function(e){
+            $(document).on(Metro.events.move, function(e){
                 var moveXY = Utils.pageXY(e);
                 var size = {
                     width: startWidth + moveXY.x - startXY.x,
@@ -19890,9 +19979,9 @@ var Resizable = {
                 element.fire("resize", {
                     size: size
                 });
-            });
+            }, {ns: "resize-element"});
 
-            $(document).on(Metro.events.stop + "-resize-element", function(){
+            $(document).on(Metro.events.stop, function(){
                 $(document).off(Metro.events.move + "-resize-element");
                 $(document).off(Metro.events.stop + "-resize-element");
 
@@ -19905,7 +19994,7 @@ var Resizable = {
                 element.fire("resizestop", {
                     size: size
                 });
-            });
+            }, {ns: "resize-element"});
 
             e.preventDefault();
             e.stopPropagation();
@@ -19931,6 +20020,11 @@ var Resizable = {
         switch (attributeName) {
             case "data-can-resize": canResize(); break;
         }
+    },
+
+    destroy: function(){
+        this.resizer.off(Metro.events.start);
+        return this.element;
     }
 };
 
@@ -20071,7 +20165,12 @@ var RibbonMenu = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+        element.off(Metro.events.click, ".tabs-holder li a");
+        return element;
     }
 };
 
@@ -20701,10 +20800,9 @@ var Select = {
         filter_input.off(Metro.events.keyup);
         drop_container.off(Metro.events.click);
 
-        Metro.destroyPlugin(drop_container, "dropdown");
+        drop_container.data("dropdown").destroy();
 
-        element.insertBefore(container);
-        container.remove();
+        return element;
     }
 };
 
@@ -20715,7 +20813,7 @@ $(document).on(Metro.events.click, function(){
         if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");
-});
+}, {ns: "close-select-elements"});
 
 Metro.plugin('select', Select);
 
@@ -20847,9 +20945,9 @@ var Sidebar = {
         }
 
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-            $(window).on(Metro.events.resize + "_" + element.attr("id"), function(){
+            $(window).on(Metro.events.resize,function(){
                 that._checkStatic();
-            });
+            }, {ns: element.attr("id")});
         }
 
         if (o.menuItemClick === true) {
@@ -20936,10 +21034,28 @@ var Sidebar = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var that = this, element = this.element, o = this.options;
+        var toggle = this.toggle_element;
+
+        if (toggle !== null) {
+            toggle.off(Metro.events.click);
+        }
+
+        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
+            $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        }
+
+        if (o.menuItemClick === true) {
+            element.off(Metro.events.click, ".sidebar-menu li > a");
+        }
+
+        element.off(Metro.events.click, ".sidebar-menu .js-sidebar-close");
+
+        return element;
+    }
 };
 
 Metro.plugin('sidebar', Sidebar);
@@ -21271,10 +21387,10 @@ var Slider = {
             });
         });
 
-        $(window).resize(function(){
+        $(window).on(Metro.events.resize,function(){
             that.val(that.value);
             that.buff(that.buffer);
-        });
+        }, {ns: slider.attr("id")});
     },
 
     _convert: function(v, how){
@@ -21541,7 +21657,20 @@ var Slider = {
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element, slider = this.slider;
+        var marker = slider.find(".marker");
+
+        marker.off(Metro.events.startAll);
+        marker.off(Metro.events.focus);
+        marker.off(Metro.events.blur);
+        marker.off(Metro.events.keydown);
+        marker.off(Metro.events.keyup);
+        slider.off(Metro.events.click);
+        $(window).off(Metro.events.resize, {ns: slider.attr("id")});
+
+        return element;
+    }
 };
 
 Metro.plugin('slider', Slider);
@@ -21773,7 +21902,9 @@ var Sorter = {
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        return this.element;
+    }
 };
 
 Metro.plugin('sorter', Sorter);
@@ -22083,11 +22214,13 @@ var Spinner = {
         var spinner = element.closest(".spinner");
         var spinner_buttons = spinner.find(".spinner-button");
 
-        spinner.off('all');
-        spinner_buttons.off('all');
-        element.off('all');
+        spinner.off(Metro.events.click);
+        spinner_buttons.off(Metro.events.start);
+        spinner_buttons.off(Metro.events.stop);
+        element.off(Metro.events.keydown);
+        spinner.off(Metro.events.keyup);
 
-        spinner.remove();
+        return element;
     }
 };
 

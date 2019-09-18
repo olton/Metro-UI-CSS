@@ -461,7 +461,7 @@ var Input = {
         element.off(Metro.events.blur);
         element.off(Metro.events.focus);
 
-        parent.remove();
+        return element;
     }
 };
 

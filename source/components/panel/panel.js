@@ -220,6 +220,20 @@ var Panel = {
     },
 
     changeAttribute: function(attributeName){
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        if (o.collapsible === true) {
+            element.data("collapse").destroy();
+        }
+
+        if (o.draggable === true) {
+            element.data("draggable").destroy();
+        }
+
+        return element;
     }
 };
 

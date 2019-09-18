@@ -74,7 +74,7 @@ var Resizable = {
     _createEvents: function(){
         var element = this.element, o = this.options;
 
-        this.resizer.on(Metro.events.start + "-resize-element", function(e){
+        this.resizer.on(Metro.events.start, function(e){
 
             if (element.data('canResize') === false) {
                 return ;
@@ -90,7 +90,7 @@ var Resizable = {
                 size: size
             });
 
-            $(document).on(Metro.events.move + "-resize-element", function(e){
+            $(document).on(Metro.events.move, function(e){
                 var moveXY = Utils.pageXY(e);
                 var size = {
                     width: startWidth + moveXY.x - startXY.x,
@@ -109,9 +109,9 @@ var Resizable = {
                 element.fire("resize", {
                     size: size
                 });
-            });
+            }, {ns: "resize-element"});
 
-            $(document).on(Metro.events.stop + "-resize-element", function(){
+            $(document).on(Metro.events.stop, function(){
                 $(document).off(Metro.events.move + "-resize-element");
                 $(document).off(Metro.events.stop + "-resize-element");
 
@@ -124,7 +124,7 @@ var Resizable = {
                 element.fire("resizestop", {
                     size: size
                 });
-            });
+            }, {ns: "resize-element"});
 
             e.preventDefault();
             e.stopPropagation();
@@ -150,6 +150,11 @@ var Resizable = {
         switch (attributeName) {
             case "data-can-resize": canResize(); break;
         }
+    },
+
+    destroy: function(){
+        this.resizer.off(Metro.events.start);
+        return this.element;
     }
 };
 

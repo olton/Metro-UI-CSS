@@ -147,7 +147,7 @@ var Collapse = {
 
     destroy: function(){
         this.toggle.off(Metro.events.click);
-        // TODO check roles, if one - remove element
+        return this.element;
     }
 };
 

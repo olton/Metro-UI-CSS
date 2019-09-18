@@ -94,7 +94,7 @@ var Activity = {
     },
 
     destroy: function(){
-        this.element.remove();
+        return this.element;
     }
 };
 

@@ -225,7 +225,9 @@ var Sorter = {
         }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        return this.element;
+    }
 };
 
 Metro.plugin('sorter', Sorter);

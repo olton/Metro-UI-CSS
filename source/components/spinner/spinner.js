@@ -274,11 +274,13 @@ var Spinner = {
         var spinner = element.closest(".spinner");
         var spinner_buttons = spinner.find(".spinner-button");
 
-        spinner.off('all');
-        spinner_buttons.off('all');
-        element.off('all');
+        spinner.off(Metro.events.click);
+        spinner_buttons.off(Metro.events.start);
+        spinner_buttons.off(Metro.events.stop);
+        element.off(Metro.events.keydown);
+        spinner.off(Metro.events.keyup);
 
-        spinner.remove();
+        return element;
     }
 };
 

@@ -186,7 +186,7 @@ var ImageCompare = {
         element.off(Metro.events.start);
         $(window).off(Metro.events.resize, {ns: element.attr("id")});
 
-        element.remove();
+        return element;
     }
 };
 

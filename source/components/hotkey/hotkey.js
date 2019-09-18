@@ -79,3 +79,5 @@ $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
         fn === false ? $(el).click() : Utils.exec(fn);
     }
 });
+
+// TODO add destroy

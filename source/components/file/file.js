@@ -214,7 +214,7 @@ var File = {
         var parent = element.parent();
         element.off(Metro.events.change);
         parent.off(Metro.events.click, "button");
-        parent.remove();
+        return element;
     }
 };
 

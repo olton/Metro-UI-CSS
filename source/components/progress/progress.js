@@ -173,6 +173,10 @@ var Progress = {
             case 'data-value': this.changeValue(); break;
             case 'data-buffer': this.changeBuffer(); break;
         }
+    },
+
+    destroy: function(){
+        return this.element;
     }
 };
 

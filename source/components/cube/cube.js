@@ -458,7 +458,7 @@ var Cube = {
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         clearInterval(this.interval);
         this.interval = null;
@@ -468,7 +468,7 @@ var Cube = {
 
         element.off(Metro.events.click, ".cube-cell");
 
-        element.remove();
+        return element;
     }
 };
 

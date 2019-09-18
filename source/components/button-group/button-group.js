@@ -110,7 +110,7 @@ var ButtonGroup = {
     destroy: function(){
         var element = this.element, o = this.options;
         element.off(Metro.events.click, o.targets);
-        element.remove();
+        return element;
     }
 
 };

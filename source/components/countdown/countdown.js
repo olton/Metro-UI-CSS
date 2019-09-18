@@ -534,7 +534,7 @@ var Countdown = {
 
         $(document).off("visibilitychange", {ns: element.attr("id")});
 
-        this.element.remove();
+        return this.element;
     }
 };
 

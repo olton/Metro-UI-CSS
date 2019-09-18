@@ -245,8 +245,9 @@ var ImageMagnifier = {
 
     destroy: function(){
         var element = this.element;
-        element.off("all");
-        element.remove();
+        element.off(Metro.events.move);
+        element.off(Metro.events.leave);
+        return element;
     }
 };
 
