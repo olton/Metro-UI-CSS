@@ -27,6 +27,8 @@ var Resizable = {
         this.element = $(elem);
         this.resizer = null;
 
+        this.id = Utils.elementId("resizeable");
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -72,7 +74,7 @@ var Resizable = {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
 
         this.resizer.on(Metro.events.start, function(e){
 
@@ -109,11 +111,11 @@ var Resizable = {
                 element.fire("resize", {
                     size: size
                 });
-            }, {ns: "resize-element"});
+            }, {ns: that.id});
 
             $(document).on(Metro.events.stop, function(){
-                $(document).off(Metro.events.move + "-resize-element");
-                $(document).off(Metro.events.stop + "-resize-element");
+                $(document).off(Metro.events.move, {ns: that.id});
+                $(document).off(Metro.events.stop, {ns: that.id});
 
                 var size = {
                     width: parseInt(element.outerWidth()),
@@ -124,7 +126,7 @@ var Resizable = {
                 element.fire("resizestop", {
                     size: size
                 });
-            }, {ns: "resize-element"});
+            }, {ns: that.id});
 
             e.preventDefault();
             e.stopPropagation();

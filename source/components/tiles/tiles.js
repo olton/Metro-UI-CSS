@@ -195,9 +195,9 @@ var Tile = {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
-        element.on(Metro.events.start, function(e){
+        element.on(Metro.events.startAll, function(e){
             var tile = $(this);
             var dim = {w: element.width(), h: element.height()};
             var X = Utils.pageXY(e).x - tile.offset().left,
@@ -231,24 +231,26 @@ var Tile = {
             }
         });
 
-        element.on([Metro.events.stop, Metro.events.leave].join(" "), function(){
+        element.on([Metro.events.stopAll, Metro.events.leave].join(" "), function(){
             $(this)
                 .removeClass("transform-left")
                 .removeClass("transform-right")
                 .removeClass("transform-top")
                 .removeClass("transform-bottom");
         });
-
-        $(window).on(Metro.events.blur, function(){
-            // that._stopEffects();
-        });
-        $(window).on(Metro.events.focus, function(){
-            // that._runEffects();
-        });
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.startAll);
+
+        element.off([Metro.events.stopAll, Metro.events.leave].join(" "));
+
+        return element;
     }
 };
 

@@ -210,6 +210,24 @@ var Textarea = {
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, o = this.options;
+        var textarea = element.closest(".textarea");
+
+        textarea.off(Metro.events.click, ".input-clear-button");
+
+        if (o.autoSize) {
+            element.off(Metro.events.inputchange + " " + Metro.events.keyup);
+        }
+
+        element.off(Metro.events.blur);
+        element.off(Metro.events.focus);
+
+        element.off(Metro.events.keyup);
+
+        return element;
     }
 };
 

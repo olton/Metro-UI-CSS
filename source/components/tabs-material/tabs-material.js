@@ -101,7 +101,6 @@ var MaterialTabs = {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
-        var tabs = element.find("li");
 
         element.on(Metro.events.click, "li", function(e){
             var tab = $(this);
@@ -201,10 +200,16 @@ var MaterialTabs = {
     },
 
     changeAttribute: function(attributeName){
-
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, "li");
+        element.off(Metro.events.scroll);
+
+        return element;
+    }
 };
 
 Metro.plugin('materialtabs', MaterialTabs);

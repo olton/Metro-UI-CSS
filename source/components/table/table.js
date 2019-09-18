@@ -294,7 +294,7 @@ var Table = {
                     });
                 }
                 that._final();
-            }, function(xhr){
+            }, function(){
                 that._final();
                 console.log("Warning! Error loading view for table " + element.attr('id') + " ");
             });
@@ -770,6 +770,7 @@ var Table = {
         if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
 
         table_component = $("<div>").addClass("table-component");
+        table_component.attr("id", Utils.elementId("table"));
         table_component.insertBefore(element);
 
         table_container = $("<div>").addClass("table-container").addClass(o.clsTableContainer).appendTo(table_component);
@@ -851,7 +852,7 @@ var Table = {
         var customSearch;
         var id = element.attr("id");
 
-        $(window).on(Metro.events.resize+"-"+id, function(){
+        $(window).on(Metro.events.resize, function(){
             if (o.horizontalScroll === true) {
                 if (!Utils.isNull(o.horizontalScrollStop) && Utils.mediaExist(o.horizontalScrollStop)) {
                     table_container.removeClass("horizontal-scroll");
@@ -859,7 +860,7 @@ var Table = {
                     table_container.addClass("horizontal-scroll");
                 }
             }
-        });
+        }, {ns: component.attr("id")});
 
         element.on(Metro.events.click, ".sortable-column", function(){
 
@@ -2027,6 +2028,43 @@ var Table = {
             case "data-check": dataCheck(); break;
             case "data-rownum": dataRownum(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+        var component = element.closest(".table-component");
+        var search_input = component.find("input");
+        var rows_select = component.find("select");
+
+        search_input.data("input").destroy();
+        rows_select.data("select").destroy();
+
+        $(window).off(Metro.events.resize, {ns: component.attr("id")});
+
+        element.off(Metro.events.click, ".sortable-column");
+
+        element.off(Metro.events.click, ".table-service-check input");
+
+        element.off(Metro.events.click, ".table-service-check-all input");
+
+        search_input.off(Metro.events.inputchange);
+
+        if (Utils.isValue(this.wrapperSearch)) {
+            var customSearch = this.wrapperSearch.find("input");
+            if (customSearch.length > 0) {
+                customSearch.off(Metro.events.inputchange);
+            }
+        }
+
+        component.off(Metro.events.click, ".pagination .page-link");
+        if (Utils.isValue(this.wrapperPagination)) {
+            this.wrapperPagination.off(Metro.events.click, ".pagination .page-link");
+        }
+        element.off(Metro.events.click, ".js-table-crud-button");
+
+        this._removeInspectorEvents();
+
+        return element;
     }
 };
 

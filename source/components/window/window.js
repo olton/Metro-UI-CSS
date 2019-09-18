@@ -117,7 +117,10 @@ var Window = {
         } else {
             if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
                 o.content = Utils.embedUrl(o.content);
-            }
+                element.css({
+                    height: "100%"
+                });
+            } else
 
             if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
                 o.content = Utils.exec(o.content);
@@ -664,6 +667,12 @@ var Window = {
             case "data-left": this.changeTopLeft(attributeName); break;
             case "data-place": this.changePlace(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        return element;
     }
 };
 
