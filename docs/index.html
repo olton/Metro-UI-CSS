@@ -40,24 +40,13 @@
     <div class="container-fluid bg-hero fg-white pos-fixed fixed-top z-top">
         <header class="app-bar container bg-hero fg-white pos-relative" data-role="appbar" data-expand-point="md">
             <a href="index.html" class="brand fg-white no-hover">METRO 4</a>
-            <ul class="app-bar-menu ml-auto text-upper">
-                <li><a href="intro.html">Guide</a></li>
-                <li><a href="https://react.metroui.org.ua/" class="fg-react">React_JS</a></li>
-                <li><a href="https://metroui.org.ua/themes/pandora/">Examples</a></li>
-                <li><a href="support.html" class="text-bold fg-yellow"><span class="d-block ani-vertical">Support Me</span></a></li>
-                <li>
-                    <a href="https://github.com/olton/Metro-UI-CSS" target="_blank">
-                        <span class="mif-github mif-2x d-none d-block-md"></span>
-                        <span class="d-block d-none-md">Github</span>
-                    </a>
-                </li>
-            </ul>
+            <ul class="app-bar-menu ml-auto" data-role="htmlcontainer" data-html-source="main-menu.html"></ul>
         </header>
     </div>
 
     <div class="hero hero-bg text-center neb neb-hero">
 
-        <div class="display4 fg-white"><span class="reduce-3 enlarge-3-md">Metro 4</span></div>
+        <div class="display4 fg-white"><span class="reduce-3 enlarge-3-md">Metro_4</span></div>
 
         <h4 class="text-center fg-white text-upper text-light">Impressive components library<span class="d-none-md1"><br></span> built on HTML, CSS, JavaScript</h4>
 
@@ -210,16 +199,20 @@
 
     <div class="container-fluid bg-light fg-dark neb neb-light">
         <div class="container pt-10 pb-20">
-            <div class="h1 text-center"><span class="reduce-1 enlarge-1-md">Who uses</span></div>
-            <div class="row who-uses">
-                <div class="cell-md-4">
+            <div class="h1 text-center mb-10"><span class="reduce-1 enlarge-1-md">Who uses</span></div>
+
+            <div data-role="carousel" class="who-uses bg-transparent" data-height="180" data-controls="false" data-auto-start="true">
+                <div class="slide">
                     <a href="https://iforum.ua"><img src="images/iforum.svg"></a>
                 </div>
-                <div class="cell-md-4">
+                <div class="slide">
                     <a href="https://software.openbuilds.com/"><img src="images/OpenBuilds_logo.png"></a>
                 </div>
-                <div class="cell-md-4">
+                <div class="slide">
                     <a href="https://interactivity.com.ua/"><img src="images/Interactivity.png"></a>
+                </div>
+                <div class="slide">
+                    <a href="https://mirohost.net/"><img src="images/mirohost_logo.svg"></a>
                 </div>
             </div>
         </div>

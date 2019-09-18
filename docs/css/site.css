@@ -320,10 +320,14 @@ pre .copy-button {
 .who-uses {
   margin-bottom: 10px;
 }
+.who-uses .slide {
+  display: flex;
+  justify-content: center;
+}
 .who-uses img {
-  height: 200px;
   width: auto;
   max-width: 300px;
+  height: 180px;
 }
 main {
   padding-bottom: 20px!important;
