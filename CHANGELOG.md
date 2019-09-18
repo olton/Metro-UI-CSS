@@ -21,6 +21,7 @@
 + [x] Add `checkRuntime` to components
 + [x] Table: add attributes `emptyTableTitle`, `clsEmptyTableTitle` for issue #1403
 + [x] Table: fix padding for sortable columns
++ [x] Add `deatroy` method to components. This method remove all event handlers and return core element
 
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown

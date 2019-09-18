@@ -223,7 +223,12 @@ var Splitter = {
 
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+        var gutters = element.children(".gutter");
+        gutters.off(Metro.events.start);
+        return element;
+    }
 };
 
 Metro.plugin('splitter', Splitter);
