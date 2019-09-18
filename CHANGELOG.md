@@ -20,6 +20,7 @@
 + [x] Schemes: fix colors for table `tfoot`
 + [x] Add `checkRuntime` to components
 + [x] Table: add attributes `emptyTableTitle`, `clsEmptyTableTitle` for issue #1403
++ [x] Table: fix padding for sortable columns
 
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown

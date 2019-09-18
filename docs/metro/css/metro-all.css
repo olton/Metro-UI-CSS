@@ -24329,6 +24329,7 @@ aside::after {
 .table.sortable-markers-on-left .sortable-column,
 .table.sortable-markers-on-left .sorting {
   padding-left: 30px;
+  padding-right: 10px;
 }
 .table.sortable-markers-on-left .sortable-column:before,
 .table.sortable-markers-on-left .sorting:before,
