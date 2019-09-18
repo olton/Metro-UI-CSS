@@ -112,20 +112,16 @@ var Video = {
     },
 
     _createPlayer: function(){
-        var that = this, element = this.element, o = this.options, video = this.video;
-
-        var prev = element.prev();
-        var parent = element.parent();
+        var element = this.element, o = this.options, video = this.video;
         var player = $("<div>").addClass("media-player video-player " + element[0].className);
         var preloader = $("<div>").addClass("preloader").appendTo(player);
         var logo = $("<a>").attr("href", o.logoTarget).addClass("logo").appendTo(player);
 
-        if (prev.length === 0) {
-            parent.prepend(player);
-        } else {
-            player.insertAfter(prev);
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("video"))
         }
 
+        player.insertBefore(element);
         element.appendTo(player);
 
         $.each(['muted', 'autoplay', 'controls', 'height', 'width', 'loop', 'poster', 'preload'], function(){
@@ -388,15 +384,15 @@ var Video = {
             // }
         });
 
-        $(window).on(Metro.events.keyup + "_video", function(e){
+        $(window).on(Metro.events.keyup, function(e){
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
             }
-        });
+        }, {ns: element.attr("id")});
 
-        $(window).resize(function(){
+        $(window).on(Metro.events.resize, function(){
             that._setAspectRatio();
-        });
+        }, {ns: element.attr("id")});
 
     },
 
@@ -578,6 +574,37 @@ var Video = {
             case "data-src": this.changeSource(); break;
             case "data-volume": this.changeVolume(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element, player = this.player;
+
+        this.stream.data("slider").destroy();
+        this.volume.data("slider").destroy();
+
+        element.off("loadstart");
+        element.off("loadedmetadata");
+        element.off("canplay");
+        element.off("progress");
+        element.off("timeupdate");
+        element.off("waiting");
+        element.off("loadeddata");
+        element.off("play");
+        element.off("pause");
+        element.off("stop");
+        element.off("ended");
+        element.off("volumechange");
+
+        player.off(Metro.events.click, ".play");
+        player.off(Metro.events.click, ".stop");
+        player.off(Metro.events.click, ".mute");
+        player.off(Metro.events.click, ".loop");
+        player.off(Metro.events.click, ".full");
+
+        $(window).off(Metro.events.keyup,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+
+        return element;
     }
 };
 

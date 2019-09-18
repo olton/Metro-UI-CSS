@@ -28,6 +28,9 @@ var Draggable = {
             zIndex: '0'
         };
         this.dragArea = null;
+        this.dragElement = null;
+
+        this.id = Utils.elementId("draggable");
 
         this._setOptionsFromDOM();
         this._create();
@@ -53,15 +56,18 @@ var Draggable = {
     },
 
     _create: function(){
+        this._createStructure();
+        this._createEvents();
+    },
+
+    _createStructure: function(){
         var that = this, element = this.element, elem = this.elem, o = this.options;
         var offset = element.offset();
-        var position = {
-            x: 0,
-            y: 0
-        };
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
         Metro.checkRuntime(element, "draggable");
+
+        this.dragElement = dragElement;
 
         dragElement[0].ondragstart = function(){return false;};
 
@@ -85,8 +91,16 @@ var Draggable = {
         if (!element.attr("id")) {
             element.attr("id", Utils.elementId("draggable"));
         }
+    },
 
-        dragElement.on(Metro.events.startAll, function(e){
+    _createEvents: function(){
+        var that = this, element = this.element, elem = this.elem, o = this.options;
+        var position = {
+            x: 0,
+            y: 0
+        };
+
+        this.dragElement.on(Metro.events.startAll, function(e){
 
             var coord = o.dragArea !== "parent" ? element.offset() : element.position(),
                 shiftX = Utils.pageXY(e).x - coord.left,
@@ -142,7 +156,7 @@ var Draggable = {
                     position: position
                 });
                 //e.preventDefault();
-            }, {ns: element.attr("id")});
+            }, {ns: that.id});
 
             $(document).on(Metro.events.stopAll, function(){
                 element.css({
@@ -151,8 +165,8 @@ var Draggable = {
                 }).removeClass("draggable");
 
                 if (that.drag) {
-                    $(document).off(Metro.events.moveAll, {ns: element.attr("id")});
-                    $(document).off(Metro.events.stopAll, {ns: element.attr("id")});
+                    $(document).off(Metro.events.moveAll, {ns: that.id});
+                    $(document).off(Metro.events.stopAll, {ns: that.id});
                 }
 
                 that.drag = false;
@@ -162,7 +176,7 @@ var Draggable = {
                 element.fire("dragstop", {
                     position: position
                 });
-            }, {ns: element.attr("id")});
+            }, {ns: that.id});
         });
     },
 
@@ -179,8 +193,7 @@ var Draggable = {
 
     destroy: function(){
         var element = this.element, o = this.options;
-        var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
-        dragElement.off(Metro.events.startAll,{ns: element.attr("id")});
+        this.dragElement.off(Metro.events.startAll);
         return element;
     }
 };

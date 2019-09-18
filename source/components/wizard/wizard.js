@@ -81,6 +81,10 @@ var Wizard = {
         var that = this, element = this.element, o = this.options;
         var bar;
 
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("wizard"));
+        }
+
         element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
 
         bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
@@ -170,7 +174,7 @@ var Wizard = {
 
         $(window).on(Metro.events.resize, function(){
             that._setHeight();
-        });
+        }, {ns: element.attr("id")});
     },
 
     next: function(){
@@ -303,7 +307,19 @@ var Wizard = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, ".wizard-btn-help");
+        element.off(Metro.events.click, ".wizard-btn-prev");
+        element.off(Metro.events.click, ".wizard-btn-next");
+        element.off(Metro.events.click, ".wizard-btn-finish");
+        element.off(Metro.events.click, ".complete");
+        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+
+        return element;
     }
 };
 

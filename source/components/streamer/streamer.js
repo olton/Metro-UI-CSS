@@ -741,6 +741,18 @@ var Streamer = {
             case 'data-data': this.changeData(); break;
             case 'data-stream-select': this.changeStreamSelectOption(); break;
         }
+    },
+
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, ".stream-event");
+        element.off(Metro.events.click, ".stream");
+        element.find(".events-area").off(Metro.events.mousewheel);
+        element.find(".events-area").last().off("scroll");
+        // element.off(Metro.events.click, ".stream");
+
+        return element;
     }
 };
 

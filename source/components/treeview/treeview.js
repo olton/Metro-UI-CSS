@@ -393,7 +393,18 @@ var TreeView = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+
+        element.off(Metro.events.click, ".node-toggle");
+        element.off(Metro.events.click, "li > .caption");
+        element.off(Metro.events.dblclick, "li > .caption");
+        element.off(Metro.events.click, "input[type=radio]");
+        element.off(Metro.events.click, "input[type=checkbox]");
+
+        return element;
     }
 };
 

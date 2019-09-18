@@ -122,7 +122,7 @@ var Tabs = {
         var that = this, element = this.element, o = this.options;
         var container = element.parent();
 
-        $(window).on(Metro.events.resize+"-"+element.attr("id"), function(){
+        $(window).on(Metro.events.resize, function(){
 
             if (o.tabsPosition.contains("vertical")) {
                 return ;
@@ -137,7 +137,7 @@ var Tabs = {
                     if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
                 }
             }
-        });
+        }, {ns: element.attr("id")});
 
         container.on(Metro.events.click, ".hamburger, .expand-title", function(){
             if (element.data('expanded') === false) {
@@ -275,7 +275,19 @@ var Tabs = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+        var container = element.parent();
+
+        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+
+        container.off(Metro.events.click, ".hamburger, .expand-title");
+
+        element.off(Metro.events.click, "a");
+
+        return element;
     }
 };
 

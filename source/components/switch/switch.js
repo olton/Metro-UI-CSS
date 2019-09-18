@@ -104,6 +104,10 @@ var Switch = {
         switch (attributeName) {
             case 'disabled': this.toggleState(); break;
         }
+    },
+
+    destroy: function(){
+        return this.element;
     }
 };
 

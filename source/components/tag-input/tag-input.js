@@ -301,8 +301,7 @@ var TagInput = {
         container.off(Metro.events.click, ".tag .remover");
         container.off(Metro.events.click);
 
-        element.insertBefore(container);
-        container.remove();
+        return element;
     }
 };
 
