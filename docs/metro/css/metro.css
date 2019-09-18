@@ -24272,6 +24272,7 @@ aside::after {
 .table .sorting {
   position: relative;
   cursor: pointer;
+  padding-right: 30px;
 }
 .table .sortable-column:after,
 .table .sorting:after {
@@ -24327,7 +24328,7 @@ aside::after {
 }
 .table.sortable-markers-on-left .sortable-column,
 .table.sortable-markers-on-left .sorting {
-  padding-left: 1.875rem;
+  padding-left: 30px;
 }
 .table.sortable-markers-on-left .sortable-column:before,
 .table.sortable-markers-on-left .sorting:before,
@@ -24506,7 +24507,7 @@ aside::after {
 .table .tbody .td.hidden {
   display: none!important;
 }
-.table .cell-wrapper {
+.table .data-wrapper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

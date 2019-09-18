@@ -528,7 +528,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.0. Built at 16/09/2019 10:40:33";
+var m4qVersion = "v1.0.0. Built at 18/09/2019 07:05:45";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1450,7 +1450,8 @@ $.extend({
     parseUnit: function(str, out){return parseUnit(str, out)},
     unit: function(str, out){return parseUnit(str, out)},
     isVisible: function(elem) {return isVisible(elem)},
-    isHidden: function(elem) {return isHidden(elem)}
+    isHidden: function(elem) {return isHidden(elem)},
+    iif: function(v1, v2, v3){return iif(v1, v2, v3);}
 });
 
 $.fn.extend({
