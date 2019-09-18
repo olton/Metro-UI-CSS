@@ -152,7 +152,12 @@ var Stepper = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+        element.off(Metro.events.click, ".step");
+        return element;
     }
 };
 

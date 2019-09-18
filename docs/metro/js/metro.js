@@ -3593,7 +3593,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "18/09/2019 13:54:57",
+    compileTime: "18/09/2019 14:00:54",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -22457,7 +22457,12 @@ var Splitter = {
 
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element;
+        var gutters = element.children(".gutter");
+        gutters.off(Metro.events.start);
+        return element;
+    }
 };
 
 Metro.plugin('splitter', Splitter);
@@ -22616,7 +22621,12 @@ var Stepper = {
     },
 
     changeAttribute: function(attributeName){
+    },
 
+    destroy: function(){
+        var element = this.element;
+        element.off(Metro.events.click, ".step");
+        return element;
     }
 };
 
