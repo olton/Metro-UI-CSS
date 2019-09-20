@@ -22,7 +22,7 @@
 + [x] Table: add attributes `data-empty-table-title`, `data-cls-empty-table-title` for issue #1403
 + [x] Table: fix padding for sortable columns
 + [x] Add `destroy` method to components. This method remove all event handlers and return core element
-+ [x] Select: add props `data-add-empty-value` (default: true), `data-empty-value` (default: empty string)
++ [x] Select: add props `data-add-empty-value` (default: false), `data-empty-value` (default: empty string)
 + [x] Select: add prop `data-placeholder`
 + [x] Select: add prop `data-clear-button` (default: false)
 
