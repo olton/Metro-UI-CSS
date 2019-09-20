@@ -58,6 +58,7 @@
     "grunt-stripcomments": "^0.7.2",
     "load-grunt-tasks": "^5.0.0",
     "start-server-and-test": "^1.10.0",
-    "time-grunt": "^2.0.0"
+    "time-grunt": "^2.0.0",
+    "http-server": "0.9.0"
   }
 }

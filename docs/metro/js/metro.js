@@ -543,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.0. Built at 18/09/2019 07:05:45";
+var m4qVersion = "v1.0.0. Built at 19/09/2019 10:19:06";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1118,8 +1118,11 @@ $.fn.extend({
         }
 
         return this.each(function(){
+            var el = $(this);
             if (typeof this.value !== "undefined") {
                 this.value = value;
+            } else {
+                el.html(value);
             }
         });
     },
@@ -3593,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "18/09/2019 20:57:55",
+    compileTime: "20/09/2019 12:25:02",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3952,70 +3955,36 @@ var Metro = {
         }
     },
 
-    // destroyPlugin: function(element, name){
-    //     var p, mc;
-    //     var el = $(element);
-    //
-    //     p = el.data(name);
-    //
-    //     if (!Utils.isValue(p)) {
-    //         throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
-    //     }
-    //
-    //     if (!Utils.isFunc(p['destroy'])) {
-    //         throw new Error("Component can not be destroyed: method destroy not found.");
-    //     }
-    //
-    //     p['destroy']();
-    //     mc = el.data("metroComponent");
-    //     Utils.arrayDelete(mc, name);
-    //     el.data("metroComponent", mc);
-    //     $.removeData(el[0], name);
-    //     el.removeAttr("data-role-"+name);
-    // },
+    destroyPlugin: function(element, name){
+        var p, mc;
+        var el = $(element);
 
-    // destroyPluginAll: function(element){
-    //     var el = $(element);
-    //     var mc = el.data("metroComponent");
-    //
-    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-    //         Metro.destroyPlugin(el[0], this);
-    //     });
-    // },
+        p = el.data(name);
 
-    // initPlugin: function(element, name){
-    //     element = $(element);
-    //     try {
-    //         if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
-    //             $.fn[name].call(element);
-    //             element.attr("data-role-"+name, true);
-    //
-    //             var mc = element.data('metroComponent');
-    //
-    //             if (mc === undefined) {
-    //                 mc = [name];
-    //             } else {
-    //                 mc.push(name);
-    //             }
-    //             element.data('metroComponent', mc);
-    //         }
-    //     } catch (e) {
-    //         console.log(e.message, e.stack);
-    //     }
-    // },
+        if (!Utils.isValue(p)) {
+            throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
+        }
 
-    // reinitPlugin: function(element, name){
-    //     this.destroyPlugin(element, name);
-    //     this.initPlugin(element, name);
-    // },
-    //
-    // reinitPluginAll: function(element){
-    //     var mc = $(element).data("metroComponent");
-    //
-    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-    //         Metro.reinitPlugin(element, this);
-    //     });
-    // },
+        if (!Utils.isFunc(p['destroy'])) {
+            throw new Error("Component can not be destroyed: method destroy not found.");
+        }
+
+        p['destroy']();
+        mc = el.data("metroComponent");
+        Utils.arrayDelete(mc, name);
+        el.data("metroComponent", mc);
+        $.removeData(el[0], name);
+        el.removeAttr("data-role-"+name);
+    },
+
+    destroyPluginAll: function(element){
+        var el = $(element);
+        var mc = el.data("metroComponent");
+
+        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            Metro.destroyPlugin(el[0], this);
+        });
+    },
 
     noop: function(){},
     noop_true: function(){return true;},
@@ -4071,6 +4040,7 @@ var Metro = {
     makeRuntime: function(el, role){
         var element = $(el);
         element.attr("data-role-"+role, true);
+        element.attr("data-role", role);
         var mc = element.data('metroComponent');
 
         if (mc === undefined) {
@@ -20299,10 +20269,14 @@ var Ripple = {
 Metro.plugin('ripple', Ripple);
 
 var SelectDefaultConfig = {
+    clearButton: false,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+    placeholder: "",
+    addEmptyValue: false,
+    emptyValue: "",
     duration: 100,
     prepend: "",
     append: "",
-    placeholder: "",
     filterPlaceholder: "",
     filter: true,
     copyInlineStyles: true,
@@ -20341,6 +20315,7 @@ var Select = {
         this.elem  = elem;
         this.element = $(elem);
         this.list = null;
+        this.placeholder = null;
 
         this._setOptionsFromDOM();
         this._create();
@@ -20374,6 +20349,14 @@ var Select = {
         element.fire("selectcreate");
     },
 
+    _setPlaceholder: function(){
+        var element = this.element, o = this.options;
+        var input = element.siblings(".select-input");
+        if (!Utils.isValue(element.val()) || element.val() == o.emptyValue) {
+            input.html(this.placeholder);
+        }
+    },
+
     _addOption: function(item, parent){
         var option = $(item);
         var l, a;
@@ -20384,7 +20367,9 @@ var Select = {
         var tag;
 
         l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
-        a = $("<a>").html(html).appendTo(l).addClass(item.className);
+        a = $("<a>").html(html).appendTo(l);
+
+        l.addClass(item.className);
 
         if (option.is(":selected")) {
             if (multiple) {
@@ -20418,8 +20403,12 @@ var Select = {
     },
 
     _createOptions: function(){
-        var that = this, element = this.element, select = element.parent();
+        var that = this, element = this.element, o = this.options, select = element.parent();
         var list = select.find("ul").html("");
+
+        if (o.addEmptyValue === true) {
+            element.prepend($("<option selected value='"+o.emptyValue+"' class='d-none'></option>"));
+        }
 
         $.each(element.children(), function(){
             if (this.tagName === "OPTION") {
@@ -20437,9 +20426,14 @@ var Select = {
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, list, filter_input;
+        var input, drop_container, list, filter_input, placeholder, dropdown_toggle;
 
-        container.attr("id", select_id).addClass("dropdown-toggle");
+        this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
+
+        container.attr("id", select_id);
+
+        dropdown_toggle = $("<span>").addClass("dropdown-toggle");
+        dropdown_toggle.appendTo(container);
 
         if (multiple) {
             container.addClass("multiple");
@@ -20469,13 +20463,15 @@ var Select = {
 
         this._createOptions();
 
+        this._setPlaceholder();
+
         drop_container.dropdown({
             dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
             onDrop: function(){
                 var dropped, target;
-
+                dropdown_toggle.addClass("active-toggle");
                 dropped = $(".select .drop-container");
                 $.each(dropped, function(){
                     var drop = $(this);
@@ -20501,14 +20497,22 @@ var Select = {
                 });
             },
             onUp: function(){
+                dropdown_toggle.removeClass("active-toggle");
                 Utils.exec(o.onUp, [list[0]], element[0]);
                 element.fire("up", {
                     list: list[0]
                 });
             }
-        }).attr("data-role-dropdown", true).attr("data-role", "dropdown");
+        });
 
         this.list = list;
+
+        if (o.clearButton === true && !element[0].readOnly) {
+            var clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.appendTo(buttons);
+        } else {
+            buttons.addClass("d-none");
+        }
 
         if (o.prepend !== "") {
             var prepend = $("<div>").html(o.prepend);
@@ -20545,6 +20549,18 @@ var Select = {
         var input = element.siblings(".select-input");
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
+        var clearButton = container.find(".input-clear-button");
+
+        clearButton.on(Metro.events.click, function(e){
+            element.val(o.emptyValue);
+            that._setPlaceholder();
+            e.preventDefault();
+            e.stopPropagation();
+        });
+
+        element.on(Metro.events.change, function(){
+            that._setPlaceholder();
+        });
 
         container.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
@@ -20566,7 +20582,6 @@ var Select = {
             }
             var leaf = $(this);
             var val = leaf.data('value');
-            // var txt = leaf.data('text');
             var html = leaf.children('a').html();
             var selected_item, selected;
             var option = leaf.data("option");
@@ -20805,6 +20820,7 @@ var Select = {
         var input = element.siblings(".select-input");
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
+        var clearButton = container.find(".input-clear-button");
 
         container.off(Metro.events.click);
         container.off(Metro.events.click, ".input-clear-button");
@@ -20814,6 +20830,7 @@ var Select = {
         list.off(Metro.events.click, "li");
         filter_input.off(Metro.events.keyup);
         drop_container.off(Metro.events.click);
+        clearButton.off(Metro.events.click);
 
         drop_container.data("dropdown").destroy();
 

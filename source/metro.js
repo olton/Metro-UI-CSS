@@ -461,70 +461,36 @@ var Metro = {
         }
     },
 
-    // destroyPlugin: function(element, name){
-    //     var p, mc;
-    //     var el = $(element);
-    //
-    //     p = el.data(name);
-    //
-    //     if (!Utils.isValue(p)) {
-    //         throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
-    //     }
-    //
-    //     if (!Utils.isFunc(p['destroy'])) {
-    //         throw new Error("Component can not be destroyed: method destroy not found.");
-    //     }
-    //
-    //     p['destroy']();
-    //     mc = el.data("metroComponent");
-    //     Utils.arrayDelete(mc, name);
-    //     el.data("metroComponent", mc);
-    //     $.removeData(el[0], name);
-    //     el.removeAttr("data-role-"+name);
-    // },
+    destroyPlugin: function(element, name){
+        var p, mc;
+        var el = $(element);
 
-    // destroyPluginAll: function(element){
-    //     var el = $(element);
-    //     var mc = el.data("metroComponent");
-    //
-    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-    //         Metro.destroyPlugin(el[0], this);
-    //     });
-    // },
+        p = el.data(name);
 
-    // initPlugin: function(element, name){
-    //     element = $(element);
-    //     try {
-    //         if ($.fn[name] !== undefined && element.attr("data-role-"+name) === undefined) {
-    //             $.fn[name].call(element);
-    //             element.attr("data-role-"+name, true);
-    //
-    //             var mc = element.data('metroComponent');
-    //
-    //             if (mc === undefined) {
-    //                 mc = [name];
-    //             } else {
-    //                 mc.push(name);
-    //             }
-    //             element.data('metroComponent', mc);
-    //         }
-    //     } catch (e) {
-    //         console.log(e.message, e.stack);
-    //     }
-    // },
+        if (!Utils.isValue(p)) {
+            throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
+        }
 
-    // reinitPlugin: function(element, name){
-    //     this.destroyPlugin(element, name);
-    //     this.initPlugin(element, name);
-    // },
-    //
-    // reinitPluginAll: function(element){
-    //     var mc = $(element).data("metroComponent");
-    //
-    //     if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-    //         Metro.reinitPlugin(element, this);
-    //     });
-    // },
+        if (!Utils.isFunc(p['destroy'])) {
+            throw new Error("Component can not be destroyed: method destroy not found.");
+        }
+
+        p['destroy']();
+        mc = el.data("metroComponent");
+        Utils.arrayDelete(mc, name);
+        el.data("metroComponent", mc);
+        $.removeData(el[0], name);
+        el.removeAttr("data-role-"+name);
+    },
+
+    destroyPluginAll: function(element){
+        var el = $(element);
+        var mc = el.data("metroComponent");
+
+        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+            Metro.destroyPlugin(el[0], this);
+        });
+    },
 
     noop: function(){},
     noop_true: function(){return true;},
@@ -580,6 +546,7 @@ var Metro = {
     makeRuntime: function(el, role){
         var element = $(el);
         element.attr("data-role-"+role, true);
+        element.attr("data-role", role);
         var mc = element.data('metroComponent');
 
         if (mc === undefined) {

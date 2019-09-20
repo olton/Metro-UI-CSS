@@ -19,9 +19,12 @@
 + [x] Chat: add attribute `data-readonly` and method `toggleReadonly`
 + [x] Schemes: fix colors for table `tfoot`
 + [x] Add `checkRuntime` to components
-+ [x] Table: add attributes `emptyTableTitle`, `clsEmptyTableTitle` for issue #1403
++ [x] Table: add attributes `data-empty-table-title`, `data-cls-empty-table-title` for issue #1403
 + [x] Table: fix padding for sortable columns
-+ [x] Add `deatroy` method to components. This method remove all event handlers and return core element
++ [x] Add `destroy` method to components. This method remove all event handlers and return core element
++ [x] Select: add props `data-add-empty-value` (default: true), `data-empty-value` (default: empty string)
++ [x] Select: add prop `data-placeholder`
++ [x] Select: add prop `data-clear-button` (default: false)
 
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown
