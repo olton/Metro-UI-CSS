@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/09/2019 12:25:02",
+    compileTime: "20/09/2019 13:24:37",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20405,9 +20405,10 @@ var Select = {
     _createOptions: function(){
         var that = this, element = this.element, o = this.options, select = element.parent();
         var list = select.find("ul").html("");
+        var selected = element.find("option[selected]").length > 0;
 
         if (o.addEmptyValue === true) {
-            element.prepend($("<option selected value='"+o.emptyValue+"' class='d-none'></option>"));
+            element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
         }
 
         $.each(element.children(), function(){

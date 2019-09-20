@@ -135,9 +135,10 @@ var Select = {
     _createOptions: function(){
         var that = this, element = this.element, o = this.options, select = element.parent();
         var list = select.find("ul").html("");
+        var selected = element.find("option[selected]").length > 0;
 
         if (o.addEmptyValue === true) {
-            element.prepend($("<option selected value='"+o.emptyValue+"' class='d-none'></option>"));
+            element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
         }
 
         $.each(element.children(), function(){
