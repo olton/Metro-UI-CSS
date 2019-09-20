@@ -25,6 +25,7 @@
 + [x] Select: add props `data-add-empty-value` (default: false), `data-empty-value` (default: empty string)
 + [x] Select: add prop `data-placeholder`
 + [x] Select: add prop `data-clear-button` (default: false)
++ [x] Grid: optimise styles
 
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown
