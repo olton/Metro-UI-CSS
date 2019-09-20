@@ -11,6 +11,17 @@
     position: relative;
     margin: 0;
 
+    .dropdown-toggle {
+        width: 36px;
+        height: 36px;
+        display: block;
+        position: relative;
+
+        &::before {
+            margin-left: -1.1rem;
+        }
+    }
+
     .d-menu li a, .v-menu li a {
         min-width: auto;
     }
@@ -21,6 +32,32 @@
         width: 0.0625rem;
         height: 0.0625rem;
         display: none;
+    }
+
+    .button-group {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .button {
+        background-color: transparent;
+        color: @dark;
+        height: 34px;
+        min-width: 34px;
+        &:focus, &:active {
+            box-shadow: none!important;
+        }
+        &:hover {
+            background-color: @light;
+            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+        }
+    }
+
+    .input-clear-button {
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+        }
     }
 
     .select-input {
@@ -180,9 +217,25 @@
         height: auto;
         min-height: 36px;
 
+        .dropdown-toggle {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .button-group {
+            position: absolute;
+            top: 0;
+            right: 34px;
+        }
+
         .select-input {
             height: auto;
             min-height: 36px;
+            margin-right: 34px;
+        }
+        .button-group:not(.d-none) ~ .select-input {
+            margin-right: 68px;
         }
     }
 
@@ -190,11 +243,24 @@
     .append {order: 3}
     .select-input {order: 2;}
     .button-group {order: 3;}
+    .dropdown-toggle {order: 4;}
+
 }
 
 .select {
     &.input-large {
         height: @input-lx;
+
+        .dropdown-toggle, .button {
+            height: @input-lx;
+            width: @input-lx;
+        }
+
+        .dropdown-toggle {
+            &::before {
+                margin-left: -1.5rem;
+            }
+        }
 
         .select-input {
             height: @input-lx - 2;
@@ -209,6 +275,12 @@
             .select-input {
                 height: auto;
                 min-height: @input-lx - 2;
+            }
+            .button-group {
+                right: @input-lx;
+            }
+            .button-group:not(.d-none) ~ .select-input {
+                margin-right: @input-lx * 2;
             }
         }
 
@@ -240,6 +312,17 @@
     &.input-small {
         height: @input-sx;
 
+        .dropdown-toggle, .button {
+            height: @input-sx;
+            width: @input-sx;
+        }
+
+        .dropdown-toggle {
+            &::before {
+                margin-left: -1rem;
+            }
+        }
+
         .select-input {
             height: @input-sx - 2;
             font-size: .9rem;
@@ -253,6 +336,12 @@
             .select-input {
                 height: auto;
                 min-height: @input-sx - 2;
+            }
+            .button-group {
+                right: @input-sx;
+            }
+            .button-group:not(.d-none) ~ .select-input {
+                margin-right: @input-sx * 2;
             }
         }
 

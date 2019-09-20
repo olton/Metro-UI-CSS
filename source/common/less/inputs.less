@@ -47,9 +47,16 @@ textarea,
     }
 
     .input-clear-button, .input-reveal-button {
-        visibility: hidden;
+        .hide-element();
+
         &:active, &:focus, &:hover {
-            visibility: visible;
+            .show-element();
+        }
+    }
+
+    &:focus, &.focused, &:hover {
+        .input-clear-button, .input-reveal-button {
+            .show-element();
         }
     }
 

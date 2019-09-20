@@ -1,5 +1,17 @@
 @import (once) "vars";
 
+.show-element() {
+    //display: initial;
+    opacity: 1;
+    .scale(1);
+}
+
+.hide-element() {
+    .scale(0);
+    opacity: 0;
+    //display: none;
+}
+
 .debug() {
     outline: 1px dotted red!important;
     min-width: 1px;
