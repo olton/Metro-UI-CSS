@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/09/2019 21:34:21",
+    compileTime: "20/09/2019 22:08:19",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6684,7 +6684,7 @@ var Utils = {
             if (min === 1e3)
                 return;
 
-            el.textContent = txt.replace(new RegExp("^" + str, 'gm'), "");
+            el.textContent = txt.replace(new RegExp("^" + str, 'gm'), "").trim();
         });
     },
 
