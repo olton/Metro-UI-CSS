@@ -1,4 +1,5 @@
 var TreeViewDefaultConfig = {
+    showChildCount: false,
     duration: 100,
     onNodeClick: Metro.noop,
     onNodeDblClick: Metro.noop,
@@ -104,24 +105,33 @@ var TreeView = {
     },
 
     _createTree: function(){
-        var that = this, element = this.element;
+        var that = this, element = this.element, o = this.options;
         var nodes = element.find("li");
 
         element.addClass("treeview");
 
         $.each(nodes, function(){
             var node = $(this);
+            var childCount = 0;
+            var caption, icon;
 
+            caption = node.data("caption");
+            icon = node.data("icon");
 
-            if (node.data("caption") !== undefined) {
-                node.prepend(that._createCaption(node.data("caption")));
+            if (caption !== undefined) {
+                if (node.children("ul").length > 0) {
+                    caption += " ("+node.children("ul").children("li").length+")"
+                }
+                node.prepend(that._createCaption(caption));
             }
 
-            if (node.data("icon") !== undefined) {
-                node.prepend(that._createIcon(node.data("icon")));
+            if (icon !== undefined) {
+                node.prepend(that._createIcon(icon));
             }
 
             if (node.children("ul").length > 0) {
+
+                node.addClass("tree-node");
 
                 node.append(that._createToggle());
 
