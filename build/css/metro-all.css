@@ -22852,7 +22852,6 @@ aside::after {
       -ms-flex-direction: column;
           flex-direction: column;
   position: relative;
-  margin-bottom: 1rem;
 }
 .row {
   display: -webkit-box;
