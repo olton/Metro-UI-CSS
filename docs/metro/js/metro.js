@@ -3596,8 +3596,8 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "22/09/2019 20:47:51",
-    buildNumber: "736",
+    compileTime: "22/09/2019 21:20:12",
+    buildNumber: "737",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -11948,6 +11948,8 @@ var Counter = {
     _calcArray: function(){
         var o = this.options;
         var i;
+
+        this.numbers = [];
 
         for (i = 0; i <= o.value; i += o.step ) {
             this.numbers.push(i);

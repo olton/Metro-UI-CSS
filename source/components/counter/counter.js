@@ -67,6 +67,8 @@ var Counter = {
         var o = this.options;
         var i;
 
+        this.numbers = [];
+
         for (i = 0; i <= o.value; i += o.step ) {
             this.numbers.push(i);
         }
