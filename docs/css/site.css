@@ -379,7 +379,7 @@ body {
   z-index: 0;
 }
 .neb-hero::after {
-  border-color: #d934c3 transparent transparent transparent;
+  border-color: #d95555 transparent transparent transparent;
 }
 .neb-white::after {
   border-color: #ffffff transparent transparent transparent;

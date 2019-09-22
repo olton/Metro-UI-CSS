@@ -28,6 +28,8 @@ var Hint = {
             height: 0
         };
 
+        this.id = Utils.elementId("hint");
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -55,7 +57,7 @@ var Hint = {
 
         element.on(Metro.events.enter, function(){
             that.createHint();
-            if (o.hintHide > 0) {
+            if (+o.hintHide > 0) {
                 setTimeout(function(){
                     that.removeHint();
                 }, o.hintHide);
@@ -63,12 +65,12 @@ var Hint = {
         });
 
         element.on(Metro.events.leave, function(){
-            //that.removeHint();
+            that.removeHint();
         });
 
-        $(window).on(Metro.events.scroll, function(){
+        $(window).on(Metro.events.scroll+" "+Metro.events.resize, function(){
             if (that.hint !== null) that.setPosition();
-        });
+        }, {ns: this.id});
 
         Utils.exec(o.onHintCreate, null, element[0]);
         element.fire("hintcreate");

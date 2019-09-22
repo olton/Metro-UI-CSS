@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.0",
-    compileTime: "20/09/2019 22:08:19",
+    compileTime: "22/09/2019 13:34:58",
     buildNumber: "735",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14311,6 +14311,8 @@ var Hint = {
             height: 0
         };
 
+        this.id = Utils.elementId("hint");
+
         this._setOptionsFromDOM();
         this._create();
 
@@ -14338,7 +14340,7 @@ var Hint = {
 
         element.on(Metro.events.enter, function(){
             that.createHint();
-            if (o.hintHide > 0) {
+            if (+o.hintHide > 0) {
                 setTimeout(function(){
                     that.removeHint();
                 }, o.hintHide);
@@ -14346,12 +14348,12 @@ var Hint = {
         });
 
         element.on(Metro.events.leave, function(){
-            //that.removeHint();
+            that.removeHint();
         });
 
-        $(window).on(Metro.events.scroll, function(){
+        $(window).on(Metro.events.scroll+" "+Metro.events.resize, function(){
             if (that.hint !== null) that.setPosition();
-        });
+        }, {ns: this.id});
 
         Utils.exec(o.onHintCreate, null, element[0]);
         element.fire("hintcreate");
