@@ -1,0 +1,190 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@cubeCellBackground: #231F20;
+@cubeCellBorder: #303030;
+@cubeCellColor: #767676;
+@cubeCellFlash: #c4122f;
+
+.cube {
+    display: block;
+    position: relative;
+    width: 320px;
+    height: 310px;
+    margin: 0 auto 30px;
+    .rotateY(30deg);
+}
+
+.cube {
+    .side {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        position: absolute;
+        overflow: hidden;
+        width: 162px;
+        height: 162px;
+        bottom: 38px;
+        left: 0;
+    }
+
+    .side {
+        &.left-side {
+            .skewY(23deg); .rotateX(10deg);
+        }
+
+        &.right-side {
+            left: 160px;
+            .skewY(-23deg); .rotateY(10deg);
+        }
+
+        &.top-side {
+            left: 80px;
+            bottom: 154px;
+            top: auto;
+            .rotate(45deg); .rotateZ(0); .skew(-22deg, -22deg);
+        }
+    }
+}
+
+.cube {
+    .side {
+        .cube-cell {
+            display: block;
+            position: relative;
+            width: 24px;
+            height: 24px;
+            margin: 8px;
+            flex-grow: 0;
+            flex-shrink: 0;
+            background-color: @cubeCellBackground;
+            border: 1px solid @cubeCellBorder;
+            box-shadow: 0 0 5px rgba(red(@cubeCellColor), green(@cubeCellColor), blue(@cubeCellColor), .8);
+            transition: @transition-base;
+            line-height: 24px;
+            text-align: center;
+            color: @white;
+            font-size: 12px;
+
+            &.light {
+                animation: pulsar-cell 2.5s 0s ease-out infinite;
+                background-color: @cubeCellFlash;
+                border-color: @cubeCellFlash;
+                color: @dark;
+                box-shadow:
+                        0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), 1),
+                        0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), 1),
+                        0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), 1);
+            }
+        }
+    }
+}
+
+@keyframes pulsar-cell {
+    0%, 100% {
+        box-shadow:
+                0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), 1),
+                0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), 1),
+                0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), 1);
+    }
+    50% {
+        box-shadow:
+                0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), .3),
+                0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), .3),
+                0 0 10px rgba(red(@cubeCellFlash), green(@cubeCellFlash), blue(@cubeCellFlash), .3);
+    }
+}
+
+.cube {
+    .axis {
+        height: 2px;
+        width: 200px;
+        position: absolute;
+        background-color: @cubeCellFlash;
+        bottom: 162px;
+        left: 162px;
+        transform-origin: 0 0 0;
+
+        &::before, &::after {
+            content: "";
+            position: absolute;
+            height: 1px;
+            background-color: inherit;
+            display: block;
+        }
+
+        &.arrow {
+            &::before, &::after {
+                width: 16px;
+                top: 0;
+                right: 0;
+                transform-origin: 100% 100% 0;
+            }
+
+            &::before {
+                .rotate(35deg);
+            }
+
+            &::after {
+                .rotate(-35deg);
+                right: -1px;
+            }
+        }
+
+        &.line {
+            &::before, &::after {
+                width: 16px;
+                top: 0;
+                right: 0;
+                transform-origin: 100% 100% 0;
+            }
+
+            &::before {
+                .rotate(90deg);
+            }
+
+            &::after {
+                .rotate(-90deg);
+                right: -1px;
+            }
+
+            &.axis-y {
+                &::before {
+                    .rotate(113deg);
+                }
+
+                &::after {
+                    .rotate(-67deg);
+                }
+            }
+
+            &.axis-x {
+                &::before {
+                    .rotate(67deg);
+                }
+
+                &::after {
+                    .rotate(-113deg);
+                }
+            }
+        }
+
+        &.no-style {
+            &::before, &::after {
+                display: none;
+            }
+        }
+
+        &.axis-x {
+            .rotate(203deg);
+        }
+        &.axis-y {
+            bottom: 166px;
+            .rotate(-23deg);
+        }
+        &.axis-z {
+            width: 190px;
+            .rotate(90deg);
+        }
+    }
+}

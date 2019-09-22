@@ -8,12 +8,12 @@
     <meta name="twitter:creator" content="@pimenov_sergey">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Metro 4 Components Library">
-    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
     <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
 
     <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
     <meta property="og:title" content="Metro 4 Components Library">
-    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins built on jQuery.">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
     <meta property="og:type" content="website">
     <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
     <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
@@ -65,23 +65,10 @@
 </head>
 <body class="m4-cloak" style="padding-top: 50px">
 
-<div class="container-fluid bg-darkMagenta fg-white pos-fixed fixed-top z-top">
-    <header class="app-bar container bg-darkMagenta fg-white pos-relative" data-role="appbar" data-expand-point="md">
+<div class="container-fluid bg-hero fg-white pos-fixed fixed-top z-top">
+    <header class="app-bar container bg-hero fg-white pos-relative" data-role="appbar" data-expand-point="md">
         <a href="index.html" class="brand fg-white no-hover">METRO 4</a>
-        <ul class="app-bar-menu ml-auto text-upper">
-            <li><a href="intro.html">Guide</a></li>
-            <li><a href="https://sandbox.org.ua">Sandbox</a></li>
-            <li><a href="https://builder.metroui.org.ua">Builder</a></li>
-            <li><a href="examples.html">Examples</a></li>
-            <li><a href="support.html" class="text-bold fg-yellow"><span class="d-block ani-vertical">Support Me</span></a></li>
-            <li><a href="https://forum.metroui.org.ua">Forum</a></li>
-            <li>
-                <a href="https://github.com/olton/Metro-UI-CSS" target="_blank">
-                    <span class="mif-github mif-2x d-none d-block-md"></span>
-                    <span class="d-block d-none-md">Github</span>
-                </a>
-            </li>
-        </ul>
+        <ul class="app-bar-menu ml-auto" data-role="htmlcontainer" data-html-source="main-menu.html"></ul>
     </header>
 </div>
 
@@ -415,7 +402,7 @@
     </div>
 </footer>
 
-<script src="js/jquery-3.3.1.min.js"></script>
+
 <script src="metro/js/metro.js?ver=@@b-version"></script>
 <script>
     $(".version-number").html(Metro.ver());

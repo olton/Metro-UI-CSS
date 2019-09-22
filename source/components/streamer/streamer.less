@@ -1,0 +1,421 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@streamItemWidth: 224px;
+
+.streamer {
+    position: relative;
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.streamer {
+    .streams {
+        //width: 200px;
+        width: 40px;
+        overflow: visible;
+        display: flex;
+        flex-flow: column nowrap;
+        padding-top: 30px;
+        background-color: @white;
+        color: @dark;
+        position: absolute;
+        margin-top: 2px;
+        left: 0;
+        top: 0;
+        z-index: @zindex-absolute;
+    }
+
+    .streamer-actions {
+        position: absolute;
+        top: -1px;
+        left: 0;
+        width: 100%;
+        height: 32px;
+        //display: flex;
+        display: none;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        background-color: inherit;
+        z-index: @zindex-selectedCheck + 1;
+    }
+
+    .streamer-action {
+        margin: 1px;
+        height: 26px;
+        width: 26px;
+        border: 0 solid @borderColor;
+        line-height: 26px;
+        text-align: center;
+        cursor: pointer;
+        background-color: @white;
+        color: @dark;
+        outline: none;
+        padding: 0;
+
+        * {
+            vertical-align: inherit ;
+            font-size: 24px;
+            text-align: center;
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    a.streamer-action {
+        color: @dark;
+        &:hover {
+            color: @dark ;
+        }
+    }
+
+    .stream {
+        position: relative;
+        height: 75px;
+        width: 40px;
+        padding: 4px 8px;
+        display: flex;
+        flex-flow: column nowrap;
+        background-color: inherit;
+        color: inherit;
+        border: 2px solid @white;
+        cursor: pointer;
+        user-select: none;
+        transition: @transition-width;
+    }
+
+    .stream-title, .stream-secondary {
+        //display: block;
+        display: none;
+        z-index: 2;
+    }
+
+    .stream-title {
+        font-size: 14px;
+        text-transform: uppercase;
+        height: 100%;
+        line-height: 1;
+    }
+
+    .stream-secondary {
+        height: 16px;
+        line-height: 16px;
+        font-size: 12px;
+    }
+
+    .stream-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -16px;
+        margin-left: -16px;
+        width: 32px;
+        height: 32px;
+        font-size: 24px;
+        text-align: center;
+    }
+}
+
+.streamer {
+    .events-area {
+        width: 100%;
+        overflow: hidden;
+        display: flex;
+        flex-flow: column nowrap;
+        padding-left: 40px;
+        z-index: 1;
+        position: relative;
+
+        white-space: nowrap;
+        overflow-x: scroll;
+        -webkit-overflow-scrolling: auto;
+    }
+
+    .streamer-timeline {
+        height: 32px;
+        width: auto;
+        list-style: none inside;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        order: 1;
+
+        li {
+            flex-shrink: 0;
+            width: @streamItemWidth;
+            background: url(@streamerTimelineImage) no-repeat;
+            vertical-align: bottom;
+            height: 100%;
+            line-height: 30px;
+            display: flex;
+            flex-flow: row nowrap;
+
+            em {
+                font-size: 10px;
+                font-style: normal;
+                margin: 4px;
+                flex: 1 0 0;
+                max-width: 100%;
+            }
+        }
+    }
+
+    .streamer-events {
+        order: 2;
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    .event-group {
+        display: block;
+        background-color: @white;
+        color: @dark;
+        border: 1px solid transparent;
+        flex-shrink: 0;
+        margin-top: -1px;
+    }
+
+    .stream-events {
+        min-height: 75px;
+        height: auto;
+        width: auto;
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+
+        &.global-stream {
+            min-height: 100%;
+
+            .stream-event {
+                min-width: 100%;
+            }
+        }
+    }
+
+    .stream-event {
+        width: @streamItemWidth - 2;
+        //height: ~"calc(100% - 3px)";
+        height: 72px;
+        border: 1px solid @grayWhite;
+        margin: 2px 1px;
+        background-color: @white;
+        color: @dark;
+        overflow: hidden;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+            border-color: @borderColor;
+        }
+    }
+
+    .stream-event-slide {
+        display: flex;
+        position: relative;
+        flex-flow: row nowrap;
+        height: 100%;
+
+        .slide-logo {
+            width: 40px;
+            position: relative;
+            display: flex;
+            flex-flow: column nowrap;
+            padding: 2px;
+
+            .icon {
+                .square(36, px);
+            }
+
+            .time {
+                margin-top: 1px;
+                padding: 5px 4px 6px;
+                font-size: .75rem;
+            }
+        }
+
+        .slide-data {
+            margin: 0 4px;
+            padding: 4px 0;
+            display: flex;
+            flex-flow: column nowrap;
+            //width: ~"calc(100% - 48px)";
+            width: auto;
+            max-width: calc(100% - 48px);
+            height: 100%;
+
+            .title, .subtitle, .desc {
+                line-height: 1;
+            }
+
+            .title {
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 14px;
+            }
+
+            .subtitle {
+                font-size: 10px;
+            }
+
+            .desc {
+                font-size: 11px;
+                color: #999999;
+                margin-top: auto;
+                height: 29px;
+            }
+
+            * + .subtitle {
+                margin-top: 2px;
+            }
+        }
+
+        .state-icon {
+            position: absolute;
+            z-index: @zindex-selectedCheck - 1;
+            top: 4px;
+            right: 8px;
+            color: @darkGray;
+        }
+    }
+}
+
+.streamer {
+    .stream-event {
+        position: relative;
+        user-select: none;
+        &.selected {
+            box-shadow: 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
+        }
+    }
+}
+
+.streamer {
+    .stream {
+        &.disabled {
+
+        }
+    }
+
+    .stream-events:not(.global-stream) {
+        .stream-event {
+            &.disabled {
+                opacity: .2;
+            }
+        }
+    }
+}
+
+.streamer {
+    .size-auto {
+        width: auto;
+    }
+
+    .event-group {
+        .generate-size(@i, @k: 1) when (@k =< @i) {
+            &.size-@{k}x {
+                width: @streamItemWidth * @k;
+            }
+            .generate-size(@i, @k + 1);
+        }
+        .generate-size(20);
+    }
+
+    .stream-event {
+        .generate-size(@i, @k: 1) when (@k =< @i) {
+            &.size-@{k}x {
+                width: (@streamItemWidth - 2) * @k + (2 * ( @k - 1 ));
+            }
+            &.shift-@{k}x {
+                margin-left: (@streamItemWidth - 2) * @k + (2 * ( @k ) + 1);
+            }
+            .generate-size(@i, @k + 1);
+        }
+        .generate-size(20);
+    }
+}
+
+html.metro-no-touch-device {
+    .streamer {
+        .stream {
+            &:hover {
+                transition: @transition-width;
+                width: 200px;
+                .stream-title, .stream-secondary {
+                    display: block;
+                }
+                .stream-icon {
+                    bottom: 4px;
+                    right: 4px;
+                    top: auto;
+                    left: auto;
+                }
+            }
+        }
+    }
+}
+
+html.metro-touch-device {
+    .streamer {
+        .stream {
+            &.focused {
+                transition: @transition-width;
+                width: 200px;
+                .stream-title, .stream-secondary {
+                    display: block;
+                }
+                .stream-icon {
+                    bottom: 4px;
+                    right: 4px;
+                    top: auto;
+                    left: auto;
+                }
+            }
+        }
+    }
+}
+
+.streamer-expand(){
+
+    .streams, .stream {
+        width: 200px;
+    }
+
+    .streamer-actions {
+        display: flex;
+        width: 200px;
+    }
+
+    .stream-title, .stream-secondary {
+        display: block;
+    }
+
+    .stream-icon {
+        bottom: 4px;
+        right: 4px;
+        top: auto;
+        left: auto;
+    }
+
+    .events-area {
+        padding-left: 200px;
+    }
+}
+
+.generate-streamer-media(@mediaBreakpointListMobileLength);
+.generate-streamer-media(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .streamer {
+            &.streamer-expand-@{m} {
+                .streamer-expand();
+            }
+        }
+    }
+
+    .generate-streamer-media(@name, @i + 1);
+}

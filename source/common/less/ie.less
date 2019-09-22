@@ -1,0 +1,57 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+// IE 10, 11
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+
+    .d-none-ie {display: none!important;}
+    .d-block-ie {display: block!important;}
+
+    .img-fluid {
+        width: 100% \9;
+    }
+
+    .img-container {
+        img {
+            width: 100% \9;
+        }
+    }
+
+    .tiles-grid {
+        display: block;
+        .clear();
+
+        [class*=tile-] {
+            margin: 5px;
+            float: left;
+        }
+    }
+
+    .ribbon-menu {
+        .content-holder {
+            .section {
+                height: 130px;
+            }
+        }
+    }
+
+    .ribbon-toggle-group {
+        height: 80px;
+    }
+
+}
+
+// Edge
+@supports (-ms-ime-align:auto) {
+    .d-none-edge {display: none!important;}
+    .d-block-edge {display: block!important;}
+
+
+    .ribbon-menu {
+        .content-holder {
+            .section {
+                height: 130px;
+            }
+        }
+    }
+}

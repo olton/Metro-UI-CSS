@@ -1,0 +1,70 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.stepper {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    position: relative;
+    margin: .5rem 0;
+
+    &::before {
+        content: "";
+        display: block;
+        width: 100%;
+        position: absolute;
+        height: 1px;
+        background-color: @gray;
+        top: 50%;
+        left: 0;
+        z-index: 0;
+    }
+
+    &.vertical {
+        flex-flow: column nowrap;
+    }
+}
+
+.stepper {
+    .step {
+        display: block;
+        width: 32px;
+        height: 32px;
+        line-height: 32px;
+        text-align: center;
+        z-index: 1;
+        background-color: @darkGray;
+        color: @white;
+        cursor: pointer;
+        position: relative;
+
+        span {
+            display: block;
+        }
+
+        &.complete {
+            background-color: @green;
+            color: @white;
+        }
+
+        &.current {
+            background-color: @cyan;
+            color: @white;
+        }
+    }
+
+    &.cycle {
+        .step {
+            border-radius: 50%;
+        }
+    }
+
+    &.diamond {
+        .step {
+            .rotate(45deg);
+            span {
+                .rotate(-45deg);
+            }
+        }
+    }
+}

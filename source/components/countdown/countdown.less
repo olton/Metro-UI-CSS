@@ -1,0 +1,91 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.countdown {
+    display: flex;
+    flex-flow: row nowrap;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+    font-size: 1.5rem;
+}
+
+.countdown {
+    .part {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        padding: .5rem .5rem .5em;
+        flex-shrink: 0;
+        flex-grow: 0;
+    }
+
+    .digit {
+        display: block;
+        position: relative;
+        padding: 0;
+        line-height: 1;
+        overflow: hidden;
+
+        .digit-placeholder {
+            visibility: hidden;
+        }
+
+        .digit-value {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            font: inherit;
+        }
+    }
+
+    .part + .part::before {
+        top: 10px;
+        left: 0;
+        content: "";
+        display: block;
+        position: absolute;
+        height: ~"calc(100% - 8px)";
+        width: 1px;
+        background: radial-gradient(at left, @borderColor, transparent);
+    }
+
+    .part.d-none + .part::before {
+        display: none;
+    }
+
+    .part.no-divider {
+        &::before {
+            display: none;
+        }
+    }
+
+    .part {
+        &.days, &.hours, &.minutes, &.seconds {
+            &::after {
+                position: absolute;
+                content: attr(data-label);
+                text-align: center;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                font-size: .3em;
+                color: inherit;
+                background-color: inherit;
+                z-index: 1;
+            }
+        }
+    }
+
+    .days {order: 1;}
+    .hours {order: 2;}
+    .minutes {order: 3;}
+    .seconds {order: 4;}
+}
+
+.countdown {
+    &.blink {
+    }
+}

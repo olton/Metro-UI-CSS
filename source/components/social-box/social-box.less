@@ -1,0 +1,73 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.social-box {
+    display: block;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-color: @white;
+    color: @dark;
+}
+
+.social-box {
+    .header {
+        display: block;
+        position: relative;
+        padding: 20px 20px 40px 20px;
+
+        .avatar {
+            position: absolute;
+            width: 90px;
+            height: auto;
+            border-radius: 50%;
+            overflow: hidden;
+            top: 100%;
+            left: 50%;
+            margin-top: -45px;
+            margin-left: -45px;
+            z-index: 2;
+            border: 2px solid @white;
+        }
+
+        .title {
+            font-size: 25px;
+            line-height: 1.1;
+            font-weight: 300;
+            margin-bottom: 5px;
+            z-index: 1;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            line-height: 1.1;
+            font-weight: 500;
+            margin: 0;
+            z-index: 1;
+        }
+    }
+
+    .skills {
+        margin: 0;
+        padding: 40px 0 0 0;
+        list-style: none inside;
+        display: flex;
+        flex-flow: row nowrap;
+
+        li {
+            padding: 8px 16px;
+            font-size: 14px;
+            text-align: center;
+            flex-grow: 1;
+            flex-basis: 0;
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        li + li {
+            border-left: 1px solid @borderColor;
+        }
+    }
+}

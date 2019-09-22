@@ -1,0 +1,97 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.no-border {border: 0 !important;}
+.no-border-left {border-left: none !important;}
+.no-border-right {border-right: none !important;}
+.no-border-top {border-top: none !important;}
+.no-border-bottom {border-bottom: none !important;}
+.no-border-visible {border-color: transparent !important;}
+
+.border-none {border: 0 !important;}
+.border-left-none {border-left: none !important;}
+.border-right-none {border-right: none !important;}
+.border-top-none {border-top: none !important;}
+.border-bottom-none {border-bottom: none !important;}
+.border-visible-none {border-color: transparent !important;}
+
+.border {border: 1px solid @transparent;}
+.border-left {border-left: 1px solid @transparent;}
+.border-right {border-right: 1px solid @transparent;}
+.border-top {border-top: 1px solid @transparent;}
+.border-bottom {border-bottom: 1px solid @transparent;}
+
+.border-top-left, .border-left-top {
+    border-top: 1px solid @transparent;
+    border-left: 1px solid @transparent;
+}
+.border-top-right, .border-right-top {
+    border-top: 1px solid @transparent;
+    border-right: 1px solid @transparent;
+}
+.border-bottom-right, .border-right-bottom {
+    border-bottom: 1px solid @transparent;
+    border-right: 1px solid @transparent;
+}
+.border-bottom-left, .border-left-bottom {
+    border-bottom: 1px solid @transparent;
+    border-left: 1px solid @transparent;
+}
+.border-top-bottom, .border-bottom-top {
+    border-bottom: 1px solid @transparent;
+    border-top: 1px solid @transparent;
+}
+.border-right-left, .border-left-right {
+    border-right: 1px solid @transparent;
+    border-left: 1px solid @transparent;
+}
+
+.border-top-right-bottom {
+    border-top: 1px solid @transparent;
+    border-right: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+.border-right-bottom-left {
+    border-left: 1px solid @transparent;
+    border-right: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+.border-bottom-left-top {
+    border-left: 1px solid @transparent;
+    border-top: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+.border-left-top-right {
+    border-left: 1px solid @transparent;
+    border-top: 1px solid @transparent;
+    border-bottom: 1px solid @transparent;
+}
+
+.border-radius {border-radius: @borderRadius;}
+.border-radius-half {border-radius: 50%;}
+
+.generate-border-width(20);
+.generate-border-width(@i) when (@i > 0) {
+
+    .border-@{i} {border-width: unit(@i, px);}
+    .border-size-@{i} {border-width: unit(@i, px);}
+    .border-radius-@{i} {border-radius: unit(@i, px);}
+
+    .generate-border-width(@i - 1);
+}
+
+.rounded {
+    border-radius: @borderRadius !important;
+}
+.border-50 {
+    border-radius: 50% !important;
+}
+
+.border-solid {border-style: solid!important;}
+.border-dashed {border-style: dashed!important;}
+.border-dotted {border-style: dotted!important;}
+.border-double {border-style: double!important;}
+.border-groove {border-style: groove!important;}
+.border-inset {border-style: inset!important;}
+.border-outset {border-style: outset!important;}
+.border-ridge {border-style: ridge!important;}

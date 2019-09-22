@@ -1,0 +1,123 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@ordersCount: 24;
+
+.generate-order(@ordersCount);
+.generate-order(@j) when (@j > 0){
+    .order-@{j} {
+        order: @j;
+    }
+    .generate-order(@j - 1);
+}
+
+.flex-equal-items {
+    & > * {
+        flex: 1;
+    }
+}
+
+.flex-nowrap {flex-wrap: nowrap !important;}
+.flex-wrap {flex-wrap: wrap !important;}
+.flex-wrap-r {flex-wrap: wrap-reverse !important;}
+.flex-column {flex-direction: column !important;}
+.flex-column-r {flex-direction: column-reverse !important;}
+.flex-row {flex-direction: row !important;}
+.flex-row-r {flex-direction: row-reverse !important;}
+.flex-align-start {align-items: flex-start !important;}
+.flex-align-end {align-items: flex-end !important;}
+.flex-align-center {align-items: center !important;}
+.flex-align-stretch {align-items: stretch !important;}
+.flex-align-baseline {align-items: baseline !important;}
+.flex-self-start {align-self: flex-start !important;}
+.flex-self-end {align-self: flex-end !important;}
+.flex-self-center {align-self: center !important;}
+.flex-self-stretch {align-self: stretch !important;}
+.flex-self-baseline {align-self: baseline !important;}
+.flex-justify-start {justify-content: flex-start !important;}
+.flex-justify-end {justify-content: flex-end !important;}
+.flex-justify-center {justify-content: center !important;}
+.flex-justify-between {justify-content: space-between !important;}
+.flex-justify-around {justify-content: space-around !important;}
+.flex-content-start {align-content: flex-start !important;}
+.flex-content-end {align-content: flex-end !important;}
+.flex-content-center {align-content: center !important;}
+.flex-content-between {align-content: space-between !important;}
+.flex-content-around {align-content: space-around !important;}
+.flex-content-stretch {align-content: stretch !important;}
+
+.flex-no-shrink > * {flex-shrink: 0;}
+.flex-shrink > * {flex-shrink: 1;}
+.flex-no-grow > * {flex-grow: 0;}
+.flex-grow > * {flex-grow: 1;}
+
+.flex-no-shrink-self {flex-shrink: 0;}
+.flex-shrink-self {flex-shrink: 1;}
+.flex-no-grow-self {flex-grow: 0;}
+.flex-grow-self {flex-grow: 1;}
+
+.flex-right {margin-left: auto;}
+.flex-left {margin-right: auto;}
+.flex-top {margin-bottom: auto;}
+.flex-bottom {margin-top: auto;}
+
+.generate-flex-media-options(@mediaBreakpointListMobileLength);
+.generate-flex-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .flex-nowrap-@{m} {flex-wrap: nowrap !important;}
+        .flex-wrap-@{m} {flex-wrap: wrap !important;}
+        .flex-wrap-r-@{m} {flex-wrap: wrap-reverse !important;}
+        .flex-column-@{m} {flex-direction: column !important;}
+        .flex-column-r-@{m} {flex-direction: column-reverse !important;}
+        .flex-row-@{m} {flex-direction: row !important;}
+        .flex-row-r-@{m} {flex-direction: row-reverse !important;}
+        .flex-align-start-@{m} {align-items: flex-start !important;}
+        .flex-align-end-@{m} {align-items: flex-end !important;}
+        .flex-align-center-@{m} {align-items: center !important;}
+        .flex-align-stretch-@{m} {align-items: stretch !important;}
+        .flex-align-baseline-@{m} {align-items: baseline !important;}
+        .flex-self-start-@{m} {align-self: flex-start !important;}
+        .flex-self-end-@{m} {align-self: flex-end !important;}
+        .flex-self-center-@{m} {align-self: center !important;}
+        .flex-self-stretch-@{m} {align-self: stretch !important;}
+        .flex-self-baseline-@{m} {align-self: baseline !important;}
+        .flex-justify-start-@{m} {justify-content: flex-start !important;}
+        .flex-justify-end-@{m} {justify-content: flex-end !important;}
+        .flex-justify-center-@{m} {justify-content: center !important;}
+        .flex-justify-between-@{m} {justify-content: space-between !important;}
+        .flex-justify-around-@{m} {justify-content: space-around !important;}
+        .flex-content-start-@{m} {align-content: flex-start !important;}
+        .flex-content-end-@{m} {align-content: flex-end !important;}
+        .flex-content-center-@{m} {align-content: center !important;}
+        .flex-content-between-@{m} {align-content: space-between !important;}
+        .flex-content-around-@{m} {align-content: space-around !important;}
+        .flex-content-stretch-@{m} {align-content: stretch !important;}
+
+        .flex-no-shrink-@{m} > * {flex-shrink: 0;}
+        .flex-shrink-@{m} > * {flex-shrink: 1;}
+        .flex-no-grow-@{m} > * {flex-grow: 0;}
+        .flex-grow-@{m} > * {flex-grow: 1;}
+
+        .flex-no-shrink-self-@{m} {flex-shrink: 0;}
+        .flex-shrink-self-@{m} {flex-shrink: 1;}
+        .flex-no-grow-self-@{m} {flex-grow: 0;}
+        .flex-grow-self-@{m} {flex-grow: 1;}
+
+        .flex-right-@{m} {margin-left: auto;}
+        .flex-left-@{m} {margin-right: auto;}
+        .flex-top-@{m} {margin-bottom: auto;}
+        .flex-bottom-@{m} {margin-top: auto;}
+
+        .generate-order(@ordersCount);
+        .generate-order(@j) when (@j > 0){
+            .order-@{m}-@{j} {
+                order: @j;
+            }
+            .generate-order(@j - 1);
+        }
+    }
+
+    .generate-flex-media-options(@name, @i + 1);
+}

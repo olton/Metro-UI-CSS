@@ -45,7 +45,7 @@ $(window).on(Metro.events.resize + "-start-screen-resize", function(){
 });
 
 $(window).on(Metro.events.mousewheel, function(e){
-    var up = e.originalEvent.deltaY < 0 ? -1 : 1;
+    var up = e.deltaY < 0 ? -1 : 1;
     var scrollStep = 50;
     $(".start-screen")[0].scrollLeft += scrollStep * up;
 });

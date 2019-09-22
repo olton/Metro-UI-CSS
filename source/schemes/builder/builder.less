@@ -1,0 +1,1090 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.scheme-builder (
+    @schemeBackground,
+    @schemeBackgroundSecondary,
+    @schemeTextColor,
+    @schemeTextColorSecondary,
+    @schemeControlColor,
+    @schemeControlTextColor,
+    @schemeFontFamily,
+    @schemeFontSize
+) {
+
+    @blendBackground: rgba(red(@schemeBackground), green(@schemeBackground), blue(@schemeBackground), .25);
+    @blendBackgroundSecondary: rgba(red(@schemeBackgroundSecondary), green(@schemeBackgroundSecondary), blue(@schemeBackgroundSecondary), .25);
+    @blendTextColor: rgba(red(@schemeTextColor), green(@schemeTextColor), blue(@schemeTextColor), .25);
+    @blendTextColorSecondary: rgba(red(@schemeTextColorSecondary), green(@schemeTextColorSecondary), blue(@schemeTextColorSecondary), .25);
+    @blendControlColor: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .25);
+    @blendControlTextColor: rgba(red(@schemeControlTextColor), green(@schemeControlTextColor), blue(@schemeControlTextColor), .25);
+    @schemeDividerColor: rgba(red(@schemeControlTextColor), green(@schemeControlTextColor), blue(@schemeControlTextColor), .25);
+
+    .bg-scheme {background-color: @schemeBackground!important;}
+    .fg-scheme {color: @schemeTextColor!important;}
+    .bg-scheme-secondary {background-color: @schemeBackgroundSecondary!important;}
+    .fg-scheme-secondary {color: @schemeTextColorSecondary!important;}
+    .bg-control {background-color: @schemeControlColor!important;}
+    .fg-control {color: @schemeControlTextColor!important;}
+
+    .bd-default {
+        border-color: @schemeControlColor!important;
+    }
+
+    .disabled {
+        cursor: default;
+    }
+
+    body {
+        font-size: @schemeFontSize;
+        font-family: @schemeFontFamily;
+        color: @schemeTextColor;
+        background-color: @schemeBackground;
+    }
+
+    hr {
+        background-color: @schemeControlColor;
+    }
+
+    // Inputs, switches
+    input[type=text],
+    input[type=password],
+    input[type=tel],
+    input[type=datetime-local],
+    input[type=email],
+    input[type=file],
+    input[type=month],
+    input[type=number],
+    input[type=search],
+    input[type=time],
+    input[type=url],
+    input[type=week],
+    input[type=file],
+    select, textarea, .file, .input, .textarea, .select {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+        border-color: @schemeControlColor !important;
+
+        &:focus, &.focused {
+            .focus-show(@schemeControlColor);
+        }
+    }
+
+    .input, .select, .textarea, .file {
+        border-style: solid!important;
+
+        .prepend {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+
+        input, select, textarea {
+            box-shadow: none!important;
+            border-color: transparent;
+        }
+    }
+
+    .file {
+        .button {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+    }
+
+    .select {
+        .active a {
+            background-color: @schemeControlColor!important;
+            color: @schemeControlTextColor!important;
+        }
+    }
+
+    .checkbox {
+        .check {
+            border-color: @schemeControlColor;
+            &::before {
+                border-color: @schemeTextColor;
+            }
+        }
+
+        input[type=checkbox]:checked ~ .check
+        {
+            border-color: @schemeControlColor;
+            background-color: @schemeControlColor;
+            transition: @transition-base;
+
+            &::before {
+                border-color: @schemeControlTextColor;
+            }
+        }
+
+        input[type=checkbox]:disabled ~ .check
+        {
+            border-color: @blendControlColor;
+            background-color: @blendControlColor;
+            &::before {
+                border-color: @blendControlColor;
+            }
+        }
+
+        input[data-indeterminate=true] ~ .check {
+            border-color: @schemeControlColor;
+            background-color: @schemeControlColor;
+        }
+
+    }
+
+    .radio {
+        .check {
+            border-color: @schemeControlColor;
+        }
+
+        input[type=radio]:checked ~ .check {
+            border-color: @schemeControlColor;
+            background-color: @schemeControlColor;
+            &::before {
+                border-color: @schemeControlTextColor;
+                background-color: @schemeControlTextColor;
+            }
+        }
+
+        input[type=radio]:disabled ~ .check {
+            border-color: @blendControlColor;
+            background-color: @blendControlColor;
+            &::before {
+                border-color: @blendControlColor;
+                background-color: @blendControlColor;
+            }
+        }
+    }
+
+    .checkbox, .radio {
+        .check {
+            color: @schemeControlTextColor;
+        }
+    }
+
+    .switch {
+        .check {
+            border-color: @schemeControlColor;
+            &::after {
+                border-color: @schemeControlColor;
+                background-color: @schemeControlColor;
+            }
+        }
+
+        input[type="checkbox"]:checked ~ .check {
+            border-color: @schemeControlColor;
+            background-color: @schemeControlColor;
+        }
+
+        input[type="checkbox"]:disabled ~ .check {
+            border-color: @blendControlColor;
+            background-color: @blendControlColor;
+            &::after {
+                border-color: @blendControlColor;
+                background-color: @blendControlColor;
+            }
+        }
+
+        input[type="checkbox"]:disabled:not(:checked) ~ .check {
+            &::after {
+                opacity: .5;
+            }
+        }
+    }
+
+    // Buttons
+    .button, .command-button, .shortcut, .tool-button {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        &:active, &.focus, &:focus {
+            .focus-show(@schemeControlColor);
+        }
+
+        &:hover {
+            background-color: darken(@schemeControlColor, 5%);
+        }
+    }
+
+    .info-button {
+        border-color: @schemeControlColor;
+
+        .button {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+
+            &:hover {
+                background-color: darken(@schemeControlColor, 5%);
+            }
+        }
+    }
+
+    .image-button {
+        border-color: @schemeControlColor;
+
+        .icon {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+
+            &:hover {
+                background-color: darken(@schemeControlColor, 5%);
+            }
+        }
+    }
+
+    // Breadcrumbs
+    .breadcrumbs {
+        background-color: @schemeBackground;
+        color: @schemeControlColor;
+
+        .page-item {
+            &::before, &::after {
+                background-color: @schemeControlColor!important;
+            }
+        }
+        .page-link:hover {
+            color: darken(@schemeControlColor, 5%);
+        }
+    }
+
+    // Pagination
+    .pagination {
+        .page-item:not(.no-link) {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+            border: 1px @schemeControlColor solid;
+        }
+
+        .page-item {
+            &.active, &:hover {
+                background-color: darken(@schemeControlColor, 5%);
+            }
+        }
+
+        .no-link {
+            background-color: @transparent;
+            color: @schemeControlColor;
+        }
+    }
+
+
+    // Accordion
+    .accordion {
+        .frame .heading {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+
+        .frame {
+            margin: 0;
+        }
+
+        .frame + .frame {
+            border-top: 1px @blendControlColor solid;
+        }
+    }
+
+    // Menu
+    .h-menu {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        & > li > a {
+            &.dropdown-toggle {
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+        }
+    }
+
+    .d-menu, .v-menu {
+        background-color: @white!important;
+        color: @schemeControlColor;
+        border: 1px solid @schemeControlColor;
+        box-shadow: none;
+
+        .dropdown-toggle {
+            &::before {
+                border-color: @schemeControlColor!important;
+            }
+        }
+
+        li {
+            &:hover {
+                background-color: @schemeControlColor!important;
+                color: @schemeControlTextColor!important;
+
+                .dropdown-toggle {
+                    &::before {
+                        border-color: @schemeControlTextColor!important;
+                    }
+                }
+            }
+        }
+
+        .divider {
+            background-color: @schemeControlColor!important;
+        }
+
+        .menu-title {
+            background-color: darken(@schemeControlColor, 10%);
+            color: @schemeControlTextColor;
+        }
+
+        .disabled {
+            color: rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), .5)!important;
+        }
+    }
+
+    .v-menu {
+        .v-menu {
+            border: none!important;
+        }
+    }
+
+    .t-menu {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+        box-shadow: none;
+
+        li a {
+            border-color: @schemeDividerColor!important;
+        }
+
+        .dropdown-toggle {
+            &::after {
+                border-color: transparent transparent @schemeControlTextColor transparent;
+            }
+        }
+    }
+
+    // App bar
+    .app-bar {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        .dropdown-toggle {
+            &::before {
+                border-color: @schemeControlTextColor;
+            }
+        }
+
+        .app-bar-menu li, .app-bar-container {
+            .d-menu {
+                background-color: @schemeControlColor!important;
+                color: @schemeControlTextColor!important;
+                li:hover {
+                    background-color: @hoverBackground!important;
+                }
+            }
+
+            .divider {
+                background-color: @schemeDividerColor;
+            }
+        }
+    }
+
+    [class*=app-bar-expand] {
+        .app-bar-menu li, .app-bar-container {
+            .d-menu {
+                box-shadow: none!important;
+                border: 1px solid @schemeControlColor!important;
+                background-color: @white!important;
+                color: @schemeControlColor!important;
+                li:hover {
+                    background-color: @schemeControlColor!important;
+                    color: @schemeControlTextColor!important;
+                }
+            }
+        }
+    }
+
+    // Calendar
+    .calendar {
+        border-color: @schemeControlColor;
+
+        .calendar-header {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+
+        .day.today {
+            background-color: @schemeControlColor;
+        }
+
+        .day.selected {
+            box-shadow: 0 0 0 1px rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), 1)!important;
+
+            &::after {
+                border-top-color: @schemeControlColor;
+            }
+        }
+
+        .calendar-years > .years-list, .calendar-months > .months-list {
+            li.active {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+            }
+        }
+
+        .calendar-footer {
+            border-top-color: @blendControlColor;
+        }
+
+        .week-days {
+            border-top-color: @blendControlColor;
+            border-bottom-color: @blendControlColor;
+        }
+    }
+
+    [class*=calendar-wide] {
+        .calendar-footer {
+            border-left-color: @blendControlColor;
+        }
+    }
+
+    // Countdown
+    .countdown {
+        line-height: 1.5;
+
+        .part {
+            color: @schemeTextColor;
+        }
+    }
+
+    // Date picker and time picker
+    .wheel-picker {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+
+        .date-wrapper, .time-wrapper {
+            border-color: @schemeControlColor;
+        }
+
+        .select-block {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+
+            ul {
+                border-color: @blendControlColor;
+            }
+        }
+
+        .action-block {
+            border-top: 1px @blendControlColor solid;
+            .button {
+                color: @schemeControlTextColor;
+            }
+        }
+    }
+
+    // Dialog
+    .dialog {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+        border: 1px solid @schemeControlColor;
+
+        .dialog-actions {
+            border-top-color: @schemeControlColor;
+        }
+    }
+
+    // Keypad
+    .keypad {
+        .keys {
+            background-color: @schemeBackground;
+            border-color: @schemeControlColor;
+            color: @schemeTextColor;
+        }
+        .key {
+            &.service-key {
+                background-color: darken(@schemeControlColor, 10%);
+            }
+        }
+    }
+
+    // Hints
+    .hint {
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColor;
+    }
+
+    // Listview
+    .listview {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+
+        .node {
+            &:hover {
+                background-color: @blendControlColor;
+                color: @schemeControlTextColor;
+            }
+            &.current-select {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+                border-color: @schemeControlColor!important;
+            }
+        }
+
+        .node-group {
+            .node-toggle {
+                &::before {
+                    border-color: @schemeTextColor;
+                }
+            }
+        }
+
+        &.view-content {
+            .node + .node {
+                border-top-color: @schemeControlColor;
+            }
+        }
+    }
+
+    // Master
+    .master {
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColor;
+
+        .controls {
+            .next, .prev {
+                color: @schemeControlColor;
+
+                &.disabled {
+                    color: @blendControlColor;
+                }
+            }
+        }
+
+        .pages {
+            border-color: @schemeControlColor;
+        }
+    }
+
+    // navview
+    .navview {
+        .navview-pane {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+
+            .pull-button, .holder, .navview-menu li a {
+                &:hover {
+                    background-color: @hoverBackground;
+                }
+                &:active, &:focus {
+                    background-color: darken(@schemeControlColor, 10%);
+                }
+                &:focus {
+                    border: 2px solid darken(@schemeControlColor, 10%);
+                }
+            }
+
+            .dropdown-toggle {
+                &::after {
+                    border-color: transparent transparent @schemeControlTextColor transparent;
+                }
+            }
+        }
+
+        .navview-content {
+            background-color: @schemeBackground;
+            color: @schemeTextColor;
+        }
+    }
+
+    // Notify
+    .notify {
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColorSecondary;
+        border: 1px solid @schemeControlColor;
+    }
+
+    // Panel
+    .panel {
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColorSecondary;
+        border-color: @blendControlColor!important;
+
+        .panel-title {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+            border-bottom-color: @schemeDividerColor;
+
+            .dropdown-toggle {
+                border-left-color: @schemeDividerColor;
+                &::before {
+                    border-color: @schemeControlTextColor;
+                }
+            }
+
+            .icon {
+                border-right-color: @schemeDividerColor;
+            }
+        }
+    }
+
+    // Window
+    .window {
+        border-color: @blendControlColor;
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+
+        .window-caption {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+        .window-content {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+        }
+    }
+
+    .resize-element {
+        &::after {
+            border-bottom-color: @schemeControlColor;
+        }
+    }
+
+    // Popovers
+    .popover {
+        background-color: @schemeBackgroundSecondary;
+        color: @schemeTextColorSecondary;
+        border-color: @schemeControlColor;
+    }
+
+    // Rating
+
+    @ratingOff: @blendControlColor;
+    @ratingOn: @schemeControlColor;
+
+    .rating {
+        .stars {
+            li {
+                color: @ratingOff;
+
+                &.on {
+                    color: @ratingOn;
+                }
+            }
+        }
+    }
+
+    .rating:not(.static) .stars {
+        &:hover {
+            li {
+                color: @ratingOn;
+            }
+        }
+
+        li:hover ~ li {
+            color: @ratingOff!important;
+        }
+    }
+
+    // Sidenav
+    .sidenav-simple, .sidenav-counter {
+        background-color: @schemeBackground;
+        color: @schemeControlColor;
+
+        .active, li.active:hover {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+
+        li {
+            &.disabled {
+                color: @blendControlTextColor!important;
+            }
+        }
+    }
+
+    .sidenav-m3 {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        a {
+            background-color: @schemeControlColor;
+
+            &:hover {
+                background-color: @hoverBackground;
+            }
+        }
+
+        li {
+            &.disabled {
+                color: @blendControlTextColor!important;
+            }
+        }
+
+        li + li {
+            border-top-color: @schemeControlColor;
+        }
+
+        .d-menu {
+            background-color: darken(@schemeControlColor, 10%)!important;
+            border-color: @schemeControlColor;
+            margin-bottom: 4px;
+            li {
+                border-color: @schemeControlColor!important;
+                color: @schemeControlTextColor!important;
+
+                &.disabled {
+                    color: @blendControlTextColor!important;
+                }
+            }
+        }
+
+        .dropdown-toggle {
+            &::before {
+                border-color: @schemeControlTextColor;
+            }
+        }
+    }
+
+    // Slider
+    .slider {
+        .backside {
+            background-color: @blendControlColor;
+        }
+
+        .buffer {
+            background-color: @schemeControlTextColor;
+        }
+
+        .complete {
+            background-color: @schemeControlColor;
+        }
+
+        .marker {
+            background-color: @schemeTextColor;
+        }
+    }
+
+    // Stepper
+    .stepper {
+        &::before {
+            background-color: @schemeBackgroundSecondary;
+        }
+        .step {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColor;
+
+            &.complete {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+            }
+
+            &.current {
+                background-color: @schemeTextColor;
+                color: contrast(@schemeTextColor);
+            }
+
+        }
+    }
+
+    // Streamer
+    .streamer {
+        .streams {
+            background-color: @schemeBackground;
+            color: @schemeTextColor;
+        }
+
+        .streamer-action {
+            background-color: @schemeControlColor;
+            color: @schemeControlTextColor;
+        }
+
+        .stream {
+            border-color: @schemeControlColor;
+        }
+
+        .event-group {
+            background-color: @schemeBackground;
+            color: @schemeTextColor;
+        }
+
+        .stream-event {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+            border-color: @schemeControlColor;
+
+            &:hover {
+                border-color: lighten(@schemeControlColor, 20%);
+            }
+
+            &.selected {
+                box-shadow: 0 0 0 1px rgba(red(@schemeControlColor), green(@schemeControlColor), blue(@schemeControlColor), 1)!important;
+                &::before {
+                    border-color: @schemeTextColor!important;
+                }
+                &::after {
+                    border-top-color: @schemeControlColor;
+                }
+            }
+        }
+
+        .stream-event-slide {
+            .slide-data {
+                .title {
+                    color: @schemeTextColor;
+                }
+                .subtitle, .desc {
+                    color: @schemeTextColorSecondary;
+                }
+            }
+        }
+    }
+
+    // Table
+    .table {
+        thead {
+            border-bottom-color: @schemeControlColor;
+        }
+        tfoot {
+            border-top-color: @schemeControlColor;
+            border-bottom-color: @schemeControlColor;
+
+            th {
+                color: @schemeControlTextColor;
+            }
+        }
+
+        .sortable-column {
+            &.sort-asc, &.sort-desc {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+                &:after {
+                    color: @schemeControlTextColor;
+                }
+            }
+        }
+
+        &.striped {
+            tbody tr:nth-child(odd) {
+                background: @schemeBackgroundSecondary;
+            }
+        }
+
+        &.table-border {
+            border-color: @schemeControlColor;
+        }
+
+        &.cell-border {
+            th, td {
+                border-color: @schemeControlColor;
+            }
+        }
+    }
+
+    // Tabs
+    .tabs {
+        background-color: @schemeBackground;
+        color: @schemeControlTextColor;
+        border-color: @schemeControlColor;
+
+        & > ul > li {
+            background-color: @schemeBackgroundSecondary;
+            color: @schemeTextColorSecondary;
+
+            &:hover {
+                background-color: @blendControlColor;
+            }
+            &.active {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+            }
+        }
+
+        .disabled {
+            color: @blendControlTextColor!important;
+        }
+    }
+
+    .tabs {
+        &.vertical {
+            & > ul {
+                border-right-color: @schemeControlColor;
+                & > li {
+                    border-right-color: @schemeControlColor;
+                }
+                & > li.active {
+                    border-color: @schemeControlColor;
+                }
+            }
+
+            &.right {
+                & > ul {
+                    border-left-color: @schemeControlColor;
+                    & > li {
+                        border-left-color: @schemeControlColor;
+                    }
+                    & > li.active {
+                        border-color: @schemeControlColor;
+                    }
+                }
+            }
+        }
+    }
+
+    [class*=tabs-expand] {
+        & > ul {
+            border-bottom-color: @schemeControlColor;
+
+            & > li {
+                border-bottom-color: @schemeControlColor;
+
+                &.active {
+                    border-color: @schemeControlColor;
+                }
+            }
+        }
+    }
+
+    // Top bar
+    .topbar {
+        background-color: @schemeControlColor;
+        color: @schemeControlTextColor;
+
+        .topbar-brand, .topbar-element, .topbar-menu {
+            color: @schemeControlTextColor;
+        }
+    }
+
+    // Treeview
+    .treeview {
+        background-color: @schemeBackground;
+        color: @schemeTextColorSecondary;
+
+        .node-toggle {
+            &::before {
+                border-color: @schemeTextColorSecondary!important;
+            }
+        }
+
+        li {
+            &.current > .caption {
+                color: @schemeTextColor;
+            }
+        }
+    }
+
+    // Wizard
+    .wizard {
+        background-color: @schemeBackground;
+        color: @schemeTextColor;
+        border-color: @schemeControlColor;
+
+        & > section, &.section {
+            border-color: darken(@schemeControlColor, 50%);
+            &:nth-child(1) {border-color: @schemeControlColor;}
+            &:nth-child(2) {border-color: darken(@schemeControlColor, 5%);}
+            &:nth-child(3) {border-color: darken(@schemeControlColor, 10%);}
+            &:nth-child(4) {border-color: darken(@schemeControlColor, 15%);}
+            &:nth-child(5) {border-color: darken(@schemeControlColor, 20%);}
+            &:nth-child(6) {border-color: darken(@schemeControlColor, 25%);}
+            &:nth-child(7) {border-color: darken(@schemeControlColor, 30%);}
+            &:nth-child(8) {border-color: darken(@schemeControlColor, 35%);}
+            &:nth-child(9) {border-color: darken(@schemeControlColor, 40%);}
+            &:nth-child(10) {border-color: darken(@schemeControlColor, 50%);}
+
+            &::before {
+                color: @schemeControlTextColor;
+            }
+
+            &.complete {
+                border-color: darken(@schemeBackgroundSecondary, 50%);
+                &:nth-child(1) {border-color: @schemeBackgroundSecondary;}
+                &:nth-child(2) {border-color: darken(@schemeBackgroundSecondary, 5%);}
+                &:nth-child(3) {border-color: darken(@schemeBackgroundSecondary, 10%);}
+                &:nth-child(4) {border-color: darken(@schemeBackgroundSecondary, 15%);}
+                &:nth-child(5) {border-color: darken(@schemeBackgroundSecondary, 20%);}
+                &:nth-child(6) {border-color: darken(@schemeBackgroundSecondary, 25%);}
+                &:nth-child(7) {border-color: darken(@schemeBackgroundSecondary, 30%);}
+                &:nth-child(8) {border-color: darken(@schemeBackgroundSecondary, 35%);}
+                &:nth-child(9) {border-color: darken(@schemeBackgroundSecondary, 40%);}
+                &:nth-child(10) {border-color: darken(@schemeBackgroundSecondary, 50%);}
+
+                &::before {
+                    color: @schemeTextColorSecondary;
+                }
+            }
+
+            &.current {
+                &::before {
+                    color: @schemeTextColor;
+                    background-color: @schemeControlColor;
+                }
+            }
+        }
+
+        .action-bar {
+            button {
+                border-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+            }
+        }
+    }
+
+    // Ribbon menu
+
+    .ribbon-menu {
+        .tabs-holder {
+
+            .static {
+                background-color: @schemeControlColor;
+                color: @schemeControlTextColor;
+                &:hover {
+                    border-color: @transparent!important;
+                }
+            }
+
+        }
+
+        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
+            color: @schemeTextColor;
+        }
+        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
+            &:hover {
+                border-color: @blendControlColor;
+                background-color: @blendBackgroundSecondary;
+            }
+        }
+
+        .ribbon-button, .ribbon-tool-button, .ribbon-split, .ribbon-main, .ribbon-icon-button {
+            &:active, &.active {
+                border-color: @blendControlColor;
+                background-color: @blendBackground;
+            }
+        }
+
+        .ribbon-split-button {
+            &:hover {
+                border-color: @blendControlColor;
+
+                .ribbon-split {
+                    border-color: @blendControlColor;
+                }
+            }
+        }
+
+        .ribbon-dropdown {
+            box-shadow: none;
+
+            li {
+                &:hover {
+                    border-color: @blendControlColor;
+                    background-color: @blendBackgroundSecondary;
+                }
+            }
+
+            .checked {
+                &::after {
+                    border-color: @blendControlColor;
+                    background-color: @blendBackgroundSecondary;
+                }
+            }
+        }
+    }
+}

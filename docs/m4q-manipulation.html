@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Manipulation - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">About</a></li>
+                    <li class="toc-entry"><a href="#_func_append">append()</a></li>
+                    <li class="toc-entry"><a href="#_func_prepend">prepend()</a></li>
+                    <li class="toc-entry"><a href="#_func_append_to">appendTo()</a></li>
+                    <li class="toc-entry"><a href="#_func_prepend_to">prependTo()</a></li>
+                    <li class="toc-entry"><a href="#_func_insert_after">insertAfter()</a></li>
+                    <li class="toc-entry"><a href="#_func_insert_before">insertBefore()</a></li>
+                    <li class="toc-entry"><a href="#_func_after">after()</a></li>
+                    <li class="toc-entry"><a href="#_func_before">before()</a></li>
+                    <li class="toc-entry"><a href="#_func_remove">remove()</a></li>
+                    <li class="toc-entry"><a href="#_func_clone">clone()</a></li>
+                    <li class="toc-entry"><a href="#">import()</a></li>
+                    <li class="toc-entry"><a href="#">adopt()</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q Manipulation</h1>
+                <p class="text-leader">
+                    Add, remove or clone elements into/from DOM.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_func_append">append()</h3>
+                <p>
+                    Insert content, specified by the parameter, to the end of each element in the set of matched elements.
+                    Parameter types: <code>selector</code>, <code>htmlString</code>, <code>Element</code>, <code>array of Elements</code>, <code>m4q object</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).append( "&lt;p&gt;Test&lt;/p&gt;" );
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;
+                        Hello
+                        &lt;p&gt;Test&lt;/p&gt;
+                      &lt;/div&gt;
+                      &lt;div class="inner"&gt;
+                        Goodbye
+                        &lt;p&gt;Test&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_prepend">prepend()</h3>
+                <p>
+                    Insert content, specified by the parameter, to the beginning of each element in the set of matched elements.
+                    Parameter types: <code>selector</code>, <code>htmlString</code>, <code>Element</code>, <code>array of Elements</code>, <code>m4q object</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).prepend( "&lt;p&gt;Test&lt;/p&gt;" );
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;
+                        &lt;p&gt;Test&lt;/p&gt;
+                        Hello
+                      &lt;/div&gt;
+                      &lt;div class="inner"&gt;
+                        &lt;p&gt;Test&lt;/p&gt;
+                        Goodbye
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_append_to">appendTo()</h3>
+                <p>
+                    Insert every element in the set of matched elements to the end of the target.
+                    Parameter types: <code>selector</code>, <code>htmlString</code>, <code>Element</code>, <code>array of Elements</code>, <code>m4q object</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( "&lt;p&gt;Test&lt;/p&gt;" ).appendTo(".inner");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;
+                        Hello
+                        &lt;p&gt;Test&lt;/p&gt;
+                      &lt;/div&gt;
+                      &lt;div class="inner"&gt;
+                        Goodbye
+                        &lt;p&gt;Test&lt;/p&gt;
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_prepend_to">prependTo()</h3>
+                <p>
+                    Insert every element in the set of matched elements to the beginning of the target.
+                    Parameter types: <code>selector</code>, <code>htmlString</code>, <code>Element</code>, <code>array of Elements</code>, <code>m4q object</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( "&lt;p&gt;Test&lt;/p&gt;" ).prependTo(".inner");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;
+                        &lt;p&gt;Test&lt;/p&gt;
+                        Hello
+                      &lt;/div&gt;
+                      &lt;div class="inner"&gt;
+                        &lt;p&gt;Test&lt;/p&gt;
+                        Goodbye
+                      &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_insert_after">insertAfter()</h3>
+                <p>
+                    Insert every element in the set of matched elements after the target.
+                    Parameter types: <code>selector</code>, <code>htmlString</code>, <code>Element</code>, <code>array of Elements</code>, <code>m4q object</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( "&lt;p&gt;Test&lt;/p&gt;" ).insertAfter(".inner");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;p&gt;Test&lt;/p&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                      &lt;p&gt;Test&lt;/p&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_insert_before">insertBefore()</h3>
+                <p>
+                    Insert every element in the set of matched elements before the target.
+                    Parameter types: <code>selector</code>, <code>htmlString</code>, <code>Element</code>, <code>array of Elements</code>, <code>m4q object</code>.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( "&lt;p&gt;Test&lt;/p&gt;" ).insertAfter(".inner");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;p&gt;Test&lt;/p&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;p&gt;Test&lt;/p&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_after">after()</h3>
+                <p>
+                    Insert content, specified by the parameter, after each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                      &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                      &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).after("123");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        123
+                        &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                        123
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_before">before()</h3>
+                <p>
+                    Insert content, specified by the parameter, before each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).before("123");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        123
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        123
+                        &lt;div class="inner"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_remove">remove()</h3>
+                <p>
+                    Remove the set of matched elements from the DOM.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                        &lt;div class="inner second"&gt;Goodbye&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>Remove all matched</p>
+                <pre><code>
+                    $( ".inner" ).remove();
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <p>Remove filtered by selector</p>
+                <pre><code>
+                    $( ".inner" ).remove(".second");
+                </code></pre>
+                <p>Result:</p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;Hello&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+                <h3 id="_func_clone">clone()</h3>
+                <p>
+                    Create a deep copy of the set of matched elements. If you set function argument to true,  the whole subtree (including text that may be in child Text nodes) is copied too.
+                    Cloning a node copies all of its attributes and their values, including intrinsic (in–line) listeners.
+                    It does not copy event listeners added using addEventListener() or those assigned to element properties (e.g., node.onclick = fn).
+                    Moreover, for a &lt;canvas&gt; element, the painted image is not copied.
+                </p>
+                <p>
+                    The duplicate node returned by <code>clone()</code> is not part of the <code>document</code> until it is added to another node that is part of the document using manipulation methods.
+                </p>
+                <pre><code>
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).clone().appendTo(".container");
+                    --------------------------------------------
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="inner"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( ".inner" ).clone(true).appendTo(".container");
+                    --------------------------------------------
+                    &lt;div class="container"&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                        &lt;div class="inner"&gt;&lt;p&gt;Hello&lt;/p&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

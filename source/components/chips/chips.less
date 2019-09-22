@@ -1,0 +1,80 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.chip {
+    display: inline-block;
+    float: left;
+    height: 32px;
+    font-size: 14px;
+    padding: 0 12px;
+    line-height: 32px;
+    background: @gray;
+    cursor: default;
+
+    .label {
+        white-space: nowrap;
+    }
+
+    .icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        .square(32,px);
+        text-align: center;
+        line-height: 32px;
+        vertical-align: middle;
+        font-size: 24px;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            max-height: 100%;
+            vertical-align: initial;
+        }
+    }
+
+    .icon + .label {
+        margin-left: 30px;
+    }
+
+    .action {
+        display: block;
+        float: right;
+        margin-left: 10px;
+        cursor: pointer;
+        .square(24,px);
+
+        margin-right: -8px;
+        margin-top: 4px;
+        background-color: #ccc;
+        overflow: hidden;
+
+        &:before {
+            content: "\2716";
+            line-height: 24px;
+            text-align: center;
+            display: block;
+        }
+
+    }
+
+    &:hover {
+        background-color: @hoverBackground;
+    }
+
+    &.material {
+        border-radius: 16px;
+
+        .icon {
+            border-radius: 32px;
+        }
+
+        .action {
+            border-radius: 24px;
+        }
+    }
+}
+
+.chip + .chip {
+    margin-left: 8px;
+}

@@ -1,0 +1,331 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.fixed-top, .fixed-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.fixed-top {
+    top: 0;
+    bottom: auto;
+}
+
+.fixed-bottom {
+    top: auto;
+    bottom: 0;
+}
+
+.pos-relative {position: relative!important;}
+.pos-absolute {position: absolute!important;}
+.pos-static {position: static!important;}
+.pos-fixed {position: fixed!important;}
+
+.put-n {
+    right: auto!important;
+    bottom: auto!important;
+    left: 50%!important;
+    top: 0!important;
+    .translateX(-50%);
+    .translateY(-100%);
+}
+
+.put-nw {
+    right: auto!important;
+    bottom: auto!important;
+    left: 0!important;
+    top: 0!important;
+    .translateY(-100%);
+}
+
+.put-ne {
+    left: auto!important;
+    bottom: auto!important;
+    top: 0!important;
+    right: 0!important;
+    .translateY(-100%);
+}
+
+.put-wn {
+    bottom: auto!important;
+    right: auto!important;
+    top: 0!important;
+    left: 0!important;
+    .translateX(-100%);
+}
+
+.put-w {
+    bottom: auto!important;
+    right: auto!important;
+    top: 50%!important;
+    left: 0!important;
+    .translateX(-100%);
+    .translateY(-50%);
+}
+
+.put-ws {
+    top: auto!important;
+    right: auto!important;
+    bottom: 0!important;
+    left: 0!important;
+    .translateX(-100%);
+}
+
+.put-en {
+    bottom: auto!important;
+    left: auto!important;
+    top: 0!important;
+    right: 0!important;
+    .translateX(100%);
+}
+
+.put-e {
+    bottom: auto!important;
+    left: auto!important;
+    top: 50%!important;
+    right: 0!important;
+    .translateX(100%);
+    .translateY(-50%);
+}
+
+.put-es {
+    top: auto!important;
+    left: auto!important;
+    bottom: 0!important;
+    right: 0!important;
+    .translateX(100%);
+}
+
+.put-s {
+    bottom: auto!important;
+    right: auto!important;
+    top: 100%!important;
+    left: 0!important;
+}
+
+.put-sw {
+    bottom: auto!important;
+    right: auto!important;
+    top: 100%!important;
+    left: 50%!important;
+    .translateX(-50%);
+}
+
+.put-se {
+    bottom: auto!important;
+    left: auto!important;
+    top: 100%!important;
+    right: 0!important;
+}
+
+.put-left {left: 0!important; right: auto!important;}
+.put-right {left: auto!important; right: 0!important;}
+
+.pos-top-left {
+    top: 0!important;
+    left: 0!important;
+    right: auto!important;
+    bottom: auto!important;
+}
+
+.pos-top-center {
+    top: 0!important;
+    left: 50%!important;
+    right: auto!important;
+    bottom: auto!important;
+    .translateX(-50%);
+}
+
+.pos-top-right {
+    right: 0!important;
+    top: 0!important;
+    left: auto!important;
+    bottom: auto!important;
+}
+
+.pos-bottom-left {
+    top: auto!important;
+    right: auto!important;
+    left: 0!important;
+    bottom: 0!important;
+}
+
+.pos-bottom-center {
+    top: auto!important;
+    left: 50%!important;
+    bottom: 0!important;
+    right: auto!important;
+    .translateX(-50%);
+}
+
+.pos-bottom-right {
+    bottom: 0!important;
+    right: 0!important;
+    top: auto!important;
+    left: auto!important;
+}
+
+.pos-left-center {
+    left: 0!important;
+    top: 50%!important;
+    bottom: auto!important;
+    right: auto!important;
+    .translateY(-50%);
+}
+
+.pos-right-center {
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    .translateY(-50%);
+}
+
+.pos-center {
+    top: 50%!important;
+    left: 50%!important;
+    bottom: auto!important;
+    right: auto!important;
+    .translateX(-50%);
+    .translateY(-50%);
+}
+
+.z-absolute {z-index: @zindex-absolute!important;}
+.z-dropdown {z-index: @zindex-dropdown!important;}
+.z-sticky {z-index: @zindex-sticky!important;}
+.z-fixed {z-index: @zindex-fixed!important;}
+.z-modal-backdrop {z-index: @zindex-modal-backdrop!important;}
+.z-modal {z-index: @zindex-modal!important;}
+.z-popover {z-index: @zindex-popover!important;}
+.z-tooltip {z-index: @zindex-tooltip!important;}
+.z-top {z-index: @zindex-top!important;}
+.z-notify {z-index: @zindex-notify!important;}
+.z-charms {z-index: @zindex-charms!important;}
+.z-overlay {z-index: @zindex-overlay!important;}
+.z-fullscreen {z-index: @zindex-fullscreen!important;}
+
+.z-1 {z-index: 1!important;}
+.z-2 {z-index: 2!important;}
+.z-3 {z-index: 3!important;}
+.z-4 {z-index: 4!important;}
+.z-5 {z-index: 5!important;}
+.z-6 {z-index: 6!important;}
+.z-7 {z-index: 7!important;}
+.z-8 {z-index: 8!important;}
+.z-9 {z-index: 9!important;}
+.z-10 {z-index: 10!important;}
+
+.generate-position-media-options(@mediaBreakpointListMobileLength);
+.generate-position-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .pos-relative-@{m} {position: relative!important;}
+        .pos-absolute-@{m} {position: absolute!important;}
+        .pos-static-@{m} {position: static!important;}
+        .pos-fixed-@{m} {position: fixed!important;}
+        .put-left-@{m} {left: 0!important; right: auto!important;}
+        .put-right-@{m} {left: auto!important; right: 0!important;}
+
+        .put-n-@{m} {
+            right: auto!important;
+            bottom: auto!important;
+            left: 50%!important;
+            top: 0!important;
+            .translateX(-50%);
+            .translateY(-100%);
+        }
+
+        .put-nw-@{m} {
+            right: auto!important;
+            bottom: auto!important;
+            left: 0!important;
+            top: 0!important;
+            .translateY(-100%);
+        }
+
+        .put-ne-@{m} {
+            left: auto!important;
+            bottom: auto!important;
+            top: 0!important;
+            right: 0!important;
+            .translateY(-100%);
+        }
+
+        .put-wn-@{m} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 0!important;
+            left: 0!important;
+            .translateX(-100%);
+        }
+
+        .put-w-@{m} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 50%!important;
+            left: 0!important;
+            .translateX(-100%);
+            .translateY(-50%);
+        }
+
+        .put-ws-@{m} {
+            top: auto!important;
+            right: auto!important;
+            bottom: 0!important;
+            left: 0!important;
+            .translateX(-100%);
+        }
+
+        .put-en-@{m} {
+            bottom: auto!important;
+            left: auto!important;
+            top: 0!important;
+            right: 0!important;
+            .translateX(100%);
+        }
+
+        .put-e-@{m} {
+            bottom: auto!important;
+            left: auto!important;
+            top: 50%!important;
+            right: 0!important;
+            .translateX(100%);
+            .translateY(-50%);
+        }
+
+        .put-es-@{m} {
+            top: auto!important;
+            left: auto!important;
+            bottom: 0!important;
+            right: 0!important;
+            .translateX(100%);
+        }
+
+        .put-s-@{m} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 100%!important;
+            left: 0!important;
+        }
+
+        .put-sw-@{m} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 100%!important;
+            left: 50%!important;
+            .translateX(-50%);
+        }
+
+        .put-se-@{m} {
+            bottom: auto!important;
+            left: auto!important;
+            top: 100%!important;
+            right: 0!important;
+        }
+    }
+
+    .generate-position-media-options(@name, @i + 1);
+}

@@ -1,0 +1,102 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.dialog {
+    position: fixed;
+    display: flex;
+    flex-flow: column;
+    width: auto;
+    max-width: ~"calc(100vw - 100px)";
+    max-height: ~"calc(100vh - 100px)";
+    height: auto;
+    background-color: @white;
+    color: @dark;
+    z-index: @zindex-modal;
+    border: 1px solid @borderColor;
+}
+
+.dialog {
+    &.shadow-on {
+        .shadow(3);
+    }
+}
+
+.dialog-title, .dialog-content, .dialog-actions {
+    display: block;
+}
+
+.dialog-title {
+    font-size: 1.325rem;
+    padding: 12px 24px;
+    order: 1;
+    border-bottom: 1px solid @borderColor;
+}
+
+.dialog-content {
+    padding: 12px 24px;
+    order: 2;
+}
+
+.dialog-actions {
+    border-top: 1px solid @winFlatBorderColor;
+    padding: 8px 16px;
+    order: 3;
+
+    & > * {
+        margin: 0 4px;
+        min-width: 64px;
+    }
+}
+
+.dialog {
+    * + .dialog-content {
+        margin-top: 8px;
+    }
+    * + .dialog-actions {
+        margin-top: 8px;
+    }
+}
+
+.dialog {
+    .closer {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background-color: inherit;
+        color: inherit;
+        z-index: 100;
+        &::before {
+            display: block;
+            content: "\00d7";
+            font-size: 24px;
+            margin-top: -4px;
+        }
+    }
+}
+
+.dialog {
+    each(@buttonPredefinedTypes, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            border: 1px solid @@color;
+
+            .dialog-title {
+                background-color: @@color;
+                border-bottom-color: @@color;
+                color: @white;
+            }
+
+            .dialog-actions {
+                border-top-color: @@color;
+            }
+        }
+    })
+
+    &.light, &.yellow {
+        .dialog-title {
+            color: @dark;
+        }
+    }
+}

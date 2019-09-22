@@ -1,0 +1,50 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.notify-container {
+    background-color: @transparent;
+    position: fixed;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    z-index: @zindex-top + 1;
+    width: auto;
+
+    &.position-left {
+        right: auto;
+        left: 0;
+    }
+
+    &.position-top, &.position-bottom {
+        width: 100%!important;
+        flex-direction: row;
+    }
+
+    &.position-bottom {
+        top: auto;
+        bottom: 0;
+    }
+}
+
+.notify {
+    display: block;
+    background-color: @white;
+    color: @dark;
+    padding: .5rem;
+    margin: .25rem;
+    border: 1px solid @borderColor;
+    cursor: pointer;
+}
+
+.notify-title {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: .5rem;
+}
+
+.notify-message {
+    font-size: .9rem;
+    font-weight: normal;
+}

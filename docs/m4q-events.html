@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Events - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#_about">About</a></li>
+                    <li class="toc-entry"><a href="#_func_on">on()</a></li>
+                    <li class="toc-entry"><a href="#_func_one">one()</a></li>
+                    <li class="toc-entry"><a href="#_func_off">off()</a></li>
+                    <li class="toc-entry"><a href="#_func_trigger">trigger()</a></li>
+                    <li class="toc-entry"><a href="#_func_fire">fire()</a></li>
+                    <li class="toc-entry"><a href="#_func_get_events">getEvents()</a></li>
+                    <li class="toc-entry"><a href="#_func_add_event_hook">addEventHook()</a></li>
+                    <li class="toc-entry"><a href="#_func_remove_event_hook">removeEventHook()</a></li>
+                    <li class="toc-entry"><a href="#_func_remove_event_hooks">removeEventHooks()</a></li>
+                    <li class="toc-entry"><a href="#_func_aliases">Event aliases()</a></li>
+                    <li class="toc-entry"><a href="#_func_ready">Document ready</a></li>
+                    <li class="toc-entry"><a href="#_func_load">Load</a></li>
+                    <li class="toc-entry"><a href="#_func_unload">UnLoad</a></li>
+                    <li class="toc-entry"><a href="#_func_beforeunload">BeforeUnLoad</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q Events</h1>
+                <p class="text-leader">
+                    Attach or remove an event handler function for one or more events to the selected elements.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_about">About</h3>
+                <p>
+                    You can use built in methods: <code>on</code>, <code>one</code>, <code>off</code>, <code>trigger</code> and <code>fire</code> for works with events.
+                </p>
+
+                <h3 id="_func_on">on()</h3>
+                <p>
+                    Attach an event handler function for one or more events to the selected elements.
+                    You can define more than one event, with space-separated event types and optional namespaces.
+                    Also, you can add <code>options</code> to you your event with last argument <code>option</code>.
+                    Argument <code>option</code> must be a plain object and can contains:
+                </p>
+                <ul>
+                    <li><code>ns</code> - namespace for event</li>
+                    <li><code>once</code> - false (default) or true to define once fired event</li>
+                </ul>
+
+                <pre><code>
+                    var data = {...};
+
+                    $(...).on("click", function(e){...});
+                    $(...).on("mousedown touchstart", function(e){...});
+                    $(...).on("click", function(e){...}, {once: true});
+                    $(...).on("click", "selector", function(e){...});
+                    $(...).on("click", "selector", function(e){...}, {ns: "unique_ns"});
+                </code></pre>
+
+                <p class="remark info">
+                    Also, you can define <code>ns</code> for event with point notation: <code>event_name.ns_name</code>.
+                </p>
+                <pre><code>$(...).on("click.ns_name", function(e){...});</code></pre>
+
+                <h3 id="_func_one">one()</h3>
+                <p>
+                    Attach a handler to an event for the elements. The handler is executed at most once per element per event type.
+                    After event firing, the event handler will be removed.
+                    You can define more than one event, with space-separated event types and optional namespaces.
+                </p>
+                <pre><code>
+                    var data = {...};
+
+                    $(...).one("click", function(e){...});
+                    $(...).one("mousedown touchstart", function(e){...});
+                    $(...).one("click", function(e){...}, options);
+                    $(...).one("click", "selector", function(e){...});
+                    $(...).one("click", "selector", function(e){...}, options);
+                </code></pre>
+
+                <h3 id="_func_off">off()</h3>
+                <p>
+                    Remove an event handler.
+                    You can define more than one event, with space-separated event types and optional namespaces.
+                    If you can't define event name, will be removed all events.
+                </p>
+                <pre><code>
+                    $(...).off();
+                    $(...).off("click");
+                    $(...).off("mousedown touchstart");
+                    $(...).off("click", "selector");
+                    $(...).off("click", "selector", {ns: "ns_name"});
+                </code></pre>
+                <p class="remark info">
+                    In M4Q, when you call <code>off</code> method, this method remove event handler, including, anonymous function for handler.
+                </p>
+                <pre><code>
+                    // add anonymous click handler
+                    $(el).on("click", function(){
+                        console.log("ku");
+                    });
+
+                    $(el).off("click"); // This call remove anonymous click handler from element.
+                </code></pre>
+
+                <h3 id="_func_trigger">trigger()</h3>
+                <p>
+                    Execute all handlers and behaviors attached to the matched elements for the given event type.
+                    Unlike jQuery, you can trigger the execution of not only predefined events, but also any.
+                    Also, you can define custom data and push it to the event with <code>data</code> argument.
+                    If you define custom event data, you can access to it with <code>e.data</code> property in the handler.
+                </p>
+                <pre><code>
+                    $(...).trigger("click");
+                    ...
+                    $(...).trigger("click", {
+                        cls: "myClass"
+                    });
+                    ...
+                    $(...).on("click", function(e){
+                        $(e.target).addClass(e.data.cls);
+                    })
+                </code></pre>
+
+
+                <h3 id="_func_fire">fire()</h3>
+                <p>
+                    Execute all handlers and behaviors attached to the matched elements for the given event type.
+                    Unlike jQuery, you can trigger the execution of not only predefined events, but also any.
+                    Also, you can define custom data and push it to the event with <code>data</code> argument.
+                    If you define custom event data, you can access to it with <code>e.detail</code> property in the handler.
+                </p>
+                <pre><code>
+                    $(...).fire("click");
+                    ...
+                    $(...).fire("myCustomEvent", {
+                        cls: "myClass"
+                    });
+                    ...
+                    $(...).on("myCustomEvent", function(e){
+                        $(e.target).addClass(e.detail.cls);
+                    })
+                </code></pre>
+
+                <h3 id="_func_get_events">getEvents()</h3>
+                <p>
+                    Return all attached event with methods <code>on()</code> and <code>one()</code>.
+                </p>
+                <pre><code>
+                    console.log( $.getEvents() );
+                </code></pre>
+
+                <h3 id="_func_add_event_hook">addEventHook()</h3>
+                <p>
+                    You can define a <code>hook</code> that will trigger before or after the occurrence of an event.
+                    The hook is triggered for all elements that have the specified event and its handler was installed using the <code>on()</code>, <code>one()</code> methods.
+                    You can define more than one event, with space-separated event types.
+                </p>
+                <pre><code>
+                    $.addEventHook("click", function(e){...}); // add hook before (default) event click
+                    $.addEventHook("mousedown touchstart", function(e){...}); // add hook before (default) event click
+                    $.addEventHook("click", function(e){...}, "before"); // add hook before event click
+                    $.addEventHook("click", function(e){...}, "after"); // add hook after event click
+                </code></pre>
+
+                <h3 id="_func_remove_event_hook">removeEventHook()</h3>
+                <p>
+                    Remove an hook for event(s).
+                </p>
+                <pre><code>
+                    $.removeEventHook("click");
+                    $.removeEventHook("click", "before");
+                    $.removeEventHook("click", "after");
+                    $.removeEventHook("mousedown touchstart");
+                </code></pre>
+
+                <h3 id="_func_remove_event_hooks">removeEventHooks()</h3>
+                <p>
+                    Remove all hook for event(s).
+                </p>
+                <pre><code>
+                    $.removeEventHooks();
+                </code></pre>
+
+                <h3 id="_func_aliases">Event aliases</h3>
+                <p>
+                    M4Q contains short aliases for standard events:
+                        <code>blur</code>,
+                        <code>focus</code>,
+                        <code>resize</code>,
+                        <code>scroll</code>,
+                        <code>click</code>,
+                        <code>dblclick</code>,
+                        <code>mousedown</code>,
+                        <code>mouseup</code>,
+                        <code>mousemove</code>,
+                        <code>mouseover</code>,
+                        <code>mouseout</code>,
+                        <code>mouseenter</code>,
+                        <code>mouseleave</code>,
+                        <code>change</code>,
+                        <code>select</code>,
+                        <code>submit</code>,
+                        <code>keydown</code>,
+                        <code>keypress</code>,
+                        <code>keyup</code>,
+                        <code>contextmenu</code>,
+                        <code>touchstart</code>,
+                        <code>touchend</code>,
+                        <code>touchmove</code>,
+                        <code>touchcancel</code>.
+                </p>
+                <pre><code>
+                    var data = {...};
+
+                    $(...).click(function(){})
+                    $(...).click("selector", function(){})
+                    $(...).click("selector", function(){}, data)
+                </code></pre>
+
+                <h3 id="_func_ready">$.ready</h3>
+                <p>
+                    Create document.ready function. You can specify function as constructor argument and receive document.ready function.
+                </p>
+                <pre><code>
+                    $(function(){
+                        ...
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    document.addEventListener('DOMContentLoaded', function(){
+                        ...
+                    });
+                </code></pre>
+
+                <h3 id="_func_load">$.load</h3>
+                <p>
+                    Create <code>window.load</code> function.
+                </p>
+                <pre><code>
+                    $.load(function(e){
+                        ...
+                    });
+
+                    or
+
+                    $(window).load(function(e){
+                        ...
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    window.onload = function(e){
+                        ...
+                    });
+                </code></pre>
+
+                <h3 id="_func_unload">$.unload</h3>
+                <p>
+                    Create <code>window.unload</code> function.
+                </p>
+                <pre><code>
+                    $.unload(function(e){
+                        ...
+                    });
+
+                    or
+
+                    $(window).unload(function(e){
+                        ...
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    window.onunload = function(e){
+                        ...
+                    });
+                </code></pre>
+
+                <h3 id="_func_beforeunload">$.beforeunload</h3>
+                <p>
+                    Create <code>window.beforeunload</code> function.
+                </p>
+                <pre><code>
+                    $.beforeunload("Do you really want to leave the page?");
+                </code></pre>
+                <pre><code>
+                    $.beforeunload(function(e){
+                        var str = "Do you really want to leave the page?";
+                        e.returnValue = str;
+                        return str;
+                    });
+                </code></pre>
+                <pre><code>
+                    $(window).beforeunload("Do you really want to leave the page?");
+                </code></pre>
+                <pre><code>
+                    $(window).beforeunload(function(e){
+                        var str = "Do you really want to leave the page?";
+                        e.returnValue = str;
+                        return str;
+                    });
+                </code></pre>
+                equals to
+                <pre><code>
+                    window.onbeforeunload = function(e){
+                        ...
+                    });
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

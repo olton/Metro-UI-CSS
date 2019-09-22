@@ -1,0 +1,216 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.carousel {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    background-color: @white;
+}
+
+.carousel {
+    .slides {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .slide {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    &.fixed-size {
+        .slide {
+            overflow: hidden;
+        }
+    }
+}
+
+.carousel {
+    [class*="carousel-switch"], .carousel-bullets {
+        position: absolute;
+        display: block;
+        z-index: @zindex-absolute + 1;
+        user-select: none;
+    }
+
+    .carousel-switch-next, .carousel-switch-prev {
+        width: auto;
+        line-height: 4rem;
+        height: 4rem;
+        text-decoration: none;
+        margin-top: -2rem;
+        top: 50%;
+        font-size: 4rem;
+        font-weight: 300;
+        color: @gray;
+        cursor: pointer;
+        vertical-align: middle;
+        padding: 0;
+
+        &:hover {
+            color: @lightGray;
+        }
+
+        img {
+            max-width: 64px;
+            max-height: 64px;
+        }
+
+        [class*=mif-] {
+            display: block;
+        }
+    }
+
+    .carousel-switch-next {
+        right: 0;
+        left: auto;
+    }
+
+    .carousel-switch-prev {
+        left: 0;
+        right: auto;
+    }
+
+    .carousel-bullets {
+        left: 0;
+        right: 0;
+        bottom: .625rem;
+        display: flex;
+        flex-flow: row;
+        justify-content: center;
+        align-items: center;
+
+        .carousel-bullet {
+            display: block;
+            float: none;
+            width: .625rem;
+            height: .625rem;
+            background-color: #ababab;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px @white solid;
+            margin: 0 .3125rem;
+
+            &.bullet-on {
+                background-color: @lightCyan;
+            }
+
+            &:hover {
+            }
+        }
+
+        &.default-size .carousel-bullet{
+            width: 22px;
+            height: 22px;
+        }
+        &.mini-size .carousel-bullet{
+            width: 10px;
+            height: 10px;
+        }
+        &.small-size .carousel-bullet{
+            width: 16px;
+            height: 16px;
+        }
+        &.large-size .carousel-bullet{
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .carousel-bullets {
+        &.bullet-style {
+            &-square {
+                .carousel-bullet {
+                    border-radius: 0;
+                }
+            }
+            &-cycle {
+                .carousel-bullet {
+                    border-radius: 50%;
+                }
+            }
+            &-diamond {
+                .carousel-bullet {
+                    border-radius: 0;
+                    transform: rotate(45deg);
+                }
+            }
+            &-rect {
+                .carousel-bullet {
+                    border-radius: 0;
+                }
+
+                &.default-size .carousel-bullet{
+                    width: 44px;
+                    height: 14px;
+                }
+                &.mini-size .carousel-bullet{
+                    width: 20px;
+                    height: 6px;
+                }
+                &.small-size .carousel-bullet{
+                    width: 32px;
+                    height: 10px;
+                }
+                &.large-size .carousel-bullet{
+                    width: 64px;
+                    height: 24px;
+                }
+            }
+        }
+    }
+}
+
+.carousel {
+    &.controls-outside {
+        padding: 0 4rem 1.375rem 4rem;
+
+        .carousel-bullets {
+            bottom: 0;
+        }
+    }
+}
+
+.carousel {
+    &.with-thumbnails {
+
+        .thumbs {
+            display: flex;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            flex-flow: row;
+            justify-content: center;
+            padding-top: 10px;
+        }
+
+        .thumb {
+            display: block;
+            position: relative!important;
+            top: auto!important;
+            left: auto!important;
+            margin: .5rem;
+            cursor: pointer;
+            overflow: hidden;
+            background-color: @light;
+
+            &.thumb-on {
+                border: 4px solid @cyan;
+            }
+        }
+    }
+}

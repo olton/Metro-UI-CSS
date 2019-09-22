@@ -1,5 +1,5 @@
-@import "../../less/include/vars";
-@import "../../less/include/mixins";
+@import "../../source/include/vars";
+@import "../../source/include/mixins";
 
 #spider-navigator {
     height: 1px;
@@ -356,7 +356,7 @@ pre {
     font-size: 14px;
 }
 
-.special-thanks {
+.special-thanks, .who-uses {
     justify-content: space-between;
     align-items: center;
     //margin-top: 20px;
@@ -372,6 +372,23 @@ pre {
     }
 }
 
+.who-uses {
+    margin-bottom: 10px;
+
+    .slide {
+        display: flex;
+        justify-content: center;
+        //align-items: center;
+    }
+
+    img {
+        width: auto;
+        max-width: 300px;
+        height: 180px;
+        //max-height: 180px;
+    }
+}
+
 main {
     padding-bottom: 20px!important;
 }
@@ -380,41 +397,24 @@ body {
     padding-top: 64px;
 }
 
+@heroPrimaryColor: rgb(140, 12, 29);
+@heroSecondaryColor: rgb(217, 85, 85);
+
+.bg-hero {background-color: @heroPrimaryColor;}
+.fg-react {color: #61dafb!important;}
+
 .hero-bg {
-    background: rgba(140,0,75,1);
-    background: -moz-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(140,0,75,1)), color-stop(100%, rgba(217,52,195,1)));
-    background: -webkit-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: -o-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: -ms-linear-gradient(top, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    background: linear-gradient(to bottom, rgba(140,0,75,1) 0%, rgba(217,52,195,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#8c004b', endColorstr='#d934c3', GradientType=0 );
+    background: rgb(140, 12, 29);
+    background: linear-gradient(to bottom, @heroPrimaryColor 0%, @heroSecondaryColor 100%);
 }
 
 .hero {
     padding: 40px;
 }
 
-.neb-hero {
-    z-index: 6;
-}
-
-.neb-white {
-    z-index: 5;
-}
-
-.neb-light {
-    z-index: 4;
-}
-
-.neb-feature {
-    z-index: 3;
-}
 
 .neb-commercial {
     z-index: 2;
-    //background-image: url("../images/support-1.jpg");
-    //background-size: cover;
 }
 
 .neb-hero, .neb-white, .neb-light, .neb-feature, .neb-commercial {
@@ -433,12 +433,18 @@ body {
         top: 100%;
         left: 50%;
         transform: translateX(-50%);
+        z-index: 11;
     }
 }
 
+.neb-hero {
+    &.neb::after {
+        z-index: 0;
+    }
+}
 
 .neb-hero::after {
-    border-color: rgba(217,52,195,1) transparent transparent transparent;
+    border-color: @heroSecondaryColor transparent transparent transparent;
 }
 
 .neb-white::after {
@@ -496,20 +502,6 @@ footer a:hover {
     margin: 0 20px;
 }
 
-.special-thanks {
-    justify-content: space-between;
-    align-items: center;
-}
-
-.special-thanks [class*=cell-] {
-    text-align: center;
-    margin-top: 20px;
-}
-
-.special-thanks img {
-    width: 124px;
-    max-height: 64px;
-}
 
 @media all and (min-width: 768px) {
     .hero {
@@ -525,7 +517,7 @@ footer a:hover {
     }
 
     .neb-white {
-        height: 360px;
+        //height: 360px;
     }
 
     .info-panel {

@@ -1,0 +1,131 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.charms {
+    display: block;
+    position: fixed;
+    z-index: @zindex-charms;
+    background-color: @dark;
+    color: @white;
+    transition: @transition-transform;
+    padding: 16px;
+}
+
+.charms {
+    &.top-side {
+        bottom: 100%;
+        width: 100%;
+        left: 0;
+
+        &.open {
+            transform: translateY(100%);
+        }
+    }
+    &.bottom-side {
+        top: 100%;
+        left: 0;
+        width: 100%;
+
+        &.open {
+            transform: translateY(-100%);
+        }
+    }
+    &.left-side {
+        top: 0;
+        bottom: 0;
+        right: 100%;
+        width: auto;
+
+        &.open {
+            transform: translateX(100%);
+        }
+    }
+    &.right-side {
+        top: 0;
+        bottom: 0;
+        width: auto;
+        left: 100%;
+
+        &.open {
+            transform: translateX(-100%);
+        }
+    }
+}
+
+.charm-tile, .charm-notify {
+    display: block;
+    position: relative;
+    cursor: pointer;
+}
+
+.charm-tile {
+    width: 90px;
+    height: 66px;
+    padding: 4px;
+    background-color: #50727C;
+    color: @white;
+    margin: 2px;
+    flex-shrink: 0;
+    flex-grow: 0;
+
+    .icon {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+    }
+
+    .caption {
+        margin-top: 30px;
+        font-size: 10px;
+        display: block;
+    }
+
+    &.active {
+        background-color: #126278;
+    }
+}
+
+.charm-notify {
+    height: auto;
+    background-color: #2D6070;
+    color: @white;
+    padding: 24px;
+
+    .icon {
+        position: absolute;
+        left: 16px;
+        top: 24px;
+        width: 48px;
+        height: 48px;
+        font-size: 40px;
+    }
+
+    .title, .content, .secondary {
+        display: block;
+        position: relative;
+        margin-left: 52px;
+        line-height: 1;
+    }
+
+    .title {
+        font-weight: bold;
+        margin-bottom: 6px;
+    }
+
+    .content {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+
+    .secondary {
+        font-size: 10px;
+        margin-top: 8px;
+    }
+}
+
+* + .charm-notify {
+    margin-top: 4px;
+}

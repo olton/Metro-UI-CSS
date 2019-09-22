@@ -1,0 +1,158 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.checkbox {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    user-select: none;
+    cursor: pointer;
+    height: 36px;
+
+    .hideElement(input);
+
+    .check, .caption {
+        display: block;
+        line-height: 1;
+        font-size: 14px;
+        margin: 0 4px;
+        position: relative;
+    }
+
+    .check {
+        border: 2px @inputBorder solid;
+        .square(20, px);
+        flex-shrink: 0;
+        line-height: @inputHeight;
+
+        &::before {
+            position: absolute;
+            vertical-align: middle;
+            font-size: 0;
+            content: "";
+            height: 5px;
+            width: 10px;
+            background-color: @transparent;
+            color: @transparent;
+            border-left: 2px solid;
+            border-bottom: 2px solid;
+            border-color: @white;
+            left: 50%;
+            top: 50%;
+            margin-left: -5px;
+            margin-top: -4px;
+            display: none;
+            transform: rotate(-45deg);
+        }
+    }
+
+    input[type=checkbox]:checked ~ .check {
+        border-color: @dark;
+        background-color: @dark;
+
+        &::before {
+            display: block;
+        }
+    }
+
+    input[type=checkbox]:disabled ~ .check {
+        border-color: @disabledBorder;
+        background-color: @disabledBackground;
+    }
+
+    input[data-indeterminate=true] ~ .check {
+        border-color: @dark;
+        background-color: @dark;
+
+        &::before {
+            display: block!important;
+            .square(6, px);
+            background-color: @white;
+            border: 2px solid @white;
+            left: 50%;
+            top: 50%;
+            margin-left: -3px;
+            margin-top: -3px;
+            .rotate(0);
+        }
+    }
+
+    .check {order: 1;}
+    .caption {order: 2;}
+
+    &.caption-left {
+        flex-flow: row-reverse nowrap;
+    }
+
+    &.required, &.invalid, &.valid {
+        border: none!important;
+    }
+
+    &.invalid {
+        &::after {
+            display: none;
+        }
+    }
+
+    &:focus, &:active {
+        input[type=checkbox]:not(:disabled) {
+            & ~ .check {
+                .halo();
+            }
+        }
+    }
+
+    &.style2 {
+        input[type=checkbox]:checked ~ .check {
+            border-color: @dark;
+            background-color: @white;
+        }
+
+        .check {
+            border-color: @darkGray;
+            &::before {
+                border-color: @dark;
+            }
+        }
+
+        input[type=checkbox]:disabled ~ .check {
+            border-color: @disabledBorder;
+            background-color: @white;
+            &::before {
+                border-color: @disabledBorder;
+            }
+        }
+
+        input[data-indeterminate=true] ~ .check {
+            border-color: @dark;
+            background-color: @white;
+
+            &::before {
+                background-color: @dark;
+                border: 2px solid @dark;
+                width: 8px;
+                height: 8px;
+                margin-left: -4px;
+                margin-top: -4px;
+            }
+        }
+    }
+
+    &.transition-on {
+        .check {
+            transition: @transition-base;
+        }
+
+        input[type=checkbox]:checked ~ .check {
+            transition: @transition-base;
+        }
+
+        input[data-indeterminate=true] ~ .check {
+            transition: @transition-base;
+        }
+    }
+}
+

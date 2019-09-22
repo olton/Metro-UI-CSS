@@ -1,0 +1,52 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.info-box {
+    position: fixed;
+    background-color: @white;
+    color: @dark;
+    border: 1px solid @borderColor;
+    display: block;
+    z-index: @zindex-modal;
+    max-width: ~"calc(100vw - 100px)";
+    max-height: ~"calc(100vh - 100px)";
+}
+
+.info-box {
+    .closer {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background-color: inherit;
+        color: inherit;
+        z-index: 100;
+        &::before {
+            display: block;
+            content: "\00d7";
+            font-size: 24px;
+            margin-top: -4px;
+        }
+    }
+
+    .info-box-content {
+        padding: 20px;
+        z-index: 0;
+    }
+}
+
+.info-box {
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            border-color: @@color;
+            background-color: @@color;
+            color: @white;
+        }
+    })
+
+    &.light, &.yellow {
+        color: @dark;
+    }
+}

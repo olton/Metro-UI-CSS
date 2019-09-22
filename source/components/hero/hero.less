@@ -1,0 +1,16 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.hero {
+    padding: 40px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+@media all and (min-width: @md) {
+    .hero {
+        padding: 160px 80px;
+    }
+}

@@ -1,0 +1,180 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.keypad {
+    background-color: @white;
+    color: @dark;
+    border: 1px solid @inputBorder;
+}
+
+.keypad {
+
+    input {
+        border: 0;
+    }
+
+    .keys {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: auto;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        border: none;
+        padding: 0;
+        user-select: none;
+        transition: @transition-base;
+        z-index: @zindex-dropdown;
+
+        &::before {
+            content: '';
+            position: absolute;
+            background-color: inherit;
+            width: 10px;
+            height: 10px;
+            border: 1px solid @borderColor;
+            z-index: 2;
+            left: -5px;
+            top: 50%;
+            transform: translateY(-50%);
+            margin-top: -5px;
+            border-top-color: transparent;
+            border-right-color: transparent;
+            .rotate(45deg);
+        }
+
+        &.open {
+            display: block;
+            transition: @transition-base;
+        }
+
+        &.right { //Default
+            left: 100%;
+            transform: translateY(-50%);
+            top: 50%;
+            margin-left: -1px;
+        }
+
+        &.bottom {
+            left: 50%;
+            transform: translateX(-50%);
+            top: 100%;
+            margin-top: -1px;
+
+            &::before {
+                top: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                .rotate(135deg);
+            }
+        }
+
+        &.top {
+            top: 0;
+            left: 50%;
+            transform: translateY(-100%) translateX(-50%);
+            margin-top: 1px;
+
+            &::before {
+                top: 100%;
+                left: 50%;
+                transform: translateX(-50%);
+                .rotate(-45deg);
+            }
+        }
+
+        &.left {
+            left: 0;
+            transform: translateY(-50%) translateX(-100%) ;
+            top: 50%;
+            margin-left: 1px;
+
+            &::before {
+                top: 50%;
+                transform: translateY(-50%);
+                left: 100%;
+                margin-left: -5px;
+                .rotate(225deg);
+            }
+        }
+
+        &.bottom-left {
+            top: 100%;
+            left: 0;
+            margin-top: -1px;
+
+            &::before {
+                top: 0;
+                left: .625rem;
+                .rotate(135deg);
+            }
+        }
+
+        &.bottom-right {
+            top: 100%;
+            left: 100%;
+            transform: translateX(-100%);
+            margin-top: -1px;
+
+            &::before {
+                top: 0;
+                left: 100%;
+                margin-left: -1rem;
+                .rotate(135deg);
+            }
+        }
+
+        &.top-left {
+            top: 0;
+            left: 0;
+            transform: translateY(-100%);
+            margin-top: 1px;
+
+            &::before {
+                top: 100%;
+                left: .625rem;
+                .rotate(-45deg);
+            }
+        }
+
+        &.top-right {
+            top: 0;
+            left: 100%;
+            transform: translateY(-100%) translateX(-100%);
+            margin-top: 1px;
+
+            &::before {
+                top: 100%;
+                left: 100%;
+                margin-left: -1rem;
+                .rotate(-45deg);
+            }
+        }
+    }
+    .key {
+        display: block;
+        position: relative;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        margin: 0;
+        text-align: center;
+        border: 1px solid @borderColor;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: @transition-base;
+
+        &:hover {
+            transition: @transition-base;
+            .focus-show(@lightGray);
+            transform: scale(1.2);
+            z-index: 2;
+        }
+
+        &.service-key {
+            background-color: @light;
+        }
+    }
+}

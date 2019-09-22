@@ -1,0 +1,133 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@taginput-item-size: 26px;
+
+.tag-input {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    padding: 0 2px;
+    cursor: text;
+    position: relative;
+    height: auto;
+    min-height: @inputHeight;
+
+    .original-input {
+        width: 1px;
+        height: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    .input-wrapper {
+        width: auto;
+        border: none!important;
+        height: @taginput-item-size;
+        line-height: @taginput-item-size;
+        font-size: 14px;
+        padding: 0 4px;
+        &:focus {
+            box-shadow: none!important;
+        }
+    }
+
+    .tag {
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        margin: 2px;
+        padding: 0;
+        height: @taginput-item-size;
+        line-height: @taginput-item-size;
+        background-color: @light;
+        cursor: default;
+
+        .title {
+            display: block;
+            position: relative;
+            max-width: 120px;
+            font-size: 14px;
+            .text-ellipsis();
+            margin: 0 8px;
+        }
+
+        .remover {
+            display: block;
+            position: relative;
+            width: @taginput-item-size;
+            height: 100%;
+            line-height: @taginput-item-size - 4;
+            text-align: center;
+            cursor: pointer;
+            background-color: @lightGray;
+            font-size: 1.2rem;
+        }
+    }
+}
+
+.tag-input {
+    &.input-large {
+        min-height: @input-lx;
+
+        .tag {
+            margin: 2px 2px;
+            height: @input-lx - 14;
+            line-height: @input-lx - 14;
+            .title {
+                font-size: 1.3rem;
+                line-height: @input-lx - 14;
+            }
+            .remover {
+                width: @input-lx - 15;
+                height: @input-lx - 15;
+                line-height: @input-lx - 20;
+                font-size: 1.6rem;
+            }
+        }
+
+        input {
+            height: @input-lx - 2;
+            font-size: 1.3rem;
+            padding: 0 10px;
+            line-height: @input-lx - 2;
+            min-width: 5em;
+        }
+
+    }
+
+    &.input-small {
+        min-height: @input-sx;
+
+        .tag {
+            margin: 2px 2px;
+            height: @input-sx - 10;
+            line-height: @input-sx - 10;
+
+            .title {
+                font-size: .7rem;
+                line-height: @input-sx - 10;
+            }
+            .remover {
+                width: @input-sx - 10;
+                height: @input-sx - 10;
+                line-height: @input-sx - 10;
+                font-size: .8rem;
+            }
+        }
+
+        input {
+            height: @input-sx - 2;
+            font-size: .9rem;
+            padding: 0 4px;
+            line-height: @input-sx - 2;
+            min-width: 5em;
+        }
+
+    }
+}

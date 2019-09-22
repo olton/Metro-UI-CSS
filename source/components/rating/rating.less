@@ -1,0 +1,131 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@ratingStarSize: 24px;
+@ratingStarOff: @gray;
+@ratingStarOn: @dark;
+
+.rating-star(@size) {
+    width: @size;
+    height: @size;
+    line-height: @size;
+    font-size: @size;
+}
+
+.rating {
+    display: inline-flex;
+    flex-flow: row;
+    align-items: center;
+    position: relative;
+    background-color: @transparent;
+    cursor: default;
+    font-size: 16px;
+}
+
+.rating {
+    input {
+        width: 1px;
+        height: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    .stars, .result, .title {
+        display: block;
+        position: relative;
+    }
+
+    .stars {
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+
+        li {
+            display: block;
+            position: relative;
+            color: @ratingStarOff;
+            .rating-star(@ratingStarSize);
+            transition: @transition-color;
+
+            &::before {
+                position: absolute;
+                content: '\2605';
+                display: block;
+                z-index: 1;
+                left: 0;
+            }
+
+            &.half {
+                &::after {
+                    left: 0;
+                    display: block;
+                    position: absolute;
+                    content: '\2605';
+                    width: .42em;
+                    z-index: 2;
+                    overflow: hidden;
+                }
+
+                &.half-10 {&::after {width: .1em;}}
+                &.half-20 {&::after {width: .2em;}}
+                &.half-30 {&::after {width: .3em;}}
+                &.half-40 {&::after {width: .4em;}}
+                &.half-50 {&::after {width: .42em;}}
+                &.half-60 {&::after {width: .49em;}}
+                &.half-70 {&::after {width: .6em;}}
+                &.half-80 {&::after {width: .7em;}}
+                &.half-90 {&::after {width: .8em;}}
+            }
+        }
+    }
+
+    .result {
+        font-size: .8em;
+        margin-left: 10px;
+    }
+
+    .title {
+        margin-right: 10px;
+    }
+}
+
+.rating .stars {
+    cursor: default;
+
+    li.on, li.half::after {
+        color: @ratingStarOn
+    }
+}
+
+.rating:not(.static) .stars {
+    cursor: pointer;
+
+    &:hover {
+        li {
+            color: @ratingStarOn;
+        }
+    }
+
+    li:hover ~ li {
+        color: @ratingStarOff!important;
+    }
+
+    li.scale {
+        animation: star-scale .3s ease-in-out;
+    }
+}
+
+@keyframes star-scale {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}

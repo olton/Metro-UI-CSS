@@ -1,0 +1,36 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.date-picker {
+    .hideElement(input);
+
+    input:focus ~ .time-wrapper {
+        .focus-show(@lightGray);
+    }
+
+    .date-wrapper {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        position: relative;
+        border: 1px solid @borderColor;
+        width: 100%;
+    }
+
+    .month, .day, .year {
+        display: block;
+        flex: 1;
+        border: 1px solid;
+        border-color: inherit;
+        text-align: center;
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .month {
+        flex-grow: 2;
+    }
+
+    .sel-month {
+        flex-grow: 2!important;
+    }
+}

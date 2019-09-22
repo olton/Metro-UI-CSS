@@ -1,0 +1,42 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.image-compare {
+    position: relative;
+    display: block;
+
+    img {
+        display: none;
+    }
+
+    .image-container, .image-container-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+
+        &.image-container-overlay {
+            z-index: 2;
+        }
+
+        .image-wrapper {
+            background-size: cover;
+        }
+
+    }
+
+    .image-slider {
+        z-index: 3;
+        position: absolute;
+        cursor: ew-resize;
+        width: 32px;
+        height: 32px;
+        background-color: @orange;
+        opacity: 0.7;
+        border-radius: @borderRadius;
+        .rotate(45deg);
+    }
+}

@@ -1,0 +1,149 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.wizard {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: stretch;
+    background-color: @white;
+    color: @dark;
+    min-height: 200px;
+    height: auto;
+    border: 1px solid @borderColor;
+    counter-reset: wizard-step;
+    position: relative;
+}
+
+.wizard {
+    & > section, & > .section {
+
+        counter-increment: wizard-step;
+        display: block;
+        position: relative;
+        border-left: @gray solid;
+        border-left-width: 4px;
+        width: 0;
+        transition: @transition-width;
+
+        &::before {
+            display: none;
+            content: counter(wizard-step);
+            position: absolute;
+            bottom: 20px;
+            width: 25px;
+            text-align: center;
+            left: -25px;
+            z-index: 1;
+            color: @white;
+        }
+
+        .page-content {
+            padding: 1rem 1rem 4.25rem;
+            display: none;
+            overflow: hidden;
+        }
+
+        &.current {
+            width: 100%;
+            border: 0!important;
+
+            .page-content {
+                display: block;
+            }
+
+            &::before {
+                display: block;
+                left: 0;
+                color: @white;
+                background-color: @cyan;
+            }
+        }
+
+        &.current, &.complete {
+            transition: @transition-width;
+        }
+
+        &.complete {
+            cursor: pointer;
+        }
+    }
+
+    .action-bar {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: right;
+        position: absolute;
+        bottom: 1rem;
+        left: 41px;
+        .clear();
+
+        & > * {
+            margin: 1px;
+        }
+    }
+}
+
+.wizard {
+    & > section {
+        border-color: darken(@cyan, 50%);
+        &:nth-child(1) {border-color: @cyan;}
+        &:nth-child(2) {border-color: darken(@cyan, 5%);}
+        &:nth-child(3) {border-color: darken(@cyan, 10%);}
+        &:nth-child(4) {border-color: darken(@cyan, 15%);}
+        &:nth-child(5) {border-color: darken(@cyan, 20%);}
+        &:nth-child(6) {border-color: darken(@cyan, 25%);}
+        &:nth-child(7) {border-color: darken(@cyan, 30%);}
+        &:nth-child(8) {border-color: darken(@cyan, 35%);}
+        &:nth-child(9) {border-color: darken(@cyan, 40%);}
+        &:nth-child(10) {border-color: darken(@cyan, 50%);}
+
+        &.complete {
+            border-color: darken(@lightGray, 50%);
+            &:nth-child(1) {border-color: @lightGray;}
+            &:nth-child(2) {border-color: darken(@lightGray, 5%);}
+            &:nth-child(3) {border-color: darken(@lightGray, 10%);}
+            &:nth-child(4) {border-color: darken(@lightGray, 15%);}
+            &:nth-child(5) {border-color: darken(@lightGray, 20%);}
+            &:nth-child(6) {border-color: darken(@lightGray, 25%);}
+            &:nth-child(7) {border-color: darken(@lightGray, 30%);}
+            &:nth-child(8) {border-color: darken(@lightGray, 35%);}
+            &:nth-child(9) {border-color: darken(@lightGray, 40%);}
+            &:nth-child(10) {border-color: darken(@lightGray, 50%);}
+        }
+    }
+}
+
+.wizard {
+    [class*=wizard-btn] {
+        &.disabled {
+            opacity: .1;
+        }
+    }
+}
+
+.wide-wizard() {
+    flex-flow: row nowrap;
+
+    & > section {
+        border-left-width: 25px;
+
+        &::before {
+            display: block;
+        }
+    }
+}
+
+.generate-wizard-media-options(@mediaBreakpointListMobileLength);
+.generate-wizard-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
+    @m: extract(@mediaBreakpointListMobile, @i);
+
+    @media screen and (min-width: @@m) {
+        .wizard {
+            &.wizard-wide-@{m} {
+                .wide-wizard();
+            }
+        }
+    }
+
+    .generate-wizard-media-options(@name, @i + 1);
+}
