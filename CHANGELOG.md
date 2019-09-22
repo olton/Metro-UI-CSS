@@ -1,3 +1,5 @@
+### 4.3.1
+
 ### 4.3.0
 + [x] jQuery: Goodbye!!!
 + [x] M4Q: now built in for DOM manipulation and animation
