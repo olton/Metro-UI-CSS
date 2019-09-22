@@ -25,15 +25,15 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <hr>
  
-## Current Version 4.2.49
+## Current Version 4.3.0
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
-[![dependencies Status](https://david-dm.org/olton/Metro-UI-CSS/status.svg)](https://david-dm.org/olton/Metro-UI-CSS)
+![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
 [![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/css/metro-all.min.css)
 [![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
 [![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
-![GitHub release](https://img.shields.io/github/release/olton/Metro-UI-CSS.svg?color=darklime)
+![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?color=darkLime)
 [![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
 ![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
@@ -48,7 +48,6 @@ It's an independent project with its ongoing development made possible entirely 
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
 
 ### Donation
-
 ![Donations on Patreon](https://img.shields.io/badge/Patreon-$119-red.svg)
 ![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$0-darklime.svg)
 
@@ -76,13 +75,13 @@ If you want to make use of new features as they come in you should upgrade to a 
 ### Credits
 - Styles created using the [less](http://lesscss.org) preprocessor by  [Alexis Sellier](https://github.com/cloudhead)
 - preCode by Leon Sorokin [preCode](https://github.com/leeoniya/preCode.js)
-- easing functions by George McGinley Smith [easing](http://gsgd.co.uk/sandbox/jquery/easing/)
 - strftime by Tom Doan [strftime](https://github.com/thdoan/strftime)
-- jQuery Core [jquery](https://jquery.com/)
 - function b64toBlob by [Jeremy Banks](http://stackoverflow.com/users/1114/jeremy-banks)
 - Date.getWeek by [Nick Baicoianu](http://www.epoch-calendar.com)
 - Swipe component based on [Matt Bryson](https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)  TouchSwipe plugin
+- Easing utils by [Andrew Ray](https://github.com/AndrewRayCode/easing-utils)
 - All who brought something good 
+- Thank you jQuery and Goodbye!
 
 ### Browser Compatibility
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)

@@ -1,0 +1,334 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@listviewItemSelectedBorder: #84bcea;
+@listviewItemSelectedBackground: #cce8ff;
+@listviewItemHoverBackground: #e5f3ff;
+
+.listview {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    max-height: 100%;
+    background-color: @white;
+    color: @dark;
+    list-style: none inside;
+    display: flex;
+
+    &.view-list, &.view-content {
+        flex-flow: column wrap;
+    }
+
+    &.view-icons-medium, &.view-icons-large, &.view-icons, &.view-tiles {
+        flex-flow: row wrap;
+    }
+
+    &.view-icons-medium, &.view-icons-large, &.view-icons {
+        &.vertical-layout {
+            flex-flow: column wrap;
+        }
+    }
+
+    &.view-table {
+        display: table;
+    }
+}
+
+.listview {
+    .node {
+        display: flex;
+        cursor: pointer;
+        position: relative;
+        font-size: 13px;
+        border: 1px solid transparent;
+        background-color: inherit;
+
+        &:hover {
+            background-color: @listviewItemHoverBackground;
+        }
+
+        & > .icon {
+            text-align: center;
+            img {
+                max-width: 100%;
+                height: 100%;
+            }
+
+            [class*=mif-], img {
+                vertical-align: initial;
+            }
+        }
+
+        .checkbox, .radio, .switch {
+            height: auto;
+        }
+    }
+
+    ul {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+    }
+
+    .node {
+        & > .data > .content, & > .node-data {
+            display: none;
+        }
+    }
+
+    &:not(.selectable) {
+        .checkbox {
+            display: none;
+        }
+    }
+}
+
+.listview {
+
+    &.view-list {
+        .node {
+            min-width: 160px;
+            line-height: 26px;
+            height: 26px;
+            padding: 0 8px;
+            flex-flow: row nowrap;
+
+            & > .icon {
+                width: 20px;
+                height: 20px;
+                line-height: 26px;
+                font-size: 18px;
+            }
+
+            & > .data {
+                line-height: 26px;
+                padding-left: 24px;
+            }
+
+            & > .icon ~ .data {
+                padding-left: 8px;
+            }
+        }
+    }
+
+    &.view-table {
+
+        .icon {
+            width: 20px;
+            height: 20px;
+            line-height: 26px;
+            font-size: 18px;
+
+            & > * {
+                width: 100%;
+            }
+        }
+
+        & > li {
+            .data > .caption {
+                padding: 0 .5rem;
+                line-height: 26px;
+            }
+        }
+
+        & > li {
+            display: table-row;
+
+            & > * {
+                display: table-cell;
+            }
+        }
+
+        .node-data {
+            display: table-cell;
+            width: auto;
+            line-height: 26px;
+        }
+    }
+
+    &.view-content {
+        .node {
+            width: 100%;
+            min-height: 50px;
+            padding: 10px 16px;
+            flex-flow: row nowrap;
+
+            & > .icon {
+                width: 32px;
+                height: 32px;
+                line-height: 32px;
+                font-size: 28px;
+            }
+
+            & > .data {
+                padding-left: 64px;
+                font-size: 16px;
+                line-height: 32px;
+                width: 100%;
+
+                .caption, .content {
+                    display: block;
+                    line-height: 16px;
+                    height: 16px;
+                }
+
+                .content {
+                    font-size: .8em;
+                }
+            }
+
+            & > .icon ~ .data {
+                padding-left: 16px;
+            }
+        }
+
+        .node + .node {
+            border-top: 1px solid @borderColor;
+        }
+    }
+
+    &.view-tiles {
+        .node {
+            width: 250px;
+            height: 56px;
+            padding: 5px 16px;
+            flex-flow: row nowrap;
+
+            & > .icon {
+                width: 46px;
+                height: 46px;
+                line-height: 46px;
+                font-size: 42px;
+            }
+
+            & > .data {
+                padding-left: 78px;
+                font-size: 16px;
+                line-height: 46px;
+            }
+
+            & > .icon + .data {
+                padding-left: 16px;
+            }
+        }
+    }
+
+    &.view-icons, &.view-icons-medium, &.view-icons-large {
+        .node {
+            width: 74px;
+            height: auto;
+            padding: 8px 8px 2px;
+            flex-flow: column nowrap;
+            align-items: center;
+            margin: 2px;
+
+            & > .icon {
+                width: 44px;
+                height: 44px;
+                line-height: 44px;
+                font-size: 42px;
+            }
+
+            & > .data {
+                line-height: 1.5;
+                white-space: normal;
+                text-align: center;
+            }
+
+            .checkbox {
+                position: absolute;
+                top: 0;
+                left: 0;
+            }
+        }
+    }
+
+    &.view-icons-medium {
+        .node {
+            width: 104px;
+            margin: 1px;
+
+            & > .icon {
+                width: 74px;
+                height: 74px;
+                line-height: 74px;
+                font-size: 70px;
+            }
+        }
+    }
+
+    &.view-icons-large {
+        .node {
+            width: 270px;
+            margin: 2px;
+            padding: 30px;
+
+            & > .icon {
+                width: 162px;
+                height: 162px;
+                line-height: 162px;
+                font-size: 140px;
+            }
+        }
+    }
+}
+
+.listview {
+    .node {
+        &.current-select {
+            background-color: @listviewItemSelectedBackground;
+            border-color: @listviewItemSelectedBorder!important;
+        }
+    }
+
+    .node-group {
+        display: block;
+        width: 100%;
+        position: relative;
+        line-height: 24px;
+        flex-shrink: 0;
+        cursor: pointer;
+        user-select: none;
+
+        & > .data {
+            padding-left: 24px;
+            line-height: 24px;
+            font-size: 18px;
+        }
+    }
+
+    .node-group {
+        .node-toggle {
+            .toggle();
+        }
+
+        .node-toggle {
+            position: absolute;
+            left: 0;
+            top: 0;
+            //.translateX(-100%);
+            .square(24, px);
+
+            &::before {
+                .rotate(-135deg);
+            }
+        }
+
+        &.expanded {
+            & > .node-toggle {
+                &::before {
+                    .rotate(-45deg);
+                }
+            }
+        }
+    }
+
+    .node-group + .node-group {
+        margin-top: .5rem;
+    }
+
+    .node-group + .listview {
+        margin-top: .5rem;
+    }
+}

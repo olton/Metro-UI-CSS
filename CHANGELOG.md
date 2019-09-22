@@ -1,3 +1,34 @@
+### 4.3.0
++ [x] jQuery: Goodbye!!!
++ [x] M4Q: now built in for DOM manipulation and animation
++ [x] Keypad: rename property `data-length` to `data-key-length`
++ [x] Slider: fix show/hide hint 
++ [x] Typo: fix `margin-top` for lists inside a lists, ex: `ul > ul` 
++ [x] Animation: fix `fadeIn`, `fadeOut`
++ [x] NavView: rename attribute `data-expanded` to `data-expand`
++ [x] Examples: upd `start screen`
++ [x] Calendar picker: fix using locale for initial value, issue #1376
++ [x] Typo: set line-height for paragraph to 1.5
++ [x] Table: fire event onDataLoaded before table build
++ [x] Dialog: fix hide method
++ [x] File: add method "clear"
++ [x] Source: structure refactoring
++ [x] Typography: add background to `remark` with `accent` color 
++ [x] Tests: begin tests with `cypress`
++ [x] Draggable: minor improve for `mouseMove` 
++ [x] Chat: add attribute `data-readonly` and method `toggleReadonly`
++ [x] Schemes: fix colors for table `tfoot`
++ [x] Add `checkRuntime` to components
++ [x] Table: add attributes `data-empty-table-title`, `data-cls-empty-table-title` for issue #1403
++ [x] Table: fix padding for sortable columns
++ [x] Add `destroy` method to components. This method remove all event handlers and return core element
++ [x] Select: add props `data-add-empty-value` (default: false), `data-empty-value` (default: empty string)
++ [x] Select: add prop `data-placeholder`
++ [x] Select: add prop `data-clear-button` (default: false)
++ [x] Grid: optimise styles
++ [x] Hint: fix remove on leave element
++ [x] TreeView: add attribute `data-show-child-count`
+
 ### 4.2.49
 + [x] Select: extended to interop with role=dropdown
 + [x] Docs: upd docs for cards, add `icon-box`, `more-info-box`, `skill-box`, `social-box`

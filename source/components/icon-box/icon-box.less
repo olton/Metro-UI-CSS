@@ -1,0 +1,41 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.icon-box {
+    height: 90px;
+    display: flex;
+    flex-flow: row nowrap;
+    background-color: @white;
+}
+
+.icon-box {
+
+    .icon, .content {
+        position: relative;
+    }
+
+    .icon {
+        height: 90px;
+        width: 90px;
+        flex-shrink: 0;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0,0,0,0.1);
+
+        & > * {
+            font-size: 45px;
+            width: 45px;
+            height: 45px;
+            line-height: 1;
+        }
+    }
+
+    .content {
+        line-height: 1.2;
+        display: block;
+        width: 100%;
+        background-color: inherit;
+    }
+}

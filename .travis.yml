@@ -1,5 +1,15 @@
 language: node_js
 node_js:
-  - "0.10"
+  - 10.8
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+cache:
+  directories:
+    - ~/.npm
+    - ~/.cache
 before_script:
   - npm install grunt-cli -g
+  - npm install http-server -g
+  - npm ci

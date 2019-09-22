@@ -1,0 +1,277 @@
+@import (once) "../../include/default-icons";
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.media-player {
+    display: block;
+    position: relative;
+    width: 100%;
+    background: #000;
+    height: auto;
+    overflow: hidden;
+    z-index: 1;
+
+    video {
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+}
+
+.media-player {
+    .logo {
+        display: block;
+        position: absolute;
+        top: 1.25rem;
+        right: 1.25rem;
+        z-index: 3;
+        height: 32px;
+
+        img {
+            height: 32px;
+        }
+    }
+
+    .preloader {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        .translateX(-50%);
+        .translateY(-50%);
+
+        &.show {
+            display: block;
+        }
+    }
+}
+
+.media-player {
+    .controls {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: auto;
+        z-index: 2147483647;
+        background-color: @playerControlsBackground;
+
+        &.outside {
+            position: relative;
+        }
+    }
+
+    .stream {
+        display: block;
+        padding: .625rem;
+        order: 5;
+        width: 100%;
+        position: relative;
+        overflow: hidden;
+
+        .slider {
+            height: .875rem;
+        }
+    }
+
+    .load-audio {
+        padding: 0;
+        display: block;
+        position: absolute;
+        bottom: 4px;
+        left: .625rem;
+        width: ~"calc(100% - 1.25rem)";
+    }
+
+    button {
+        &:focus {
+            box-shadow: none!important;
+        }
+    }
+
+    .controls > button, .info-box, .volume {
+        background-color: inherit;
+        color: @playerInactiveColor;
+        flex-shrink: 0;
+        height: 36px;
+        text-align: center;
+
+        &:hover {
+            color: @playerHoverColor;
+        }
+
+        &.active {
+            background-color: lighten(@playerControlsBackground, 30%);
+        }
+    }
+
+    .loop {
+        order: 1;
+        display: none;
+    }
+
+    .play {
+        order: 2;
+    }
+
+    .stop {
+        order: 3;
+        display: none;
+    }
+
+    .info-box {
+        position: relative;
+        width: auto;
+        display: block;
+        order: 4;
+        background: @playerControlsBackground;
+        color: @playerHoverColor;
+        padding: 0.625rem;
+        font-size: .6875rem;
+        text-align: center;
+        height: 36px;
+        flex-shrink: 1;
+        white-space: nowrap;
+        border: none;
+    }
+
+    .mute {
+        order: 6;
+    }
+
+    .volume {
+        order: 7;
+        width: 96px;
+        padding: 0 .625rem;
+        background: @playerControlsBackground;
+        display: none;
+    }
+
+    .full {
+        order: 8;
+    }
+}
+
+video::-webkit-media-controls {
+//    display:none !important;
+}
+video::-webkit-media-controls-enclosure {
+//    display:none !important;
+}
+
+:-webkit-full-screen {
+    width: 100%;
+    height: 100%;
+    z-index: @zindex-fullscreen;
+}
+
+:-ms-fullscreen {
+    width: 100%;
+}
+
+.media-player {
+    &.full-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: @zindex-fullscreen;
+        max-height: 100%!important;
+        height: 100%!important;
+    }
+}
+
+.media-player {
+    .default-icon-loop {background-image: @loopIconLight;}
+    .default-icon-play {background-image: @playIconLight;}
+    .default-icon-pause {background-image: @pauseIconLight;}
+    .default-icon-stop {background-image: @stopIconLight;}
+    .default-icon-mute {background-image: @muteIconLight;}
+    .default-icon-low-volume {background-image: @volumeLowIconLight;}
+    .default-icon-medium-volume {background-image: @volumeMediumIconLight;}
+    .default-icon-high-volume {background-image: @volumeHighIconLight;}
+    .default-icon-enlarge {background-image: @enlargeIconLight;}
+    .default-icon-shrink {background-image: @shrinkIconLight;}
+    .default-icon-playlist {background-image: @playlistIconLight;}
+    .default-icon-next {background-image: @nextIconLight;}
+    .default-icon-prev {background-image: @prevIconLight;}
+    .default-icon-first {background-image: @firstIconLight;}
+    .default-icon-last {background-image: @lastIconLight;}
+    .default-icon-forward {background-image: @forwardIconLight;}
+    .default-icon-backward {background-image: @backwardIconLight;}
+    .default-icon-share {background-image: @shareIconLight;}
+    .default-icon-equalizer {background-image: @equalizerIconLight;}
+    .default-icon-eject {background-image: @ejectIconLight;}
+    .default-icon-shuffle {background-image: @shuffleIconLight;}
+    .default-icon-random {background-image: @randomIconLight;}
+
+    &.light {
+
+        background-color: @light;
+
+        .controls {
+            background-color: inherit;
+
+            .info-box, .volume {
+                background-color: inherit;
+                color: @dark;
+            }
+        }
+
+        .slider {
+            .buffer {
+                height: 2px!important;
+                background-color: @darkGrayBlue;
+            }
+        }
+
+        .default-icon-loop {background-image: @loopIconDark;}
+        .default-icon-play {background-image: @playIconDark;}
+        .default-icon-pause {background-image: @pauseIconDark;}
+        .default-icon-stop {background-image: @stopIconDark;}
+        .default-icon-mute {background-image: @muteIconDark;}
+        .default-icon-low-volume {background-image: @volumeLowIconDark;}
+        .default-icon-medium-volume {background-image: @volumeMediumIconDark;}
+        .default-icon-high-volume {background-image: @volumeHighIconDark;}
+        .default-icon-enlarge {background-image: @enlargeIconDark;}
+        .default-icon-shrink {background-image: @shrinkIconDark;}
+        .default-icon-playlist {background-image: @playlistIconDark;}
+        .default-icon-next {background-image: @nextIconDark;}
+        .default-icon-prev {background-image: @prevIconDark;}
+        .default-icon-first {background-image: @firstIconDark;}
+        .default-icon-last {background-image: @lastIconDark;}
+        .default-icon-forward {background-image: @forwardIconDark;}
+        .default-icon-backward {background-image: @backwardIconDark;}
+        .default-icon-share {background-image: @shareIconDark;}
+        .default-icon-equalizer {background-image: @equalizerIconDark;}
+        .default-icon-eject {background-image: @ejectIconDark;}
+        .default-icon-shuffle {background-image: @shuffleIconDark;}
+        .default-icon-random {background-image: @randomIconDark;}
+
+        .controls > button {
+            &.active {
+                background-color: darken(@light, 10%);
+            }
+        }
+    }
+}
+
+.audio-player {
+    overflow: visible;
+    .controls {
+        position: relative;
+    }
+}
+
+@media screen and (min-width: @sm){
+    .media-player {
+        .volume, .loop, .stop {
+            display: block;
+        }
+    }
+}

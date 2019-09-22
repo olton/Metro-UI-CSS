@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Css and classes - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#_func_style">style()</a></li>
+                    <li class="toc-entry"><a href="#_func_css">css()</a></li>
+                    <li class="toc-entry"><a href="#_func_add_class">addClass()</a></li>
+                    <li class="toc-entry"><a href="#_func_remove_class">removeClass()</a></li>
+                    <li class="toc-entry"><a href="#_func_toggle_class">toggleClass()</a></li>
+                    <li class="toc-entry"><a href="#_func_has_class">hasClass()</a></li>
+                    <li class="toc-entry"><a href="#_func_clear_classes">clearClasses()</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q css and classes</h1>
+                <p class="text-leader">
+                    Manipulate element styles and classes.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_func_style">style()</h3>
+                <p>
+                    Get the current calculated style value for first element in matched set. Value retrieve from attribute <code>style</code> or get <code>computed</code> value.
+                    Returned value contains units measuring. If the property name is not specified, the object of all element properties is returned.
+                </p>
+                <pre><code>
+                    &lt;div id="div" style="width: 100px;"&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("#div").style() ); // Outputs: [object CSSStyleDeclaration]
+                    console.log( $("#div").style("width") ); // Outputs: 100px
+                    console.log( $("#div").style("left") ); // Outputs: 0px
+                    console.log( $("#div").style("width, left") ); // Outputs: {left: ..., width: ...}
+                </code></pre>
+
+                <h3 id="_func_css">css()</h3>
+                <p>
+                    Get the value of a computed style property for the first element in the set of matched elements or set one or more CSS properties for every matched element.
+                </p>
+                <pre><code>
+                    &lt;div id="div" style="width: 100px;"&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").css() ); // Outputs: [object CSSStyleDeclaration]
+                    console.log( $("div").css("color") ); // Outputs: rgb(0, 0, 0)
+                    console.log( $("div").css("left, width") ); // Outputs: {left: "auto", width: "1242px"}
+
+                    $("div").css("color", "red"); // Set color to red
+                    $("div").css({
+                        color: "red",
+                        background: "black"
+                    }); // Set complex styles
+                </code></pre>
+
+                <h3 id="_func_add_class">addClass()</h3>
+                <p>
+                    Adds the specified class(es) to each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    $( "p" ).addClass( "myClass yourClass" );
+                </code></pre>
+
+                <h3 id="_func_remove_class">removeClass()</h3>
+                <p>
+                    Remove the specified class(es) from each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    $( "p" ).removeClass( "myClass yourClass" );
+                </code></pre>
+
+                <h3 id="_func_toggle_class">toggleClass()</h3>
+                <p>
+                    Add or remove the specified class(es) from/for each element in the set of matched elements.
+                </p>
+                <pre><code>
+                    $( "p" ).toggleClass( "myClass yourClass" );
+                </code></pre>
+
+                <h3 id="_func_has_class">hasClass()</h3>
+                <p>
+                    Determine whether any of the matched elements are assigned the given class.
+                </p>
+                <pre><code>
+                    &lt;div id="mydiv" class="foo bar"&gt;&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( "#mydiv" ).hasClass( "foo" ); // true
+                    $( "#mydiv" ).hasClass( "quux" ); // false
+                </code></pre>
+
+                <h3 id="_func_clear_classes">clearClasses()</h3>
+                <p>
+                    Determine whether any of the matched elements are assigned the given class.
+                </p>
+                <pre><code>
+                    &lt;div id="mydiv" class="foo bar"&gt;&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $( "#mydiv" ).clearClasses(); // Outputs &lt;div id="mydiv" class&gt;&lt;/div&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

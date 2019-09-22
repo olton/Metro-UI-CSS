@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Subtree functions - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#_func_index">index()</a></li>
+                    <li class="toc-entry"><a href="#_func_eq">eq()</a></li>
+                    <li class="toc-entry"><a href="#_func_get">get()</a></li>
+                    <li class="toc-entry"><a href="#_func_find">find()</a></li>
+                    <li class="toc-entry"><a href="#_func_children">children()</a></li>
+                    <li class="toc-entry"><a href="#_func_contains">contains()</a></li>
+                    <li class="toc-entry"><a href="#_func_is">is()</a></li>
+                    <li class="toc-entry"><a href="#_func_same">same()</a></li>
+                    <li class="toc-entry"><a href="#_func_parent">parent()</a></li>
+                    <li class="toc-entry"><a href="#_func_parents">parents()</a></li>
+                    <li class="toc-entry"><a href="#_func_closest">closest()</a></li>
+                    <li class="toc-entry"><a href="#_func_siblings">siblings()</a></li>
+                    <li class="toc-entry"><a href="#_func_prev">prev()</a></li>
+                    <li class="toc-entry"><a href="#_func_prev_all">prevAll()</a></li>
+                    <li class="toc-entry"><a href="#_func_next">next()</a></li>
+                    <li class="toc-entry"><a href="#_func_next_all">nextAll()</a></li>
+                    <li class="toc-entry"><a href="#_func_filter">filter()</a></li>
+                    <li class="toc-entry"><a href="#_func_last">last()</a></li>
+                    <li class="toc-entry"><a href="#_func_first">first()</a></li>
+                    <li class="toc-entry"><a href="#_func_even">even()</a></li>
+                    <li class="toc-entry"><a href="#_func_odd">odd()</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100" alt="Metro 4">
+                </div>
+
+                <h1>M4Q Subtree functions</h1>
+                <p class="text-leader">
+                    Use subtree functions to search sub-elements in the set.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_func_about">About</h3>
+                <p>
+                    M4Q implements a set of functions to search for sub-items in the set:
+                    <code>index()</code>,
+                    <code>get()</code>,
+                    <code>eq()</code>,
+                    <code>contains()</code>,
+                    <code>is()</code>,
+                    <code>same()</code>,
+                    <code>find()</code>,
+                    <code>children()</code>,
+                    <code>parent()</code>,
+                    <code>parents()</code>,
+                    <code>closest()</code>,
+                    <code>siblings()</code>,
+                    <code>prev()</code>,
+                    <code>prevAll()</code>,
+                    <code>next()</code>,
+                    <code>nextAll()</code>,
+                    <code>filter()</code>,
+                    <code>last()</code>,
+                    <code>first()</code>,
+                    <code>even()</code>,
+                    <code>odd()</code>,
+                    <code>clone()</code>.
+                </p>
+
+                <h3 id="_func_index">index()</h3>
+                <p>
+                    Return value is an integer indicating the position of the first element.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li id="foo"&gt;foo&lt;/li&gt;
+                      &lt;li id="bar"&gt;bar&lt;/li&gt;
+                      &lt;li id="baz"&gt;baz&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    var listItem = $( "#bar" );
+                    alert( "Index: " + listItem.index() ); // Index: 1
+                </code></pre>
+                <pre><code>
+                    var listItem = document.getElementById( "bar" );
+                    alert( "Index: " + $( "li" ).index( listItem ) ); // Index: 1
+                </code></pre>
+                <pre><code>
+                    var listItem = $( "#bar" );
+                    alert( "Index: " + $( "li" ).index( listItem ) ); // Index: 1
+                </code></pre>
+
+                <h3 id="_func_eq">eq()</h3>
+                <p>
+                    Reduce the set of matched elements to the one at the specified index.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li id="foo"&gt;foo&lt;/li&gt;
+                      &lt;li id="bar"&gt;bar&lt;/li&gt;
+                      &lt;li id="baz"&gt;baz&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).eq(1) ); // [li#bar]
+                    console.log( $( "li" ).eq(-1) ); // [li#baz]
+                </code></pre>
+
+                <h3 id="_func_get">get()</h3>
+                <p>
+                    Return element as HTMLElement by index. When index is negative, function return element from and of array of elements
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li id="foo"&gt;foo&lt;/li&gt;
+                      &lt;li id="bar"&gt;bar&lt;/li&gt;
+                      &lt;li id="baz"&gt;baz&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).get(1) ); // &lt;li id="bar"&gt;
+                    console.log( $( "li" ).get(-1) ); // &lt;li id="baz"&gt;
+                </code></pre>
+
+                <h3 id="_func_find">find()</h3>
+                <p>
+                    Get the descendants of each element in the current set of matched elements, filtered by a selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).find("span") ); // [span, span, span]
+                    console.log( $( "ul" ).find(".bar, .baz") ) // [span.bar, .span.baz];
+                </code></pre>
+
+                <h3 id="_func_children">children()</h3>
+                <p>
+                    Get the children of each element in the set of matched elements, optionally filtered by a selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).children(".bar, .foo") ); // [span.foo, span.bar]
+                    console.log( $( "ul" ).children("#bar") ) // [li#bar];
+                </code></pre>
+
+                <h3 id="_func_contains">contains()</h3>
+                <p>
+                    Return <code>true</code>, if m4q object contains elements filtered by selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "li" ).contains(".bar") ); // true
+                    console.log( $( "li" ).contains("#bar") ); // false
+                </code></pre>
+
+                <h3 id="_func_is">is()</h3>
+                <p>
+                    Check the current matched set of elements against a selector, element, or m4q object and return true if at least one of these elements matches the given arguments.
+                    Also, for selectors: <code>:selected</code>, <code>:checked</code> and <code>:hidden</code> return true, if first element in set matches to it.
+                </p>
+
+                <p class="text-bold">match selector</p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "#bar" ).is("li") ); // true
+                </code></pre>
+
+                <p class="text-bold">:checked</p>
+                <pre><code>
+                    &lt;input type="checkbox" id="check1" checked&gt;
+                    &lt;input type="checkbox" id="check2" &gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "#check1" ).is(":checked") ); // true
+                    console.log( $( "#check2" ).is(":checked") ); // false
+                </code></pre>
+
+                <p class="text-bold">:hidden</p>
+                <pre><code>
+                    &lt;div style="display: none"&gt;This is a hidden div&lt;/div&gt;
+                    &lt;div style="opacity: 0"&gt;This is a hidden div&lt;/div&gt;
+                    &lt;div style="visibility: hidden"&gt;This is a hidden div&lt;/div&gt;
+                    &lt;div hidden&gt;This is a hidden div&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "div" ).is(":hidden") ); // true
+                </code></pre>
+
+                <p class="text-bold">:selected</p>
+                <pre><code>
+                    &lt;select&gt;
+                        &lt;option&gt;Item 1&lt;/option&gt;
+                        &lt;option selected&gt;Item 2&lt;/option&gt;
+                        &lt;option&gt;Item 3&lt;/option&gt;
+                    &lt;/select&gt;
+                </code></pre>
+                <pre><code>
+                    $.each($("option"), function(){
+                        if ($(this).is(":selected")) {
+                            console.log("Selected option:", this.value);
+                        }
+                    });
+                </code></pre>
+
+                <h3 id="_func_same">same()</h3>
+                <p>
+                    Checks the current matched set of elements with the m4q object and return true if matched set equivalent to checked object.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                        &lt;li id="foo"&gt;&lt;span class="foo"&gt;foo&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="bar"&gt;&lt;span class="bar"&gt;bar&lt;/span&gt;&lt;/li&gt;
+                        &lt;li id="baz"&gt;&lt;span class="baz"&gt;baz&lt;/span&gt;&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $( "#bar" ).same( $("li#bar") ) ); // true
+                    console.log( $( "#bar" ).same( $("div") ) ); // false
+                </code></pre>
+
+                <h3 id="_func_parent">parent()</h3>
+                <p>
+                    Get the parent of each element in the current set of matched elements, optionally filtered by a selector.
+                </p>
+                <pre><code>
+                    &lt;ul class="level-1"&gt;
+                      &lt;li class="item-i"&gt;I&lt;/li&gt;
+                      &lt;li class="item-ii"&gt;II
+                        &lt;ul class="level-2"&gt;
+                          &lt;li class="item-a"&gt;A&lt;/li&gt;
+                          &lt;li class="item-b"&gt;B
+                            &lt;ul class="level-3"&gt;
+                              &lt;li class="item-1"&gt;1&lt;/li&gt;
+                              &lt;li class="item-2"&gt;2&lt;/li&gt;
+                              &lt;li class="item-3"&gt;3&lt;/li&gt;
+                            &lt;/ul&gt;
+                          &lt;/li&gt;
+                          &lt;li class="item-c"&gt;C&lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/li&gt;
+                      &lt;li class="item-iii"&gt;III&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $( "li.item-a" ).parent().css( "background-color", "red" );
+                </code></pre>
+
+                <h3 id="_func_parents">parents()</h3>
+                <p>
+                    Get the ancestors of each element in the current set of matched elements, optionally filtered by a selector.
+                </p>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;p&gt;
+                        &lt;span&gt;
+                          &lt;b&gt;My parents are: &lt;/b&gt;
+                        &lt;/span&gt;
+                        &lt;/p&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    var parentEls = $( "b" ).parents().items().map(function(el){
+                        return el.tagName;
+                    }).join(", ");
+
+                    $( "b" ).append( "&lt;strong&gt;" + parentEls + "&lt;/strong&gt;" );
+
+                    // Outputs: My parents are: SPAN, P, DIV, BODY, HTML
+                </code></pre>
+
+                <h3 id="_func_closest">closest()</h3>
+                <p>
+                    For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+                </p>
+                <pre><code>
+                    &lt;ul id="one" class="level-1"&gt;
+                      &lt;li class="item-i"&gt;I&lt;/li&gt;
+                      &lt;li id="ii" class="item-ii"&gt;II
+                        &lt;ul class="level-2"&gt;
+                          &lt;li class="item-a"&gt;A&lt;/li&gt;
+                          &lt;li class="item-b"&gt;B
+                            &lt;ul class="level-3"&gt;
+                              &lt;li class="item-1"&gt;1&lt;/li&gt;
+                              &lt;li class="item-2"&gt;2&lt;/li&gt;
+                              &lt;li class="item-3"&gt;3&lt;/li&gt;
+                            &lt;/ul&gt;
+                          &lt;/li&gt;
+                          &lt;li class="item-c"&gt;C&lt;/li&gt;
+                        &lt;/ul&gt;
+                      &lt;/li&gt;
+                      &lt;li class="item-iii"&gt;III&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <p>
+                    Suppose we perform a search for &lt;ul&gt; elements starting at item A:
+                </p>
+                <pre><code>
+                    $( "li.item-a" )
+                      .closest( "ul" )
+                      .css( "background-color", "red" );
+                </code></pre>
+
+                <h3 id="_func_siblings">siblings()</h3>
+                <p>
+                    Get the siblings of each element in the set of matched elements, optionally filtered by a selector.
+                </p>
+                <pre><code>
+                    &lt;div&gt;
+                        &lt;div&gt;
+                            &lt;span&gt;&lt;b&gt;Bold text&lt;/b&gt;&lt;/span&gt;
+                            &lt;div&gt;I'am div&lt;/div&gt;
+                            &lt;p&gt;123&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log($("span").siblings()); // Outputs: [div, p]
+                    console.log($("span").siblings("p")); // Outputs [p]
+                </code></pre>
+
+                <h3 id="_func_prev">prev()</h3>
+                <p>
+                    Get the immediately preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the previous sibling only if it matches that selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $( "li.third-item" ).prev().css( "background-color", "red" );
+                </code></pre>
+
+                <h3 id="_func_prev_all">prevAll()</h3>
+                <p>
+                    Get the preceding sibling of each element in the set of matched elements. If a selector is provided, it retrieves the sibling only if it matches that selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $( "li.third-item" ).prev().css( "background-color", "red" );
+                </code></pre>
+
+                <h3 id="_func_next">next()</h3>
+                <p>
+                    Get the immediately following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the next sibling only if it matches that selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $( "li.third-item" ).next().css( "background-color", "red" );
+                </code></pre>
+
+                <h3 id="_func_next_all">nextAll()</h3>
+                <p>
+                    Get the following sibling of each element in the set of matched elements. If a selector is provided, it retrieves the sibling only if it matches that selector.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li class="third-item"&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $( "li.third-item" ).nextAll().css( "background-color", "red" );
+                </code></pre>
+
+                <h3 id="_func_filter">filter()</h3>
+                <p>
+                    Reduce the set of matched elements to those that match the selector or pass the function's test.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                      &lt;li&gt;list item 6&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    // get odd elements
+                    $("li").filter(function(el, i){
+                        return i % 2 === 0;
+                    }).css("background-color", "red");
+                </code></pre>
+
+                <h3 id="_func_last">last()</h3>
+                <p>
+                    Reduce the set of matched elements to the last element in set.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                      &lt;li&gt;list item 6&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $("li").last().css("background-color", "red");
+                </code></pre>
+
+                <h3 id="_func_first">first()</h3>
+                <p>
+                    Reduce the set of matched elements to the first element in set.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                      &lt;li&gt;list item 6&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $("li").first().css("background-color", "red");
+                </code></pre>
+
+                <h3 id="_func_even">even()</h3>
+                <p>
+                    Reduce the set of matched elements to elements with even index.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                      &lt;li&gt;list item 6&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $("li").even().css("background-color", "red");
+                </code></pre>
+
+                <h3 id="_func_odd">odd()</h3>
+                <p>
+                    Reduce the set of matched elements to elements with odd index.
+                </p>
+                <pre><code>
+                    &lt;ul&gt;
+                      &lt;li&gt;list item 1&lt;/li&gt;
+                      &lt;li&gt;list item 2&lt;/li&gt;
+                      &lt;li&gt;list item 3&lt;/li&gt;
+                      &lt;li&gt;list item 4&lt;/li&gt;
+                      &lt;li&gt;list item 5&lt;/li&gt;
+                      &lt;li&gt;list item 6&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    $("li").odd().css("background-color", "red");
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

@@ -1,0 +1,68 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+form {
+    display: block;
+    position: relative;
+}
+
+.form-actions {
+    margin: 10px 0;
+    display: block;
+    position: relative;
+}
+
+.form-group {
+    display: block;
+    position: relative;
+}
+
+.form-group + .form-group {
+    margin-top: 1rem;
+}
+
+.inline-form {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    input[type=text],
+    input[type=password],
+    input[type=tel],
+    input[type=datetime-local],
+    input[type=email],
+    input[type=file],
+    input[type=month],
+    input[type=number],
+    input[type=search],
+    input[type=time],
+    input[type=url],
+    input[type=week],
+    input[type=file],
+    select,
+    textarea,
+    .file,
+    .input,
+    .textarea,
+    .select,
+    .tag-input,
+    .spinner {
+        width: auto;
+        margin-left: .5rem;
+        margin-right: .5rem;
+    }
+
+    .form-group {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+}
+
+form, fieldset, .form-group {
+    &:disabled, &.disabled {
+        pointer-events: none;
+    }
+}

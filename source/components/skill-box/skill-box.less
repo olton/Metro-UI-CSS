@@ -1,0 +1,71 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.skill-box {
+    display: block;
+    position: relative;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    background-color: @white;
+    color: @dark;
+}
+
+.skill-box {
+    .header {
+        display: block;
+        position: relative;
+        padding: 20px;
+        .clear();
+
+        .avatar {
+            float: left;
+            width: 64px;
+            height: auto;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+
+        .title {
+            font-size: 25px;
+            line-height: 1.1;
+            font-weight: 300;
+            margin: 5px 5px 5px 75px
+        }
+
+        .subtitle {
+            font-size: 14px;
+            line-height: 1.1;
+            font-weight: 500;
+            margin: 0 5px 5px 75px
+        }
+    }
+
+    .skills {
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+
+        li {
+            padding: 8px 16px;
+            font-size: 14px;
+
+            a {
+                text-decoration: none;
+                color: inherit;
+            }
+        }
+
+        li + li {
+            border-top: 1px solid @borderColor;
+        }
+
+        .badge {
+            position: relative;
+            display: inline-block;
+            right: auto;
+            top: 4px;
+            .translateY(0);
+            .translateX(0);
+            float: right;
+        }
+    }
+}

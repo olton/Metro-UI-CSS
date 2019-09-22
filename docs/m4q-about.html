@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q About - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">About</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q</h1>
+                <p class="text-leader">
+                    The m4q is a small library for DOM manipulation and animation and send/receive ajax requests.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_m4q_about">About</h3>
+                <p class="text-small">
+                    The repository of m4q you can be found <a href="https://github.com/olton/m4q">here</a>.
+                </p>
+                <p>
+                    Begin from <code>4.3.0</code> Metro 4 no longer depends on <code>jquery</code>.
+                    Now <code>Metro 4</code> contains self own small library <code>M4Q</code> (10kb in gzip) for DOM manipulation.
+                    <b>M4Q is not based on jquery code</b>. M4Q library is built into Metro 4.
+                </p>
+
+                <p class="remark alert">
+                    M4Q is not a complete jquery equivalent and there are differences.
+                </p>
+
+                <h5>Population</h5>
+                <p>
+                    Main object has name <code>m4q</code>. m4q may capture and relinquish <code>$</code> with methods <code>m4q.global()</code> and <code>m4q.noConflict()</code>. Automatic capture <code>$</code> if it free.
+                </p>
+
+                <p class="remark success">
+                    Further in the documentation <code>$</code> will be used to specify the reference to the <code>m4q object</code>.
+                </p>
+
+                <h5>Constructor</h5>
+                <ul>
+                    <li><code>$( "div" )</code> - select by <code>tag name</code></li>
+                    <li><code>$( ".div" )</code> - select by <code>class name</code></li>
+                    <li><code>$( "#div" )</code> - select by <code>id</code></li>
+                    <li><code>$( "&lt;div&gt;" )</code> - create by <code>tag name</code></li>
+                    <li><code>$( "&lt;div&gt;", context )</code> - create in context</li>
+                    <li><code>$( "&lt;div&gt;any_text_or_html&lt;/div&gt;" )</code> - create by <code>html</code></li>
+                    <li><code>$( "&lt;div&gt;...&lt;/div&gt;&lt;div&gt;...&lt;/div&gt;" )</code> - create by <code>tags</code></li>
+                    <li><code>$( "&lt;div&gt;", {...} )</code> - create by tag with attributes as object</li>
+                    <li><code>$( $(...) )</code> - create by <code>m4q</code> as argument</li>
+                    <li><code>$( jQuery(...) )</code> - import from jQuery</li>
+                    <li><code>$( function(){} )</code> - Create document.ready function</li>
+                </ul>
+
+                <h5>Loops</h5>
+                <ul>
+                    <li><code>$.each()</code></li>
+                    <li><code>$(...).each()</code></li>
+                </ul>
+
+                <h5>Ajax</h5>
+                <ul>
+                    <li><code>$.ajax({...})</code></li>
+                    <li><code>$.get(url, data, options)</code></li>
+                    <li><code>$.post(url, data, options)</code></li>
+                    <li><code>$.put(url, data, options)</code></li>
+                    <li><code>$.patch(url, data, options)</code></li>
+                    <li><code>$.delete(url, data, options)</code></li>
+                    <li><code>$.json(url, data, options)</code></li>
+                    <li><code>$(...).load(url, data, options)</code></li>
+                </ul>
+
+                <h5>Visibility and effects</h5>
+                <ul>
+                    <li><code>$(...).toggle()</code></li>
+                    <li><code>$(...).hide()</code></li>
+                    <li><code>$(...).show()</code></li>
+                    <li><code>$(...).visible()</code></li>
+                    <li><code>$(...).fadeIn( )</code></li>
+                    <li><code>$(...).fadeOut( )</code></li>
+                    <li><code>$(...).slideIn( )</code></li>
+                    <li><code>$(...).slideOut ()</code></li>
+                </ul>
+
+                <h5>Animation</h5>
+                <ul>
+                    <li><code>$.animate(...)</code></li>
+                    <li><code>$(...).animate(...)</code></li>
+                </ul>
+
+                <h5>Contains functions</h5>
+                <ul>
+                    <li><code>$(...).index()</code></li>
+                    <li><code>$(...).get()</code></li>
+                    <li><code>$(...).eq()</code></li>
+                    <li><code>$(...).contains()</code></li>
+                    <li><code>$(...).is()</code></li>
+                    <li><code>$(...).find()</code></li>
+                    <li><code>$(...).children()</code></li>
+                    <li><code>$(...).parent()</code></li>
+                    <li><code>$(...).closest()</code></li>
+                    <li><code>$(...).siblings()</code></li>
+                    <li><code>$(...).prev()</code></li>
+                    <li><code>$(...).next()</code></li>
+                    <li><code>$(...).filter()</code></li>
+                    <li><code>$(...).last()</code></li>
+                    <li><code>$(...).first()</code></li>
+                    <li><code>$(...).ind()</code></li>
+                    <li><code>$(...).even()</code></li>
+                    <li><code>$(...).odd()</code></li>
+                </ul>
+
+                <h5>Attributes</h5>
+                <ul>
+                    <li><code>$(...).attr()</code></li>
+                    <li><code>$(...).attr(name)</code></li>
+                    <li><code>$(...).attr(name, value)</code></li>
+                    <li><code>$(...).attr({...})</code></li>
+                    <li><code>$(...).removeAttr(name)</code></li>
+                    <li><code>$(...).toggleAttr(name, value)</code></li>
+                    <li><code>$(...).id(value)</code></li>
+                    <li><code>$(...).prop()</code></li>
+                    <li><code>$.meta(...)</code></li>
+                    <li><code>$.doctype()</code></li>
+                    <li><code>$.html()</code></li>
+                </ul>
+
+                <h5>Html, text and value</h5>
+                <ul>
+                    <li><code>$(...).html()</code></li>
+                    <li><code>$(...).html(value)</code></li>
+                    <li><code>$(...).text()</code></li>
+                    <li><code>$(...).text(value)</code></li>
+                    <li><code>$(...).innerText()</code></li>
+                    <li><code>$(...).innerText(value)</code></li>
+                    <li><code>$(...).outerHTML()</code></li>
+                    <li><code>$(...).empty()</code></li>
+                    <li><code>$(...).val( )</code></li>
+                    <li><code>$(...).val( value )</code></li>
+                </ul>
+
+                <h5>Css and classes</h5>
+                <ul>
+                    <li><code>$(...).style()</code></li>
+                    <li><code>$(...).style(name)</code></li>
+                    <li><code>$(...).css(name)</code></li>
+                    <li><code>$(...).css(name, value)</code></li>
+                    <li><code>$(...).css({...})</code></li>
+                    <li><code>$(...).addClass()</code></li>
+                    <li><code>$(...).removeClass()</code></li>
+                    <li><code>$(...).toggleClass()</code></li>
+                    <li><code>$(...).hasClass()</code></li>
+                    <li><code>$(...).clearClasses()</code></li>
+                </ul>
+
+                <h5>Position and size</h5>
+                <ul>
+                    <li><code>$(...).height( )</code></li>
+                    <li><code>$(...).height( val )</code></li>
+                    <li><code>$(...).width( )</code></li>
+                    <li><code>$(...).width( val )</code></li>
+                    <li><code>$(...).outerHeight( )</code></li>
+                    <li><code>$(...).outerHeight( val )</code></li>
+                    <li><code>$(...).outerWidth( )</code></li>
+                    <li><code>$(...).outerWidth( val )</code></li>
+                    <li><code>$(...).offset( )</code></li>
+                    <li><code>$(...).position( excludeMargin )</code></li>
+                </ul>
+
+                <h5>Manipulations</h5>
+                <ul>
+                    <li><code>$(...).append( )</code></li>
+                    <li><code>$(...).appendTo( )</code></li>
+                    <li><code>$(...).prepend( )</code></li>
+                    <li><code>$(...).prependTo( )</code></li>
+                    <li><code>$(...).insertAfter( )</code></li>
+                    <li><code>$(...).insertBefore( )</code></li>
+                    <li><code>$(...).after( )</code></li>
+                    <li><code>$(...).before( )</code></li>
+                </ul>
+
+                <h5>Data</h5>
+                <ul>
+                    <li><code>$.hasData(el)</code></li>
+                    <li><code>$.data(el, name, data)</code></li>
+                    <li><code>$.removeData(el, name)</code></li>
+                    <li><code>$(...).data()</code></li>
+                    <li><code>$(...).data(key)</code></li>
+                    <li><code>$(...).data(key, value)</code></li>
+                    <li><code>$(...).removeData(key)</code></li>
+                </ul>
+
+                <h5>Events</h5>
+                <ul>
+                    <li><code>$(...).on( )</code></li>
+                    <li><code>$(...).one( )</code></li>
+                    <li><code>$(...).off( )</code></li>
+                    <li><code>$(...).fire( )</code></li>
+                    <li><code>$(...).trigger( )</code></li>
+                    <li><code>$(...).ready( )</code></li>
+                    <li><code>$(...).blur( )</code></li>
+                    <li><code>$(...).focus( )</code></li>
+                    <li><code>$(...).resize( )</code></li>
+                    <li><code>$(...).scroll( )</code></li>
+                    <li><code>$(...).click( )</code></li>
+                    <li><code>$(...).dblclick( )</code></li>
+                    <li><code>$(...).mousedown( )</code></li>
+                    <li><code>$(...).mouseup( )</code></li>
+                    <li><code>$(...).mousemove( )</code></li>
+                    <li><code>$(...).mouseover( )</code></li>
+                    <li><code>$(...).mouseout( )</code></li>
+                    <li><code>$(...).mouseenter( )</code></li>
+                    <li><code>$(...).mouseleave( )</code></li>
+                    <li><code>$(...).change( )</code></li>
+                    <li><code>$(...).select( )</code></li>
+                    <li><code>$(...).submit( )</code></li>
+                    <li><code>$(...).keydown( )</code></li>
+                    <li><code>$(...).keypress( )</code></li>
+                    <li><code>$(...).keyup( )</code></li>
+                    <li><code>$(...).contextmenu( )</code></li>
+                </ul>
+
+                <h5>Utils</h5>
+                <ul>
+                    <li><code>$.merge(...)</code></li>
+                    <li><code>$.type( ... )</code></li>
+                    <li><code>$.camelCase( ... )</code></li>
+                    <li><code>$.isPlainObject( ... )</code></li>
+                    <li><code>$.isEmptyObject( ... )</code></li>
+                    <li><code>$.isArrayLike( ... )</code></li>
+                    <li><code>$.isSelector( ... )</code></li>
+                    <li><code>$.isVisible( ... )</code></li>
+                    <li><code>$.not( ... )</code></li>
+                    <li><code>$.parseUnit( ... )</code></li>
+                    <li><code>$.proxy( fn, context )</code></li>
+                    <li><code>$.remove( selector )</code></li>
+                    <li><code>$.sleep( ms )</code></li>
+                    <li><code>$.fn.items( )</code></li>
+                    <li><code>$.fn.clone( )</code></li>
+                    <li><code>$.fn.merge(...)</code></li>
+                    <li><code>$.setTimeout( ... )</code></li>
+                    <li><code>$.clearTimeout( ... )</code></li>
+                    <li><code>$.setInterval( ... )</code></li>
+                    <li><code>$.clearInterval( ... )</code></li>
+                    <li><code>Promise( ... )</code></li>
+                    <li><code>setImmediate( ... )</code></li>
+                    <li><code>clearImmediate( ... )</code></li>
+                </ul>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

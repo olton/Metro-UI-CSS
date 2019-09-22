@@ -1,0 +1,71 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.breadcrumbs {
+
+    margin-bottom: 1rem;
+    margin-left: 0;
+    padding: 0;
+    list-style: none inside;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    background-color: @white;
+    color: lighten(@dark, 30%);
+
+    .page-item, .breadcrumb-item {
+        position: relative;
+        cursor: pointer;
+        display: list-item;
+        background-color: inherit;
+        color: inherit;
+        transition: @transition-short;
+        margin: 4px;
+    }
+
+    .page-item + .page-item, .breadcrumb-item + .breadcrumb-item {
+        &::before, &::after {
+            display: block;
+            position: absolute;
+            vertical-align: middle;
+            color: transparent;
+            font-size: 0;
+            content: "";
+            height: 1px;
+            width: .375rem;
+            background-color: @dark;
+            top: 50%;
+            left: 0;
+            margin-left: -.5rem;
+        }
+
+        &::before {
+            transform: rotate(45deg);
+            margin-top: -.125rem;
+        }
+
+        &::after {
+            transform: rotate(-45deg);
+            margin-top: .125rem;
+        }
+    }
+
+    .page-link, .page-item a, .breadcrumb-item a {
+        display: block;
+        position: relative;
+        padding: .5rem .75rem;
+        line-height: 1;
+        font-size: 1rem;
+        text-decoration: none;
+        color: inherit;
+        background-color: transparent;
+    }
+
+    .page-link:hover,  .page-item a:hover, .breadcrumb-item a:hover{
+        color: @dark;
+    }
+
+    .page-item:last-child, .breadcrumb-item:last-child {
+        font-weight: bold;
+    }
+}

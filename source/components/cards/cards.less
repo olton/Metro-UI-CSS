@@ -1,0 +1,98 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.card {
+    display: block;
+    position: relative;
+    font-size: .875rem;
+    width: ~"calc(100% - 1rem)";
+    margin: 8px auto;
+    border-radius: 2px;
+    border: 1px solid @borderColor;
+    background-color: @white;
+}
+
+.card-header {
+    border-bottom: 1px #eee solid;
+    padding: 1rem;
+    font-size: 16px;
+    border-radius: 2px 2px 0 0;
+    display: block;
+}
+
+.card-header {
+    .avatar {
+        float: left;
+        .square(2.75, rem);
+        overflow: hidden;
+        img {
+            width: 100%;
+            min-height: 100%;
+        }
+    }
+    .name {
+        margin-left: 3.375rem;
+        font-weight: 500;
+    }
+    .date {
+        margin-left: 3.375rem;
+        font-size: .8125rem;
+        font-weight: 500;
+        color: @gray;
+    }
+}
+
+.card-content {
+    display: block;
+}
+
+.card-footer {
+    border-top: 1px #eee solid;
+    padding: 1rem;
+    border-radius: 0 0 2px 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 3rem;
+}
+
+.card {
+    &.image-header {
+        .card-header {
+            height: 9rem;
+            vertical-align: bottom;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-flow: column;
+            align-items: flex-start;
+            justify-content: flex-end;
+
+            .avatar {
+                border-radius: 50%;
+                border: 2px solid @white;
+            }
+        }
+    }
+}
+
+* + .card {
+    margin-top: 1rem;
+}
+
+.card {
+    &.flex-card {
+        display: flex;
+        flex-flow: column;
+
+        .card-header, .card-footer {
+            height: 57px;
+            flex-shrink: 0;
+            flex-grow: 0;
+        }
+
+        .card-footer {
+            margin-top: auto;
+        }
+    }
+}

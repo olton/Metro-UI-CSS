@@ -1,0 +1,110 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none inside;
+    margin: 0 -.25rem 1rem -.25rem;
+    padding: 0;
+    user-select: none;
+}
+
+.pagination {
+
+    .page-item {
+        cursor: pointer;
+        display: list-item;
+        background-color: @white;
+        color: @dark;
+        border: 1px solid darken(@light, 10%);
+        margin: .25rem;
+        transition: @transition-short;
+    }
+
+    .page-link {
+        display: block;
+        position: relative;
+        padding: .5rem .75rem;
+        line-height: 1;
+        font-size: 1rem;
+        text-decoration: none;
+        color: inherit;
+        background-color: inherit;
+    }
+
+    .page-item, .page-item.service {
+        &:hover {
+            background-color: @hoverBackground;
+        }
+    }
+
+    .page-item.no-link {
+        pointer-events: none;
+        cursor: default;
+        border-color: @transparent;
+        &:hover {
+            background-color: @white!important;
+            border-color: @transparent;
+            color: @dark;
+        }
+    }
+
+    .page-item.disabled {
+        pointer-events: none;
+        color: @lightGray;
+    }
+
+    .page-item.active {
+        background-color: @lightGray;
+    }
+
+    &.rounded {
+        .page-item {
+            border-radius: @borderRadius;
+        }
+    }
+}
+
+.pagination {
+    &.no-gap {
+        margin: 0 0 1rem 0;
+        .page-item {
+            margin: -1px;
+        }
+        .no-link {
+            margin:  -1px 1px;
+        }
+
+        &.rounded {
+            .page-item {
+                border-radius: 0;
+            }
+
+            .page-item:first-child {
+                border-top-left-radius: @borderRadius;
+                border-bottom-left-radius: @borderRadius;
+            }
+            .page-item:last-child {
+                border-top-right-radius: @borderRadius;
+                border-bottom-right-radius: @borderRadius;
+            }
+        }
+    }
+}
+
+.pagination {
+    &.size-large {
+        .page-link {
+            padding: .75rem 1.5rem;
+            font-size: 1.25rem;
+        }
+    }
+
+    &.size-small {
+        .page-link {
+            padding: .25rem .5rem;
+            font-size: .875rem;
+        }
+    }
+}

@@ -1,0 +1,112 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.wheel-picker {
+    display: block;
+    position: relative;
+    width: 100%;
+    min-width: 220px;
+    cursor: default;
+    background-color: @white;
+    color: @dark;
+    height: 38px;
+    user-select: none;
+
+    &:focus {
+        .debug();
+    }
+}
+
+.wheel-picker {
+
+    .select-wrapper {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        height: auto;
+        z-index: 3;
+        width: 100%;
+    }
+
+    .select-block {
+        position: relative;
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        flex-shrink: 0;
+        background-color: #f2f2f2;
+
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: 0;
+            height: 40px;
+            background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .5);
+            top: 50%;
+            left: 0;
+            .translateY(-50%);
+            width: 100%;
+        }
+
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none inside;
+            display: block;
+            text-align: center;
+            height: 100%;
+            z-index: 1;
+            flex: 1;
+            border: 1px solid @borderColor;
+
+            overflow-y: auto;
+            .hideScrollBars();
+
+            li {
+                display: block;
+                height: 40px;
+                line-height: 40px;
+                font-size: .9em;
+
+                &.active {
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+
+    .action-block {
+        display: flex;
+        flex-flow: row nowrap;
+        position: relative;
+        width: 100%;
+        background-color: @white;
+
+        & > * {
+            flex: 1;
+
+            &:not(:last-child) {
+                border-right: 1px solid @borderColor;
+            }
+        }
+    }
+
+    .select-wrapper {
+        .translate3d(0, -50%, 0);
+    }
+
+    &.for-top, &.for-top-a {
+        .select-wrapper {
+            .translate3d(0, 0, 0);
+        }
+    }
+
+    &.for-bottom, &.for-bottom-a {
+        .select-wrapper {
+            .translate3d(0, -100%, 0);
+        }
+    }
+
+}

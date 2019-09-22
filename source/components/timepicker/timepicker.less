@@ -1,0 +1,46 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.time-picker {
+    .hideElement(input);
+
+    input:focus ~ .time-wrapper {
+        .focus-show(@lightGray);
+    }
+
+    .time-wrapper {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        position: relative;
+        border: 1px solid @borderColor;
+        width: 100%;
+    }
+
+    .hours, .minutes, .seconds {
+        display: block;
+        flex: 1;
+        border: 1px solid;
+        border-color: inherit;
+        text-align: center;
+        height: 38px;
+        line-height: 34px;
+        position: relative;
+        font-size: 1.2em;
+    }
+
+    &.show-labels {
+        .hours, .minutes, .seconds {
+            line-height: 30px;
+            &::before {
+                content: attr(data-title);
+                position: absolute;
+                display: block;
+                font-size: 8px;
+                line-height: 12px;
+                left: 50%;
+                bottom: 0;
+                .translate3d(-50%, 0, 0);
+            }
+        }
+    }
+}

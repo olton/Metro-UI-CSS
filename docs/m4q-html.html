@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Html, text, value - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#_func_html">html()</a></li>
+                    <li class="toc-entry"><a href="#_func_outer_html">outerHTML()</a></li>
+                    <li class="toc-entry"><a href="#_func_text">text()</a></li>
+                    <li class="toc-entry"><a href="#_func_inner_text">innerText()</a></li>
+                    <li class="toc-entry"><a href="#_func_val">val()</a></li>
+                    <li class="toc-entry"><a href="#_func_empty">empty()</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q html, text, value</h1>
+                <p class="text-leader">
+                    Set and retrieve html, text and value for elements.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_func_html">html()</h3>
+                <p>
+                    Set and get element <code>innerHtml</code> property.
+                    You can get <code>innerHtml</code> property for first element in matched set, and set it to each element in set with function <code>html()</code>.
+                    If argument is a <code>m4q</code> object, will be used <code>outerHtml</code>
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+
+                    &lt;ul id="list"&gt;
+                        &lt;li&gt;list item 1&lt;/li&gt;
+                        &lt;li&gt;list item 2&lt;/li&gt;
+                        &lt;li&gt;list item 3&lt;/li&gt;
+                        &lt;li&gt;list item 4&lt;/li&gt;
+                        &lt;li&gt;list item 5&lt;/li&gt;
+                        &lt;li&gt;list item 6&lt;/li&gt;
+                    &lt;/ul&gt;
+                </code></pre>
+                <pre><code>
+                    var div = $("div");
+                    console.log(div.html()); // Get div innerHtml
+                    div.html("&lt;p&gt;New html&lt;/p&gt;"); // Set div innerHtml
+                    div.html($("#list")); // copy ul into div
+                    div.html(""); // clear div innerHtml
+                </code></pre>
+
+                <h3 id="_func_outer_html">outerHTML()</h3>
+                <p>
+                    Get <code>outerHTML</code> element property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").outerHTML() ); // Outputs: "&lt;div&gt;This a example text&lt;/div&gt;"
+                </code></pre>
+
+                <h3 id="_func_text">text()</h3>
+                <p>
+                    Get and set <code>textContent</code> element property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").text() ); // Outputs: "This a example text"
+                    $("div").text("Other text"); // Set textContent for div
+                </code></pre>
+
+                <h3 id="_func_inner_text">innerText()</h3>
+                <p>
+                    Get and set <code>innerText</code> element property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("div").innerText() ); // Outputs: "This a example text"
+                    $("div").innerText("Other text"); // Set innerText for div
+                </code></pre>
+
+                <h3 id="_func_val">val()</h3>
+                <p>
+                    Get and set <code>value</code> element property. You can use this method with input element and textarea. If element not supported <code>value</code> property, the function action will not have a result.
+                </p>
+                <pre><code>
+                    &lt;input id="inp" type="text" value="This is a input value"&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $("#inp").val() ); // Outputs: "This a input value"
+                    $("#inp").val("123"); // Now input has value 123
+                </code></pre>
+
+                <h3 id="_func_empty">empty()</h3>
+                <p>
+                    Clear element <code>innerHTML</code> property.
+                </p>
+                <pre><code>
+                    &lt;div&gt;This a example text&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    $("div").empty(); // Now div is: &lt;div&gt;&lt;/div&gt;
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Constructor - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">About</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q Constructor</h1>
+                <p class="text-leader">
+                    Constructor in m4q can create, select, import elements and generate document.ready function.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_m4q_about">About</h3>
+                <p>
+                    Constructor in m4q can create, select, import elements and generate document.ready function.
+                </p>
+                <ul>
+                    <li><code>$( "&lt;div&gt;" )</code> - create by <code>tag name</code></li>
+                    <li><code>$( "&lt;div&gt;", context )</code> - create in context</li>
+                    <li><code>$( "&lt;div&gt;", {...} )</code> - create by tag with attributes as object</li>
+                    <li><code>$( "&lt;div&gt;any_text_or_html&lt;/div&gt;" )</code> - create by <code>html</code></li>
+                    <li><code>$( "div" )</code> - select by <code>tag name</code></li>
+                    <li><code>$( ".div" )</code> - select by <code>class name</code></li>
+                    <li><code>$( "#div" )</code> - select by <code>id</code></li>
+                    <li><code>$( $(...) )</code> - create by <code>m4q</code> as argument</li>
+                    <li><code>$( jQuery(...) )</code> - import from jQuery</li>
+                    <li><code>$( function(){} )</code> - Create document.ready function</li>
+                </ul>
+
+                <h3 id="_m4q_creating_elements">Creating elements</h3>
+                <p>
+                    Created elements returns as <code>m4q</code> object. To get <code>HTMLElement</code> you must request element from m4q object by index.
+                </p>
+
+                <h5 id="_m4q_creating_tag_name">Create element by tag name</h5>
+                <p>
+                    You can create an element by tag name. The created element will not append into DOM. You must insert element into DOM with one of m4q manipulation function or one of special DOM functions.
+                </p>
+                <pre><code>
+                    var div = $("&lt;div&gt;");
+
+                    // and now add to DOM
+
+                    div.appendTo($("body"));
+                    // or
+                    document.body.appendChild(div[0]);
+                </code></pre>
+
+                <h5 id="_m4q_creating_in_context">Create element in context</h5>
+                <p>
+                    You can create element and append it to context with using second constructor parameter.
+                </p>
+                <pre><code>
+                    var context = $("body");
+                    var div = $("&lt;div&gt;", context); // div added to DOM into body
+                </code></pre>
+
+                <h5 id="_m4q_creating_with_attributes">Create element with attributes</h5>
+                <p>
+                    You can create element with required attributes. To add attributes to created element, define these in second constructor parameter.
+                </p>
+                <pre><code>
+                    var div = $("&lt;div&gt;", {
+                        id: "elementId"
+                        class: "my_class"
+                    });
+                    div.appendTo($("body"));
+                </code></pre>
+
+                <h5 id="_m4q_creating_from_html_string">Create elements from HTML text</h5>
+                <p>
+                    You can create element(s) from html. Parameter for constructor must be a valid html string. Also you can insert created element(s) into context.
+                </p>
+                <pre><code>
+                    var div = $("&lt;div&gt;&lt;p&gt;Lorem ipsum&lt;/p&gt;&lt;/div&gt;");
+                    div.appendTo($("body"));
+                </code></pre>
+
+                <h3 id="_m4q_selecting">Selecting elements</h3>
+                <p>
+                    You can selecting elements by: tag name, class name, element id and any valid css selectors.
+                </p>
+                <p class="remark warning">
+                    jQuery css extensions not supported.
+                </p>
+
+                <h5 id="_m4q_selecting_by_tag_name">Select elements by tag name</h5>
+                <pre><code>
+                    var divs = $("div");
+                    var p = $("div > p");
+                    var a = $("ul a");
+                </code></pre>
+
+                <h5 id="_m4q_selecting_by_class_name">Select elements by class name</h5>
+                <pre><code>
+                    var el = $(".my-class");
+                    var el = $(".class-parent .class-child");
+                    var el = $(".class.subclass");
+                </code></pre>
+
+                <h5 id="_m4q_selecting_by_id">Select elements by id</h5>
+                <pre><code>
+                    var el = $("#elem");
+                    var el = $(".class-parent #child");
+                </code></pre>
+
+                <h5 id="_m4q_copy">M4Q object as constructor argument</h5>
+                <p>
+                    If you specify <code>m4q</code> object as constructor argument, M4Q return <code>new m4q object</code> with same elements.
+                </p>
+
+                <h5 id="_m4q_import_from_jquery">jQuery object as constructor argument</h5>
+                <p>
+                    If you specify <code>jQuery</code> object as constructor argument, M4Q imports elements from jQuery object and return <code>new m4q object</code> with same elements.
+                </p>
+
+                <h5 id="_m4q_document_ready">Creating document.ready function</h5>
+                <p>
+                    You can specify function as constructor argument and receive document.ready function.
+                </p>
+                <pre><code>
+                    $(function(){
+                        ...
+                    });
+
+                    // equals to
+
+                    document.addEventListener('DOMContentLoaded', function(){
+                        ...
+                    });
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

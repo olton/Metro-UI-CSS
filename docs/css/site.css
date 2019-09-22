@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.49  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.0  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -302,17 +302,32 @@ pre .copy-button {
 .options-table {
   font-size: 14px;
 }
-.special-thanks {
+.special-thanks,
+.who-uses {
   justify-content: space-between;
   align-items: center;
 }
-.special-thanks [class*=cell-] {
+.special-thanks [class*=cell-],
+.who-uses [class*=cell-] {
   text-align: center;
   margin-top: 20px;
 }
-.special-thanks img {
+.special-thanks img,
+.who-uses img {
   width: 124px;
   max-height: 64px;
+}
+.who-uses {
+  margin-bottom: 10px;
+}
+.who-uses .slide {
+  display: flex;
+  justify-content: center;
+}
+.who-uses img {
+  width: auto;
+  max-width: 300px;
+  height: 180px;
 }
 main {
   padding-bottom: 20px!important;
@@ -320,30 +335,18 @@ main {
 body {
   padding-top: 64px;
 }
+.bg-hero {
+  background-color: #8c0c1d;
+}
+.fg-react {
+  color: #61dafb !important;
+}
 .hero-bg {
-  background: #8c004b;
-  background: -moz-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: -webkit-gradient(left top, left bottom, color-stop(0%, #8c004b), color-stop(100%, #d934c3));
-  background: -webkit-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: -o-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: -ms-linear-gradient(top, #8c004b 0%, #d934c3 100%);
-  background: linear-gradient(to bottom, #8c004b 0%, #d934c3 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#8c004b', endColorstr='#d934c3', GradientType=0);
+  background: #8c0c1d;
+  background: linear-gradient(to bottom, #8c0c1d 0%, #d95555 100%);
 }
 .hero {
   padding: 40px;
-}
-.neb-hero {
-  z-index: 6;
-}
-.neb-white {
-  z-index: 5;
-}
-.neb-light {
-  z-index: 4;
-}
-.neb-feature {
-  z-index: 3;
 }
 .neb-commercial {
   z-index: 2;
@@ -370,9 +373,13 @@ body {
   top: 100%;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 11;
+}
+.neb-hero.neb::after {
+  z-index: 0;
 }
 .neb-hero::after {
-  border-color: #d934c3 transparent transparent transparent;
+  border-color: #d95555 transparent transparent transparent;
 }
 .neb-white::after {
   border-color: #ffffff transparent transparent transparent;
@@ -417,18 +424,6 @@ footer a:hover {
 #footer-menu li {
   margin: 0 20px;
 }
-.special-thanks {
-  justify-content: space-between;
-  align-items: center;
-}
-.special-thanks [class*=cell-] {
-  text-align: center;
-  margin-top: 20px;
-}
-.special-thanks img {
-  width: 124px;
-  max-height: 64px;
-}
 @media all and (min-width: 768px) {
   .hero {
     padding: 160px 80px 300px;
@@ -438,9 +433,6 @@ footer a:hover {
   }
   .feature-table {
     top: -280px;
-  }
-  .neb-white {
-    height: 360px;
   }
   .info-panel {
     height: 470px;

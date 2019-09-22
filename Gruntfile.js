@@ -3,37 +3,34 @@ module.exports = function(grunt) {
     "use strict";
 
     var watching = grunt.option('watching');
-    var develop = grunt.option('develop');
-    var tasks = ['clean', 'less', 'postcss', 'concat'];
+    var tasks;
     var watch_files = [
-        'js/i18n/*.json',
-        'js/*.js',
-        'js/utils/*.js',
-        'js/plugins/*js',
-        'less/*.less',
-        'less/include/*.less',
-        'less/third-party/*.less',
-        'less/schemes/*.less',
-        'less/schemes/builder/*.less',
+        'source/i18n/*.json',
+        'source/*.js',
+        'source/**/*.js',
+        'source/**/*.less',
+        'docs/css/*.less',
         'Gruntfile.js'
     ];
     var time = new Date(), day = time.getDate(), month = time.getMonth()+1, year = time.getFullYear(), hour = time.getHours(), mins = time.getMinutes(), sec = time.getSeconds();
     var timestamp = (day < 10 ? "0"+day:day) + "/" + (month < 10 ? "0"+month:month) + "/" + (year) + " " + (hour<10?"0"+hour:hour) + ":" + (mins<10?"0"+mins:mins) + ":" + (sec<10?"0"+sec:sec);
 
-    require('time-grunt')(grunt);
-    require('load-grunt-tasks')(grunt);
-
-    if (!develop) {
-        tasks.push('uglify');
-        tasks.push('cssmin');
-    }
-
-    tasks.push('replace');
-    tasks.push('copy');
+    tasks = [
+        'concurrent:clean',
+        'concurrent:compile_less',
+        'concurrent:postcss',
+        'concurrent:concat',
+        'concurrent:min',
+        'concurrent:replace',
+        'concurrent:copy'
+    ];
 
     if (watching) {
         tasks.push('watch');
     }
+
+    require('time-grunt')(grunt);
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
         docsDir: 'G:\\Projects\\Metro4-Docs\\public_html\\metro',
@@ -46,11 +43,12 @@ module.exports = function(grunt) {
 
         requirejs_banner: "\n(function( factory ) {\n"+
         "    if ( typeof define === 'function' && define.amd ) {\n" +
-        "        define([ 'jquery' ], factory );\n"+
+        "        define('metro4', factory );\n"+
         "    } else {\n" +
-        "        factory( jQuery );\n"+
+        "        factory( );\n"+
         "    }\n"+
-        "}(function( jQuery ) { ",
+        "}(function( ) { \n"+
+        "'use strict';\n\n",
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
@@ -62,29 +60,31 @@ module.exports = function(grunt) {
                     banner: '<%= banner %>' + '<%= requirejs_banner%>',
                     footer: "\n\nreturn METRO_INIT === true ? Metro.init() : Metro;\n\n}));",
                     stripBanners: true,
-                    process: function(src, filepath) {
-                        return '\n// Source: ' + filepath + '\n\n' + src;
-                        // return '\n// Source: ' + filepath + '\n' + src.replace(/(^|\n)[ \t]*('use strict'|"use strict");?\s*/g, '$1');
-                        // return '\n// Source: ' + filepath + '\n' + src.replace(/(^|\n)[ \t]*();?\s*/g, '$1');
-                    }
+                    separator: "\n\n"
                 },
                 src: [
-                    'js/*.js',
-                    'js/utils/*.js',
-                    'js/plugins/*.js'
+                    'source/m4q/*.js',
+                    'source/metro.js',
+                    'source/common/js/*.js',
+                    'source/components/**/*.js'
                 ],
                 dest: 'build/js/metro.js'
             },
             css: {
                 options: {
                     stripBanners: true,
-                    banner: '<%= banner %>'
+                    separator: "\n\n",
+                    banner: '<%= banner %>',
+                    process: function(src) {
+                        return src.replace(/\n/g, '\n');
+                    }
                 },
                 src: [
                     'build/css/metro.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
-                    'build/css/metro-icons.css'
+                    'build/css/metro-icons.css',
+                    'build/css/metro-third.css'
                 ],
                 dest: 'build/css/metro-all.css'
             }
@@ -105,31 +105,30 @@ module.exports = function(grunt) {
 
         less: {
             options: {
-                paths: "less/",
+                paths: "source/",
                 strictMath: false,
                 sourceMap: false,
                 banner: '<%= banner %>'
             },
             src: {
                 expand: true,
-                cwd: "less/",
-                src: ["metro.less", "metro-rtl.less", "metro-colors.less", "metro-icons.less"],
+                cwd: "source/",
+                src: [
+                    "metro.less",
+                    "metro-rtl.less",
+                    "metro-colors.less",
+                    "metro-icons.less",
+                    "metro-third.less"
+                ],
                 ext: ".css",
                 dest: "build/css"
             },
             schemes: {
                 expand: true,
-                cwd: "less/schemes/",
+                cwd: "source/schemes/",
                 src: ["*.less"],
                 ext: ".css",
                 dest: "build/css/schemes"
-            },
-            third: {
-                expand: true,
-                cwd: "less/third-party/",
-                src: ["*.less"],
-                ext: ".css",
-                dest: "build/css/third-party"
             },
             docs: {
                 expand: true,
@@ -154,9 +153,6 @@ module.exports = function(grunt) {
             },
             schemes: {
                 src: 'build/css/schemes/*.css'
-            },
-            third: {
-                src: 'build/css/third-party/*.css'
             }
         },
 
@@ -173,13 +169,6 @@ module.exports = function(grunt) {
                 cwd: "build/css/schemes",
                 src: ['*.css', '!*.min.css'],
                 dest: "build/css/schemes",
-                ext: ".min.css"
-            },
-            third: {
-                expand: true,
-                cwd: "build/css/third-party",
-                src: ['*.css', '!*.min.css'],
-                dest: "build/css/third-party",
                 ext: ".min.css"
             }
         },
@@ -236,6 +225,20 @@ module.exports = function(grunt) {
             }
         },
 
+        concurrent: {
+            options: {
+                limit: 8
+            },
+            clean: ['clean'],
+            compile_less: ['less:src', 'less:schemes', 'less:docs'],
+            postcss: ['postcss'],
+            concat: ['concat:js', 'concat:css'],
+            min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
+            replace: ['replace'],
+            copy: ['copy'],
+            watch: ['watch']
+        },
+
         watch: {
             scripts: {
                 files: watch_files,
@@ -244,6 +247,7 @@ module.exports = function(grunt) {
         }
     });
 
+    // grunt.registerTask('default', tasks);
     grunt.registerTask('default', tasks);
 
 };

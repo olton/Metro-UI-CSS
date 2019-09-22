@@ -1,0 +1,27 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.image-magnifier {
+    position: relative;
+    display: block;
+    cursor: none;
+    height: auto;
+
+    img {
+        vertical-align: middle;
+        width: 100%;
+        height: auto;
+        max-height: 100%;
+    }
+
+    .image-magnifier-glass {
+        position: absolute;
+        border-radius: 0;
+        cursor: none;
+        width: 100px;
+        height: 100px;
+        border: 4px solid rgba(255,255,255,.7);
+        overflow: hidden;
+        z-index: 2;
+    }
+}

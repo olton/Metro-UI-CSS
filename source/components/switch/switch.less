@@ -1,0 +1,203 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.switch {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    user-select: none;
+    cursor: pointer;
+    height: 36px;
+
+    .hideElement(input);
+
+    .check, .caption {
+        display: block;
+        line-height: 38px;
+        font-size: 14px;
+        margin: 0 4px;
+        position: relative;
+    }
+
+    .check {
+        position: relative;
+        height: 1.25rem;
+        width: 2.8125rem;
+        border: 2px @dark solid;
+        cursor: pointer;
+        background: @transparent;
+        z-index: 1;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: 1.125rem / 2;
+        flex-shrink: 0;
+    }
+
+    .check::after {
+        position: absolute;
+        left: 3px;
+        display: block;
+        content: "";
+        height: .75rem;
+        width: .75rem;
+        top: 50%;
+        .translateY(-50%);
+        border: 2px #333 solid;
+        cursor: pointer;
+        background: #333;
+        z-index: 2;
+        border-radius: 50%;
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        background: @dark;
+        border-color: @dark;
+        &::after {
+            background-color: @white;
+            border-color: @white;
+            left: auto;
+            .translateX(1.625rem);
+            .translateY(-50%);
+        }
+    }
+
+    input[type="checkbox"]:disabled ~ .check {
+        background-color: @disabledBackground;
+        border-color: @disabledBackground;
+        &::after {
+            background-color: darken(@disabledBackground, 10%);
+            border-color: darken(@disabledBackground, 10%);
+        }
+    }
+
+    .check {order: 1;}
+    .caption {order: 2;}
+
+    &.caption-left {
+        flex-flow: row-reverse nowrap;
+    }
+
+    &.required, &.invalid, &.valid {
+        border: none!important;
+    }
+
+    &.invalid {
+        &::after {
+            display: none;
+        }
+    }
+
+    &.transition-on {
+        .check {
+            transition: @transition-base;
+            &::after {
+                transition: @transition-base;
+            }
+        }
+        input[type="checkbox"]:checked ~ .check {
+            &::after {
+                transition: @transition-base;
+            }
+        }
+    }
+}
+
+.switch-material {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    user-select: none;
+    cursor: pointer;
+    height: 36px;
+    margin: 0;
+
+    .hideElement(input);
+
+    .check, .caption {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 18px;
+        font-size: 14px;
+        margin: 0 4px;
+    }
+
+    .check {
+        width: 36px;
+        height: 16px;
+        background-color: #929292;
+        border-radius: 8px;
+        overflow: visible;
+        position: relative;
+        margin: 0 4px;
+    }
+
+    .check {
+        &::before {
+            position: absolute;
+            display: block;
+            content: "";
+            width: 22px;
+            height: 22px;
+            z-index: 2;
+            margin-top: -3px;
+            margin-left: -3px;
+            border-radius: 50%;
+            background-color: @teal;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+        }
+    }
+
+    input:checked ~ .check {
+        background-color: rgba(0, 150, 136, 0.5);
+    }
+
+    input:not(:checked) ~ .check {
+        &::before {
+            background-color: @white;
+            //.transition(all, .2s, linear);
+        }
+    }
+
+    input:checked ~ .check {
+        background-color: rgba(0, 150, 136, 0.5);
+        &::before {
+            .translateX(22px);
+            //.transition(all, .2s, linear);
+        }
+    }
+
+    input:disabled ~ .check {
+        background-color: #D5D5D5;
+        &:before {
+            background-color: #BDBDBD;
+        }
+    }
+
+    .check {order: 1;}
+    .caption {order: 2;}
+
+    &.caption-left {
+        flex-flow: row-reverse nowrap;
+    }
+
+    &.transition-on {
+        transition: @transition-base;
+
+        input:not(:checked) ~ .check {
+            &::before {
+                .transition(all, .2s, linear);
+            }
+        }
+
+        input:checked ~ .check {
+            &::before {
+                .transition(all, .2s, linear);
+            }
+        }
+    }
+}

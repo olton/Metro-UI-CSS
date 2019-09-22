@@ -1,0 +1,13 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.hint {
+    display: block;
+    position: fixed;
+    z-index: @zindex-tooltip;
+    background-color: @hintBackground;
+    color: @hintColor;
+    font-size: .75rem;
+    max-width: 13.75rem;
+    padding: .625rem;
+}

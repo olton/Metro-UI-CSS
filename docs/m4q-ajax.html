@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Ajax - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">About</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>M4Q Ajax</h1>
+                <p class="text-leader">
+                    M4Q contains a method for using ajax requests via XMLHttpRequest.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_m4q_about">About</h3>
+                <p>
+                    M4Q contains a method for using <code>ajax</code> requests via <code>XMLHttpRequest</code>.
+                    Method return a <code>Promise</code>. With this method, you can send a request to the server and get a response from it.
+                    You can send to the server next data types: <code>form</code>, <code>input[type=file]</code>, <code>json</code> and <code>string</code>.
+                </p>
+                <pre><code>
+                    $.ajax([...options...]);
+                </code></pre>
+
+                <h3 id="_m4q_ajax_options">Options</h3>
+                <p>
+                    To use ajax method you must define options for <code>$.ajax</code> method.
+                </p>
+
+                <h5>Request options</h5>
+                <ul>
+                    <li><strong>url</strong> (required or can be defined as <code>action</code> in the <code>form</code>)</li>
+                    <li><strong>method</strong> (default <code>GET</code>)</li>
+                    <li><strong>async</strong> (default <code>true</code>)</li>
+                    <li><strong>data</strong> (default <code>null</code>)</li>
+                    <li><strong>timeout</strong> (default <code>null</code>)</li>
+                    <li><strong>withCredentials</strong> (default <code>false</code>)</li>
+                    <li><strong>headers</strong> (object with key->value for additional request headers) </li>
+                    <li><strong>returnValue</strong> (must be <code>xhr</code> or <code>response</code> (default))</li>
+                </ul>
+
+                <h5>Events options</h5>
+                <p>
+                    All events options is a functions. These functions, with the exception of <code>onSuccess</code> and <code>onFail</code>, receive two arguments: <code>event</code> and <code>xhr</code>.
+                    Function <code>onSuccess</code> receive <code>response from server</code>, function <code>onFail</code> receive <code>xhr</code> object.
+                </p>
+                <ul>
+                    <li><strong>onLoad</strong></li>
+                    <li><strong>onSuccess</strong></li>
+                    <li><strong>onFail</strong></li>
+                    <li><strong>onState</strong></li>
+                    <li><strong>onError</strong></li>
+                    <li><strong>onTimeout</strong></li>
+                    <li><strong>onProgress</strong></li>
+                    <li><strong>onLoadstart</strong></li>
+                    <li><strong>onLoadend</strong></li>
+                    <li><strong>onAbort</strong></li>
+                </ul>
+                <pre><code>
+                    $.ajax({
+                        method: "GET",
+                        url: "http://website.com",
+                        onLoad: function(e, xhr){
+                            console.log(xhr.response);
+                        }
+                    })
+                </code></pre>
+
+                <h3 id="_m4q_ajax_return">Return value</h3>
+                <p>
+                    Method <code>$.ajax</code> return a <code>Promise</code>.
+                    You can use <code>then()</code> method of the Promise or events options for obtaining result.
+                </p>
+                <pre><code>
+                    $.ajax({
+                        method: "GET",
+                        url: "http://website.com"
+                    }).then(
+                        function(response){...}, // success
+                        function(xhr){...} // error
+                    )
+                </code></pre>
+
+                <pre><code>
+                    $.ajax({
+                        method: "GET",
+                        url: "http://website.com",
+                        onSuccess: function(response){
+                            console.log(response);
+                        },
+                        onFail: function(xhr){
+                            console.log(xhr);
+                        }
+                    })
+                </code></pre>
+
+                <h3 id="_m4q_ajax_aliases">Ajax method aliases</h3>
+                <p>
+                    M4Q also contains short aliases for <code>$.ajax</code>: <code>$.post</code>, <code>$.get</code>, <code>$.put</code>, <code>$.patch</code>, <code>$.delete</code> and <code>$.json</code>
+                </p>
+                <pre><code>
+                    $.get(url, data, options)
+                </code></pre>
+
+                <h3 id="_m4q_ajax_examples">Examples</h3>
+
+                <h5>Simple get with ajax</h5>
+                <pre><code>
+                    $.ajax({
+                        url: "http://website.com",
+                        method: "GET",
+                        data: {
+                            id: user_id,
+                            name: user_name
+                        }
+                    }).then(
+                        function(response){
+                            console.log(response);
+                        },
+                        funcrion(xhr){
+                            console.log(xhr.status, xhr.statusText);
+                        }
+                    )
+                </code></pre>
+
+                <h5>Get</h5>
+                <pre><code>
+                    $.get("http://website.com").then(
+                        function(response){
+                            console.log(response);
+                        },
+                        funcrion(xhr){
+                            console.log(xhr.status, xhr.statusText);
+                        }
+                    )
+                </code></pre>
+
+                <h5>Get JSON</h5>
+                <pre><code>
+                    $.json("http://website.com").then(
+                        function(response){
+                            console.log(response); // this is json object
+                        },
+                        funcrion(xhr){
+                            console.log(xhr.status, xhr.statusText);
+                        }
+                    )
+                </code></pre>
+
+                <h5>Post data</h5>
+                <pre><code>
+                    $.post("http://website.com", {
+                      id: user_id,
+                      name: user_name
+                    }).then(
+                        function(response){
+                            console.log(response);
+                        },
+                        funcrion(xhr){
+                            console.log(xhr.status, xhr.statusText);
+                        }
+                    )
+                </code></pre>
+
+                <h5>Post form</h5>
+                <pre><code>
+                    &lt;form action="http://website.com" method="post" id="form1"&gt;
+                        &lt;input type="text" name="user_name"&gt;
+                    &lt;/form&gt;
+
+                    &lt;script&gt;
+                        $.post(null, document.getElementById("form1")).then(
+                            function(response){
+                                console.log(response);
+                            },
+                            function(xhr){
+                                console.log(xhr.status, xhr.statusText);
+                            }
+                        )
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h5>Post input file element</h5>
+                <pre><code>
+                    &lt;input type="file" name="user_files" id="user_files"&gt;
+
+                    &lt;script&gt;
+                        $.post("http://website.com", document.getElementById("user_files")).then(
+                            function(response){
+                                console.log(response);
+                            },
+                            function(xhr){
+                                console.log(xhr.status, xhr.statusText);
+                            }
+                        )
+                    &lt;/script&gt;
+                </code></pre>
+
+                <h5>Post array</h5>
+                <pre><code>
+                    var myArray = ["Ben", "Abbot", "23"]
+                    $.post("http://website.com", JSON.stringify(myArray)).then(
+                        function(response){
+                            console.log(response);
+                        },
+                        funcrion(xhr){
+                            console.log(xhr.status, xhr.statusText);
+                        }
+                    )
+                </code></pre>
+
+                <h5>Using events</h5>
+                <pre><code>
+                    var max_size_in_bytes = 104267776;
+                    $.get(
+                        "long_archive_file.zip",
+                        null, {
+                            onProgress: function(e, x){
+                                console.log(e.loaded + " bytes transferred\n");
+                                if (e.loaded > max_size_in_bytes) {
+                                        x.abort();
+                                        console.log("Aborted");
+                                }
+                            },
+                            onState: function(e, x){
+                                console.log(x.readyState);
+                            },
+                            onAbort: function(e, x){
+                                console.log("Request aborted");
+                            }
+                        }
+                    ).then(function(response){
+                        console.log("Long response executed");
+                    }, function(xhr){
+                        console.log("Error", xhr);
+                    });
+                </code></pre>
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>

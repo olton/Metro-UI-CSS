@@ -1,0 +1,131 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.grid {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -@gridGapSize / 2;
+    margin-right: -@gridGapSize / 2;
+}
+
+.cell, .col {
+    flex: 1 0 0;
+    max-width: 100%;
+    padding: @gridGapSize / 2;
+}
+
+[class*=cell-], [class*=col-]{
+    position: relative;
+    display: block;
+    padding: @gridGapSize / 2;
+    width: 100%;
+    min-height: 1px;
+}
+
+.cell-auto, .col-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+}
+
+each(range(12), .(@k) {
+    .colspan-@{k}, .cell-@{k}, .col-@{k} {
+        flex: 0 0 @gridCellBaseSize * @k;
+        max-width: @gridCellBaseSize * @k;
+    }
+    .offset-@{k} {
+        margin-left: @gridCellBaseSize * @k;
+    }
+})
+
+.stub {
+    flex: none;
+    display: block;
+    padding: 0 @gridGapSize;
+}
+
+.grid {
+    &.no-gap {
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+
+            .cell, .stub, .col {
+                padding: 0;
+            }
+        }
+
+        .row + .row {
+            margin-top: 0;
+        }
+    }
+}
+
+.row {
+    &.no-gap {
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 0;
+
+        .cell, .stub, .col, [class*=cell-], [class*=col-] {
+            padding: 0;
+        }
+    }
+}
+
+each(@mediaBreakpointListMobile, .(@m) {
+    @media screen and (min-width: @@m) {
+
+        .cell-@{m}-full, .col-@{m}-full {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .cell-@{m}-half, .col-@{m}-half {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        .cell-@{m}-one-third, .col-@{m}-one-third {
+            flex: 0 0 33.3333333%;
+            max-width: 33.3333333%;
+        }
+
+        .cell-@{m}-two-third, .col-@{m}-two-third {
+            flex: 0 0 66.6666666%;
+            max-width: 66.6666666%;
+        }
+
+        .cell-@{m}-quarter, .col-@{m}-quarter {
+            flex: 0 0 25%;
+            max-width: 25%;
+        }
+
+        .cell-@{m}, .col-@{m} {
+            flex-basis: 0;
+            flex-grow: 1;
+            max-width: 100%;
+        }
+
+        .cell-@{m}-auto, .col-@{m}-auto {
+            flex: 0 0 auto;
+            max-width: none;
+        }
+
+        each(range(12), .(@k) {
+            .colspan-@{m}-@{k}, .cell-@{m}-@{k}, .col-@{m}-@{k} {
+                flex: 0 0 @gridCellBaseSize * @k ;
+                max-width: @gridCellBaseSize * @k ;
+            }
+            .offset-@{m}-@{k} {
+                margin-left: @gridCellBaseSize * @k;
+            }
+        })
+    }
+})

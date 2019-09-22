@@ -1,0 +1,85 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.master {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+    color: @dark;
+    background-color: @white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: visible;
+}
+
+.master {
+
+    .controls, .pages, .page {
+        background-color: transparent;
+        color: inherit;
+    }
+
+    .controls {
+        display: flex;
+        line-height: 40px;
+        font-size: 20px;
+        flex-flow: row nowrap;
+        justify-content: space-between;
+        margin: 20px 0 20px;
+
+        .prev, .next, .title {
+            display: block;
+            position: relative;
+            line-height: 40px;
+            text-align: center;
+            user-select: none;
+        }
+
+        .prev, .next {
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &.disabled {
+                color: @gray;
+            }
+        }
+
+        .title {
+            width: 100%;
+        }
+
+        .prev {order: 1;}
+        .next {order: 3;}
+        .title {order: 2;}
+    }
+
+    .pages {
+        position: relative;
+        display: block;
+        border-top: 1px solid @borderColor;
+        border-bottom: 1px solid @borderColor;
+        width: 100%;
+        height: auto;
+        min-width: 1rem;
+    }
+
+    .page {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        padding: 2rem;
+    }
+
+    .controls-top {order: 1;}
+    .controls-bottom {order: 3;}
+    .pages {order: 2;}
+}

@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.2.49  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.0  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -697,6 +697,10 @@ textarea.focused,
 }
 .table tfoot {
   border-top-color: #730014;
+  border-bottom-color: #730014;
+}
+.table tfoot th {
+  color: #ffffff;
 }
 .table .sortable-column.sort-asc,
 .table .sortable-column.sort-desc {

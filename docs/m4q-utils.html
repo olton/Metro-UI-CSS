@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <meta name="twitter:site" content="@metroui">
+    <meta name="twitter:creator" content="@pimenov_sergey">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Metro 4 Components Library">
+    <meta name="twitter:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta name="twitter:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+
+    <meta property="og:url" content="https://metroui.org.ua/v4/index.html">
+    <meta property="og:title" content="Metro 4 Components Library">
+    <meta property="og:description" content="Metro 4 is an open source toolkit for developing with HTML, CSS, and JS. Quickly prototype your ideas or build your entire app with responsive grid system, extensive prebuilt components, and powerful plugins  .">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:secure_url" content="https://metroui.org.ua/images/m4-logo-social.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="968">
+    <meta property="og:image:height" content="504">
+
+    <meta name="author" content="Sergey Pimenov">
+    <meta name="description" content="The most popular HTML, CSS, and JS library in Metro style.">
+    <meta name="keywords" content="HTML, CSS, JS, Metro, CSS3, Javascript, HTML5, UI, Library, Web, Development, Framework">
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link href="metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+    <link href="highlight/styles/github.css" rel="stylesheet">
+    <link href="docsearch/docsearch.min.css" rel="stylesheet">
+    <link href="css/site.css" rel="stylesheet">
+
+    <title>M4Q Utils - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak" data-role="htmlcontainer" data-html-source="header.html" data-insert-mode="prepend">
+<div class="container-fluid">
+
+    <div class="row flex-xl-nowrap">
+        <div class="cell-md-3 cell-xl-2 pr-0 border-right bd-light" id="sidenav" data-role="htmlcontainer" data-html-source="sidenav.html" data-insert-mode="replace"  data-on-html-load="initDocSearchEngine()"></div>
+
+            <div class="d-none d-block-xl cell-xl-2 order-2 border-left bd-light toc-wrapper">
+                <h5>Table of contents</h5>
+                <hr/>
+                <ul class="toc-nav">
+                    <li class="toc-entry"><a href="#">About</a></li>
+                </ul>
+
+            </div>
+
+            <main class="cell-md-9 cell-xl-8 order-1 pr-1-sx pl-1-sx pr-5-md pl-5-md">
+                <div class="place-right d-none d-block-lg" style="width: 200px;">
+                    <img src="images/logo.png" class="w-100">
+                </div>
+
+                <h1>Utils</h1>
+                <p class="text-leader">
+                    Use utilities functions to improve your work.
+                </p>
+
+                <!-- ads-html -->
+
+                <h3 id="_func_merge">$.merge()</h3>
+                <p>
+                    Merge the contents of two arrays together into the first array.
+                </p>
+                <pre><code>
+                    var newArray = $.merge( [], oldArray );
+                    var newMatches = $.merge( $(), $("div") );
+                    var arrayMatches = $.merge( [], $("div") );
+                    var combineMatches = $.merge( $("span"), $("div") );
+                </code></pre>
+
+                <h3 id="_func_imort">$.import()</h3>
+                <p>
+                    Import any elements array like objects into <code>m4q</code> object.
+                </p>
+                <pre><code>
+                    var obj = $.import( jQuery("span") );
+                    var obj = $.import( document.querySelectorAll("span") );
+                </code></pre>
+
+                <h3 id="_func_unique_id">$.uniqueId()</h3>
+                <p>
+                    Get unique id in GUID format <code>xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx</code>.
+                </p>
+                <pre><code>
+                    var GUID = $.uniqueId();
+                </code></pre>
+
+                <h3 id="_func_to_array">$.toArray()</h3>
+                <p>
+                    Convert any array like object to array.
+                </p>
+                <pre><code>
+                    var arr = $.toArray( document.querySelectorAll("span") );
+                    var arr = $.toArray( $(span) );
+                </code></pre>
+
+                <h3 id="_func_type">$.type()</h3>
+                <p>
+                    Get object symple type name.
+                </p>
+                <pre><code>
+                    console.log( $.type( $(".inner")) ); // Outputs: object
+                    console.log( $.type( [] ) ); // Outputs: array
+                    console.log( $.type( "" ) );  // Outputs: string
+                    console.log( $.type( 123 ) );  // Outputs: number
+                    console.log( $.type( document.querySelectorAll("span") ) ); / // Outputs: nodelist
+                </code></pre>
+
+                <h3 id="_func_sleep">$.sleep()</h3>
+                <p>
+                    Suspend script execution for specified number of milliseconds.
+                </p>
+                <pre><code>
+                    console.log("Step 1 and sleep 1 sec");
+                    $.sleep(1000);
+                    console.log("Step 2");
+                </code></pre>
+
+                <h3 id="_func_is_selector">$.isSelector()</h3>
+                <p>
+                    Check if string is a valid simple query selector.
+                </p>
+                <pre><code>
+                    $.isSelector(".inner"); // true
+                    $.isSelector("#nner"); // true
+                    $.isSelector(".inner.first"); // true
+                    $.isSelector("&lt;div&gt;"); // false
+                    $.isSelector("&lt;p&gt;This is paragraph&lt;/p&gt;"); // false
+                </code></pre>
+
+                <h3 id="_func_remove">$.remove()</h3>
+                <p>
+                    Remove matched elements from DOM.
+                </p>
+                <pre><code>
+                    $.remove("span");
+                    $.remove(".inner");
+                    $.remove("#inner");
+                </code></pre>
+
+                <h3 id="_func_camel_case">$.camelCase()</h3>
+                <p>
+                    Convert dashed name to camel-case name.
+                </p>
+                <pre><code>
+                    console.log( $.camelCase("data-animate") ); // Outputs: dataAnimate
+                </code></pre>
+
+                <h3 id="_func_is_plain_object">$.isPlainObject()</h3>
+                <p>
+                    Check if object is a plain object.
+                </p>
+                <pre><code>
+                    var obj = {prop: "value"};
+                    var arr = [1, 2, 3];
+                    var $obj = $("body");
+                    var str = "body";
+
+                    console.log( $.isPlainObject( obj ) ); // Outputs: true
+                    console.log( $.isPlainObject( arr ) ); // Outputs: false
+                    console.log( $.isPlainObject( $obj ) ); // Outputs: true
+                    console.log( $.isPlainObject( str ) ); // Outputs: false
+                    console.log( $.isPlainObject( String(str) ) ); // Outputs: false
+                </code></pre>
+
+                <h3 id="_func_is_empty_object">$.isEmptyObject()</h3>
+                <p>
+                    Check if object is empty.
+                </p>
+                <pre><code>
+                    var obj = {}, obj2 = {prop: 1};
+                    $.isEmptyObject( obj ); // true
+                    $.isEmptyObject( obj2 ); // false
+                </code></pre>
+
+                <h3 id="_func_is_array_like">$.isArrayLike()</h3>
+                <p>
+                    Check if object is array like object.
+                </p>
+                <pre><code>
+                    var obj = {};
+                    var $obj = $("body");
+                    var arr = [];
+
+                    console.log( $.isArrayLike(obj) ); // false
+                    console.log( $.isArrayLike($obj) ); // true
+                    console.log( $.isArrayLike(arr) ); // true
+                </code></pre>
+
+                <h3 id="_func_accept_data">$.acceptData()</h3>
+                <p>
+                    Check if HTMLElement can accept data with <code>m4q</code> dataset routines.
+                </p>
+                <pre><code>
+                    $.acceptData( document.querySelector("#elem") );
+                </code></pre>
+
+                <h3 id="_func_not">$.not()</h3>
+                <p>
+                    Check if variable has a value.
+                </p>
+                <pre><code>
+                    var nul = null;
+                    var val = 1;
+
+                    function und(val){
+                        console.log( $.not(val) );
+                    }
+
+                    und(); // Outputs true
+                    console.log( $.not(nul) ); // Outputs: true
+                    console.log( $.not(val) ); // Outputs: false
+                </code></pre>
+
+                <h3 id="_func_unit">$.unit(), $.parseUnit()</h3>
+                <p>
+                    Parse element style property value to array with value and unit name.
+                </p>
+                <pre><code>
+                    console.log( $.unit("1rem") ); // Outputs [1, "rem"]
+                    console.log( $.unit(1) ); // Outputs [1, ""]
+                </code></pre>
+
+                <h3 id="_func_is_visible">$.isVisible</h3>
+                <p>
+                    Check if HTMLElement can visible on page.
+                </p>
+                <pre><code>
+                    &lt;div class="vis1"&gt;&lt;/div&gt;
+                    &lt;div class="vis2" style="display: none"&gt;&lt;/div&gt;
+                    &lt;div class="vis3" hidden&gt;&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $.isVisible( $(".vis1")[0] ) ); // Outputs true
+                    console.log( $.isVisible( $(".vis2")[0] ) ); // Outputs false
+                    console.log( $.isVisible( $(".vis3")[0] ) ); // Outputs false
+                </code></pre>
+
+                <h3 id="_func_is_hidden">$.isHidden</h3>
+                <p>
+                    Check if HTMLElement is hidden on page.
+                </p>
+                <pre><code>
+                    &lt;div class="vis1"&gt;123&lt;/div&gt;
+                    &lt;div class="vis2" style="display: none"&gt;123&lt;/div&gt;
+                    &lt;div class="vis3" hidden&gt;123&lt;/div&gt;
+                    &lt;div class="vis4" style="visibility: hidden"&gt;123&lt;/div&gt;
+                    &lt;div class="vis5" style="opacity: 0"&gt;123&lt;/div&gt;
+                </code></pre>
+                <pre><code>
+                    console.log( $.isHidden( $(".vis1")[0] ) ); // Outputs false
+                    console.log( $.isHidden( $(".vis2")[0] ) ); // Outputs true
+                    console.log( $.isHidden( $(".vis3")[0] ) ); // Outputs true
+                    console.log( $.isHidden( $(".vis4")[0] ) ); // Outputs true
+                    console.log( $.isHidden( $(".vis5")[0] ) ); // Outputs true
+                </code></pre>
+
+                <h3 id="_func_items">$(...).items()</h3>
+                <p>
+                    Return array of elements from <code>m4q</code> object.
+                </p>
+                <pre><code>
+                    $("body"); // m4q object
+                    $("body").items(); // array
+                </code></pre>
+
+            </main>
+        </div>
+
+    </div>
+
+    <script src="docsearch/docsearch.min.js"></script>
+
+    <script src="metro/js/metro.js?ver=@@b-version"></script>
+    <script src="highlight/highlight.pack.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/site.js"></script>
+    <!-- ads-script -->
+    <!-- ga-script -->
+    <!-- hit-ua -->
+</body>
+</html>
