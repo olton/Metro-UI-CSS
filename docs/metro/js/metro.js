@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.3.0  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.1  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -3515,7 +3515,7 @@ var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
 var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
 
 var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
-var jquery_present = typeof jQuery !== "undefined";
+window.jquery_present = typeof jQuery !== "undefined";
 if (window.METRO_JQUERY === undefined) {
     window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
 }
@@ -3595,9 +3595,9 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 
 var Metro = {
 
-    version: "4.3.0",
-    compileTime: "22/09/2019 21:20:12",
-    buildNumber: "737",
+    version: "4.3.1",
+    compileTime: "23/09/2019 11:36:13",
+    buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -3915,7 +3915,7 @@ var Metro = {
 
             roles.map(function (func) {
 
-                var $$ = METRO_JQUERY && jquery_present ? jQuery : $;
+                var $$ = Utils.$();
 
                 if ($$.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
@@ -3931,7 +3931,7 @@ var Metro = {
                         }
                         $this.data('metroComponent', mc);
                     } catch (e) {
-                        console.log(e.message + " in " + e.stack);
+                        console.error(e.message + " in " + e.stack);
                         throw e;
                     }
                 }
@@ -6356,15 +6356,21 @@ var Utils = {
         return typeof context === t ? context : false;
     },
 
+    $: function(){
+        return METRO_JQUERY && jquery_present ? jQuery : m4q;
+    },
+
     isMetroObject: function(el, type){
-        var $el = $(el), el_obj = $el.data(type);
+        var $$ = Utils.$();
+        var $el = $(el), el_obj = $$(el).data(type);
+
         if ($el.length === 0) {
-            console.log(type + ' ' + el + ' not found!');
+            console.warn(type + ' ' + el + ' not found!');
             return false;
         }
 
         if (el_obj === undefined) {
-            console.log('Element not contain role '+ type +'! Please add attribute data-role="'+type+'" to element ' + el);
+            console.warn('Element not contain role '+ type +'! Please add attribute data-role="'+type+'" to element ' + el);
             return false;
         }
 
@@ -8253,18 +8259,20 @@ Metro['bottomsheet'] = {
     },
 
     open: function(el, as){
+        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $(el).data("bottomsheet");
+        var sheet = $$(el).data("bottomsheet");
         sheet.open(as);
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $(el).data("bottomsheet");
+        var sheet = $$(el).data("bottomsheet");
         sheet.close();
     },
 
@@ -8280,10 +8288,11 @@ Metro['bottomsheet'] = {
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $(el).data("bottomsheet");
+        var sheet = $$(el).data("bottomsheet");
         return sheet.isOpen();
     }
 };
@@ -10546,44 +10555,50 @@ Metro['charms'] = {
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
 
         return charms.hasClass("open");
     },
 
     open: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.open();
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.close();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.toggle();
     },
 
     closeAll: function(){
+        var $$ = Utils.$();
         $('[data-role*=charms]').each(function() {
-            $(this).data('charms').close();
+            $$(this).data('charms').close();
         });
     },
 
     opacity: function(el, opacity){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.opacity(opacity);
     }
 };
@@ -13319,10 +13334,12 @@ Metro['dialog'] = {
     },
 
     open: function(el, content, title){
+        var $$ = Utils.$();
+
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         if (title !== undefined) {
             dialog.setTitle(title);
         }
@@ -13333,34 +13350,38 @@ Metro['dialog'] = {
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         dialog.close();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         dialog.toggle();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         return dialog.isOpen();
     },
 
     remove: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         dialog.options.removeOnClose = true;
         dialog.close();
     },
@@ -15391,14 +15412,15 @@ Metro.plugin('infobox', InfoBox);
 
 Metro['infobox'] = {
     isInfoBox: function(el){
-        return Utils.isMetroObject(el, "dialog");
+        return Utils.isMetroObject(el, "infobox");
     },
 
     open: function(el, c, t){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         if (c !== undefined) {
             ib.setContent(c);
         }
@@ -15409,14 +15431,16 @@ Metro['infobox'] = {
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         ib.close();
     },
 
     setContent: function(el, c){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
@@ -15425,26 +15449,28 @@ Metro['infobox'] = {
             c = "";
         }
 
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         ib.setContent(c);
         ib.reposition();
     },
 
     setType: function(el, t){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
 
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         ib.setType(t);
         ib.reposition();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         return ib.isOpen();
     },
 
@@ -21103,31 +21129,35 @@ Metro['sidebar'] = {
     },
 
     open: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $(el).data("sidebar").open();
+        $$(el).data("sidebar").open();
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $(el).data("sidebar").close();
+        $$(el).data("sidebar").close();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $(el).data("sidebar").toggle();
+        $$(el).data("sidebar").toggle();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        return $(el).data("sidebar").isOpen();
+        return $$(el).data("sidebar").isOpen();
     }
 };
 
@@ -21948,7 +21978,8 @@ Metro.plugin('sorter', Sorter);
 
 Metro['sorter'] = {
     create: function(el, op){
-        return $(el).sorter(op);
+        var $$ = Utils.$();
+        return $$(el).sorter(op);
     },
 
     isSorter: function(el){
@@ -21956,10 +21987,11 @@ Metro['sorter'] = {
     },
 
     sort: function(el, dir){
+        var $$ = Utils.$();
         if (!this.isSorter(el)) {
             return false;
         }
-        var sorter = $(el).data("sorter");
+        var sorter = $$(el).data("sorter");
         if (dir === undefined) {
             dir = "asc";
         }
@@ -21967,10 +21999,11 @@ Metro['sorter'] = {
     },
 
     reset: function(el){
+        var $$ = Utils.$();
         if (!this.isSorter(el)) {
             return false;
         }
-        var sorter = $(el).data("sorter");
+        var sorter = $$(el).data("sorter");
         sorter.reset();
     }
 };
@@ -30896,58 +30929,65 @@ Metro['window'] = {
     },
 
     min: function(el, a){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.min(a);
     },
 
     max: function(el, a){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.max(a);
     },
 
     show: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.show();
     },
 
     hide: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.hide();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.toggle();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         return win.isOpen();
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.close();
     },
 

@@ -152,44 +152,50 @@ Metro['charms'] = {
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
 
         return charms.hasClass("open");
     },
 
     open: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.open();
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.close();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.toggle();
     },
 
     closeAll: function(){
+        var $$ = Utils.$();
         $('[data-role*=charms]').each(function() {
-            $(this).data('charms').close();
+            $$(this).data('charms').close();
         });
     },
 
     opacity: function(el, opacity){
+        var $$ = Utils.$();
         if (this.check(el) === false) return ;
 
-        var charms = $(el).data("charms");
+        var charms = $$(el).data("charms");
         charms.opacity(opacity);
     }
 };

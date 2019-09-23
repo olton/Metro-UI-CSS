@@ -135,18 +135,20 @@ Metro['bottomsheet'] = {
     },
 
     open: function(el, as){
+        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $(el).data("bottomsheet");
+        var sheet = $$(el).data("bottomsheet");
         sheet.open(as);
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $(el).data("bottomsheet");
+        var sheet = $$(el).data("bottomsheet");
         sheet.close();
     },
 
@@ -162,10 +164,11 @@ Metro['bottomsheet'] = {
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $(el).data("bottomsheet");
+        var sheet = $$(el).data("bottomsheet");
         return sheet.isOpen();
     }
 };

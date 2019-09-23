@@ -21,7 +21,7 @@ var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
 var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
 
 var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
-var jquery_present = typeof jQuery !== "undefined";
+window.jquery_present = typeof jQuery !== "undefined";
 if (window.METRO_JQUERY === undefined) {
     window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
 }
@@ -421,7 +421,7 @@ var Metro = {
 
             roles.map(function (func) {
 
-                var $$ = METRO_JQUERY && jquery_present ? jQuery : $;
+                var $$ = Utils.$();
 
                 if ($$.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
                     try {
@@ -437,7 +437,7 @@ var Metro = {
                         }
                         $this.data('metroComponent', mc);
                     } catch (e) {
-                        console.log(e.message + " in " + e.stack);
+                        console.error(e.message + " in " + e.stack);
                         throw e;
                     }
                 }

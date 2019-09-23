@@ -685,58 +685,65 @@ Metro['window'] = {
     },
 
     min: function(el, a){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.min(a);
     },
 
     max: function(el, a){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.max(a);
     },
 
     show: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.show();
     },
 
     hide: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.hide();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.toggle();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         return win.isOpen();
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $(el).data("window");
+        var win = $$(el).data("window");
         win.close();
     },
 
