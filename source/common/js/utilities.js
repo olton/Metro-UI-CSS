@@ -121,15 +121,21 @@ var Utils = {
         return typeof context === t ? context : false;
     },
 
+    $: function(){
+        return METRO_JQUERY && jquery_present ? jQuery : m4q;
+    },
+
     isMetroObject: function(el, type){
-        var $el = $(el), el_obj = $el.data(type);
+        var $$ = Utils.$();
+        var $el = $(el), el_obj = $$(el).data(type);
+
         if ($el.length === 0) {
-            console.log(type + ' ' + el + ' not found!');
+            console.warn(type + ' ' + el + ' not found!');
             return false;
         }
 
         if (el_obj === undefined) {
-            console.log('Element not contain role '+ type +'! Please add attribute data-role="'+type+'" to element ' + el);
+            console.warn('Element not contain role '+ type +'! Please add attribute data-role="'+type+'" to element ' + el);
             return false;
         }
 

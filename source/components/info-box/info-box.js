@@ -231,14 +231,15 @@ Metro.plugin('infobox', InfoBox);
 
 Metro['infobox'] = {
     isInfoBox: function(el){
-        return Utils.isMetroObject(el, "dialog");
+        return Utils.isMetroObject(el, "infobox");
     },
 
     open: function(el, c, t){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         if (c !== undefined) {
             ib.setContent(c);
         }
@@ -249,14 +250,16 @@ Metro['infobox'] = {
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         ib.close();
     },
 
     setContent: function(el, c){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
@@ -265,26 +268,28 @@ Metro['infobox'] = {
             c = "";
         }
 
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         ib.setContent(c);
         ib.reposition();
     },
 
     setType: function(el, t){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
 
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         ib.setType(t);
         ib.reposition();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $(el).data("infobox");
+        var ib = $$(el).data("infobox");
         return ib.isOpen();
     },
 

@@ -353,10 +353,12 @@ Metro['dialog'] = {
     },
 
     open: function(el, content, title){
+        var $$ = Utils.$();
+
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         if (title !== undefined) {
             dialog.setTitle(title);
         }
@@ -367,34 +369,38 @@ Metro['dialog'] = {
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         dialog.close();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         dialog.toggle();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         return dialog.isOpen();
     },
 
     remove: function(el){
+        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $(el).data("dialog");
+        var dialog = $$(el).data("dialog");
         dialog.options.removeOnClose = true;
         dialog.close();
     },

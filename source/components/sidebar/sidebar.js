@@ -245,30 +245,34 @@ Metro['sidebar'] = {
     },
 
     open: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $(el).data("sidebar").open();
+        $$(el).data("sidebar").open();
     },
 
     close: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $(el).data("sidebar").close();
+        $$(el).data("sidebar").close();
     },
 
     toggle: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $(el).data("sidebar").toggle();
+        $$(el).data("sidebar").toggle();
     },
 
     isOpen: function(el){
+        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        return $(el).data("sidebar").isOpen();
+        return $$(el).data("sidebar").isOpen();
     }
 };
