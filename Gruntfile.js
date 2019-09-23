@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     ];
 
     if (watching) {
-        tasks.push('watch');
+        //tasks.push('watch');
     }
 
     require('time-grunt')(grunt);
