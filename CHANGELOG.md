@@ -1,6 +1,7 @@
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408
-+ [x] m4q: fix initialization when `metro4` added into `head`  
++ [x] m4q: upd to 1.0.1 
++ [x] m4q: fix initialization when `metro4` added into `head` 
 
 ### 4.3.0
 + [x] jQuery: Goodbye!!!
