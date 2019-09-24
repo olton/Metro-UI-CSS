@@ -136,7 +136,7 @@ var CalendarPicker = {
         buttons.appendTo(container);
         cal.appendTo(container);
 
-        cal.calendar({
+        Utils.$()(cal[0])["calendar"]({
             wide: o.calendarWide,
             widePoint: o.calendarWidePoint,
 
@@ -328,6 +328,11 @@ var CalendarPicker = {
         element.on(Metro.events.change, function(){
             Utils.exec(o.onChange, [that.value], element[0]);
         });
+
+        container.on(Metro.events.click, function(e){
+            e.preventDefault();
+            e.stopPropagation();
+        })
     },
 
     _overlay: function(){
@@ -359,7 +364,7 @@ var CalendarPicker = {
         }
 
         if (Utils.isDate(v, o.inputFormat) === true) {
-            this.calendar.data("calendar").clearSelected();
+            Metro.getPlugin(this.calendar[0],"calendar").clearSelected();
             this.value = typeof v === 'string' ? v.toDate(o.inputFormat, o.locale) : v;
             element.val(this.value.format(o.format));
             element.trigger("change");

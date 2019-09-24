@@ -6,6 +6,7 @@
 + [x] Dropdown: fix interop between Metro4 and jQuery, issue #1411
 + [x] Select: fix interop between Metro4 and jQuery, issue #1412
 + [x] Select: fix close when user click document and jQuery used
++ [x] CalendarPicker: fix interop between Metro4 and jQuery, fix close when `next[Year, Month]` clicked
 
 ### 4.3.0
 + [x] jQuery: Goodbye!!!
