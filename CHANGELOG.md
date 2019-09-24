@@ -8,6 +8,7 @@
 + [x] VideoPlayer: fix interop between Metro4 and jQuery
 + [x] TimePicker: fix interop between Metro4 and jQuery
 + [x] SideBar: fix interop between Metro4 and jQuery
++ [x] Charms: fix interop between Metro4 and jQuery
 + [x] Select: fix close when user click document and jQuery used
 + [x] CalendarPicker: fix interop between Metro4 and jQuery, fix close when `next[Year, Month]` clicked
 + [x] Select: add works with disabled option. You can add attr `disabled` to option to create disabled option, issue #1413

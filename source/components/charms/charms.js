@@ -145,57 +145,40 @@ Metro['charms'] = {
 
     check: function(el){
         if (Utils.isMetroObject(el, "charms") === false) {
-            console.log("Element is not a charms component");
+            console.warn("Element is not a charms component");
             return false;
         }
         return true;
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-
-        return charms.hasClass("open");
+        return $(el).hasClass("open");
     },
 
     open: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.open();
+        Metro.getPlugin($(el)[0], "charms").open();
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.close();
+        Metro.getPlugin($(el)[0], "charms").close();
     },
 
     toggle: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.toggle();
+        Metro.getPlugin($(el)[0], "charms").toggle();
     },
 
     closeAll: function(){
-        var $$ = Utils.$();
         $('[data-role*=charms]').each(function() {
-            $$(this).data('charms').close();
+            Metro.getPlugin(this, 'charms').close();
         });
     },
 
     opacity: function(el, opacity){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.opacity(opacity);
+        Metro.getPlugin($(el)[0], "charms").opacity(opacity);
     }
 };

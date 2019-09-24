@@ -234,8 +234,7 @@ Metro.plugin('sorter', Sorter);
 
 Metro['sorter'] = {
     create: function(el, op){
-        var $$ = Utils.$();
-        return $$(el).sorter(op);
+        return Utils.$()(el).sorter(op);
     },
 
     isSorter: function(el){
@@ -243,23 +242,19 @@ Metro['sorter'] = {
     },
 
     sort: function(el, dir){
-        var $$ = Utils.$();
         if (!this.isSorter(el)) {
             return false;
         }
-        var sorter = $$(el).data("sorter");
         if (dir === undefined) {
             dir = "asc";
         }
-        sorter.sort(dir);
+        Metro.getPlugin($(el)[0], "sorter").sort(dir);
     },
 
     reset: function(el){
-        var $$ = Utils.$();
         if (!this.isSorter(el)) {
             return false;
         }
-        var sorter = $$(el).data("sorter");
-        sorter.reset();
+        Metro.getPlugin($(el)[0], "sorter").reset();
     }
 };
