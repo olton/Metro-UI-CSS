@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 15:30:24",
+    compileTime: "24/09/2019 19:50:37",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13907,10 +13907,11 @@ var Dropdown = {
     },
 
     _close: function(el, immediate){
+        var $$ = Utils.$();
 
         el = $(el);
 
-        var dropdown  = el.data("dropdown");
+        var dropdown  = $$(el).data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
         var func = "slideUp";
@@ -13931,9 +13932,11 @@ var Dropdown = {
     },
 
     _open: function(el, immediate){
+        var $$ = Utils.$();
+
         el = $(el);
 
-        var dropdown  = el.data("dropdown");
+        var dropdown  = $$(el).data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
         var func = "slideDown";
@@ -13971,10 +13974,11 @@ var Dropdown = {
 
 $(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){
+        var $$ = Utils.$();
         var el = $(this);
 
         if (el.css('display')!=='none' && !el.hasClass('keep-open') && !el.hasClass('stay-open') && !el.hasClass('ignore-document-click')) {
-            el.data('dropdown').close();
+            $$(el).data('dropdown').close();
         }
     });
 });

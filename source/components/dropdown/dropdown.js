@@ -137,10 +137,11 @@ var Dropdown = {
     },
 
     _close: function(el, immediate){
+        var $$ = Utils.$();
 
         el = $(el);
 
-        var dropdown  = el.data("dropdown");
+        var dropdown  = $$(el).data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
         var func = "slideUp";
@@ -161,9 +162,11 @@ var Dropdown = {
     },
 
     _open: function(el, immediate){
+        var $$ = Utils.$();
+
         el = $(el);
 
-        var dropdown  = el.data("dropdown");
+        var dropdown  = $$(el).data("dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
         var func = "slideDown";
@@ -201,10 +204,11 @@ var Dropdown = {
 
 $(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){
+        var $$ = Utils.$();
         var el = $(this);
 
         if (el.css('display')!=='none' && !el.hasClass('keep-open') && !el.hasClass('stay-open') && !el.hasClass('ignore-document-click')) {
-            el.data('dropdown').close();
+            $$(el).data('dropdown').close();
         }
     });
 });
