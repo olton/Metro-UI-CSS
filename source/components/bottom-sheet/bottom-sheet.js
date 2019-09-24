@@ -135,21 +135,17 @@ Metro['bottomsheet'] = {
     },
 
     open: function(el, as){
-        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $$(el).data("bottomsheet");
-        sheet.open(as);
+        Metro.getPlugin($(el)[0], "bottomsheet").open(as);
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $$(el).data("bottomsheet");
-        sheet.close();
+        Metro.getPlugin($(el)[0], "bottomsheet").close();
     },
 
     toggle: function(el, as){
@@ -164,11 +160,9 @@ Metro['bottomsheet'] = {
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $$(el).data("bottomsheet");
-        return sheet.isOpen();
+        return Metro.getPlugin($(el)[0], "bottomsheet").isOpen();
     }
 };
