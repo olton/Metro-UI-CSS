@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 19:54:55",
+    compileTime: "24/09/2019 20:28:34",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4049,6 +4049,11 @@ var Metro = {
             mc.push(role);
         }
         element.data('metroComponent', mc);
+    },
+
+    getPlugin: function(el, type){
+        var $$ = Utils.$();
+        return $$(el).data(type);
     }
 };
 
@@ -6473,6 +6478,7 @@ var Utils = {
         var result;
         if (f === undefined || f === null) {return false;}
         var func = Utils.isFunc(f);
+
         if (func === false) {
             func = Utils.func(f);
         }
@@ -13907,11 +13913,9 @@ var Dropdown = {
     },
 
     _close: function(el, immediate){
-        var $$ = Utils.$();
-
         el = $(el);
 
-        var dropdown  = $$(el).data("dropdown");
+        var dropdown  = Metro.getPlugin(el, "dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
         var func = "slideUp";
@@ -13932,11 +13936,9 @@ var Dropdown = {
     },
 
     _open: function(el, immediate){
-        var $$ = Utils.$();
-
         el = $(el);
 
-        var dropdown  = $$(el).data("dropdown");
+        var dropdown  = Metro.getPlugin(el, "dropdown");
         var toggle = dropdown._toggle;
         var options = dropdown.options;
         var func = "slideDown";
@@ -13974,11 +13976,10 @@ var Dropdown = {
 
 $(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){
-        var $$ = Utils.$();
         var el = $(this);
 
         if (el.css('display')!=='none' && !el.hasClass('keep-open') && !el.hasClass('stay-open') && !el.hasClass('ignore-document-click')) {
-            $$(el).data('dropdown').close();
+            Metro.getPlugin(el, 'dropdown').close();
         }
     });
 });
@@ -20500,7 +20501,7 @@ var Select = {
 
         this._setPlaceholder();
 
-        drop_container.dropdown({
+        Utils.$()(drop_container[0])["dropdown"]({
             dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
@@ -20631,7 +20632,7 @@ var Select = {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
                 input.html(html);
-                drop_container.data("dropdown").close();
+                Metro.getPlugin(drop_container[0], "dropdown").close();
             }
 
             $.each(options, function(){

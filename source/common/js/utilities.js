@@ -238,6 +238,7 @@ var Utils = {
         var result;
         if (f === undefined || f === null) {return false;}
         var func = Utils.isFunc(f);
+
         if (func === false) {
             func = Utils.func(f);
         }

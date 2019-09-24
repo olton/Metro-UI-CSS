@@ -555,6 +555,11 @@ var Metro = {
             mc.push(role);
         }
         element.data('metroComponent', mc);
+    },
+
+    getPlugin: function(el, type){
+        var $$ = Utils.$();
+        return $$(el).data(type);
     }
 };
 
