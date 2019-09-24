@@ -493,6 +493,8 @@ Metro.plugin('timepicker', TimePicker);
 
 $(document).on(Metro.events.click, function(){
     $.each($(".time-picker"), function(){
-        $(this).find("input").data("timepicker").close();
+        $(this).find("input").each(function(){
+            Metro.getPlugin(this, "timepicker").close();
+        });
     });
 });

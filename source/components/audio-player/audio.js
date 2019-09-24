@@ -452,8 +452,8 @@ var Audio = {
         element.off("all");
         player.off("all");
 
-        this.stream.data("slider").destroy();
-        this.volume.data("slider").destroy();
+        Metro.getPlugin(this.stream[0], "slider").destroy();
+        Metro.getPlugin(this.volume[0], "slider").destroy();
 
         return element;
     }

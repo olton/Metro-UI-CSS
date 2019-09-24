@@ -253,7 +253,7 @@ var Video = {
 
         if (o.muted) {
             that.volumeBackup = video.volume;
-            that.volume.data('slider').val(0);
+            Metro.getPlugin(that.volume[0], 'slider').val(0);
             video.volume = 0;
         }
 
@@ -285,7 +285,7 @@ var Video = {
         element.on("timeupdate", function(){
             var position = Math.round(video.currentTime * 100 / that.duration);
             that._setInfo(video.currentTime, that.duration);
-            that.stream.data('slider').val(position);
+            Metro.getPlugin(that.stream[0], 'slider').val(position);
             Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
         });
 
@@ -310,13 +310,13 @@ var Video = {
         });
 
         element.on("stop", function(){
-            that.stream.data('slider').val(0);
+            Metro.getPlugin(that.stream[0], 'slider').val(0);
             Utils.exec(o.onStop, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("ended", function(){
-            that.stream.data('slider').val(0);
+            Metro.getPlugin(that.stream[0], 'slider').val(0);
             Utils.exec(o.onEnd, [video, player], element[0]);
             that._offMouse();
         });
@@ -447,10 +447,10 @@ var Video = {
         this.muted = !this.muted;
         if (this.muted === false) {
             this.video.volume = this.volumeBackup;
-            this.volume.data('slider').val(this.volumeBackup * 100);
+            Metro.getPlugin(this.volume[0], 'slider').val(this.volumeBackup * 100);
         } else {
             this.volumeBackup = this.video.volume;
-            this.volume.data('slider').val(0);
+            Metro.getPlugin(this.volume[0], 'slider').val(0);
             this.video.volume = 0;
         }
     },
@@ -461,7 +461,7 @@ var Video = {
 
     _setBuffer: function(){
         var buffer = this.video.buffered.length ? Math.round(Math.floor(this.video.buffered.end(0)) / Math.floor(this.video.duration) * 100) : 0;
-        this.stream.data('slider').buff(buffer);
+        Metro.getPlugin(this.stream[0], 'slider').buff(buffer);
     },
 
     _setVolume: function(){
@@ -528,7 +528,7 @@ var Video = {
         this.isPlaying = false;
         this.video.pause();
         this.video.currentTime = 0;
-        this.stream.data('slider').val(0);
+        Metro.getPlugin(this.stream[0], 'slider').val(0);
         this._offMouse();
     },
 
@@ -542,7 +542,7 @@ var Video = {
         }
 
         this.video.volume = v;
-        this.volume.data('slider').val(v*100);
+        Metro.getPlugin(this.volume[0], 'slider').val(v*100);
     },
 
     loop: function(){
@@ -579,8 +579,8 @@ var Video = {
     destroy: function(){
         var element = this.element, player = this.player;
 
-        this.stream.data("slider").destroy();
-        this.volume.data("slider").destroy();
+        Metro.getPlugin(this.stream[0], "slider").destroy();
+        Metro.getPlugin(this.volume[0], "slider").destroy();
 
         element.off("loadstart");
         element.off("loadedmetadata");

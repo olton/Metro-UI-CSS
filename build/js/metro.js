@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 21:30:19",
+    compileTime: "24/09/2019 21:52:36",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6366,8 +6366,7 @@ var Utils = {
     },
 
     isMetroObject: function(el, type){
-        var $$ = Utils.$();
-        var $el = $(el), el_obj = $$(el).data(type);
+        var $el = $(el), el_obj = Metro.getPlugin($el[0], type);
 
         if ($el.length === 0) {
             console.warn(type + ' ' + el + ' not found!');
@@ -8119,8 +8118,8 @@ var Audio = {
         element.off("all");
         player.off("all");
 
-        this.stream.data("slider").destroy();
-        this.volume.data("slider").destroy();
+        Metro.getPlugin(this.stream[0], "slider").destroy();
+        Metro.getPlugin(this.volume[0], "slider").destroy();
 
         return element;
     }
@@ -8265,21 +8264,17 @@ Metro['bottomsheet'] = {
     },
 
     open: function(el, as){
-        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $$(el).data("bottomsheet");
-        sheet.open(as);
+        Metro.getPlugin($(el)[0], "bottomsheet").open(as);
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $$(el).data("bottomsheet");
-        sheet.close();
+        Metro.getPlugin($(el)[0], "bottomsheet").close();
     },
 
     toggle: function(el, as){
@@ -8294,12 +8289,10 @@ Metro['bottomsheet'] = {
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        var sheet = $$(el).data("bottomsheet");
-        return sheet.isOpen();
+        return Metro.getPlugin($(el)[0], "bottomsheet").isOpen();
     }
 };
 
@@ -9659,7 +9652,7 @@ var CalendarPicker = {
         var container = element.parent();
         var clear = container.find(".input-clear-button");
         var cal = this.calendar;
-        var cal_plugin = cal.data('calendar');
+        var cal_plugin = Metro.getPlugin(cal[0], 'calendar');
 
         $(window).on(Metro.events.resize, function(){
             if (o.dialogMode !== true) {
@@ -9802,7 +9795,7 @@ var CalendarPicker = {
                 display: "block"
             });
         }
-        cal.data('calendar').i18n(val);
+        Metro.getPlugin(cal[0], 'calendar').i18n(val);
         if (hidden) {
             cal.css({
                 visibility: "visible",
@@ -9813,7 +9806,7 @@ var CalendarPicker = {
 
     changeAttribute: function(attributeName){
         var that = this, element = this.element;
-        var cal = this.calendar.data("calendar");
+        var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
         var changeAttrLocale = function(){
             that.i18n(element.attr("data-locale"));
@@ -9862,7 +9855,7 @@ var CalendarPicker = {
         element.off(Metro.events.focus);
         element.off(Metro.events.change);
 
-        this.calendar.data("calendar").destroy();
+        Metro.getPlugin(this.calendar[0], "calendar").destroy();
 
         return element;
     }
@@ -21144,35 +21137,31 @@ Metro['sidebar'] = {
     },
 
     open: function(el){
-        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $$(el).data("sidebar").open();
+        Metro.getPlugin($(el)[0], "sidebar").open();
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $$(el).data("sidebar").close();
+        Metro.getPlugin($(el)[0], "sidebar").close();
     },
 
     toggle: function(el){
-        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        $$(el).data("sidebar").toggle();
+        Metro.getPlugin($(el)[0], "sidebar").toggle();
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isSidebar(el)) {
             return ;
         }
-        return $$(el).data("sidebar").isOpen();
+        return Metro.getPlugin($(el)[0], "sidebar").isOpen();
     }
 };
 
@@ -27550,7 +27539,9 @@ Metro.plugin('timepicker', TimePicker);
 
 $(document).on(Metro.events.click, function(){
     $.each($(".time-picker"), function(){
-        $(this).find("input").data("timepicker").close();
+        $(this).find("input").each(function(){
+            Metro.getPlugin(this, "timepicker").close();
+        });
     });
 });
 
@@ -29900,7 +29891,7 @@ var Video = {
 
         if (o.muted) {
             that.volumeBackup = video.volume;
-            that.volume.data('slider').val(0);
+            Metro.getPlugin(that.volume[0], 'slider').val(0);
             video.volume = 0;
         }
 
@@ -29932,7 +29923,7 @@ var Video = {
         element.on("timeupdate", function(){
             var position = Math.round(video.currentTime * 100 / that.duration);
             that._setInfo(video.currentTime, that.duration);
-            that.stream.data('slider').val(position);
+            Metro.getPlugin(that.stream[0], 'slider').val(position);
             Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
         });
 
@@ -29957,13 +29948,13 @@ var Video = {
         });
 
         element.on("stop", function(){
-            that.stream.data('slider').val(0);
+            Metro.getPlugin(that.stream[0], 'slider').val(0);
             Utils.exec(o.onStop, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("ended", function(){
-            that.stream.data('slider').val(0);
+            Metro.getPlugin(that.stream[0], 'slider').val(0);
             Utils.exec(o.onEnd, [video, player], element[0]);
             that._offMouse();
         });
@@ -30094,10 +30085,10 @@ var Video = {
         this.muted = !this.muted;
         if (this.muted === false) {
             this.video.volume = this.volumeBackup;
-            this.volume.data('slider').val(this.volumeBackup * 100);
+            Metro.getPlugin(this.volume[0], 'slider').val(this.volumeBackup * 100);
         } else {
             this.volumeBackup = this.video.volume;
-            this.volume.data('slider').val(0);
+            Metro.getPlugin(this.volume[0], 'slider').val(0);
             this.video.volume = 0;
         }
     },
@@ -30108,7 +30099,7 @@ var Video = {
 
     _setBuffer: function(){
         var buffer = this.video.buffered.length ? Math.round(Math.floor(this.video.buffered.end(0)) / Math.floor(this.video.duration) * 100) : 0;
-        this.stream.data('slider').buff(buffer);
+        Metro.getPlugin(this.stream[0], 'slider').buff(buffer);
     },
 
     _setVolume: function(){
@@ -30175,7 +30166,7 @@ var Video = {
         this.isPlaying = false;
         this.video.pause();
         this.video.currentTime = 0;
-        this.stream.data('slider').val(0);
+        Metro.getPlugin(this.stream[0], 'slider').val(0);
         this._offMouse();
     },
 
@@ -30189,7 +30180,7 @@ var Video = {
         }
 
         this.video.volume = v;
-        this.volume.data('slider').val(v*100);
+        Metro.getPlugin(this.volume[0], 'slider').val(v*100);
     },
 
     loop: function(){
@@ -30226,8 +30217,8 @@ var Video = {
     destroy: function(){
         var element = this.element, player = this.player;
 
-        this.stream.data("slider").destroy();
-        this.volume.data("slider").destroy();
+        Metro.getPlugin(this.stream[0], "slider").destroy();
+        Metro.getPlugin(this.volume[0], "slider").destroy();
 
         element.off("loadstart");
         element.off("loadedmetadata");

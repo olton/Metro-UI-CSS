@@ -264,7 +264,7 @@ var CalendarPicker = {
         var container = element.parent();
         var clear = container.find(".input-clear-button");
         var cal = this.calendar;
-        var cal_plugin = cal.data('calendar');
+        var cal_plugin = Metro.getPlugin(cal[0], 'calendar');
 
         $(window).on(Metro.events.resize, function(){
             if (o.dialogMode !== true) {
@@ -407,7 +407,7 @@ var CalendarPicker = {
                 display: "block"
             });
         }
-        cal.data('calendar').i18n(val);
+        Metro.getPlugin(cal[0], 'calendar').i18n(val);
         if (hidden) {
             cal.css({
                 visibility: "visible",
@@ -418,7 +418,7 @@ var CalendarPicker = {
 
     changeAttribute: function(attributeName){
         var that = this, element = this.element;
-        var cal = this.calendar.data("calendar");
+        var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
         var changeAttrLocale = function(){
             that.i18n(element.attr("data-locale"));
@@ -467,7 +467,7 @@ var CalendarPicker = {
         element.off(Metro.events.focus);
         element.off(Metro.events.change);
 
-        this.calendar.data("calendar").destroy();
+        Metro.getPlugin(this.calendar[0], "calendar").destroy();
 
         return element;
     }
