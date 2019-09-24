@@ -196,7 +196,7 @@ var Select = {
 
         this._setPlaceholder();
 
-        drop_container.dropdown({
+        Utils.$()(drop_container[0])["dropdown"]({
             dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
@@ -327,7 +327,7 @@ var Select = {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
                 input.html(html);
-                drop_container.data("dropdown").close();
+                Metro.getPlugin(drop_container[0], "dropdown").close();
             }
 
             $.each(options, function(){
