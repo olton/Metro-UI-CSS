@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 21:52:36",
+    compileTime: "24/09/2019 22:07:47",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -10552,58 +10552,41 @@ Metro['charms'] = {
 
     check: function(el){
         if (Utils.isMetroObject(el, "charms") === false) {
-            console.log("Element is not a charms component");
+            console.warn("Element is not a charms component");
             return false;
         }
         return true;
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-
-        return charms.hasClass("open");
+        return $(el).hasClass("open");
     },
 
     open: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.open();
+        Metro.getPlugin($(el)[0], "charms").open();
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.close();
+        Metro.getPlugin($(el)[0], "charms").close();
     },
 
     toggle: function(el){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.toggle();
+        Metro.getPlugin($(el)[0], "charms").toggle();
     },
 
     closeAll: function(){
-        var $$ = Utils.$();
         $('[data-role*=charms]').each(function() {
-            $$(this).data('charms').close();
+            Metro.getPlugin(this, 'charms').close();
         });
     },
 
     opacity: function(el, opacity){
-        var $$ = Utils.$();
         if (this.check(el) === false) return ;
-
-        var charms = $$(el).data("charms");
-        charms.opacity(opacity);
+        Metro.getPlugin($(el)[0], "charms").opacity(opacity);
     }
 };
 
@@ -11279,7 +11262,7 @@ var Collapse = {
 
     _close: function(el, immediate){
         var elem = $(el);
-        var dropdown  = elem.data("collapse");
+        var dropdown  = Metro.getPlugin(elem[0], "collapse");
         var options = dropdown.options;
         var func = immediate ? 'show' : 'slideUp';
         var dur = immediate ? 0 : options.duration;
@@ -11297,7 +11280,7 @@ var Collapse = {
 
     _open: function(el, immediate){
         var elem = $(el);
-        var dropdown  = elem.data("collapse");
+        var dropdown  = Metro.getPlugin(elem[0], "collapse");
         var options = dropdown.options;
         var func = immediate ? 'show' : 'slideDown';
         var dur = immediate ? 0 : options.duration;
@@ -12979,7 +12962,9 @@ Metro.plugin('datepicker', DatePicker);
 
 $(document).on(Metro.events.click, function(){
     $.each($(".date-picker"), function(){
-        $(this).find("input").data("datepicker").close();
+        $(this).find("input").each(function(){
+            Metro.getPlugin(this, "datepicker").close();
+        });
     });
 });
 
@@ -13338,12 +13323,10 @@ Metro['dialog'] = {
     },
 
     open: function(el, content, title){
-        var $$ = Utils.$();
-
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $$(el).data("dialog");
+        var dialog = Metro.getPlugin($(el)[0], "dialog");
         if (title !== undefined) {
             dialog.setTitle(title);
         }
@@ -13354,38 +13337,31 @@ Metro['dialog'] = {
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $$(el).data("dialog");
-        dialog.close();
+        Metro.getPlugin($(el)[0], "dialog").close();
     },
 
     toggle: function(el){
-        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $$(el).data("dialog");
-        dialog.toggle();
+        Metro.getPlugin($(el)[0], "dialog").toggle();
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $$(el).data("dialog");
-        return dialog.isOpen();
+        Metro.getPlugin($(el)[0], "dialog").isOpen();
     },
 
     remove: function(el){
-        var $$ = Utils.$();
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = $$(el).data("dialog");
+        var dialog = Metro.getPlugin($(el)[0], "dialog");
         dialog.options.removeOnClose = true;
         dialog.close();
     },
@@ -21982,8 +21958,7 @@ Metro.plugin('sorter', Sorter);
 
 Metro['sorter'] = {
     create: function(el, op){
-        var $$ = Utils.$();
-        return $$(el).sorter(op);
+        return Utils.$()(el).sorter(op);
     },
 
     isSorter: function(el){
@@ -21991,24 +21966,20 @@ Metro['sorter'] = {
     },
 
     sort: function(el, dir){
-        var $$ = Utils.$();
         if (!this.isSorter(el)) {
             return false;
         }
-        var sorter = $$(el).data("sorter");
         if (dir === undefined) {
             dir = "asc";
         }
-        sorter.sort(dir);
+        Metro.getPlugin($(el)[0], "sorter").sort(dir);
     },
 
     reset: function(el){
-        var $$ = Utils.$();
         if (!this.isSorter(el)) {
             return false;
         }
-        var sorter = $$(el).data("sorter");
-        sorter.reset();
+        Metro.getPlugin($(el)[0], "sorter").reset();
     }
 };
 

@@ -472,6 +472,8 @@ Metro.plugin('datepicker', DatePicker);
 
 $(document).on(Metro.events.click, function(){
     $.each($(".date-picker"), function(){
-        $(this).find("input").data("datepicker").close();
+        $(this).find("input").each(function(){
+            Metro.getPlugin(this, "datepicker").close();
+        });
     });
 });

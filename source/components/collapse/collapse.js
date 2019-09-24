@@ -75,7 +75,7 @@ var Collapse = {
 
     _close: function(el, immediate){
         var elem = $(el);
-        var dropdown  = elem.data("collapse");
+        var dropdown  = Metro.getPlugin(elem[0], "collapse");
         var options = dropdown.options;
         var func = immediate ? 'show' : 'slideUp';
         var dur = immediate ? 0 : options.duration;
@@ -93,7 +93,7 @@ var Collapse = {
 
     _open: function(el, immediate){
         var elem = $(el);
-        var dropdown  = elem.data("collapse");
+        var dropdown  = Metro.getPlugin(elem[0], "collapse");
         var options = dropdown.options;
         var func = immediate ? 'show' : 'slideDown';
         var dur = immediate ? 0 : options.duration;
