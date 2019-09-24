@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 19:51:50",
+    compileTime: "24/09/2019 19:54:55",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20874,9 +20874,10 @@ var Select = {
 };
 
 $(document).on(Metro.events.click, function(){
+    var $$ = Utils.$();
     var selects = $(".select .drop-container");
     $.each(selects, function(){
-        var drop = $(this).data('dropdown');
+        var drop = $$(this).data('dropdown');
         if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");

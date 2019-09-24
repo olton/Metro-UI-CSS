@@ -4,6 +4,7 @@
 + [x] m4q: fix initialization when `metro4` added into `head`
 + [x] Init: fix issue #1409
 + [x] Dropdown: fix interop between Metro4 and jQuery, issue #1411
++ [x] Select: fix close when user click document and jQuery used
 
 ### 4.3.0
 + [x] jQuery: Goodbye!!!

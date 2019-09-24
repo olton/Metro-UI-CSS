@@ -570,9 +570,10 @@ var Select = {
 };
 
 $(document).on(Metro.events.click, function(){
+    var $$ = Utils.$();
     var selects = $(".select .drop-container");
     $.each(selects, function(){
-        var drop = $(this).data('dropdown');
+        var drop = $$(this).data('dropdown');
         if (drop && drop.close) drop.close();
     });
     $(".select").removeClass("focused");
