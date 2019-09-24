@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 21:25:51",
+    compileTime: "24/09/2019 21:28:53",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20410,6 +20410,10 @@ var Select = {
         a = $("<a>").html(html).appendTo(l);
 
         l.addClass(item.className);
+
+        if (option.is(":disabled")) {
+            l.addClass("disabled");
+        }
 
         if (option.is(":selected")) {
             if (multiple) {

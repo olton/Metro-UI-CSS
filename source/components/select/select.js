@@ -101,6 +101,10 @@ var Select = {
 
         l.addClass(item.className);
 
+        if (option.is(":disabled")) {
+            l.addClass("disabled");
+        }
+
         if (option.is(":selected")) {
             if (multiple) {
                 l.addClass("d-none");
