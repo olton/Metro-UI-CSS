@@ -208,7 +208,7 @@ var Panel = {
         if (Utils.isMetroObject(element, 'collapse') === false) {
             return ;
         }
-        element.data('collapse').collapse();
+        Metro.getPlugin(element, 'collapse').collapse();
     },
 
     expand: function(){
@@ -216,7 +216,7 @@ var Panel = {
         if (Utils.isMetroObject(element, 'collapse') === false) {
             return ;
         }
-        element.data('collapse').expand();
+        Metro.getPlugin(element, 'collapse').expand();
     },
 
     changeAttribute: function(attributeName){
@@ -226,11 +226,11 @@ var Panel = {
         var element = this.element;
 
         if (o.collapsible === true) {
-            element.data("collapse").destroy();
+            Metro.getPlugin(element, "collapse").destroy();
         }
 
         if (o.draggable === true) {
-            element.data("draggable").destroy();
+            Metro.getPlugin(element, "draggable").destroy();
         }
 
         return element;

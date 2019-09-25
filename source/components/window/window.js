@@ -320,7 +320,7 @@ var Window = {
         });
 
         if (o.draggable === true) {
-            win.draggable({
+            Metro.makePlugin(win, "draggable", {
                 dragElement: o.dragElement,
                 dragArea: o.dragArea,
                 onDragStart: o.onDragStart,
