@@ -67,6 +67,8 @@ var Draggable = {
 
         Metro.checkRuntime(element, "draggable");
 
+        element.data("canDrag", true);
+
         this.dragElement = dragElement;
 
         dragElement[0].ondragstart = function(){return false;};

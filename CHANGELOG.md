@@ -16,6 +16,7 @@
 + [x] Select: fix close when user click document and jQuery used
 + [x] CalendarPicker: fix interop between Metro4 and jQuery, fix close when `next[Year, Month]` clicked
 + [x] Select: add works with disabled option. You can add attr `disabled` to option to create disabled option, issue #1413
++ [x] Window: fix toggle draggable, resizeable
 
 ### 4.3.0
 + [x] jQuery: Goodbye!!!
