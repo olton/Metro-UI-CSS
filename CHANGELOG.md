@@ -1,3 +1,5 @@
+### 4.3.2
+
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408
 + [x] m4q: upd to 1.0.1
