@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "25/09/2019 13:35:59",
+    compileTime: "25/09/2019 13:47:16",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17655,7 +17655,7 @@ var ListView = {
         var cb = $("<input type='checkbox'>");
         cb.data("node", new_node);
         new_node.prepend(cb);
-        cb.checkbox();
+        Metro.makePlugin(cb, "checkbox", {});
 
         Utils.exec(o.onNodeInsert, [new_node, node, target], element[0]);
         element.fire("nodeinsert", {
@@ -30579,7 +30579,7 @@ var Window = {
             resizer.appendTo(win);
             win.addClass("resizable");
 
-            win.resizable({
+            Metro.makePlugin(win, "resizable", {
                 minWidth: o.minWidth,
                 minHeight: o.minHeight,
                 maxWidth: o.maxWidth,
@@ -30825,7 +30825,7 @@ var Window = {
     toggleDraggable: function(){
         var element = this.element, win = this.win;
         var flag = JSON.parse(element.attr("data-draggable"));
-        var drag = win.data("draggable");
+        var drag = Metro.getPlugin(win, "draggable");
         if (flag === true) {
             drag.on();
         } else {
@@ -30836,7 +30836,7 @@ var Window = {
     toggleResizable: function(){
         var element = this.element, win = this.win;
         var flag = JSON.parse(element.attr("data-resizable"));
-        var resize = win.data("resizable");
+        var resize = Metro.getPlugin(win, "resizable");
         if (flag === true) {
             resize.on();
             win.find(".resize-element").removeClass("resize-element-disabled");
@@ -30909,66 +30909,53 @@ Metro['window'] = {
     },
 
     min: function(el, a){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
-        win.min(a);
+        Metro.getPlugin(el,"window").min(a);
     },
 
     max: function(el, a){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
-        win.max(a);
+        Metro.getPlugin(el, "window").max(a);
     },
 
     show: function(el){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
-        win.show();
+        Metro.getPlugin(el, "window").show();
     },
 
     hide: function(el){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
-        win.hide();
+        Metro.getPlugin(el, "window").hide();
     },
 
     toggle: function(el){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
-        win.toggle();
+        Metro.getPlugin(el, "window").toggle();
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
+        var win = Metro.getPlugin(el,"window");
         return win.isOpen();
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isWindow(el)) {
             return false;
         }
-        var win = $$(el).data("window");
-        win.close();
+        Metro.getPlugin(el, "window").close();
     },
 
     create: function(options){

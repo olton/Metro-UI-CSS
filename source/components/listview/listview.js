@@ -273,7 +273,7 @@ var ListView = {
         var cb = $("<input type='checkbox'>");
         cb.data("node", new_node);
         new_node.prepend(cb);
-        cb.checkbox();
+        Metro.makePlugin(cb, "checkbox", {});
 
         Utils.exec(o.onNodeInsert, [new_node, node, target], element[0]);
         element.fire("nodeinsert", {
