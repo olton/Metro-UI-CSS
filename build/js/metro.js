@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "25/09/2019 14:20:02",
+    compileTime: "25/09/2019 14:36:54",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14520,6 +14520,18 @@ $.fn.hotkey = function(key, fn){
         })
     })
 };
+
+if (METRO_JQUERY && jquery_present) {
+    jQuery.fn.hotkey = function(key, fn){
+        return this.each(function(){
+            $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
+                var _key = Hotkey.getKey(e);
+                if (key === _key) Utils.exec(fn, [e, _key, key], this);
+            })
+        })
+    };
+}
+
 
 $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
     var el, fn, key;
