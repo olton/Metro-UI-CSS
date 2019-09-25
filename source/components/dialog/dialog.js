@@ -356,7 +356,7 @@ Metro['dialog'] = {
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = Metro.getPlugin($(el)[0], "dialog");
+        var dialog = Metro.getPlugin(el, "dialog");
         if (title !== undefined) {
             dialog.setTitle(title);
         }

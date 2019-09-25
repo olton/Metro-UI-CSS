@@ -126,7 +126,7 @@ var Utils = {
     },
 
     isMetroObject: function(el, type){
-        var $el = $(el), el_obj = Metro.getPlugin($el[0], type);
+        var $el = $(el), el_obj = Metro.getPlugin(el, type);
 
         if ($el.length === 0) {
             console.warn(type + ' ' + el + ' not found!');

@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "24/09/2019 22:07:47",
+    compileTime: "25/09/2019 12:20:43",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4052,8 +4052,11 @@ var Metro = {
     },
 
     getPlugin: function(el, type){
-        var $$ = Utils.$();
-        return $$(el).data(type);
+        return Utils.$()($(el)[0]).data(type);
+    },
+
+    makePlugin: function(el, type, options){
+        return Utils.$()($(el)[0])[type](options)
     }
 };
 
@@ -6366,7 +6369,7 @@ var Utils = {
     },
 
     isMetroObject: function(el, type){
-        var $el = $(el), el_obj = Metro.getPlugin($el[0], type);
+        var $el = $(el), el_obj = Metro.getPlugin(el, type);
 
         if ($el.length === 0) {
             console.warn(type + ' ' + el + ' not found!');
@@ -9524,7 +9527,7 @@ var CalendarPicker = {
         buttons.appendTo(container);
         cal.appendTo(container);
 
-        Utils.$()(cal[0])["calendar"]({
+        Metro.makePlugin(cal, "calendar", {
             wide: o.calendarWide,
             widePoint: o.calendarWidePoint,
 
@@ -13326,7 +13329,7 @@ Metro['dialog'] = {
         if (!this.isDialog(el)) {
             return false;
         }
-        var dialog = Metro.getPlugin($(el)[0], "dialog");
+        var dialog = Metro.getPlugin(el, "dialog");
         if (title !== undefined) {
             dialog.setTitle(title);
         }
@@ -20479,7 +20482,7 @@ var Select = {
 
         this._setPlaceholder();
 
-        Utils.$()(drop_container[0])["dropdown"]({
+        Metro.makePlugin(drop_container, "dropdown", {
             dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
