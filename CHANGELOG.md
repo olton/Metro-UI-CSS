@@ -8,6 +8,7 @@
 + [x] Panel: fix interop between Metro4 and jQuery
 + [x] Windows: fix interop between Metro4 and jQuery
 + [x] VideoPlayer: fix interop between Metro4 and jQuery
++ [x] AudioPlayer: fix interop between Metro4 and jQuery
 + [x] TimePicker: fix interop between Metro4 and jQuery
 + [x] SideBar: fix interop between Metro4 and jQuery
 + [x] Charms: fix interop between Metro4 and jQuery

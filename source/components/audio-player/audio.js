@@ -187,7 +187,7 @@ var Audio = {
 
         this.preloader = preloader;
 
-        streamSlider.slider({
+        Metro.makePlugin(streamSlider, "slider", {
             clsMarker: "bg-red",
             clsHint: "bg-cyan fg-white",
             clsComplete: "bg-cyan",
@@ -211,7 +211,7 @@ var Audio = {
             stream.hide();
         }
 
-        volumeSlider.slider({
+        Metro.makePlugin(volumeSlider, "slider", {
             clsMarker: "bg-red",
             clsHint: "bg-cyan fg-white",
             hint: true,
@@ -243,7 +243,7 @@ var Audio = {
 
         if (o.muted) {
             that.volumeBackup = audio.volume;
-            that.volume.data('slider').val(0);
+            Metro.getPlugin(that.volume, 'slider').val(0);
             audio.volume = 0;
         }
 
@@ -275,7 +275,7 @@ var Audio = {
         element.on("timeupdate", function(){
             var position = Math.round(audio.currentTime * 100 / that.duration);
             that._setInfo(audio.currentTime, that.duration);
-            that.stream.data('slider').val(position);
+            Metro.getPlugin(that.stream, 'slider').val(position);
             Utils.exec(o.onTime, [audio.currentTime, that.duration, audio, player], element[0]);
         });
 
@@ -298,12 +298,12 @@ var Audio = {
         });
 
         element.on("stop", function(){
-            that.stream.data('slider').val(0);
+            Metro.getPlugin(that.stream, 'slider').val(0);
             Utils.exec(o.onStop, [audio, player], element[0]);
         });
 
         element.on("ended", function(){
-            that.stream.data('slider').val(0);
+            Metro.getPlugin(that.stream, 'slider').val(0);
             Utils.exec(o.onEnd, [audio, player], element[0]);
         });
 
@@ -347,12 +347,11 @@ var Audio = {
         this.muted = !this.muted;
         if (this.muted === false) {
             this.audio.volume = this.volumeBackup;
-            this.volume.data('slider').val(this.volumeBackup * 100);
         } else {
             this.volumeBackup = this.audio.volume;
-            this.volume.data('slider').val(0);
             this.audio.volume = 0;
         }
+        Metro.getPlugin(this.volume, 'slider').val(this.muted === false ? this.volumeBackup * 100 : 0);
     },
 
     _setInfo: function(a, b){
@@ -361,7 +360,7 @@ var Audio = {
 
     _setBuffer: function(){
         var buffer = this.audio.buffered.length ? Math.round(Math.floor(this.audio.buffered.end(0)) / Math.floor(this.audio.duration) * 100) : 0;
-        this.stream.data('slider').buff(buffer);
+        Metro.getPlugin(this.stream, 'slider').buff(buffer);
     },
 
     _setVolume: function(){
@@ -405,7 +404,7 @@ var Audio = {
     stop: function(){
         this.audio.pause();
         this.audio.currentTime = 0;
-        this.stream.data('slider').val(0);
+        Metro.getPlugin(this.stream, 'slider').val(0);
     },
 
     volume: function(v){
@@ -418,7 +417,7 @@ var Audio = {
         }
 
         this.audio.volume = v;
-        this.volume.data('slider').val(v*100);
+        Metro.getPlugin(this.volume, 'slider').val(v*100);
     },
 
     loop: function(){

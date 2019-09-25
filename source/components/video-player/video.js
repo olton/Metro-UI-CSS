@@ -196,7 +196,7 @@ var Video = {
             infoBox.hide();
         }
 
-        streamSlider.slider({
+        Metro.makePlugin(streamSlider, "slider", {
             clsMarker: "bg-red",
             clsHint: "bg-cyan fg-white",
             clsComplete: "bg-cyan",
@@ -220,7 +220,7 @@ var Video = {
             stream.hide();
         }
 
-        volumeSlider.slider({
+        Metro.makePlugin(volumeSlider, "slider", {
             clsMarker: "bg-red",
             clsHint: "bg-cyan fg-white",
             hint: true,
@@ -447,12 +447,11 @@ var Video = {
         this.muted = !this.muted;
         if (this.muted === false) {
             this.video.volume = this.volumeBackup;
-            Metro.getPlugin(this.volume[0], 'slider').val(this.volumeBackup * 100);
         } else {
             this.volumeBackup = this.video.volume;
-            Metro.getPlugin(this.volume[0], 'slider').val(0);
             this.video.volume = 0;
         }
+        Metro.getPlugin(this.volume, 'slider').val(this.muted === false ? this.volumeBackup * 100 : 0);
     },
 
     _setInfo: function(a, b){
@@ -461,7 +460,7 @@ var Video = {
 
     _setBuffer: function(){
         var buffer = this.video.buffered.length ? Math.round(Math.floor(this.video.buffered.end(0)) / Math.floor(this.video.duration) * 100) : 0;
-        Metro.getPlugin(this.stream[0], 'slider').buff(buffer);
+        Metro.getPlugin(this.stream, 'slider').buff(buffer);
     },
 
     _setVolume: function(){
