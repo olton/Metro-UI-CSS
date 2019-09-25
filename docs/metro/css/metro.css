@@ -37169,6 +37169,15 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   padding-top: 3px;
   padding-bottom: 3px;
 }
+.resizeable-element.stop-select {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+.resizeable-element.stop-pointer {
+  pointer-events: none;
+}
 .resize-element {
   display: block;
   position: absolute;

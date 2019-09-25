@@ -64,6 +64,9 @@ var Resizable = {
     _createStructure: function(){
         var element = this.element, o = this.options;
 
+        element.data("canResize", true);
+        element.addClass("resizeable-element");
+
         if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
             this.resizer = element.find(o.resizeElement);
         } else {
@@ -86,6 +89,8 @@ var Resizable = {
             var startWidth = parseInt(element.outerWidth());
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
+
+            element.addClass("stop-select stop-pointer");
 
             Utils.exec(o.onResizeStart, [size], element[0]);
             element.fire("resizestart", {
@@ -114,6 +119,8 @@ var Resizable = {
             }, {ns: that.id});
 
             $(document).on(Metro.events.stop, function(){
+                element.removeClass("stop-select stop-pointer");
+
                 $(document).off(Metro.events.move, {ns: that.id});
                 $(document).off(Metro.events.stop, {ns: that.id});
 
