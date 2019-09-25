@@ -58,6 +58,18 @@ $.fn.hotkey = function(key, fn){
     })
 };
 
+if (METRO_JQUERY && jquery_present) {
+    jQuery.fn.hotkey = function(key, fn){
+        return this.each(function(){
+            $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
+                var _key = Hotkey.getKey(e);
+                if (key === _key) Utils.exec(fn, [e, _key, key], this);
+            })
+        })
+    };
+}
+
+
 $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
     var el, fn, key;
 
