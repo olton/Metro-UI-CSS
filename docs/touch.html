@@ -134,7 +134,7 @@
                     </div>
                     <script>
                         function mySwipe(event, direction, distance, duration, fingerCount, fingerData, currentDirection){
-                            var sb = $("#sb1").data("sidebar");
+                            var sb = Metro.getPlugin("#sb1", "sidebar");
                             if (direction === "right") {
                                 if (!sb.isOpen()) {
                                     sb.open();
