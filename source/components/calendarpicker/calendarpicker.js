@@ -136,7 +136,7 @@ var CalendarPicker = {
         buttons.appendTo(container);
         cal.appendTo(container);
 
-        Utils.$()(cal[0])["calendar"]({
+        Metro.makePlugin(cal, "calendar", {
             wide: o.calendarWide,
             widePoint: o.calendarWidePoint,
 

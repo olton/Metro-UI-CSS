@@ -1,4 +1,4 @@
-describe("Test metro 4 initialization", function(){
+describe("Test metro 4 docs", function(){
     const targets = [
         'index', 'intro', 'download', 'contents', 'browsers', 'media', 'events', 'm4q', 'i18n', 'configuring', 'global-setup', 'vuejs',
 

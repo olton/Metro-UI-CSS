@@ -558,8 +558,11 @@ var Metro = {
     },
 
     getPlugin: function(el, type){
-        var $$ = Utils.$();
-        return $$(el).data(type);
+        return Utils.$()($(el)[0]).data(type);
+    },
+
+    makePlugin: function(el, type, options){
+        return Utils.$()($(el)[0])[type](options)
     }
 };
 

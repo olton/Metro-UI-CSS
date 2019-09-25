@@ -200,7 +200,7 @@ var Select = {
 
         this._setPlaceholder();
 
-        Utils.$()(drop_container[0])["dropdown"]({
+        Metro.makePlugin(drop_container, "dropdown", {
             dropFilter: ".select",
             duration: o.duration,
             toggleElement: "#"+select_id,
