@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "25/09/2019 12:20:43",
+    compileTime: "25/09/2019 13:32:17",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -18791,7 +18791,7 @@ var Panel = {
         } else if (typeof buttons === "object" && Utils.objectLength(buttons) > 0) {
             customButtons = buttons;
         } else {
-            console.log("Unknown format for custom buttons", buttons);
+            console.warn("Unknown format for custom buttons", buttons);
             return ;
         }
 
@@ -18864,7 +18864,7 @@ var Panel = {
 
             if (o.collapsible === true) {
                 var collapseToggle = $("<span>").addClass("dropdown-toggle marker-center active-toggle").addClass(o.clsCollapseToggle).appendTo(title);
-                element.collapse({
+                Metro.makePlugin(element, "collapse", {
                     toggleElement: collapseToggle,
                     duration: o.collapseDuration,
                     onCollapse: o.onCollapse,
@@ -18892,7 +18892,7 @@ var Panel = {
                 dragElement = panel;
             }
 
-            panel.draggable({
+            Metro.makePlugin(panel, "draggable", {
                 dragElement: dragElement,
                 onDragStart: o.onDragStart,
                 onDragStop: o.onDragStop,

@@ -5,6 +5,7 @@
 + [x] Init: fix issue #1409
 + [x] Dropdown: fix interop between Metro4 and jQuery, issue #1411
 + [x] Select: fix interop between Metro4 and jQuery, issue #1412
++ [x] Panel: fix interop between Metro4 and jQuery
 + [x] VideoPlayer: fix interop between Metro4 and jQuery
 + [x] TimePicker: fix interop between Metro4 and jQuery
 + [x] SideBar: fix interop between Metro4 and jQuery
