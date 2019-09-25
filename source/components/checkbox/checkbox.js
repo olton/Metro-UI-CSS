@@ -98,8 +98,11 @@ var Checkbox = {
         element.fire("checkboxcreate");
     },
 
-    indeterminate: function(){
-        this.element[0].indeterminate = true;
+    indeterminate: function(v){
+        if (Utils.isNull(v)) {
+            v = true;
+        }
+        this.element[0].indeterminate = v;
     },
 
     disable: function(){
@@ -121,7 +124,7 @@ var Checkbox = {
     },
 
     changeAttribute: function(attributeName){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){

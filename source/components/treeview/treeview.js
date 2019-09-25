@@ -219,7 +219,7 @@ var TreeView = {
 
     _recheck: function(check){
         var element = this.element;
-        var checked, node, checks;
+        var checked, node, checks, all_checks;
 
         check = $(check);
 
@@ -233,13 +233,13 @@ var TreeView = {
         checks.attr("data-indeterminate", false);
         checks.prop("checked", checked);
 
-        checks = [];
+        all_checks = [];
 
         $.each(element.find("input[type=checkbox]"), function(){
-            checks.push(this);
+            all_checks.push(this);
         });
 
-        $.each(checks.reverse(), function(){
+        $.each(all_checks.reverse(), function(){
             var ch = $(this);
             var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
             var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]").filter(function(el){

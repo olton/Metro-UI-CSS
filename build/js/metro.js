@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "25/09/2019 18:36:40",
+    compileTime: "25/09/2019 19:58:25",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3804,7 +3804,7 @@ var Metro = {
 
                         if (mc !== undefined) {
                             $.each(mc, function(){
-                                var plug = element.data(this);
+                                var plug = Metro.getPlugin(element, this);
                                 if (plug) plug.changeAttribute(mutation.attributeName);
                             });
                         }
@@ -10998,8 +10998,11 @@ var Checkbox = {
         element.fire("checkboxcreate");
     },
 
-    indeterminate: function(){
-        this.element[0].indeterminate = true;
+    indeterminate: function(v){
+        if (Utils.isNull(v)) {
+            v = true;
+        }
+        this.element[0].indeterminate = v;
     },
 
     disable: function(){
@@ -11021,7 +11024,7 @@ var Checkbox = {
     },
 
     changeAttribute: function(attributeName){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){
@@ -28977,7 +28980,7 @@ var TreeView = {
 
     _recheck: function(check){
         var element = this.element;
-        var checked, node, checks;
+        var checked, node, checks, all_checks;
 
         check = $(check);
 
@@ -28991,13 +28994,13 @@ var TreeView = {
         checks.attr("data-indeterminate", false);
         checks.prop("checked", checked);
 
-        checks = [];
+        all_checks = [];
 
         $.each(element.find("input[type=checkbox]"), function(){
-            checks.push(this);
+            all_checks.push(this);
         });
 
-        $.each(checks.reverse(), function(){
+        $.each(all_checks.reverse(), function(){
             var ch = $(this);
             var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
             var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]").filter(function(el){
