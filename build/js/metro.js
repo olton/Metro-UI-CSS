@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.1",
-    compileTime: "25/09/2019 13:32:17",
+    compileTime: "25/09/2019 13:35:59",
     buildNumber: "738",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -18924,7 +18924,7 @@ var Panel = {
         if (Utils.isMetroObject(element, 'collapse') === false) {
             return ;
         }
-        element.data('collapse').collapse();
+        Metro.getPlugin(element, 'collapse').collapse();
     },
 
     expand: function(){
@@ -18932,7 +18932,7 @@ var Panel = {
         if (Utils.isMetroObject(element, 'collapse') === false) {
             return ;
         }
-        element.data('collapse').expand();
+        Metro.getPlugin(element, 'collapse').expand();
     },
 
     changeAttribute: function(attributeName){
@@ -18942,11 +18942,11 @@ var Panel = {
         var element = this.element;
 
         if (o.collapsible === true) {
-            element.data("collapse").destroy();
+            Metro.getPlugin(element, "collapse").destroy();
         }
 
         if (o.draggable === true) {
-            element.data("draggable").destroy();
+            Metro.getPlugin(element, "draggable").destroy();
         }
 
         return element;
@@ -30544,7 +30544,7 @@ var Window = {
         });
 
         if (o.draggable === true) {
-            win.draggable({
+            Metro.makePlugin(win, "draggable", {
                 dragElement: o.dragElement,
                 dragArea: o.dragArea,
                 onDragStart: o.onDragStart,
