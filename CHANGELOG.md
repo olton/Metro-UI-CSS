@@ -18,6 +18,7 @@
 + [x] Select: add works with disabled option. You can add attr `disabled` to option to create disabled option, issue #1413
 + [x] Window: fix toggle draggable, resizeable
 + [x] Tile: fix tile width in then `tiles-grid` when tile placed in specific column
++ [x] Metro: fix observing attributes
 
 ### 4.3.0
 + [x] jQuery: Goodbye!!!

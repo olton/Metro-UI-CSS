@@ -310,7 +310,7 @@ var Metro = {
 
                         if (mc !== undefined) {
                             $.each(mc, function(){
-                                var plug = element.data(this);
+                                var plug = Metro.getPlugin(element, this);
                                 if (plug) plug.changeAttribute(mutation.attributeName);
                             });
                         }
