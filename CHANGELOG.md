@@ -17,6 +17,7 @@
 + [x] CalendarPicker: fix interop between Metro4 and jQuery, fix close when `next[Year, Month]` clicked
 + [x] Select: add works with disabled option. You can add attr `disabled` to option to create disabled option, issue #1413
 + [x] Window: fix toggle draggable, resizeable
++ [x] Tile: fix tile width in then `tiles-grid` when tile placed in specific column
 
 ### 4.3.0
 + [x] jQuery: Goodbye!!!

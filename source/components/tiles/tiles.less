@@ -16,6 +16,7 @@
     position: relative;
     overflow: hidden;
     user-select: none;
+    max-width: none!important;
 }
 
 .tile {
@@ -296,38 +297,57 @@
 }
 
 .tiles-grid {
-
-    .generate-tiles-media-options(@mediaBreakpointListMobileLength);
-    .generate-tiles-media-options(@name, @j: 1) when (@j <= @mediaBreakpointListMobileLength) {
-        @m: extract(@mediaBreakpointListMobile, @j);
-
+    each(@mediaBreakpointListMobile, .(@m) {
         @media screen and (min-width: @@m) {
-            .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
+            each(range(12), .(@k) {
                 .col-@{m}-@{k} {
                     grid-column: @k;
                 }
                 .row-@{m}-@{k} {
                     grid-row: @k;
                 }
-                .create-tiles-cells(@i; @k + 1);
-            }
-            .create-tiles-cells(12);
-
-            .create-tiles-grid-size(@i: 1, @k: 1) when (@k <= @i) {
+            })
+            each(range(12), .(@k) {
                 &.size-@{m}-half {
                     width: 70px + @tileMargin * 2;
                 }
                 &.size-@{m}-@{k} {
                     width: (@tileCellSize + @tileMargin * 2) * @k;
                 }
-
-                .create-tiles-grid-size(@i; @k + 1);
-            }
-            .create-tiles-grid-size(10);
+            })
         }
-
-        .generate-tiles-media-options(@name, @j + 1);
-    }
+    })
+    //.generate-tiles-media-options(@mediaBreakpointListMobileLength);
+    //.generate-tiles-media-options(@name, @j: 1) when (@j <= @mediaBreakpointListMobileLength) {
+    //    @m: extract(@mediaBreakpointListMobile, @j);
+    //
+    //    @media screen and (min-width: @@m) {
+    //        .create-tiles-cells(@i: 1, @k: 1) when (@k <= @i) {
+    //            .col-@{m}-@{k} {
+    //                grid-column: @k;
+    //            }
+    //            .row-@{m}-@{k} {
+    //                grid-row: @k;
+    //            }
+    //            .create-tiles-cells(@i; @k + 1);
+    //        }
+    //        .create-tiles-cells(12);
+    //
+    //        .create-tiles-grid-size(@i: 1, @k: 1) when (@k <= @i) {
+    //            &.size-@{m}-half {
+    //                width: 70px + @tileMargin * 2;
+    //            }
+    //            &.size-@{m}-@{k} {
+    //                width: (@tileCellSize + @tileMargin * 2) * @k;
+    //            }
+    //
+    //            .create-tiles-grid-size(@i; @k + 1);
+    //        }
+    //        .create-tiles-grid-size(10);
+    //    }
+    //
+    //    .generate-tiles-media-options(@name, @j + 1);
+    //}
 }
 
 .tiles-group {
