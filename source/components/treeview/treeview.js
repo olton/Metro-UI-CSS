@@ -112,7 +112,6 @@ var TreeView = {
 
         $.each(nodes, function(){
             var node = $(this);
-            var childCount = 0;
             var caption, icon;
 
             caption = node.data("caption");
