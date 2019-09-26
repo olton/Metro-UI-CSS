@@ -62,6 +62,13 @@
 <script src="../../../js/jquery-3.3.1.min.js"></script>
 <script src="../../../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    if (jQuery('#idDialog').data('dialog') !== undefined) {
+        throw new Error("Meta tag metro:jquery error");
+    }
+
+    if (m4q('#idDialog').data('dialog') === undefined) {
+        throw new Error("Meta tag metro:jquery error");
+    }
 </script>
 </body>
 </html>
