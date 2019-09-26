@@ -21588,8 +21588,10 @@ var Slider = {
             if (slider_visible) {
                 marker.css('top', length - this.pixel);
             } else {
-                marker.css('top', this.percent + "%");
-                marker.css('margin-top', this.percent === 0 ? 0 : -1 * marker_size / 2);
+                marker.css('top', (100 - this.percent) + "%");
+                marker.css('margin-top', marker_size / 2);
+                // marker.css('top', this.percent + "%");
+                // marker.css('margin-top', this.percent === 0 ? 0 : -1 * marker_size / 2);
             }
             complete.css('height', this.percent+"%");
         } else {
