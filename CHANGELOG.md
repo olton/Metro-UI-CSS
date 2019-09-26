@@ -1,4 +1,5 @@
 ### 4.3.2
++ [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417 
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408
