@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.3.1  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.2  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -3595,9 +3595,9 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 
 var Metro = {
 
-    version: "4.3.1",
-    compileTime: "25/09/2019 23:11:38",
-    buildNumber: "738",
+    version: "4.3.2",
+    compileTime: "26/09/2019 19:15:58",
+    buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -21588,8 +21588,8 @@ var Slider = {
             if (slider_visible) {
                 marker.css('top', length - this.pixel);
             } else {
-                marker.css('top', this.percent + "%");
-                marker.css('margin-top', this.percent === 0 ? 0 : -1 * marker_size / 2);
+                marker.css('top', (100 - this.percent) + "%");
+                marker.css('margin-top', marker_size / 2);
             }
             complete.css('height', this.percent+"%");
         } else {
