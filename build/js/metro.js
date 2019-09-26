@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "26/09/2019 19:15:58",
+    compileTime: "26/09/2019 19:20:50",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21357,11 +21357,11 @@ var Slider = {
                     val: that.value,
                     percent: that.percent
                 });
-            });
+            }, {ns: slider.attr("id")});
 
             $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll);
-                $(document).off(Metro.events.stopAll);
+                $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});
+                $(document).off(Metro.events.stopAll, {ns: slider.attr("id")});
 
                 if (o.hintAlways !== true) {
                     hint.fadeOut(300);
@@ -21372,7 +21372,7 @@ var Slider = {
                     val: that.value,
                     percent: that.percent
                 });
-            });
+            }, {ns: slider.attr("id")});
 
             Utils.exec(o.onStart, [that.value, that.percent], element[0]);
             element.fire("start", {
