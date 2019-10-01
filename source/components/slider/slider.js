@@ -319,7 +319,7 @@ var Slider = {
             return value;
         }
 
-        value = Math.floor(value / accuracy) * accuracy + Math.round(value % accuracy / accuracy) * accuracy;
+        value = Math.round(value/accuracy)*accuracy;
 
         if (value < min) {
             value = min;
