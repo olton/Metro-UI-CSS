@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "26/09/2019 19:20:50",
+    compileTime: "05/10/2019 15:21:07",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14517,29 +14517,36 @@ var Hotkey = {
     }
 };
 
-$.fn.hotkey = function(key, fn){
+function bindKey(key, fn){
     return this.each(function(){
         $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
             var _key = Hotkey.getKey(e);
-            if (key === _key) Utils.exec(fn, [e, _key, key], this);
+            var el = $(this);
+            var href = ""+el.attr("href");
+
+            if (key !== _key) {
+                return;
+            }
+
+            if (el.is("a")) {
+                if (href && href.trim() !== "#") {
+                    window.location.href = href;
+                }
+            }
+
+            Utils.exec(fn, [e, _key, key], this);
         })
     })
-};
-
-if (METRO_JQUERY && jquery_present) {
-    jQuery.fn.hotkey = function(key, fn){
-        return this.each(function(){
-            $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
-                var _key = Hotkey.getKey(e);
-                if (key === _key) Utils.exec(fn, [e, _key, key], this);
-            })
-        })
-    };
 }
 
+$.fn.hotkey = bindKey;
+
+if (METRO_JQUERY && jquery_present) {
+    jQuery.fn.hotkey = bindKey;
+}
 
 $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
-    var el, fn, key;
+    var el, fn, key, href;
 
     if (
         (METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS && /textarea|input|select/i.test(e.target.nodeName)) ||
@@ -14553,10 +14560,19 @@ $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
     key = Hotkey.getKey(e);
 
     if (Utils.keyInObject(Metro.hotkeys, key)) {
-        el = Metro.hotkeys[key][0];
+        el = $(Metro.hotkeys[key][0]);
         fn = Metro.hotkeys[key][1];
+        href = (""+el.attr("href")).trim();
 
-        fn === false ? $(el).click() : Utils.exec(fn);
+        if (fn) {
+            Utils.exec(fn);
+        } else {
+            if (el.is("a") && href && href.length > 0 && href.trim() !== "#") {
+                window.location.href = href;
+            } else {
+                el.click();
+            }
+        }
     }
 });
 
