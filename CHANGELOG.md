@@ -2,6 +2,7 @@
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417
 + [x] Slider: improve events
 + [x] HotKey: extended anchor work with `data-hotkey` and attr `href`, issue #1420  
++ [x] M4Q Events:  fix `function.name` property for IE11, issue #1425
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408

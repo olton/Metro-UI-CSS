@@ -543,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.1. Built at 24/09/2019 15:20:29";
+var m4qVersion = "v1.0.2. Built at 09/10/2019 14:15:13";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1669,7 +1669,7 @@ $.fn.extend({
                 };
 
                 Object.defineProperty(h, "name", {
-                    value: handler.name.trim() !== "" ? handler.name : "func_event_"+name+"_"+$.eventUID
+                    value: handler.name && handler.name !== "" ? handler.name : "func_event_"+name+"_"+$.eventUID
                 });
 
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "05/10/2019 17:51:42",
+    compileTime: "09/10/2019 14:19:32",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
