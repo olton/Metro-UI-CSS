@@ -1,6 +1,0 @@
-RewriteEngine On
-RewriteCond %{HTTPS} !on
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-
-RewriteCond "%{REQUEST_URI}" "^/v4/.*$"
-RewriteRule ^/v4/(.*)$ /$1 [R=301,L]

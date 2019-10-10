@@ -9,7 +9,6 @@ module.exports = function(grunt) {
         'source/*.js',
         'source/**/*.js',
         'source/**/*.less',
-        'docs/css/*.less',
         'Gruntfile.js'
     ];
     var time = new Date(), day = time.getDate(), month = time.getMonth()+1, year = time.getFullYear(), hour = time.getHours(), mins = time.getMinutes(), sec = time.getSeconds();
@@ -129,13 +128,6 @@ module.exports = function(grunt) {
                 src: ["*.less"],
                 ext: ".css",
                 dest: "build/css/schemes"
-            },
-            docs: {
-                expand: true,
-                cwd: "docs/css/",
-                src: ["*.less"],
-                ext: ".css",
-                dest: "docs/css"
             }
         },
 
@@ -144,7 +136,7 @@ module.exports = function(grunt) {
                 map: false,
                 processors: [
                     require('autoprefixer')({
-                        overrideBrowserslist: ['last 2 versions']
+                        overrideBrowserslist: ['last 3 versions']
                     })
                 ]
             },
@@ -180,11 +172,11 @@ module.exports = function(grunt) {
                 src: '**/*',
                 dest: 'build/mif'
             },
-            docs: {
+            test: {
                 expand: true,
                 cwd: 'build',
                 src: '**/*',
-                dest: 'docs/metro'
+                dest: 'test/metro'
             }
         },
 
@@ -230,7 +222,7 @@ module.exports = function(grunt) {
                 limit: 8
             },
             clean: ['clean'],
-            compile_less: ['less:src', 'less:schemes', 'less:docs'],
+            compile_less: ['less:src', 'less:schemes'],
             postcss: ['postcss'],
             concat: ['concat:js', 'concat:css'],
             min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
@@ -247,7 +239,6 @@ module.exports = function(grunt) {
         }
     });
 
-    // grunt.registerTask('default', tasks);
     grunt.registerTask('default', tasks);
 
 };
