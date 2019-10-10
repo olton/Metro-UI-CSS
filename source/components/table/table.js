@@ -1482,11 +1482,33 @@ var Table = {
         return result;
     },
 
+    addItem: function(item, redraw){
+        if (!Array.isArray(item)) {
+            console.warn("Item is not an array and can't be added");
+            return this;
+        }
+        this.items.push(item);
+        if (redraw !== false) this.draw();
+    },
+
+    addItems: function(items, redraw){
+        if (!Array.isArray(items)) {
+            console.warn("Items is not an array and can't be added");
+            return this;
+        }
+        items.forEach(function(item){
+            if (Array.isArray(item))
+                this.items.push(item, false);
+        });
+        this.draw();
+        if (redraw !== false) this.draw();
+    },
+
     updateItem: function(key, field, value){
         var item = this.items[this.index[key]];
         var fieldIndex = null;
         if (Utils.isNull(item)) {
-            console.log('Item is undefined for update');
+            console.warn('Item is undefined for update');
             return this;
         }
         if (isNaN(field)) {
