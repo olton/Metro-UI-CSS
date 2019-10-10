@@ -70,7 +70,7 @@ dev.bat
 cdn-dev.bat
 tag.bat
 delete-tag.bat
-Postprocess.js
+CDN.js
 Build.js
 Build_replace.js
 Build_dev.js
@@ -84,3 +84,4 @@ docs/test
 /.vs
 copy-dist.bat
 cypress/video
+test/manual
