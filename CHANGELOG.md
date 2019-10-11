@@ -10,7 +10,6 @@
 + [x] Table: add event `onDataSaveError`
 + [x] Table: fix save view to server
 + [x] M4Q Ajax: fix creating additional headers for request, issue #1427
-+ [x] Init: now, Metro 4 initialized after the content was loaded. Earlier, Metro 4 was initialized immediately after loading metro.js. 
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408

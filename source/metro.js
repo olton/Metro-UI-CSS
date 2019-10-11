@@ -451,7 +451,7 @@ var Metro = {
             });
         };
 
-        if (METRO_JQUERY && typeof jQuery !== 'undefined') {
+        if (METRO_JQUERY && jquery_present) {
             jQuery.fn[name] = function (options) {
                 return this.each(function () {
                     jQuery.data(this, name, Object.create(object).init(options, this));
@@ -575,9 +575,3 @@ $(window).on(Metro.events.resize, function(){
         }
     });
 });
-
-if (METRO_INIT ===  true) {
-    $(function(){
-        Metro.init();
-    })
-}

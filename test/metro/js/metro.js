@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "11/10/2019 16:52:13",
+    compileTime: "11/10/2019 17:35:21",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3943,7 +3943,7 @@ var Metro = {
             });
         };
 
-        if (METRO_JQUERY && typeof jQuery !== 'undefined') {
+        if (METRO_JQUERY && jquery_present) {
             jQuery.fn[name] = function (options) {
                 return this.each(function () {
                     jQuery.data(this, name, Object.create(object).init(options, this));
@@ -4068,11 +4068,6 @@ $(window).on(Metro.events.resize, function(){
     });
 });
 
-if (METRO_INIT ===  true) {
-    $(function(){
-        Metro.init();
-    })
-}
 
 var Animation = {
 
@@ -31364,5 +31359,7 @@ var Wizard = {
 };
 
 Metro.plugin('wizard', Wizard);
+
+if (METRO_INIT ===  true) Metro.init();
 
 }));
