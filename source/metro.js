@@ -1,3 +1,5 @@
+/* Metro 4 Core */
+
 var $ = m4q;
 
 if (typeof m4q === 'undefined') {
@@ -364,7 +366,6 @@ var Metro = {
 
         Metro.sheet = Utils.newCssSheet();
 
-
         window.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
             if (Utils.media(query)) {
@@ -388,8 +389,6 @@ var Metro = {
                 $(".m4-cloak").removeClass("m4-cloak");
             })
         }
-
-        return Metro;
     },
 
     initHotkeys: function(hotkeys, redefine){
@@ -577,3 +576,8 @@ $(window).on(Metro.events.resize, function(){
     });
 });
 
+if (METRO_INIT ===  true) {
+    $(function(){
+        Metro.init();
+    })
+}
