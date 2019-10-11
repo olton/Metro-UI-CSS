@@ -1463,8 +1463,8 @@ var Table = {
         var result, col = row[this.sort.colIndex];
         var format = this.heads[this.sort.colIndex].format;
         var formatMask = !Utils.isNull(this.heads) && !Utils.isNull(this.heads[this.sort.colIndex]) && Utils.isValue(this.heads[this.sort.colIndex]['formatMask']) ? this.heads[this.sort.colIndex]['formatMask'] : "%Y-%m-%d";
-        var thousandSeparator = $.iif(this.heads && this.heads[this.sort.colIndex], this.heads[this.sort.colIndex]["thousandSeparator"], o.thousandSeparator);
-        var decimalSeparator  = $.iif(this.heads && this.heads[this.sort.colIndex], this.heads[this.sort.colIndex]["decimalSeparator"], o.decimalSeparator);
+        var thousandSeparator = this.heads && this.heads[this.sort.colIndex] && this.heads[this.sort.colIndex]["thousandSeparator"] ? this.heads[this.sort.colIndex]["thousandSeparator"] : o.thousandSeparator;
+        var decimalSeparator  = this.heads && this.heads[this.sort.colIndex] && this.heads[this.sort.colIndex]["decimalSeparator"] ? this.heads[this.sort.colIndex]["decimalSeparator"] : o.decimalSeparator;
 
         result = (""+col).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
 
