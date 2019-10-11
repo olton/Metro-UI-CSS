@@ -34,7 +34,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         docsDir: 'G:\\Projects\\Metro4-Docs\\public_html\\metro',
         pkg: grunt.file.readJSON('package.json'),
-        banner: '/*\n' +
+        copyright: '/*\n' +
         ' * Metro 4 Components Library v<%= pkg.version %> <%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
         ' * Copyright 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
         ' * Licensed under <%= pkg.license %>\n' +
@@ -56,8 +56,8 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 options: {
-                    banner: '<%= banner %>' + '<%= requirejs_banner%>',
-                    footer: "\n\nreturn METRO_INIT === true ? Metro.init() : Metro;\n\n}));",
+                    banner: '<%= copyright %>' + '<%= requirejs_banner%>',
+                    footer: "\n\n}));",
                     stripBanners: true,
                     separator: "\n\n"
                 },
@@ -73,7 +73,7 @@ module.exports = function(grunt) {
                 options: {
                     stripBanners: true,
                     separator: "\n\n",
-                    banner: '<%= banner %>',
+                    banner: '<%= copyright %>',
                     process: function(src) {
                         return src.replace(/\n/g, '\n');
                     }
@@ -91,7 +91,7 @@ module.exports = function(grunt) {
 
         uglify: {
             options: {
-                banner: '<%= banner %>',
+                banner: '<%= copyright %>',
                 stripBanners: false,
                 sourceMap: true,
                 preserveComments: false
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
                 paths: "source/",
                 strictMath: false,
                 sourceMap: false,
-                banner: '<%= banner %>'
+                banner: '<%= copyright %>'
             },
             src: {
                 expand: true,

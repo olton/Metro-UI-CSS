@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "11/10/2019 10:05:44",
+    compileTime: "11/10/2019 16:52:13",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3858,7 +3858,6 @@ var Metro = {
 
         Metro.sheet = Utils.newCssSheet();
 
-
         window.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
             if (Utils.media(query)) {
@@ -3882,8 +3881,6 @@ var Metro = {
                 $(".m4-cloak").removeClass("m4-cloak");
             })
         }
-
-        return Metro;
     },
 
     initHotkeys: function(hotkeys, redefine){
@@ -4071,7 +4068,11 @@ $(window).on(Metro.events.resize, function(){
     });
 });
 
-
+if (METRO_INIT ===  true) {
+    $(function(){
+        Metro.init();
+    })
+}
 
 var Animation = {
 
@@ -31363,7 +31364,5 @@ var Wizard = {
 };
 
 Metro.plugin('wizard', Wizard);
-
-return METRO_INIT === true ? Metro.init() : Metro;
 
 }));
