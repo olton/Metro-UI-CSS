@@ -11,6 +11,7 @@ if (!'MutationObserver' in window) {
 }
 
 var meta_init = $.meta('metro4:init').attr("content");
+var meta_init_mode = $.meta('metro4:init:mode').attr("content");
 var meta_locale = $.meta('metro4:locale').attr("content");
 var meta_week_start = $.meta('metro4:week_start').attr("content");
 var meta_date_format = $.meta('metro4:date_format').attr("content");
@@ -43,6 +44,11 @@ if (window.METRO_SHOW_COMPILE_TIME === undefined) {
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
+
+if (window.METRO_INIT_MODE === undefined) {
+    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "immediate";
+}
+
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
 if (window.METRO_WEEK_START === undefined) {

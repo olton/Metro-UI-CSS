@@ -50,7 +50,9 @@ module.exports = function(grunt) {
         "'use strict';\n\n",
 
         // footer: "\n\nif (METRO_INIT ===  true) $(function(){Metro.init();})\n\n}));",
-        footer: "\n\nif (METRO_INIT ===  true) Metro.init();\n\n}));",
+        footer: "\n\n" +
+            "if (METRO_INIT ===  true) METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()}) " +
+            "\n\n}));",
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']

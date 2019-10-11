@@ -3503,6 +3503,7 @@ if (!'MutationObserver' in window) {
 }
 
 var meta_init = $.meta('metro4:init').attr("content");
+var meta_init_mode = $.meta('metro4:init:mode').attr("content");
 var meta_locale = $.meta('metro4:locale').attr("content");
 var meta_week_start = $.meta('metro4:week_start').attr("content");
 var meta_date_format = $.meta('metro4:date_format').attr("content");
@@ -3535,6 +3536,11 @@ if (window.METRO_SHOW_COMPILE_TIME === undefined) {
 if (window.METRO_INIT === undefined) {
     window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
 }
+
+if (window.METRO_INIT_MODE === undefined) {
+    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "immediate";
+}
+
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
 if (window.METRO_WEEK_START === undefined) {
@@ -3596,7 +3602,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "11/10/2019 17:35:21",
+    compileTime: "11/10/2019 18:07:48",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -31360,6 +31366,6 @@ var Wizard = {
 
 Metro.plugin('wizard', Wizard);
 
-if (METRO_INIT ===  true) Metro.init();
+if (METRO_INIT ===  true) METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()}) 
 
 }));
