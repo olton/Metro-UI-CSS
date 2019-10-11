@@ -4,6 +4,12 @@
 + [x] HotKey: extended anchor work with `data-hotkey` and attr `href`, issue #1420  
 + [x] M4Q Events:  fix `function.name` property for IE11, issue #1425
 + [x] Table: add methods `addItem([...], redraw)`, `addItems([...], redraw)`, issue #1426
++ [x] Select: attribute `data-cls-drop-list` now override default class `d-menu` if defined
++ [x] Lists: if list has class, it resets with `margin: 0; padding: 0; list-style: none inside;` 
++ [x] Select: if option not has value, used option text for value
++ [x] Table: add event `onDataSaveError`
++ [x] Table: fix save view to server
++ [x] M4Q Ajax: fix creating additional headers for request, issue #1427
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408

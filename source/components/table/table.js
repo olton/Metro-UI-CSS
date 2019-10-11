@@ -20,6 +20,8 @@ var TableDefaultConfig = {
     filters: null,
     filtersOperator: "and",
 
+    head: null,
+    body: null,
     source: null,
 
     searchMinLength: 1,
@@ -110,6 +112,7 @@ var TableDefaultConfig = {
     onDataLoad: Metro.noop,
     onDataLoadError: Metro.noop,
     onDataLoaded: Metro.noop,
+    onDataSaveError: Metro.noop,
     onFilterRowAccepted: Metro.noop,
     onFilterRowDeclined: Metro.noop,
     onCheckClick: Metro.noop,
@@ -442,7 +445,7 @@ var Table = {
         this._createInspectorEvents();
     },
 
-    _createHeadsFormHTML: function(){
+    _createHeadsFromHTML: function(){
         var that = this, element = this.element;
         var head = element.find("thead");
 
@@ -524,7 +527,7 @@ var Table = {
             that.items.push(tr);
         });
 
-        this._createHeadsFormHTML();
+        this._createHeadsFromHTML();
         this._createFootsFromHTML();
     },
 
@@ -538,7 +541,7 @@ var Table = {
         if (source.header !== undefined) {
             that.heads = source.header;
         } else {
-            this._createHeadsFormHTML();
+            this._createHeadsFromHTML();
         }
 
         if (source.data !== undefined) {
@@ -1171,21 +1174,27 @@ var Table = {
                 view: view
             });
         } else {
+            var post_data = {
+                id : element.attr("id"),
+                view : view
+            };
             $.post(
-                o.viewSavePath,
-                {
-                    id : element.attr("id"),
-                    view : view
-                },
-                function(data, status, xhr){
-                    Utils.exec(o.onViewSave, [o.viewSavePath, view, data, status, xhr], element[0]);
+                o.viewSavePath, post_data).then(function(data){
+                    Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
                     element.fire("viewsave", {
                         target: "server",
                         path: o.viewSavePath,
-                        view: view
+                        view: view,
+                        post_data: post_data
                     });
-                }
-            );
+                }, function(xhr){
+                    Utils.exec(o.onDataSaveError, [o.viewSavePath, post_data, xhr], element[0]);
+                    element.fire("datasaveerror", {
+                        source: o.viewSavePath,
+                        xhr: xhr,
+                        post_data: post_data
+                    });
+                });
         }
     },
 
@@ -1365,10 +1374,7 @@ var Table = {
                     var td = $("<td>");
 
                     if (Utils.isValue(that.heads[cell_index].template)) {
-                        val = TemplateEngine(that.heads[cell_index].template, {value: val}, {
-                            beginToken: o.templateBeginToken,
-                            endToken: o.templateEndToken
-                        })
+                        val = that.heads[cell_index].template.replace("%VAL%", val);
                     }
 
                     if (o.cellWrapper === true) {

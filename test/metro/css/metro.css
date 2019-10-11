@@ -16475,6 +16475,12 @@ ol.unstyled-list {
 .inline-list li:last-child {
   margin-right: 0;
 }
+ul[class],
+ol[class] {
+  list-style: none inside;
+  margin: 0;
+  padding: 0;
+}
 dl dt,
 dl dd {
   line-height: 1.25rem;

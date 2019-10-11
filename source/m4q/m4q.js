@@ -528,7 +528,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.2. Built at 09/10/2019 14:15:13";
+var m4qVersion = "v1.0.2. Built at 11/10/2019 10:02:41";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1856,7 +1856,7 @@ $.ajax = function(p){
         }
 
         if (p.headers) {
-            $.each(function(k, v){
+            $.each(p.headers, function(k, v){
                 xhr.setRequestHeader(k, v);
                 headers.push(k);
             });

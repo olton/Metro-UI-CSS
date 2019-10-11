@@ -543,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.2. Built at 09/10/2019 14:15:13";
+var m4qVersion = "v1.0.2. Built at 11/10/2019 10:02:41";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1871,7 +1871,7 @@ $.ajax = function(p){
         }
 
         if (p.headers) {
-            $.each(function(k, v){
+            $.each(p.headers, function(k, v){
                 xhr.setRequestHeader(k, v);
                 headers.push(k);
             });
@@ -3596,7 +3596,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "10/10/2019 18:07:59",
+    compileTime: "11/10/2019 10:05:44",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -20417,7 +20417,7 @@ var Select = {
         var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
         var tag;
 
-        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
+        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : item.text).appendTo(parent);
         a = $("<a>").html(html).appendTo(l);
 
         l.addClass(item.className);
@@ -20501,7 +20501,7 @@ var Select = {
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
-        list = $("<ul>").addClass("d-menu").addClass(o.clsDropList).css({
+        list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight
         });
         filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
@@ -23694,6 +23694,8 @@ var TableDefaultConfig = {
     filters: null,
     filtersOperator: "and",
 
+    head: null,
+    body: null,
     source: null,
 
     searchMinLength: 1,
@@ -23784,6 +23786,7 @@ var TableDefaultConfig = {
     onDataLoad: Metro.noop,
     onDataLoadError: Metro.noop,
     onDataLoaded: Metro.noop,
+    onDataSaveError: Metro.noop,
     onFilterRowAccepted: Metro.noop,
     onFilterRowDeclined: Metro.noop,
     onCheckClick: Metro.noop,
@@ -24116,7 +24119,7 @@ var Table = {
         this._createInspectorEvents();
     },
 
-    _createHeadsFormHTML: function(){
+    _createHeadsFromHTML: function(){
         var that = this, element = this.element;
         var head = element.find("thead");
 
@@ -24198,7 +24201,7 @@ var Table = {
             that.items.push(tr);
         });
 
-        this._createHeadsFormHTML();
+        this._createHeadsFromHTML();
         this._createFootsFromHTML();
     },
 
@@ -24212,7 +24215,7 @@ var Table = {
         if (source.header !== undefined) {
             that.heads = source.header;
         } else {
-            this._createHeadsFormHTML();
+            this._createHeadsFromHTML();
         }
 
         if (source.data !== undefined) {
@@ -24845,21 +24848,27 @@ var Table = {
                 view: view
             });
         } else {
+            var post_data = {
+                id : element.attr("id"),
+                view : view
+            };
             $.post(
-                o.viewSavePath,
-                {
-                    id : element.attr("id"),
-                    view : view
-                },
-                function(data, status, xhr){
-                    Utils.exec(o.onViewSave, [o.viewSavePath, view, data, status, xhr], element[0]);
+                o.viewSavePath, post_data).then(function(data){
+                    Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
                     element.fire("viewsave", {
                         target: "server",
                         path: o.viewSavePath,
-                        view: view
+                        view: view,
+                        post_data: post_data
                     });
-                }
-            );
+                }, function(xhr){
+                    Utils.exec(o.onDataSaveError, [o.viewSavePath, post_data, xhr], element[0]);
+                    element.fire("datasaveerror", {
+                        source: o.viewSavePath,
+                        xhr: xhr,
+                        post_data: post_data
+                    });
+                });
         }
     },
 
@@ -25039,10 +25048,7 @@ var Table = {
                     var td = $("<td>");
 
                     if (Utils.isValue(that.heads[cell_index].template)) {
-                        val = TemplateEngine(that.heads[cell_index].template, {value: val}, {
-                            beginToken: o.templateBeginToken,
-                            endToken: o.templateEndToken
-                        })
+                        val = that.heads[cell_index].template.replace("%VAL%", val);
                     }
 
                     if (o.cellWrapper === true) {

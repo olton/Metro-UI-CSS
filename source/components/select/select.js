@@ -96,7 +96,7 @@ var Select = {
         var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
         var tag;
 
-        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : "").appendTo(parent);
+        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : item.text).appendTo(parent);
         a = $("<a>").html(html).appendTo(l);
 
         l.addClass(item.className);
@@ -180,7 +180,7 @@ var Select = {
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
-        list = $("<ul>").addClass("d-menu").addClass(o.clsDropList).css({
+        list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight
         });
         filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
