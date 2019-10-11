@@ -40,7 +40,7 @@ module.exports = function(grunt) {
         ' * Licensed under <%= pkg.license %>\n' +
         ' */\n',
 
-        requirejs_banner: "\n(function( factory ) {\n"+
+        banner: "\n(function( factory ) {\n"+
         "    if ( typeof define === 'function' && define.amd ) {\n" +
         "        define('metro4', factory );\n"+
         "    } else {\n" +
@@ -49,6 +49,9 @@ module.exports = function(grunt) {
         "}(function( ) { \n"+
         "'use strict';\n\n",
 
+        // footer: "\n\nif (METRO_INIT ===  true) $(function(){Metro.init();})\n\n}));",
+        footer: "\n\nif (METRO_INIT ===  true) Metro.init();\n\n}));",
+
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
         },
@@ -56,8 +59,8 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 options: {
-                    banner: '<%= copyright %>' + '<%= requirejs_banner%>',
-                    footer: "\n\n}));",
+                    banner: '<%= copyright %>' + '<%= banner%>',
+                    footer: '<%= footer %>',
                     stripBanners: true,
                     separator: "\n\n"
                 },
