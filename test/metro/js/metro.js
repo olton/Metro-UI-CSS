@@ -3602,7 +3602,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "11/10/2019 18:50:45",
+    compileTime: "11/10/2019 19:30:03",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -23698,6 +23698,7 @@ var TableDefaultConfig = {
 
     head: null,
     body: null,
+    static: false,
     source: null,
 
     searchMinLength: 1,
@@ -23886,6 +23887,22 @@ var Table = {
             this.searchFields = Utils.strToArray(o.searchFields);
         }
 
+        if (Utils.isValue(o.head)) {
+            o.head = Utils.isObject(o.head);
+        }
+
+        if (Utils.isValue(o.body)) {
+            o.body = Utils.isObject(o.body);
+        }
+
+        if (o.static === true) {
+            o.showPagination = false;
+            o.showRowsSteps = false;
+            o.showSearch = false;
+            o.showTableInfo = false;
+            o.rows = -1;
+        }
+
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
             element.fire("dataload", {
@@ -23932,6 +23949,14 @@ var Table = {
         this.items = [];
         this.heads = [];
         this.foots = [];
+
+        if (Array.isArray(o.head)) {
+            this.heads = o.head;
+        }
+
+        if (Array.isArray(o.body)) {
+            this.items = o.body;
+        }
 
         if (Utils.isValue(data)) {
             this._createItemsFromJSON(data);
@@ -25357,7 +25382,7 @@ var Table = {
     setHeadItem: function(name, data){
         var i, index;
         for(i = 0; i < this.heads.length; i++) {
-            if (item.name === name) {
+            if (this.heads[i].name === name) {
                 index = i;
                 break;
             }
@@ -25372,9 +25397,19 @@ var Table = {
     },
 
     setData: function(/*obj*/ data){
+        var o = this.options;
+
         this.items = [];
         this.heads = [];
         this.foots = [];
+
+        if (Array.isArray(o.head)) {
+            this.heads = o.head;
+        }
+
+        if (Array.isArray(o.body)) {
+            this.items = o.body;
+        }
 
         this._createItemsFromJSON(data);
 
@@ -25414,6 +25449,15 @@ var Table = {
                     source: o.source,
                     data: data
                 });
+
+                if (Array.isArray(o.head)) {
+                    that.heads = o.head;
+                }
+
+                if (Array.isArray(o.body)) {
+                    that.items = o.body;
+                }
+
                 that._createItemsFromJSON(data);
                 that._rebuild(review);
             }, function(xhr){
