@@ -11,6 +11,7 @@
 + [x] Table: fix save view to server
 + [x] M4Q Ajax: fix creating additional headers for request, issue #1427
 + [x] Init: add meta tag `metro4:init:mode`. The value must be `immediate` or `contentloaded`. If value is `contentloaded` and meta tag `metro4:init` not equal  `false`, Metro 4 will be initiate after the content was loaded.
++ [x] Table: now you can define `decimalSeparator` and `thousandSeparator` in table head and global
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408
