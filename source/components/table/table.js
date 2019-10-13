@@ -212,11 +212,21 @@ var Table = {
         }
 
         if (Utils.isValue(o.head)) {
+            var _head = o.head;
             o.head = Utils.isObject(o.head);
+            if (!o.head) {
+                console.warn("Head "+_head+" defined but not exists!");
+                o.head = null;
+            }
         }
 
         if (Utils.isValue(o.body)) {
+            var _body = o.body;
             o.body = Utils.isObject(o.body);
+            if (!o.body) {
+                console.warn("Body "+_body+" defined but not exists!");
+                o.body = null;
+            }
         }
 
         if (o.static === true) {
@@ -1346,6 +1356,11 @@ var Table = {
         var view = o.staticView ? this.viewDefault : this.view;
 
         body.html("");
+
+        if (!this.heads.length) {
+            console.warn("Heads is not defined for table ID " + element.attr("id"));
+            return ;
+        }
 
         items = this._filter();
 
