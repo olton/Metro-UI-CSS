@@ -64,7 +64,7 @@ var Splitter = {
         var element = this.element, o = this.options;
         var children = element.children(o.children).addClass("split-block");
         var i, children_sizes = [];
-        var gutters, resizeProp = o.splitMode === "horizontal" ? "width" : "height";
+        var resizeProp = o.splitMode === "horizontal" ? "width" : "height";
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", Utils.elementId("splitter"));
@@ -79,20 +79,7 @@ var Splitter = {
             $("<div>").addClass("gutter").css(resizeProp, o.gutterSize).insertAfter($(children[i]));
         }
 
-        gutters = element.children(".gutter");
-
-        if (!Utils.isValue(o.splitSizes)) {
-            children.css({
-                flexBasis: "calc("+(100/children.length)+"% - "+(gutters.length * o.gutterSize)+"px)"
-            })
-        } else {
-            children_sizes = Utils.strToArray(o.splitSizes);
-            for(i = 0; i < children_sizes.length; i++) {
-                $(children[i]).css({
-                    flexBasis: "calc("+children_sizes[i]+"% - "+(gutters.length * o.gutterSize)+"px)"
-                });
-            }
-        }
+        this._setSize();
 
         if (Utils.isValue(o.minSizes)) {
             if (String(o.minSizes).contains(",")) {
@@ -110,6 +97,27 @@ var Splitter = {
 
         if (o.saveState && this.storage !== null) {
             this._getSize();
+        }
+    },
+
+    _setSize: function(){
+        var element = this.element, o = this.options;
+        var gutters, children_sizes, i;
+        var children = element.children(".split-block");
+
+        gutters = element.children(".gutter");
+
+        if (!Utils.isValue(o.splitSizes)) {
+            children.css({
+                flexBasis: "calc("+(100/children.length)+"% - "+(gutters.length * o.gutterSize)+"px)"
+            })
+        } else {
+            children_sizes = Utils.strToArray(o.splitSizes);
+            for(i = 0; i < children_sizes.length; i++) {
+                $(children[i]).css({
+                    flexBasis: "calc("+children_sizes[i]+"% - "+(gutters.length * o.gutterSize)+"px)"
+                });
+            }
         }
     },
 
@@ -189,7 +197,7 @@ var Splitter = {
     },
 
     _saveSize: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var storage = this.storage, itemsSize = [];
 
         if (o.saveState === true && storage !== null) {
@@ -205,7 +213,7 @@ var Splitter = {
     },
 
     _getSize: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var storage = this.storage, itemsSize = [];
 
         if (o.saveState === true && storage !== null) {
@@ -219,8 +227,29 @@ var Splitter = {
         }
     },
 
-    changeAttribute: function(attributeName){
+    size: function(size){
+        var that = this, o = this.options;
+        if (Utils.isValue(size)) {
+            o.splitSizes = size;
+            that._setSize();
+        }
+        return this;
+    },
 
+    changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+
+        function changeSize(){
+            var size = element.attr("data-split-sizes");
+            if (Utils.isValue(size)) {
+                o.splitSizes = size;
+                that._setSize();
+            }
+        }
+
+        if (attributeName === 'data-split-sizes') {
+            changeSize();
+        }
     },
 
     destroy: function(){
