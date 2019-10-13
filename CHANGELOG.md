@@ -14,7 +14,8 @@
 + [x] Table: now you can define `decimalSeparator` and `thousandSeparator` in table head and global
 + [x] Table: add attributes `data-head` (object name, define table header), `data-body` (object name, define table data)
 + [x] Table: add attribute `data-static`. If `true`, search, pagination, info, rows count will be disabled and will not showing.
-+ [x] Splitter: add method `size(str)` for change panel sizes at runtime, add observing for attribute `data-split-sizes` for change panel sizes at runtime 
++ [x] Splitter: add method `size(str)` for change panel sizes at runtime, add observing for attribute `data-split-sizes` for change panel sizes at runtime
++ [x] Carousel: improve slide switching 
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408
