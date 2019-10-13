@@ -65,7 +65,7 @@ var Carousel = {
         this.current = null;
         this.currentIndex = null;
         this.dir = this.options.direction;
-        this.interval = null;
+        this.interval = false;
         this.isAnimate = false;
 
         this._setOptionsFromDOM();
@@ -155,7 +155,7 @@ var Carousel = {
             return ;
         }
 
-        this.interval = setTimeout(function run() {
+        if (this.interval === false) this.interval = setTimeout(function run() {
             var t = o.direction === 'left' ? 'next' : 'prior';
             that._slideTo(t, true);
         }, period);
@@ -427,8 +427,8 @@ var Carousel = {
             duration = 0;
         }
 
-        current.stop(true, true);
-        next.stop(true, true);
+        current.stop(true);
+        next.stop(true);
         this.isAnimate = true;
 
         setTimeout(function(){that.isAnimate = false;}, duration);
