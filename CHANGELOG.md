@@ -16,6 +16,7 @@
 + [x] Table: add attribute `data-static`. If `true`, search, pagination, info, rows count will be disabled and will not showing.
 + [x] Splitter: add method `size(str)` for change panel sizes at runtime, add observing for attribute `data-split-sizes` for change panel sizes at runtime
 + [x] Carousel: improve slide switching 
++ [x] TreeView: add trigger `change` for checkboxes
 
 ### 4.3.1
 + [x] Interop: fix interop with Metro4 and jQuery, issue #1408
