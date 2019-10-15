@@ -232,7 +232,8 @@ var TreeView = {
         checks = check.closest("li").find("ul input[type=checkbox]");
         checks.attr("data-indeterminate", false);
         checks.prop("checked", checked);
-
+        checks.trigger('change');
+        
         all_checks = [];
 
         $.each(element.find("input[type=checkbox]"), function(){
@@ -249,6 +250,7 @@ var TreeView = {
             if (children > 0 && children_checked === 0) {
                 ch.attr("data-indeterminate", false);
                 ch.prop("checked", false);
+                ch.trigger('change');
             }
 
             if (children_checked === 0) {
@@ -259,6 +261,7 @@ var TreeView = {
                 } else if (children === children_checked) {
                     ch.attr("data-indeterminate", false);
                     ch.prop("checked", true);
+                    ch.trigger('change');
                 }
             }
         });
