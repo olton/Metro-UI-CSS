@@ -11312,7 +11312,7 @@ div {
     width: auto!important;
   }
   .h-auto-fs {
-    width: auto!important;
+    height: auto!important;
   }
   .h-vh-25-fs {
     height: 25vh !important;
@@ -11440,7 +11440,7 @@ div {
     width: auto!important;
   }
   .h-auto-sm {
-    width: auto!important;
+    height: auto!important;
   }
   .h-vh-25-sm {
     height: 25vh !important;
@@ -11568,7 +11568,7 @@ div {
     width: auto!important;
   }
   .h-auto-md {
-    width: auto!important;
+    height: auto!important;
   }
   .h-vh-25-md {
     height: 25vh !important;
@@ -11696,7 +11696,7 @@ div {
     width: auto!important;
   }
   .h-auto-lg {
-    width: auto!important;
+    height: auto!important;
   }
   .h-vh-25-lg {
     height: 25vh !important;
@@ -11824,7 +11824,7 @@ div {
     width: auto!important;
   }
   .h-auto-xl {
-    width: auto!important;
+    height: auto!important;
   }
   .h-vh-25-xl {
     height: 25vh !important;
@@ -11952,7 +11952,7 @@ div {
     width: auto!important;
   }
   .h-auto-xxl {
-    width: auto!important;
+    height: auto!important;
   }
   .h-vh-25-xxl {
     height: 25vh !important;
