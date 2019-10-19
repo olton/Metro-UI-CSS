@@ -148,6 +148,8 @@ var AppBar = {
         var hamburger = element.find(".hamburger");
 
         menu.slideUp(o.duration, function(){
+			$('body').removeClass('overflow-hidden');
+			element.removeClass('scrollable');
             menu.addClass("collapsed");
             hamburger.removeClass("active");
         });
@@ -159,6 +161,8 @@ var AppBar = {
         var hamburger = element.find(".hamburger");
 
         menu.slideDown(o.duration, function(){
+			$('body').addClass('overflow-hidden');
+			element.addClass('scrollable');
             menu.removeClass("collapsed");
             hamburger.addClass("active");
         });
