@@ -422,7 +422,7 @@ function iif(val1, val2, val3){
         if (typeof resolver !== 'function')
             throw new TypeError('Promise constructor takes a function argument');
 
-        if (this instanceof Promise === false)
+        if (!this instanceof Promise)
             throw new TypeError('Failed to construct \'Promise\': Please use the \'new\' operator, this object constructor cannot be called as a function.');
 
         this.then_ = [];
@@ -457,6 +457,10 @@ function iif(val1, val2, val3){
             }
 
             return subscriber.then;
+        },
+
+        done: function(onFulfillment){
+            return this.then(onFulfillment, null);
         },
 
         'catch': function(onRejection) {
@@ -543,15 +547,15 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.2. Built at 11/10/2019 10:02:41";
+var m4qVersion = "v1.0.2. Built at 20/10/2019 17:44:04";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
-    || Element.prototype.matchesSelector
-    || Element.prototype.webkitMatchesSelector
-    || Element.prototype.mozMatchesSelector
-    || Element.prototype.msMatchesSelector
-    || Element.prototype.oMatchesSelector;
+    || Element.prototype["matchesSelector"]
+    || Element.prototype["webkitMatchesSelector"]
+    || Element.prototype["mozMatchesSelector"]
+    || Element.prototype["msMatchesSelector"]
+    || Element.prototype["oMatchesSelector"];
 
 var $ = function(selector, context){
     return new $.init(selector, context);
@@ -2482,6 +2486,7 @@ $.extend({
 
 // Source: src/manipulation.js
 
+// TODO optimise promises append, prepend to one definition
 (function (arr) {
     arr.forEach(function (item) {
         if (item.hasOwnProperty('append')) {
@@ -2687,7 +2692,7 @@ $.fn.extend({
 
 // Source: src/animation.js
 
-var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window.mozCancelAnimationFrame;
+var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window["mozCancelAnimationFrame"];
 
 var Easing = {
 
@@ -3602,7 +3607,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.2",
-    compileTime: "17/10/2019 17:15:55",
+    compileTime: "20/10/2019 17:52:15",
     buildNumber: "739",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -22560,14 +22565,11 @@ var Splitter = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
 
         function changeSize(){
             var size = element.attr("data-split-sizes");
-            if (Utils.isValue(size)) {
-                o.splitSizes = size;
-                that._setSize();
-            }
+            that.size(size);
         }
 
         if (attributeName === 'data-split-sizes') {
