@@ -51,7 +51,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 ### Donation
 ![Donations on Patreon](https://img.shields.io/badge/Patreon-$119-red.svg)
-![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$0-darklime.svg)
+![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$1-darklime.svg)
 
 ### Community
 
