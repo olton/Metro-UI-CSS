@@ -237,14 +237,11 @@ var Splitter = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
 
         function changeSize(){
             var size = element.attr("data-split-sizes");
-            if (Utils.isValue(size)) {
-                o.splitSizes = size;
-                that._setSize();
-            }
+            that.size(size);
         }
 
         if (attributeName === 'data-split-sizes') {
