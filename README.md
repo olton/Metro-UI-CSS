@@ -19,13 +19,15 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 <a href="https://github.com/olton/Metro-UI-CSS/blob/master/BACKERS.md"><strong>awesome Backers</strong></a>.
 </p>
+<p align="center">
 <a href="https://www.patreon.com/metroui">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
 </a>
+</p>
 <br>
 <hr>
  
-## Current Version 4.3.2
+## Current Version 4.3.3
 
 ### Status
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
