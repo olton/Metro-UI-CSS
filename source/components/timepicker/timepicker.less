@@ -4,6 +4,20 @@
 .time-picker {
     .hideElement(input);
 
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            .time-wrapper {
+                border-color: @@color;
+
+                &:focus, &.focused {
+                    .focus-show(@@color);
+                }
+            }
+        }
+    })
+
     input:focus ~ .time-wrapper {
         .focus-show(@lightGray);
     }

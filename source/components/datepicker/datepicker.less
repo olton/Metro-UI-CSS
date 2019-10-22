@@ -8,6 +8,20 @@
         .focus-show(@lightGray);
     }
 
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            .date-wrapper {
+                border-color: @@color;
+
+                &:focus, &.focused {
+                    .focus-show(@@color);
+                }
+            }
+        }
+    })
+
     .date-wrapper {
         display: inline-flex;
         flex-flow: row nowrap;
