@@ -547,7 +547,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.2. Built at 20/10/2019 17:44:04";
+var m4qVersion = "v1.0.3. Built at 22/10/2019 14:20:34";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1841,6 +1841,13 @@ $.fn.extend({
     }
 });
 
+$.fn.extend({
+    ready: function(fn){
+        if (this.length && this[0] === document && typeof fn === 'function') {
+            return $.ready(fn);
+        }
+    }
+});
 
 // Source: src/ajax.js
 
@@ -3607,7 +3614,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "22/10/2019 10:55:24",
+    compileTime: "22/10/2019 14:21:59",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
