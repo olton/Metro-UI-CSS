@@ -8,8 +8,6 @@ describe("Metro 4 :: progress test", ()=>{
     targets.forEach((el)=>{
         it(el[1], ()=>{
             cy.visit("/cypress/components/progress/"+el[0]);
-
-            cy.get(".activity-ring").should("be.visible");
         })
     })
 
