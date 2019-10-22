@@ -1,4 +1,8 @@
 var ProgressDefaultConfig = {
+    showValue: false,
+    showLabel: false,
+    labelPosition: "before", // before, after
+    labelTemplate: "",
     value: 0,
     buffer: 0,
     type: "bar",
@@ -6,6 +10,8 @@ var ProgressDefaultConfig = {
     clsBack: "",
     clsBar: "",
     clsBuffer: "",
+    clsValue: "",
+    clsLabel: "",
     onValueChange: Metro.noop,
     onBufferChange: Metro.noop,
     onComplete: Metro.noop,
@@ -36,7 +42,7 @@ var Progress = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -51,8 +57,13 @@ var Progress = {
 
     _create: function(){
         var element = this.element, o = this.options;
+        var value;
 
         Metro.checkRuntime(element, "progress");
+
+        if (typeof o.type === "string") {
+            o.type = o.type.toLowerCase();
+        }
 
         element
             .html("")
@@ -85,6 +96,13 @@ var Progress = {
             default: _progress();
         }
 
+        if (o.type !== 'line') {
+            value = $("<span>").addClass("value").addClass(o.clsValue).appendTo(element);
+            if (o.showValue === false) {
+                value.hide();
+            }
+        }
+
         if (o.small === true) {
             element.addClass("small");
         }
@@ -92,6 +110,15 @@ var Progress = {
         element.addClass(o.clsBack);
         element.find(".bar").addClass(o.clsBar);
         element.find(".buffer").addClass(o.clsBuffer);
+
+        if (o.showLabel === true) {
+            var label = $("<span>").addClass("progress-label").addClass(o.clsLabel).html(o.labelTemplate === "" ? o.value : o.labelTemplate.replace("%VAL%", o.value));
+            if (o.labelPosition === 'before') {
+                label.insertBefore(element);
+            } else {
+                label.insertAfter(element);
+            }
+        }
 
         this.val(o.value);
         this.buff(o.buffer);
@@ -102,6 +129,7 @@ var Progress = {
 
     val: function(v){
         var that = this, element = this.element, o = this.options;
+        var value = element.find(".value");
 
         if (v === undefined) {
             return that.value;
@@ -116,6 +144,19 @@ var Progress = {
         this.value = parseInt(v, 10);
 
         bar.css("width", this.value + "%");
+        value.html(this.value+"%");
+
+        var diff = element.width() - bar.width();
+        var valuePosition = value.width() > diff ? {left: "auto", right: diff + 'px'} : {left: v + '%'};
+
+        value.css(valuePosition);
+
+        if (o.showLabel === true) {
+            var label = element[o.labelPosition === "before" ? "prev" : "next"](".progress-label");
+            if (label.length) {
+                label.html(o.labelTemplate === "" ? o.value : o.labelTemplate.replace("%VAL%", o.value));
+            }
+        }
 
         Utils.exec(o.onValueChange, [this.value], element[0]);
         element.fire("valuechange", {
