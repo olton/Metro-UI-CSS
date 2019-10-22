@@ -2,7 +2,8 @@
 + [x] m4q: upd to 1.0.3
 + [x] Toast: fix calculating toast position
 + [x] Progress: fix global setup function name
-+ [ ] Progress: add label, percent value
++ [x] Progress: percent value. To show set attribute `data-show-value="true"`
++ [x] Progress: add label. Use attributes `data-show-label="true|false"`, `data-label-position="before|after"`, `data-label-template="Value is %VAL%"`
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417
