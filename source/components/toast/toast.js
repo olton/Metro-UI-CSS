@@ -10,9 +10,11 @@ var Toast = {
 
     create: function(message, callback, timeout, cls, options){
         var o = options || Toast.options;
-        var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
+        var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
         var width = toast.outerWidth();
         var timer = null;
+
+        toast.hide();
 
         timeout = timeout || o.timeout;
         callback = callback || o.callback;

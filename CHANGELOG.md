@@ -1,4 +1,7 @@
 ### 4.3.3
++ [x] Toast: fix calculating toast position
++ [x] Progress: fix global setup function name
++ [ ] Progress: add label, percent value
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417
