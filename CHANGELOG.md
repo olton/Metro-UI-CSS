@@ -1,4 +1,5 @@
 ### 4.3.3
++ [x] m4q: upd to 1.0.3
 + [x] Toast: fix calculating toast position
 + [x] Progress: fix global setup function name
 + [ ] Progress: add label, percent value
