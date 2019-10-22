@@ -18,7 +18,7 @@ Metro.progressSetup = function (options) {
 };
 
 if (typeof window["metroProgressSetup"] !== undefined) {
-    Metro.bottomSheetSetup(window["metroProgressSetup"]);
+    Metro.progressSetup(window["metroProgressSetup"]);
 }
 
 var Progress = {

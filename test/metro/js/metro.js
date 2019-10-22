@@ -1,5 +1,5 @@
 /*
- * Metro 4 Components Library v4.3.2  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.3  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
  * Licensed under MIT
  */
@@ -3606,9 +3606,9 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 
 var Metro = {
 
-    version: "4.3.2",
-    compileTime: "20/10/2019 17:53:59",
-    buildNumber: "739",
+    version: "4.3.3",
+    compileTime: "22/10/2019 10:36:38",
+    buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -19302,7 +19302,7 @@ Metro.progressSetup = function (options) {
 };
 
 if (typeof window["metroProgressSetup"] !== undefined) {
-    Metro.bottomSheetSetup(window["metroProgressSetup"]);
+    Metro.progressSetup(window["metroProgressSetup"]);
 }
 
 var Progress = {
@@ -27691,9 +27691,11 @@ var Toast = {
 
     create: function(message, callback, timeout, cls, options){
         var o = options || Toast.options;
-        var toast = $("<div>").addClass("toast").html(message).appendTo($("body")).hide();
+        var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
         var width = toast.outerWidth();
         var timer = null;
+
+        toast.hide();
 
         timeout = timeout || o.timeout;
         callback = callback || o.callback;
@@ -29615,8 +29617,8 @@ Metro.validatorSetup = function (options) {
     ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
 };
 
-if (typeof window.metroValidatorSetup !== undefined) {
-    Metro.validatorSetup(window.metroValidatorSetup);
+if (typeof window["metroValidatorSetup"] !== undefined) {
+    Metro.validatorSetup(window["metroValidatorSetup"]);
 }
 
 var Validator = {

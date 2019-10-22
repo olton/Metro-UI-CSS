@@ -293,8 +293,8 @@ Metro.validatorSetup = function (options) {
     ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
 };
 
-if (typeof window.metroValidatorSetup !== undefined) {
-    Metro.validatorSetup(window.metroValidatorSetup);
+if (typeof window["metroValidatorSetup"] !== undefined) {
+    Metro.validatorSetup(window["metroValidatorSetup"]);
 }
 
 var Validator = {
