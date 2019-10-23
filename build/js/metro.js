@@ -3614,7 +3614,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "23/10/2019 18:21:18",
+    compileTime: "23/10/2019 18:48:33",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -25569,6 +25569,11 @@ var Table = {
 
     reload: function(review){
         this.loadData(this.options.source, review);
+    },
+
+    clear: function(){
+        this.items = [];
+        return this.draw();
     },
 
     next: function(){

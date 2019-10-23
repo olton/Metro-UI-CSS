@@ -1815,6 +1815,11 @@ var Table = {
         this.loadData(this.options.source, review);
     },
 
+    clear: function(){
+        this.items = [];
+        return this.draw();
+    },
+
     next: function(){
         if (this.items.length === 0) return ;
         this.currentPage++;
