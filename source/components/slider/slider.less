@@ -22,6 +22,20 @@
 }
 
 .slider {
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            .complete {
+                background-color: @@color;
+            }
+
+            .backside {
+                background-color: desaturate(@@color, 50%);
+            }
+        }
+    })
+
     .backside, .complete, .buffer, .marker {
         position: absolute;
         left: 0;

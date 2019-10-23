@@ -48,6 +48,21 @@
         }
     }
 
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            input[type=radio]:checked ~ .check {
+                background-color: @@color;
+                border-color: @@color;
+            }
+
+            .check {
+                border-color: @@color;
+            }
+        }
+    })
+
     input[type=radio]:checked ~ .check {
         border-color: @dark;
         background-color: @dark;

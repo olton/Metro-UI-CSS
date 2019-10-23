@@ -49,6 +49,21 @@
         }
     }
 
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            input[type=checkbox]:checked ~ .check, input[data-indeterminate=true] ~ .check {
+                background-color: @@color;
+                border-color: @@color;
+            }
+
+            .check {
+                border-color: @@color;
+            }
+        }
+    })
+
     input[type=checkbox]:checked ~ .check {
         border-color: @dark;
         background-color: @dark;

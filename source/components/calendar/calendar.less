@@ -9,6 +9,32 @@
     overflow: hidden;
     user-select: none;
     background-color: @white;
+
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            border-color: @@color;
+
+            .calendar-content .day {
+                &.selected {
+                    box-shadow: inset 0 0 0 1px @@color !important;
+
+                    &::after {
+                        border-top-color: @@color;
+                    }
+                }
+
+                &.today {
+                    background-color: lighten(@@color, 5%);
+                }
+            }
+
+            .calendar-header {
+                background-color: lighten(@@color, 5%);
+            }
+        }
+    })
 }
 
 .calendar-header, .calendar-content, .calendar-footer {

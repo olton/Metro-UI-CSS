@@ -52,6 +52,31 @@
         border-radius: 50%;
     }
 
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            input[type=checkbox]:checked ~ .check {
+                background-color: @@color;
+                border-color: @@color;
+
+                &::after {
+                    background-color: @white;
+                    border-color: @white;
+                }
+            }
+
+            .check {
+                border-color: @@color;
+
+                &::after {
+                    background-color: @@color;
+                    border-color: @@color;
+                }
+            }
+        }
+    })
+
     input[type="checkbox"]:checked ~ .check {
         background: @dark;
         border-color: @dark;

@@ -56,6 +56,14 @@
     outline-offset: -12px;
     background-color: @light;
 
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            outline-color: @@color;
+        }
+    })
+
     .icon {
         display: block;
         width: 64px;

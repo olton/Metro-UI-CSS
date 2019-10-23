@@ -20,6 +20,20 @@
     background-color: @transparent;
     cursor: default;
     font-size: 16px;
+
+    each(@accentColors, {
+        @color: "@{value}Color";
+
+        &.@{value} {
+            .stars li {
+                color: desaturate(@@color, 50%);
+
+                &.on {
+                    color: @@color;
+                }
+            }
+        }
+    })
 }
 
 .rating {
