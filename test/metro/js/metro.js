@@ -3614,7 +3614,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "23/10/2019 18:48:33",
+    compileTime: "24/10/2019 12:23:40",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -23821,7 +23821,7 @@ var TableDefaultConfig = {
     infoWrapper: null,
     paginationWrapper: null,
 
-    cellWrapper: true,
+    cellWrapper: false,
 
     clsComponent: "",
     clsTableContainer: "",
@@ -25173,9 +25173,6 @@ var Table = {
                         val = that.heads[cell_index].template.replace("%VAL%", val);
                     }
 
-                    if (o.cellWrapper === true) {
-                        val = $("<div>").addClass("data-wrapper").addClass(o.clsCellWrapper).html(val);
-                    }
                     td.html(val);
 
                     td.addClass(o.clsBodyCell);
@@ -25202,6 +25199,11 @@ var Table = {
                         head: that.heads[cell_index],
                         items: cells
                     });
+
+                    if (o.cellWrapper === true) {
+                        val = $("<div>").addClass("data-wrapper").addClass(o.clsCellWrapper).html(td.html());
+                        td.html('').append(val);
+                    }
                 });
 
                 for (j = 0; j < cells.length; j++){

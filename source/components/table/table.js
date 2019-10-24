@@ -65,7 +65,7 @@ var TableDefaultConfig = {
     infoWrapper: null,
     paginationWrapper: null,
 
-    cellWrapper: true,
+    cellWrapper: false,
 
     clsComponent: "",
     clsTableContainer: "",
@@ -1417,9 +1417,6 @@ var Table = {
                         val = that.heads[cell_index].template.replace("%VAL%", val);
                     }
 
-                    if (o.cellWrapper === true) {
-                        val = $("<div>").addClass("data-wrapper").addClass(o.clsCellWrapper).html(val);
-                    }
                     td.html(val);
 
                     td.addClass(o.clsBodyCell);
@@ -1446,6 +1443,11 @@ var Table = {
                         head: that.heads[cell_index],
                         items: cells
                     });
+
+                    if (o.cellWrapper === true) {
+                        val = $("<div>").addClass("data-wrapper").addClass(o.clsCellWrapper).html(td.html());
+                        td.html('').append(val);
+                    }
                 });
 
                 for (j = 0; j < cells.length; j++){
