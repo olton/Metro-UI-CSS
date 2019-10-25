@@ -3614,7 +3614,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "25/10/2019 09:17:11",
+    compileTime: "25/10/2019 16:56:31",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21543,35 +21543,40 @@ var Slider = {
         var slider = this.slider, o = this.options;
         var length = (o.vertical === true ? slider.outerHeight() : slider.outerWidth()) - slider.find(".marker").outerWidth();
         switch (how) {
-            case "pix2prc": return Math.round( v * 100 / length );
-            case "pix2val": return Math.round( this._convert(v, 'pix2prc') * ((o.max - o.min) / 100) + o.min );
-            case "val2prc": return Math.round( (v - o.min)/( (o.max - o.min) / 100 )  );
-            case "prc2pix": return Math.round( v / ( 100 / length ));
-            case "val2pix": return Math.round( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
+            case "pix2prc": return ( v * 100 / length );
+            case "pix2val": return ( this._convert(v, 'pix2prc') * ((o.max - o.min) / 100) + o.min );
+            case "val2prc": return ( (v - o.min)/( (o.max - o.min) / 100 )  );
+            case "prc2pix": return ( v / ( 100 / length ));
+            case "val2pix": return ( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
         }
 
         return 0;
     },
 
     _correct: function(value){
+        var res = value;
         var accuracy  = this.options.accuracy;
         var min = this.options.min, max = this.options.max;
+        var _dec = function(v){
+            return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
+        };
 
         if (accuracy === 0 || isNaN(accuracy)) {
-            return value;
+            return res;
         }
 
-        value = Math.floor(value / accuracy) * accuracy + Math.round(value % accuracy / accuracy) * accuracy;
+        // value = Math.floor(value / accuracy) * accuracy + Math.round(value % accuracy / accuracy) * accuracy;
+        res = Math.round(value/accuracy)*accuracy;
 
-        if (value < min) {
-            value = min;
+        if (res < min) {
+            res = min;
         }
 
-        if (value > max) {
-            value = max;
+        if (res > max) {
+            res = max;
         }
 
-        return value;
+        return res.toFixed(_dec(accuracy));
     },
 
     _move: function(e){
