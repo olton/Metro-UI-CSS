@@ -68,11 +68,11 @@
         .text-ellipsis();
     }
 
-    &.focused {
-        outline-color: @cyan;
+    &.focused, &:hover {
+        outline-color: darken(@darkGray, 10%);
     }
 
     &.drop-on {
-        outline-color: @green;
+        outline-color: lighten(green, 10%);
     }
 }

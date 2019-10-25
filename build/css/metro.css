@@ -27524,11 +27524,12 @@ textarea {
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
 }
-.drop-zone.focused {
-  outline-color: #1ba1e2;
+.drop-zone.focused,
+.drop-zone:hover {
+  outline-color: #7e7e7e;
 }
 .drop-zone.drop-on {
-  outline-color: #60a917;
+  outline-color: #00b300;
 }
 .input {
   display: -webkit-box;
