@@ -3614,7 +3614,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "24/10/2019 12:23:40",
+    compileTime: "25/10/2019 09:17:11",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14104,9 +14104,10 @@ var File = {
             var fi = this;
             var file_names = [];
             var entry;
-            if (fi.files.length === 0) {
-                return ;
-            }
+
+            // if (fi.files.length === 0) {
+            //     return ;
+            // }
 
             Array.from(fi.files).forEach(function(file){
                 file_names.push(file.name);

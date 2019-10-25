@@ -121,9 +121,10 @@ var File = {
             var fi = this;
             var file_names = [];
             var entry;
-            if (fi.files.length === 0) {
-                return ;
-            }
+
+            // if (fi.files.length === 0) {
+            //     return ;
+            // }
 
             Array.from(fi.files).forEach(function(file){
                 file_names.push(file.name);
