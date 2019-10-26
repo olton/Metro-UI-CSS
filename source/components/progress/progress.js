@@ -1,5 +1,6 @@
 var ProgressDefaultConfig = {
     showValue: false,
+    valuePosition: "free", // center, free
     showLabel: false,
     labelPosition: "before", // before, after
     labelTemplate: "",
@@ -61,9 +62,7 @@ var Progress = {
 
         Metro.checkRuntime(element, "progress");
 
-        if (typeof o.type === "string") {
-            o.type = o.type.toLowerCase();
-        }
+        if (typeof o.type === "string") o.type = o.type.toLowerCase();
 
         element
             .html("")
@@ -98,21 +97,18 @@ var Progress = {
 
         if (o.type !== 'line') {
             value = $("<span>").addClass("value").addClass(o.clsValue).appendTo(element);
-            if (o.showValue === false) {
-                value.hide();
-            }
+            if (o.valuePosition === "center") value.addClass("centered");
+            if (o.showValue === false) value.hide();
         }
 
-        if (o.small === true) {
-            element.addClass("small");
-        }
+        if (o.small === true) element.addClass("small");
 
         element.addClass(o.clsBack);
         element.find(".bar").addClass(o.clsBar);
         element.find(".buffer").addClass(o.clsBuffer);
 
         if (o.showLabel === true) {
-            var label = $("<span>").addClass("progress-label").addClass(o.clsLabel).html(o.labelTemplate === "" ? o.value : o.labelTemplate.replace("%VAL%", o.value));
+            var label = $("<span>").addClass("progress-label").addClass(o.clsLabel).html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
             if (o.labelPosition === 'before') {
                 label.insertBefore(element);
             } else {
@@ -149,12 +145,12 @@ var Progress = {
         var diff = element.width() - bar.width();
         var valuePosition = value.width() > diff ? {left: "auto", right: diff + 'px'} : {left: v + '%'};
 
-        value.css(valuePosition);
+        if (o.valuePosition === "free") value.css(valuePosition);
 
         if (o.showLabel === true) {
             var label = element[o.labelPosition === "before" ? "prev" : "next"](".progress-label");
             if (label.length) {
-                label.html(o.labelTemplate === "" ? o.value : o.labelTemplate.replace("%VAL%", o.value));
+                label.html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
             }
         }
 

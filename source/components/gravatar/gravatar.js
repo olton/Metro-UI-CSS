@@ -10,7 +10,7 @@ Metro.gravatarSetup = function (options) {
 };
 
 if (typeof window["metroGravatarSetup"] !== undefined) {
-    Metro.bottomSheetSetup(window["metroGravatarSetup"]);
+    Metro.gravatarSetup(window["metroGravatarSetup"]);
 }
 
 var Gravatar = {

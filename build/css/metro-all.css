@@ -30633,6 +30633,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
           transform: translateY(-50%);
   margin-left: 4px;
 }
+.progress .value.centered {
+  left: 50%;
+  -webkit-transform: translate3d(-50%, -50%, 0);
+          transform: translate3d(-50%, -50%, 0);
+}
 .progress.small {
   height: 6px;
 }
