@@ -10,6 +10,7 @@
 + [x] File: fix Input file inconsistent display when user cancel the choose dialog, issue #1443
 + [x] Slider: fix using accuracy with  decimal value, issue #1447  
 + [x] Calendarpicker: add attribute `data-show-week-number`
++ [x] Gravatar: fix global setup method name
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417

@@ -907,6 +907,10 @@ var Utils = {
             }
         }
         return q;
+    },
+
+    decCount: function(v){
+        return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
     }
 };
 
