@@ -38,6 +38,8 @@ var CalendarPickerDefaultConfig = {
     special: null,
     showHeader: true,
 
+    showWeekNumber: false,
+
     clsCalendar: "",
     clsCalendarHeader: "",
     clsCalendarContent: "",
@@ -170,6 +172,7 @@ var CalendarPicker = {
             special: o.special,
             showHeader: o.showHeader,
             showFooter: false,
+            showWeekNumber: o.showWeekNumber,
             onDayClick: function(sel, day, el){
                 var date = new Date(sel[0]);
                 date.setHours(0,0,0,0);
