@@ -1,4 +1,11 @@
-(function (global, undefined) {
+/*
+ * m4q v1.0.3, (https://github.com/olton/m4q.git)
+ * Copyright 2018 - 2019 by Sergey Pimenov
+ * Helper for DOM manipulation, animation, and ajax routines.
+ * Licensed under MIT
+ */
+
+ (function (global, undefined) {
 
 // Source: src/mode.js
 
@@ -532,7 +539,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 22/10/2019 19:12:00";
+var m4qVersion = "v1.0.3. Built at 26/10/2019 15:33:29";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -586,6 +593,7 @@ $.extend = $.fn.extend = function(){
     return target;
 };
 
+if (typeof window["hideM4QVersion"] === "undefined") console.log("m4q "+$.version);
 
 // Source: src/interval.js
 
@@ -3380,7 +3388,7 @@ $.fn.extend({
 // Source: src/init.js
 
 $.init = function(sel, ctx){
-    var parsed;
+    var parsed, r;
 
     this.uid = $.uniqueId();
 
@@ -3419,9 +3427,19 @@ $.init = function(sel, ctx){
     }
 
     if (sel instanceof $) {
-        var r = $();
+        r = $();
         $.each(sel, function(){
             r.push(this);
+        });
+        return r;
+    }
+
+    if (Array.isArray(sel)) {
+        r = $();
+        $.each(sel, function(){
+            $(this).each(function(){
+                r.push(this);
+            });
         });
         return r;
     }

@@ -105,11 +105,7 @@ var Slider = {
         var id = Utils.elementId("slider");
         var i;
 
-        if (!element.attr("data-role-slider")) {
-            element
-                .attr("data-role-slider", true)
-                .attr("data-role", "slide");
-        }
+        Metro.checkRuntime(element, "slider");
 
         slider.attr("id", id);
 
@@ -315,9 +311,6 @@ var Slider = {
         var res = value;
         var accuracy  = this.options.accuracy;
         var min = this.options.min, max = this.options.max;
-        var _dec = function(v){
-            return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
-        };
 
         if (accuracy === 0 || isNaN(accuracy)) {
             return res;
@@ -334,7 +327,7 @@ var Slider = {
             res = max;
         }
 
-        return res.toFixed(_dec(accuracy));
+        return res.toFixed(Utils.decCount(accuracy));
     },
 
     _move: function(e){
@@ -362,7 +355,7 @@ var Slider = {
         var o = this.options, slider = this.slider, hint = slider.find(".hint");
         var value;
 
-        value = o.hintMask.replace("$1", this.value).replace("$2", this.percent);
+        value = o.hintMask.replace("$1", this.value.toFixed(Utils.decCount(o.accuracy))).replace("$2", this.percent);
 
         hint.text(value);
     },
