@@ -3627,7 +3627,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "26/10/2019 20:16:49",
+    compileTime: "26/10/2019 20:24:58",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21464,54 +21464,6 @@ var DoubleSlider = {
                 val: [that.valueMin, that.valueMax]
             });
         });
-
-        // marker.on(Metro.events.keydown, function(e){
-        //
-        //     var key = e.keyCode ? e.keyCode : e.which;
-        //
-        //     if ([37,38,39,40].indexOf(key) === -1) {
-        //         return;
-        //     }
-        //
-        //     var step = o.accuracy === 0 ? 1 : o.accuracy;
-        //
-        //     if (that.keyInterval) {
-        //         return ;
-        //     }
-        //     that.keyInterval = setInterval(function(){
-        //
-        //         var val = that.value;
-        //
-        //         if (e.keyCode === 37 || e.keyCode === 40) { // left, down
-        //             if (val - step < o.min) {
-        //                 val = o.min;
-        //             } else {
-        //                 val -= step;
-        //             }
-        //         }
-        //
-        //         if (e.keyCode === 38 || e.keyCode === 39) { // right, up
-        //             if (val + step > o.max) {
-        //                 val = o.max;
-        //             } else {
-        //                 val += step;
-        //             }
-        //         }
-        //
-        //         that.value = that._correct(val);
-        //         that.percent = that._convert(that.value, 'val2prc');
-        //         that.pixel = that._convert(that.percent, 'prc2pix');
-        //
-        //         that._redraw();
-        //     }, 100);
-        //
-        //     e.preventDefault();
-        // });
-        //
-        // marker.on(Metro.events.keyup, function(){
-        //     clearInterval(that.keyInterval);
-        //     that.keyInterval = false;
-        // });
 
         $(window).on(Metro.events.resize,function(){
             that.val(that.valueMin, that.valueMax);
