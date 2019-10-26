@@ -34,6 +34,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         docsDir: 'G:\\Projects\\Metro4-Docs\\public_html\\metro',
         pkg: grunt.file.readJSON('package.json'),
+
         copyright: '/*\n' +
         ' * Metro 4 Components Library v<%= pkg.version %> <%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
         ' * Copyright 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
@@ -47,9 +48,9 @@ module.exports = function(grunt) {
         "        factory( );\n"+
         "    }\n"+
         "}(function( ) { \n"+
-        "'use strict';\n\n",
+        "'use strict';\n\n"+
+        "window.hideM4QVersion = true;\n\n",
 
-        // footer: "\n\nif (METRO_INIT ===  true) $(function(){Metro.init();})\n\n}));",
         footer: "\n\n" +
             "if (METRO_INIT ===  true) METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()}) " +
             "\n\n}));",
