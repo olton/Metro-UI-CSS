@@ -3627,7 +3627,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "28/10/2019 10:17:40",
+    compileTime: "28/10/2019 15:20:32",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7669,7 +7669,7 @@ var AppBar = {
         var hamburger = element.find(".hamburger");
 
         menu.slideUp(o.duration, function(){
-            menu.addClass("collapsed");
+            menu.addClass("collapsed").removeClass("opened");
             hamburger.removeClass("active");
         });
     },
@@ -7680,7 +7680,7 @@ var AppBar = {
         var hamburger = element.find(".hamburger");
 
         menu.slideDown(o.duration, function(){
-            menu.removeClass("collapsed");
+            menu.removeClass("collapsed").addClass("opened");
             hamburger.addClass("active");
         });
     },

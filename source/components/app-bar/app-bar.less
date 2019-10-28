@@ -167,6 +167,13 @@
     {
         left: 0;
     }
+
+    .app-bar-menu {
+        &.opened {
+            max-height: ~"calc(100vh - 52px)";
+            overflow-y: auto;
+        }
+    }
 }
 
 .app-bar {

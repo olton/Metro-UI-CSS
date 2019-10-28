@@ -37012,6 +37012,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .app-bar .app-bar-menu .d-menu .v-menu {
   left: 0;
 }
+.app-bar .app-bar-menu.opened {
+  max-height: calc(100vh - 52px);
+  overflow-y: auto;
+}
 .app-bar .app-bar-input {
   width: 100px;
   height: 30px;
