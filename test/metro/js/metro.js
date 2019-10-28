@@ -3627,7 +3627,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "26/10/2019 20:27:30",
+    compileTime: "28/10/2019 10:17:40",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7497,19 +7497,19 @@ Metro.plugin('activity', Activity);
 
 Metro['activity'] = {
     open: function(options){
-
-        var activity = '<div data-role="activity" data-type="'+( options.type ? options.type : 'cycle' )+'" data-style="'+( options.style ? options.style : 'color' )+'"></div>';
-        var text = options.text ? '<div class="text-center">'+options.text+'</div>' : '';
+        var o = options || {};
+        var activity = '<div data-role="activity" data-type="'+( o.type ? o.type : 'cycle' )+'" data-style="'+( o.style ? o.style : 'color' )+'"></div>';
+        var text = o.text ? '<div class="text-center">'+o.text+'</div>' : '';
 
         return Metro.dialog.create({
             content: activity + text,
             defaultAction: false,
             clsContent: "d-flex flex-column flex-justify-center flex-align-center bg-transparent no-shadow w-auto",
             clsDialog: "no-border no-shadow bg-transparent global-dialog",
-            autoHide: options.autoHide ? options.autoHide : 0,
-            overlayClickClose: options.overlayClickClose === true,
-            overlayColor: options.overlayColor?options.overlayColor:'#000000',
-            overlayAlpha: options.overlayAlpha?options.overlayAlpha:.5,
+            autoHide: o.autoHide ? o.autoHide : 0,
+            overlayClickClose: o.overlayClickClose === true,
+            overlayColor: o.overlayColor ? o.overlayColor:'#000000',
+            overlayAlpha: o.overlayAlpha ? o.overlayAlpha:.5,
             clsOverlay: "global-overlay"
         })
     },
@@ -13418,7 +13418,7 @@ Metro['dialog'] = {
 
         dlg_options._runtime = true;
 
-        return dlg.dialog(dlg_options);
+        return Metro.makePlugin(dlg, "dialog", dlg_options);
     }
 };
 
