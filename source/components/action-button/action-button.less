@@ -1,0 +1,218 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.action-button {
+    padding: 0;
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    line-height: 56px;
+    text-align: center;
+    display: inline-block;
+    font-weight: 400;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    font-size: .875rem;
+    transition: @transition-short;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+
+
+    .shadow(1);
+
+    .icon {
+        width: 20px;
+        height: 20px;
+        line-height: 20px;
+        font-size: 20px;
+        display: inline-block;
+        text-align: center;
+        margin-top: 18px;
+
+        & > * {
+            width: 100%;
+            max-height: 100%;
+            display: inline-block;
+        }
+    }
+
+
+    &.second {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,.16), 0 2px 5px 0 rgba(0,0,0,.26);
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 16px;
+            margin-top: 0;
+        }
+    }
+
+    &.prime {
+        .shadow(2);
+    }
+    &:active {
+        .shadow(3);
+    }
+}
+
+.multi-action {
+    display: inline-block;
+    position: relative;
+    .square(56, px);
+}
+
+.multi-action {
+    .action-button {
+        position: absolute;
+        z-index: 2;
+        margin: 0 !important;
+    }
+
+    .actions {
+        position: absolute;
+        list-style: none inside none;
+        margin: 0 0 0 0;
+        padding: 0;
+        width: auto;
+        float: left;
+        background-color: transparent;
+        top: 8px;
+        left: 8px;
+        z-index: 1;
+        .circle(40, px);
+    }
+
+    .actions {
+        li {
+            position: absolute;
+            display: block;
+            .circle(40, px);
+            .shadow(1);
+            margin: 0;
+            background: @darkGray;
+            color: @white;
+            transform: scale(.2);
+            line-height: 40px;
+            font-size: 20px;
+            transition: all .3s;
+            cursor: pointer;
+
+            a {
+                background: inherit;
+                color: inherit;
+                display: block;
+                .circle(40, px);
+                line-height: 40px;
+                text-align: center;
+                text-decoration: none;
+            }
+
+            &:active {
+                .shadow(2);
+            }
+        }
+    }
+
+    .action-button {
+        &.active ~ .actions {
+            li {
+                transition: all .3s;
+                transform: scale(1);
+            }
+
+            li {
+                &:nth-child(1) {margin-top: -56px;}
+                &:nth-child(2) {margin-top: -104px;}
+                &:nth-child(3) {margin-top: -152px;}
+                &:nth-child(4) {margin-top: -200px;}
+                &:nth-child(5) {margin-top: -248px;}
+                &:nth-child(6) {margin-top: -296px;}
+                &:nth-child(7) {margin-top: -344px;}
+                &:nth-child(8) {margin-top: -392px;}
+                &:nth-child(9) {margin-top: -440px;}
+                &:nth-child(10) {margin-top: -488px;}
+            }
+        }
+
+        &.active ~ .actions.drop-bottom, &.active ~ .actions.drop-down {
+            li {
+                &:nth-child(1) {margin-top: 56px;}
+                &:nth-child(2) {margin-top: 104px;}
+                &:nth-child(3) {margin-top: 152px;}
+                &:nth-child(4) {margin-top: 200px;}
+                &:nth-child(5) {margin-top: 248px;}
+                &:nth-child(6) {margin-top: 296px;}
+                &:nth-child(7) {margin-top: 344px;}
+                &:nth-child(8) {margin-top: 392px;}
+                &:nth-child(9) {margin-top: 440px;}
+                &:nth-child(10) {margin-top: 488px;}
+            }
+        }
+        &.active ~ .actions.drop-right {
+            li {
+                margin-top: 0;
+            }
+            li {
+                &:nth-child(1) {margin-left: 56px;}
+                &:nth-child(2) {margin-left: 104px;}
+                &:nth-child(3) {margin-left: 152px;}
+                &:nth-child(4) {margin-left: 200px;}
+                &:nth-child(5) {margin-left: 248px;}
+                &:nth-child(6) {margin-left: 296px;}
+                &:nth-child(7) {margin-left: 344px;}
+                &:nth-child(8) {margin-left: 392px;}
+                &:nth-child(9) {margin-left: 440px;}
+                &:nth-child(10) {margin-left: 488px;}
+            }
+        }
+        &.active ~ .actions.drop-left {
+            li {
+                margin-top: 0;
+            }
+            li {
+                &:nth-child(1) {margin-left: -56px;}
+                &:nth-child(2) {margin-left: -104px;}
+                &:nth-child(3) {margin-left: -152px;}
+                &:nth-child(4) {margin-left: -200px;}
+                &:nth-child(5) {margin-left: -248px;}
+                &:nth-child(6) {margin-left: -296px;}
+                &:nth-child(7) {margin-left: -344px;}
+                &:nth-child(8) {margin-left: -392px;}
+                &:nth-child(9) {margin-left: -440px;}
+                &:nth-child(10) {margin-left: -488px;}
+            }
+        }
+    }
+
+    .action-button .icon {
+        transition: all .3s;
+    }
+
+    .action-button {
+        &.active.rotate .icon {
+            .rotate(45deg);
+        }
+        &.active.rotate-minus .icon {
+            .rotate(-45deg);
+        }
+    }
+}
+
+.action-button, .multi-action {
+    &.floating-action-top {
+        z-index: @zindex-top; top: 90px; left: 16px; position: fixed;
+    }
+    &.floating-action-bottom {
+        z-index: @zindex-top; bottom: 20px; right: 20px; position: fixed;
+    }
+}

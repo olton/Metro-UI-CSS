@@ -1,0 +1,194 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.button, .flat-button {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: 0 .75rem;
+    font-size: .875rem;
+    line-height: 34px;
+    height: 36px;
+    transition: @transition-short;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    cursor: pointer;
+    outline: none;
+    position: relative;
+    overflow: visible;
+
+    .icon + .caption {
+        margin-left: 8px;
+    }
+    .caption + .icon {
+        margin-left: 8px;
+    }
+}
+
+.flat-button {
+    min-width: 64px;
+    background-color: transparent;
+}
+
+.button {
+    &:active, &.focus, &:focus {
+        .focus-show(@lightGray);
+    }
+
+    &:hover {
+        background-color: @hoverBackground;
+    }
+
+    &.link {
+        background-color: @transparent;
+        color: @linkColor;
+        &:hover {
+            background-color: @transparent;
+            color: @linkColorHover;
+            text-decoration: underline;
+        }
+        &.focus, &:focus {
+            box-shadow: none;
+        }
+    }
+}
+
+.button {
+    &.hovered {
+        &:hover {
+            background-color:  rgba(red(@dark), green(@dark), blue(@dark), .2);
+        }
+    }
+}
+
+.button {
+    img {
+        height: 1rem;
+    }
+}
+
+.button {
+    &.mini {
+        .px2rem(font-size, 10px);
+        padding: 0 .5rem;
+        height: 20px;
+        line-height: 20px;
+        img {
+            .px2rem(height, 10px);
+        }
+    }
+    &.small {
+        .px2rem(font-size, 12px);
+        padding: 0 .6rem;
+        height: 26px;
+        line-height: 26px;
+        img {
+            .px2rem(height, 12px);
+        }
+    }
+    &.large {
+        .px2rem(font-size, 22px);
+        padding: 0 1rem;
+        height: 53px;
+        line-height: 53px;
+        img {
+            .px2rem(height, 22px);
+        }
+    }
+}
+
+.button {
+    &.square, &.cycle {
+        .px2rem(width, 36px);
+        .px2rem(height, 36px);
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+
+        &.mini {
+            .px2rem(width, 22.38px);
+            .px2rem(height, 22.38px);
+        }
+        &.small {
+            .px2rem(width, 27.59px);
+            .px2rem(height, 27.59px);
+        }
+        &.large {
+            .px2rem(width, 53px);
+            .px2rem(height, 53px);
+        }
+    }
+    &.cycle {
+        border-radius: 50%;
+    }
+
+    &.square, &.cycle {
+        &.dropdown-toggle {
+            &::before {
+                display: none;
+            }
+        }
+    }
+
+}
+
+.button {
+    &.dropdown-toggle.no-marker {
+        padding-right: .75rem!important;
+    }
+}
+
+.button {
+    &:focus, &:hover {
+        text-decoration: none;
+    }
+
+    &:active {
+        outline: 0;
+        .focus-show(@gray);
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+}
+
+.button {
+    &.outline {
+        background: transparent none;
+        border-width: 1px;
+        border-color: @borderColor;
+    }
+}
+
+.button {
+    &:active {
+        box-shadow: none;
+    }
+}
+
+a {
+    &.button,
+    &.flat-button
+    {
+        appearance: none;
+        color: @dark;
+        box-shadow: none;
+        text-decoration: none;
+
+        &:hover {
+            box-shadow: none;
+        }
+
+        &:active, &.focus, &:focus {
+            .focus-show(@lightGray);
+        }
+    }
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    .button;
+}
