@@ -148,7 +148,7 @@ var AppBar = {
         var hamburger = element.find(".hamburger");
 
         menu.slideUp(o.duration, function(){
-            menu.addClass("collapsed");
+            menu.addClass("collapsed").removeClass("opened");
             hamburger.removeClass("active");
         });
     },
@@ -159,7 +159,7 @@ var AppBar = {
         var hamburger = element.find(".hamburger");
 
         menu.slideDown(o.duration, function(){
-            menu.removeClass("collapsed");
+            menu.removeClass("collapsed").addClass("opened");
             hamburger.addClass("active");
         });
     },
