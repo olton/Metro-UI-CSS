@@ -1,4 +1,5 @@
 var DoubleSliderDefaultConfig = {
+    roundValue: true,
     min: 0,
     max: 100,
     accuracy: 0,
@@ -8,8 +9,10 @@ var DoubleSliderDefaultConfig = {
     valueMax: null,
     hint: false,
     hintAlways: false,
-    hintPosition: Metro.position.TOP,
-    hintMask: "$1",
+    hintPositionMin: Metro.position.TOP,
+    hintPositionMax: Metro.position.TOP,
+    hintMaskMin: "$1",
+    hintMaskMax: "$1",
     target: null,
     size: 0,
 
@@ -34,7 +37,7 @@ var DoubleSliderDefaultConfig = {
     onChangeValue: Metro.noop,
     onFocus: Metro.noop,
     onBlur: Metro.noop,
-    onSliderCreate: Metro.noop
+    onDoubleSliderCreate: Metro.noop
 };
 
 Metro.doubleSliderSetup = function (options) {
@@ -47,7 +50,7 @@ if (typeof window["metroDoubleSliderSetup"] !== undefined) {
 
 var DoubleSlider = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, SliderDefaultConfig, options );
+        this.options = $.extend( {}, DoubleSliderDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.slider = null;
@@ -80,16 +83,16 @@ var DoubleSlider = {
 
         Metro.checkRuntime(element, "doubleslider");
 
-        if (!o.valueMin) o.valueMin = o.min;
-        if (!o.valueMax) o.valueMax = o.max;
+        this.valueMin = Utils.isValue(o.valueMin) ? +o.valueMin : +o.min;
+        this.valueMax = Utils.isValue(o.valueMax) ? +o.valueMax : +o.max;
 
         this._createSlider();
         this._createEvents();
 
-        this.val(o.valueMin, o.valueMax);
+        this.val(this.valueMin, this.valueMax);
 
-        Utils.exec(o.onSliderCreate, null, element[0]);
-        element.fire("slidercreate");
+        Utils.exec(o.onDoubleSliderCreate, null, element[0]);
+        element.fire("doubleslidercreate");
     },
 
     _createSlider: function(){
@@ -99,8 +102,8 @@ var DoubleSlider = {
         var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
         var markerMin = $("<button>").attr("type", "button").addClass("marker marker-min").addClass(o.clsMarker).addClass(o.clsMarkerMin);
         var markerMax = $("<button>").attr("type", "button").addClass("marker marker-max").addClass(o.clsMarker).addClass(o.clsMarkerMax);
-        var hintMin = $("<div>").addClass("hint hint-min").addClass(o.hintPosition + "-side").addClass(o.clsHint).addClass(o.clsHintMin);
-        var hintMax = $("<div>").addClass("hint hint-max").addClass(o.hintPosition + "-side").addClass(o.clsHint).addClass(o.clsHintMax);
+        var hintMin = $("<div>").addClass("hint hint-min").addClass(o.hintPositionMin + "-side").addClass(o.clsHint).addClass(o.clsHintMin);
+        var hintMax = $("<div>").addClass("hint hint-max").addClass(o.hintPositionMax + "-side").addClass(o.clsHint).addClass(o.clsHintMax);
         var id = Utils.elementId("slider");
         var i;
 
@@ -285,14 +288,24 @@ var DoubleSlider = {
 
         hint.each(function(){
             var _hint = $(this);
-            var value = _hint.hasClass("hint-min") ? that.valueMin : that.valueMax;
-            _hint.text(o.hintMask.replace("$1", value.toFixed(Utils.decCount(o.accuracy))))
+            var isMin = _hint.hasClass("hint-min");
+            var _mask = isMin ? o.hintMaskMin : o.hintMaskMax;
+            var value = +(isMin ? that.valueMin : that.valueMax) || 0;
+            _hint.text(_mask.replace("$1", value.toFixed(Utils.decCount(o.accuracy))))
         });
     },
 
     _value: function(){
-        var element = this.element, o = this.options, slider = this.slider;
-        var value = [this.valueMin, this.valueMax].join(", ");
+        var element = this.element, o = this.options;
+        var v1 = +this.valueMin || 0, v2 = +this.valueMax || 0;
+        var value;// = [this.valueMin, this.valueMax].join(", ");
+
+        if (o.roundValue) {
+            v1 = v1.toFixed(Utils.decCount(o.accuracy));
+            v2 = v2.toFixed(Utils.decCount(o.accuracy));
+        }
+
+        value = [v1, v2].join(", ");
 
         if (element[0].tagName === "INPUT") {
             element.val(value);
@@ -309,6 +322,7 @@ var DoubleSlider = {
                     } else {
                         t.text(value);
                     }
+                    t.trigger("change");
                 });
             }
         }
@@ -355,7 +369,7 @@ var DoubleSlider = {
 
         complete.css({
             "left": this._convert(this.valueMin, 'val2pix'),
-            "width": this._convert(this.valueMax-this.valueMin, 'val2pix')
+            "width": this._convert(this.valueMax, 'val2pix') - this._convert(this.valueMin, 'val2pix')
         });
     },
 
