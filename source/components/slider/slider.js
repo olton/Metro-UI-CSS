@@ -1,4 +1,5 @@
 var SliderDefaultConfig = {
+    roundValue: true,
     min: 0,
     max: 100,
     accuracy: 0,
@@ -353,16 +354,28 @@ var Slider = {
 
     _hint: function(){
         var o = this.options, slider = this.slider, hint = slider.find(".hint");
-        var value;
+        var value = +this.value || 0;
+        var percent = +this.percent || 0;
 
-        value = o.hintMask.replace("$1", this.value.toFixed(Utils.decCount(o.accuracy))).replace("$2", this.percent);
+        if (o.roundValue) {
+            value = (Utils.isValue(value) ? +value : 0).toFixed(Utils.decCount(o.accuracy));
+            percent = (Utils.isValue(percent) ? +percent : 0).toFixed(Utils.decCount(o.accuracy));
+        }
 
-        hint.text(value);
+        hint.text(o.hintMask.replace("$1", value).replace("$2", percent));
     },
 
     _value: function(){
         var element = this.element, o = this.options, slider = this.slider;
         var value = o.returnType === 'value' ? this.value : this.percent;
+        var percent = this.percent;
+        var buffer = this.buffer;
+
+        if (o.roundValue) {
+            value = (Utils.isValue(value) ? +value : 0).toFixed(Utils.decCount(o.accuracy));
+            percent = (Utils.isValue(percent) ? +percent : 0).toFixed(Utils.decCount(o.accuracy));
+            buffer = (Utils.isValue(buffer) ? +buffer : 0).toFixed(Utils.decCount(o.accuracy));
+        }
 
         if (element[0].tagName === "INPUT") {
             element.val(value);
@@ -381,21 +394,21 @@ var Slider = {
                     } else {
                         t.text(value);
                     }
+                    t.trigger("change");
                 });
             }
         }
 
-        Utils.exec(o.onChangeValue, [value, this.percent], element[0]);
+        Utils.exec(o.onChangeValue, [value], element[0]);
         element.fire("changevalue", {
-            val: value,
-            percent: this.percent
+            val: value
         });
 
-        Utils.exec(o.onChange, [value, this.percent, this.buffer], element[0]);
+        Utils.exec(o.onChange, [value, percent, buffer], element[0]);
         element.fire("change", {
             val: value,
-            percent: this.percent,
-            buffer: this.buffer
+            percent: percent,
+            buffer: buffer
         });
     },
 
