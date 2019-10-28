@@ -1,0 +1,87 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.image-button {
+    display: inline-flex;
+    transition: @transition-short;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    outline: none;
+    position: relative;
+    font-size: 14px;
+    padding: 0 .5rem 0 0;
+    align-items: center;
+    height: 36px;
+    line-height: 30px;
+    font-weight: 400;
+
+    &:hover {
+        background-color: @hoverBackground;
+    }
+
+    &:active, &.focus, &:focus {
+        .focus-show(@lightGray);
+    }
+
+    .icon {
+        width: 34px;
+        height: 34px;
+        line-height: 34px;
+        font-size: 1rem;
+        background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .55);
+        color: @white;
+        order: 1;
+        text-align: center;
+    }
+    .caption {
+        margin-left: .5rem;
+        text-align: left;
+        color: inherit;
+        order: 2;
+        font-weight: 400;
+        line-height: 1.2;
+
+        small {
+            display: block;
+            font-size: .8rem;
+        }
+    }
+
+    &.icon-right {
+        padding: 0 0 0 .5rem;
+
+        .icon {
+            order: 2;
+        }
+        .caption {
+            order: 1;
+            margin-left: 0;
+            margin-right: .5rem;
+        }
+    }
+
+    &:focus, &:hover, &.focus {
+        text-decoration: none;
+    }
+
+    &:active {
+        box-shadow: none;
+        outline: 0;
+        .focus-show(@gray);
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+
+    &.outline {
+        background: transparent none;
+        border-width: 1px;
+        border-color: @borderColor;
+    }
+}

@@ -1,0 +1,83 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.split-button {
+    display: inline-block;
+    flex-flow: row nowrap;
+    position: relative;
+    width: auto;
+    height: 36px;
+    line-height: 1;
+
+    & > *:nth-child(1) {
+        order: 1
+    }
+
+    & > *:nth-child(2) {
+        order: 2;
+        margin-left: 4px;
+    }
+
+    .dropdown {
+        position: static;
+    }
+
+    .drop-object {
+        left: 0;
+    }
+
+    & > .split-button {
+        margin-left: 4px;
+        order: 2;
+    }
+
+    .split {
+        margin-left: -2px;
+        padding: 0 .75rem;
+        text-align: center;
+        vertical-align: middle ;
+        background-color: @lightGray;
+        border: 1px @transparent solid;
+        color: @dark;
+        cursor: pointer;
+        outline: none;
+        font-size: .875rem;
+        position: relative;
+        line-height: 36px;
+        height: 36px;
+        min-width: 36px;
+
+        &.dropdown-toggle {
+            &::before {margin-left: -1.25rem;}
+        }
+
+        &:hover {
+            background-color: darken(@lightGray, 10%);
+        }
+    }
+
+    .split {
+        &:focus, &:hover {
+            text-decoration: none;
+        }
+
+        &:active {
+            outline: 0;
+            .focus-show(@gray);
+        }
+
+        &.disabled, &:disabled {
+            opacity: .65;
+        }
+
+        &.outline {
+            background: transparent none;
+            border-width: 1px;
+            border-color: @borderColor;
+        }
+
+        &:active {
+            box-shadow: none;
+        }
+    }
+}

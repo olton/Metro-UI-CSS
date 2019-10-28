@@ -1,0 +1,73 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.expand-button {
+    width: 36px;
+    height: 36px;
+    background-size: 1rem 1rem;
+    background: center center no-repeat;
+    text-indent: -9999px;
+    border: 0;
+    display: inline-block;
+    cursor: pointer;
+    z-index: 2;
+    position: relative;
+    float: left;
+    outline: none;
+
+    span {
+        position: absolute;
+        left: .5rem;
+        width: 1.2rem;
+        height: 2px;
+        margin: 0 0 0;
+        background: @dark;
+        .rotate(0);
+        .transition(.3s, linear);
+
+        &:before, &:after {
+            content: '';
+            position: absolute;
+            top: -.5rem;
+            right: 0;
+            width: 1.2rem;
+            height: 2px;
+            background: @dark;
+            .rotate(0);
+            .transition(.3s, linear);
+        }
+
+        &:after {
+            top: .5rem;
+        }
+    }
+
+    &.transform {
+        span {
+            .rotate(180deg);
+            background: @dark;
+
+            &:before, &:after {
+                content: '';
+                top: -5px;
+                right: 0;
+                width: .75rem;
+                .rotate(45deg);
+            }
+
+            &:after {
+                top: 5px;
+                .rotate(-45deg);
+            }
+        }
+    }
+
+    &.light {
+        span {
+            background-color: @white;
+            &:before, &:after {
+                background-color: @white;
+            }
+        }
+    }
+}

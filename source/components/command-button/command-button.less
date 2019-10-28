@@ -1,0 +1,82 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.command-button, .image-button {
+    padding: .5rem;
+    display: inline-flex;
+    font-size: 1.5rem;
+    transition: @transition-short;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    cursor: pointer;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    outline: none;
+    position: relative;
+    font-weight: 500;
+
+    .icon {
+        .px2rem(width, 43px);
+        .px2rem(height, 43px);
+        .px2rem(line-height, 43px);
+        font-size: 2rem;
+        color: inherit;
+        order: 1;
+    }
+
+    .caption {
+        margin-left: .5rem;
+        text-align: left;
+        color: inherit;
+        order: 2;
+        font-weight: 400;
+        line-height: 1.2;
+
+        small {
+            display: block;
+            font-size: .8rem;
+        }
+    }
+
+    &.icon-right {
+        .icon {
+            order: 2;
+        }
+
+        .caption {
+            order: 1;
+            margin-left: 0;
+            margin-right: .5rem;
+        }
+    }
+
+    &.outline {
+        background: transparent none;
+        border-width: 1px;
+        border-color: @borderColor;
+    }
+
+    &:hover {
+        background-color: @hoverBackground;
+    }
+
+    &:active, &.focus, &:focus {
+        .focus-show(@lightGray);
+    }
+
+    &:focus, &:hover, &.focus {
+        text-decoration: none;
+    }
+
+    &:active {
+        box-shadow: none;
+        outline: 0;
+        .focus-show(@gray);
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+}

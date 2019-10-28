@@ -1,0 +1,105 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.tool-button {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    vertical-align: middle;
+    display: inline-block;
+    text-align: center;
+    background-color: darken(@light, 5%);
+    color: @dark;
+    user-select: none;
+    border: 1px solid transparent;
+    transition: @transition-short;
+    padding: 0;
+    cursor: pointer;
+    outline: none;
+    margin: 0 2px;
+    position: relative;
+    font-size: 14px;
+
+    [class*=mif], .icon, img {
+        height: 1rem;
+        max-height: 1rem;
+        font-size: 1rem;
+    }
+
+    &.text-button {
+        width: auto;
+        padding-left: .5rem;
+        padding-right: .5rem;
+    }
+
+    &:focus, &:hover {
+        text-decoration: none;
+    }
+
+    &:hover {
+        background-color: @hoverBackground;
+    }
+
+    &:active {
+        outline: 0;
+        box-shadow: none;
+    }
+
+    &.outline {
+        background: transparent none;
+        border-width: 1px;
+        border-color: @borderColor;
+    }
+
+    &.disabled, &:disabled {
+        opacity: .65;
+    }
+}
+
+a.tool-button {
+    text-decoration: none;
+    color: @dark;
+}
+
+.toolbar {
+    display: inline-flex;
+    position: relative;
+    padding: 0 0 0 .5725rem;
+    top: 2px;
+    flex-flow: row nowrap;
+    margin-left: 4px;
+
+    &.no-divider {
+        &::before {
+            display: none;
+        }
+    }
+
+    &::before {
+        position: absolute;
+        content: "";
+        width: .325rem;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .20);
+        cursor: move;
+    }
+
+    &.vertical {
+        flex-flow: column nowrap;
+        padding: .5725rem 0 0 0;
+        width: 32px;
+        margin-left: 0;
+        margin-top: 4px;
+
+        &::before {
+            width: 32px;
+            height: .325rem;
+        }
+
+        .tool-button {
+            margin: 2px 0;
+        }
+    }
+}
