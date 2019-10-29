@@ -116,6 +116,7 @@ var CalendarPicker = {
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
         var curr = element.val().trim();
         var id = Utils.elementId("calendarpicker");
+        var body = $("body");
 
         container.attr("id", id);
 
@@ -136,7 +137,7 @@ var CalendarPicker = {
         container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
-        cal.appendTo(container);
+        cal.appendTo(o.dialogMode ? body : container);
 
         Metro.makePlugin(cal, "calendar", {
             wide: o.calendarWide,
@@ -152,7 +153,7 @@ var CalendarPicker = {
             buttons: false,
             headerFormat: o.headerFormat,
 
-            clsCalendar: o.clsCalendar,
+            clsCalendar: [o.clsCalendar, "calendar-for-picker", (o.dialogMode ? "dialog-mode":"")].join(" "),
             clsCalendarHeader: o.clsCalendarHeader,
             clsCalendarContent: o.clsCalendarContent,
             clsCalendarFooter: "d-none",
@@ -470,7 +471,7 @@ var CalendarPicker = {
         element.off(Metro.events.focus);
         element.off(Metro.events.change);
 
-        Metro.getPlugin(this.calendar[0], "calendar").destroy();
+        Metro.getPlugin(this.calendar, "calendar").destroy();
 
         return element;
     }

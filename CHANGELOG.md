@@ -15,6 +15,7 @@
 + [x] Dialog: fix interop with Metro 4 and jQuery for dialog create method
 + [x] AppBar: set `max-height` for `app-bar-menu` opened with `hamburger` to visible viewport
 + [x] Buttons: refactoring - split to separate components from one file
++ [x] Calendar Picker: fix dialog mode, issue #1450
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417
