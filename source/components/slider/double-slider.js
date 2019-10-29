@@ -32,7 +32,6 @@ var DoubleSliderDefaultConfig = {
     onStart: Metro.noop,
     onStop: Metro.noop,
     onMove: Metro.noop,
-    onSliderClick: Metro.noop,
     onChange: Metro.noop,
     onChangeValue: Metro.noop,
     onFocus: Metro.noop,
@@ -97,7 +96,7 @@ var DoubleSlider = {
 
     _createSlider: function(){
         var element = this.element, o = this.options;
-        var slider = $("<div>").addClass("slider " + element[0].className).addClass(o.clsSlider);
+        var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
         var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
         var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
         var markerMin = $("<button>").attr("type", "button").addClass("marker marker-min").addClass(o.clsMarker).addClass(o.clsMarkerMin);

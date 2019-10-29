@@ -9,13 +9,15 @@
 + [x] Table: fix cell data wrapping with attribute `data-cell-wrapper="true"`
 + [x] File: fix Input file inconsistent display when user cancel the choose dialog, issue #1443
 + [x] Slider: fix using accuracy with  decimal value, issue #1447  
-+ [x] Calendarpicker: add attribute `data-show-week-number`
++ [x] Calendar Picker: add attribute `data-show-week-number`
 + [x] Gravatar: fix global setup method name
 + [x] Activity: fix method open for undefined options
 + [x] Dialog: fix interop with Metro 4 and jQuery for dialog create method
 + [x] AppBar: set `max-height` for `app-bar-menu` opened with `hamburger` to visible viewport
 + [x] Buttons: refactoring - split to separate components from one file
 + [x] Calendar Picker: fix dialog mode, issue #1450
++ [x] Common CSS: add class `-disabled`
++ [x] General: Now `Metro4` init after content was loaded. If you need to switch to old init method, use `metro4:init:mode` with value `immediate`  
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417

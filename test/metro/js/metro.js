@@ -549,7 +549,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 26/10/2019 15:33:29";
+var m4qVersion = "v1.0.3. Built at 29/10/2019 16:21:57";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2112,10 +2112,11 @@ $.fn.extend({
         if (not(cls) || (""+cls).trim() === "") return this;
         return this.each(function(){
             var el = this;
+            var hasClassList = typeof el.classList !== "undefined";
             $.each(cls.split(" ").filter(function(v){
                 return (""+v).trim() !== "";
             }), function(){
-                if (el.classList) el.classList[method](this);
+                if (hasClassList) el.classList[method](this);
             });
         });
     }
@@ -3563,7 +3564,7 @@ if (window.METRO_INIT === undefined) {
 }
 
 if (window.METRO_INIT_MODE === undefined) {
-    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "immediate";
+    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "contentloaded";
 }
 
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
@@ -3627,7 +3628,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "29/10/2019 10:33:25",
+    compileTime: "29/10/2019 17:26:24",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21291,7 +21292,6 @@ var DoubleSliderDefaultConfig = {
     onStart: Metro.noop,
     onStop: Metro.noop,
     onMove: Metro.noop,
-    onSliderClick: Metro.noop,
     onChange: Metro.noop,
     onChangeValue: Metro.noop,
     onFocus: Metro.noop,
@@ -21356,7 +21356,7 @@ var DoubleSlider = {
 
     _createSlider: function(){
         var element = this.element, o = this.options;
-        var slider = $("<div>").addClass("slider " + element[0].className).addClass(o.clsSlider);
+        var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
         var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
         var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
         var markerMin = $("<button>").attr("type", "button").addClass("marker marker-min").addClass(o.clsMarker).addClass(o.clsMarkerMin);
