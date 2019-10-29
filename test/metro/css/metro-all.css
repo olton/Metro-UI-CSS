@@ -497,7 +497,8 @@ div {
       -ms-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
-.disabled {
+.disabled,
+.-disabled {
   pointer-events: none!important;
   color: #e4e4e4 !important;
 }

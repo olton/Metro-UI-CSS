@@ -539,7 +539,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 26/10/2019 15:33:29";
+var m4qVersion = "v1.0.3. Built at 29/10/2019 16:21:57";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2102,10 +2102,11 @@ $.fn.extend({
         if (not(cls) || (""+cls).trim() === "") return this;
         return this.each(function(){
             var el = this;
+            var hasClassList = typeof el.classList !== "undefined";
             $.each(cls.split(" ").filter(function(v){
                 return (""+v).trim() !== "";
             }), function(){
-                if (el.classList) el.classList[method](this);
+                if (hasClassList) el.classList[method](this);
             });
         });
     }

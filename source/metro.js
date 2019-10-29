@@ -46,7 +46,7 @@ if (window.METRO_INIT === undefined) {
 }
 
 if (window.METRO_INIT_MODE === undefined) {
-    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "immediate";
+    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "contentloaded";
 }
 
 if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
