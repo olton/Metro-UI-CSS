@@ -48,14 +48,15 @@
 <script src="//code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="../../../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $(function(){
+        if (jQuery('#idDialog').data('dialog') !== undefined) {
+            throw new Error("jQuery: Meta tag metro:jquery error");
+        }
 
-    if (jQuery('#idDialog').data('dialog') !== undefined) {
-        throw new Error("jQuery: Meta tag metro:jquery error");
-    }
-
-    if (m4q('#idDialog').data('dialog') === undefined) {
-        throw new Error("M4Q: Meta tag metro:jquery error");
-    }
+        if (m4q('#idDialog').data('dialog') === undefined) {
+            throw new Error("M4Q: Meta tag metro:jquery error");
+        }
+    });
 
     function openDialog(){
         var dlg = Metro.getPlugin('#idDialog', "dialog");
