@@ -31441,21 +31441,27 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .calendar-picker input {
   width: 100%;
 }
-.calendar-picker .calendar {
+.calendar-picker .calendar-wide {
+  width: 464px;
+}
+.calendar-picker .calendar-wide.compact {
+  width: 364px;
+}
+.calendar-for-picker {
   position: absolute;
   top: 100%;
   left: 0;
   display: none;
   z-index: 500;
 }
-.calendar-picker .calendar.open {
+.calendar-for-picker.open {
   display: block!important;
 }
-.calendar-picker .calendar.open-up {
+.calendar-for-picker.open-up {
   top: auto;
   bottom: 100%;
 }
-.calendar-picker.dialog-mode .calendar {
+.calendar-for-picker.dialog-mode {
   position: fixed;
   top: 50%!important;
   left: 50%!important;
@@ -31463,15 +31469,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
           transform: translate3d(-50%, -50%, 0);
   z-index: 1050;
 }
-.calendar-picker.dialog-mode .calendar.open-up {
+.calendar-for-picker.dialog-mode.open-up {
   top: auto;
   bottom: auto;
-}
-.calendar-picker .calendar-wide {
-  width: 464px;
-}
-.calendar-picker .calendar-wide.compact {
-  width: 364px;
 }
 .donut {
   display: block;
@@ -35221,7 +35221,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   height: 100%;
   -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
-  z-index: 2;
+  z-index: 1;
 }
 .navview .navview-pane.open {
   -webkit-transform: translate3d(0, 0, 0);
@@ -35229,7 +35229,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .navview .navview-content {
   position: relative;
-  z-index: 1;
 }
 .navview .pull-button,
 .navview .holder {

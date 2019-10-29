@@ -10,37 +10,20 @@
         width: 100%;
     }
 
-    .calendar {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        display: none;
-        z-index: @zindex-absolute;
-
-        &.open {
-            display: block!important;
-        }
-
-        &.open-up {
-            top: auto;
-            bottom: 100%;
-        }
-    }
-
-    &.dialog-mode {
-        .calendar {
-            position: fixed;
-            top: 50%!important;
-            left: 50%!important;
-            .translate3d(-50%, -50%, 0);
-            z-index: @zindex-modal;
-
-            &.open-up {
-                top: auto;
-                bottom: auto;
-            }
-        }
-    }
+    //&.dialog-mode {
+    //    .calendar-for-picker {
+    //        position: fixed;
+    //        top: 50%!important;
+    //        left: 50%!important;
+    //        .translate3d(-50%, -50%, 0);
+    //        z-index: @zindex-modal;
+    //
+    //        &.open-up {
+    //            top: auto;
+    //            bottom: auto;
+    //        }
+    //    }
+    //}
 }
 
 .calendar-picker {
@@ -48,6 +31,36 @@
         width: 464px;
         &.compact {
             width: 364px;
+        }
+    }
+}
+
+.calendar-for-picker {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    z-index: @zindex-absolute;
+
+    &.open {
+        display: block!important;
+    }
+
+    &.open-up {
+        top: auto;
+        bottom: 100%;
+    }
+
+    &.dialog-mode {
+        position: fixed;
+        top: 50%!important;
+        left: 50%!important;
+        .translate3d(-50%, -50%, 0);
+        z-index: @zindex-modal;
+
+        &.open-up {
+            top: auto;
+            bottom: auto;
         }
     }
 }
