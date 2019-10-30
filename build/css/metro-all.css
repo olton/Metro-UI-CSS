@@ -27435,7 +27435,7 @@ fieldset.disabled,
   top: 0;
   right: 0;
 }
-.select.multiple .button-group {
+.select.multiple > .button-group {
   position: absolute;
   top: 0;
   right: 34px;

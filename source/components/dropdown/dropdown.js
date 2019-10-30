@@ -23,6 +23,7 @@ var Dropdown = {
         this.element = $(elem);
         this._toggle = null;
         this.displayOrigin = null;
+        this.isOpen = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -157,6 +158,8 @@ var Dropdown = {
 
         Utils.exec(options.onUp, null, el[0]);
         el.fire("up");
+
+        this.isOpen = false;
     },
 
     _open: function(el, immediate){
@@ -179,6 +182,8 @@ var Dropdown = {
 
         Utils.exec(options.onDrop, null, el[0]);
         el.fire("drop");
+
+        this.isOpen = true;
     },
 
     close: function(immediate){
@@ -187,6 +192,13 @@ var Dropdown = {
 
     open: function(immediate){
         this._open(this.element, immediate);
+    },
+
+    toggle: function(){
+        if (this.isOpen)
+            this.close();
+        else
+            this.open();
     },
 
     changeAttribute: function(attributeName){
