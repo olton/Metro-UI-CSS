@@ -12,6 +12,7 @@ var ListViewDefaultConfig = {
     onExpandNode: Metro.noop,
     onGroupNodeClick: Metro.noop,
     onNodeClick: Metro.noop,
+    onNodeDblClick: Metro.noop,
     onListViewCreate: Metro.noop
 };
 
@@ -192,6 +193,10 @@ var ListView = {
         element.on(Metro.events.dblclick, ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
+            Utils.exec(o.onNodeDblClick, [node], element[0]);
+            element.fire("nodedblclick", {
+                node: node
+            });
         });
     },
 
