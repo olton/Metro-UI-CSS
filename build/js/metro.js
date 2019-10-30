@@ -3625,7 +3625,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "30/10/2019 16:58:52",
+    compileTime: "30/10/2019 17:28:21",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17473,6 +17473,7 @@ var ListViewDefaultConfig = {
     onExpandNode: Metro.noop,
     onGroupNodeClick: Metro.noop,
     onNodeClick: Metro.noop,
+    onNodeDblClick: Metro.noop,
     onListViewCreate: Metro.noop
 };
 
@@ -17653,6 +17654,10 @@ var ListView = {
         element.on(Metro.events.dblclick, ".node-group > .data > .caption", function(){
             var node = $(this).closest("li");
             that.toggleNode(node);
+            Utils.exec(o.onNodeDblClick, [node], element[0]);
+            element.fire("nodedblclick", {
+                node: node
+            });
         });
     },
 
