@@ -16480,8 +16480,6 @@ ol.unstyled-list {
 ul[class],
 ol[class] {
   list-style: none inside;
-  margin: 0;
-  padding: 0;
 }
 dl dt,
 dl dd {
@@ -26584,15 +26582,22 @@ input[type=reset]:active {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
+  display: inline-block;
   width: auto;
   height: 36px;
   line-height: 1;
 }
-.info-button .button {
+.info-button::after {
   display: block;
+  clear: both;
+  content: "";
+}
+.info-button::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.info-button .button {
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -26617,6 +26622,8 @@ input[type=reset]:active {
 }
 .info-button .button,
 .info-button .info {
+  display: block;
+  float: left;
   border-right: none;
   height: 100%;
   line-height: 32px;
