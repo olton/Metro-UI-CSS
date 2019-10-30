@@ -203,7 +203,7 @@ var Select = {
         Metro.makePlugin(drop_container, "dropdown", {
             dropFilter: ".select",
             duration: o.duration,
-            toggleElement: "#"+select_id,
+            toggleElement: [container],
             onDrop: function(){
                 var dropped, target;
                 dropdown_toggle.addClass("active-toggle");
@@ -288,6 +288,9 @@ var Select = {
 
         clearButton.on(Metro.events.click, function(e){
             element.val(o.emptyValue);
+            if (element[0].multiple) {
+                list.find("li").removeClass("d-none");
+            }
             that._setPlaceholder();
             e.preventDefault();
             e.stopPropagation();
@@ -300,8 +303,8 @@ var Select = {
         container.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            e.preventDefault();
-            e.stopPropagation();
+            // e.preventDefault();
+            // e.stopPropagation();
         });
 
         input.on(Metro.events.click, function(){
@@ -397,6 +400,11 @@ var Select = {
                     li[i].style.display = "none";
                 }
             }
+        });
+
+        filter_input.on(Metro.events.click, function(e){
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         drop_container.on(Metro.events.click, function(e){
@@ -574,14 +582,8 @@ var Select = {
 };
 
 $(document).on(Metro.events.click, function(){
-    var $$ = Utils.$();
-    var selects = $(".select .drop-container");
-    $.each(selects, function(){
-        var drop = $$(this).data('dropdown');
-        if (drop && drop.close) drop.close();
-    });
     $(".select").removeClass("focused");
-}, {ns: "close-select-elements"});
+}, {ns: "blur-select-elements"});
 
 Metro.plugin('select', Select);
 

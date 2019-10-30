@@ -549,7 +549,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 29/10/2019 16:21:57";
+var m4qVersion = "v1.0.3. Built at 30/10/2019 16:53:09";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1658,6 +1658,7 @@ $.fn.extend({
                             if (matches.call(target, sel)) {
                                 handler.call(target, e);
                                 if (e.isPropagationStopped) {
+                                    e.stopImmediatePropagation();
                                     break;
                                 }
                             }
@@ -1681,11 +1682,7 @@ $.fn.extend({
 
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
 
-                if (options.capture === undefined) {
-                    options.capture = false;
-                }
-
-                el.addEventListener(name, h, options);
+                el.addEventListener(name, h, !isEmptyObject(options) ? options : false);
 
                 index = $.setEventHandler({
                     el: el,
@@ -3628,7 +3625,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "30/10/2019 11:33:21",
+    compileTime: "30/10/2019 16:58:52",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13816,6 +13813,7 @@ var Dropdown = {
         this.element = $(elem);
         this._toggle = null;
         this.displayOrigin = null;
+        this.isOpen = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -13950,6 +13948,8 @@ var Dropdown = {
 
         Utils.exec(options.onUp, null, el[0]);
         el.fire("up");
+
+        this.isOpen = false;
     },
 
     _open: function(el, immediate){
@@ -13972,6 +13972,8 @@ var Dropdown = {
 
         Utils.exec(options.onDrop, null, el[0]);
         el.fire("drop");
+
+        this.isOpen = true;
     },
 
     close: function(immediate){
@@ -13980,6 +13982,13 @@ var Dropdown = {
 
     open: function(immediate){
         this._open(this.element, immediate);
+    },
+
+    toggle: function(){
+        if (this.isOpen)
+            this.close();
+        else
+            this.open();
     },
 
     changeAttribute: function(attributeName){
@@ -20599,7 +20608,7 @@ var Select = {
         Metro.makePlugin(drop_container, "dropdown", {
             dropFilter: ".select",
             duration: o.duration,
-            toggleElement: "#"+select_id,
+            toggleElement: [container],
             onDrop: function(){
                 var dropped, target;
                 dropdown_toggle.addClass("active-toggle");
@@ -20684,6 +20693,9 @@ var Select = {
 
         clearButton.on(Metro.events.click, function(e){
             element.val(o.emptyValue);
+            if (element[0].multiple) {
+                list.find("li").removeClass("d-none");
+            }
             that._setPlaceholder();
             e.preventDefault();
             e.stopPropagation();
@@ -20696,8 +20708,8 @@ var Select = {
         container.on(Metro.events.click, function(e){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            e.preventDefault();
-            e.stopPropagation();
+            // e.preventDefault();
+            // e.stopPropagation();
         });
 
         input.on(Metro.events.click, function(){
@@ -20793,6 +20805,11 @@ var Select = {
                     li[i].style.display = "none";
                 }
             }
+        });
+
+        filter_input.on(Metro.events.click, function(e){
+            e.preventDefault();
+            e.stopPropagation();
         });
 
         drop_container.on(Metro.events.click, function(e){
@@ -20970,14 +20987,8 @@ var Select = {
 };
 
 $(document).on(Metro.events.click, function(){
-    var $$ = Utils.$();
-    var selects = $(".select .drop-container");
-    $.each(selects, function(){
-        var drop = $$(this).data('dropdown');
-        if (drop && drop.close) drop.close();
-    });
     $(".select").removeClass("focused");
-}, {ns: "close-select-elements"});
+}, {ns: "blur-select-elements"});
 
 Metro.plugin('select', Select);
 

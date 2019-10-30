@@ -539,7 +539,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 29/10/2019 16:21:57";
+var m4qVersion = "v1.0.3. Built at 30/10/2019 16:53:09";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1648,6 +1648,7 @@ $.fn.extend({
                             if (matches.call(target, sel)) {
                                 handler.call(target, e);
                                 if (e.isPropagationStopped) {
+                                    e.stopImmediatePropagation();
                                     break;
                                 }
                             }
@@ -1671,11 +1672,7 @@ $.fn.extend({
 
                 originEvent = name+(sel ? ":"+sel:"")+(ns ? ":"+ns:"");
 
-                if (options.capture === undefined) {
-                    options.capture = false;
-                }
-
-                el.addEventListener(name, h, options);
+                el.addEventListener(name, h, !isEmptyObject(options) ? options : false);
 
                 index = $.setEventHandler({
                     el: el,
