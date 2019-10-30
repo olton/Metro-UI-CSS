@@ -19,6 +19,7 @@
 + [x] Common CSS: add class `-disabled`
 + [x] General: Now `Metro4` init after content was loaded. If you need to switch to old init method, use `metro4:init:mode` with value `immediate`
 + [x] Double Slider: add new component, issue #1441  
++ [x] InfoButton: fix position and `display` change from `inline-flex` to `inline-block` 
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417

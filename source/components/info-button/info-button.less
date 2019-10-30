@@ -7,13 +7,13 @@
     overflow: hidden;
     position: relative;
     align-items: center;
-    display: inline-flex;
+    display: inline-block;
     width: auto;
     height: 36px;
     line-height: 1;
+    .clear();
 
     .button {
-        display: block;
         font-weight: 400;
         text-align: center;
         white-space: nowrap;
@@ -33,6 +33,8 @@
     }
 
     .button, .info {
+        display: block;
+        float: left;
         border-right: none;
         height: 100%;
         line-height: 32px;
