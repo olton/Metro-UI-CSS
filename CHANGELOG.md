@@ -22,8 +22,8 @@
 + [x] InfoButton: fix position and `display` change from `inline-flex` to `inline-block`, issue #1451
 + [x] M4Q Events: improve method `on`
 + [x] Select: fix for ie11, issue #1452
-+ [x] ListView: add callback for `onNodeDblClick` event   
 + [x] ListView: add callback for `onNodeDblClick` event, issue #1453
++ [x] Table: add show activity when data loaded
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417
