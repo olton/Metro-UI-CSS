@@ -143,6 +143,7 @@ var Table = {
         this.searchString = "";
         this.data = null;
         this.activity = null;
+        this.loadActivity = null;
         this.busy = false;
         this.filters = [];
         this.wrapperInfo = null;
@@ -196,6 +197,7 @@ var Table = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var id = Utils.elementId("table");
+        var table_component, table_container, activity, loadActivity;
 
         Metro.checkRuntime(element, "table");
 
@@ -237,28 +239,63 @@ var Table = {
             o.rows = -1;
         }
 
+        table_component = $("<div>").addClass("table-component");
+        table_component.attr("id", Utils.elementId("table"));
+        table_component.insertBefore(element);
+
+        table_container = $("<div>").addClass("table-container").addClass(o.clsTableContainer).appendTo(table_component);
+        element.appendTo(table_container);
+
+        if (o.horizontalScroll === true) {
+            table_container.addClass("horizontal-scroll");
+        }
+        if (!Utils.isNull(o.horizontalScrollStop) && Utils.mediaExist(o.horizontalScrollStop)) {
+            table_container.removeClass("horizontal-scroll");
+        }
+
+        table_component.addClass(o.clsComponent);
+
+        this.activity =  $("<div>").addClass("table-progress").appendTo(table_component);
+
+        activity = $("<div>").appendTo(this.activity);
+        Metro.makePlugin(activity, "activity", {
+            type: o.activityType,
+            style: o.activityStyle
+        });
+
+        if (o.showActivity !== true) {
+            this.activity.css({
+                visibility: "hidden"
+            })
+        }
+
+        this.component = table_component;
+
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
             element.fire("dataload", {
                 source: o.source
             });
-
-            $.json(o.source).then(function(data){
-                if (typeof data !== "object") {
-                    throw new Error("Data for table is not a object");
-                }
-                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                element.fire("dataloaded", {
-                    source: o.source,
-                    data: data
+            this.activity.show(function(){
+                $.json(o.source).then(function(data){
+                    that.activity.hide();
+                    if (typeof data !== "object") {
+                        throw new Error("Data for table is not a object");
+                    }
+                    Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                    element.fire("dataloaded", {
+                        source: o.source,
+                        data: data
+                    });
+                    that._build(data);
+                }, function(xhr){
+                    that.activity.hide();
+                    Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+                    element.fire("dataloaderror", {
+                        source: o.source,
+                        xhr: xhr
+                    })
                 });
-                that._build(data);
-            }, function(xhr){
-                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                element.fire("dataloaderror", {
-                    source: o.source,
-                    xhr: xhr
-                })
             });
         } else {
             that._build();
@@ -733,7 +770,7 @@ var Table = {
         search_block.addClass(o.clsSearch);
 
         search_input = $("<input>").attr("type", "text").appendTo(search_block);
-        search_input.input({
+        Metro.makePlugin(search_input, "input", {
             prepend: o.tableSearchTitle
         });
 
@@ -752,7 +789,7 @@ var Table = {
                 option.attr("selected", "selected");
             }
         });
-        rows_select.select({
+        Metro.makePlugin(rows_select, "select",{
             filter: false,
             prepend: o.tableRowsCountTitle,
             onChange: function (val) {
@@ -799,41 +836,13 @@ var Table = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var table_container, table_component, columns;
+        var columns;
         var w_search = $(o.searchWrapper), w_info = $(o.infoWrapper), w_rows = $(o.rowsWrapper), w_paging = $(o.paginationWrapper);
 
         if (w_search.length > 0) {this.wrapperSearch = w_search;}
         if (w_info.length > 0) {this.wrapperInfo = w_info;}
         if (w_rows.length > 0) {this.wrapperRows = w_rows;}
         if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
-
-        table_component = $("<div>").addClass("table-component");
-        table_component.attr("id", Utils.elementId("table"));
-        table_component.insertBefore(element);
-
-        table_container = $("<div>").addClass("table-container").addClass(o.clsTableContainer).appendTo(table_component);
-        element.appendTo(table_container);
-
-        if (o.horizontalScroll === true) {
-            table_container.addClass("horizontal-scroll");
-        }
-        if (!Utils.isNull(o.horizontalScrollStop) && Utils.mediaExist(o.horizontalScrollStop)) {
-            table_container.removeClass("horizontal-scroll");
-        }
-
-        table_component.addClass(o.clsComponent);
-
-        this.activity =  $("<div>").addClass("table-progress").appendTo(table_component);
-        $("<div>").activity({
-            type: o.activityType,
-            style: o.activityStyle
-        }).appendTo(this.activity);
-
-        if (o.showActivity !== true) {
-            this.activity.css({
-                visibility: "hidden"
-            })
-        }
 
         element.html("").addClass(o.clsTable);
 
@@ -874,7 +883,6 @@ var Table = {
 
         this.currentPage = 1;
 
-        this.component = table_component;
         this._draw();
     },
 
@@ -1780,36 +1788,41 @@ var Table = {
                 source: o.source
             });
 
-            $.json(o.source).then(function(data){
-                that.items = [];
-                that.heads = [];
-                that.foots = [];
+            that.activity.show(function(){
+                $.json(o.source).then(function(data){
+                    that.activity.hide();
+                    that.items = [];
+                    that.heads = [];
+                    that.foots = [];
 
-                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                element.fire("dataloaded", {
-                    source: o.source,
-                    data: data
+                    Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                    element.fire("dataloaded", {
+                        source: o.source,
+                        data: data
+                    });
+
+                    if (Array.isArray(o.head)) {
+                        that.heads = o.head;
+                    }
+
+                    if (Array.isArray(o.body)) {
+                        that.items = o.body;
+                    }
+
+                    that._createItemsFromJSON(data);
+                    that._rebuild(review);
+                }, function(xhr){
+                    that.activity.hide();
+                    Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+                    that._createItemsFromJSON(data);
+                    that._rebuild(review);
+                    element.fire("dataloaderror", {
+                        source: o.source,
+                        xhr: xhr
+                    })
                 });
-
-                if (Array.isArray(o.head)) {
-                    that.heads = o.head;
-                }
-
-                if (Array.isArray(o.body)) {
-                    that.items = o.body;
-                }
-
-                that._createItemsFromJSON(data);
-                that._rebuild(review);
-            }, function(xhr){
-                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                that._createItemsFromJSON(data);
-                that._rebuild(review);
-                element.fire("dataloaderror", {
-                    source: o.source,
-                    xhr: xhr
-                })
             });
+
         }
     },
 

@@ -25061,6 +25061,12 @@ aside::after {
     font-size: 80%;
   }
 }
+.table-load-data-activity {
+  position: absolute!important;
+  top: 0;
+  left: 0;
+  z-index: 500;
+}
 .button,
 .flat-button {
   display: inline-block;
