@@ -3629,7 +3629,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "01/11/2019 13:38:52",
+    compileTime: "01/11/2019 13:50:54",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6367,7 +6367,7 @@ var Utils = {
             return false;
         }
 
-        if (typeof o === 'string' && o.indexOf("./") !== -1) {
+        if (typeof o === 'string' && o.indexOf("/") !== -1) {
             return false;
         }
 
