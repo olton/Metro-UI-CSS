@@ -24,6 +24,7 @@
 + [x] Select: fix for ie11, issue #1452
 + [x] ListView: add callback for `onNodeDblClick` event, issue #1453
 + [x] Table: add show activity when data loaded
++ [x] Table: you can set data with JS object and attribute `data-source`. Value for attribute must be a object name.
 
 ### 4.3.2
 + [x] Slider: fix vertical slider marker position when slider is not visible, thx to [thinkcpu](https://github.com/thinkcpu), PR #1417

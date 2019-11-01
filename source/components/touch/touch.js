@@ -79,7 +79,7 @@ var Touch = {
     },
 
     options: {
-        fingers: 2,
+        fingers: 1,
         threshold: 75,
         cancelThreshold: null,
         pinchThreshold: 20,
