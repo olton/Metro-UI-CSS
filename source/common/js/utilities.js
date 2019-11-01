@@ -95,7 +95,7 @@ var Utils = {
             return false;
         }
 
-        if (typeof o === 'string' && o.indexOf("./") !== -1) {
+        if (typeof o === 'string' && o.indexOf("/") !== -1) {
             return false;
         }
 
