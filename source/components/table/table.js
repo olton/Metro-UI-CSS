@@ -276,6 +276,12 @@ var Table = {
             element.fire("dataload", {
                 source: o.source
             });
+
+            var objSource = Utils.isObject(o.source);
+
+            if (objSource !== false && $.isPlainObject(objSource)) {
+                that._build(objSource);
+            } else
             this.activity.show(function(){
                 $.json(o.source).then(function(data){
                     that.activity.hide();

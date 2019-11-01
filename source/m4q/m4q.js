@@ -455,6 +455,10 @@ function iif(val1, val2, val3){
             return this.then(onFulfillment, null);
         },
 
+        always: function(onAlways){
+            return this.then(onAlways, onAlways);
+        },
+
         'catch': function(onRejection) {
             return this.then(null, onRejection);
         }
@@ -539,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 30/10/2019 16:53:09";
+var m4qVersion = "v1.0.3. Built at 01/11/2019 12:49:42";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches

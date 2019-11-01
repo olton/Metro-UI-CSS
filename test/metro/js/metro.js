@@ -465,6 +465,10 @@ function iif(val1, val2, val3){
             return this.then(onFulfillment, null);
         },
 
+        always: function(onAlways){
+            return this.then(onAlways, onAlways);
+        },
+
         'catch': function(onRejection) {
             return this.then(null, onRejection);
         }
@@ -549,7 +553,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.3. Built at 30/10/2019 16:53:09";
+var m4qVersion = "v1.0.3. Built at 01/11/2019 12:49:42";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -3625,7 +3629,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.3",
-    compileTime: "31/10/2019 12:03:33",
+    compileTime: "01/11/2019 13:38:52",
     buildNumber: "740",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6268,7 +6272,7 @@ Metro['template'] = TemplateEngine;
 
 var Utils = {
     isUrl: function (val) {
-        return /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
+        return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
     },
 
     isTag: function(val){
@@ -6343,7 +6347,7 @@ var Utils = {
     },
 
     isType: function(o, t){
-        if (o === undefined || o === null) {
+        if (!Utils.isValue(o)) {
             return false;
         }
 
@@ -6360,6 +6364,10 @@ var Utils = {
         }
 
         if (typeof o === 'string' && o.indexOf(".") === -1) {
+            return false;
+        }
+
+        if (typeof o === 'string' && o.indexOf("./") !== -1) {
             return false;
         }
 
@@ -24530,6 +24538,12 @@ var Table = {
             element.fire("dataload", {
                 source: o.source
             });
+
+            var objSource = Utils.isObject(o.source);
+
+            if (objSource !== false && $.isPlainObject(objSource)) {
+                that._build(objSource);
+            } else
             this.activity.show(function(){
                 $.json(o.source).then(function(data){
                     that.activity.hide();
@@ -28379,7 +28393,7 @@ var Touch = {
     },
 
     options: {
-        fingers: 2,
+        fingers: 1,
         threshold: 75,
         cancelThreshold: null,
         pinchThreshold: 20,

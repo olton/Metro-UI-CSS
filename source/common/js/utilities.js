@@ -1,6 +1,6 @@
 var Utils = {
     isUrl: function (val) {
-        return /^(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
+        return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
     },
 
     isTag: function(val){
@@ -75,7 +75,7 @@ var Utils = {
     },
 
     isType: function(o, t){
-        if (o === undefined || o === null) {
+        if (!Utils.isValue(o)) {
             return false;
         }
 
@@ -92,6 +92,10 @@ var Utils = {
         }
 
         if (typeof o === 'string' && o.indexOf(".") === -1) {
+            return false;
+        }
+
+        if (typeof o === 'string' && o.indexOf("./") !== -1) {
             return false;
         }
 
