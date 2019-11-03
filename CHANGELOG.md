@@ -11,7 +11,8 @@
 + [x] Slider: fix using accuracy with  decimal value, issue #1447  
 + [x] Calendar Picker: add attribute `data-show-week-number`
 + [x] Gravatar: fix global setup method name
-+ [x] Activity: fix method open for undefined options
++ [x] Activity: fix method `open` for undefined options
++ [x] Activity: fix interop with Metro 4 and jQuery
 + [x] Dialog: fix interop with Metro 4 and jQuery for dialog create method
 + [x] AppBar: set `max-height` for `app-bar-menu` opened with `hamburger` to visible viewport
 + [x] Buttons: refactoring - split to separate components from one file
