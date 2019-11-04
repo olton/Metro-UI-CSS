@@ -21,6 +21,16 @@
     .back {
         transform: perspective(@defaultPerspective) rotateY(180deg);
     }
+
+    &.flip-horizontal {
+        .front {
+            transform: perspective(@defaultPerspective) rotateX(0deg);
+        }
+
+        .back {
+            transform: perspective(@defaultPerspective) rotateX(180deg);
+        }
+    }
 }
 
 .flip-card.flip-on-hover {
@@ -30,6 +40,15 @@
     &:hover > .back {
         transform: perspective(@defaultPerspective) rotateY(0deg);
     }
+
+    &.flip-horizontal {
+        &:hover > .front {
+            transform: perspective(@defaultPerspective) rotateX(-180deg);
+        }
+        &:hover > .back {
+            transform: perspective(@defaultPerspective) rotateX(0deg);
+        }
+    }
 }
 
 .flip-card.flip-on-active {
@@ -38,6 +57,15 @@
     }
     &.active > .back {
         transform: perspective(@defaultPerspective) rotateY(0deg);
+    }
+
+    &.flip-horizontal {
+        &.active > .front {
+            transform: perspective(@defaultPerspective) rotateX(-180deg);
+        }
+        &.active > .back {
+            transform: perspective(@defaultPerspective) rotateX(0deg);
+        }
     }
 }
 

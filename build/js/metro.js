@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 04/11/2019 16:17:42
+ * Built at 04/11/2019 16:35:10
  * Licensed under MIT
  */
 
@@ -3630,7 +3630,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "04/11/2019 16:17:51",
+    compileTime: "04/11/2019 16:35:18",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,

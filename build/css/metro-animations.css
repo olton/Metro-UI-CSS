@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 04/11/2019 16:17:34
+ * Built at 04/11/2019 16:35:03
  * Licensed under MIT
  */
 .ani-spin,
@@ -1164,6 +1164,14 @@
   -webkit-transform: perspective(600px) rotateY(180deg);
           transform: perspective(600px) rotateY(180deg);
 }
+.flip-card.flip-horizontal .front {
+  -webkit-transform: perspective(600px) rotateX(0deg);
+          transform: perspective(600px) rotateX(0deg);
+}
+.flip-card.flip-horizontal .back {
+  -webkit-transform: perspective(600px) rotateX(180deg);
+          transform: perspective(600px) rotateX(180deg);
+}
 .flip-card.flip-on-hover:hover > .front {
   -webkit-transform: perspective(600px) rotateY(-180deg);
           transform: perspective(600px) rotateY(-180deg);
@@ -1172,6 +1180,14 @@
   -webkit-transform: perspective(600px) rotateY(0deg);
           transform: perspective(600px) rotateY(0deg);
 }
+.flip-card.flip-on-hover.flip-horizontal:hover > .front {
+  -webkit-transform: perspective(600px) rotateX(-180deg);
+          transform: perspective(600px) rotateX(-180deg);
+}
+.flip-card.flip-on-hover.flip-horizontal:hover > .back {
+  -webkit-transform: perspective(600px) rotateX(0deg);
+          transform: perspective(600px) rotateX(0deg);
+}
 .flip-card.flip-on-active.active > .front {
   -webkit-transform: perspective(600px) rotateY(-180deg);
           transform: perspective(600px) rotateY(-180deg);
@@ -1179,4 +1195,12 @@
 .flip-card.flip-on-active.active > .back {
   -webkit-transform: perspective(600px) rotateY(0deg);
           transform: perspective(600px) rotateY(0deg);
+}
+.flip-card.flip-on-active.flip-horizontal.active > .front {
+  -webkit-transform: perspective(600px) rotateX(-180deg);
+          transform: perspective(600px) rotateX(-180deg);
+}
+.flip-card.flip-on-active.flip-horizontal.active > .back {
+  -webkit-transform: perspective(600px) rotateX(0deg);
+          transform: perspective(600px) rotateX(0deg);
 }
