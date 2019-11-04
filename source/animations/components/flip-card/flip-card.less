@@ -1,0 +1,43 @@
+@import (once) "../../../include/vars";
+@import (once) "../../../include/mixins";
+
+.flip-card {
+
+    .front, .back {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        backface-visibility: hidden;
+        position: absolute;
+        transition: transform @defaultAnimationSpeed linear;
+        top: 0;
+        left: 0;
+    }
+
+    .front {
+        transform: perspective(@defaultPerspective) rotateY(0deg);
+    }
+
+    .back {
+        transform: perspective(@defaultPerspective) rotateY(180deg);
+    }
+}
+
+.flip-card.flip-on-hover {
+    &:hover > .front {
+        transform: perspective(@defaultPerspective) rotateY(-180deg);
+    }
+    &:hover > .back {
+        transform: perspective(@defaultPerspective) rotateY(0deg);
+    }
+}
+
+.flip-card.flip-on-active {
+    &.active > .front {
+        transform: perspective(@defaultPerspective) rotateY(-180deg);
+    }
+    &.active > .back {
+        transform: perspective(@defaultPerspective) rotateY(0deg);
+    }
+}
+

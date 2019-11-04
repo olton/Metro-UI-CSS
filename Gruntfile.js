@@ -38,6 +38,7 @@ module.exports = function(grunt) {
         copyright: '/*\n' +
         ' * Metro 4 Components Library v<%= pkg.version %> <%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
         ' * Copyright 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
+        ' * Built at '+timestamp+'\n' +
         ' * Licensed under <%= pkg.license %>\n' +
         ' */\n',
 
@@ -86,6 +87,7 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'build/css/metro.css',
+                    'build/css/metro-animations.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
                     'build/css/metro-icons.css',
@@ -122,6 +124,7 @@ module.exports = function(grunt) {
                     "metro.less",
                     "metro-rtl.less",
                     "metro-colors.less",
+                    "metro-animations.less",
                     "metro-icons.less",
                     "metro-third.less"
                 ],
