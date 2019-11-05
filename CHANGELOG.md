@@ -1,4 +1,5 @@
 ### 4.3.4
++ [x] M4Q: upd to 1.0.4
 + [x] Animations: put to separate less/css file `metro-animations`
 + [x] Object animations: add `flip-card`
 
