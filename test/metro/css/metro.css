@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 05/11/2019 16:20:30
+ * Built at 06/11/2019 17:10:45
  * Licensed under MIT
  */
 html,
@@ -18970,6 +18970,18 @@ input:-webkit-autofill:active {
   -o-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
+::-webkit-input-placeholder {
+  font-size: 14px;
+}
+::-moz-placeholder {
+  font-size: 14px;
+}
+:-moz-placeholder {
+  font-size: 14px;
+}
+:-ms-input-placeholder {
+  font-size: 14px;
+}
 .no-shadow {
   -webkit-box-shadow: none!important;
           box-shadow: none!important;
@@ -26726,6 +26738,19 @@ textarea {
       -ms-flex-order: 3;
           order: 3;
 }
+.input input[placeholder] {
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+}
+.input input::-moz-placeholder {
+  text-overflow: ellipsis;
+}
+.input input:-moz-placeholder {
+  text-overflow: ellipsis;
+}
+.input input:-ms-input-placeholder {
+  text-overflow: ellipsis;
+}
 .input .autocomplete-list {
   margin: 0;
   padding: 0;
@@ -26780,10 +26805,34 @@ textarea {
   width: 48px;
   padding: 0;
 }
+.input.input-large input[placeholder] {
+  font-size: 1.1rem;
+}
+.input.input-large input::-moz-placeholder {
+  font-size: 1.1rem;
+}
+.input.input-large input:-moz-placeholder {
+  font-size: 1.1rem;
+}
+.input.input-large input:-ms-input-placeholder {
+  font-size: 1.1rem;
+}
 input.input-large {
   height: 48px;
   font-size: 1.3rem;
   padding: 0 10px;
+}
+input.input-large[placeholder] {
+  font-size: 1.1rem;
+}
+input.input-large::-moz-placeholder {
+  font-size: 1.1rem;
+}
+input.input-large:-moz-placeholder {
+  font-size: 1.1rem;
+}
+input.input-large:-ms-input-placeholder {
+  font-size: 1.1rem;
 }
 .input.input-small {
   height: 28px;
@@ -26812,10 +26861,34 @@ input.input-large {
   width: 26px;
   padding: 0;
 }
+.input.input-small input[placeholder] {
+  font-size: 0.8rem;
+}
+.input.input-small input::-moz-placeholder {
+  font-size: 0.8rem;
+}
+.input.input-small input:-moz-placeholder {
+  font-size: 0.8rem;
+}
+.input.input-small input:-ms-input-placeholder {
+  font-size: 0.8rem;
+}
 input.input-small {
   height: 26px;
   font-size: 0.9rem;
   padding: 0 4px;
+}
+input.input-small[placeholder] {
+  font-size: 0.8rem;
+}
+input.input-small::-moz-placeholder {
+  font-size: 0.8rem;
+}
+input.input-small:-moz-placeholder {
+  font-size: 0.8rem;
+}
+input.input-small:-ms-input-placeholder {
+  font-size: 0.8rem;
 }
 .tag-input {
   display: -webkit-box;

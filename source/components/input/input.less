@@ -71,6 +71,13 @@
 }
 
 .input {
+    input[placeholder]          {text-overflow:ellipsis;}
+    input::-moz-placeholder     {text-overflow:ellipsis;}
+    input:-moz-placeholder      {text-overflow:ellipsis;}
+    input:-ms-input-placeholder {text-overflow:ellipsis;}
+}
+
+.input {
     .autocomplete-list {
         margin: 0;
         padding: 0;
@@ -134,6 +141,12 @@
                 padding: 0;
             }
         }
+
+        input[placeholder]          {font-size: 1.1rem;}
+        input::-moz-placeholder     {font-size: 1.1rem;}
+        input:-moz-placeholder      {font-size: 1.1rem;}
+        input:-ms-input-placeholder {font-size: 1.1rem;}
+
     }
 }
 
@@ -144,6 +157,11 @@ input {
         padding: 0 10px;
     }
 }
+
+input.input-large[placeholder]          {font-size: 1.1rem;}
+input.input-large::-moz-placeholder     {font-size: 1.1rem;}
+input.input-large:-moz-placeholder      {font-size: 1.1rem;}
+input.input-large:-ms-input-placeholder {font-size: 1.1rem;}
 
 .input {
     &.input-small {
@@ -175,6 +193,12 @@ input {
             width: @input-sx - 2;
             padding: 0;
         }
+
+        input[placeholder]          {font-size: .8rem;}
+        input::-moz-placeholder     {font-size: .8rem;}
+        input:-moz-placeholder      {font-size: .8rem;}
+        input:-ms-input-placeholder {font-size: .8rem;}
+
     }
 }
 
@@ -185,3 +209,8 @@ input {
         padding: 0 4px;
     }
 }
+
+input.input-small[placeholder]          {font-size: .8rem;}
+input.input-small::-moz-placeholder     {font-size: .8rem;}
+input.input-small:-moz-placeholder      {font-size: .8rem;}
+input.input-small:-ms-input-placeholder {font-size: .8rem;}

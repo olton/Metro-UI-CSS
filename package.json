@@ -18,6 +18,10 @@
     "cordova",
     "phonegap"
   ],
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/metroui"
+  },
   "homepage": "https://metroui.org.ua",
   "repository": {
     "type": "git",

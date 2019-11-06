@@ -31,40 +31,22 @@
             transform: perspective(@defaultPerspective) rotateX(180deg);
         }
     }
-}
 
-.flip-card.flip-on-hover {
-    &:hover > .front {
-        transform: perspective(@defaultPerspective) rotateY(-180deg);
-    }
-    &:hover > .back {
-        transform: perspective(@defaultPerspective) rotateY(0deg);
-    }
-
-    &.flip-horizontal {
-        &:hover > .front {
-            transform: perspective(@defaultPerspective) rotateX(-180deg);
+    &.effect-on-hover:hover, &.effect-on-active.active {
+        & > .front {
+            transform: perspective(@defaultPerspective) rotateY(-180deg);
         }
-        &:hover > .back {
-            transform: perspective(@defaultPerspective) rotateX(0deg);
+        & > .back {
+            transform: perspective(@defaultPerspective) rotateY(0deg);
         }
-    }
-}
 
-.flip-card.flip-on-active {
-    &.active > .front {
-        transform: perspective(@defaultPerspective) rotateY(-180deg);
-    }
-    &.active > .back {
-        transform: perspective(@defaultPerspective) rotateY(0deg);
-    }
-
-    &.flip-horizontal {
-        &.active > .front {
-            transform: perspective(@defaultPerspective) rotateX(-180deg);
-        }
-        &.active > .back {
-            transform: perspective(@defaultPerspective) rotateX(0deg);
+        &.flip-horizontal {
+            & > .front {
+                transform: perspective(@defaultPerspective) rotateX(-180deg);
+            }
+            & > .back {
+                transform: perspective(@defaultPerspective) rotateX(0deg);
+            }
         }
     }
 }
