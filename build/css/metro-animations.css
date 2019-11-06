@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 05/11/2019 16:20:30
+ * Built at 06/11/2019 17:10:45
  * Licensed under MIT
  */
 .ani-spin,
@@ -1172,35 +1172,87 @@
   -webkit-transform: perspective(600px) rotateX(180deg);
           transform: perspective(600px) rotateX(180deg);
 }
-.flip-card.flip-on-hover:hover > .front {
+.flip-card.effect-on-hover:hover > .front,
+.flip-card.effect-on-active.active > .front {
   -webkit-transform: perspective(600px) rotateY(-180deg);
           transform: perspective(600px) rotateY(-180deg);
 }
-.flip-card.flip-on-hover:hover > .back {
+.flip-card.effect-on-hover:hover > .back,
+.flip-card.effect-on-active.active > .back {
   -webkit-transform: perspective(600px) rotateY(0deg);
           transform: perspective(600px) rotateY(0deg);
 }
-.flip-card.flip-on-hover.flip-horizontal:hover > .front {
+.flip-card.effect-on-hover:hover.flip-horizontal > .front,
+.flip-card.effect-on-active.active.flip-horizontal > .front {
   -webkit-transform: perspective(600px) rotateX(-180deg);
           transform: perspective(600px) rotateX(-180deg);
 }
-.flip-card.flip-on-hover.flip-horizontal:hover > .back {
+.flip-card.effect-on-hover:hover.flip-horizontal > .back,
+.flip-card.effect-on-active.active.flip-horizontal > .back {
   -webkit-transform: perspective(600px) rotateX(0deg);
           transform: perspective(600px) rotateX(0deg);
 }
-.flip-card.flip-on-active.active > .front {
-  -webkit-transform: perspective(600px) rotateY(-180deg);
-          transform: perspective(600px) rotateY(-180deg);
+.post-card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
 }
-.flip-card.flip-on-active.active > .back {
-  -webkit-transform: perspective(600px) rotateY(0deg);
-          transform: perspective(600px) rotateY(0deg);
+.post-card .left,
+.post-card .right {
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 50%;
+      flex-basis: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  position: relative;
+  -webkit-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
-.flip-card.flip-on-active.flip-horizontal.active > .front {
-  -webkit-transform: perspective(600px) rotateX(-180deg);
-          transform: perspective(600px) rotateX(-180deg);
+.post-card .left {
+  -webkit-transform: perspective(1600px) rotateY(25deg);
+          transform: perspective(1600px) rotateY(25deg);
+  -webkit-transform-origin: right;
+      -ms-transform-origin: right;
+          transform-origin: right;
+  border-right: 1px solid #f8f8f8;
 }
-.flip-card.flip-on-active.flip-horizontal.active > .back {
-  -webkit-transform: perspective(600px) rotateX(0deg);
-          transform: perspective(600px) rotateX(0deg);
+.post-card .right {
+  -webkit-transform: perspective(1600px) rotateY(-25deg);
+          transform: perspective(1600px) rotateY(-25deg);
+  -webkit-transform-origin: left;
+      -ms-transform-origin: left;
+          transform-origin: left;
+  border-left: 1px solid #f8f8f8;
+}
+.post-card.effect-on-hover:hover > .left,
+.post-card.effect-on-active.active > .left {
+  -webkit-transform: perspective(1600px) rotateY(0);
+          transform: perspective(1600px) rotateY(0);
+}
+.post-card.effect-on-hover:hover > .right,
+.post-card.effect-on-active.active > .right {
+  -webkit-transform: perspective(1600px) rotateY(-35deg);
+          transform: perspective(1600px) rotateY(-35deg);
+}
+.post-card.effect-on-hover:hover.rotate-to-left > .right,
+.post-card.effect-on-active.active.rotate-to-left > .right {
+  -webkit-transform: perspective(1600px) rotateY(0);
+          transform: perspective(1600px) rotateY(0);
+}
+.post-card.effect-on-hover:hover.rotate-to-left > .left,
+.post-card.effect-on-active.active.rotate-to-left > .left {
+  -webkit-transform: perspective(1600px) rotateY(35deg);
+          transform: perspective(1600px) rotateY(35deg);
 }

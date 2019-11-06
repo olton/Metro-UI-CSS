@@ -2,6 +2,8 @@
 + [x] M4Q: upd to 1.0.4
 + [x] Animations: put to separate less/css file `metro-animations`
 + [x] Object animations: add `flip-card`
++ [x] Object animations: add `post-card`
++ [x] Inputs: change placeholder `font-size` to `14px`, add `text-ellipsis`
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3
