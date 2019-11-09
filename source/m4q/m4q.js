@@ -543,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 05/11/2019 16:19:03";
+var m4qVersion = "v1.0.4. Built at 07/11/2019 21:27:51";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1080,21 +1080,36 @@ $.fn.extend({
 function createScript(script){
     var s = document.createElement('script');
     s.type = 'text/javascript';
-    if (script.src) {
-        s.src = script.src;
+
+    if (not(script)) return $(s);
+
+    var _script = $(script)[0];
+
+    if (_script.src) {
+        s.src = _script.src;
     } else {
-        s.textContent = script.innerText;
+        s.textContent = _script.innerText;
     }
+
     document.body.appendChild(s);
-    script.parentNode.removeChild(script);
+
+    if (_script.parentNode) _script.parentNode.removeChild(_script);
+
     return s;
 }
 
 $.extend({
     script: function(el){
-        if (el.tagName && el.tagName === "SCRIPT") {
-            createScript(el);
-        } else $.each($(el).find("script"), function(){
+
+        if (not(el)) {
+            return createScript();
+        }
+
+        var _el = $(el)[0];
+
+        if (_el.tagName && _el.tagName === "SCRIPT") {
+            createScript(_el);
+        } else $.each($(_el).find("script"), function(){
             createScript(this);
         });
     }
@@ -2486,6 +2501,22 @@ $.extend({
         return $("html");
     },
 
+    head: function(){
+        return $("html").find("head");
+    },
+
+    body: function(){
+        return $("body");
+    },
+
+    document: function(){
+        return $(document);
+    },
+
+    window: function(){
+        return $(window);
+    },
+
     charset: function(val){
         var meta = $("meta[charset]");
         if (val) {
@@ -2549,24 +2580,24 @@ var normalizeElements = function(s){
 
 $.fn.extend({
     append: function(elements){
-        var elems = normalizeElements(elements);
+        var _elements = normalizeElements(elements);
 
         return this.each(function(elIndex, el){
-            $.each(elems, function(i){
+            $.each(_elements, function(){
                 if (el === this) return ;
                 var child = elIndex === 0 ? this : this.cloneNode(true);
-                el.append(child);
                 $.script(child);
+                if (child.tagName && child.tagName !== "SCRIPT") el.append(child);
             });
         })
     },
 
     appendTo: function(elements){
-        var elems = normalizeElements(elements);
+        var _elements = normalizeElements(elements);
 
         return this.each(function(){
             var el = this;
-            $.each(elems, function(parIndex, parent){
+            $.each(_elements, function(parIndex, parent){
                 if (el === this) return ;
                 parent.append(parIndex === 0 ? el : el.cloneNode(true));
             });
@@ -2574,24 +2605,24 @@ $.fn.extend({
     },
 
     prepend: function(elements){
-        var elems = normalizeElements(elements);
+        var _elements = normalizeElements(elements);
 
         return this.each(function (elIndex, el) {
-            $.each(elems, function(){
+            $.each(_elements, function(){
                 if (el === this) return ;
                 var child = elIndex === 0 ? this : this.cloneNode(true);
-                el.prepend(child);
                 $.script(child);
+                if (child.tagName && child.tagName !== "SCRIPT") el.prepend(child);
             });
         })
     },
 
     prependTo: function(elements){
-        var elems = normalizeElements(elements);
+        var _elements = normalizeElements(elements);
 
         return this.each(function(){
             var el = this;
-            $.each(elems, function(parIndex, parent){
+            $.each(_elements, function(parIndex, parent){
                 if (el === this) return ;
                 $(parent).prepend(parIndex === 0 ? el : el.cloneNode(true));
             })
@@ -2599,25 +2630,31 @@ $.fn.extend({
     },
 
     insertBefore: function(elements){
-        var elems = normalizeElements(elements);
+        var _elements = normalizeElements(elements);
 
         return this.each(function(){
             var el = this;
-            $.each(elems, function(elIndex, element){
+            $.each(_elements, function(elIndex){
                 if (el === this) return ;
-                element.parentNode.insertBefore(elIndex === 0 ? el : el.cloneNode(true), element);
+                var parent = this.parentNode;
+                if (parent) {
+                    parent.insertBefore(elIndex === 0 ? el : el.cloneNode(true), this);
+                }
             });
         })
     },
 
     insertAfter: function(elements){
-        var elems = normalizeElements(elements);
+        var _elements = normalizeElements(elements);
 
         return this.each(function(){
             var el = this;
-            $.each(elems, function(elIndex, element){
+            $.each(_elements, function(elIndex, element){
                 if (el === this) return ;
-                element.parentNode.insertBefore(elIndex === 0 ? el : el.cloneNode(true), element.nextSibling);
+                var parent = this.parentNode;
+                if (parent) {
+                    parent.insertBefore(elIndex === 0 ? el : el.cloneNode(true), element.nextSibling);
+                }
             });
         });
     },

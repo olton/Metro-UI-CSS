@@ -85,3 +85,4 @@ docs/test
 copy-dist.bat
 cypress/video
 test/manual
+serve.bat
