@@ -33,9 +33,14 @@ var Notify = {
     setup: function(options){
         this.options = $.extend({}, NotifyDefaultConfig, options);
 
-        if (Notify.container === null) {
-            Notify.container = Notify._createContainer();
-        }
+        // if (Notify.container === null) {
+        //     if (METRO_INIT_MODE === 'immediate')
+        //         Notify.container = Notify._createContainer();
+        //     else
+        //         $(function(){
+        //             Notify.container = Notify._createContainer();
+        //         })
+        // }
 
         return this;
     },

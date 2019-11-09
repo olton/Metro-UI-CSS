@@ -8,7 +8,7 @@ describe("Metro 4 :: Accordion test", ()=>{
 
     targets.forEach((el)=>{
         it(el[1], ()=>{
-            cy.visit("/cypress/components/accordion/"+el[0])
+            cy.visit("/cypress/components/accordion/"+el[0]);
 
             cy.get('#frame11 > .heading').click();
             cy.get('#frame11 > .content').should('be.visible');
