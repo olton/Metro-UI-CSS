@@ -136,8 +136,8 @@ var Splitter = {
 
             gutter.addClass("active");
 
-            prev_block.addClass("stop-select stop-pointer");
-            next_block.addClass("stop-select stop-pointer");
+            prev_block.addClass("stop-pointer");
+            next_block.addClass("stop-pointer");
 
             Utils.exec(o.onResizeStart, [start_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
             element.fire("resizestart", {
@@ -173,8 +173,8 @@ var Splitter = {
             $(window).on(Metro.events.stop, function(e){
                 var cur_pos;
 
-                prev_block.removeClass("stop-select stop-pointer");
-                next_block.removeClass("stop-select stop-pointer");
+                prev_block.removeClass("stop-pointer");
+                next_block.removeClass("stop-pointer");
 
                 that._saveSize();
 

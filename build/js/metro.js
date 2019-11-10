@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 09/11/2019 11:27:27
+ * Built at 10/11/2019 12:19:44
  * Licensed under MIT
  */
 
@@ -3671,7 +3671,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "09/11/2019 11:27:34",
+    compileTime: "10/11/2019 12:19:51",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3988,22 +3988,23 @@ var Metro = {
             roles.map(function (func) {
 
                 var $$ = Utils.$();
+                var _func = func.replace("-", "");
 
-                if ($$.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
+                if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
                     try {
-                        $$.fn[func].call($this);
-                        $this.attr("data-role-"+func, true);
+                        $$.fn[_func].call($this);
+                        $this.attr("data-role-"+_func, true);
 
                         var mc = $this.data('metroComponent');
 
                         if (mc === undefined) {
-                            mc = [func];
+                            mc = [_func];
                         } else {
-                            mc.push(func);
+                            mc.push(_func);
                         }
                         $this.data('metroComponent', mc);
                     } catch (e) {
-                        console.error(e.message + " in " + e.stack);
+                        console.error("Error creating component " + func);
                         throw e;
                     }
                 }
@@ -4061,11 +4062,6 @@ var Metro = {
     noop: function(){},
     noop_true: function(){return true;},
     noop_false: function(){return false;},
-
-    stop: function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    },
 
     requestFullScreen: function(element){
         if (element["mozRequestFullScreen"]) {
@@ -20131,7 +20127,7 @@ var Resizable = {
             var startHeight = parseInt(element.outerHeight());
             var size = {width: startWidth, height: startHeight};
 
-            element.addClass("stop-select stop-pointer");
+            element.addClass("stop-pointer");
 
             Utils.exec(o.onResizeStart, [size], element[0]);
             element.fire("resizestart", {
@@ -20160,7 +20156,7 @@ var Resizable = {
             }, {ns: that.id});
 
             $(document).on(Metro.events.stop, function(){
-                element.removeClass("stop-select stop-pointer");
+                element.removeClass("stop-pointer");
 
                 $(document).off(Metro.events.move, {ns: that.id});
                 $(document).off(Metro.events.stop, {ns: that.id});
@@ -23066,8 +23062,8 @@ var Splitter = {
 
             gutter.addClass("active");
 
-            prev_block.addClass("stop-select stop-pointer");
-            next_block.addClass("stop-select stop-pointer");
+            prev_block.addClass("stop-pointer");
+            next_block.addClass("stop-pointer");
 
             Utils.exec(o.onResizeStart, [start_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
             element.fire("resizestart", {
@@ -23103,8 +23099,8 @@ var Splitter = {
             $(window).on(Metro.events.stop, function(e){
                 var cur_pos;
 
-                prev_block.removeClass("stop-select stop-pointer");
-                next_block.removeClass("stop-select stop-pointer");
+                prev_block.removeClass("stop-pointer");
+                next_block.removeClass("stop-pointer");
 
                 that._saveSize();
 

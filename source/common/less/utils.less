@@ -118,6 +118,11 @@
     color: @lightGray!important;
 }
 
+.stop-pointer {
+    pointer-events: none;
+    user-select: none;
+}
+
 .generate-utils-media-options(@mediaBreakpointListMobileLength);
 .generate-utils-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
     @m: extract(@mediaBreakpointListMobile, @i);

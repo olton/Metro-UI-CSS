@@ -427,22 +427,23 @@ var Metro = {
             roles.map(function (func) {
 
                 var $$ = Utils.$();
+                var _func = func.replace("-", "");
 
-                if ($$.fn[func] !== undefined && $this.attr("data-role-"+func) === undefined) {
+                if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
                     try {
-                        $$.fn[func].call($this);
-                        $this.attr("data-role-"+func, true);
+                        $$.fn[_func].call($this);
+                        $this.attr("data-role-"+_func, true);
 
                         var mc = $this.data('metroComponent');
 
                         if (mc === undefined) {
-                            mc = [func];
+                            mc = [_func];
                         } else {
-                            mc.push(func);
+                            mc.push(_func);
                         }
                         $this.data('metroComponent', mc);
                     } catch (e) {
-                        console.error(e.message + " in " + e.stack);
+                        console.error("Error creating component " + func);
                         throw e;
                     }
                 }
@@ -500,11 +501,6 @@ var Metro = {
     noop: function(){},
     noop_true: function(){return true;},
     noop_false: function(){return false;},
-
-    stop: function(e){
-        e.stopPropagation();
-        e.preventDefault();
-    },
 
     requestFullScreen: function(element){
         if (element["mozRequestFullScreen"]) {
