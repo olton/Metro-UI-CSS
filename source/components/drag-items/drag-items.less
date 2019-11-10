@@ -1,0 +1,45 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.drag-items-target {
+}
+
+.dragged-item {
+    opacity: .3;
+}
+
+.drag-item-marker {
+    position: absolute;
+    top: 8px;
+    left: 4px;
+    height: 20px;
+    width: 24px;
+    background-color: @gray;
+    cursor: move;
+
+    &::before, &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 4px;
+        background-color: @white;
+    }
+
+    &::before {
+        top: 4px;
+    }
+
+    &::after {
+        top: 12px;
+    }
+}
+
+.dragged-item-avatar {
+    cursor: move;
+    display: block;
+    position: absolute;
+    background-color: @blue;
+    opacity: .3;
+    z-index: @zindex-absolute;
+    box-shadow: inset -1px 0px 10px -4px rgba(red(@primaryColor),green(@primaryColor),blue(@primaryColor),1);
+}

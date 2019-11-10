@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 10/11/2019 12:19:37
+ * Built at 10/11/2019 19:03:00
  * Licensed under MIT
  */
 html,
@@ -38730,6 +38730,42 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
             transform: scale(2.5);
     opacity: 0;
   }
+}
+.dragged-item {
+  opacity: 0.3;
+}
+.drag-item-marker {
+  position: absolute;
+  top: 8px;
+  left: 4px;
+  height: 20px;
+  width: 24px;
+  background-color: #bebebe;
+  cursor: move;
+}
+.drag-item-marker::before,
+.drag-item-marker::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background-color: #ffffff;
+}
+.drag-item-marker::before {
+  top: 4px;
+}
+.drag-item-marker::after {
+  top: 12px;
+}
+.dragged-item-avatar {
+  cursor: move;
+  display: block;
+  position: absolute;
+  background-color: #00AFF0;
+  opacity: 0.3;
+  z-index: 500;
+  -webkit-box-shadow: inset -1px 0px 10px -4px #0366d6;
+          box-shadow: inset -1px 0px 10px -4px #0366d6;
 }
 @media print {
   .d-none-print {
