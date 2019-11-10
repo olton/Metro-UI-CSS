@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 09/11/2019 11:27:20
+ * Built at 10/11/2019 12:19:37
  * Licensed under MIT
  */
 html,
@@ -502,6 +502,13 @@ div {
 .-disabled {
   pointer-events: none!important;
   color: #e4e4e4 !important;
+}
+.stop-pointer {
+  pointer-events: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 @media screen and (min-width: 0) {
   .overflow-fs {
@@ -36786,15 +36793,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   padding-top: 3px;
   padding-bottom: 3px;
 }
-.resizeable-element.stop-select {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.resizeable-element.stop-pointer {
-  pointer-events: none;
-}
 .resize-element {
   display: block;
   position: absolute;
@@ -37576,15 +37574,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -ms-flex-preferred-size: 0;
       flex-basis: 0;
   overflow: hidden;
-}
-.splitter > .split-block.stop-select {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-}
-.splitter > .split-block.stop-pointer {
-  pointer-events: none;
 }
 .t-menu {
   list-style: none inside;
