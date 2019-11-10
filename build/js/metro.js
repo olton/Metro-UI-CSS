@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 10/11/2019 12:19:44
+ * Built at 10/11/2019 19:03:07
  * Licensed under MIT
  */
 
@@ -554,7 +554,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 07/11/2019 21:27:51";
+var m4qVersion = "v1.0.4. Built at 10/11/2019 15:01:33";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1518,7 +1518,10 @@ $.extend({
     unit: function(str, out){return parseUnit(str, out)},
     isVisible: function(elem) {return isVisible(elem)},
     isHidden: function(elem) {return isHidden(elem)},
-    iif: function(v1, v2, v3){return iif(v1, v2, v3);}
+    iif: function(v1, v2, v3){return iif(v1, v2, v3);},
+    matches: function(el, s) {
+        return matches.call(el, s);
+    }
 });
 
 $.fn.extend({
@@ -1896,21 +1899,23 @@ $.fn.extend({
 $.ajax = function(p){
     return new Promise(function(resolve, reject){
         var xhr = new XMLHttpRequest(), data;
-        var method = (p.method || 'GET').toUpperCase();
+        var method = (p.method || "GET").toUpperCase();
         var headers = [];
         var async = not(p.async) ? true : p.async;
         var url = p.url;
 
         var exec = function(fn, params){
-            if (typeof fn === "function") fn.apply(null, params);
+            if (typeof fn === "function") {
+                fn.apply(null, params);
+            }
         };
 
         if (p.data instanceof HTMLFormElement) {
             var _action = p.data.getAttribute("action");
             var _method = p.data.getAttribute("method");
 
-            if (not(url) && _action && _action.trim() !== "") url = _action;
-            if (_method && _method.trim() !== "") method = _method.toUpperCase();
+            if (not(url) && _action && _action.trim() !== "") {url = _action;}
+            if (_method && _method.trim() !== "") {method = _method.toUpperCase();}
         }
 
         xhr.open(method, url, async, p.user, p.password);
@@ -2692,13 +2697,25 @@ $.fn.extend({
         });
     },
 
-    clone: function(deep){
+    clone: function(deep, withData){
         var res = [];
         if (not(deep)) {
             deep = false;
         }
+        if (not(withData)) {
+            withData = false;
+        }
         this.each(function(){
-            res.push(this.cloneNode(deep));
+            var el = this.cloneNode(deep);
+            var $el = $(el);
+            var data;
+            if (withData && $.hasData(this)) {
+                data = $(this).data();
+                $.each(data, function(k, v){
+                    $el.data(k, v);
+                })
+            }
+            res.push(el);
         });
         return $.merge($(), res);
     },
@@ -3671,7 +3688,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "10/11/2019 12:19:51",
+    compileTime: "10/11/2019 19:03:14",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13630,6 +13647,195 @@ var Donut = {
 
 Metro.plugin('donut', Donut);
 
+var DragItemsDefaultConfig = {
+    target: null,
+    dragItem: "li",
+    dragMarker: ".drag-item-marker",
+    drawDragMarker: false,
+    clsDragItemAvatar: "",
+    clsDragItem: "",
+    onDragItemsCreate: Metro.noop
+};
+
+Metro.dragItemsSetup = function (options) {
+    DragItemsDefaultConfig = $.extend({}, DragItemsDefaultConfig, options);
+};
+
+if (typeof window["metroDragItemsSetup"] !== undefined) {
+    Metro.dragItemsSetup(window["metroDragItemsSetup"]);
+}
+
+var DragItems = {
+    options: {},
+
+    init: function( options, elem ) {
+        this.options = $.extend( {}, DragItemsDefaultConfig, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.id = null;
+
+        this._setOptionsFromDOM();
+        this._create();
+
+        return this;
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        this.id = Utils.elementId("dragItems");
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onDragItemsCreate, [element]);
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+
+        element.addClass("drag-items-target");
+
+        if (o.drawDragMarker === true) {
+            element.find(o.dragItem).each(function(){
+                $("<span>").addClass("drag-item-marker").appendTo(this);
+            })
+        }
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+        var doc = $.document(), body = $.body();
+        var offset, shift = {top: 0, left: 0}, width, height;
+
+        var move = function(e, avatar, dragItem){
+            var x = Utils.pageXY(e).x, y = Utils.pageXY(e).y;
+            var _top = y - shift.top;
+            var _left = x - shift.left;
+
+            avatar.css({
+                top: _top,
+                left: _left
+            });
+
+            var target = document.elementsFromPoint(x, y).filter(function(el){
+                return $(el).hasClass('drag-items-target');
+            });
+
+            if (target.length === 0) {
+                return;
+            }
+
+            var sibling = document.elementsFromPoint(x, y).filter(function(el){
+                var $el = $(el);
+                return $.matches(el, o.dragItem) && !$el.hasClass("dragged-item-avatar");
+            })[0];
+
+            if (!Utils.isValue(sibling)) {
+                dragItem.appendTo(target);
+            } else {
+                var $sibling = $(sibling);
+                var $sibling_offset = $sibling.offset();
+                var offsetY = y - $sibling_offset.top;
+                var offsetX = x - $sibling_offset.left;
+                var side;// = (offsetY >= $sibling.height() / 2) ? "bottom" : "top";
+                var dim = {w: $sibling.width(), h: $sibling.height()};
+
+                if (offsetX < dim.w * 1 / 3 && (offsetY < dim.h * 1 / 2 || offsetY > dim.h * 1 / 2)) {
+                    side = 'left';
+                } else if (offsetX > dim.w * 2 / 3 && (offsetY < dim.h * 1 / 2 || offsetY > dim.h * 1 / 2)) {
+                    side = 'right';
+                } else if (offsetX > dim.w * 1 / 3 && offsetX < dim.w * 2 / 3 && offsetY > dim.h / 2) {
+                    side = 'bottom';
+                } else {
+                    side = "top";
+                }
+
+                if (!$sibling.hasClass("dragged-item")) {
+                    if (side === "top" || side === "left") {
+                        dragItem.insertBefore($sibling);
+                    } else {
+                        dragItem.insertAfter($sibling);
+                    }
+                }
+            }
+        };
+
+        element.on(Metro.events.startAll, (o.drawDragMarker ? o.dragMarker : o.dragItem), function(e_start){
+            var dragItem = $(e_start.target).closest(o.dragItem);
+            var avatar;
+
+            if (Utils.isRightMouse(e_start)) {
+                return ;
+            }
+
+            dragItem.addClass("dragged-item").addClass(o.clsDragItem);
+            avatar = $("<div>").addClass("dragged-item-avatar").addClass(o.clsDragItemAvatar);
+            offset = dragItem.offset();
+            width = dragItem.width();
+            height = dragItem.height();
+            shift.top = Utils.pageXY(e_start).y - offset.top;
+            shift.left = Utils.pageXY(e_start).x - offset.left;
+
+            avatar.css({
+                top: offset.top,
+                left: offset.left,
+                width: width,
+                height: height
+            }).appendTo(body);
+
+            doc.on(Metro.events.moveAll, function(e_move){
+
+                move(e_move, avatar, dragItem);
+
+                e_move.preventDefault();
+
+            }, {ns: that.id, passive: false});
+
+            doc.on(Metro.events.stopAll, function(e_stop){
+
+                dragItem.removeClass("dragged-item").removeClass(o.clsDragItem);
+                avatar.remove();
+
+                doc.off(Metro.events.moveAll, {ns: that.id});
+                doc.off(Metro.events.stopAll, {ns: that.id});
+
+            }, {ns: that.id});
+
+            if (o.drawDragMarker) {
+                e_start.preventDefault();
+                e_start.stopPropagation();
+            }
+        });
+    },
+
+    changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){
+        var element = this.element;
+        element.off(Metro.events.startAll, (o.drawDragMarker ? o.dragMarker : o.dragItem));
+        return element;
+    }
+};
+
+Metro.plugin('dragitems', DragItems);
+
 var DraggableDefaultConfig = {
     dragElement: 'self',
     dragArea: "parent",
@@ -21964,7 +22170,7 @@ var Slider = {
                     val: that.value,
                     percent: that.percent
                 });
-            }, {ns: slider.attr("id")});
+            }, {ns: slider.attr("id"), passive: false});
 
             $(document).on(Metro.events.stopAll, function(){
                 $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});

@@ -185,7 +185,7 @@ var Slider = {
                     val: that.value,
                     percent: that.percent
                 });
-            }, {ns: slider.attr("id")});
+            }, {ns: slider.attr("id"), passive: false});
 
             $(document).on(Metro.events.stopAll, function(){
                 $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});

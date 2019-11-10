@@ -1,4 +1,18 @@
-var myObject = {
+var MyObjectDefaultConfig = {
+    onMyObjectCreate: Metro.noop
+};
+
+Metro.myObjectSetup = function (options) {
+    MyObjectDefaultConfig = $.extend({}, MyObjectDefaultConfig, options);
+};
+
+if (typeof window["metroMyObjectSetup"] !== undefined) {
+    Metro.myObjectSetup(window["metroMyObjectSetup"]);
+}
+
+var MyObject = {
+    options: {},
+
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
@@ -8,10 +22,6 @@ var myObject = {
         this._create();
 
         return this;
-    },
-
-    options: {
-        onCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){
@@ -34,7 +44,7 @@ var myObject = {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCreate, [element]);
+        Utils.exec(o.onMyObjectCreate, [element]);
     },
 
     _createStructure: function(){
@@ -54,4 +64,4 @@ var myObject = {
     destroy: function(){}
 };
 
-Metro.plugin('myobj', myObject);
+Metro.plugin('myobj', MyObject);

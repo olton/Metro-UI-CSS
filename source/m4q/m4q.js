@@ -543,7 +543,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 07/11/2019 21:27:51";
+var m4qVersion = "v1.0.4. Built at 10/11/2019 15:01:33";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1507,7 +1507,10 @@ $.extend({
     unit: function(str, out){return parseUnit(str, out)},
     isVisible: function(elem) {return isVisible(elem)},
     isHidden: function(elem) {return isHidden(elem)},
-    iif: function(v1, v2, v3){return iif(v1, v2, v3);}
+    iif: function(v1, v2, v3){return iif(v1, v2, v3);},
+    matches: function(el, s) {
+        return matches.call(el, s);
+    }
 });
 
 $.fn.extend({
@@ -1885,21 +1888,23 @@ $.fn.extend({
 $.ajax = function(p){
     return new Promise(function(resolve, reject){
         var xhr = new XMLHttpRequest(), data;
-        var method = (p.method || 'GET').toUpperCase();
+        var method = (p.method || "GET").toUpperCase();
         var headers = [];
         var async = not(p.async) ? true : p.async;
         var url = p.url;
 
         var exec = function(fn, params){
-            if (typeof fn === "function") fn.apply(null, params);
+            if (typeof fn === "function") {
+                fn.apply(null, params);
+            }
         };
 
         if (p.data instanceof HTMLFormElement) {
             var _action = p.data.getAttribute("action");
             var _method = p.data.getAttribute("method");
 
-            if (not(url) && _action && _action.trim() !== "") url = _action;
-            if (_method && _method.trim() !== "") method = _method.toUpperCase();
+            if (not(url) && _action && _action.trim() !== "") {url = _action;}
+            if (_method && _method.trim() !== "") {method = _method.toUpperCase();}
         }
 
         xhr.open(method, url, async, p.user, p.password);
@@ -2681,13 +2686,25 @@ $.fn.extend({
         });
     },
 
-    clone: function(deep){
+    clone: function(deep, withData){
         var res = [];
         if (not(deep)) {
             deep = false;
         }
+        if (not(withData)) {
+            withData = false;
+        }
         this.each(function(){
-            res.push(this.cloneNode(deep));
+            var el = this.cloneNode(deep);
+            var $el = $(el);
+            var data;
+            if (withData && $.hasData(this)) {
+                data = $(this).data();
+                $.each(data, function(k, v){
+                    $el.data(k, v);
+                })
+            }
+            res.push(el);
         });
         return $.merge($(), res);
     },
