@@ -1,5 +1,14 @@
 ### 4.3.4
+
+##### M4Q
 + [x] M4Q: upd to 1.0.4
++ [x] M4Q Manipulation: optimise `append`, `prepend` to one definition for IE
++ [x] M4Q Script: add `$.script`, `$.fn.script` to execute scripts from element or create script object
++ [x] M4Q Manipulation: `$.fn.append`, `$.fn.prepend` now support script tag processing
++ [x] M4Q Clone: now support cloning `data` if second argument `withData`is `true` - `$(el).clone(true, true)`
++ [x] M4Q Events: nwo you can define event name with `hyphen` or in `camelCase` notation. Example: `mouse-down`, `accordionCreate`
+
+##### Metro 4
 + [x] Animations: put to separate less/css file `metro-animations`
 + [x] Object animations: add `.flip-card`
 + [x] Object animations: add `.post-card`

@@ -5,6 +5,9 @@ var DragItemsDefaultConfig = {
     drawDragMarker: false,
     clsDragItemAvatar: "",
     clsDragItem: "",
+    onDragStartItem: Metro.noop,
+    onDragMoveItem: Metro.noop,
+    onDragDropItem: Metro.noop,
     onDragItemsCreate: Metro.noop
 };
 
@@ -54,6 +57,7 @@ var DragItems = {
         this._createEvents();
 
         Utils.exec(o.onDragItemsCreate, [element]);
+        element.fire("dragitemscreate");
     },
 
     _createStructure: function(){
@@ -149,15 +153,33 @@ var DragItems = {
                 height: height
             }).appendTo(body);
 
+            Utils.exec(o.onDragStartItem, [dragItem[0], avatar[0]], element[0]);
+            element.fire("dragstartitem", {
+                dragItem: dragItem[0],
+                avatar: avatar[0]
+            });
+
             doc.on(Metro.events.moveAll, function(e_move){
 
                 move(e_move, avatar, dragItem);
+
+                Utils.exec(o.onDragMoveItem, [dragItem[0], avatar[0]], element[0]);
+                element.fire("dragmoveitem", {
+                    dragItem: dragItem[0],
+                    avatar: avatar[0]
+                });
 
                 e_move.preventDefault();
 
             }, {ns: that.id, passive: false});
 
             doc.on(Metro.events.stopAll, function(e_stop){
+
+                Utils.exec(o.onDragDropItem, [dragItem[0], avatar[0]], element[0]);
+                element.fire("dragdropitem", {
+                    dragItem: dragItem[0],
+                    avatar: avatar[0]
+                });
 
                 dragItem.removeClass("dragged-item").removeClass(o.clsDragItem);
                 avatar.remove();

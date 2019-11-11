@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 10/11/2019 19:04:49
+ * Built at 11/11/2019 12:26:38
  * Licensed under MIT
  */
 
@@ -129,6 +129,10 @@ function dataAttr(elem, key, data){
 
 function iif(val1, val2, val3){
     return val1 ? val1 : val2 ? val2 : val3;
+}
+
+function normalizeEventName(name) {
+    return typeof name !== "string" ? undefined : name.replace(/\-/g, "").toLowerCase();
 }
 
 // Source: src/setimmediate.js
@@ -554,7 +558,7 @@ function iif(val1, val2, val3){
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 10/11/2019 15:01:33";
+var m4qVersion = "v1.0.4. Built at 11/11/2019 12:23:26";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1681,7 +1685,7 @@ $.fn.extend({
             $.each(str2arr(eventsList), function(){
                 var h, ev = this,
                     event = ev.split("."),
-                    name = event[0],
+                    name = normalizeEventName(event[0]),
                     ns = options.ns ? options.ns : event[1],
                     index, originEvent;
 
@@ -1780,7 +1784,7 @@ $.fn.extend({
             var el = this;
             $.each(str2arr(eventsList), function(){
                 var evMap = this.split("."),
-                    name = evMap[0],
+                    name = normalizeEventName(evMap[0]),
                     ns = options.ns ? options.ns : evMap[1],
                     originEvent, index;
 
@@ -1798,16 +1802,20 @@ $.fn.extend({
     },
 
     trigger: function(name, data){
+        var _name;
+
         if (this.length === 0) {
             return ;
         }
 
-        if (['focus', 'blur'].indexOf(name) > -1) {
-            this[0][name]();
+        _name = normalizeEventName(name);
+
+        if (['focus', 'blur'].indexOf(_name) > -1) {
+            this[0][_name]();
             return this;
         }
 
-        var e = new CustomEvent(name, data || {});
+        var e = new CustomEvent(_name, data || {});
 
         return this.each(function(){
             this.dispatchEvent(e);
@@ -1815,18 +1823,22 @@ $.fn.extend({
     },
 
     fire: function(name, data){
+        var _name;
+
         if (this.length === 0) {
             return ;
         }
 
-        if (['focus', 'blur'].indexOf(name) > -1) {
-            this[0][name]();
+        _name = normalizeEventName(name);
+
+        if (['focus', 'blur'].indexOf(_name) > -1) {
+            this[0][_name]();
             return this;
         }
 
         var e = document.createEvent('Events');
         e.detail = data;
-        e.initEvent(name, true, false);
+        e.initEvent(_name, true, false);
 
         return this.each(function(){
             this.dispatchEvent(e);
@@ -3688,7 +3700,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "10/11/2019 19:04:56",
+    compileTime: "11/11/2019 12:26:45",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -13654,6 +13666,9 @@ var DragItemsDefaultConfig = {
     drawDragMarker: false,
     clsDragItemAvatar: "",
     clsDragItem: "",
+    onDragStartItem: Metro.noop,
+    onDragMoveItem: Metro.noop,
+    onDragDropItem: Metro.noop,
     onDragItemsCreate: Metro.noop
 };
 
@@ -13703,6 +13718,7 @@ var DragItems = {
         this._createEvents();
 
         Utils.exec(o.onDragItemsCreate, [element]);
+        element.fire("dragitemscreate");
     },
 
     _createStructure: function(){
@@ -13798,15 +13814,33 @@ var DragItems = {
                 height: height
             }).appendTo(body);
 
+            Utils.exec(o.onDragStartItem, [dragItem[0], avatar[0]], element[0]);
+            element.fire("dragstartitem", {
+                dragItem: dragItem[0],
+                avatar: avatar[0]
+            });
+
             doc.on(Metro.events.moveAll, function(e_move){
 
                 move(e_move, avatar, dragItem);
+
+                Utils.exec(o.onDragMoveItem, [dragItem[0], avatar[0]], element[0]);
+                element.fire("dragmoveitem", {
+                    dragItem: dragItem[0],
+                    avatar: avatar[0]
+                });
 
                 e_move.preventDefault();
 
             }, {ns: that.id, passive: false});
 
             doc.on(Metro.events.stopAll, function(e_stop){
+
+                Utils.exec(o.onDragDropItem, [dragItem[0], avatar[0]], element[0]);
+                element.fire("dragdropitem", {
+                    dragItem: dragItem[0],
+                    avatar: avatar[0]
+                });
 
                 dragItem.removeClass("dragged-item").removeClass(o.clsDragItem);
                 avatar.remove();
@@ -13995,8 +14029,7 @@ var Draggable = {
                 element.fire("dragmove", {
                     position: position
                 });
-                //e.preventDefault();
-            }, {ns: that.id});
+            }, {ns: that.id, passive: false});
 
             $(document).on(Metro.events.stopAll, function(){
                 element.css({

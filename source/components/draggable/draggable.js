@@ -157,8 +157,7 @@ var Draggable = {
                 element.fire("dragmove", {
                     position: position
                 });
-                //e.preventDefault();
-            }, {ns: that.id});
+            }, {ns: that.id, passive: false});
 
             $(document).on(Metro.events.stopAll, function(){
                 element.css({
