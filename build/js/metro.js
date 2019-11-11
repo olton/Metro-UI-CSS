@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 11/11/2019 12:26:38
+ * Built at 11/11/2019 12:36:14
  * Licensed under MIT
  */
 
@@ -3700,7 +3700,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "11/11/2019 12:26:45",
+    compileTime: "11/11/2019 12:36:21",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4017,7 +4017,7 @@ var Metro = {
             roles.map(function (func) {
 
                 var $$ = Utils.$();
-                var _func = func.replace("-", "");
+                var _func = func.replace(/\-/g, "");
 
                 if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
                     try {
@@ -4042,16 +4042,18 @@ var Metro = {
     },
 
     plugin: function(name, object){
-        $.fn[name] = function( options ) {
+        var _name = name.replace(/\-/g, "");
+
+        $.fn[_name] = function( options ) {
             return this.each(function() {
-                $.data( this, name, Object.create(object).init(options, this ));
+                $.data( this, _name, Object.create(object).init(options, this ));
             });
         };
 
         if (METRO_JQUERY && jquery_present) {
-            jQuery.fn[name] = function (options) {
+            jQuery.fn[_name] = function (options) {
                 return this.each(function () {
-                    jQuery.data(this, name, Object.create(object).init(options, this));
+                    jQuery.data(this, _name, Object.create(object).init(options, this));
                 });
             };
         }
@@ -4060,23 +4062,24 @@ var Metro = {
     destroyPlugin: function(element, name){
         var p, mc;
         var el = $(element);
+        var _name = name.replace(/\-/g, "");
 
-        p = el.data(name);
+        p = el.data(_name);
 
         if (!Utils.isValue(p)) {
-            throw new Error("Component can not be destroyed: the element is not a Metro 4 component.");
+            throw new Error("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
         }
 
         if (!Utils.isFunc(p['destroy'])) {
-            throw new Error("Component can not be destroyed: method destroy not found.");
+            throw new Error("Component "+name+" can not be destroyed: method destroy not found.");
         }
 
         p['destroy']();
         mc = el.data("metroComponent");
-        Utils.arrayDelete(mc, name);
+        Utils.arrayDelete(mc, _name);
         el.data("metroComponent", mc);
-        $.removeData(el[0], name);
-        el.removeAttr("data-role-"+name);
+        $.removeData(el[0], _name);
+        el.removeAttr("data-role-"+_name);
     },
 
     destroyPluginAll: function(element){
@@ -4127,23 +4130,26 @@ var Metro = {
         return fsm !== undefined;
     },
 
-    checkRuntime: function(el, role){
+    checkRuntime: function(el, name){
         var element = $(el);
-        if (!element.attr("data-role-"+role)) {
-            Metro.makeRuntime(element, role);
+        var _name = name.replace(/\-/g, "");
+        if (!element.attr("data-role-"+_name)) {
+            Metro.makeRuntime(element, _name);
         }
     },
 
-    makeRuntime: function(el, role){
+    makeRuntime: function(el, name){
         var element = $(el);
-        element.attr("data-role-"+role, true);
-        element.attr("data-role", role);
+        var _name = name.replace(/\-/g, "");
+
+        element.attr("data-role-"+_name, true);
+        element.attr("data-role", _name);
         var mc = element.data('metroComponent');
 
         if (mc === undefined) {
-            mc = [role];
+            mc = [_name];
         } else {
-            mc.push(role);
+            mc.push(_name);
         }
         element.data('metroComponent', mc);
     },
