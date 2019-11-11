@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 11/11/2019 12:36:14
+ * Built at 11/11/2019 13:16:06
  * Licensed under MIT
  */
 
@@ -3700,7 +3700,7 @@ var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) |
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "11/11/2019 12:36:21",
+    compileTime: "11/11/2019 13:16:14",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4154,12 +4154,14 @@ var Metro = {
         element.data('metroComponent', mc);
     },
 
-    getPlugin: function(el, type){
-        return Utils.$()($(el)[0]).data(type);
+    getPlugin: function(el, name){
+        var _name = name.replace(/\-/g, "");
+        return Utils.$()($(el)[0]).data(_name);
     },
 
-    makePlugin: function(el, type, options){
-        return Utils.$()($(el)[0])[type](options)
+    makePlugin: function(el, name, options){
+        var _name = name.replace(/\-/g, "");
+        return Utils.$()($(el)[0])[_name](options)
     }
 };
 
@@ -13672,6 +13674,7 @@ var DragItemsDefaultConfig = {
     drawDragMarker: false,
     clsDragItemAvatar: "",
     clsDragItem: "",
+    canDrag: true,
     onDragStartItem: Metro.noop,
     onDragMoveItem: Metro.noop,
     onDragDropItem: Metro.noop,
@@ -13694,6 +13697,7 @@ var DragItems = {
         this.elem  = elem;
         this.element = $(elem);
         this.id = null;
+        this.canDrag = false;
 
         this._setOptionsFromDOM();
         this._create();
@@ -13719,6 +13723,7 @@ var DragItems = {
         var that = this, element = this.element, o = this.options;
 
         this.id = Utils.elementId("dragItems");
+        o.canDrag ? this.on() : this.off();
 
         this._createStructure();
         this._createEvents();
@@ -13805,6 +13810,10 @@ var DragItems = {
                 return ;
             }
 
+            if (that.canDrag !== true) {
+                return ;
+            }
+
             dragItem.addClass("dragged-item").addClass(o.clsDragItem);
             avatar = $("<div>").addClass("dragged-item-avatar").addClass(o.clsDragItemAvatar);
             offset = dragItem.offset();
@@ -13863,8 +13872,30 @@ var DragItems = {
         });
     },
 
-    changeAttribute: function(attributeName){
+    on: function(){
+        this.canDrag = true;
+        this.element.find(".drag-item-marker").show();
+    },
 
+    off: function(){
+        this.canDrag = false;
+        this.element.find(".drag-item-marker").hide();
+    },
+
+    toggle: function(){
+        this.canDrag = this.canDrag ? this.off() : this.on();
+    },
+
+    changeAttribute: function(attributeName){
+        var that = this, element = this.element, o = this.options;
+        var changeCanDrag = function(){
+            o.canDtag = JSON.parse(element.attr("data-can-drag"));
+            o.canDtag ? that.on() : that.off();
+        };
+
+        if (attributeName === "data-can-drag") {
+            changeCanDrag();
+        }
     },
 
     destroy: function(){

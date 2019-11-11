@@ -14,8 +14,9 @@
     left: 4px;
     height: 20px;
     width: 24px;
-    background-color: @gray;
+    background-color: @transparent;
     cursor: move;
+    border-top: 4px solid @white;
 
     &::before, &::after {
         content: "";
@@ -31,6 +32,15 @@
 
     &::after {
         top: 12px;
+    }
+}
+
+.drag-marker-dark {
+    .drag-item-marker {
+        border-top-color: @dark;
+    }
+    &::before, &::after {
+        background-color: @dark;
     }
 }
 

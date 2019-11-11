@@ -564,12 +564,14 @@ var Metro = {
         element.data('metroComponent', mc);
     },
 
-    getPlugin: function(el, type){
-        return Utils.$()($(el)[0]).data(type);
+    getPlugin: function(el, name){
+        var _name = name.replace(/\-/g, "");
+        return Utils.$()($(el)[0]).data(_name);
     },
 
-    makePlugin: function(el, type, options){
-        return Utils.$()($(el)[0])[type](options)
+    makePlugin: function(el, name, options){
+        var _name = name.replace(/\-/g, "");
+        return Utils.$()($(el)[0])[_name](options)
     }
 };
 
