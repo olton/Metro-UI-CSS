@@ -107,6 +107,10 @@ if (typeof Object.values !== 'function') {
 
 var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
+var normalizeComponentName = function(name){
+    return typeof name !== "string" ? undefined : name.replace(/\-/g, "");
+};
+
 var Metro = {
 
     version: "@@version",
@@ -427,7 +431,7 @@ var Metro = {
             roles.map(function (func) {
 
                 var $$ = Utils.$();
-                var _func = func.replace(/\-/g, "");
+                var _func = normalizeComponentName(func);
 
                 if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
                     try {
@@ -452,7 +456,7 @@ var Metro = {
     },
 
     plugin: function(name, object){
-        var _name = name.replace(/\-/g, "");
+        var _name = normalizeComponentName(name);
 
         $.fn[_name] = function( options ) {
             return this.each(function() {
@@ -472,7 +476,7 @@ var Metro = {
     destroyPlugin: function(element, name){
         var p, mc;
         var el = $(element);
-        var _name = name.replace(/\-/g, "");
+        var _name = normalizeComponentName(name);
 
         p = el.data(_name);
 
@@ -550,7 +554,7 @@ var Metro = {
 
     makeRuntime: function(el, name){
         var element = $(el);
-        var _name = name.replace(/\-/g, "");
+        var _name = normalizeComponentName(name);
 
         element.attr("data-role-"+_name, true);
         element.attr("data-role", _name);
@@ -565,12 +569,12 @@ var Metro = {
     },
 
     getPlugin: function(el, name){
-        var _name = name.replace(/\-/g, "");
+        var _name = normalizeComponentName(name);
         return Utils.$()($(el)[0]).data(_name);
     },
 
     makePlugin: function(el, name, options){
-        var _name = name.replace(/\-/g, "");
+        var _name = normalizeComponentName(name);
         return Utils.$()($(el)[0])[_name](options)
     }
 };
