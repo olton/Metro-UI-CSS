@@ -1,4 +1,6 @@
 var InputDefaultConfig = {
+    mask: null,
+
     autocomplete: null,
     autocompleteDivider: ",",
     autocompleteListHeight: 200,

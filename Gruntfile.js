@@ -53,7 +53,10 @@ module.exports = function(grunt) {
         "window.hideM4QVersion = true;\n\n",
 
         footer: "\n\n" +
-            "if (METRO_INIT ===  true) METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()}) " +
+            "if (METRO_INIT ===  true) {\n" +
+            "\tMETRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});\n" +
+            "}" +
+            "\n\nreturn Metro;"+
             "\n\n}));",
 
         clean: {
