@@ -547,7 +547,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 11/11/2019 12:23:26";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 11:42:27";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1919,7 +1919,6 @@ $.ajax = function(p){
             if (_method && _method.trim() !== "") {method = _method.toUpperCase();}
         }
 
-        xhr.open(method, url, async, p.user, p.password);
 
         if (p.timeout) {
             xhr.timeout = p.timeout;
@@ -1927,13 +1926,6 @@ $.ajax = function(p){
 
         if (p.withCredentials) {
             xhr.withCredentials = p.withCredentials;
-        }
-
-        if (p.headers) {
-            $.each(p.headers, function(k, v){
-                xhr.setRequestHeader(k, v);
-                headers.push(k);
-            });
         }
 
         if (p.data instanceof HTMLFormElement) {
@@ -1947,12 +1939,9 @@ $.ajax = function(p){
         } else if (isPlainObject(p.data)) {
             var _data = [];
             $.each(p.data, function(k, v){
-                _data.push(k+"="+v);
+                _data.push(k+"="+JSON.stringify(v));
             });
             data = _data.join("&");
-            if (headers.indexOf("Content-type") === -1) {
-                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            }
         } else if (p.data instanceof FormData) {
             data = p.data;
         } else {
@@ -1960,6 +1949,22 @@ $.ajax = function(p){
             data.append("_data", JSON.stringify(p.data));
         }
 
+        if (method !== "POST") {
+            url += "?" + (typeof data === "string" ? data : JSON.stringify(data));
+        }
+
+        xhr.open(method, url, async, p.user, p.password);
+        if (p.headers) {
+            $.each(p.headers, function(k, v){
+                xhr.setRequestHeader(k, v);
+                headers.push(k);
+            });
+        }
+        if (method === "POST") {
+            if (headers.indexOf("Content-type") === -1) {
+                xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            }
+        }
         xhr.send(data);
 
         xhr.addEventListener("load", function(e){

@@ -7,6 +7,7 @@
 + [x] M4Q Manipulation: `$.fn.append`, `$.fn.prepend` now support script tag processing
 + [x] M4Q Clone: now support cloning `data` if second argument `withData`is `true` - `$(el).clone(true, true)`
 + [x] M4Q Events: nwo you can define event name with `hyphen` or in `camelCase` notation. Example: `mouse-down`, `accordionCreate`
++ [x] M4Q Ajax: fixed handler for sending data
 
 ##### Metro 4
 + [x] Animations: put to separate less/css file `metro-animations`
