@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 20:21:24
+ * Built at 14/11/2019 21:35:55
  * Licensed under MIT
  */
 
@@ -3709,7 +3709,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 20:21:32",
+    compileTime: "14/11/2019 21:36:02",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24968,7 +24968,7 @@ var Table = {
 
         } else {
 
-            $.json(viewPath)
+            $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
             .then(function(view){
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
