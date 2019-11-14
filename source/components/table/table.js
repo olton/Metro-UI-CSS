@@ -364,7 +364,7 @@ var Table = {
 
         } else {
 
-            $.json(viewPath)
+            $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
             .then(function(view){
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
