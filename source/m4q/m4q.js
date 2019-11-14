@@ -547,7 +547,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 14/11/2019 13:07:55";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 14:24:42";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1950,7 +1950,7 @@ $.ajax = function(p){
         }
 
         if (method !== "POST") {
-            url += "?" + (typeof data === "string" ? data : isEmptyObject(data) ? "" : JSON.stringify(data));
+            url += (typeof data === "string" ? "?"+data : isEmptyObject(data) ? "" : "?"+JSON.stringify(data));
         }
 
         xhr.open(method, url, async, p.user, p.password);

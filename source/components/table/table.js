@@ -350,6 +350,7 @@ var Table = {
         viewPath = o.viewSavePath.replace("$1", id);
 
         if (o.viewSaveMode.toLowerCase() === "client") {
+
             view = Metro.storage.getItem(viewPath);
             if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
                 this.view = view;
@@ -360,11 +361,11 @@ var Table = {
                 });
             }
             this._final();
+
         } else {
 
             $.json(viewPath)
             .then(function(view){
-                console.log(view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);
@@ -378,6 +379,7 @@ var Table = {
                 that._final();
                 console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
             });
+
         }
     },
 
