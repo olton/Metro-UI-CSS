@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 13/11/2019 20:26:05
+ * Built at 14/11/2019 10:53:43
  * Licensed under MIT
  */
 
@@ -3704,7 +3704,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "13/11/2019 20:26:12",
+    compileTime: "14/11/2019 10:53:51",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24906,7 +24906,7 @@ var Table = {
 
     _build: function(data){
         var that = this, element = this.element, o = this.options;
-        var view, id = element.attr("id");
+        var view, id = element.attr("id"), viewPath;
 
         o.rows = parseInt(o.rows);
 
@@ -24934,8 +24934,10 @@ var Table = {
         this.view = this._createView();
         this.viewDefault = Utils.objectClone(this.view);
 
+        viewPath = o.viewSavePath.replace("$1", id);
+
         if (o.viewSaveMode.toLowerCase() === "client") {
-            view = Metro.storage.getItem(o.viewSavePath.replace("$1", id));
+            view = Metro.storage.getItem(viewPath);
             if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
                 this.view = view;
                 Utils.exec(o.onViewGet, [view], element[0]);
@@ -24947,11 +24949,7 @@ var Table = {
             this._final();
         } else {
 
-            $.json(
-                o.viewSavePath,
-                {
-                    id: id
-                })
+            $.json(viewPath)
             .then(function(view){
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
@@ -24964,7 +24962,7 @@ var Table = {
                 that._final();
             }, function(){
                 that._final();
-                console.log("Warning! Error loading view for table " + element.attr('id') + " ");
+                console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
             });
         }
     },
@@ -25814,8 +25812,8 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
-            $.post(
-                o.viewSavePath, post_data).then(function(data){
+            $.post(o.viewSavePath, post_data)
+                .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
                     element.fire("viewsave", {
                         target: "server",

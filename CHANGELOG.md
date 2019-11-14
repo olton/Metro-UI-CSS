@@ -15,7 +15,8 @@
 + [x] Inputs: change placeholder `font-size` to `14px`, add `text-ellipsis`
 + [x] Utils CSS: add class `.stop-pointer`
 + [x] Role naming: you can now use a hyphen to separate words in verbose component names for the data-role attribute. Example: `data-role='button-group''` and `data-role='buttongroup''` are equivalent.
-+ [x] Drag Items: add new component, issue #1336 
++ [x] Drag Items: add new component, issue #1336
++ [x] Table: fix `viewPath` for getting `view` from server
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3
