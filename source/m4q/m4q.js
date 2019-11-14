@@ -547,7 +547,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 14/11/2019 22:10:44";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 23:46:29";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1939,7 +1939,9 @@ $.ajax = function(p){
         } else if (isPlainObject(p.data)) {
             var _data = [];
             $.each(p.data, function(k, v){
-                _data.push(k+"=" + (isPlainObject(v) ? JSON.stringify(v) : v));
+                // _data.push(k+"=" + (isPlainObject(v) ? JSON.stringify(v) : v));
+                var _v = (typeof v !== "string" && typeof v !== "boolean" && typeof v !== "number" ? JSON.stringify(v) : v);
+                _data.push(k+"=" + _v);
             });
             data = _data.join("&");
         } else if (p.data instanceof FormData) {

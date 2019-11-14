@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 22:15:26
+ * Built at 14/11/2019 23:49:05
  * Licensed under MIT
  */
 
@@ -558,7 +558,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 14/11/2019 22:10:44";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 23:46:29";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1950,7 +1950,9 @@ $.ajax = function(p){
         } else if (isPlainObject(p.data)) {
             var _data = [];
             $.each(p.data, function(k, v){
-                _data.push(k+"=" + (isPlainObject(v) ? JSON.stringify(v) : v));
+                // _data.push(k+"=" + (isPlainObject(v) ? JSON.stringify(v) : v));
+                var _v = (typeof v !== "string" && typeof v !== "boolean" && typeof v !== "number" ? JSON.stringify(v) : v);
+                _data.push(k+"=" + _v);
             });
             data = _data.join("&");
         } else if (p.data instanceof FormData) {
@@ -3717,7 +3719,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 22:15:33",
+    compileTime: "14/11/2019 23:49:12",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -25842,6 +25844,7 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
+            console.log(view);
             $.post(viewPath, post_data)
                 .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
