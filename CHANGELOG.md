@@ -9,6 +9,7 @@
 + [x] M4Q Events: nwo you can define event name with `hyphen` or in `camelCase` notation. Example: `mouse-down`, `accordionCreate`
 + [x] M4Q Ajax: fixed handler for sending data
 + [x] M4Q Ajax: fixed `$.json` if returned value can't be parsed
++ [x] M4Q Ajax: fixed `post` for `object`
 
 ##### Metro 4
 + [x] Animations: put to separate less/css file `metro-animations`
@@ -23,6 +24,7 @@
 + [x] Checkbox: add using attribute `readonly`
 + [x] Switch: add using attribute `readonly`
 + [x] Table: fix `viewPath` for saving `view` on server
++ [x] Animation CSS: relocation
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3

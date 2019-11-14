@@ -1230,6 +1230,7 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
+            console.log(view);
             $.post(viewPath, post_data)
                 .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
