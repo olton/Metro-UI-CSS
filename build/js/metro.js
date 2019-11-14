@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 21:54:47
+ * Built at 14/11/2019 22:15:26
  * Licensed under MIT
  */
 
@@ -558,7 +558,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 14/11/2019 14:24:42";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 22:10:44";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1980,7 +1980,15 @@ $.ajax = function(p){
 
         xhr.addEventListener("load", function(e){
             if (xhr.readyState === 4 && xhr.status < 300) {
-                var _return = p.returnValue && p.returnValue === 'xhr' ? xhr : p.parseJson ? JSON.parse(xhr.response) : xhr.response;
+                // var _return = p.returnValue && p.returnValue === 'xhr' ? xhr : p.parseJson ? JSON.parse(xhr.response) : xhr.response;
+                var _return = p.returnValue && p.returnValue === 'xhr' ? xhr : xhr.response;
+                if (p.parseJson) {
+                    try {
+                        _return = JSON.parse(_return);
+                    } catch (e) {
+                        _return = {};
+                    }
+                }
                 exec(resolve, [_return]);
                 exec(p['onSuccess'], [e, xhr]);
             } else {
@@ -3709,7 +3717,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 21:54:54",
+    compileTime: "14/11/2019 22:15:33",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24970,6 +24978,7 @@ var Table = {
 
             $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
             .then(function(view){
+                console.log("view", view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);
