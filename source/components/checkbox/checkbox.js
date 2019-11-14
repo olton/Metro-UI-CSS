@@ -59,6 +59,12 @@ var Checkbox = {
             element.attr('id', Utils.elementId("checkbox"));
         }
 
+        if (element.attr("readonly") !== undefined) {
+            element.on("click", function(e){
+                e.preventDefault();
+            })
+        }
+
         checkbox.attr('for', element.attr('id'));
 
         element.attr("type", "checkbox");
