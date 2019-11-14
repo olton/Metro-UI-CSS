@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 20:16:54
+ * Built at 14/11/2019 20:21:24
  * Licensed under MIT
  */
 
@@ -3709,7 +3709,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 20:17:01",
+    compileTime: "14/11/2019 20:21:32",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24535,6 +24535,12 @@ var Switch = {
         Metro.checkRuntime(element, "switch");
 
         element.attr("type", "checkbox");
+
+        if (element.attr("readonly") !== undefined) {
+            element.on("click", function(e){
+                e.preventDefault();
+            })
+        }
 
         container.insertBefore(element);
         element.appendTo(container);

@@ -53,6 +53,12 @@ var Switch = {
 
         element.attr("type", "checkbox");
 
+        if (element.attr("readonly") !== undefined) {
+            element.on("click", function(e){
+                e.preventDefault();
+            })
+        }
+
         container.insertBefore(element);
         element.appendTo(container);
         check.appendTo(container);
