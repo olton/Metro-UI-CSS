@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 13:40:33
+ * Built at 14/11/2019 14:26:50
  * Licensed under MIT
  */
 
@@ -558,7 +558,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 14/11/2019 13:07:55";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 14:24:42";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1961,7 +1961,7 @@ $.ajax = function(p){
         }
 
         if (method !== "POST") {
-            url += "?" + (typeof data === "string" ? data : isEmptyObject(data) ? "" : JSON.stringify(data));
+            url += (typeof data === "string" ? "?"+data : isEmptyObject(data) ? "" : "?"+JSON.stringify(data));
         }
 
         xhr.open(method, url, async, p.user, p.password);
@@ -3709,7 +3709,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 13:40:40",
+    compileTime: "14/11/2019 14:26:57",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24942,6 +24942,7 @@ var Table = {
         viewPath = o.viewSavePath.replace("$1", id);
 
         if (o.viewSaveMode.toLowerCase() === "client") {
+
             view = Metro.storage.getItem(viewPath);
             if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
                 this.view = view;
@@ -24952,11 +24953,11 @@ var Table = {
                 });
             }
             this._final();
+
         } else {
 
             $.json(viewPath)
             .then(function(view){
-                console.log(view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);
@@ -24970,6 +24971,7 @@ var Table = {
                 that._final();
                 console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
             });
+
         }
     },
 
