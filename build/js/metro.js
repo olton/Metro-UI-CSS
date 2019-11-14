@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 11:44:26
+ * Built at 14/11/2019 11:47:24
  * Licensed under MIT
  */
 
@@ -3709,7 +3709,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 11:44:37",
+    compileTime: "14/11/2019 11:47:31",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -26085,6 +26085,12 @@ var Table = {
             $.each(view, function(){
                 if (this.show) j++;
             });
+            if (o.check === true) {
+                j++;
+            }
+            if (o.rownum === true) {
+                j++;
+            }
             tr = $("<tr>").addClass(o.clsBodyRow).appendTo(body);
             td = $("<td>").attr("colspan", j).addClass("text-center").html($("<span>").addClass(o.clsEmptyTableTitle).html(o.emptyTableTitle));
             td.appendTo(tr);

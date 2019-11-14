@@ -1493,6 +1493,12 @@ var Table = {
             $.each(view, function(){
                 if (this.show) j++;
             });
+            if (o.check === true) {
+                j++;
+            }
+            if (o.rownum === true) {
+                j++;
+            }
             tr = $("<tr>").addClass(o.clsBodyRow).appendTo(body);
             td = $("<td>").attr("colspan", j).addClass("text-center").html($("<span>").addClass(o.clsEmptyTableTitle).html(o.emptyTableTitle));
             td.appendTo(tr);
