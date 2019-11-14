@@ -364,6 +364,7 @@ var Table = {
 
             $.json(viewPath)
             .then(function(view){
+                console.log(view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);

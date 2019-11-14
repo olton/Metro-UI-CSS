@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 11:47:24
+ * Built at 14/11/2019 13:40:33
  * Licensed under MIT
  */
 
@@ -558,7 +558,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 14/11/2019 11:42:27";
+var m4qVersion = "v1.0.4. Built at 14/11/2019 13:07:55";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1950,7 +1950,7 @@ $.ajax = function(p){
         } else if (isPlainObject(p.data)) {
             var _data = [];
             $.each(p.data, function(k, v){
-                _data.push(k+"="+JSON.stringify(v));
+                _data.push(k+"=" + (isPlainObject(v) ? JSON.stringify(v) : v));
             });
             data = _data.join("&");
         } else if (p.data instanceof FormData) {
@@ -1961,7 +1961,7 @@ $.ajax = function(p){
         }
 
         if (method !== "POST") {
-            url += "?" + (typeof data === "string" ? data : JSON.stringify(data));
+            url += "?" + (typeof data === "string" ? data : isEmptyObject(data) ? "" : JSON.stringify(data));
         }
 
         xhr.open(method, url, async, p.user, p.password);
@@ -3709,7 +3709,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 11:47:31",
+    compileTime: "14/11/2019 13:40:40",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24956,6 +24956,7 @@ var Table = {
 
             $.json(viewPath)
             .then(function(view){
+                console.log(view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);
