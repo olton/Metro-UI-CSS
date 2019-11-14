@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 14/11/2019 21:35:55
+ * Built at 14/11/2019 21:54:47
  * Licensed under MIT
  */
 
@@ -3709,7 +3709,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "14/11/2019 21:36:02",
+    compileTime: "14/11/2019 21:54:54",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -25818,9 +25818,10 @@ var Table = {
         var element = this.element, o = this.options;
         var view = this.view;
         var id = element.attr("id");
+        var viewPath = o.viewSavePath.replace("$1", id);
 
         if (o.viewSaveMode.toLowerCase() === "client") {
-            Metro.storage.setItem(o.viewSavePath.replace("$1", id), view);
+            Metro.storage.setItem(viewPath, view);
             Utils.exec(o.onViewSave, [o.viewSavePath, view], element[0]);
             element.fire("viewsave", {
                 target: "client",
@@ -25832,7 +25833,7 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
-            $.post(o.viewSavePath, post_data)
+            $.post(viewPath, post_data)
                 .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
                     element.fire("viewsave", {

@@ -21,6 +21,7 @@
 + [x] Table: fix colspan for message `emptyTableTitle`
 + [x] Checkbox: add using attribute `readonly`
 + [x] Switch: add using attribute `readonly`
++ [x] Table: fix `viewPath` for saving `view` on server
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3
