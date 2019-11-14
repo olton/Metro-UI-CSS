@@ -1214,9 +1214,10 @@ var Table = {
         var element = this.element, o = this.options;
         var view = this.view;
         var id = element.attr("id");
+        var viewPath = o.viewSavePath.replace("$1", id);
 
         if (o.viewSaveMode.toLowerCase() === "client") {
-            Metro.storage.setItem(o.viewSavePath.replace("$1", id), view);
+            Metro.storage.setItem(viewPath, view);
             Utils.exec(o.onViewSave, [o.viewSavePath, view], element[0]);
             element.fire("viewsave", {
                 target: "client",
@@ -1228,7 +1229,7 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
-            $.post(o.viewSavePath, post_data)
+            $.post(viewPath, post_data)
                 .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
                     element.fire("viewsave", {
