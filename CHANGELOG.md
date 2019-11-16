@@ -7,12 +7,12 @@
 + [x] M4Q Manipulation: `$.fn.append`, `$.fn.prepend` now support script tag processing
 + [x] M4Q Clone: now support cloning `data` if second argument `withData`is `true` - `$(el).clone(true, true)`
 + [x] M4Q Events: nwo you can define event name with `hyphen` or in `camelCase` notation. Example: `mouse-down`, `accordionCreate`
-+ [x] M4Q Ajax: fixed handler for sending data
-+ [x] M4Q Ajax: fixed `$.json` if returned value can't be parsed
-+ [x] M4Q Ajax: fixed `post` for `object`
++ [x] M4Q Ajax: fix handler for sending data
++ [x] M4Q Ajax: fix `$.json` if returned value can't be parsed
++ [x] M4Q Ajax: fix `post` for `object`
 
 ##### Metro 4
-+ [x] Animations: put to separate less/css file `metro-animations`
++ [x] Animations: put animations to separate less/css file `metro-animations`
 + [x] Object animations: add `.flip-card`
 + [x] Object animations: add `.post-card`
 + [x] Inputs: change placeholder `font-size` to `14px`, add `text-ellipsis`
@@ -25,6 +25,7 @@
 + [x] Switch: add using attribute `readonly`
 + [x] Table: fix `viewPath` for saving `view` on server
 + [x] Animation CSS: relocation
++ [x] AppBar: fix `app-bar-menu` behavior when user resize a window
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3

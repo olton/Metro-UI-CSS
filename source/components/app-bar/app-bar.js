@@ -129,7 +129,9 @@ var AppBar = {
             if (menu.length === 0) return ;
 
             if (hamburger.css('display') !== 'block') {
-                menu.show();
+                menu.show(function(){
+                    $(this).removeStyleProperty("display");
+                });
                 hamburger.addClass("hidden");
             } else {
                 hamburger.removeClass("hidden");
