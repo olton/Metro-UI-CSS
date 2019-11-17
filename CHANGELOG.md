@@ -10,6 +10,7 @@
 + [x] M4Q Ajax: fix handler for sending data
 + [x] M4Q Ajax: fix `$.json` if returned value can't be parsed
 + [x] M4Q Ajax: fix `post` for `object`
++ [x] $: add $.serializeToArray(form), $serialize(form)
 
 ##### Metro 4
 + [x] Animations: put animations to separate less/css file `metro-animations`
