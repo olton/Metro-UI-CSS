@@ -552,7 +552,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 17/11/2019 14:16:03";
+var m4qVersion = "v1.0.4. Built at 19/11/2019 16:46:03";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1668,7 +1668,7 @@ $.extend({
 
     off: function(){
         $.each(this.events, function(){
-            this.element.removeEventListener(this.event, this.handler);
+            this.element.removeEventListener(this.event, this.handler, true);
         });
         this.events = [];
         return this;
@@ -1808,6 +1808,8 @@ $.fn.extend({
     },
 
     off: function(eventsList, sel, options){
+        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+
         if (!isPlainObject(options)) {
             options = {};
         }
@@ -1823,7 +1825,7 @@ $.fn.extend({
                 $.each($.events, function(){
                     var e = this;
                     if (e.element === el) {
-                        el.removeEventListener(e.event, e.handler);
+                        el.removeEventListener(e.event, e.handler, isIE11);
                         e.handler = null;
                         $(el).origin("event-"+name+(e.selector ? ":"+e.selector:"")+(e.ns ? ":"+e.ns:""), null);
                     }
@@ -1843,7 +1845,7 @@ $.fn.extend({
                 index = $(el).origin(originEvent);
 
                 if (index !== undefined && $.events[index].handler) {
-                    el.removeEventListener(name, $.events[index].handler);
+                    el.removeEventListener(name, $.events[index].handler, isIE11);
                     $.events[index].handler = null;
                 }
 
@@ -1914,8 +1916,8 @@ $.fn.extend( {
     }
 });
 
-$.ready = function(fn){
-    document.addEventListener('DOMContentLoaded', fn);
+$.ready = function(fn, options){
+    document.addEventListener('DOMContentLoaded', fn, (options || false));
 };
 
 $.load = function(fn){

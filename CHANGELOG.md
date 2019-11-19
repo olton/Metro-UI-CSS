@@ -11,6 +11,7 @@
 + [x] M4Q Ajax: fix `$.json` if returned value can't be parsed
 + [x] M4Q Ajax: fix `post` for `object`
 + [x] $: add $.serializeToArray(form), $serialize(form)
++ [x] M4Q Events: fixed `removeEventListener`
 
 ##### Metro 4
 + [x] Animations: put animations to separate less/css file `metro-animations`
@@ -27,6 +28,7 @@
 + [x] Table: fix `viewPath` for saving `view` on server
 + [x] Animation CSS: relocation
 + [x] AppBar: fix `app-bar-menu` behavior when user resize a window
++ [x] Slider: fix hint for IE11
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3
