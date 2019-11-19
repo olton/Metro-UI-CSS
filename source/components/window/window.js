@@ -744,6 +744,6 @@ Metro['window'] = {
 
         w_options._runtime = true;
 
-        return w.window(w_options);
+        return Metro.makePlugin(w, "window", w_options);
     }
 };

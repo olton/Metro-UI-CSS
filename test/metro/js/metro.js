@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 17/11/2019 14:17:45
+ * Built at 19/11/2019 16:47:37
  * Licensed under MIT
  */
 
@@ -563,7 +563,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 17/11/2019 14:16:03";
+var m4qVersion = "v1.0.4. Built at 19/11/2019 16:46:03";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1679,7 +1679,7 @@ $.extend({
 
     off: function(){
         $.each(this.events, function(){
-            this.element.removeEventListener(this.event, this.handler);
+            this.element.removeEventListener(this.event, this.handler, true);
         });
         this.events = [];
         return this;
@@ -1819,6 +1819,8 @@ $.fn.extend({
     },
 
     off: function(eventsList, sel, options){
+        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+
         if (!isPlainObject(options)) {
             options = {};
         }
@@ -1834,7 +1836,7 @@ $.fn.extend({
                 $.each($.events, function(){
                     var e = this;
                     if (e.element === el) {
-                        el.removeEventListener(e.event, e.handler);
+                        el.removeEventListener(e.event, e.handler, isIE11);
                         e.handler = null;
                         $(el).origin("event-"+name+(e.selector ? ":"+e.selector:"")+(e.ns ? ":"+e.ns:""), null);
                     }
@@ -1854,7 +1856,7 @@ $.fn.extend({
                 index = $(el).origin(originEvent);
 
                 if (index !== undefined && $.events[index].handler) {
-                    el.removeEventListener(name, $.events[index].handler);
+                    el.removeEventListener(name, $.events[index].handler, isIE11);
                     $.events[index].handler = null;
                 }
 
@@ -1925,8 +1927,8 @@ $.fn.extend( {
     }
 });
 
-$.ready = function(fn){
-    document.addEventListener('DOMContentLoaded', fn);
+$.ready = function(fn, options){
+    document.addEventListener('DOMContentLoaded', fn, (options || false));
 };
 
 $.load = function(fn){
@@ -3790,7 +3792,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "17/11/2019 14:17:53",
+    compileTime: "19/11/2019 16:47:44",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -23568,8 +23570,9 @@ var Splitter = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var gutters = element.children(".gutter");
+        var id = element.attr("id");
 
-        gutters.on(Metro.events.start, function(e){
+        gutters.on(Metro.events.startAll, function(e){
             var w = o.splitMode === "horizontal" ? element.width() : element.height();
             var gutter = $(this);
             var prev_block = gutter.prev(".split-block");
@@ -23591,7 +23594,7 @@ var Splitter = {
                 nextBlock: next_block[0]
             });
 
-            $(window).on(Metro.events.move, function(e){
+            $(window).on(Metro.events.moveAll, function(e){
                 var pos = Utils.getCursorPosition(element[0], e);
                 var new_pos;
 
@@ -23612,10 +23615,11 @@ var Splitter = {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
-            }, {ns: element.attr("id")});
+            }, {ns: id});
 
-            $(window).on(Metro.events.stop, function(e){
+            $(window).on(Metro.events.stopAll, function(e){
                 var cur_pos;
+
 
                 prev_block.removeClass("stop-pointer");
                 next_block.removeClass("stop-pointer");
@@ -23624,8 +23628,8 @@ var Splitter = {
 
                 gutter.removeClass("active");
 
-                $(window).off(Metro.events.move,{ns: element.attr("id")});
-                $(window).off(Metro.events.stop,{ns: element.attr("id")});
+                $(window).off(Metro.events.moveAll,{ns: id});
+                $(window).off(Metro.events.stopAll,{ns: id});
 
                 cur_pos = Utils.getCursorPosition(element[0], e);
 
@@ -23636,7 +23640,7 @@ var Splitter = {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
-            }, {ns: element.attr("id")})
+            }, {ns: id})
         });
     },
 
@@ -32289,7 +32293,7 @@ Metro['window'] = {
 
         w_options._runtime = true;
 
-        return w.window(w_options);
+        return Metro.makePlugin(w, "window", w_options);
     }
 };
 
