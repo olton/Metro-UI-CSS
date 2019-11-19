@@ -29,6 +29,7 @@
 + [x] Animation CSS: relocation
 + [x] AppBar: fix `app-bar-menu` behavior when user resize a window
 + [x] Slider: fix hint for IE11
++ [x] Window: fix interop m4q and jquery for `Metro.window.create()`
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3
