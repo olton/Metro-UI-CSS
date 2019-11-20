@@ -157,6 +157,10 @@ var Utils = {
         return Utils.isJQuery(el) || Utils.isM4Q(el);
     },
 
+    isIE11: function(){
+        return !!window.MSInputMethodContext && !!document["documentMode"];
+    },
+
     embedObject: function(val){
         return "<div class='embed-container'>" + $(val)[0].outerHTML + "</div>";
     },

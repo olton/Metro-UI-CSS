@@ -552,7 +552,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 19/11/2019 16:46:03";
+var m4qVersion = "v1.0.4. Built at 20/11/2019 10:29:25";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1625,7 +1625,7 @@ $.extend({
     eventUID: -1,
 
     /*
-    * el, eventName, handler, selector, ns, id
+    * el, eventName, handler, selector, ns, id, options
     * */
     setEventHandler: function(obj){
         var i, freeIndex = -1, eventObj, resultIndex;
@@ -1644,7 +1644,8 @@ $.extend({
             handler: obj.handler,
             selector: obj.selector,
             ns: obj.ns,
-            id: obj.id
+            id: obj.id,
+            options: obj.options
         };
 
         if (freeIndex === -1) {
@@ -1790,7 +1791,8 @@ $.fn.extend({
                     handler: h,
                     selector: sel,
                     ns: ns,
-                    id: $.eventUID
+                    id: $.eventUID,
+                    options: !isEmptyObject(options) ? options : false
                 });
                 $(el).origin('event-'+originEvent, index);
             });
@@ -1808,15 +1810,14 @@ $.fn.extend({
     },
 
     off: function(eventsList, sel, options){
-        var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
-
-        if (!isPlainObject(options)) {
-            options = {};
-        }
 
         if (isPlainObject(sel)) {
             options = sel;
             sel = null;
+        }
+
+        if (!isPlainObject(options)) {
+            options = {};
         }
 
         if (not(eventsList) || eventsList.toLowerCase() === 'all') {
@@ -1825,7 +1826,7 @@ $.fn.extend({
                 $.each($.events, function(){
                     var e = this;
                     if (e.element === el) {
-                        el.removeEventListener(e.event, e.handler, isIE11);
+                        el.removeEventListener(e.event, e.handler, e.options);
                         e.handler = null;
                         $(el).origin("event-"+name+(e.selector ? ":"+e.selector:"")+(e.ns ? ":"+e.ns:""), null);
                     }
@@ -1845,7 +1846,8 @@ $.fn.extend({
                 index = $(el).origin(originEvent);
 
                 if (index !== undefined && $.events[index].handler) {
-                    el.removeEventListener(name, $.events[index].handler, isIE11);
+                    el.removeEventListener(name, $.events[index].handler, $.events[index].options);
+                    console.log($.events[index]);
                     $.events[index].handler = null;
                 }
 
