@@ -80,7 +80,7 @@ var Panel = {
         }
 
         if (title.length === 0) {
-            console.log("No place for custom buttons");
+            console.warn("No place for custom buttons");
             return ;
         }
 

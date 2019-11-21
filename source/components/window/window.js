@@ -128,7 +128,6 @@ var Window = {
 
             element.append(o.content);
             o.content = element;
-            // console.log(o.content);
         }
 
         if (o._runtime === true) {
@@ -278,7 +277,7 @@ var Window = {
             } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
                 customButtons = o.customButtons;
             } else {
-                console.log("Unknown format for custom buttons");
+                console.warn("Unknown format for custom buttons");
             }
 
             $.each(customButtons, function(){

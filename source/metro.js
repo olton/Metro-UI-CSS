@@ -276,8 +276,8 @@ var Metro = {
     hotkeys: {},
 
     about: function(){
-        console.log("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
-        console.log("m4q - " + m4q.version);
+        console.info("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+        console.info("m4q - " + m4q.version);
     },
 
     showCompileTime: function(){
@@ -407,8 +407,6 @@ var Metro = {
             var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
             var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
 
-            //console.log(element);
-
             if (hotkey === false) {
                 return;
             }
@@ -518,7 +516,7 @@ var Metro = {
             element["msRequestFullscreen"]();
         } else {
             element.requestFullscreen().catch( function(err){
-                console.log("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
+                console.warn("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
             });
         }
     },
@@ -534,7 +532,7 @@ var Metro = {
             document["msExitFullscreen"]();
         } else {
             document.exitFullscreen().catch( function(err){
-                console.log("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
+                console.warn("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
             });
         }
     },

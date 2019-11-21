@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 20/11/2019 10:47:26
+ * Built at 21/11/2019 18:30:45
  * Licensed under MIT
  */
 
@@ -258,7 +258,7 @@ function normalizeEventName(name) {
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -617,7 +617,7 @@ $.extend = $.fn.extend = function(){
     return target;
 };
 
-if (typeof window["hideM4QVersion"] === "undefined") console.log("m4q "+$.version);
+if (typeof window["hideM4QVersion"] === "undefined") 
 
 // Source: src/interval.js
 
@@ -1858,7 +1858,7 @@ $.fn.extend({
 
                 if (index !== undefined && $.events[index].handler) {
                     el.removeEventListener(name, $.events[index].handler, $.events[index].options);
-                    console.log($.events[index]);
+                    
                     $.events[index].handler = null;
                 }
 
@@ -2555,7 +2555,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -3794,7 +3794,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "20/11/2019 10:47:35",
+    compileTime: "21/11/2019 18:30:54",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -3956,8 +3956,8 @@ var Metro = {
     hotkeys: {},
 
     about: function(){
-        console.log("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
-        console.log("m4q - " + m4q.version);
+        console.info("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+        console.info("m4q - " + m4q.version);
     },
 
     showCompileTime: function(){
@@ -4035,7 +4035,7 @@ var Metro = {
                     }
 
                 } else  {
-                    //console.log(mutation);
+                    //
                 }
             });
         };
@@ -4086,8 +4086,6 @@ var Metro = {
             var element = $(this);
             var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
             var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
-
-            //console.log(element);
 
             if (hotkey === false) {
                 return;
@@ -4198,7 +4196,7 @@ var Metro = {
             element["msRequestFullscreen"]();
         } else {
             element.requestFullscreen().catch( function(err){
-                console.log("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
+                console.warn("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
             });
         }
     },
@@ -4214,7 +4212,7 @@ var Metro = {
             document["msExitFullscreen"]();
         } else {
             document.exitFullscreen().catch( function(err){
-                console.log("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
+                console.warn("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
             });
         }
     },
@@ -5128,7 +5126,7 @@ var Colors = {
         hsv = this.toHSV(color);
 
         if (this.isHSV(hsv) === false) {
-            console.log("The value is a not supported color format!");
+            console.warn("The value is a not supported color format!");
             return false;
         }
 
@@ -5300,7 +5298,7 @@ var Colors = {
                 scheme.push({h: h, s: s, v: v});
                 break;
 
-            default: console.log("Unknown scheme name");
+            default: console.warn("Unknown scheme name " + name);
         }
 
         return convert(scheme, format);
@@ -7702,6 +7700,10 @@ var AppBarDefaultConfig = {
     expand: false,
     expandPoint: null,
     duration: 100,
+    onMenuOpen: Metro.noop,
+    onMenuClose: Metro.noop,
+    onMenuCollapse: Metro.noop,
+    onMenuExpand: Metro.noop,
     onAppBarCreate: Metro.noop
 };
 
@@ -7821,8 +7823,12 @@ var AppBar = {
             if (o.expand !== true) {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
                     element.addClass("app-bar-expand");
+                    Utils.exec(o.onMenuExpand, null, element[0]);
+                    element.fire("menuexpand");
                 } else {
                     element.removeClass("app-bar-expand");
+                    Utils.exec(o.onMenuCollapse, null, element[0]);
+                    element.fire("menucollapse");
                 }
             }
 
@@ -7853,6 +7859,11 @@ var AppBar = {
             menu.addClass("collapsed").removeClass("opened");
             hamburger.removeClass("active");
         });
+
+        Utils.exec(o.onMenuClose, [menu[0]], element[0]);
+        element.fire("menuclose", {
+            menu: menu[0]
+        });
     },
 
     open: function(){
@@ -7863,6 +7874,11 @@ var AppBar = {
         menu.slideDown(o.duration, function(){
             menu.removeClass("collapsed").addClass("opened");
             hamburger.addClass("active");
+        });
+
+        Utils.exec(o.onMenuOpen, [menu[0]], element[0]);
+        element.fire("menuopen", {
+            menu: menu[0]
         });
     },
 
@@ -9078,8 +9094,6 @@ var Calendar = {
             var target;
             var list = element.find(".months-list");
 
-            console.log("ku");
-
             list.find(".active").removeClass("active");
             list.scrollTop(0);
             element.find(".calendar-months").addClass("open");
@@ -9312,12 +9326,10 @@ var Calendar = {
 
             d.data('day', first.getTime());
 
-            // console.log(this.show.getTime() === first.getTime());
             if (this.show.getTime() === first.getTime()) {
                 d.addClass("showed");
             }
 
-            // console.log(this.today.getTime() === first.getTime());
             if (this.today.getTime() === first.getTime()) {
                 d.addClass("today").addClass(o.clsToday);
             }
@@ -12381,7 +12393,7 @@ var Cube = {
                 this.rules = JSON.parse(rules);
                 return true;
             } catch (err) {
-                console.log("Unknown or empty rules for cell flashing!");
+                console.warn("Unknown or empty rules for cell flashing!");
                 return false;
             }
         }
@@ -19315,7 +19327,7 @@ var Panel = {
         }
 
         if (title.length === 0) {
-            console.log("No place for custom buttons");
+            console.warn("No place for custom buttons");
             return ;
         }
 
@@ -24442,8 +24454,6 @@ var Streamer = {
                 var dir = ev.deltaY < 0 ? -1 : 1;
                 var step = 100;
 
-                //console.log(ev.deltaY);
-
                 if (ev.deltaY === undefined) {
                     return ;
                 }
@@ -25205,7 +25215,6 @@ var Table = {
 
             $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
             .then(function(view){
-                console.log("view", view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);
@@ -26069,7 +26078,6 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
-            console.log(view);
             $.post(viewPath, post_data)
                 .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
@@ -26430,7 +26438,7 @@ var Table = {
             });
         }
         if (Utils.isNull(fieldIndex)) {
-            console.log('Item is undefined for update. Field ' + field + ' not found in data structure');
+            console.warn('Item is undefined for update. Field ' + field + ' not found in data structure');
             return this;
         }
 
@@ -31683,7 +31691,6 @@ var Window = {
 
             element.append(o.content);
             o.content = element;
-            // console.log(o.content);
         }
 
         if (o._runtime === true) {
@@ -31833,7 +31840,7 @@ var Window = {
             } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
                 customButtons = o.customButtons;
             } else {
-                console.log("Unknown format for custom buttons");
+                console.warn("Unknown format for custom buttons");
             }
 
             $.each(customButtons, function(){

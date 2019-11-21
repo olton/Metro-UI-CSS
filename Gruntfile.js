@@ -19,6 +19,7 @@ module.exports = function(grunt) {
         'concurrent:compile_less',
         'concurrent:postcss',
         'concurrent:concat',
+        'concurrent:remove_log',
         'concurrent:min',
         'concurrent:replace',
         'concurrent:copy'
@@ -97,6 +98,16 @@ module.exports = function(grunt) {
                     'build/css/metro-third.css'
                 ],
                 dest: 'build/css/metro-all.css'
+            }
+        },
+
+        removelogging: {
+            dist: {
+                src: "build/js/*.js",
+
+                options: {
+                    methods: ["log"]
+                }
             }
         },
 
@@ -237,6 +248,7 @@ module.exports = function(grunt) {
             compile_less: ['less:src', 'less:schemes'],
             postcss: ['postcss'],
             concat: ['concat:js', 'concat:css'],
+            remove_log: ['removelogging'],
             min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
             replace: ['replace'],
             copy: ['copy'],
