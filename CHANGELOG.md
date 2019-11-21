@@ -31,6 +31,7 @@
 + [x] Slider: fix hint for IE11
 + [x] Window: fix interop m4q and jquery for `Metro.window.create()`
 + [x] Splitter: fix for IE11
++ [x] AppBar: add events `onMenuOpen`, `onMenuClose`, `onMenuExpand`, `onMenuCollapse`
 
 ### 4.3.3
 + [x] m4q: upd to 1.0.3

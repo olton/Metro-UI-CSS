@@ -366,7 +366,6 @@ var Table = {
 
             $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
             .then(function(view){
-                console.log("view", view);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                     that.view = view;
                     Utils.exec(o.onViewGet, [view], element[0]);
@@ -1230,7 +1229,6 @@ var Table = {
                 id : element.attr("id"),
                 view : view
             };
-            console.log(view);
             $.post(viewPath, post_data)
                 .then(function(data){
                     Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
@@ -1591,7 +1589,7 @@ var Table = {
             });
         }
         if (Utils.isNull(fieldIndex)) {
-            console.log('Item is undefined for update. Field ' + field + ' not found in data structure');
+            console.warn('Item is undefined for update. Field ' + field + ' not found in data structure');
             return this;
         }
 

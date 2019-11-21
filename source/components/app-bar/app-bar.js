@@ -2,6 +2,10 @@ var AppBarDefaultConfig = {
     expand: false,
     expandPoint: null,
     duration: 100,
+    onMenuOpen: Metro.noop,
+    onMenuClose: Metro.noop,
+    onMenuCollapse: Metro.noop,
+    onMenuExpand: Metro.noop,
     onAppBarCreate: Metro.noop
 };
 
@@ -121,8 +125,12 @@ var AppBar = {
             if (o.expand !== true) {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
                     element.addClass("app-bar-expand");
+                    Utils.exec(o.onMenuExpand, null, element[0]);
+                    element.fire("menuexpand");
                 } else {
                     element.removeClass("app-bar-expand");
+                    Utils.exec(o.onMenuCollapse, null, element[0]);
+                    element.fire("menucollapse");
                 }
             }
 
@@ -153,6 +161,11 @@ var AppBar = {
             menu.addClass("collapsed").removeClass("opened");
             hamburger.removeClass("active");
         });
+
+        Utils.exec(o.onMenuClose, [menu[0]], element[0]);
+        element.fire("menuclose", {
+            menu: menu[0]
+        });
     },
 
     open: function(){
@@ -163,6 +176,11 @@ var AppBar = {
         menu.slideDown(o.duration, function(){
             menu.removeClass("collapsed").addClass("opened");
             hamburger.addClass("active");
+        });
+
+        Utils.exec(o.onMenuOpen, [menu[0]], element[0]);
+        element.fire("menuopen", {
+            menu: menu[0]
         });
     },
 

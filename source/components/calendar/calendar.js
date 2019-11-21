@@ -447,8 +447,6 @@ var Calendar = {
             var target;
             var list = element.find(".months-list");
 
-            console.log("ku");
-
             list.find(".active").removeClass("active");
             list.scrollTop(0);
             element.find(".calendar-months").addClass("open");
@@ -681,12 +679,10 @@ var Calendar = {
 
             d.data('day', first.getTime());
 
-            // console.log(this.show.getTime() === first.getTime());
             if (this.show.getTime() === first.getTime()) {
                 d.addClass("showed");
             }
 
-            // console.log(this.today.getTime() === first.getTime());
             if (this.today.getTime() === first.getTime()) {
                 d.addClass("today").addClass(o.clsToday);
             }

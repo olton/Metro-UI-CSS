@@ -687,7 +687,7 @@ var Colors = {
         hsv = this.toHSV(color);
 
         if (this.isHSV(hsv) === false) {
-            console.log("The value is a not supported color format!");
+            console.warn("The value is a not supported color format!");
             return false;
         }
 
@@ -859,7 +859,7 @@ var Colors = {
                 scheme.push({h: h, s: s, v: v});
                 break;
 
-            default: console.log("Unknown scheme name");
+            default: console.warn("Unknown scheme name " + name);
         }
 
         return convert(scheme, format);

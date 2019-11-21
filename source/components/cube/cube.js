@@ -140,7 +140,7 @@ var Cube = {
                 this.rules = JSON.parse(rules);
                 return true;
             } catch (err) {
-                console.log("Unknown or empty rules for cell flashing!");
+                console.warn("Unknown or empty rules for cell flashing!");
                 return false;
             }
         }
