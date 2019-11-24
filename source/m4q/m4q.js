@@ -552,7 +552,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 20/11/2019 10:29:25";
+var m4qVersion = "v1.0.4. Built at 24/11/2019 13:28:24";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -606,7 +606,7 @@ $.extend = $.fn.extend = function(){
     return target;
 };
 
-if (typeof window["hideM4QVersion"] === "undefined") console.log("m4q "+$.version);
+if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q "+$.version);
 
 // Source: src/interval.js
 
@@ -1847,7 +1847,6 @@ $.fn.extend({
 
                 if (index !== undefined && $.events[index].handler) {
                     el.removeEventListener(name, $.events[index].handler, $.events[index].options);
-                    console.log($.events[index]);
                     $.events[index].handler = null;
                 }
 

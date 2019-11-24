@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 21/11/2019 18:30:45
+ * Built at 24/11/2019 13:31:35
  * Licensed under MIT
  */
 
@@ -563,7 +563,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 20/11/2019 10:29:25";
+var m4qVersion = "v1.0.4. Built at 24/11/2019 13:28:24";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -617,7 +617,7 @@ $.extend = $.fn.extend = function(){
     return target;
 };
 
-if (typeof window["hideM4QVersion"] === "undefined") 
+if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q "+$.version);
 
 // Source: src/interval.js
 
@@ -1858,7 +1858,6 @@ $.fn.extend({
 
                 if (index !== undefined && $.events[index].handler) {
                     el.removeEventListener(name, $.events[index].handler, $.events[index].options);
-                    
                     $.events[index].handler = null;
                 }
 
@@ -3794,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.4",
-    compileTime: "21/11/2019 18:30:54",
+    compileTime: "24/11/2019 13:31:43",
     buildNumber: "742",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,

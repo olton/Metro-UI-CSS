@@ -6,7 +6,7 @@
 + [x] M4Q Script: add `$.script`, `$.fn.script` to execute scripts from element or create script object
 + [x] M4Q Manipulation: `$.fn.append`, `$.fn.prepend` now support script tag processing
 + [x] M4Q Clone: now support cloning `data` if second argument `withData`is `true` - `$(el).clone(true, true)`
-+ [x] M4Q Events: nwo you can define event name with `hyphen` or in `camelCase` notation. Example: `mouse-down`, `accordionCreate`
++ [x] M4Q Events: now you can define event name with `hyphen` or in `camelCase` notation. Example: `mouse-down`, `accordionCreate`
 + [x] M4Q Ajax: fix handler for sending data
 + [x] M4Q Ajax: fix `$.json` if returned value can't be parsed
 + [x] M4Q Ajax: fix `post` for `object`
