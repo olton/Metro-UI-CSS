@@ -76,13 +76,13 @@ Build_replace.js
 Build_dev.js
 CDN_dev.js
 Docs.js
-Update_Builder.js
 *.ftpauth
 *.nupkg
 /package-lock.json
 docs/test
 /.vs
 copy-dist.bat
+copy-doc.bat
 cypress/video
 test/manual
 serve.bat

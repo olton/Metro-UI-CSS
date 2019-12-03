@@ -94,8 +94,6 @@ var Input = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
         var buttons = $("<div>").addClass("button-group");
         var clearButton, revealButton, searchButton;
@@ -111,12 +109,7 @@ var Input = {
             element.attr("type", "text");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
 

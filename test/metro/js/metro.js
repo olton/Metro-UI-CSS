@@ -1,7 +1,7 @@
 /*
- * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 24/11/2019 13:38:26
+ * Built at 03/12/2019 14:40:15
  * Licensed under MIT
  */
 
@@ -3792,9 +3792,9 @@ var normalizeComponentName = function(name){
 
 var Metro = {
 
-    version: "4.3.4",
-    compileTime: "24/11/2019 13:38:36",
-    buildNumber: "742",
+    version: "4.3.5",
+    compileTime: "03/12/2019 14:40:24",
+    buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -16244,8 +16244,6 @@ var Input = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
         var buttons = $("<div>").addClass("button-group");
         var clearButton, revealButton, searchButton;
@@ -16261,12 +16259,7 @@ var Input = {
             element.attr("type", "text");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
 
@@ -27551,10 +27544,17 @@ var Tabs = {
 Metro.plugin('tabs', Tabs);
 
 var TagInputDefaultConfig = {
+    clearButton: true,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+
     randomColor: false,
     maxTags: 0,
     tagSeparator: ",",
-    tagTrigger: "13,188",
+    tagTrigger: "Enter, Space, Comma",
+
+    clsComponent: "",
+    clsInput: "",
+    clsClearButton: "",
     clsTag: "",
     clsTagTitle: "",
     clsTagRemover: "",
@@ -27563,6 +27563,7 @@ var TagInputDefaultConfig = {
     onBeforeTagRemove: Metro.noop_true,
     onTagRemove: Metro.noop,
     onTag: Metro.noop,
+    onClear: Metro.noop,
     onTagInputCreate: Metro.noop
 };
 
@@ -27580,6 +27581,7 @@ var TagInput = {
         this.elem  = elem;
         this.element = $(elem);
         this.values = [];
+        this.triggers = [];
 
         this._setOptionsFromDOM();
         this._create();
@@ -27606,6 +27608,17 @@ var TagInput = {
 
         Metro.checkRuntime(element, "taginput");
 
+        this.triggers = (""+o.tagTrigger).toArray(",");
+
+        if (this.triggers.contains("Space") || this.triggers.contains("Spacebar")) {
+            this.triggers.push(" ");
+            this.triggers.push("Spacebar");
+        }
+
+        if (this.triggers.contains("Comma")) {
+            this.triggers.push(",");
+        }
+
         this._createStructure();
         this._createEvents();
 
@@ -27615,17 +27628,23 @@ var TagInput = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var container, input;
+        var container, input, clearButton;
         var values = element.val().trim();
 
-        container = $("<div>").addClass("tag-input "  + element[0].className).insertBefore(element);
+        container = $("<div>").addClass("tag-input "  + element[0].className).addClass(o.clsComponent).insertBefore(element);
         element.appendTo(container);
 
         element[0].className = "";
 
         element.addClass("original-input");
-        input = $("<input type='text'>").addClass("input-wrapper").attr("size", 1);
+        input = $("<input type='text'>").addClass("input-wrapper").addClass(o.clsInput).attr("size", 1);
         input.appendTo(container);
+
+        if (o.clearButton !== false && !element[0].readOnly) {
+            container.addClass("padding-for-clear");
+            clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.appendTo(container);
+        }
 
         if (Utils.isValue(values)) {
             $.each(Utils.strToArray(values, o.tagSeparator), function(){
@@ -27659,18 +27678,21 @@ var TagInput = {
 
         input.on(Metro.events.keyup, function(e){
             var val = input.val().trim();
+            var key = e.key;
 
             if (val === "") {return ;}
 
-            if (Utils.strToArray(o.tagTrigger, ",", "integer").indexOf(e.keyCode) === -1) {
+            if (!that.triggers.contains(key)) {
                 return ;
             }
 
+            if (key !== " " && key !== "Spacebar") val = val.slice(0, -1);
+
             input.val("");
-            that._addTag(val.replace(",", ""));
+            that._addTag(val);
             input.attr("size", 1);
 
-            if (e.keyCode === Metro.keyCode.ENTER) {
+            if (key === "Enter") {
                 e.preventDefault();
             }
         });
@@ -27682,6 +27704,15 @@ var TagInput = {
 
         container.on(Metro.events.click, function(){
             input.focus();
+        });
+
+        container.on(Metro.events.click, ".input-clear-button", function(){
+            var val = element.val();
+            that.clear();
+            Utils.exec(o.onClear, [val], element[0]);
+            element.fire("clear", {
+                val: val
+            });
         });
     },
 
@@ -27801,7 +27832,8 @@ var TagInput = {
         var container = element.closest(".tag-input");
 
         this.values = [];
-        element.val("");
+
+        element.val("").trigger("change");
 
         container.find(".tag").remove();
     },

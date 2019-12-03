@@ -1,7 +1,7 @@
 /*
- * Metro 4 Components Library v4.3.4  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 24/11/2019 13:38:19
+ * Built at 03/12/2019 14:40:08
  * Licensed under MIT
  */
 html,
@@ -26977,6 +26977,22 @@ input.input-small:-ms-input-placeholder {
   cursor: pointer;
   background-color: #e4e4e4;
   font-size: 1.2rem;
+}
+.tag-input .input-clear-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  background-color: transparent;
+  height: 34px;
+  min-width: 34px;
+}
+.tag-input .input-clear-button:hover {
+  background-color: #f8f8f8;
+  text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
+}
+.tag-input.padding-for-clear {
+  padding-right: 48px;
 }
 .tag-input.input-large {
   min-height: 50px;
