@@ -1,5 +1,11 @@
-### 4.3.4
+### 4.3.5
+##### Metro 4
++ [x] Tag input: change `trigger` defining 
++ [x] Tag input: add `clear button` with attributes `clearButton`, `clsClearButton`, `clearButtonIcon`  
++ [x] Tag input: add attributes `clsComponent`, `clsInput`  
++ [x] Tag input: add event `onClear`  
 
+### 4.3.4
 ##### M4Q
 + [x] M4Q: upd to 1.0.4
 + [x] M4Q Manipulation: optimise `append`, `prepend` to one definition for IE
