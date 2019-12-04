@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 04/12/2019 15:23:17
+ * Built at 04/12/2019 20:15:18
  * Licensed under MIT
  */
 html,
@@ -27019,6 +27019,22 @@ input.input-small:-ms-input-placeholder {
   line-height: 48px;
   min-width: 5em;
 }
+.tag-input.input-large .button {
+  height: 48px;
+  min-width: 48px;
+  font-size: 1.3rem;
+}
+.tag-input.input-large .button [class*=mif-] {
+  font-size: 1.3rem;
+}
+.tag-input.input-large .button [class*=default-icon-] {
+  width: 21px;
+  height: 21px;
+}
+.tag-input.input-large .button .input-clear-button {
+  width: 48px;
+  padding: 0;
+}
 .tag-input.input-small {
   min-height: 28px;
 }
@@ -27043,6 +27059,22 @@ input.input-small:-ms-input-placeholder {
   padding: 0 4px;
   line-height: 26px;
   min-width: 5em;
+}
+.tag-input.input-small .button {
+  height: 26px;
+  min-width: 26px;
+  font-size: 0.9rem;
+}
+.tag-input.input-small .button [class*=mif-] {
+  font-size: 0.9rem;
+}
+.tag-input.input-small .button [class*=default-icon-] {
+  width: 14px;
+  height: 14px;
+}
+.tag-input.input-small .input-clear-button {
+  width: 26px;
+  padding: 0;
 }
 .spinner {
   display: -webkit-box;
