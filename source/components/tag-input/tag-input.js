@@ -141,7 +141,7 @@ var TagInput = {
                 return ;
             }
 
-            if (key !== " " && key !== "Spacebar") val = val.slice(0, -1);
+            if (key !== " " && key !== "Spacebar" && key !== "Enter") val = val.slice(0, -1);
 
             input.val("");
             that._addTag(val);
