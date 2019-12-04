@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 03/12/2019 14:42:42
+ * Built at 04/12/2019 15:23:17
  * Licensed under MIT
  */
 
@@ -3793,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "03/12/2019 14:42:49",
+    compileTime: "04/12/2019 15:23:24",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -27686,7 +27686,7 @@ var TagInput = {
                 return ;
             }
 
-            if (key !== " " && key !== "Spacebar") val = val.slice(0, -1);
+            if (key !== " " && key !== "Spacebar" && key !== "Enter") val = val.slice(0, -1);
 
             input.val("");
             that._addTag(val);
