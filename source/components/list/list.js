@@ -8,7 +8,7 @@ var ListDefaultConfig = {
     sortTarget: "li",
     sortClass: null,
     sortDir: "asc",
-    sortInitial: false,
+    sortInitial: true,
     filterClass: null,
     filter: null,
     filterString: "",
@@ -338,7 +338,7 @@ var List = {
 
         this.currentPage = 1;
 
-        this.sorting(o.sortClass, o.sortDir, true);
+        if (o.sortInitial !== false) this.sorting(o.sortClass, o.sortDir, true);
     },
 
     _createEvents: function(){
@@ -839,7 +839,7 @@ var List = {
 
         var changeFilterString = function(){
             var filter = element.attr("data-filter-string");
-            if (!Utils.isValue(target)) {
+            if (!Utils.isValue(filter)) {
                 return ;
             }
             o.filterString = filter;
@@ -854,7 +854,7 @@ var List = {
     },
 
     destroy: function(){
-        var that = this, element = this.element;
+        var element = this.element;
         var component = element.parent();
         var search = component.find(".list-search-block input");
         var customSearch;
