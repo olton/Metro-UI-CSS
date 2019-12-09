@@ -4,6 +4,7 @@
 + [x] Tag input: add `clear button` with attributes `clearButton`, `clsClearButton`, `clearButtonIcon`  
 + [x] Tag input: add attributes `clsComponent`, `clsInput`  
 + [x] Tag input: add event `onClear`  
++ [x] List: add attribute `data-sort-initial` to sorts on create component, issue #1475
 
 ### 4.3.4
 ##### M4Q
