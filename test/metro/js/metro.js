@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 04/12/2019 20:15:18
+ * Built at 09/12/2019 11:25:54
  * Licensed under MIT
  */
 
@@ -3793,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "04/12/2019 20:15:26",
+    compileTime: "09/12/2019 11:26:03",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17022,7 +17022,7 @@ var ListDefaultConfig = {
     sortTarget: "li",
     sortClass: null,
     sortDir: "asc",
-    sortInitial: false,
+    sortInitial: true,
     filterClass: null,
     filter: null,
     filterString: "",
@@ -17352,7 +17352,7 @@ var List = {
 
         this.currentPage = 1;
 
-        this.sorting(o.sortClass, o.sortDir, true);
+        if (o.sortInitial !== false) this.sorting(o.sortClass, o.sortDir, true);
     },
 
     _createEvents: function(){
@@ -17853,7 +17853,7 @@ var List = {
 
         var changeFilterString = function(){
             var filter = element.attr("data-filter-string");
-            if (!Utils.isValue(target)) {
+            if (!Utils.isValue(filter)) {
                 return ;
             }
             o.filterString = filter;
@@ -17868,7 +17868,7 @@ var List = {
     },
 
     destroy: function(){
-        var that = this, element = this.element;
+        var element = this.element;
         var component = element.parent();
         var search = component.find(".list-search-block input");
         var customSearch;
