@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 09/12/2019 11:27:35
+ * Built at 10/12/2019 11:47:22
  * Licensed under MIT
  */
 
@@ -3793,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "09/12/2019 11:27:42",
+    compileTime: "10/12/2019 11:47:29",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -17352,7 +17352,10 @@ var List = {
 
         this.currentPage = 1;
 
-        if (o.sortInitial !== false) this.sorting(o.sortClass, o.sortDir, true);
+        if (o.sortInitial !== false)
+            this.sorting(o.sortClass, o.sortDir, true);
+        else
+            this.draw();
     },
 
     _createEvents: function(){
