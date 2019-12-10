@@ -338,7 +338,10 @@ var List = {
 
         this.currentPage = 1;
 
-        if (o.sortInitial !== false) this.sorting(o.sortClass, o.sortDir, true);
+        if (o.sortInitial !== false)
+            this.sorting(o.sortClass, o.sortDir, true);
+        else
+            this.draw();
     },
 
     _createEvents: function(){
