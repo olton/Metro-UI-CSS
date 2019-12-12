@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 10/12/2019 11:47:22
+ * Built at 12/12/2019 15:40:31
  * Licensed under MIT
  */
 html,
@@ -27075,6 +27075,20 @@ input.input-small:-ms-input-placeholder {
 .tag-input.input-small .input-clear-button {
   width: 26px;
   padding: 0;
+}
+.tag-input.static-mode {
+  border: none!important;
+}
+.tag-input.static-mode .tag {
+  border-radius: 5px;
+  background: #d4f0ff;
+  color: #1d1d1d;
+}
+.tag-input.static-mode .tag .remover {
+  display: none!important;
+}
+.tag-input.static-mode .button {
+  display: none!important;
 }
 .spinner {
   display: -webkit-box;

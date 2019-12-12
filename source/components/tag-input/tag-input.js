@@ -1,4 +1,5 @@
 var TagInputDefaultConfig = {
+    static: false,
     clearButton: true,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
 
@@ -111,6 +112,11 @@ var TagInput = {
             this.disable();
         } else {
             this.enable();
+        }
+
+        console.log("readonly", element.attr("readonly"));
+        if (o.static === true || element.attr("readonly") !== undefined) {
+            container.addClass("static-mode");
         }
     },
 

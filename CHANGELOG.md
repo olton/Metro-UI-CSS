@@ -5,6 +5,7 @@
 + [x] Tag input: add attributes `clsComponent`, `clsInput`  
 + [x] Tag input: add event `onClear`  
 + [x] List: add attribute `data-sort-initial` to sorts on create component, issue #1475
++ [x] Tag input: add attribute `data-static` and static mode for `data-static='true'` or if present attribute `readonly`
 
 ### 4.3.4
 ##### M4Q

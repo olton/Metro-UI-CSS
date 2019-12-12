@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 10/12/2019 11:47:22
+ * Built at 12/12/2019 15:40:31
  * Licensed under MIT
  */
 
@@ -3793,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "10/12/2019 11:47:29",
+    compileTime: "12/12/2019 15:40:37",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -27547,6 +27547,7 @@ var Tabs = {
 Metro.plugin('tabs', Tabs);
 
 var TagInputDefaultConfig = {
+    static: false,
     clearButton: true,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
 
@@ -27659,6 +27660,11 @@ var TagInput = {
             this.disable();
         } else {
             this.enable();
+        }
+
+        console.log("readonly", element.attr("readonly"));
+        if (o.static === true || element.attr("readonly") !== undefined) {
+            container.addClass("static-mode");
         }
     },
 
