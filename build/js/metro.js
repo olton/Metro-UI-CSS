@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 12/12/2019 15:40:31
+ * Built at 12/12/2019 15:52:35
  * Licensed under MIT
  */
 
@@ -3793,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "12/12/2019 15:40:37",
+    compileTime: "12/12/2019 15:52:42",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -27662,7 +27662,6 @@ var TagInput = {
             this.enable();
         }
 
-        console.log("readonly", element.attr("readonly"));
         if (o.static === true || element.attr("readonly") !== undefined) {
             container.addClass("static-mode");
         }
@@ -27865,6 +27864,23 @@ var TagInput = {
         }
     },
 
+    toggleStatic: function(val){
+        var container = this.element.closest(".tag-input");
+        var staticMode;
+
+        if (Utils.isValue(val)) {
+            staticMode = Utils.bool(val);
+        } else {
+            staticMode = !container.hasClass("static-mode");
+        }
+
+        if (staticMode) {
+            container.addClass("static-mode");
+        } else {
+            container.removeClass("static-mode");
+        }
+    },
+
     changeAttribute: function(attributeName){
         var that = this, element = this.element, o = this.options;
 
@@ -27880,6 +27896,7 @@ var TagInput = {
         switch (attributeName) {
             case "value": changeValue(); break;
             case "disabled": this.toggleState(); break;
+            case "static": this.toggleStatic(); break;
         }
     },
 
