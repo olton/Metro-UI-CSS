@@ -252,7 +252,7 @@ module.exports = function(grunt) {
             compile_less: ['less:src', 'less:schemes'],
             postcss: ['postcss'],
             concat: ['concat:js', 'concat:css'],
-            remove_log: ['removelogging'],
+            remove_log: develop ? [] : ['removelogging'],
             min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
             replace: ['replace'],
             copy: ['copy'],
