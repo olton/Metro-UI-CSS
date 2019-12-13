@@ -192,15 +192,16 @@
 .tag-input {
     &.static-mode {
         border: none!important;
+        cursor: default;
         .tag {
-            border-radius: 5px;
+            border-radius: 10px;
             background: #d4f0ff;
             color: @dark;
             .remover {
                 display: none!important;
             }
         }
-        .button {
+        .button, input {
             display: none!important;
         }
     }
