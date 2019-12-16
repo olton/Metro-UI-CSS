@@ -138,8 +138,10 @@ var Select = {
 
     _createOptions: function(){
         var that = this, element = this.element, o = this.options, select = element.parent();
-        var list = select.find("ul").html("");
+        var list = select.find("ul").empty();
         var selected = element.find("option[selected]").length > 0;
+
+        element.siblings(".select-input").empty();
 
         if (o.addEmptyValue === true) {
             element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
@@ -530,7 +532,7 @@ var Select = {
         var element = this.element;
         var option_group;
 
-        element.html("");
+        element.empty();
 
         if (typeof op === 'string') {
             element.html(op);

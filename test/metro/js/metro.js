@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2019 Sergey Pimenov
- * Built at 13/12/2019 11:52:05
+ * Built at 16/12/2019 14:16:32
  * Licensed under MIT
  */
 
@@ -3793,7 +3793,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "13/12/2019 11:52:12",
+    compileTime: "16/12/2019 14:16:39",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21132,8 +21132,10 @@ var Select = {
 
     _createOptions: function(){
         var that = this, element = this.element, o = this.options, select = element.parent();
-        var list = select.find("ul").html("");
+        var list = select.find("ul").empty();
         var selected = element.find("option[selected]").length > 0;
+
+        element.siblings(".select-input").empty();
 
         if (o.addEmptyValue === true) {
             element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
@@ -21524,7 +21526,7 @@ var Select = {
         var element = this.element;
         var option_group;
 
-        element.html("");
+        element.empty();
 
         if (typeof op === 'string') {
             element.html(op);
