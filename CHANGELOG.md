@@ -1,4 +1,7 @@
 ### 4.3.5
+##### M4Q
++ [x] M4Q Events: fix firing events, Metro 4 issue #1476
+
 ##### Metro 4
 + [x] Tag input: change `trigger` defining 
 + [x] Tag input: add `clear button` with attributes `clearButton`, `clsClearButton`, `clearButtonIcon`  
