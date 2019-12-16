@@ -7,6 +7,7 @@
 + [x] List: add attribute `data-sort-initial` to sorts on create component, issue #1475
 + [x] Tag input: add attribute `data-static` and static mode for `data-static='true'` or if present attribute `readonly`
 + [x] Tag input: add method `toggleStatic([true|false])`
++ [x] Select: fix clearing `select-input`, issue #1477
 
 ### 4.3.4
 ##### M4Q
