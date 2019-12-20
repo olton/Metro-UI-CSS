@@ -481,6 +481,7 @@ Metro.plugin('calendarpicker', CalendarPicker);
 
 $(document).on(Metro.events.click, ".overlay.for-calendar-picker",function(){
     $(this).remove();
+    $(".calendar-for-picker.open").removeClass("open open-up");
 });
 
 $(document).on(Metro.events.click, function(){

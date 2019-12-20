@@ -1,6 +1,7 @@
 ### 4.3.5
 ##### M4Q
 + [x] M4Q Events: fix firing events, Metro 4 issue #1476
++ [x] M4Q Events: optimize method `trigger`, now this is a synonym of `fire`
 
 ##### Metro 4
 + [x] Tag input: change `trigger` defining 
@@ -11,6 +12,7 @@
 + [x] Tag input: add attribute `data-static` and static mode for `data-static='true'` or if present attribute `readonly`
 + [x] Tag input: add method `toggleStatic([true|false])`
 + [x] Select: fix clearing `select-input`, issue #1477
++ [x] Calendar picker: fix closing calendar when user click on overlay, issue #1478
 
 ### 4.3.4
 ##### M4Q
