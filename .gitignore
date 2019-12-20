@@ -86,3 +86,4 @@ copy-doc.bat
 cypress/video
 test/manual
 serve.bat
+merge.bat
