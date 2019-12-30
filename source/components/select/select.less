@@ -251,7 +251,7 @@
     &.input-large {
         height: @input-lx;
 
-        .dropdown-toggle, .button {
+        .dropdown-toggle, & > .button-group .button {
             height: @input-lx;
             width: @input-lx;
         }
@@ -276,10 +276,10 @@
                 height: auto;
                 min-height: @input-lx - 2;
             }
-            .button-group {
+            & > .button-group {
                 right: @input-lx;
             }
-            .button-group:not(.d-none) ~ .select-input {
+            & > .button-group:not(.d-none) ~ .select-input {
                 margin-right: @input-lx * 2;
             }
         }
@@ -312,7 +312,7 @@
     &.input-small {
         height: @input-sx;
 
-        .dropdown-toggle, .button {
+        .dropdown-toggle, & > .button-group .button {
             height: @input-sx;
             width: @input-sx;
         }
@@ -337,10 +337,10 @@
                 height: auto;
                 min-height: @input-sx - 2;
             }
-            .button-group {
+            & > .button-group {
                 right: @input-sx;
             }
-            .button-group:not(.d-none) ~ .select-input {
+            & > .button-group:not(.d-none) ~ .select-input {
                 margin-right: @input-sx * 2;
             }
         }
