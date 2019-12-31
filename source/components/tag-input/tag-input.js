@@ -7,6 +7,7 @@ var TagInputDefaultConfig = {
     maxTags: 0,
     tagSeparator: ",",
     tagTrigger: "Enter, Space, Comma",
+    backspace: true,
 
     clsComponent: "",
     clsInput: "",
@@ -20,6 +21,7 @@ var TagInputDefaultConfig = {
     onTagRemove: Metro.noop,
     onTag: Metro.noop,
     onClear: Metro.noop,
+    onTagTrigger: Metro.noop,
     onTagInputCreate: Metro.noop
 };
 
@@ -136,9 +138,19 @@ var TagInput = {
             input.attr("size", Math.ceil(input.val().length / 2) + 2);
         });
 
-        input.on(Metro.events.keyup, function(e){
+        input.on(Metro.events.keydown, function(e){
             var val = input.val().trim();
             var key = e.key;
+
+            if (key === "Enter") e.preventDefault();
+
+            if (o.backspace === true && key === "Backspace" && val.length === 0) {
+                if (that.values.length > 0) {
+                    that.values.splice(-1,1);
+                    element.siblings(".tag").last().remove();
+                }
+                return ;
+            }
 
             if (val === "") {return ;}
 
@@ -146,14 +158,22 @@ var TagInput = {
                 return ;
             }
 
-            if (key !== " " && key !== "Spacebar" && key !== "Enter") val = val.slice(0, -1);
+            Utils.exec(o.onTagTrigger, [key], element[0]);
+            element.fire("tagtrigger", {
+                key: key
+            });
 
             input.val("");
             that._addTag(val);
             input.attr("size", 1);
+        });
 
-            if (key === "Enter") {
-                e.preventDefault();
+        input.on(Metro.events.keyup, function(e){
+            var val = input.val();
+            var key = e.key;
+
+            if (that.triggers.contains(key) && val[val.length - 1] === key) {
+                input.val(val.slice(0, -1));
             }
         });
 

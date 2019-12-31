@@ -14,6 +14,9 @@
 + [x] Select: fix clearing `select-input`, issue #1477
 + [x] Calendar picker: fix closing calendar when user click on overlay, issue #1478
 + [x] Select: fix styles for `input-large`, `input-small` classes
++ [x] Tag input: change `keyup` to `keydown` for tag trigger event
++ [x] Tag input: add event `onTagTrigger`  
++ [x] Tag input: add removing last tag on current value is empty end user press `Backspace`, you can disable it with attribute `data-backspace='false'`
 
 ### 4.3.4
 ##### M4Q
