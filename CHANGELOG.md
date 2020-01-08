@@ -19,7 +19,8 @@
 + [x] Tag input: add event `onTagTrigger`  
 + [x] Tag input: add removing last tag on current value is empty end user press `Backspace`, you can disable it with attribute `data-backspace='false'`
 + [x] Draggable: add attribute `data-timeout` for set timeout before creating component
-+ [x] Components: creating components can be deferred with attribute `data-[componentName]-deferred=[ms]`. Example: `<div data-role='draggable' data-draggable-deferred='2000'>...</div>` 
++ [x] Components: creating components can be deferred with attribute `data-[componentName]-deferred=[ms]`. Example: `<div data-role='draggable' data-draggable-deferred='2000'>...</div>`
++ [x] Counter: add attribute `data-start-on-viewport`. If attribute value is `true`, counter started after element showed in viewport. You can combine this with `data-timeout` 
 
 ### 4.3.4
 ##### M4Q

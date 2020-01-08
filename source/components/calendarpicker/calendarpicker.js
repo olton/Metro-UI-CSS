@@ -82,9 +82,6 @@ var CalendarPicker = {
         this._setOptionsFromDOM();
         Metro.createExec(this);
 
-        Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
-        $(elem).fire("calendarpickercreate");
-
         return this;
     },
 
@@ -110,6 +107,9 @@ var CalendarPicker = {
 
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
+        this.element.fire("calendarpickercreate");
     },
 
     _createStructure: function(){
