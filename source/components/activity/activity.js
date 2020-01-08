@@ -1,4 +1,5 @@
 var ActivityDefaultConfig = {
+    activityDeferred: 0,
     type: "ring",
     style: "light",
     size: 64,
@@ -15,13 +16,16 @@ if (typeof window["metroActivitySetup"] !== undefined) {
 }
 
 var Activity = {
+    name: "Activity",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ActivityDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+
+        Metro.createExec(this);
 
         return this;
     },

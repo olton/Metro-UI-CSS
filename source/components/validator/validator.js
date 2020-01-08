@@ -275,6 +275,7 @@ var ValidatorFuncs = {
 Metro['validator'] = ValidatorFuncs;
 
 var ValidatorDefaultConfig = {
+    validatorDeferred: 0,
     submitTimeout: 200,
     interactiveCheck: false,
     clearInvalid: 0,
@@ -298,6 +299,8 @@ if (typeof window["metroValidatorSetup"] !== undefined) {
 }
 
 var Validator = {
+    name: "Validator",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ValidatorDefaultConfig, options );
         this.elem  = elem;
@@ -307,7 +310,7 @@ var Validator = {
         this.result = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

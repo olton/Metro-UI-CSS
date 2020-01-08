@@ -1,4 +1,5 @@
 var SwitchDefaultConfig = {
+    switchDeferred: 0,
     material: false,
     transition: true,
     caption: "",
@@ -18,13 +19,15 @@ if (typeof window["metroSwitchSetup"] !== undefined) {
 }
 
 var Switch = {
+    name: "Switch",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SwitchDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

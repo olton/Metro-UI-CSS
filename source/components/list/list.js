@@ -1,4 +1,5 @@
 var ListDefaultConfig = {
+    listDeferred: 0,
     templateBeginToken: "<%",
     templateEndToken: "%>",
     paginationDistance: 5,
@@ -69,6 +70,8 @@ if (typeof window["metroListSetup"] !== undefined) {
 }
 
 var List = {
+    name: "List",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ListDefaultConfig, options );
         this.elem  = elem;
@@ -97,7 +100,7 @@ var List = {
         this.items = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

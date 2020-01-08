@@ -1,4 +1,5 @@
 var StreamerDefaultConfig = {
+    streamerDeferred: 0,
     wheel: false,
     duration: METRO_ANIMATION_DURATION,
     defaultClosedIcon: "",
@@ -43,6 +44,8 @@ if (typeof window["metroStreamerSetup"] !== undefined) {
 }
 
 var Streamer = {
+    name: "Streamer",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, StreamerDefaultConfig, options );
         this.elem  = elem;
@@ -53,7 +56,7 @@ var Streamer = {
         this.events = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

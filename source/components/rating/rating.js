@@ -1,4 +1,5 @@
 var RatingDefaultConfig = {
+    ratingDeferred: 0,
     static: false,
     title: null,
     value: 0,
@@ -26,6 +27,8 @@ if (typeof window["metroRatingSetup"] !== undefined) {
 }
 
 var Rating = {
+    name: "Rating",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, RatingDefaultConfig, options );
         this.elem  = elem;
@@ -37,7 +40,7 @@ var Rating = {
         this.rating = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

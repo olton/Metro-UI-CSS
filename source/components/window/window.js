@@ -1,4 +1,5 @@
 var WindowDefaultConfig = {
+    windowDeferred: 0,
     hidden: false,
     width: "auto",
     height: "auto",
@@ -62,6 +63,8 @@ if (typeof window["metroWindowSetup"] !== undefined) {
 }
 
 var Window = {
+    name: "Window",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, WindowDefaultConfig, options );
         this.elem  = elem;
@@ -76,7 +79,7 @@ var Window = {
         this.content = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var VideoDefaultConfig = {
+    videoDeferred: 0,
     src: null,
 
     poster: "",
@@ -54,6 +55,8 @@ if (typeof window["metroVideoSetup"] !== undefined) {
 }
 
 var Video = {
+    name: "Video",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, VideoDefaultConfig, options );
         this.elem  = elem;
@@ -70,7 +73,7 @@ var Video = {
         this.isPlaying = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,6 +1,8 @@
 var DraggableDefaultConfig = {
+    draggableDeferred: 0,
     dragElement: 'self',
     dragArea: "parent",
+    timeout: 0,
     onCanDrag: Metro.noop_true,
     onDragStart: Metro.noop,
     onDragStop: Metro.noop,
@@ -17,6 +19,8 @@ if (typeof window["metroDraggableSetup"] !== undefined) {
 }
 
 var Draggable = {
+    name: "Draggable",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, DraggableDefaultConfig, options );
         this.elem  = elem;
@@ -33,10 +37,8 @@ var Draggable = {
         this.id = Utils.elementId("draggable");
 
         this._setOptionsFromDOM();
-        this._create();
 
-        Utils.exec(this.options.onDraggableCreate, [this.element]);
-        this.element.fire("draggablecreate");
+        Metro.createExec(this);
 
         return this;
     },
@@ -58,6 +60,8 @@ var Draggable = {
     _create: function(){
         this._createStructure();
         this._createEvents();
+        Utils.exec(this.options.onDraggableCreate, [this.element]);
+        this.element.fire("draggablecreate");
     },
 
     _createStructure: function(){

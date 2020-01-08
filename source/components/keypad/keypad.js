@@ -1,4 +1,5 @@
 var KeypadDefaultConfig = {
+    keypadDeferred: 0,
     keySize: 48,
     keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
     copyInlineStyles: false,
@@ -38,6 +39,8 @@ if (typeof window["metroKeypadSetup"] !== undefined) {
 }
 
 var Keypad = {
+    name: "Keypad",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, KeypadDefaultConfig, options );
         this.elem  = elem;
@@ -51,7 +54,7 @@ var Keypad = {
         this.keys = Utils.strToArray(this.options.keys, ",");
         this.keys_to_work = this.keys;
 
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

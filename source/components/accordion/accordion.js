@@ -1,4 +1,5 @@
 var AccordionDefaultConfig = {
+    accordionDeferred: 0,
     showMarker: true,
     material: false,
     duration: METRO_ANIMATION_DURATION,
@@ -23,13 +24,16 @@ if (typeof window["metroAccordionSetup"] !== undefined) {
 }
 
 var Accordion = {
+    name: "Accordion",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, AccordionDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+
+        Metro.createExec(this);
 
         return this;
     },

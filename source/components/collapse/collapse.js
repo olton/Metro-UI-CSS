@@ -1,4 +1,5 @@
 var CollapseDefaultConfig = {
+    collapseDeferred: 0,
     collapsed: false,
     toggleElement: false,
     duration: 100,
@@ -16,6 +17,8 @@ if (typeof window["metroCollapseSetup"] !== undefined) {
 }
 
 var Collapse = {
+    name: "Collapse",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CollapseDefaultConfig, options );
         this.elem  = elem;
@@ -23,7 +26,7 @@ var Collapse = {
         this.toggle = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

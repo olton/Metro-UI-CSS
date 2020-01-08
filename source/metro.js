@@ -566,14 +566,35 @@ var Metro = {
         element.data('metroComponent', mc);
     },
 
+    $: function(){
+        return METRO_JQUERY && jquery_present ? jQuery : m4q;
+    },
+
+    get$el: function(el){
+        return Metro.$()($(el)[0]);
+    },
+
     getPlugin: function(el, name){
         var _name = normalizeComponentName(name);
-        return Utils.$()($(el)[0]).data(_name);
+        var $el = Metro.get$el(el);
+        return $el.length ? $el.data(_name) : undefined;
     },
 
     makePlugin: function(el, name, options){
         var _name = normalizeComponentName(name);
-        return Utils.$()($(el)[0])[_name](options)
+        var $el = Metro.get$el(el);
+        return $el.length && typeof $el[_name] === "function" ? $el[_name](options) : undefined;
+    },
+
+    createExec: function(that){
+        var timeout = that.options[that.name.toLowerCase()+'Deferred'];
+        if (timeout > 0) {
+            setTimeout(function(){
+                that._create();
+            }, timeout)
+        } else {
+            that._create();
+        }
     }
 };
 

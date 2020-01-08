@@ -1,4 +1,5 @@
 var SpinnerDefaultConfig = {
+    spinnerDeferred: 0,
     step: 1,
     plusIcon: "<span class='default-icon-plus'></span>",
     minusIcon: "<span class='default-icon-minus'></span>",
@@ -34,6 +35,8 @@ if (typeof window["metroSpinnerSetup"] !== undefined) {
 }
 
 var Spinner = {
+    name: "Spinner",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SpinnerDefaultConfig, options );
         this.elem  = elem;
@@ -41,7 +44,7 @@ var Spinner = {
         this.repeat_timer = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

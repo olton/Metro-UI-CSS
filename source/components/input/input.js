@@ -1,5 +1,7 @@
 var InputDefaultConfig = {
-    mask: null,
+    inputDeferred: 0,
+
+    // mask: null,
 
     autocomplete: null,
     autocompleteDivider: ",",
@@ -13,7 +15,7 @@ var InputDefaultConfig = {
     size: "default",
     prepend: "",
     append: "",
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     searchButton: false,
     clearButton: true,
     revealButton: true,
@@ -51,6 +53,8 @@ if (typeof window["metroInputSetup"] !== undefined) {
 }
 
 var Input = {
+    name: "Input",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, InputDefaultConfig, options );
         this.elem  = elem;
@@ -60,7 +64,7 @@ var Input = {
         this.autocomplete = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var BottomSheetDefaultConfig = {
+    bottomsheetDeferred: 0,
     mode: "list",
     toggle: null,
     onOpen: Metro.noop,
@@ -15,6 +16,8 @@ if (typeof window["metroBottomSheetSetup"] !== undefined) {
 }
 
 var BottomSheet = {
+    name: "BottomSheet",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, BottomSheetDefaultConfig, options );
         this.elem  = elem;
@@ -22,7 +25,7 @@ var BottomSheet = {
         this.toggle = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

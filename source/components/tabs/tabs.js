@@ -1,4 +1,5 @@
 var TabsDefaultConfig = {
+    tabsDeferred: 0,
     expand: false,
     expandPoint: null,
     tabsPosition: "top",
@@ -23,6 +24,8 @@ if (typeof window["metroTabsSetup"] !== undefined) {
 }
 
 var Tabs = {
+    name: "Tabs",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TabsDefaultConfig, options );
         this.elem  = elem;
@@ -30,7 +33,7 @@ var Tabs = {
         this._targets = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

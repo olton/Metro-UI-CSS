@@ -1,4 +1,5 @@
 var FileDefaultConfig = {
+    fileDeferred: 0,
     mode: "input",
     buttonTitle: "Choose file(s)",
     filesTitle: "file(s) selected",
@@ -9,7 +10,7 @@ var FileDefaultConfig = {
     clsPrepend: "",
     clsButton: "",
     clsCaption: "",
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     onSelect: Metro.noop,
     onFileCreate: Metro.noop
 };
@@ -23,13 +24,15 @@ if (typeof window["metroFileSetup"] !== undefined) {
 }
 
 var File = {
+    name: "File",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, FileDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
