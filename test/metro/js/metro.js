@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/01/2020 15:25:13
+ * Built at 08/01/2020 16:41:15
  * Licensed under MIT
  */
 
@@ -3775,7 +3775,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "08/01/2020 15:25:20",
+    compileTime: "08/01/2020 16:41:22",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -9723,9 +9723,6 @@ var CalendarPicker = {
         this._setOptionsFromDOM();
         Metro.createExec(this);
 
-        Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
-        $(elem).fire("calendarpickercreate");
-
         return this;
     },
 
@@ -9751,6 +9748,9 @@ var CalendarPicker = {
 
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
+        this.element.fire("calendarpickercreate");
     },
 
     _createStructure: function(){
@@ -12174,11 +12174,12 @@ var Countdown = {
 Metro.plugin('countdown', Countdown);
 
 var CounterDefaultConfig = {
+    startOnViewport: true,
     counterDeferred: 0,
     delay: 10,
     step: 1,
     value: 0,
-    timeout: null,
+    timeout: 0,
     delimiter: ",",
     onStart: Metro.noop,
     onStop: Metro.noop,
@@ -12203,6 +12204,8 @@ var Counter = {
         this.element = $(elem);
         this.numbers = [];
         this.html = this.element.html();
+        this.started = false;
+        this.id = Utils.elementId("counter");
 
         this._setOptionsFromDOM();
         Metro.createExec(this);
@@ -12234,10 +12237,21 @@ var Counter = {
         Utils.exec(o.onCounterCreate, [element], this.elem);
         element.fire("countercreate");
 
-        if (o.timeout !== null && Utils.isInt(o.timeout)) {
+        if (o.timeout > 0 && o.startOnViewport !== true) {
             setTimeout(function () {
                 that.start();
             }, o.timeout);
+        }
+
+        if (o.startOnViewport === true) {
+            $.window().on("scroll", function(e){
+                if (Utils.inViewport(element[0]) && !that.started) {
+                    that.started = true;
+                    setTimeout(function () {
+                        that.start();
+                    }, o.timeout);
+                }
+            }, {ns: this.id})
         }
     },
 
@@ -12256,34 +12270,49 @@ var Counter = {
         }
     },
 
+    _tick: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (this.numbers.length === 0) {
+            this.started = false;
+            Utils.exec(o.onStop, [element], element[0]);
+            element.fire("stop");
+            return ;
+        }
+
+        var n = that.numbers.shift();
+
+        Utils.exec(o.onTick, [n, element], element[0]);
+        element.fire("tick");
+
+        element.html(Number(n).format(0, 0, o.delimiter));
+
+        if (that.numbers.length > 0 && that.started) {
+            setTimeout(function(){
+                that._tick();
+            }, o.delay);
+        } else {
+            that.started = false;
+            Utils.exec(o.onStop, [element], element[0]);
+            element.fire("stop");
+        }
+    },
+
     start: function(){
         var that = this, element = this.element, o = this.options;
 
-        var tick = function(){
-            if (that.numbers.length === 0) {
-                Utils.exec(o.onStop, [element], element[0]);
-                element.fire("stop");
-                return ;
-            }
-            var n = that.numbers.shift();
-            Utils.exec(o.onTick, [n, element], element[0]);
-            element.fire("tick");
-            element.html(Number(n).format(0, 0, o.delimiter));
-            if (that.numbers.length > 0) {
-                setTimeout(tick, o.delay);
-            } else {
-                Utils.exec(o.onStop, [element], element[0]);
-                element.fire("stop");
-            }
-        };
+        this.started = true;
 
         Utils.exec(o.onStart, [element], element[0]);
         element.fire("start");
 
-        setTimeout(tick, o.delay);
+        setTimeout(function(){
+            that._tick();
+        }, o.delay);
     },
 
     reset: function(){
+        this.started = false;
         this._calcArray();
         this.element.html(this.html);
     },
@@ -12300,6 +12329,9 @@ var Counter = {
     },
 
     destroy: function(){
+        if (this.options.startOnViewport === true) {
+            $.window().off("scroll", {ns: this.id});
+        }
         return this.element;
     }
 };
