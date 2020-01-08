@@ -1,4 +1,5 @@
 var CubeDefaultConfig = {
+    cubeDeferred: 0,
     rules: null,
     color: null,
     flashColor: null,
@@ -42,6 +43,8 @@ if (typeof window["metroCubeSetup"] !== undefined) {
 }
 
 var Cube = {
+    name: "Cube",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CubeDefaultConfig, options );
         this.elem  = elem;
@@ -54,7 +57,7 @@ var Cube = {
         this.intervals = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

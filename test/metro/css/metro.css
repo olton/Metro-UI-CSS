@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
- * Copyright 2012-2019 Sergey Pimenov
- * Built at 31/12/2019 11:16:07
+ * Copyright 2012-2020 Sergey Pimenov
+ * Built at 08/01/2020 15:25:06
  * Licensed under MIT
  */
 html,
@@ -36089,7 +36089,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   height: auto;
   min-height: 52px;
   z-index: 1030;
@@ -36336,7 +36336,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .h-ab {
   height: calc(100% - 52px);
 }
-.hamburger {
+.hamburger,
+.nav-button {
   display: inline-block;
   font-weight: 400;
   text-align: center;
@@ -36360,7 +36361,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 36px;
   height: 36px;
 }
-.hamburger .line {
+.hamburger .line,
+.nav-button .line {
   width: 30px;
   background-color: #ffffff;
   display: block;
@@ -36370,32 +36372,43 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   height: 3px;
   margin: 4px auto;
 }
-.hamburger.dark .line {
+.hamburger.dark .line,
+.nav-button.dark .line {
   background-color: #1d1d1d;
 }
 .hamburger.menu-down .line:nth-child(2),
-.hamburger.chevron-down .line:nth-child(2) {
+.nav-button.menu-down .line:nth-child(2),
+.hamburger.chevron-down .line:nth-child(2),
+.nav-button.chevron-down .line:nth-child(2) {
   -webkit-transition-delay: 0.3s;
        -o-transition-delay: 0.3s;
           transition-delay: 0.3s;
 }
 .hamburger.menu-down.active,
-.hamburger.chevron-down.active {
+.nav-button.menu-down.active,
+.hamburger.chevron-down.active,
+.nav-button.chevron-down.active {
   -webkit-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
           transform: rotate(90deg);
 }
 .hamburger.menu-down.active .line:nth-child(2),
-.hamburger.chevron-down.active .line:nth-child(2) {
+.nav-button.menu-down.active .line:nth-child(2),
+.hamburger.chevron-down.active .line:nth-child(2),
+.nav-button.chevron-down.active .line:nth-child(2) {
   opacity: 0;
   -webkit-transition: none;
   -o-transition: none;
   transition: none;
 }
 .hamburger.menu-down.active .line:nth-child(1),
+.nav-button.menu-down.active .line:nth-child(1),
 .hamburger.chevron-down.active .line:nth-child(1),
+.nav-button.chevron-down.active .line:nth-child(1),
 .hamburger.menu-down.active .line:nth-child(3),
-.hamburger.chevron-down.active .line:nth-child(3) {
+.nav-button.menu-down.active .line:nth-child(3),
+.hamburger.chevron-down.active .line:nth-child(3),
+.nav-button.chevron-down.active .line:nth-child(3) {
   width: 20px;
   -webkit-transform-origin: right;
       -ms-transform-origin: right;
@@ -36403,40 +36416,54 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin: -4px 8px;
 }
 .hamburger.menu-down.active .line:nth-child(1),
-.hamburger.chevron-down.active .line:nth-child(1) {
+.nav-button.menu-down.active .line:nth-child(1),
+.hamburger.chevron-down.active .line:nth-child(1),
+.nav-button.chevron-down.active .line:nth-child(1) {
   -webkit-transform: rotate(45deg) translateY(6px);
       -ms-transform: rotate(45deg) translateY(6px);
           transform: rotate(45deg) translateY(6px);
 }
 .hamburger.menu-down.active .line:nth-child(3),
-.hamburger.chevron-down.active .line:nth-child(3) {
+.nav-button.menu-down.active .line:nth-child(3),
+.hamburger.chevron-down.active .line:nth-child(3),
+.nav-button.chevron-down.active .line:nth-child(3) {
   -webkit-transform: rotate(-45deg) translateY(-6px);
       -ms-transform: rotate(-45deg) translateY(-6px);
           transform: rotate(-45deg) translateY(-6px);
 }
 .hamburger.menu-up .line:nth-child(2),
-.hamburger.chevron-up .line:nth-child(2) {
+.nav-button.menu-up .line:nth-child(2),
+.hamburger.chevron-up .line:nth-child(2),
+.nav-button.chevron-up .line:nth-child(2) {
   -webkit-transition-delay: 0.3s;
        -o-transition-delay: 0.3s;
           transition-delay: 0.3s;
 }
 .hamburger.menu-up.active,
-.hamburger.chevron-up.active {
+.nav-button.menu-up.active,
+.hamburger.chevron-up.active,
+.nav-button.chevron-up.active {
   -webkit-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
 .hamburger.menu-up.active .line:nth-child(2),
-.hamburger.chevron-up.active .line:nth-child(2) {
+.nav-button.menu-up.active .line:nth-child(2),
+.hamburger.chevron-up.active .line:nth-child(2),
+.nav-button.chevron-up.active .line:nth-child(2) {
   opacity: 0;
   -webkit-transition: none;
   -o-transition: none;
   transition: none;
 }
 .hamburger.menu-up.active .line:nth-child(1),
+.nav-button.menu-up.active .line:nth-child(1),
 .hamburger.chevron-up.active .line:nth-child(1),
+.nav-button.chevron-up.active .line:nth-child(1),
 .hamburger.menu-up.active .line:nth-child(3),
-.hamburger.chevron-up.active .line:nth-child(3) {
+.nav-button.menu-up.active .line:nth-child(3),
+.hamburger.chevron-up.active .line:nth-child(3),
+.nav-button.chevron-up.active .line:nth-child(3) {
   width: 20px;
   -webkit-transform-origin: right;
       -ms-transform-origin: right;
@@ -36444,43 +36471,55 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin: -4px 8px;
 }
 .hamburger.menu-up.active .line:nth-child(1),
-.hamburger.chevron-up.active .line:nth-child(1) {
+.nav-button.menu-up.active .line:nth-child(1),
+.hamburger.chevron-up.active .line:nth-child(1),
+.nav-button.chevron-up.active .line:nth-child(1) {
   -webkit-transform: rotate(45deg) translateY(6px);
       -ms-transform: rotate(45deg) translateY(6px);
           transform: rotate(45deg) translateY(6px);
 }
 .hamburger.menu-up.active .line:nth-child(3),
-.hamburger.chevron-up.active .line:nth-child(3) {
+.nav-button.menu-up.active .line:nth-child(3),
+.hamburger.chevron-up.active .line:nth-child(3),
+.nav-button.chevron-up.active .line:nth-child(3) {
   -webkit-transform: rotate(-45deg) translateY(-6px);
       -ms-transform: rotate(-45deg) translateY(-6px);
           transform: rotate(-45deg) translateY(-6px);
 }
 .hamburger.arrow-left.active .line:nth-child(1),
-.hamburger.arrow-left.active .line:nth-child(3) {
+.nav-button.arrow-left.active .line:nth-child(1),
+.hamburger.arrow-left.active .line:nth-child(3),
+.nav-button.arrow-left.active .line:nth-child(3) {
   width: 20px;
   margin-left: 0;
 }
-.hamburger.arrow-left.active .line:nth-child(1) {
+.hamburger.arrow-left.active .line:nth-child(1),
+.nav-button.arrow-left.active .line:nth-child(1) {
   -webkit-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
-.hamburger.arrow-left.active .line:nth-child(3) {
+.hamburger.arrow-left.active .line:nth-child(3),
+.nav-button.arrow-left.active .line:nth-child(3) {
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 .hamburger.arrow-right.active .line:nth-child(1),
-.hamburger.arrow-right.active .line:nth-child(3) {
+.nav-button.arrow-right.active .line:nth-child(1),
+.hamburger.arrow-right.active .line:nth-child(3),
+.nav-button.arrow-right.active .line:nth-child(3) {
   width: 20px;
   margin-right: 0;
 }
-.hamburger.arrow-right.active .line:nth-child(1) {
+.hamburger.arrow-right.active .line:nth-child(1),
+.nav-button.arrow-right.active .line:nth-child(1) {
   -webkit-transform: rotate(45deg);
       -ms-transform: rotate(45deg);
           transform: rotate(45deg);
 }
-.hamburger.arrow-right.active .line:nth-child(3) {
+.hamburger.arrow-right.active .line:nth-child(3),
+.nav-button.arrow-right.active .line:nth-child(3) {
   -webkit-transform: rotate(-45deg);
       -ms-transform: rotate(-45deg);
           transform: rotate(-45deg);

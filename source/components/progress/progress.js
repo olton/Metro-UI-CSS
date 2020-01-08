@@ -1,4 +1,5 @@
 var ProgressDefaultConfig = {
+    progressDeferred: 0,
     showValue: false,
     valuePosition: "free", // center, free
     showLabel: false,
@@ -29,6 +30,8 @@ if (typeof window["metroProgressSetup"] !== undefined) {
 }
 
 var Progress = {
+    name: "Progress",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ProgressDefaultConfig, options );
         this.elem  = elem;
@@ -37,7 +40,7 @@ var Progress = {
         this.buffer = 0;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

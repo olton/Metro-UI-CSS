@@ -1,10 +1,11 @@
 var TextareaDefaultConfig = {
+    textareaDeferred: 0,
     charsCounter: null,
     charsCounterTemplate: "$1",
     defaultValue: "",
     prepend: "",
     append: "",
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     clearButton: true,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
     autoSize: true,
@@ -25,13 +26,15 @@ if (typeof window["metroTextareaSetup"] !== undefined) {
 }
 
 var Textarea = {
+    name: "Textarea",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TextareaDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var SplitterDefaultConfig = {
+    splitterDeferred: 0,
     splitMode: "horizontal", // horizontal or vertical
     splitSizes: null,
     gutterSize: 4,
@@ -21,6 +22,8 @@ if (typeof window["metroSplitterSetup"] !== undefined) {
 }
 
 var Splitter = {
+    name: "Splitter",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SplitterDefaultConfig, options );
         this.elem  = elem;
@@ -29,7 +32,7 @@ var Splitter = {
         this.storageKey = "SPLITTER:";
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

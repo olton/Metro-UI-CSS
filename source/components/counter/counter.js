@@ -1,4 +1,5 @@
 var CounterDefaultConfig = {
+    counterDeferred: 0,
     delay: 10,
     step: 1,
     value: 0,
@@ -19,6 +20,8 @@ if (typeof window["metroCounterSetup"] !== undefined) {
 }
 
 var Counter = {
+    name: "Counter",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CounterDefaultConfig, options );
         this.elem  = elem;
@@ -27,7 +30,7 @@ var Counter = {
         this.html = this.element.html();
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

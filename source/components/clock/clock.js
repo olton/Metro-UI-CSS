@@ -1,4 +1,5 @@
 var ClockDefaultConfig = {
+    clockDeferred: 0,
     showTime: true,
     showDate: true,
     timeFormat: '24',
@@ -19,13 +20,15 @@ if (typeof window["metroClockSetup"] !== undefined) {
 }
 
 var Clock = {
+    name: "Clock",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ClockDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this._clockInterval = null;
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

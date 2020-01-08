@@ -1,4 +1,5 @@
 var ResizerDefaultConfig = {
+    resizerDeferred: 0,
     onMediaPoint: Metro.noop,
     onMediaPointEnter: Metro.noop,
     onMediaPointLeave: Metro.noop,
@@ -16,7 +17,7 @@ if (typeof window["metroResizerSetup"] !== undefined) {
 }
 
 var Resizer = {
-    options: {},
+    name: "Resizer",
 
     init: function( options, elem ) {
         this.options = $.extend( {}, ResizerDefaultConfig, options );
@@ -27,7 +28,7 @@ var Resizer = {
         this.media = window.METRO_MEDIA;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

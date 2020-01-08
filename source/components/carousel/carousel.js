@@ -1,4 +1,5 @@
 var CarouselDefaultConfig = {
+    carouselDeferred: 0,
     autoStart: false,
     width: "100%",
     height: "16/9", // 3/4, 21/9
@@ -55,6 +56,8 @@ if (typeof window["metroCarouselSetup"] !== undefined) {
 }
 
 var Carousel = {
+    name: "Carousel",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CarouselDefaultConfig, options );
         this.elem  = elem;
@@ -69,7 +72,7 @@ var Carousel = {
         this.isAnimate = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

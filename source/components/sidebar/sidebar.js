@@ -1,4 +1,5 @@
 var SidebarDefaultConfig = {
+    sidebarDeferred: 0,
     shadow: true,
     position: "left",
     size: 290,
@@ -25,6 +26,8 @@ if (typeof window["metroSidebarSetup"] !== undefined) {
 }
 
 var Sidebar = {
+    name: "Sidebar",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SidebarDefaultConfig, options );
         this.elem  = elem;
@@ -32,7 +35,7 @@ var Sidebar = {
         this.toggle_element = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -118,9 +121,15 @@ var Sidebar = {
         var toggle = this.toggle_element;
 
         if (toggle !== null) {
-            toggle.on(Metro.events.click, function(){
+            toggle.on(Metro.events.click, function(e){
                 that.toggle();
+                e.stopPropagation();
             });
+        } else if (o.toggle) {
+            $.document().on("click", o.toggle, function (e) {
+                that.toggle();
+                e.stopPropagation();
+            })
         }
 
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
@@ -130,13 +139,19 @@ var Sidebar = {
         }
 
         if (o.menuItemClick === true) {
-            element.on(Metro.events.click, ".sidebar-menu li > a", function(){
+            element.on(Metro.events.click, ".sidebar-menu li > a", function(e){
                 that.close();
+                e.stopPropagation();
             });
         }
 
-        element.on(Metro.events.click, ".sidebar-menu .js-sidebar-close", function(){
+        element.on(Metro.events.click, ".sidebar-menu .js-sidebar-close", function(e){
             that.close();
+            e.stopPropagation();
+        });
+
+        element.on(Metro.events.click, function(e){
+            e.stopPropagation();
         });
     },
 

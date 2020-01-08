@@ -1,4 +1,5 @@
 var MasterDefaultConfig = {
+    masterDeferred: 0,
     effect: "slide", // slide, fade, switch, slowdown, custom
     effectFunc: "linear",
     duration: METRO_ANIMATION_DURATION,
@@ -33,6 +34,8 @@ if (typeof window["metroMasterSetup"] !== undefined) {
 }
 
 var Master = {
+    name: "Master",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, MasterDefaultConfig, options );
         this.elem  = elem;
@@ -42,7 +45,7 @@ var Master = {
         this.isAnimate = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var CheckboxDefaultConfig = {
+    checkboxDeferred: 0,
     transition: true,
     style: 1,
     caption: "",
@@ -19,6 +20,8 @@ if (typeof window["metroCheckboxSetup"] !== undefined) {
 }
 
 var Checkbox = {
+    name: "Checkbox",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CheckboxDefaultConfig, options );
         this.elem  = elem;
@@ -28,7 +31,7 @@ var Checkbox = {
         };
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

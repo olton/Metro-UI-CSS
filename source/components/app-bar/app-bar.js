@@ -1,4 +1,5 @@
 var AppBarDefaultConfig = {
+    appbarDeferred: 0,
     expand: false,
     expandPoint: null,
     duration: 100,
@@ -18,13 +19,16 @@ if (typeof window["metroAppBarSetup"] !== undefined) {
 }
 
 var AppBar = {
+    name: "AppBar",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, AppBarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var SelectDefaultConfig = {
+    selectDeferred: 0,
     clearButton: false,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
     placeholder: "",
@@ -9,7 +10,7 @@ var SelectDefaultConfig = {
     append: "",
     filterPlaceholder: "",
     filter: true,
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     dropHeight: 200,
 
     clsSelect: "",
@@ -40,6 +41,8 @@ if (typeof window["metroSelectSetup"] !== undefined) {
 }
 
 var Select = {
+    name: "Select",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SelectDefaultConfig, options );
         this.elem  = elem;
@@ -48,7 +51,7 @@ var Select = {
         this.placeholder = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var StepperDefaultConfig = {
+    stepperDeferred: 0,
     view: Metro.stepperView.SQUARE, // square, cycle, diamond
     steps: 3,
     step: 1,
@@ -21,6 +22,8 @@ if (typeof window["metroStepperSetup"] !== undefined) {
 }
 
 var Stepper = {
+    name: "Stepper",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, StepperDefaultConfig, options );
         this.elem  = elem;
@@ -28,7 +31,7 @@ var Stepper = {
         this.current = 0;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

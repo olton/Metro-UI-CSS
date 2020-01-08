@@ -1,4 +1,5 @@
 var NavigationViewDefaultConfig = {
+    navviewDeferred: 0,
     compact: "md",
     expand: "lg",
     toggle: null,
@@ -16,6 +17,8 @@ if (typeof window["metroNavigationViewSetup"] !== undefined) {
 }
 
 var NavigationView = {
+    name: "NavView",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, NavigationViewDefaultConfig, options );
         this.elem  = elem;
@@ -25,7 +28,7 @@ var NavigationView = {
         this.paneToggle = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

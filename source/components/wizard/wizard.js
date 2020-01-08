@@ -1,4 +1,5 @@
 var WizardDefaultConfig = {
+    wizardDeferred: 0,
     start: 1,
     finish: 0,
     iconHelp: "<span class='default-icon-help'></span>",
@@ -40,13 +41,15 @@ if (typeof window["metroWizardSetup"] !== undefined) {
 }
 
 var Wizard = {
+    name: "Wizard",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, WizardDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

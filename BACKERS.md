@@ -13,7 +13,7 @@ If you'd like to join them, please consider:
 
 ![Sponsors on Patreon](https://img.shields.io/badge/backers-2-red.svg)
 ![Sponsors on Patreon](https://img.shields.io/badge/sponsors-1-red.svg)
-![Sponsors on Patreon](https://img.shields.io/badge/donation-$119-red.svg)
+![Sponsors on Patreon](https://img.shields.io/badge/donation-$92-red.svg)
 
 ##### Opencollective 
 
@@ -36,6 +36,7 @@ If you'd like to join them, please consider:
 
 <p><a href="https://www.patreon.com/user/creators?u=20614229"><span style="forn-size: 24px">Matthew Bezuidenhout</span></a></p>
 <p><a href="https://www.zapsi.eu/"><span style="forn-size: 24px">Petr Jahoda from www.zapsi.eu</span></a></p>
+<p><a href="https://www.patreon.com/user/creators?u=27819336"><span style="forn-size: 24px">Steve</span></a></p>
  
 </div>
 
@@ -47,7 +48,6 @@ If you'd like to join them, please consider:
 
  - [Jonathan](https://www.patreon.com/user/creators?u=10019621) 
  - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
- - [Marcel Wehrstedt](https://www.patreon.com/user/creators?u=16353488)
 
 
 <hr>
@@ -69,3 +69,4 @@ If you'd like to join them, please consider:
 - [Walter Sassano](https://www.patreon.com/user/creators?u=15332698)
 - [Interactivity](https://interactivity.com.ua)
 - [Matthew Bezuidenhout](https://www.patreon.com/user/creators?u=20614229)
+- [Marcel Wehrstedt](https://www.patreon.com/user/creators?u=16353488)

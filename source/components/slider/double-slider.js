@@ -1,4 +1,5 @@
 var DoubleSliderDefaultConfig = {
+    doublesliderDeferred: 0,
     roundValue: true,
     min: 0,
     max: 100,
@@ -48,6 +49,8 @@ if (typeof window["metroDoubleSliderSetup"] !== undefined) {
 }
 
 var DoubleSlider = {
+    name: "DoubleSlider",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, DoubleSliderDefaultConfig, options );
         this.elem  = elem;
@@ -58,7 +61,7 @@ var DoubleSlider = {
         this.keyInterval = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var TileDefaultConfig = {
+    tileDeferred: 0,
     size: "medium",
     cover: "",
     coverPosition: "center",
@@ -20,6 +21,8 @@ if (typeof window["metroTileSetup"] !== undefined) {
 }
 
 var Tile = {
+    name: "Tile",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TileDefaultConfig, options );
         this.elem  = elem;
@@ -31,7 +34,7 @@ var Tile = {
         this.unload = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var TagInputDefaultConfig = {
+    taginputDeferred: 0,
     static: false,
     clearButton: true,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
@@ -34,6 +35,8 @@ if (typeof window["metroTagInputSetup"] !== undefined) {
 }
 
 var TagInput = {
+    name: "TagInput",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TagInputDefaultConfig, options );
         this.elem  = elem;
@@ -42,7 +45,7 @@ var TagInput = {
         this.triggers = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var CalendarPickerDefaultConfig = {
+    calendarpickerDeferred: 0,
     nullValue: true,
     useNow: false,
 
@@ -67,6 +68,8 @@ if (typeof window["metroCalendarPickerSetup"] !== undefined) {
 }
 
 var CalendarPicker = {
+    name: "CalendarPicker",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CalendarPickerDefaultConfig, options );
         this.elem  = elem;
@@ -77,7 +80,7 @@ var CalendarPicker = {
         this.overlay = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         Utils.exec(this.options.onCalendarPickerCreate, [this.element], this.elem);
         $(elem).fire("calendarpickercreate");

@@ -1,4 +1,5 @@
 var DragItemsDefaultConfig = {
+    dragitemsDeferred: 0,
     target: null,
     dragItem: "li",
     dragMarker: ".drag-item-marker",
@@ -24,7 +25,7 @@ if (typeof window["metroDragItemsSetup"] !== undefined) {
 }
 
 var DragItems = {
-    options: {},
+    name: "DragItems",
 
     init: function( options, elem ) {
         this.options = $.extend( {}, DragItemsDefaultConfig, options );
@@ -34,7 +35,7 @@ var DragItems = {
         this.canDrag = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

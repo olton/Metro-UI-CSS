@@ -1,4 +1,5 @@
 var ListViewDefaultConfig = {
+    listviewDeferred: 0,
     selectable: false,
     checkStyle: 1,
     duration: 100,
@@ -25,13 +26,15 @@ if (typeof window["metroListViewSetup"] !== undefined) {
 }
 
 var ListView = {
+    name: "ListView",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ListViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

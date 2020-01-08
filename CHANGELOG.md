@@ -1,5 +1,6 @@
 ### 4.3.5
 ##### M4Q
++ [x] M4Q: upd to `1.0.5`
 + [x] M4Q Events: fix firing events, Metro 4 issue #1476
 + [x] M4Q Events: optimize method `trigger`, now this is a synonym of `fire`
 
@@ -17,10 +18,12 @@
 + [x] Tag input: change `keyup` to `keydown` for tag trigger event
 + [x] Tag input: add event `onTagTrigger`  
 + [x] Tag input: add removing last tag on current value is empty end user press `Backspace`, you can disable it with attribute `data-backspace='false'`
++ [x] Draggable: add attribute `data-timeout` for set timeout before creating component
++ [x] Components: creating components can be deferred with attribute `data-[componentName]-deferred=[ms]`. Example: `<div data-role='draggable' data-draggable-deferred='2000'>...</div>` 
 
 ### 4.3.4
 ##### M4Q
-+ [x] M4Q: upd to 1.0.4
++ [x] M4Q: upd to `1.0.4`
 + [x] M4Q Manipulation: optimise `append`, `prepend` to one definition for IE
 + [x] M4Q Script: add `$.script`, `$.fn.script` to execute scripts from element or create script object
 + [x] M4Q Manipulation: `$.fn.append`, `$.fn.prepend` now support script tag processing

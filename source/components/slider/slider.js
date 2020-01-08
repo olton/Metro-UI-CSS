@@ -1,4 +1,5 @@
 var SliderDefaultConfig = {
+    sliderDeferred: 0,
     roundValue: true,
     min: 0,
     max: 100,
@@ -47,6 +48,8 @@ if (typeof window["metroSliderSetup"] !== undefined) {
 }
 
 var Slider = {
+    name: "Slider",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SliderDefaultConfig, options );
         this.elem  = elem;
@@ -59,7 +62,7 @@ var Slider = {
         this.keyInterval = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var MaterialInputDefaultConfig = {
+    materialinputDeferred: 0,
     label: "",
     informer: "",
     icon: "",
@@ -24,6 +25,8 @@ if (typeof window["metroMaterialInputSetup"] !== undefined) {
 }
 
 var MaterialInput = {
+    name: "MaterialInput",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, MaterialInputDefaultConfig, options );
         this.elem  = elem;
@@ -32,7 +35,7 @@ var MaterialInput = {
         this.historyIndex = -1;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
