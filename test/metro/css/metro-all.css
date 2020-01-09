@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 09/01/2020 18:57:27
+ * Built at 09/01/2020 21:45:07
  * Licensed under MIT
  */
 html,
@@ -26210,6 +26210,8 @@ fieldset.disabled,
   margin-left: -1px;
   z-index: 1000;
   background-color: #ffffff;
+  -webkit-box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
+          box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
 }
 .select .drop-container .input {
   margin: 4px 2px 6px;

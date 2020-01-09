@@ -22,6 +22,7 @@
 + [x] Components: creating components can be deferred with attribute `data-[componentName]-deferred=[ms]`. Example: `<div data-role='draggable' data-draggable-deferred='2000'>...</div>`
 + [x] Counter: add attribute `data-start-on-viewport`. If attribute value is `true`, counter started after element showed in viewport. You can combine this with `data-timeout`
 + [x] Select: fix bug with `data-filter='false'` 
++ [x] File: fix method `clear` for mode `dropzone`
 
 ### 4.3.4
 ##### M4Q
