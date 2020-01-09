@@ -151,6 +151,7 @@ var TagInput = {
                 if (that.values.length > 0) {
                     that.values.splice(-1,1);
                     element.siblings(".tag").last().remove();
+                    element.val(that.values.join(o.tagSeparator));
                 }
                 return ;
             }
