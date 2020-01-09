@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 09/01/2020 21:45:07
+ * Built at 09/01/2020 22:50:43
  * Licensed under MIT
  */
 
@@ -3775,7 +3775,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "09/01/2020 21:45:14",
+    compileTime: "09/01/2020 22:50:50",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14631,7 +14631,7 @@ var File = {
 
     _createStructure: function(){
         var element = this.element, o = this.options;
-        var container = $("<label>").addClass((o.mode === "input" ? " file " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
+        var container = $("<label>").addClass((o.mode === "input" ? " file " : o.mode === "button" ? " file-button " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
         var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
         var files = $("<span>").addClass("files").addClass(o.clsCaption);
         var icon, button;
@@ -14640,7 +14640,17 @@ var File = {
         container.insertBefore(element);
         element.appendTo(container);
 
-        if (o.mode === "input") {
+        if (o.mode === 'drop' || o.mode === 'dropzone') {
+            icon = $(o.dropIcon).addClass("icon").appendTo(container);
+            caption.html(o.dropTitle).insertAfter(icon);
+            files.html("0" + " " + o.filesTitle).insertAfter(caption);
+        } else if (o.mode === 'button') {
+
+            button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
+            button.appendTo(container);
+            button.addClass(o.clsButton);
+
+        } else {
             caption.insertBefore(element);
 
             button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
@@ -14655,10 +14665,6 @@ var File = {
                 var prepend = $("<div>").html(o.prepend);
                 prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
             }
-        } else {
-            icon = $(o.dropIcon).addClass("icon").appendTo(container);
-            caption.html(o.dropTitle).insertAfter(icon);
-            files.html("0" + " " + o.filesTitle).insertAfter(caption);
         }
 
         element[0].className = '';

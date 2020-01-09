@@ -1,7 +1,7 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
-.file, .drop-zone {
+.file, .drop-zone, .file-button {
     .hideElement(input);
 }
 
@@ -75,4 +75,8 @@
     &.drop-on {
         outline-color: lighten(green, 10%);
     }
+}
+
+.file-button {
+    text-align: center;
 }

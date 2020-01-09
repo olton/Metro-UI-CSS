@@ -23,6 +23,7 @@
 + [x] Counter: add attribute `data-start-on-viewport`. If attribute value is `true`, counter started after element showed in viewport. You can combine this with `data-timeout`
 + [x] Select: fix bug with `data-filter='false'` 
 + [x] File: fix method `clear` for mode `dropzone`
++ [x] Select: add mode `button`
 
 ### 4.3.4
 ##### M4Q

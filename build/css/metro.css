@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 09/01/2020 21:45:00
+ * Built at 09/01/2020 22:50:36
  * Licensed under MIT
  */
 html,
@@ -26550,7 +26550,8 @@ textarea {
   padding-right: 48px;
 }
 .file input,
-.drop-zone input {
+.drop-zone input,
+.file-button input {
   width: 1px;
   height: 1px;
   position: absolute;
@@ -26651,6 +26652,9 @@ textarea {
 }
 .drop-zone.drop-on {
   outline-color: #00b300;
+}
+.file-button {
+  text-align: center;
 }
 .input {
   display: -webkit-box;
