@@ -175,8 +175,14 @@ var File = {
     },
 
     clear: function(){
-        var element = this.element;
-        element.siblings(".caption").html("");
+        var element = this.element, o = this.options;
+        if (o.mode === "input") {
+            element.siblings(".caption").html("");
+        } else {
+            element.siblings(".caption").html(o.dropTitle);
+            element.siblings(".files").html("0" + " " + o.filesTitle);
+        }
+
         element.val("");
     },
 
