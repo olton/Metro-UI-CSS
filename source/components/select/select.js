@@ -166,7 +166,7 @@ var Select = {
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, list, filter_input, placeholder, dropdown_toggle;
+        var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
@@ -185,18 +185,19 @@ var Select = {
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
+        drop_container_input = $("<div>").appendTo(drop_container);
         list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight
         });
-        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
+        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
 
         container.append(input);
         container.append(drop_container);
 
-        drop_container.append(filter_input);
+        drop_container.append(drop_container_input);
 
         if (o.filter !== true) {
-            filter_input.hide();
+            drop_container_input.hide();
         }
 
         drop_container.append(list);

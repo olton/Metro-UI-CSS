@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/01/2020 16:41:15
+ * Built at 09/01/2020 18:57:27
  * Licensed under MIT
  */
 
@@ -3775,7 +3775,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.5",
-    compileTime: "08/01/2020 16:41:22",
+    compileTime: "09/01/2020 18:57:34",
     buildNumber: "743",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21346,7 +21346,7 @@ var Select = {
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, list, filter_input, placeholder, dropdown_toggle;
+        var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
@@ -21365,18 +21365,19 @@ var Select = {
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
+        drop_container_input = $("<div>").appendTo(drop_container);
         list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight
         });
-        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
+        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
 
         container.append(input);
         container.append(drop_container);
 
-        drop_container.append(filter_input);
+        drop_container.append(drop_container_input);
 
         if (o.filter !== true) {
-            filter_input.hide();
+            drop_container_input.hide();
         }
 
         drop_container.append(list);
@@ -27938,6 +27939,7 @@ var TagInput = {
                 if (that.values.length > 0) {
                     that.values.splice(-1,1);
                     element.siblings(".tag").last().remove();
+                    element.val(that.values.join(o.tagSeparator));
                 }
                 return ;
             }
