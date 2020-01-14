@@ -1,4 +1,5 @@
 var DropdownDefaultConfig = {
+    dropdownDeferred: 0,
     dropFilter: null,
     toggleElement: null,
     noClose: false,
@@ -17,6 +18,8 @@ if (typeof window["metroDropdownSetup"] !== undefined) {
 }
 
 var Dropdown = {
+    name: "Dropdown",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, DropdownDefaultConfig, options );
         this.elem  = elem;
@@ -26,7 +29,7 @@ var Dropdown = {
         this.isOpen = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

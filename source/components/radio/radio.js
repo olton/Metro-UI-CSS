@@ -1,4 +1,5 @@
 var RadioDefaultConfig = {
+    radioDeferred: 0,
     transition: true,
     style: 1,
     caption: "",
@@ -18,6 +19,8 @@ if (typeof window["metroRadioSetup"] !== undefined) {
 }
 
 var Radio = {
+    name: "Radio",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, RadioDefaultConfig, options );
         this.elem  = elem;
@@ -27,7 +30,7 @@ var Radio = {
         };
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

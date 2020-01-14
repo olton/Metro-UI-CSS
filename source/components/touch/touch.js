@@ -27,9 +27,53 @@ var TouchConst = {
     IN_TOUCH: "intouch"
 };
 
+var TouchDefaultConfig = {
+    touchDeferred: 0,
+    fingers: 1,
+    threshold: 75,
+    cancelThreshold: null,
+    pinchThreshold: 20,
+    maxTimeThreshold: null,
+    fingerReleaseThreshold: 250,
+    longTapThreshold: 500,
+    doubleTapThreshold: 200,
+    triggerOnTouchEnd: true,
+    triggerOnTouchLeave: false,
+    allowPageScroll: "auto",
+    fallbackToMouseEvents: true,
+    excludedElements: ".no-swipe",
+    preventDefaultEvents: true,
+
+    onSwipe: Metro.noop,
+    onSwipeLeft: Metro.noop,
+    onSwipeRight: Metro.noop,
+    onSwipeUp: Metro.noop,
+    onSwipeDown: Metro.noop,
+    onSwipeStatus: Metro.noop_true, // params: phase, direction, distance, duration, fingerCount, fingerData, currentDirection
+    onPinchIn: Metro.noop,
+    onPinchOut: Metro.noop,
+    onPinchStatus: Metro.noop_true,
+    onTap: Metro.noop,
+    onDoubleTap: Metro.noop,
+    onLongTap: Metro.noop,
+    onHold: Metro.noop,
+
+    onSwipeCreate: Metro.noop
+};
+
+Metro.touchSetup = function (options) {
+    TouchDefaultConfig = $.extend({}, TouchDefaultConfig, options);
+};
+
+if (typeof window["metroTouchSetup"] !== undefined) {
+    Metro.sliderSetup(window["metroTouchSetup"]);
+}
+
 var Touch = {
+    name: "Touch",
+
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
+        this.options = $.extend( {}, TouchDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
@@ -73,42 +117,9 @@ var Touch = {
         this.holdTimeout = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
-    },
-
-    options: {
-        fingers: 1,
-        threshold: 75,
-        cancelThreshold: null,
-        pinchThreshold: 20,
-        maxTimeThreshold: null,
-        fingerReleaseThreshold: 250,
-        longTapThreshold: 500,
-        doubleTapThreshold: 200,
-        triggerOnTouchEnd: true,
-        triggerOnTouchLeave: false,
-        allowPageScroll: "auto",
-        fallbackToMouseEvents: true,
-        excludedElements: ".no-swipe",
-        preventDefaultEvents: true,
-
-        onSwipe: Metro.noop,
-        onSwipeLeft: Metro.noop,
-        onSwipeRight: Metro.noop,
-        onSwipeUp: Metro.noop,
-        onSwipeDown: Metro.noop,
-        onSwipeStatus: Metro.noop_true, // params: phase, direction, distance, duration, fingerCount, fingerData, currentDirection
-        onPinchIn: Metro.noop,
-        onPinchOut: Metro.noop,
-        onPinchStatus: Metro.noop_true,
-        onTap: Metro.noop,
-        onDoubleTap: Metro.noop,
-        onLongTap: Metro.noop,
-        onHold: Metro.noop,
-
-        onSwipeCreate: Metro.noop
     },
 
     _setOptionsFromDOM: function(){

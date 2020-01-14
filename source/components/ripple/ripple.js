@@ -1,4 +1,5 @@
 var RippleDefaultConfig = {
+    rippleDeferred: 0,
     rippleColor: "#fff",
     rippleAlpha: .4,
     rippleTarget: "default",
@@ -14,13 +15,15 @@ if (typeof window["metroRippleSetup"] !== undefined) {
 }
 
 var Ripple = {
+    name: "Ripple",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, RippleDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

@@ -1,4 +1,5 @@
 var DragItemsDefaultConfig = {
+    dragitemsDeferred: 0,
     target: null,
     dragItem: "li",
     dragMarker: ".drag-item-marker",
@@ -9,6 +10,9 @@ var DragItemsDefaultConfig = {
     onDragStartItem: Metro.noop,
     onDragMoveItem: Metro.noop,
     onDragDropItem: Metro.noop,
+    onTarget: Metro.noop,
+    onTargetIn: Metro.noop, //TODO
+    onTargetOut: Metro.noop, //TODO
     onDragItemsCreate: Metro.noop
 };
 
@@ -21,7 +25,7 @@ if (typeof window["metroDragItemsSetup"] !== undefined) {
 }
 
 var DragItems = {
-    options: {},
+    name: "DragItems",
 
     init: function( options, elem ) {
         this.options = $.extend( {}, DragItemsDefaultConfig, options );
@@ -31,7 +35,7 @@ var DragItems = {
         this.canDrag = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -98,6 +102,11 @@ var DragItems = {
                 return;
             }
 
+            Utils.exec(o.onTarget, [target], element[0]);
+            element.fire("target", {
+                target: target
+            });
+
             var sibling = document.elementsFromPoint(x, y).filter(function(el){
                 var $el = $(el);
                 return $.matches(el, o.dragItem) && !$el.hasClass("dragged-item-avatar");
@@ -110,14 +119,14 @@ var DragItems = {
                 var $sibling_offset = $sibling.offset();
                 var offsetY = y - $sibling_offset.top;
                 var offsetX = x - $sibling_offset.left;
-                var side;// = (offsetY >= $sibling.height() / 2) ? "bottom" : "top";
+                var side;
                 var dim = {w: $sibling.width(), h: $sibling.height()};
 
-                if (offsetX < dim.w * 1 / 3 && (offsetY < dim.h * 1 / 2 || offsetY > dim.h * 1 / 2)) {
+                if (offsetX < dim.w / 3 && (offsetY < dim.h / 2 || offsetY > dim.h / 2)) {
                     side = 'left';
-                } else if (offsetX > dim.w * 2 / 3 && (offsetY < dim.h * 1 / 2 || offsetY > dim.h * 1 / 2)) {
+                } else if (offsetX > dim.w * 2 / 3 && (offsetY < dim.h / 2 || offsetY > dim.h / 2)) {
                     side = 'right';
-                } else if (offsetX > dim.w * 1 / 3 && offsetX < dim.w * 2 / 3 && offsetY > dim.h / 2) {
+                } else if (offsetX > dim.w / 3 && offsetX < dim.w * 2 / 3 && offsetY > dim.h / 2) {
                     side = 'bottom';
                 } else {
                     side = "top";

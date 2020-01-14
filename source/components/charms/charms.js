@@ -1,4 +1,5 @@
 var CharmsDefaultConfig = {
+    charmsDeferred: 0,
     position: "right",
     opacity: 1,
     clsCharms: "",
@@ -17,6 +18,8 @@ if (typeof window["metroCharmsSetup"] !== undefined) {
 }
 
 var Charms = {
+    name: "Charms",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CharmsDefaultConfig, options );
         this.elem  = elem;
@@ -26,7 +29,7 @@ var Charms = {
         };
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

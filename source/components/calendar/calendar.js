@@ -1,4 +1,5 @@
 var CalendarDefaultConfig = {
+    calendarDeferred: 0,
     dayBorder: false,
     excludeDay: null,
     prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
@@ -69,6 +70,8 @@ if (typeof window["metroCalendarSetup"] !== undefined) {
 }
 
 var Calendar = {
+    name: "Calendar",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CalendarDefaultConfig, options );
         this.elem  = elem;
@@ -95,7 +98,7 @@ var Calendar = {
         this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

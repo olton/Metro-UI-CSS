@@ -1,7 +1,33 @@
-### 4.3.4
-
+### 4.3.5
 ##### M4Q
-+ [x] M4Q: upd to 1.0.4
++ [x] M4Q: upd to `1.0.5`
++ [x] M4Q Events: fix firing events, Metro 4 issue #1476
++ [x] M4Q Events: optimize method `trigger`, now this is a synonym of `fire`
+
+##### Metro 4
++ [x] Tag input: change `trigger` defining 
++ [x] Tag input: add `clear button` with attributes `clearButton`, `clsClearButton`, `clearButtonIcon`  
++ [x] Tag input: add attributes `clsComponent`, `clsInput`  
++ [x] Tag input: add event `onClear`  
++ [x] List: add attribute `data-sort-initial` to sorts on create component, issue #1475
++ [x] Tag input: add attribute `data-static` and static mode for `data-static='true'` or if present attribute `readonly`
++ [x] Tag input: add method `toggleStatic([true|false])`
++ [x] Select: fix clearing `select-input`, issue #1477
++ [x] Calendar picker: fix closing calendar when user click on overlay, issue #1478
++ [x] Select: fix styles for `input-large`, `input-small` classes
++ [x] Tag input: change `keyup` to `keydown` for tag trigger event
++ [x] Tag input: add event `onTagTrigger`  
++ [x] Tag input: add removing last tag on current value is empty end user press `Backspace`, you can disable it with attribute `data-backspace='false'`
++ [x] Draggable: add attribute `data-timeout` for set timeout before creating component
++ [x] Components: creating components can be deferred with attribute `data-[componentName]-deferred=[ms]`. Example: `<div data-role='draggable' data-draggable-deferred='2000'>...</div>`
++ [x] Counter: add attribute `data-start-on-viewport`. If attribute value is `true`, counter started after element showed in viewport. You can combine this with `data-timeout`
++ [x] Select: fix bug with `data-filter='false'` 
++ [x] File: fix method `clear` for mode `dropzone`
++ [x] Select: add mode `button`
+
+### 4.3.4
+##### M4Q
++ [x] M4Q: upd to `1.0.4`
 + [x] M4Q Manipulation: optimise `append`, `prepend` to one definition for IE
 + [x] M4Q Script: add `$.script`, `$.fn.script` to execute scripts from element or create script object
 + [x] M4Q Manipulation: `$.fn.append`, `$.fn.prepend` now support script tag processing

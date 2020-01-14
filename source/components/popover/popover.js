@@ -1,4 +1,5 @@
 var PopoverDefaultConfig = {
+    popoverDeferred: 0,
     popoverText: "",
     popoverHide: 3000,
     popoverTimeout: 10,
@@ -23,6 +24,8 @@ if (typeof window["metroPopoverSetup"] !== undefined) {
 }
 
 var Popover = {
+    name: "Popover",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, PopoverDefaultConfig, options );
         this.elem  = elem;
@@ -37,7 +40,7 @@ var Popover = {
         this.id = Utils.elementId("popover");
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

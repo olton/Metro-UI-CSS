@@ -1,4 +1,5 @@
 var ImageCompareDefaultConfig = {
+    imagecompareDeferred: 0,
     width: "100%",
     height: "auto",
     onResize: Metro.noop,
@@ -15,13 +16,15 @@ if (typeof window["metroImageCompareSetup"] !== undefined) {
 }
 
 var ImageCompare = {
+    name: "ImageCompare",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ImageCompareDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

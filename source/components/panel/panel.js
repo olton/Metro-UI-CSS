@@ -1,4 +1,5 @@
 var PanelDefaultConfig = {
+    panelDeferred: 0,
     id: null,
     titleCaption: "",
     titleIcon: "",
@@ -36,13 +37,15 @@ if (typeof window["metroPanelSetup"] !== undefined) {
 }
 
 var Panel = {
+    name: "Panel",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, PanelDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

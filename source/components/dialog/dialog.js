@@ -1,4 +1,5 @@
 var DialogDefaultConfig = {
+    dialogDeferred: 0,
     closeButton: false,
     leaveOverlayOnClose: false,
     toTop: false,
@@ -47,6 +48,8 @@ if (typeof window["metroDialogSetup"] !== undefined) {
 var Dialog = {
     _counter: 0,
 
+    name: "Dialog",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, DialogDefaultConfig, options );
         this.elem  = elem;
@@ -55,7 +58,7 @@ var Dialog = {
         this.overlay = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

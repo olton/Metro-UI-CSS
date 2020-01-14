@@ -1,4 +1,5 @@
 var InfoBoxDefaultConfig = {
+    infoboxDeferred: 0,
     type: "",
     width: 480,
     height: "auto",
@@ -25,6 +26,8 @@ if (typeof window["metroInfoBoxSetup"] !== undefined) {
 }
 
 var InfoBox = {
+    name: "InfoBox",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, InfoBoxDefaultConfig, options );
         this.elem  = elem;
@@ -32,7 +35,7 @@ var InfoBox = {
         this.overlay = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
