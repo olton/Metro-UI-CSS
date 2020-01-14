@@ -1,6 +1,7 @@
 // TODO source as array, mode as array
 
 var HtmlContainerDefaultConfig = {
+    htmlcontainerDeferred: 0,
     method: "get",
     htmlSource: null,
     requestData: null,
@@ -21,6 +22,8 @@ if (typeof window["metroHtmlContainerSetup"] !== undefined) {
 }
 
 var HtmlContainer = {
+    name: "HtmlContainer",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, HtmlContainerDefaultConfig, options );
         this.elem  = elem;
@@ -30,7 +33,7 @@ var HtmlContainer = {
         this.htmlSource = '';
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -85,11 +88,13 @@ var HtmlContainer = {
         var that = this, element = this.element, o = this.options;
 
         $[o.method](this.htmlSource, this.data, this.opt).then(function(data){
+            var _data = $(data);
             switch (o.insertMode.toLowerCase()) {
-                case "prepend": element.prepend(data); break;
-                case "append": element.append(data); break;
+                case "prepend": element.prepend(_data); break;
+                case "append": element.append(_data); break;
+                case "replace": _data.insertBefore(element).script(); element.remove(); break;
                 default: {
-                    element.html(data);
+                    element.html(_data);
                 }
             }
             Utils.exec(o.onHtmlLoad, [data, o.htmlSource, that.data, that.opt], element[0]);

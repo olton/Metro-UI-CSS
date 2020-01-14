@@ -1,4 +1,5 @@
 var ButtonGroupDefaultConfig = {
+    buttongroupDeferred: 0,
     targets: "button",
     clsActive: "active",
     requiredButton: false,
@@ -16,6 +17,8 @@ if (typeof window["metroButtonGroupSetup"] !== undefined) {
 }
 
 var ButtonGroup = {
+    name: "ButtonGroup",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ButtonGroupDefaultConfig, options );
         this.elem  = elem;
@@ -23,7 +26,7 @@ var ButtonGroup = {
         this.active = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

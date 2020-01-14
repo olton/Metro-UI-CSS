@@ -1,4 +1,5 @@
 var ImageMagnifierDefaultConfig = {
+    imagemagnifierDeferred: 0,
     width: "100%",
     height: "auto",
     lensSize: 100,
@@ -24,6 +25,8 @@ if (typeof window["metroImageMagnifierSetup"] !== undefined) {
 }
 
 var ImageMagnifier = {
+    name: "ImageMagnifier",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ImageMagnifierDefaultConfig, options );
         this.elem  = elem;
@@ -31,7 +34,7 @@ var ImageMagnifier = {
         this.zoomElement = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

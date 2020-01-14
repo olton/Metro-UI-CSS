@@ -1,4 +1,5 @@
 var GravatarDefaultConfig = {
+    gravatarDeferred: 0,
     email: "",
     size: 80,
     default: "mp",
@@ -14,13 +15,15 @@ if (typeof window["metroGravatarSetup"] !== undefined) {
 }
 
 var Gravatar = {
+    name: "Gravatar",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, GravatarDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

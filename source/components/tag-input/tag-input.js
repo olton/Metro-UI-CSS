@@ -1,8 +1,18 @@
 var TagInputDefaultConfig = {
+    taginputDeferred: 0,
+    static: false,
+    clearButton: true,
+    clearButtonIcon: "<span class='default-icon-cross'></span>",
+
     randomColor: false,
     maxTags: 0,
     tagSeparator: ",",
-    tagTrigger: "13,188",
+    tagTrigger: "Enter, Space, Comma",
+    backspace: true,
+
+    clsComponent: "",
+    clsInput: "",
+    clsClearButton: "",
     clsTag: "",
     clsTagTitle: "",
     clsTagRemover: "",
@@ -11,6 +21,8 @@ var TagInputDefaultConfig = {
     onBeforeTagRemove: Metro.noop_true,
     onTagRemove: Metro.noop,
     onTag: Metro.noop,
+    onClear: Metro.noop,
+    onTagTrigger: Metro.noop,
     onTagInputCreate: Metro.noop
 };
 
@@ -23,14 +35,17 @@ if (typeof window["metroTagInputSetup"] !== undefined) {
 }
 
 var TagInput = {
+    name: "TagInput",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TagInputDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
         this.values = [];
+        this.triggers = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -54,6 +69,17 @@ var TagInput = {
 
         Metro.checkRuntime(element, "taginput");
 
+        this.triggers = (""+o.tagTrigger).toArray(",");
+
+        if (this.triggers.contains("Space") || this.triggers.contains("Spacebar")) {
+            this.triggers.push(" ");
+            this.triggers.push("Spacebar");
+        }
+
+        if (this.triggers.contains("Comma")) {
+            this.triggers.push(",");
+        }
+
         this._createStructure();
         this._createEvents();
 
@@ -63,17 +89,23 @@ var TagInput = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var container, input;
+        var container, input, clearButton;
         var values = element.val().trim();
 
-        container = $("<div>").addClass("tag-input "  + element[0].className).insertBefore(element);
+        container = $("<div>").addClass("tag-input "  + element[0].className).addClass(o.clsComponent).insertBefore(element);
         element.appendTo(container);
 
         element[0].className = "";
 
         element.addClass("original-input");
-        input = $("<input type='text'>").addClass("input-wrapper").attr("size", 1);
+        input = $("<input type='text'>").addClass("input-wrapper").addClass(o.clsInput).attr("size", 1);
         input.appendTo(container);
+
+        if (o.clearButton !== false && !element[0].readOnly) {
+            container.addClass("padding-for-clear");
+            clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+            clearButton.appendTo(container);
+        }
 
         if (Utils.isValue(values)) {
             $.each(Utils.strToArray(values, o.tagSeparator), function(){
@@ -85,6 +117,10 @@ var TagInput = {
             this.disable();
         } else {
             this.enable();
+        }
+
+        if (o.static === true || element.attr("readonly") !== undefined) {
+            container.addClass("static-mode");
         }
     },
 
@@ -105,21 +141,43 @@ var TagInput = {
             input.attr("size", Math.ceil(input.val().length / 2) + 2);
         });
 
-        input.on(Metro.events.keyup, function(e){
+        input.on(Metro.events.keydown, function(e){
             var val = input.val().trim();
+            var key = e.key;
 
-            if (val === "") {return ;}
+            if (key === "Enter") e.preventDefault();
 
-            if (Utils.strToArray(o.tagTrigger, ",", "integer").indexOf(e.keyCode) === -1) {
+            if (o.backspace === true && key === "Backspace" && val.length === 0) {
+                if (that.values.length > 0) {
+                    that.values.splice(-1,1);
+                    element.siblings(".tag").last().remove();
+                    element.val(that.values.join(o.tagSeparator));
+                }
                 return ;
             }
 
-            input.val("");
-            that._addTag(val.replace(",", ""));
-            input.attr("size", 1);
+            if (val === "") {return ;}
 
-            if (e.keyCode === Metro.keyCode.ENTER) {
-                e.preventDefault();
+            if (!that.triggers.contains(key)) {
+                return ;
+            }
+
+            Utils.exec(o.onTagTrigger, [key], element[0]);
+            element.fire("tagtrigger", {
+                key: key
+            });
+
+            input.val("");
+            that._addTag(val);
+            input.attr("size", 1);
+        });
+
+        input.on(Metro.events.keyup, function(e){
+            var val = input.val();
+            var key = e.key;
+
+            if (that.triggers.contains(key) && val[val.length - 1] === key) {
+                input.val(val.slice(0, -1));
             }
         });
 
@@ -130,6 +188,15 @@ var TagInput = {
 
         container.on(Metro.events.click, function(){
             input.focus();
+        });
+
+        container.on(Metro.events.click, ".input-clear-button", function(){
+            var val = element.val();
+            that.clear();
+            Utils.exec(o.onClear, [val], element[0]);
+            element.fire("clear", {
+                val: val
+            });
         });
     },
 
@@ -249,7 +316,8 @@ var TagInput = {
         var container = element.closest(".tag-input");
 
         this.values = [];
-        element.val("");
+
+        element.val("").trigger("change");
 
         container.find(".tag").remove();
     },
@@ -272,6 +340,23 @@ var TagInput = {
         }
     },
 
+    toggleStatic: function(val){
+        var container = this.element.closest(".tag-input");
+        var staticMode;
+
+        if (Utils.isValue(val)) {
+            staticMode = Utils.bool(val);
+        } else {
+            staticMode = !container.hasClass("static-mode");
+        }
+
+        if (staticMode) {
+            container.addClass("static-mode");
+        } else {
+            container.removeClass("static-mode");
+        }
+    },
+
     changeAttribute: function(attributeName){
         var that = this, element = this.element, o = this.options;
 
@@ -287,6 +372,7 @@ var TagInput = {
         switch (attributeName) {
             case "value": changeValue(); break;
             case "disabled": this.toggleState(); break;
+            case "static": this.toggleStatic(); break;
         }
     },
 

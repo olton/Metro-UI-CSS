@@ -1,4 +1,5 @@
 var DatePickerDefaultConfig = {
+    datepickerDeferred: 0,
     gmt: 0,
     format: "%Y-%m-%d",
     inputFormat: null,
@@ -11,7 +12,7 @@ var DatePickerDefaultConfig = {
     minYear: null,
     maxYear: null,
     scrollSpeed: 4,
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     clsPicker: "",
     clsPart: "",
     clsMonth: "",
@@ -35,6 +36,8 @@ if (typeof window["metroDatePickerSetup"] !== undefined) {
 }
 
 var DatePicker = {
+    name: "DatePicker",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, DatePickerDefaultConfig, options );
         this.elem  = elem;
@@ -51,7 +54,7 @@ var DatePicker = {
         };
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

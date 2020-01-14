@@ -3,6 +3,7 @@ module.exports = function(grunt) {
     "use strict";
 
     var watching = grunt.option('watching');
+    var develop = grunt.option('develop');
     var tasks;
     var watch_files = [
         'source/i18n/*.json',
@@ -18,12 +19,15 @@ module.exports = function(grunt) {
         'concurrent:clean',
         'concurrent:compile_less',
         'concurrent:postcss',
-        'concurrent:concat',
-        'concurrent:remove_log',
-        'concurrent:min',
-        'concurrent:replace',
-        'concurrent:copy'
-    ];
+        'concurrent:concat'];
+
+    if (develop) {
+        tasks.push('concurrent:remove_log');
+    }
+
+    tasks.push('concurrent:min');
+    tasks.push('concurrent:replace');
+    tasks.push('concurrent:copy');
 
     if (watching) {
         tasks.push('watch');
@@ -248,7 +252,7 @@ module.exports = function(grunt) {
             compile_less: ['less:src', 'less:schemes'],
             postcss: ['postcss'],
             concat: ['concat:js', 'concat:css'],
-            remove_log: ['removelogging'],
+            remove_log: develop ? [] : ['removelogging'],
             min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
             replace: ['replace'],
             copy: ['copy'],

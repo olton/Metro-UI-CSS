@@ -1,4 +1,5 @@
 var TimePickerDefaultConfig = {
+    timepickerDeferred: 0,
     hoursStep: 1,
     minutesStep: 1,
     secondsStep: 1,
@@ -10,7 +11,7 @@ var TimePickerDefaultConfig = {
     seconds: true,
     showLabels: true,
     scrollSpeed: 4,
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     clsPicker: "",
     clsPart: "",
     clsHours: "",
@@ -34,6 +35,8 @@ if (typeof window["metroTimePickerSetup"] !== undefined) {
 }
 
 var TimePicker = {
+    name: "TimePicker",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TimePickerDefaultConfig, options );
         this.elem  = elem;
@@ -50,7 +53,7 @@ var TimePicker = {
 
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

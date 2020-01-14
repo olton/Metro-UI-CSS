@@ -1,5 +1,7 @@
 var InputDefaultConfig = {
-    mask: null,
+    inputDeferred: 0,
+
+    // mask: null,
 
     autocomplete: null,
     autocompleteDivider: ",",
@@ -13,7 +15,7 @@ var InputDefaultConfig = {
     size: "default",
     prepend: "",
     append: "",
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     searchButton: false,
     clearButton: true,
     revealButton: true,
@@ -51,6 +53,8 @@ if (typeof window["metroInputSetup"] !== undefined) {
 }
 
 var Input = {
+    name: "Input",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, InputDefaultConfig, options );
         this.elem  = elem;
@@ -60,7 +64,7 @@ var Input = {
         this.autocomplete = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -94,8 +98,6 @@ var Input = {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var prev = element.prev();
-        var parent = element.parent();
         var container = $("<div>").addClass("input " + element[0].className);
         var buttons = $("<div>").addClass("button-group");
         var clearButton, revealButton, searchButton;
@@ -111,12 +113,7 @@ var Input = {
             element.attr("type", "text");
         }
 
-        if (prev.length === 0) {
-            parent.prepend(container);
-        } else {
-            container.insertAfter(prev);
-        }
-
+        container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
 

@@ -1,4 +1,5 @@
 var FileDefaultConfig = {
+    fileDeferred: 0,
     mode: "input",
     buttonTitle: "Choose file(s)",
     filesTitle: "file(s) selected",
@@ -9,7 +10,7 @@ var FileDefaultConfig = {
     clsPrepend: "",
     clsButton: "",
     clsCaption: "",
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     onSelect: Metro.noop,
     onFileCreate: Metro.noop
 };
@@ -23,13 +24,15 @@ if (typeof window["metroFileSetup"] !== undefined) {
 }
 
 var File = {
+    name: "File",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, FileDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -59,7 +62,7 @@ var File = {
 
     _createStructure: function(){
         var element = this.element, o = this.options;
-        var container = $("<label>").addClass((o.mode === "input" ? " file " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
+        var container = $("<label>").addClass((o.mode === "input" ? " file " : o.mode === "button" ? " file-button " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
         var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
         var files = $("<span>").addClass("files").addClass(o.clsCaption);
         var icon, button;
@@ -68,7 +71,17 @@ var File = {
         container.insertBefore(element);
         element.appendTo(container);
 
-        if (o.mode === "input") {
+        if (o.mode === 'drop' || o.mode === 'dropzone') {
+            icon = $(o.dropIcon).addClass("icon").appendTo(container);
+            caption.html(o.dropTitle).insertAfter(icon);
+            files.html("0" + " " + o.filesTitle).insertAfter(caption);
+        } else if (o.mode === 'button') {
+
+            button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
+            button.appendTo(container);
+            button.addClass(o.clsButton);
+
+        } else {
             caption.insertBefore(element);
 
             button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
@@ -83,10 +96,6 @@ var File = {
                 var prepend = $("<div>").html(o.prepend);
                 prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
             }
-        } else {
-            icon = $(o.dropIcon).addClass("icon").appendTo(container);
-            caption.html(o.dropTitle).insertAfter(icon);
-            files.html("0" + " " + o.filesTitle).insertAfter(caption);
         }
 
         element[0].className = '';
@@ -172,8 +181,14 @@ var File = {
     },
 
     clear: function(){
-        var element = this.element;
-        element.siblings(".caption").html("");
+        var element = this.element, o = this.options;
+        if (o.mode === "input") {
+            element.siblings(".caption").html("");
+        } else {
+            element.siblings(".caption").html(o.dropTitle);
+            element.siblings(".files").html("0" + " " + o.filesTitle);
+        }
+
         element.val("");
     },
 

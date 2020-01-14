@@ -1,4 +1,5 @@
 var AudioDefaultConfig = {
+    audioDeferred: 0,
     playlist: null,
     src: null,
 
@@ -62,6 +63,8 @@ if (typeof window["metroAudioSetup"] !== undefined) {
 }
 
 var Audio = {
+    name: "Audio",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, AudioDefaultConfig, options );
         this.elem  = elem;
@@ -75,7 +78,8 @@ var Audio = {
         this.muted = false;
 
         this._setOptionsFromDOM();
-        this._create();
+
+        Metro.createExec(this);
 
         return this;
     },

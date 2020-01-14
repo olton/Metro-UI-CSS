@@ -1,4 +1,5 @@
 var MaterialTabsDefaultConfig = {
+    materialtabsDeferred: 0,
     deep: false,
     fixedTabs: false,
 
@@ -22,6 +23,8 @@ if (typeof window["metroMaterialTabsSetup"] !== undefined) {
 }
 
 var MaterialTabs = {
+    name: "MaterialTabs",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, MaterialTabsDefaultConfig, options );
         this.elem  = elem;
@@ -31,7 +34,7 @@ var MaterialTabs = {
         this.scrollDir = "left";
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

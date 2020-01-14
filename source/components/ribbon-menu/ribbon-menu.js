@@ -1,4 +1,5 @@
 var RibbonMenuDefaultConfig = {
+    ribbonmenuDeferred: 0,
     onStatic: Metro.noop,
     onBeforeTab: Metro.noop_true,
     onTab: Metro.noop,
@@ -14,13 +15,15 @@ if (typeof window["metroRibbonMenuSetup"] !== undefined) {
 }
 
 var RibbonMenu = {
+    name: "RibbonMenu",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, RibbonMenuDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

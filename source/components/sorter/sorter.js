@@ -1,4 +1,5 @@
 var SorterDefaultConfig = {
+    sorterDeferred: 0,
     thousandSeparator: ",",
     decimalSeparator: ",",
     sortTarget: null,
@@ -21,6 +22,8 @@ if (typeof window["metroSorterSetup"] !== undefined) {
 }
 
 var Sorter = {
+    name: "Sorter",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SorterDefaultConfig, options );
         this.elem  = elem;
@@ -28,7 +31,7 @@ var Sorter = {
         this.initial = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

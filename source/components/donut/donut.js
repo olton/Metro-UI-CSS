@@ -1,4 +1,5 @@
 var DonutDefaultConfig = {
+    donutDeferred: 0,
     size: 100,
     radius: 50,
     hole: .8,
@@ -26,6 +27,8 @@ if (typeof window["metroDonutSetup"] !== undefined) {
 }
 
 var Donut = {
+    name: "Donut",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, DonutDefaultConfig, options );
         this.elem  = elem;
@@ -34,7 +37,7 @@ var Donut = {
         this.animation_change_interval = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

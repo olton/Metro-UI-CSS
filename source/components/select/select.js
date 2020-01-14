@@ -1,4 +1,5 @@
 var SelectDefaultConfig = {
+    selectDeferred: 0,
     clearButton: false,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
     placeholder: "",
@@ -9,7 +10,7 @@ var SelectDefaultConfig = {
     append: "",
     filterPlaceholder: "",
     filter: true,
-    copyInlineStyles: true,
+    copyInlineStyles: false,
     dropHeight: 200,
 
     clsSelect: "",
@@ -40,6 +41,8 @@ if (typeof window["metroSelectSetup"] !== undefined) {
 }
 
 var Select = {
+    name: "Select",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, SelectDefaultConfig, options );
         this.elem  = elem;
@@ -48,7 +51,7 @@ var Select = {
         this.placeholder = null;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -138,8 +141,10 @@ var Select = {
 
     _createOptions: function(){
         var that = this, element = this.element, o = this.options, select = element.parent();
-        var list = select.find("ul").html("");
+        var list = select.find("ul").empty();
         var selected = element.find("option[selected]").length > 0;
+
+        element.siblings(".select-input").empty();
 
         if (o.addEmptyValue === true) {
             element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
@@ -161,7 +166,7 @@ var Select = {
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, list, filter_input, placeholder, dropdown_toggle;
+        var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
@@ -180,18 +185,19 @@ var Select = {
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
+        drop_container_input = $("<div>").appendTo(drop_container);
         list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight
         });
-        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder);
+        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
 
         container.append(input);
         container.append(drop_container);
 
-        drop_container.append(filter_input);
+        drop_container.append(drop_container_input);
 
         if (o.filter !== true) {
-            filter_input.hide();
+            drop_container_input.hide();
         }
 
         drop_container.append(list);
@@ -530,7 +536,7 @@ var Select = {
         var element = this.element;
         var option_group;
 
-        element.html("");
+        element.empty();
 
         if (typeof op === 'string') {
             element.html(op);

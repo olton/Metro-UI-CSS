@@ -1,4 +1,5 @@
 var CountdownDefaultConfig = {
+    countdownDeferred: 0,
     stopOnBlur: true,
     animate: "none",
     animationFunc: "line",
@@ -34,6 +35,8 @@ if (typeof window["metroCountdownSetup"] !== undefined) {
 }
 
 var Countdown = {
+    name: "Countdown",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, CountdownDefaultConfig, options );
         this.elem  = elem;
@@ -58,7 +61,7 @@ var Countdown = {
         this.inactiveTab = false;
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

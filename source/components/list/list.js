@@ -1,4 +1,5 @@
 var ListDefaultConfig = {
+    listDeferred: 0,
     templateBeginToken: "<%",
     templateEndToken: "%>",
     paginationDistance: 5,
@@ -8,7 +9,7 @@ var ListDefaultConfig = {
     sortTarget: "li",
     sortClass: null,
     sortDir: "asc",
-    sortInitial: false,
+    sortInitial: true,
     filterClass: null,
     filter: null,
     filterString: "",
@@ -69,6 +70,8 @@ if (typeof window["metroListSetup"] !== undefined) {
 }
 
 var List = {
+    name: "List",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ListDefaultConfig, options );
         this.elem  = elem;
@@ -97,7 +100,7 @@ var List = {
         this.items = [];
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -338,7 +341,10 @@ var List = {
 
         this.currentPage = 1;
 
-        this.sorting(o.sortClass, o.sortDir, true);
+        if (o.sortInitial !== false)
+            this.sorting(o.sortClass, o.sortDir, true);
+        else
+            this.draw();
     },
 
     _createEvents: function(){
@@ -839,7 +845,7 @@ var List = {
 
         var changeFilterString = function(){
             var filter = element.attr("data-filter-string");
-            if (!Utils.isValue(target)) {
+            if (!Utils.isValue(filter)) {
                 return ;
             }
             o.filterString = filter;
@@ -854,7 +860,7 @@ var List = {
     },
 
     destroy: function(){
-        var that = this, element = this.element;
+        var element = this.element;
         var component = element.parent();
         var search = component.find(".list-search-block input");
         var customSearch;

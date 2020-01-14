@@ -1,4 +1,5 @@
 var ResizableDefaultConfig = {
+    resizeableDeferred: 0,
     canResize: true,
     resizeElement: ".resize-element",
     minWidth: 0,
@@ -21,6 +22,8 @@ if (typeof window["metroResizeableSetup"] !== undefined) {
 }
 
 var Resizable = {
+    name: "Resizeable",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, ResizableDefaultConfig, options );
         this.elem  = elem;
@@ -30,7 +33,7 @@ var Resizable = {
         this.id = Utils.elementId("resizeable");
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

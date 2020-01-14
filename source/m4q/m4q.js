@@ -1,6 +1,6 @@
 /*
- * m4q v1.0.4, (https://github.com/olton/m4q.git)
- * Copyright 2018 - 2019 by Sergey Pimenov
+ * m4q v1.0.5, (https://github.com/olton/m4q.git)
+ * Copyright 2018 - 2020 by Sergey Pimenov
  * Helper for DOM manipulation, animation, and ajax routines.
  * Licensed under MIT
  */
@@ -118,10 +118,6 @@ function dataAttr(elem, key, data){
         }
     }
     return data;
-}
-
-function iif(val1, val2, val3){
-    return val1 ? val1 : val2 ? val2 : val3;
 }
 
 function normalizeEventName(name) {
@@ -552,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.4. Built at 24/11/2019 13:28:24";
+var m4qVersion = "v1.0.5. Built at 14/01/2020 12:29:41";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1210,6 +1206,10 @@ $.fn.extend({
         return this.each(function(){
             if (typeof this.innerHTML !== "undefined") this.innerHTML = "";
         });
+    },
+
+    clear: function(){
+        return this.empty();
     }
 });
 
@@ -1516,7 +1516,6 @@ $.extend({
     unit: function(str, out){return parseUnit(str, out)},
     isVisible: function(elem) {return isVisible(elem)},
     isHidden: function(elem) {return isHidden(elem)},
-    iif: function(v1, v2, v3){return iif(v1, v2, v3);},
     matches: function(el, s) {return matches.call(el, s);},
 
     serializeToArray: function(form){
@@ -1856,24 +1855,7 @@ $.fn.extend({
     },
 
     trigger: function(name, data){
-        var _name;
-
-        if (this.length === 0) {
-            return ;
-        }
-
-        _name = normalizeEventName(name);
-
-        if (['focus', 'blur'].indexOf(_name) > -1) {
-            this[0][_name]();
-            return this;
-        }
-
-        var e = new CustomEvent(_name, data || {});
-
-        return this.each(function(){
-            this.dispatchEvent(e);
-        });
+        return this.fire(name, data);
     },
 
     fire: function(name, data){
@@ -1907,7 +1889,7 @@ $.fn.extend({
         $.fn[ name ] = function( sel, fn, opt ) {
             return arguments.length > 0 ?
                 this.on( name, sel, fn, opt ) :
-                this.trigger( name );
+                this.fire( name );
         };
 });
 

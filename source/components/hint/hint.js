@@ -1,4 +1,5 @@
 var HintDefaultConfig = {
+    hintDeferred: 0,
     hintHide: 5000,
     clsHint: "",
     hintText: "",
@@ -18,6 +19,8 @@ if (typeof window["metroHintSetup"] !== undefined) {
 }
 
 var Hint = {
+    name: "Hint",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, HintDefaultConfig, options );
         this.elem  = elem;
@@ -31,7 +34,7 @@ var Hint = {
         this.id = Utils.elementId("hint");
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

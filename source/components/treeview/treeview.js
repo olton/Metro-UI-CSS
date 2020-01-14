@@ -1,4 +1,5 @@
 var TreeViewDefaultConfig = {
+    treeviewDeferred: 0,
     showChildCount: false,
     duration: 100,
     onNodeClick: Metro.noop,
@@ -22,13 +23,15 @@ if (typeof window["metroTreeViewSetup"] !== undefined) {
 }
 
 var TreeView = {
+    name: "TreeView",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TreeViewDefaultConfig, options );
         this.elem  = elem;
         this.element = $(elem);
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

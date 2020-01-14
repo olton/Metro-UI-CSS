@@ -1,4 +1,5 @@
 var TableDefaultConfig = {
+    tableDeferred: 0,
     emptyTableTitle: "Nothing to show",
     templateBeginToken: "<%",
     templateEndToken: "%>",
@@ -134,6 +135,8 @@ if (typeof window["metroTableSetup"] !== undefined) {
 }
 
 var Table = {
+    name: "Table",
+
     init: function( options, elem ) {
         this.options = $.extend( {}, TableDefaultConfig, options );
         this.elem  = elem;
@@ -175,7 +178,7 @@ var Table = {
         this.index = {};
 
         this._setOptionsFromDOM();
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
