@@ -1,7 +1,7 @@
 /*
- * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/01/2020 12:35:08
+ * Built at 21/01/2020 13:02:02
  * Licensed under MIT
  */
 
@@ -3774,9 +3774,9 @@ var normalizeComponentName = function(name){
 
 var Metro = {
 
-    version: "4.3.5",
-    compileTime: "14/01/2020 12:35:15",
-    buildNumber: "743",
+    version: "4.3.6",
+    compileTime: "21/01/2020 13:02:10",
+    buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
@@ -4442,13 +4442,13 @@ if (typeof Array.contains !== "function") {
 function RGB(r, g, b){
     this.r = r || 0;
     this.g = g || 0;
-    this.g = b || 0;
+    this.b = b || 0;
 }
 
 function RGBA(r, g, b, a){
     this.r = r || 0;
     this.g = g || 0;
-    this.g = b || 0;
+    this.b = b || 0;
     this.a = a || 1;
 }
 
@@ -11219,6 +11219,13 @@ var Checkbox = {
     },
 
     _create: function(){
+        this._createStructure();
+        this._createEvents();
+        Utils.exec(this.options.onCheckboxCreate, null, this.element[0]);
+        this.element.fire("checkboxcreate");
+    },
+
+    _createStructure: function(){
         var element = this.element, o = this.options;
         var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
@@ -11270,9 +11277,18 @@ var Checkbox = {
         } else {
             this.enable();
         }
+    },
 
-        Utils.exec(o.onCheckboxCreate, [element]);
-        element.fire("checkboxcreate");
+    _createEvents: function(){
+        var element = this.element, check = element.siblings(".check");
+
+        element.on("focus", function(){
+            check.addClass("focused");
+        });
+
+        element.on("blur", function(){
+            check.removeClass("focused");
+        });
     },
 
     indeterminate: function(v){
@@ -11325,7 +11341,10 @@ var Checkbox = {
     },
 
     destroy: function(){
-        return this.element;
+        var element = this.element;
+        element.off("focus");
+        element.off("blur");
+        return element;
     }
 };
 
@@ -20225,6 +20244,16 @@ var Radio = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onRadioCreate, null, element[0]);
+        element.fire("radiocreate");
+    },
+
+    _createStructure: function(){
+        var element = this.element, o = this.options;
         var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
@@ -20258,9 +20287,18 @@ var Radio = {
         } else {
             this.enable();
         }
+    },
 
-        Utils.exec(o.onRadioCreate, null, element[0]);
-        element.fire("radiocreate");
+    _createEvents: function(){
+        var element = this.element, check = element.siblings(".check");
+
+        element.on("focus", function(){
+            check.addClass("focused");
+        });
+
+        element.on("blur", function(){
+            check.removeClass("focused");
+        });
     },
 
     disable: function(){
@@ -21359,10 +21397,16 @@ var Select = {
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
         var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
+        var checkboxID = Utils.elementId("select-focus-trigger");
+        var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-        container.attr("id", select_id);
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("select-origin"));
+        }
+
+        container.attr("id", select_id).attr("for", checkboxID);
 
         dropdown_toggle = $("<span>").addClass("dropdown-toggle");
         dropdown_toggle.appendTo(container);
@@ -21374,6 +21418,7 @@ var Select = {
         container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
+        checkbox.appendTo(container);
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
@@ -21483,6 +21528,15 @@ var Select = {
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
         var clearButton = container.find(".input-clear-button");
+        var checkbox = container.find(".select-focus-trigger");
+
+        checkbox.on("focus", function(){
+            container.addClass("focused");
+        });
+
+        checkbox.on("blur", function(){
+            container.removeClass("focused");
+        });
 
         clearButton.on(Metro.events.click, function(e){
             element.val(o.emptyValue);

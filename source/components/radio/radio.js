@@ -51,6 +51,16 @@ var Radio = {
 
     _create: function(){
         var element = this.element, o = this.options;
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onRadioCreate, null, element[0]);
+        element.fire("radiocreate");
+    },
+
+    _createStructure: function(){
+        var element = this.element, o = this.options;
         var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
@@ -84,9 +94,18 @@ var Radio = {
         } else {
             this.enable();
         }
+    },
 
-        Utils.exec(o.onRadioCreate, null, element[0]);
-        element.fire("radiocreate");
+    _createEvents: function(){
+        var element = this.element, check = element.siblings(".check");
+
+        element.on("focus", function(){
+            check.addClass("focused");
+        });
+
+        element.on("blur", function(){
+            check.removeClass("focused");
+        });
     },
 
     disable: function(){

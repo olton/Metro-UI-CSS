@@ -1,7 +1,7 @@
 /*
- * Metro 4 Components Library v4.3.5  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/01/2020 12:35:08
+ * Built at 21/01/2020 13:02:02
  * Licensed under MIT
  */
 html,
@@ -26131,11 +26131,15 @@ fieldset.disabled,
 .select .v-menu li a {
   min-width: auto;
 }
-.select select {
+.select input[type=checkbox] {
+  width: 1px;
+  height: 1px;
   position: absolute;
+  top: 0;
+  left: 0;
   opacity: 0;
-  width: 0.0625rem;
-  height: 0.0625rem;
+}
+.select select {
   display: none;
 }
 .select .button-group {
@@ -27415,6 +27419,10 @@ input.input-small:-ms-input-placeholder {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+.checkbox .check.focused {
+  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
 .radio {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -27565,6 +27573,10 @@ input.input-small:-ms-input-placeholder {
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+.radio .check.focused {
+  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
 .switch {
   display: -webkit-inline-box;

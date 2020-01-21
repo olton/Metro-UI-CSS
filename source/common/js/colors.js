@@ -1,13 +1,13 @@
 function RGB(r, g, b){
     this.r = r || 0;
     this.g = g || 0;
-    this.g = b || 0;
+    this.b = b || 0;
 }
 
 function RGBA(r, g, b, a){
     this.r = r || 0;
     this.g = g || 0;
-    this.g = b || 0;
+    this.b = b || 0;
     this.a = a || 1;
 }
 
