@@ -167,10 +167,16 @@ var Select = {
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
         var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
+        var checkboxID = Utils.elementId("select-focus-trigger");
+        var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-        container.attr("id", select_id);
+        if (!element.attr("id")) {
+            element.attr("id", Utils.elementId("select-origin"));
+        }
+
+        container.attr("id", select_id).attr("for", checkboxID);
 
         dropdown_toggle = $("<span>").addClass("dropdown-toggle");
         dropdown_toggle.appendTo(container);
@@ -182,6 +188,7 @@ var Select = {
         container.insertBefore(element);
         element.appendTo(container);
         buttons.appendTo(container);
+        checkbox.appendTo(container);
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container");
@@ -291,6 +298,15 @@ var Select = {
         var filter_input = drop_container.find("input");
         var list = drop_container.find("ul");
         var clearButton = container.find(".input-clear-button");
+        var checkbox = container.find(".select-focus-trigger");
+
+        checkbox.on("focus", function(){
+            container.addClass("focused");
+        });
+
+        checkbox.on("blur", function(){
+            container.removeClass("focused");
+        });
 
         clearButton.on(Metro.events.click, function(e){
             element.val(o.emptyValue);

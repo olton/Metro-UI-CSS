@@ -51,6 +51,13 @@ var Checkbox = {
     },
 
     _create: function(){
+        this._createStructure();
+        this._createEvents();
+        Utils.exec(this.options.onCheckboxCreate, null, this.element[0]);
+        this.element.fire("checkboxcreate");
+    },
+
+    _createStructure: function(){
         var element = this.element, o = this.options;
         var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
@@ -102,9 +109,18 @@ var Checkbox = {
         } else {
             this.enable();
         }
+    },
 
-        Utils.exec(o.onCheckboxCreate, [element]);
-        element.fire("checkboxcreate");
+    _createEvents: function(){
+        var element = this.element, check = element.siblings(".check");
+
+        element.on("focus", function(){
+            check.addClass("focused");
+        });
+
+        element.on("blur", function(){
+            check.removeClass("focused");
+        });
     },
 
     indeterminate: function(v){
@@ -157,7 +173,10 @@ var Checkbox = {
     },
 
     destroy: function(){
-        return this.element;
+        var element = this.element;
+        element.off("focus");
+        element.off("blur");
+        return element;
     }
 };
 

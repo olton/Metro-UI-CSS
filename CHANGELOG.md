@@ -1,4 +1,8 @@
 ### 4.3.6
++ [x] ColorJS: fix functions `RGB`, `RGBA`
++ [x] Select: add focus state, issue #1488
++ [x] Checkbox: add focus state
++ [x] Radio: add focus state
 
 ### 4.3.5
 ##### M4Q
