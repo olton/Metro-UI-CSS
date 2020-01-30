@@ -559,6 +559,7 @@ var Table = {
                 sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
                 format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
+                formatMask: Utils.isValue(item.data("format-mask")) ? item.data("format-mask") : null,
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
                 colspan: item.attr("colspan"),

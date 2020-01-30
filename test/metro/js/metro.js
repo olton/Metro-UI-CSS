@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/01/2020 15:34:05
+ * Built at 30/01/2020 17:18:31
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.6",
-    compileTime: "30/01/2020 15:34:12",
+    compileTime: "30/01/2020 17:18:38",
     buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -25706,6 +25706,7 @@ var Table = {
                 sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
                 sortDir: dir,
                 format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
+                formatMask: Utils.isValue(item.data("format-mask")) ? item.data("format-mask") : null,
                 clsColumn: Utils.isValue(item.data("cls-column")) ? item.data("cls-column") : "",
                 cls: item_class,
                 colspan: item.attr("colspan"),
