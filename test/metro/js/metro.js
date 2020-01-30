@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/01/2020 13:05:42
+ * Built at 30/01/2020 14:01:43
  * Licensed under MIT
  */
 
@@ -3775,7 +3775,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.6",
-    compileTime: "21/01/2020 13:05:49",
+    compileTime: "30/01/2020 14:01:50",
     buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21251,6 +21251,7 @@ var SelectDefaultConfig = {
     clsOptionActive: "",
     clsOptionGroup: "",
     clsDropList: "",
+    clsDropContainer: "",
     clsSelectedItem: "",
     clsSelectedItemRemover: "",
 
@@ -21421,7 +21422,7 @@ var Select = {
         checkbox.appendTo(container);
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
-        drop_container = $("<div>").addClass("drop-container");
+        drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
         drop_container_input = $("<div>").appendTo(drop_container);
         list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight

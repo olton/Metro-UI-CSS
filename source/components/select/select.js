@@ -21,6 +21,7 @@ var SelectDefaultConfig = {
     clsOptionActive: "",
     clsOptionGroup: "",
     clsDropList: "",
+    clsDropContainer: "",
     clsSelectedItem: "",
     clsSelectedItemRemover: "",
 
@@ -191,7 +192,7 @@ var Select = {
         checkbox.appendTo(container);
 
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
-        drop_container = $("<div>").addClass("drop-container");
+        drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
         drop_container_input = $("<div>").appendTo(drop_container);
         list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
             "max-height": o.dropHeight
