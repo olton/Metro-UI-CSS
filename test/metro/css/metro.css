@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/01/2020 13:05:35
+ * Built at 30/01/2020 14:01:36
  * Licensed under MIT
  */
 html,
@@ -38255,16 +38255,16 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   transition: all 0.15s ease-in-out;
 }
 .drop-left {
-  right: 100%;
-  top: 0;
+  right: 100%!important;
+  top: 0!important;
 }
 .drop-right {
-  left: 100%;
-  top: 0;
+  left: 100%!important;
+  top: 0!important;
 }
 .drop-up {
-  top: auto;
-  bottom: 100%;
+  top: auto!important;
+  bottom: 100%!important;
 }
 .icon-box {
   height: 90px;

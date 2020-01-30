@@ -3,6 +3,8 @@
 + [x] Select: add focus state, issue #1488
 + [x] Checkbox: add focus state
 + [x] Radio: add focus state
++ [x] Select: add attribute `data-cls-drop-container`
++ [x] Dropdown: add `important` to `.drop-left`, `.drop-right`, `.drop-up` classes
 
 ### 4.3.5
 ##### M4Q
