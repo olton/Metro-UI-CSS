@@ -1,5 +1,5 @@
 /*
- * m4q v1.0.5, (https://github.com/olton/m4q.git)
+ * m4q v1.0.6, (https://github.com/olton/m4q.git)
  * Copyright 2018 - 2020 by Sergey Pimenov
  * Helper for DOM manipulation, animation, and ajax routines.
  * Licensed under MIT
@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.5. Built at 14/01/2020 12:29:41";
+var m4qVersion = "v1.0.6. Built at 30/01/2020 15:32:09";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -3608,10 +3608,15 @@ $.init = function(sel, ctx){
         }
     }
 
-    if (ctx !== undefined && (ctx instanceof $ || ctx instanceof HTMLElement)) {
-        this.each(function(){
-            $(ctx).append($(this))
-        });
+    if (ctx !== undefined) {
+        var that = this;
+        if (ctx instanceof $) {
+            this.each(function () {
+                $(ctx).append(that)
+            });
+        } else if (ctx instanceof HTMLElement) {
+            $(ctx).append(that);
+        }
     }
 
     return this;

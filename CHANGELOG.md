@@ -1,4 +1,9 @@
 ### 4.3.6
+##### M4Q
++ [x] M4Q: upd to `1.0.6`
++ [x] M4Q Init: fix minor bug for creating elements in context
+
+##### Metro 4
 + [x] ColorJS: fix functions `RGB`, `RGBA`
 + [x] Select: add focus state, issue #1488
 + [x] Checkbox: add focus state
