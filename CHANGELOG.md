@@ -11,6 +11,8 @@
 + [x] Select: add attribute `data-cls-drop-container`
 + [x] Dropdown: add `important` to `.drop-left`, `.drop-right`, `.drop-up` classes
 + [x] Table: add support `formatMask` for fields defined in table head `thead`
++ [x] ResetCSS: remove duplicate declarations
++ [x] Toast: add global setup
 
 ### 4.3.5
 ##### M4Q

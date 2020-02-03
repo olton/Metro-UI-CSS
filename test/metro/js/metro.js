@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/01/2020 17:18:31
+ * Built at 03/02/2020 13:08:48
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.6",
-    compileTime: "30/01/2020 17:18:38",
+    compileTime: "03/02/2020 13:08:56",
     buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -29258,18 +29258,25 @@ $(document).on(Metro.events.click, function(){
 });
 
 
+var ToastDefaultConfig = {
+    callback: Metro.noop,
+    timeout: METRO_TIMEOUT,
+    distance: 20,
+    showTop: false,
+    clsToast: ""
+};
+
+Metro.toastSetup = function(options){
+    ToastDefaultConfig = $.extend({}, ToastDefaultConfig, options);
+};
+
+if (typeof window["metroToastSetup"] !== undefined) {
+    Metro.toastSetup(window["metroToastSetup"]);
+}
+
 var Toast = {
-
-    options: {
-        callback: Metro.noop,
-        timeout: METRO_TIMEOUT,
-        distance: 20,
-        showTop: false,
-        clsToast: ""
-    },
-
     create: function(message, callback, timeout, cls, options){
-        var o = options || Toast.options;
+        var o = $.extend({}, ToastDefaultConfig, options);
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
         var width = toast.outerWidth();
         var timer = null;
