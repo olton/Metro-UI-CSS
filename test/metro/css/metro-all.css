@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/01/2020 17:18:31
+ * Built at 03/02/2020 13:08:48
  * Licensed under MIT
  */
 html,
@@ -159,9 +159,6 @@ html {
 [hidden] {
   display: none !important;
 }
-template {
-  display: none;
-}
 ::-webkit-file-upload-button {
   font: inherit;
   -webkit-appearance: button;
@@ -210,9 +207,6 @@ svg:not(:root) {
 img {
   vertical-align: middle;
   border-style: none;
-}
-[hidden] {
-  display: none;
 }
 div {
   position: relative;
@@ -16484,10 +16478,6 @@ ol.unstyled-list {
 }
 .inline-list li:last-child {
   margin-right: 0;
-}
-ul[class],
-ol[class] {
-  list-style: none inside;
 }
 dl dt,
 dl dd {

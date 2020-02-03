@@ -1,15 +1,22 @@
+var ToastDefaultConfig = {
+    callback: Metro.noop,
+    timeout: METRO_TIMEOUT,
+    distance: 20,
+    showTop: false,
+    clsToast: ""
+};
+
+Metro.toastSetup = function(options){
+    ToastDefaultConfig = $.extend({}, ToastDefaultConfig, options);
+};
+
+if (typeof window["metroToastSetup"] !== undefined) {
+    Metro.toastSetup(window["metroToastSetup"]);
+}
+
 var Toast = {
-
-    options: {
-        callback: Metro.noop,
-        timeout: METRO_TIMEOUT,
-        distance: 20,
-        showTop: false,
-        clsToast: ""
-    },
-
     create: function(message, callback, timeout, cls, options){
-        var o = options || Toast.options;
+        var o = $.extend({}, ToastDefaultConfig, options);
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
         var width = toast.outerWidth();
         var timer = null;
