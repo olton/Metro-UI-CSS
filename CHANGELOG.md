@@ -12,7 +12,7 @@
 + [x] Dropdown: add `important` to `.drop-left`, `.drop-right`, `.drop-up` classes
 + [x] Table: add support `formatMask` for fields defined in table head `thead`
 + [x] ResetCSS: remove duplicate declarations
-+ [x] Toast: add global setup
++ [x] Toast: add global setup. Related to issue #1493
 
 ### 4.3.5
 ##### M4Q
