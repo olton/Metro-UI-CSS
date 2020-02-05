@@ -292,7 +292,7 @@ var Locales = {
             ],
             "days": [
                 "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
-                "De", "Du", "Ma", "Me", "Je", "Ve", "Sa",
+                "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
                 "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
             ],
             "time": {
