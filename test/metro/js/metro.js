@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/02/2020 13:02:41
+ * Built at 13/02/2020 13:03:44
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.6",
-    compileTime: "13/02/2020 13:02:50",
+    compileTime: "13/02/2020 13:03:45",
     buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -5676,12 +5676,12 @@ var Locales = {
             ],
             "days": [
                 "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
-                "Sn", "Mn", "Di", "Mi", "Do", "Fr", "Sa",
+                "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
                 "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
             ],
             "time": {
                 "days": "TAGE",
-                "hours": "UHR",
+                "hours": "STD",
                 "minutes": "MIN",
                 "seconds": "SEK"
             }
@@ -5692,12 +5692,12 @@ var Locales = {
             "done": "Fertig",
             "today": "Heute",
             "now": "Jetzt",
-            "clear": "Reinigen",
+            "clear": "Löschen",
             "help": "Hilfe",
             "yes": "Ja",
             "no": "Nein",
             "random": "Zufällig",
-            "save": "Sparen",
+            "save": "Speichern",
             "reset": "Zurücksetzen"
         }
     },
@@ -5849,7 +5849,7 @@ var Locales = {
             ],
             "days": [
                 "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
-                "De", "Du", "Ma", "Me", "Je", "Ve", "Sa",
+                "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
                 "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
             ],
             "time": {
