@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/02/2020 13:03:44
+ * Built at 13/02/2020 15:44:10
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.6",
-    compileTime: "13/02/2020 13:03:45",
+    compileTime: "13/02/2020 15:44:20",
     buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -24289,6 +24289,10 @@ var StreamerDefaultConfig = {
     onDataLoaded: Metro.noop,
     onDataLoadError: Metro.noop,
 
+    onDrawEvent: Metro.noop,
+    onDrawGlobalEvent: Metro.noop,
+    onDrawStream: Metro.noop,
+
     onStreamClick: Metro.noop,
     onStreamSelect: Metro.noop,
     onEventClick: Metro.noop,
@@ -24445,7 +24449,8 @@ var Streamer = {
 
         for (i = start.getTime()/1000; i <= stop.getTime()/1000; i += step) {
             t = new Date(i * 1000);
-            h = t.getHours(), m = t.getMinutes();
+            h = t.getHours();
+            m = t.getMinutes();
             v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
 
             li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
@@ -24574,6 +24579,12 @@ var Streamer = {
                         } else {
                             event.html(event_item.html);
                         }
+
+                        Utils.exec(o.onDrawEvent, [event[0]], element[0]);
+                        element.fire("drawevent", {
+                            event: event[0]
+                        });
+
                     });
 
                     var last_child = stream_events.find(".stream-event").last();
@@ -24586,7 +24597,13 @@ var Streamer = {
 
                 element.find(".stream").eq(stream_events.index()).css({
                     height: stream_height * rows
-                })
+                });
+
+                Utils.exec(o.onDrawStream, [stream[0]], element[0]);
+                element.fire("drawstream", {
+                    stream: stream[0]
+                });
+
             });
         }
 
@@ -24622,6 +24639,12 @@ var Streamer = {
                             left: left,
                             height: "100%"
                         }).appendTo(streamer_events);
+
+                        Utils.exec(o.onDrawGlobalEvent, [event[0]], element[0]);
+                        element.fire("dataloaded", {
+                            event: event[0]
+                        });
+
                     });
                 }
             });

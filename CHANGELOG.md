@@ -14,7 +14,8 @@
 + [x] ResetCSS: remove duplicate declarations
 + [x] Toast: add global setup. Related to issue #1493
 + [x] Streamer: now you can can set event time up to a minute
-+ [x] Streamer: now you can use for event size `half` and `one-third` constants 
++ [x] Streamer: now you can use for event size `half` and `one-third` constants
++ [x] Streamer: add events `onDrawEvent`, `onDrawGlobalEvent`, `onDrawStream` 
 
 ### 4.3.5
 ##### M4Q
