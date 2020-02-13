@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/02/2020 13:15:48
+ * Built at 13/02/2020 13:02:32
  * Licensed under MIT
  */
 html,
@@ -28607,7 +28607,8 @@ input.input-small:-ms-input-placeholder {
   overflow-x: scroll;
   -webkit-overflow-scrolling: auto;
 }
-.streamer .streamer-timeline {
+.streamer .streamer-timeline,
+.streamer .streamer-fake-timeline {
   height: 32px;
   width: auto;
   list-style: none inside;
@@ -28624,9 +28625,13 @@ input.input-small:-ms-input-placeholder {
       -ms-flex-order: 1;
           order: 1;
 }
-.streamer .streamer-timeline li {
+.streamer .streamer-timeline li,
+.streamer .streamer-fake-timeline li {
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
   width: 224px;
   background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOAAAAATCAYAAACJKwFWAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA3ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo2OWY4NzBhNi0zODU3LWFmNDEtYWMzZS03YzlkOTcxZjMxOTIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEREMzg4NkJBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEREMzg4NkFBQjkyMTFFN0JDQTVFMzg4RUE0RDc4RkQiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6YzEyZGQ1NjktNmM3YS0yZTQ2LTg2MmQtZWY3OGU5MmQ4NWY2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY5Zjg3MGE2LTM4NTctYWY0MS1hYzNlLTdjOWQ5NzFmMzE5MiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv3rUTMAAAIHSURBVHja7Jq/S0JRHMWfpj37oSA8qikIImioIaghaHDrD2hqaG4R6i8paGksh2iIQGhoCYewocChhkDEoAjsx5IGDZV2Ll6huXvoKZwPHHwuh3O/737f03tvpNVqeUKIcIiYBiwUCoe4LhH8FqAadO/oE0BT0AUh0xxUhyqOPklohpRpFvqEbh194tA8dGX9XJi2fteE8S1CN1DD0WcSSpHmpslUhl4dfcahMeiSMTdj9qKYyWR2/uKA5v39dd1OUNebOAKtQtuEQa5Bd9C5o4+pVRbaImRagd6hU4LXJinTMjQMHZEymfn05eizBE1AOUKmDegAeiY8PE0z7xIyZaP2op/0Rk1AaYKPeQP6pEyD9inqyigx05B9ozLG5ttPV5I2FwPf1suVFGlsnUwBwSdt5zmD/qh+hQsRHmpAIdSAQqgBhRBqQCHUgEKIfyBG9jP7SD4pV5KYibFs3EfMZJbWu+0I0oDH24ZI2nq5krD3j5UpTvDxiZnoDWg2Ot8IPmbjfI+UqQo9EXw+vPZJCgYn0HeXNeCjx9vfKtt6uVIjPqhMpjrBx5ykqXRrA1ZJPg3P/RhTh2OSzwu0T/J66MJfQ2dEL1adisRMOZJPyeMcjdN/QCHCRg0ohBpQCDWgECKkBgxUip4k4rVXLiMqRU8SdBowr1r0JE2vvbTeVCl6kvyPAAMASGlSBhr76A8AAAAASUVORK5CYII=") no-repeat;
   vertical-align: bottom;
@@ -28639,8 +28644,10 @@ input.input-small:-ms-input-placeholder {
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
           flex-flow: row nowrap;
+  position: relative;
 }
-.streamer .streamer-timeline li em {
+.streamer .streamer-timeline li em,
+.streamer .streamer-fake-timeline li em {
   font-size: 10px;
   font-style: normal;
   margin: 4px;
@@ -28648,6 +28655,25 @@ input.input-small:-ms-input-placeholder {
       -ms-flex: 1 0 0px;
           flex: 1 0 0;
   max-width: 100%;
+}
+.streamer .streamer-fake-timeline {
+  position: absolute;
+  height: 1px;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.streamer .streamer-fake-timeline li {
+  width: auto;
+  line-height: 1px;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  overflow: hidden;
+  text-align: center;
+  color: #fcfcfc;
 }
 .streamer .streamer-events {
   -webkit-box-ordinal-group: 3;
@@ -28978,6 +29004,18 @@ input.input-small:-ms-input-placeholder {
 }
 .streamer .stream-event.shift-20x {
   margin-left: 4481px;
+}
+.streamer .stream-event.size-half {
+  width: 112px;
+}
+.streamer .stream-event.size-one-third {
+  width: 74.66666667px;
+}
+.streamer .stream-event.offset-half {
+  margin-left: 112px;
+}
+.streamer .stream-event.offset-one-third {
+  margin-left: 74.66666667px;
 }
 html.metro-no-touch-device .streamer .stream:hover {
   -webkit-transition: width 0.3s ease;

@@ -129,6 +129,7 @@ var Streamer = {
         var that = this, element = this.element, o = this.options, data = this.data;
         var streams = element.find(".streams").html("");
         var events_area = element.find(".events-area").html("");
+        var fake_timeline;
         var timeline = $("<ul>").addClass("streamer-timeline").html("").appendTo(events_area);
         var streamer_events = $("<div>").addClass("streamer-events").appendTo(events_area);
         var event_group_main = $("<div>").addClass("event-group").appendTo(streamer_events);
@@ -178,12 +179,25 @@ var Streamer = {
         stop.setMinutes(stop_time_array[1]);
         stop.setSeconds(0);
 
-        for (var i = start.getTime()/1000; i <= stop.getTime()/1000; i += step) {
-            var t = new Date(i * 1000);
-            var h = t.getHours(), m = t.getMinutes();
-            var v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
+        var i, t, h, v, m, j, fm, li, fli, fli_w;
 
-            var li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
+        for (i = start.getTime()/1000; i <= stop.getTime()/1000; i += step) {
+            t = new Date(i * 1000);
+            h = t.getHours(), m = t.getMinutes();
+            v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
+
+            li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
+
+            fli_w = li.width() / parseInt(data.timeline.step);
+            fake_timeline = $("<ul>").addClass("streamer-fake-timeline").html("").appendTo(li);
+            for(j = 0; j < parseInt(data.timeline.step); j++) {
+                fm = m + j;
+                v = (h < 10 ? "0"+h : h) + ":" + (fm < 10 ? "0"+fm : fm);
+                fli = $("<li>").data("time", v).addClass("js-fake-time-point-" + v.replace(":", "-")).html("|").appendTo(fake_timeline);
+                fli.css({
+                    width: fli_w
+                })
+            }
         }
 
         // -- End timeline creator
@@ -232,12 +246,13 @@ var Streamer = {
                             .data("time", event_item.time)
                             .data("target", event_item.target)
                             .addClass("stream-event")
-                            .addClass("size-"+event_item.size+"x")
+                            .addClass("size-"+event_item.size+(["half", "one-third"].contains(event_item.size) ? "" : "x"))
                             .addClass(event_item.cls)
                             .appendTo(stream_events);
 
 
-                        var left = timeline.find(".js-time-point-"+this.time.replace(":", "-"))[0].offsetLeft - stream.outerWidth();
+                        var time_point = timeline.find(".js-fake-time-point-"+this.time.replace(":", "-"));
+                        var left = time_point.offset().left - stream_events.offset().left;
                         var top = 75 * (row - 1);
 
                         if (row > rows) {
@@ -314,12 +329,13 @@ var Streamer = {
         }
 
         if (data.global !== undefined) {
+            var streamer_events_left = streamer_events.offset().left;
             $.each(['before', 'after'], function(){
                 var global_item = this;
                 if (data.global[global_item] !== undefined) {
                     $.each(data.global[global_item], function(){
                         var event_item = this;
-                        var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+"x");
+                        var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+(["half", "one-third"].contains(event_item.size) ? "" : "x"));
                         var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
                         var event = $("<div>").addClass("stream-event").appendTo(events);
                         event
@@ -333,9 +349,12 @@ var Streamer = {
                         $("<div>").addClass("event-subtitle").html(event_item.subtitle).appendTo(event);
                         $("<div>").addClass("event-html").html(event_item.html).appendTo(event);
 
-                        var left, t = timeline.find(".js-time-point-"+this.time.replace(":", "-"));
+                        var left, t = timeline.find(".js-fake-time-point-"+this.time.replace(":", "-"));
 
-                        if (t.length > 0) left = t[0].offsetLeft - streams.find(".stream").outerWidth();
+                        if (t.length > 0) {
+                            // left = t[0].offsetLeft - streams.find(".stream").outerWidth();
+                            left = t.offset().left - streamer_events_left;
+                        }
                         group.css({
                             position: "absolute",
                             left: left,

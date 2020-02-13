@@ -444,6 +444,8 @@ var Validator = {
             }
         }
 
+        console.log(result.val === 0);
+
         return result.val === 0;
     },
 

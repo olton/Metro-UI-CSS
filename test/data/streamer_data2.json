@@ -1,0 +1,180 @@
+{
+    "actions": [
+        {
+            "html": "<span class='mif-print' style='font-size: 22px;'><\/span>",
+            "cls": "fg-white bg-c2 border-radius",
+            "onclick": "actionPrint()"
+        },
+        {
+            "html": "<span class='msp-email'><\/span>",
+            "cls": "fg-white bg-c2 border-radius",
+            "onclick": "actionEmail()"
+        },
+        {
+            "html": "<span class='mif-facebook2'><\/span>",
+            "cls": "fg-darkCobalt fg-c2",
+            "onclick": "actionSocial('facebook')"
+        },
+        {
+            "html": "<span class='mif-twitter' style='font-size: 18px;'><\/span>",
+            "cls": "fg-white bg-blue border-radius",
+            "onclick": "actionSocial('twitter')"
+        },
+        {
+            "html": "<span class='msp-eye'><\/span>",
+            "cls": "fg-white bg-c2 border-radius",
+            "onclick": "showMySchedule()"
+        }
+    ],
+    "timeline": {
+        "start": "09:00:00",
+        "stop": "19:00:00",
+        "step": "20"
+    },
+    "streams": [
+        {
+            "title": "Main Stage",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1709 fg-white",
+            "data": "",
+            "events": [
+                {
+                    "icon": "http:\/\/2020-new-iforum\/wp-content\/uploads\/2020\/02\/Pertsiya400-150x150.jpeg",
+                    "time": "10:00",
+                    "title": "\u0406\u0433\u043e\u0440 \u041f\u0435\u0440\u0446\u0456\u044f",
+                    "subtitle": "TA Ventures",
+                    "desc": "\u042f\u043a\u0438\u043c \u043c\u0430\u0454 \u0431\u0443\u0442\u0438 CEO, \u0449\u043e\u0431 \u0437\u0430\u043b\u0443\u0447\u0438\u0442\u0438 \u0456\u043d\u0432\u0435\u0441\u0442\u0438\u0446\u0456\u0457 \u0443 \u0441\u0432\u0456\u0439 \u0441\u0442\u0430\u0440\u0442\u0430\u043f",
+                    "size": 1,
+                    "custom": "<a href=\"\/speakers\/ihor-pertsiya\/#speech_1823\" class=\"streamer_event_link streamer_exclude_link\"><\/a><div class=\"streamer_event_checkbox\"><\/div>",
+                    "selected": 0,
+                    "closed": false,
+                    "data": {
+                        "id": 1823,
+                        "end": "10:20",
+                        "room": "Main Stage",
+                        "color": "#00bcd4"
+                    },
+                    "closedIcon": "",
+                    "openIcon": "",
+                    "cls": "metro_streamer_event_1823 metro_streamer_224"
+                }
+            ]
+        },
+        {
+            "title": "\u0420\u0435\u043a\u043b\u0430\u043c\u0430 \u0456 \u043f\u0440\u043e\u0441\u0443\u0432\u0430\u043d\u043d\u044f",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1710 fg-white",
+            "data": "",
+            "events": [
+                {
+                    "icon": "http:\/\/2020-new-iforum\/wp-content\/uploads\/2020\/02\/Pertsiya400-150x150.jpeg",
+                    "time": "14:00",
+                    "title": "\u0406\u0433\u043e\u0440 \u041f\u0435\u0440\u0446\u0456\u044f",
+                    "subtitle": "TA Ventures",
+                    "desc": "TBA",
+                    "size": 1,
+                    "custom": "<a href=\"\/speakers\/ihor-pertsiya\/#speech_1824\" class=\"streamer_event_link streamer_exclude_link\"><\/a><div class=\"streamer_event_checkbox\"><\/div>",
+                    "selected": 0,
+                    "closed": false,
+                    "data": {
+                        "id": 1824,
+                        "end": "14:20",
+                        "room": "\u0420\u0435\u043a\u043b\u0430\u043c\u0430 \u0456 \u043f\u0440\u043e\u0441\u0443\u0432\u0430\u043d\u043d\u044f",
+                        "color": "#ff9800"
+                    },
+                    "closedIcon": "",
+                    "openIcon": "",
+                    "cls": "metro_streamer_event_1824 metro_streamer_269"
+                }
+            ]
+        },
+        {
+            "title": "\u0406\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0456\u0457",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1711 fg-white",
+            "data": "",
+            "events": [
+                {
+                    "icon": "http:\/\/2020-new-iforum\/wp-content\/uploads\/2020\/02\/Koldovsky400-150x150.jpg",
+                    "time": "10:00",
+                    "title": "\u0412'\u044f\u0447\u0435\u0441\u043b\u0430\u0432  \u041a\u043e\u043b\u0434\u043e\u0432\u0441\u044c\u043a\u0438\u0439",
+                    "subtitle": "SoftServe",
+                    "desc": "Web Development 2020: \u043f\u043e\u0442\u043e\u0447\u043d\u0438\u0439 \u0441\u0442\u0430\u043d \u0441\u043f\u0440\u0430\u0432 \u0442\u0430 \u043e\u0441\u043d\u043e\u0432\u043d\u0456 \u0442\u0440\u0435\u043d\u0434\u0438",
+                    "size": 2,
+                    "custom": "<a href=\"\/speakers\/vyacheslav-koldovskyi\/#speech_1819\" class=\"streamer_event_link streamer_exclude_link\"><\/a><div class=\"streamer_event_checkbox\"><\/div>",
+                    "selected": 0,
+                    "closed": false,
+                    "data": {
+                        "id": 1819,
+                        "end": "10:40",
+                        "room": "\u0406\u043d\u0442\u0435\u0440\u043d\u0435\u0442-\u0442\u0435\u0445\u043d\u043e\u043b\u043e\u0433\u0456\u0457",
+                        "color": "#e53935"
+                    },
+                    "closedIcon": "",
+                    "openIcon": "",
+                    "cls": "metro_streamer_event_1819 metro_streamer_482"
+                }
+            ]
+        },
+        {
+            "title": "\u041c\u0430\u0439\u0431\u0443\u0442\u043d\u0454 ",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1712 fg-white",
+            "data": "",
+            "events": []
+        },
+        {
+            "title": "\u0421\u0442\u0430\u0440\u0442\u0430\u043f\u0438 \/ \u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0443\u0439 \u0446\u0435",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1713 fg-white",
+            "data": "",
+            "events": [
+                {
+                    "icon": "http:\/\/2020-new-iforum\/wp-content\/uploads\/2020\/02\/Shpak400-150x150.jpg",
+                    "time": "14:30",
+                    "title": "\u041d\u0430\u0442\u0430\u043b\u0456\u044f \u0428\u043f\u0430\u043a",
+                    "subtitle": "GoodSales",
+                    "desc": "\u041a\u043e\u043b\u0438, \u041d\u0430\u0432\u0456\u0449\u043e \u0456 \u0429\u043e \u043f\u043e\u0442\u0440\u0456\u0431\u043d\u043e \u0430\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0443\u0432\u0430\u0442\u0438 \u043d\u0430 \u0440\u0456\u0437\u043d\u0438\u0445 \u0435\u0442\u0430\u043f\u0430\u0445 \u0436\u0438\u0442\u0442\u044f \u043a\u043e\u043c\u043f\u0430\u043d\u0456\u0457",
+                    "size": "half",
+                    "custom": "<a href=\"\/speakers\/natalia-shpak\/#speech_1822\" class=\"streamer_event_link streamer_exclude_link\"><\/a><div class=\"streamer_event_checkbox\"><\/div>",
+                    "selected": 0,
+                    "closed": false,
+                    "data": {
+                        "id": 1822,
+                        "end": "14:50",
+                        "room": "\u0410\u0432\u0442\u043e\u043c\u0430\u0442\u0438\u0437\u0443\u0439 \u0446\u0435",
+                        "color": "#3949ab"
+                    },
+                    "closedIcon": "",
+                    "openIcon": "",
+                    "cls": "metro_streamer_event_1822 metro_streamer_485"
+                }
+            ]
+        },
+        {
+            "title": "Digital Fun",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1714 fg-white",
+            "data": "",
+            "events": []
+        },
+        {
+            "title": "\u041c\u0435\u0434\u0456\u0430",
+            "secondary": "",
+            "icon": "",
+            "cls": "metro_streamer_stream_bg_1790 fg-white",
+            "data": "",
+            "events": []
+        }
+    ],
+    "global": {
+        "before": [],
+        "after": []
+    }
+}

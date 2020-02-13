@@ -13,6 +13,8 @@
 + [x] Table: add support `formatMask` for fields defined in table head `thead`
 + [x] ResetCSS: remove duplicate declarations
 + [x] Toast: add global setup. Related to issue #1493
++ [x] Streamer: now you can can set event time up to a minute
++ [x] Streamer: now you can use for event size `half` and `one-third` constants 
 
 ### 4.3.5
 ##### M4Q
