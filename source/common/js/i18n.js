@@ -119,12 +119,12 @@ var Locales = {
             ],
             "days": [
                 "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
-                "Sn", "Mn", "Di", "Mi", "Do", "Fr", "Sa",
+                "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
                 "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
             ],
             "time": {
                 "days": "TAGE",
-                "hours": "UHR",
+                "hours": "STD",
                 "minutes": "MIN",
                 "seconds": "SEK"
             }
@@ -135,12 +135,12 @@ var Locales = {
             "done": "Fertig",
             "today": "Heute",
             "now": "Jetzt",
-            "clear": "Reinigen",
+            "clear": "Löschen",
             "help": "Hilfe",
             "yes": "Ja",
             "no": "Nein",
             "random": "Zufällig",
-            "save": "Sparen",
+            "save": "Speichern",
             "reset": "Zurücksetzen"
         }
     },
@@ -292,7 +292,7 @@ var Locales = {
             ],
             "days": [
                 "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
-                "De", "Du", "Ma", "Me", "Je", "Ve", "Sa",
+                "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
                 "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
             ],
             "time": {
