@@ -1,0 +1,28 @@
+{
+	"header": {}, 
+	"template": "<a href='<%this.student_id%>/'><div class='icon-box bg-amber'><div class='cover bg-darkAmber fg-white'><img height=90px width=90px src='<%this.img_src%>' alt='Student Image'></div><div class='content p-2 student-surname'><div><%this.student_surname%>,<br><%this.student_forename%></div><div class='text-upper text-bold text-lead'><%this.student_dob%></div></div></div></a>",
+	"data": [
+		{			
+			"img_src": "/static/sims/img/student.png",
+			"student_dob": "2008-04-06", 
+			"student_surname": "Blogeena", 
+			"student_id": 61, 
+			"student_forename": "Josephine"
+		}, 
+		{
+			"student_dob": "2006-03-12", 
+			"img_src": "/static/sims/img/student.png", 
+			"student_surname": "Doe", 
+			"student_id": 54, 
+			"student_forename": 
+			"Jane"
+		}, 
+		{
+			"student_dob": "2003-07-08", 
+			"img_src": "/static/sims/img/student.png", 
+			"student_surname": "Bloggs", 
+			"student_id": 47, 
+			"student_forename": "Joe"
+		}
+	]
+}

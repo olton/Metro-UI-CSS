@@ -133,7 +133,7 @@
         -webkit-overflow-scrolling: auto;
     }
 
-    .streamer-timeline {
+    .streamer-timeline, .streamer-fake-timeline {
         height: 32px;
         width: auto;
         list-style: none inside;
@@ -145,6 +145,7 @@
 
         li {
             flex-shrink: 0;
+            flex-grow: 0;
             width: @streamItemWidth;
             background: url(@streamerTimelineImage) no-repeat;
             vertical-align: bottom;
@@ -152,6 +153,7 @@
             line-height: 30px;
             display: flex;
             flex-flow: row nowrap;
+            position: relative;
 
             em {
                 font-size: 10px;
@@ -160,6 +162,24 @@
                 flex: 1 0 0;
                 max-width: 100%;
             }
+        }
+    }
+
+    .streamer-fake-timeline {
+        position: absolute;
+        height: 1px;
+        top: 0;
+        left: 0;
+        width: 100%;
+
+        li {
+            width: auto;
+            line-height: 1px;
+            flex-shrink: 0;
+            flex-grow: 0;
+            overflow: hidden;
+            text-align: center;
+            color: #fcfcfc;
         }
     }
 
@@ -335,6 +355,21 @@
             .generate-size(@i, @k + 1);
         }
         .generate-size(20);
+    }
+
+    .stream-event {
+        &.size-half {
+            width: @streamItemWidth / 2;
+        }
+        &.size-one-third {
+            width: @streamItemWidth / 3;
+        }
+        &.offset-half {
+            margin-left: @streamItemWidth / 2;
+        }
+        &.offset-one-third {
+            margin-left: @streamItemWidth / 3;
+        }
     }
 }
 
