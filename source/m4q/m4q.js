@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 30/01/2020 15:32:09";
+var m4qVersion = "v1.0.6. Built at 14/02/2020 19:08:43";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -2019,7 +2019,7 @@ $.ajax = function(p){
             });
         }
         if (!isGet(method)) {
-            if (headers.indexOf("Content-type") === -1) {
+            if (headers.indexOf("Content-type") === -1 && p.contentType !== false) {
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
             }
         }

@@ -2,6 +2,7 @@
 ##### M4Q
 + [x] M4Q: upd to `1.0.6`
 + [x] M4Q Init: fix minor bug for creating elements in context
++ [x] M4Q Ajax: add parameter `contentType`. If this param has value `false`, `Content-type` can't be defined.
 
 ##### Metro 4
 + [x] ColorJS: fix functions `RGB`, `RGBA`
@@ -13,7 +14,7 @@
 + [x] Table: add support `formatMask` for fields defined in table head `thead`
 + [x] ResetCSS: remove duplicate declarations
 + [x] Toast: add global setup. Related to issue #1493
-+ [x] Streamer: now you can can set event time up to a minute
++ [x] Streamer: now you can set event time up to a minute
 + [x] Streamer: now you can use for event size `half` and `one-third` constants
 + [x] Streamer: add events `onDrawEvent`, `onDrawGlobalEvent`, `onDrawStream` 
 
