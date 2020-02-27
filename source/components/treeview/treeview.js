@@ -121,7 +121,7 @@ var TreeView = {
             icon = node.data("icon");
 
             if (caption !== undefined) {
-                if (node.children("ul").length > 0) {
+                if (node.children("ul").length > 0 && o.showChildCount === true) {
                     caption += " ("+node.children("ul").children("li").length+")"
                 }
                 node.prepend(that._createCaption(caption));
