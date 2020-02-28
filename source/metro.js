@@ -368,6 +368,8 @@ var Metro = {
         var hotkeys = $("[data-hotkey]");
         var html = $("html");
 
+        if (METRO_SHOW_ABOUT) Metro.about(true);
+
         if (isTouch === true) {
             html.addClass("metro-touch-device");
         } else {
@@ -387,8 +389,6 @@ var Metro = {
 
         Metro.initHotkeys(hotkeys);
         Metro.initWidgets(widgets, "init");
-
-        if (METRO_SHOW_ABOUT) Metro.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");

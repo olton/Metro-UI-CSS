@@ -17,6 +17,8 @@
 + [x] Streamer: now you can set event time up to a minute
 + [x] Streamer: now you can use for event size `half` and `one-third` constants
 + [x] Streamer: add events `onDrawEvent`, `onDrawGlobalEvent`, `onDrawStream` 
++ [x] TreeView: fix attribute `data-show-child-count`
++ [x] CalendarPicker: add attribute `data-value` to set init input value, issue #1506
 
 ### 4.3.5
 ##### M4Q

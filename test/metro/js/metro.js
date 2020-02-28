@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.6  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/02/2020 18:42:13
+ * Built at 28/02/2020 21:47:21
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.6",
-    compileTime: "27/02/2020 18:42:20",
+    compileTime: "28/02/2020 21:47:32",
     buildNumber: "744",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4034,6 +4034,8 @@ var Metro = {
         var hotkeys = $("[data-hotkey]");
         var html = $("html");
 
+        if (METRO_SHOW_ABOUT) Metro.about(true);
+
         if (isTouch === true) {
             html.addClass("metro-touch-device");
         } else {
@@ -4053,8 +4055,6 @@ var Metro = {
 
         Metro.initHotkeys(hotkeys);
         Metro.initWidgets(widgets, "init");
-
-        if (METRO_SHOW_ABOUT) Metro.about(true);
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
@@ -9645,6 +9645,7 @@ $(document).on(Metro.events.click, function(e){
 Metro.plugin('calendar', Calendar);
 
 var CalendarPickerDefaultConfig = {
+    value:'',
     calendarpickerDeferred: 0,
     nullValue: true,
     useNow: false,
@@ -9763,15 +9764,17 @@ var CalendarPicker = {
         var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
-        var curr = element.val().trim();
+        var curr;
         var id = Utils.elementId("calendarpicker");
         var body = $("body");
 
         container.attr("id", id);
 
-        if (element.attr("type") === undefined) {
-            element.attr("type", "text");
-        }
+        element.attr("type", "text");
+        element.attr("autocomplete", "off");
+        element.attr("readonly", true);
+
+        curr = (""+o.value).trim() !== '' ? o.value : element.val().trim();
 
         if (!Utils.isValue(curr)) {
             if (o.useNow) this.value = new Date();
@@ -9781,7 +9784,7 @@ var CalendarPicker = {
 
         if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
 
-        element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : this.value.format(o.format, o.locale));
+        element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale));
 
         container.insertBefore(element);
         element.appendTo(container);
@@ -9881,7 +9884,6 @@ var CalendarPicker = {
         }
 
         element[0].className = '';
-        element.attr("readonly", true);
 
         if (o.copyInlineStyles === true) {
             $.each(Utils.getInlineStyles(element), function(key, value){

@@ -1,4 +1,5 @@
 var CalendarPickerDefaultConfig = {
+    value:'',
     calendarpickerDeferred: 0,
     nullValue: true,
     useNow: false,
@@ -117,15 +118,17 @@ var CalendarPicker = {
         var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
         var buttons = $("<div>").addClass("button-group");
         var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
-        var curr = element.val().trim();
+        var curr;
         var id = Utils.elementId("calendarpicker");
         var body = $("body");
 
         container.attr("id", id);
 
-        if (element.attr("type") === undefined) {
-            element.attr("type", "text");
-        }
+        element.attr("type", "text");
+        element.attr("autocomplete", "off");
+        element.attr("readonly", true);
+
+        curr = (""+o.value).trim() !== '' ? o.value : element.val().trim();
 
         if (!Utils.isValue(curr)) {
             if (o.useNow) this.value = new Date();
@@ -135,7 +138,7 @@ var CalendarPicker = {
 
         if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
 
-        element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : this.value.format(o.format, o.locale));
+        element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale));
 
         container.insertBefore(element);
         element.appendTo(container);
@@ -235,7 +238,6 @@ var CalendarPicker = {
         }
 
         element[0].className = '';
-        element.attr("readonly", true);
 
         if (o.copyInlineStyles === true) {
             $.each(Utils.getInlineStyles(element), function(key, value){
