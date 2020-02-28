@@ -374,8 +374,9 @@ var CalendarPicker = {
 
         if (Utils.isDate(v, o.inputFormat) === true) {
             Metro.getPlugin(this.calendar[0],"calendar").clearSelected();
-            this.value = typeof v === 'string' ? v.toDate(o.inputFormat, o.locale) : v;
-            element.val(this.value.format(o.format));
+            this.value = typeof v === 'string' ? o.inputFormat ? v.toDate(o.inputFormat, o.locale) : new Date(v) : v;
+            if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
+            element.val(this.value.format(o.format, o.locale));
             element.trigger("change");
         }
     },
@@ -426,7 +427,7 @@ var CalendarPicker = {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element;
+        var that = this, element = this.element, o = this.options;
         var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
         var changeAttrLocale = function(){
@@ -453,6 +454,10 @@ var CalendarPicker = {
             that.val(element.attr("value"));
         };
 
+        var changeDataValue = function(){
+            that.val(element.attr("data-value"))
+        };
+
         switch (attributeName) {
             case "value": changeAttrValue(); break;
             case 'disabled': this.toggleState(); break;
@@ -461,6 +466,7 @@ var CalendarPicker = {
             case 'data-exclude': changeAttrExclude(); break;
             case 'data-min-date': changeAttrMinDate(); break;
             case 'data-max-date': changeAttrMaxDate(); break;
+            case 'data-value': changeDataValue(); break;
         }
     },
 
