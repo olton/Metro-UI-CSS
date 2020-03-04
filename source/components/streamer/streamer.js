@@ -1,6 +1,7 @@
 var StreamerDefaultConfig = {
     streamerDeferred: 0,
-    wheel: false,
+    wheel: true,
+    wheelStep: 20,
     duration: METRO_ANIMATION_DURATION,
     defaultClosedIcon: "",
     defaultOpenIcon: "",
@@ -432,6 +433,19 @@ var Streamer = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
+        function disableScroll() {
+            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+            window.onscroll = function() {
+                window.scrollTo(scrollLeft, scrollTop);
+            };
+        }
+
+        function enableScroll() {
+            window.onscroll = function() {};
+        }
+
         element.off(Metro.events.click, ".stream-event").on(Metro.events.click, ".stream-event", function(e){
             var event = $(this);
 
@@ -522,26 +536,33 @@ var Streamer = {
         });
 
         if (o.wheel === true) {
-            element.find(".events-area").off(Metro.events.mousewheel);
-            element.find(".events-area").on(Metro.events.mousewheel, function(e) {
-                var scroll, scrollable = $(this);
-                var ev = e.originalEvent;
-                var dir = ev.deltaY < 0 ? -1 : 1;
-                var step = 100;
+            element.find(".events-area")
+                .off(Metro.events.mousewheel)
+                .on(Metro.events.mousewheel, function(e) {
 
-                if (ev.deltaY === undefined) {
+                if (e.deltaY === undefined) {
                     return ;
                 }
+
+                var scroll, scrollable = $(this);
+                var dir = e.deltaY > 0 ? -1 : 1;
+                var step = o.wheelStep;
+
 
                 scroll = scrollable.scrollLeft() - ( dir * step);
                 scrollable.scrollLeft(scroll);
 
-                ev.preventDefault();
+            });
+
+            element.find(".events-area").off("mouseenter").on("mouseenter", function(e) {
+                disableScroll();
+            });
+            element.find(".events-area").off("mouseleave").on("mouseleave", function(e) {
+                enableScroll();
             });
         }
 
-        element.find(".events-area").last().off("scroll");
-        element.find(".events-area").last().on("scroll", function(e){
+        element.find(".events-area").last().off("scroll").on("scroll", function(e){
             that._fireScroll();
         });
 
