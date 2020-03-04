@@ -19,6 +19,9 @@
 + [x] Streamer: add events `onDrawEvent`, `onDrawGlobalEvent`, `onDrawStream` 
 + [x] TreeView: fix attribute `data-show-child-count`
 + [x] CalendarPicker: add attribute `data-value` to set init input value, issue #1506
++ [x] Streamer: `data-wheel` now true by default
++ [x] Streamer: add attribute `data-wheel-step` to define scroll step for horizontal scrolling with mouse
++ [x] Streamer: fix horizontal scrolling with mouse. 
 
 ### 4.3.5
 ##### M4Q
