@@ -1550,6 +1550,8 @@ var Table = {
                 case "money": result = Utils.parseMoney(result); break;
                 case "card": result = Utils.parseCard(result); break;
                 case "phone": result = Utils.parsePhone(result); break;
+                case "url": result = `<a href="${result}">${result}</a>`; break;
+                case "mail": result = `<a href="mailto:${result}">${result}</a>`; break;
             }
         }
 
