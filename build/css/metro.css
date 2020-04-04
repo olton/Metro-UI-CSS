@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 15/03/2020 12:01:37
+ * Built at 04/04/2020 17:56:26
  * Licensed under MIT
  */
 html,
@@ -26879,6 +26879,12 @@ input.input-large:-ms-input-placeholder {
 }
 .input.input-small input:-ms-input-placeholder {
   font-size: 0.8rem;
+}
+.input.input-small .append,
+.input.input-small .prepend {
+  height: 26px;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
 }
 input.input-small {
   height: 26px;
