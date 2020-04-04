@@ -1,5 +1,6 @@
 ### 4.3.7
-
+#### Metro 4
++ [x] Input: fix append size and padding, issue #1512
 
 ### 4.3.6
 ##### M4Q
