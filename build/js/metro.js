@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/04/2020 17:56:33
+ * Built at 04/04/2020 19:08:03
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "04/04/2020 17:56:41",
+    compileTime: "04/04/2020 19:08:11",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21147,6 +21147,62 @@ if (typeof window["metroRippleSetup"] !== undefined) {
     Metro.rippleSetup(window["metroRippleSetup"]);
 }
 
+var getRipple = function(target, color, alpha, event){
+    var el = target ? $(target) : this.element;
+    var timer = null;
+    var rect = el[0].getBoundingClientRect();
+    var x, y;
+
+    if (!Utils.isValue(color)) {
+        color = "#fff";
+    }
+
+    if (!Utils.isValue(alpha)) {
+        alpha = .4;
+    }
+
+    if (el.css('position') === 'static') {
+        el.css('position', 'relative');
+    }
+
+    el.css({
+        overflow: 'hidden'
+    });
+
+    $(".ripple").remove();
+
+    var size = Math.max(el.outerWidth(), el.outerHeight());
+
+    // Add the element
+    var ripple = $("<span class='ripple'></span>").css({
+        width: size,
+        height: size
+    });
+
+    el.prepend(ripple);
+
+    // Get the center of the element
+    if (event) {
+        x = event.pageX - el.offset().left - ripple.width()/2;
+        y = event.pageY - el.offset().top - ripple.height()/2;
+    } else {
+        x = rect.x - el.offset().left;
+        y = rect.y - el.offset().top;
+    }
+
+    ripple.css({
+        background: Utils.hex2rgba(color, alpha),
+        width: size,
+        height: size,
+        top: y + 'px',
+        left: x + 'px'
+    }).addClass("rippleEffect");
+    timer = setTimeout(function(){
+        timer = null;
+        ripple.remove();
+    }, 400);
+};
+
 var Ripple = {
     name: "Ripple",
 
@@ -21176,52 +21232,13 @@ var Ripple = {
     },
 
     _create: function(){
-        var element = this.element, o = this.options;
-
+        var that = this, element = this.element, o = this.options;
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
         Metro.checkRuntime(element, "ripple");
 
         element.on(Metro.events.click, target, function(e){
-            var el = $(this);
-            var timer = null;
-
-            if (el.css('position') === 'static') {
-                el.css('position', 'relative');
-            }
-
-            el.css({
-                overflow: 'hidden'
-            });
-
-            $(".ripple").remove();
-
-            var size = Math.max(el.outerWidth(), el.outerHeight());
-
-            // Add the element
-            var ripple = $("<span class='ripple'></span>").css({
-                width: size,
-                height: size
-            });
-
-            el.prepend(ripple);
-
-            // Get the center of the element
-            var x = e.pageX - el.offset().left - ripple.width()/2;
-            var y = e.pageY - el.offset().top - ripple.height()/2;
-
-            // Add the ripples CSS and start the animation
-            ripple.css({
-                background: Utils.hex2rgba(o.rippleColor, o.rippleAlpha),
-                width: size,
-                height: size,
-                top: y + 'px',
-                left: x + 'px'
-            }).addClass("rippleEffect");
-            timer = setTimeout(function(){
-                timer = null;
-                $(".ripple").remove();
-            }, 400);
+            getRipple(this, o.rippleColor, o.rippleAlpha, e);
         });
 
         Utils.exec(o.onRippleCreate, null, element[0]);
@@ -21229,7 +21246,28 @@ var Ripple = {
     },
 
     changeAttribute: function(attributeName){
+        var element = this.element, o = this.options;
 
+        function changeColor(){
+            var color = element.attr("data-ripple-color");
+            if (!Utils.isColor(color)) {
+                return;
+            }
+            o.rippleColor = color;
+        }
+
+        function changeAlpha(){
+            var alpha = +element.attr("data-ripple-alpha");
+            if (isNaN(alpha)) {
+                return;
+            }
+            o.rippleColor = alpha;
+        }
+
+        switch (attributeName) {
+            case "data-ripple-color": changeColor(); break;
+            case "data-ripple-alpha": changeAlpha(); break;
+        }
     },
 
     destroy: function(){
@@ -21240,6 +21278,7 @@ var Ripple = {
 };
 
 Metro.plugin('ripple', Ripple);
+Metro.ripple = getRipple;
 
 var SelectDefaultConfig = {
     selectDeferred: 0,
