@@ -1,9 +1,30 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/04/2020 11:53:44
+ * Built at 05/04/2020 17:33:11
  * Licensed under MIT
  */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+html {
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  font-family: sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  line-height: 1.5;
+  overflow-x: hidden;
+  background-color: #ffffff;
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+}
 html,
 body,
 div,
@@ -103,16 +124,6 @@ nav,
 section {
   display: block;
 }
-body {
-  line-height: 1;
-  overflow-x: hidden;
-  background-color: #ffffff;
-  min-height: 100vh;
-}
-ol,
-ul {
-  list-style: none;
-}
 blockquote,
 q {
   quotes: none;
@@ -139,19 +150,6 @@ noembed,
 param,
 template {
   display: none;
-}
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-}
-html {
-  -ms-overflow-style: scrollbar;
-  -webkit-tap-highlight-color: transparent;
-  -webkit-text-size-adjust: 100%;
-  -ms-text-size-adjust: 100%;
-  font-family: sans-serif;
 }
 [tabindex="-1"]:focus {
   outline: none !important;
@@ -207,9 +205,36 @@ svg:not(:root) {
 img {
   vertical-align: middle;
   border-style: none;
+  max-width: 100%;
+  display: block;
+}
+img:not([alt]) {
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
 }
 div {
   position: relative;
+}
+article > * + * {
+  margin-top: 1em;
+}
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
+    -webkit-transition-duration: 0.01ms !important;
+         -o-transition-duration: 0.01ms !important;
+            transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 .m4-cloak {
   opacity: 0;
@@ -16356,7 +16381,7 @@ code {
 pre code {
   white-space: inherit;
 }
-a {
+a:not([class]) {
   position: relative;
   color: #0366d6;
   text-decoration: none;
@@ -16365,20 +16390,18 @@ a {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-a:hover {
+a:not([class]):hover {
   color: #0056b3;
   text-decoration: underline;
 }
-a:not([href]):not([tabindex]) {
+a:not([class]):not([href]):not([tabindex]) {
   color: inherit;
   text-decoration: none;
 }
-a:not([href]):not([tabindex]):focus,
-a:not([href]):not([tabindex]):hover {
+a:not([class]):not([href]):not([tabindex]):focus,
+a:not([class]):not([href]):not([tabindex]):hover {
   color: inherit;
   text-decoration: none;
-}
-a:not([href]):not([tabindex]):focus {
   outline: 0;
 }
 .no-decor {
@@ -16423,9 +16446,6 @@ dir {
 ol {
   list-style-type: decimal;
 }
-li.no-style {
-  list-style-type: none;
-}
 ul ul {
   list-style: circle;
 }
@@ -16440,44 +16460,6 @@ ol ol {
 }
 ol ol ol {
   list-style-type: lower-alpha;
-}
-ol.decimal {
-  list-style-type: decimal;
-}
-ol.roman-upper {
-  list-style-type: upper-roman;
-}
-ol.roman-lower {
-  list-style-type: lower-roman;
-}
-ol.alpha-upper {
-  list-style-type: upper-alpha;
-}
-ol.alpha-lower {
-  list-style-type: lower-alpha;
-}
-ol.latin-upper {
-  list-style-type: upper-latin;
-}
-ol.latin-lower {
-  list-style-type: lower-latin;
-}
-ul.unstyled-list,
-ol.unstyled-list {
-  list-style: none inside;
-  margin-left: 0;
-}
-.inline-list {
-  list-style: none;
-  padding-left: 0;
-  margin-left: 0;
-}
-.inline-list li {
-  display: inline-block;
-  margin-right: 0.625rem;
-}
-.inline-list li:last-child {
-  margin-right: 0;
 }
 dl dt,
 dl dd {
@@ -17804,6 +17786,46 @@ pre code {
 .group-list.horizontal > li + li {
   border-top: none;
   border-left: 1px solid #dfdfdf;
+}
+.inline-list {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+.inline-list li {
+  display: inline-block;
+  margin-right: 0.625rem;
+}
+.inline-list li:last-child {
+  margin-right: 0;
+}
+.unstyled-list {
+  list-style: none inside;
+  margin-left: 0;
+}
+ol.decimal {
+  list-style-type: decimal;
+}
+ol.roman-upper {
+  list-style-type: upper-roman;
+}
+ol.roman-lower {
+  list-style-type: lower-roman;
+}
+ol.alpha-upper {
+  list-style-type: upper-alpha;
+}
+ol.alpha-lower {
+  list-style-type: lower-alpha;
+}
+ol.latin-upper {
+  list-style-type: upper-latin;
+}
+ol.latin-lower {
+  list-style-type: lower-latin;
+}
+.no-style {
+  list-style-type: none;
 }
 input[type=text],
 input[type=password],

@@ -6,6 +6,8 @@
 + [x] Table: add `skip to page` functionality, issue #1511
 + [x] Table: add attributes `data-show-skip`, `data-table-skip-title`, `data-skip-wrapper`, `data-cls-table-skip`, `data-cls-table-skip-input`, `data-cls-table-skip-button`
 + [x] Table: add event `data-on-skip`
++ [x] Lists: optimize
++ [x] Reset: optimize
 
 ### 4.3.6
 ##### M4Q

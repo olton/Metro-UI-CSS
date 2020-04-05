@@ -204,32 +204,31 @@ pre code {
     white-space: inherit;
 }
 
-a {
+a:not([class]) {
     position: relative;
     color: @linkColor;
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
     box-shadow: none;
+
+    &:hover {
+        color: @linkColorHover;
+        text-decoration: underline;
+    }
 }
 
-a:hover {
-    color: @linkColorHover;
-    text-decoration: underline;
-}
-
-a:not([href]):not([tabindex]) {
+a:not([class]):not([href]):not([tabindex]) {
     color: inherit;
     text-decoration: none;
 }
 
-a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
-    color: inherit;
-    text-decoration: none;
-}
-
-a:not([href]):not([tabindex]):focus {
-    outline: 0;
+a:not([class]):not([href]):not([tabindex]) {
+    &:focus, &:hover {
+        color: inherit;
+        text-decoration: none;
+        outline: 0;
+    }
 }
 
 .no-decor {
@@ -270,10 +269,6 @@ ol {
     list-style-type: decimal;
 }
 
-li.no-style {
-        list-style-type: none;
-}
-
 ul {
     ul {
         list-style: circle;
@@ -285,41 +280,10 @@ ul {
 
 ol {
     list-style-type: upper-roman;
-
     ol {
         list-style-type: decimal;
         ol {
             list-style-type: lower-alpha;
-        }
-    }
-}
-
-ol {
-    &.decimal {list-style-type: decimal;}
-    &.roman-upper {list-style-type: upper-roman;}
-    &.roman-lower {list-style-type: lower-roman;}
-    &.alpha-upper {list-style-type: upper-alpha;}
-    &.alpha-lower {list-style-type: lower-alpha;}
-    &.latin-upper {list-style-type: upper-latin;}
-    &.latin-lower {list-style-type: lower-latin;}
-}
-
-ul, ol {
-    &.unstyled-list {
-        list-style: none inside;
-        margin-left: 0;
-    }
-}
-
-.inline-list {
-    list-style: none;
-    padding-left: 0;
-    margin-left: 0;
-    li {
-        display: inline-block;
-        margin-right: .625rem;
-        &:last-child {
-            margin-right: 0;
         }
     }
 }
