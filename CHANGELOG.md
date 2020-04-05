@@ -2,6 +2,7 @@
 #### Metro 4
 + [x] Input: fix append size and padding, issue #1512
 + [x] Ripple: added ripple call for any element, issue #1515
++ [x] Splitter: added event `onResizeWindow`. Setup this event with prop `data-on-resize-window` or event `$(...).on('resizewindow', ...)`
 
 ### 4.3.6
 ##### M4Q

@@ -10,6 +10,7 @@ var SplitterDefaultConfig = {
     onResizeStart: Metro.noop,
     onResizeStop: Metro.noop,
     onResizeSplit: Metro.noop,
+    onResizeWindow: Metro.noop,
     onSplitterCreate: Metro.noop
 };
 
@@ -30,6 +31,7 @@ var Splitter = {
         this.element = $(elem);
         this.storage = Utils.isValue(Metro.storage) ? Metro.storage : null;
         this.storageKey = "SPLITTER:";
+        this.id = Utils.elementId("splitter");
 
         this._setOptionsFromDOM();
         Metro.createExec(this);
@@ -68,10 +70,6 @@ var Splitter = {
         var children = element.children(o.children).addClass("split-block");
         var i, children_sizes = [];
         var resizeProp = o.splitMode === "horizontal" ? "width" : "height";
-
-        if (!Utils.isValue(element.attr("id"))) {
-            element.attr("id", Utils.elementId("splitter"));
-        }
 
         element.addClass("splitter");
         if (o.splitMode.toLowerCase() === "vertical") {
@@ -127,7 +125,6 @@ var Splitter = {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var gutters = element.children(".gutter");
-        var id = element.attr("id");
 
         gutters.on(Metro.events.startAll, function(e){
             var w = o.splitMode === "horizontal" ? element.width() : element.height();
@@ -172,7 +169,7 @@ var Splitter = {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
-            }, {ns: id});
+            }, {ns: that.id});
 
             $(window).on(Metro.events.stopAll, function(e){
                 var cur_pos;
@@ -185,8 +182,8 @@ var Splitter = {
 
                 gutter.removeClass("active");
 
-                $(window).off(Metro.events.moveAll,{ns: id});
-                $(window).off(Metro.events.stopAll,{ns: id});
+                $(window).off(Metro.events.moveAll,{ns: that.id});
+                $(window).off(Metro.events.stopAll,{ns: that.id});
 
                 cur_pos = Utils.getCursorPosition(element[0], e);
 
@@ -197,13 +194,28 @@ var Splitter = {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
-            }, {ns: id})
+            }, {ns: that.id})
         });
+
+        $(window).on(Metro.events.resize, function(e){
+            var gutter = element.children(".gutter");
+            var prev_block = gutter.prev(".split-block");
+            var next_block = gutter.next(".split-block");
+            // var prev_block_size = 100 * (o.splitMode === "horizontal" ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
+            // var next_block_size = 100 * (o.splitMode === "horizontal" ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
+
+            Utils.exec(o.onResizeWindow, [prev_block[0], next_block[0]], element[0]);
+            element.fire("resizewindow", {
+                prevBlock: prev_block[0],
+                nextBlock: next_block[0]
+            });
+        }, {ns: that.id});
     },
 
     _saveSize: function(){
         var element = this.element, o = this.options;
         var storage = this.storage, itemsSize = [];
+        var id = element.attr("id") || this.id;
 
         if (o.saveState === true && storage !== null) {
 
@@ -212,7 +224,7 @@ var Splitter = {
                 itemsSize.push(item.css("flex-basis"));
             });
 
-            storage.setItem(this.storageKey + element.attr("id"), itemsSize);
+            storage.setItem(this.storageKey + id, itemsSize);
         }
 
     },
@@ -220,10 +232,11 @@ var Splitter = {
     _getSize: function(){
         var element = this.element, o = this.options;
         var storage = this.storage, itemsSize = [];
+        var id = element.attr("id") || this.id;
 
         if (o.saveState === true && storage !== null) {
 
-            itemsSize = storage.getItem(this.storageKey + element.attr("id"));
+            itemsSize = storage.getItem(this.storageKey + id);
 
             $.each(element.children(".split-block"), function(i, v){
                 var item = $(v);
