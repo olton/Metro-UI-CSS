@@ -936,7 +936,7 @@ var Table = {
         var id = element.attr("id");
 
         skip_button.on(Metro.events.click, function(){
-            var skipTo = +skip_input.val().trim();
+            var skipTo = parseInt(skip_input.val().trim());
 
             if (isNaN(skipTo) || skipTo <=0 || skipTo > that.pagesCount) {
                 skip_input.val('');
