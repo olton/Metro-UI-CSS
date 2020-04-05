@@ -209,3 +209,35 @@
 
     }
 }
+
+.inline-list {
+    list-style: none;
+    padding-left: 0;
+    margin-left: 0;
+    li {
+        display: inline-block;
+        margin-right: .625rem;
+        &:last-child {
+            margin-right: 0;
+        }
+    }
+}
+
+.unstyled-list {
+    list-style: none inside;
+    margin-left: 0;
+}
+
+ol {
+    &.decimal {list-style-type: decimal;}
+    &.roman-upper {list-style-type: upper-roman;}
+    &.roman-lower {list-style-type: lower-roman;}
+    &.alpha-upper {list-style-type: upper-alpha;}
+    &.alpha-lower {list-style-type: lower-alpha;}
+    &.latin-upper {list-style-type: upper-latin;}
+    &.latin-lower {list-style-type: lower-latin;}
+}
+
+.no-style {
+    list-style-type: none;
+}

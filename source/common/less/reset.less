@@ -1,3 +1,26 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    line-height: 1.5;
+    overflow-x: hidden;
+    background-color: #ffffff;
+    min-height: 100vh;
+    text-rendering: optimizeSpeed;
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -22,17 +45,6 @@ footer, header, hgroup, menu, nav, section {
     display: block;
 }
 
-body {
-    line-height: 1;
-    overflow-x: hidden;
-    background-color: #ffffff;
-    min-height: 100vh;
-}
-
-ol, ul {
-    list-style: none;
-}
-
 blockquote, q {
     quotes: none;
 }
@@ -50,20 +62,6 @@ table {
 base, basefont, datalist, head, meta, script, style, title,
 noembed, param, template {
     display: none;
-}
-
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
-html {
-    -ms-overflow-style: scrollbar;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    font-family: sans-serif;
 }
 
 [tabindex="-1"]:focus {
@@ -130,8 +128,34 @@ svg:not(:root) {
 img {
     vertical-align: middle;
     border-style: none;
+    max-width: 100%;
+    display: block;
+}
+
+img:not([alt]) {
+    filter: blur(10px);
 }
 
 div {
     position: relative;
+}
+
+article > * + * {
+    margin-top: 1em;
+}
+
+input,
+button,
+textarea,
+select {
+    font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
 }
