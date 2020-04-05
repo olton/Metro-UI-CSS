@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/04/2020 10:55:11
+ * Built at 05/04/2020 11:48:34
  * Licensed under MIT
  */
 html,
@@ -23671,7 +23671,8 @@ aside::after {
   margin-right: 0;
 }
 .table-info,
-.table-pagination {
+.table-pagination,
+.table-skip {
   -ms-flex-preferred-size: auto;
       flex-basis: auto;
 }
@@ -23940,6 +23941,19 @@ aside::after {
   top: 0;
   left: 0;
   z-index: 500;
+}
+.table-skip {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.table-skip input {
+  width: 220px;
 }
 .button,
 .flat-button {

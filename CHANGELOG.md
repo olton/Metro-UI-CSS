@@ -3,6 +3,9 @@
 + [x] Input: fix append size and padding, issue #1512
 + [x] Ripple: added ripple call for any element, issue #1515
 + [x] Splitter: added event `onResizeWindow`. Setup this event with prop `data-on-resize-window` or event `$(...).on('resizewindow', ...)`, issue #1516
++ [x] Table: add `skip to page` functionality, issue #1511
++ [x] Table: add attributes `data-show-skip`, `data-table-skip-title`, `data-skip-wrapper`, `data-cls-table-skip`, `data-cls-table-skip-input`, `data-cls-table-skip-button`
++ [x] Table: add event `data-on-skip`
 
 ### 4.3.6
 ##### M4Q

@@ -259,7 +259,7 @@
     margin-right: 0;
 }
 
-.table-info, .table-pagination {
+.table-info, .table-pagination, .table-skip {
     flex-basis: auto;
 }
 
@@ -408,4 +408,14 @@
     top: 0;
     left: 0;
     z-index: @zindex-absolute;
+}
+
+.table-skip {
+    display: flex;
+    position: relative;
+    flex-flow: row nowrap;
+
+    input {
+        width: 220px;
+    }
 }

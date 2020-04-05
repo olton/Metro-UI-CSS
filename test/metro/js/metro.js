@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/04/2020 10:55:17
+ * Built at 05/04/2020 11:48:41
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "05/04/2020 10:55:23",
+    compileTime: "05/04/2020 11:48:48",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -25307,6 +25307,7 @@ var TableDefaultConfig = {
     paginationShortMode: true,
     showActivity: true,
     muteTable: true,
+    showSkip: false,
 
     rows: 10,
     rowsSteps: "10,25,50,100",
@@ -25326,6 +25327,7 @@ var TableDefaultConfig = {
     paginationNextTitle: "Next",
     allRecordsTitle: "All",
     inspectorTitle: "Inspector",
+    tableSkipTitle: "Go to page",
 
     activityType: "cycle",
     activityStyle: "color",
@@ -25335,6 +25337,7 @@ var TableDefaultConfig = {
     rowsWrapper: null,
     infoWrapper: null,
     paginationWrapper: null,
+    skipWrapper: null,
 
     cellWrapper: false,
 
@@ -25364,6 +25367,9 @@ var TableDefaultConfig = {
     clsTablePagination: "",
 
     clsPagination: "",
+    clsTableSkip: "",
+    clsTableSkipInput: "",
+    clsTableSkipButton: "",
 
     clsEvenRow: "",
     clsOddRow: "",
@@ -25393,7 +25399,8 @@ var TableDefaultConfig = {
     onViewSave: Metro.noop,
     onViewGet: Metro.noop,
     onViewCreated: Metro.noop,
-    onTableCreate: Metro.noop
+    onTableCreate: Metro.noop,
+    onSkip: Metro.noop
 };
 
 Metro.tableSetup = function(options){
@@ -25423,6 +25430,7 @@ var Table = {
         this.wrapperSearch = null;
         this.wrapperRows = null;
         this.wrapperPagination = null;
+        this.wrapperSkip = null;
         this.filterIndex = null;
         this.filtersIndexes = [];
         this.component = null;
@@ -25509,6 +25517,7 @@ var Table = {
             o.showRowsSteps = false;
             o.showSearch = false;
             o.showTableInfo = false;
+            o.showSkip = false;
             o.rows = -1;
         }
 
@@ -26098,7 +26107,7 @@ var Table = {
     _createBottomBlock: function (){
         var element = this.element, o = this.options;
         var bottom_block = $("<div>").addClass("table-bottom").addClass(o.clsTableBottom).insertAfter(element.parent());
-        var info, pagination;
+        var info, pagination, skip;
 
         info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : $("<div>").addClass("table-info").appendTo(bottom_block);
         info.addClass(o.clsTableInfo);
@@ -26112,18 +26121,33 @@ var Table = {
             pagination.hide();
         }
 
+        skip = Utils.isValue(this.wrapperSkip) ? this.wrapperSkip : $("<div>").addClass("table-skip").appendTo(bottom_block);
+        skip.addClass(o.clsTableSkip);
+
+        $("<input type='text'>").addClass("input").addClass(o.clsTableSkipInput).appendTo(skip);
+        $("<button>").addClass("button table-skip-button").addClass(o.clsTableSkipButton).html(o.tableSkipTitle).appendTo(skip);
+
+        if (o.showSkip !== true) {
+            skip.hide();
+        }
+
         return bottom_block;
     },
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var columns;
-        var w_search = $(o.searchWrapper), w_info = $(o.infoWrapper), w_rows = $(o.rowsWrapper), w_paging = $(o.paginationWrapper);
+        var w_search = $(o.searchWrapper),
+            w_info = $(o.infoWrapper),
+            w_rows = $(o.rowsWrapper),
+            w_paging = $(o.paginationWrapper),
+            w_skip = $(o.skipWrapper);
 
         if (w_search.length > 0) {this.wrapperSearch = w_search;}
         if (w_info.length > 0) {this.wrapperInfo = w_info;}
         if (w_rows.length > 0) {this.wrapperRows = w_rows;}
         if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
+        if (w_skip.length > 0) {this.wrapperSkip = w_skip;}
 
         element.html("").addClass(o.clsTable);
 
@@ -26176,8 +26200,27 @@ var Table = {
         var component = element.closest(".table-component");
         var table_container = component.find(".table-container");
         var search = component.find(".table-search-block input");
+        var skip_button = component.find(".table-skip button");
+        var skip_input = component.find(".table-skip input");
         var customSearch;
         var id = element.attr("id");
+
+        skip_button.on(Metro.events.click, function(){
+            var skipTo = +skip_input.val().trim();
+
+            if (isNaN(skipTo) || skipTo <=0 || skipTo > that.pagesCount) {
+                skip_input.val('');
+                return false;
+            }
+
+            skip_input.val('');
+            Utils.exec(o.onSkip, [skipTo, that.currentPage], element[0]);
+            element.fire("skip", {
+                skipTo: skipTo,
+                skipFrom: that.currentPage
+            });
+            that.page(skipTo);
+        });
 
         $(window).on(Metro.events.resize, function(){
             if (o.horizontalScroll === true) {
