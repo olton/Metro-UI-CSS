@@ -9,6 +9,7 @@
 + [x] Common css: optimize `lists`, `reset`
 + [x] UtilsJS: improve `isFloat` function, issue #1518
 + [x] Icons: add `whatsapp` icon, issue #1510 
++ [x] AudioButton: add new component for the button with role `audio-button`
 
 ### 4.3.6
 ##### M4Q
@@ -507,7 +508,6 @@
 + [x] Table: add data formats `card`, `phone`
 + [x] List: add data formats `card`, `phone`
 + [x] Sorter: add data formats `card`, `phone`
-+ [x] AudioButton: add new component for button with role `audio-button`
 
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
