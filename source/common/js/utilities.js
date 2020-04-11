@@ -486,6 +486,11 @@ var Utils = {
         }
     },
 
+    /**
+     *
+     * @param {TouchEvent|Event|MouseEvent} e
+     * @returns {{x: (*), y: (*)}}
+     */
     clientXY: function(e){
         return {
             x: e.changedTouches ? e.changedTouches[0].clientX : e.clientX,
@@ -493,6 +498,11 @@ var Utils = {
         };
     },
 
+    /**
+     *
+     * @param {TouchEvent|Event|MouseEvent} e
+     * @returns {{x: (*), y: (*)}}
+     */
     screenXY: function(e){
         return {
             x: e.changedTouches ? e.changedTouches[0].screenX : e.screenX,
@@ -500,6 +510,11 @@ var Utils = {
         };
     },
 
+    /**
+     *
+     * @param {TouchEvent|Event|MouseEvent} e
+     * @returns {{x: (*), y: (*)}}
+     */
     pageXY: function(e){
         return {
             x: e.changedTouches ? e.changedTouches[0].pageX : e.pageX,

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/04/2020 13:02:50
+ * Built at 11/04/2020 14:31:35
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "11/04/2020 13:02:57",
+    compileTime: "11/04/2020 14:31:41",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6932,6 +6932,11 @@ var Utils = {
         }
     },
 
+    /**
+     *
+     * @param {TouchEvent|Event|MouseEvent} e
+     * @returns {{x: (*), y: (*)}}
+     */
     clientXY: function(e){
         return {
             x: e.changedTouches ? e.changedTouches[0].clientX : e.clientX,
@@ -6939,6 +6944,11 @@ var Utils = {
         };
     },
 
+    /**
+     *
+     * @param {TouchEvent|Event|MouseEvent} e
+     * @returns {{x: (*), y: (*)}}
+     */
     screenXY: function(e){
         return {
             x: e.changedTouches ? e.changedTouches[0].screenX : e.screenX,
@@ -6946,6 +6956,11 @@ var Utils = {
         };
     },
 
+    /**
+     *
+     * @param {TouchEvent|Event|MouseEvent} e
+     * @returns {{x: (*), y: (*)}}
+     */
     pageXY: function(e){
         return {
             x: e.changedTouches ? e.changedTouches[0].pageX : e.pageX,
