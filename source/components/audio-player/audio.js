@@ -62,7 +62,7 @@ if (typeof window["metroAudioSetup"] !== undefined) {
     Metro.audioSetup(window["metroAudioSetup"]);
 }
 
-var Audio = {
+var AudioPlayer = {
     name: "Audio",
 
     init: function( options, elem ) {
@@ -455,11 +455,11 @@ var Audio = {
         element.off("all");
         player.off("all");
 
-        Metro.getPlugin(this.stream[0], "slider").destroy();
-        Metro.getPlugin(this.volume[0], "slider").destroy();
+        Metro.getPlugin(this.stream, "slider").destroy();
+        Metro.getPlugin(this.volume, "slider").destroy();
 
         return element;
     }
 };
 
-Metro.plugin('audio', Audio);
+Metro.plugin('audio', AudioPlayer);

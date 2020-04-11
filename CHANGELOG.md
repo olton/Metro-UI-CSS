@@ -507,6 +507,7 @@
 + [x] Table: add data formats `card`, `phone`
 + [x] List: add data formats `card`, `phone`
 + [x] Sorter: add data formats `card`, `phone`
++ [x] AudioButton: add new component for button with role `audio-button`
 
 ### 4.2.27
 + [x] Input: remove -webkit-autofill background color
