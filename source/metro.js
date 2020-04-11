@@ -544,7 +544,7 @@ var Metro = {
 
     checkRuntime: function(el, name){
         var element = $(el);
-        var _name = name.replace(/\-/g, "");
+        var _name = normalizeComponentName(name);
         if (!element.attr("data-role-"+_name)) {
             Metro.makeRuntime(element, _name);
         }

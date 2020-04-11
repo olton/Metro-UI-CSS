@@ -54,7 +54,7 @@ if (typeof window["metroVideoSetup"] !== undefined) {
     Metro.videoSetup(window["metroVideoSetup"]);
 }
 
-var Video = {
+var VideoPlayer = {
     name: "Video",
 
     init: function( options, elem ) {
@@ -256,7 +256,7 @@ var Video = {
 
         if (o.muted) {
             that.volumeBackup = video.volume;
-            Metro.getPlugin(that.volume[0], 'slider').val(0);
+            Metro.getPlugin(that.volume, 'slider').val(0);
             video.volume = 0;
         }
 
@@ -288,7 +288,7 @@ var Video = {
         element.on("timeupdate", function(){
             var position = Math.round(video.currentTime * 100 / that.duration);
             that._setInfo(video.currentTime, that.duration);
-            Metro.getPlugin(that.stream[0], 'slider').val(position);
+            Metro.getPlugin(that.stream, 'slider').val(position);
             Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
         });
 
@@ -313,13 +313,13 @@ var Video = {
         });
 
         element.on("stop", function(){
-            Metro.getPlugin(that.stream[0], 'slider').val(0);
+            Metro.getPlugin(that.stream, 'slider').val(0);
             Utils.exec(o.onStop, [video, player], element[0]);
             that._offMouse();
         });
 
         element.on("ended", function(){
-            Metro.getPlugin(that.stream[0], 'slider').val(0);
+            Metro.getPlugin(that.stream, 'slider').val(0);
             Utils.exec(o.onEnd, [video, player], element[0]);
             that._offMouse();
         });
@@ -530,7 +530,7 @@ var Video = {
         this.isPlaying = false;
         this.video.pause();
         this.video.currentTime = 0;
-        Metro.getPlugin(this.stream[0], 'slider').val(0);
+        Metro.getPlugin(this.stream, 'slider').val(0);
         this._offMouse();
     },
 
@@ -581,8 +581,8 @@ var Video = {
     destroy: function(){
         var element = this.element, player = this.player;
 
-        Metro.getPlugin(this.stream[0], "slider").destroy();
-        Metro.getPlugin(this.volume[0], "slider").destroy();
+        Metro.getPlugin(this.stream, "slider").destroy();
+        Metro.getPlugin(this.volume, "slider").destroy();
 
         element.off("loadstart");
         element.off("loadedmetadata");
@@ -610,4 +610,4 @@ var Video = {
     }
 };
 
-Metro.plugin('video', Video);
+Metro.plugin('video', VideoPlayer);
