@@ -53,7 +53,7 @@ var Utils = {
     },
 
     isFloat: function(n){
-        return !isNaN(n) && +n % 1 !== 0;
+        return (!isNaN(n) && +n % 1 !== 0) || /^\d*\.\d+$/.test(n);
     },
 
     isTouchDevice: function() {

@@ -7,6 +7,7 @@
 + [x] Table: add attributes `data-show-skip`, `data-table-skip-title`, `data-skip-wrapper`, `data-cls-table-skip`, `data-cls-table-skip-input`, `data-cls-table-skip-button`
 + [x] Table: add event `data-on-skip`
 + [x] Common css: optimize `lists`, `reset`
++ [x] UtilsJS: improve `isFloat` function, issue #1518 
 
 ### 4.3.6
 ##### M4Q
