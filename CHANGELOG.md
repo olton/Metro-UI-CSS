@@ -11,6 +11,7 @@
 + [x] Icons: add `whatsapp` icon, issue #1510 
 + [x] AudioButton: add new component for the button with role `audio-button`
 + [x] Select: fix `prepend`, `append` for `input-small`, `input-large`. With `multiple`, `append` and `prepend` will not displayed.
++ [x] Input: fix `prepend`, `append` for `input-small`, `input-large`. Issue #1522
 + [x] Counter: fix start if element already in viewport
 
 ### 4.3.6
