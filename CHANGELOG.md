@@ -13,6 +13,7 @@
 + [x] Select: fix `prepend`, `append` for `input-small`, `input-large`. With `multiple`, `append` and `prepend` will not displayed.
 + [x] Input: fix `prepend`, `append` for `input-small`, `input-large`. Issue #1522
 + [x] Counter: fix start if element already in viewport
++ [x] CSS: added `metro-reset.css`, `metro-common.css`, `metro-components.css` as standalone.
 
 ### 4.3.6
 ##### M4Q

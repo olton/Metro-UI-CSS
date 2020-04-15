@@ -140,6 +140,9 @@ module.exports = function(grunt) {
                 cwd: "source/",
                 src: [
                     "metro.less",
+                    "metro-reset.less",
+                    "metro-common.less",
+                    "metro-components.less",
                     "metro-rtl.less",
                     "metro-colors.less",
                     "metro-animations.less",
