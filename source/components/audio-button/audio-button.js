@@ -53,7 +53,6 @@ var AudioButton = {
 
     _createStructure: function(){
         var o = this.options;
-        console.log(Audio);
         this.audio = new Audio(o.audioSrc);
     },
 

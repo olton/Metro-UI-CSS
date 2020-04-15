@@ -10,6 +10,8 @@
 + [x] UtilsJS: improve `isFloat` function, issue #1518
 + [x] Icons: add `whatsapp` icon, issue #1510 
 + [x] AudioButton: add new component for the button with role `audio-button`
++ [x] Select: fix `prepend`, `append` for `input-small`, `input-large`. With `multiple`, `append` and `prepend` will not displayed.
++ [x] Counter: fix start if element already in viewport
 
 ### 4.3.6
 ##### M4Q

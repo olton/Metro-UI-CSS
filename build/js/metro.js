@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/04/2020 16:54:37
+ * Built at 15/04/2020 11:11:09
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "11/04/2020 16:54:45",
+    compileTime: "15/04/2020 11:11:15",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7984,7 +7984,6 @@ var AudioButton = {
 
     _createStructure: function(){
         var o = this.options;
-        console.log(Audio);
         this.audio = new Audio(o.audioSrc);
     },
 
@@ -12390,6 +12389,14 @@ var Counter = {
         }
 
         if (o.startOnViewport === true) {
+
+            if (Utils.inViewport(element[0]) && !that.started) {
+                that.started = true;
+                setTimeout(function () {
+                    that.start();
+                }, o.timeout);
+            }
+
             $.window().on("scroll", function(e){
                 if (Utils.inViewport(element[0]) && !that.started) {
                     that.started = true;
@@ -21659,12 +21666,12 @@ var Select = {
             buttons.addClass("d-none");
         }
 
-        if (o.prepend !== "") {
+        if (o.prepend !== "" && !multiple) {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
-        if (o.append !== "") {
+        if (o.append !== "" && !multiple) {
             var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
