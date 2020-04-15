@@ -69,6 +69,14 @@ var Counter = {
         }
 
         if (o.startOnViewport === true) {
+
+            if (Utils.inViewport(element[0]) && !that.started) {
+                that.started = true;
+                setTimeout(function () {
+                    that.start();
+                }, o.timeout);
+            }
+
             $.window().on("scroll", function(e){
                 if (Utils.inViewport(element[0]) && !that.started) {
                     that.started = true;

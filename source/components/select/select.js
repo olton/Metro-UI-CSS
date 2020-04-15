@@ -263,12 +263,12 @@ var Select = {
             buttons.addClass("d-none");
         }
 
-        if (o.prepend !== "") {
+        if (o.prepend !== "" && !multiple) {
             var prepend = $("<div>").html(o.prepend);
             prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
         }
 
-        if (o.append !== "") {
+        if (o.append !== "" && !multiple) {
             var append = $("<div>").html(o.append);
             append.addClass("append").addClass(o.clsAppend).appendTo(container);
         }
