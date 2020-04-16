@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 16/04/2020 11:47:12
+ * Built at 16/04/2020 12:08:25
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "16/04/2020 11:47:18",
+    compileTime: "16/04/2020 12:08:31",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7931,6 +7931,8 @@ Metro.plugin('appbar', AppBar);
 
 var AudioButtonDefaultConfig = {
     audioSrc: "",
+    onAudioStart: Metro.noop,
+    onAudioEnd: Metro.noop,
     onAudioButtonCreate: Metro.noop
 };
 
@@ -7980,6 +7982,7 @@ var AudioButton = {
         this._createEvents();
 
         Utils.exec(o.onAudioButtonCreate, null, element[0]);
+        element.fire('audiobuttoncreate');
     },
 
     _createStructure: function(){
@@ -7995,11 +7998,25 @@ var AudioButton = {
             that.canPlay = true;
         });
 
+        audio.addEventListener('ended', function(){
+            Utils.exec(o.onAudioEnd, [o.audioSrc, audio], element[0]);
+            element.fire("audioend", {
+                src: o.audioSrc,
+                audio: audio
+            });
+        })
+
         element.on(Metro.events.click, function(){
-            if (o.audioSrc !== "" && that.audio.duration && that.canPlay)
+            if (o.audioSrc !== "" && that.audio.duration && that.canPlay) {
+                Utils.exec(o.onAudioStart, [o.audioSrc, audio], element[0]);
+                element.fire("audiostart", {
+                    src: o.audioSrc,
+                    audio: audio
+                });
                 audio.pause();
                 audio.currentTime = 0;
                 audio.play();
+            }
         }, {ns: this.id});
     },
 
@@ -8028,6 +8045,18 @@ var AudioButton = {
 };
 
 Metro.plugin('audio-button', AudioButton);
+
+Metro["playSound"] = function(src, cb){
+    var audio = new Audio(src);
+
+    audio.addEventListener('loadeddata', function(){
+        audio.play();
+    });
+
+    audio.addEventListener('ended', function(){
+        Utils.exec(cb, [src], null);
+    })
+}
 
 var AudioDefaultConfig = {
     audioDeferred: 0,
