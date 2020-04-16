@@ -66,6 +66,8 @@ var AudioButton = {
 
         element.on(Metro.events.click, function(){
             if (o.audioSrc !== "" && that.audio.duration && that.canPlay)
+                audio.pause();
+                audio.currentTime = 0;
                 audio.play();
         }, {ns: this.id});
     },

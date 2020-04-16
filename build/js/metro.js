@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 15/04/2020 19:15:31
+ * Built at 16/04/2020 11:47:12
  * Licensed under MIT
  */
 
@@ -3780,7 +3780,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "15/04/2020 19:15:37",
+    compileTime: "16/04/2020 11:47:18",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7997,6 +7997,8 @@ var AudioButton = {
 
         element.on(Metro.events.click, function(){
             if (o.audioSrc !== "" && that.audio.duration && that.canPlay)
+                audio.pause();
+                audio.currentTime = 0;
                 audio.play();
         }, {ns: this.id});
     },
