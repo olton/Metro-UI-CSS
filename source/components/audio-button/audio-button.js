@@ -1,5 +1,7 @@
 var AudioButtonDefaultConfig = {
     audioSrc: "",
+    onAudioStart: Metro.noop,
+    onAudioEnd: Metro.noop,
     onAudioButtonCreate: Metro.noop
 };
 
@@ -49,6 +51,7 @@ var AudioButton = {
         this._createEvents();
 
         Utils.exec(o.onAudioButtonCreate, null, element[0]);
+        element.fire('audiobuttoncreate');
     },
 
     _createStructure: function(){
@@ -64,11 +67,25 @@ var AudioButton = {
             that.canPlay = true;
         });
 
+        audio.addEventListener('ended', function(){
+            Utils.exec(o.onAudioEnd, [o.audioSrc, audio], element[0]);
+            element.fire("audioend", {
+                src: o.audioSrc,
+                audio: audio
+            });
+        })
+
         element.on(Metro.events.click, function(){
-            if (o.audioSrc !== "" && that.audio.duration && that.canPlay)
+            if (o.audioSrc !== "" && that.audio.duration && that.canPlay) {
+                Utils.exec(o.onAudioStart, [o.audioSrc, audio], element[0]);
+                element.fire("audiostart", {
+                    src: o.audioSrc,
+                    audio: audio
+                });
                 audio.pause();
                 audio.currentTime = 0;
                 audio.play();
+            }
         }, {ns: this.id});
     },
 
@@ -97,3 +114,15 @@ var AudioButton = {
 };
 
 Metro.plugin('audio-button', AudioButton);
+
+Metro["playSound"] = function(src, cb){
+    var audio = new Audio(src);
+
+    audio.addEventListener('loadeddata', function(){
+        audio.play();
+    });
+
+    audio.addEventListener('ended', function(){
+        Utils.exec(cb, [src], null);
+    })
+}
