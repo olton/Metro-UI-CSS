@@ -458,8 +458,11 @@ var Calendar = {
 
             setTimeout(function(){
                 list.animate({
-                    scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
-                }, 200);
+                    draw: {
+                        scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                    },
+                    dur: 200
+                })
             }, 300);
 
             e.preventDefault();
@@ -490,8 +493,11 @@ var Calendar = {
 
             setTimeout(function(){
                 list.animate({
-                    scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
-                }, 200);
+                    draw: {
+                        scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
+                    },
+                    dur: 200
+                })
             }, 300);
 
             e.preventDefault();

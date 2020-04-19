@@ -306,21 +306,30 @@ var Countdown = {
                 top: -1 * height + 'px'
             });
 
-            digit.addClass("-old-digit").animate(function(t, p){
-                $(this).css({
-                    top: (height * p) + 'px',
-                    opacity: 1 - p
+            digit
+                .addClass("-old-digit")
+                .animate({
+                    draw: {
+                        top: height,
+                        opacity: 0
+                    },
+                    dur: duration,
+                    ease: o.animationFunc,
+                    onDone: function(){
+                        $(this).remove();
+                    }
                 });
-            }, duration, o.animationFunc, function(){
-                $(this).remove();
-            });
 
-            digit_copy.html(digit_value).animate(function(t, p){
-                $(this).css({
-                    top: (-height + (height * p)) + 'px',
-                    opacity: p
-                })
-            }, duration, o.animationFunc);
+            digit_copy
+                .html(digit_value)
+                .animate({
+                    draw: {
+                        top: 0,
+                        opacity: 1
+                    },
+                    dur: duration,
+                    ease: o.animationFunc
+                });
         };
 
         var fadeDigit = function(digit){
@@ -331,19 +340,28 @@ var Countdown = {
                 opacity: 0
             });
 
-            digit.addClass("-old-digit").animate(function(t, p){
-                $(this).css({
-                    opacity: 1 - p
+            digit
+                .addClass("-old-digit")
+                .animate({
+                    draw: {
+                        opacity: 0
+                    },
+                    dur: duration / 2,
+                    ease: o.animationFunc,
+                    onDone: function(){
+                        $(this).remove();
+                    }
                 });
-            }, duration / 2, o.animationFunc, function(){
-                $(this).remove();
-            });
 
-            digit_copy.html(digit_value).animate(function(t, p){
-                $(this).css({
-                    opacity: p
-                })
-            }, duration, o.animationFunc);
+            digit_copy
+                .html(digit_value)
+                .animate({
+                    draw: {
+                        opacity: 1
+                    },
+                    dur: duration,
+                    ease: o.animationFunc
+                });
         };
 
         var zoomDigit = function(digit){
@@ -356,23 +374,32 @@ var Countdown = {
                 left: 0
             });
 
-            digit.addClass("-old-digit").animate(function(t, p){
-                $(this).css({
-                    top: (height * p) + 'px',
-                    opacity: 1 - p,
-                    fontSize: fs * (1 - p) + 'px'
+            digit
+                .addClass("-old-digit")
+                .animate({
+                    draw: {
+                        top: height,
+                        opacity: 1,
+                        fontSize: 0
+                    },
+                    dur: duration,
+                    ease: o.animationFunc,
+                    onDone: function(){
+                        $(this).remove();
+                    }
                 });
-            }, duration, o.animationFunc, function(){
-                $(this).remove();
-            });
 
-            digit_copy.html(digit_value).animate(function(t, p){
-                $(this).css({
-                    top: (-height + (height * p)) + 'px',
-                    opacity: p,
-                    fontSize: fs * p + 'px'
-                })
-            }, duration, o.animationFunc);
+            digit_copy
+                .html(digit_value)
+                .animate({
+                    draw: {
+                        top: 0,
+                        opacity: 1,
+                        fontSize: fs
+                    },
+                    dur: duration,
+                    ease: o.animationFunc
+                });
         };
 
         value = ""+value;

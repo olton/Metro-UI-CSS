@@ -347,21 +347,36 @@ var DatePicker = {
 
         if (o.month === true) {
             m_list = picker.find(".sel-month");
-            m_list.scrollTop(0).animate({
-                scrollTop: m_list.find("li.js-month-" + m).addClass("active").position().top - (40 * o.distance)
-            }, 100);
+            m_list
+                .scrollTop(0)
+                .animate({
+                    draw: {
+                        scrollTop: m_list.find("li.js-month-" + m).addClass("active").position().top - (40 * o.distance)
+                    },
+                    dur: 100
+                });
         }
         if (o.day === true) {
             d_list = picker.find(".sel-day");
-            d_list.scrollTop(0).animate({
-                scrollTop: d_list.find("li.js-day-" + d).addClass("active").position().top - (40 * o.distance)
-            }, 100);
+            d_list
+                .scrollTop(0)
+                .animate({
+                    draw: {
+                        scrollTop: d_list.find("li.js-day-" + d).addClass("active").position().top - (40 * o.distance)
+                    },
+                    dur: 100
+                });
         }
         if (o.year === true) {
             y_list = picker.find(".sel-year");
-            y_list.scrollTop(0).animate({
-                scrollTop: y_list.find("li.js-year-real-" + y).addClass("active").position().top - (40 * o.distance)
-            }, 100);
+            y_list
+                .scrollTop(0)
+                .animate({
+                    draw: {
+                        scrollTop: y_list.find("li.js-year-real-" + y).addClass("active").position().top - (40 * o.distance)
+                    },
+                    dur: 100
+                });
         }
 
         this.isOpen = true;

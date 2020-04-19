@@ -394,10 +394,14 @@ var Metro = {
             $(".m4-cloak").removeClass("m4-cloak");
         } else {
             $(".m4-cloak").animate({
-                opacity: 1
-            }, METRO_CLOAK_DURATION, function(){
-                $(".m4-cloak").removeClass("m4-cloak");
-            })
+                draw: {
+                    opacity: 1
+                },
+                dur: 300,
+                onDone: function(){
+                    $(".m4-cloak").removeClass("m4-cloak");
+                }
+            });
         }
     },
 
