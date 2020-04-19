@@ -233,7 +233,10 @@ var ImageMagnifier = {
             var y = element.height() / 2 - o.lensSize / 2;
 
             glass.animate({
-                top: y, left: x
+                draw: {
+                    top: y,
+                    left: x
+                }
             });
 
             lens_move({

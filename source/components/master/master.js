@@ -273,7 +273,9 @@ var Master = {
 
         setTimeout(function(){
             pages.animate({
-                height: next.outerHeight(true) + 2
+                draw: {
+                    height: next.outerHeight(true) + 2
+                }
             });
         },0);
 
@@ -294,19 +296,35 @@ var Master = {
         }
 
         function _slide(){
-            current.stop(true).animate({
-                left: to === "next" ? -out : out
-            }, o.duration, o.effectFunc, function(){
-                current.hide(0);
-            });
+            current
+                .stop(true)
+                .animate({
+                    draw: {
+                        left: to === "next" ? -out : out
+                    },
+                    dur: o.duration,
+                    ease: o.effectFunc,
+                    onDone: function(){
+                        current.hide(0);
+                    }
+                });
 
-            next.stop(true).css({
-                left: to === "next" ? out : -out
-            }).show(0).animate({
-                left: 0
-            }, o.duration, o.effectFunc, function(){
-                finish();
-            });
+            next
+                .stop(true)
+                .css({
+                    left: to === "next" ? out : -out
+                })
+                .show(0)
+                .animate({
+                    draw: {
+                        left: 0
+                    },
+                    dur: o.duration,
+                    ease: o.effectFunc,
+                    onDone: function(){
+                        finish();
+                    }
+                });
         }
 
         function _switch(){

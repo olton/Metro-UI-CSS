@@ -124,22 +124,26 @@ var Notify = {
                 var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
                 var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
 
-                notify.animate({
-                    marginTop: 4
-                }, duration, animation, function(){
+                notify
+                    .animate({
+                        draw: {
+                            marginTop: 4
+                        },
+                        dur: duration,
+                        ease: animation,
+                        onDone: function(){
+                            Utils.exec(o.onNotifyCreate, null, this);
 
-                    Utils.exec(o.onNotifyCreate, null, this);
+                            if (options !== undefined && options.keepOpen === true) {
+                            } else {
+                                setTimeout(function(){
+                                    that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
+                                }, o.timeout);
+                            }
 
-                    if (options !== undefined && options.keepOpen === true) {
-                    } else {
-                        setTimeout(function(){
-                            that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
-                        }, o.timeout);
-                    }
-
-                    Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
-
-                });
+                            Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
+                        }
+                    });
             });
         });
     },
