@@ -3,7 +3,7 @@ var NotifyDefaultConfig = {
     width: 220,
     timeout: METRO_TIMEOUT,
     duration: METRO_ANIMATION_DURATION,
-    distance: 200,
+    distance: "max",
     animation: "linear",
     onClick: Metro.noop,
     onClose: Metro.noop,
@@ -50,7 +50,7 @@ var Notify = {
             width: 220,
             timeout: METRO_TIMEOUT,
             duration: METRO_ANIMATION_DURATION,
-            distance: 200,
+            distance: "max",
             animation: "linear"
         };
         this.options = $.extend({}, NotifyDefaultConfig, reset_options);
@@ -118,33 +118,37 @@ var Notify = {
 
             Utils.exec(Utils.isValue(options.onAppend) ? options.onAppend : o.onAppend, null, notify[0]);
 
-            notify.css({
-                marginTop: Utils.isValue(options.distance) ? options.distance : o.distance
-            }).fadeIn(100, function(){
-                var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
-                var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
+            var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
+            var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
+            var distance = Utils.isValue(options.distance) ? options.distance : o.distance;
 
-                notify
-                    .animate({
-                        draw: {
-                            marginTop: 4
-                        },
-                        dur: duration,
-                        ease: animation,
-                        onDone: function(){
-                            Utils.exec(o.onNotifyCreate, null, this);
+            if (distance === "max" || isNaN(distance)) {
+                distance = $(window).height();
+            }
 
-                            if (options !== undefined && options.keepOpen === true) {
-                            } else {
-                                setTimeout(function(){
-                                    that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
-                                }, o.timeout);
-                            }
+            notify
+                .show()
+                .animate({
+                    draw: {
+                        marginTop: [distance, 4],
+                        opacity: [0, 1]
+                    },
+                    dur: duration,
+                    ease: animation,
+                    onDone: function(){
+                        Utils.exec(o.onNotifyCreate, null, this);
 
-                            Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
+                        if (options !== undefined && options.keepOpen === true) {
+                        } else {
+                            setTimeout(function(){
+                                that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
+                            }, o.timeout);
                         }
-                    });
-            });
+
+                        Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
+                    }
+                });
+
         });
     },
 
