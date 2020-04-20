@@ -18,6 +18,7 @@
 + [x] Counter: fix start if element already in viewport
 + [x] CSS: added `metro-reset.css`, `metro-common.css`, `metro-components.css` as standalone.
 + [x] Image magnifier: fix glass image when user resize original image
++ [x] Notifies: minor improve notify create method 
 
 ### 4.3.6
 ##### M4Q
