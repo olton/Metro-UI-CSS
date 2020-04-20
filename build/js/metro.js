@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/04/2020 10:41:59
+ * Built at 20/04/2020 14:43:10
  * Licensed under MIT
  */
 
@@ -559,7 +559,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 19/04/2020 22:59:01";
+var m4qVersion = "v1.0.6. Built at 20/04/2020 12:38:24";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -606,6 +606,32 @@ $.extend = $.fn.extend = function(){
         if ( ( options = arguments[ i ] ) != null ) {
             for ( name in options ) {
                 if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
+            }
+        }
+    }
+
+    return target;
+};
+
+$.assign = function(){
+    var options, name,
+        target = arguments[ 0 ] || {},
+        i = 1,
+        length = arguments.length;
+
+    if ( typeof target !== "object" && typeof target !== "function" ) {
+        target = {};
+    }
+
+    if ( i === length ) {
+        target = this;
+        i--;
+    }
+
+    for ( ; i < length; i++ ) {
+        if ( ( options = arguments[ i ] ) != null ) {
+            for ( name in options ) {
+                if (options.hasOwnProperty(name) && options[name] !== undefined) target[ name ] = options[ name ];
             }
         }
     }
@@ -2854,6 +2880,10 @@ var floatProps = ['opacity', 'volume'];
 var scrollProps = ["scrollLeft", "scrollTop"];
 var reverseProps = ["opacity", "volume"];
 
+function _validElement(el) {
+    return el instanceof HTMLElement || el instanceof SVGElement;
+}
+
 /**
  *
  * @param val
@@ -2904,7 +2934,10 @@ function _getStyle (el, prop, pseudo){
             return el[prop] || 0;
         }
     }
-    return el.style[prop] || getComputedStyle(el, pseudo)[prop];
+
+    var result = el.style[prop] || getComputedStyle(el, pseudo)[prop];
+    return result;
+    // return isNaN(parseInt(result)) && prop.toLowerCase().indexOf("color") === -1 ? 0 : result;
 }
 
 /**
@@ -2928,7 +2961,7 @@ function _setStyle (el, key, val, unit, toInt) {
         val  = parseInt(val);
     }
 
-    if (el instanceof HTMLElement) {
+    if (_validElement(el)) {
         if (typeof el[key] !== "undefined") {
             el[key] = val;
         } else {
@@ -2959,7 +2992,7 @@ function _applyStyles (el, mapProps, p) {
  * @private
  */
 function _getElementTransforms (el) {
-    if (!el instanceof HTMLElement) return;
+    if (!_validElement(el)) return {};
     var str = el.style.transform || '';
     var reg = /(\w+)\(([^)]*)\)/g;
     var transforms = {};
@@ -3014,10 +3047,14 @@ function _applyTransform (el, mapProps, p) {
 
         if ( key.indexOf("rotate") > -1 || key.indexOf("skew") > -1) {
             if (unit === "") unit = "deg";
-        } else if (key.indexOf("scale")) {
-            unit = "";
-        } else {
-            unit = "px";
+        }
+
+        if (key.indexOf('scale') > -1) {
+            unit = '';
+        }
+
+        if (key.indexOf('translate') > -1 && unit === '') {
+            unit = 'px';
         }
 
         if (unit === "turn") {
@@ -3033,7 +3070,7 @@ function _applyTransform (el, mapProps, p) {
         }
     })
 
-    _setStyle(el, "transform", t.join(" "));
+    el.style['transform'] = t.join(" ");
 }
 
 /**
@@ -3050,7 +3087,7 @@ function _applyColors (el, mapProps, p) {
             result[i] = Math.floor(val[0][i] + (val[2][i] * p));
         }
         v = "rgb("+(result.join(","))+")";
-        _setStyle(el, key, v);
+        el.style[key] = v;
     })
 }
 
@@ -3254,7 +3291,7 @@ var Animation = {
 function animate(args){
     return new Promise(function(resolve){
         var that = this, start;
-        var props = $.extend({}, defaultProps, args);
+        var props = $.assign({}, defaultProps, args);
         var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop, onFrame = props.onFrame, onDone = props.onDone, pause = props.pause, dir = props.dir, defer = props.defer;
         var map = {};
         var easeName = "linear", easeArgs = [], easeFn = Easing.linear, matchArgs;
@@ -3473,7 +3510,6 @@ $.fn.extend({
                 var a = this;
                 that.each(function(){
                     a['el'] = this;
-                    console.log(a);
                     $.animate(a);
                 })
             })
@@ -4187,7 +4223,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "20/04/2020 10:42:06",
+    compileTime: "20/04/2020 14:43:17",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -14522,13 +14558,33 @@ var Donut = {
         var fill = element.find(".donut-fill");
         var title = element.find(".donut-title");
         var r = o.radius  * (1 - (1 - o.hole) / 2);
-        var circumference = 2 * Math.PI * r;
-        // var title_value = (o.showValue ? o.value : Math.round(((v * 1000 / o.total) / 10)))+(o.cap);
-        var title_value = (o.showValue ? v : Utils.percent(o.total, v, true))  + (o.cap);
-        var fill_value = ((v * circumference) / o.total) + ' ' + circumference;
+        var circumference = Math.round(2 * Math.PI * r);
+        var title_value = (o.showValue ? v : Utils.percent(o.total, v, true))/*  + (o.cap)*/;
+        var fill_value = Math.round(((+v * circumference) / o.total));// + ' ' + circumference;
 
-        fill.attr("stroke-dasharray", fill_value);
-        title.html(title_value);
+        var sda = fill.attr("stroke-dasharray");
+        if (typeof sda === "undefined") {
+            sda = 0;
+        } else {
+            sda = +sda.split(" ")[0];
+        }
+        var delta = fill_value - sda;
+
+        fill.animate({
+            draw: function(t, p){
+                $(this).attr("stroke-dasharray", (sda + delta * p ) + ' ' + circumference);
+            },
+            dur: o.animate
+        })
+        title.animate({
+            draw: {
+                innerHTML: title_value
+            },
+            dur: o.animate,
+            onFrame: function(){
+                this.innerHTML += o.cap;
+            }
+        });
     },
 
     val: function(v){
@@ -14542,31 +14598,10 @@ var Donut = {
             return false;
         }
 
-        if (o.animate > 0 && !document.hidden) {
-            var inc = v > that.value;
-            var i = that.value + (inc ? -1 : 1);
-
-            clearInterval(that.animation_change_interval);
-            this.animation_change_interval = setInterval(function(){
-                if (inc) {
-                    that._setValue(++i);
-                    if (i >= v) {
-                        clearInterval(that.animation_change_interval);
-                    }
-                } else {
-                    that._setValue(--i);
-                    if (i <= v) {
-                        clearInterval(that.animation_change_interval);
-                    }
-                }
-            }, o.animate);
-        } else {
-            clearInterval(that.animation_change_interval);
-            this._setValue(v);
-        }
+        this._setValue(v);
 
         this.value = v;
-        //element.attr("data-value", v);
+
         Utils.exec(o.onChange, [this.value], element[0]);
         element.fire("change", {
             value: this.value

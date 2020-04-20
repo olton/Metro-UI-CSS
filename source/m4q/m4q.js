@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 19/04/2020 22:59:01";
+var m4qVersion = "v1.0.6. Built at 20/04/2020 12:38:24";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -595,6 +595,32 @@ $.extend = $.fn.extend = function(){
         if ( ( options = arguments[ i ] ) != null ) {
             for ( name in options ) {
                 if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
+            }
+        }
+    }
+
+    return target;
+};
+
+$.assign = function(){
+    var options, name,
+        target = arguments[ 0 ] || {},
+        i = 1,
+        length = arguments.length;
+
+    if ( typeof target !== "object" && typeof target !== "function" ) {
+        target = {};
+    }
+
+    if ( i === length ) {
+        target = this;
+        i--;
+    }
+
+    for ( ; i < length; i++ ) {
+        if ( ( options = arguments[ i ] ) != null ) {
+            for ( name in options ) {
+                if (options.hasOwnProperty(name) && options[name] !== undefined) target[ name ] = options[ name ];
             }
         }
     }
@@ -2843,6 +2869,10 @@ var floatProps = ['opacity', 'volume'];
 var scrollProps = ["scrollLeft", "scrollTop"];
 var reverseProps = ["opacity", "volume"];
 
+function _validElement(el) {
+    return el instanceof HTMLElement || el instanceof SVGElement;
+}
+
 /**
  *
  * @param val
@@ -2893,7 +2923,10 @@ function _getStyle (el, prop, pseudo){
             return el[prop] || 0;
         }
     }
-    return el.style[prop] || getComputedStyle(el, pseudo)[prop];
+
+    var result = el.style[prop] || getComputedStyle(el, pseudo)[prop];
+    return result;
+    // return isNaN(parseInt(result)) && prop.toLowerCase().indexOf("color") === -1 ? 0 : result;
 }
 
 /**
@@ -2917,7 +2950,7 @@ function _setStyle (el, key, val, unit, toInt) {
         val  = parseInt(val);
     }
 
-    if (el instanceof HTMLElement) {
+    if (_validElement(el)) {
         if (typeof el[key] !== "undefined") {
             el[key] = val;
         } else {
@@ -2948,7 +2981,7 @@ function _applyStyles (el, mapProps, p) {
  * @private
  */
 function _getElementTransforms (el) {
-    if (!el instanceof HTMLElement) return;
+    if (!_validElement(el)) return {};
     var str = el.style.transform || '';
     var reg = /(\w+)\(([^)]*)\)/g;
     var transforms = {};
@@ -3003,10 +3036,14 @@ function _applyTransform (el, mapProps, p) {
 
         if ( key.indexOf("rotate") > -1 || key.indexOf("skew") > -1) {
             if (unit === "") unit = "deg";
-        } else if (key.indexOf("scale")) {
-            unit = "";
-        } else {
-            unit = "px";
+        }
+
+        if (key.indexOf('scale') > -1) {
+            unit = '';
+        }
+
+        if (key.indexOf('translate') > -1 && unit === '') {
+            unit = 'px';
         }
 
         if (unit === "turn") {
@@ -3022,7 +3059,7 @@ function _applyTransform (el, mapProps, p) {
         }
     })
 
-    _setStyle(el, "transform", t.join(" "));
+    el.style['transform'] = t.join(" ");
 }
 
 /**
@@ -3039,7 +3076,7 @@ function _applyColors (el, mapProps, p) {
             result[i] = Math.floor(val[0][i] + (val[2][i] * p));
         }
         v = "rgb("+(result.join(","))+")";
-        _setStyle(el, key, v);
+        el.style[key] = v;
     })
 }
 
@@ -3243,7 +3280,7 @@ var Animation = {
 function animate(args){
     return new Promise(function(resolve){
         var that = this, start;
-        var props = $.extend({}, defaultProps, args);
+        var props = $.assign({}, defaultProps, args);
         var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop, onFrame = props.onFrame, onDone = props.onDone, pause = props.pause, dir = props.dir, defer = props.defer;
         var map = {};
         var easeName = "linear", easeArgs = [], easeFn = Easing.linear, matchArgs;
@@ -3462,7 +3499,6 @@ $.fn.extend({
                 var a = this;
                 that.each(function(){
                     a['el'] = this;
-                    console.log(a);
                     $.animate(a);
                 })
             })
