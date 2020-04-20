@@ -32,6 +32,7 @@ var ImageMagnifier = {
         this.elem  = elem;
         this.element = $(elem);
         this.zoomElement = null;
+        this.id = Utils.elementId("magnifier");
 
         this._setOptionsFromDOM();
         Metro.createExec(this);
@@ -156,6 +157,18 @@ var ImageMagnifier = {
         var zoomElement = this.zoomElement;
         var cx, cy;
 
+        $(window).on(Metro.events.resize, function(){
+            var x = element.width() / 2 - o.lensSize / 2;
+            var y = element.height() / 2 - o.lensSize / 2;
+
+            if (o.magnifierMode === "glass") {
+                glass.css({
+                    backgroundPosition: "-" + ((x * o.magnifierZoom) - o.lensSize / 4 + 4) + "px -" + ((y * o.magnifierZoom) - o.lensSize / 4 + 4) + "px",
+                    backgroundSize: (image.width * o.magnifierZoom) + "px " + (image.height * o.magnifierZoom) + "px"
+                });
+            }
+        }, {ns: this.id})
+
         if (o.magnifierMode !== "glass") {
             cx = zoomElement[0].offsetWidth / glass_size / 2;
             cy = zoomElement[0].offsetHeight / glass_size / 2;
@@ -233,7 +246,10 @@ var ImageMagnifier = {
             var y = element.height() / 2 - o.lensSize / 2;
 
             glass.animate({
-                top: y, left: x
+                draw: {
+                    top: y,
+                    left: x
+                }
             });
 
             lens_move({

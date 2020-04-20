@@ -230,8 +230,11 @@ var Chat = {
         });
 
         messages.animate({
-            scrollTop: messages[0].scrollHeight
-        }, 1000);
+            draw: {
+                scrollTop: messages[0].scrollHeight
+            },
+            dur: 1000
+        });
 
         this.lastMessage = msg;
 

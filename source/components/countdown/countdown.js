@@ -2,7 +2,7 @@ var CountdownDefaultConfig = {
     countdownDeferred: 0,
     stopOnBlur: true,
     animate: "none",
-    animationFunc: "line",
+    animationFunc: "linear",
     inputFormat: null,
     locale: METRO_LOCALE,
     days: 0,
@@ -300,79 +300,107 @@ var Countdown = {
         var slideDigit = function(digit){
             var digit_copy, height = digit.height();
 
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: -1 * height + 'px'
             });
 
-            digit.addClass("-old-digit").animate(function(t, p){
-                $(this).css({
-                    top: (height * p) + 'px',
-                    opacity: 1 - p
+            digit
+                .addClass("-old-digit")
+                .animate({
+                    draw: {
+                        top: height,
+                        opacity: 0
+                    },
+                    dur: duration,
+                    ease: o.animationFunc,
+                    onDone: function(){
+                        $(this).remove();
+                    }
                 });
-            }, duration, o.animationFunc, function(){
-                $(this).remove();
-            });
 
-            digit_copy.html(digit_value).animate(function(t, p){
-                $(this).css({
-                    top: (-height + (height * p)) + 'px',
-                    opacity: p
-                })
-            }, duration, o.animationFunc);
+            digit_copy
+                .html(digit_value)
+                .animate({
+                    draw: {
+                        top: 0,
+                        opacity: 1
+                    },
+                    dur: duration,
+                    ease: o.animationFunc
+                });
         };
 
         var fadeDigit = function(digit){
             var digit_copy;
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0
             });
 
-            digit.addClass("-old-digit").animate(function(t, p){
-                $(this).css({
-                    opacity: 1 - p
+            digit
+                .addClass("-old-digit")
+                .animate({
+                    draw: {
+                        opacity: 0
+                    },
+                    dur: duration / 2,
+                    ease: o.animationFunc,
+                    onDone: function(){
+                        $(this).remove();
+                    }
                 });
-            }, duration / 2, o.animationFunc, function(){
-                $(this).remove();
-            });
 
-            digit_copy.html(digit_value).animate(function(t, p){
-                $(this).css({
-                    opacity: p
-                })
-            }, duration, o.animationFunc);
+            digit_copy
+                .html(digit_value)
+                .animate({
+                    draw: {
+                        opacity: 1
+                    },
+                    dur: duration,
+                    ease: o.animationFunc
+                });
         };
 
         var zoomDigit = function(digit){
             var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: 0,
-                left: 0
+                left: 0,
+                opacity: 1
             });
 
-            digit.addClass("-old-digit").animate(function(t, p){
-                $(this).css({
-                    top: (height * p) + 'px',
-                    opacity: 1 - p,
-                    fontSize: fs * (1 - p) + 'px'
+            digit
+                .addClass("-old-digit")
+                .animate({
+                    draw: {
+                        top: height,
+                        opacity: 0,
+                        fontSize: 0
+                    },
+                    dur: duration,
+                    ease: o.animationFunc,
+                    onDone: function(){
+                        $(this).remove();
+                    }
                 });
-            }, duration, o.animationFunc, function(){
-                $(this).remove();
-            });
 
-            digit_copy.html(digit_value).animate(function(t, p){
-                $(this).css({
-                    top: (-height + (height * p)) + 'px',
-                    opacity: p,
-                    fontSize: fs * p + 'px'
-                })
-            }, duration, o.animationFunc);
+            digit_copy
+                .html(digit_value)
+                .animate({
+                    draw: {
+                        top: 0,
+                        opacity: 1,
+                        fontSize: [0, fs]
+                    },
+                    dur: duration,
+                    ease: o.animationFunc
+                });
         };
 
         value = ""+value;
