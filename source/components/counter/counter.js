@@ -1,8 +1,7 @@
 var CounterDefaultConfig = {
     startOnViewport: true,
     counterDeferred: 0,
-    delay: 10,
-    step: 1,
+    duration: 2000,
     value: 0,
     timeout: 0,
     delimiter: ",",
@@ -39,7 +38,7 @@ var Counter = {
     },
 
     _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         $.each(element.data(), function(key, value){
             if (key in o) {
@@ -57,102 +56,61 @@ var Counter = {
 
         Metro.checkRuntime(element, "counter");
 
-        this._calcArray();
-
         Utils.exec(o.onCounterCreate, [element], this.elem);
         element.fire("countercreate");
 
-        if (o.timeout > 0 && o.startOnViewport !== true) {
-            setTimeout(function () {
-                that.start();
-            }, o.timeout);
+        if (o.startOnViewport !== true) {
+            this.start();
         }
 
         if (o.startOnViewport === true) {
-
-            if (Utils.inViewport(element[0]) && !that.started) {
-                that.started = true;
-                setTimeout(function () {
-                    that.start();
-                }, o.timeout);
+            if (Utils.inViewport(element[0]) && !this.started) {
+                this.start();
             }
 
-            $.window().on("scroll", function(e){
+            $.window().on("scroll", function(){
                 if (Utils.inViewport(element[0]) && !that.started) {
-                    that.started = true;
-                    setTimeout(function () {
-                        that.start();
-                    }, o.timeout);
+                    that.start();
                 }
             }, {ns: this.id})
         }
     },
 
-    _calcArray: function(){
-        var o = this.options;
-        var i;
-
-        this.numbers = [];
-
-        for (i = 0; i <= o.value; i += o.step ) {
-            this.numbers.push(i);
-        }
-
-        if (this.numbers[this.numbers.length - 1] !== o.value) {
-            this.numbers.push(o.value);
-        }
-    },
-
-    _tick: function(){
-        var that = this, element = this.element, o = this.options;
-
-        if (this.numbers.length === 0) {
-            this.started = false;
-            Utils.exec(o.onStop, [element], element[0]);
-            element.fire("stop");
-            return ;
-        }
-
-        var n = that.numbers.shift();
-
-        Utils.exec(o.onTick, [n, element], element[0]);
-        element.fire("tick");
-
-        element.html(Number(n).format(0, 0, o.delimiter));
-
-        if (that.numbers.length > 0 && that.started) {
-            setTimeout(function(){
-                that._tick();
-            }, o.delay);
-        } else {
-            that.started = false;
-            Utils.exec(o.onStop, [element], element[0]);
-            element.fire("stop");
-        }
-    },
-
     start: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         this.started = true;
 
-        Utils.exec(o.onStart, [element], element[0]);
+        Utils.exec(o.onStart, null, element[0]);
         element.fire("start");
 
-        setTimeout(function(){
-            that._tick();
-        }, o.delay);
+        element.animate({
+            draw: {
+                innerHTML: [0, +o.value]
+            },
+            defer: o.timeout,
+            dur: o.duration,
+            onFrame: function () {
+                Utils.exec(o.onTick, [+this.innerHTML], element[0]);
+                element.fire("tick", {
+                    value: +this.innerHTML
+                });
+                this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
+            },
+            onDone: function(){
+                Utils.exec(o.onStop, null, element[0]);
+                element.fire("stop");
+            }
+        })
     },
 
     reset: function(){
         this.started = false;
-        this._calcArray();
         this.element.html(this.html);
     },
 
     setValueAttribute: function(){
         this.options.value = this.element.attr("data-value");
-        this._calcArray();
     },
 
     changeAttribute: function(attributeName){
