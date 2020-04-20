@@ -3,7 +3,7 @@ var NotifyDefaultConfig = {
     width: 220,
     timeout: METRO_TIMEOUT,
     duration: METRO_ANIMATION_DURATION,
-    distance: "100vh",
+    distance: 200,
     animation: "linear",
     onClick: Metro.noop,
     onClose: Metro.noop,
@@ -50,7 +50,7 @@ var Notify = {
             width: 220,
             timeout: METRO_TIMEOUT,
             duration: METRO_ANIMATION_DURATION,
-            distance: "100vh",
+            distance: 200,
             animation: "linear"
         };
         this.options = $.extend({}, NotifyDefaultConfig, reset_options);

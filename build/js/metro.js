@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/04/2020 22:08:31
+ * Built at 20/04/2020 10:10:01
  * Licensed under MIT
  */
 
@@ -559,7 +559,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 19/04/2020 20:22:35";
+var m4qVersion = "v1.0.6. Built at 19/04/2020 22:59:01";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -605,7 +605,7 @@ $.extend = $.fn.extend = function(){
     for ( ; i < length; i++ ) {
         if ( ( options = arguments[ i ] ) != null ) {
             for ( name in options ) {
-                if (options.hasOwnProperty(name) && !not(options[name])) target[ name ] = options[ name ];
+                if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
             }
         }
     }
@@ -3286,7 +3286,7 @@ function animate(args){
             matchArgs = /\(([^)]+)\)/.exec(ease);
             easeName = ease.split("(")[0];
             easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p)}) : [];
-            easeFn = Easing[easeName];
+            easeFn = Easing[easeName] || Easing.linear;
         } else if (typeof ease === "function") {
             easeFn = ease;
         } else {
@@ -4187,7 +4187,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "19/04/2020 22:08:38",
+    compileTime: "20/04/2020 10:10:08",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12287,7 +12287,7 @@ var CountdownDefaultConfig = {
     countdownDeferred: 0,
     stopOnBlur: true,
     animate: "none",
-    animationFunc: "line",
+    animationFunc: "linear",
     inputFormat: null,
     locale: METRO_LOCALE,
     days: 0,
@@ -12585,7 +12585,7 @@ var Countdown = {
         var slideDigit = function(digit){
             var digit_copy, height = digit.height();
 
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: -1 * height + 'px'
@@ -12619,7 +12619,7 @@ var Countdown = {
 
         var fadeDigit = function(digit){
             var digit_copy;
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0
@@ -12652,11 +12652,12 @@ var Countdown = {
         var zoomDigit = function(digit){
             var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: 0,
-                left: 0
+                left: 0,
+                opacity: 1
             });
 
             digit
@@ -12664,7 +12665,7 @@ var Countdown = {
                 .animate({
                     draw: {
                         top: height,
-                        opacity: 1,
+                        opacity: 0,
                         fontSize: 0
                     },
                     dur: duration,
@@ -12680,7 +12681,7 @@ var Countdown = {
                     draw: {
                         top: 0,
                         opacity: 1,
-                        fontSize: fs
+                        fontSize: [0, fs]
                     },
                     dur: duration,
                     ease: o.animationFunc
@@ -16307,6 +16308,7 @@ var ImageMagnifier = {
         this.elem  = elem;
         this.element = $(elem);
         this.zoomElement = null;
+        this.id = Utils.elementId("magnifier");
 
         this._setOptionsFromDOM();
         Metro.createExec(this);
@@ -16430,6 +16432,18 @@ var ImageMagnifier = {
         var image = element.find("img")[0];
         var zoomElement = this.zoomElement;
         var cx, cy;
+
+        $(window).on(Metro.events.resize, function(){
+            var x = element.width() / 2 - o.lensSize / 2;
+            var y = element.height() / 2 - o.lensSize / 2;
+
+            if (o.magnifierMode === "glass") {
+                glass.css({
+                    backgroundPosition: "-" + ((x * o.magnifierZoom) - o.lensSize / 4 + 4) + "px -" + ((y * o.magnifierZoom) - o.lensSize / 4 + 4) + "px",
+                    backgroundSize: (image.width * o.magnifierZoom) + "px " + (image.height * o.magnifierZoom) + "px"
+                });
+            }
+        }, {ns: this.id})
 
         if (o.magnifierMode !== "glass") {
             cx = zoomElement[0].offsetWidth / glass_size / 2;
@@ -19874,7 +19888,7 @@ var NotifyDefaultConfig = {
     width: 220,
     timeout: METRO_TIMEOUT,
     duration: METRO_ANIMATION_DURATION,
-    distance: "100vh",
+    distance: 200,
     animation: "linear",
     onClick: Metro.noop,
     onClose: Metro.noop,
@@ -19921,7 +19935,7 @@ var Notify = {
             width: 220,
             timeout: METRO_TIMEOUT,
             duration: METRO_ANIMATION_DURATION,
-            distance: "100vh",
+            distance: 200,
             animation: "linear"
         };
         this.options = $.extend({}, NotifyDefaultConfig, reset_options);

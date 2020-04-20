@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 19/04/2020 20:22:35";
+var m4qVersion = "v1.0.6. Built at 19/04/2020 22:59:01";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -594,7 +594,7 @@ $.extend = $.fn.extend = function(){
     for ( ; i < length; i++ ) {
         if ( ( options = arguments[ i ] ) != null ) {
             for ( name in options ) {
-                if (options.hasOwnProperty(name) && !not(options[name])) target[ name ] = options[ name ];
+                if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
             }
         }
     }
@@ -3275,7 +3275,7 @@ function animate(args){
             matchArgs = /\(([^)]+)\)/.exec(ease);
             easeName = ease.split("(")[0];
             easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p)}) : [];
-            easeFn = Easing[easeName];
+            easeFn = Easing[easeName] || Easing.linear;
         } else if (typeof ease === "function") {
             easeFn = ease;
         } else {
