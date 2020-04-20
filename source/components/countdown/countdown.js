@@ -2,7 +2,7 @@ var CountdownDefaultConfig = {
     countdownDeferred: 0,
     stopOnBlur: true,
     animate: "none",
-    animationFunc: "line",
+    animationFunc: "linear",
     inputFormat: null,
     locale: METRO_LOCALE,
     days: 0,
@@ -300,7 +300,7 @@ var Countdown = {
         var slideDigit = function(digit){
             var digit_copy, height = digit.height();
 
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: -1 * height + 'px'
@@ -334,7 +334,7 @@ var Countdown = {
 
         var fadeDigit = function(digit){
             var digit_copy;
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 opacity: 0
@@ -367,11 +367,12 @@ var Countdown = {
         var zoomDigit = function(digit){
             var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
-            digit.siblings(".-old-digit").remove();
+            digit.siblings("-old-digit").remove();
             digit_copy = digit.clone().appendTo(digit.parent());
             digit_copy.css({
                 top: 0,
-                left: 0
+                left: 0,
+                opacity: 1
             });
 
             digit
@@ -379,7 +380,7 @@ var Countdown = {
                 .animate({
                     draw: {
                         top: height,
-                        opacity: 1,
+                        opacity: 0,
                         fontSize: 0
                     },
                     dur: duration,
@@ -395,7 +396,7 @@ var Countdown = {
                     draw: {
                         top: 0,
                         opacity: 1,
-                        fontSize: fs
+                        fontSize: [0, fs]
                     },
                     dur: duration,
                     ease: o.animationFunc
