@@ -96,13 +96,33 @@ var Donut = {
         var fill = element.find(".donut-fill");
         var title = element.find(".donut-title");
         var r = o.radius  * (1 - (1 - o.hole) / 2);
-        var circumference = 2 * Math.PI * r;
-        // var title_value = (o.showValue ? o.value : Math.round(((v * 1000 / o.total) / 10)))+(o.cap);
-        var title_value = (o.showValue ? v : Utils.percent(o.total, v, true))  + (o.cap);
-        var fill_value = ((v * circumference) / o.total) + ' ' + circumference;
+        var circumference = Math.round(2 * Math.PI * r);
+        var title_value = (o.showValue ? v : Utils.percent(o.total, v, true))/*  + (o.cap)*/;
+        var fill_value = Math.round(((+v * circumference) / o.total));// + ' ' + circumference;
 
-        fill.attr("stroke-dasharray", fill_value);
-        title.html(title_value);
+        var sda = fill.attr("stroke-dasharray");
+        if (typeof sda === "undefined") {
+            sda = 0;
+        } else {
+            sda = +sda.split(" ")[0];
+        }
+        var delta = fill_value - sda;
+
+        fill.animate({
+            draw: function(t, p){
+                $(this).attr("stroke-dasharray", (sda + delta * p ) + ' ' + circumference);
+            },
+            dur: o.animate
+        })
+        title.animate({
+            draw: {
+                innerHTML: title_value
+            },
+            dur: o.animate,
+            onFrame: function(){
+                this.innerHTML += o.cap;
+            }
+        });
     },
 
     val: function(v){
@@ -116,31 +136,10 @@ var Donut = {
             return false;
         }
 
-        if (o.animate > 0 && !document.hidden) {
-            var inc = v > that.value;
-            var i = that.value + (inc ? -1 : 1);
-
-            clearInterval(that.animation_change_interval);
-            this.animation_change_interval = setInterval(function(){
-                if (inc) {
-                    that._setValue(++i);
-                    if (i >= v) {
-                        clearInterval(that.animation_change_interval);
-                    }
-                } else {
-                    that._setValue(--i);
-                    if (i <= v) {
-                        clearInterval(that.animation_change_interval);
-                    }
-                }
-            }, o.animate);
-        } else {
-            clearInterval(that.animation_change_interval);
-            this._setValue(v);
-        }
+        this._setValue(v);
 
         this.value = v;
-        //element.attr("data-value", v);
+
         Utils.exec(o.onChange, [this.value], element[0]);
         element.fire("change", {
             value: this.value
