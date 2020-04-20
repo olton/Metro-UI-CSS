@@ -162,7 +162,13 @@ var Sidebar = {
             element.data("opened", false).removeClass('open');
             if (o.shift !== null) {
                 $.each(o.shift.split(","), function(){
-                    $(""+this).animate({left: 0}, o.duration);
+                    $(this)
+                        .animate({
+                            draw: {
+                                left: 0
+                            },
+                            dur: o.duration
+                        })
                 });
             }
             Utils.exec(o.onStaticSet, null, element[0]);
@@ -189,9 +195,13 @@ var Sidebar = {
         element.data("opened", true).addClass('open');
 
         if (o.shift !== null) {
-            $(o.shift).animate({
-                left: element.outerWidth()
-            }, o.duration);
+            $(o.shift)
+                .animate({
+                    draw: {
+                        left: element.outerWidth()
+                    },
+                    dur: o.duration
+                });
         }
 
         Utils.exec(o.onOpen, null, element[0]);
@@ -208,9 +218,13 @@ var Sidebar = {
         element.data("opened", false).removeClass('open');
 
         if (o.shift !== null) {
-            $(o.shift).animate({
-                left: 0
-            }, o.duration);
+            $(o.shift)
+                .animate({
+                    draw: {
+                        left: 0
+                    },
+                    dur: o.duration
+                });
         }
 
         Utils.exec(o.onClose, null, element[0]);

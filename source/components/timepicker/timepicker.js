@@ -366,9 +366,14 @@ var TimePicker = {
         }
 
         var animateList = function(list, item){
-            list.scrollTop(0).animate({
-                scrollTop: item.position().top - (o.distance * 40) + list.scrollTop()
-            }, 100);
+            list
+                .scrollTop(0)
+                .animate({
+                    draw: {
+                        scrollTop: item.position().top - (o.distance * 40) + list.scrollTop()
+                    },
+                    dur: 100
+                });
         };
 
         if (o.hours === true) {

@@ -1,4 +1,7 @@
 ### 4.3.7
+#### M4Q
++ [x] Animation: new engine for animation. The function of `animate` was changed.  Now function receives one argument. 
+
 #### Metro 4
 + [x] Input: fix append size and padding, issue #1512
 + [x] Ripple: added ripple call for any element, issue #1515
@@ -14,6 +17,7 @@
 + [x] Input: fix `prepend`, `append` for `input-small`, `input-large`. Issue #1522
 + [x] Counter: fix start if element already in viewport
 + [x] CSS: added `metro-reset.css`, `metro-common.css`, `metro-components.css` as standalone.
++ [x] Image magnifier: fix glass image when user resize original image
 
 ### 4.3.6
 ##### M4Q

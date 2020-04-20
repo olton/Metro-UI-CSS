@@ -170,12 +170,16 @@ var MaterialTabs = {
         }
 
         element.animate({
-            scrollLeft: scrollLeft
+            draw: {
+                scrollLeft: scrollLeft
+            }
         });
 
         this.marker.animate({
-            left: tab_left,
-            width: tab_width
+            draw: {
+                left: tab_left,
+                width: tab_width
+            }
         });
 
         target = tab.find("a").attr("href");

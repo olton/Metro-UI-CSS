@@ -593,9 +593,14 @@ var Streamer = {
             target = $(element.find(".streamer-timeline .js-time-point-" + time.replace(":", "-"))[0]);
         }
 
-        element.find(".events-area").animate({
-            scrollLeft: target[0].offsetLeft - element.find(".streams .stream").outerWidth()
-        }, o.duration);
+        element
+            .find(".events-area")
+            .animate({
+                draw: {
+                    scrollLeft: target[0].offsetLeft - element.find(".streams .stream").outerWidth()
+                },
+                dur: o.duration
+            });
     },
 
     enableStream: function(stream){

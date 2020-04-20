@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 14/02/2020 19:08:43";
+var m4qVersion = "v1.0.6. Built at 19/04/2020 22:59:01";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1513,10 +1513,12 @@ $.extend({
     acceptData: function(owner){return acceptData(owner);},
     not: function(val){return not(val)},
     parseUnit: function(str, out){return parseUnit(str, out)},
+    getUnit: function(str, und){return _getUnit(str, und)},
     unit: function(str, out){return parseUnit(str, out)},
     isVisible: function(elem) {return isVisible(elem)},
     isHidden: function(elem) {return isHidden(elem)},
     matches: function(el, s) {return matches.call(el, s);},
+    random: function(from, to) {return Math.floor(Math.random()*(to-from+1)+from);},
 
     serializeToArray: function(form){
         var _form = $(form)[0];
@@ -2835,337 +2837,496 @@ $.fn.extend({
 
 // Source: src/animation.js
 
-var cancelAnimationFrame = window.cancelAnimationFrame || window.webkitCancelAnimationFrame || window["mozCancelAnimationFrame"];
+var transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY'];
+var numberProps = ['opacity', 'zIndex'];
+var floatProps = ['opacity', 'volume'];
+var scrollProps = ["scrollLeft", "scrollTop"];
+var reverseProps = ["opacity", "volume"];
+
+/**
+ *
+ * @param val
+ * @param und
+ * @returns {any}
+ */
+function _getUnit(val, und){
+    var split = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(val);
+    return typeof split[1] !== "undefined" ? split[1] : und;
+}
+
+/**
+ *
+ * @param to
+ * @param from
+ * @returns {*}
+ * @private
+ */
+function _getRelativeValue (to, from) {
+    var operator = /^(\*=|\+=|-=)/.exec(to);
+    if (!operator) return to;
+    var u = _getUnit(to) || 0;
+    var x = parseFloat(from);
+    var y = parseFloat(to.replace(operator[0], ''));
+    switch (operator[0][0]) {
+        case '+':
+            return x + y + u;
+        case '-':
+            return x - y + u;
+        case '*':
+            return x * y + u;
+    }
+}
+
+/**
+ *
+ * @param el
+ * @param prop
+ * @param pseudo
+ * @returns {*|number|string}
+ * @private
+ */
+function _getStyle (el, prop, pseudo){
+    if (typeof el[prop] !== "undefined") {
+        if (scrollProps.indexOf(prop) > -1) {
+            return prop === "scrollLeft" ? el === window ? pageXOffset : el.scrollLeft : el === window ? pageYOffset : el.scrollTop
+        } else {
+            return el[prop] || 0;
+        }
+    }
+    return el.style[prop] || getComputedStyle(el, pseudo)[prop];
+}
+
+/**
+ *
+ * @param el
+ * @param key
+ * @param val
+ * @param unit
+ * @param toInt
+ * @private
+ */
+function _setStyle (el, key, val, unit, toInt) {
+
+    if (not(toInt)) {
+        toInt = false;
+    }
+
+    key = camelCase(key);
+
+    if (toInt) {
+        val  = parseInt(val);
+    }
+
+    if (el instanceof HTMLElement) {
+        if (typeof el[key] !== "undefined") {
+            el[key] = val;
+        } else {
+            el.style[key] = key === "transform" || key.toLowerCase().includes('color') ? val : val + unit;
+        }
+    } else {
+        el[key] = val;
+    }
+}
+
+/**
+ *
+ * @param el
+ * @param mapProps
+ * @param p
+ * @private
+ */
+function _applyStyles (el, mapProps, p) {
+    $.each(mapProps, function (key, val) {
+        _setStyle(el, key, val[0] + (val[2] * p), val[3], val[4]);
+    })
+}
+
+/**
+ *
+ * @param el
+ * @returns {{}}
+ * @private
+ */
+function _getElementTransforms (el) {
+    if (!el instanceof HTMLElement) return;
+    var str = el.style.transform || '';
+    var reg = /(\w+)\(([^)]*)\)/g;
+    var transforms = {};
+    var m;
+
+    while (m = reg.exec(str))
+        transforms[m[1]] = m[2];
+
+    return transforms;
+}
+
+/**
+ *
+ * @param val
+ * @returns {number[]}
+ * @private
+ */
+function _getColorArrayFromHex (val){
+    var a = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(val ? val : "#000000");
+    return a.slice(1).map(function(v) {
+            return parseInt(v, 16)
+    })
+}
+
+/**
+ *
+ * @param el
+ * @param key
+ * @returns {number[]}
+ * @private
+ */
+function _getColorArrayFromElement (el, key) {
+    return getComputedStyle(el)[key].replace(/[^\d.,]/g, '').split(',').map(function(v) {
+        return parseInt(v)
+    });
+}
+
+/**
+ *
+ * @param el
+ * @param mapProps
+ * @param p
+ * @private
+ */
+function _applyTransform (el, mapProps, p) {
+    var t = [];
+    var elTransforms = _getElementTransforms(el);
+
+    $.each(mapProps, function(key, val) {
+        var from = val[0], to = val[1], delta = val[2], unit = val[3];
+        key = "" + key;
+
+        if ( key.indexOf("rotate") > -1 || key.indexOf("skew") > -1) {
+            if (unit === "") unit = "deg";
+        } else if (key.indexOf("scale")) {
+            unit = "";
+        } else {
+            unit = "px";
+        }
+
+        if (unit === "turn") {
+            t.push(key+"(" + (to * p) + unit + ")");
+        } else {
+            t.push(key +"(" + (from + (delta * p)) + unit+")");
+        }
+    });
+
+    $.each(elTransforms, function(key, val) {
+        if (mapProps[key] === undefined) {
+            t.push(key+"("+val+")");
+        }
+    })
+
+    _setStyle(el, "transform", t.join(" "));
+}
+
+/**
+ *
+ * @param el
+ * @param mapProps
+ * @param p
+ * @private
+ */
+function _applyColors (el, mapProps, p) {
+    $.each(mapProps, function (key, val) {
+        var i, result = [0, 0, 0], v;
+        for (i = 0; i < 3; i++) {
+            result[i] = Math.floor(val[0][i] + (val[2][i] * p));
+        }
+        v = "rgb("+(result.join(","))+")";
+        _setStyle(el, key, v);
+    })
+}
+
+/**
+ *
+ * @param val
+ * @returns {string|*}
+ * @private
+ */
+function _expandColorValue (val) {
+    var regExp = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+    if (val[0] === "#" && val.length === 4) {
+        return "#" + val.replace(regExp, function(m, r, g, b) {
+            return r + r + g + g + b + b;
+        });
+    }
+    return val[0] === "#" ? val : "#"+val;
+}
+
+/**
+ *
+ * @param el
+ * @param map
+ * @param p
+ */
+function applyProps (el, map, p) {
+    _applyStyles(el, map.props, p);
+    _applyTransform(el, map.transform, p);
+    _applyColors(el, map.color, p);
+}
+
+/**
+ *
+ * @param el
+ * @param draw
+ * @param dir
+ * @returns {{transform: {}, color: {}, props: {}}}
+ */
+function createAnimationMap (el, draw, dir) {
+    var map = {
+        props: {},
+        transform: {},
+        color: {}
+    };
+    var i, from, to, delta, unit, temp;
+    var elTransforms = _getElementTransforms(el);
+
+    if (not(dir)) {
+        dir = "normal";
+    }
+
+    $.each(draw, function(key, val) {
+
+        var isTransformProp = transformProps.indexOf(""+key) > -1;
+        var isNumProp = numberProps.indexOf(""+key) > -1;
+        var isColorProp = (""+key).toLowerCase().indexOf("color") > -1;
+
+        if (Array.isArray(val) && val.length === 1) {
+            val = val[0];
+        }
+
+        if (!Array.isArray(val)) {
+            if (isTransformProp) {
+                from = elTransforms[key] || 0;
+            } else if (isColorProp) {
+                from = _getColorArrayFromElement(el, key);
+            } else {
+                from = _getStyle(el, key);
+            }
+            from = !isColorProp ? parseUnit(from) : from;
+            to = !isColorProp ? parseUnit(_getRelativeValue(val, Array.isArray(from) ? from[0] : from)) : _getColorArrayFromHex(val);
+        } else {
+            from = !isColorProp ? parseUnit(val[0]) : _getColorArrayFromHex(_expandColorValue(val[0]));
+            to = !isColorProp ? parseUnit(val[1]) : _getColorArrayFromHex(_expandColorValue(val[1]));
+        }
+
+        if (reverseProps.indexOf(""+key) > -1 && from[0] === to[0]) {
+            from[0] = to[0] > 0 ? 0 : 1;
+        }
+
+        if (dir === "reverse") {
+            temp = from;
+            from = to;
+            to = temp;
+        }
+
+        unit = el instanceof HTMLElement && to[1] === '' && !isNumProp && !isTransformProp ? 'px' : to[1];
+
+        if (isColorProp) {
+            delta = [0, 0, 0];
+            for (i = 0; i < 3; i++) {
+                delta[i] = to[i] - from[i];
+            }
+        } else {
+            delta = to[0] - from[0];
+        }
+
+        if (isTransformProp) {
+            map.transform[key] = [from[0], to[0], delta, unit];
+        } else if (isColorProp) {
+            map.color[key] = [from, to, delta, unit];
+        } else {
+            map.props[key] = [from[0], to[0], delta, unit, floatProps.indexOf(""+key) === -1];
+        }
+    });
+
+    return map;
+}
+
+function minMax(val, min, max) {
+    return Math.min(Math.max(val, min), max);
+}
 
 var Easing = {
+    linear: function(){return function(t) {return t}}
+}
 
-    def: "linear",
+Easing.default = Easing.linear;
 
-    linear: function( t ) {
-        return t;
-    },
-
-    easeInSine: function( t ) {
-        return -1 * Math.cos( t * ( Math.PI / 2 ) ) + 1;
-    },
-
-    easeOutSine: function( t ) {
-        return Math.sin( t * ( Math.PI / 2 ) );
-    },
-
-    easeInOutSine: function( t ) {
-        return -0.5 * ( Math.cos( Math.PI * t ) - 1 );
-    },
-
-    easeInQuad: function( t ) {
-        return t * t;
-    },
-
-    easeOutQuad: function( t ) {
-        return t * ( 2 - t );
-    },
-
-    easeInOutQuad: function( t ) {
-        return t < 0.5 ? 2 * t * t : - 1 + ( 4 - 2 * t ) * t;
-    },
-
-    easeInCubic: function( t ) {
-        return t * t * t;
-    },
-
-    easeOutCubic: function( t ) {
-        var t1 = t - 1;
-        return t1 * t1 * t1 + 1;
-    },
-
-    easeInOutCubic: function( t ) {
-        return t < 0.5 ? 4 * t * t * t : ( t - 1 ) * ( 2 * t - 2 ) * ( 2 * t - 2 ) + 1;
-    },
-
-    easeInQuart: function( t ) {
-        return t * t * t * t;
-    },
-
-    easeOutQuart: function( t ) {
-        var t1 = t - 1;
-        return 1 - t1 * t1 * t1 * t1;
-    },
-
-    easeInOutQuart: function( t ) {
-        var t1 = t - 1;
-        return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * t1 * t1 * t1 * t1;
-    },
-
-    easeInQuint: function( t ) {
-        return t * t * t * t * t;
-    },
-
-    easeOutQuint: function( t ) {
-        var t1 = t - 1;
-        return 1 + t1 * t1 * t1 * t1 * t1;
-    },
-
-    easeInOutQuint: function( t ) {
-        var t1 = t - 1;
-        return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * t1 * t1 * t1 * t1 * t1;
-    },
-
-    easeInExpo: function( t ) {
-        if( t === 0 ) {
-            return 0;
-        }
-        return Math.pow( 2, 10 * ( t - 1 ) );
-    },
-
-    easeOutExpo: function( t ) {
-        if( t === 1 ) {
-            return 1;
-        }
-
-        return ( -Math.pow( 2, -10 * t ) + 1 );
-    },
-
-    easeInOutExpo: function( t ) {
-        if( t === 0 || t === 1 ) {
-            return t;
-        }
-
-        var scaledTime = t * 2;
-        var scaledTime1 = scaledTime - 1;
-
-        if( scaledTime < 1 ) {
-            return 0.5 * Math.pow( 2, 10 * ( scaledTime1 ) );
-        }
-
-        return 0.5 * ( -Math.pow( 2, -10 * scaledTime1 ) + 2 );
-    },
-
-    easeInCirc: function( t ) {
-        var scaledTime = t / 1;
-        return -1 * ( Math.sqrt( 1 - scaledTime * t ) - 1 );
-    },
-
-    easeOutCirc: function( t ) {
-        var t1 = t - 1;
-        return Math.sqrt( 1 - t1 * t1 );
-    },
-
-    easeInOutCirc: function( t ) {
-        var scaledTime = t * 2;
-        var scaledTime1 = scaledTime - 2;
-
-        if( scaledTime < 1 ) {
-            return -0.5 * ( Math.sqrt( 1 - scaledTime * scaledTime ) - 1 );
-        }
-
-        return 0.5 * ( Math.sqrt( 1 - scaledTime1 * scaledTime1 ) + 1 );
-    },
-
-    easeInBack: function(t, m) {
-        m = m || 1.70158;
-        return t * t * ( ( m + 1 ) * t - m );
-    },
-
-    easeOutBack: function(t, m) {
-        m = m || 1.70158;
-        var scaledTime = ( t / 1 ) - 1;
-
-        return (
-            scaledTime * scaledTime * ( ( m + 1 ) * scaledTime + m )
-        ) + 1;
-    },
-
-    easeInOutBack: function( t, m ) {
-        m = m || 1.70158;
-        var scaledTime = t * 2;
-        var scaledTime2 = scaledTime - 2;
-        var s = m * 1.525;
-
-        if( scaledTime < 1) {
-            return 0.5 * scaledTime * scaledTime * (
-                ( ( s + 1 ) * scaledTime ) - s
-            );
-        }
-
-        return 0.5 * (
-            scaledTime2 * scaledTime2 * ( ( s + 1 ) * scaledTime2 + s ) + 2
-        );
-    },
-
-    easeInElastic: function( t, m ) {
-        m  = m || 0.7;
-        if( t === 0 || t === 1 ) {
-            return t;
-        }
-
-        var scaledTime = t / 1;
-        var scaledTime1 = scaledTime - 1;
-
-        var p = 1 - m;
-        var s = p / ( 2 * Math.PI ) * Math.asin( 1 );
-
-        return -(
-            Math.pow( 2, 10 * scaledTime1 ) *
-            Math.sin( ( scaledTime1 - s ) * ( 2 * Math.PI ) / p )
-        );
-    },
-
-    easeOutElastic: function( t, m ) {
-        m = m || 0.7;
-        var p = 1 - m;
-        var scaledTime = t * 2;
-
-        if( t === 0 || t === 1 ) {
-            return t;
-        }
-
-        var s = p / ( 2 * Math.PI ) * Math.asin( 1 );
-        return (
-            Math.pow( 2, -10 * scaledTime ) *
-            Math.sin( ( scaledTime - s ) * ( 2 * Math.PI ) / p )
-        ) + 1;
-
-    },
-
-    easeInOutElastic: function( t, m ) {
-        m = m || 0.65;
-        var p = 1 - m;
-
-        if( t === 0 || t === 1 ) {
-            return t;
-        }
-
-        var scaledTime = t * 2;
-        var scaledTime1 = scaledTime - 1;
-
-        var s = p / ( 2 * Math.PI ) * Math.asin( 1 );
-
-        if( scaledTime < 1 ) {
-            return -0.5 * (
-                Math.pow( 2, 10 * scaledTime1 ) *
-                Math.sin( ( scaledTime1 - s ) * ( 2 * Math.PI ) / p )
-            );
-        }
-
-        return (
-            Math.pow( 2, -10 * scaledTime1 ) *
-            Math.sin( ( scaledTime1 - s ) * ( 2 * Math.PI ) / p ) * 0.5
-        ) + 1;
-
-    },
-
-    easeOutBounce: function( t ) {
-        var scaledTime2, scaledTime = t / 1;
-
-        if( scaledTime < ( 1 / 2.75 ) ) {
-
-            return 7.5625 * scaledTime * scaledTime;
-
-        } else if( scaledTime < ( 2 / 2.75 ) ) {
-
-            scaledTime2 = scaledTime - ( 1.5 / 2.75 );
-            return ( 7.5625 * scaledTime2 * scaledTime2 ) + 0.75;
-
-        } else if( scaledTime < ( 2.5 / 2.75 ) ) {
-
-            scaledTime2 = scaledTime - ( 2.25 / 2.75 );
-            return ( 7.5625 * scaledTime2 * scaledTime2 ) + 0.9375;
-
-        } else {
-
-            scaledTime2 = scaledTime - ( 2.625 / 2.75 );
-            return ( 7.5625 * scaledTime2 * scaledTime2 ) + 0.984375;
-
+var eases = {
+    Sine: function(){
+        return function(t){
+            return 1 - Math.cos(t * Math.PI / 2);
         }
     },
-
-    easeInBounce: function( t ) {
-        return 1 - Easing.easeOutBounce( 1 - t );
-    },
-
-    easeInOutBounce: function( t ) {
-        if( t < 0.5 ) {
-            return Easing.easeInBounce( t * 2 ) * 0.5;
+    Circ: function(){
+        return function(t){
+            return 1 - Math.sqrt(1 - t * t);
         }
-        return ( Easing.easeOutBounce( ( t * 2 ) - 1 ) * 0.5 ) + 0.5;
+    },
+    Back: function(){
+        return function(t){
+            return t * t * (3 * t - 2);
+        }
+    },
+    Bounce: function(){
+        return function(t){
+            var pow2, b = 4;
+            while (t < (( pow2 = Math.pow(2, --b)) - 1) / 11) {}
+            return 1 / Math.pow(4, 3 - b) - 7.5625 * Math.pow(( pow2 * 3 - 2 ) / 22 - t, 2)
+        }
+    },
+    Elastic: function(amplitude, period){
+        if (not(amplitude)) {
+            amplitude = 1;
+        }
+
+        if (not(period)) {
+            period = .5;
+        }
+        var a = minMax(amplitude, 1, 10);
+        var p = minMax(period, .1, 2);
+        return function(t){
+            return (t === 0 || t === 1) ? t :
+                -a * Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2) * Math.asin(1 / a))) * (Math.PI * 2)) / p);
+        }
     }
 };
 
-$.easing = {};
+['Quad', 'Cubic', 'Quart', 'Quint', 'Expo'].forEach(function(name, i) {
+    eases[name] = function(){
+        return function(t){
+            return Math.pow(t, i + 2);
+        }
+    }
+});
 
-$.extend($.easing, Easing);
+Object.keys(eases).forEach(function(name) {
+    var easeIn = eases[name];
+    Easing['easeIn' + name] = easeIn;
+    Easing['easeOut' + name] = function(a, b){
+        return function(t){
+            return 1 - easeIn(a, b)(1 - t);
+        }
+    }
+    Easing['easeInOut' + name] = function(a, b){
+        return function(t){
+            return t < 0.5 ? easeIn(a, b)(t * 2) / 2 : 1 - easeIn(a, b)(t * -2 + 2) / 2;
+        }
+    }
+});
 
-$.extend({
-    animate: function(el, draw, dur, timing, cb){
-        var $el = $(el), start = performance.now();
-        var key, from, to, delta, unit, mapProps = {};
+var defaultProps = {
+    id: null,
+    el: null,
+    draw: {},
+    dur: 1000,
+    ease: "linear",
+    loop: 0,
+    pause: 0,
+    dir: "normal",
+    defer: 0,
+    onFrame: function(){},
+    onDone: function(){}
+}
 
-        if (dur === 0 || $.fx.off) {
+var Animation = {
+    elements: {}
+};
+
+function animate(args){
+    return new Promise(function(resolve){
+        var that = this, start;
+        var props = $.extend({}, defaultProps, args);
+        var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop, onFrame = props.onFrame, onDone = props.onDone, pause = props.pause, dir = props.dir, defer = props.defer;
+        var map = {};
+        var easeName = "linear", easeArgs = [], easeFn = Easing.linear, matchArgs;
+        var direction = dir === "alternate" ? "normal" : dir;
+        var replay = false;
+        var animationID = id ? id : +(performance.now() * Math.pow(10, 14));
+
+        if (not(el)) {
+            throw new Error("Unknown element!");
+        }
+
+        if (typeof el === "string") {
+            el = document.querySelector(el);
+        }
+
+        if (typeof draw !== "function" && typeof draw !== "object") {
+            throw new Error("Unknown draw object. Must be a function or object!");
+        }
+
+        if (dur === 0) {
             dur = 1;
         }
 
-        dur = dur || 300;
-        timing = timing || this.easing.def;
-
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 300;
-            timing = "linear";
+        if (dir === "alternate" && typeof loop === "number") {
+            loop *= 2;
         }
 
-        if (typeof timing === "function") {
-            cb = timing;
-            timing = this.easing.def
+        if (typeof ease === "string") {
+            matchArgs = /\(([^)]+)\)/.exec(ease);
+            easeName = ease.split("(")[0];
+            easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p)}) : [];
+            easeFn = Easing[easeName] || Easing.linear;
+        } else if (typeof ease === "function") {
+            easeFn = ease;
+        } else {
+            easeFn = Easing.linear;
         }
 
-        $el.origin("animation-stop", 0);
+        Animation.elements[animationID] = {
+            element: el,
+            id: null,
+            stop: 0,
+            pause: 0,
+            loop: 0
+        };
 
-        if (isPlainObject(draw)) {
-            // TODO add prop value as array [from, to]
-            for (key in draw) {
-                if (draw.hasOwnProperty(key)) {
-                    if (!Array.isArray(draw[key])) {
-                        from = parseUnit($el.style(key));
-                        to = parseUnit(draw[key]);
-                    } else {
-                        from = parseUnit(draw[key][0]);
-                        to = parseUnit(draw[key][1]);
-                    }
-                    unit = to[1] === '' && numProps.indexOf(key)===-1 ? 'px' : to[1];
-                    delta = to[0] - from[0];
-                    mapProps[key] = [from[0], to[0], delta, unit];
-                }
+        var play = function() {
+            if (typeof draw === "object") {
+                map = createAnimationMap(el, draw, direction);
             }
-        }
+            start = performance.now();
+            Animation.elements[animationID].loop += 1;
+            Animation.elements[animationID].id = requestAnimationFrame(animate);
+        };
 
-        $el.origin("animation", requestAnimationFrame(function animate(time) {
+        var done = function() {
+            cancelAnimationFrame(Animation.elements[animationID].id);
+            delete Animation.elements[id];
+
+            if (typeof onDone === "function") {
+                onDone.apply(el);
+            }
+
+            resolve(that);
+        };
+
+        var animate = function(time) {
             var p, t;
-            var stop = $el.origin("animation-stop");
+            var stop = Animation.elements[animationID].stop;
 
             if ( stop > 0) {
-
                 if (stop === 2) {
                     if (typeof draw === "function") {
-                        $.proxy(draw, $el[0])(1, 1);
-                    } else if (isPlainObject(draw)) {
-                        (function(t, p){
 
-                            for (key in mapProps) {
-                                if (mapProps.hasOwnProperty(key)) {
-                                    $el.css(key, mapProps[key][0] + (mapProps[key][2] * p) + mapProps[key][3]);
-                                }
-                            }
+                        draw.bind(el)(1, 1);
 
-                        })(1, 1);
+                    } else {
+
+                        applyProps(el, map, 1);
+
                     }
                 }
-
-                cancelAnimationFrame($(el).origin("animation"));
-
-                if (typeof cb === "function") {
-                    $.proxy(cb, $el[0])();
-                }
-
+                done();
                 return;
             }
 
@@ -3174,60 +3335,176 @@ $.extend({
             if (t > 1) t = 1;
             if (t < 0) t = 0;
 
-            var fn = typeof timing === "string" ? $.easing[timing] ? $.easing[timing] : $.easing[$.easing.def] : timing;
-
-            p = fn(t);
+            p = easeFn.apply(null, easeArgs)(t);
 
             if (typeof draw === "function") {
 
-                $.proxy(draw, $el[0])(t, p);
-
-            } else if (isPlainObject(draw)) {
-
-                (function(t, p){
-
-                    for (key in mapProps) {
-                        if (mapProps.hasOwnProperty(key)) {
-                            $el.css(key, mapProps[key][0] + (mapProps[key][2] * p) + mapProps[key][3]);
-                        }
-                    }
-
-                })(t, p);
+                draw.bind(el)(t, p);
 
             } else {
-                throw new Error("Unknown draw object. Must be a function or plain object");
+
+                applyProps(el, map, p);
+
             }
 
-            if (t === 1 && typeof cb === "function") {
-                $.proxy(cb, $el[0])();
+            if (typeof onFrame === 'function') {
+                onFrame.apply(el, [t, p]);
             }
+
             if (t < 1) {
-                $el.origin("animation", requestAnimationFrame(animate));
+                Animation.elements[animationID].id = requestAnimationFrame(animate);
             }
-        }));
-        return this;
-    },
 
-    stop: function(el, done){
-        $(el).origin("animation-stop", done === true ? 2 : 1);
+            if (parseInt(t) === 1) {
+                if (loop) {
+                    if (dir === "alternate") {
+                        direction = direction === "normal" ? "reverse" : "normal";
+                    }
+
+                    if (typeof loop === "boolean") {
+                        setTimeout(function () {
+                            play();
+                        }, pause);
+                    } else {
+                        if (loop > Animation.elements[animationID].loop) {
+                            setTimeout(function () {
+                                play();
+                            }, pause);
+                        } else {
+                            done();
+                        }
+                    }
+                } else {
+                    if (dir === "alternate" && !replay) {
+                        direction = direction === "normal" ? "reverse" : "normal";
+                        replay = true;
+                        play();
+                    } else {
+                        done();
+                    }
+                }
+            }
+        };
+        if (defer > 0) {
+            setTimeout(function() {
+                play();
+            }, defer);
+        } else {
+            play();
+        }
+    });
+}
+
+function stop(id, done){
+    if (not(done)) {
+        done = true;
     }
-});
+    Animation.elements[id].stop = done === true ? 2 : 1;
+}
+
+function chain(arr, loop){
+    if (not(loop)) loop = false;
+    if (!Array.isArray(arr)) {
+        console.warn("Chain array is not defined!");
+        return false;
+    }
+
+    var reducer = function(acc, item){
+        return acc.then(function(){
+            return animate(item)
+        });
+    }
+
+    arr.reduce(reducer, Promise.resolve()).then(function(){
+        if (loop) {
+            if (typeof loop === "boolean") {
+                chain(arr, loop);
+            } else {
+                loop--;
+                chain(arr, loop);
+            }
+        }
+    });
+}
+
+$.easing = {};
+
+$.extend($.easing, Easing);
+
+$.extend({
+    animate: animate,
+    stop: stop,
+    chain: chain
+})
 
 $.fn.extend({
-    animate: function (draw, dur, timing, cb) {
+    /**
+     *
+
+     args = {
+         draw: {} | function,
+         dur: 1000,
+         ease: "linear",
+         loop: 0,
+         pause: 0,
+         dir: "normal",
+         defer: 0,
+         onFrame: function,
+         onDone: function
+     }
+
+     * @returns {this}
+     */
+    animate: function(args){
+        var that = this;
+        if (Array.isArray(args)) {
+            $.each(args, function(){
+                var a = this;
+                that.each(function(){
+                    a['el'] = this;
+                    console.log(a);
+                    $.animate(a);
+                })
+            })
+            return this;
+        }
+
+        var a = args;
         return this.each(function(){
-            return $.animate(this, draw, dur, timing, cb);
+            a['el'] = this;
+            $.animate(a);
         })
     },
 
-    stop: function(done){
+    chain: function(arr, loop){
         return this.each(function(){
-            return $.stop(this, done);
+            var el = this;
+            $.each(arr, function(){
+                this['el'] = el;
+            });
+            $.chain(arr, loop);
         })
+    },
+
+    /**
+     *
+     * @param done
+     * @returns {this}
+     */
+    stop: function(done){
+        var elements = Animation.elements;
+        return this.each(function(){
+            var el = this;
+            $.each(elements, function(k, o){
+                if (o['element'] === el) {
+                    stop(k, done);
+                }
+            })
+        });
     }
-});
+})
 
-
+// Переделать effects
 
 // Source: src/visibility.js
 
@@ -3355,175 +3632,305 @@ $.fn.extend({
 
 // Source: src/effects.js
 
+var DEFAULT_DURATION = 1000;
+var DEFAULT_EASING = "linear";
+
 $.extend({
     fx: {
         off: false
-    },
-
-    fadeIn: function(el, dur, easing, cb) {
-        var $el = $(el);
-
-        if (!isVisible($el[0]) || (isVisible($el[0]) && parseInt($el.style('opacity')) === 0)) {
-
-            if (not(dur) && not(easing) && not(cb)) {
-                cb = null;
-                dur = 1000;
-            } else if (typeof dur === "function") {
-                cb = dur;
-                dur = 1000;
-            }
-
-            if (typeof easing === "function") {
-                cb = easing;
-                easing = "linear";
-            }
-
-            var originDisplay = $(el).origin("display", undefined, 'block');
-
-            el.style.opacity = "0";
-            el.style.display = originDisplay;
-
-            return this.animate(el, {
-                opacity: 1
-            }, dur, easing, function () {
-                this.style.removeProperty('opacity');
-
-                if (typeof cb === 'function') {
-                    $.proxy(cb, this)();
-                }
-            });
-        }
-
-        return this;
-    },
-
-    fadeOut: function(el, dur, easing, cb){
-        var $el = $(el);
-
-        if ( !isVisible($el[0]) ) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 1000;
-        } else
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 1000;
-        }
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        $el.origin("display", $(el).style('display'));
-
-        return this.animate(el, {
-            opacity: 0
-        }, dur, easing, function(){
-            this.style.display = 'none';
-            this.style.removeProperty('opacity');
-
-            if (typeof cb === 'function') {
-                $.proxy(cb, this)();
-            }
-        });
-    },
-
-    slideDown: function(el, dur, easing, cb) {
-        var $el = $(el);
-        var targetHeight, originDisplay;
-
-        if (!isNaN($el.height()) && $el.height() !== 0) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 100;
-        } else
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 100;
-        }
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        $el.show().visible(false);
-        targetHeight = $el.origin("height", undefined, $el.height());
-        originDisplay = $el.origin("display", $(el).style('display'), "block");
-        $el.height(0).visible(true);
-
-        $el.css({
-            overflow: "hidden",
-            display: originDisplay === "none" ? "block" : originDisplay
-        });
-
-        return this.animate(el, function(t, p){
-            el.style.height = (targetHeight * p) + "px";
-            if (t === 1) {
-                $(el).removeStyleProperty("overflow, height, visibility");
-            }
-        }, dur, easing, cb);
-    },
-
-    slideUp: function(el, dur, easing, cb) {
-        var $el = $(el);
-        var currHeight;
-
-        if ($el.height() === 0) return ;
-
-        if (not(dur) && not(easing) && not(cb)) {
-            cb = null;
-            dur = 100;
-        } else
-        if (typeof dur === "function") {
-            cb = dur;
-            dur = 100;
-        }
-        if (typeof easing === "function") {
-            cb = easing;
-            easing = "linear";
-        }
-
-        currHeight = $el.height();
-        $el.origin("height", currHeight);
-        $el.origin("display", $(el).style('display'));
-
-        $el.css({
-            overflow: "hidden"
-        });
-
-        return this.animate(el, function(t, p){
-            el.style.height = (1 - p) * currHeight + 'px';
-            if (t === 1) {
-                $el.hide().removeStyleProperty("overflow, height");
-            }
-        }, dur, easing, cb);
     }
 });
 
 $.fn.extend({
     fadeIn: function(dur, easing, cb){
         return this.each(function(){
-            $.fadeIn(this, dur, easing, cb);
+            var el = this;
+            var $el = $(el);
+            var visible = !(!isVisible(el) || (isVisible(el) && +($el.style('opacity')) === 0));
+
+            if (visible) {
+                return this;
+            }
+
+            if (not(dur) && not(easing) && not(cb)) {
+                cb = null;
+                dur = DEFAULT_DURATION;
+            } else if (typeof dur === "function") {
+                cb = dur;
+                dur = DEFAULT_DURATION;
+            }
+
+            if (typeof easing === "function") {
+                cb = easing;
+                easing = DEFAULT_EASING;
+            }
+
+            if ($.fx.off) {
+                dur = 0;
+            }
+
+            var originDisplay = $el.origin("display", undefined, 'block');
+
+            el.style.opacity = "0";
+            el.style.display = originDisplay;
+
+            return $.animate({
+                el: el,
+                draw: {
+                    opacity: 1
+                },
+                dur: dur,
+                ease: easing,
+                onDone: function(){
+                    if (typeof cb === 'function') {
+                        $.proxy(cb, this)();
+                    }
+                }
+            })
         })
     },
 
     fadeOut: function(dur, easing, cb){
         return this.each(function(){
-            $.fadeOut(this, dur, easing, cb);
+            var el = this;
+            var $el = $(el);
+
+            if ( !isVisible(el) ) return ;
+
+            if (not(dur) && not(easing) && not(cb)) {
+                cb = null;
+                dur = DEFAULT_DURATION;
+            } else
+            if (typeof dur === "function") {
+                cb = dur;
+                dur = DEFAULT_DURATION;
+            }
+            if (typeof easing === "function") {
+                cb = easing;
+                easing = DEFAULT_EASING;
+            }
+
+            $el.origin("display", $el.style('display'));
+
+            return $.animate({
+                el: el,
+                draw: {
+                    opacity: 0
+                },
+                dur: dur,
+                ease: easing,
+                onDone: function(){
+                    this.style.display = 'none';
+
+                    if (typeof cb === 'function') {
+                        $.proxy(cb, this)();
+                    }
+                }
+            })
         })
     },
 
     slideUp: function(dur, easing, cb){
         return this.each(function(){
-            $.slideUp(this, dur, easing, cb);
+            var el = this;
+            var $el = $(el);
+            var currHeight;
+
+            if ($el.height() === 0) return ;
+
+            if (not(dur) && not(easing) && not(cb)) {
+                cb = null;
+                dur = DEFAULT_DURATION;
+            } else
+            if (typeof dur === "function") {
+                cb = dur;
+                dur = DEFAULT_DURATION;
+            }
+            if (typeof easing === "function") {
+                cb = easing;
+                easing = DEFAULT_EASING;
+            }
+
+            currHeight = $el.height();
+            $el.origin("height", currHeight);
+            $el.origin("display", $(el).style('display'));
+
+            $el.css({
+                overflow: "hidden"
+            });
+
+            return $.animate({
+                el: el,
+                draw: {
+                    height: 0
+                },
+                dur: dur,
+                ease: easing,
+                onDone: function(){
+                    $el.hide().removeStyleProperty("overflow, height");
+                    if (typeof cb === 'function') {
+                        $.proxy(cb, this)();
+                    }
+                }
+            })
         })
     },
 
     slideDown: function(dur, easing, cb){
         return this.each(function(){
-            $.slideDown(this, dur, easing, cb);
+            var el = this;
+            var $el = $(el);
+            var targetHeight, originDisplay;
+
+            if (not(dur) && not(easing) && not(cb)) {
+                cb = null;
+                dur = DEFAULT_DURATION;
+            } else
+            if (typeof dur === "function") {
+                cb = dur;
+                dur = DEFAULT_DURATION;
+            }
+            if (typeof easing === "function") {
+                cb = easing;
+                easing = DEFAULT_EASING;
+            }
+
+            $el.show().visible(false);
+            targetHeight = +$el.origin("height", undefined, $el.height());
+            if (parseInt(targetHeight) === 0) {
+                targetHeight = el.scrollHeight;
+            }
+            originDisplay = $el.origin("display", $el.style('display'), "block");
+            $el.height(0).visible(true);
+
+            $el.css({
+                overflow: "hidden",
+                display: originDisplay === "none" ? "block" : originDisplay
+            });
+
+            return $.animate({
+                el: el,
+                draw: {
+                    height: targetHeight
+                },
+                dur: dur,
+                ease: easing,
+                onDone: function(){
+                    $(el).removeStyleProperty("overflow, height, visibility");
+                    if (typeof cb === 'function') {
+                        $.proxy(cb, this)();
+                    }
+                }
+            })
+        })
+    },
+
+    moveTo: function(x, y, dur, easing, cb){
+        var draw = {
+            top: y,
+            left: x
+        }
+
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = DEFAULT_DURATION;
+            easing = DEFAULT_EASING;
+        }
+
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = DEFAULT_EASING;
+        }
+
+        return this.each(function(){
+            $.animate({
+                el: this,
+                draw: draw,
+                dur: dur,
+                ease: easing,
+                onDone: cb
+            })
+        })
+    },
+
+    centerTo: function(x, y, dur, easing, cb){
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = DEFAULT_DURATION;
+            easing = DEFAULT_EASING;
+        }
+
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = DEFAULT_EASING;
+        }
+
+        return this.each(function(){
+            var draw = {
+                left: x - this.clientWidth / 2,
+                top: y - this.clientHeight / 2
+            };
+            $.animate({
+                el: this,
+                draw: draw,
+                dur: dur,
+                ease: easing,
+                onDone: cb
+            })
+        })
+    },
+
+    colorTo: function(color, dur, easing, cb){
+        var draw = {
+            color: color
+        }
+
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = DEFAULT_DURATION;
+            easing = DEFAULT_EASING;
+        }
+
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = DEFAULT_EASING;
+        }
+
+        return this.each(function(){
+            $.animate({
+                el: this,
+                draw: draw,
+                dur: dur,
+                ease: easing,
+                onDone: cb
+            })
+        })
+    },
+
+    backgroundTo: function(color, dur, easing, cb){
+        var draw = {
+            backgroundColor: color
+        }
+
+        if (typeof dur === "function") {
+            cb = dur;
+            dur = DEFAULT_DURATION;
+            easing = DEFAULT_EASING;
+        }
+
+        if (typeof easing === "function") {
+            cb = easing;
+            easing = DEFAULT_EASING;
+        }
+
+        return this.each(function(){
+            $.animate({
+                el: this,
+                draw: draw,
+                dur: dur,
+                ease: easing,
+                onDone: cb
+            })
         })
     }
 });

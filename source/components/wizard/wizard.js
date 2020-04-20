@@ -277,7 +277,9 @@ var Wizard = {
         var border_size = element.children("section.complete").length === 0 ? 0 : parseInt(Utils.getStyleOne(element.children("section.complete")[0], "border-left-width"));
 
         actions.animate({
-            left: element.children("section.complete").length * border_size + 41
+            draw: {
+                left: element.children("section.complete").length * border_size + 41
+            }
         });
 
         if (
