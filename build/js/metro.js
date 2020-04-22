@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/04/2020 15:08:32
+ * Built at 22/04/2020 10:35:55
  * Licensed under MIT
  */
 
@@ -559,7 +559,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 20/04/2020 12:38:24";
+var m4qVersion = "v1.0.6. Built at 21/04/2020 15:20:19";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1474,9 +1474,12 @@ $.fn.extend({
 // Source: src/utils.js
 
 $.extend({
-    uniqueId: function () {
+    uniqueId: function (prefix) {
         var d = new Date().getTime();
-        return 'm4q-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        if (not(prefix)) {
+            prefix = 'm4q';
+        }
+        return (prefix !== '' ? prefix + '-' : '') + 'xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = (d + Math.random() * 16) % 16 | 0;
             d = Math.floor(d / 16);
             return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
@@ -1555,7 +1558,12 @@ $.extend({
     isVisible: function(elem) {return isVisible(elem)},
     isHidden: function(elem) {return isHidden(elem)},
     matches: function(el, s) {return matches.call(el, s);},
-    random: function(from, to) {return Math.floor(Math.random()*(to-from+1)+from);},
+    random: function(from, to) {
+        if (arguments.length === 1 && isArrayLike(from)) {
+            return from[Math.floor(Math.random()*(from.length))];
+        }
+        return Math.floor(Math.random()*(to-from+1)+from);
+    },
 
     serializeToArray: function(form){
         var _form = $(form)[0];
@@ -2874,6 +2882,20 @@ $.fn.extend({
 
 // Source: src/animation.js
 
+$.extend({
+    animation: {
+        duration: 1000,
+        ease: "linear"
+    }
+})
+
+if (typeof window['setupAnimation'] === 'object') {
+    $.each(window['setupAnimation'], function(key, val){
+        if (typeof $.animation[key] !== "undefined" && !not(val))
+            $.animation[key] = val;
+    })
+}
+
 var transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY'];
 var numberProps = ['opacity', 'zIndex'];
 var floatProps = ['opacity', 'volume'];
@@ -2935,9 +2957,7 @@ function _getStyle (el, prop, pseudo){
         }
     }
 
-    var result = el.style[prop] || getComputedStyle(el, pseudo)[prop];
-    return result;
-    // return isNaN(parseInt(result)) && prop.toLowerCase().indexOf("color") === -1 ? 0 : result;
+    return el.style[prop] || getComputedStyle(el, pseudo)[prop];
 }
 
 /**
@@ -3274,8 +3294,8 @@ var defaultProps = {
     id: null,
     el: null,
     draw: {},
-    dur: 1000,
-    ease: "linear",
+    dur: $.animation.duration,
+    ease: $.animation.ease,
     loop: 0,
     pause: 0,
     dir: "normal",
@@ -3323,7 +3343,7 @@ function animate(args){
             matchArgs = /\(([^)]+)\)/.exec(ease);
             easeName = ease.split("(")[0];
             easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p)}) : [];
-            easeFn = Easing[easeName] || Easing.linear;
+            easeFn = Easing[easeName] || Easing["linear"];
         } else if (typeof ease === "function") {
             easeFn = ease;
         } else {
@@ -3701,15 +3721,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
 
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             if ($.fx.off) {
@@ -3746,15 +3766,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else
             if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             $el.origin("display", $el.style('display'));
@@ -3787,15 +3807,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else
             if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             currHeight = $el.height();
@@ -3831,15 +3851,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else
             if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             $el.show().visible(false);
@@ -3880,13 +3900,13 @@ $.fn.extend({
 
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -3903,13 +3923,13 @@ $.fn.extend({
     centerTo: function(x, y, dur, easing, cb){
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -3934,13 +3954,13 @@ $.fn.extend({
 
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -3961,13 +3981,13 @@ $.fn.extend({
 
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -4223,7 +4243,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "20/04/2020 15:08:38",
+    compileTime: "22/04/2020 10:36:03",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -32281,6 +32301,264 @@ var Validator = {
 };
 
 Metro.plugin('validator', Validator);
+
+var VegasDefaultConfig = {
+    duration: 4000,
+    effect: "fade",
+    images: null,
+    videos: null,
+    slides: null,
+    shuffle: false,
+    align: "center",
+    valign: "center",
+    loop: true,
+    autoplay: true,
+    mute: true,
+    cover: true,
+    preload: true,
+    onVegasCreate: Metro.noop
+};
+
+Metro.vegasSetup = function (options) {
+    VegasDefaultConfig = $.extend({}, VegasDefaultConfig, options);
+};
+
+if (typeof window["metroVegasSetup"] !== undefined) {
+    Metro.vegasSetup(window["metroVegasSetup"]);
+}
+
+var Vegas = {
+    init: function( options, elem ) {
+        var that = this;
+
+        this.options = $.extend( {}, VegasDefaultConfig, options );
+        this.elem  = elem;
+        this.element = $(elem);
+        this.effects = [
+            "fade", "slideLeft", "slideRight",
+            "slideUp", "slideDown", "zoomIn", "zoomOut",
+            "swirlLeft", "swirlRight",
+            "kenburns", "kenburnsUp", "kenburnsDown", "kenburnsRight",
+            "kenburnsLeft", "kernburnsUpLeft", "kernburnsUpRight", "kernburnsDownLeft", "kernburnsDownRight"
+        ];
+        this.support = {
+            objectFit:  'objectFit'  in document.body.style,
+            video: !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent)
+        }
+
+        this.slides = [];
+        this.slide = 0;
+        this.current = 0;
+
+        this._setOptionsFromDOM();
+
+        ['images', 'videos'].forEach(function(el){
+            that[el] = $.isArrayLike(that.options.images) ? that.options.images : Utils.strToArray(that.options.images, ",");
+        })
+
+        this._create();
+
+        return this;
+    },
+
+    _setOptionsFromDOM: function(){
+        var that = this, element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    },
+
+    _create: function(){
+        var that = this, element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "vegas");
+
+        this._createStructure();
+        this._createEvents();
+
+        Utils.exec(o.onVegasCreate, null,element[0]);
+    },
+
+    _createStructure: function(){
+        var that = this, element = this.element, o = this.options;
+        var slide;
+
+        element.addClass("vegas");
+
+        if (this.images.length || this.videos.length) {
+
+            slide = $("<div>").addClass("vegas__slide").append
+
+        }
+
+        if (o.video === true) {
+            var video = $("<video>").addClass("vegas__video").appendTo(element);
+            $.each(this.src, function(){
+                $("<source>").attr("src", this).appendTo(video);
+            })
+            if (this.support.objectFit) {
+                video.css({
+                    objectPosition: o.align + " " + o.valign,
+                    objectFit: 'cover',
+                    width: '100%',
+                    height: '100%'
+                })
+            } else if (o.cover === true) {
+                video.css({
+                    width: '100%',
+                    height: '100%'
+                })
+            }
+            video[0].loop = o.loop;
+            video[0].autoplay = o.autoplay;
+            video[0].mute = o.mute;
+        } else {
+            $.each(this.src, function(){
+                var slide = $("<div>").addClass("vegas__slide").appendTo(element);
+                var inner = $("<div>").addClass("vegas__slide-inner")
+                    .css({
+                        backgroundImage: 'url("'+this+'")',
+                        backgroundPosition: o.align + " " + o.valign,
+                        backgroundSize: o.cover === true ? 'cover' : 'auto',
+                        backgroundRepeat: o.cover !== true ? 'repeat' : 'auto'
+                    }).appendTo(slide);
+
+                that.slides.push(slide[0]);
+            })
+        }
+
+        if (o.preload) {
+            this._preload();
+        }
+
+        that.play();
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, o = this.options;
+
+    },
+
+    _preload: function(){
+        var that = this, element = this.element, o = this.options;
+        var img, i, video;
+
+        if (o.video) {
+            video = $("<video>")[0];
+            video.preload = true;
+
+            for(i = 0; i < this.src.length; i++) {
+                $("<source>").attr('src', this.src[i]).appendTo($(video));
+            }
+        } else {
+            for(i = 0; i < this.src.length; i++) {
+                img = new Image();
+                img.src = this.src[i];
+            }
+        }
+
+    },
+
+    _go: function(){
+        var that = this, element = this.element, o = this.options;
+        var effect = 'vegas-effect-' + o.effect, effectIn = effect + 'In', effectOut = effect + 'out';
+
+        var current = this.slides[this.current];
+        var next = this.slides[this.slide];
+
+        current.css('transition-duration', o.duration + 'ms').addClass(effectOut);
+        next.css('transition-duration', o.duration + 'ms').addClass(effectIn);
+    },
+
+    _end: function(){
+
+    },
+
+    // animation apply to inner
+    // transition apply to slide
+    play: function(){
+        var that = this, element = this.element, o = this.options;
+        var effect = 'vegas-effect-' + o.effect, effectIn = effect + '-in', effectOut = effect + '-out';
+
+        $.each(this.slides, function(){
+            var slide = $(this);
+            slide.addClass(effect);
+        })
+
+        $(this.slides[this.current])
+            .css('transition-duration', o.duration + 'ms')
+            .addClass(effectIn);
+    },
+
+    pause: function(){
+
+    },
+
+    jump: function(n){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.video) return;
+
+        if (n <= 0 || n > this.slides.length || n === this.slide + 1) {
+            return this;
+        }
+
+        this.slide = n - 1;
+        this._go();
+    },
+
+    next: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.video) return;
+
+        this.slide++;
+
+        if (this.slide >= this.slides.length) {
+            if (o.loop) {
+                return this._end();
+            }
+
+            this.slide = 0;
+        }
+
+        this._go();
+    },
+
+    prev: function(){
+        var that = this, element = this.element, o = this.options;
+
+        if (o.video) return;
+
+        this.slide--;
+
+        if (this.slide < 0) {
+            if (!o.loop) {
+                this.slide++;
+                return this._end();
+            }
+
+            this.slide = this.slides.length - 1;
+        }
+
+        this._go();
+    },
+
+    changeAttribute: function(attributeName){
+
+    },
+
+    destroy: function(){}
+};
+
+Metro.plugin('vegas', Vegas);
 
 var VideoDefaultConfig = {
     videoDeferred: 0,

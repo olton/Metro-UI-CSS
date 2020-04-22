@@ -11,8 +11,6 @@ if (typeof window["metroMyObjectSetup"] !== undefined) {
 }
 
 var MyObject = {
-    options: {},
-
     init: function( options, elem ) {
         this.options = $.extend( {}, this.options, options );
         this.elem  = elem;
