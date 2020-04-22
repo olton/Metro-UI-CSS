@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 20/04/2020 12:38:24";
+var m4qVersion = "v1.0.6. Built at 21/04/2020 15:20:19";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -1463,9 +1463,12 @@ $.fn.extend({
 // Source: src/utils.js
 
 $.extend({
-    uniqueId: function () {
+    uniqueId: function (prefix) {
         var d = new Date().getTime();
-        return 'm4q-xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+        if (not(prefix)) {
+            prefix = 'm4q';
+        }
+        return (prefix !== '' ? prefix + '-' : '') + 'xxxx-xxxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = (d + Math.random() * 16) % 16 | 0;
             d = Math.floor(d / 16);
             return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
@@ -1544,7 +1547,12 @@ $.extend({
     isVisible: function(elem) {return isVisible(elem)},
     isHidden: function(elem) {return isHidden(elem)},
     matches: function(el, s) {return matches.call(el, s);},
-    random: function(from, to) {return Math.floor(Math.random()*(to-from+1)+from);},
+    random: function(from, to) {
+        if (arguments.length === 1 && isArrayLike(from)) {
+            return from[Math.floor(Math.random()*(from.length))];
+        }
+        return Math.floor(Math.random()*(to-from+1)+from);
+    },
 
     serializeToArray: function(form){
         var _form = $(form)[0];
@@ -2863,6 +2871,20 @@ $.fn.extend({
 
 // Source: src/animation.js
 
+$.extend({
+    animation: {
+        duration: 1000,
+        ease: "linear"
+    }
+})
+
+if (typeof window['setupAnimation'] === 'object') {
+    $.each(window['setupAnimation'], function(key, val){
+        if (typeof $.animation[key] !== "undefined" && !not(val))
+            $.animation[key] = val;
+    })
+}
+
 var transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY'];
 var numberProps = ['opacity', 'zIndex'];
 var floatProps = ['opacity', 'volume'];
@@ -2924,9 +2946,7 @@ function _getStyle (el, prop, pseudo){
         }
     }
 
-    var result = el.style[prop] || getComputedStyle(el, pseudo)[prop];
-    return result;
-    // return isNaN(parseInt(result)) && prop.toLowerCase().indexOf("color") === -1 ? 0 : result;
+    return el.style[prop] || getComputedStyle(el, pseudo)[prop];
 }
 
 /**
@@ -3263,8 +3283,8 @@ var defaultProps = {
     id: null,
     el: null,
     draw: {},
-    dur: 1000,
-    ease: "linear",
+    dur: $.animation.duration,
+    ease: $.animation.ease,
     loop: 0,
     pause: 0,
     dir: "normal",
@@ -3312,7 +3332,7 @@ function animate(args){
             matchArgs = /\(([^)]+)\)/.exec(ease);
             easeName = ease.split("(")[0];
             easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p)}) : [];
-            easeFn = Easing[easeName] || Easing.linear;
+            easeFn = Easing[easeName] || Easing["linear"];
         } else if (typeof ease === "function") {
             easeFn = ease;
         } else {
@@ -3690,15 +3710,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
 
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             if ($.fx.off) {
@@ -3735,15 +3755,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else
             if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             $el.origin("display", $el.style('display'));
@@ -3776,15 +3796,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else
             if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             currHeight = $el.height();
@@ -3820,15 +3840,15 @@ $.fn.extend({
 
             if (not(dur) && not(easing) && not(cb)) {
                 cb = null;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             } else
             if (typeof dur === "function") {
                 cb = dur;
-                dur = DEFAULT_DURATION;
+                dur = $.animation.duration;
             }
             if (typeof easing === "function") {
                 cb = easing;
-                easing = DEFAULT_EASING;
+                easing = $.animation.ease;
             }
 
             $el.show().visible(false);
@@ -3869,13 +3889,13 @@ $.fn.extend({
 
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -3892,13 +3912,13 @@ $.fn.extend({
     centerTo: function(x, y, dur, easing, cb){
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -3923,13 +3943,13 @@ $.fn.extend({
 
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){
@@ -3950,13 +3970,13 @@ $.fn.extend({
 
         if (typeof dur === "function") {
             cb = dur;
-            dur = DEFAULT_DURATION;
-            easing = DEFAULT_EASING;
+            dur = $.animation.duration;
+            easing = $.animation.ease;
         }
 
         if (typeof easing === "function") {
             cb = easing;
-            easing = DEFAULT_EASING;
+            easing = $.animation.ease;
         }
 
         return this.each(function(){

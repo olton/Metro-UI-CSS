@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/04/2020 15:08:32
+ * Built at 22/04/2020 10:35:55
  * Licensed under MIT
  */
 *,
@@ -38973,6 +38973,75 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   z-index: 500;
   -webkit-box-shadow: inset -1px 0px 10px -4px #0366d6;
           box-shadow: inset -1px 0px 10px -4px #0366d6;
+}
+.vegas {
+  position: relative;
+  display: block;
+}
+.vegas__video {
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+}
+.vegas__slide,
+.vegas__slide-inner,
+.vegas__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent center center no-repeat;
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  will-change: transform, opacity;
+  overflow: hidden;
+  border: none;
+}
+.vegas__overlay {
+  opacity: 0.5;
+  background-color: #0a0a0a;
+}
+.vegas__slide,
+.vegas__slide-inner {
+  -webkit-transition: all ;
+  -o-transition: all ;
+  transition: all ;
+}
+body.vegas {
+  overflow: auto;
+  position: static;
+  z-index: -2;
+}
+body .vegas {
+  overflow: hidden !important;
+}
+.vegas-effect-fade {
+  opacity: 0;
+}
+.vegas-effect-fade-in {
+  opacity: 1;
+}
+.vegas-effect-fade-out {
+  opacity: 0;
+}
+.vegas-effect-slideDown {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+.vegas-effect-slideDown-in {
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+}
+.vegas-effect-slideDown-out {
+  -webkit-transform: translateY(100%);
+      -ms-transform: translateY(100%);
+          transform: translateY(100%);
 }
 @media print {
   .d-none-print {
