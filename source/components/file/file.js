@@ -117,10 +117,17 @@ var File = {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var container = element.closest("label");
         var caption = container.find(".caption");
         var files = container.find(".files");
+        var form = element.closest("form");
+
+        if (form.length) {
+            form.on("reset", function(){
+                that.clear();
+            })
+        }
 
         container.on(Metro.events.click, "button", function(){
             element[0].click();

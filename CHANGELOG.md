@@ -21,6 +21,7 @@
 + [x] Notifies: minor improve notify create method 
 + [x] Donut: update for using new `animate` function to draw `stroke-dasharray`
 + [x] Counter: update for using new `animate` function to draw
++ [x] File: fix clear when user fire `reset` on form in `drop` mode, issue #1524
 
 ### 4.3.6
 ##### M4Q
