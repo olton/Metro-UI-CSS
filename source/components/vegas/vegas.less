@@ -1,0 +1,102 @@
+@import (once) "overlays";
+
+.vegas-wrapper,
+.vegas-overlay,
+.vegas-timer,
+.vegas-slide,
+.vegas-slide-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    overflow: hidden;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vegas-overlay {
+    opacity: .5;
+    background: transparent center center repeat;
+    &.overlay1 {
+        background-image: url(@overlay1);
+    }
+    &.overlay2 {
+        background-image: url(@overlay2);
+    }
+    &.overlay3 {
+        background-image: url(@overlay3);
+    }
+    &.overlay4 {
+        background-image: url(@overlay4);
+    }
+    &.overlay5 {
+        background-image: url(@overlay5);
+    }
+    &.overlay6 {
+        background-image: url(@overlay6);
+    }
+    &.overlay7 {
+        background-image: url(@overlay7);
+    }
+    &.overlay8 {
+        background-image: url(@overlay8);
+    }
+    &.overlay9 {
+        background-image: url(@overlay9);
+    }
+}
+
+.vegas-timer {
+    top: auto;
+    bottom: 0;
+    height: 2px;
+}
+
+.vegas-timer-progress {
+    width: 0;
+    height: 100%;
+    background: white;
+    transition: width ease-out;
+}
+
+.vegas-timer-running .vegas-timer-progress {
+    width: 100%;
+}
+
+.vegas-slide,
+.vegas-slide-inner {
+    margin: 0;
+    padding: 0;
+    background: transparent center center no-repeat;
+    transform: translateZ(0);
+    will-change: transform, opacity;
+}
+
+body .vegas-container {
+    overflow: hidden !important;
+    position: relative;
+}
+
+.vegas-video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+body.vegas-container {
+    overflow: auto;
+    position: static;
+    z-index: -2;
+}
+
+body.vegas-container > .vegas-timer,
+body.vegas-container > .vegas-overlay,
+body.vegas-container > .vegas-slide {
+    position: fixed;
+    z-index: -1;
+}
+
+@import "effects";
