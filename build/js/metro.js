@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/04/2020 00:05:40
+ * Built at 24/04/2020 00:15:45
  * Licensed under MIT
  */
 
@@ -4243,7 +4243,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "24/04/2020 00:05:47",
+    compileTime: "24/04/2020 00:15:52",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -32487,22 +32487,26 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     _preload: function(){
-        // var that = this, element = this.element, o = this.options;
-        // var img, i, video;
-        //
-        // if (o.video) {
-        //     video = $("<video>")[0];
-        //     video.preload = true;
-        //
-        //     for(i = 0; i < this.src.length; i++) {
-        //         $("<source>").attr('src', this.src[i]).appendTo($(video));
-        //     }
-        // } else {
-        //     for(i = 0; i < this.src.length; i++) {
-        //         img = new Image();
-        //         img.src = this.src[i];
-        //     }
-        // }
+        var that = this, element = this.element, o = this.options;
+        var img, i, video;
+
+        for (i = 0; i < this.slides.length; i++) {
+
+            var obj = this.slides[i];
+
+            if (obj.src) {
+                img = new Image();
+                img.src = this.slides[i].src;
+            }
+
+            if (obj.video) {
+                if (obj.video instanceof Array) {
+                    this._video(obj.video);
+                } else {
+                    this._video(obj.video.src);
+                }
+            }
+        }
     },
 
     _slideShow: function () {
