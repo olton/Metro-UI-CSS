@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/04/2020 10:57:36
+ * Built at 24/04/2020 11:19:34
  * Licensed under MIT
  */
 
@@ -4243,7 +4243,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "24/04/2020 10:57:43",
+    compileTime: "24/04/2020 11:19:41",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -32330,8 +32330,11 @@ var VegasDefaultConfig = {
     volume: 1,
     onPlay: Metro.noop,
     onPause: Metro.noop,
-    onSlide: Metro.noop,
+    onEnd: Metro.noop,
     onWalk: Metro.noop,
+    onNext: Metro.noop,
+    onPrev: Metro.noop,
+    onJump: Metro.noop,
     onVegasCreate: Metro.noop
 };
 
@@ -32748,6 +32751,11 @@ var Vegas = $.extend({}, Plugin, {
                     slides.eq(i).remove();
                 }
 
+                Utils.exec(o.onWalk, [that.current(true)], element[0]);
+                element.fire('walk', {
+                    slide: that.current(true)
+                })
+
                 that._slideShow();
             }, 100);
         }
@@ -32773,10 +32781,18 @@ var Vegas = $.extend({}, Plugin, {
     _end: function(){
         this.ended = this.options.autoplay;
         this._timer(false);
+        Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
+        this.element.fire('end', {
+            slide: this.current(true)
+        });
     },
 
     play: function(){
         if (this.paused) {
+            Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
+            this.element.fire('play', {
+                slide: this.current(true)
+            });
             this.paused = false;
             this.next();
         }
@@ -32785,6 +32801,10 @@ var Vegas = $.extend({}, Plugin, {
     pause: function(){
         this._timer(false);
         this.paused = true;
+        Utils.exec(this.options.onPause, [this.current(true)], this.elem);
+        this.element.fire('pause', {
+            slide: this.current(true)
+        });
     },
 
     toggle: function(){
@@ -32811,6 +32831,12 @@ var Vegas = $.extend({}, Plugin, {
         }
 
         this.slide = n - 1;
+
+        Utils.exec(o.onJump, [this.current(true)], this.elem);
+        this.element.fire('jump', {
+            slide: this.current(true)
+        });
+
         this._goto(this.slide);
     },
 
@@ -32826,6 +32852,11 @@ var Vegas = $.extend({}, Plugin, {
 
             this.slide = 0;
         }
+
+        Utils.exec(o.onNext , [this.current(true)], this.elem);
+        this.element.fire('next', {
+            slide: this.current(true)
+        });
 
         this._goto(this.slide);
     },
@@ -32844,6 +32875,11 @@ var Vegas = $.extend({}, Plugin, {
             this.slide = this.slides.length - 1;
         }
 
+        Utils.exec(o.onPrev, [this.current(true)], this.elem);
+        this.element.fire('prev', {
+            slide: this.current(true)
+        });
+
         this._goto(this.slide);
     },
 
@@ -32858,7 +32894,8 @@ var Vegas = $.extend({}, Plugin, {
             this.noshow = this.total < 2;
             this.paused = !this.options.autoplay || this.noshow;
         } else {
-            o[propName] = JSON.parse(element.attr(attributeName));
+            if (typeof VegasDefaultConfig[propName] !== 'undefined')
+                o[propName] = JSON.parse(element.attr(attributeName));
         }
     },
 
