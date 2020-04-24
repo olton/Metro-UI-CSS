@@ -17,35 +17,19 @@ if (typeof window["metroCharmsSetup"] !== undefined) {
     Metro.charmsSetup(window["metroCharmsSetup"]);
 }
 
-var Charms = {
+var Charms = $.extend({}, Metro.Component, {
     name: "Charms",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CharmsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CharmsDefaultConfig);
+
         this.origin = {
             background: ""
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -140,7 +124,7 @@ var Charms = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('charms', Charms);
 

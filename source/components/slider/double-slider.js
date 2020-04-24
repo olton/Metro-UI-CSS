@@ -48,36 +48,20 @@ if (typeof window["metroDoubleSliderSetup"] !== undefined) {
     Metro.doubleSliderSetup(window["metroDoubleSliderSetup"]);
 }
 
-var DoubleSlider = {
+var DoubleSlider = $.extend({}, Metro.Component, {
     name: "DoubleSlider",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DoubleSliderDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DoubleSliderDefaultConfig);
+
         this.slider = null;
         this.valueMin = null;
         this.valueMax = null;
         this.keyInterval = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -449,6 +433,6 @@ var DoubleSlider = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('doubleslider', DoubleSlider);

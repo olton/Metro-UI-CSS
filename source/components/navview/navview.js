@@ -16,35 +16,19 @@ if (typeof window["metroNavigationViewSetup"] !== undefined) {
     Metro.navigationViewSetup(window["metroNavigationSetup"]);
 }
 
-var NavigationView = {
+var NavigationView = $.extend({}, Metro.Component, {
     name: "NavView",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, NavigationViewDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, NavigationViewDefaultConfig);
+
         this.pane = null;
         this.content = null;
         this.paneToggle = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -235,6 +219,6 @@ var NavigationView = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('navview', NavigationView);

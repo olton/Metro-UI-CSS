@@ -19,36 +19,20 @@ if (typeof window["metroCounterSetup"] !== undefined) {
     Metro.counterSetup(window["metroCounterSetup"]);
 }
 
-var Counter = {
+var Counter = $.extend({}, Metro.Component, {
     name: "Counter",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CounterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CounterDefaultConfig);
+
         this.numbers = [];
         this.html = this.element.html();
         this.started = false;
         this.id = Utils.elementId("counter");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -125,6 +109,6 @@ var Counter = {
         }
         return this.element;
     }
-};
+});
 
 Metro.plugin('counter', Counter);

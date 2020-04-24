@@ -55,13 +55,12 @@ if (typeof window["metroCarouselSetup"] !== undefined) {
     Metro.carouselSetup(window["metroCarouselSetup"]);
 }
 
-var Carousel = {
+var Carousel = $.extend({}, Metro.Component, {
     name: "Carousel",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CarouselDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CarouselDefaultConfig);
+
         this.height = 0;
         this.width = 0;
         this.slides = [];
@@ -71,24 +70,9 @@ var Carousel = {
         this.interval = false;
         this.isAnimate = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -530,6 +514,6 @@ var Carousel = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('carousel', Carousel);

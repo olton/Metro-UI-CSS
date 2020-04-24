@@ -29,34 +29,18 @@ if (typeof window["metroProgressSetup"] !== undefined) {
     Metro.progressSetup(window["metroProgressSetup"]);
 }
 
-var Progress = {
+var Progress = $.extend({}, Metro.Component, {
     name: "Progress",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ProgressDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ProgressDefaultConfig);
+
         this.value = 0;
         this.buffer = 0;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -218,6 +202,6 @@ var Progress = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('progress', Progress);

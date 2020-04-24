@@ -19,32 +19,17 @@ if (typeof window["metroClockSetup"] !== undefined) {
     Metro.clockSetup(window["metroClockSetup"]);
 }
 
-var Clock = {
+var Clock = $.extend({}, Metro.Component, {
     name: "Clock",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ClockDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ClockDefaultConfig);
+
         this._clockInterval = null;
-        this._setOptionsFromDOM();
+
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -133,6 +118,6 @@ var Clock = {
         this._clockInterval = null;
         return this.element;
     }
-};
+});
 
 Metro.plugin('clock', Clock);

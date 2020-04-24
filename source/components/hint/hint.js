@@ -18,13 +18,12 @@ if (typeof window["metroHintSetup"] !== undefined) {
     Metro.hintSetup(window["metroHintSetup"]);
 }
 
-var Hint = {
+var Hint = $.extend({}, Metro.Component, {
     name: "Hint",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, HintDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, HintDefaultConfig);
+
         this.hint = null;
         this.hint_size = {
             width: 0,
@@ -33,24 +32,9 @@ var Hint = {
 
         this.id = Utils.elementId("hint");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -173,6 +157,6 @@ var Hint = {
         element.off(Metro.events.leave + "-hint");
         $(window).off(Metro.events.scroll + "-hint");
     }
-};
+});
 
 Metro.plugin('hint', Hint);

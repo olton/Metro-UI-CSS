@@ -22,35 +22,19 @@ if (typeof window["metroMaterialTabsSetup"] !== undefined) {
     Metro.materialTabsSetup(window["metroMaterialTabsSetup"]);
 }
 
-var MaterialTabs = {
+var MaterialTabs = $.extend({}, Metro.Component, {
     name: "MaterialTabs",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, MaterialTabsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MaterialTabsDefaultConfig);
+
         this.marker = null;
         this.scroll = 0;
         this.scrollDir = "left";
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -217,6 +201,6 @@ var MaterialTabs = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('materialtabs', MaterialTabs);

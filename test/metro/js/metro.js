@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/04/2020 12:36:16
+ * Built at 24/04/2020 17:49:00
  * Licensed under MIT
  */
 
@@ -4243,7 +4243,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "24/04/2020 12:36:24",
+    compileTime: "24/04/2020 17:49:07",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7960,33 +7960,15 @@ if (typeof window["metroAccordionSetup"] !== undefined) {
     Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
-var Accordion = {
+var Accordion = $.extend({}, Metro.Component, {
     name: "Accordion",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, AccordionDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
-
-        this._setOptionsFromDOM();
+        this._super(elem, options, AccordionDefaultConfig);
 
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -8142,7 +8124,7 @@ var Accordion = {
         element.off(Metro.events.click, ".heading");
         return element;
     }
-};
+});
 
 Metro.plugin('accordion', Accordion);
 
@@ -8163,33 +8145,15 @@ if (typeof window["metroActivitySetup"] !== undefined) {
     Metro.activitySetup(window["metroActivitySetup"]);
 }
 
-var Activity = {
+var Activity = $.extend({}, Metro.Component, {
     name: "Activity",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ActivityDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
-
-        this._setOptionsFromDOM();
+        this._super(elem, options, ActivityDefaultConfig);
 
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -8248,7 +8212,7 @@ var Activity = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('activity', Activity);
 
@@ -8296,33 +8260,15 @@ if (typeof window["metroAppBarSetup"] !== undefined) {
     Metro.appBarSetup(window["metroAppBarSetup"]);
 }
 
-var AppBar = {
+var AppBar = $.extend({}, Metro.Component, {
     name: "AppBar",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, AppBarDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
-
-        this._setOptionsFromDOM();
+        this._super(elem, options, AppBarDefaultConfig);
 
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -8475,7 +8421,7 @@ var AppBar = {
         $(window).off(Metro.events.resize, {ns: element.attr("id")});
         return element;
     }
-};
+});
 
 Metro.plugin('appbar', AppBar);
 
@@ -8494,33 +8440,18 @@ if (typeof window["metroAudioButtonSetup"] !== undefined) {
     Metro.audioButtonSetup(window["metroAudioButtonSetup"]);
 }
 
-var AudioButton = {
+var AudioButton = $.extend({}, Metro.Component, {
     init: function( options, elem ) {
-        this.options = $.extend( {}, AudioButtonDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+
+        this._super(elem, options, AudioButtonDefaultConfig);
+
         this.audio = null;
         this.canPlay = false;
         this.id = Utils.elementId("audioButton")
 
-        this._setOptionsFromDOM();
         this._create();
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -8592,7 +8523,7 @@ var AudioButton = {
 
         element.off(Metro.events.click, {ns: this.id});
     }
-};
+});
 
 Metro.plugin('audio-button', AudioButton);
 
@@ -8672,13 +8603,12 @@ if (typeof window["metroAudioSetup"] !== undefined) {
     Metro.audioSetup(window["metroAudioSetup"]);
 }
 
-var AudioPlayer = {
+var AudioPlayer = $.extend({}, Metro.Component, {
     name: "Audio",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, AudioDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, AudioDefaultConfig);
+
         this.preloader = null;
         this.player = null;
         this.audio = elem;
@@ -8687,25 +8617,9 @@ var AudioPlayer = {
         this.volumeBackup = 0;
         this.muted = false;
 
-        this._setOptionsFromDOM();
-
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -9021,7 +8935,7 @@ var AudioPlayer = {
         Metro.getPlugin(this.stream, 'slider').val(0);
     },
 
-    volume: function(v){
+    setVolume: function(v){
         if (v === undefined) {
             return this.audio.volume;
         }
@@ -9049,7 +8963,7 @@ var AudioPlayer = {
 
     changeVolume: function(){
         var volume = this.element.attr("data-volume");
-        this.volume(volume);
+        this.setVolume(volume);
     },
 
     changeAttribute: function(attributeName){
@@ -9070,7 +8984,7 @@ var AudioPlayer = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('audio', AudioPlayer);
 
@@ -9091,33 +9005,17 @@ if (typeof window["metroBottomSheetSetup"] !== undefined) {
     Metro.bottomSheetSetup(window["metroBottomSheetSetup"]);
 }
 
-var BottomSheet = {
+var BottomSheet = $.extend({}, Metro.Component, {
     name: "BottomSheet",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, BottomSheetDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, BottomSheetDefaultConfig);
+
         this.toggle = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -9204,7 +9102,7 @@ var BottomSheet = {
         element.off(Metro.events.click, "li");
         return element;
     }
-};
+});
 
 Metro.plugin('bottomsheet', BottomSheet);
 
@@ -9264,33 +9162,17 @@ if (typeof window["metroButtonGroupSetup"] !== undefined) {
     Metro.buttonGroupSetup(window["metroButtonGroupSetup"]);
 }
 
-var ButtonGroup = {
+var ButtonGroup = $.extend({}, Metro.Component, {
     name: "ButtonGroup",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ButtonGroupDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ButtonGroupDefaultConfig);
+
         this.active = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -9364,7 +9246,7 @@ var ButtonGroup = {
         return element;
     }
 
-};
+});
 
 Metro.plugin('buttongroup', ButtonGroup);
 
@@ -9439,13 +9321,12 @@ if (typeof window["metroCalendarSetup"] !== undefined) {
     Metro.calendarSetup(window["metroCalendarSetup"]);
 }
 
-var Calendar = {
+var Calendar = $.extend({}, Metro.Component, {
     name: "Calendar",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CalendarDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CalendarDefaultConfig);
+
         this.today = new Date();
         this.today.setHours(0,0,0,0);
         this.show = new Date();
@@ -9467,24 +9348,9 @@ var Calendar = {
         this.maxYear = this.current.year + this.options.yearsAfter;
         this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -10331,7 +10197,7 @@ var Calendar = {
 
         return element;
     }
-};
+});
 
 $(document).on(Metro.events.click, function(e){
     $('.calendar .calendar-years').each(function(){
@@ -10414,39 +10280,23 @@ if (typeof window["metroCalendarPickerSetup"] !== undefined) {
     Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
 }
 
-var CalendarPicker = {
+var CalendarPicker = $.extend({}, Metro.Component, {
     name: "CalendarPicker",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CalendarPickerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CalendarPickerDefaultConfig);
+
         this.value = null;
         this.value_date = null;
         this.calendar = null;
         this.overlay = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
     },
 
     dependencies: ['calendar'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
 
     _create: function(){
 
@@ -10832,7 +10682,7 @@ var CalendarPicker = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('calendarpicker', CalendarPicker);
 
@@ -10903,13 +10753,12 @@ if (typeof window["metroCarouselSetup"] !== undefined) {
     Metro.carouselSetup(window["metroCarouselSetup"]);
 }
 
-var Carousel = {
+var Carousel = $.extend({}, Metro.Component, {
     name: "Carousel",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CarouselDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CarouselDefaultConfig);
+
         this.height = 0;
         this.width = 0;
         this.slides = [];
@@ -10919,24 +10768,9 @@ var Carousel = {
         this.interval = false;
         this.isAnimate = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -11378,7 +11212,7 @@ var Carousel = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('carousel', Carousel);
 
@@ -11401,35 +11235,19 @@ if (typeof window["metroCharmsSetup"] !== undefined) {
     Metro.charmsSetup(window["metroCharmsSetup"]);
 }
 
-var Charms = {
+var Charms = $.extend({}, Metro.Component, {
     name: "Charms",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CharmsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CharmsDefaultConfig);
+
         this.origin = {
             background: ""
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -11524,7 +11342,7 @@ var Charms = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('charms', Charms);
 
@@ -11609,35 +11427,19 @@ if (typeof window["metroChatSetup"] !== undefined) {
     Metro.chatSetup(window["metroChatSetup"]);
 }
 
-var Chat = {
+var Chat = $.extend({}, Metro.Component, {
     name: "Chat",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ChatDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ChatDefaultConfig);
+
         this.input = null;
         this.classes = "primary secondary success alert warning yellow info dark light".split(" ");
         this.lastMessage = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -11878,7 +11680,7 @@ var Chat = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('chat', Chat);
 
@@ -11903,35 +11705,19 @@ if (typeof window["metroCheckboxSetup"] !== undefined) {
     Metro.checkboxSetup(window["metroCheckboxSetup"]);
 }
 
-var Checkbox = {
+var Checkbox = $.extend({}, Metro.Component, {
     name: "Checkbox",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CheckboxDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CheckboxDefaultConfig);
+
         this.origin = {
             className: ""
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -12062,7 +11848,7 @@ var Checkbox = {
         element.off("blur");
         return element;
     }
-};
+});
 
 Metro.plugin('checkbox', Checkbox);
 
@@ -12087,32 +11873,17 @@ if (typeof window["metroClockSetup"] !== undefined) {
     Metro.clockSetup(window["metroClockSetup"]);
 }
 
-var Clock = {
+var Clock = $.extend({}, Metro.Component, {
     name: "Clock",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ClockDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ClockDefaultConfig);
+
         this._clockInterval = null;
-        this._setOptionsFromDOM();
+
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -12201,7 +11972,7 @@ var Clock = {
         this._clockInterval = null;
         return this.element;
     }
-};
+});
 
 Metro.plugin('clock', Clock);
 
@@ -12223,33 +11994,17 @@ if (typeof window["metroCollapseSetup"] !== undefined) {
     Metro.collapseSetup(window["metroCollapseSetup"]);
 }
 
-var Collapse = {
+var Collapse = $.extend({}, Metro.Component, {
     name: "Collapse",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CollapseDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CollapseDefaultConfig);
+
         this.toggle = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -12359,7 +12114,7 @@ var Collapse = {
         this.toggle.off(Metro.events.click);
         return this.element;
     }
-};
+});
 
 Metro.plugin('collapse', Collapse);
 
@@ -12399,13 +12154,12 @@ if (typeof window["metroCountdownSetup"] !== undefined) {
     Metro.countdownSetup(window["metroCountdownSetup"]);
 }
 
-var Countdown = {
+var Countdown = $.extend({}, Metro.Component, {
     name: "Countdown",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CountdownDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CountdownDefaultConfig);
+
         this.breakpoint = (new Date()).getTime();
         this.blinkInterval = null;
         this.tickInterval = null;
@@ -12425,24 +12179,9 @@ var Countdown = {
 
         this.inactiveTab = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -12932,7 +12671,7 @@ var Countdown = {
 
         return this.element;
     }
-};
+});
 
 Metro.plugin('countdown', Countdown);
 
@@ -12957,36 +12696,20 @@ if (typeof window["metroCounterSetup"] !== undefined) {
     Metro.counterSetup(window["metroCounterSetup"]);
 }
 
-var Counter = {
+var Counter = $.extend({}, Metro.Component, {
     name: "Counter",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CounterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CounterDefaultConfig);
+
         this.numbers = [];
         this.html = this.element.html();
         this.started = false;
         this.id = Utils.elementId("counter");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -13063,7 +12786,7 @@ var Counter = {
         }
         return this.element;
     }
-};
+});
 
 Metro.plugin('counter', Counter);
 
@@ -13111,13 +12834,12 @@ if (typeof window["metroCubeSetup"] !== undefined) {
     Metro.cubeSetup(window["metroCubeSetup"]);
 }
 
-var Cube = {
+var Cube = $.extend({}, Metro.Component, {
     name: "Cube",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CubeDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CubeDefaultConfig);
+
         this.id = null;
         this.rules = null;
         this.interval = false;
@@ -13125,7 +12847,6 @@ var Cube = {
         this.running = false;
         this.intervals = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
@@ -13165,20 +12886,6 @@ var Cube = {
             off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
         }
     ],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
 
     _create: function(){
         var element = this.element, o = this.options;
@@ -13542,7 +13249,7 @@ var Cube = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('cube', Cube);
 
@@ -13583,13 +13290,12 @@ if (typeof window["metroDatePickerSetup"] !== undefined) {
     Metro.datePickerSetup(window["metroDatePickerSetup"]);
 }
 
-var DatePicker = {
+var DatePicker = $.extend({}, Metro.Component, {
     name: "DatePicker",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DatePickerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DatePickerDefaultConfig);
+
         this.picker = null;
         this.isOpen = false;
         this.value = new Date();
@@ -13601,24 +13307,9 @@ var DatePicker = {
             year: null
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -14032,7 +13723,7 @@ var DatePicker = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('datepicker', DatePicker);
 
@@ -14091,36 +13782,20 @@ if (typeof window["metroDialogSetup"] !== undefined) {
     Metro.dialogSetup(window["metroDialogSetup"]);
 }
 
-var Dialog = {
+var Dialog = $.extend({}, Metro.Component, {
     _counter: 0,
 
     name: "Dialog",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DialogDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DialogDefaultConfig);
+
         this.interval = null;
         this.overlay = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -14391,7 +14066,7 @@ var Dialog = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('dialog', Dialog);
 
@@ -14490,34 +14165,18 @@ if (typeof window["metroDonutSetup"] !== undefined) {
     Metro.donutSetup(window["metroDonutSetup"]);
 }
 
-var Donut = {
+var Donut = $.extend({}, Metro.Component, {
     name: "Donut",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DonutDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DonutDefaultConfig);
+
         this.value = 0;
         this.animation_change_interval = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -14623,7 +14282,7 @@ var Donut = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('donut', Donut);
 
@@ -14653,34 +14312,18 @@ if (typeof window["metroDragItemsSetup"] !== undefined) {
     Metro.dragItemsSetup(window["metroDragItemsSetup"]);
 }
 
-var DragItems = {
+var DragItems = $.extend({}, Metro.Component, {
     name: "DragItems",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DragItemsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DragItemsDefaultConfig);
+
         this.id = null;
         this.canDrag = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -14872,7 +14515,7 @@ var DragItems = {
         element.off(Metro.events.startAll, (o.drawDragMarker ? o.dragMarker : o.dragItem));
         return element;
     }
-};
+});
 
 Metro.plugin('dragitems', DragItems);
 
@@ -14896,13 +14539,12 @@ if (typeof window["metroDraggableSetup"] !== undefined) {
     Metro.draggableSetup(window["metroDraggableSetup"]);
 }
 
-var Draggable = {
+var Draggable = $.extend({}, Metro.Component, {
     name: "Draggable",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DraggableDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DraggableDefaultConfig);
+
         this.drag = false;
         this.move = false;
         this.backup = {
@@ -14914,25 +14556,9 @@ var Draggable = {
 
         this.id = Utils.elementId("draggable");
 
-        this._setOptionsFromDOM();
-
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -15079,7 +14705,7 @@ var Draggable = {
         this.dragElement.off(Metro.events.startAll);
         return element;
     }
-};
+});
 
 Metro.plugin('draggable', Draggable);
 
@@ -15102,35 +14728,19 @@ if (typeof window["metroDropdownSetup"] !== undefined) {
     Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
-var Dropdown = {
+var Dropdown = $.extend({}, Metro.Component, {
     name: "Dropdown",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DropdownDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DropdownDefaultConfig);
+
         this._toggle = null;
         this.displayOrigin = null;
         this.isOpen = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -15296,7 +14906,7 @@ var Dropdown = {
     destroy: function(){
         this._toggle.off(Metro.events.click);
     }
-};
+});
 
 $(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){
@@ -15335,32 +14945,15 @@ if (typeof window["metroFileSetup"] !== undefined) {
     Metro.fileSetup(window["metroFileSetup"]);
 }
 
-var File = {
+var File = $.extend({}, Metro.Component, {
     name: "File",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, FileDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, FileDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -15551,7 +15144,7 @@ var File = {
         parent.off(Metro.events.click, "button");
         return element;
     }
-};
+});
 
 Metro.plugin('file', File);
 
@@ -15571,32 +15164,15 @@ if (typeof window["metroGravatarSetup"] !== undefined) {
     Metro.gravatarSetup(window["metroGravatarSetup"]);
 }
 
-var Gravatar = {
+var Gravatar = $.extend({}, Metro.Component, {
     name: "Gravatar",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, GravatarDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, GravatarDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -15655,7 +15231,7 @@ var Gravatar = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('gravatar', Gravatar);
 
@@ -15679,13 +15255,12 @@ if (typeof window["metroHintSetup"] !== undefined) {
     Metro.hintSetup(window["metroHintSetup"]);
 }
 
-var Hint = {
+var Hint = $.extend({}, Metro.Component, {
     name: "Hint",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, HintDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, HintDefaultConfig);
+
         this.hint = null;
         this.hint_size = {
             width: 0,
@@ -15694,24 +15269,9 @@ var Hint = {
 
         this.id = Utils.elementId("hint");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -15834,7 +15394,7 @@ var Hint = {
         element.off(Metro.events.leave + "-hint");
         $(window).off(Metro.events.scroll + "-hint");
     }
-};
+});
 
 Metro.plugin('hint', Hint);
 
@@ -15973,35 +15533,19 @@ if (typeof window["metroHtmlContainerSetup"] !== undefined) {
     Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
 }
 
-var HtmlContainer = {
+var HtmlContainer = $.extend({}, Metro.Component, {
     name: "HtmlContainer",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, HtmlContainerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, HtmlContainerDefaultConfig);
+
         this.data = {};
         this.opt = {};
         this.htmlSource = '';
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -16117,7 +15661,7 @@ var HtmlContainer = {
     },
 
     destroy: function(){}
-};
+});
 
 Metro.plugin('htmlcontainer', HtmlContainer);
 
@@ -16138,32 +15682,15 @@ if (typeof window["metroImageCompareSetup"] !== undefined) {
     Metro.imageCompareSetup(window["metroImageCompareSetup"]);
 }
 
-var ImageCompare = {
+var ImageCompare = $.extend({}, Metro.Component, {
     name: "ImageCompare",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ImageCompareDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ImageCompareDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -16314,7 +15841,7 @@ var ImageCompare = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('imagecompare', ImageCompare);
 
@@ -16344,34 +15871,18 @@ if (typeof window["metroImageMagnifierSetup"] !== undefined) {
     Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
 }
 
-var ImageMagnifier = {
+var ImageMagnifier = $.extend({}, Metro.Component, {
     name: "ImageMagnifier",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ImageMagnifierDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ImageMagnifierDefaultConfig);
+
         this.zoomElement = null;
         this.id = Utils.elementId("magnifier");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -16588,7 +16099,7 @@ var ImageMagnifier = {
         element.off(Metro.events.leave);
         return element;
     }
-};
+});
 
 Metro.plugin('imagemagnifier', ImageMagnifier);
 
@@ -16619,33 +16130,17 @@ if (typeof window["metroInfoBoxSetup"] !== undefined) {
     Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
 }
 
-var InfoBox = {
+var InfoBox = $.extend({}, Metro.Component, {
     name: "InfoBox",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, InfoBoxDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, InfoBoxDefaultConfig);
+
         this.overlay = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -16822,7 +16317,7 @@ var InfoBox = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('infobox', InfoBox);
 
@@ -16944,34 +16439,18 @@ if (typeof window["metroMaterialInputSetup"] !== undefined) {
     Metro.materialInputSetup(window["metroMaterialInputSetup"]);
 }
 
-var MaterialInput = {
+var MaterialInput = $.extend({}, Metro.Component, {
     name: "MaterialInput",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, MaterialInputDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MaterialInputDefaultConfig);
+
         this.history = [];
         this.historyIndex = -1;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -17064,7 +16543,7 @@ var MaterialInput = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('materialinput', MaterialInput);
 
@@ -17122,35 +16601,19 @@ if (typeof window["metroInputSetup"] !== undefined) {
     Metro.inputSetup(window["metroInputSetup"]);
 }
 
-var Input = {
+var Input = $.extend({}, Metro.Component, {
     name: "Input",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, InputDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, InputDefaultConfig);
+
         this.history = [];
         this.historyIndex = -1;
         this.autocomplete = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -17532,7 +16995,7 @@ var Input = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('input', Input);
 
@@ -17581,18 +17044,15 @@ if (typeof window["metroKeypadSetup"] !== undefined) {
     Metro.keypadSetup(window["metroKeypadSetup"]);
 }
 
-var Keypad = {
+var Keypad = $.extend({}, Metro.Component, {
     name: "Keypad",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, KeypadDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, KeypadDefaultConfig);
+
         this.value = "";
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
         this.keypad = null;
-
-        this._setOptionsFromDOM();
 
         this.keys = Utils.strToArray(this.options.keys, ",");
         this.keys_to_work = this.keys;
@@ -17600,20 +17060,6 @@ var Keypad = {
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -17925,7 +17371,7 @@ var Keypad = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('keypad', Keypad);
 
@@ -18010,13 +17456,12 @@ if (typeof window["metroListSetup"] !== undefined) {
     Metro.listSetup(window["metroListSetup"]);
 }
 
-var List = {
+var List = $.extend({}, Metro.Component, {
     name: "List",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ListDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ListDefaultConfig);
+
         this.currentPage = 1;
         this.pagesCount = 1;
         this.filterString = "";
@@ -18040,24 +17485,9 @@ var List = {
         this.header = null;
         this.items = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -18822,7 +18252,7 @@ var List = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('list', List);
 
@@ -18853,32 +18283,15 @@ if (typeof window["metroListViewSetup"] !== undefined) {
     Metro.listViewSetup(window["metroListViewSetup"]);
 }
 
-var ListView = {
+var ListView = $.extend({}, Metro.Component, {
     name: "ListView",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ListViewDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ListViewDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -19277,7 +18690,7 @@ var ListView = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('listview', ListView);
 
@@ -19316,35 +18729,19 @@ if (typeof window["metroMasterSetup"] !== undefined) {
     Metro.masterSetup(window["metroMasterSetup"]);
 }
 
-var Master = {
+var Master = $.extend({}, Metro.Component, {
     name: "Master",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, MasterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MasterDefaultConfig);
+
         this.pages = [];
         this.currentIndex = 0;
         this.isAnimate = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -19682,7 +19079,7 @@ var Master = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('master', Master);
 
@@ -19704,35 +19101,19 @@ if (typeof window["metroNavigationViewSetup"] !== undefined) {
     Metro.navigationViewSetup(window["metroNavigationSetup"]);
 }
 
-var NavigationView = {
+var NavigationView = $.extend({}, Metro.Component, {
     name: "NavView",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, NavigationViewDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, NavigationViewDefaultConfig);
+
         this.pane = null;
         this.content = null;
         this.paneToggle = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -19923,7 +19304,7 @@ var NavigationView = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('navview', NavigationView);
 
@@ -19961,15 +19342,6 @@ var Notify = {
 
     setup: function(options){
         this.options = $.extend({}, NotifyDefaultConfig, options);
-
-        // if (Notify.container === null) {
-        //     if (METRO_INIT_MODE === 'immediate')
-        //         Notify.container = Notify._createContainer();
-        //     else
-        //         $(function(){
-        //             Notify.container = Notify._createContainer();
-        //         })
-        // }
 
         return this;
     },
@@ -20243,34 +19615,15 @@ if (typeof window["metroPanelSetup"] !== undefined) {
     Metro.panelSetup(window["metroPanelSetup"]);
 }
 
-var Panel = {
+var Panel = $.extend({}, Metro.Component, {
     name: "Panel",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, PanelDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, PanelDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['draggable', 'collapse'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _addCustomButtons: function(buttons){
@@ -20445,7 +19798,7 @@ var Panel = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('panel', Panel);
 
@@ -20474,13 +19827,12 @@ if (typeof window["metroPopoverSetup"] !== undefined) {
     Metro.popoverSetup(window["metroPopoverSetup"]);
 }
 
-var Popover = {
+var Popover = $.extend({}, Metro.Component, {
     name: "Popover",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, PopoverDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, PopoverDefaultConfig);
+
         this.popover = null;
         this.popovered = false;
         this.size = {
@@ -20490,24 +19842,9 @@ var Popover = {
 
         this.id = Utils.elementId("popover");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -20736,7 +20073,7 @@ var Popover = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('popover', Popover);
 
@@ -20771,34 +20108,18 @@ if (typeof window["metroProgressSetup"] !== undefined) {
     Metro.progressSetup(window["metroProgressSetup"]);
 }
 
-var Progress = {
+var Progress = $.extend({}, Metro.Component, {
     name: "Progress",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ProgressDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ProgressDefaultConfig);
+
         this.value = 0;
         this.buffer = 0;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -20960,7 +20281,7 @@ var Progress = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('progress', Progress);
 
@@ -20984,35 +20305,19 @@ if (typeof window["metroRadioSetup"] !== undefined) {
     Metro.radioSetup(window["metroRadioSetup"]);
 }
 
-var Radio = {
+var Radio = $.extend({}, Metro.Component, {
     name: "Radio",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RadioDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RadioDefaultConfig);
+
         this.origin = {
             className: ""
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -21114,7 +20419,7 @@ var Radio = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('radio', Radio);
 
@@ -21146,37 +20451,21 @@ if (typeof window["metroRatingSetup"] !== undefined) {
     Metro.ratingSetup(window["metroRatingSetup"]);
 }
 
-var Rating = {
+var Rating = $.extend({}, Metro.Component, {
     name: "Rating",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RatingDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RatingDefaultConfig);
+
         this.value = 0;
         this.originValue = 0;
         this.values = [];
         this.rate = 0;
         this.rating = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -21421,7 +20710,7 @@ var Rating = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('rating', Rating);
 
@@ -21448,35 +20737,19 @@ if (typeof window["metroResizeableSetup"] !== undefined) {
     Metro.resizeableSetup(window["metroResizeableSetup"]);
 }
 
-var Resizable = {
+var Resizable = $.extend({}, Metro.Component, {
     name: "Resizeable",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ResizableDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ResizableDefaultConfig);
+
         this.resizer = null;
 
         this.id = Utils.elementId("resizeable");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -21595,7 +20868,7 @@ var Resizable = {
         this.resizer.off(Metro.events.start);
         return this.element;
     }
-};
+});
 
 Metro.plugin('resizable', Resizable);
 
@@ -21617,35 +20890,19 @@ if (typeof window["metroResizerSetup"] !== undefined) {
     Metro.resizerSetup(window["metroResizerSetup"]);
 }
 
-var Resizer = {
+var Resizer = $.extend({}, Metro.Component, {
     name: "Resizer",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ResizerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ResizerDefaultConfig);
+
         this.id = null;
         this.size = {width: 0, height: 0};
         this.media = window.METRO_MEDIA;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -21738,7 +20995,7 @@ var Resizer = {
     destroy: function(){
         $(window).off("resize", {ns: this.id});
     }
-};
+});
 
 Metro.plugin('resizer', Resizer);
 
@@ -21758,34 +21015,15 @@ if (typeof window["metroRibbonMenuSetup"] !== undefined) {
     Metro.ribbonMenuSetup(window["metroRibbonMenuSetup"]);
 }
 
-var RibbonMenu = {
+var RibbonMenu = $.extend({}, Metro.Component, {
     name: "RibbonMenu",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RibbonMenuDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RibbonMenuDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['buttongroup'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -21887,7 +21125,7 @@ var RibbonMenu = {
         element.off(Metro.events.click, ".tabs-holder li a");
         return element;
     }
-};
+});
 
 Metro.plugin('ribbonmenu', RibbonMenu);
 
@@ -21963,32 +21201,15 @@ var getRipple = function(target, color, alpha, event){
     }, 400);
 };
 
-var Ripple = {
+var Ripple = $.extend({}, Metro.Component, {
     name: "Ripple",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RippleDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RippleDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -22035,7 +21256,7 @@ var Ripple = {
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
         element.off(Metro.events.click, target);
     }
-};
+});
 
 Metro.plugin('ripple', Ripple);
 Metro.ripple = getRipple;
@@ -22083,34 +21304,18 @@ if (typeof window["metroSelectSetup"] !== undefined) {
     Metro.selectSetup(window["metroSelectSetup"]);
 }
 
-var Select = {
+var Select = $.extend({}, Metro.Component, {
     name: "Select",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SelectDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SelectDefaultConfig);
+
         this.list = null;
         this.placeholder = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -22644,7 +21849,7 @@ var Select = {
 
         return element;
     }
-};
+});
 
 $(document).on(Metro.events.click, function(){
     $(".select").removeClass("focused");
@@ -22681,33 +21886,17 @@ if (typeof window["metroSidebarSetup"] !== undefined) {
     Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
-var Sidebar = {
+var Sidebar = $.extend({}, Metro.Component, {
     name: "Sidebar",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SidebarDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SidebarDefaultConfig);
+
         this.toggle_element = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -22920,7 +22109,7 @@ var Sidebar = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('sidebar', Sidebar);
 
@@ -23008,36 +22197,20 @@ if (typeof window["metroDoubleSliderSetup"] !== undefined) {
     Metro.doubleSliderSetup(window["metroDoubleSliderSetup"]);
 }
 
-var DoubleSlider = {
+var DoubleSlider = $.extend({}, Metro.Component, {
     name: "DoubleSlider",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DoubleSliderDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DoubleSliderDefaultConfig);
+
         this.slider = null;
         this.valueMin = null;
         this.valueMax = null;
         this.keyInterval = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -23409,7 +22582,7 @@ var DoubleSlider = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('doubleslider', DoubleSlider);
 
@@ -23462,13 +22635,12 @@ if (typeof window["metroSliderSetup"] !== undefined) {
     Metro.sliderSetup(window["metroSliderSetup"]);
 }
 
-var Slider = {
+var Slider = $.extend({}, Metro.Component, {
     name: "Slider",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SliderDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SliderDefaultConfig);
+
         this.slider = null;
         this.value = 0;
         this.percent = 0;
@@ -23476,24 +22648,9 @@ var Slider = {
         this.buffer = 0;
         this.keyInterval = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -24004,7 +23161,7 @@ var Slider = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('slider', Slider);
 
@@ -24031,33 +23188,17 @@ if (typeof window["metroSorterSetup"] !== undefined) {
     Metro.sorterSetup(window["metroSorterSetup"]);
 }
 
-var Sorter = {
+var Sorter = $.extend({}, Metro.Component, {
     name: "Sorter",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SorterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SorterDefaultConfig);
+
         this.initial = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -24241,7 +23382,7 @@ var Sorter = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('sorter', Sorter);
 
@@ -24308,33 +23449,17 @@ if (typeof window["metroSpinnerSetup"] !== undefined) {
     Metro.spinnerSetup(window["metroSpinnerSetup"]);
 }
 
-var Spinner = {
+var Spinner = $.extend({}, Metro.Component, {
     name: "Spinner",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SpinnerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SpinnerDefaultConfig);
+
         this.repeat_timer = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -24559,7 +23684,7 @@ var Spinner = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('spinner', Spinner);
 
@@ -24593,35 +23718,19 @@ if (typeof window["metroSplitterSetup"] !== undefined) {
     Metro.splitterSetup(window["metroSplitterSetup"]);
 }
 
-var Splitter = {
+var Splitter = $.extend({}, Metro.Component, {
     name: "Splitter",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SplitterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SplitterDefaultConfig);
+
         this.storage = Utils.isValue(Metro.storage) ? Metro.storage : null;
         this.storageKey = "SPLITTER:";
         this.id = Utils.elementId("splitter");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -24844,7 +23953,7 @@ var Splitter = {
         gutters.off(Metro.events.start);
         return element;
     }
-};
+});
 
 Metro.plugin('splitter', Splitter);
 
@@ -24871,33 +23980,17 @@ if (typeof window["metroStepperSetup"] !== undefined) {
     Metro.stepperSetup(window["metroStepperSetup"]);
 }
 
-var Stepper = {
+var Stepper = $.extend({}, Metro.Component, {
     name: "Stepper",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, StepperDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, StepperDefaultConfig);
+
         this.current = 0;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -25012,7 +24105,7 @@ var Stepper = {
         element.off(Metro.events.click, ".step");
         return element;
     }
-};
+});
 
 Metro.plugin('stepper', Stepper);
 
@@ -25144,36 +24237,20 @@ if (typeof window["metroStreamerSetup"] !== undefined) {
     Metro.streamerSetup(window["metroStreamerSetup"]);
 }
 
-var Streamer = {
+var Streamer = $.extend({}, Metro.Component, {
     name: "Streamer",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, StreamerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, StreamerDefaultConfig);
+
         this.data = null;
         this.scroll = 0;
         this.scrollDir = "left";
         this.events = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -25919,7 +24996,7 @@ var Streamer = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('streamer', Streamer);
 
@@ -25943,32 +25020,15 @@ if (typeof window["metroSwitchSetup"] !== undefined) {
     Metro.switchSetup(window["metroSwitchSetup"]);
 }
 
-var Switch = {
+var Switch = $.extend({}, Metro.Component, {
     name: "Switch",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SwitchDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SwitchDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -26043,7 +25103,7 @@ var Switch = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('switch', Switch);
 
@@ -26190,13 +25250,12 @@ if (typeof window["metroTableSetup"] !== undefined) {
     Metro.tableSetup(window["metroTableSetup"]);
 }
 
-var Table = {
+var Table = $.extend({}, Metro.Component, {
     name: "Table",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TableDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TableDefaultConfig);
+
         this.currentPage = 1;
         this.pagesCount = 1;
         this.searchString = "";
@@ -26234,24 +25293,9 @@ var Table = {
 
         this.index = {};
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -28283,7 +27327,7 @@ var Table = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('table', Table);
 
@@ -28311,35 +27355,19 @@ if (typeof window["metroMaterialTabsSetup"] !== undefined) {
     Metro.materialTabsSetup(window["metroMaterialTabsSetup"]);
 }
 
-var MaterialTabs = {
+var MaterialTabs = $.extend({}, Metro.Component, {
     name: "MaterialTabs",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, MaterialTabsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MaterialTabsDefaultConfig);
+
         this.marker = null;
         this.scroll = 0;
         this.scrollDir = "left";
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -28506,7 +27534,7 @@ var MaterialTabs = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('materialtabs', MaterialTabs);
 
@@ -28535,33 +27563,17 @@ if (typeof window["metroTabsSetup"] !== undefined) {
     Metro.tabsSetup(window["metroTabsSetup"]);
 }
 
-var Tabs = {
+var Tabs = $.extend({}, Metro.Component, {
     name: "Tabs",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TabsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TabsDefaultConfig);
+
         this._targets = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -28804,7 +27816,7 @@ var Tabs = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('tabs', Tabs);
 
@@ -28844,34 +27856,18 @@ if (typeof window["metroTagInputSetup"] !== undefined) {
     Metro.tagInputSetup(window["metroTagInputSetup"]);
 }
 
-var TagInput = {
+var TagInput = $.extend({}, Metro.Component, {
     name: "TagInput",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TagInputDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TagInputDefaultConfig);
+
         this.values = [];
         this.triggers = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -29199,7 +28195,7 @@ var TagInput = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('taginput', TagInput);
 
@@ -29230,32 +28226,15 @@ if (typeof window["metroTextareaSetup"] !== undefined) {
     Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
-var Textarea = {
+var Textarea = $.extend({}, Metro.Component, {
     name: "Textarea",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TextareaDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TextareaDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -29437,7 +28416,7 @@ var Textarea = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('textarea', Textarea);
 
@@ -29463,37 +28442,21 @@ if (typeof window["metroTileSetup"] !== undefined) {
     Metro.tileSetup(window["metroTileSetup"]);
 }
 
-var Tile = {
+var Tile = $.extend({}, Metro.Component, {
     name: "Tile",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TileDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TileDefaultConfig);
+
         this.effectInterval = false;
         this.images = [];
         this.slides = [];
         this.currentSlide = -1;
         this.unload = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -29698,7 +28661,7 @@ var Tile = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('tile', Tile);
 
@@ -29738,13 +28701,12 @@ if (typeof window["metroTimePickerSetup"] !== undefined) {
     Metro.timePickerSetup(window["metroTimePickerSetup"]);
 }
 
-var TimePicker = {
+var TimePicker = $.extend({}, Metro.Component, {
     name: "TimePicker",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TimePickerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TimePickerDefaultConfig);
+
         this.picker = null;
         this.isOpen = false;
         this.value = [];
@@ -29756,24 +28718,9 @@ var TimePicker = {
         };
 
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -30199,7 +29146,7 @@ var TimePicker = {
         return element;
     }
 
-};
+});
 
 Metro.plugin('timepicker', TimePicker);
 
@@ -30342,13 +29289,11 @@ if (typeof window["metroTouchSetup"] !== undefined) {
     Metro.sliderSetup(window["metroTouchSetup"]);
 }
 
-var Touch = {
+var Touch = $.extend({}, Metro.Component, {
     name: "Touch",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TouchDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TouchDefaultConfig);
 
         this.useTouchEvents = (TouchConst.SUPPORTS_TOUCH || TouchConst.SUPPORTS_POINTER || !this.options.fallbackToMouseEvents);
         this.START_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown';
@@ -30389,24 +29334,9 @@ var Touch = {
         this.singleTapTimeout = null;
         this.holdTimeout = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -31443,7 +30373,7 @@ var Touch = {
     destroy: function(){
         this.removeListeners();
     }
-};
+});
 
 Metro['touch'] = TouchConst;
 Metro.plugin('touch', Touch);
@@ -31472,32 +30402,15 @@ if (typeof window["metroTreeViewSetup"] !== undefined) {
     Metro.treeViewSetup(window["metroTreeViewSetup"]);
 }
 
-var TreeView = {
+var TreeView = $.extend({}, Metro.Component, {
     name: "TreeView",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TreeViewDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TreeViewDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -31871,7 +30784,7 @@ var TreeView = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('treeview', TreeView);
 
@@ -32176,37 +31089,19 @@ if (typeof window["metroValidatorSetup"] !== undefined) {
     Metro.validatorSetup(window["metroValidatorSetup"]);
 }
 
-var Validator = {
+var Validator = $.extend({}, Metro.Component, {
     name: "Validator",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ValidatorDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ValidatorDefaultConfig);
+
         this._onsubmit = null;
         this._onreset = null;
         this.result = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['utils', 'colors'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -32329,7 +31224,7 @@ var Validator = {
 
     changeAttribute: function(attributeName){
     }
-};
+});
 
 Metro.plugin('validator', Validator);
 
@@ -32983,13 +31878,12 @@ if (typeof window["metroVideoSetup"] !== undefined) {
     Metro.videoSetup(window["metroVideoSetup"]);
 }
 
-var VideoPlayer = {
+var VideoPlayer = $.extend({}, Metro.Component, {
     name: "Video",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, VideoDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, VideoDefaultConfig);
+
         this.fullscreen = false;
         this.preloader = null;
         this.player = null;
@@ -33001,24 +31895,9 @@ var VideoPlayer = {
         this.fullScreenInterval = false;
         this.isPlaying = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -33463,7 +32342,7 @@ var VideoPlayer = {
         this._offMouse();
     },
 
-    volume: function(v){
+    setVolume: function(v){
         if (v === undefined) {
             return this.video.volume;
         }
@@ -33496,7 +32375,7 @@ var VideoPlayer = {
 
     changeVolume: function(){
         var volume = this.element.attr("data-volume");
-        this.volume(volume);
+        this.setVolume(volume);
     },
 
     changeAttribute: function(attributeName){
@@ -33537,7 +32416,7 @@ var VideoPlayer = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('video', VideoPlayer);
 
@@ -33605,13 +32484,12 @@ if (typeof window["metroWindowSetup"] !== undefined) {
     Metro.windowSetup(window["metroWindowSetup"]);
 }
 
-var Window = {
+var Window = $.extend({}, Metro.Component, {
     name: "Window",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, WindowDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, WindowDefaultConfig);
+
         this.win = null;
         this.overlay = null;
         this.position = {
@@ -33621,26 +32499,9 @@ var Window = {
         this.hidden = false;
         this.content = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['draggable', 'resizeable'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -34219,7 +33080,7 @@ var Window = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('window', Window);
 
@@ -34335,32 +33196,15 @@ if (typeof window["metroWizardSetup"] !== undefined) {
     Metro.wizardSetup(window["metroWizardSetup"]);
 }
 
-var Wizard = {
+var Wizard = $.extend({}, Metro.Component, {
     name: "Wizard",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, WizardDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, WizardDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -34621,7 +33465,7 @@ var Wizard = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('wizard', Wizard);
 

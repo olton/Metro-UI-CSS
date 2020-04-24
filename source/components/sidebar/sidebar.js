@@ -25,33 +25,17 @@ if (typeof window["metroSidebarSetup"] !== undefined) {
     Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
-var Sidebar = {
+var Sidebar = $.extend({}, Metro.Component, {
     name: "Sidebar",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SidebarDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SidebarDefaultConfig);
+
         this.toggle_element = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -264,7 +248,7 @@ var Sidebar = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('sidebar', Sidebar);
 

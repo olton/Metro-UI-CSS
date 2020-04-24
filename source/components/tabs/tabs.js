@@ -23,33 +23,17 @@ if (typeof window["metroTabsSetup"] !== undefined) {
     Metro.tabsSetup(window["metroTabsSetup"]);
 }
 
-var Tabs = {
+var Tabs = $.extend({}, Metro.Component, {
     name: "Tabs",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TabsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TabsDefaultConfig);
+
         this._targets = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -292,6 +276,6 @@ var Tabs = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('tabs', Tabs);

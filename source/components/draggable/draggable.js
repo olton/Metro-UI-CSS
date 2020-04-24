@@ -18,13 +18,12 @@ if (typeof window["metroDraggableSetup"] !== undefined) {
     Metro.draggableSetup(window["metroDraggableSetup"]);
 }
 
-var Draggable = {
+var Draggable = $.extend({}, Metro.Component, {
     name: "Draggable",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DraggableDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DraggableDefaultConfig);
+
         this.drag = false;
         this.move = false;
         this.backup = {
@@ -36,25 +35,9 @@ var Draggable = {
 
         this.id = Utils.elementId("draggable");
 
-        this._setOptionsFromDOM();
-
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -201,6 +184,6 @@ var Draggable = {
         this.dragElement.off(Metro.events.startAll);
         return element;
     }
-};
+});
 
 Metro.plugin('draggable', Draggable);

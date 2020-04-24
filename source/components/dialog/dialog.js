@@ -45,36 +45,20 @@ if (typeof window["metroDialogSetup"] !== undefined) {
     Metro.dialogSetup(window["metroDialogSetup"]);
 }
 
-var Dialog = {
+var Dialog = $.extend({}, Metro.Component, {
     _counter: 0,
 
     name: "Dialog",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DialogDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DialogDefaultConfig);
+
         this.interval = null;
         this.overlay = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -345,7 +329,7 @@ var Dialog = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('dialog', Dialog);
 

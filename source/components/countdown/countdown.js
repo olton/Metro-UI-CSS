@@ -34,13 +34,12 @@ if (typeof window["metroCountdownSetup"] !== undefined) {
     Metro.countdownSetup(window["metroCountdownSetup"]);
 }
 
-var Countdown = {
+var Countdown = $.extend({}, Metro.Component, {
     name: "Countdown",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CountdownDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CountdownDefaultConfig);
+
         this.breakpoint = (new Date()).getTime();
         this.blinkInterval = null;
         this.tickInterval = null;
@@ -60,24 +59,9 @@ var Countdown = {
 
         this.inactiveTab = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -567,6 +551,6 @@ var Countdown = {
 
         return this.element;
     }
-};
+});
 
 Metro.plugin('countdown', Countdown);

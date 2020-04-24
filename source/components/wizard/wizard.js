@@ -40,32 +40,15 @@ if (typeof window["metroWizardSetup"] !== undefined) {
     Metro.wizardSetup(window["metroWizardSetup"]);
 }
 
-var Wizard = {
+var Wizard = $.extend({}, Metro.Component, {
     name: "Wizard",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, WizardDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, WizardDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -326,6 +309,6 @@ var Wizard = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('wizard', Wizard);

@@ -21,35 +21,19 @@ if (typeof window["metroHtmlContainerSetup"] !== undefined) {
     Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
 }
 
-var HtmlContainer = {
+var HtmlContainer = $.extend({}, Metro.Component, {
     name: "HtmlContainer",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, HtmlContainerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, HtmlContainerDefaultConfig);
+
         this.data = {};
         this.opt = {};
         this.htmlSource = '';
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -165,6 +149,6 @@ var HtmlContainer = {
     },
 
     destroy: function(){}
-};
+});
 
 Metro.plugin('htmlcontainer', HtmlContainer);

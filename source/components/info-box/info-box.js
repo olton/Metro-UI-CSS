@@ -25,33 +25,17 @@ if (typeof window["metroInfoBoxSetup"] !== undefined) {
     Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
 }
 
-var InfoBox = {
+var InfoBox = $.extend({}, Metro.Component, {
     name: "InfoBox",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, InfoBoxDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, InfoBoxDefaultConfig);
+
         this.overlay = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -228,7 +212,7 @@ var InfoBox = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('infobox', InfoBox);
 

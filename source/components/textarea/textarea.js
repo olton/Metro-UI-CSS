@@ -25,32 +25,15 @@ if (typeof window["metroTextareaSetup"] !== undefined) {
     Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
-var Textarea = {
+var Textarea = $.extend({}, Metro.Component, {
     name: "Textarea",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TextareaDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TextareaDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -232,6 +215,6 @@ var Textarea = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('textarea', Textarea);

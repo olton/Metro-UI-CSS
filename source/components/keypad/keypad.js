@@ -38,18 +38,15 @@ if (typeof window["metroKeypadSetup"] !== undefined) {
     Metro.keypadSetup(window["metroKeypadSetup"]);
 }
 
-var Keypad = {
+var Keypad = $.extend({}, Metro.Component, {
     name: "Keypad",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, KeypadDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, KeypadDefaultConfig);
+
         this.value = "";
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
         this.keypad = null;
-
-        this._setOptionsFromDOM();
 
         this.keys = Utils.strToArray(this.options.keys, ",");
         this.keys_to_work = this.keys;
@@ -57,20 +54,6 @@ var Keypad = {
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -382,7 +365,7 @@ var Keypad = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('keypad', Keypad);
 

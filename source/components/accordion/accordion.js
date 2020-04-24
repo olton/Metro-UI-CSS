@@ -23,33 +23,15 @@ if (typeof window["metroAccordionSetup"] !== undefined) {
     Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
-var Accordion = {
+var Accordion = $.extend({}, Metro.Component, {
     name: "Accordion",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, AccordionDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
-
-        this._setOptionsFromDOM();
+        this._super(elem, options, AccordionDefaultConfig);
 
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -205,6 +187,6 @@ var Accordion = {
         element.off(Metro.events.click, ".heading");
         return element;
     }
-};
+});
 
 Metro.plugin('accordion', Accordion);

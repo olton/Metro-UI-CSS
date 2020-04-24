@@ -21,33 +21,17 @@ if (typeof window["metroStepperSetup"] !== undefined) {
     Metro.stepperSetup(window["metroStepperSetup"]);
 }
 
-var Stepper = {
+var Stepper = $.extend({}, Metro.Component, {
     name: "Stepper",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, StepperDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, StepperDefaultConfig);
+
         this.current = 0;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -162,6 +146,6 @@ var Stepper = {
         element.off(Metro.events.click, ".step");
         return element;
     }
-};
+});
 
 Metro.plugin('stepper', Stepper);

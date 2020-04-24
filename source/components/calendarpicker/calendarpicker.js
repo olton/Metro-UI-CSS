@@ -68,39 +68,23 @@ if (typeof window["metroCalendarPickerSetup"] !== undefined) {
     Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
 }
 
-var CalendarPicker = {
+var CalendarPicker = $.extend({}, Metro.Component, {
     name: "CalendarPicker",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CalendarPickerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CalendarPickerDefaultConfig);
+
         this.value = null;
         this.value_date = null;
         this.calendar = null;
         this.overlay = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
     },
 
     dependencies: ['calendar'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
 
     _create: function(){
 
@@ -486,7 +470,7 @@ var CalendarPicker = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('calendarpicker', CalendarPicker);
 

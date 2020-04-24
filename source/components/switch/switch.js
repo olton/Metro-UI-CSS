@@ -18,32 +18,15 @@ if (typeof window["metroSwitchSetup"] !== undefined) {
     Metro.switchSetup(window["metroSwitchSetup"]);
 }
 
-var Switch = {
+var Switch = $.extend({}, Metro.Component, {
     name: "Switch",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SwitchDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SwitchDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -118,6 +101,6 @@ var Switch = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('switch', Switch);

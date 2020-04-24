@@ -24,34 +24,18 @@ if (typeof window["metroImageMagnifierSetup"] !== undefined) {
     Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
 }
 
-var ImageMagnifier = {
+var ImageMagnifier = $.extend({}, Metro.Component, {
     name: "ImageMagnifier",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ImageMagnifierDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ImageMagnifierDefaultConfig);
+
         this.zoomElement = null;
         this.id = Utils.elementId("magnifier");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -268,6 +252,6 @@ var ImageMagnifier = {
         element.off(Metro.events.leave);
         return element;
     }
-};
+});
 
 Metro.plugin('imagemagnifier', ImageMagnifier);
