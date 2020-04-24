@@ -35,13 +35,12 @@ if (typeof window["metroDatePickerSetup"] !== undefined) {
     Metro.datePickerSetup(window["metroDatePickerSetup"]);
 }
 
-var DatePicker = {
+var DatePicker = $.extend({}, Metro.Component, {
     name: "DatePicker",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DatePickerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DatePickerDefaultConfig);
+
         this.picker = null;
         this.isOpen = false;
         this.value = new Date();
@@ -53,24 +52,9 @@ var DatePicker = {
             year: null
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -484,7 +468,7 @@ var DatePicker = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('datepicker', DatePicker);
 

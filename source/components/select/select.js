@@ -41,34 +41,18 @@ if (typeof window["metroSelectSetup"] !== undefined) {
     Metro.selectSetup(window["metroSelectSetup"]);
 }
 
-var Select = {
+var Select = $.extend({}, Metro.Component, {
     name: "Select",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SelectDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SelectDefaultConfig);
+
         this.list = null;
         this.placeholder = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -602,7 +586,7 @@ var Select = {
 
         return element;
     }
-};
+});
 
 $(document).on(Metro.events.click, function(){
     $(".select").removeClass("focused");

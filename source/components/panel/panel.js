@@ -36,34 +36,15 @@ if (typeof window["metroPanelSetup"] !== undefined) {
     Metro.panelSetup(window["metroPanelSetup"]);
 }
 
-var Panel = {
+var Panel = $.extend({}, Metro.Component, {
     name: "Panel",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, PanelDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, PanelDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['draggable', 'collapse'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _addCustomButtons: function(buttons){
@@ -238,6 +219,6 @@ var Panel = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('panel', Panel);

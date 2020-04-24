@@ -20,37 +20,21 @@ if (typeof window["metroTileSetup"] !== undefined) {
     Metro.tileSetup(window["metroTileSetup"]);
 }
 
-var Tile = {
+var Tile = $.extend({}, Metro.Component, {
     name: "Tile",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TileDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TileDefaultConfig);
+
         this.effectInterval = false;
         this.images = [];
         this.slides = [];
         this.currentSlide = -1;
         this.unload = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -255,6 +239,6 @@ var Tile = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('tile', Tile);

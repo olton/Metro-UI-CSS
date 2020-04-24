@@ -48,36 +48,20 @@ if (typeof window["metroStreamerSetup"] !== undefined) {
     Metro.streamerSetup(window["metroStreamerSetup"]);
 }
 
-var Streamer = {
+var Streamer = $.extend({}, Metro.Component, {
     name: "Streamer",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, StreamerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, StreamerDefaultConfig);
+
         this.data = null;
         this.scroll = 0;
         this.scrollDir = "left";
         this.events = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -823,6 +807,6 @@ var Streamer = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('streamer', Streamer);

@@ -34,33 +34,17 @@ if (typeof window["metroSpinnerSetup"] !== undefined) {
     Metro.spinnerSetup(window["metroSpinnerSetup"]);
 }
 
-var Spinner = {
+var Spinner = $.extend({}, Metro.Component, {
     name: "Spinner",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SpinnerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SpinnerDefaultConfig);
+
         this.repeat_timer = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -285,7 +269,7 @@ var Spinner = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('spinner', Spinner);
 

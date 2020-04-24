@@ -54,13 +54,12 @@ if (typeof window["metroVideoSetup"] !== undefined) {
     Metro.videoSetup(window["metroVideoSetup"]);
 }
 
-var VideoPlayer = {
+var VideoPlayer = $.extend({}, Metro.Component, {
     name: "Video",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, VideoDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, VideoDefaultConfig);
+
         this.fullscreen = false;
         this.preloader = null;
         this.player = null;
@@ -72,24 +71,9 @@ var VideoPlayer = {
         this.fullScreenInterval = false;
         this.isPlaying = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -534,7 +518,7 @@ var VideoPlayer = {
         this._offMouse();
     },
 
-    volume: function(v){
+    setVolume: function(v){
         if (v === undefined) {
             return this.video.volume;
         }
@@ -567,7 +551,7 @@ var VideoPlayer = {
 
     changeVolume: function(){
         var volume = this.element.attr("data-volume");
-        this.volume(volume);
+        this.setVolume(volume);
     },
 
     changeAttribute: function(attributeName){
@@ -608,6 +592,6 @@ var VideoPlayer = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('video', VideoPlayer);

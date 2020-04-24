@@ -22,35 +22,19 @@ if (typeof window["metroSplitterSetup"] !== undefined) {
     Metro.splitterSetup(window["metroSplitterSetup"]);
 }
 
-var Splitter = {
+var Splitter = $.extend({}, Metro.Component, {
     name: "Splitter",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SplitterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SplitterDefaultConfig);
+
         this.storage = Utils.isValue(Metro.storage) ? Metro.storage : null;
         this.storageKey = "SPLITTER:";
         this.id = Utils.elementId("splitter");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -273,6 +257,6 @@ var Splitter = {
         gutters.off(Metro.events.start);
         return element;
     }
-};
+});
 
 Metro.plugin('splitter', Splitter);

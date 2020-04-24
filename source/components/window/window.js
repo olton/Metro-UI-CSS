@@ -62,13 +62,12 @@ if (typeof window["metroWindowSetup"] !== undefined) {
     Metro.windowSetup(window["metroWindowSetup"]);
 }
 
-var Window = {
+var Window = $.extend({}, Metro.Component, {
     name: "Window",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, WindowDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, WindowDefaultConfig);
+
         this.win = null;
         this.overlay = null;
         this.position = {
@@ -78,26 +77,9 @@ var Window = {
         this.hidden = false;
         this.content = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['draggable', 'resizeable'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -676,7 +658,7 @@ var Window = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('window', Window);
 

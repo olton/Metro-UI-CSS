@@ -47,13 +47,12 @@ if (typeof window["metroSliderSetup"] !== undefined) {
     Metro.sliderSetup(window["metroSliderSetup"]);
 }
 
-var Slider = {
+var Slider = $.extend({}, Metro.Component, {
     name: "Slider",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, SliderDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, SliderDefaultConfig);
+
         this.slider = null;
         this.value = 0;
         this.percent = 0;
@@ -61,24 +60,9 @@ var Slider = {
         this.buffer = 0;
         this.keyInterval = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -589,6 +573,6 @@ var Slider = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('slider', Slider);

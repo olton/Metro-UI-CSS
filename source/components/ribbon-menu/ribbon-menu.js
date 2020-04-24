@@ -14,34 +14,15 @@ if (typeof window["metroRibbonMenuSetup"] !== undefined) {
     Metro.ribbonMenuSetup(window["metroRibbonMenuSetup"]);
 }
 
-var RibbonMenu = {
+var RibbonMenu = $.extend({}, Metro.Component, {
     name: "RibbonMenu",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RibbonMenuDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RibbonMenuDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['buttongroup'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -143,6 +124,6 @@ var RibbonMenu = {
         element.off(Metro.events.click, ".tabs-holder li a");
         return element;
     }
-};
+});
 
 Metro.plugin('ribbonmenu', RibbonMenu);

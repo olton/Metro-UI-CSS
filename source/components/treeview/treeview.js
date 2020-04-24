@@ -22,32 +22,15 @@ if (typeof window["metroTreeViewSetup"] !== undefined) {
     Metro.treeViewSetup(window["metroTreeViewSetup"]);
 }
 
-var TreeView = {
+var TreeView = $.extend({}, Metro.Component, {
     name: "TreeView",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TreeViewDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TreeViewDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -421,6 +404,6 @@ var TreeView = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('treeview', TreeView);

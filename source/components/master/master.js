@@ -33,35 +33,19 @@ if (typeof window["metroMasterSetup"] !== undefined) {
     Metro.masterSetup(window["metroMasterSetup"]);
 }
 
-var Master = {
+var Master = $.extend({}, Metro.Component, {
     name: "Master",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, MasterDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MasterDefaultConfig);
+
         this.pages = [];
         this.currentIndex = 0;
         this.isAnimate = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -399,6 +383,6 @@ var Master = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('master', Master);

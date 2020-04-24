@@ -15,33 +15,17 @@ if (typeof window["metroBottomSheetSetup"] !== undefined) {
     Metro.bottomSheetSetup(window["metroBottomSheetSetup"]);
 }
 
-var BottomSheet = {
+var BottomSheet = $.extend({}, Metro.Component, {
     name: "BottomSheet",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, BottomSheetDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, BottomSheetDefaultConfig);
+
         this.toggle = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -128,7 +112,7 @@ var BottomSheet = {
         element.off(Metro.events.click, "li");
         return element;
     }
-};
+});
 
 Metro.plugin('bottomsheet', BottomSheet);
 

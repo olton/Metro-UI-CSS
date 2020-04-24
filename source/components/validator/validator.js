@@ -298,37 +298,19 @@ if (typeof window["metroValidatorSetup"] !== undefined) {
     Metro.validatorSetup(window["metroValidatorSetup"]);
 }
 
-var Validator = {
+var Validator = $.extend({}, Metro.Component, {
     name: "Validator",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ValidatorDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ValidatorDefaultConfig);
+
         this._onsubmit = null;
         this._onreset = null;
         this.result = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    dependencies: ['utils', 'colors'],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -451,6 +433,6 @@ var Validator = {
 
     changeAttribute: function(attributeName){
     }
-};
+});
 
 Metro.plugin('validator', Validator);

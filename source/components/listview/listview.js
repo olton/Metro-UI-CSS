@@ -25,32 +25,15 @@ if (typeof window["metroListViewSetup"] !== undefined) {
     Metro.listViewSetup(window["metroListViewSetup"]);
 }
 
-var ListView = {
+var ListView = $.extend({}, Metro.Component, {
     name: "ListView",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, ListViewDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, ListViewDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -449,6 +432,6 @@ var ListView = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('listview', ListView);

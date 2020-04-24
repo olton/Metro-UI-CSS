@@ -69,13 +69,12 @@ if (typeof window["metroCalendarSetup"] !== undefined) {
     Metro.calendarSetup(window["metroCalendarSetup"]);
 }
 
-var Calendar = {
+var Calendar = $.extend({}, Metro.Component, {
     name: "Calendar",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CalendarDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CalendarDefaultConfig);
+
         this.today = new Date();
         this.today.setHours(0,0,0,0);
         this.show = new Date();
@@ -97,24 +96,9 @@ var Calendar = {
         this.maxYear = this.current.year + this.options.yearsAfter;
         this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -961,7 +945,7 @@ var Calendar = {
 
         return element;
     }
-};
+});
 
 $(document).on(Metro.events.click, function(e){
     $('.calendar .calendar-years').each(function(){

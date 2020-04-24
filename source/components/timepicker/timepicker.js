@@ -34,13 +34,12 @@ if (typeof window["metroTimePickerSetup"] !== undefined) {
     Metro.timePickerSetup(window["metroTimePickerSetup"]);
 }
 
-var TimePicker = {
+var TimePicker = $.extend({}, Metro.Component, {
     name: "TimePicker",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TimePickerDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TimePickerDefaultConfig);
+
         this.picker = null;
         this.isOpen = false;
         this.value = [];
@@ -52,24 +51,9 @@ var TimePicker = {
         };
 
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -495,7 +479,7 @@ var TimePicker = {
         return element;
     }
 
-};
+});
 
 Metro.plugin('timepicker', TimePicker);
 

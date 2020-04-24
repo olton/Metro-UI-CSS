@@ -141,13 +141,12 @@ if (typeof window["metroTableSetup"] !== undefined) {
     Metro.tableSetup(window["metroTableSetup"]);
 }
 
-var Table = {
+var Table = $.extend({}, Metro.Component, {
     name: "Table",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TableDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TableDefaultConfig);
+
         this.currentPage = 1;
         this.pagesCount = 1;
         this.searchString = "";
@@ -185,24 +184,9 @@ var Table = {
 
         this.index = {};
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -2234,6 +2218,6 @@ var Table = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('table', Table);

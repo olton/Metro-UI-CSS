@@ -26,37 +26,21 @@ if (typeof window["metroRatingSetup"] !== undefined) {
     Metro.ratingSetup(window["metroRatingSetup"]);
 }
 
-var Rating = {
+var Rating = $.extend({}, Metro.Component, {
     name: "Rating",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RatingDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RatingDefaultConfig);
+
         this.value = 0;
         this.originValue = 0;
         this.values = [];
         this.rate = 0;
         this.rating = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -301,6 +285,6 @@ var Rating = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('rating', Rating);

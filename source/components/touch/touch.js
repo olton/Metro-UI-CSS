@@ -69,13 +69,11 @@ if (typeof window["metroTouchSetup"] !== undefined) {
     Metro.sliderSetup(window["metroTouchSetup"]);
 }
 
-var Touch = {
+var Touch = $.extend({}, Metro.Component, {
     name: "Touch",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, TouchDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, TouchDefaultConfig);
 
         this.useTouchEvents = (TouchConst.SUPPORTS_TOUCH || TouchConst.SUPPORTS_POINTER || !this.options.fallbackToMouseEvents);
         this.START_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown';
@@ -116,24 +114,9 @@ var Touch = {
         this.singleTapTimeout = null;
         this.holdTimeout = null;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -1170,7 +1153,7 @@ var Touch = {
     destroy: function(){
         this.removeListeners();
     }
-};
+});
 
 Metro['touch'] = TouchConst;
 Metro.plugin('touch', Touch);

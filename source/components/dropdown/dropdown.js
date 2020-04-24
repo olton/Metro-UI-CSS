@@ -17,35 +17,19 @@ if (typeof window["metroDropdownSetup"] !== undefined) {
     Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
-var Dropdown = {
+var Dropdown = $.extend({}, Metro.Component, {
     name: "Dropdown",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DropdownDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DropdownDefaultConfig);
+
         this._toggle = null;
         this.displayOrigin = null;
         this.isOpen = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -211,7 +195,7 @@ var Dropdown = {
     destroy: function(){
         this._toggle.off(Metro.events.click);
     }
-};
+});
 
 $(document).on(Metro.events.click, function(){
     $('[data-role*=dropdown]').each(function(){

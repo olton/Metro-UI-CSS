@@ -23,13 +23,12 @@ if (typeof window["metroPopoverSetup"] !== undefined) {
     Metro.popoverSetup(window["metroPopoverSetup"]);
 }
 
-var Popover = {
+var Popover = $.extend({}, Metro.Component, {
     name: "Popover",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, PopoverDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, PopoverDefaultConfig);
+
         this.popover = null;
         this.popovered = false;
         this.size = {
@@ -39,24 +38,9 @@ var Popover = {
 
         this.id = Utils.elementId("popover");
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -285,6 +269,6 @@ var Popover = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('popover', Popover);

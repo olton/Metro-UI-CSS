@@ -18,35 +18,19 @@ if (typeof window["metroRadioSetup"] !== undefined) {
     Metro.radioSetup(window["metroRadioSetup"]);
 }
 
-var Radio = {
+var Radio = $.extend({}, Metro.Component, {
     name: "Radio",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, RadioDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, RadioDefaultConfig);
+
         this.origin = {
             className: ""
         };
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -148,6 +132,6 @@ var Radio = {
     destroy: function(){
         return this.element;
     }
-};
+});
 
 Metro.plugin('radio', Radio);

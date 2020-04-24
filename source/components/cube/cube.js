@@ -42,13 +42,12 @@ if (typeof window["metroCubeSetup"] !== undefined) {
     Metro.cubeSetup(window["metroCubeSetup"]);
 }
 
-var Cube = {
+var Cube = $.extend({}, Metro.Component, {
     name: "Cube",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, CubeDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, CubeDefaultConfig);
+
         this.id = null;
         this.rules = null;
         this.interval = false;
@@ -56,7 +55,6 @@ var Cube = {
         this.running = false;
         this.intervals = [];
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
@@ -96,20 +94,6 @@ var Cube = {
             off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
         }
     ],
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
 
     _create: function(){
         var element = this.element, o = this.options;
@@ -473,6 +457,6 @@ var Cube = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('cube', Cube);

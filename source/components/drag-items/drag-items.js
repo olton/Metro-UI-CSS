@@ -24,34 +24,18 @@ if (typeof window["metroDragItemsSetup"] !== undefined) {
     Metro.dragItemsSetup(window["metroDragItemsSetup"]);
 }
 
-var DragItems = {
+var DragItems = $.extend({}, Metro.Component, {
     name: "DragItems",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, DragItemsDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, DragItemsDefaultConfig);
+
         this.id = null;
         this.canDrag = false;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -243,6 +227,6 @@ var DragItems = {
         element.off(Metro.events.startAll, (o.drawDragMarker ? o.dragMarker : o.dragItem));
         return element;
     }
-};
+});
 
 Metro.plugin('dragitems', DragItems);

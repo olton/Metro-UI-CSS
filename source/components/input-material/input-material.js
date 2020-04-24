@@ -24,34 +24,18 @@ if (typeof window["metroMaterialInputSetup"] !== undefined) {
     Metro.materialInputSetup(window["metroMaterialInputSetup"]);
 }
 
-var MaterialInput = {
+var MaterialInput = $.extend({}, Metro.Component, {
     name: "MaterialInput",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, MaterialInputDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MaterialInputDefaultConfig);
+
         this.history = [];
         this.historyIndex = -1;
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -144,6 +128,6 @@ var MaterialInput = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('materialinput', MaterialInput);

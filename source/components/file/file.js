@@ -23,32 +23,15 @@ if (typeof window["metroFileSetup"] !== undefined) {
     Metro.fileSetup(window["metroFileSetup"]);
 }
 
-var File = {
+var File = $.extend({}, Metro.Component, {
     name: "File",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, FileDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, FileDefaultConfig);
 
-        this._setOptionsFromDOM();
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -239,6 +222,6 @@ var File = {
         parent.off(Metro.events.click, "button");
         return element;
     }
-};
+});
 
 Metro.plugin('file', File);

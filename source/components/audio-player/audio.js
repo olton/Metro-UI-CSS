@@ -62,13 +62,12 @@ if (typeof window["metroAudioSetup"] !== undefined) {
     Metro.audioSetup(window["metroAudioSetup"]);
 }
 
-var AudioPlayer = {
+var AudioPlayer = $.extend({}, Metro.Component, {
     name: "Audio",
 
     init: function( options, elem ) {
-        this.options = $.extend( {}, AudioDefaultConfig, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, AudioDefaultConfig);
+
         this.preloader = null;
         this.player = null;
         this.audio = elem;
@@ -77,25 +76,9 @@ var AudioPlayer = {
         this.volumeBackup = 0;
         this.muted = false;
 
-        this._setOptionsFromDOM();
-
         Metro.createExec(this);
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
@@ -411,7 +394,7 @@ var AudioPlayer = {
         Metro.getPlugin(this.stream, 'slider').val(0);
     },
 
-    volume: function(v){
+    setVolume: function(v){
         if (v === undefined) {
             return this.audio.volume;
         }
@@ -439,7 +422,7 @@ var AudioPlayer = {
 
     changeVolume: function(){
         var volume = this.element.attr("data-volume");
-        this.volume(volume);
+        this.setVolume(volume);
     },
 
     changeAttribute: function(attributeName){
@@ -460,6 +443,6 @@ var AudioPlayer = {
 
         return element;
     }
-};
+});
 
 Metro.plugin('audio', AudioPlayer);
