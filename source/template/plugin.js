@@ -12,28 +12,11 @@ if (typeof window["metroMyObjectSetup"] !== undefined) {
 
 var MyObject = {
     init: function( options, elem ) {
-        this.options = $.extend( {}, this.options, options );
-        this.elem  = elem;
-        this.element = $(elem);
+        this._super(elem, options, MyObjectDefaultConfig);
 
-        this._setOptionsFromDOM();
         this._create();
 
         return this;
-    },
-
-    _setOptionsFromDOM: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     },
 
     _create: function(){
