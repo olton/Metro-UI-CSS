@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/04/2020 00:15:45
+ * Built at 24/04/2020 10:57:36
  * Licensed under MIT
  */
 
@@ -4243,7 +4243,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "24/04/2020 00:15:52",
+    compileTime: "24/04/2020 10:57:43",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -32325,8 +32325,7 @@ var VegasDefaultConfig = {
     cover: true,
     preload: true,
     timer: true,
-    overlay: true,
-    overlayNum: 2,
+    overlay: 2,
     color: null,
     volume: 1,
     onPlay: Metro.noop,
@@ -32385,16 +32384,15 @@ var Vegas = $.extend({}, Plugin, {
         }
 
         this.slide = 0;
-        this.current = 0;
         this.slides = Utils.isObject(this.options.slides) || [];
         this.total = this.slides.length;
         this.noshow = this.total < 2;
+        this.paused = !this.options.autoplay || this.noshow;
+        this.ended = false;
         this.timer = null;
         this.overlay = null;
         this.first = true;
         this.timeout = false;
-        this.paused = !this.options.autoplay || this.noshow;
-        this.ended = false;
 
         if (this.options.shuffle) {
             this.slides.shuffle();
@@ -32424,7 +32422,7 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, "vegas");
 
@@ -32471,7 +32469,7 @@ var Vegas = $.extend({}, Plugin, {
         }
 
         if (o.overlay) {
-            this.overlay = $('<div class="vegas-overlay">').addClass('overlay'+o.overlayNum);
+            this.overlay = $('<div class="vegas-overlay">').addClass('overlay' + (typeof o.overlay === 'boolean' || isNaN(o.overlay) ? 2 : +o.overlay));
             element.append(this.overlay);
         }
 
@@ -32482,13 +32480,10 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-
     },
 
     _preload: function(){
-        var that = this, element = this.element, o = this.options;
-        var img, i, video;
+        var img, i;
 
         for (i = 0; i < this.slides.length; i++) {
 
@@ -32560,8 +32555,6 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     _fadeSoundOut: function(video, duration){
-        var o = this.options;
-
         $.animate({
             el: video,
             draw: {
@@ -32597,8 +32590,6 @@ var Vegas = $.extend({}, Plugin, {
         return video;
     },
 
-    _image: function(){},
-
     _goto: function(n){
         var that = this, element = this.element, o = this.options;
 
@@ -32608,7 +32599,7 @@ var Vegas = $.extend({}, Plugin, {
 
         this.slide = n;
 
-        var $slide, $inner, video, img, $video, $img;
+        var $slide, $inner, video, img, $video;
         var slides = element.children(".vegas-slide");
         var obj = this.slides[n];
         var cover = o.cover;
@@ -32815,10 +32806,6 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     jump: function(n){
-        var that = this, element = this.element, o = this.options;
-
-        if (o.video) return;
-
         if (n <= 0 || n > this.slides.length || n === this.slide + 1) {
             return this;
         }
@@ -32828,7 +32815,7 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     next: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         this.slide++;
 
@@ -32844,7 +32831,7 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     prev: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         this.slide--;
 
@@ -32861,10 +32848,39 @@ var Vegas = $.extend({}, Plugin, {
     },
 
     changeAttribute: function(attributeName){
+        var element = this.element, o = this.options;
+        var propName = $.camelCase(attributeName.replace("data-", ""));
 
+        if (propName === 'slides') {
+            o.slides = element.attr('data-slides');
+            this.slides = Utils.isObject(o.slides) || [];
+            this.total = this.slides.length;
+            this.noshow = this.total < 2;
+            this.paused = !this.options.autoplay || this.noshow;
+        } else {
+            o[propName] = JSON.parse(element.attr(attributeName));
+        }
     },
 
-    destroy: function(){}
+    destroy: function(){
+        var element = this.element, o = this.options;
+
+        clearTimeout(this.timeout);
+        element.removeClass('vegas-container');
+        element.find('> .vegas-slide').remove();
+        element.find('> .vegas-wrapper').children().appendTo(element);
+        element.find('> .vegas-wrapper').remove();
+
+        if (o.timer) {
+            this.timer.remove();
+        }
+
+        if (o.overlay) {
+            this.overlay.remove();
+        }
+
+        return element[0];
+    }
 });
 
 Metro.plugin('vegas', Vegas);
