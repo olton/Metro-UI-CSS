@@ -602,6 +602,30 @@ var Metro = {
     }
 };
 
+Metro["Component"] = {
+    _super: function(el, options, defaults){
+        this.elem = el;
+        this.element = $(el);
+        this.options = $.extend( {}, defaults, options );
+
+        this._setOptionsFromDOM();
+    },
+
+    _setOptionsFromDOM: function(){
+        var element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
+    }
+};
+
 window['Metro'] = Metro;
 
 $(window).on(Metro.events.resize, function(){

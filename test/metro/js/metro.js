@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/04/2020 11:19:34
+ * Built at 24/04/2020 12:36:16
  * Licensed under MIT
  */
 
@@ -4243,7 +4243,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "24/04/2020 11:19:41",
+    compileTime: "24/04/2020 12:36:24",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4728,6 +4728,30 @@ var Metro = {
         } else {
             that._create();
         }
+    }
+};
+
+Metro["Component"] = {
+    _super: function(el, options, defaults){
+        this.elem = el;
+        this.element = $(el);
+        this.options = $.extend( {}, defaults, options );
+
+        this._setOptionsFromDOM();
+    },
+
+    _setOptionsFromDOM: function(){
+        var element = this.element, o = this.options;
+
+        $.each(element.data(), function(key, value){
+            if (key in o) {
+                try {
+                    o[key] = JSON.parse(value);
+                } catch (e) {
+                    o[key] = value;
+                }
+            }
+        });
     }
 };
 
@@ -32346,17 +32370,13 @@ if (typeof window["metroVegasSetup"] !== undefined) {
     Metro.vegasSetup(window["metroVegasSetup"]);
 }
 
-var Vegas = $.extend({}, Plugin, {
+var Vegas = $.extend({}, Metro.Component, {
 
     videoCache: {},
 
     init: function( options, elem ) {
 
-        this.elem  = elem;
-        this.element = $(elem);
-        this.options = $.extend( {}, VegasDefaultConfig, options );
-
-        this._setOptionsFromDOM();
+        this._super(elem, options, VegasDefaultConfig);
 
         this.transitions = [
             "fade", "fade2",
@@ -32410,20 +32430,6 @@ var Vegas = $.extend({}, Plugin, {
         return this;
     },
 
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
-
     _create: function(){
         var element = this.element, o = this.options;
 
@@ -32441,13 +32447,12 @@ var Vegas = $.extend({}, Plugin, {
         var wrapper;
 
         if (!isBody) {
-            element.css('height', element.css('height'));
+            element.css('height', element.css('height')); // it is not clear why this line
 
             wrapper = $('<div class="vegas-wrapper">')
                 .css('overflow', element.css('overflow'))
                 .css('padding',  element.css('padding'));
 
-            // Some browsers don't compute padding shorthand
             if (!element.css('padding')) {
                 wrapper
                     .css('padding-top',    element.css('padding-top'))
