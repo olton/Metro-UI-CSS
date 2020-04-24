@@ -44,17 +44,13 @@ if (typeof window["metroVegasSetup"] !== undefined) {
     Metro.vegasSetup(window["metroVegasSetup"]);
 }
 
-var Vegas = $.extend({}, Plugin, {
+var Vegas = $.extend({}, Metro.Component, {
 
     videoCache: {},
 
     init: function( options, elem ) {
 
-        this.elem  = elem;
-        this.element = $(elem);
-        this.options = $.extend( {}, VegasDefaultConfig, options );
-
-        this._setOptionsFromDOM();
+        this._super(elem, options, VegasDefaultConfig);
 
         this.transitions = [
             "fade", "fade2",
@@ -108,20 +104,6 @@ var Vegas = $.extend({}, Plugin, {
         return this;
     },
 
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
-    },
-
     _create: function(){
         var element = this.element, o = this.options;
 
@@ -139,13 +121,12 @@ var Vegas = $.extend({}, Plugin, {
         var wrapper;
 
         if (!isBody) {
-            element.css('height', element.css('height'));
+            element.css('height', element.css('height')); // it is not clear why this line
 
             wrapper = $('<div class="vegas-wrapper">')
                 .css('overflow', element.css('overflow'))
                 .css('padding',  element.css('padding'));
 
-            // Some browsers don't compute padding shorthand
             if (!element.css('padding')) {
                 wrapper
                     .css('padding-top',    element.css('padding-top'))
