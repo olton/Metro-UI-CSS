@@ -392,6 +392,7 @@ var Metro = {
 
         if (METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
+            $(window).fire("metroinitied");
         } else {
             $(".m4-cloak").animate({
                 draw: {
@@ -400,6 +401,7 @@ var Metro = {
                 dur: 300,
                 onDone: function(){
                     $(".m4-cloak").removeClass("m4-cloak");
+                    $(window).fire("metroinitied");
                 }
             });
         }

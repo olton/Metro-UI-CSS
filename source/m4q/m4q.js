@@ -548,7 +548,7 @@ function normalizeEventName(name) {
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 21/04/2020 15:20:19";
+var m4qVersion = "v1.0.6. Built at 26/04/2020 12:57:36";
 var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
 var matches = Element.prototype.matches
@@ -3489,7 +3489,38 @@ $.easing = {};
 $.extend($.easing, Easing);
 
 $.extend({
-    animate: animate,
+    animate: function(args){
+        var el, draw, dur, ease, cb;
+
+        if (arguments.length > 1) {
+            el = $(arguments[0])[0];
+            draw = arguments[1];
+            dur = arguments[2] || $.animation.duration;
+            ease = arguments[3] || $.animation.ease;
+            cb = arguments[4];
+
+            if (typeof dur === 'function') {
+                cb = dur;
+                ease = $.animation.ease;
+                dur = $.animation.duration;
+            }
+
+            if (typeof ease === 'function') {
+                cb = ease;
+                ease = $.animation.ease;
+            }
+
+            return animate({
+                el: el,
+                draw: draw,
+                dur: dur,
+                ease: ease,
+                onDone: cb
+            })
+        }
+
+        return animate(args);
+    },
     stop: stop,
     chain: chain
 })
@@ -3514,6 +3545,40 @@ $.fn.extend({
      */
     animate: function(args){
         var that = this;
+        var draw, dur, easing, cb;
+        var a = args;
+        var compatibilityMode;
+
+        compatibilityMode = !Array.isArray(args) && (arguments.length > 1 || (arguments.length === 1 && typeof arguments[0]['draw'] === 'undefined'));
+
+        if ( compatibilityMode ) {
+            draw = arguments[0];
+            dur = arguments[1] || $.animation.duration;
+            easing = arguments[2] || $.animation.ease;
+            cb = arguments[3];
+
+            if (typeof dur === 'function') {
+                cb = dur;
+                dur = $.animation.duration;
+                easing = $.animation.ease;
+            }
+
+            if (typeof easing === 'function') {
+                cb = easing;
+                easing = $.animation.ease;
+            }
+
+            return this.each(function(){
+                return $.animate({
+                    el: this,
+                    draw: draw,
+                    dur: dur,
+                    ease: easing,
+                    onDone: cb
+                });
+            })
+        }
+
         if (Array.isArray(args)) {
             $.each(args, function(){
                 var a = this;
@@ -3525,7 +3590,6 @@ $.fn.extend({
             return this;
         }
 
-        var a = args;
         return this.each(function(){
             a['el'] = this;
             $.animate(a);
