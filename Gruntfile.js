@@ -79,7 +79,9 @@ module.exports = function(grunt) {
                 src: [
                     'source/m4q/*.js',
                     'source/metro.js',
+                    'source/extensions/*.js',
                     'source/common/js/*.js',
+                    'source/i18n/*.js',
                     'source/components/**/*.js'
                 ],
                 dest: 'build/js/metro.js'
@@ -98,8 +100,7 @@ module.exports = function(grunt) {
                     'build/css/metro-animations.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-rtl.css',
-                    'build/css/metro-icons.css',
-                    'build/css/metro-third.css'
+                    'build/css/metro-icons.css'
                 ],
                 dest: 'build/css/metro-all.css'
             }
@@ -146,8 +147,7 @@ module.exports = function(grunt) {
                     "metro-rtl.less",
                     "metro-colors.less",
                     "metro-animations.less",
-                    "metro-icons.less",
-                    "metro-third.less"
+                    "metro-icons.less"
                 ],
                 ext: ".css",
                 dest: "build/css"

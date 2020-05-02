@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 28/04/2020 23:47:27
+ * Built at 02/05/2020 21:59:04
  * Licensed under MIT
  */
 
@@ -4307,7 +4307,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "28/04/2020 23:47:34",
+    compileTime: "02/05/2020 21:59:12",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4821,6 +4821,8 @@ Metro["Component"] = {
     }
 };
 
+Metro['locales'] = {};
+
 window['Metro'] = Metro;
 
 $(window).on(Metro.events.resize, function(){
@@ -4831,6 +4833,337 @@ $(window).on(Metro.events.resize, function(){
         }
     });
 });
+
+
+if (typeof Array.shuffle !== "function") {
+    Array.prototype.shuffle = function () {
+        var currentIndex = this.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = this[currentIndex];
+            this[currentIndex] = this[randomIndex];
+            this[randomIndex] = temporaryValue;
+        }
+
+        return this;
+    };
+}
+
+if (typeof Array.clone !== "function") {
+    Array.prototype.clone = function () {
+        return this.slice(0);
+    };
+}
+
+if (typeof Array.unique !== "function") {
+    Array.prototype.unique = function () {
+        var a = this.concat();
+        for (var i = 0; i < a.length; ++i) {
+            for (var j = i + 1; j < a.length; ++j) {
+                if (a[i] === a[j])
+                    a.splice(j--, 1);
+            }
+        }
+
+        return a;
+    };
+}
+
+if (typeof Array.from !== "function") {
+    Array.from = function(val) {
+        var i, a = [];
+
+        if (val.length === undefined && typeof val === "object") {
+            return Object.values(val);
+        }
+
+        if (val.length !== undefined) {
+            for(i = 0; i < val.length; i++) {
+                a.push(val[i]);
+            }
+            return a;
+        }
+
+        throw new Error("Value can not be converted to array");
+    };
+}
+
+if (typeof Array.contains !== "function") {
+    Array.prototype.contains = function(val, from){
+        return this.indexOf(val, from) > -1;
+    }
+}
+
+
+Date.prototype.getWeek = function (dowOffset) {
+    var nYear, nday, newYear, day, daynum, weeknum;
+
+    dowOffset = !Utils.isValue(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
+    newYear = new Date(this.getFullYear(),0,1);
+    day = newYear.getDay() - dowOffset;
+    day = (day >= 0 ? day : day + 7);
+    daynum = Math.floor((this.getTime() - newYear.getTime() -
+        (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
+
+    if(day < 4) {
+        weeknum = Math.floor((daynum+day-1)/7) + 1;
+        if(weeknum > 52) {
+            nYear = new Date(this.getFullYear() + 1,0,1);
+            nday = nYear.getDay() - dowOffset;
+            nday = nday >= 0 ? nday : nday + 7;
+            weeknum = nday < 4 ? 1 : 53;
+        }
+    }
+    else {
+        weeknum = Math.floor((daynum+day-1)/7);
+    }
+    return weeknum;
+};
+
+Date.prototype.getYear = function(){
+    return this.getFullYear().toString().substr(-2);
+};
+
+Date.prototype.format = function(format, locale){
+
+    if (locale === undefined) {
+        locale = "en-US";
+    }
+
+    var cal = (Metro.locales !== undefined && Metro.locales[locale] !== undefined ? Metro.locales[locale] : Metro.locales["en-US"])['calendar'];
+
+    var date = this;
+    var nDay = date.getDay(),
+        nDate = date.getDate(),
+        nMonth = date.getMonth(),
+        nYear = date.getFullYear(),
+        nHour = date.getHours(),
+        aDays = cal['days'],
+        aMonths = cal['months'],
+        aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
+        isLeapYear = function() {
+            return (nYear%4===0 && nYear%100!==0) || nYear%400===0;
+        },
+        getThursday = function() {
+            var target = new Date(date);
+            target.setDate(nDate - ((nDay+6)%7) + 3);
+            return target;
+        },
+        zeroPad = function(nNum, nPad) {
+            return ('' + (Math.pow(10, nPad) + nNum)).slice(1);
+        };
+    return format.replace(/(%[a-z])/gi, function(sMatch) {
+        return {
+            '%a': aDays[nDay].slice(0,3),
+            '%A': aDays[nDay],
+            '%b': aMonths[nMonth].slice(0,3),
+            '%B': aMonths[nMonth],
+            '%c': date.toUTCString(),
+            '%C': Math.floor(nYear/100),
+            '%d': zeroPad(nDate, 2),
+            'dd': zeroPad(nDate, 2),
+            '%e': nDate,
+            '%F': date.toISOString().slice(0,10),
+            '%G': getThursday().getFullYear(),
+            '%g': ('' + getThursday().getFullYear()).slice(2),
+            '%H': zeroPad(nHour, 2),
+            // 'HH': zeroPad(nHour, 2),
+            '%I': zeroPad((nHour+11)%12 + 1, 2),
+            '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth>1 && isLeapYear()) ? 1 : 0), 3),
+            '%k': '' + nHour,
+            '%l': (nHour+11)%12 + 1,
+            '%m': zeroPad(nMonth + 1, 2),
+            // 'mm': zeroPad(nMonth + 1, 2),
+            '%M': zeroPad(date.getMinutes(), 2),
+            // 'MM': zeroPad(date.getMinutes(), 2),
+            '%p': (nHour<12) ? 'AM' : 'PM',
+            '%P': (nHour<12) ? 'am' : 'pm',
+            '%s': Math.round(date.getTime()/1000),
+            // 'ss': Math.round(date.getTime()/1000),
+            '%S': zeroPad(date.getSeconds(), 2),
+            // 'SS': zeroPad(date.getSeconds(), 2),
+            '%u': nDay || 7,
+            '%V': (function() {
+                var target = getThursday(),
+                    n1stThu = target.valueOf();
+                target.setMonth(0, 1);
+                var nJan1 = target.getDay();
+                if (nJan1!==4) target.setMonth(0, 1 + ((4-nJan1)+7)%7);
+                return zeroPad(1 + Math.ceil((n1stThu-target)/604800000), 2);
+            })(),
+            '%w': '' + nDay,
+            '%x': date.toLocaleDateString(),
+            '%X': date.toLocaleTimeString(),
+            '%y': ('' + nYear).slice(2),
+            // 'yy': ('' + nYear).slice(2),
+            '%Y': nYear,
+            // 'YYYY': nYear,
+            '%z': date.toTimeString().replace(/.+GMT([+-]\d+).+/, '$1'),
+            '%Z': date.toTimeString().replace(/.+\((.+?)\)$/, '$1')
+        }[sMatch] || sMatch;
+    });
+};
+
+Date.prototype.addHours = function(n) {
+    this.setTime(this.getTime() + (n*60*60*1000));
+    return this;
+};
+
+Date.prototype.addDays = function(n) {
+    this.setDate(this.getDate() + (n));
+    return this;
+};
+
+Date.prototype.addMonths = function(n) {
+    this.setMonth(this.getMonth() + (n));
+    return this;
+};
+
+Date.prototype.addYears = function(n) {
+    this.setFullYear(this.getFullYear() + (n));
+    return this;
+};
+
+
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
+
+
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+};
+
+String.prototype.contains = function() {
+    return !!~String.prototype.indexOf.apply(this, arguments);
+};
+
+String.prototype.toDate = function(format, locale) {
+    var result;
+    var normalized, normalizedFormat, formatItems, dateItems, checkValue;
+    var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
+    var year, month, day, hour, minute, second;
+    var parsedMonth;
+
+    locale = locale || "en-US";
+
+    var monthNameToNumber = function(month){
+        var d, months, index, i;
+
+        if (!Utils.isValue(month)) {
+            return -1;
+        }
+
+        month = month.substr(0, 3);
+
+        if (
+            locale !== undefined
+            && locale !== "en-US"
+            && Locales !== undefined
+            && Locales[locale] !== undefined
+            && Locales[locale]['calendar'] !== undefined
+            && Locales[locale]['calendar']['months'] !== undefined
+        ) {
+            months = Locales[locale]['calendar']['months'];
+            for(i = 12; i < months.length; i++) {
+                if (months[i].toLowerCase() === month.toLowerCase()) {
+                    index = i - 12;
+                    break;
+                }
+            }
+            month = Locales["en-US"]['calendar']['months'][index];
+        }
+
+        d = Date.parse(month + " 1, 1972");
+        if(!isNaN(d)){
+            return new Date(d).getMonth() + 1;
+        }
+        return -1;
+    };
+
+    if (format === undefined || format === null || format === "") {
+        return new Date(this);
+    }
+
+    // normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
+    normalized      = this.replace(/[\/,.:\s]/g, '-');
+    normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
+    formatItems     = normalizedFormat.split('-');
+    dateItems       = normalized.split('-');
+    checkValue      = normalized.replace(/\-/g,"");
+
+    if (checkValue.trim() === "") {
+        return "Invalid Date";
+    }
+
+    monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
+    dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
+    yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
+    hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
+    minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
+    secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
+
+    if (monthIndex > -1 && dateItems[monthIndex] !== "") {
+        if (isNaN(parseInt(dateItems[monthIndex]))) {
+            dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
+            if (dateItems[monthIndex] === -1) {
+                return "Invalid Date";
+            }
+        } else {
+            parsedMonth = parseInt(dateItems[monthIndex]);
+            if (parsedMonth < 1 || parsedMonth > 12) {
+                return "Invalid Date";
+            }
+        }
+    } else {
+        return "Invalid Date";
+    }
+
+    year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
+    month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
+    day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
+
+    hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
+    minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
+    second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
+
+    result = new Date(year,month-1,day,hour,minute,second);
+
+    return result;
+};
+
+String.prototype.toArray = function(delimiter, type, format){
+    var str = this;
+    var a;
+
+    type = type || "string";
+    delimiter = delimiter || ",";
+    format = format === undefined || format === null ? false : format;
+
+    a = (""+str).split(delimiter);
+
+    return a.map(function(s){
+        var result;
+
+        switch (type) {
+            case "int":
+            case "integer": result = parseInt(s); break;
+            case "number":
+            case "float": result = parseFloat(s); break;
+            case "date": result = !format ? new Date(s) : s.toDate(format); break;
+            default: result = s.trim();
+        }
+
+        return result;
+    });
+};
 
 
 var Animation = {
@@ -4995,70 +5328,6 @@ var Animation = {
 };
 
 Metro['animation'] = Animation;
-
-if (typeof Array.shuffle !== "function") {
-    Array.prototype.shuffle = function () {
-        var currentIndex = this.length, temporaryValue, randomIndex;
-
-        while (0 !== currentIndex) {
-
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            temporaryValue = this[currentIndex];
-            this[currentIndex] = this[randomIndex];
-            this[randomIndex] = temporaryValue;
-        }
-
-        return this;
-    };
-}
-
-if (typeof Array.clone !== "function") {
-    Array.prototype.clone = function () {
-        return this.slice(0);
-    };
-}
-
-if (typeof Array.unique !== "function") {
-    Array.prototype.unique = function () {
-        var a = this.concat();
-        for (var i = 0; i < a.length; ++i) {
-            for (var j = i + 1; j < a.length; ++j) {
-                if (a[i] === a[j])
-                    a.splice(j--, 1);
-            }
-        }
-
-        return a;
-    };
-}
-
-if (typeof Array.from !== "function") {
-    Array.from = function(val) {
-        var i, a = [];
-
-        if (val.length === undefined && typeof val === "object") {
-            return Object.values(val);
-        }
-
-        if (val.length !== undefined) {
-            for(i = 0; i < val.length; i++) {
-                a.push(val[i]);
-            }
-            return a;
-        }
-
-        throw new Error("Value can not be converted to array");
-    };
-}
-
-if (typeof Array.contains !== "function") {
-    Array.prototype.contains = function(val, from){
-        return this.indexOf(val, from) > -1;
-    }
-}
-
 
 function RGB(r, g, b){
     this.r = r || 0;
@@ -5930,136 +6199,6 @@ var Colors = {
 
 Metro['colors'] = Colors.init();
 
-Date.prototype.getWeek = function (dowOffset) {
-    var nYear, nday, newYear, day, daynum, weeknum;
-
-    dowOffset = !Utils.isValue(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
-    newYear = new Date(this.getFullYear(),0,1);
-    day = newYear.getDay() - dowOffset;
-    day = (day >= 0 ? day : day + 7);
-    daynum = Math.floor((this.getTime() - newYear.getTime() -
-        (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
-
-    if(day < 4) {
-        weeknum = Math.floor((daynum+day-1)/7) + 1;
-        if(weeknum > 52) {
-            nYear = new Date(this.getFullYear() + 1,0,1);
-            nday = nYear.getDay() - dowOffset;
-            nday = nday >= 0 ? nday : nday + 7;
-            weeknum = nday < 4 ? 1 : 53;
-        }
-    }
-    else {
-        weeknum = Math.floor((daynum+day-1)/7);
-    }
-    return weeknum;
-};
-
-Date.prototype.getYear = function(){
-    return this.getFullYear().toString().substr(-2);
-};
-
-Date.prototype.format = function(format, locale){
-
-    if (locale === undefined) {
-        locale = "en-US";
-    }
-
-    var cal = (Metro.locales !== undefined && Metro.locales[locale] !== undefined ? Metro.locales[locale] : Metro.locales["en-US"])['calendar'];
-
-    var date = this;
-    var nDay = date.getDay(),
-        nDate = date.getDate(),
-        nMonth = date.getMonth(),
-        nYear = date.getFullYear(),
-        nHour = date.getHours(),
-        aDays = cal['days'],
-        aMonths = cal['months'],
-        aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
-        isLeapYear = function() {
-            return (nYear%4===0 && nYear%100!==0) || nYear%400===0;
-        },
-        getThursday = function() {
-            var target = new Date(date);
-            target.setDate(nDate - ((nDay+6)%7) + 3);
-            return target;
-        },
-        zeroPad = function(nNum, nPad) {
-            return ('' + (Math.pow(10, nPad) + nNum)).slice(1);
-        };
-    return format.replace(/(%[a-z])/gi, function(sMatch) {
-        return {
-            '%a': aDays[nDay].slice(0,3),
-            '%A': aDays[nDay],
-            '%b': aMonths[nMonth].slice(0,3),
-            '%B': aMonths[nMonth],
-            '%c': date.toUTCString(),
-            '%C': Math.floor(nYear/100),
-            '%d': zeroPad(nDate, 2),
-            'dd': zeroPad(nDate, 2),
-            '%e': nDate,
-            '%F': date.toISOString().slice(0,10),
-            '%G': getThursday().getFullYear(),
-            '%g': ('' + getThursday().getFullYear()).slice(2),
-            '%H': zeroPad(nHour, 2),
-            // 'HH': zeroPad(nHour, 2),
-            '%I': zeroPad((nHour+11)%12 + 1, 2),
-            '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth>1 && isLeapYear()) ? 1 : 0), 3),
-            '%k': '' + nHour,
-            '%l': (nHour+11)%12 + 1,
-            '%m': zeroPad(nMonth + 1, 2),
-            // 'mm': zeroPad(nMonth + 1, 2),
-            '%M': zeroPad(date.getMinutes(), 2),
-            // 'MM': zeroPad(date.getMinutes(), 2),
-            '%p': (nHour<12) ? 'AM' : 'PM',
-            '%P': (nHour<12) ? 'am' : 'pm',
-            '%s': Math.round(date.getTime()/1000),
-            // 'ss': Math.round(date.getTime()/1000),
-            '%S': zeroPad(date.getSeconds(), 2),
-            // 'SS': zeroPad(date.getSeconds(), 2),
-            '%u': nDay || 7,
-            '%V': (function() {
-                var target = getThursday(),
-                    n1stThu = target.valueOf();
-                target.setMonth(0, 1);
-                var nJan1 = target.getDay();
-                if (nJan1!==4) target.setMonth(0, 1 + ((4-nJan1)+7)%7);
-                return zeroPad(1 + Math.ceil((n1stThu-target)/604800000), 2);
-            })(),
-            '%w': '' + nDay,
-            '%x': date.toLocaleDateString(),
-            '%X': date.toLocaleTimeString(),
-            '%y': ('' + nYear).slice(2),
-            // 'yy': ('' + nYear).slice(2),
-            '%Y': nYear,
-            // 'YYYY': nYear,
-            '%z': date.toTimeString().replace(/.+GMT([+-]\d+).+/, '$1'),
-            '%Z': date.toTimeString().replace(/.+\((.+?)\)$/, '$1')
-        }[sMatch] || sMatch;
-    });
-};
-
-Date.prototype.addHours = function(n) {
-    this.setTime(this.getTime() + (n*60*60*1000));
-    return this;
-};
-
-Date.prototype.addDays = function(n) {
-    this.setDate(this.getDate() + (n));
-    return this;
-};
-
-Date.prototype.addMonths = function(n) {
-    this.setMonth(this.getMonth() + (n));
-    return this;
-};
-
-Date.prototype.addYears = function(n) {
-    this.setFullYear(this.getFullYear() + (n));
-    return this;
-};
-
-
 var Export = {
 
     init: function(){
@@ -6169,370 +6308,6 @@ var Export = {
 };
 
 Metro['export'] = Export.init();
-
-
-var Locales = {
-    'en-US': {
-        "calendar": {
-            "months": [
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ],
-            "days": [
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-                "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
-                "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
-            ],
-            "time": {
-                "days": "DAYS",
-                "hours": "HOURS",
-                "minutes": "MINS",
-                "seconds": "SECS",
-                "month": "MON",
-                "day": "DAY",
-                "year": "YEAR"
-            }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Cancel",
-            "done": "Done",
-            "today": "Today",
-            "now": "Now",
-            "clear": "Clear",
-            "help": "Help",
-            "yes": "Yes",
-            "no": "No",
-            "random": "Random",
-            "save": "Save",
-            "reset": "Reset"
-        }
-    },
-    
-    'tw-ZH': {
-        "calendar": {
-            "months": [
-                "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
-                "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
-            ],
-            "days": [
-                "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
-                "日", "一", "二", "三", "四", "五", "六",
-                "週日", "週一", "週二", "週三", "週四", "週五", "週六"
-            ],
-            "time": {
-                "days": "天",
-                "hours": "時",
-                "minutes": "分",
-                "seconds": "秒",
-                "month": "月",
-                "day": "日",
-                "year": "年"
-            }
-        },
-        "buttons": {
-            "ok": "確認",
-            "cancel": "取消",
-            "done": "完成",
-            "today": "今天",
-            "now": "現在",
-            "clear": "清除",
-            "help": "幫助",
-            "yes": "是",
-            "no": "否",
-            "random": "隨機",
-            "save": "保存",
-            "reset": "重啟"
-        }
-    },
-    
-    'cn-ZH': {
-        "calendar": {
-            "months": [
-                "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
-                "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
-            ],
-            "days": [
-                "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
-                "日", "一", "二", "三", "四", "五", "六",
-                "周日", "周一", "周二", "周三", "周四", "周五", "周六"
-            ],
-            "time": {
-                "days": "天",
-                "hours": "时",
-                "minutes": "分",
-                "seconds": "秒",
-                "month": "月",
-                "day": "日",
-                "year": "年"
-            }
-        },
-        "buttons": {
-            "ok": "确认",
-            "cancel": "取消",
-            "done": "完成",
-            "today": "今天",
-            "now": "现在",
-            "clear": "清除",
-            "help": "帮助",
-            "yes": "是",
-            "no": "否",
-            "random": "随机",
-            "save": "保存",
-            "reset": "重啟"
-        }
-    },
-    
-    
-    'de-DE': {
-        "calendar": {
-            "months": [
-                "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
-                "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
-            ],
-            "days": [
-                "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
-                "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
-                "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
-            ],
-            "time": {
-                "days": "TAGE",
-                "hours": "STD",
-                "minutes": "MIN",
-                "seconds": "SEK"
-            }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Abbrechen",
-            "done": "Fertig",
-            "today": "Heute",
-            "now": "Jetzt",
-            "clear": "Löschen",
-            "help": "Hilfe",
-            "yes": "Ja",
-            "no": "Nein",
-            "random": "Zufällig",
-            "save": "Speichern",
-            "reset": "Zurücksetzen"
-        }
-    },
-
-    'hu-HU': {
-        "calendar": {
-            "months": [
-                'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
-                'Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'
-            ],
-            "days": [
-                'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
-                'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz',
-                'Vas', 'Hét', 'Ke', 'Sze', 'Csü', 'Pén', 'Szom'
-            ],
-            "time": {
-                "days": "NAP",
-                "hours": "ÓRA",
-                "minutes": "PERC",
-                "seconds": "MP"
-            }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Mégse",
-            "done": "Kész",
-            "today": "Ma",
-            "now": "Most",
-            "clear": "Törlés",
-            "help": "Segítség",
-            "yes": "Igen",
-            "no": "Nem",
-            "random": "Véletlen",
-            "save": "Mentés",
-            "reset": "Visszaállítás"
-        }
-    },
-
-    'ru-RU': {
-        "calendar": {
-            "months": [
-                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
-                "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
-            ],
-            "days": [
-                "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
-                "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
-                "Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"
-            ],
-            "time": {
-                "days": "ДНИ",
-                "hours": "ЧАСЫ",
-                "minutes": "МИН",
-                "seconds": "СЕК"
-            }
-        },
-        "buttons": {
-            "ok": "ОК",
-            "cancel": "Отмена",
-            "done": "Готово",
-            "today": "Сегодня",
-            "now": "Сейчас",
-            "clear": "Очистить",
-            "help": "Помощь",
-            "yes": "Да",
-            "no": "Нет",
-            "random": "Случайно",
-            "save": "Сохранить",
-            "reset": "Сброс"
-        }
-    },
-
-    'uk-UA': {
-        "calendar": {
-            "months": [
-                "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень",
-                "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"
-            ],
-            "days": [
-                "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота",
-                "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
-                "Нед", "Пон", "Вiв", "Сер", "Чет", "Пят", "Суб"
-            ],
-            "time": {
-                "days": "ДНІ",
-                "hours": "ГОД",
-                "minutes": "ХВИЛ",
-                "seconds": "СЕК"
-            }
-        },
-        "buttons": {
-            "ok": "ОК",
-            "cancel": "Відміна",
-            "done": "Готово",
-            "today": "Сьогодні",
-            "now": "Зараз",
-            "clear": "Очистити",
-            "help": "Допомога",
-            "yes": "Так",
-            "no": "Ні",
-            "random": "Випадково",
-            "save": "Зберегти",
-            "reset": "Скинути"
-        }
-    },
-
-    'es-MX': {
-        "calendar": {
-            "months": [
-                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
-                "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
-            ],
-            "days": [
-                "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
-                "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa",
-                "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
-            ],
-            "time": {
-                "days": "DÍAS",
-                "hours": "HORAS",
-                "minutes": "MINS",
-                "seconds": "SEGS",
-                "month": "MES",
-                "day": "DÍA",
-                "year": "AÑO"
-            }
-        },
-        "buttons": {
-            "ok": "Aceptar",
-            "cancel": "Cancelar",
-            "done": "Hecho",
-            "today": "Hoy",
-            "now": "Ahora",
-            "clear": "Limpiar",
-            "help": "Ayuda",
-            "yes": "Si",
-            "no": "No",
-            "random": "Aleatorio",
-            "save": "Salvar",
-            "reset": "Reiniciar"
-        }
-    },
-
-    'fr-FR': {
-        "calendar": {
-            "months": [
-                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
-                "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
-            ],
-            "days": [
-                "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
-                "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
-                "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
-            ],
-            "time": {
-                "days": "JOURS",
-                "hours": "HEURES",
-                "minutes": "MINS",
-                "seconds": "SECS",
-                "month": "MOIS",
-                "day": "JOUR",
-                "year": "ANNEE"
-            }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Annulé",
-            "done": "Fait",
-            "today": "Aujourd'hui",
-            "now": "Maintenant",
-            "clear": "Effacé",
-            "help": "Aide",
-            "yes": "Oui",
-            "no": "Non",
-            "random": "Aléatoire",
-            "save": "Sauvegarder",
-            "reset": "Réinitialiser"
-        }
-    },
-
-    'it-IT': {
-        "calendar": {
-            "months": [
-                "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre",
-                "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
-            ],
-            "days": [
-                "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato",
-                "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa",
-                "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
-            ],
-            "time": {
-                "days": "GIORNI",
-                "hours": "ORE",
-                "minutes": "MIN",
-                "seconds": "SEC",
-                "month": "MESE",
-                "day": "GIORNO",
-                "year": "ANNO"
-            }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Annulla",
-            "done": "Fatto",
-            "today": "Oggi",
-            "now": "Adesso",
-            "clear": "Cancella",
-            "help": "Aiuto",
-            "yes": "Sì",
-            "no": "No",
-            "random": "Random",
-            "save": "Salvare",
-            "reset": "Reset"
-        }
-    }
-};
-
-Metro['locales'] = Locales;
 
 
 var hexcase = 0;
@@ -6882,143 +6657,6 @@ function bit_rol(num, cnt) {
 // };
 
 //$.Metro['md5'] = hex_md5;
-
-Number.prototype.format = function(n, x, s, c) {
-    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
-        num = this.toFixed(Math.max(0, ~~n));
-
-    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
-};
-
-
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
-
-String.prototype.contains = function() {
-    return !!~String.prototype.indexOf.apply(this, arguments);
-};
-
-String.prototype.toDate = function(format, locale) {
-    var result;
-    var normalized, normalizedFormat, formatItems, dateItems, checkValue;
-    var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
-    var year, month, day, hour, minute, second;
-    var parsedMonth;
-
-    locale = locale || "en-US";
-
-    var monthNameToNumber = function(month){
-        var d, months, index, i;
-
-        if (!Utils.isValue(month)) {
-            return -1;
-        }
-
-        month = month.substr(0, 3);
-
-        if (
-            locale !== undefined
-            && locale !== "en-US"
-            && Locales !== undefined
-            && Locales[locale] !== undefined
-            && Locales[locale]['calendar'] !== undefined
-            && Locales[locale]['calendar']['months'] !== undefined
-        ) {
-            months = Locales[locale]['calendar']['months'];
-            for(i = 12; i < months.length; i++) {
-                if (months[i].toLowerCase() === month.toLowerCase()) {
-                    index = i - 12;
-                    break;
-                }
-            }
-            month = Locales["en-US"]['calendar']['months'][index];
-        }
-
-        d = Date.parse(month + " 1, 1972");
-        if(!isNaN(d)){
-            return new Date(d).getMonth() + 1;
-        }
-        return -1;
-    };
-
-    if (format === undefined || format === null || format === "") {
-        return new Date(this);
-    }
-
-    // normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
-    normalized      = this.replace(/[\/,.:\s]/g, '-');
-    normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
-    formatItems     = normalizedFormat.split('-');
-    dateItems       = normalized.split('-');
-    checkValue      = normalized.replace(/\-/g,"");
-
-    if (checkValue.trim() === "") {
-        return "Invalid Date";
-    }
-
-    monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
-    dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
-    yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
-    hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
-    minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
-    secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
-
-    if (monthIndex > -1 && dateItems[monthIndex] !== "") {
-        if (isNaN(parseInt(dateItems[monthIndex]))) {
-            dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
-            if (dateItems[monthIndex] === -1) {
-                return "Invalid Date";
-            }
-        } else {
-            parsedMonth = parseInt(dateItems[monthIndex]);
-            if (parsedMonth < 1 || parsedMonth > 12) {
-                return "Invalid Date";
-            }
-        }
-    } else {
-        return "Invalid Date";
-    }
-
-    year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
-    month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
-    day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
-
-    hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
-    minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
-    second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
-
-    result = new Date(year,month-1,day,hour,minute,second);
-
-    return result;
-};
-
-String.prototype.toArray = function(delimiter, type, format){
-    var str = this;
-    var a;
-
-    type = type || "string";
-    delimiter = delimiter || ",";
-    format = format === undefined || format === null ? false : format;
-
-    a = (""+str).split(delimiter);
-
-    return a.map(function(s){
-        var result;
-
-        switch (type) {
-            case "int":
-            case "integer": result = parseInt(s); break;
-            case "number":
-            case "float": result = parseFloat(s); break;
-            case "date": result = !format ? new Date(s) : s.toDate(format); break;
-            default: result = s.trim();
-        }
-
-        return result;
-    });
-};
-
 
 var TemplateEngine = function(html, options, conf) {
     var ReEx, re = '<%(.+?)%>',
@@ -8001,6 +7639,433 @@ var Utils = {
 
 Metro['utils'] = Utils;
 
+(function(){
+    var l = {
+        'cn-ZH': {
+            "calendar": {
+                "months": [
+                    "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
+                    "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
+                ],
+                "days": [
+                    "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
+                    "日", "一", "二", "三", "四", "五", "六",
+                    "周日", "周一", "周二", "周三", "周四", "周五", "周六"
+                ],
+                "time": {
+                    "days": "天",
+                    "hours": "时",
+                    "minutes": "分",
+                    "seconds": "秒",
+                    "month": "月",
+                    "day": "日",
+                    "year": "年"
+                }
+            },
+            "buttons": {
+                "ok": "确认",
+                "cancel": "取消",
+                "done": "完成",
+                "today": "今天",
+                "now": "现在",
+                "clear": "清除",
+                "help": "帮助",
+                "yes": "是",
+                "no": "否",
+                "random": "随机",
+                "save": "保存",
+                "reset": "重啟"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'de-DE': {
+            "calendar": {
+                "months": [
+                    "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
+                    "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
+                ],
+                "days": [
+                    "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
+                    "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
+                    "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
+                ],
+                "time": {
+                    "days": "TAGE",
+                    "hours": "STD",
+                    "minutes": "MIN",
+                    "seconds": "SEK"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Abbrechen",
+                "done": "Fertig",
+                "today": "Heute",
+                "now": "Jetzt",
+                "clear": "Löschen",
+                "help": "Hilfe",
+                "yes": "Ja",
+                "no": "Nein",
+                "random": "Zufällig",
+                "save": "Speichern",
+                "reset": "Zurücksetzen"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'en-US': {
+            "calendar": {
+                "months": [
+                    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                ],
+                "days": [
+                    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+                    "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
+                    "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
+                ],
+                "time": {
+                    "days": "DAYS",
+                    "hours": "HOURS",
+                    "minutes": "MINS",
+                    "seconds": "SECS",
+                    "month": "MON",
+                    "day": "DAY",
+                    "year": "YEAR"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Cancel",
+                "done": "Done",
+                "today": "Today",
+                "now": "Now",
+                "clear": "Clear",
+                "help": "Help",
+                "yes": "Yes",
+                "no": "No",
+                "random": "Random",
+                "save": "Save",
+                "reset": "Reset"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'es-MX': {
+            "calendar": {
+                "months": [
+                    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+                    "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+                ],
+                "days": [
+                    "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
+                    "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa",
+                    "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
+                ],
+                "time": {
+                    "days": "DÍAS",
+                    "hours": "HORAS",
+                    "minutes": "MINS",
+                    "seconds": "SEGS",
+                    "month": "MES",
+                    "day": "DÍA",
+                    "year": "AÑO"
+                }
+            },
+            "buttons": {
+                "ok": "Aceptar",
+                "cancel": "Cancelar",
+                "done": "Hecho",
+                "today": "Hoy",
+                "now": "Ahora",
+                "clear": "Limpiar",
+                "help": "Ayuda",
+                "yes": "Si",
+                "no": "No",
+                "random": "Aleatorio",
+                "save": "Salvar",
+                "reset": "Reiniciar"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'fr-FR': {
+            "calendar": {
+                "months": [
+                    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
+                    "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
+                ],
+                "days": [
+                    "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
+                    "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
+                    "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
+                ],
+                "time": {
+                    "days": "JOURS",
+                    "hours": "HEURES",
+                    "minutes": "MINS",
+                    "seconds": "SECS",
+                    "month": "MOIS",
+                    "day": "JOUR",
+                    "year": "ANNEE"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Annulé",
+                "done": "Fait",
+                "today": "Aujourd'hui",
+                "now": "Maintenant",
+                "clear": "Effacé",
+                "help": "Aide",
+                "yes": "Oui",
+                "no": "Non",
+                "random": "Aléatoire",
+                "save": "Sauvegarder",
+                "reset": "Réinitialiser"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'hu-HU': {
+            "calendar": {
+                "months": [
+                    'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
+                    'Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'
+                ],
+                "days": [
+                    'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
+                    'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz',
+                    'Vas', 'Hét', 'Ke', 'Sze', 'Csü', 'Pén', 'Szom'
+                ],
+                "time": {
+                    "days": "NAP",
+                    "hours": "ÓRA",
+                    "minutes": "PERC",
+                    "seconds": "MP"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Mégse",
+                "done": "Kész",
+                "today": "Ma",
+                "now": "Most",
+                "clear": "Törlés",
+                "help": "Segítség",
+                "yes": "Igen",
+                "no": "Nem",
+                "random": "Véletlen",
+                "save": "Mentés",
+                "reset": "Visszaállítás"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'it-IT': {
+            "calendar": {
+                "months": [
+                    "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre",
+                    "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
+                ],
+                "days": [
+                    "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato",
+                    "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa",
+                    "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
+                ],
+                "time": {
+                    "days": "GIORNI",
+                    "hours": "ORE",
+                    "minutes": "MIN",
+                    "seconds": "SEC",
+                    "month": "MESE",
+                    "day": "GIORNO",
+                    "year": "ANNO"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Annulla",
+                "done": "Fatto",
+                "today": "Oggi",
+                "now": "Adesso",
+                "clear": "Cancella",
+                "help": "Aiuto",
+                "yes": "Sì",
+                "no": "No",
+                "random": "Random",
+                "save": "Salvare",
+                "reset": "Reset"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'ru-RU': {
+            "calendar": {
+                "months": [
+                    "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
+                    "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
+                ],
+                "days": [
+                    "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
+                    "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+                    "Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"
+                ],
+                "time": {
+                    "days": "ДНИ",
+                    "hours": "ЧАСЫ",
+                    "minutes": "МИН",
+                    "seconds": "СЕК"
+                }
+            },
+            "buttons": {
+                "ok": "ОК",
+                "cancel": "Отмена",
+                "done": "Готово",
+                "today": "Сегодня",
+                "now": "Сейчас",
+                "clear": "Очистить",
+                "help": "Помощь",
+                "yes": "Да",
+                "no": "Нет",
+                "random": "Случайно",
+                "save": "Сохранить",
+                "reset": "Сброс"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
+(function(){
+    var l = {
+        'tw-ZH': {
+            "calendar": {
+                "months": [
+                    "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
+                    "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
+                ],
+                "days": [
+                    "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
+                    "日", "一", "二", "三", "四", "五", "六",
+                    "週日", "週一", "週二", "週三", "週四", "週五", "週六"
+                ],
+                "time": {
+                    "days": "天",
+                    "hours": "時",
+                    "minutes": "分",
+                    "seconds": "秒",
+                    "month": "月",
+                    "day": "日",
+                    "year": "年"
+                }
+            },
+            "buttons": {
+                "ok": "確認",
+                "cancel": "取消",
+                "done": "完成",
+                "today": "今天",
+                "now": "現在",
+                "clear": "清除",
+                "help": "幫助",
+                "yes": "是",
+                "no": "否",
+                "random": "隨機",
+                "save": "保存",
+                "reset": "重啟"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+(function(){
+    var l = {
+        'uk-UA': {
+            "calendar": {
+                "months": [
+                    "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень",
+                    "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"
+                ],
+                "days": [
+                    "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота",
+                    "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+                    "Нед", "Пон", "Вiв", "Сер", "Чет", "Пят", "Суб"
+                ],
+                "time": {
+                    "days": "ДНІ",
+                    "hours": "ГОД",
+                    "minutes": "ХВИЛ",
+                    "seconds": "СЕК"
+                }
+            },
+            "buttons": {
+                "ok": "ОК",
+                "cancel": "Відміна",
+                "done": "Готово",
+                "today": "Сьогодні",
+                "now": "Зараз",
+                "clear": "Очистити",
+                "help": "Допомога",
+                "yes": "Так",
+                "no": "Ні",
+                "random": "Випадково",
+                "save": "Зберегти",
+                "reset": "Скинути"
+            }
+        }
+    }
+
+    $.extend(Metro['locales'], l);
+})()
+
+
 var AccordionDefaultConfig = {
     accordionDeferred: 0,
     showMarker: true,
@@ -8307,6 +8372,7 @@ Metro['activity'] = {
 };
 
 var AdblockDefaultConfig = {
+    adblockDeferred: 0,
     checkInterval: 1000,
     fireOnce: true,
     checkStop: 10,
@@ -8336,7 +8402,11 @@ var Adblock = {
             .append($("<a href='https://dblclick.net'>").html('dblclick.net'))
             .appendTo($('body'));
 
-        this.fishing();
+        if (Adblock.options.adblockDeferred > 0) {
+            setTimeout(function () {
+                Adblock.fishing();
+            }, Adblock.options.adblockDeferred);
+        } else this.fishing();
     },
 
     fishing: function(){
@@ -14439,6 +14509,445 @@ var Donut = $.extend({}, Metro.Component, {
 });
 
 Metro.plugin('donut', Donut);
+
+var DoubleSliderDefaultConfig = {
+    doublesliderDeferred: 0,
+    roundValue: true,
+    min: 0,
+    max: 100,
+    accuracy: 0,
+    showMinMax: false,
+    minMaxPosition: Metro.position.TOP,
+    valueMin: null,
+    valueMax: null,
+    hint: false,
+    hintAlways: false,
+    hintPositionMin: Metro.position.TOP,
+    hintPositionMax: Metro.position.TOP,
+    hintMaskMin: "$1",
+    hintMaskMax: "$1",
+    target: null,
+    size: 0,
+
+    clsSlider: "",
+    clsBackside: "",
+    clsComplete: "",
+    clsMarker: "",
+    clsMarkerMin: "",
+    clsMarkerMax: "",
+    clsHint: "",
+    clsHintMin: "",
+    clsHintMax: "",
+    clsMinMax: "",
+    clsMin: "",
+    clsMax: "",
+
+    onStart: Metro.noop,
+    onStop: Metro.noop,
+    onMove: Metro.noop,
+    onChange: Metro.noop,
+    onChangeValue: Metro.noop,
+    onFocus: Metro.noop,
+    onBlur: Metro.noop,
+    onDoubleSliderCreate: Metro.noop
+};
+
+Metro.doubleSliderSetup = function (options) {
+    DoubleSliderDefaultConfig = $.extend({}, DoubleSliderDefaultConfig, options);
+};
+
+if (typeof window["metroDoubleSliderSetup"] !== undefined) {
+    Metro.doubleSliderSetup(window["metroDoubleSliderSetup"]);
+}
+
+var DoubleSlider = $.extend({}, Metro.Component, {
+    name: "DoubleSlider",
+
+    init: function( options, elem ) {
+        this._super(elem, options, DoubleSliderDefaultConfig);
+
+        this.slider = null;
+        this.valueMin = null;
+        this.valueMax = null;
+        this.keyInterval = false;
+
+        Metro.createExec(this);
+
+        return this;
+    },
+
+    _create: function(){
+        var element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, "doubleslider");
+
+        this.valueMin = Utils.isValue(o.valueMin) ? +o.valueMin : +o.min;
+        this.valueMax = Utils.isValue(o.valueMax) ? +o.valueMax : +o.max;
+
+        this._createSlider();
+        this._createEvents();
+
+        this.val(this.valueMin, this.valueMax);
+
+        Utils.exec(o.onDoubleSliderCreate, null, element[0]);
+        element.fire("doubleslidercreate");
+    },
+
+    _createSlider: function(){
+        var element = this.element, o = this.options;
+        var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
+        var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
+        var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
+        var markerMin = $("<button>").attr("type", "button").addClass("marker marker-min").addClass(o.clsMarker).addClass(o.clsMarkerMin);
+        var markerMax = $("<button>").attr("type", "button").addClass("marker marker-max").addClass(o.clsMarker).addClass(o.clsMarkerMax);
+        var hintMin = $("<div>").addClass("hint hint-min").addClass(o.hintPositionMin + "-side").addClass(o.clsHint).addClass(o.clsHintMin);
+        var hintMax = $("<div>").addClass("hint hint-max").addClass(o.hintPositionMax + "-side").addClass(o.clsHint).addClass(o.clsHintMax);
+        var id = Utils.elementId("slider");
+        var i;
+
+        Metro.checkRuntime(element, "doubleslider");
+
+        slider.attr("id", id);
+
+        if (o.size > 0) {
+            slider.outerWidth(o.size);
+        }
+
+        slider.insertBefore(element);
+        element.appendTo(slider);
+        backside.appendTo(slider);
+        complete.appendTo(slider);
+        markerMin.appendTo(slider);
+        markerMax.appendTo(slider);
+        hintMin.appendTo(markerMin);
+        hintMax.appendTo(markerMax);
+
+        if (o.hintAlways === true) {
+            $([hintMin, hintMax]).css({
+                display: "block"
+            }).addClass("permanent-hint");
+        }
+
+        if (o.showMinMax === true) {
+            var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
+            $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+            $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+            if (o.minMaxPosition === Metro.position.TOP) {
+                min_max_wrapper.insertBefore(slider);
+            } else {
+                min_max_wrapper.insertAfter(slider);
+            }
+        }
+
+        element[0].className = '';
+        if (o.copyInlineStyles === true) {
+            for (i = 0; i < element[0].style.length; i++) {
+                slider.css(element[0].style[i], element.css(element[0].style[i]));
+            }
+        }
+
+        if (element.is(":disabled")) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+
+        this.slider = slider;
+    },
+
+    _createEvents: function(){
+        var that = this, element = this.element, slider = this.slider, o = this.options;
+        var marker = slider.find(".marker");
+
+        marker.on(Metro.events.startAll, function(){
+            var _marker = $(this);
+            var hint = _marker.find(".hint");
+            if (o.hint === true && o.hintAlways !== true) {
+                hint.fadeIn(300);
+            }
+
+            $(document).on(Metro.events.moveAll, function(e){
+                that._move(e);
+                Utils.exec(o.onMove, [that.valueMin, that.valueMax], element[0]);
+                element.fire("move", {
+                    val: [that.valueMin, that.valueMax]
+                });
+            }, {ns: slider.attr("id")});
+
+            $(document).on(Metro.events.stopAll, function(){
+                $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});
+                $(document).off(Metro.events.stopAll, {ns: slider.attr("id")});
+
+                if (o.hintAlways !== true) {
+                    hint.fadeOut(300);
+                }
+
+                Utils.exec(o.onStop, [that.valueMin, that.valueMax], element[0]);
+                element.fire("stop", {
+                    val: [that.valueMin, that.valueMax]
+                });
+            }, {ns: slider.attr("id")});
+
+            Utils.exec(o.onStart, [that.valueMin, that.valueMax], element[0]);
+            element.fire("start", {
+                val: [that.valueMin, that.valueMax]
+            });
+        });
+
+        marker.on(Metro.events.focus, function(){
+            Utils.exec(o.onFocus, [that.valueMin, that.valueMax], element[0]);
+            element.fire("focus", {
+                val: [that.valueMin, that.valueMax]
+            });
+        });
+
+        marker.on(Metro.events.blur, function(){
+            Utils.exec(o.onBlur, [that.valueMin, that.valueMax], element[0]);
+            element.fire("blur", {
+                val: [that.valueMin, that.valueMax]
+            });
+        });
+
+        $(window).on(Metro.events.resize,function(){
+            that.val(that.valueMin, that.valueMax);
+        }, {ns: slider.attr("id")});
+    },
+
+    _convert: function(v, how){
+        var slider = this.slider, o = this.options;
+        var length = slider.outerWidth() - slider.find(".marker").outerWidth();
+        switch (how) {
+            case "pix2prc": return ( v * 100 / length );
+            case "pix2val": return ( this._convert(v, 'pix2prc') * ((o.max - o.min) / 100) + o.min );
+            case "val2prc": return ( (v - o.min)/( (o.max - o.min) / 100 )  );
+            case "prc2pix": return ( v / ( 100 / length ));
+            case "val2pix": return ( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
+        }
+
+        return 0;
+    },
+
+    _correct: function(value){
+        var res = value;
+        var accuracy  = this.options.accuracy;
+        var min = this.options.min, max = this.options.max;
+        var _dec = function(v){
+            return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
+        };
+
+        if (accuracy === 0 || isNaN(accuracy)) {
+            return res;
+        }
+
+        res = Math.round(value/accuracy)*accuracy;
+
+        if (res < min) {
+            res = min;
+        }
+
+        if (res > max) {
+            res = max;
+        }
+
+        return res.toFixed(_dec(accuracy));
+    },
+
+    _move: function(e){
+        var isMin = $(e.target).hasClass("marker-min");
+        var slider = this.slider, o = this.options;
+        var offset = slider.offset(),
+            marker_size = slider.find(".marker").outerWidth(),
+            markerMin = slider.find(".marker-min"),
+            markerMax = slider.find(".marker-max"),
+            length = slider.outerWidth(),
+            cPix, cStart, cStop;
+
+        cPix = Utils.pageXY(e).x - offset.left - marker_size / 2;
+
+        if (isMin) {
+            cStart = 0;
+            cStop = parseInt(markerMax.css("left")) - marker_size;
+        } else {
+            cStart = parseInt(markerMin.css("left")) + marker_size;
+            cStop = length - marker_size;
+        }
+
+        if (cPix < cStart || cPix > cStop) {
+            return ;
+        }
+
+        this[isMin ? "valueMin" : "valueMax"] = this._correct(this._convert(cPix, 'pix2val'));
+
+        this._redraw();
+    },
+
+    _hint: function(){
+        var that = this, o = this.options, slider = this.slider, hint = slider.find(".hint");
+
+        hint.each(function(){
+            var _hint = $(this);
+            var isMin = _hint.hasClass("hint-min");
+            var _mask = isMin ? o.hintMaskMin : o.hintMaskMax;
+            var value = +(isMin ? that.valueMin : that.valueMax) || 0;
+            _hint.text(_mask.replace("$1", value.toFixed(Utils.decCount(o.accuracy))))
+        });
+    },
+
+    _value: function(){
+        var element = this.element, o = this.options;
+        var v1 = +this.valueMin || 0, v2 = +this.valueMax || 0;
+        var value;// = [this.valueMin, this.valueMax].join(", ");
+
+        if (o.roundValue) {
+            v1 = v1.toFixed(Utils.decCount(o.accuracy));
+            v2 = v2.toFixed(Utils.decCount(o.accuracy));
+        }
+
+        value = [v1, v2].join(", ");
+
+        if (element[0].tagName === "INPUT") {
+            element.val(value);
+        }
+
+        if (o.target !== null) {
+            var target = $(o.target);
+            if (target.length !== 0) {
+
+                $.each(target, function(){
+                    var t = $(this);
+                    if (this.tagName === "INPUT") {
+                        t.val(value);
+                    } else {
+                        t.text(value);
+                    }
+                    t.trigger("change");
+                });
+            }
+        }
+
+        Utils.exec(o.onChangeValue, [value], element[0]);
+        element.fire("changevalue", {
+            val: value
+        });
+
+        Utils.exec(o.onChange, [value], element[0]);
+        element.fire("change", {
+            val: value
+        });
+    },
+
+    _marker: function(){
+        var slider = this.slider, o = this.options;
+        var markerMin = slider.find(".marker-min");
+        var markerMax = slider.find(".marker-max");
+        var complete = slider.find(".complete");
+        var marker_size = parseInt(Utils.getStyleOne(markerMin, "width"));
+        var slider_visible = Utils.isVisible(slider);
+
+        if (slider_visible) {
+            $([markerMin, markerMax]).css({
+                'margin-top': 0,
+                'margin-left': 0
+            });
+        }
+
+        if (slider_visible) {
+            markerMin.css('left', this._convert(this.valueMin, 'val2pix'));
+            markerMax.css('left', this._convert(this.valueMax, 'val2pix'));
+        } else {
+            markerMin.css({
+                'left': (this._convert(this.valueMin, 'val2prc')) + "%",
+                'margin-top': this._convert(this.valueMin, 'val2prc') === 0 ? 0 : -1 * marker_size / 2
+            });
+            markerMax.css({
+                'left': (this._convert(this.valueMax, 'val2prc')) + "%",
+                'margin-top': this._convert(this.valueMax, 'val2prc') === 0 ? 0 : -1 * marker_size / 2
+            });
+        }
+
+        complete.css({
+            "left": this._convert(this.valueMin, 'val2pix'),
+            "width": this._convert(this.valueMax, 'val2pix') - this._convert(this.valueMin, 'val2pix')
+        });
+    },
+
+    _redraw: function(){
+        this._marker();
+        this._value();
+        this._hint();
+    },
+
+    val: function(vMin, vMax){
+        var o = this.options;
+
+        if (!Utils.isValue(vMin) && !Utils.isValue(vMax)) {
+            return [this.valueMin, this.valueMax];
+        }
+
+        if (vMin < o.min) vMin = o.min;
+        if (vMax < o.min) vMax = o.min;
+
+        if (vMin > o.max) vMin = o.max;
+        if (vMax > o.max) vMax = o.max;
+
+        this.valueMin = this._correct(vMin);
+        this.valueMax = this._correct(vMax);
+
+        this._redraw();
+    },
+
+    changeValue: function(){
+        var element = this.element;
+        var valMin = +element.attr("data-value-min");
+        var valMax = +element.attr("data-value-max");
+        this.val(valMin, valMax);
+    },
+
+    disable: function(){
+        var element = this.element;
+        element.data("disabled", true);
+        element.parent().addClass("disabled");
+    },
+
+    enable: function(){
+        var element = this.element;
+        element.data("disabled", false);
+        element.parent().removeClass("disabled");
+    },
+
+    toggleState: function(){
+        if (this.elem.disabled) {
+            this.disable();
+        } else {
+            this.enable();
+        }
+    },
+
+    changeAttribute: function(attributeName){
+        switch (attributeName) {
+            case "data-value-min": this.changeValue(); break;
+            case "data-value-max": this.changeValue(); break;
+            case 'disabled': this.toggleState(); break;
+        }
+    },
+
+    destroy: function(){
+        var element = this.element, slider = this.slider;
+        var marker = slider.find(".marker");
+
+        marker.off(Metro.events.startAll);
+        marker.off(Metro.events.focus);
+        marker.off(Metro.events.blur);
+        marker.off(Metro.events.keydown);
+        marker.off(Metro.events.keyup);
+        slider.off(Metro.events.click);
+        $(window).off(Metro.events.resize, {ns: slider.attr("id")});
+
+        return element;
+    }
+});
+
+Metro.plugin('doubleslider', DoubleSlider);
 
 var DragItemsDefaultConfig = {
     dragitemsDeferred: 0,
@@ -22300,445 +22809,6 @@ Metro['sidebar'] = {
         return Metro.getPlugin($(el)[0], "sidebar").isOpen();
     }
 };
-
-var DoubleSliderDefaultConfig = {
-    doublesliderDeferred: 0,
-    roundValue: true,
-    min: 0,
-    max: 100,
-    accuracy: 0,
-    showMinMax: false,
-    minMaxPosition: Metro.position.TOP,
-    valueMin: null,
-    valueMax: null,
-    hint: false,
-    hintAlways: false,
-    hintPositionMin: Metro.position.TOP,
-    hintPositionMax: Metro.position.TOP,
-    hintMaskMin: "$1",
-    hintMaskMax: "$1",
-    target: null,
-    size: 0,
-
-    clsSlider: "",
-    clsBackside: "",
-    clsComplete: "",
-    clsMarker: "",
-    clsMarkerMin: "",
-    clsMarkerMax: "",
-    clsHint: "",
-    clsHintMin: "",
-    clsHintMax: "",
-    clsMinMax: "",
-    clsMin: "",
-    clsMax: "",
-
-    onStart: Metro.noop,
-    onStop: Metro.noop,
-    onMove: Metro.noop,
-    onChange: Metro.noop,
-    onChangeValue: Metro.noop,
-    onFocus: Metro.noop,
-    onBlur: Metro.noop,
-    onDoubleSliderCreate: Metro.noop
-};
-
-Metro.doubleSliderSetup = function (options) {
-    DoubleSliderDefaultConfig = $.extend({}, DoubleSliderDefaultConfig, options);
-};
-
-if (typeof window["metroDoubleSliderSetup"] !== undefined) {
-    Metro.doubleSliderSetup(window["metroDoubleSliderSetup"]);
-}
-
-var DoubleSlider = $.extend({}, Metro.Component, {
-    name: "DoubleSlider",
-
-    init: function( options, elem ) {
-        this._super(elem, options, DoubleSliderDefaultConfig);
-
-        this.slider = null;
-        this.valueMin = null;
-        this.valueMax = null;
-        this.keyInterval = false;
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, "doubleslider");
-
-        this.valueMin = Utils.isValue(o.valueMin) ? +o.valueMin : +o.min;
-        this.valueMax = Utils.isValue(o.valueMax) ? +o.valueMax : +o.max;
-
-        this._createSlider();
-        this._createEvents();
-
-        this.val(this.valueMin, this.valueMax);
-
-        Utils.exec(o.onDoubleSliderCreate, null, element[0]);
-        element.fire("doubleslidercreate");
-    },
-
-    _createSlider: function(){
-        var element = this.element, o = this.options;
-        var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
-        var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
-        var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
-        var markerMin = $("<button>").attr("type", "button").addClass("marker marker-min").addClass(o.clsMarker).addClass(o.clsMarkerMin);
-        var markerMax = $("<button>").attr("type", "button").addClass("marker marker-max").addClass(o.clsMarker).addClass(o.clsMarkerMax);
-        var hintMin = $("<div>").addClass("hint hint-min").addClass(o.hintPositionMin + "-side").addClass(o.clsHint).addClass(o.clsHintMin);
-        var hintMax = $("<div>").addClass("hint hint-max").addClass(o.hintPositionMax + "-side").addClass(o.clsHint).addClass(o.clsHintMax);
-        var id = Utils.elementId("slider");
-        var i;
-
-        Metro.checkRuntime(element, "doubleslider");
-
-        slider.attr("id", id);
-
-        if (o.size > 0) {
-            slider.outerWidth(o.size);
-        }
-
-        slider.insertBefore(element);
-        element.appendTo(slider);
-        backside.appendTo(slider);
-        complete.appendTo(slider);
-        markerMin.appendTo(slider);
-        markerMax.appendTo(slider);
-        hintMin.appendTo(markerMin);
-        hintMax.appendTo(markerMax);
-
-        if (o.hintAlways === true) {
-            $([hintMin, hintMax]).css({
-                display: "block"
-            }).addClass("permanent-hint");
-        }
-
-        if (o.showMinMax === true) {
-            var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-            $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-            $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
-            if (o.minMaxPosition === Metro.position.TOP) {
-                min_max_wrapper.insertBefore(slider);
-            } else {
-                min_max_wrapper.insertAfter(slider);
-            }
-        }
-
-        element[0].className = '';
-        if (o.copyInlineStyles === true) {
-            for (i = 0; i < element[0].style.length; i++) {
-                slider.css(element[0].style[i], element.css(element[0].style[i]));
-            }
-        }
-
-        if (element.is(":disabled")) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-
-        this.slider = slider;
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, slider = this.slider, o = this.options;
-        var marker = slider.find(".marker");
-
-        marker.on(Metro.events.startAll, function(){
-            var _marker = $(this);
-            var hint = _marker.find(".hint");
-            if (o.hint === true && o.hintAlways !== true) {
-                hint.fadeIn(300);
-            }
-
-            $(document).on(Metro.events.moveAll, function(e){
-                that._move(e);
-                Utils.exec(o.onMove, [that.valueMin, that.valueMax], element[0]);
-                element.fire("move", {
-                    val: [that.valueMin, that.valueMax]
-                });
-            }, {ns: slider.attr("id")});
-
-            $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});
-                $(document).off(Metro.events.stopAll, {ns: slider.attr("id")});
-
-                if (o.hintAlways !== true) {
-                    hint.fadeOut(300);
-                }
-
-                Utils.exec(o.onStop, [that.valueMin, that.valueMax], element[0]);
-                element.fire("stop", {
-                    val: [that.valueMin, that.valueMax]
-                });
-            }, {ns: slider.attr("id")});
-
-            Utils.exec(o.onStart, [that.valueMin, that.valueMax], element[0]);
-            element.fire("start", {
-                val: [that.valueMin, that.valueMax]
-            });
-        });
-
-        marker.on(Metro.events.focus, function(){
-            Utils.exec(o.onFocus, [that.valueMin, that.valueMax], element[0]);
-            element.fire("focus", {
-                val: [that.valueMin, that.valueMax]
-            });
-        });
-
-        marker.on(Metro.events.blur, function(){
-            Utils.exec(o.onBlur, [that.valueMin, that.valueMax], element[0]);
-            element.fire("blur", {
-                val: [that.valueMin, that.valueMax]
-            });
-        });
-
-        $(window).on(Metro.events.resize,function(){
-            that.val(that.valueMin, that.valueMax);
-        }, {ns: slider.attr("id")});
-    },
-
-    _convert: function(v, how){
-        var slider = this.slider, o = this.options;
-        var length = slider.outerWidth() - slider.find(".marker").outerWidth();
-        switch (how) {
-            case "pix2prc": return ( v * 100 / length );
-            case "pix2val": return ( this._convert(v, 'pix2prc') * ((o.max - o.min) / 100) + o.min );
-            case "val2prc": return ( (v - o.min)/( (o.max - o.min) / 100 )  );
-            case "prc2pix": return ( v / ( 100 / length ));
-            case "val2pix": return ( this._convert(this._convert(v, 'val2prc'), 'prc2pix') );
-        }
-
-        return 0;
-    },
-
-    _correct: function(value){
-        var res = value;
-        var accuracy  = this.options.accuracy;
-        var min = this.options.min, max = this.options.max;
-        var _dec = function(v){
-            return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
-        };
-
-        if (accuracy === 0 || isNaN(accuracy)) {
-            return res;
-        }
-
-        res = Math.round(value/accuracy)*accuracy;
-
-        if (res < min) {
-            res = min;
-        }
-
-        if (res > max) {
-            res = max;
-        }
-
-        return res.toFixed(_dec(accuracy));
-    },
-
-    _move: function(e){
-        var isMin = $(e.target).hasClass("marker-min");
-        var slider = this.slider, o = this.options;
-        var offset = slider.offset(),
-            marker_size = slider.find(".marker").outerWidth(),
-            markerMin = slider.find(".marker-min"),
-            markerMax = slider.find(".marker-max"),
-            length = slider.outerWidth(),
-            cPix, cStart, cStop;
-
-        cPix = Utils.pageXY(e).x - offset.left - marker_size / 2;
-
-        if (isMin) {
-            cStart = 0;
-            cStop = parseInt(markerMax.css("left")) - marker_size;
-        } else {
-            cStart = parseInt(markerMin.css("left")) + marker_size;
-            cStop = length - marker_size;
-        }
-
-        if (cPix < cStart || cPix > cStop) {
-            return ;
-        }
-
-        this[isMin ? "valueMin" : "valueMax"] = this._correct(this._convert(cPix, 'pix2val'));
-
-        this._redraw();
-    },
-
-    _hint: function(){
-        var that = this, o = this.options, slider = this.slider, hint = slider.find(".hint");
-
-        hint.each(function(){
-            var _hint = $(this);
-            var isMin = _hint.hasClass("hint-min");
-            var _mask = isMin ? o.hintMaskMin : o.hintMaskMax;
-            var value = +(isMin ? that.valueMin : that.valueMax) || 0;
-            _hint.text(_mask.replace("$1", value.toFixed(Utils.decCount(o.accuracy))))
-        });
-    },
-
-    _value: function(){
-        var element = this.element, o = this.options;
-        var v1 = +this.valueMin || 0, v2 = +this.valueMax || 0;
-        var value;// = [this.valueMin, this.valueMax].join(", ");
-
-        if (o.roundValue) {
-            v1 = v1.toFixed(Utils.decCount(o.accuracy));
-            v2 = v2.toFixed(Utils.decCount(o.accuracy));
-        }
-
-        value = [v1, v2].join(", ");
-
-        if (element[0].tagName === "INPUT") {
-            element.val(value);
-        }
-
-        if (o.target !== null) {
-            var target = $(o.target);
-            if (target.length !== 0) {
-
-                $.each(target, function(){
-                    var t = $(this);
-                    if (this.tagName === "INPUT") {
-                        t.val(value);
-                    } else {
-                        t.text(value);
-                    }
-                    t.trigger("change");
-                });
-            }
-        }
-
-        Utils.exec(o.onChangeValue, [value], element[0]);
-        element.fire("changevalue", {
-            val: value
-        });
-
-        Utils.exec(o.onChange, [value], element[0]);
-        element.fire("change", {
-            val: value
-        });
-    },
-
-    _marker: function(){
-        var slider = this.slider, o = this.options;
-        var markerMin = slider.find(".marker-min");
-        var markerMax = slider.find(".marker-max");
-        var complete = slider.find(".complete");
-        var marker_size = parseInt(Utils.getStyleOne(markerMin, "width"));
-        var slider_visible = Utils.isVisible(slider);
-
-        if (slider_visible) {
-            $([markerMin, markerMax]).css({
-                'margin-top': 0,
-                'margin-left': 0
-            });
-        }
-
-        if (slider_visible) {
-            markerMin.css('left', this._convert(this.valueMin, 'val2pix'));
-            markerMax.css('left', this._convert(this.valueMax, 'val2pix'));
-        } else {
-            markerMin.css({
-                'left': (this._convert(this.valueMin, 'val2prc')) + "%",
-                'margin-top': this._convert(this.valueMin, 'val2prc') === 0 ? 0 : -1 * marker_size / 2
-            });
-            markerMax.css({
-                'left': (this._convert(this.valueMax, 'val2prc')) + "%",
-                'margin-top': this._convert(this.valueMax, 'val2prc') === 0 ? 0 : -1 * marker_size / 2
-            });
-        }
-
-        complete.css({
-            "left": this._convert(this.valueMin, 'val2pix'),
-            "width": this._convert(this.valueMax, 'val2pix') - this._convert(this.valueMin, 'val2pix')
-        });
-    },
-
-    _redraw: function(){
-        this._marker();
-        this._value();
-        this._hint();
-    },
-
-    val: function(vMin, vMax){
-        var o = this.options;
-
-        if (!Utils.isValue(vMin) && !Utils.isValue(vMax)) {
-            return [this.valueMin, this.valueMax];
-        }
-
-        if (vMin < o.min) vMin = o.min;
-        if (vMax < o.min) vMax = o.min;
-
-        if (vMin > o.max) vMin = o.max;
-        if (vMax > o.max) vMax = o.max;
-
-        this.valueMin = this._correct(vMin);
-        this.valueMax = this._correct(vMax);
-
-        this._redraw();
-    },
-
-    changeValue: function(){
-        var element = this.element;
-        var valMin = +element.attr("data-value-min");
-        var valMax = +element.attr("data-value-max");
-        this.val(valMin, valMax);
-    },
-
-    disable: function(){
-        var element = this.element;
-        element.data("disabled", true);
-        element.parent().addClass("disabled");
-    },
-
-    enable: function(){
-        var element = this.element;
-        element.data("disabled", false);
-        element.parent().removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-value-min": this.changeValue(); break;
-            case "data-value-max": this.changeValue(); break;
-            case 'disabled': this.toggleState(); break;
-        }
-    },
-
-    destroy: function(){
-        var element = this.element, slider = this.slider;
-        var marker = slider.find(".marker");
-
-        marker.off(Metro.events.startAll);
-        marker.off(Metro.events.focus);
-        marker.off(Metro.events.blur);
-        marker.off(Metro.events.keydown);
-        marker.off(Metro.events.keyup);
-        slider.off(Metro.events.click);
-        $(window).off(Metro.events.resize, {ns: slider.attr("id")});
-
-        return element;
-    }
-});
-
-Metro.plugin('doubleslider', DoubleSlider);
 
 var SliderDefaultConfig = {
     sliderDeferred: 0,

@@ -26,57 +26,41 @@
 
     "css": {
         "base": {
+            "accent_colors": {
+                "name": "Accent colors",
+                "less": ["accent-colors"]
+            },
             "border_css": {
                 "name": "Border",
                 "less": ["border"]
-            },
-            "buttons_css": {
-                "name": "Buttons",
-                "less": ["buttons"]
-            },
-            "container_css": {
-                "name": "Container",
-                "less": ["container"]
             },
             "cursors_css": {
                 "name": "Cursors",
                 "less": ["cursors"]
             },
+            "default_icons_css": {
+                "name": "Default icons",
+                "less": ["default-icons"]
+            },
             "display_css": {
                 "name": "Display",
                 "less": ["display"]
-            },
-            "drop_css": {
-                "name": "Drop utils",
-                "less": ["drop-utils"]
             },
             "embed_css": {
                 "name": "Embed objects",
                 "less": ["embed"]
             },
-            "elements_colors_css": {
-                "name": "Elements colors",
-                "less": ["elements-colors"]
+            "flex_css": {
+                "name": "Flex system",
+                "less": ["flex"]
             },
             "float_css": {
                 "name": "Float",
                 "less": ["float"]
             },
-            "form_css": {
-                "name": "Form",
-                "less": ["form"]
-            },
-            "flex_css": {
-                "name": "Flex system",
-                "less": ["flex"]
-            },
-            "grid_css": {
-                "name": "Grid system",
-                "less": ["grid"]
-            },
-            "hero_css": {
-                "name": "Hero element",
-                "less": ["hero"]
+            "font_css": {
+                "name": "Font name",
+                "less": ["font"]
             },
             "images_css": {
                 "name": "Images",
@@ -118,10 +102,7 @@
                 "name": "Utilities",
                 "less": ["utils"]
             },
-            "colors_css": {
-                "name": "Metro Colors",
-                "less": ["colors-defs"]
-            },
+
             "select2_css": {
                 "name": "Select2",
                 "less": ["third-party/select2"]
@@ -130,10 +111,7 @@
                 "name": "Datatable",
                 "less": ["third-party/datatables"]
             },
-            "form_rtl_css": {
-                "name": "Metro rtl support",
-                "less": ["forms-rtl"]
-            },
+
             "debug_css": {
                 "name": "Debug class",
                 "less": ["debug"]
@@ -150,50 +128,80 @@
     },
 
     "js": {
+        "extensions":  {
+            "array": {
+                "name": "Array ext",
+                "js": ["extensions/array"]
+            },
+            "date": {
+                "name": "Date ext",
+                "js": ["extensions/date"]
+            },
+            "number": {
+                "name": "Number ext",
+                "js": ["extensions/number"]
+            },
+            "string": {
+                "name": "String ext",
+                "js": ["extensions/string"]
+            }
+        },
+
+        "i18n": {
+            "cn-ZH": {
+                "name": "cn-ZH",
+                "js": ["i18n/cn-ZH"]
+            },
+            "de-DE": {
+                "name": "de-DE",
+                "js": ["i18n/de-DE"]
+            },
+            "en-US": {
+                "name": "en-US",
+                "js": ["i18n/en-US"]
+            },
+            "es-MX": {
+                "name": "es-MX",
+                "js": ["i18n/es-MX"]
+            },
+            "fr-FR": {
+                "name": "fr-FR",
+                "js": ["i18n/fr-FR"]
+            },
+            "hu-HU": {
+                "name": "hu-HU",
+                "js": ["i18n/hu-HU"]
+            },
+            "it-IT": {
+                "name": "it-IT",
+                "js": ["i18n/it-IT"]
+            },
+            "ru-RU": {
+                "name": "ru-RU",
+                "js": ["i18n/ru-RU"]
+            },
+            "tw-ZH": {
+                "name": "tw-ZH",
+                "js": ["i18n/tw-ZH"]
+            },
+            "uk-UA": {
+                "name": "uk-UA",
+                "js": ["i18n/uk-UA"]
+            }
+        },
+
         "utils": {
             "animation_js":{
                 "name": "Animation",
                 "js": ["utils/animation"]
             },
-            "array_ext_js":{
-                "name": "Array ext",
-                "js": ["utils/array-ext"]
-            },
             "colors_js":{
                 "name": "Color module",
                 "js": ["utils/colors"]
             },
-            "date_ext_js":{
-                "name": "Date ext",
-                "js": ["utils/date-ext"]
-            },
-            "hotkeys_js":{
-                "name": "Hotkeys",
-                "js": ["utils/hotkeys"]
-            },
-            "i18n_js":{
-                "name": "i18n",
-                "js": ["utils/i18n"]
-            },
-            "jquery_ext_js":{
-                "name": "jQuery ext",
-                "js": ["utils/jquery-ext"]
-            },
             "md5_js":{
                 "name": "MD5",
                 "js": ["utils/md5"]
-            },
-            "number_ext_js":{
-                "name": "Number ext",
-                "js": ["utils/number-ext"]
-            },
-            "pagination_js":{
-                "name": "Pagination",
-                "js": ["utils/pagination"]
-            },
-            "string_ext_js":{
-                "name": "String ext",
-                "js": ["utils/string-ext"]
             },
             "storage_js":{
                 "name": "Storage &amp; Session storage",
@@ -223,6 +231,10 @@
                 "name": "Activity",
                 "less": ["activity"],
                 "js": ["plugins/activity"]
+            },
+            "adblock_comp":{
+                "name": "Adblock hunter",
+                "js": ["plugins/adblock"]
             },
             "appbar_comp":{
                 "name": "App bar",
@@ -366,6 +378,11 @@
                 "name": "Draggable",
                 "less": ["draggable"],
                 "js": ["plugins/draggable"]
+            },
+            "drag_items_comp":{
+                "name": "Drag Items",
+                "less": ["drag-items"],
+                "js": ["plugins/drag-items"]
             },
             "dropdown_comp":{
                 "name": "Dropdown",
