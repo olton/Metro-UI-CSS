@@ -1,4 +1,5 @@
 var AdblockDefaultConfig = {
+    adblockDeferred: 0,
     checkInterval: 1000,
     fireOnce: true,
     checkStop: 10,
@@ -28,7 +29,11 @@ var Adblock = {
             .append($("<a href='https://dblclick.net'>").html('dblclick.net'))
             .appendTo($('body'));
 
-        this.fishing();
+        if (Adblock.options.adblockDeferred > 0) {
+            setTimeout(function () {
+                Adblock.fishing();
+            }, Adblock.options.adblockDeferred);
+        } else this.fishing();
     },
 
     fishing: function(){

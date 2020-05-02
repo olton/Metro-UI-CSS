@@ -628,6 +628,8 @@ Metro["Component"] = {
     }
 };
 
+Metro['locales'] = {};
+
 window['Metro'] = Metro;
 
 $(window).on(Metro.events.resize, function(){
