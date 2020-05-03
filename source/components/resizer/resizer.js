@@ -16,15 +16,14 @@ if (typeof window["metroResizerSetup"] !== undefined) {
     Metro.resizerSetup(window["metroResizerSetup"]);
 }
 
-var Resizer = $.extend({}, Metro.Component, {
-    name: "Resizer",
-
+Component('resizer', {
     init: function( options, elem ) {
         this._super(elem, options, ResizerDefaultConfig);
 
         this.id = null;
         this.size = {width: 0, height: 0};
         this.media = window.METRO_MEDIA;
+        this.id = Utils.elementId("resizer");
 
         Metro.createExec(this);
 
@@ -32,11 +31,10 @@ var Resizer = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "resizer");
+        Metro.checkRuntime(element, this.name);
 
-        this.id = Utils.elementId("resizer");
         this.size = {
             width: element.width(),
             height: element.height()
@@ -49,15 +47,13 @@ var Resizer = $.extend({}, Metro.Component, {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var win = $.window();
 
-        win.on("resize", function(e){
+        win.on("resize", function(){
             var windowWidth = win.width(), windowHeight = win.height();
             var elementWidth = element.width(), elementHeight = element.height();
             var oldSize = that.size;
@@ -122,5 +118,3 @@ var Resizer = $.extend({}, Metro.Component, {
         $(window).off("resize", {ns: this.id});
     }
 });
-
-Metro.plugin('resizer', Resizer);

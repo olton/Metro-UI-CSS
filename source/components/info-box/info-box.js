@@ -25,9 +25,7 @@ if (typeof window["metroInfoBoxSetup"] !== undefined) {
     Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
 }
 
-var InfoBox = $.extend({}, Metro.Component, {
-    name: "InfoBox",
-
+Component('info-box', {
     init: function( options, elem ) {
         this._super(elem, options, InfoBoxDefaultConfig);
 
@@ -41,7 +39,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "infobox");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -51,7 +49,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     },
 
     _overlay: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         var overlay = $("<div>");
         overlay.addClass("overlay").addClass(o.clsOverlay);
@@ -68,7 +66,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var closer, content;
 
         if (o.overlay === true) {
@@ -108,7 +106,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
 
         element.on(Metro.events.click, ".closer", function(){
             that.close();
@@ -214,19 +212,16 @@ var InfoBox = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('infobox', InfoBox);
-
 Metro['infobox'] = {
     isInfoBox: function(el){
         return Utils.isMetroObject(el, "infobox");
     },
 
     open: function(el, c, t){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         if (c !== undefined) {
             ib.setContent(c);
         }
@@ -237,16 +232,14 @@ Metro['infobox'] = {
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         ib.close();
     },
 
     setContent: function(el, c){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
@@ -255,28 +248,26 @@ Metro['infobox'] = {
             c = "";
         }
 
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         ib.setContent(c);
         ib.reposition();
     },
 
     setType: function(el, t){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
 
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         ib.setType(t);
         ib.reposition();
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         return ib.isOpen();
     },
 

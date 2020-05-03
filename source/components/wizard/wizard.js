@@ -40,11 +40,11 @@ if (typeof window["metroWizardSetup"] !== undefined) {
     Metro.wizardSetup(window["metroWizardSetup"]);
 }
 
-var Wizard = $.extend({}, Metro.Component, {
-    name: "Wizard",
-
+Component('wizard', {
     init: function( options, elem ) {
         this._super(elem, options, WizardDefaultConfig);
+
+        this.id = Utils.elementId('wizard');
 
         Metro.createExec(this);
 
@@ -54,7 +54,7 @@ var Wizard = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "wizard");
+        Metro.checkRuntime(element, this.name);
 
         this._createWizard();
         this._createEvents();
@@ -66,10 +66,6 @@ var Wizard = $.extend({}, Metro.Component, {
     _createWizard: function(){
         var that = this, element = this.element, o = this.options;
         var bar;
-
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("wizard"));
-        }
 
         element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
 
@@ -160,7 +156,7 @@ var Wizard = $.extend({}, Metro.Component, {
 
         $(window).on(Metro.events.resize, function(){
             that._setHeight();
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     next: function(){
@@ -305,10 +301,8 @@ var Wizard = $.extend({}, Metro.Component, {
         element.off(Metro.events.click, ".wizard-btn-next");
         element.off(Metro.events.click, ".wizard-btn-finish");
         element.off(Metro.events.click, ".complete");
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
-
-Metro.plugin('wizard', Wizard);

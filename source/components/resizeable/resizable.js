@@ -21,9 +21,7 @@ if (typeof window["metroResizeableSetup"] !== undefined) {
     Metro.resizeableSetup(window["metroResizeableSetup"]);
 }
 
-var Resizable = $.extend({}, Metro.Component, {
-    name: "Resizeable",
-
+Component('resizeable', {
     init: function( options, elem ) {
         this._super(elem, options, ResizableDefaultConfig);
 
@@ -39,7 +37,7 @@ var Resizable = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "resizeable");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -153,5 +151,3 @@ var Resizable = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('resizable', Resizable);

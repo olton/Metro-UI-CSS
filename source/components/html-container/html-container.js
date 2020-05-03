@@ -21,9 +21,7 @@ if (typeof window["metroHtmlContainerSetup"] !== undefined) {
     Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
 }
 
-var HtmlContainer = $.extend({}, Metro.Component, {
-    name: "HtmlContainer",
-
+Component('html-container', {
     init: function( options, elem ) {
         this._super(elem, options, HtmlContainerDefaultConfig);
 
@@ -39,7 +37,7 @@ var HtmlContainer = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "htmlcontainer");
+        Metro.checkRuntime(element, this.name);
 
         if (typeof o.requestData === 'string') {
             o.requestData = JSON.parse(o.requestData);
@@ -150,5 +148,3 @@ var HtmlContainer = $.extend({}, Metro.Component, {
 
     destroy: function(){}
 });
-
-Metro.plugin('htmlcontainer', HtmlContainer);

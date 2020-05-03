@@ -34,9 +34,7 @@ if (typeof window["metroTagInputSetup"] !== undefined) {
     Metro.tagInputSetup(window["metroTagInputSetup"]);
 }
 
-var TagInput = $.extend({}, Metro.Component, {
-    name: "TagInput",
-
+Component('tag-input', {
     init: function( options, elem ) {
         this._super(elem, options, TagInputDefaultConfig);
 
@@ -51,7 +49,7 @@ var TagInput = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "taginput");
+        Metro.checkRuntime(element, this.name);
 
         this.triggers = (""+o.tagTrigger).toArray(",");
 
@@ -374,5 +372,3 @@ var TagInput = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('taginput', TagInput);

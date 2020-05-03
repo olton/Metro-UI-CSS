@@ -25,9 +25,7 @@ if (typeof window["metroListViewSetup"] !== undefined) {
     Metro.listViewSetup(window["metroListViewSetup"]);
 }
 
-var ListView = $.extend({}, Metro.Component, {
-    name: "ListView",
-
+Component('listview', {
     init: function( options, elem ) {
         this._super(elem, options, ListViewDefaultConfig);
 
@@ -39,7 +37,7 @@ var ListView = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "listview");
+        Metro.checkRuntime(element, this.name);
 
         this._createView();
         this._createEvents();
@@ -433,5 +431,3 @@ var ListView = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('listview', ListView);

@@ -23,13 +23,12 @@ if (typeof window["metroTabsSetup"] !== undefined) {
     Metro.tabsSetup(window["metroTabsSetup"]);
 }
 
-var Tabs = $.extend({}, Metro.Component, {
-    name: "Tabs",
-
+Component('tabs', {
     init: function( options, elem ) {
         this._super(elem, options, TabsDefaultConfig);
 
         this._targets = [];
+        this.id = Utils.elementId('tabs');
 
         Metro.createExec(this);
 
@@ -40,7 +39,7 @@ var Tabs = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
-        Metro.checkRuntime(element, "tabs");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -56,10 +55,6 @@ var Tabs = $.extend({}, Metro.Component, {
         var right_parent = parent.hasClass("tabs");
         var container = right_parent ? parent : $("<div>").addClass("tabs tabs-wrapper");
         var expandTitle, hamburger;
-
-        if (!Utils.isValue(element.attr("id"))) {
-            element.attr("id", Utils.elementId("tabs"));
-        }
 
         container.addClass(o.tabsPosition.replace(["-", "_", "+"], " "));
 
@@ -124,7 +119,7 @@ var Tabs = $.extend({}, Metro.Component, {
                     if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
                 }
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
 
         container.on(Metro.events.click, ".hamburger, .expand-title", function(){
             if (element.data('expanded') === false) {
@@ -268,7 +263,7 @@ var Tabs = $.extend({}, Metro.Component, {
         var element = this.element;
         var container = element.parent();
 
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         container.off(Metro.events.click, ".hamburger, .expand-title");
 
@@ -277,5 +272,3 @@ var Tabs = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('tabs', Tabs);

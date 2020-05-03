@@ -34,9 +34,7 @@ if (typeof window["metroSpinnerSetup"] !== undefined) {
     Metro.spinnerSetup(window["metroSpinnerSetup"]);
 }
 
-var Spinner = $.extend({}, Metro.Component, {
-    name: "Spinner",
-
+Component('spinner', {
     init: function( options, elem ) {
         this._super(elem, options, SpinnerDefaultConfig);
 
@@ -50,7 +48,7 @@ var Spinner = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "spinner");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -270,8 +268,6 @@ var Spinner = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('spinner', Spinner);
 
 $(document).on(Metro.events.click, function(){
     $(".spinner").removeClass("focused");

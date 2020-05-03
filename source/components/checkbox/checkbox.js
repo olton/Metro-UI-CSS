@@ -19,9 +19,7 @@ if (typeof window["metroCheckboxSetup"] !== undefined) {
     Metro.checkboxSetup(window["metroCheckboxSetup"]);
 }
 
-var Checkbox = $.extend({}, Metro.Component, {
-    name: "Checkbox",
-
+Component('checkbox', {
     init: function( options, elem ) {
         this._super(elem, options, CheckboxDefaultConfig);
 
@@ -35,6 +33,7 @@ var Checkbox = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
         Utils.exec(this.options.onCheckboxCreate, null, this.element[0]);
@@ -46,8 +45,6 @@ var Checkbox = $.extend({}, Metro.Component, {
         var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
-
-        Metro.checkRuntime(element, "checkbox");
 
         if (element.attr('id') === undefined) {
             element.attr('id', Utils.elementId("checkbox"));
@@ -163,5 +160,3 @@ var Checkbox = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('checkbox', Checkbox);

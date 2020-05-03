@@ -69,9 +69,7 @@ if (typeof window["metroCalendarSetup"] !== undefined) {
     Metro.calendarSetup(window["metroCalendarSetup"]);
 }
 
-var Calendar = $.extend({}, Metro.Component, {
-    name: "Calendar",
-
+Component('calendar', {
     init: function( options, elem ) {
         this._super(elem, options, CalendarDefaultConfig);
 
@@ -104,7 +102,7 @@ var Calendar = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "calendar");
+        Metro.checkRuntime(element, this.name);
 
         if (!element.attr("id")) {
             element.attr("id", Utils.elementId("calendar"));
@@ -955,5 +953,3 @@ $(document).on(Metro.events.click, function(e){
         $(this).removeClass("open");
     });
 });
-
-Metro.plugin('calendar', Calendar);

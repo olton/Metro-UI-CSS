@@ -44,7 +44,7 @@ if (typeof window["metroVegasSetup"] !== undefined) {
     Metro.vegasSetup(window["metroVegasSetup"]);
 }
 
-var Vegas = $.extend({}, Metro.Component, {
+Component('vegas', {
 
     videoCache: {},
 
@@ -107,7 +107,7 @@ var Vegas = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "vegas");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -598,5 +598,3 @@ var Vegas = $.extend({}, Metro.Component, {
         return element[0];
     }
 });
-
-Metro.plugin('vegas', Vegas);

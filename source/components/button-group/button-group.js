@@ -16,9 +16,7 @@ if (typeof window["metroButtonGroupSetup"] !== undefined) {
     Metro.buttonGroupSetup(window["metroButtonGroupSetup"]);
 }
 
-var ButtonGroup = $.extend({}, Metro.Component, {
-    name: "ButtonGroup",
-
+Component('button-group', {
     init: function( options, elem ) {
         this._super(elem, options, ButtonGroupDefaultConfig);
 
@@ -32,7 +30,7 @@ var ButtonGroup = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "buttongroup");
+        Metro.checkRuntime(element, this.name);
 
         this._createGroup();
         this._createEvents();
@@ -101,5 +99,3 @@ var ButtonGroup = $.extend({}, Metro.Component, {
     }
 
 });
-
-Metro.plugin('buttongroup', ButtonGroup);

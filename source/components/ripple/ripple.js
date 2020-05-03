@@ -70,9 +70,7 @@ var getRipple = function(target, color, alpha, event){
     }, 400);
 };
 
-var Ripple = $.extend({}, Metro.Component, {
-    name: "Ripple",
-
+Component('ripple', {
     init: function( options, elem ) {
         this._super(elem, options, RippleDefaultConfig);
 
@@ -85,7 +83,7 @@ var Ripple = $.extend({}, Metro.Component, {
         var that = this, element = this.element, o = this.options;
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
-        Metro.checkRuntime(element, "ripple");
+        Metro.checkRuntime(element, this.name);
 
         element.on(Metro.events.click, target, function(e){
             getRipple(this, o.rippleColor, o.rippleAlpha, e);
@@ -127,5 +125,4 @@ var Ripple = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('ripple', Ripple);
 Metro.ripple = getRipple;

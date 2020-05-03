@@ -33,15 +33,14 @@ if (typeof window["metroMasterSetup"] !== undefined) {
     Metro.masterSetup(window["metroMasterSetup"]);
 }
 
-var Master = $.extend({}, Metro.Component, {
-    name: "Master",
-
+Component('master', {
     init: function( options, elem ) {
         this._super(elem, options, MasterDefaultConfig);
 
         this.pages = [];
         this.currentIndex = 0;
         this.isAnimate = false;
+        this.id = Utils.elementId("master");
 
         Metro.createExec(this);
 
@@ -51,7 +50,7 @@ var Master = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "master");
+        Metro.checkRuntime(element, this.name);
 
         element.addClass("master").addClass(o.clsMaster);
         element.css({
@@ -181,7 +180,7 @@ var Master = $.extend({}, Metro.Component, {
 
         $(window).on(Metro.events.resize, function(){
             element.find(".pages").height(that.pages[that.currentIndex].outerHeight(true) + 2);
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     _slideToPage: function(index){
@@ -379,10 +378,8 @@ var Master = $.extend({}, Metro.Component, {
 
         element.off(Metro.events.click, ".controls .prev");
         element.off(Metro.events.click, ".controls .next");
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
-
-Metro.plugin('master', Master);

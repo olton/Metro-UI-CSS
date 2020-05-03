@@ -68,9 +68,7 @@ if (typeof window["metroCalendarPickerSetup"] !== undefined) {
     Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
 }
 
-var CalendarPicker = $.extend({}, Metro.Component, {
-    name: "CalendarPicker",
-
+Component('calendar-picker', {
     init: function( options, elem ) {
         this._super(elem, options, CalendarPickerDefaultConfig);
 
@@ -84,11 +82,9 @@ var CalendarPicker = $.extend({}, Metro.Component, {
         return this;
     },
 
-    dependencies: ['calendar'],
-
     _create: function(){
 
-        Metro.checkRuntime(this.element, "calendarpicker");
+        Metro.checkRuntime(this.element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -471,8 +467,6 @@ var CalendarPicker = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('calendarpicker', CalendarPicker);
 
 $(document).on(Metro.events.click, ".overlay.for-calendar-picker",function(){
     $(this).remove();

@@ -1,4 +1,4 @@
-var VideoDefaultConfig = {
+var VideoPlayerDefaultConfig = {
     videoDeferred: 0,
     src: null,
 
@@ -46,19 +46,17 @@ var VideoDefaultConfig = {
     onVideoCreate: Metro.noop
 };
 
-Metro.videoSetup = function (options) {
-    VideoDefaultConfig = $.extend({}, VideoDefaultConfig, options);
+Metro.videoPlayerSetup = function (options) {
+    VideoPlayerDefaultConfig = $.extend({}, VideoPlayerDefaultConfig, options);
 };
 
-if (typeof window["metroVideoSetup"] !== undefined) {
-    Metro.videoSetup(window["metroVideoSetup"]);
+if (typeof window["metroVideoPlayerSetup"] !== undefined) {
+    Metro.videoPlayerSetup(window["metroVideoPlayerSetup"]);
 }
 
-var VideoPlayer = $.extend({}, Metro.Component, {
-    name: "Video",
-
+Component('video-player', {
     init: function( options, elem ) {
-        this._super(elem, options, VideoDefaultConfig);
+        this._super(elem, options, VideoPlayerDefaultConfig);
 
         this.fullscreen = false;
         this.preloader = null;
@@ -70,6 +68,7 @@ var VideoPlayer = $.extend({}, Metro.Component, {
         this.muted = false;
         this.fullScreenInterval = false;
         this.isPlaying = false;
+        this.id = Utils.elementId('videoplayer');
 
         Metro.createExec(this);
 
@@ -79,7 +78,7 @@ var VideoPlayer = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options, video = this.video;
 
-        Metro.checkRuntime(element, "video");
+        Metro.checkRuntime(element, this.name);
 
         if (Metro.fullScreenEnabled === false) {
             o.fullScreenMode = Metro.fullScreenMode.WINDOW;
@@ -103,10 +102,6 @@ var VideoPlayer = $.extend({}, Metro.Component, {
         var player = $("<div>").addClass("media-player video-player " + element[0].className);
         var preloader = $("<div>").addClass("preloader").appendTo(player);
         var logo = $("<a>").attr("href", o.logoTarget).addClass("logo").appendTo(player);
-
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("video"))
-        }
 
         player.insertBefore(element);
         element.appendTo(player);
@@ -375,11 +370,11 @@ var VideoPlayer = $.extend({}, Metro.Component, {
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
 
         $(window).on(Metro.events.resize, function(){
             that._setAspectRatio();
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
 
     },
 
@@ -587,11 +582,9 @@ var VideoPlayer = $.extend({}, Metro.Component, {
         player.off(Metro.events.click, ".loop");
         player.off(Metro.events.click, ".full");
 
-        $(window).off(Metro.events.keyup,{ns: element.attr("id")});
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.keyup,{ns: this.id});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
-
-Metro.plugin('video', VideoPlayer);

@@ -41,9 +41,7 @@ if (typeof window["metroSelectSetup"] !== undefined) {
     Metro.selectSetup(window["metroSelectSetup"]);
 }
 
-var Select = $.extend({}, Metro.Component, {
-    name: "Select",
-
+Component('select', {
     init: function( options, elem ) {
         this._super(elem, options, SelectDefaultConfig);
 
@@ -58,7 +56,7 @@ var Select = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "select");
+        Metro.checkRuntime(element, this.name);
 
         this._createSelect();
         this._createEvents();
@@ -591,6 +589,3 @@ var Select = $.extend({}, Metro.Component, {
 $(document).on(Metro.events.click, function(){
     $(".select").removeClass("focused");
 }, {ns: "blur-select-elements"});
-
-Metro.plugin('select', Select);
-

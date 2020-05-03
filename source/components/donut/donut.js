@@ -26,9 +26,7 @@ if (typeof window["metroDonutSetup"] !== undefined) {
     Metro.donutSetup(window["metroDonutSetup"]);
 }
 
-var Donut = $.extend({}, Metro.Component, {
-    name: "Donut",
-
+Component('donut', {
     init: function( options, elem ) {
         this._super(elem, options, DonutDefaultConfig);
 
@@ -50,7 +48,7 @@ var Donut = $.extend({}, Metro.Component, {
         var transform = 'rotate(-90 ' + o.radius + ',' + o.radius + ')';
         var fontSize = r * o.hole * 0.6;
 
-        Metro.checkRuntime(element, "donut");
+        Metro.checkRuntime(element, this.name);
 
         element.addClass("donut");
 
@@ -144,5 +142,3 @@ var Donut = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('donut', Donut);

@@ -22,9 +22,7 @@ if (typeof window["metroMaterialTabsSetup"] !== undefined) {
     Metro.materialTabsSetup(window["metroMaterialTabsSetup"]);
 }
 
-var MaterialTabs = $.extend({}, Metro.Component, {
-    name: "MaterialTabs",
-
+Component('material-tabs', {
     init: function( options, elem ) {
         this._super(elem, options, MaterialTabsDefaultConfig);
 
@@ -40,7 +38,7 @@ var MaterialTabs = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "materialtabs");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -202,5 +200,3 @@ var MaterialTabs = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('materialtabs', MaterialTabs);

@@ -10,7 +10,7 @@ if (typeof window["metroMyObjectSetup"] !== undefined) {
     Metro.myObjectSetup(window["metroMyObjectSetup"]);
 }
 
-var MyObject = {
+Component('name', {
     init: function( options, elem ) {
         this._super(elem, options, MyObjectDefaultConfig);
 
@@ -22,7 +22,7 @@ var MyObject = {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "component_name");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -45,6 +45,4 @@ var MyObject = {
     },
 
     destroy: function(){}
-};
-
-Metro.plugin('myobj', MyObject);
+});

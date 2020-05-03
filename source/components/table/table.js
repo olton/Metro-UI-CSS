@@ -141,9 +141,7 @@ if (typeof window["metroTableSetup"] !== undefined) {
     Metro.tableSetup(window["metroTableSetup"]);
 }
 
-var Table = $.extend({}, Metro.Component, {
-    name: "Table",
-
+Component('table', {
     init: function( options, elem ) {
         this._super(elem, options, TableDefaultConfig);
 
@@ -169,6 +167,7 @@ var Table = $.extend({}, Metro.Component, {
         this.locale = Metro.locales["en-US"];
         this.input_interval = null;
         this.searchFields = [];
+        this.id = Utils.elementId('table');
 
         this.sort = {
             dir: "asc",
@@ -194,7 +193,7 @@ var Table = $.extend({}, Metro.Component, {
         var id = Utils.elementId("table");
         var table_component, table_container, activity, loadActivity;
 
-        Metro.checkRuntime(element, "table");
+        Metro.checkRuntime(element, this.name);
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", id);
@@ -236,7 +235,6 @@ var Table = $.extend({}, Metro.Component, {
         }
 
         table_component = $("<div>").addClass("table-component");
-        table_component.attr("id", Utils.elementId("table"));
         table_component.insertBefore(element);
 
         table_container = $("<div>").addClass("table-container").addClass(o.clsTableContainer).appendTo(table_component);
@@ -944,7 +942,7 @@ var Table = $.extend({}, Metro.Component, {
                     table_container.addClass("horizontal-scroll");
                 }
             }
-        }, {ns: component.attr("id")});
+        }, {ns: this.id});
 
         element.on(Metro.events.click, ".sortable-column", function(){
 
@@ -2191,7 +2189,7 @@ var Table = $.extend({}, Metro.Component, {
         search_input.data("input").destroy();
         rows_select.data("select").destroy();
 
-        $(window).off(Metro.events.resize, {ns: component.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         element.off(Metro.events.click, ".sortable-column");
 
@@ -2219,5 +2217,3 @@ var Table = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('table', Table);

@@ -23,9 +23,7 @@ if (typeof window["metroFileSetup"] !== undefined) {
     Metro.fileSetup(window["metroFileSetup"]);
 }
 
-var File = $.extend({}, Metro.Component, {
-    name: "File",
-
+Component('file', {
     init: function( options, elem ) {
         this._super(elem, options, FileDefaultConfig);
 
@@ -35,9 +33,7 @@ var File = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        var element = this.element;
-
-        Metro.checkRuntime(element, "file");
+        Metro.checkRuntime(this.element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -223,5 +219,3 @@ var File = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('file', File);

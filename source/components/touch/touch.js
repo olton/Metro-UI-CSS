@@ -69,9 +69,7 @@ if (typeof window["metroTouchSetup"] !== undefined) {
     Metro.sliderSetup(window["metroTouchSetup"]);
 }
 
-var Touch = $.extend({}, Metro.Component, {
-    name: "Touch",
-
+Component('touch', {
     init: function( options, elem ) {
         this._super(elem, options, TouchDefaultConfig);
 
@@ -121,6 +119,8 @@ var Touch = $.extend({}, Metro.Component, {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, this.name);
 
         if (o.allowPageScroll === undefined && (o.onSwipe !== Metro.noop || o.onSwipeStatus !== Metro.noop)) {
             o.allowPageScroll = TouchConst.NONE;
@@ -1156,4 +1156,3 @@ var Touch = $.extend({}, Metro.Component, {
 });
 
 Metro['touch'] = TouchConst;
-Metro.plugin('touch', Touch);

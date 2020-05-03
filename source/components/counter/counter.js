@@ -19,9 +19,7 @@ if (typeof window["metroCounterSetup"] !== undefined) {
     Metro.counterSetup(window["metroCounterSetup"]);
 }
 
-var Counter = $.extend({}, Metro.Component, {
-    name: "Counter",
-
+Component('counter', {
     init: function( options, elem ) {
         this._super(elem, options, CounterDefaultConfig);
 
@@ -38,7 +36,7 @@ var Counter = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "counter");
+        Metro.checkRuntime(element, this.name);
 
         Utils.exec(o.onCounterCreate, [element], this.elem);
         element.fire("countercreate");
@@ -110,5 +108,3 @@ var Counter = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('counter', Counter);

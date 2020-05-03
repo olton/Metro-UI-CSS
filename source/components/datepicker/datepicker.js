@@ -35,9 +35,7 @@ if (typeof window["metroDatePickerSetup"] !== undefined) {
     Metro.datePickerSetup(window["metroDatePickerSetup"]);
 }
 
-var DatePicker = $.extend({}, Metro.Component, {
-    name: "DatePicker",
-
+Component('date-picker', {
     init: function( options, elem ) {
         this._super(elem, options, DatePickerDefaultConfig);
 
@@ -60,7 +58,7 @@ var DatePicker = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "datepicker");
+        Metro.checkRuntime(element, this.name);
 
         if (o.distance < 1) {
             o.distance = 1;
@@ -469,8 +467,6 @@ var DatePicker = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('datepicker', DatePicker);
 
 $(document).on(Metro.events.click, function(){
     $.each($(".date-picker"), function(){

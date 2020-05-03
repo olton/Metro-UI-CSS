@@ -16,9 +16,7 @@ if (typeof window["metroCollapseSetup"] !== undefined) {
     Metro.collapseSetup(window["metroCollapseSetup"]);
 }
 
-var Collapse = $.extend({}, Metro.Component, {
-    name: "Collapse",
-
+Component('collapse', {
     init: function( options, elem ) {
         this._super(elem, options, CollapseDefaultConfig);
 
@@ -33,7 +31,7 @@ var Collapse = $.extend({}, Metro.Component, {
         var that = this, element = this.element, o = this.options;
         var toggle;
 
-        Metro.checkRuntime(element, "collapse");
+        Metro.checkRuntime(element, this.name);
 
         toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.collapse-toggle').length > 0 ? element.siblings('.collapse-toggle') : element.siblings('a:nth-child(1)');
 
@@ -137,5 +135,3 @@ var Collapse = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('collapse', Collapse);

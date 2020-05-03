@@ -55,9 +55,7 @@ if (typeof window["metroCarouselSetup"] !== undefined) {
     Metro.carouselSetup(window["metroCarouselSetup"]);
 }
 
-var Carousel = $.extend({}, Metro.Component, {
-    name: "Carousel",
-
+Component('carousel', {
     init: function( options, elem ) {
         this._super(elem, options, CarouselDefaultConfig);
 
@@ -81,7 +79,7 @@ var Carousel = $.extend({}, Metro.Component, {
         var slides_container = element.find(".slides");
         var id = Utils.elementId("carousel");
 
-        Metro.checkRuntime(element, "carousel");
+        Metro.checkRuntime(element, this.name);
 
         if (element.attr("id") === undefined) {
             element.attr("id", id);
@@ -515,5 +513,3 @@ var Carousel = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('carousel', Carousel);

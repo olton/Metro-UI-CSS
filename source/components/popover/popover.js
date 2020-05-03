@@ -23,9 +23,7 @@ if (typeof window["metroPopoverSetup"] !== undefined) {
     Metro.popoverSetup(window["metroPopoverSetup"]);
 }
 
-var Popover = $.extend({}, Metro.Component, {
-    name: "Popover",
-
+Component('popover', {
     init: function( options, elem ) {
         this._super(elem, options, PopoverDefaultConfig);
 
@@ -44,6 +42,7 @@ var Popover = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, this.name);
         this._createEvents();
     },
 
@@ -270,5 +269,3 @@ var Popover = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('popover', Popover);

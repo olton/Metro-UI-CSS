@@ -15,9 +15,7 @@ if (typeof window["metroImageCompareSetup"] !== undefined) {
     Metro.imageCompareSetup(window["metroImageCompareSetup"]);
 }
 
-var ImageCompare = $.extend({}, Metro.Component, {
-    name: "ImageCompare",
-
+Component('image-compare', {
     init: function( options, elem ) {
         this._super(elem, options, ImageCompareDefaultConfig);
 
@@ -29,7 +27,7 @@ var ImageCompare = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "imagecompare");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -175,5 +173,3 @@ var ImageCompare = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('imagecompare', ImageCompare);

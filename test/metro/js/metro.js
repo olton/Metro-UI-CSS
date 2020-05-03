@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/05/2020 06:31:50
+ * Built at 03/05/2020 09:53:43
  * Licensed under MIT
  */
 
@@ -4301,13 +4301,13 @@ if (typeof Object.values !== 'function') {
 var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
 var normalizeComponentName = function(name){
-    return typeof name !== "string" ? undefined : name.replace(/\-/g, "");
+    return typeof name !== "string" ? undefined : name.replace(/\-/g, "").toLowerCase();
 };
 
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "03/05/2020 06:31:58",
+    compileTime: "03/05/2020 09:53:53",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4820,6 +4820,35 @@ Metro["Component"] = {
         });
     }
 };
+
+var Component = function(nameName, compObj){
+    var name = normalizeComponentName(nameName);
+    var component = $.extend({name: name}, {
+        _super: function(el, options, defaults){
+            this.elem = el;
+            this.element = $(el);
+            this.options = $.extend( {}, defaults, options );
+
+            this._setOptionsFromDOM();
+        },
+
+        _setOptionsFromDOM: function(){
+            var element = this.element, o = this.options;
+
+            $.each(element.data(), function(key, value){
+                if (key in o) {
+                    try {
+                        o[key] = JSON.parse(value);
+                    } catch (e) {
+                        o[key] = value;
+                    }
+                }
+            });
+        }
+    }, compObj);
+    Metro.plugin(name, component);
+    return component;
+}
 
 Metro['locales'] = {};
 
@@ -8052,9 +8081,7 @@ if (typeof window["metroAccordionSetup"] !== undefined) {
     Metro.accordionSetup(window["metroAccordionSetup"]);
 }
 
-var Accordion = $.extend({}, Metro.Component, {
-    name: "Accordion",
-
+Component('accordion', {
     init: function( options, elem ) {
         this._super(elem, options, AccordionDefaultConfig);
 
@@ -8066,7 +8093,7 @@ var Accordion = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "accordion");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -8218,7 +8245,6 @@ var Accordion = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('accordion', Accordion);
 
 var ActivityDefaultConfig = {
     activityDeferred: 0,
@@ -8237,9 +8263,7 @@ if (typeof window["metroActivitySetup"] !== undefined) {
     Metro.activitySetup(window["metroActivitySetup"]);
 }
 
-var Activity = $.extend({}, Metro.Component, {
-    name: "Activity",
-
+Component('activity', {
     init: function( options, elem ) {
         this._super(elem, options, ActivityDefaultConfig);
 
@@ -8252,7 +8276,7 @@ var Activity = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var i, wrap;
 
-        Metro.checkRuntime(element, "activity");
+        Metro.checkRuntime(element, this.name);
 
         element
             .html('')
@@ -8305,8 +8329,6 @@ var Activity = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('activity', Activity);
 
 Metro['activity'] = {
     open: function(options){
@@ -8445,9 +8467,7 @@ if (typeof window["metroAppBarSetup"] !== undefined) {
     Metro.appBarSetup(window["metroAppBarSetup"]);
 }
 
-var AppBar = $.extend({}, Metro.Component, {
-    name: "AppBar",
-
+Component('app-bar', {
     init: function( options, elem ) {
         this._super(elem, options, AppBarDefaultConfig);
 
@@ -8459,7 +8479,7 @@ var AppBar = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "appbar");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -8608,7 +8628,6 @@ var AppBar = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('appbar', AppBar);
 
 var AudioButtonDefaultConfig = {
     audioSrc: "",
@@ -8625,7 +8644,7 @@ if (typeof window["metroAudioButtonSetup"] !== undefined) {
     Metro.audioButtonSetup(window["metroAudioButtonSetup"]);
 }
 
-var AudioButton = $.extend({}, Metro.Component, {
+Component('audio-button', {
     init: function( options, elem ) {
 
         this._super(elem, options, AudioButtonDefaultConfig);
@@ -8642,7 +8661,7 @@ var AudioButton = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "audio-button");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -8710,8 +8729,6 @@ var AudioButton = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('audio-button', AudioButton);
-
 Metro["playSound"] = function(src, cb){
     var audio = new Audio(src);
 
@@ -8724,7 +8741,7 @@ Metro["playSound"] = function(src, cb){
     })
 }
 
-var AudioDefaultConfig = {
+var AudioPlayerDefaultConfig = {
     audioDeferred: 0,
     playlist: null,
     src: null,
@@ -8780,19 +8797,17 @@ var AudioDefaultConfig = {
     onAudioCreate: Metro.noop
 };
 
-Metro.audioSetup = function(options){
-    AudioDefaultConfig = $.extend({}, AudioDefaultConfig, options);
+Metro.audioPlayerSetup = function(options){
+    AudioPlayerDefaultConfig = $.extend({}, AudioPlayerDefaultConfig, options);
 };
 
-if (typeof window["metroAudioSetup"] !== undefined) {
-    Metro.audioSetup(window["metroAudioSetup"]);
+if (typeof window["metroAudioPlayerSetup"] !== undefined) {
+    Metro.audioPlayerSetup(window["metroAudioPlayerSetup"]);
 }
 
-var AudioPlayer = $.extend({}, Metro.Component, {
-    name: "Audio",
-
+Component('audio-player', {
     init: function( options, elem ) {
-        this._super(elem, options, AudioDefaultConfig);
+        this._super(elem, options, AudioPlayerDefaultConfig);
 
         this.preloader = null;
         this.player = null;
@@ -8810,7 +8825,7 @@ var AudioPlayer = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "audio");
+        Metro.checkRuntime(element, this.name);
 
         this._createPlayer();
         this._createControls();
@@ -8821,7 +8836,7 @@ var AudioPlayer = $.extend({}, Metro.Component, {
         }
 
         Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
-        element.fire("audiocreate");
+        element.fire("audioplayercreate");
     },
 
     _createPlayer: function(){
@@ -9171,7 +9186,6 @@ var AudioPlayer = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('audio', AudioPlayer);
 
 var BottomSheetDefaultConfig = {
     bottomsheetDeferred: 0,
@@ -9190,9 +9204,7 @@ if (typeof window["metroBottomSheetSetup"] !== undefined) {
     Metro.bottomSheetSetup(window["metroBottomSheetSetup"]);
 }
 
-var BottomSheet = $.extend({}, Metro.Component, {
-    name: "BottomSheet",
-
+Component('bottom-sheet', {
     init: function( options, elem ) {
         this._super(elem, options, BottomSheetDefaultConfig);
 
@@ -9206,7 +9218,7 @@ var BottomSheet = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "bottomsheet");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -9289,8 +9301,6 @@ var BottomSheet = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('bottomsheet', BottomSheet);
-
 Metro['bottomsheet'] = {
     isBottomSheet: function(el){
         return Utils.isMetroObject(el, "bottomsheet");
@@ -9300,14 +9310,14 @@ Metro['bottomsheet'] = {
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        Metro.getPlugin($(el)[0], "bottomsheet").open(as);
+        Metro.getPlugin(el, "bottomsheet").open(as);
     },
 
     close: function(el){
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        Metro.getPlugin($(el)[0], "bottomsheet").close();
+        Metro.getPlugin(el, "bottomsheet").close();
     },
 
     toggle: function(el, as){
@@ -9325,7 +9335,7 @@ Metro['bottomsheet'] = {
         if (!this.isBottomSheet(el)) {
             return false;
         }
-        return Metro.getPlugin($(el)[0], "bottomsheet").isOpen();
+        return Metro.getPlugin(el, "bottomsheet").isOpen();
     }
 };
 
@@ -9347,9 +9357,7 @@ if (typeof window["metroButtonGroupSetup"] !== undefined) {
     Metro.buttonGroupSetup(window["metroButtonGroupSetup"]);
 }
 
-var ButtonGroup = $.extend({}, Metro.Component, {
-    name: "ButtonGroup",
-
+Component('button-group', {
     init: function( options, elem ) {
         this._super(elem, options, ButtonGroupDefaultConfig);
 
@@ -9363,7 +9371,7 @@ var ButtonGroup = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "buttongroup");
+        Metro.checkRuntime(element, this.name);
 
         this._createGroup();
         this._createEvents();
@@ -9433,7 +9441,6 @@ var ButtonGroup = $.extend({}, Metro.Component, {
 
 });
 
-Metro.plugin('buttongroup', ButtonGroup);
 
 var CalendarDefaultConfig = {
     calendarDeferred: 0,
@@ -9506,9 +9513,7 @@ if (typeof window["metroCalendarSetup"] !== undefined) {
     Metro.calendarSetup(window["metroCalendarSetup"]);
 }
 
-var Calendar = $.extend({}, Metro.Component, {
-    name: "Calendar",
-
+Component('calendar', {
     init: function( options, elem ) {
         this._super(elem, options, CalendarDefaultConfig);
 
@@ -9541,7 +9546,7 @@ var Calendar = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "calendar");
+        Metro.checkRuntime(element, this.name);
 
         if (!element.attr("id")) {
             element.attr("id", Utils.elementId("calendar"));
@@ -10393,7 +10398,6 @@ $(document).on(Metro.events.click, function(e){
     });
 });
 
-Metro.plugin('calendar', Calendar);
 
 var CalendarPickerDefaultConfig = {
     value:'',
@@ -10465,9 +10469,7 @@ if (typeof window["metroCalendarPickerSetup"] !== undefined) {
     Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
 }
 
-var CalendarPicker = $.extend({}, Metro.Component, {
-    name: "CalendarPicker",
-
+Component('calendar-picker', {
     init: function( options, elem ) {
         this._super(elem, options, CalendarPickerDefaultConfig);
 
@@ -10481,11 +10483,9 @@ var CalendarPicker = $.extend({}, Metro.Component, {
         return this;
     },
 
-    dependencies: ['calendar'],
-
     _create: function(){
 
-        Metro.checkRuntime(this.element, "calendarpicker");
+        Metro.checkRuntime(this.element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -10869,8 +10869,6 @@ var CalendarPicker = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('calendarpicker', CalendarPicker);
-
 $(document).on(Metro.events.click, ".overlay.for-calendar-picker",function(){
     $(this).remove();
     $(".calendar-for-picker.open").removeClass("open open-up");
@@ -10938,9 +10936,7 @@ if (typeof window["metroCarouselSetup"] !== undefined) {
     Metro.carouselSetup(window["metroCarouselSetup"]);
 }
 
-var Carousel = $.extend({}, Metro.Component, {
-    name: "Carousel",
-
+Component('carousel', {
     init: function( options, elem ) {
         this._super(elem, options, CarouselDefaultConfig);
 
@@ -10964,7 +10960,7 @@ var Carousel = $.extend({}, Metro.Component, {
         var slides_container = element.find(".slides");
         var id = Utils.elementId("carousel");
 
-        Metro.checkRuntime(element, "carousel");
+        Metro.checkRuntime(element, this.name);
 
         if (element.attr("id") === undefined) {
             element.attr("id", id);
@@ -11399,7 +11395,6 @@ var Carousel = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('carousel', Carousel);
 
 var CharmsDefaultConfig = {
     charmsDeferred: 0,
@@ -11420,9 +11415,7 @@ if (typeof window["metroCharmsSetup"] !== undefined) {
     Metro.charmsSetup(window["metroCharmsSetup"]);
 }
 
-var Charms = $.extend({}, Metro.Component, {
-    name: "Charms",
-
+Component('charms', {
     init: function( options, elem ) {
         this._super(elem, options, CharmsDefaultConfig);
 
@@ -11438,7 +11431,7 @@ var Charms = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "charms");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -11529,10 +11522,7 @@ var Charms = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('charms', Charms);
-
 Metro['charms'] = {
-
     check: function(el){
         if (Utils.isMetroObject(el, "charms") === false) {
             console.warn("Element is not a charms component");
@@ -11548,17 +11538,17 @@ Metro['charms'] = {
 
     open: function(el){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").open();
+        Metro.getPlugin(el, "charms").open();
     },
 
     close: function(el){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").close();
+        Metro.getPlugin(el, "charms").close();
     },
 
     toggle: function(el){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").toggle();
+        Metro.getPlugin(el, "charms").toggle();
     },
 
     closeAll: function(){
@@ -11569,7 +11559,7 @@ Metro['charms'] = {
 
     opacity: function(el, opacity){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").opacity(opacity);
+        Metro.getPlugin(el, "charms").opacity(opacity);
     }
 };
 
@@ -11612,9 +11602,7 @@ if (typeof window["metroChatSetup"] !== undefined) {
     Metro.chatSetup(window["metroChatSetup"]);
 }
 
-var Chat = $.extend({}, Metro.Component, {
-    name: "Chat",
-
+Component('chat', {
     init: function( options, elem ) {
         this._super(elem, options, ChatDefaultConfig);
 
@@ -11630,7 +11618,7 @@ var Chat = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "chat");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -11867,7 +11855,6 @@ var Chat = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('chat', Chat);
 
 var CheckboxDefaultConfig = {
     checkboxDeferred: 0,
@@ -11890,9 +11877,7 @@ if (typeof window["metroCheckboxSetup"] !== undefined) {
     Metro.checkboxSetup(window["metroCheckboxSetup"]);
 }
 
-var Checkbox = $.extend({}, Metro.Component, {
-    name: "Checkbox",
-
+Component('checkbox', {
     init: function( options, elem ) {
         this._super(elem, options, CheckboxDefaultConfig);
 
@@ -11906,6 +11891,7 @@ var Checkbox = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
         Utils.exec(this.options.onCheckboxCreate, null, this.element[0]);
@@ -11917,8 +11903,6 @@ var Checkbox = $.extend({}, Metro.Component, {
         var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
-
-        Metro.checkRuntime(element, "checkbox");
 
         if (element.attr('id') === undefined) {
             element.attr('id', Utils.elementId("checkbox"));
@@ -12035,7 +12019,6 @@ var Checkbox = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('checkbox', Checkbox);
 
 var ClockDefaultConfig = {
     clockDeferred: 0,
@@ -12058,9 +12041,7 @@ if (typeof window["metroClockSetup"] !== undefined) {
     Metro.clockSetup(window["metroClockSetup"]);
 }
 
-var Clock = $.extend({}, Metro.Component, {
-    name: "Clock",
-
+Component('clock', {
     init: function( options, elem ) {
         this._super(elem, options, ClockDefaultConfig);
 
@@ -12074,7 +12055,7 @@ var Clock = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element;
 
-        Metro.checkRuntime(element, "clock");
+        Metro.checkRuntime(element, this.name);
 
         this._tick();
 
@@ -12159,7 +12140,6 @@ var Clock = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('clock', Clock);
 
 var CollapseDefaultConfig = {
     collapseDeferred: 0,
@@ -12179,9 +12159,7 @@ if (typeof window["metroCollapseSetup"] !== undefined) {
     Metro.collapseSetup(window["metroCollapseSetup"]);
 }
 
-var Collapse = $.extend({}, Metro.Component, {
-    name: "Collapse",
-
+Component('collapse', {
     init: function( options, elem ) {
         this._super(elem, options, CollapseDefaultConfig);
 
@@ -12196,7 +12174,7 @@ var Collapse = $.extend({}, Metro.Component, {
         var that = this, element = this.element, o = this.options;
         var toggle;
 
-        Metro.checkRuntime(element, "collapse");
+        Metro.checkRuntime(element, this.name);
 
         toggle = o.toggleElement !== false ? $(o.toggleElement) : element.siblings('.collapse-toggle').length > 0 ? element.siblings('.collapse-toggle') : element.siblings('a:nth-child(1)');
 
@@ -12301,7 +12279,6 @@ var Collapse = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('collapse', Collapse);
 
 var CountdownDefaultConfig = {
     countdownDeferred: 0,
@@ -12339,9 +12316,7 @@ if (typeof window["metroCountdownSetup"] !== undefined) {
     Metro.countdownSetup(window["metroCountdownSetup"]);
 }
 
-var Countdown = $.extend({}, Metro.Component, {
-    name: "Countdown",
-
+Component('countdown', {
     init: function( options, elem ) {
         this._super(elem, options, CountdownDefaultConfig);
 
@@ -12373,7 +12348,7 @@ var Countdown = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
-        Metro.checkRuntime(element, "countdown");
+        Metro.checkRuntime(element, this.name);
 
         this._build();
         this._createEvents();
@@ -12858,7 +12833,6 @@ var Countdown = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('countdown', Countdown);
 
 var CounterDefaultConfig = {
     startOnViewport: true,
@@ -12881,9 +12855,7 @@ if (typeof window["metroCounterSetup"] !== undefined) {
     Metro.counterSetup(window["metroCounterSetup"]);
 }
 
-var Counter = $.extend({}, Metro.Component, {
-    name: "Counter",
-
+Component('counter', {
     init: function( options, elem ) {
         this._super(elem, options, CounterDefaultConfig);
 
@@ -12900,7 +12872,7 @@ var Counter = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "counter");
+        Metro.checkRuntime(element, this.name);
 
         Utils.exec(o.onCounterCreate, [element], this.elem);
         element.fire("countercreate");
@@ -12973,7 +12945,6 @@ var Counter = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('counter', Counter);
 
 var CubeDefaultConfig = {
     cubeDeferred: 0,
@@ -13019,9 +12990,42 @@ if (typeof window["metroCubeSetup"] !== undefined) {
     Metro.cubeSetup(window["metroCubeSetup"]);
 }
 
-var Cube = $.extend({}, Metro.Component, {
-    name: "Cube",
+Metro.cubeDefaultRules = [
+    {
+        on: {'top': [16],      'left': [4],         'right': [1]},
+        off: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]}
+    },
+    {
+        on: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]},
+        off: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]}
+    },
+    {
+        on: {'top': [11],      'left': [7],         'right': [6]},
+        off: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]}
+    },
+    {
+        on: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]},
+        off: {'top': [16],      'left': [4],         'right': [1]}
+    },
+    {
+        on: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]},
+        off: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]}
+    },
+    {
+        on: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]},
+        off: {'top': [11],      'left': [7],         'right': [6]}
+    },
+    {
+        on: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]},
+        off: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]}
+    },
+    {
+        on: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]},
+        off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
+    }
+];
 
+Component('cube', {
     init: function( options, elem ) {
         this._super(elem, options, CubeDefaultConfig);
 
@@ -13037,48 +13041,13 @@ var Cube = $.extend({}, Metro.Component, {
         return this;
     },
 
-    default_rules: [
-        {
-            on: {'top': [16],      'left': [4],         'right': [1]},
-            off: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]}
-        },
-        {
-            on: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]},
-            off: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]}
-        },
-        {
-            on: {'top': [11],      'left': [7],         'right': [6]},
-            off: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]}
-        },
-        {
-            on: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]},
-            off: {'top': [16],      'left': [4],         'right': [1]}
-        },
-        {
-            on: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]},
-            off: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]}
-        },
-        {
-            on: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]},
-            off: {'top': [11],      'left': [7],         'right': [6]}
-        },
-        {
-            on: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]},
-            off: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]}
-        },
-        {
-            on: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]},
-            off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
-        }
-    ],
-
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "cube");
+        Metro.checkRuntime(element, this.name);
 
         if (o.rules === null) {
-            this.rules = this.default_rules;
+            this.rules = Metro.cubeDefaultRules;
         } else {
             this._parseRules(o.rules);
         }
@@ -13436,7 +13405,6 @@ var Cube = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('cube', Cube);
 
 var DatePickerDefaultConfig = {
     datepickerDeferred: 0,
@@ -13475,9 +13443,7 @@ if (typeof window["metroDatePickerSetup"] !== undefined) {
     Metro.datePickerSetup(window["metroDatePickerSetup"]);
 }
 
-var DatePicker = $.extend({}, Metro.Component, {
-    name: "DatePicker",
-
+Component('date-picker', {
     init: function( options, elem ) {
         this._super(elem, options, DatePickerDefaultConfig);
 
@@ -13500,7 +13466,7 @@ var DatePicker = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "datepicker");
+        Metro.checkRuntime(element, this.name);
 
         if (o.distance < 1) {
             o.distance = 1;
@@ -13910,8 +13876,6 @@ var DatePicker = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('datepicker', DatePicker);
-
 $(document).on(Metro.events.click, function(){
     $.each($(".date-picker"), function(){
         $(this).find("input").each(function(){
@@ -13967,10 +13931,8 @@ if (typeof window["metroDialogSetup"] !== undefined) {
     Metro.dialogSetup(window["metroDialogSetup"]);
 }
 
-var Dialog = $.extend({}, Metro.Component, {
+Component('dialog', {
     _counter: 0,
-
-    name: "Dialog",
 
     init: function( options, elem ) {
         this._super(elem, options, DialogDefaultConfig);
@@ -13987,7 +13949,7 @@ var Dialog = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
-        Metro.checkRuntime(element, "dialog");
+        Metro.checkRuntime(element, this.name);
 
         this._build();
     },
@@ -14253,8 +14215,6 @@ var Dialog = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('dialog', Dialog);
-
 Metro['dialog'] = {
 
     isDialog: function(el){
@@ -14350,9 +14310,7 @@ if (typeof window["metroDonutSetup"] !== undefined) {
     Metro.donutSetup(window["metroDonutSetup"]);
 }
 
-var Donut = $.extend({}, Metro.Component, {
-    name: "Donut",
-
+Component('donut', {
     init: function( options, elem ) {
         this._super(elem, options, DonutDefaultConfig);
 
@@ -14374,7 +14332,7 @@ var Donut = $.extend({}, Metro.Component, {
         var transform = 'rotate(-90 ' + o.radius + ',' + o.radius + ')';
         var fontSize = r * o.hole * 0.6;
 
-        Metro.checkRuntime(element, "donut");
+        Metro.checkRuntime(element, this.name);
 
         element.addClass("donut");
 
@@ -14469,7 +14427,6 @@ var Donut = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('donut', Donut);
 
 var DoubleSliderDefaultConfig = {
     doublesliderDeferred: 0,
@@ -14521,9 +14478,7 @@ if (typeof window["metroDoubleSliderSetup"] !== undefined) {
     Metro.doubleSliderSetup(window["metroDoubleSliderSetup"]);
 }
 
-var DoubleSlider = $.extend({}, Metro.Component, {
-    name: "DoubleSlider",
-
+Component('double-slider', {
     init: function( options, elem ) {
         this._super(elem, options, DoubleSliderDefaultConfig);
 
@@ -14540,7 +14495,7 @@ var DoubleSlider = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "doubleslider");
+        Metro.checkRuntime(element, this.name);
 
         this.valueMin = Utils.isValue(o.valueMin) ? +o.valueMin : +o.min;
         this.valueMax = Utils.isValue(o.valueMax) ? +o.valueMax : +o.max;
@@ -14908,7 +14863,6 @@ var DoubleSlider = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('doubleslider', DoubleSlider);
 
 var DragItemsDefaultConfig = {
     dragitemsDeferred: 0,
@@ -14936,13 +14890,11 @@ if (typeof window["metroDragItemsSetup"] !== undefined) {
     Metro.dragItemsSetup(window["metroDragItemsSetup"]);
 }
 
-var DragItems = $.extend({}, Metro.Component, {
-    name: "DragItems",
-
+Component('drag-items', {
     init: function( options, elem ) {
         this._super(elem, options, DragItemsDefaultConfig);
 
-        this.id = null;
+        this.id = Utils.elementId("dragItems");
         this.canDrag = false;
 
         Metro.createExec(this);
@@ -14951,10 +14903,9 @@ var DragItems = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
-        this.id = Utils.elementId("dragItems");
-        o.canDrag ? this.on() : this.off();
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -14964,7 +14915,7 @@ var DragItems = $.extend({}, Metro.Component, {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.addClass("drag-items-target");
 
@@ -14973,6 +14924,8 @@ var DragItems = $.extend({}, Metro.Component, {
                 $("<span>").addClass("drag-item-marker").appendTo(this);
             })
         }
+
+        o.canDrag ? this.on() : this.off();
     },
 
     _createEvents: function(){
@@ -15085,7 +15038,7 @@ var DragItems = $.extend({}, Metro.Component, {
 
             }, {ns: that.id, passive: false});
 
-            doc.on(Metro.events.stopAll, function(e_stop){
+            doc.on(Metro.events.stopAll, function(){
 
                 Utils.exec(o.onDragDropItem, [dragItem[0], avatar[0]], element[0]);
                 element.fire("dragdropitem", {
@@ -15141,7 +15094,6 @@ var DragItems = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('dragitems', DragItems);
 
 var DraggableDefaultConfig = {
     draggableDeferred: 0,
@@ -15163,9 +15115,7 @@ if (typeof window["metroDraggableSetup"] !== undefined) {
     Metro.draggableSetup(window["metroDraggableSetup"]);
 }
 
-var Draggable = $.extend({}, Metro.Component, {
-    name: "Draggable",
-
+Component('draggable', {
     init: function( options, elem ) {
         this._super(elem, options, DraggableDefaultConfig);
 
@@ -15186,6 +15136,7 @@ var Draggable = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
         Utils.exec(this.options.onDraggableCreate, [this.element]);
@@ -15196,8 +15147,6 @@ var Draggable = $.extend({}, Metro.Component, {
         var that = this, element = this.element, elem = this.elem, o = this.options;
         var offset = element.offset();
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
-
-        Metro.checkRuntime(element, "draggable");
 
         element.data("canDrag", true);
 
@@ -15331,7 +15280,6 @@ var Draggable = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('draggable', Draggable);
 
 var DropdownDefaultConfig = {
     dropdownDeferred: 0,
@@ -15352,9 +15300,7 @@ if (typeof window["metroDropdownSetup"] !== undefined) {
     Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
-var Dropdown = $.extend({}, Metro.Component, {
-    name: "Dropdown",
-
+Component('dropdown', {
     init: function( options, elem ) {
         this._super(elem, options, DropdownDefaultConfig);
 
@@ -15370,7 +15316,7 @@ var Dropdown = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "dropdown");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -15542,7 +15488,6 @@ $(document).on(Metro.events.click, function(){
     });
 });
 
-Metro.plugin('dropdown', Dropdown);
 
 var FileDefaultConfig = {
     fileDeferred: 0,
@@ -15569,9 +15514,7 @@ if (typeof window["metroFileSetup"] !== undefined) {
     Metro.fileSetup(window["metroFileSetup"]);
 }
 
-var File = $.extend({}, Metro.Component, {
-    name: "File",
-
+Component('file', {
     init: function( options, elem ) {
         this._super(elem, options, FileDefaultConfig);
 
@@ -15581,9 +15524,7 @@ var File = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        var element = this.element;
-
-        Metro.checkRuntime(element, "file");
+        Metro.checkRuntime(this.element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -15770,7 +15711,6 @@ var File = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('file', File);
 
 var GravatarDefaultConfig = {
     gravatarDeferred: 0,
@@ -15788,9 +15728,7 @@ if (typeof window["metroGravatarSetup"] !== undefined) {
     Metro.gravatarSetup(window["metroGravatarSetup"]);
 }
 
-var Gravatar = $.extend({}, Metro.Component, {
-    name: "Gravatar",
-
+Component('gravatar', {
     init: function( options, elem ) {
         this._super(elem, options, GravatarDefaultConfig);
 
@@ -15800,7 +15738,7 @@ var Gravatar = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        Metro.checkRuntime(this.element, "gravatar");
+        Metro.checkRuntime(this.element, this.name);
         this.get();
     },
 
@@ -15857,7 +15795,6 @@ var Gravatar = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('gravatar', Gravatar);
 
 var HintDefaultConfig = {
     hintDeferred: 0,
@@ -15879,9 +15816,7 @@ if (typeof window["metroHintSetup"] !== undefined) {
     Metro.hintSetup(window["metroHintSetup"]);
 }
 
-var Hint = $.extend({}, Metro.Component, {
-    name: "Hint",
-
+Component('hint', {
     init: function( options, elem ) {
         this._super(elem, options, HintDefaultConfig);
 
@@ -15901,7 +15836,7 @@ var Hint = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "hint");
+        Metro.checkRuntime(element, this.name);
 
         element.on(Metro.events.enter, function(){
             that.createHint();
@@ -16020,7 +15955,6 @@ var Hint = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('hint', Hint);
 
 var Hotkey = {
     specialKeys: {
@@ -16157,9 +16091,7 @@ if (typeof window["metroHtmlContainerSetup"] !== undefined) {
     Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
 }
 
-var HtmlContainer = $.extend({}, Metro.Component, {
-    name: "HtmlContainer",
-
+Component('html-container', {
     init: function( options, elem ) {
         this._super(elem, options, HtmlContainerDefaultConfig);
 
@@ -16175,7 +16107,7 @@ var HtmlContainer = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "htmlcontainer");
+        Metro.checkRuntime(element, this.name);
 
         if (typeof o.requestData === 'string') {
             o.requestData = JSON.parse(o.requestData);
@@ -16287,7 +16219,6 @@ var HtmlContainer = $.extend({}, Metro.Component, {
     destroy: function(){}
 });
 
-Metro.plugin('htmlcontainer', HtmlContainer);
 
 var ImageCompareDefaultConfig = {
     imagecompareDeferred: 0,
@@ -16306,9 +16237,7 @@ if (typeof window["metroImageCompareSetup"] !== undefined) {
     Metro.imageCompareSetup(window["metroImageCompareSetup"]);
 }
 
-var ImageCompare = $.extend({}, Metro.Component, {
-    name: "ImageCompare",
-
+Component('image-compare', {
     init: function( options, elem ) {
         this._super(elem, options, ImageCompareDefaultConfig);
 
@@ -16320,7 +16249,7 @@ var ImageCompare = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "imagecompare");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -16467,7 +16396,6 @@ var ImageCompare = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('imagecompare', ImageCompare);
 
 var ImageMagnifierDefaultConfig = {
     imagemagnifierDeferred: 0,
@@ -16495,9 +16423,7 @@ if (typeof window["metroImageMagnifierSetup"] !== undefined) {
     Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
 }
 
-var ImageMagnifier = $.extend({}, Metro.Component, {
-    name: "ImageMagnifier",
-
+Component('image-magnifier', {
     init: function( options, elem ) {
         this._super(elem, options, ImageMagnifierDefaultConfig);
 
@@ -16512,7 +16438,7 @@ var ImageMagnifier = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "imagemagnifier");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -16725,7 +16651,6 @@ var ImageMagnifier = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('imagemagnifier', ImageMagnifier);
 
 var InfoBoxDefaultConfig = {
     infoboxDeferred: 0,
@@ -16754,9 +16679,7 @@ if (typeof window["metroInfoBoxSetup"] !== undefined) {
     Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
 }
 
-var InfoBox = $.extend({}, Metro.Component, {
-    name: "InfoBox",
-
+Component('info-box', {
     init: function( options, elem ) {
         this._super(elem, options, InfoBoxDefaultConfig);
 
@@ -16770,7 +16693,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "infobox");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -16780,7 +16703,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     },
 
     _overlay: function(){
-        var that = this, element = this.element, o = this.options;
+        var o = this.options;
 
         var overlay = $("<div>");
         overlay.addClass("overlay").addClass(o.clsOverlay);
@@ -16797,7 +16720,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var closer, content;
 
         if (o.overlay === true) {
@@ -16837,7 +16760,7 @@ var InfoBox = $.extend({}, Metro.Component, {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
 
         element.on(Metro.events.click, ".closer", function(){
             that.close();
@@ -16943,19 +16866,16 @@ var InfoBox = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('infobox', InfoBox);
-
 Metro['infobox'] = {
     isInfoBox: function(el){
         return Utils.isMetroObject(el, "infobox");
     },
 
     open: function(el, c, t){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         if (c !== undefined) {
             ib.setContent(c);
         }
@@ -16966,16 +16886,14 @@ Metro['infobox'] = {
     },
 
     close: function(el){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         ib.close();
     },
 
     setContent: function(el, c){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
@@ -16984,28 +16902,26 @@ Metro['infobox'] = {
             c = "";
         }
 
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         ib.setContent(c);
         ib.reposition();
     },
 
     setType: function(el, t){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
 
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         ib.setType(t);
         ib.reposition();
     },
 
     isOpen: function(el){
-        var $$ = Utils.$();
         if (!this.isInfoBox(el)) {
             return false;
         }
-        var ib = $$(el).data("infobox");
+        var ib = Metro.getPlugin(el, "infobox");
         return ib.isOpen();
     },
 
@@ -17063,9 +16979,7 @@ if (typeof window["metroMaterialInputSetup"] !== undefined) {
     Metro.materialInputSetup(window["metroMaterialInputSetup"]);
 }
 
-var MaterialInput = $.extend({}, Metro.Component, {
-    name: "MaterialInput",
-
+Component('material-input', {
     init: function( options, elem ) {
         this._super(elem, options, MaterialInputDefaultConfig);
 
@@ -17080,7 +16994,7 @@ var MaterialInput = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "materialinput");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -17163,13 +17077,10 @@ var MaterialInput = $.extend({}, Metro.Component, {
     },
 
     destroy: function(){
-        var element = this.element;
-
-        return element;
+        return this.element;
     }
 });
 
-Metro.plugin('materialinput', MaterialInput);
 
 var InputDefaultConfig = {
     inputDeferred: 0,
@@ -17225,9 +17136,7 @@ if (typeof window["metroInputSetup"] !== undefined) {
     Metro.inputSetup(window["metroInputSetup"]);
 }
 
-var Input = $.extend({}, Metro.Component, {
-    name: "Input",
-
+Component('input', {
     init: function( options, elem ) {
         this._super(elem, options, InputDefaultConfig);
 
@@ -17243,7 +17152,7 @@ var Input = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "input");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -17621,8 +17530,6 @@ var Input = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('input', Input);
-
 $(document).on(Metro.events.click, function(){
     $('.input .autocomplete-list').hide();
 });
@@ -17668,9 +17575,7 @@ if (typeof window["metroKeypadSetup"] !== undefined) {
     Metro.keypadSetup(window["metroKeypadSetup"]);
 }
 
-var Keypad = $.extend({}, Metro.Component, {
-    name: "Keypad",
-
+Component('keypad', {
     init: function( options, elem ) {
         this._super(elem, options, KeypadDefaultConfig);
 
@@ -17689,7 +17594,7 @@ var Keypad = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "keypad");
+        Metro.checkRuntime(element, this.name);
 
         this._createKeypad();
         if (o.shuffle === true) {
@@ -17997,8 +17902,6 @@ var Keypad = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('keypad', Keypad);
-
 $(document).on(Metro.events.click, function(){
     var keypads = $(".keypad .keys");
     $.each(keypads, function(){
@@ -18080,9 +17983,7 @@ if (typeof window["metroListSetup"] !== undefined) {
     Metro.listSetup(window["metroListSetup"]);
 }
 
-var List = $.extend({}, Metro.Component, {
-    name: "List",
-
+Component('list', {
     init: function( options, elem ) {
         this._super(elem, options, ListDefaultConfig);
 
@@ -18117,7 +18018,7 @@ var List = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "list");
+        Metro.checkRuntime(element, this.name);
 
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
@@ -18878,7 +18779,6 @@ var List = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('list', List);
 
 var ListViewDefaultConfig = {
     listviewDeferred: 0,
@@ -18907,9 +18807,7 @@ if (typeof window["metroListViewSetup"] !== undefined) {
     Metro.listViewSetup(window["metroListViewSetup"]);
 }
 
-var ListView = $.extend({}, Metro.Component, {
-    name: "ListView",
-
+Component('listview', {
     init: function( options, elem ) {
         this._super(elem, options, ListViewDefaultConfig);
 
@@ -18921,7 +18819,7 @@ var ListView = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "listview");
+        Metro.checkRuntime(element, this.name);
 
         this._createView();
         this._createEvents();
@@ -19316,7 +19214,6 @@ var ListView = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('listview', ListView);
 
 var MasterDefaultConfig = {
     masterDeferred: 0,
@@ -19353,15 +19250,14 @@ if (typeof window["metroMasterSetup"] !== undefined) {
     Metro.masterSetup(window["metroMasterSetup"]);
 }
 
-var Master = $.extend({}, Metro.Component, {
-    name: "Master",
-
+Component('master', {
     init: function( options, elem ) {
         this._super(elem, options, MasterDefaultConfig);
 
         this.pages = [];
         this.currentIndex = 0;
         this.isAnimate = false;
+        this.id = Utils.elementId("master");
 
         Metro.createExec(this);
 
@@ -19371,7 +19267,7 @@ var Master = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "master");
+        Metro.checkRuntime(element, this.name);
 
         element.addClass("master").addClass(o.clsMaster);
         element.css({
@@ -19501,7 +19397,7 @@ var Master = $.extend({}, Metro.Component, {
 
         $(window).on(Metro.events.resize, function(){
             element.find(".pages").height(that.pages[that.currentIndex].outerHeight(true) + 2);
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     _slideToPage: function(index){
@@ -19699,13 +19595,12 @@ var Master = $.extend({}, Metro.Component, {
 
         element.off(Metro.events.click, ".controls .prev");
         element.off(Metro.events.click, ".controls .next");
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
 
-Metro.plugin('master', Master);
 
 var NavigationViewDefaultConfig = {
     navviewDeferred: 0,
@@ -19725,15 +19620,14 @@ if (typeof window["metroNavigationViewSetup"] !== undefined) {
     Metro.navigationViewSetup(window["metroNavigationSetup"]);
 }
 
-var NavigationView = $.extend({}, Metro.Component, {
-    name: "NavView",
-
+Component('nav-view', {
     init: function( options, elem ) {
         this._super(elem, options, NavigationViewDefaultConfig);
 
         this.pane = null;
         this.content = null;
         this.paneToggle = null;
+        this.id = Utils.elementId("navview");
 
         Metro.createExec(this);
 
@@ -19743,7 +19637,7 @@ var NavigationView = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "navview");
+        Metro.checkRuntime(element, this.name);
 
         this._createView();
         this._createEvents();
@@ -19781,10 +19675,6 @@ var NavigationView = $.extend({}, Metro.Component, {
     _createView: function(){
         var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
-
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("navview"));
-        }
 
         element
             .addClass("navview")
@@ -19856,7 +19746,7 @@ var NavigationView = $.extend({}, Metro.Component, {
                 }
             }, 200);
 
-        }, {ns: element.attr("id")})
+        }, {ns: this.id})
     },
 
     pullClick: function(el){
@@ -19924,13 +19814,12 @@ var NavigationView = $.extend({}, Metro.Component, {
             this.paneToggle.off(Metro.events.click);
         }
 
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
 
-Metro.plugin('navview', NavigationView);
 
 var NotifyDefaultConfig = {
     container: null,
@@ -20239,9 +20128,7 @@ if (typeof window["metroPanelSetup"] !== undefined) {
     Metro.panelSetup(window["metroPanelSetup"]);
 }
 
-var Panel = $.extend({}, Metro.Component, {
-    name: "Panel",
-
+Component('panel', {
     init: function( options, elem ) {
         this._super(elem, options, PanelDefaultConfig);
 
@@ -20313,7 +20200,7 @@ var Panel = $.extend({}, Metro.Component, {
         var original_classes = element[0].className;
         var title;
 
-        Metro.checkRuntime(element, "panel");
+        Metro.checkRuntime(element, this.name);
 
         panel.attr("id", id).addClass(original_classes);
         panel.insertBefore(element);
@@ -20424,7 +20311,6 @@ var Panel = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('panel', Panel);
 
 var PopoverDefaultConfig = {
     popoverDeferred: 0,
@@ -20451,9 +20337,7 @@ if (typeof window["metroPopoverSetup"] !== undefined) {
     Metro.popoverSetup(window["metroPopoverSetup"]);
 }
 
-var Popover = $.extend({}, Metro.Component, {
-    name: "Popover",
-
+Component('popover', {
     init: function( options, elem ) {
         this._super(elem, options, PopoverDefaultConfig);
 
@@ -20472,6 +20356,7 @@ var Popover = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, this.name);
         this._createEvents();
     },
 
@@ -20699,7 +20584,6 @@ var Popover = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('popover', Popover);
 
 var ProgressDefaultConfig = {
     progressDeferred: 0,
@@ -20732,9 +20616,7 @@ if (typeof window["metroProgressSetup"] !== undefined) {
     Metro.progressSetup(window["metroProgressSetup"]);
 }
 
-var Progress = $.extend({}, Metro.Component, {
-    name: "Progress",
-
+Component('progress', {
     init: function( options, elem ) {
         this._super(elem, options, ProgressDefaultConfig);
 
@@ -20750,7 +20632,7 @@ var Progress = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var value;
 
-        Metro.checkRuntime(element, "progress");
+        Metro.checkRuntime(element, this.name);
 
         if (typeof o.type === "string") o.type = o.type.toLowerCase();
 
@@ -20907,7 +20789,6 @@ var Progress = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('progress', Progress);
 
 var RadioDefaultConfig = {
     radioDeferred: 0,
@@ -20929,9 +20810,7 @@ if (typeof window["metroRadioSetup"] !== undefined) {
     Metro.radioSetup(window["metroRadioSetup"]);
 }
 
-var Radio = $.extend({}, Metro.Component, {
-    name: "Radio",
-
+Component('radio', {
     init: function( options, elem ) {
         this._super(elem, options, RadioDefaultConfig);
 
@@ -20947,6 +20826,7 @@ var Radio = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, this.name);
         this._createStructure();
         this._createEvents();
 
@@ -20959,8 +20839,6 @@ var Radio = $.extend({}, Metro.Component, {
         var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
-
-        Metro.checkRuntime(element, "radio");
 
         element.attr("type", "radio");
 
@@ -21045,7 +20923,6 @@ var Radio = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('radio', Radio);
 
 var RatingDefaultConfig = {
     ratingDeferred: 0,
@@ -21075,9 +20952,7 @@ if (typeof window["metroRatingSetup"] !== undefined) {
     Metro.ratingSetup(window["metroRatingSetup"]);
 }
 
-var Rating = $.extend({}, Metro.Component, {
-    name: "Rating",
-
+Component('rating', {
     init: function( options, elem ) {
         this._super(elem, options, RatingDefaultConfig);
 
@@ -21096,7 +20971,7 @@ var Rating = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var i;
 
-        Metro.checkRuntime(element, "rating");
+        Metro.checkRuntime(element, this.name);
 
         if (isNaN(o.value)) {
             o.value = 0;
@@ -21336,7 +21211,6 @@ var Rating = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('rating', Rating);
 
 var ResizableDefaultConfig = {
     resizeableDeferred: 0,
@@ -21361,9 +21235,7 @@ if (typeof window["metroResizeableSetup"] !== undefined) {
     Metro.resizeableSetup(window["metroResizeableSetup"]);
 }
 
-var Resizable = $.extend({}, Metro.Component, {
-    name: "Resizeable",
-
+Component('resizeable', {
     init: function( options, elem ) {
         this._super(elem, options, ResizableDefaultConfig);
 
@@ -21379,7 +21251,7 @@ var Resizable = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "resizeable");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -21494,7 +21366,6 @@ var Resizable = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('resizable', Resizable);
 
 var ResizerDefaultConfig = {
     resizerDeferred: 0,
@@ -21514,15 +21385,14 @@ if (typeof window["metroResizerSetup"] !== undefined) {
     Metro.resizerSetup(window["metroResizerSetup"]);
 }
 
-var Resizer = $.extend({}, Metro.Component, {
-    name: "Resizer",
-
+Component('resizer', {
     init: function( options, elem ) {
         this._super(elem, options, ResizerDefaultConfig);
 
         this.id = null;
         this.size = {width: 0, height: 0};
         this.media = window.METRO_MEDIA;
+        this.id = Utils.elementId("resizer");
 
         Metro.createExec(this);
 
@@ -21530,11 +21400,10 @@ var Resizer = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "resizer");
+        Metro.checkRuntime(element, this.name);
 
-        this.id = Utils.elementId("resizer");
         this.size = {
             width: element.width(),
             height: element.height()
@@ -21547,15 +21416,13 @@ var Resizer = $.extend({}, Metro.Component, {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-
     },
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
         var win = $.window();
 
-        win.on("resize", function(e){
+        win.on("resize", function(){
             var windowWidth = win.width(), windowHeight = win.height();
             var elementWidth = element.width(), elementHeight = element.height();
             var oldSize = that.size;
@@ -21621,7 +21488,6 @@ var Resizer = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('resizer', Resizer);
 
 var RibbonMenuDefaultConfig = {
     ribbonmenuDeferred: 0,
@@ -21639,9 +21505,7 @@ if (typeof window["metroRibbonMenuSetup"] !== undefined) {
     Metro.ribbonMenuSetup(window["metroRibbonMenuSetup"]);
 }
 
-var RibbonMenu = $.extend({}, Metro.Component, {
-    name: "RibbonMenu",
-
+Component('ribbon-menu', {
     init: function( options, elem ) {
         this._super(elem, options, RibbonMenuDefaultConfig);
 
@@ -21653,7 +21517,7 @@ var RibbonMenu = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "ribbonmenu");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -21751,7 +21615,6 @@ var RibbonMenu = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('ribbonmenu', RibbonMenu);
 
 var RippleDefaultConfig = {
     rippleDeferred: 0,
@@ -21825,9 +21688,7 @@ var getRipple = function(target, color, alpha, event){
     }, 400);
 };
 
-var Ripple = $.extend({}, Metro.Component, {
-    name: "Ripple",
-
+Component('ripple', {
     init: function( options, elem ) {
         this._super(elem, options, RippleDefaultConfig);
 
@@ -21840,7 +21701,7 @@ var Ripple = $.extend({}, Metro.Component, {
         var that = this, element = this.element, o = this.options;
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
-        Metro.checkRuntime(element, "ripple");
+        Metro.checkRuntime(element, this.name);
 
         element.on(Metro.events.click, target, function(e){
             getRipple(this, o.rippleColor, o.rippleAlpha, e);
@@ -21882,7 +21743,6 @@ var Ripple = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('ripple', Ripple);
 Metro.ripple = getRipple;
 
 var SelectDefaultConfig = {
@@ -21928,9 +21788,7 @@ if (typeof window["metroSelectSetup"] !== undefined) {
     Metro.selectSetup(window["metroSelectSetup"]);
 }
 
-var Select = $.extend({}, Metro.Component, {
-    name: "Select",
-
+Component('select', {
     init: function( options, elem ) {
         this._super(elem, options, SelectDefaultConfig);
 
@@ -21945,7 +21803,7 @@ var Select = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "select");
+        Metro.checkRuntime(element, this.name);
 
         this._createSelect();
         this._createEvents();
@@ -22479,9 +22337,6 @@ $(document).on(Metro.events.click, function(){
     $(".select").removeClass("focused");
 }, {ns: "blur-select-elements"});
 
-Metro.plugin('select', Select);
-
-
 
 var SidebarDefaultConfig = {
     sidebarDeferred: 0,
@@ -22510,13 +22365,12 @@ if (typeof window["metroSidebarSetup"] !== undefined) {
     Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
-var Sidebar = $.extend({}, Metro.Component, {
-    name: "Sidebar",
-
+Component('sidebar', {
     init: function( options, elem ) {
         this._super(elem, options, SidebarDefaultConfig);
 
         this.toggle_element = null;
+        this.id = Utils.elementId('sidebar');
 
         Metro.createExec(this);
 
@@ -22526,7 +22380,7 @@ var Sidebar = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "sidebar");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -22556,10 +22410,6 @@ var Sidebar = $.extend({}, Metro.Component, {
 
         if (o.shadow === true) {
             element.addClass("sidebar-shadow");
-        }
-
-        if (element.attr("id") === undefined) {
-            element.attr("id", Utils.elementId("sidebar"));
         }
 
         if (o.toggle !== null && $(o.toggle).length > 0) {
@@ -22604,7 +22454,7 @@ var Sidebar = $.extend({}, Metro.Component, {
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
             $(window).on(Metro.events.resize,function(){
                 that._checkStatic();
-            }, {ns: element.attr("id")});
+            }, {ns: this.id});
         }
 
         if (o.menuItemClick === true) {
@@ -22722,7 +22572,7 @@ var Sidebar = $.extend({}, Metro.Component, {
         }
 
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-            $(window).off(Metro.events.resize, {ns: element.attr("id")});
+            $(window).off(Metro.events.resize, {ns: this.id});
         }
 
         if (o.menuItemClick === true) {
@@ -22735,8 +22585,6 @@ var Sidebar = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('sidebar', Sidebar);
-
 Metro['sidebar'] = {
     isSidebar: function(el){
         return Utils.isMetroObject(el, "sidebar");
@@ -22746,28 +22594,28 @@ Metro['sidebar'] = {
         if (!this.isSidebar(el)) {
             return ;
         }
-        Metro.getPlugin($(el)[0], "sidebar").open();
+        Metro.getPlugin(el, "sidebar").open();
     },
 
     close: function(el){
         if (!this.isSidebar(el)) {
             return ;
         }
-        Metro.getPlugin($(el)[0], "sidebar").close();
+        Metro.getPlugin(el, "sidebar").close();
     },
 
     toggle: function(el){
         if (!this.isSidebar(el)) {
             return ;
         }
-        Metro.getPlugin($(el)[0], "sidebar").toggle();
+        Metro.getPlugin(el, "sidebar").toggle();
     },
 
     isOpen: function(el){
         if (!this.isSidebar(el)) {
             return ;
         }
-        return Metro.getPlugin($(el)[0], "sidebar").isOpen();
+        return Metro.getPlugin(el, "sidebar").isOpen();
     }
 };
 
@@ -22820,9 +22668,7 @@ if (typeof window["metroSliderSetup"] !== undefined) {
     Metro.sliderSetup(window["metroSliderSetup"]);
 }
 
-var Slider = $.extend({}, Metro.Component, {
-    name: "Slider",
-
+Component('slider', {
     init: function( options, elem ) {
         this._super(elem, options, SliderDefaultConfig);
 
@@ -22832,6 +22678,7 @@ var Slider = $.extend({}, Metro.Component, {
         this.pixel = 0;
         this.buffer = 0;
         this.keyInterval = false;
+        this.id = Utils.elementId('slider');
 
         Metro.createExec(this);
 
@@ -22841,7 +22688,7 @@ var Slider = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "slider");
+        Metro.checkRuntime(element, this.name);
 
         this._createSlider();
         this._createEvents();
@@ -22945,11 +22792,11 @@ var Slider = $.extend({}, Metro.Component, {
                     val: that.value,
                     percent: that.percent
                 });
-            }, {ns: slider.attr("id"), passive: false});
+            }, {ns: that.id, passive: false});
 
             $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});
-                $(document).off(Metro.events.stopAll, {ns: slider.attr("id")});
+                $(document).off(Metro.events.moveAll, {ns: that.id});
+                $(document).off(Metro.events.stopAll, {ns: that.id});
 
                 if (o.hintAlways !== true) {
                     hint.fadeOut(300);
@@ -22960,7 +22807,7 @@ var Slider = $.extend({}, Metro.Component, {
                     val: that.value,
                     percent: that.percent
                 });
-            }, {ns: slider.attr("id")});
+            }, {ns: that.id});
 
             Utils.exec(o.onStart, [that.value, that.percent], element[0]);
             element.fire("start", {
@@ -23051,7 +22898,7 @@ var Slider = $.extend({}, Metro.Component, {
         $(window).on(Metro.events.resize,function(){
             that.val(that.value);
             that.buff(that.buffer);
-        }, {ns: slider.attr("id")});
+        }, {ns: that.id});
     },
 
     _convert: function(v, how){
@@ -23342,13 +23189,12 @@ var Slider = $.extend({}, Metro.Component, {
         marker.off(Metro.events.keydown);
         marker.off(Metro.events.keyup);
         slider.off(Metro.events.click);
-        $(window).off(Metro.events.resize, {ns: slider.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         return element;
     }
 });
 
-Metro.plugin('slider', Slider);
 
 var SorterDefaultConfig = {
     sorterDeferred: 0,
@@ -23373,9 +23219,7 @@ if (typeof window["metroSorterSetup"] !== undefined) {
     Metro.sorterSetup(window["metroSorterSetup"]);
 }
 
-var Sorter = $.extend({}, Metro.Component, {
-    name: "Sorter",
-
+Component('sorter', {
     init: function( options, elem ) {
         this._super(elem, options, SorterDefaultConfig);
 
@@ -23389,7 +23233,7 @@ var Sorter = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "sorter");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
 
@@ -23569,8 +23413,6 @@ var Sorter = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('sorter', Sorter);
-
 Metro['sorter'] = {
     create: function(el, op){
         return Utils.$()(el).sorter(op);
@@ -23587,14 +23429,14 @@ Metro['sorter'] = {
         if (dir === undefined) {
             dir = "asc";
         }
-        Metro.getPlugin($(el)[0], "sorter").sort(dir);
+        Metro.getPlugin(el, "sorter").sort(dir);
     },
 
     reset: function(el){
         if (!this.isSorter(el)) {
             return false;
         }
-        Metro.getPlugin($(el)[0], "sorter").reset();
+        Metro.getPlugin(el, "sorter").reset();
     }
 };
 
@@ -23634,9 +23476,7 @@ if (typeof window["metroSpinnerSetup"] !== undefined) {
     Metro.spinnerSetup(window["metroSpinnerSetup"]);
 }
 
-var Spinner = $.extend({}, Metro.Component, {
-    name: "Spinner",
-
+Component('spinner', {
     init: function( options, elem ) {
         this._super(elem, options, SpinnerDefaultConfig);
 
@@ -23650,7 +23490,7 @@ var Spinner = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "spinner");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -23871,8 +23711,6 @@ var Spinner = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('spinner', Spinner);
-
 $(document).on(Metro.events.click, function(){
     $(".spinner").removeClass("focused");
 });
@@ -23903,9 +23741,7 @@ if (typeof window["metroSplitterSetup"] !== undefined) {
     Metro.splitterSetup(window["metroSplitterSetup"]);
 }
 
-var Splitter = $.extend({}, Metro.Component, {
-    name: "Splitter",
-
+Component('splitter', {
     init: function( options, elem ) {
         this._super(elem, options, SplitterDefaultConfig);
 
@@ -23921,7 +23757,7 @@ var Splitter = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "splitter");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -24140,7 +23976,6 @@ var Splitter = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('splitter', Splitter);
 
 var StepperDefaultConfig = {
     stepperDeferred: 0,
@@ -24165,9 +24000,7 @@ if (typeof window["metroStepperSetup"] !== undefined) {
     Metro.stepperSetup(window["metroStepperSetup"]);
 }
 
-var Stepper = $.extend({}, Metro.Component, {
-    name: "Stepper",
-
+Component('stepper', {
     init: function( options, elem ) {
         this._super(elem, options, StepperDefaultConfig);
 
@@ -24181,7 +24014,7 @@ var Stepper = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "stepper");
+        Metro.checkRuntime(element, this.name);
 
         if (o.step <= 0) {
             o.step = 1;
@@ -24292,7 +24125,6 @@ var Stepper = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('stepper', Stepper);
 
 var Storage = function(type){
     return new Storage.init(type);
@@ -24422,9 +24254,7 @@ if (typeof window["metroStreamerSetup"] !== undefined) {
     Metro.streamerSetup(window["metroStreamerSetup"]);
 }
 
-var Streamer = $.extend({}, Metro.Component, {
-    name: "Streamer",
-
+Component('streamer', {
     init: function( options, elem ) {
         this._super(elem, options, StreamerDefaultConfig);
 
@@ -25183,7 +25013,7 @@ var Streamer = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('streamer', Streamer);
+
 
 var SwitchDefaultConfig = {
     switchDeferred: 0,
@@ -25205,9 +25035,7 @@ if (typeof window["metroSwitchSetup"] !== undefined) {
     Metro.switchSetup(window["metroSwitchSetup"]);
 }
 
-var Switch = $.extend({}, Metro.Component, {
-    name: "Switch",
-
+Component('switch', {
     init: function( options, elem ) {
         this._super(elem, options, SwitchDefaultConfig);
 
@@ -25222,7 +25050,7 @@ var Switch = $.extend({}, Metro.Component, {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        Metro.checkRuntime(element, "switch");
+        Metro.checkRuntime(element, this.name);
 
         element.attr("type", "checkbox");
 
@@ -25290,7 +25118,6 @@ var Switch = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('switch', Switch);
 
 var TableDefaultConfig = {
     tableDeferred: 0,
@@ -25435,9 +25262,7 @@ if (typeof window["metroTableSetup"] !== undefined) {
     Metro.tableSetup(window["metroTableSetup"]);
 }
 
-var Table = $.extend({}, Metro.Component, {
-    name: "Table",
-
+Component('table', {
     init: function( options, elem ) {
         this._super(elem, options, TableDefaultConfig);
 
@@ -25463,6 +25288,7 @@ var Table = $.extend({}, Metro.Component, {
         this.locale = Metro.locales["en-US"];
         this.input_interval = null;
         this.searchFields = [];
+        this.id = Utils.elementId('table');
 
         this.sort = {
             dir: "asc",
@@ -25488,7 +25314,7 @@ var Table = $.extend({}, Metro.Component, {
         var id = Utils.elementId("table");
         var table_component, table_container, activity, loadActivity;
 
-        Metro.checkRuntime(element, "table");
+        Metro.checkRuntime(element, this.name);
 
         if (!Utils.isValue(element.attr("id"))) {
             element.attr("id", id);
@@ -25530,7 +25356,6 @@ var Table = $.extend({}, Metro.Component, {
         }
 
         table_component = $("<div>").addClass("table-component");
-        table_component.attr("id", Utils.elementId("table"));
         table_component.insertBefore(element);
 
         table_container = $("<div>").addClass("table-container").addClass(o.clsTableContainer).appendTo(table_component);
@@ -26238,7 +26063,7 @@ var Table = $.extend({}, Metro.Component, {
                     table_container.addClass("horizontal-scroll");
                 }
             }
-        }, {ns: component.attr("id")});
+        }, {ns: this.id});
 
         element.on(Metro.events.click, ".sortable-column", function(){
 
@@ -27485,7 +27310,7 @@ var Table = $.extend({}, Metro.Component, {
         search_input.data("input").destroy();
         rows_select.data("select").destroy();
 
-        $(window).off(Metro.events.resize, {ns: component.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         element.off(Metro.events.click, ".sortable-column");
 
@@ -27514,7 +27339,6 @@ var Table = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('table', Table);
 
 var MaterialTabsDefaultConfig = {
     materialtabsDeferred: 0,
@@ -27540,9 +27364,7 @@ if (typeof window["metroMaterialTabsSetup"] !== undefined) {
     Metro.materialTabsSetup(window["metroMaterialTabsSetup"]);
 }
 
-var MaterialTabs = $.extend({}, Metro.Component, {
-    name: "MaterialTabs",
-
+Component('material-tabs', {
     init: function( options, elem ) {
         this._super(elem, options, MaterialTabsDefaultConfig);
 
@@ -27558,7 +27380,7 @@ var MaterialTabs = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "materialtabs");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -27721,7 +27543,6 @@ var MaterialTabs = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('materialtabs', MaterialTabs);
 
 var TabsDefaultConfig = {
     tabsDeferred: 0,
@@ -27748,13 +27569,12 @@ if (typeof window["metroTabsSetup"] !== undefined) {
     Metro.tabsSetup(window["metroTabsSetup"]);
 }
 
-var Tabs = $.extend({}, Metro.Component, {
-    name: "Tabs",
-
+Component('tabs', {
     init: function( options, elem ) {
         this._super(elem, options, TabsDefaultConfig);
 
         this._targets = [];
+        this.id = Utils.elementId('tabs');
 
         Metro.createExec(this);
 
@@ -27765,7 +27585,7 @@ var Tabs = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
-        Metro.checkRuntime(element, "tabs");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -27781,10 +27601,6 @@ var Tabs = $.extend({}, Metro.Component, {
         var right_parent = parent.hasClass("tabs");
         var container = right_parent ? parent : $("<div>").addClass("tabs tabs-wrapper");
         var expandTitle, hamburger;
-
-        if (!Utils.isValue(element.attr("id"))) {
-            element.attr("id", Utils.elementId("tabs"));
-        }
 
         container.addClass(o.tabsPosition.replace(["-", "_", "+"], " "));
 
@@ -27849,7 +27665,7 @@ var Tabs = $.extend({}, Metro.Component, {
                     if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
                 }
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
 
         container.on(Metro.events.click, ".hamburger, .expand-title", function(){
             if (element.data('expanded') === false) {
@@ -27993,7 +27809,7 @@ var Tabs = $.extend({}, Metro.Component, {
         var element = this.element;
         var container = element.parent();
 
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         container.off(Metro.events.click, ".hamburger, .expand-title");
 
@@ -28003,7 +27819,6 @@ var Tabs = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('tabs', Tabs);
 
 var TagInputDefaultConfig = {
     taginputDeferred: 0,
@@ -28041,9 +27856,7 @@ if (typeof window["metroTagInputSetup"] !== undefined) {
     Metro.tagInputSetup(window["metroTagInputSetup"]);
 }
 
-var TagInput = $.extend({}, Metro.Component, {
-    name: "TagInput",
-
+Component('tag-input', {
     init: function( options, elem ) {
         this._super(elem, options, TagInputDefaultConfig);
 
@@ -28058,7 +27871,7 @@ var TagInput = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "taginput");
+        Metro.checkRuntime(element, this.name);
 
         this.triggers = (""+o.tagTrigger).toArray(",");
 
@@ -28382,7 +28195,6 @@ var TagInput = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('taginput', TagInput);
 
 var TextareaDefaultConfig = {
     textareaDeferred: 0,
@@ -28411,9 +28223,7 @@ if (typeof window["metroTextareaSetup"] !== undefined) {
     Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
-var Textarea = $.extend({}, Metro.Component, {
-    name: "Textarea",
-
+Component('textarea', {
     init: function( options, elem ) {
         this._super(elem, options, TextareaDefaultConfig);
 
@@ -28425,7 +28235,7 @@ var Textarea = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "textarea");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -28603,7 +28413,6 @@ var Textarea = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('textarea', Textarea);
 
 var TileDefaultConfig = {
     tileDeferred: 0,
@@ -28627,9 +28436,7 @@ if (typeof window["metroTileSetup"] !== undefined) {
     Metro.tileSetup(window["metroTileSetup"]);
 }
 
-var Tile = $.extend({}, Metro.Component, {
-    name: "Tile",
-
+Component('tile', {
     init: function( options, elem ) {
         this._super(elem, options, TileDefaultConfig);
 
@@ -28647,7 +28454,7 @@ var Tile = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "tile");
+        Metro.checkRuntime(element, this.name);
 
         this._createTile();
         this._createEvents();
@@ -28848,7 +28655,6 @@ var Tile = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('tile', Tile);
 
 var TimePickerDefaultConfig = {
     timepickerDeferred: 0,
@@ -28886,9 +28692,7 @@ if (typeof window["metroTimePickerSetup"] !== undefined) {
     Metro.timePickerSetup(window["metroTimePickerSetup"]);
 }
 
-var TimePicker = $.extend({}, Metro.Component, {
-    name: "TimePicker",
-
+Component('time-picker', {
     init: function( options, elem ) {
         this._super(elem, options, TimePickerDefaultConfig);
 
@@ -28912,7 +28716,7 @@ var TimePicker = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var i;
 
-        Metro.checkRuntime(element, "timepicker");
+        Metro.checkRuntime(element, this.name);
 
         if (o.distance < 1) {
             o.distance = 1;
@@ -29333,8 +29137,6 @@ var TimePicker = $.extend({}, Metro.Component, {
 
 });
 
-Metro.plugin('timepicker', TimePicker);
-
 $(document).on(Metro.events.click, function(){
     $.each($(".time-picker"), function(){
         $(this).find("input").each(function(){
@@ -29474,9 +29276,7 @@ if (typeof window["metroTouchSetup"] !== undefined) {
     Metro.sliderSetup(window["metroTouchSetup"]);
 }
 
-var Touch = $.extend({}, Metro.Component, {
-    name: "Touch",
-
+Component('touch', {
     init: function( options, elem ) {
         this._super(elem, options, TouchDefaultConfig);
 
@@ -29526,6 +29326,8 @@ var Touch = $.extend({}, Metro.Component, {
 
     _create: function(){
         var that = this, element = this.element, o = this.options;
+
+        Metro.checkRuntime(element, this.name);
 
         if (o.allowPageScroll === undefined && (o.onSwipe !== Metro.noop || o.onSwipeStatus !== Metro.noop)) {
             o.allowPageScroll = TouchConst.NONE;
@@ -30561,7 +30363,7 @@ var Touch = $.extend({}, Metro.Component, {
 });
 
 Metro['touch'] = TouchConst;
-Metro.plugin('touch', Touch);
+
 
 var TreeViewDefaultConfig = {
     treeviewDeferred: 0,
@@ -30587,9 +30389,7 @@ if (typeof window["metroTreeViewSetup"] !== undefined) {
     Metro.treeViewSetup(window["metroTreeViewSetup"]);
 }
 
-var TreeView = $.extend({}, Metro.Component, {
-    name: "TreeView",
-
+Component('tree-view', {
     init: function( options, elem ) {
         this._super(elem, options, TreeViewDefaultConfig);
 
@@ -30601,7 +30401,7 @@ var TreeView = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "treeview");
+        Metro.checkRuntime(element, this.name);
 
         this._createTree();
         this._createEvents();
@@ -30971,8 +30771,6 @@ var TreeView = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('treeview', TreeView);
-
 
 var ValidatorFuncs = {
     required: function(val){
@@ -31274,7 +31072,7 @@ if (typeof window["metroValidatorSetup"] !== undefined) {
     Metro.validatorSetup(window["metroValidatorSetup"]);
 }
 
-var Validator = $.extend({}, Metro.Component, {
+Component('validator', {
     name: "Validator",
 
     init: function( options, elem ) {
@@ -31292,6 +31090,8 @@ var Validator = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var inputs = element.find("[data-validate]");
+
+        Metro.checkRuntime(element, this.name);
 
         element
             .attr("novalidate", 'novalidate');
@@ -31402,8 +31202,6 @@ var Validator = $.extend({}, Metro.Component, {
             }
         }
 
-        console.log(result.val === 0);
-
         return result.val === 0;
     },
 
@@ -31411,7 +31209,6 @@ var Validator = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('validator', Validator);
 
 var VegasDefaultConfig = {
     duration: 4000,
@@ -31450,7 +31247,7 @@ if (typeof window["metroVegasSetup"] !== undefined) {
     Metro.vegasSetup(window["metroVegasSetup"]);
 }
 
-var Vegas = $.extend({}, Metro.Component, {
+Component('vegas', {
 
     videoCache: {},
 
@@ -31513,7 +31310,7 @@ var Vegas = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "vegas");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -32005,9 +31802,8 @@ var Vegas = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('vegas', Vegas);
 
-var VideoDefaultConfig = {
+var VideoPlayerDefaultConfig = {
     videoDeferred: 0,
     src: null,
 
@@ -32055,19 +31851,17 @@ var VideoDefaultConfig = {
     onVideoCreate: Metro.noop
 };
 
-Metro.videoSetup = function (options) {
-    VideoDefaultConfig = $.extend({}, VideoDefaultConfig, options);
+Metro.videoPlayerSetup = function (options) {
+    VideoPlayerDefaultConfig = $.extend({}, VideoPlayerDefaultConfig, options);
 };
 
-if (typeof window["metroVideoSetup"] !== undefined) {
-    Metro.videoSetup(window["metroVideoSetup"]);
+if (typeof window["metroVideoPlayerSetup"] !== undefined) {
+    Metro.videoPlayerSetup(window["metroVideoPlayerSetup"]);
 }
 
-var VideoPlayer = $.extend({}, Metro.Component, {
-    name: "Video",
-
+Component('video-player', {
     init: function( options, elem ) {
-        this._super(elem, options, VideoDefaultConfig);
+        this._super(elem, options, VideoPlayerDefaultConfig);
 
         this.fullscreen = false;
         this.preloader = null;
@@ -32079,6 +31873,7 @@ var VideoPlayer = $.extend({}, Metro.Component, {
         this.muted = false;
         this.fullScreenInterval = false;
         this.isPlaying = false;
+        this.id = Utils.elementId('videoplayer');
 
         Metro.createExec(this);
 
@@ -32088,7 +31883,7 @@ var VideoPlayer = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options, video = this.video;
 
-        Metro.checkRuntime(element, "video");
+        Metro.checkRuntime(element, this.name);
 
         if (Metro.fullScreenEnabled === false) {
             o.fullScreenMode = Metro.fullScreenMode.WINDOW;
@@ -32112,10 +31907,6 @@ var VideoPlayer = $.extend({}, Metro.Component, {
         var player = $("<div>").addClass("media-player video-player " + element[0].className);
         var preloader = $("<div>").addClass("preloader").appendTo(player);
         var logo = $("<a>").attr("href", o.logoTarget).addClass("logo").appendTo(player);
-
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("video"))
-        }
 
         player.insertBefore(element);
         element.appendTo(player);
@@ -32384,11 +32175,11 @@ var VideoPlayer = $.extend({}, Metro.Component, {
             if (that.fullscreen && e.keyCode === 27) {
                 player.find(".full").click();
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
 
         $(window).on(Metro.events.resize, function(){
             that._setAspectRatio();
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
 
     },
 
@@ -32596,14 +32387,13 @@ var VideoPlayer = $.extend({}, Metro.Component, {
         player.off(Metro.events.click, ".loop");
         player.off(Metro.events.click, ".full");
 
-        $(window).off(Metro.events.keyup,{ns: element.attr("id")});
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.keyup,{ns: this.id});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
 
-Metro.plugin('video', VideoPlayer);
 
 var WindowDefaultConfig = {
     windowDeferred: 0,
@@ -32669,9 +32459,7 @@ if (typeof window["metroWindowSetup"] !== undefined) {
     Metro.windowSetup(window["metroWindowSetup"]);
 }
 
-var Window = $.extend({}, Metro.Component, {
-    name: "Window",
-
+Component('window', {
     init: function( options, elem ) {
         this._super(elem, options, WindowDefaultConfig);
 
@@ -32694,7 +32482,7 @@ var Window = $.extend({}, Metro.Component, {
         var win, overlay;
         var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
 
-        Metro.checkRuntime(element, "window");
+        Metro.checkRuntime(element, this.name);
 
         if (o.modal === true) {
             o.btnMax = false;
@@ -33261,13 +33049,9 @@ var Window = $.extend({}, Metro.Component, {
     },
 
     destroy: function(){
-        var element = this.element;
-
-        return element;
+        return this.element;
     }
 });
-
-Metro.plugin('window', Window);
 
 Metro['window'] = {
 
@@ -33381,11 +33165,11 @@ if (typeof window["metroWizardSetup"] !== undefined) {
     Metro.wizardSetup(window["metroWizardSetup"]);
 }
 
-var Wizard = $.extend({}, Metro.Component, {
-    name: "Wizard",
-
+Component('wizard', {
     init: function( options, elem ) {
         this._super(elem, options, WizardDefaultConfig);
+
+        this.id = Utils.elementId('wizard');
 
         Metro.createExec(this);
 
@@ -33395,7 +33179,7 @@ var Wizard = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "wizard");
+        Metro.checkRuntime(element, this.name);
 
         this._createWizard();
         this._createEvents();
@@ -33407,10 +33191,6 @@ var Wizard = $.extend({}, Metro.Component, {
     _createWizard: function(){
         var that = this, element = this.element, o = this.options;
         var bar;
-
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("wizard"));
-        }
 
         element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
 
@@ -33501,7 +33281,7 @@ var Wizard = $.extend({}, Metro.Component, {
 
         $(window).on(Metro.events.resize, function(){
             that._setHeight();
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     next: function(){
@@ -33646,13 +33426,12 @@ var Wizard = $.extend({}, Metro.Component, {
         element.off(Metro.events.click, ".wizard-btn-next");
         element.off(Metro.events.click, ".wizard-btn-finish");
         element.off(Metro.events.click, ".complete");
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
 
-Metro.plugin('wizard', Wizard);
 
 if (METRO_INIT ===  true) {
 	METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});

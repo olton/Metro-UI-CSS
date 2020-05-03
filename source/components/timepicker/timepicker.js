@@ -34,9 +34,7 @@ if (typeof window["metroTimePickerSetup"] !== undefined) {
     Metro.timePickerSetup(window["metroTimePickerSetup"]);
 }
 
-var TimePicker = $.extend({}, Metro.Component, {
-    name: "TimePicker",
-
+Component('time-picker', {
     init: function( options, elem ) {
         this._super(elem, options, TimePickerDefaultConfig);
 
@@ -60,7 +58,7 @@ var TimePicker = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var i;
 
-        Metro.checkRuntime(element, "timepicker");
+        Metro.checkRuntime(element, this.name);
 
         if (o.distance < 1) {
             o.distance = 1;
@@ -480,8 +478,6 @@ var TimePicker = $.extend({}, Metro.Component, {
     }
 
 });
-
-Metro.plugin('timepicker', TimePicker);
 
 $(document).on(Metro.events.click, function(){
     $.each($(".time-picker"), function(){
