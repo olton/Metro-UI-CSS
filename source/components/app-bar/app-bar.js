@@ -22,6 +22,8 @@ Component('app-bar', {
     init: function( options, elem ) {
         this._super(elem, options, AppBarDefaultConfig);
 
+        this.id = Utils.elementId('appbar');
+
         Metro.createExec(this);
 
         return this;
@@ -41,7 +43,6 @@ Component('app-bar', {
 
     _createStructure: function(){
         var element = this.element, o = this.options;
-        var id = Utils.elementId("app-bar");
         var hamburger, menu;
 
         element.addClass("app-bar");
@@ -65,10 +66,6 @@ Component('app-bar', {
             hamburger.css("display", "none");
         } else {
             Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;"); // This special for IE11 and Edge
-        }
-
-        if( !!element.attr("id") === false ){
-            element.attr("id", id);
         }
 
         if (hamburger.css('display') === 'block') {
@@ -133,7 +130,7 @@ Component('app-bar', {
                     menu.hide().addClass("collapsed");
                 }
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     close: function(){
@@ -174,7 +171,7 @@ Component('app-bar', {
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
-        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
         return element;
     }
 });

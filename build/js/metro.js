@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/05/2020 17:33:15
+ * Built at 03/05/2020 18:11:02
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "03/05/2020 17:33:22",
+    compileTime: "03/05/2020 18:11:09",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -8457,6 +8457,8 @@ Component('app-bar', {
     init: function( options, elem ) {
         this._super(elem, options, AppBarDefaultConfig);
 
+        this.id = Utils.elementId('appbar');
+
         Metro.createExec(this);
 
         return this;
@@ -8476,7 +8478,6 @@ Component('app-bar', {
 
     _createStructure: function(){
         var element = this.element, o = this.options;
-        var id = Utils.elementId("app-bar");
         var hamburger, menu;
 
         element.addClass("app-bar");
@@ -8500,10 +8501,6 @@ Component('app-bar', {
             hamburger.css("display", "none");
         } else {
             Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;"); // This special for IE11 and Edge
-        }
-
-        if( !!element.attr("id") === false ){
-            element.attr("id", id);
         }
 
         if (hamburger.css('display') === 'block') {
@@ -8568,7 +8565,7 @@ Component('app-bar', {
                     menu.hide().addClass("collapsed");
                 }
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     close: function(){
@@ -8609,7 +8606,7 @@ Component('app-bar', {
     destroy: function(){
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
-        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
         return element;
     }
 });
