@@ -23,6 +23,12 @@
 + [x] Counter: update for using new `animate` function to draw
 + [x] File: fix clear when user fire `reset` on form in `drop` mode, issue #1524
 + [x] Adblock: a new component for hunting on the ads blockers 
++ [x] Core: refactoring for new component definition
++ [x] Audio: rename component to `audio-player`
++ [x] Video: rename component to `video-player`
++ [x] Calendar: minor upd for action buttons
++ [x] i18n: refactoring definition. Now each lang defined in own file
++ [x] Third party: third party components styles `select2`, `datatables` move to components and include to main
 
 ### 4.3.6
 ##### M4Q
