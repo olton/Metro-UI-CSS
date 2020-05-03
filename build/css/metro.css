@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/05/2020 18:10:52
+ * Built at 03/05/2020 18:25:24
  * Licensed under MIT
  */
 *,
@@ -21442,100 +21442,6 @@ pre code {
     height: 130px;
   }
 }
-.container,
-.container2,
-.container-fluid,
-section,
-header,
-footer,
-aside {
-  display: block;
-  position: relative;
-  margin: 0 auto;
-}
-.container::after,
-.container2::after,
-.container-fluid::after,
-section::after,
-header::after,
-footer::after,
-aside::after {
-  display: block;
-  clear: both;
-  content: "";
-}
-.container::after,
-.container2::after,
-.container-fluid::after,
-section::after,
-header::after,
-footer::after,
-aside::after {
-  display: block;
-  clear: both;
-  content: "";
-}
-.container,
-.container2 {
-  width: 100%;
-  padding-right: 12px;
-  padding-left: 12px;
-}
-.container-fluid {
-  width: 100%;
-  max-width: none;
-  padding-right: 12px;
-  padding-left: 12px;
-}
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-  .container2 {
-    max-width: 90%;
-  }
-}
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
-}
-@media (min-width: 992px) {
-  .container,
-  .container2 {
-    max-width: 960px;
-  }
-}
-@media (min-width: 1200px) {
-  .container,
-  .container2 {
-    max-width: 1140px;
-  }
-}
-@media (min-width: 1452px) {
-  .container,
-  .container2 {
-    max-width: 1360px;
-  }
-}
-.container-fs {
-  max-width: 0 !important;
-}
-.container-sm {
-  max-width: 576px !important;
-}
-.container-md {
-  max-width: 768px !important;
-}
-.container-lg {
-  max-width: 992px !important;
-}
-.container-xl {
-  max-width: 1200px !important;
-}
-.container-xxl {
-  max-width: 1452px !important;
-}
 .accordion {
   list-style: none inside;
   margin: 0;
@@ -25323,6 +25229,99 @@ input[type=reset]:active {
 .command-button:disabled,
 .image-button:disabled {
   opacity: 0.65;
+}
+.container,
+.container2,
+.container-fluid,
+section,
+header,
+footer,
+aside {
+  margin: 0 auto;
+  position: relative;
+}
+.container::after,
+.container2::after,
+.container-fluid::after,
+section::after,
+header::after,
+footer::after,
+aside::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.container::after,
+.container2::after,
+.container-fluid::after,
+section::after,
+header::after,
+footer::after,
+aside::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.container,
+.container2 {
+  width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+.container-fluid {
+  width: 100%;
+  max-width: none;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+  .container2 {
+    max-width: 90%;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container,
+  .container2 {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container,
+  .container2 {
+    max-width: 1140px;
+  }
+}
+@media (min-width: 1452px) {
+  .container,
+  .container2 {
+    max-width: 1360px;
+  }
+}
+.container-fs {
+  max-width: 0 !important;
+}
+.container-sm {
+  max-width: 576px !important;
+}
+.container-md {
+  max-width: 768px !important;
+}
+.container-lg {
+  max-width: 992px !important;
+}
+.container-xl {
+  max-width: 1200px !important;
+}
+.container-xxl {
+  max-width: 1452px !important;
 }
 .countdown {
   display: -webkit-box;

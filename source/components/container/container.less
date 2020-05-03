@@ -2,9 +2,9 @@
 @import (once) "../../include/mixins";
 
 .container, .container2, .container-fluid, section, header, footer, aside {
-    .set-relative();
-    .clear();
     margin: 0 auto;
+    position: relative;
+    .clear();
 }
 
 .container, .container2 {
