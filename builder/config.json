@@ -18,14 +18,14 @@
     },
 
     "parts": {
-        "base": "Base CSS",
+        "common": "Common CSS",
         "utils": "Utilities functions",
         "components": "Components",
         "icons": "Icons"
     },
 
     "css": {
-        "base": {
+        "common": {
             "accent_colors": {
                 "name": "Accent colors",
                 "less": ["accent-colors"]
@@ -102,16 +102,6 @@
                 "name": "Utilities",
                 "less": ["utils"]
             },
-
-            "select2_css": {
-                "name": "Select2",
-                "less": ["third-party/select2"]
-            },
-            "datatable_css": {
-                "name": "Datatable",
-                "less": ["third-party/datatables"]
-            },
-
             "debug_css": {
                 "name": "Debug class",
                 "less": ["debug"]
@@ -144,6 +134,10 @@
             "string": {
                 "name": "String ext",
                 "js": ["extensions/string"]
+            },
+            "object": {
+                "name": "Object ext",
+                "js": ["extensions/object"]
             }
         },
 
@@ -345,6 +339,10 @@
                 "name": "Cube",
                 "less": ["cube"],
                 "js": ["plugins/cube"]
+            },
+            "datatables_css": {
+                "name": "Datatables",
+                "less": ["plugins/datatables"]
             },
             "datepicker_comp":{
                 "name": "Date picker",
@@ -577,6 +575,10 @@
                         "inputs", "menu", "drop-utils"
                     ]
                 }
+            },
+            "select2_css": {
+                "name": "Select2",
+                "less": ["plugins/select2"]
             },
             "sidebar_comp":{
                 "name": "Sidebar",
