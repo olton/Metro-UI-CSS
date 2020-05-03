@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/05/2020 09:53:43
+ * Built at 03/05/2020 16:26:08
  * Licensed under MIT
  */
 *,
@@ -2804,6 +2804,9 @@ input[type=reset].light.outline:hover {
 .calendar-footer > * {
   margin: 0 2px;
   font-size: 0.75rem;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 8px;
 }
 .calendar.compact {
   width: 240px;

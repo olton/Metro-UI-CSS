@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/05/2020 09:53:43
+ * Built at 03/05/2020 16:26:08
  * Licensed under MIT
  */
 
@@ -4282,32 +4282,16 @@ if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
 
 window.METRO_MEDIA = [];
 
-if ( typeof Object.create !== 'function' ) {
-    Object.create = function (o) {
-        function F() {}
-        F.prototype = o;
-        return new F();
-    };
-}
-
-if (typeof Object.values !== 'function') {
-    Object.values = function(obj) {
-        return Object.keys(obj).map(function(e) {
-            return obj[e]
-        });
-    }
-}
-
 var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
 var normalizeComponentName = function(name){
-    return typeof name !== "string" ? undefined : name.replace(/\-/g, "").toLowerCase();
+    return typeof name !== "string" ? undefined : name.replace(/-/g, "").toLowerCase();
 };
 
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "03/05/2020 09:53:53",
+    compileTime: "03/05/2020 16:26:15",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4469,6 +4453,15 @@ var Metro = {
     hotkeys: {},
 
     about: function(){
+        var content =
+            "<h3>About</h3>" +
+            "<hr>" +
+            "<div><b>Metro 4</b> - v" + Metro.version +". "+ Metro.showCompileTime() + "</div>" +
+            "<div><b>M4Q</b> - " + m4q.version + "</div>";
+        Metro.infobox.create(content)
+    },
+
+    info: function(){
         console.info("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
         console.info("m4q - " + m4q.version);
     },
@@ -4561,7 +4554,7 @@ var Metro = {
         var hotkeys = $("[data-hotkey]");
         var html = $("html");
 
-        if (METRO_SHOW_ABOUT) Metro.about(true);
+        if (METRO_SHOW_ABOUT) Metro.info(true);
 
         if (isTouch === true) {
             html.addClass("metro-touch-device");
@@ -4794,30 +4787,6 @@ var Metro = {
         } else {
             that._create();
         }
-    }
-};
-
-Metro["Component"] = {
-    _super: function(el, options, defaults){
-        this.elem = el;
-        this.element = $(el);
-        this.options = $.extend( {}, defaults, options );
-
-        this._setOptionsFromDOM();
-    },
-
-    _setOptionsFromDOM: function(){
-        var element = this.element, o = this.options;
-
-        $.each(element.data(), function(key, value){
-            if (key in o) {
-                try {
-                    o[key] = JSON.parse(value);
-                } catch (e) {
-                    o[key] = value;
-                }
-            }
-        });
     }
 };
 
@@ -5064,6 +5033,23 @@ Number.prototype.format = function(n, x, s, c) {
 
     return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
 };
+
+
+if ( typeof Object.create !== 'function' ) {
+    Object.create = function (o) {
+        function F() {}
+        F.prototype = o;
+        return new F();
+    };
+}
+
+if (typeof Object.values !== 'function') {
+    Object.values = function(obj) {
+        return Object.keys(obj).map(function(e) {
+            return obj[e]
+        });
+    }
+}
 
 
 String.prototype.capitalize = function() {
