@@ -17,9 +17,7 @@ if (typeof window["metroDropdownSetup"] !== undefined) {
     Metro.dropdownSetup(window["metroDropdownSetup"]);
 }
 
-var Dropdown = $.extend({}, Metro.Component, {
-    name: "Dropdown",
-
+Component('dropdown', {
     init: function( options, elem ) {
         this._super(elem, options, DropdownDefaultConfig);
 
@@ -35,7 +33,7 @@ var Dropdown = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "dropdown");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -206,5 +204,3 @@ $(document).on(Metro.events.click, function(){
         }
     });
 });
-
-Metro.plugin('dropdown', Dropdown);

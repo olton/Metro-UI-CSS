@@ -45,10 +45,8 @@ if (typeof window["metroDialogSetup"] !== undefined) {
     Metro.dialogSetup(window["metroDialogSetup"]);
 }
 
-var Dialog = $.extend({}, Metro.Component, {
+Component('dialog', {
     _counter: 0,
-
-    name: "Dialog",
 
     init: function( options, elem ) {
         this._super(elem, options, DialogDefaultConfig);
@@ -65,7 +63,7 @@ var Dialog = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
-        Metro.checkRuntime(element, "dialog");
+        Metro.checkRuntime(element, this.name);
 
         this._build();
     },
@@ -330,8 +328,6 @@ var Dialog = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('dialog', Dialog);
 
 Metro['dialog'] = {
 

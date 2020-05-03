@@ -62,9 +62,7 @@ if (typeof window["metroWindowSetup"] !== undefined) {
     Metro.windowSetup(window["metroWindowSetup"]);
 }
 
-var Window = $.extend({}, Metro.Component, {
-    name: "Window",
-
+Component('window', {
     init: function( options, elem ) {
         this._super(elem, options, WindowDefaultConfig);
 
@@ -87,7 +85,7 @@ var Window = $.extend({}, Metro.Component, {
         var win, overlay;
         var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
 
-        Metro.checkRuntime(element, "window");
+        Metro.checkRuntime(element, this.name);
 
         if (o.modal === true) {
             o.btnMax = false;
@@ -654,13 +652,9 @@ var Window = $.extend({}, Metro.Component, {
     },
 
     destroy: function(){
-        var element = this.element;
-
-        return element;
+        return this.element;
     }
 });
-
-Metro.plugin('window', Window);
 
 Metro['window'] = {
 

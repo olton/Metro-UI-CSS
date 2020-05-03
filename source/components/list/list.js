@@ -69,9 +69,7 @@ if (typeof window["metroListSetup"] !== undefined) {
     Metro.listSetup(window["metroListSetup"]);
 }
 
-var List = $.extend({}, Metro.Component, {
-    name: "List",
-
+Component('list', {
     init: function( options, elem ) {
         this._super(elem, options, ListDefaultConfig);
 
@@ -106,7 +104,7 @@ var List = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "list");
+        Metro.checkRuntime(element, this.name);
 
         if (o.source !== null) {
             Utils.exec(o.onDataLoad, [o.source], element[0]);
@@ -866,5 +864,3 @@ var List = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('list', List);

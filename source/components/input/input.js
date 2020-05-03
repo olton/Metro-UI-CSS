@@ -52,9 +52,7 @@ if (typeof window["metroInputSetup"] !== undefined) {
     Metro.inputSetup(window["metroInputSetup"]);
 }
 
-var Input = $.extend({}, Metro.Component, {
-    name: "Input",
-
+Component('input', {
     init: function( options, elem ) {
         this._super(elem, options, InputDefaultConfig);
 
@@ -70,7 +68,7 @@ var Input = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "input");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -447,8 +445,6 @@ var Input = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('input', Input);
 
 $(document).on(Metro.events.click, function(){
     $('.input .autocomplete-list').hide();

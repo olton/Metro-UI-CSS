@@ -21,9 +21,7 @@ if (typeof window["metroStepperSetup"] !== undefined) {
     Metro.stepperSetup(window["metroStepperSetup"]);
 }
 
-var Stepper = $.extend({}, Metro.Component, {
-    name: "Stepper",
-
+Component('stepper', {
     init: function( options, elem ) {
         this._super(elem, options, StepperDefaultConfig);
 
@@ -37,7 +35,7 @@ var Stepper = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "stepper");
+        Metro.checkRuntime(element, this.name);
 
         if (o.step <= 0) {
             o.step = 1;
@@ -147,5 +145,3 @@ var Stepper = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('stepper', Stepper);

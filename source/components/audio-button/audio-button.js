@@ -13,7 +13,7 @@ if (typeof window["metroAudioButtonSetup"] !== undefined) {
     Metro.audioButtonSetup(window["metroAudioButtonSetup"]);
 }
 
-var AudioButton = $.extend({}, Metro.Component, {
+Component('audio-button', {
     init: function( options, elem ) {
 
         this._super(elem, options, AudioButtonDefaultConfig);
@@ -30,7 +30,7 @@ var AudioButton = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "audio-button");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -97,8 +97,6 @@ var AudioButton = $.extend({}, Metro.Component, {
         element.off(Metro.events.click, {ns: this.id});
     }
 });
-
-Metro.plugin('audio-button', AudioButton);
 
 Metro["playSound"] = function(src, cb){
     var audio = new Audio(src);

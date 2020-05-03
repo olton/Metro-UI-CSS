@@ -29,9 +29,7 @@ if (typeof window["metroProgressSetup"] !== undefined) {
     Metro.progressSetup(window["metroProgressSetup"]);
 }
 
-var Progress = $.extend({}, Metro.Component, {
-    name: "Progress",
-
+Component('progress', {
     init: function( options, elem ) {
         this._super(elem, options, ProgressDefaultConfig);
 
@@ -47,7 +45,7 @@ var Progress = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var value;
 
-        Metro.checkRuntime(element, "progress");
+        Metro.checkRuntime(element, this.name);
 
         if (typeof o.type === "string") o.type = o.type.toLowerCase();
 
@@ -203,5 +201,3 @@ var Progress = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('progress', Progress);

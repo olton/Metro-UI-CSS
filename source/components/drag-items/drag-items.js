@@ -24,13 +24,11 @@ if (typeof window["metroDragItemsSetup"] !== undefined) {
     Metro.dragItemsSetup(window["metroDragItemsSetup"]);
 }
 
-var DragItems = $.extend({}, Metro.Component, {
-    name: "DragItems",
-
+Component('drag-items', {
     init: function( options, elem ) {
         this._super(elem, options, DragItemsDefaultConfig);
 
-        this.id = null;
+        this.id = Utils.elementId("dragItems");
         this.canDrag = false;
 
         Metro.createExec(this);
@@ -39,10 +37,9 @@ var DragItems = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
-        this.id = Utils.elementId("dragItems");
-        o.canDrag ? this.on() : this.off();
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -52,7 +49,7 @@ var DragItems = $.extend({}, Metro.Component, {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         element.addClass("drag-items-target");
 
@@ -61,6 +58,8 @@ var DragItems = $.extend({}, Metro.Component, {
                 $("<span>").addClass("drag-item-marker").appendTo(this);
             })
         }
+
+        o.canDrag ? this.on() : this.off();
     },
 
     _createEvents: function(){
@@ -173,7 +172,7 @@ var DragItems = $.extend({}, Metro.Component, {
 
             }, {ns: that.id, passive: false});
 
-            doc.on(Metro.events.stopAll, function(e_stop){
+            doc.on(Metro.events.stopAll, function(){
 
                 Utils.exec(o.onDragDropItem, [dragItem[0], avatar[0]], element[0]);
                 element.fire("dragdropitem", {
@@ -228,5 +227,3 @@ var DragItems = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('dragitems', DragItems);

@@ -42,9 +42,42 @@ if (typeof window["metroCubeSetup"] !== undefined) {
     Metro.cubeSetup(window["metroCubeSetup"]);
 }
 
-var Cube = $.extend({}, Metro.Component, {
-    name: "Cube",
+Metro.cubeDefaultRules = [
+    {
+        on: {'top': [16],      'left': [4],         'right': [1]},
+        off: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]}
+    },
+    {
+        on: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]},
+        off: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]}
+    },
+    {
+        on: {'top': [11],      'left': [7],         'right': [6]},
+        off: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]}
+    },
+    {
+        on: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]},
+        off: {'top': [16],      'left': [4],         'right': [1]}
+    },
+    {
+        on: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]},
+        off: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]}
+    },
+    {
+        on: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]},
+        off: {'top': [11],      'left': [7],         'right': [6]}
+    },
+    {
+        on: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]},
+        off: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]}
+    },
+    {
+        on: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]},
+        off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
+    }
+];
 
+Component('cube', {
     init: function( options, elem ) {
         this._super(elem, options, CubeDefaultConfig);
 
@@ -60,48 +93,13 @@ var Cube = $.extend({}, Metro.Component, {
         return this;
     },
 
-    default_rules: [
-        {
-            on: {'top': [16],      'left': [4],         'right': [1]},
-            off: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]}
-        },
-        {
-            on: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]},
-            off: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]}
-        },
-        {
-            on: {'top': [11],      'left': [7],         'right': [6]},
-            off: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]}
-        },
-        {
-            on: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]},
-            off: {'top': [16],      'left': [4],         'right': [1]}
-        },
-        {
-            on: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]},
-            off: {'top': [12, 15],  'left': [3, 8],      'right': [2, 5]}
-        },
-        {
-            on: {'top': [13, 4],   'left': [1, 16],     'right': [13, 4]},
-            off: {'top': [11],      'left': [7],         'right': [6]}
-        },
-        {
-            on: {'top': [9, 6, 3], 'left': [5, 10, 15], 'right': [14, 11, 8]},
-            off: {'top': [8, 14],   'left': [2, 12],     'right': [9, 3]}
-        },
-        {
-            on: {'top': [1, 2, 5], 'left': [9, 13, 14], 'right': [15, 12, 16]},
-            off: {'top': [10, 7],   'left': [6, 11],     'right': [10, 7]}
-        }
-    ],
-
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "cube");
+        Metro.checkRuntime(element, this.name);
 
         if (o.rules === null) {
-            this.rules = this.default_rules;
+            this.rules = Metro.cubeDefaultRules;
         } else {
             this._parseRules(o.rules);
         }
@@ -458,5 +456,3 @@ var Cube = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('cube', Cube);

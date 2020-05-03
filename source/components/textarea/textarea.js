@@ -25,9 +25,7 @@ if (typeof window["metroTextareaSetup"] !== undefined) {
     Metro.textareaSetup(window["metroTextareaSetup"]);
 }
 
-var Textarea = $.extend({}, Metro.Component, {
-    name: "Textarea",
-
+Component('textarea', {
     init: function( options, elem ) {
         this._super(elem, options, TextareaDefaultConfig);
 
@@ -39,7 +37,7 @@ var Textarea = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "textarea");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -216,5 +214,3 @@ var Textarea = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('textarea', Textarea);

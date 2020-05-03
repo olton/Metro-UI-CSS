@@ -18,9 +18,7 @@ if (typeof window["metroAppBarSetup"] !== undefined) {
     Metro.appBarSetup(window["metroAppBarSetup"]);
 }
 
-var AppBar = $.extend({}, Metro.Component, {
-    name: "AppBar",
-
+Component('app-bar', {
     init: function( options, elem ) {
         this._super(elem, options, AppBarDefaultConfig);
 
@@ -32,7 +30,7 @@ var AppBar = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "appbar");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -180,5 +178,3 @@ var AppBar = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('appbar', AppBar);

@@ -1,4 +1,4 @@
-var AudioDefaultConfig = {
+var AudioPlayerDefaultConfig = {
     audioDeferred: 0,
     playlist: null,
     src: null,
@@ -54,19 +54,17 @@ var AudioDefaultConfig = {
     onAudioCreate: Metro.noop
 };
 
-Metro.audioSetup = function(options){
-    AudioDefaultConfig = $.extend({}, AudioDefaultConfig, options);
+Metro.audioPlayerSetup = function(options){
+    AudioPlayerDefaultConfig = $.extend({}, AudioPlayerDefaultConfig, options);
 };
 
-if (typeof window["metroAudioSetup"] !== undefined) {
-    Metro.audioSetup(window["metroAudioSetup"]);
+if (typeof window["metroAudioPlayerSetup"] !== undefined) {
+    Metro.audioPlayerSetup(window["metroAudioPlayerSetup"]);
 }
 
-var AudioPlayer = $.extend({}, Metro.Component, {
-    name: "Audio",
-
+Component('audio-player', {
     init: function( options, elem ) {
-        this._super(elem, options, AudioDefaultConfig);
+        this._super(elem, options, AudioPlayerDefaultConfig);
 
         this.preloader = null;
         this.player = null;
@@ -84,7 +82,7 @@ var AudioPlayer = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "audio");
+        Metro.checkRuntime(element, this.name);
 
         this._createPlayer();
         this._createControls();
@@ -95,7 +93,7 @@ var AudioPlayer = $.extend({}, Metro.Component, {
         }
 
         Utils.exec(o.onAudioCreate, [element, this.player], element[0]);
-        element.fire("audiocreate");
+        element.fire("audioplayercreate");
     },
 
     _createPlayer: function(){
@@ -444,5 +442,3 @@ var AudioPlayer = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('audio', AudioPlayer);

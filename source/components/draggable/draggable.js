@@ -18,9 +18,7 @@ if (typeof window["metroDraggableSetup"] !== undefined) {
     Metro.draggableSetup(window["metroDraggableSetup"]);
 }
 
-var Draggable = $.extend({}, Metro.Component, {
-    name: "Draggable",
-
+Component('draggable', {
     init: function( options, elem ) {
         this._super(elem, options, DraggableDefaultConfig);
 
@@ -41,6 +39,7 @@ var Draggable = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
+        Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
         Utils.exec(this.options.onDraggableCreate, [this.element]);
@@ -51,8 +50,6 @@ var Draggable = $.extend({}, Metro.Component, {
         var that = this, element = this.element, elem = this.elem, o = this.options;
         var offset = element.offset();
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
-
-        Metro.checkRuntime(element, "draggable");
 
         element.data("canDrag", true);
 
@@ -185,5 +182,3 @@ var Draggable = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('draggable', Draggable);

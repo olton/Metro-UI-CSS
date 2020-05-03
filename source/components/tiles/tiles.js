@@ -20,9 +20,7 @@ if (typeof window["metroTileSetup"] !== undefined) {
     Metro.tileSetup(window["metroTileSetup"]);
 }
 
-var Tile = $.extend({}, Metro.Component, {
-    name: "Tile",
-
+Component('tile', {
     init: function( options, elem ) {
         this._super(elem, options, TileDefaultConfig);
 
@@ -40,7 +38,7 @@ var Tile = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "tile");
+        Metro.checkRuntime(element, this.name);
 
         this._createTile();
         this._createEvents();
@@ -240,5 +238,3 @@ var Tile = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('tile', Tile);

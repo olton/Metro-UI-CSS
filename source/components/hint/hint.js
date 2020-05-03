@@ -18,9 +18,7 @@ if (typeof window["metroHintSetup"] !== undefined) {
     Metro.hintSetup(window["metroHintSetup"]);
 }
 
-var Hint = $.extend({}, Metro.Component, {
-    name: "Hint",
-
+Component('hint', {
     init: function( options, elem ) {
         this._super(elem, options, HintDefaultConfig);
 
@@ -40,7 +38,7 @@ var Hint = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "hint");
+        Metro.checkRuntime(element, this.name);
 
         element.on(Metro.events.enter, function(){
             that.createHint();
@@ -158,5 +156,3 @@ var Hint = $.extend({}, Metro.Component, {
         $(window).off(Metro.events.scroll + "-hint");
     }
 });
-
-Metro.plugin('hint', Hint);

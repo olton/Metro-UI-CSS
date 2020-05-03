@@ -48,9 +48,7 @@ if (typeof window["metroStreamerSetup"] !== undefined) {
     Metro.streamerSetup(window["metroStreamerSetup"]);
 }
 
-var Streamer = $.extend({}, Metro.Component, {
-    name: "Streamer",
-
+Component('streamer', {
     init: function( options, elem ) {
         this._super(elem, options, StreamerDefaultConfig);
 
@@ -809,4 +807,3 @@ var Streamer = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('streamer', Streamer);

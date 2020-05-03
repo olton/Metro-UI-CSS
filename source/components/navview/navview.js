@@ -16,15 +16,14 @@ if (typeof window["metroNavigationViewSetup"] !== undefined) {
     Metro.navigationViewSetup(window["metroNavigationSetup"]);
 }
 
-var NavigationView = $.extend({}, Metro.Component, {
-    name: "NavView",
-
+Component('nav-view', {
     init: function( options, elem ) {
         this._super(elem, options, NavigationViewDefaultConfig);
 
         this.pane = null;
         this.content = null;
         this.paneToggle = null;
+        this.id = Utils.elementId("navview");
 
         Metro.createExec(this);
 
@@ -34,7 +33,7 @@ var NavigationView = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "navview");
+        Metro.checkRuntime(element, this.name);
 
         this._createView();
         this._createEvents();
@@ -72,10 +71,6 @@ var NavigationView = $.extend({}, Metro.Component, {
     _createView: function(){
         var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
-
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("navview"));
-        }
 
         element
             .addClass("navview")
@@ -147,7 +142,7 @@ var NavigationView = $.extend({}, Metro.Component, {
                 }
             }, 200);
 
-        }, {ns: element.attr("id")})
+        }, {ns: this.id})
     },
 
     pullClick: function(el){
@@ -215,10 +210,8 @@ var NavigationView = $.extend({}, Metro.Component, {
             this.paneToggle.off(Metro.events.click);
         }
 
-        $(window).off(Metro.events.resize,{ns: element.attr("id")});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
 });
-
-Metro.plugin('navview', NavigationView);

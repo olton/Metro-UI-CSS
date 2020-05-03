@@ -14,9 +14,7 @@ if (typeof window["metroRibbonMenuSetup"] !== undefined) {
     Metro.ribbonMenuSetup(window["metroRibbonMenuSetup"]);
 }
 
-var RibbonMenu = $.extend({}, Metro.Component, {
-    name: "RibbonMenu",
-
+Component('ribbon-menu', {
     init: function( options, elem ) {
         this._super(elem, options, RibbonMenuDefaultConfig);
 
@@ -28,7 +26,7 @@ var RibbonMenu = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "ribbonmenu");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -125,5 +123,3 @@ var RibbonMenu = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('ribbonmenu', RibbonMenu);

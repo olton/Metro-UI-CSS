@@ -14,9 +14,7 @@ if (typeof window["metroGravatarSetup"] !== undefined) {
     Metro.gravatarSetup(window["metroGravatarSetup"]);
 }
 
-var Gravatar = $.extend({}, Metro.Component, {
-    name: "Gravatar",
-
+Component('gravatar', {
     init: function( options, elem ) {
         this._super(elem, options, GravatarDefaultConfig);
 
@@ -26,7 +24,7 @@ var Gravatar = $.extend({}, Metro.Component, {
     },
 
     _create: function(){
-        Metro.checkRuntime(this.element, "gravatar");
+        Metro.checkRuntime(this.element, this.name);
         this.get();
     },
 
@@ -82,5 +80,3 @@ var Gravatar = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('gravatar', Gravatar);

@@ -15,9 +15,7 @@ if (typeof window["metroActivitySetup"] !== undefined) {
     Metro.activitySetup(window["metroActivitySetup"]);
 }
 
-var Activity = $.extend({}, Metro.Component, {
-    name: "Activity",
-
+Component('activity', {
     init: function( options, elem ) {
         this._super(elem, options, ActivityDefaultConfig);
 
@@ -30,7 +28,7 @@ var Activity = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var i, wrap;
 
-        Metro.checkRuntime(element, "activity");
+        Metro.checkRuntime(element, this.name);
 
         element
             .html('')
@@ -83,8 +81,6 @@ var Activity = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('activity', Activity);
 
 Metro['activity'] = {
     open: function(options){

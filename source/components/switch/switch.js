@@ -18,9 +18,7 @@ if (typeof window["metroSwitchSetup"] !== undefined) {
     Metro.switchSetup(window["metroSwitchSetup"]);
 }
 
-var Switch = $.extend({}, Metro.Component, {
-    name: "Switch",
-
+Component('switch', {
     init: function( options, elem ) {
         this._super(elem, options, SwitchDefaultConfig);
 
@@ -35,7 +33,7 @@ var Switch = $.extend({}, Metro.Component, {
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
 
-        Metro.checkRuntime(element, "switch");
+        Metro.checkRuntime(element, this.name);
 
         element.attr("type", "checkbox");
 
@@ -102,5 +100,3 @@ var Switch = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('switch', Switch);

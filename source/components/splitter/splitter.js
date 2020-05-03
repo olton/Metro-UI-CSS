@@ -22,9 +22,7 @@ if (typeof window["metroSplitterSetup"] !== undefined) {
     Metro.splitterSetup(window["metroSplitterSetup"]);
 }
 
-var Splitter = $.extend({}, Metro.Component, {
-    name: "Splitter",
-
+Component('splitter', {
     init: function( options, elem ) {
         this._super(elem, options, SplitterDefaultConfig);
 
@@ -40,7 +38,7 @@ var Splitter = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "splitter");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -258,5 +256,3 @@ var Splitter = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('splitter', Splitter);

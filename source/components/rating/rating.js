@@ -26,9 +26,7 @@ if (typeof window["metroRatingSetup"] !== undefined) {
     Metro.ratingSetup(window["metroRatingSetup"]);
 }
 
-var Rating = $.extend({}, Metro.Component, {
-    name: "Rating",
-
+Component('rating', {
     init: function( options, elem ) {
         this._super(elem, options, RatingDefaultConfig);
 
@@ -47,7 +45,7 @@ var Rating = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         var i;
 
-        Metro.checkRuntime(element, "rating");
+        Metro.checkRuntime(element, this.name);
 
         if (isNaN(o.value)) {
             o.value = 0;
@@ -286,5 +284,3 @@ var Rating = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('rating', Rating);

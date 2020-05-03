@@ -24,9 +24,7 @@ if (typeof window["metroImageMagnifierSetup"] !== undefined) {
     Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
 }
 
-var ImageMagnifier = $.extend({}, Metro.Component, {
-    name: "ImageMagnifier",
-
+Component('image-magnifier', {
     init: function( options, elem ) {
         this._super(elem, options, ImageMagnifierDefaultConfig);
 
@@ -41,7 +39,7 @@ var ImageMagnifier = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "imagemagnifier");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -253,5 +251,3 @@ var ImageMagnifier = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('imagemagnifier', ImageMagnifier);

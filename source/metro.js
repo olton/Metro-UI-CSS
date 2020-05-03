@@ -108,7 +108,7 @@ if (typeof Object.values !== 'function') {
 var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
 var normalizeComponentName = function(name){
-    return typeof name !== "string" ? undefined : name.replace(/\-/g, "");
+    return typeof name !== "string" ? undefined : name.replace(/\-/g, "").toLowerCase();
 };
 
 var Metro = {
@@ -627,6 +627,35 @@ Metro["Component"] = {
         });
     }
 };
+
+var Component = function(nameName, compObj){
+    var name = normalizeComponentName(nameName);
+    var component = $.extend({name: name}, {
+        _super: function(el, options, defaults){
+            this.elem = el;
+            this.element = $(el);
+            this.options = $.extend( {}, defaults, options );
+
+            this._setOptionsFromDOM();
+        },
+
+        _setOptionsFromDOM: function(){
+            var element = this.element, o = this.options;
+
+            $.each(element.data(), function(key, value){
+                if (key in o) {
+                    try {
+                        o[key] = JSON.parse(value);
+                    } catch (e) {
+                        o[key] = value;
+                    }
+                }
+            });
+        }
+    }, compObj);
+    Metro.plugin(name, component);
+    return component;
+}
 
 Metro['locales'] = {};
 

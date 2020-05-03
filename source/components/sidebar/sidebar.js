@@ -25,13 +25,12 @@ if (typeof window["metroSidebarSetup"] !== undefined) {
     Metro.sidebarSetup(window["metroSidebarSetup"]);
 }
 
-var Sidebar = $.extend({}, Metro.Component, {
-    name: "Sidebar",
-
+Component('sidebar', {
     init: function( options, elem ) {
         this._super(elem, options, SidebarDefaultConfig);
 
         this.toggle_element = null;
+        this.id = Utils.elementId('sidebar');
 
         Metro.createExec(this);
 
@@ -41,7 +40,7 @@ var Sidebar = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "sidebar");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -71,10 +70,6 @@ var Sidebar = $.extend({}, Metro.Component, {
 
         if (o.shadow === true) {
             element.addClass("sidebar-shadow");
-        }
-
-        if (element.attr("id") === undefined) {
-            element.attr("id", Utils.elementId("sidebar"));
         }
 
         if (o.toggle !== null && $(o.toggle).length > 0) {
@@ -119,7 +114,7 @@ var Sidebar = $.extend({}, Metro.Component, {
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
             $(window).on(Metro.events.resize,function(){
                 that._checkStatic();
-            }, {ns: element.attr("id")});
+            }, {ns: this.id});
         }
 
         if (o.menuItemClick === true) {
@@ -237,7 +232,7 @@ var Sidebar = $.extend({}, Metro.Component, {
         }
 
         if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-            $(window).off(Metro.events.resize, {ns: element.attr("id")});
+            $(window).off(Metro.events.resize, {ns: this.id});
         }
 
         if (o.menuItemClick === true) {
@@ -250,8 +245,6 @@ var Sidebar = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('sidebar', Sidebar);
-
 Metro['sidebar'] = {
     isSidebar: function(el){
         return Utils.isMetroObject(el, "sidebar");
@@ -261,27 +254,27 @@ Metro['sidebar'] = {
         if (!this.isSidebar(el)) {
             return ;
         }
-        Metro.getPlugin($(el)[0], "sidebar").open();
+        Metro.getPlugin(el, "sidebar").open();
     },
 
     close: function(el){
         if (!this.isSidebar(el)) {
             return ;
         }
-        Metro.getPlugin($(el)[0], "sidebar").close();
+        Metro.getPlugin(el, "sidebar").close();
     },
 
     toggle: function(el){
         if (!this.isSidebar(el)) {
             return ;
         }
-        Metro.getPlugin($(el)[0], "sidebar").toggle();
+        Metro.getPlugin(el, "sidebar").toggle();
     },
 
     isOpen: function(el){
         if (!this.isSidebar(el)) {
             return ;
         }
-        return Metro.getPlugin($(el)[0], "sidebar").isOpen();
+        return Metro.getPlugin(el, "sidebar").isOpen();
     }
 };

@@ -17,9 +17,7 @@ if (typeof window["metroCharmsSetup"] !== undefined) {
     Metro.charmsSetup(window["metroCharmsSetup"]);
 }
 
-var Charms = $.extend({}, Metro.Component, {
-    name: "Charms",
-
+Component('charms', {
     init: function( options, elem ) {
         this._super(elem, options, CharmsDefaultConfig);
 
@@ -35,7 +33,7 @@ var Charms = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "charms");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -126,10 +124,7 @@ var Charms = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('charms', Charms);
-
 Metro['charms'] = {
-
     check: function(el){
         if (Utils.isMetroObject(el, "charms") === false) {
             console.warn("Element is not a charms component");
@@ -145,17 +140,17 @@ Metro['charms'] = {
 
     open: function(el){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").open();
+        Metro.getPlugin(el, "charms").open();
     },
 
     close: function(el){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").close();
+        Metro.getPlugin(el, "charms").close();
     },
 
     toggle: function(el){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").toggle();
+        Metro.getPlugin(el, "charms").toggle();
     },
 
     closeAll: function(){
@@ -166,6 +161,6 @@ Metro['charms'] = {
 
     opacity: function(el, opacity){
         if (this.check(el) === false) return ;
-        Metro.getPlugin($(el)[0], "charms").opacity(opacity);
+        Metro.getPlugin(el, "charms").opacity(opacity);
     }
 };

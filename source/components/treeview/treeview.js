@@ -22,9 +22,7 @@ if (typeof window["metroTreeViewSetup"] !== undefined) {
     Metro.treeViewSetup(window["metroTreeViewSetup"]);
 }
 
-var TreeView = $.extend({}, Metro.Component, {
-    name: "TreeView",
-
+Component('tree-view', {
     init: function( options, elem ) {
         this._super(elem, options, TreeViewDefaultConfig);
 
@@ -36,7 +34,7 @@ var TreeView = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "treeview");
+        Metro.checkRuntime(element, this.name);
 
         this._createTree();
         this._createEvents();
@@ -405,5 +403,3 @@ var TreeView = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('treeview', TreeView);

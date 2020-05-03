@@ -298,7 +298,7 @@ if (typeof window["metroValidatorSetup"] !== undefined) {
     Metro.validatorSetup(window["metroValidatorSetup"]);
 }
 
-var Validator = $.extend({}, Metro.Component, {
+Component('validator', {
     name: "Validator",
 
     init: function( options, elem ) {
@@ -316,6 +316,8 @@ var Validator = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var inputs = element.find("[data-validate]");
+
+        Metro.checkRuntime(element, this.name);
 
         element
             .attr("novalidate", 'novalidate');
@@ -426,13 +428,9 @@ var Validator = $.extend({}, Metro.Component, {
             }
         }
 
-        console.log(result.val === 0);
-
         return result.val === 0;
     },
 
     changeAttribute: function(attributeName){
     }
 });
-
-Metro.plugin('validator', Validator);

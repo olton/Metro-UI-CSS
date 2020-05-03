@@ -19,9 +19,7 @@ if (typeof window["metroClockSetup"] !== undefined) {
     Metro.clockSetup(window["metroClockSetup"]);
 }
 
-var Clock = $.extend({}, Metro.Component, {
-    name: "Clock",
-
+Component('clock', {
     init: function( options, elem ) {
         this._super(elem, options, ClockDefaultConfig);
 
@@ -35,7 +33,7 @@ var Clock = $.extend({}, Metro.Component, {
     _create: function(){
         var that = this, element = this.element;
 
-        Metro.checkRuntime(element, "clock");
+        Metro.checkRuntime(element, this.name);
 
         this._tick();
 
@@ -119,5 +117,3 @@ var Clock = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('clock', Clock);

@@ -38,9 +38,7 @@ if (typeof window["metroKeypadSetup"] !== undefined) {
     Metro.keypadSetup(window["metroKeypadSetup"]);
 }
 
-var Keypad = $.extend({}, Metro.Component, {
-    name: "Keypad",
-
+Component('keypad', {
     init: function( options, elem ) {
         this._super(elem, options, KeypadDefaultConfig);
 
@@ -59,7 +57,7 @@ var Keypad = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "keypad");
+        Metro.checkRuntime(element, this.name);
 
         this._createKeypad();
         if (o.shuffle === true) {
@@ -366,8 +364,6 @@ var Keypad = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('keypad', Keypad);
 
 $(document).on(Metro.events.click, function(){
     var keypads = $(".keypad .keys");

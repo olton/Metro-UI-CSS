@@ -37,9 +37,7 @@ if (typeof window["metroChatSetup"] !== undefined) {
     Metro.chatSetup(window["metroChatSetup"]);
 }
 
-var Chat = $.extend({}, Metro.Component, {
-    name: "Chat",
-
+Component('chat', {
     init: function( options, elem ) {
         this._super(elem, options, ChatDefaultConfig);
 
@@ -55,7 +53,7 @@ var Chat = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "chat");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
@@ -291,5 +289,3 @@ var Chat = $.extend({}, Metro.Component, {
         return element;
     }
 });
-
-Metro.plugin('chat', Chat);

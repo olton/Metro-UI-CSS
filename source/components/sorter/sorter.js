@@ -21,9 +21,7 @@ if (typeof window["metroSorterSetup"] !== undefined) {
     Metro.sorterSetup(window["metroSorterSetup"]);
 }
 
-var Sorter = $.extend({}, Metro.Component, {
-    name: "Sorter",
-
+Component('sorter', {
     init: function( options, elem ) {
         this._super(elem, options, SorterDefaultConfig);
 
@@ -37,7 +35,7 @@ var Sorter = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "sorter");
+        Metro.checkRuntime(element, this.name);
 
         this._createStructure();
 
@@ -217,8 +215,6 @@ var Sorter = $.extend({}, Metro.Component, {
     }
 });
 
-Metro.plugin('sorter', Sorter);
-
 Metro['sorter'] = {
     create: function(el, op){
         return Utils.$()(el).sorter(op);
@@ -235,13 +231,13 @@ Metro['sorter'] = {
         if (dir === undefined) {
             dir = "asc";
         }
-        Metro.getPlugin($(el)[0], "sorter").sort(dir);
+        Metro.getPlugin(el, "sorter").sort(dir);
     },
 
     reset: function(el){
         if (!this.isSorter(el)) {
             return false;
         }
-        Metro.getPlugin($(el)[0], "sorter").reset();
+        Metro.getPlugin(el, "sorter").reset();
     }
 };

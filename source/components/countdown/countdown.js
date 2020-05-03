@@ -34,9 +34,7 @@ if (typeof window["metroCountdownSetup"] !== undefined) {
     Metro.countdownSetup(window["metroCountdownSetup"]);
 }
 
-var Countdown = $.extend({}, Metro.Component, {
-    name: "Countdown",
-
+Component('countdown', {
     init: function( options, elem ) {
         this._super(elem, options, CountdownDefaultConfig);
 
@@ -68,7 +66,7 @@ var Countdown = $.extend({}, Metro.Component, {
         var element = this.element, o = this.options;
         this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
 
-        Metro.checkRuntime(element, "countdown");
+        Metro.checkRuntime(element, this.name);
 
         this._build();
         this._createEvents();
@@ -552,5 +550,3 @@ var Countdown = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('countdown', Countdown);

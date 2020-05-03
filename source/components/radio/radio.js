@@ -18,9 +18,7 @@ if (typeof window["metroRadioSetup"] !== undefined) {
     Metro.radioSetup(window["metroRadioSetup"]);
 }
 
-var Radio = $.extend({}, Metro.Component, {
-    name: "Radio",
-
+Component('radio', {
     init: function( options, elem ) {
         this._super(elem, options, RadioDefaultConfig);
 
@@ -36,6 +34,7 @@ var Radio = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
+        Metro.checkRuntime(element, this.name);
         this._createStructure();
         this._createEvents();
 
@@ -48,8 +47,6 @@ var Radio = $.extend({}, Metro.Component, {
         var radio = $("<label>").addClass("radio " + element[0].className).addClass(o.style === 2 ? "style2" : "");
         var check = $("<span>").addClass("check");
         var caption = $("<span>").addClass("caption").html(o.caption);
-
-        Metro.checkRuntime(element, "radio");
 
         element.attr("type", "radio");
 
@@ -133,5 +130,3 @@ var Radio = $.extend({}, Metro.Component, {
         return this.element;
     }
 });
-
-Metro.plugin('radio', Radio);

@@ -47,9 +47,7 @@ if (typeof window["metroSliderSetup"] !== undefined) {
     Metro.sliderSetup(window["metroSliderSetup"]);
 }
 
-var Slider = $.extend({}, Metro.Component, {
-    name: "Slider",
-
+Component('slider', {
     init: function( options, elem ) {
         this._super(elem, options, SliderDefaultConfig);
 
@@ -59,6 +57,7 @@ var Slider = $.extend({}, Metro.Component, {
         this.pixel = 0;
         this.buffer = 0;
         this.keyInterval = false;
+        this.id = Utils.elementId('slider');
 
         Metro.createExec(this);
 
@@ -68,7 +67,7 @@ var Slider = $.extend({}, Metro.Component, {
     _create: function(){
         var element = this.element, o = this.options;
 
-        Metro.checkRuntime(element, "slider");
+        Metro.checkRuntime(element, this.name);
 
         this._createSlider();
         this._createEvents();
@@ -172,11 +171,11 @@ var Slider = $.extend({}, Metro.Component, {
                     val: that.value,
                     percent: that.percent
                 });
-            }, {ns: slider.attr("id"), passive: false});
+            }, {ns: that.id, passive: false});
 
             $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll, {ns: slider.attr("id")});
-                $(document).off(Metro.events.stopAll, {ns: slider.attr("id")});
+                $(document).off(Metro.events.moveAll, {ns: that.id});
+                $(document).off(Metro.events.stopAll, {ns: that.id});
 
                 if (o.hintAlways !== true) {
                     hint.fadeOut(300);
@@ -187,7 +186,7 @@ var Slider = $.extend({}, Metro.Component, {
                     val: that.value,
                     percent: that.percent
                 });
-            }, {ns: slider.attr("id")});
+            }, {ns: that.id});
 
             Utils.exec(o.onStart, [that.value, that.percent], element[0]);
             element.fire("start", {
@@ -278,7 +277,7 @@ var Slider = $.extend({}, Metro.Component, {
         $(window).on(Metro.events.resize,function(){
             that.val(that.value);
             that.buff(that.buffer);
-        }, {ns: slider.attr("id")});
+        }, {ns: that.id});
     },
 
     _convert: function(v, how){
@@ -569,10 +568,8 @@ var Slider = $.extend({}, Metro.Component, {
         marker.off(Metro.events.keydown);
         marker.off(Metro.events.keyup);
         slider.off(Metro.events.click);
-        $(window).off(Metro.events.resize, {ns: slider.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         return element;
     }
 });
-
-Metro.plugin('slider', Slider);
