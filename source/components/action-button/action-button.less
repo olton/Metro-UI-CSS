@@ -123,6 +123,13 @@
         }
     }
 
+    .actions {
+        &.drop-right, &.drop-left, &.drop-down, &.drop-up {
+            top: 8px!important;
+            left: 8px!important;
+        }
+    }
+
     .action-button {
         &.active ~ .actions {
             li {
@@ -145,6 +152,7 @@
         }
 
         &.active ~ .actions.drop-bottom, &.active ~ .actions.drop-down {
+
             li {
                 &:nth-child(1) {margin-top: 56px;}
                 &:nth-child(2) {margin-top: 104px;}
@@ -159,6 +167,7 @@
             }
         }
         &.active ~ .actions.drop-right {
+
             li {
                 margin-top: 0;
             }
@@ -176,6 +185,7 @@
             }
         }
         &.active ~ .actions.drop-left {
+
             li {
                 margin-top: 0;
             }
