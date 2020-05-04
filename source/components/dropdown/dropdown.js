@@ -157,9 +157,9 @@ Component('dropdown', {
 
         toggle.addClass('active-toggle').addClass("active-control");
 
-        if (immediate) {
-            func = 'show'
-        }
+        // if (immediate) {
+        //     func = 'show'
+        // }
 
         el[func](immediate ? 0 : options.duration, function(){
             el.fire("onopen");

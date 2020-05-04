@@ -29,6 +29,7 @@
 + [x] Calendar: minor upd for action buttons
 + [x] i18n: refactoring definition. Now each lang defined in own file
 + [x] Third party: third party components styles `select2`, `datatables` move to components and include to main
++ [x] Container: remove prop `display: block`
 
 ### 4.3.6
 ##### M4Q
