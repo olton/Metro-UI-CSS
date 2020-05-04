@@ -34,8 +34,6 @@ If you'd like to join them, please consider:
 <h2 align="center">Sponsors</h2>
 <div align="center">
 
-<p><a href="https://www.patreon.com/user/creators?u=20614229"><span style="forn-size: 24px">Matthew Bezuidenhout</span></a></p>
-<p><a href="https://www.zapsi.eu/"><span style="forn-size: 24px">Petr Jahoda from www.zapsi.eu</span></a></p>
 <p><a href="https://www.patreon.com/user/creators?u=27819336"><span style="forn-size: 24px">Steve</span></a></p>
  
 </div>
@@ -46,8 +44,8 @@ If you'd like to join them, please consider:
 
 <h2 align="center">Backers via Patreon</h2>
 
- - [Jonathan](https://www.patreon.com/user/creators?u=10019621) 
  - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
+ - [ProJee](https://www.patreon.com/user/creators?u=33581561)
 
 
 <hr>
@@ -70,3 +68,4 @@ If you'd like to join them, please consider:
 - [Interactivity](https://interactivity.com.ua)
 - [Matthew Bezuidenhout](https://www.patreon.com/user/creators?u=20614229)
 - [Marcel Wehrstedt](https://www.patreon.com/user/creators?u=16353488)
+- [ProJee](https://www.patreon.com/user/creators?u=33581561)
