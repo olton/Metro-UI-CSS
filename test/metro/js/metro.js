@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/05/2020 09:21:35
+ * Built at 04/05/2020 09:28:03
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "04/05/2020 09:21:42",
+    compileTime: "04/05/2020 09:28:10",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21829,8 +21829,6 @@ Component('select', {
                 tag.data("option", l);
                 $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
-                console.log(item, html);
-
                 element.val(item.value);
                 input.html(html);
                 element.fire("change", {
