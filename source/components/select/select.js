@@ -2,6 +2,7 @@ var SelectDefaultConfig = {
     selectDeferred: 0,
     clearButton: false,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
+    usePlaceholder: true,
     placeholder: "",
     addEmptyValue: false,
     emptyValue: "",
@@ -68,7 +69,7 @@ Component('select', {
     _setPlaceholder: function(){
         var element = this.element, o = this.options;
         var input = element.siblings(".select-input");
-        if (!Utils.isValue(element.val()) || element.val() == o.emptyValue) {
+        if (o.usePlaceholder === true && (!Utils.isValue(element.val()) || element.val() == o.emptyValue)) {
             input.html(this.placeholder);
         }
     },
@@ -82,7 +83,7 @@ Component('select', {
         var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
         var tag;
 
-        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', Utils.isValue(item.value) ? item.value : item.text).appendTo(parent);
+        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "").appendTo(parent);
         a = $("<a>").html(html).appendTo(l);
 
         l.addClass(item.className);
@@ -98,6 +99,8 @@ Component('select', {
                 tag.data("option", l);
                 $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
+                console.log(item, html);
+
                 element.val(item.value);
                 input.html(html);
                 element.fire("change", {
@@ -154,10 +157,6 @@ Component('select', {
         var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
-
-        // if (!element.attr("id")) {
-        //     element.attr("id", Utils.elementId("select-origin"));
-        // }
 
         container.attr("id", select_id).attr("for", checkboxID);
 
