@@ -30,6 +30,7 @@
 + [x] i18n: refactoring definition. Now each lang defined in own file
 + [x] Third party: third party components styles `select2`, `datatables` move to components and include to main
 + [x] Container: remove prop `display: block`
++ [x] Select: add using empty value for `option`, issue #1527
 
 ### 4.3.6
 ##### M4Q
