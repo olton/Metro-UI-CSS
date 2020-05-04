@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/05/2020 11:06:37
+ * Built at 04/05/2020 16:57:43
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "04/05/2020 11:06:44",
+    compileTime: "04/05/2020 16:57:51",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -22690,12 +22690,9 @@ Component('slider', {
         var buffer = $("<div>").addClass("buffer").addClass(o.clsBuffer);
         var marker = $("<button>").attr("type", "button").addClass("marker").addClass(o.clsMarker);
         var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
-        var id = Utils.elementId("slider");
         var i;
 
         Metro.checkRuntime(element, "slider");
-
-        slider.attr("id", id);
 
         if (o.size > 0) {
             if (o.vertical === true) {
@@ -33114,6 +33111,7 @@ var WizardDefaultConfig = {
 
     buttonMode: "cycle", // default, cycle, square
     buttonOutline: true,
+    duration: 300,
 
     clsWizard: "",
     clsActions: "",
@@ -33363,7 +33361,8 @@ Component('wizard', {
         actions.animate({
             draw: {
                 left: element.children("section.complete").length * border_size + 41
-            }
+            },
+            dur: o.duration
         });
 
         if (

@@ -9,6 +9,7 @@ var WizardDefaultConfig = {
 
     buttonMode: "cycle", // default, cycle, square
     buttonOutline: true,
+    duration: 300,
 
     clsWizard: "",
     clsActions: "",
@@ -258,7 +259,8 @@ Component('wizard', {
         actions.animate({
             draw: {
                 left: element.children("section.complete").length * border_size + 41
-            }
+            },
+            dur: o.duration
         });
 
         if (
