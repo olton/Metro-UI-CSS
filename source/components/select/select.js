@@ -155,9 +155,9 @@ Component('select', {
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("select-origin"));
-        }
+        // if (!element.attr("id")) {
+        //     element.attr("id", Utils.elementId("select-origin"));
+        // }
 
         container.attr("id", select_id).attr("for", checkboxID);
 
@@ -339,7 +339,7 @@ Component('select', {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
                 input.html(html);
-                Metro.getPlugin(drop_container[0], "dropdown").close();
+                Metro.getPlugin(drop_container, "dropdown").close();
             }
 
             $.each(options, function(){

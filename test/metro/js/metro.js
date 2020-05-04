@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/05/2020 18:25:34
+ * Built at 03/05/2020 18:58:22
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "03/05/2020 18:25:42",
+    compileTime: "03/05/2020 18:58:30",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -15423,9 +15423,9 @@ Component('dropdown', {
 
         toggle.addClass('active-toggle').addClass("active-control");
 
-        if (immediate) {
-            func = 'show'
-        }
+        // if (immediate) {
+        //     func = 'show'
+        // }
 
         el[func](immediate ? 0 : options.duration, function(){
             el.fire("onopen");
@@ -21885,9 +21885,9 @@ Component('select', {
 
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-        if (!element.attr("id")) {
-            element.attr("id", Utils.elementId("select-origin"));
-        }
+        // if (!element.attr("id")) {
+        //     element.attr("id", Utils.elementId("select-origin"));
+        // }
 
         container.attr("id", select_id).attr("for", checkboxID);
 
@@ -22069,7 +22069,7 @@ Component('select', {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
                 input.html(html);
-                Metro.getPlugin(drop_container[0], "dropdown").close();
+                Metro.getPlugin(drop_container, "dropdown").close();
             }
 
             $.each(options, function(){
