@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/05/2020 09:27:52
+ * Built at 04/05/2020 11:06:26
  * Licensed under MIT
  */
 *,
@@ -21701,6 +21701,13 @@ pre code {
 .multi-action .actions li:active {
   -webkit-box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
+}
+.multi-action .actions.drop-right,
+.multi-action .actions.drop-left,
+.multi-action .actions.drop-down,
+.multi-action .actions.drop-up {
+  top: 8px!important;
+  left: 8px!important;
 }
 .multi-action .action-button.active ~ .actions li {
   -webkit-transition: all 0.3s;
