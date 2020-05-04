@@ -9,7 +9,7 @@
         "common-js": ["Common JS", "common/js"],
         "i18n": ["i18n", "i18n"],
         "components": ["Components", "components"],
-        "icons": ["Metro icon font", "icons"],
+        "icons": ["Metro icons", "icons"],
         "colors": ["Additional colors", "colors"]
     },
 
@@ -794,11 +794,40 @@
     },
 
     "colors": {
-        "additional_colors": {
-            "name": "Additional color definitions",
-            "less": ["colors-def"]
+        "background": {
+            "name": "Background",
+            "less": ["background"]
+        },
+        "color": {
+            "name": "Foreground",
+            "less": ["foreground"]
+        },
+        "outline": {
+            "name": "Outline",
+            "less": ["outline"]
+        },
+        "border": {
+            "name": "Border",
+            "less": ["border"]
+        },
+        "ribbed": {
+            "name": "Ribbed",
+            "less": ["ribbed"]
+        },
+        "pseudo": {
+            "name": "Pseudo",
+            "less": ["pseudo"]
+        },
+        "opacity": {
+            "name": "Opacity",
+            "less": ["opacity"]
         }
     },
 
-    "icons": {}
+    "icons": {
+        "mif": {
+            "name": "Metro icons font",
+            "less": ["mif-base", "mif-icons"]
+        }
+    }
 }
