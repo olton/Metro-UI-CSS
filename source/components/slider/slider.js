@@ -89,12 +89,9 @@ Component('slider', {
         var buffer = $("<div>").addClass("buffer").addClass(o.clsBuffer);
         var marker = $("<button>").attr("type", "button").addClass("marker").addClass(o.clsMarker);
         var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
-        var id = Utils.elementId("slider");
         var i;
 
         Metro.checkRuntime(element, "slider");
-
-        slider.attr("id", id);
 
         if (o.size > 0) {
             if (o.vertical === true) {

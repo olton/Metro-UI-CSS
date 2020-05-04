@@ -1,172 +1,168 @@
 {
+    "setup": {
+        "release": "4.3.7",
+        "next": "4.3.8"
+    },
 
     "parts": {
-        "common-css": "Common CSS",
-        "common-js": "Common JS",
-        "i18n": "i18n",
-        "components": "Components",
-        "icons": "Metro icon font",
-        "colors": "Additional colors"
+        "common-css": ["Common CSS", "common/less"],
+        "common-js": ["Common JS", "common/js"],
+        "i18n": ["i18n", "i18n"],
+        "components": ["Components", "components"],
+        "icons": ["Metro icon font", "icons"],
+        "colors": ["Additional colors", "colors"]
     },
 
     "common-css": {
         "accent_colors": {
             "name": "Accent colors",
-            "less": ["common/less/accent-colors"]
+            "less": ["accent-colors"]
         },
-        "border_css": {
+        "border": {
             "name": "Border",
-            "less": ["common/less/border"]
+            "less": ["border"]
         },
-        "cursors_css": {
+        "cursors": {
             "name": "Cursors",
-            "less": ["common/less/cursors"]
+            "less": ["cursors"]
         },
-        "default_icons_css": {
+        "default_icons": {
             "name": "Default icons",
-            "less": ["common/less/default-icons"]
+            "less": ["default-icons"]
         },
-        "display_css": {
+        "display": {
             "name": "Display",
-            "less": ["common/less/display"]
+            "less": ["display"]
         },
-        "embed_css": {
+        "embed": {
             "name": "Embed objects",
-            "less": ["common/less/embed"]
+            "less": ["embed"]
         },
-        "flex_css": {
+        "flex": {
             "name": "Flex system",
-            "less": ["common/less/flex"]
+            "less": ["flex"]
         },
-        "float_css": {
+        "float": {
             "name": "Float",
-            "less": ["common/less/float"]
+            "less": ["float"]
         },
-        "font_css": {
+        "font": {
             "name": "Font name",
-            "less": ["common/less/font"]
+            "less": ["font"]
         },
-        "images_css": {
+        "images": {
             "name": "Images",
-            "less": ["common/less/images"]
+            "less": ["images"]
         },
-        "inputs_css": {
+        "inputs": {
             "name": "Inputs",
-            "less": ["common/less/inputs"]
+            "less": ["inputs"]
         },
-        "lists_css": {
+        "lists": {
             "name": "Lists",
-            "less": ["common/less/lists"]
+            "less": ["lists"]
         },
-        "overlay_css": {
+        "overlay": {
             "name": "Overlay",
-            "less": ["common/less/overlay"]
+            "less": ["overlay"]
         },
-        "position_css": {
+        "position": {
             "name": "Position",
-            "less": ["common/less/position"]
+            "less": ["position"]
         },
-        "shadow_css": {
+        "shadow": {
             "name": "Shadows",
-            "less": ["common/less/shadow"]
+            "less": ["shadow"]
         },
-        "sizing_css": {
+        "sizing": {
             "name": "Sizing",
-            "less": ["common/less/sizing"]
+            "less": ["sizing"]
         },
-        "spacing_css": {
+        "spacing": {
             "name": "Spacing",
-            "less": ["common/less/spacing"]
+            "less": ["spacing"]
         },
-        "typography_css": {
+        "typography": {
             "name": "Typography",
-            "less": ["common/less/typography"]
+            "less": ["typography"]
         },
-        "utils_css": {
+        "utils": {
             "name": "Utilities",
-            "less": ["common/less/utils"]
+            "less": ["utils"]
         },
-        "debug_css": {
+        "debug": {
             "name": "Debug class",
-            "less": ["common/less/debug"]
+            "less": ["debug"]
         },
-        "ie_css": {
+        "ie": {
             "name": "IE fixes",
-            "less": ["common/less/ie"]
+            "less": ["ie"]
         },
-        "print_css": {
+        "print": {
             "name": "Print",
-            "less": ["common/less/print"]
+            "less": ["print"]
         }
     },
 
     "i18n": {
         "cn-ZH": {
             "name": "cn-ZH",
-            "js": ["i18n/cn-ZH"]
+            "js": ["cn-ZH"]
         },
         "de-DE": {
             "name": "de-DE",
-            "js": ["i18n/de-DE"]
-        },
-        "en-US": {
-            "name": "en-US",
-            "js": ["i18n/en-US"]
+            "js": ["de-DE"]
         },
         "es-MX": {
             "name": "es-MX",
-            "js": ["i18n/es-MX"]
+            "js": ["es-MX"]
         },
         "fr-FR": {
             "name": "fr-FR",
-            "js": ["i18n/fr-FR"]
+            "js": ["fr-FR"]
         },
         "hu-HU": {
             "name": "hu-HU",
-            "js": ["i18n/hu-HU"]
+            "js": ["hu-HU"]
         },
         "it-IT": {
             "name": "it-IT",
-            "js": ["i18n/it-IT"]
+            "js": ["it-IT"]
         },
         "ru-RU": {
             "name": "ru-RU",
-            "js": ["i18n/ru-RU"]
+            "js": ["ru-RU"]
         },
         "tw-ZH": {
             "name": "tw-ZH",
-            "js": ["i18n/tw-ZH"]
+            "js": ["tw-ZH"]
         },
         "uk-UA": {
             "name": "uk-UA",
-            "js": ["i18n/uk-UA"]
+            "js": ["uk-UA"]
         }
     },
 
     "common-js": {
-        "animation_js":{
+        "animation":{
             "name": "Animation",
-            "js": ["common/js/animation"]
+            "js": ["animation"]
         },
-        "colors_js":{
+        "colors":{
             "name": "Color module",
-            "js": ["common/js/colors"]
+            "js": ["colors"]
         },
-        "md5_js":{
+        "md5":{
             "name": "MD5",
-            "js": ["common/js/md5"]
+            "js": ["md5"]
         },
-        "storage_js":{
-            "name": "Storage &amp; Session storage",
-            "js": ["common/js/storage"]
-        },
-        "tpl_js":{
+        "tpl":{
             "name": "Micro Templating",
-            "js": ["common/js/tpl"]
+            "js": ["tpl"]
         },
-        "export_js":{
+        "export":{
             "name": "Data export",
-            "js": ["common/js/export"]
+            "js": ["export"]
         }
     },
 
@@ -180,12 +176,627 @@
             "name": "Action button",
             "less": ["action-button"]
         },
+        "activity": {
+            "name": "Activities",
+            "js": ["activity"],
+            "less": ["activity"],
+            "dependencies": {
+                "components": ["dialog"]
+            }
+        },
+        "adblock": {
+            "name": "Adblock hunter",
+            "js": ["adblock"]
+        },
+        "app-bar": {
+            "name": "App Bar",
+            "js": ["app-bar"],
+            "less": ["app-bar"],
+            "dependencies": {
+                "components": ["hamburger"]
+            }
+        },
+        "audio-button": {
+            "name": "Audio button",
+            "js": ["audio-button"]
+        },
+        "audio-player": {
+            "name": "Audio player",
+            "js": ["audio-player"],
+            "dependencies": {
+                "components": ["slider", "media-player"]
+            }
+        },
+        "badges": {
+            "name": "Badges",
+            "less": ["badges"]
+        },
+        "bottom-nav": {
+            "name": "Bottom nav",
+            "less": ["bottom-nav"]
+        },
+        "bottom-sheet": {
+            "name": "Bottom sheet",
+            "js": ["bottom-sheet"],
+            "less": ["bottom-sheet"]
+        },
+        "breadcrumbs": {
+            "name": "Breadcrumbs",
+            "less": ["breadcrumbs"]
+        },
+        "button": {
+            "name": "Button",
+            "less": ["button"]
+        },
+        "button-group": {
+            "name": "Button-group",
+            "js": ["button-group"],
+            "less": ["button-group"]
+        },
+        "calendar": {
+            "name": "Calendar",
+            "js": ["calendar"],
+            "less": ["calendar"],
+            "dependencies": {
+                "components": ["button"]
+            }
+        },
+        "calendar-picker": {
+            "name": "Calendar picker",
+            "js": ["calendarpicker"],
+            "less": ["calendarpicker"],
+            "dependencies": {
+                "components": ["calendar"]
+            }
+        },
+        "cards": {
+            "name": "Cards",
+            "less": ["cards"]
+        },
+        "carousel": {
+            "name": "Carousel",
+            "js": ["carousel"],
+            "less": ["carousel"],
+            "dependencies": {
+                "common-js": ["animation"],
+                "components": ["button"]
+            }
+        },
+        "charms": {
+            "name": "Charms",
+            "js": ["charms"],
+            "less": ["charms"]
+        },
+        "chat": {
+            "name": "Chat",
+            "js": ["chat"],
+            "less": ["chat"],
+            "dependencies": {
+                "components": ["input", "button"]
+            }
+        },
+        "checkbox": {
+            "name": "Checkbox",
+            "js": ["checkbox"],
+            "less": ["checkbox"]
+        },
+        "chips": {
+            "name": "Chips",
+            "less": ["chat"]
+        },
+        "clock": {
+            "name": "Clock",
+            "js": ["clock"]
+        },
+        "collapse": {
+            "name": "Collapse",
+            "js": ["collapse"]
+        },
+        "command-button": {
+            "name": "Command button",
+            "less": ["chat"]
+        },
+        "container": {
+            "name": "Container",
+            "less": ["container"]
+        },
+        "countdown": {
+            "name": "Countdown",
+            "js": ["countdown"],
+            "less": ["countdown"]
+        },
+        "counter": {
+            "name": "Counter",
+            "js": ["counter"]
+        },
+        "cube": {
+            "name": "Cube",
+            "js": ["cube"],
+            "less": ["cube"]
+        },
+        "d-menu": {
+            "name": "D-menu",
+            "less": ["d-menu"]
+        },
+        "datatables": {
+            "name": "Datatables",
+            "less": ["datatables"]
+        },
+        "datepicker": {
+            "name": "Date picker",
+            "js": ["datepicker"],
+            "less": ["datepicker"],
+            "dependencies": {
+                "components": ["wheelpicker"]
+            }
+        },
+        "dialog": {
+            "name": "Dialog",
+            "js": ["dialog"],
+            "less": ["dialog"],
+            "dependencies": {
+                "components": ["button"]
+            }
+        },
+        "donut": {
+            "name": "Donut",
+            "js": ["donut"],
+            "less": ["donut"]
+        },
+        "double-slider": {
+            "name": "Double slider",
+            "js": ["double-slider"],
+            "dependencies": {
+                "components": ["slider"]
+            }
+        },
+        "drag-items": {
+            "name": "Drag items",
+            "js": ["drag-items"],
+            "less": ["drag-items"]
+        },
+        "draggable": {
+            "name": "Draggable",
+            "js": ["draggable"],
+            "less": ["draggable"]
+        },
+        "dropdown": {
+            "name": "Dropdown",
+            "js": ["dropdown"],
+            "less": ["dropdown"]
+        },
+        "dropdown-button": {
+            "name": "Dropdown button",
+            "less": ["dropdown-button"],
+            "dependencies": {
+                "components": ["button", "dropdown"]
+            }
+        },
+        "expand-button": {
+            "name": "Expand button",
+            "less": ["expand-button"]
+        },
+        "file": {
+            "name": "File input",
+            "js": ["file"],
+            "less": ["file"],
+            "dependencies": {
+                "common-css": ["inputs"],
+                "components": ["button"]
+            }
+        },
+        "form": {
+            "name": "Form",
+            "less": ["form", "form-rtl"]
+        },
+        "gravatar": {
+            "name": "Gravatar",
+            "js": ["gravatar"],
+            "dependencies": {
+                "common-js": ["md5"]
+            }
+        },
+        "grid": {
+            "name": "Grid system",
+            "less": ["grid"]
+        },
+        "h-menu": {
+            "name": "H-menu",
+            "less": ["h-menu"]
+        },
+        "hamburger": {
+            "name": "Hamburger",
+            "less": ["hamburger"]
+        },
+        "head-bar": {
+            "name": "Head bar",
+            "less": ["head-bar"]
+        },
+        "hero": {
+            "name": "Hero",
+            "less": ["hero"]
+        },
+        "hint": {
+            "name": "Hint",
+            "js": ["hint"],
+            "less": ["hint"]
+        },
+        "hotkey": {
+            "name": "Hotkey",
+            "js": ["hotkey"]
+        },
+        "html-container": {
+            "name": "HTML container",
+            "js": ["html-container"]
+        },
+        "icon-box": {
+            "name": "Icon box",
+            "less": ["icon-box"]
+        },
+        "image-button": {
+            "name": "Image button",
+            "less": ["image-button"]
+        },
+        "image-compare": {
+            "name": "Image compare",
+            "js": ["image-compare"],
+            "less": ["image-compare"]
+        },
+        "image-magnifier": {
+            "name": "Image magnifier",
+            "js": ["image-magnifier"],
+            "less": ["image-magnifier"]
+        },
+        "info-box": {
+            "name": "Info box",
+            "js": ["info-box"],
+            "less": ["info-box"]
+        },
+        "info-button": {
+            "name": "Info button",
+            "less": ["info-button"]
+        },
+        "info-panel": {
+            "name": "Info panel",
+            "less": ["info-panel"]
+        },
+        "input": {
+            "name": "Input",
+            "js": ["input"],
+            "less": ["input"],
+            "dependencies": {
+                "common-css": ["inputs"],
+                "components": ["button"]
+            }
+        },
+        "input-material": {
+            "name": "Input material",
+            "js": ["input-material"],
+            "less": ["input-material"],
+            "dependencies": {
+                "common-css": ["inputs"]
+            }
+        },
+        "keypad": {
+            "name": "Keypad",
+            "js": ["keypad"],
+            "less": ["keypad"],
+            "dependencies": {
+                "common-css": ["inputs"]
+            }
+        },
+        "list": {
+            "name": "List",
+            "js": ["list"]
+        },
+        "listview": {
+            "name": "ListView",
+            "js": ["listview"],
+            "less": ["listview"],
+            "dependencies": {
+                "components": ["checkbox"]
+            }
+        },
+        "master": {
+            "name": "Master",
+            "js": ["master"],
+            "less": ["master"]
+        },
+        "media-player": {
+            "name": "Media player",
+            "less": ["media-player"]
+        },
+        "more-info-box": {
+            "name": "More info box",
+            "less": ["more-info-boc"]
+        },
+        "navview": {
+            "name": "Navigation view",
+            "js": ["navview"],
+            "less": ["navview"],
+            "dependencies": {
+                "components": ["input", "button", "hamburger"]
+            }
+        },
+        "notify": {
+            "name": "Notify",
+            "js": ["notify"],
+            "less": ["notify"]
+        },
+        "pagination": {
+            "name": "Pagination",
+            "js": ["pagination"],
+            "less": ["pagination"]
+        },
+        "panel": {
+            "name": "Panel",
+            "js": ["panel"],
+            "less": ["panel"],
+            "dependencies": {
+                "components": ["button", "draggable", "collapse"]
+            }
+        },
+        "popover": {
+            "name": "Popover",
+            "js": ["popover"],
+            "less": ["popover"]
+        },
+        "progress": {
+            "name": "Progress",
+            "js": ["progress"],
+            "less": ["progress"]
+        },
+        "radio": {
+            "name": "Radio button",
+            "js": ["radio"],
+            "less": ["radio"],
+            "dependencies": {
+                "common-css": ["inputs"]
+            }
+        },
+        "rating": {
+            "name": "Rating",
+            "js": ["rating"],
+            "less": ["rating"]
+        },
+        "resizeable": {
+            "name": "Resizeable",
+            "js": ["resizeable"],
+            "less": ["resizeable"]
+        },
+        "resizer": {
+            "name": "Resizer",
+            "js": ["resizer"]
+        },
+        "ribbon-menu": {
+            "name": "Ribbon menu",
+            "js": ["ribbon-menu"],
+            "less": ["ribbon-menu"]
+        },
+        "ripple": {
+            "name": "Ripple",
+            "js": ["ripple"],
+            "less": ["ripple"]
+        },
+        "select": {
+            "name": "Select",
+            "js": ["select"],
+            "less": ["select"],
+            "dependencies": {
+                "common-css": ["inputs"],
+                "components": ["input", "checkbox", "dropdown"]
+            }
+        },
+        "select2": {
+            "name": "Select2",
+            "js": ["select2"],
+            "less": ["select2"]
+        },
+        "shortcut": {
+            "name": "Shortcut",
+            "less": ["shortcut"]
+        },
+        "sidebar": {
+            "name": "Sidebar",
+            "js": ["sidebar"],
+            "less": ["sidebar"],
+            "dependencies": {
+                "components": ["input", "hamburger"]
+            }
+        },
+        "sidenav-counter": {
+            "name": "Sidenav counter",
+            "less": ["sidenav-counter"]
+        },
+        "sidenav-m3": {
+            "name": "Sidenav M3",
+            "less": ["sidenav-m3"]
+        },
+        "sidenav-simple": {
+            "name": "Sidenav simple",
+            "less": ["sidenav-simple"]
+        },
+        "skill-box": {
+            "name": "Skill Box",
+            "less": ["skill-box"]
+        },
+        "slider": {
+            "name": "Slider",
+            "js": ["slider"],
+            "less": ["slider"]
+        },
+        "social-box": {
+            "name": "Social Box",
+            "less": ["social-box"]
+        },
+        "sorter": {
+            "name": "Sorter",
+            "js": ["sorter"]
+        },
+        "spinner": {
+            "name": "Spinner",
+            "js": ["spinner"],
+            "less": ["spinner"],
+            "dependencies": {
+                "components": ["button"],
+                "common-css": ["inputs"]
+            }
+        },
+        "split-button": {
+            "name": "Split button",
+            "less": ["split-button"]
+        },
+        "splitter": {
+            "name": "Splitter",
+            "js": ["splitter"],
+            "less": ["splitter"]
+        },
+        "stepper": {
+            "name": "Stepper",
+            "js": ["stepper"],
+            "less": ["stepper"]
+        },
+        "storage": {
+            "name": "Storage",
+            "js": ["storage"]
+        },
+        "streamer": {
+            "name": "Streamer",
+            "js": ["streamer"],
+            "less": ["streamer"]
+        },
+        "switch": {
+            "name": "Switch",
+            "js": ["switch"],
+            "less": ["switch"],
+            "dependencies": {
+                "common-css": ["inputs"]
+            }
+        },
+        "t-menu": {
+            "name": "T-menu",
+            "less": ["t-menu"]
+        },
+        "table": {
+            "name": "Table",
+            "js": ["table"],
+            "less": ["table"],
+            "dependencies": {
+                "components": ["activity", "checkbox", "radio", "select", "button"],
+                "common-js": ["export"]
+            }
+        },
+        "tabs": {
+            "name": "Tabs",
+            "js": ["tabs"],
+            "less": ["tabs"],
+            "dependencies": {
+                "components": ["hamburger"]
+            }
+        },
+        "tabs-material": {
+            "name": "Tabs material",
+            "js": ["tabs-material"],
+            "less": ["tabs-material"]
+        },
+        "tag-input": {
+            "name": "Tag input",
+            "js": ["tag-input"],
+            "less": ["tag-input"],
+            "dependencies": {
+                "common-css": ["inputs"]
+            }
+        },
+        "textarea": {
+            "name": "Textarea",
+            "js": ["textarea"],
+            "less": ["textarea"],
+            "dependencies": {
+                "common-css": ["inputs"]
+            }
+        },
+        "tile": {
+            "name": "Tile",
+            "js": ["tile"],
+            "less": ["tile"],
+            "dependencies": {
+                "common-js": ["animation"]
+            }
+        },
+        "timepicker": {
+            "name": "Time picker",
+            "js": ["timepicker"],
+            "less": ["timepicker"],
+            "dependencies": {
+                "components": ["wheelpicker"]
+            }
+        },
+        "toast": {
+            "name": "Toast",
+            "js": ["toast"],
+            "less": ["toast"]
+        },
+        "toolbar": {
+            "name": "Toolbar",
+            "js": ["toolbar"],
+            "less": ["toolbar"]
+        },
+        "top-bar": {
+            "name": "Top bar",
+            "less": ["top-bar"]
+        },
+        "touch": {
+            "name": "Touch",
+            "js": ["touch"]
+        },
+        "treeview": {
+            "name": "TreeView",
+            "js": ["treeview"],
+            "less": ["treevieww"]
+        },
+        "validator": {
+            "name": "Validator",
+            "js": ["validator"]
+        },
+        "vegas": {
+            "name": "Vegas",
+            "js": ["vegas"],
+            "less": ["vegas"]
+        },
+        "video-player": {
+            "name": "Video player",
+            "js": ["video-player"],
+            "dependencies": {
+                "components": ["media-player", "button", "slider"]
+            }
+        },
+        "wheelpicker": {
+            "name": "Wheel picker",
+            "less": ["wheelpicker"]
+        },
+        "window": {
+            "name": "Window",
+            "js": ["window"],
+            "less": ["window"],
+            "dependencies": {
+                "components": ["draggable", "resizeable", "button"]
+            }
+        },
+        "wizard": {
+            "name": "Wizard",
+            "js": ["wizard"],
+            "less": ["wizard"],
+            "dependencies": {
+                "components": ["button"],
+                "common-css": ["default-icons"]
+            }
+        }
     },
 
     "colors": {
         "additional_colors": {
             "name": "Additional color definitions",
-            "less": ["colors/colors-def"]
+            "less": ["colors-def"]
         }
     },
 
