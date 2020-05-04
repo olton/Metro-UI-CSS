@@ -99,8 +99,6 @@ Component('select', {
                 tag.data("option", l);
                 $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
-                console.log(item, html);
-
                 element.val(item.value);
                 input.html(html);
                 element.fire("change", {
