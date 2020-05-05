@@ -33,6 +33,9 @@
 + [x] Select: add using empty value for `option`, issue #1527
 + [x] Action button: fix sub actions position 
 + [x] Additional colors: refactoring
++ [x] Utils: remove method `random`, to get random value from array or two values, use `$.random` from `m4q`
++ [x] Utils: remove method `uniqueID`, to get unique GUID, use `$.uniqueID` from `m4q`
+
 
 ### 4.3.6
 ##### M4Q
