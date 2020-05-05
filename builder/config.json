@@ -6,11 +6,12 @@
 
     "parts": {
         "common-css": ["Common CSS", "common/less"],
+        "colors-css": ["Additional colors", "colors"],
+        "animations-css": ["Animation CSS", "animations"],
         "common-js": ["Common JS", "common/js"],
         "i18n": ["i18n", "i18n"],
         "components": ["Components", "components"],
-        "icons": ["Metro icons", "icons"],
-        "colors": ["Additional colors", "colors"]
+        "icons": ["Metro icons", "icons"]
     },
 
     "common-css": {
@@ -104,6 +105,52 @@
         }
     },
 
+    "colors-css": {
+        "background": {
+            "name": "Background",
+            "less": ["background"]
+        },
+        "color": {
+            "name": "Foreground",
+            "less": ["foreground"]
+        },
+        "outline": {
+            "name": "Outline",
+            "less": ["outline"]
+        },
+        "border": {
+            "name": "Border",
+            "less": ["border"]
+        },
+        "ribbed": {
+            "name": "Ribbed",
+            "less": ["ribbed"]
+        },
+        "pseudo": {
+            "name": "Pseudo",
+            "less": ["pseudo"]
+        },
+        "opacity": {
+            "name": "Opacity",
+            "less": ["opacity"]
+        }
+    },
+
+    "animations-css": {
+        "element": {
+            "name": "Elements",
+            "less": ["element"]
+        },
+        "flip-card": {
+            "name": "Flip card",
+            "less": ["flip-card"]
+        },
+        "post-card": {
+            "name": "Post card",
+            "less": ["post-card"]
+        }
+    },
+
     "i18n": {
         "cn-ZH": {
             "name": "cn-ZH",
@@ -112,6 +159,10 @@
         "de-DE": {
             "name": "de-DE",
             "js": ["de-DE"]
+        },
+        "en-US": {
+            "name": "en-US",
+            "js": ["en-US"]
         },
         "es-MX": {
             "name": "es-MX",
@@ -790,37 +841,6 @@
                 "components": ["button"],
                 "common-css": ["default-icons"]
             }
-        }
-    },
-
-    "colors": {
-        "background": {
-            "name": "Background",
-            "less": ["background"]
-        },
-        "color": {
-            "name": "Foreground",
-            "less": ["foreground"]
-        },
-        "outline": {
-            "name": "Outline",
-            "less": ["outline"]
-        },
-        "border": {
-            "name": "Border",
-            "less": ["border"]
-        },
-        "ribbed": {
-            "name": "Ribbed",
-            "less": ["ribbed"]
-        },
-        "pseudo": {
-            "name": "Pseudo",
-            "less": ["pseudo"]
-        },
-        "opacity": {
-            "name": "Opacity",
-            "less": ["opacity"]
         }
     },
 

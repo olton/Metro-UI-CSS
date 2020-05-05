@@ -17,6 +17,7 @@ String.prototype.toDate = function(format, locale) {
 
     var monthNameToNumber = function(month){
         var d, months, index, i;
+        var Locales = Metro.locales;
 
         if (!Utils.isValue(month)) {
             return -1;

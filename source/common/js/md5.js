@@ -316,32 +316,3 @@ function safe_add(x, y) {
 function bit_rol(num, cnt) {
     return (num << cnt) | (num >>> (32 - cnt));
 }
-
-
-// window.md5 = {
-//     hex: function(val){
-//         return hex_md5(val);
-//     },
-//
-//     b64: function(val){
-//         return b64_md5(val);
-//     },
-//
-//     any: function(s, e){
-//         return any_md5(s, e);
-//     },
-//
-//     hex_hmac: function(k, d){
-//         return hex_hmac_md5(k, d);
-//     },
-//
-//     b64_hmac: function(k, d){
-//         return b64_hmac_md5(k, d);
-//     },
-//
-//     any_hmac: function(k, d, e){
-//         return any_hmac_md5(k, d, e);
-//     }
-// };
-
-//$.Metro['md5'] = hex_md5;

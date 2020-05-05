@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/05/2020 17:49:08
+ * Built at 05/05/2020 17:32:05
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "04/05/2020 17:49:15",
+    compileTime: "05/05/2020 17:32:12",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -5071,6 +5071,7 @@ String.prototype.toDate = function(format, locale) {
 
     var monthNameToNumber = function(month){
         var d, months, index, i;
+        var Locales = Metro.locales;
 
         if (!Utils.isValue(month)) {
             return -1;
@@ -6645,34 +6646,6 @@ function bit_rol(num, cnt) {
 }
 
 
-// window.md5 = {
-//     hex: function(val){
-//         return hex_md5(val);
-//     },
-//
-//     b64: function(val){
-//         return b64_md5(val);
-//     },
-//
-//     any: function(s, e){
-//         return any_md5(s, e);
-//     },
-//
-//     hex_hmac: function(k, d){
-//         return hex_hmac_md5(k, d);
-//     },
-//
-//     b64_hmac: function(k, d){
-//         return b64_hmac_md5(k, d);
-//     },
-//
-//     any_hmac: function(k, d, e){
-//         return any_hmac_md5(k, d, e);
-//     }
-// };
-
-//$.Metro['md5'] = hex_md5;
-
 var TemplateEngine = function(html, options, conf) {
     var ReEx, re = '<%(.+?)%>',
         reExp = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(.*)?/g,
@@ -6917,22 +6890,8 @@ var Utils = {
         throw new Error('Hex2rgba error. Bad Hex value');
     },
 
-    random: function(from, to){
-        return Math.floor(Math.random()*(to-from+1)+from);
-    },
-
-    uniqueId: function () {
-        "use strict";
-        var d = new Date().getTime();
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = (d + Math.random() * 16) % 16 | 0;
-            d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-    },
-
     elementId: function(prefix){
-        return prefix+"-"+(new Date()).getTime()+Utils.random(1, 1000);
+        return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
     },
 
     secondsToFormattedString: function(time){
@@ -11720,7 +11679,7 @@ Component('chat', {
         }
 
         if (o.randomColor === true) {
-            index = Utils.random(0, that.classes.length - 1);
+            index = $.random(0, that.classes.length - 1);
             text.addClass(that.classes[index]);
         } else {
             if (msg.position === 'left' && Utils.isValue(o.clsMessageLeft)) {
@@ -17726,7 +17685,7 @@ Component('keypad', {
                 }
 
                 if (o.dynamicPosition === true) {
-                    o.position = that.positions[Utils.random(0, that.positions.length - 1)];
+                    o.position = that.positions[$.random(0, that.positions.length - 1)];
                     that._setKeysPosition();
                 }
 
@@ -23340,7 +23299,7 @@ Component('sorter', {
     reset: function(){
         var that = this, element = this.element, o = this.options;
         var items;
-        var id = Utils.uniqueId();
+        var id = Utils.elementId('sorter');
         var prev;
 
         items = this.initial;
@@ -28012,7 +27971,7 @@ Component('tag-input', {
         if (o.randomColor === true) {
             var colors = Colors.colors(Colors.PALETTES.ALL), bg, fg, bg_r;
 
-            bg = colors[Utils.random(0, colors.length - 1)];
+            bg = colors[$.random(0, colors.length - 1)];
             bg_r = Colors.darken(bg, 15);
             fg = Colors.isDark(bg) ? "#ffffff" : "#000000";
 
@@ -28447,7 +28406,7 @@ Component('tile', {
                     el.css("background-image", "url(" + img_src + ")");
                     el.fadeIn();
                 });
-            }, /*Utils.random(300,1000)*/ i * 300);
+            }, i * 300);
         }
 
         var that = this, element = this.element, o = this.options;
@@ -28504,7 +28463,7 @@ Component('tile', {
             var temp = this.images.slice();
 
             for(var i = 0; i < 5; i++) {
-                var rnd_index = Utils.random(0, temp.length - 1);
+                var rnd_index = $.random(0, temp.length - 1);
                 var div = $("<div>").addClass("img -js-img-"+i).css("background-image", "url("+temp[rnd_index].src+")");
                 element.prepend(div);
                 temp.splice(rnd_index, 1);
@@ -28515,12 +28474,12 @@ Component('tile', {
             $.setInterval(function(){
                 var temp = that.images.slice();
                 var colors = Colors.colors(Colors.PALETTES.ALL), bg;
-                bg = colors[Utils.random(0, colors.length - 1)];
+                bg = colors[$.random(0, colors.length - 1)];
 
                 element.css("background-color", bg);
 
                 for(var i = 0; i < a.length; i++) {
-                    var rnd_index = Utils.random(0, temp.length - 1);
+                    var rnd_index = $.random(0, temp.length - 1);
                     var div = element.find(".-js-img-"+a[i]);
                     switchImage(div, temp[rnd_index].src, i);
                     temp.splice(rnd_index, 1);

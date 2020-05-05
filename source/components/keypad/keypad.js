@@ -206,7 +206,7 @@ Component('keypad', {
                 }
 
                 if (o.dynamicPosition === true) {
-                    o.position = that.positions[Utils.random(0, that.positions.length - 1)];
+                    o.position = that.positions[$.random(0, that.positions.length - 1)];
                     that._setKeysPosition();
                 }
 

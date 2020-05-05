@@ -165,7 +165,7 @@ Component('sorter', {
     reset: function(){
         var that = this, element = this.element, o = this.options;
         var items;
-        var id = Utils.uniqueId();
+        var id = Utils.elementId('sorter');
         var prev;
 
         items = this.initial;
