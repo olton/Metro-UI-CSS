@@ -32,6 +32,7 @@
 + [x] Container: remove prop `display: block`
 + [x] Select: add using empty value for `option`, issue #1527
 + [x] Action button: fix sub actions position 
++ [x] Additional colors: refactoring
 
 ### 4.3.6
 ##### M4Q

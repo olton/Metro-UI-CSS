@@ -202,22 +202,8 @@ var Utils = {
         throw new Error('Hex2rgba error. Bad Hex value');
     },
 
-    random: function(from, to){
-        return Math.floor(Math.random()*(to-from+1)+from);
-    },
-
-    uniqueId: function () {
-        "use strict";
-        var d = new Date().getTime();
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = (d + Math.random() * 16) % 16 | 0;
-            d = Math.floor(d / 16);
-            return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
-        });
-    },
-
     elementId: function(prefix){
-        return prefix+"-"+(new Date()).getTime()+Utils.random(1, 1000);
+        return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
     },
 
     secondsToFormattedString: function(time){

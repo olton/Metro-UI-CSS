@@ -54,7 +54,7 @@ Component('tile', {
                     el.css("background-image", "url(" + img_src + ")");
                     el.fadeIn();
                 });
-            }, /*Utils.random(300,1000)*/ i * 300);
+            }, i * 300);
         }
 
         var that = this, element = this.element, o = this.options;
@@ -111,7 +111,7 @@ Component('tile', {
             var temp = this.images.slice();
 
             for(var i = 0; i < 5; i++) {
-                var rnd_index = Utils.random(0, temp.length - 1);
+                var rnd_index = $.random(0, temp.length - 1);
                 var div = $("<div>").addClass("img -js-img-"+i).css("background-image", "url("+temp[rnd_index].src+")");
                 element.prepend(div);
                 temp.splice(rnd_index, 1);
@@ -122,12 +122,12 @@ Component('tile', {
             $.setInterval(function(){
                 var temp = that.images.slice();
                 var colors = Colors.colors(Colors.PALETTES.ALL), bg;
-                bg = colors[Utils.random(0, colors.length - 1)];
+                bg = colors[$.random(0, colors.length - 1)];
 
                 element.css("background-color", bg);
 
                 for(var i = 0; i < a.length; i++) {
-                    var rnd_index = Utils.random(0, temp.length - 1);
+                    var rnd_index = $.random(0, temp.length - 1);
                     var div = element.find(".-js-img-"+a[i]);
                     switchImage(div, temp[rnd_index].src, i);
                     temp.splice(rnd_index, 1);

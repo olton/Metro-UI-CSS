@@ -172,7 +172,7 @@ Component('chat', {
         }
 
         if (o.randomColor === true) {
-            index = Utils.random(0, that.classes.length - 1);
+            index = $.random(0, that.classes.length - 1);
             text.addClass(that.classes[index]);
         } else {
             if (msg.position === 'left' && Utils.isValue(o.clsMessageLeft)) {
