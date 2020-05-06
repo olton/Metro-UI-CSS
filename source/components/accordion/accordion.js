@@ -141,7 +141,7 @@ Component('accordion', {
         frame.children(".heading").removeClass(o.activeHeadingClass);
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
-        Utils.callback(o.onFrameClose, [frame[0]], element[0]);
+        Utils.exec(o.onFrameClose, [frame[0]], element[0]);
 
         element.fire("frameclose", {
             frame: frame[0]

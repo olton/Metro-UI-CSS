@@ -57,7 +57,7 @@ Component('rating', {
             if (Array.isArray(o.values)) {
                 this.values = o.values;
             } else if (typeof o.values === "string") {
-                this.values = Utils.strToArray(o.values)
+                this.values = o.values.toArray()
             }
         } else {
             for(i = 1; i <= o.stars; i++) {

@@ -77,7 +77,7 @@ Component('time-picker', {
             o.value = (new Date()).format("%H:%M:%S");
         }
 
-        this.value = Utils.strToArray(element.val() !== "" ? element.val() : String(o.value), ":");
+        this.value = (element.val() !== "" ? element.val() : ""+o.value).toArray(":");
 
         for(i = 0; i < 3; i++) {
             if (this.value[i] === undefined || this.value[i] === null) {
@@ -405,7 +405,7 @@ Component('time-picker', {
         } else if (Utils.isObject(t)) {
             result = [t.h, t.m, t.s];
         } else {
-            result = Utils.strToArray(t, ":");
+            result = t.toArray(":");
         }
 
         return result;

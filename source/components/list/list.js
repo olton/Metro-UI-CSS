@@ -210,7 +210,7 @@ Component('list', {
         rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("list-rows-block").addClass(o.clsItemsCount).appendTo(top_block);
 
         rows_select = $("<select>").appendTo(rows_block);
-        $.each(Utils.strToArray(o.itemsSteps), function () {
+        $.each(o.itemsSteps.toArray(), function () {
             var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
             if (parseInt(this) === parseInt(o.items)) {
                 option.attr("selected", "selected");
@@ -312,8 +312,8 @@ Component('list', {
             that.filterIndex = that.addFilter(filter_func);
         }
 
-        if (Utils.isValue(o.filters)) {
-            $.each(Utils.strToArray(o.filters), function(){
+        if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+            $.each(o.filters.toArray(), function(){
                 filter_func = Utils.isFunc(this);
                 if (filter_func !== false) {
                     that.filtersIndexes.push(that.addFilter(filter_func));
@@ -694,8 +694,8 @@ Component('list', {
                 that.filterIndex = that.addFilter(filter_func);
             }
 
-            if (Utils.isValue(o.filters)) {
-                $.each(Utils.strToArray(o.filters), function(){
+            if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                $.each(o.filters.toArray(), function(){
                     filter_func = Utils.isFunc(this);
                     if (filter_func !== false) {
                         that.filtersIndexes.push(that.addFilter(filter_func));

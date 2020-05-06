@@ -187,7 +187,7 @@ Component('dialog', {
             element.fire("hide");
         }
         setTimeout(function(){
-            Utils.callback(callback);
+            Utils.exec(callback, null, element[0]);
             element.css({
                 visibility: "hidden",
                 top: "100%"
@@ -203,7 +203,7 @@ Component('dialog', {
         });
         Utils.exec(o.onShow, [that], element[0]);
         element.fire("show");
-        Utils.callback(callback);
+        Utils.exec(callback, null, element[0]);
     },
 
     setPosition: function(){

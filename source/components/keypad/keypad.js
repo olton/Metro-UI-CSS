@@ -46,7 +46,7 @@ Component('keypad', {
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
         this.keypad = null;
 
-        this.keys = Utils.strToArray(this.options.keys, ",");
+        this.keys = this.options.keys.toArray(",");
         this.keys_to_work = this.keys;
 
         Metro.createExec(this);
