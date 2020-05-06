@@ -380,7 +380,7 @@ Component('validator', {
             val: 0,
             log: []
         };
-        var formData = Utils.formData(element);
+        var formData = $.serializeToArray(element);
 
         if (submit.length > 0) {
             submit.attr('disabled', 'disabled').addClass('disabled');

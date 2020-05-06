@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/05/2020 17:51:34
+ * Built at 06/05/2020 11:12:57
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "05/05/2020 17:51:41",
+    compileTime: "06/05/2020 11:13:04",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -6907,10 +6907,6 @@ var Utils = {
         return [hours, minutes, seconds].join(":");
     },
 
-    callback: function(f, args, context){
-        return Utils.exec(f, args, context);
-    },
-
     func: function(f){
         return new Function("a", f);
     },
@@ -7338,35 +7334,6 @@ var Utils = {
         Metro.locales = $.extend( {}, Metro.locales, locale );
     },
 
-    strToArray: function(str, delimiter, type, format){
-        var a;
-
-        if (!Utils.isValue(delimiter)) {
-            delimiter = ",";
-        }
-
-        if (!Utils.isValue(type)) {
-            type = "string";
-        }
-
-        a = (""+str).split(delimiter);
-
-        return a.map(function(s){
-            var result;
-
-            switch (type) {
-                case "int":
-                case "integer": result = parseInt(s); break;
-                case "number":
-                case "float": result = parseFloat(s); break;
-                case "date": result = !Utils.isValue(format) ? new Date(s) : s.toDate(format); break;
-                default: result = s.trim();
-            }
-
-            return result;
-        })
-    },
-
     aspectRatioH: function(width, a){
         if (a === "16/9") return width * 9 / 16;
         if (a === "21/9") return width * 9 / 21;
@@ -7539,71 +7506,6 @@ var Utils = {
             window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
             location.hostname.indexOf(pattern) !== -1
         )
-    },
-
-    formData: function(f){
-        var form = $(f)[0];
-        var i, j, q = {};
-
-        if (!form || form.nodeName !== "FORM") {
-            return;
-        }
-
-        for (i = form.elements.length - 1; i >= 0; i = i - 1) {
-            if (form.elements[i].name === "") {
-                continue;
-            }
-            switch (form.elements[i].nodeName) {
-                case 'INPUT':
-                    switch (form.elements[i].type) {
-                        case 'text':
-                        case 'hidden':
-                        case 'password':
-                        case 'button':
-                        case 'reset':
-                        case 'submit':
-                            q[form.elements[i].name] = form.elements[i].value;
-                            break;
-                        case 'checkbox':
-                        case 'radio':
-                            if (form.elements[i].checked) {
-                                q[form.elements[i].name] = form.elements[i].value;
-                            }
-                            break;
-                        case 'file':
-                            break;
-                    }
-                    break;
-                case 'TEXTAREA':
-                    q[form.elements[i].name] = form.elements[i].value;
-                    break;
-                case 'SELECT':
-                    switch (form.elements[i].type) {
-                        case 'select-one':
-                            q[form.elements[i].name] = form.elements[i].value;
-                            break;
-                        case 'select-multiple':
-                            q[form.elements[i].name] = [];
-                            for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
-                                if (form.elements[i].options[j].selected) {
-                                    q[form.elements[i].name].push(form.elements[i].options[j].value);
-                                }
-                            }
-                            break;
-                    }
-                    break;
-                case 'BUTTON':
-                    switch (form.elements[i].type) {
-                        case 'reset':
-                        case 'submit':
-                        case 'button':
-                            q[form.elements[i].name] = form.elements[i].value;
-                            break;
-                    }
-                    break;
-            }
-        }
-        return q;
     },
 
     decCount: function(v){
@@ -8144,7 +8046,7 @@ Component('accordion', {
         frame.children(".heading").removeClass(o.activeHeadingClass);
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
-        Utils.callback(o.onFrameClose, [frame[0]], element[0]);
+        Utils.exec(o.onFrameClose, [frame[0]], element[0]);
 
         element.fire("frameclose", {
             frame: frame[0]
@@ -9575,7 +9477,7 @@ Component('calendar', {
             return ;
         }
 
-        dates = typeof val === 'string' ? Utils.strToArray(val) : val;
+        dates = typeof val === 'string' ? val.toArray() : val;
 
         $.each(dates, function(){
             var _d;
@@ -10986,9 +10888,9 @@ Component('carousel', {
             height = Utils.aspectRatioH(width, o.height);
         } else {
             if (String(o.height).indexOf("@") > -1) {
-                medias = Utils.strToArray(o.height.substr(1), "|");
+                medias = o.height.substr(1).toArray("|");
                 $.each(medias, function(){
-                    var media = Utils.strToArray(this, ",");
+                    var media = this.toArray(",");
                     if (window.matchMedia(media[0]).matches) {
                         if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
                             height = Utils.aspectRatioH(width, media[1]);
@@ -14015,7 +13917,7 @@ Component('dialog', {
             element.fire("hide");
         }
         setTimeout(function(){
-            Utils.callback(callback);
+            Utils.exec(callback, null, element[0]);
             element.css({
                 visibility: "hidden",
                 top: "100%"
@@ -14031,7 +13933,7 @@ Component('dialog', {
         });
         Utils.exec(o.onShow, [that], element[0]);
         element.fire("show");
-        Utils.callback(callback);
+        Utils.exec(callback, null, element[0]);
     },
 
     setPosition: function(){
@@ -17111,7 +17013,7 @@ Component('input', {
         var clearButton, revealButton, searchButton;
 
         if (Utils.isValue(o.historyPreset)) {
-            $.each(Utils.strToArray(o.historyPreset, o.historyDivider), function(){
+            $.each(o.historyPreset.toArray(o.historyDivider), function(){
                 that.history.push(this);
             });
             that.historyIndex = that.history.length - 1;
@@ -17206,7 +17108,7 @@ Component('input', {
             if (autocomplete_obj !== false) {
                 that.autocomplete = autocomplete_obj;
             } else {
-                this.autocomplete = Utils.strToArray(o.autocomplete, o.autocompleteDivider);
+                this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
             }
             $("<div>").addClass("autocomplete-list").css({
                 maxHeight: o.autocompleteListHeight,
@@ -17402,8 +17304,8 @@ Component('input', {
     setHistory: function(history, append) {
         var that = this, o = this.options;
         if (Utils.isNull(history)) return;
-        if (!Array.isArray(history)) {
-            history = Utils.strToArray(history, o.historyDivider);
+        if (!Array.isArray(history) && typeof history === 'string') {
+            history = history.toArray(o.historyDivider);
         }
         if (append === true) {
             $.each(history, function () {
@@ -17525,7 +17427,7 @@ Component('keypad', {
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
         this.keypad = null;
 
-        this.keys = Utils.strToArray(this.options.keys, ",");
+        this.keys = this.options.keys.toArray(",");
         this.keys_to_work = this.keys;
 
         Metro.createExec(this);
@@ -18066,7 +17968,7 @@ Component('list', {
         rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("list-rows-block").addClass(o.clsItemsCount).appendTo(top_block);
 
         rows_select = $("<select>").appendTo(rows_block);
-        $.each(Utils.strToArray(o.itemsSteps), function () {
+        $.each(o.itemsSteps.toArray(), function () {
             var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
             if (parseInt(this) === parseInt(o.items)) {
                 option.attr("selected", "selected");
@@ -18168,8 +18070,8 @@ Component('list', {
             that.filterIndex = that.addFilter(filter_func);
         }
 
-        if (Utils.isValue(o.filters)) {
-            $.each(Utils.strToArray(o.filters), function(){
+        if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+            $.each(o.filters.toArray(), function(){
                 filter_func = Utils.isFunc(this);
                 if (filter_func !== false) {
                     that.filtersIndexes.push(that.addFilter(filter_func));
@@ -18550,8 +18452,8 @@ Component('list', {
                 that.filterIndex = that.addFilter(filter_func);
             }
 
-            if (Utils.isValue(o.filters)) {
-                $.each(Utils.strToArray(o.filters), function(){
+            if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                $.each(o.filters.toArray(), function(){
                     filter_func = Utils.isFunc(this);
                     if (filter_func !== false) {
                         that.filtersIndexes.push(that.addFilter(filter_func));
@@ -20925,7 +20827,7 @@ Component('rating', {
             if (Array.isArray(o.values)) {
                 this.values = o.values;
             } else if (typeof o.values === "string") {
-                this.values = Utils.strToArray(o.values)
+                this.values = o.values.toArray()
             }
         } else {
             for(i = 1; i <= o.stars; i++) {
@@ -23721,7 +23623,7 @@ Component('splitter', {
 
         if (Utils.isValue(o.minSizes)) {
             if (String(o.minSizes).contains(",")) {
-                children_sizes = Utils.strToArray(o.minSizes);
+                children_sizes = o.minSizes.toArray();
                 for (i = 0; i < children_sizes.length; i++) {
                     $(children[i]).data("min-size", children_sizes[i]);
                     children[i].style.setProperty('min-'+resizeProp, String(children_sizes[i]).contains("%") ? children_sizes[i] : String(children_sizes[i]).replace("px", "")+"px", 'important');
@@ -23750,7 +23652,7 @@ Component('splitter', {
                 flexBasis: "calc("+(100/children.length)+"% - "+(gutters.length * o.gutterSize)+"px)"
             })
         } else {
-            children_sizes = Utils.strToArray(o.splitSizes);
+            children_sizes = o.splitSizes.toArray();
             for(i = 0; i < children_sizes.length; i++) {
                 $(children[i]).css({
                     flexBasis: "calc("+children_sizes[i]+"% - "+(gutters.length * o.gutterSize)+"px)"
@@ -25261,7 +25163,7 @@ Component('table', {
         }
 
         if (Utils.isValue(o.searchFields)) {
-            this.searchFields = Utils.strToArray(o.searchFields);
+            this.searchFields = o.searchFields.toArray();
         }
 
         if (Utils.isValue(o.head)) {
@@ -25841,7 +25743,7 @@ Component('table', {
         rows_block.addClass(o.clsRowsCount);
 
         rows_select = $("<select>").appendTo(rows_block);
-        $.each(Utils.strToArray(o.rowsSteps), function () {
+        $.each(o.rowsSteps.toArray(), function () {
             var val = parseInt(this);
             var option = $("<option>").attr("value", val).text(val === -1 ? o.allRecordsTitle : val).appendTo(rows_select);
             if (val === parseInt(o.rows)) {
@@ -25946,8 +25848,8 @@ Component('table', {
 
         var filter_func;
 
-        if (Utils.isValue(o.filters)) {
-            $.each(Utils.strToArray(o.filters), function(){
+        if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+            $.each(o.filters.toArray(), function(){
                 filter_func = Utils.isFunc(this);
                 if (filter_func !== false) {
                     that.filtersIndexes.push(that.addFilter(filter_func));
@@ -26239,7 +26141,7 @@ Component('table', {
             if (status) {
                 $.each(op, function(){
                     var a;
-                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this], " ") : [];
+                    a = Utils.isValue(that.heads[index][this]) ? (that.heads[index][this]).toArray(" ") : [];
                     Utils.arrayDelete(a, "hidden");
                     that.heads[index][this] = a.join(" ");
                     that.view[index]['show'] = true;
@@ -26248,7 +26150,7 @@ Component('table', {
                 $.each(op, function(){
                     var a;
 
-                    a = Utils.isValue(that.heads[index][this]) ? Utils.strToArray(that.heads[index][this], " ") : [];
+                    a = Utils.isValue(that.heads[index][this]) ? (that.heads[index][this]).toArray(" ") : [];
                     if (a.indexOf("hidden") === -1) {
                         a.push("hidden");
                     }
@@ -27848,7 +27750,7 @@ Component('tag-input', {
         }
 
         if (Utils.isValue(values)) {
-            $.each(Utils.strToArray(values, o.tagSeparator), function(){
+            $.each(values.toArray(o.tagSeparator), function(){
                 that._addTag(this);
             })
         }
@@ -28045,7 +27947,7 @@ Component('tag-input', {
         this.values = [];
 
         if (Utils.isValue(v)) {
-            $.each(Utils.strToArray(v, o.tagSeparator), function(){
+            $.each((""+v).toArray(o.tagSeparator), function(){
                 that._addTag(this);
             })
         }
@@ -28106,7 +28008,7 @@ Component('tag-input', {
             if (!Utils.isValue(val)) {
                 return ;
             }
-            that.val(Utils.strToArray(val, ","));
+            that.val(val.toArray(o.tagSeparator));
         };
 
         switch (attributeName) {
@@ -28671,7 +28573,7 @@ Component('time-picker', {
             o.value = (new Date()).format("%H:%M:%S");
         }
 
-        this.value = Utils.strToArray(element.val() !== "" ? element.val() : String(o.value), ":");
+        this.value = (element.val() !== "" ? element.val() : ""+o.value).toArray(":");
 
         for(i = 0; i < 3; i++) {
             if (this.value[i] === undefined || this.value[i] === null) {
@@ -28999,7 +28901,7 @@ Component('time-picker', {
         } else if (Utils.isObject(t)) {
             result = [t.h, t.m, t.s];
         } else {
-            result = Utils.strToArray(t, ":");
+            result = t.toArray(":");
         }
 
         return result;
@@ -29133,7 +29035,7 @@ var Toast = {
             timer = null;
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
-                Utils.callback(callback);
+                Utils.exec(callback, null, toast[0]);
             });
         }, timeout);
     }
@@ -31090,7 +30992,7 @@ Component('validator', {
             val: 0,
             log: []
         };
-        var formData = Utils.formData(element);
+        var formData = $.serializeToArray(element);
 
         if (submit.length > 0) {
             submit.attr('disabled', 'disabled').addClass('disabled');

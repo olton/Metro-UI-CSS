@@ -90,7 +90,7 @@ Component('tag-input', {
         }
 
         if (Utils.isValue(values)) {
-            $.each(Utils.strToArray(values, o.tagSeparator), function(){
+            $.each(values.toArray(o.tagSeparator), function(){
                 that._addTag(this);
             })
         }
@@ -287,7 +287,7 @@ Component('tag-input', {
         this.values = [];
 
         if (Utils.isValue(v)) {
-            $.each(Utils.strToArray(v, o.tagSeparator), function(){
+            $.each((""+v).toArray(o.tagSeparator), function(){
                 that._addTag(this);
             })
         }
@@ -348,7 +348,7 @@ Component('tag-input', {
             if (!Utils.isValue(val)) {
                 return ;
             }
-            that.val(Utils.strToArray(val, ","));
+            that.val(val.toArray(o.tagSeparator));
         };
 
         switch (attributeName) {

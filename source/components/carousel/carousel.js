@@ -163,9 +163,9 @@ Component('carousel', {
             height = Utils.aspectRatioH(width, o.height);
         } else {
             if (String(o.height).indexOf("@") > -1) {
-                medias = Utils.strToArray(o.height.substr(1), "|");
+                medias = o.height.substr(1).toArray("|");
                 $.each(medias, function(){
-                    var media = Utils.strToArray(this, ",");
+                    var media = this.toArray(",");
                     if (window.matchMedia(media[0]).matches) {
                         if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
                             height = Utils.aspectRatioH(width, media[1]);

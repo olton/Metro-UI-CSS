@@ -219,10 +219,6 @@ var Utils = {
         return [hours, minutes, seconds].join(":");
     },
 
-    callback: function(f, args, context){
-        return Utils.exec(f, args, context);
-    },
-
     func: function(f){
         return new Function("a", f);
     },
@@ -650,35 +646,6 @@ var Utils = {
         Metro.locales = $.extend( {}, Metro.locales, locale );
     },
 
-    strToArray: function(str, delimiter, type, format){
-        var a;
-
-        if (!Utils.isValue(delimiter)) {
-            delimiter = ",";
-        }
-
-        if (!Utils.isValue(type)) {
-            type = "string";
-        }
-
-        a = (""+str).split(delimiter);
-
-        return a.map(function(s){
-            var result;
-
-            switch (type) {
-                case "int":
-                case "integer": result = parseInt(s); break;
-                case "number":
-                case "float": result = parseFloat(s); break;
-                case "date": result = !Utils.isValue(format) ? new Date(s) : s.toDate(format); break;
-                default: result = s.trim();
-            }
-
-            return result;
-        })
-    },
-
     aspectRatioH: function(width, a){
         if (a === "16/9") return width * 9 / 16;
         if (a === "21/9") return width * 9 / 21;
@@ -851,71 +818,6 @@ var Utils = {
             window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
             location.hostname.indexOf(pattern) !== -1
         )
-    },
-
-    formData: function(f){
-        var form = $(f)[0];
-        var i, j, q = {};
-
-        if (!form || form.nodeName !== "FORM") {
-            return;
-        }
-
-        for (i = form.elements.length - 1; i >= 0; i = i - 1) {
-            if (form.elements[i].name === "") {
-                continue;
-            }
-            switch (form.elements[i].nodeName) {
-                case 'INPUT':
-                    switch (form.elements[i].type) {
-                        case 'text':
-                        case 'hidden':
-                        case 'password':
-                        case 'button':
-                        case 'reset':
-                        case 'submit':
-                            q[form.elements[i].name] = form.elements[i].value;
-                            break;
-                        case 'checkbox':
-                        case 'radio':
-                            if (form.elements[i].checked) {
-                                q[form.elements[i].name] = form.elements[i].value;
-                            }
-                            break;
-                        case 'file':
-                            break;
-                    }
-                    break;
-                case 'TEXTAREA':
-                    q[form.elements[i].name] = form.elements[i].value;
-                    break;
-                case 'SELECT':
-                    switch (form.elements[i].type) {
-                        case 'select-one':
-                            q[form.elements[i].name] = form.elements[i].value;
-                            break;
-                        case 'select-multiple':
-                            q[form.elements[i].name] = [];
-                            for (j = form.elements[i].options.length - 1; j >= 0; j = j - 1) {
-                                if (form.elements[i].options[j].selected) {
-                                    q[form.elements[i].name].push(form.elements[i].options[j].value);
-                                }
-                            }
-                            break;
-                    }
-                    break;
-                case 'BUTTON':
-                    switch (form.elements[i].type) {
-                        case 'reset':
-                        case 'submit':
-                        case 'button':
-                            q[form.elements[i].name] = form.elements[i].value;
-                            break;
-                    }
-                    break;
-            }
-        }
-        return q;
     },
 
     decCount: function(v){

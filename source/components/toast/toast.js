@@ -49,7 +49,7 @@ var Toast = {
             timer = null;
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
-                Utils.callback(callback);
+                Utils.exec(callback, null, toast[0]);
             });
         }, timeout);
     }

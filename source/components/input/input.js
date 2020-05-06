@@ -85,7 +85,7 @@ Component('input', {
         var clearButton, revealButton, searchButton;
 
         if (Utils.isValue(o.historyPreset)) {
-            $.each(Utils.strToArray(o.historyPreset, o.historyDivider), function(){
+            $.each(o.historyPreset.toArray(o.historyDivider), function(){
                 that.history.push(this);
             });
             that.historyIndex = that.history.length - 1;
@@ -180,7 +180,7 @@ Component('input', {
             if (autocomplete_obj !== false) {
                 that.autocomplete = autocomplete_obj;
             } else {
-                this.autocomplete = Utils.strToArray(o.autocomplete, o.autocompleteDivider);
+                this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
             }
             $("<div>").addClass("autocomplete-list").css({
                 maxHeight: o.autocompleteListHeight,
@@ -376,8 +376,8 @@ Component('input', {
     setHistory: function(history, append) {
         var that = this, o = this.options;
         if (Utils.isNull(history)) return;
-        if (!Array.isArray(history)) {
-            history = Utils.strToArray(history, o.historyDivider);
+        if (!Array.isArray(history) && typeof history === 'string') {
+            history = history.toArray(o.historyDivider);
         }
         if (append === true) {
             $.each(history, function () {

@@ -189,7 +189,7 @@ Component('calendar', {
             return ;
         }
 
-        dates = typeof val === 'string' ? Utils.strToArray(val) : val;
+        dates = typeof val === 'string' ? val.toArray() : val;
 
         $.each(dates, function(){
             var _d;

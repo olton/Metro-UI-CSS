@@ -66,7 +66,7 @@ Component('splitter', {
 
         if (Utils.isValue(o.minSizes)) {
             if (String(o.minSizes).contains(",")) {
-                children_sizes = Utils.strToArray(o.minSizes);
+                children_sizes = o.minSizes.toArray();
                 for (i = 0; i < children_sizes.length; i++) {
                     $(children[i]).data("min-size", children_sizes[i]);
                     children[i].style.setProperty('min-'+resizeProp, String(children_sizes[i]).contains("%") ? children_sizes[i] : String(children_sizes[i]).replace("px", "")+"px", 'important');
@@ -95,7 +95,7 @@ Component('splitter', {
                 flexBasis: "calc("+(100/children.length)+"% - "+(gutters.length * o.gutterSize)+"px)"
             })
         } else {
-            children_sizes = Utils.strToArray(o.splitSizes);
+            children_sizes = o.splitSizes.toArray();
             for(i = 0; i < children_sizes.length; i++) {
                 $(children[i]).css({
                     flexBasis: "calc("+children_sizes[i]+"% - "+(gutters.length * o.gutterSize)+"px)"
