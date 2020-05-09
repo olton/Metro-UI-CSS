@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/05/2020 11:12:57
+ * Built at 09/05/2020 10:57:40
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "06/05/2020 11:13:04",
+    compileTime: "09/05/2020 10:57:47",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -22180,6 +22180,7 @@ $(document).on(Metro.events.click, function(){
 
 
 var SidebarDefaultConfig = {
+    menuScrollbar: false,
     sidebarDeferred: 0,
     shadow: true,
     position: "left",
@@ -22236,8 +22237,13 @@ Component('sidebar', {
         var element = this.element, o = this.options;
         var header = element.find(".sidebar-header");
         var sheet = Metro.sheet;
+        var menu = element.find(".sidebar-menu");
 
         element.addClass("sidebar").addClass("on-"+o.position);
+
+        if (o.menuScrollbar === false) {
+            menu.addClass("hide-scroll");
+        }
 
         if (o.size !== 290) {
             Utils.addCssRule(sheet, ".sidebar", "width: " + o.size + "px;");

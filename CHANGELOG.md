@@ -38,6 +38,7 @@
 + [x] Utils: remove method `formData`, to get form data as array, use `$.serializeToArray(form)` from `m4q` and `$.serialize(form)` to get stringify value with `&` divider
 + [x] Utils: remove method `strToArray`, to transform string to array, use String.prototype method `String.prototype.toArray(delimiter, type, format)`
 + [x] Utils: remove method `callback`, execute function or code, use method `Utils.exec(fn, args, context)`
++ [x] Sidebar: add attribute `data-menu-scrollbar="true|false"`. Attribute enable or disable scrollbar in the sidebar menu, issue #1528
 
 
 ### 4.3.6

@@ -1,4 +1,5 @@
 var SidebarDefaultConfig = {
+    menuScrollbar: false,
     sidebarDeferred: 0,
     shadow: true,
     position: "left",
@@ -55,8 +56,13 @@ Component('sidebar', {
         var element = this.element, o = this.options;
         var header = element.find(".sidebar-header");
         var sheet = Metro.sheet;
+        var menu = element.find(".sidebar-menu");
 
         element.addClass("sidebar").addClass("on-"+o.position);
+
+        if (o.menuScrollbar === false) {
+            menu.addClass("hide-scroll");
+        }
 
         if (o.size !== 290) {
             Utils.addCssRule(sheet, ".sidebar", "width: " + o.size + "px;");
