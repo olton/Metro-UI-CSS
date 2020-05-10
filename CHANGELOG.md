@@ -1,6 +1,6 @@
 ### 4.3.7
 #### M4Q
-+ [x] Animation: a new engine for animation. The `animate` function changed. Now function receives one argument. 
++ [x] Animation: a new engine for animation. The `animate` function changed. Now function receives one argument. Also, you can use old syntax :)
 
 #### Metro 4
 + [x] Input: fix append size and padding, issue #1512
