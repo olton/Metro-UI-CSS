@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/05/2020 11:45:37
+ * Built at 10/05/2020 12:26:39
  * Licensed under MIT
  */
 
@@ -4291,7 +4291,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "10/05/2020 11:45:44",
+    compileTime: "10/05/2020 12:26:48",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21590,6 +21590,7 @@ Component('ripple', {
 Metro.ripple = getRipple;
 
 var SelectDefaultConfig = {
+    size: "normal",
     selectDeferred: 0,
     clearButton: false,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
@@ -21665,6 +21666,23 @@ Component('select', {
         }
     },
 
+    _addTag: function(val, data){
+        var element = this.element, o = this.options;
+        var tag, tagSize, container = element.closest(".select");
+        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
+        $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+
+        if (container.hasClass("input-large")) {
+            tagSize = "large";
+        } else if (container.hasClass("input-small")) {
+            tagSize = "small"
+        }
+
+        tag.addClass(tagSize);
+
+        return tag;
+    },
+
     _addOption: function(item, parent){
         var option = $(item);
         var l, a;
@@ -21672,7 +21690,7 @@ Component('select', {
         var multiple = element[0].multiple;
         var input = element.siblings(".select-input");
         var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
-        var tag;
+        // var tag;
 
         l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "").appendTo(parent);
         a = $("<a>").html(html).appendTo(l);
@@ -21686,9 +21704,10 @@ Component('select', {
         if (option.is(":selected")) {
             if (multiple) {
                 l.addClass("d-none");
-                tag = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                tag.data("option", l);
-                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+                input.append(this._addTag(html, l));
+                // tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                // tag.data("option", l);
+                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
                 element.val(item.value);
                 input.html(html);
@@ -21748,6 +21767,7 @@ Component('select', {
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
         container.attr("id", select_id).attr("for", checkboxID);
+        container.addClass("input-" + o.size);
 
         dropdown_toggle = $("<span>").addClass("dropdown-toggle");
         dropdown_toggle.appendTo(container);
@@ -21920,9 +21940,10 @@ Component('select', {
 
             if (element[0].multiple) {
                 leaf.addClass("d-none");
-                selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                selected_item.data("option", leaf);
-                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
+                input.append(that._addTag(html, leaf));
+                // selected_item = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                // selected_item.data("option", leaf);
+                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
@@ -21951,8 +21972,8 @@ Component('select', {
             });
         });
 
-        input.on("click", ".selected-item .remover", function(e){
-            var item = $(this).closest(".selected-item");
+        input.on("click", ".tag .remover", function(e){
+            var item = $(this).closest(".tag");
             var leaf = item.data("option");
             var option = leaf.data('option');
             var selected;
@@ -22100,7 +22121,7 @@ Component('select', {
                 if (""+option_value === ""+this) {
                     if (multiple) {
                         list_item.addClass("d-none");
-                        tag = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
                         tag.data("option", list_item);
                         $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
                     } else {
@@ -27665,6 +27686,7 @@ Component('tabs', {
 
 
 var TagInputDefaultConfig = {
+    size: "normal",
     taginputDeferred: 0,
     static: false,
     clearButton: true,
@@ -27742,6 +27764,8 @@ Component('tag-input', {
 
         container = $("<div>").addClass("tag-input "  + element[0].className).addClass(o.clsComponent).insertBefore(element);
         element.appendTo(container);
+
+        container.addClass("input-" + o.size)
 
         element[0].className = "";
 
@@ -27853,6 +27877,13 @@ Component('tag-input', {
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
         var tag, title, remover;
+        var tagSize, tagStatic;
+
+        if (container.hasClass("input-large")) {
+            tagSize = "large";
+        } else if (container.hasClass("input-small")) {
+            tagSize = "small"
+        }
 
         if (o.maxTags > 0 && this.values.length === o.maxTags) {
             return ;
@@ -27867,8 +27898,17 @@ Component('tag-input', {
         }
 
 
-        tag = $("<span>").addClass("tag").addClass(o.clsTag).insertBefore(input);
+        tag = $("<span>")
+            .addClass("tag")
+            .addClass(tagSize)
+            .addClass(o.clsTag)
+            .insertBefore(input);
         tag.data("value", val);
+
+        tagStatic = o.static || container.hasClass("static-mode") || element.readonly || element.disabled || container.hasClass("disabled");
+        if (tagStatic) {
+            tag.addClass("static");
+        }
 
         title = $("<span>").addClass("title").addClass(o.clsTagTitle).html(val);
         remover = $("<span>").addClass("remover").addClass(o.clsTagRemover).html("&times;");

@@ -1,4 +1,5 @@
 var TagInputDefaultConfig = {
+    size: "normal",
     taginputDeferred: 0,
     static: false,
     clearButton: true,
@@ -76,6 +77,8 @@ Component('tag-input', {
 
         container = $("<div>").addClass("tag-input "  + element[0].className).addClass(o.clsComponent).insertBefore(element);
         element.appendTo(container);
+
+        container.addClass("input-" + o.size)
 
         element[0].className = "";
 
@@ -187,6 +190,13 @@ Component('tag-input', {
         var container = element.closest(".tag-input");
         var input = container.find(".input-wrapper");
         var tag, title, remover;
+        var tagSize, tagStatic;
+
+        if (container.hasClass("input-large")) {
+            tagSize = "large";
+        } else if (container.hasClass("input-small")) {
+            tagSize = "small"
+        }
 
         if (o.maxTags > 0 && this.values.length === o.maxTags) {
             return ;
@@ -201,8 +211,17 @@ Component('tag-input', {
         }
 
 
-        tag = $("<span>").addClass("tag").addClass(o.clsTag).insertBefore(input);
+        tag = $("<span>")
+            .addClass("tag")
+            .addClass(tagSize)
+            .addClass(o.clsTag)
+            .insertBefore(input);
         tag.data("value", val);
+
+        tagStatic = o.static || container.hasClass("static-mode") || element.readonly || element.disabled || container.hasClass("disabled");
+        if (tagStatic) {
+            tag.addClass("static");
+        }
 
         title = $("<span>").addClass("title").addClass(o.clsTagTitle).html(val);
         remover = $("<span>").addClass("remover").addClass(o.clsTagRemover).html("&times;");

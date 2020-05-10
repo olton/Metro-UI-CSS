@@ -1,4 +1,5 @@
 var SelectDefaultConfig = {
+    size: "normal",
     selectDeferred: 0,
     clearButton: false,
     clearButtonIcon: "<span class='default-icon-cross'></span>",
@@ -74,6 +75,23 @@ Component('select', {
         }
     },
 
+    _addTag: function(val, data){
+        var element = this.element, o = this.options;
+        var tag, tagSize, container = element.closest(".select");
+        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
+        $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+
+        if (container.hasClass("input-large")) {
+            tagSize = "large";
+        } else if (container.hasClass("input-small")) {
+            tagSize = "small"
+        }
+
+        tag.addClass(tagSize);
+
+        return tag;
+    },
+
     _addOption: function(item, parent){
         var option = $(item);
         var l, a;
@@ -81,7 +99,7 @@ Component('select', {
         var multiple = element[0].multiple;
         var input = element.siblings(".select-input");
         var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
-        var tag;
+        // var tag;
 
         l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "").appendTo(parent);
         a = $("<a>").html(html).appendTo(l);
@@ -95,9 +113,10 @@ Component('select', {
         if (option.is(":selected")) {
             if (multiple) {
                 l.addClass("d-none");
-                tag = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                tag.data("option", l);
-                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+                input.append(this._addTag(html, l));
+                // tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                // tag.data("option", l);
+                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
                 element.val(item.value);
                 input.html(html);
@@ -157,6 +176,7 @@ Component('select', {
         this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
         container.attr("id", select_id).attr("for", checkboxID);
+        container.addClass("input-" + o.size);
 
         dropdown_toggle = $("<span>").addClass("dropdown-toggle");
         dropdown_toggle.appendTo(container);
@@ -329,9 +349,10 @@ Component('select', {
 
             if (element[0].multiple) {
                 leaf.addClass("d-none");
-                selected_item = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                selected_item.data("option", leaf);
-                $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
+                input.append(that._addTag(html, leaf));
+                // selected_item = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                // selected_item.data("option", leaf);
+                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
@@ -360,8 +381,8 @@ Component('select', {
             });
         });
 
-        input.on("click", ".selected-item .remover", function(e){
-            var item = $(this).closest(".selected-item");
+        input.on("click", ".tag .remover", function(e){
+            var item = $(this).closest(".tag");
             var leaf = item.data("option");
             var option = leaf.data('option');
             var selected;
@@ -509,7 +530,7 @@ Component('select', {
                 if (""+option_value === ""+this) {
                     if (multiple) {
                         list_item.addClass("d-none");
-                        tag = $("<div>").addClass("selected-item").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
                         tag.data("option", list_item);
                         $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
                     } else {

@@ -1,0 +1,77 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.tag {
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    margin: 2px;
+    padding: 0;
+    height: @taginput-item-size;
+    line-height: @taginput-item-size;
+    background-color: @light;
+    cursor: default;
+
+    .title {
+        display: block;
+        position: relative;
+        max-width: 120px;
+        font-size: 14px;
+        .text-ellipsis();
+        margin: 0 8px;
+    }
+
+    .remover {
+        display: block;
+        position: relative;
+        width: @taginput-item-size;
+        height: 100%;
+        line-height: @taginput-item-size - 4;
+        text-align: center;
+        cursor: pointer;
+        background-color: @lightGray;
+        font-size: 1.2rem;
+    }
+}
+
+.tag.small {
+    margin: 2px 2px;
+    height: @input-sx - 10;
+    line-height: @input-sx - 10;
+
+    .title {
+        font-size: .7rem;
+        line-height: @input-sx - 10;
+    }
+    .remover {
+        width: @input-sx - 10;
+        height: @input-sx - 10;
+        line-height: @input-sx - 10;
+        font-size: .8rem;
+    }
+}
+
+.tag.large {
+    margin: 2px 2px;
+    height: @input-lx - 14;
+    line-height: @input-lx - 14;
+    .title {
+        font-size: 1.3rem;
+        line-height: @input-lx - 14;
+    }
+    .remover {
+        width: @input-lx - 15;
+        height: @input-lx - 15;
+        line-height: @input-lx - 20;
+        font-size: 1.6rem;
+    }
+}
+
+.tag.static {
+    background: #d4f0ff;
+    color: @dark;
+    .remover {
+        display: none!important;
+    }
+}
