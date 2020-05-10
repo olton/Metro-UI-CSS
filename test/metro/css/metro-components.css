@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/05/2020 11:45:28
+ * Built at 10/05/2020 12:26:28
  * Licensed under MIT
  */
 .accordion {
@@ -10411,45 +10411,6 @@ input.input-small:-ms-input-placeholder {
   right: 0;
   left: 0;
 }
-.select .selected-item {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  position: relative;
-  margin: 2px;
-  padding: 0;
-  height: 26px;
-  line-height: 26px;
-  background-color: #f8f8f8;
-  cursor: default;
-}
-.select .selected-item .title {
-  display: block;
-  position: relative;
-  max-width: 120px;
-  font-size: 14px;
-  overflow: hidden;
-  white-space: nowrap;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  margin: 0 4px;
-}
-.select .selected-item .remover {
-  display: block;
-  position: relative;
-  width: 25px;
-  height: 25px;
-  line-height: 24px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #e4e4e4;
-}
 .select.multiple {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
@@ -10538,22 +10499,6 @@ input.input-small:-ms-input-placeholder {
   height: 0.6rem;
   margin-left: -1.3rem;
 }
-.select.input-large .selected-item {
-  margin: 2px 2px;
-  height: 36px;
-  line-height: 36px;
-}
-.select.input-large .selected-item .title {
-  font-size: 1.3rem;
-  line-height: 36px;
-  padding: 0 8px;
-}
-.select.input-large .selected-item .remover {
-  width: 35px;
-  height: 35px;
-  line-height: 30px;
-  font-size: 1.6rem;
-}
 .select.input-small {
   height: 28px;
 }
@@ -10592,20 +10537,6 @@ input.input-small:-ms-input-placeholder {
   width: 0.325rem;
   height: 0.325rem;
   margin-left: -0.9rem;
-}
-.select.input-small .selected-item {
-  height: 18px;
-  line-height: 18px;
-}
-.select.input-small .selected-item .title {
-  font-size: 0.7rem;
-  line-height: 18px;
-}
-.select.input-small .selected-item .remover {
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  font-size: 0.8rem;
 }
 .select2-container .selection .select2-selection--single {
   height: 36px;
@@ -14302,6 +14233,83 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tabs-material.app-bar-present-more {
   top: 112px;
 }
+.tag {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  position: relative;
+  margin: 2px;
+  padding: 0;
+  height: 26px;
+  line-height: 26px;
+  background-color: #f8f8f8;
+  cursor: default;
+}
+.tag .title {
+  display: block;
+  position: relative;
+  max-width: 120px;
+  font-size: 14px;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  margin: 0 8px;
+}
+.tag .remover {
+  display: block;
+  position: relative;
+  width: 26px;
+  height: 100%;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  background-color: #e4e4e4;
+  font-size: 1.2rem;
+}
+.tag.small {
+  margin: 2px 2px;
+  height: 18px;
+  line-height: 18px;
+}
+.tag.small .title {
+  font-size: 0.7rem;
+  line-height: 18px;
+}
+.tag.small .remover {
+  width: 18px;
+  height: 18px;
+  line-height: 18px;
+  font-size: 0.8rem;
+}
+.tag.large {
+  margin: 2px 2px;
+  height: 36px;
+  line-height: 36px;
+}
+.tag.large .title {
+  font-size: 1.3rem;
+  line-height: 36px;
+}
+.tag.large .remover {
+  width: 35px;
+  height: 35px;
+  line-height: 30px;
+  font-size: 1.6rem;
+}
+.tag.static {
+  background: #d4f0ff;
+  color: #1d1d1d;
+}
+.tag.static .remover {
+  display: none!important;
+}
 .tag-input {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -14343,46 +14351,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -webkit-box-shadow: none!important;
           box-shadow: none!important;
 }
-.tag-input .tag {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  position: relative;
-  margin: 2px;
-  padding: 0;
-  height: 26px;
-  line-height: 26px;
-  background-color: #f8f8f8;
-  cursor: default;
-}
-.tag-input .tag .title {
-  display: block;
-  position: relative;
-  max-width: 120px;
-  font-size: 14px;
-  overflow: hidden;
-  white-space: nowrap;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-  margin: 0 8px;
-}
-.tag-input .tag .remover {
-  display: block;
-  position: relative;
-  width: 26px;
-  height: 100%;
-  line-height: 22px;
-  text-align: center;
-  cursor: pointer;
-  background-color: #e4e4e4;
-  font-size: 1.2rem;
-}
 .tag-input .input-clear-button {
   position: absolute;
   top: 0;
@@ -14401,21 +14369,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .tag-input.input-large {
   min-height: 50px;
-}
-.tag-input.input-large .tag {
-  margin: 2px 2px;
-  height: 36px;
-  line-height: 36px;
-}
-.tag-input.input-large .tag .title {
-  font-size: 1.3rem;
-  line-height: 36px;
-}
-.tag-input.input-large .tag .remover {
-  width: 35px;
-  height: 35px;
-  line-height: 30px;
-  font-size: 1.6rem;
 }
 .tag-input.input-large input {
   height: 48px;
@@ -14443,21 +14396,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tag-input.input-small {
   min-height: 28px;
 }
-.tag-input.input-small .tag {
-  margin: 2px 2px;
-  height: 18px;
-  line-height: 18px;
-}
-.tag-input.input-small .tag .title {
-  font-size: 0.7rem;
-  line-height: 18px;
-}
-.tag-input.input-small .tag .remover {
-  width: 18px;
-  height: 18px;
-  line-height: 18px;
-  font-size: 0.8rem;
-}
 .tag-input.input-small input {
   height: 26px;
   font-size: 0.9rem;
@@ -14484,14 +14422,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tag-input.static-mode {
   border: none!important;
   cursor: default;
-}
-.tag-input.static-mode .tag {
-  border-radius: 10px;
-  background: #d4f0ff;
-  color: #1d1d1d;
-}
-.tag-input.static-mode .tag .remover {
-  display: none!important;
 }
 .tag-input.static-mode .button,
 .tag-input.static-mode input {

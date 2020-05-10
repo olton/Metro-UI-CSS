@@ -635,7 +635,7 @@
             "less": ["select"],
             "dependencies": {
                 "common-css": ["inputs"],
-                "components": ["input", "checkbox", "dropdown"]
+                "components": ["input", "checkbox", "dropdown", "tag"]
             }
         },
         "select2": {
@@ -750,12 +750,17 @@
             "js": ["tabs-material"],
             "less": ["tabs-material"]
         },
+        "tag": {
+            "name": "Tag",
+            "less": ["tag"]
+        },
         "tag-input": {
             "name": "Tag input",
             "js": ["tag-input"],
             "less": ["tag-input"],
             "dependencies": {
-                "common-css": ["inputs"]
+                "common-css": ["inputs"],
+                "components": ["tag", "button"]
             }
         },
         "textarea": {
@@ -763,7 +768,8 @@
             "js": ["textarea"],
             "less": ["textarea"],
             "dependencies": {
-                "common-css": ["inputs"]
+                "common-css": ["inputs"],
+                "components": ["button"]
             }
         },
         "tile": {

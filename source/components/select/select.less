@@ -182,38 +182,38 @@
 
     @selected-item-size: 26px;
 
-    .selected-item {
-        display: inline-flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        position: relative;
-        margin: 2px;
-        padding: 0;
-        height: @selected-item-size;
-        line-height: @selected-item-size;
-        background-color: @light;
-        cursor: default;
-
-        .title {
-            display: block;
-            position: relative;
-            max-width: 120px;
-            font-size: 14px;
-            .text-ellipsis();
-            margin: 0 4px;
-        }
-
-        .remover {
-            display: block;
-            position: relative;
-            width: @selected-item-size - 1;
-            height: @selected-item-size - 1;
-            line-height: @selected-item-size - 2;
-            text-align: center;
-            cursor: pointer;
-            background-color: @lightGray;
-        }
-    }
+    //.selected-item {
+    //    display: inline-flex;
+    //    justify-content: space-between;
+    //    align-items: flex-start;
+    //    position: relative;
+    //    margin: 2px;
+    //    padding: 0;
+    //    height: @selected-item-size;
+    //    line-height: @selected-item-size;
+    //    background-color: @light;
+    //    cursor: default;
+    //
+    //    .title {
+    //        display: block;
+    //        position: relative;
+    //        max-width: 120px;
+    //        font-size: 14px;
+    //        .text-ellipsis();
+    //        margin: 0 4px;
+    //    }
+    //
+    //    .remover {
+    //        display: block;
+    //        position: relative;
+    //        width: @selected-item-size - 1;
+    //        height: @selected-item-size - 1;
+    //        line-height: @selected-item-size - 2;
+    //        text-align: center;
+    //        cursor: pointer;
+    //        background-color: @lightGray;
+    //    }
+    //}
 
     &.multiple {
         flex-wrap: wrap;
@@ -294,22 +294,22 @@
             margin-left: -1.3rem;
         }
 
-        .selected-item {
-            margin: 2px 2px;
-            height: @input-lx - 14;
-            line-height: @input-lx - 14;
-            .title {
-                font-size: 1.3rem;
-                line-height: @input-lx - 14;
-                padding: 0 8px;
-            }
-            .remover {
-                width: @input-lx - 15;
-                height: @input-lx - 15;
-                line-height: @input-lx - 20;
-                font-size: 1.6rem;
-            }
-        }
+        //.selected-item {
+        //    margin: 2px 2px;
+        //    height: @input-lx - 14;
+        //    line-height: @input-lx - 14;
+        //    .title {
+        //        font-size: 1.3rem;
+        //        line-height: @input-lx - 14;
+        //        padding: 0 8px;
+        //    }
+        //    .remover {
+        //        width: @input-lx - 15;
+        //        height: @input-lx - 15;
+        //        line-height: @input-lx - 20;
+        //        font-size: 1.6rem;
+        //    }
+        //}
     }
 
     &.input-small {
@@ -355,20 +355,20 @@
             margin-left: -.9rem;
         }
 
-        .selected-item {
-            height: @input-sx - 10;
-            line-height: @input-sx - 10;
-
-            .title {
-                font-size: .7rem;
-                line-height: @input-sx - 10;
-            }
-            .remover {
-                width: @input-sx - 10;
-                height: @input-sx - 10;
-                line-height: @input-sx - 10;
-                font-size: .8rem;
-            }
-        }
+        //.selected-item {
+        //    height: @input-sx - 10;
+        //    line-height: @input-sx - 10;
+        //
+        //    .title {
+        //        font-size: .7rem;
+        //        line-height: @input-sx - 10;
+        //    }
+        //    .remover {
+        //        width: @input-sx - 10;
+        //        height: @input-sx - 10;
+        //        line-height: @input-sx - 10;
+        //        font-size: .8rem;
+        //    }
+        //}
     }
 }
