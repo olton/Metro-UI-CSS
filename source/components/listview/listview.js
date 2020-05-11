@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ListViewDefaultConfig = {
     listviewDeferred: 0,
     selectable: false,

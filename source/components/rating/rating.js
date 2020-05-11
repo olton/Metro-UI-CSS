@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, Colors */
 var RatingDefaultConfig = {
     ratingDeferred: 0,
     static: false,

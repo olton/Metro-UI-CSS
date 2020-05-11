@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ImageMagnifierDefaultConfig = {
     imagemagnifierDeferred: 0,
     width: "100%",
@@ -240,8 +241,8 @@ Component('image-magnifier', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){

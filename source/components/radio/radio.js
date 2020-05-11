@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var RadioDefaultConfig = {
     radioDeferred: 0,
     transition: true,

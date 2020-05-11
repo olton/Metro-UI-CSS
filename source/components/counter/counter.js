@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var CounterDefaultConfig = {
     startOnViewport: true,
     counterDeferred: 0,

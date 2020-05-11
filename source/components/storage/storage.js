@@ -1,8 +1,9 @@
-var Storage = function(type){
-    return new Storage.init(type);
+/* global Metro, Utils */
+var MetroStorage = function(type){
+    return new MetroStorage.init(type);
 };
 
-Storage.prototype = {
+MetroStorage.prototype = {
     setKey: function(key){
         this.key = key
     },
@@ -62,7 +63,7 @@ Storage.prototype = {
     }
 };
 
-Storage.init = function(type){
+MetroStorage.init = function(type){
 
     this.key = "";
     this.storage = type ? type : window.localStorage;
@@ -70,7 +71,7 @@ Storage.init = function(type){
     return this;
 };
 
-Storage.init.prototype = Storage.prototype;
+MetroStorage.init.prototype = MetroStorage.prototype;
 
-Metro['storage'] = Storage(window.localStorage);
-Metro['session'] = Storage(window.sessionStorage);
+Metro.storage = MetroStorage(window.localStorage);
+Metro.session = MetroStorage(window.sessionStorage);

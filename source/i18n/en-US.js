@@ -1,3 +1,4 @@
+/* global Metro */
 $.extend(Metro['locales'], {
     'en-US': {
         "calendar": {

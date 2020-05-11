@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var InfoBoxDefaultConfig = {
     infoboxDeferred: 0,
     type: "",
@@ -30,6 +31,7 @@ Component('info-box', {
         this._super(elem, options, InfoBoxDefaultConfig);
 
         this.overlay = null;
+        this.id = Utils.elementId("info-box");
 
         Metro.createExec(this);
 
@@ -73,10 +75,6 @@ Component('info-box', {
             this.overlay = this._overlay();
         }
 
-        if (element.attr("id") === undefined) {
-            element.attr("id", Utils.elementId("infobox"));
-        }
-
         element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
 
         closer = element.find("closer");
@@ -118,7 +116,7 @@ Component('info-box', {
 
         $(window).on(Metro.events.resize, function(){
             that.reposition();
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     _setPosition: function(){
@@ -199,6 +197,7 @@ Component('info-box', {
         return this.element.data("open") === true;
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -206,7 +205,7 @@ Component('info-box', {
         var element = this.element;
 
         element.off("all");
-        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         return element;
     }

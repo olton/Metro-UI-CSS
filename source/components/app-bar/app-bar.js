@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, Colors */
 var AppBarDefaultConfig = {
     appbarDeferred: 0,
     expand: false,
@@ -165,6 +166,7 @@ Component('app-bar', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 

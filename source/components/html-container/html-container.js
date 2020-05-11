@@ -1,3 +1,5 @@
+/* global Metro, Utils, Component */
+
 // TODO source as array, mode as array
 
 var HtmlContainerDefaultConfig = {
@@ -95,8 +97,6 @@ Component('html-container', {
     },
 
     load: function(source, data, opt){
-        var o = this.options;
-
         if (source) {
             this.htmlSource = source;
         }

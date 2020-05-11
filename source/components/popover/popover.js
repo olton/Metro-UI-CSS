@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var PopoverDefaultConfig = {
     popoverDeferred: 0,
     popoverText: "",

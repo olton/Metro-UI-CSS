@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var AudioButtonDefaultConfig = {
     audioSrc: "",
     onAudioStart: Metro.noop,
@@ -20,7 +21,7 @@ Component('audio-button', {
 
         this.audio = null;
         this.canPlay = false;
-        this.id = Utils.elementId("audioButton")
+        this.id = Utils.elementId("audioButton");
 
         this._create();
 

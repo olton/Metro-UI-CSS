@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, Colors */
 var TagInputDefaultConfig = {
     size: "normal",
     taginputDeferred: 0,

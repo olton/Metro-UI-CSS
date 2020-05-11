@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ResizerDefaultConfig = {
     resizerDeferred: 0,
     onMediaPoint: Metro.noop,
@@ -110,8 +111,7 @@ Component('resizer', {
         }, {ns: this.id});
     },
 
-    changeAttribute: function(attributeName){
-
+    changeAttribute: function(){
     },
 
     destroy: function(){

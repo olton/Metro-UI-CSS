@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_LOCALE */
 var TimePickerDefaultConfig = {
     timepickerDeferred: 0,
     hoursStep: 1,

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var CharmsDefaultConfig = {
     charmsDeferred: 0,
     position: "right",

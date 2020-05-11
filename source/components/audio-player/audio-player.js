@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var AudioPlayerDefaultConfig = {
     audioDeferred: 0,
     playlist: null,

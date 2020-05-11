@@ -1,13 +1,18 @@
+/* global METRO_JQUERY, jquery_present, jQuery, Metro, METRO_THROWS, MD5, METRO_MEDIA */
+
 var Utils = {
     isUrl: function (val) {
+        /* eslint-disable-next-line */
         return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
     },
 
     isTag: function(val){
+        /* eslint-disable-next-line */
         return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
     },
 
     isColor: function (val) {
+        /* eslint-disable-next-line */
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
 
@@ -31,7 +36,7 @@ var Utils = {
     isDate: function(val, format){
         var result;
 
-        if (typeof val === "object" && Utils.isFunc(val['getMonth'])) {
+        if (Utils.isDateObject(val)) {
             return true;
         }
 
@@ -45,7 +50,7 @@ var Utils = {
     },
 
     isDateObject: function(v){
-        return typeof v === 'object' && v['getMonth'] !== undefined;
+        return typeof v === 'object' && v.getMonth !== undefined;
     },
 
     isInt: function(n){
@@ -58,8 +63,8 @@ var Utils = {
 
     isTouchDevice: function() {
         return (('ontouchstart' in window)
-            || (navigator["MaxTouchPoints"] > 0)
-            || (navigator["msMaxTouchPoints"] > 0));
+            || (navigator.MaxTouchPoints > 0)
+            || (navigator.msMaxTouchPoints > 0));
     },
 
     isFunc: function(f){
@@ -67,7 +72,7 @@ var Utils = {
     },
 
     isObject: function(o){
-        return Utils.isType(o, 'object')
+        return Utils.isType(o, 'object');
     },
 
     isArray: function(a){
@@ -158,7 +163,7 @@ var Utils = {
     },
 
     isIE11: function(){
-        return !!window.MSInputMethodContext && !!document["documentMode"];
+        return !!window.MSInputMethodContext && !!document.documentMode;
     },
 
     embedObject: function(val){
@@ -220,6 +225,7 @@ var Utils = {
     },
 
     func: function(f){
+        /* jshint -W054 */
         return new Function("a", f);
     },
 
@@ -343,7 +349,7 @@ var Utils = {
         });
         return arr.filter(function(item){
             return item !== undefined;
-        })
+        });
     },
 
     arrayDelete: function(arr, val){
@@ -361,7 +367,7 @@ var Utils = {
     objectClone: function(obj){
         var copy = {};
         for(var key in obj) {
-            if (obj.hasOwnProperty(key)) {
+            if ($.hasProp(obj, key)) {
                 copy[key] = obj[key];
             }
         }
@@ -404,7 +410,7 @@ var Utils = {
     },
 
     md5: function(s){
-        return hex_md5(s);
+        return MD5(s);
     },
 
     encodeURI: function(str){
@@ -433,6 +439,8 @@ var Utils = {
 
             var mat, str, re = /^[\t ]+/gm, len, min = 1e3;
 
+            /* jshint -W084 */
+            /* eslint-disable-next-line */
             while (mat = re.exec(txt)) {
                 len = mat[0].length;
 
@@ -464,7 +472,7 @@ var Utils = {
             case 'client': return Utils.clientXY(e);
             case 'screen': return Utils.screenXY(e);
             case 'page': return Utils.pageXY(e);
-            default: return {x: 0, y: 0}
+            default: return {x: 0, y: 0};
         }
     },
 
@@ -528,7 +536,7 @@ var Utils = {
         return {
             width: width,
             height: height
-        }
+        };
     },
 
     getStyle: function(element, pseudo){
@@ -630,6 +638,7 @@ var Utils = {
 
     getURIParameter: function(url, name){
         if (!url) url = window.location.href;
+        /* eslint-disable-next-line */
         name = name.replace(/[\[\]]/g, "\\$&");
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
             results = regex.exec(url);
@@ -694,7 +703,7 @@ var Utils = {
     },
 
     media: function(query){
-        return window.matchMedia(query).matches
+        return window.matchMedia(query).matches;
     },
 
     mediaModes: function(){
@@ -817,7 +826,7 @@ var Utils = {
             location.hostname === "" ||
             window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
             location.hostname.indexOf(pattern) !== -1
-        )
+        );
     },
 
     decCount: function(v){
@@ -825,4 +834,4 @@ var Utils = {
     }
 };
 
-Metro['utils'] = Utils;
+Metro.utils = Utils;

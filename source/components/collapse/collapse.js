@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var CollapseDefaultConfig = {
     collapseDeferred: 0,
     collapsed: false,

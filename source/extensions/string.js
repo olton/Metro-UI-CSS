@@ -1,3 +1,4 @@
+/* global Metro, Utils */
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -54,12 +55,13 @@ String.prototype.toDate = function(format, locale) {
         return new Date(this);
     }
 
-    // normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
+    /* eslint-disable-next-line */
     normalized      = this.replace(/[\/,.:\s]/g, '-');
+    /* eslint-disable-next-line */
     normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
     formatItems     = normalizedFormat.split('-');
     dateItems       = normalized.split('-');
-    checkValue      = normalized.replace(/\-/g,"");
+    checkValue      = normalized.replace(/-/g,"");
 
     if (checkValue.trim() === "") {
         return "Invalid Date";

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_LOCALE */
 var DatePickerDefaultConfig = {
     datepickerDeferred: 0,
     gmt: 0,

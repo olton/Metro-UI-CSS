@@ -1,3 +1,4 @@
+/* global Metro, Utils */
 var AdblockDefaultConfig = {
     adblockDeferred: 0,
     checkInterval: 1000,
@@ -46,7 +47,7 @@ var Adblock = {
             var done = function(){
                 clearInterval(interval);
                 a.remove();
-            }
+            };
 
             if (   !a.length
                 || !b.length
@@ -71,21 +72,21 @@ var Adblock = {
                     }
                 }
             }
-        }
+        };
 
         interval = setInterval(function(){
             run();
-        }, Adblock.options.checkInterval)
+        }, Adblock.options.checkInterval);
 
         run();
     }
-}
+};
 
-Metro['Adblock'] = Adblock;
+Metro.Adblock = Adblock;
 
 $(function(){
     Adblock.options = $.extend({}, AdblockDefaultConfig);
     $(window).on("metroinitied", function(){
         Adblock.bite();
     });
-})
+});

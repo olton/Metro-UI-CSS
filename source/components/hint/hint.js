@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var HintDefaultConfig = {
     hintDeferred: 0,
     hintHide: 5000,

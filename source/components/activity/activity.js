@@ -1,3 +1,4 @@
+/* global Metro, Component, Utils */
 var ActivityDefaultConfig = {
     activityDeferred: 0,
     type: "ring",
@@ -71,9 +72,10 @@ Component('activity', {
         }
 
         Utils.exec(this.options.onActivityCreate, [this.element]);
-        element.fire("activitycreate")
+        element.fire("activitycreate");
     },
 
+    /*eslint-disable-next-line*/
     changeAttribute: function(attributeName){
     },
 
@@ -82,7 +84,7 @@ Component('activity', {
     }
 });
 
-Metro['activity'] = {
+Metro.activity = {
     open: function(options){
         var o = options || {};
         var activity = '<div data-role="activity" data-type="'+( o.type ? o.type : 'cycle' )+'" data-style="'+( o.style ? o.style : 'color' )+'"></div>';
@@ -95,10 +97,10 @@ Metro['activity'] = {
             clsDialog: "no-border no-shadow bg-transparent global-dialog",
             autoHide: o.autoHide ? o.autoHide : 0,
             overlayClickClose: o.overlayClickClose === true,
-            overlayColor: o.overlayColor ? o.overlayColor:'#000000',
-            overlayAlpha: o.overlayAlpha ? o.overlayAlpha:.5,
+            overlayColor: o.overlayColor ? o.overlayColor : '#000000',
+            overlayAlpha: o.overlayAlpha ? o.overlayAlpha : 0.5,
             clsOverlay: "global-overlay"
-        })
+        });
     },
 
     close: function(a){

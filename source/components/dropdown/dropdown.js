@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, setImmediate */
 var DropdownDefaultConfig = {
     dropdownDeferred: 0,
     dropFilter: null,
@@ -186,8 +187,8 @@ Component('dropdown', {
             this.open();
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){

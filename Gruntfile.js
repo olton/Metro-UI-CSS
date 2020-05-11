@@ -17,11 +17,12 @@ module.exports = function(grunt) {
 
     tasks = [
         'concurrent:clean',
+        'concurrent:eslint',
         'concurrent:compile_less',
         'concurrent:postcss',
         'concurrent:concat'];
 
-    if (develop) {
+    if (!develop) {
         tasks.push('concurrent:remove_log');
     }
 
@@ -66,6 +67,10 @@ module.exports = function(grunt) {
 
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
+        },
+
+        eslint: {
+            target: ['source/**/*.js']
         },
 
         concat: {
@@ -119,7 +124,10 @@ module.exports = function(grunt) {
         uglify: {
             options: {
                 banner: '<%= copyright %>',
-                stripBanners: false,
+                stripBanners: develop ? false : {
+                    block: true,
+                    line: true
+                },
                 sourceMap: true,
                 preserveComments: false
             },
@@ -254,6 +262,7 @@ module.exports = function(grunt) {
             clean: ['clean'],
             compile_less: ['less:src', 'less:schemes'],
             postcss: ['postcss'],
+            eslint: ['eslint'],
             concat: ['concat:js', 'concat:css'],
             remove_log: develop ? [] : ['removelogging'],
             min: ['uglify', 'cssmin:src', 'cssmin:schemes'],

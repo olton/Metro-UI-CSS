@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_LOCALE */
 var CountdownDefaultConfig = {
     countdownDeferred: 0,
     stopOnBlur: true,
@@ -56,6 +57,7 @@ Component('countdown', {
         this.locale = null;
 
         this.inactiveTab = false;
+        this.id = Utils.elementId("countdown");
 
         Metro.createExec(this);
 
@@ -154,14 +156,14 @@ Component('countdown', {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this;
         $(document).on("visibilitychange", function() {
             if (document.hidden) {
                 that.pause();
             } else {
                 that.resume();
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     blink: function(){
@@ -545,7 +547,7 @@ Component('countdown', {
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
-        $(document).off("visibilitychange", {ns: element.attr("id")});
+        $(document).off("visibilitychange", {ns: this.id});
 
         return this.element;
     }

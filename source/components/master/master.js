@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_ANIMATION_DURATION */
 var MasterDefaultConfig = {
     masterDeferred: 0,
     effect: "slide", // slide, fade, switch, slowdown, custom

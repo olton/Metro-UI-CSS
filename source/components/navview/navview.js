@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var NavigationViewDefaultConfig = {
     navviewDeferred: 0,
     compact: "md",
@@ -196,11 +197,12 @@ Component('nav-view', {
         pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         element.off(Metro.events.click, ".pull-button, .holder");
         element.off(Metro.events.click, ".navview-menu li");

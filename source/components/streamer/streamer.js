@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_ANIMATION_DURATION */
 var StreamerDefaultConfig = {
     streamerDeferred: 0,
     wheel: true,
@@ -440,11 +441,12 @@ Component('streamer', {
             }
 
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
-
                 if (o.excludeSelectClass !== "" && event.hasClass(o.excludeSelectClass)) {
+                    /* eslint-disable-next-line */
 
                 } else {
                     if (o.excludeSelectElement !== null && $(e.target).is(o.excludeSelectElement)) {
+                        /* eslint-disable-next-line */
 
                     } else {
                         if (event.hasClass("global-event")) {
@@ -466,10 +468,12 @@ Component('streamer', {
                 }
             } else {
                 if (o.excludeClickClass !== "" && event.hasClass(o.excludeClickClass)) {
+                    /* eslint-disable-next-line */
 
                 } else {
 
                     if (o.excludeClickElement !== null && $(e.target).is(o.excludeClickElement)) {
+                        /* eslint-disable-next-line */
 
                     } else {
 
@@ -490,7 +494,7 @@ Component('streamer', {
             }
         });
 
-        element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(e){
+        element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(){
             var stream = $(this);
             var index = stream.index();
 
@@ -536,15 +540,16 @@ Component('streamer', {
 
             });
 
-            element.find(".events-area").off("mouseenter").on("mouseenter", function(e) {
+            element.find(".events-area").off("mouseenter").on("mouseenter", function() {
                 disableScroll();
             });
-            element.find(".events-area").off("mouseleave").on("mouseleave", function(e) {
+
+            element.find(".events-area").off("mouseleave").on("mouseleave", function() {
                 enableScroll();
             });
         }
 
-        element.find(".events-area").last().off("scroll").on("scroll", function(e){
+        element.find(".events-area").last().off("scroll").on("scroll", function(){
             that._fireScroll();
         });
 
@@ -561,13 +566,12 @@ Component('streamer', {
     },
 
     _changeURI: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
         var link = this.getLink();
         history.pushState({}, document.title, link);
     },
 
     slideTo: function(time){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element, o = this.options;
         var target;
         if (time === undefined) {
             target = $(element.find(".streamer-timeline li")[0]);
@@ -586,14 +590,14 @@ Component('streamer', {
     },
 
     enableStream: function(stream){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var index = stream.index()-1;
         stream.removeClass("disabled").data("streamDisabled", false);
         element.find(".stream-events").eq(index).find(".stream-event").removeClass("disabled");
     },
 
     disableStream: function(stream){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var index = stream.index()-1;
         stream.addClass("disabled").data("streamDisabled", true);
         element.find(".stream-events").eq(index).find(".stream-event").addClass("disabled");
@@ -608,7 +612,7 @@ Component('streamer', {
     },
 
     getLink: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element, o = this.options;
         var events = element.find(".stream-event");
         var a = [];
         var link;
@@ -633,7 +637,7 @@ Component('streamer', {
     },
 
     getTimes: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var times = element.find(".streamer-timeline > li");
         var result = [];
         $.each(times, function(){
@@ -643,7 +647,7 @@ Component('streamer', {
     },
 
     getEvents: function(event_type, include_global){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var items, events = [];
 
         switch (event_type) {
@@ -667,7 +671,7 @@ Component('streamer', {
     },
 
     source: function(s){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         if (s === undefined) {
             return this.options.source;
@@ -693,7 +697,7 @@ Component('streamer', {
     },
 
     toggleEvent: function(event){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var o = this.options;
         event = $(event);
 
         if (event.hasClass("global-event") && o.selectGlobal !== true) {
@@ -708,7 +712,7 @@ Component('streamer', {
     },
 
     selectEvent: function(event, state){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var that = this, element = this.element, o = this.options;
         if (state === undefined) {
             state = true;
         }
@@ -731,7 +735,7 @@ Component('streamer', {
     },
 
     changeSource: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var that = this, element = this.element, o = this.options;
         var new_source = element.attr("data-source");
 
         if (String(new_source).trim() === "") {
@@ -765,7 +769,7 @@ Component('streamer', {
     },
 
     changeData: function(data){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var old_data = this.data;
 
         o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
@@ -781,7 +785,7 @@ Component('streamer', {
     },
 
     changeStreamSelectOption: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element, o = this.options;
 
         o.streamSelect = element.attr("data-stream-select").toLowerCase() === "true";
     },

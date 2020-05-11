@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ResizableDefaultConfig = {
     resizeableDeferred: 0,
     canResize: true,
@@ -135,7 +136,7 @@ Component('resizeable', {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var canResize = function(){
             o.canResize = JSON.parse(element.attr('data-can-resize')) === true;

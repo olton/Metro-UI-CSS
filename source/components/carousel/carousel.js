@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_ANIMATION_DURATION, FrameAnimation */
 var CarouselDefaultConfig = {
     carouselDeferred: 0,
     autoStart: false,
@@ -98,6 +99,8 @@ Component('carousel', {
         slides.addClass(o.clsSlides);
 
         if (slides.length === 0) {
+            /* eslint-disable-next-line */
+
         } else {
 
             this._createSlides();
@@ -427,10 +430,10 @@ Component('carousel', {
         }
 
         switch (effect) {
-            case 'slide': Animation[func](current, next, duration, effectFunc); break;
-            case 'slide-v': Animation[func](current, next, duration, effectFunc); break;
-            case 'fade': Animation['fade'](current, next, duration, effectFunc); break;
-            default: Animation['switch'](current, next);
+            case 'slide': FrameAnimation[func](current, next, duration, effectFunc); break;
+            case 'slide-v': FrameAnimation[func](current, next, duration, effectFunc); break;
+            case 'fade': FrameAnimation['fade'](current, next, duration, effectFunc); break;
+            default: FrameAnimation['switch'](current, next);
         }
 
         setTimeout(function(){
@@ -486,8 +489,8 @@ Component('carousel', {
         this.element.fire("play");
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, setImmediate, isTouch */
 var DraggableDefaultConfig = {
     draggableDeferred: 0,
     dragElement: 'self',
@@ -47,7 +48,7 @@ Component('draggable', {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, elem = this.elem, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var offset = element.offset();
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
@@ -173,11 +174,12 @@ Component('draggable', {
         this.element.data("canDrag", true);
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
         this.dragElement.off(Metro.events.startAll);
         return element;
     }

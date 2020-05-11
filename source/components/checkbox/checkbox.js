@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var CheckboxDefaultConfig = {
     checkboxDeferred: 0,
     transition: true,
@@ -130,7 +131,7 @@ Component('checkbox', {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){

@@ -1,9 +1,12 @@
+/* global Metro, Utils */
+/* eslint-disable-next-line */
 function RGB(r, g, b){
     this.r = r || 0;
     this.g = g || 0;
     this.b = b || 0;
 }
 
+/* eslint-disable-next-line */
 function RGBA(r, g, b, a){
     this.r = r || 0;
     this.g = g || 0;
@@ -11,18 +14,21 @@ function RGBA(r, g, b, a){
     this.a = a || 1;
 }
 
+/* eslint-disable-next-line */
 function HSV(h, s, v){
     this.h = h || 0;
     this.s = s || 0;
     this.v = v || 0;
 }
 
+/* eslint-disable-next-line */
 function HSL(h, s, l){
     this.h = h || 0;
     this.s = s || 0;
     this.l = l || 0;
 }
 
+/* eslint-disable-next-line */
 function HSLA(h, s, l, a){
     this.h = h || 0;
     this.s = s || 0;
@@ -30,6 +36,7 @@ function HSLA(h, s, l, a){
     this.a = a || 1;
 }
 
+/* eslint-disable-next-line */
 function CMYK(c, m, y, k){
     this.c = c || 0;
     this.m = m || 0;
@@ -228,12 +235,12 @@ var Colors = {
     options: {
         angle: 30,
         algorithm: 1,
-        step: .1,
+        step: 0.1,
         distance: 5,
-        tint1: .8,
-        tint2: .4,
-        shade1: .6,
-        shade2: .3,
+        tint1: 0.8,
+        tint2: 0.4,
+        shade1: 0.6,
+        shade2: 0.3,
         alpha: 1
     },
 
@@ -305,11 +312,11 @@ var Colors = {
         } else if (max === r && g >= b) {
             h = 60 * ( (g - b) / delta );
         } else if (max === r && g < b) {
-            h = 60 * ( (g - b) / delta) + 360
+            h = 60 * ( (g - b) / delta) + 360;
         } else if (max === g) {
-            h = 60 * ( (b - r) / delta) + 120
+            h = 60 * ( (b - r) / delta) + 120;
         } else if (max === b) {
-            h = 60 * ( (r - g) / delta) + 240
+            h = 60 * ( (r - g) / delta) + 240;
         } else {
             h = 0;
         }
@@ -343,7 +350,7 @@ var Colors = {
             r: Math.round(r * 255 / 100),
             g: Math.round(g * 255 / 100),
             b: Math.round(b * 255 / 100)
-        }
+        };
     },
 
     hsv2hex: function(hsv){
@@ -400,7 +407,7 @@ var Colors = {
         s = hsv.s * hsv.v;
         s /= (l <= 1) ? l : 2 - l;
         l /= 2;
-        return {h: h, s: s, l: l}
+        return {h: h, s: s, l: l};
     },
 
     hsl2hsv: function(hsl){
@@ -410,7 +417,7 @@ var Colors = {
         s = hsl.s * (l <= 1 ? l : 2 - l);
         v = (l + s) / 2;
         s = (2 * s) / (l + s);
-        return {h: h, s: s, l: v}
+        return {h: h, s: s, l: v};
     },
 
     rgb2websafe: function(rgb){
@@ -418,7 +425,7 @@ var Colors = {
             r: Math.round(rgb.r / 51) * 51,
             g: Math.round(rgb.g / 51) * 51,
             b: Math.round(rgb.b / 51) * 51
-        }
+        };
     },
 
     rgba2websafe: function(rgba){
@@ -427,7 +434,7 @@ var Colors = {
             g: Math.round(rgba.g / 51) * 51,
             b: Math.round(rgba.b / 51) * 51,
             a: rgba.a
-        }
+        };
     },
 
     hex2websafe: function(hex){
@@ -556,7 +563,7 @@ var Colors = {
     grayscale: function(color, output){
         output = output || "hex";
         var rgb = this.toRGB(color);
-        var gray = Math.round(rgb.r * .2125 + rgb.g * .7154 + rgb.b * .0721);
+        var gray = Math.round(rgb.r * 0.2125 + rgb.g * 0.7154 + rgb.b * 0.0721);
         var mono = {
             r: gray,
             g: gray,
@@ -610,6 +617,7 @@ var Colors = {
 
         do {
             res = calc(this.toHEX(color), amount);
+            /* jshint -W030 */
             ring ? amount-- : amount++;
         } while (res.length < 7);
 
@@ -630,7 +638,7 @@ var Colors = {
             ( rgb.g * 587 ) +
             ( rgb.b * 114 )
         ) / 1000;
-        return ( YIQ < 128 )
+        return ( YIQ < 128 );
     },
 
     isLight: function(hex){
@@ -866,4 +874,4 @@ var Colors = {
     }
 };
 
-Metro['colors'] = Colors.init();
+Metro.colors = Colors.init();

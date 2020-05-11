@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, FrameAnimation, Colors */
 var TileDefaultConfig = {
     tileDeferred: 0,
     size: "medium",
@@ -103,7 +104,7 @@ Component('tile', {
         if (o.effect === "image-set") {
             element.addClass("image-set");
 
-            $.each(element.children("img"), function(i){
+            $.each(element.children("img"), function(){
                 that.images.push(this);
                 $(this).remove();
             });
@@ -153,11 +154,11 @@ Component('tile', {
 
             next = that.slides[that.currentSlide];
 
-            if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-fade") Animation.fade($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-up") FrameAnimation.slideUp($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-down") FrameAnimation.slideDown($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-left") FrameAnimation.slideLeft($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-right") FrameAnimation.slideRight($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-fade") FrameAnimation.fade($(current), $(next), o.effectDuration);
 
         }, o.effectInterval);
     },
@@ -225,7 +226,7 @@ Component('tile', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

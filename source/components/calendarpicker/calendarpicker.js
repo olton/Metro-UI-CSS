@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT */
 var CalendarPickerDefaultConfig = {
     value:'',
     calendarpickerDeferred: 0,
@@ -407,7 +408,7 @@ Component('calendar-picker', {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
         var changeAttrLocale = function(){

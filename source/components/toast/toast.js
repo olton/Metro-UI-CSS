@@ -1,3 +1,4 @@
+/* global Metro, Utils, METRO_TIMEOUT, METRO_ANIMATION_DURATION */
 var ToastDefaultConfig = {
     callback: Metro.noop,
     timeout: METRO_TIMEOUT,
@@ -19,7 +20,6 @@ var Toast = {
         var o = $.extend({}, ToastDefaultConfig, options);
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
         var width = toast.outerWidth();
-        var timer = null;
 
         toast.hide();
 
@@ -45,8 +45,7 @@ var Toast = {
         toast.addClass(cls);
         toast.fadeIn(METRO_ANIMATION_DURATION);
 
-        timer = setTimeout(function(){
-            timer = null;
+        setTimeout(function(){
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
                 Utils.exec(callback, null, toast[0]);

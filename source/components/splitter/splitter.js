@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var SplitterDefaultConfig = {
     splitterDeferred: 0,
     splitMode: "horizontal", // horizontal or vertical
@@ -179,7 +180,7 @@ Component('splitter', {
             }, {ns: that.id})
         });
 
-        $(window).on(Metro.events.resize, function(e){
+        $(window).on(Metro.events.resize, function(){
             var gutter = element.children(".gutter");
             var prev_block = gutter.prev(".split-block");
             var next_block = gutter.next(".split-block");

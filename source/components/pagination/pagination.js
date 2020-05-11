@@ -1,3 +1,4 @@
+/* global Metro */
 var createPagination = function(c){
     var defConf = {
         length: 0,

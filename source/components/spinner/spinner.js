@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var SpinnerDefaultConfig = {
     spinnerDeferred: 0,
     step: 1,

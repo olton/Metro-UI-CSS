@@ -1,12 +1,14 @@
+/* global jQuery, Utils */
+
 /* Metro 4 Core */
 
-var $ = m4q;
+var $ = m4q; // eslint-disable-line
 
 if (typeof m4q === 'undefined') {
     throw new Error('Metro 4 requires m4q helper!');
 }
 
-if (!'MutationObserver' in window) {
+if (!('MutationObserver' in window)) {
     throw new Error('Metro 4 requires MutationObserver!');
 }
 
@@ -361,7 +363,7 @@ var Metro = {
         var hotkeys = $("[data-hotkey]");
         var html = $("html");
 
-        if (METRO_SHOW_ABOUT) Metro.info(true);
+        if (window.METRO_SHOW_ABOUT) Metro.info(true);
 
         if (isTouch === true) {
             html.addClass("metro-touch-device");
@@ -374,7 +376,7 @@ var Metro = {
         window.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
             if (Utils.media(query)) {
-                METRO_MEDIA.push(Metro.media_mode[key]);
+                window.METRO_MEDIA.push(Metro.media_mode[key]);
             }
         });
 
@@ -383,7 +385,7 @@ var Metro = {
         Metro.initHotkeys(hotkeys);
         Metro.initWidgets(widgets, "init");
 
-        if (METRO_CLOAK_REMOVE !== "fade") {
+        if (window.METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
             $(window).fire("metroinitied");
         } else {
@@ -461,7 +463,7 @@ var Metro = {
             });
         };
 
-        if (METRO_JQUERY && jquery_present) {
+        if (window.METRO_JQUERY && window.jquery_present) {
             jQuery.fn[_name] = function (options) {
                 return this.each(function () {
                     jQuery.data(this, _name, Object.create(object).init(options, this));
@@ -566,7 +568,7 @@ var Metro = {
     },
 
     $: function(){
-        return METRO_JQUERY && jquery_present ? jQuery : m4q;
+        return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
     },
 
     get$el: function(el){
@@ -597,6 +599,7 @@ var Metro = {
     }
 };
 
+/* eslint-disable-next-line */
 var Component = function(nameName, compObj){
     var name = normalizeComponentName(nameName);
     var component = $.extend({name: name}, {
@@ -634,7 +637,7 @@ $(window).on(Metro.events.resize, function(){
     window.METRO_MEDIA = [];
     $.each(Metro.media_queries, function(key, query){
         if (Utils.media(query)) {
-            METRO_MEDIA.push(Metro.media_mode[key]);
+            window.METRO_MEDIA.push(Metro.media_mode[key]);
         }
     });
 });

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var WindowDefaultConfig = {
     windowDeferred: 0,
     hidden: false,
@@ -180,7 +181,7 @@ Component('window', {
     },
 
     _window: function(o){
-        var that = this, element = this.element;
+        var that = this;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
         var width = o.width, height = o.height;
 
@@ -407,7 +408,6 @@ Component('window', {
 
     close: function(){
         var that = this, win = this.win,  element = this.element, o = this.options;
-        var timer = null;
 
         if (Utils.exec(o.onCanClose, [win]) === false) {
             return false;
@@ -424,8 +424,7 @@ Component('window', {
             win: win[0]
         });
 
-        timer = setTimeout(function(){
-            timer = null;
+        setTimeout(function(){
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }

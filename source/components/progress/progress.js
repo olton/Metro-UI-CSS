@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ProgressDefaultConfig = {
     progressDeferred: 0,
     showValue: false,

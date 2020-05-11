@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var SwitchDefaultConfig = {
     switchDeferred: 0,
     material: false,

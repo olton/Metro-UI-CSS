@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var StepperDefaultConfig = {
     stepperDeferred: 0,
     view: Metro.stepperView.SQUARE, // square, cycle, diamond
@@ -55,7 +56,7 @@ Component('stepper', {
         element.addClass("stepper").addClass(o.view).addClass(o.clsStepper);
 
         for(i = 1; i <= o.steps; i++) {
-            var step = $("<span>").addClass("step").addClass(o.clsStep).data("step", i).html("<span>"+i+"</span>").appendTo(element);
+            $("<span>").addClass("step").addClass(o.clsStep).data("step", i).html("<span>"+i+"</span>").appendTo(element);
         }
 
         this.current = 1;
@@ -78,7 +79,7 @@ Component('stepper', {
     },
 
     next: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var steps = element.find(".step");
 
         if (this.current + 1 > steps.length) {
@@ -91,8 +92,6 @@ Component('stepper', {
     },
 
     prev: function(){
-        var that = this, element = this.element, o = this.options;
-
         if (this.current - 1 === 0) {
             return ;
         }
@@ -103,7 +102,7 @@ Component('stepper', {
     },
 
     last: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         this.toStep(element.find(".step").length);
     },
@@ -113,7 +112,7 @@ Component('stepper', {
     },
 
     toStep: function(step){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target = $(element.find(".step").get(step - 1));
 
         if (target.length === 0) {
@@ -136,7 +135,7 @@ Component('stepper', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

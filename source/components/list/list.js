@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, createPagination */
 var ListDefaultConfig = {
     listDeferred: 0,
     templateBeginToken: "<%",

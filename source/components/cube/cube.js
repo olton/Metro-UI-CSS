@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var CubeDefaultConfig = {
     cubeDeferred: 0,
     rules: null,
