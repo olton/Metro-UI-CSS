@@ -244,7 +244,8 @@
             "js": ["app-bar"],
             "less": ["app-bar"],
             "dependencies": {
-                "components": ["hamburger"]
+                "components": ["hamburger"],
+                "common-js": ["colors"]
             }
         },
         "audio-button": {
@@ -608,7 +609,10 @@
         "rating": {
             "name": "Rating",
             "js": ["rating"],
-            "less": ["rating"]
+            "less": ["rating"],
+            "dependencies": {
+                "common-js": ["colors"]
+            }
         },
         "resizeable": {
             "name": "Resizeable",
@@ -742,7 +746,8 @@
             "js": ["tabs"],
             "less": ["tabs"],
             "dependencies": {
-                "components": ["hamburger"]
+                "components": ["hamburger"],
+                "common-js": ["colors"]
             }
         },
         "tabs-material": {
@@ -760,7 +765,8 @@
             "less": ["tag-input"],
             "dependencies": {
                 "common-css": ["inputs"],
-                "components": ["tag", "button"]
+                "components": ["tag", "button"],
+                "common-js": ["colors"]
             }
         },
         "textarea": {
@@ -777,7 +783,7 @@
             "js": ["tile"],
             "less": ["tile"],
             "dependencies": {
-                "common-js": ["animation"]
+                "common-js": ["animation", "colors"]
             }
         },
         "timepicker": {
@@ -813,7 +819,10 @@
         },
         "validator": {
             "name": "Validator",
-            "js": ["validator"]
+            "js": ["validator"],
+            "dependencies": {
+                "common-js": ["colors"]
+            }
         },
         "vegas": {
             "name": "Vegas",
