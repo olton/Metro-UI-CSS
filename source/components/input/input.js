@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var InputDefaultConfig = {
     inputDeferred: 0,
 

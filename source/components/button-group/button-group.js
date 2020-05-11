@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ButtonGroupDefaultConfig = {
     buttongroupDeferred: 0,
     targets: "button",
@@ -89,6 +90,7 @@ Component('button-group', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 

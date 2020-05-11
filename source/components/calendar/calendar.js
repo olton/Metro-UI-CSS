@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT */
 var CalendarDefaultConfig = {
     calendarDeferred: 0,
     dayBorder: false,
@@ -221,7 +222,7 @@ Component('calendar', {
             }
         }, {ns: element.attr("id")});
 
-        element.on(Metro.events.click, function(e){
+        element.on(Metro.events.click, function(){
             var months = element.find(".calendar-months");
             var years = element.find(".calendar-years");
             if (months.hasClass("open")) {
@@ -232,7 +233,7 @@ Component('calendar', {
             }
         });
 
-        element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
+        element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(){
             var new_date, el = $(this);
 
             if (el.hasClass("prev-month")) {
@@ -282,7 +283,7 @@ Component('calendar', {
             }, o.ripple ? 300 : 1);
         });
 
-        element.on(Metro.events.click, ".button.today", function(e){
+        element.on(Metro.events.click, ".button.today", function(){
             that.toDay();
             Utils.exec(o.onToday, [that.today, element]);
             element.fire("today", {
@@ -290,20 +291,20 @@ Component('calendar', {
             });
         });
 
-        element.on(Metro.events.click, ".button.clear", function(e){
+        element.on(Metro.events.click, ".button.clear", function(){
             that.selected = [];
             that._drawContent();
             Utils.exec(o.onClear, [element]);
             element.fire("clear");
         });
 
-        element.on(Metro.events.click, ".button.cancel", function(e){
+        element.on(Metro.events.click, ".button.cancel", function(){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
             element.fire("cancel");
         });
 
-        element.on(Metro.events.click, ".button.done", function(e){
+        element.on(Metro.events.click, ".button.done", function(){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
             element.fire("done");
@@ -905,7 +906,7 @@ Component('calendar', {
     },
 
     changeAttrLocale: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
         this.i18n(element.attr("data-locale"));
     },
 
@@ -945,7 +946,7 @@ Component('calendar', {
     }
 });
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $('.calendar .calendar-years').each(function(){
         $(this).removeClass("open");
     });

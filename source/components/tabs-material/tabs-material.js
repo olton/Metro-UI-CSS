@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var MaterialTabsDefaultConfig = {
     materialtabsDeferred: 0,
     deep: false,
@@ -188,7 +189,7 @@ Component('material-tabs', {
         this.openTab(tab, tab_next);
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

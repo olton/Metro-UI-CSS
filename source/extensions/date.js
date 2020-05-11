@@ -1,3 +1,4 @@
+/* global Metro, Utils, METRO_WEEK_START */
 Date.prototype.getWeek = function (dowOffset) {
     var nYear, nday, newYear, day, daynum, weeknum;
 

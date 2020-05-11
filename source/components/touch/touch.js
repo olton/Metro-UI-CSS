@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var TouchConst = {
     LEFT : "left",
     RIGHT : "right",
@@ -741,7 +742,7 @@ Component('touch', {
         var result, options = this.options;
 
         if (options.maxTimeThreshold) {
-            result = duration < options.maxTimeThreshold;
+            result = this.duration < options.maxTimeThreshold;
         } else {
             result = true;
         }
@@ -1146,8 +1147,7 @@ Component('touch', {
         return this.element;
     },
 
-    changeAttribute: function(attributeName){
-
+    changeAttribute: function(){
     },
 
     destroy: function(){

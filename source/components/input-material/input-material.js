@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var MaterialInputDefaultConfig = {
     materialinputDeferred: 0,
     label: "",

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var KeypadDefaultConfig = {
     keypadDeferred: 0,
     keySize: 48,

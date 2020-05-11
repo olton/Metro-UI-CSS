@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_ANIMATION_DURATION */
 var PanelDefaultConfig = {
     panelDeferred: 0,
     id: null,
@@ -201,11 +202,12 @@ Component('panel', {
         Metro.getPlugin(element, 'collapse').expand();
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
 
         if (o.collapsible === true) {
             Metro.getPlugin(element, "collapse").destroy();

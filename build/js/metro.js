@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/05/2020 23:09:39
+ * Built at 11/05/2020 20:54:16
  * Licensed under MIT
  */
 
@@ -20,9 +20,13 @@ window.hideM4QVersion = true;
 
 // Source: src/mode.js
 
+/* jshint -W097 */
 'use strict';
 
 // Source: src/func.js
+
+/* global dataSet */
+/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip */
 
 var numProps = ['opacity', 'zIndex'];
 
@@ -36,7 +40,7 @@ function isVisible(elem) {
 
 function isHidden(elem) {
     var s = getComputedStyle(elem);
-    return !isVisible(elem) || +s['opacity'] === 0 || elem.hidden || s['visibility'] === "hidden";
+    return !isVisible(elem) || +s.opacity === 0 || elem.hidden || s.visibility === "hidden";
 }
 
 function not(value){
@@ -63,7 +67,7 @@ function isPlainObject( obj ) {
 
 function isEmptyObject( obj ) {
     for (var name in obj ) {
-        if (obj.hasOwnProperty(name)) return false;
+        if (hasProp(obj, name)) return false;
     }
     return true;
 }
@@ -78,7 +82,7 @@ function str2arr (str, sep) {
         return  (""+el).trim();
     }).filter(function(el){
         return el !== "";
-    })
+    });
 }
 
 function parseUnit(str, out) {
@@ -87,6 +91,11 @@ function parseUnit(str, out) {
     out[0] = parseFloat(str);
     out[1] = str.match(/[\d.\-+]*\s*(.*)/)[1] || '';
     return out;
+}
+
+function getUnit(val, und){
+    var split = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(val);
+    return typeof split[1] !== "undefined" ? split[1] : und;
 }
 
 function setStyleProp(el, key, val){
@@ -100,7 +109,7 @@ function setStyleProp(el, key, val){
 }
 
 function acceptData(owner){
-    return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
+    return typeof owner.nodeType !== "undefined" && (owner.nodeType === 1 || owner.nodeType === 9);
 }
 
 function getData(data){
@@ -119,10 +128,7 @@ function dataAttr(elem, key, data){
         data = elem.getAttribute( name );
 
         if ( typeof data === "string" ) {
-            try {
-                data = getData( data );
-            } catch ( e ) {}
-
+            data = getData( data );
             dataSet.set( elem, key, data );
         } else {
             data = undefined;
@@ -131,10 +137,17 @@ function dataAttr(elem, key, data){
     return data;
 }
 
-function normalizeEventName(name) {
-    return typeof name !== "string" ? undefined : name.replace(/\-/g, "").toLowerCase();
+function normName(name) {
+    return typeof name !== "string" ? undefined : name.replace(/-/g, "").toLowerCase();
 }
 
+function strip(name, what) {
+    return typeof name !== "string" ? undefined : name.replace(what, "");
+}
+
+function hasProp(obj, prop){
+    return Object.prototype.hasOwnProperty.call(obj, prop);
+}
 
 // Source: src/setimmediate.js
 
@@ -145,7 +158,7 @@ function normalizeEventName(name) {
  * Copyright (c) 2016 Yuzu (https://github.com/YuzuJS)
  * Licensed under MIT
  */
-(function (global, undefined) {
+(function (global) {
 
     if (global.setImmediate) {
         return;
@@ -158,6 +171,7 @@ function normalizeEventName(name) {
 
     function setImmediate(callback) {
         if (typeof callback !== "function") {
+            /* jshint -W054 */
             callback = new Function("" + callback);
         }
         var args = new Array(arguments.length - 1);
@@ -241,6 +255,8 @@ function normalizeEventName(name) {
 
 // Source: src/promise.js
 
+/* global setImmediate */
+
 /*
  * Promise polyfill
  * Version 1.2.0
@@ -248,7 +264,7 @@ function normalizeEventName(name) {
  * Copyright (c) 2014 Roman Dvornov
  * Licensed under MIT
  */
-(function (global, undefined) {
+(function (global) {
 
     if (global.Promise) {
         return;
@@ -430,7 +446,7 @@ function normalizeEventName(name) {
         if (typeof resolver !== 'function')
             throw new TypeError('Promise constructor takes a function argument');
 
-        if (!this instanceof Promise)
+        if (!(this instanceof Promise))
             throw new TypeError('Failed to construct \'Promise\': Please use the \'new\' operator, this object constructor cannot be called as a function.');
 
         this.then_ = [];
@@ -552,22 +568,24 @@ function normalizeEventName(name) {
         });
     };
 
-    if (typeof  global['Promise'] === "undefined") {
+    if (typeof  global.Promise === "undefined") {
         global.Promise = Promise;
     }
 }(window));
 
 // Source: src/core.js
 
-var m4qVersion = "v1.0.6. Built at 26/04/2020 12:57:36";
-var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
+/* global hasProp */
 
+var m4qVersion = "v1.0.6. Built at 11/05/2020 15:08:55";
+
+/* eslint-disable-next-line */
 var matches = Element.prototype.matches
-    || Element.prototype["matchesSelector"]
-    || Element.prototype["webkitMatchesSelector"]
-    || Element.prototype["mozMatchesSelector"]
-    || Element.prototype["msMatchesSelector"]
-    || Element.prototype["oMatchesSelector"];
+    || Element.prototype.matchesSelector
+    || Element.prototype.webkitMatchesSelector
+    || Element.prototype.mozMatchesSelector
+    || Element.prototype.msMatchesSelector
+    || Element.prototype.oMatchesSelector;
 
 var $ = function(selector, context){
     return new $.init(selector, context);
@@ -605,7 +623,8 @@ $.extend = $.fn.extend = function(){
     for ( ; i < length; i++ ) {
         if ( ( options = arguments[ i ] ) != null ) {
             for ( name in options ) {
-                if (options.hasOwnProperty(name)) target[ name ] = options[ name ];
+                if (hasProp(options, name))
+                    target[ name ] = options[ name ];
             }
         }
     }
@@ -631,7 +650,8 @@ $.assign = function(){
     for ( ; i < length; i++ ) {
         if ( ( options = arguments[ i ] ) != null ) {
             for ( name in options ) {
-                if (options.hasOwnProperty(name) && options[name] !== undefined) target[ name ] = options[ name ];
+                if (hasProp(options, name) && options[name] !== undefined)
+                    target[ name ] = options[ name ];
             }
         }
     }
@@ -639,9 +659,11 @@ $.assign = function(){
     return target;
 };
 
-if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q "+$.version);
+if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q " + $.version);
 
 // Source: src/interval.js
+
+/* global $ */
 
 var now = function(){
     return Date.now();
@@ -713,6 +735,8 @@ $.extend({
 
 // Source: src/contains.js
 
+/* global $, not, matches, isArrayLike, isVisible */
+
 $.fn.extend({
     index: function(sel){
         var el, _index = -1;
@@ -777,15 +801,21 @@ $.fn.extend({
             });
         } else
 
+        if (s === ":visible") {
+            this.each(function(){
+                if (isVisible(this)) result = true;
+            });
+        } else
+
         if (s === ":hidden") {
             this.each(function(){
                 var styles = getComputedStyle(this);
                 if (
                     this.getAttribute('type') === 'hidden'
-                    || this.hidden
-                    || styles['display'] === 'none'
-                    || styles['visibility'] === 'hidden'
-                    || parseInt(styles['opacity']) === 0
+                        || this.hidden
+                        || styles.display === 'none'
+                        || styles.visibility === 'hidden'
+                        || parseInt(styles.opacity) === 0
                 ) result = true;
             });
         } else
@@ -806,7 +836,7 @@ $.fn.extend({
                     if (el === sel) {
                         result = true;
                     }
-                })
+                });
             });
         } else
 
@@ -815,7 +845,7 @@ $.fn.extend({
                 if  (this === s) {
                     result = true;
                 }
-            })
+            });
         }
 
         return result;
@@ -974,7 +1004,7 @@ $.fn.extend({
             var el = this;
             if (el.parentNode) {
                 $.each(el.parentNode.children, function(){
-                    if (el !== this) res.push(this)
+                    if (el !== this) res.push(this);
                 });
             }
         });
@@ -982,7 +1012,7 @@ $.fn.extend({
         if (s) {
             res = res.filter(function(el){
                 return matches.call(el, s);
-            })
+            });
         }
 
         return $.extend($.merge($(), res), {_prevObj: this});
@@ -1009,7 +1039,7 @@ $.fn.extend({
         if (s) {
             res = res.filter(function(el){
                 return matches.call(el, s);
-            })
+            });
         }
 
         return $.extend($.merge($(), res), {_prevObj: this});
@@ -1034,7 +1064,7 @@ $.fn.extend({
         if (s) {
             res = res.filter(function(el){
                 return matches.call(el, s);
-            })
+            });
         }
 
         return $.extend($.merge($(), res), {_prevObj: this});
@@ -1119,6 +1149,8 @@ $.fn.extend({
 
 // Source: src/script.js
 
+/* global $, not */
+
 function createScript(script){
     var s = document.createElement('script');
     s.type = 'text/javascript';
@@ -1161,11 +1193,13 @@ $.fn.extend({
     script: function(){
         return this.each(function(){
             $.script(this);
-        })
+        });
     }
 });
 
 // Source: src/prop.js
+
+/* global $, not */
 
 $.fn.extend({
     _prop: function(prop, value){
@@ -1252,6 +1286,8 @@ $.fn.extend({
 
 // Source: src/each.js
 
+/* global $, isArrayLike, hasProp */
+
 $.each = function(ctx, cb){
     var index = 0;
     if (isArrayLike(ctx)) {
@@ -1260,7 +1296,7 @@ $.each = function(ctx, cb){
         });
     } else {
         for(var key in ctx) {
-            if (ctx.hasOwnProperty(key))
+            if (hasProp(ctx, key))
                 cb.apply(ctx[key], [key, ctx[key],  index++]);
         }
     }
@@ -1276,6 +1312,8 @@ $.fn.extend({
 
 
 // Source: src/data.js
+
+/* global acceptData, camelCase, $, not, dataAttr, isEmptyObject, hasProp */
 
 /*
  * Data routines
@@ -1316,7 +1354,7 @@ Data.prototype = {
             cache[camelCase(data)] = value;
         } else {
             for (prop in data) {
-                if (data.hasOwnProperty(prop))
+                if (hasProp(data, prop))
                     cache[camelCase(prop)] = data[prop];
             }
         }
@@ -1473,6 +1511,8 @@ $.fn.extend({
 
 // Source: src/utils.js
 
+/* global $, not, camelCase, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp */
+
 $.extend({
     uniqueId: function (prefix) {
         var d = new Date().getTime();
@@ -1524,6 +1564,7 @@ $.extend({
 
     sleep: function(ms) {
         ms += new Date().getTime();
+        /* eslint-disable-next-line */
         while (new Date() < ms){}
     },
 
@@ -1551,12 +1592,12 @@ $.extend({
     isEmptyObject: function(obj){return isEmptyObject(obj);},
     isArrayLike: function(obj){return isArrayLike(obj);},
     acceptData: function(owner){return acceptData(owner);},
-    not: function(val){return not(val)},
-    parseUnit: function(str, out){return parseUnit(str, out)},
-    getUnit: function(str, und){return _getUnit(str, und)},
-    unit: function(str, out){return parseUnit(str, out)},
-    isVisible: function(elem) {return isVisible(elem)},
-    isHidden: function(elem) {return isHidden(elem)},
+    not: function(val){return not(val);},
+    parseUnit: function(str, out){return parseUnit(str, out);},
+    getUnit: function(str, und){return getUnit(str, und);},
+    unit: function(str, out){return parseUnit(str, out);},
+    isVisible: function(elem) {return isVisible(elem);},
+    isHidden: function(elem) {return isHidden(elem);},
     matches: function(el, s) {return matches.call(el, s);},
     random: function(from, to) {
         if (arguments.length === 1 && isArrayLike(from)) {
@@ -1564,6 +1605,9 @@ $.extend({
         }
         return Math.floor(Math.random()*(to-from+1)+from);
     },
+    strip: function(val, what){return strip(val, what);},
+    normName: function(val){return normName(val);},
+    hasProp: function(obj, prop){return hasProp(obj, prop);},
 
     serializeToArray: function(form){
         var _form = $(form)[0];
@@ -1632,6 +1676,8 @@ $.fn.extend({
 });
 
 // Source: src/events.js
+
+/* global $, not, camelCase, str2arr, normName, matches, isEmptyObject, isPlainObject */
 
 (function () {
     if ( typeof window.CustomEvent === "function" ) return false;
@@ -1755,7 +1801,8 @@ $.extend({
             this.eventHooks = {};
         } else {
             $.each(str2arr(event), function(){
-                delete that.eventHooks[camelCase(type+"-"+this)];
+                delete that.eventHooks[camelCase("before-"+this)];
+                delete that.eventHooks[camelCase("after-"+this)];
             });
         }
         return this;
@@ -1783,7 +1830,7 @@ $.fn.extend({
             $.each(str2arr(eventsList), function(){
                 var h, ev = this,
                     event = ev.split("."),
-                    name = normalizeEventName(event[0]),
+                    name = normName(event[0]),
                     ns = options.ns ? options.ns : event[1],
                     index, originEvent;
 
@@ -1852,7 +1899,7 @@ $.fn.extend({
 
         options.once = true;
 
-        return this["on"].apply(this, [events, sel, handler, options]);
+        return this.on.apply(this, [events, sel, handler, options]);
     },
 
     off: function(eventsList, sel, options){
@@ -1876,7 +1923,7 @@ $.fn.extend({
                         e.handler = null;
                         $(el).origin("event-"+name+(e.selector ? ":"+e.selector:"")+(e.ns ? ":"+e.ns:""), null);
                     }
-                })
+                });
             });
         }
 
@@ -1884,7 +1931,7 @@ $.fn.extend({
             var el = this;
             $.each(str2arr(eventsList), function(){
                 var evMap = this.split("."),
-                    name = normalizeEventName(evMap[0]),
+                    name = normName(evMap[0]),
                     ns = options.ns ? options.ns : evMap[1],
                     originEvent, index;
 
@@ -1912,7 +1959,7 @@ $.fn.extend({
             return ;
         }
 
-        _name = normalizeEventName(name);
+        _name = normName(name);
 
         if (['focus', 'blur'].indexOf(_name) > -1) {
             this[0][_name]();
@@ -1960,7 +2007,7 @@ $.unload = function(fn){
 
 $.fn.extend({
     unload: function(fn){
-        return (this.length === 0 || this[0]['self'] !== window) ? undefined : $.unload(fn);
+        return (this.length === 0 || this[0].self !== window) ? undefined : $.unload(fn);
     }
 });
 
@@ -1977,7 +2024,7 @@ $.beforeunload = function(fn){
 
 $.fn.extend({
     beforeunload: function(fn){
-        return (this.length === 0 || this[0]['self'] !== window) ? undefined : $.beforeunload(fn);
+        return (this.length === 0 || this[0].self !== window) ? undefined : $.beforeunload(fn);
     }
 });
 
@@ -1990,6 +2037,8 @@ $.fn.extend({
 });
 
 // Source: src/ajax.js
+
+/* global $, Promise, not, isSimple, isPlainObject, isEmptyObject, camelCase */
 
 $.ajax = function(p){
     return new Promise(function(resolve, reject){
@@ -2011,7 +2060,7 @@ $.ajax = function(p){
 
         var plainObjectToData = function(obj){
             var _data = [];
-            $.each(p.data, function(k, v){
+            $.each(obj, function(k, v){
                 var _v = isSimple(v) ? v : JSON.stringify(v);
                 _data.push(k+"=" + _v);
             });
@@ -2074,22 +2123,21 @@ $.ajax = function(p){
 
         xhr.addEventListener("load", function(e){
             if (xhr.readyState === 4 && xhr.status < 300) {
-                // var _return = p.returnValue && p.returnValue === 'xhr' ? xhr : p.parseJson ? JSON.parse(xhr.response) : xhr.response;
                 var _return = p.returnValue && p.returnValue === 'xhr' ? xhr : xhr.response;
                 if (p.parseJson) {
                     try {
                         _return = JSON.parse(_return);
-                    } catch (e) {
+                    } catch (ex) {
                         _return = {};
                     }
                 }
                 exec(resolve, [_return]);
-                exec(p['onSuccess'], [e, xhr]);
+                exec(p.onSuccess, [e, xhr]);
             } else {
                 exec(reject, [xhr]);
-                exec(p['onFail'], [e, xhr]);
+                exec(p.onFail, [e, xhr]);
             }
-            exec(p['onLoad'], [e, xhr]);
+            exec(p.onLoad, [e, xhr]);
         });
 
         $.each(["readystatechange", "error", "timeout", "progress", "loadstart", "loadend", "abort"], function(){
@@ -2111,14 +2159,14 @@ $.ajax = function(p){
             parseJson: _method === 'JSON'
         };
         return $.ajax($.extend({}, _options, options));
-    }
+    };
 });
 
 $.fn.extend({
     load: function(url, data, options){
         var that = this;
 
-        if (this[0]['self'] === window ) {
+        if (this.length && this[0].self === window ) {
             return $.load(url);
         }
 
@@ -2131,6 +2179,8 @@ $.fn.extend({
 });
 
 // Source: src/css.js
+
+/* global $, not, setStyleProp */
 
 $.fn.extend({
 
@@ -2184,8 +2234,6 @@ $.fn.extend({
     },
 
     css: function(key, val){
-        var that = this;
-
         key = key || 'all';
 
         if (typeof key === "string" && not(val)) {
@@ -2210,7 +2258,7 @@ $.fn.extend({
         }
         return this.each(function(){
             this.scrollTop = val;
-        })
+        });
     },
 
     scrollLeft: function(val){
@@ -2219,13 +2267,15 @@ $.fn.extend({
         }
         return this.each(function(){
             this.scrollLeft = val;
-        })
+        });
     }
 });
 
 
 
 // Source: src/classes.js
+
+/* global $, not */
 
 $.fn.extend({
     addClass: function(){},
@@ -2282,14 +2332,18 @@ $.fn.extend({
                 if (hasClassList) el.classList[method](this);
             });
         });
-    }
+    };
 });
 
 
 // Source: src/parser.js
 
+/* global $, isPlainObject, hasProp */
+
 $.parseHTML = function(data, context){
     var base, singleTag, result = [], ctx, _context;
+    /* eslint-disable-next-line */
+    var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
 
     if (typeof data !== "string") {
         return [];
@@ -2318,7 +2372,7 @@ $.parseHTML = function(data, context){
         $.each(result,function(){
             var el = this;
             for(var name in context) {
-                if (context.hasOwnProperty(name))
+                if (hasProp(context, name))
                     el.setAttribute(name, context[name]);
             }
         });
@@ -2330,6 +2384,8 @@ $.parseHTML = function(data, context){
 
 // Source: src/size.js
 
+/* global $, not */
+
 $.fn.extend({
     _size: function(prop, val){
         if (this.length === 0) return ;
@@ -2339,10 +2395,10 @@ $.fn.extend({
             var el = this[0];
 
             if (prop === 'height') {
-                return el === window ? window.innerHeight : el === document ? el.body.clientHeight : parseInt(getComputedStyle(el)["height"]);
+                return el === window ? window.innerHeight : el === document ? el.body.clientHeight : parseInt(getComputedStyle(el).height);
             }
             if (prop === 'width') {
-                return el === window ? window.innerWidth : el === document ? el.body.clientWidth : parseInt(getComputedStyle(el)["width"]);
+                return el === window ? window.innerWidth : el === document ? el.body.clientWidth : parseInt(getComputedStyle(el).width);
             }
         }
 
@@ -2405,7 +2461,7 @@ $.fn.extend({
             right: parseInt(s["padding-right"]),
             bottom: parseInt(s["padding-bottom"]),
             left: parseInt(s["padding-left"])
-        }
+        };
     },
 
     margin: function(p){
@@ -2417,7 +2473,7 @@ $.fn.extend({
             right: parseInt(s["margin-right"]),
             bottom: parseInt(s["margin-bottom"]),
             left: parseInt(s["margin-left"])
-        }
+        };
     },
 
     border: function(p){
@@ -2429,11 +2485,13 @@ $.fn.extend({
             right: parseInt(s["border-right-width"]),
             bottom: parseInt(s["border-bottom-width"]),
             left: parseInt(s["border-left-width"])
-        }
+        };
     }
 });
 
 // Source: src/position.js
+
+/* global $, not */
 
 $.fn.extend({
     offset: function(val){
@@ -2445,14 +2503,14 @@ $.fn.extend({
             return {
                 top: rect.top + pageYOffset,
                 left: rect.left + pageXOffset
-            }
+            };
         }
 
         return this.each(function(){ //?
             var el = $(this),
                 top = val.top,
                 left = val.left,
-                position = getComputedStyle(this)['position'],
+                position = getComputedStyle(this).position,
                 offset = el.offset();
 
             if (position === "static") {
@@ -2467,17 +2525,15 @@ $.fn.extend({
             el.css({
                 top: top,
                 left: left
-            })
+            });
         });
     },
 
     position: function(margin){
         var ml = 0, mt = 0, el, style;
 
-        if (not(margin)) {
+        if (not(margin) || typeof margin !== "boolean") {
             margin = false;
-        } else {
-            margin = getData(margin);
         }
 
         if (this.length === 0) {
@@ -2495,7 +2551,7 @@ $.fn.extend({
         return {
             left: el.offsetLeft - ml,
             top: el.offsetTop - mt
-        }
+        };
     },
 
     left: function(val, margin){
@@ -2510,7 +2566,7 @@ $.fn.extend({
         return this.each(function(){
             $(this).css({
                 left: val
-            })
+            });
         });
     },
 
@@ -2526,7 +2582,7 @@ $.fn.extend({
         return this.each(function(){
             $(this).css({
                 top: val
-            })
+            });
         });
     },
 
@@ -2539,11 +2595,13 @@ $.fn.extend({
         return {
             top: parseInt($(this[0]).style("top")),
             left: parseInt($(this[0]).style("left"))
-        }
+        };
     }
 });
 
 // Source: src/attr.js
+
+/* global $, not, isPlainObject */
 
 $.fn.extend({
     attr: function(name, val){
@@ -2585,7 +2643,7 @@ $.fn.extend({
                 var el = this;
                 $.each(this.attributes, function(){
                     el.removeAttribute(this);
-                })
+                });
             });
         }
 
@@ -2655,13 +2713,15 @@ $.extend({
     charset: function(val){
         var meta = $("meta[charset]");
         if (val) {
-            meta.attr("charset", val)
+            meta.attr("charset", val);
         }
         return meta.attr("charset");
     }
 });
 
 // Source: src/proxy.js
+
+/* global $ */
 
 $.extend({
     proxy: function(fn, ctx){
@@ -2676,10 +2736,12 @@ $.extend({
 
 // Source: src/manipulation.js
 
+/* global $, isArrayLike, not, matches, hasProp */
+
 (function (arr) {
     arr.forEach(function (item) {
         ['append', 'prepend'].forEach(function(where){
-            if (item.hasOwnProperty(where)) {
+            if (hasProp(item, where)) {
                 return;
             }
             Object.defineProperty(item, where, {
@@ -2706,7 +2768,7 @@ $.extend({
 })([Element.prototype, Document.prototype, DocumentFragment.prototype]);
 
 var normalizeElements = function(s){
-    var result = undefined;
+    var result;
     if (typeof s === "string") result = $.isSelector(s) ? $(s) : $.parseHTML(s);
     else if (s instanceof HTMLElement) result = [s];
     else if (isArrayLike(s)) result = s;
@@ -2724,7 +2786,7 @@ $.fn.extend({
                 $.script(child);
                 if (child.tagName && child.tagName !== "SCRIPT") el.append(child);
             });
-        })
+        });
     },
 
     appendTo: function(elements){
@@ -2736,7 +2798,7 @@ $.fn.extend({
                 if (el === this) return ;
                 parent.append(parIndex === 0 ? el : el.cloneNode(true));
             });
-        })
+        });
     },
 
     prepend: function(elements){
@@ -2749,7 +2811,7 @@ $.fn.extend({
                 $.script(child);
                 if (child.tagName && child.tagName !== "SCRIPT") el.prepend(child);
             });
-        })
+        });
     },
 
     prependTo: function(elements){
@@ -2760,8 +2822,8 @@ $.fn.extend({
             $.each(_elements, function(parIndex, parent){
                 if (el === this) return ;
                 $(parent).prepend(parIndex === 0 ? el : el.cloneNode(true));
-            })
-        })
+            });
+        });
     },
 
     insertBefore: function(elements){
@@ -2776,7 +2838,7 @@ $.fn.extend({
                     parent.insertBefore(elIndex === 0 ? el : el.cloneNode(true), this);
                 }
             });
-        })
+        });
     },
 
     insertAfter: function(elements){
@@ -2802,7 +2864,7 @@ $.fn.extend({
             } else {
                 $(html).insertAfter(el);
             }
-        })
+        });
     },
 
     before: function(html){
@@ -2832,7 +2894,7 @@ $.fn.extend({
                 data = $(this).data();
                 $.each(data, function(k, v){
                     $el.data(k, v);
-                })
+                });
             }
             res.push(el);
         });
@@ -2882,18 +2944,21 @@ $.fn.extend({
 
 // Source: src/animation.js
 
+/* global $, not, camelCase, parseUnit, Promise, getUnit */
+
 $.extend({
     animation: {
         duration: 1000,
-        ease: "linear"
+        ease: "linear",
+        elements: {}
     }
-})
+});
 
-if (typeof window['setupAnimation'] === 'object') {
-    $.each(window['setupAnimation'], function(key, val){
+if (typeof window["setupAnimation"] === 'object') {
+    $.each(window["setupAnimation"], function(key, val){
         if (typeof $.animation[key] !== "undefined" && !not(val))
             $.animation[key] = val;
-    })
+    });
 }
 
 var transformProps = ['translateX', 'translateY', 'translateZ', 'rotate', 'rotateX', 'rotateY', 'rotateZ', 'scale', 'scaleX', 'scaleY', 'scaleZ', 'skew', 'skewX', 'skewY'];
@@ -2908,17 +2973,6 @@ function _validElement(el) {
 
 /**
  *
- * @param val
- * @param und
- * @returns {any}
- */
-function _getUnit(val, und){
-    var split = /[+-]?\d*\.?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?(%|px|pt|em|rem|in|cm|mm|ex|ch|pc|vw|vh|vmin|vmax|deg|rad|turn)?$/.exec(val);
-    return typeof split[1] !== "undefined" ? split[1] : und;
-}
-
-/**
- *
  * @param to
  * @param from
  * @returns {*}
@@ -2927,7 +2981,7 @@ function _getUnit(val, und){
 function _getRelativeValue (to, from) {
     var operator = /^(\*=|\+=|-=)/.exec(to);
     if (!operator) return to;
-    var u = _getUnit(to) || 0;
+    var u = getUnit(to) || 0;
     var x = parseFloat(from);
     var y = parseFloat(to.replace(operator[0], ''));
     switch (operator[0][0]) {
@@ -2951,7 +3005,7 @@ function _getRelativeValue (to, from) {
 function _getStyle (el, prop, pseudo){
     if (typeof el[prop] !== "undefined") {
         if (scrollProps.indexOf(prop) > -1) {
-            return prop === "scrollLeft" ? el === window ? pageXOffset : el.scrollLeft : el === window ? pageYOffset : el.scrollTop
+            return prop === "scrollLeft" ? el === window ? pageXOffset : el.scrollLeft : el === window ? pageYOffset : el.scrollTop;
         } else {
             return el[prop] || 0;
         }
@@ -3002,7 +3056,7 @@ function _setStyle (el, key, val, unit, toInt) {
 function _applyStyles (el, mapProps, p) {
     $.each(mapProps, function (key, val) {
         _setStyle(el, key, val[0] + (val[2] * p), val[3], val[4]);
-    })
+    });
 }
 
 /**
@@ -3018,8 +3072,11 @@ function _getElementTransforms (el) {
     var transforms = {};
     var m;
 
+    /* jshint ignore:start */
+    // eslint-disable-next-line
     while (m = reg.exec(str))
         transforms[m[1]] = m[2];
+    /* jshint ignore:end */
 
     return transforms;
 }
@@ -3033,8 +3090,8 @@ function _getElementTransforms (el) {
 function _getColorArrayFromHex (val){
     var a = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(val ? val : "#000000");
     return a.slice(1).map(function(v) {
-            return parseInt(v, 16)
-    })
+            return parseInt(v, 16);
+    });
 }
 
 /**
@@ -3046,7 +3103,7 @@ function _getColorArrayFromHex (val){
  */
 function _getColorArrayFromElement (el, key) {
     return getComputedStyle(el)[key].replace(/[^\d.,]/g, '').split(',').map(function(v) {
-        return parseInt(v)
+        return parseInt(v);
     });
 }
 
@@ -3088,9 +3145,9 @@ function _applyTransform (el, mapProps, p) {
         if (mapProps[key] === undefined) {
             t.push(key+"("+val+")");
         }
-    })
+    });
 
-    el.style['transform'] = t.join(" ");
+    el.style.transform = t.join(" ");
 }
 
 /**
@@ -3108,7 +3165,7 @@ function _applyColors (el, mapProps, p) {
         }
         v = "rgb("+(result.join(","))+")";
         el.style[key] = v;
-    })
+    });
 }
 
 /**
@@ -3222,8 +3279,8 @@ function minMax(val, min, max) {
 }
 
 var Easing = {
-    linear: function(){return function(t) {return t}}
-}
+    linear: function(){return function(t) {return t;};}
+};
 
 Easing.default = Easing.linear;
 
@@ -3231,24 +3288,25 @@ var eases = {
     Sine: function(){
         return function(t){
             return 1 - Math.cos(t * Math.PI / 2);
-        }
+        };
     },
     Circ: function(){
         return function(t){
             return 1 - Math.sqrt(1 - t * t);
-        }
+        };
     },
     Back: function(){
         return function(t){
             return t * t * (3 * t - 2);
-        }
+        };
     },
     Bounce: function(){
         return function(t){
             var pow2, b = 4;
+            // eslint-disable-next-line
             while (t < (( pow2 = Math.pow(2, --b)) - 1) / 11) {}
-            return 1 / Math.pow(4, 3 - b) - 7.5625 * Math.pow(( pow2 * 3 - 2 ) / 22 - t, 2)
-        }
+            return 1 / Math.pow(4, 3 - b) - 7.5625 * Math.pow(( pow2 * 3 - 2 ) / 22 - t, 2);
+        };
     },
     Elastic: function(amplitude, period){
         if (not(amplitude)) {
@@ -3256,14 +3314,14 @@ var eases = {
         }
 
         if (not(period)) {
-            period = .5;
+            period = 0.5;
         }
         var a = minMax(amplitude, 1, 10);
-        var p = minMax(period, .1, 2);
+        var p = minMax(period, 0.1, 2);
         return function(t){
             return (t === 0 || t === 1) ? t :
                 -a * Math.pow(2, 10 * (t - 1)) * Math.sin((((t - 1) - (p / (Math.PI * 2) * Math.asin(1 / a))) * (Math.PI * 2)) / p);
-        }
+        };
     }
 };
 
@@ -3271,8 +3329,8 @@ var eases = {
     eases[name] = function(){
         return function(t){
             return Math.pow(t, i + 2);
-        }
-    }
+        };
+    };
 });
 
 Object.keys(eases).forEach(function(name) {
@@ -3281,13 +3339,13 @@ Object.keys(eases).forEach(function(name) {
     Easing['easeOut' + name] = function(a, b){
         return function(t){
             return 1 - easeIn(a, b)(1 - t);
-        }
-    }
+        };
+    };
     Easing['easeInOut' + name] = function(a, b){
         return function(t){
             return t < 0.5 ? easeIn(a, b)(t * 2) / 2 : 1 - easeIn(a, b)(t * -2 + 2) / 2;
-        }
-    }
+        };
+    };
 });
 
 var defaultProps = {
@@ -3302,10 +3360,6 @@ var defaultProps = {
     defer: 0,
     onFrame: function(){},
     onDone: function(){}
-}
-
-var Animation = {
-    elements: {}
 };
 
 function animate(args){
@@ -3342,15 +3396,15 @@ function animate(args){
         if (typeof ease === "string") {
             matchArgs = /\(([^)]+)\)/.exec(ease);
             easeName = ease.split("(")[0];
-            easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p)}) : [];
-            easeFn = Easing[easeName] || Easing["linear"];
+            easeArgs = matchArgs ? matchArgs[1].split(',').map(function(p){return parseFloat(p);}) : [];
+            easeFn = Easing[easeName] || Easing.linear;
         } else if (typeof ease === "function") {
             easeFn = ease;
         } else {
             easeFn = Easing.linear;
         }
 
-        Animation.elements[animationID] = {
+        $.animation.elements[animationID] = {
             element: el,
             id: null,
             stop: 0,
@@ -3363,13 +3417,13 @@ function animate(args){
                 map = createAnimationMap(el, draw, direction);
             }
             start = performance.now();
-            Animation.elements[animationID].loop += 1;
-            Animation.elements[animationID].id = requestAnimationFrame(animate);
+            $.animation.elements[animationID].loop += 1;
+            $.animation.elements[animationID].id = requestAnimationFrame(animate);
         };
 
         var done = function() {
-            cancelAnimationFrame(Animation.elements[animationID].id);
-            delete Animation.elements[id];
+            cancelAnimationFrame($.animation.elements[animationID].id);
+            delete $.animation.elements[id];
 
             if (typeof onDone === "function") {
                 onDone.apply(el);
@@ -3380,7 +3434,7 @@ function animate(args){
 
         var animate = function(time) {
             var p, t;
-            var stop = Animation.elements[animationID].stop;
+            var stop = $.animation.elements[animationID].stop;
 
             if ( stop > 0) {
                 if (stop === 2) {
@@ -3420,7 +3474,7 @@ function animate(args){
             }
 
             if (t < 1) {
-                Animation.elements[animationID].id = requestAnimationFrame(animate);
+                $.animation.elements[animationID].id = requestAnimationFrame(animate);
             }
 
             if (parseInt(t) === 1) {
@@ -3434,7 +3488,7 @@ function animate(args){
                             play();
                         }, pause);
                     } else {
-                        if (loop > Animation.elements[animationID].loop) {
+                        if (loop > $.animation.elements[animationID].loop) {
                             setTimeout(function () {
                                 play();
                             }, pause);
@@ -3463,12 +3517,14 @@ function animate(args){
     });
 }
 
+/* eslint-disable */
 function stop(id, done){
     if (not(done)) {
         done = true;
     }
-    Animation.elements[id].stop = done === true ? 2 : 1;
+    $.animation.elements[id].stop = done === true ? 2 : 1;
 }
+/* eslint-enable */
 
 function chain(arr, loop){
     if (not(loop)) loop = false;
@@ -3479,9 +3535,9 @@ function chain(arr, loop){
 
     var reducer = function(acc, item){
         return acc.then(function(){
-            return animate(item)
+            return animate(item);
         });
-    }
+    };
 
     arr.reduce(reducer, Promise.resolve()).then(function(){
         if (loop) {
@@ -3527,14 +3583,14 @@ $.extend({
                 dur: dur,
                 ease: ease,
                 onDone: cb
-            })
+            });
         }
 
         return animate(args);
     },
     stop: stop,
     chain: chain
-})
+});
 
 $.fn.extend({
     /**
@@ -3560,7 +3616,7 @@ $.fn.extend({
         var a = args;
         var compatibilityMode;
 
-        compatibilityMode = !Array.isArray(args) && (arguments.length > 1 || (arguments.length === 1 && typeof arguments[0]['draw'] === 'undefined'));
+        compatibilityMode = !Array.isArray(args) && (arguments.length > 1 || (arguments.length === 1 && typeof arguments[0].draw === 'undefined'));
 
         if ( compatibilityMode ) {
             draw = arguments[0];
@@ -3587,34 +3643,34 @@ $.fn.extend({
                     ease: easing,
                     onDone: cb
                 });
-            })
+            });
         }
 
         if (Array.isArray(args)) {
             $.each(args, function(){
                 var a = this;
                 that.each(function(){
-                    a['el'] = this;
+                    a.el = this;
                     $.animate(a);
-                })
-            })
+                });
+            });
             return this;
         }
 
         return this.each(function(){
-            a['el'] = this;
+            a.el = this;
             $.animate(a);
-        })
+        });
     },
 
     chain: function(arr, loop){
         return this.each(function(){
             var el = this;
             $.each(arr, function(){
-                this['el'] = el;
+                this.el = el;
             });
             $.chain(arr, loop);
-        })
+        });
     },
 
     /**
@@ -3623,21 +3679,22 @@ $.fn.extend({
      * @returns {this}
      */
     stop: function(done){
-        var elements = Animation.elements;
+        var elements = $.animation.elements;
         return this.each(function(){
             var el = this;
             $.each(elements, function(k, o){
-                if (o['element'] === el) {
+                if (o.element === el) {
                     stop(k, done);
                 }
-            })
+            });
         });
     }
-})
+});
 
-// Переделать effects
 
 // Source: src/visibility.js
+
+/* global $ */
 
 $.extend({
     hidden: function(el, val, cb){
@@ -3664,8 +3721,9 @@ $.extend({
 
     hide: function(el, cb){
         var $el = $(el);
-        if (!!el.style.display) {
-            $el.origin('display', (el.style.display ? el.style.display : getComputedStyle(el, null)['display']));
+
+        if (el.style.display) {
+            $el.origin('display', (el.style.display ? el.style.display : getComputedStyle(el, null).display));
         }
         el.style.display = 'none';
         if (typeof cb === "function") {
@@ -3701,19 +3759,14 @@ $.extend({
     },
 
     toggle: function(el, cb){
-        var func;
-        if ( getComputedStyle(el, null)['display'] !== 'none') {
-            func = 'hide';
-        } else {
-            func = 'show';
-        }
+        var func = getComputedStyle(el, null).display !== 'none' ? 'hide' : 'show';
         return $[func](el, cb);
     }
 });
 
 $.fn.extend({
-    hide: function(cb){
-        var callback = undefined;
+    hide: function(){
+        var callback;
 
         $.each(arguments, function(){
             if (typeof this === 'function') {
@@ -3726,8 +3779,8 @@ $.fn.extend({
         });
     },
 
-    show: function(cb){
-        var callback = undefined;
+    show: function(){
+        var callback;
 
         $.each(arguments, function(){
             if (typeof this === 'function') {
@@ -3749,13 +3802,13 @@ $.fn.extend({
     toggle: function(cb){
         return this.each(function(){
             $.toggle(this, cb);
-        })
+        });
     },
 
     hidden: function(val, cb){
         return this.each(function(){
             $.hidden(this, val, cb);
-        })
+        });
     }
 });
 
@@ -3763,8 +3816,7 @@ $.fn.extend({
 
 // Source: src/effects.js
 
-var DEFAULT_DURATION = 1000;
-var DEFAULT_EASING = "linear";
+/* global $, not, isVisible */
 
 $.extend({
     fx: {
@@ -3817,8 +3869,8 @@ $.fn.extend({
                         $.proxy(cb, this)();
                     }
                 }
-            })
-        })
+            });
+        });
     },
 
     fadeOut: function(dur, easing, cb){
@@ -3857,8 +3909,8 @@ $.fn.extend({
                         $.proxy(cb, this)();
                     }
                 }
-            })
-        })
+            });
+        });
     },
 
     slideUp: function(dur, easing, cb){
@@ -3903,8 +3955,8 @@ $.fn.extend({
                         $.proxy(cb, this)();
                     }
                 }
-            })
-        })
+            });
+        });
     },
 
     slideDown: function(dur, easing, cb){
@@ -3952,15 +4004,15 @@ $.fn.extend({
                         $.proxy(cb, this)();
                     }
                 }
-            })
-        })
+            });
+        });
     },
 
     moveTo: function(x, y, dur, easing, cb){
         var draw = {
             top: y,
             left: x
-        }
+        };
 
         if (typeof dur === "function") {
             cb = dur;
@@ -3980,8 +4032,8 @@ $.fn.extend({
                 dur: dur,
                 ease: easing,
                 onDone: cb
-            })
-        })
+            });
+        });
     },
 
     centerTo: function(x, y, dur, easing, cb){
@@ -4007,14 +4059,14 @@ $.fn.extend({
                 dur: dur,
                 ease: easing,
                 onDone: cb
-            })
-        })
+            });
+        });
     },
 
     colorTo: function(color, dur, easing, cb){
         var draw = {
             color: color
-        }
+        };
 
         if (typeof dur === "function") {
             cb = dur;
@@ -4034,14 +4086,14 @@ $.fn.extend({
                 dur: dur,
                 ease: easing,
                 onDone: cb
-            })
-        })
+            });
+        });
     },
 
     backgroundTo: function(color, dur, easing, cb){
         var draw = {
             backgroundColor: color
-        }
+        };
 
         if (typeof dur === "function") {
             cb = dur;
@@ -4061,12 +4113,14 @@ $.fn.extend({
                 dur: dur,
                 ease: easing,
                 onDone: cb
-            })
-        })
+            });
+        });
     }
 });
 
 // Source: src/init.js
+
+/* global $, isArrayLike */
 
 $.init = function(sel, ctx){
     var parsed, r;
@@ -4079,10 +4133,6 @@ $.init = function(sel, ctx){
 
     if (typeof sel === "function") {
         return $.ready(sel);
-    }
-
-    if (typeof sel === "object" && typeof jQuery !== "undefined" && sel instanceof jQuery) {
-        return $.import(sel);
     }
 
     if (typeof sel === 'string' && sel === "document") {
@@ -4115,7 +4165,7 @@ $.init = function(sel, ctx){
         return r;
     }
 
-    if (Array.isArray(sel)) {
+    if (isArrayLike(sel)) {
         r = $();
         $.each(sel, function(){
             $(this).each(function(){
@@ -4150,7 +4200,7 @@ $.init = function(sel, ctx){
         var that = this;
         if (ctx instanceof $) {
             this.each(function () {
-                $(ctx).append(that)
+                $(ctx).append(that);
             });
         } else if (ctx instanceof HTMLElement) {
             $(ctx).append(that);
@@ -4165,26 +4215,26 @@ $.init.prototype = $.fn;
 
 // Source: src/populate.js
 
-var _$ = global.$,
-    _m4q = global.m4q;
+/* global Promise, $ */
+
+var _$ = window.$;
 
 $.Promise = Promise;
 
-global.m4q = $;
+window.m4q = $;
 
-if (typeof global.$ === "undefined") {
-    global.$ = $;
+if (typeof window.$ === "undefined") {
+    window.$ = $;
 }
 
-m4q.global = function(){
-    _$ = global.$;
-    _m4q = global.m4q;
-    global.$ = $;
+$.global = function(){
+    _$ = window.$;
+    window.$ = $;
 };
 
-m4q.noConflict = function() {
-    if ( global.$ === $ ) {
-        global.$ = _$;
+$.noConflict = function() {
+    if ( window.$ === $ ) {
+        window.$ = _$;
     }
 
     return $;
@@ -4193,13 +4243,15 @@ m4q.noConflict = function() {
 }(window));
 
 
-var $ = m4q;
+/* Metro 4 Core */
+
+var $ = m4q; // eslint-disable-line
 
 if (typeof m4q === 'undefined') {
     throw new Error('Metro 4 requires m4q helper!');
 }
 
-if (!'MutationObserver' in window) {
+if (!('MutationObserver' in window)) {
     throw new Error('Metro 4 requires MutationObserver!');
 }
 
@@ -4291,7 +4343,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "10/05/2020 23:09:45",
+    compileTime: "11/05/2020 20:54:24",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4554,7 +4606,7 @@ var Metro = {
         var hotkeys = $("[data-hotkey]");
         var html = $("html");
 
-        if (METRO_SHOW_ABOUT) Metro.info(true);
+        if (window.METRO_SHOW_ABOUT) Metro.info(true);
 
         if (isTouch === true) {
             html.addClass("metro-touch-device");
@@ -4567,7 +4619,7 @@ var Metro = {
         window.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
             if (Utils.media(query)) {
-                METRO_MEDIA.push(Metro.media_mode[key]);
+                window.METRO_MEDIA.push(Metro.media_mode[key]);
             }
         });
 
@@ -4576,7 +4628,7 @@ var Metro = {
         Metro.initHotkeys(hotkeys);
         Metro.initWidgets(widgets, "init");
 
-        if (METRO_CLOAK_REMOVE !== "fade") {
+        if (window.METRO_CLOAK_REMOVE !== "fade") {
             $(".m4-cloak").removeClass("m4-cloak");
             $(window).fire("metroinitied");
         } else {
@@ -4654,7 +4706,7 @@ var Metro = {
             });
         };
 
-        if (METRO_JQUERY && jquery_present) {
+        if (window.METRO_JQUERY && window.jquery_present) {
             jQuery.fn[_name] = function (options) {
                 return this.each(function () {
                     jQuery.data(this, _name, Object.create(object).init(options, this));
@@ -4759,7 +4811,7 @@ var Metro = {
     },
 
     $: function(){
-        return METRO_JQUERY && jquery_present ? jQuery : m4q;
+        return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
     },
 
     get$el: function(el){
@@ -4790,6 +4842,7 @@ var Metro = {
     }
 };
 
+/* eslint-disable-next-line */
 var Component = function(nameName, compObj){
     var name = normalizeComponentName(nameName);
     var component = $.extend({name: name}, {
@@ -4827,7 +4880,7 @@ $(window).on(Metro.events.resize, function(){
     window.METRO_MEDIA = [];
     $.each(Metro.media_queries, function(key, query){
         if (Utils.media(query)) {
-            METRO_MEDIA.push(Metro.media_mode[key]);
+            window.METRO_MEDIA.push(Metro.media_mode[key]);
         }
     });
 });
@@ -5108,12 +5161,13 @@ String.prototype.toDate = function(format, locale) {
         return new Date(this);
     }
 
-    // normalized      = this.replace(/[^a-zA-Z0-9%]/g, '-');
+    /* eslint-disable-next-line */
     normalized      = this.replace(/[\/,.:\s]/g, '-');
+    /* eslint-disable-next-line */
     normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
     formatItems     = normalizedFormat.split('-');
     dateItems       = normalized.split('-');
-    checkValue      = normalized.replace(/\-/g,"");
+    checkValue      = normalized.replace(/-/g,"");
 
     if (checkValue.trim() === "") {
         return "Invalid Date";
@@ -5182,7 +5236,7 @@ String.prototype.toArray = function(delimiter, type, format){
 };
 
 
-var Animation = {
+var FrameAnimation = {
 
     duration: METRO_ANIMATION_DURATION,
     func: "linear",
@@ -5343,14 +5397,16 @@ var Animation = {
     }
 };
 
-Metro['animation'] = Animation;
+Metro.animation = FrameAnimation;
 
+/* eslint-disable-next-line */
 function RGB(r, g, b){
     this.r = r || 0;
     this.g = g || 0;
     this.b = b || 0;
 }
 
+/* eslint-disable-next-line */
 function RGBA(r, g, b, a){
     this.r = r || 0;
     this.g = g || 0;
@@ -5358,18 +5414,21 @@ function RGBA(r, g, b, a){
     this.a = a || 1;
 }
 
+/* eslint-disable-next-line */
 function HSV(h, s, v){
     this.h = h || 0;
     this.s = s || 0;
     this.v = v || 0;
 }
 
+/* eslint-disable-next-line */
 function HSL(h, s, l){
     this.h = h || 0;
     this.s = s || 0;
     this.l = l || 0;
 }
 
+/* eslint-disable-next-line */
 function HSLA(h, s, l, a){
     this.h = h || 0;
     this.s = s || 0;
@@ -5377,6 +5436,7 @@ function HSLA(h, s, l, a){
     this.a = a || 1;
 }
 
+/* eslint-disable-next-line */
 function CMYK(c, m, y, k){
     this.c = c || 0;
     this.m = m || 0;
@@ -5575,12 +5635,12 @@ var Colors = {
     options: {
         angle: 30,
         algorithm: 1,
-        step: .1,
+        step: 0.1,
         distance: 5,
-        tint1: .8,
-        tint2: .4,
-        shade1: .6,
-        shade2: .3,
+        tint1: 0.8,
+        tint2: 0.4,
+        shade1: 0.6,
+        shade2: 0.3,
         alpha: 1
     },
 
@@ -5652,11 +5712,11 @@ var Colors = {
         } else if (max === r && g >= b) {
             h = 60 * ( (g - b) / delta );
         } else if (max === r && g < b) {
-            h = 60 * ( (g - b) / delta) + 360
+            h = 60 * ( (g - b) / delta) + 360;
         } else if (max === g) {
-            h = 60 * ( (b - r) / delta) + 120
+            h = 60 * ( (b - r) / delta) + 120;
         } else if (max === b) {
-            h = 60 * ( (r - g) / delta) + 240
+            h = 60 * ( (r - g) / delta) + 240;
         } else {
             h = 0;
         }
@@ -5690,7 +5750,7 @@ var Colors = {
             r: Math.round(r * 255 / 100),
             g: Math.round(g * 255 / 100),
             b: Math.round(b * 255 / 100)
-        }
+        };
     },
 
     hsv2hex: function(hsv){
@@ -5747,7 +5807,7 @@ var Colors = {
         s = hsv.s * hsv.v;
         s /= (l <= 1) ? l : 2 - l;
         l /= 2;
-        return {h: h, s: s, l: l}
+        return {h: h, s: s, l: l};
     },
 
     hsl2hsv: function(hsl){
@@ -5757,7 +5817,7 @@ var Colors = {
         s = hsl.s * (l <= 1 ? l : 2 - l);
         v = (l + s) / 2;
         s = (2 * s) / (l + s);
-        return {h: h, s: s, l: v}
+        return {h: h, s: s, l: v};
     },
 
     rgb2websafe: function(rgb){
@@ -5765,7 +5825,7 @@ var Colors = {
             r: Math.round(rgb.r / 51) * 51,
             g: Math.round(rgb.g / 51) * 51,
             b: Math.round(rgb.b / 51) * 51
-        }
+        };
     },
 
     rgba2websafe: function(rgba){
@@ -5774,7 +5834,7 @@ var Colors = {
             g: Math.round(rgba.g / 51) * 51,
             b: Math.round(rgba.b / 51) * 51,
             a: rgba.a
-        }
+        };
     },
 
     hex2websafe: function(hex){
@@ -5903,7 +5963,7 @@ var Colors = {
     grayscale: function(color, output){
         output = output || "hex";
         var rgb = this.toRGB(color);
-        var gray = Math.round(rgb.r * .2125 + rgb.g * .7154 + rgb.b * .0721);
+        var gray = Math.round(rgb.r * 0.2125 + rgb.g * 0.7154 + rgb.b * 0.0721);
         var mono = {
             r: gray,
             g: gray,
@@ -5957,6 +6017,7 @@ var Colors = {
 
         do {
             res = calc(this.toHEX(color), amount);
+            /* jshint -W030 */
             ring ? amount-- : amount++;
         } while (res.length < 7);
 
@@ -5977,7 +6038,7 @@ var Colors = {
             ( rgb.g * 587 ) +
             ( rgb.b * 114 )
         ) / 1000;
-        return ( YIQ < 128 )
+        return ( YIQ < 128 );
     },
 
     isLight: function(hex){
@@ -6213,7 +6274,7 @@ var Colors = {
     }
 };
 
-Metro['colors'] = Colors.init();
+Metro.colors = Colors.init();
 
 var Export = {
 
@@ -6264,7 +6325,7 @@ var Export = {
     },
 
     tableToCSV: function(table, filename, options){
-        var that = this, o = this.options;
+        var o = this.options;
         var body, head, data = "";
         var i, j, row, cell;
 
@@ -6326,325 +6387,208 @@ var Export = {
 Metro['export'] = Export.init();
 
 
-var hexcase = 0;
-/* hex output format. 0 - lowercase; 1 - uppercase        */
-var b64pad = "";
-/* base-64 pad character. "=" for strict RFC compliance   */
+var MD5 = function (string) {
 
-function hex_md5(s) {
-    return rstr2hex(rstr_md5(str2rstr_utf8(s)));
-}
-function b64_md5(s) {
-    return rstr2b64(rstr_md5(str2rstr_utf8(s)));
-}
-function any_md5(s, e) {
-    return rstr2any(rstr_md5(str2rstr_utf8(s)), e);
-}
-function hex_hmac_md5(k, d) {
-    return rstr2hex(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d)));
-}
-function b64_hmac_md5(k, d) {
-    return rstr2b64(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d)));
-}
-function any_hmac_md5(k, d, e) {
-    return rstr2any(rstr_hmac_md5(str2rstr_utf8(k), str2rstr_utf8(d)), e);
-}
-
-
-/*
- * Calculate the MD5 of a raw string
- */
-function rstr_md5(s) {
-    return binl2rstr(binl_md5(rstr2binl(s), s.length * 8));
-}
-
-/*
- * Calculate the HMAC-MD5, of a key and some data (raw strings)
- */
-function rstr_hmac_md5(key, data) {
-    var bkey = rstr2binl(key);
-    if (bkey.length > 16) bkey = binl_md5(bkey, key.length * 8);
-
-    var ipad = new Array(16), opad = new Array(16);
-    for (var i = 0; i < 16; i++) {
-        ipad[i] = bkey[i] ^ 0x36363636;
-        opad[i] = bkey[i] ^ 0x5C5C5C5C;
+    function RotateLeft(lValue, iShiftBits) {
+        return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
     }
 
-    var hash = binl_md5(ipad.concat(rstr2binl(data)), 512 + data.length * 8);
-    return binl2rstr(binl_md5(opad.concat(hash), 512 + 128));
-}
-
-/*
- * Convert a raw string to a hex string
- */
-function rstr2hex(input) {
-    var hex_tab = hexcase ? "0123456789ABCDEF" : "0123456789abcdef";
-    var output = "";
-    var x;
-    for (var i = 0; i < input.length; i++) {
-        x = input.charCodeAt(i);
-        output += hex_tab.charAt((x >>> 4) & 0x0F)
-            + hex_tab.charAt(x & 0x0F);
-    }
-    return output;
-}
-
-/*
- * Convert a raw string to a base-64 string
- */
-function rstr2b64(input) {
-    var tab = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-    var output = "";
-    var len = input.length;
-    for (var i = 0; i < len; i += 3) {
-        var triplet = (input.charCodeAt(i) << 16)
-            | (i + 1 < len ? input.charCodeAt(i + 1) << 8 : 0)
-            | (i + 2 < len ? input.charCodeAt(i + 2) : 0);
-        for (var j = 0; j < 4; j++) {
-            if (i * 8 + j * 6 > input.length * 8) output += b64pad;
-            else output += tab.charAt((triplet >>> 6 * (3 - j)) & 0x3F);
+    function AddUnsigned(lX,lY) {
+        var lX4,lY4,lX8,lY8,lResult;
+        lX8 = (lX & 0x80000000);
+        lY8 = (lY & 0x80000000);
+        lX4 = (lX & 0x40000000);
+        lY4 = (lY & 0x40000000);
+        lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
+        if (lX4 & lY4) {
+            return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+        }
+        if (lX4 | lY4) {
+            if (lResult & 0x40000000) {
+                return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
+            } else {
+                return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
+            }
+        } else {
+            return (lResult ^ lX8 ^ lY8);
         }
     }
-    return output;
-}
 
-/*
- * Convert a raw string to an arbitrary string encoding
- */
-function rstr2any(input, encoding) {
-    var divisor = encoding.length;
-    var i, j, q, x, quotient;
+    function F(x,y,z) { return (x & y) | ((~x) & z); }
+    function G(x,y,z) { return (x & z) | (y & (~z)); }
+    function H(x,y,z) { return (x ^ y ^ z); }
+    function I(x,y,z) { return (y ^ (x | (~z))); }
 
-    /* Convert to an array of 16-bit big-endian values, forming the dividend */
-    var dividend = new Array(Math.ceil(input.length / 2));
-    for (i = 0; i < dividend.length; i++) {
-        dividend[i] = (input.charCodeAt(i * 2) << 8) | input.charCodeAt(i * 2 + 1);
+    function FF(a,b,c,d,x,s,ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
     }
 
-    /*
-     * Repeatedly perform a long division. The binary array forms the dividend,
-     * the length of the encoding is the divisor. Once computed, the quotient
-     * forms the dividend for the next step. All remainders are stored for later
-     * use.
-     */
-    var full_length = Math.ceil(input.length * 8 /
-        (Math.log(encoding.length) / Math.log(2)));
-    var remainders = new Array(full_length);
-    for (j = 0; j < full_length; j++) {
-        quotient = [];
-        x = 0;
-        for (i = 0; i < dividend.length; i++) {
-            x = (x << 16) + dividend[i];
-            q = Math.floor(x / divisor);
-            x -= q * divisor;
-            if (quotient.length > 0 || q > 0)
-                quotient[quotient.length] = q;
+    function GG(a,b,c,d,x,s,ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    }
+
+    function HH(a,b,c,d,x,s,ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    }
+
+    function II(a,b,c,d,x,s,ac) {
+        a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+        return AddUnsigned(RotateLeft(a, s), b);
+    }
+
+    function ConvertToWordArray(string) {
+        var lWordCount;
+        var lMessageLength = string.length;
+        var lNumberOfWords_temp1=lMessageLength + 8;
+        var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
+        var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
+        var lWordArray=Array(lNumberOfWords-1);
+        var lBytePosition = 0;
+        var lByteCount = 0;
+        while ( lByteCount < lMessageLength ) {
+            lWordCount = (lByteCount-(lByteCount % 4))/4;
+            lBytePosition = (lByteCount % 4)*8;
+            lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount)<<lBytePosition));
+            lByteCount++;
         }
-        remainders[j] = x;
-        dividend = quotient;
+        lWordCount = (lByteCount-(lByteCount % 4))/4;
+        lBytePosition = (lByteCount % 4)*8;
+        lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
+        lWordArray[lNumberOfWords-2] = lMessageLength<<3;
+        lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
+        return lWordArray;
     }
 
-    /* Convert the remainders to the output string */
-    var output = "";
-    for (i = remainders.length - 1; i >= 0; i--)
-        output += encoding.charAt(remainders[i]);
+    function WordToHex(lValue) {
+        var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
+        for (lCount = 0;lCount<=3;lCount++) {
+            lByte = (lValue>>>(lCount*8)) & 255;
+            WordToHexValue_temp = "0" + lByte.toString(16);
+            WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
+        }
+        return WordToHexValue;
+    }
 
-    return output;
-}
+    function Utf8Encode(string) {
+        string = string.replace(/\r\n/g,"\n");
+        var utftext = "";
 
-/*
- * Encode a string as utf-8.
- * For efficiency, this assumes the input is valid utf-16.
- */
-function str2rstr_utf8(input) {
-    var output = "";
-    var i = -1;
-    var x, y;
+        for (var n = 0; n < string.length; n++) {
 
-    while (++i < input.length) {
-        /* Decode utf-16 surrogate pairs */
-        x = input.charCodeAt(i);
-        y = i + 1 < input.length ? input.charCodeAt(i + 1) : 0;
-        if (0xD800 <= x && x <= 0xDBFF && 0xDC00 <= y && y <= 0xDFFF) {
-            x = 0x10000 + ((x & 0x03FF) << 10) + (y & 0x03FF);
-            i++;
+            var c = string.charCodeAt(n);
+
+            if (c < 128) {
+                utftext += String.fromCharCode(c);
+            }
+            else if((c > 127) && (c < 2048)) {
+                utftext += String.fromCharCode((c >> 6) | 192);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+            else {
+                utftext += String.fromCharCode((c >> 12) | 224);
+                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                utftext += String.fromCharCode((c & 63) | 128);
+            }
+
         }
 
-        /* Encode output as utf-8 */
-        if (x <= 0x7F)
-            output += String.fromCharCode(x);
-        else if (x <= 0x7FF)
-            output += String.fromCharCode(0xC0 | ((x >>> 6 ) & 0x1F),
-                0x80 | ( x & 0x3F));
-        else if (x <= 0xFFFF)
-            output += String.fromCharCode(0xE0 | ((x >>> 12) & 0x0F),
-                0x80 | ((x >>> 6 ) & 0x3F),
-                0x80 | ( x & 0x3F));
-        else if (x <= 0x1FFFFF)
-            output += String.fromCharCode(0xF0 | ((x >>> 18) & 0x07),
-                0x80 | ((x >>> 12) & 0x3F),
-                0x80 | ((x >>> 6 ) & 0x3F),
-                0x80 | ( x & 0x3F));
+        return utftext;
     }
-    return output;
-}
 
-/*
- * Convert a raw string to an array of little-endian words
- * Characters >255 have their high-byte silently ignored.
- */
-function rstr2binl(input) {
-    var i;
-    var output = new Array(input.length >> 2);
-    for (i = 0; i < output.length; i++)
-        output[i] = 0;
-    for (i = 0; i < input.length * 8; i += 8)
-        output[i >> 5] |= (input.charCodeAt(i / 8) & 0xFF) << (i % 32);
-    return output;
-}
+    var x=Array();
+    var k,AA,BB,CC,DD,a,b,c,d;
+    var S11=7, S12=12, S13=17, S14=22;
+    var S21=5, S22=9 , S23=14, S24=20;
+    var S31=4, S32=11, S33=16, S34=23;
+    var S41=6, S42=10, S43=15, S44=21;
 
-/*
- * Convert an array of little-endian words to a string
- */
-function binl2rstr(input) {
-    var output = "";
-    for (var i = 0; i < input.length * 32; i += 8)
-        output += String.fromCharCode((input[i >> 5] >>> (i % 32)) & 0xFF);
-    return output;
-}
+    string = Utf8Encode(string);
 
-/*
- * Calculate the MD5 of an array of little-endian words, and a bit length.
- */
-function binl_md5(x, len) {
-    /* append padding */
-    x[len >> 5] |= 0x80 << ((len) % 32);
-    x[(((len + 64) >>> 9) << 4) + 14] = len;
+    x = ConvertToWordArray(string);
 
-    var a = 1732584193;
-    var b = -271733879;
-    var c = -1732584194;
-    var d = 271733878;
+    a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
 
-    for (var i = 0; i < x.length; i += 16) {
-        var olda = a;
-        var oldb = b;
-        var oldc = c;
-        var oldd = d;
-
-        a = md5_ff(a, b, c, d, x[i], 7, -680876936);
-        d = md5_ff(d, a, b, c, x[i + 1], 12, -389564586);
-        c = md5_ff(c, d, a, b, x[i + 2], 17, 606105819);
-        b = md5_ff(b, c, d, a, x[i + 3], 22, -1044525330);
-        a = md5_ff(a, b, c, d, x[i + 4], 7, -176418897);
-        d = md5_ff(d, a, b, c, x[i + 5], 12, 1200080426);
-        c = md5_ff(c, d, a, b, x[i + 6], 17, -1473231341);
-        b = md5_ff(b, c, d, a, x[i + 7], 22, -45705983);
-        a = md5_ff(a, b, c, d, x[i + 8], 7, 1770035416);
-        d = md5_ff(d, a, b, c, x[i + 9], 12, -1958414417);
-        c = md5_ff(c, d, a, b, x[i + 10], 17, -42063);
-        b = md5_ff(b, c, d, a, x[i + 11], 22, -1990404162);
-        a = md5_ff(a, b, c, d, x[i + 12], 7, 1804603682);
-        d = md5_ff(d, a, b, c, x[i + 13], 12, -40341101);
-        c = md5_ff(c, d, a, b, x[i + 14], 17, -1502002290);
-        b = md5_ff(b, c, d, a, x[i + 15], 22, 1236535329);
-
-        a = md5_gg(a, b, c, d, x[i + 1], 5, -165796510);
-        d = md5_gg(d, a, b, c, x[i + 6], 9, -1069501632);
-        c = md5_gg(c, d, a, b, x[i + 11], 14, 643717713);
-        b = md5_gg(b, c, d, a, x[i], 20, -373897302);
-        a = md5_gg(a, b, c, d, x[i + 5], 5, -701558691);
-        d = md5_gg(d, a, b, c, x[i + 10], 9, 38016083);
-        c = md5_gg(c, d, a, b, x[i + 15], 14, -660478335);
-        b = md5_gg(b, c, d, a, x[i + 4], 20, -405537848);
-        a = md5_gg(a, b, c, d, x[i + 9], 5, 568446438);
-        d = md5_gg(d, a, b, c, x[i + 14], 9, -1019803690);
-        c = md5_gg(c, d, a, b, x[i + 3], 14, -187363961);
-        b = md5_gg(b, c, d, a, x[i + 8], 20, 1163531501);
-        a = md5_gg(a, b, c, d, x[i + 13], 5, -1444681467);
-        d = md5_gg(d, a, b, c, x[i + 2], 9, -51403784);
-        c = md5_gg(c, d, a, b, x[i + 7], 14, 1735328473);
-        b = md5_gg(b, c, d, a, x[i + 12], 20, -1926607734);
-
-        a = md5_hh(a, b, c, d, x[i + 5], 4, -378558);
-        d = md5_hh(d, a, b, c, x[i + 8], 11, -2022574463);
-        c = md5_hh(c, d, a, b, x[i + 11], 16, 1839030562);
-        b = md5_hh(b, c, d, a, x[i + 14], 23, -35309556);
-        a = md5_hh(a, b, c, d, x[i + 1], 4, -1530992060);
-        d = md5_hh(d, a, b, c, x[i + 4], 11, 1272893353);
-        c = md5_hh(c, d, a, b, x[i + 7], 16, -155497632);
-        b = md5_hh(b, c, d, a, x[i + 10], 23, -1094730640);
-        a = md5_hh(a, b, c, d, x[i + 13], 4, 681279174);
-        d = md5_hh(d, a, b, c, x[i], 11, -358537222);
-        c = md5_hh(c, d, a, b, x[i + 3], 16, -722521979);
-        b = md5_hh(b, c, d, a, x[i + 6], 23, 76029189);
-        a = md5_hh(a, b, c, d, x[i + 9], 4, -640364487);
-        d = md5_hh(d, a, b, c, x[i + 12], 11, -421815835);
-        c = md5_hh(c, d, a, b, x[i + 15], 16, 530742520);
-        b = md5_hh(b, c, d, a, x[i + 2], 23, -995338651);
-
-        a = md5_ii(a, b, c, d, x[i], 6, -198630844);
-        d = md5_ii(d, a, b, c, x[i + 7], 10, 1126891415);
-        c = md5_ii(c, d, a, b, x[i + 14], 15, -1416354905);
-        b = md5_ii(b, c, d, a, x[i + 5], 21, -57434055);
-        a = md5_ii(a, b, c, d, x[i + 12], 6, 1700485571);
-        d = md5_ii(d, a, b, c, x[i + 3], 10, -1894986606);
-        c = md5_ii(c, d, a, b, x[i + 10], 15, -1051523);
-        b = md5_ii(b, c, d, a, x[i + 1], 21, -2054922799);
-        a = md5_ii(a, b, c, d, x[i + 8], 6, 1873313359);
-        d = md5_ii(d, a, b, c, x[i + 15], 10, -30611744);
-        c = md5_ii(c, d, a, b, x[i + 6], 15, -1560198380);
-        b = md5_ii(b, c, d, a, x[i + 13], 21, 1309151649);
-        a = md5_ii(a, b, c, d, x[i + 4], 6, -145523070);
-        d = md5_ii(d, a, b, c, x[i + 11], 10, -1120210379);
-        c = md5_ii(c, d, a, b, x[i + 2], 15, 718787259);
-        b = md5_ii(b, c, d, a, x[i + 9], 21, -343485551);
-
-        a = safe_add(a, olda);
-        b = safe_add(b, oldb);
-        c = safe_add(c, oldc);
-        d = safe_add(d, oldd);
+    for (k=0;k<x.length;k+=16) {
+        AA=a; BB=b; CC=c; DD=d;
+        a=FF(a,b,c,d,x[k+0], S11,0xD76AA478);
+        d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
+        c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
+        b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
+        a=FF(a,b,c,d,x[k+4], S11,0xF57C0FAF);
+        d=FF(d,a,b,c,x[k+5], S12,0x4787C62A);
+        c=FF(c,d,a,b,x[k+6], S13,0xA8304613);
+        b=FF(b,c,d,a,x[k+7], S14,0xFD469501);
+        a=FF(a,b,c,d,x[k+8], S11,0x698098D8);
+        d=FF(d,a,b,c,x[k+9], S12,0x8B44F7AF);
+        c=FF(c,d,a,b,x[k+10],S13,0xFFFF5BB1);
+        b=FF(b,c,d,a,x[k+11],S14,0x895CD7BE);
+        a=FF(a,b,c,d,x[k+12],S11,0x6B901122);
+        d=FF(d,a,b,c,x[k+13],S12,0xFD987193);
+        c=FF(c,d,a,b,x[k+14],S13,0xA679438E);
+        b=FF(b,c,d,a,x[k+15],S14,0x49B40821);
+        a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
+        d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
+        c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
+        b=GG(b,c,d,a,x[k+0], S24,0xE9B6C7AA);
+        a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
+        d=GG(d,a,b,c,x[k+10],S22,0x2441453);
+        c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
+        b=GG(b,c,d,a,x[k+4], S24,0xE7D3FBC8);
+        a=GG(a,b,c,d,x[k+9], S21,0x21E1CDE6);
+        d=GG(d,a,b,c,x[k+14],S22,0xC33707D6);
+        c=GG(c,d,a,b,x[k+3], S23,0xF4D50D87);
+        b=GG(b,c,d,a,x[k+8], S24,0x455A14ED);
+        a=GG(a,b,c,d,x[k+13],S21,0xA9E3E905);
+        d=GG(d,a,b,c,x[k+2], S22,0xFCEFA3F8);
+        c=GG(c,d,a,b,x[k+7], S23,0x676F02D9);
+        b=GG(b,c,d,a,x[k+12],S24,0x8D2A4C8A);
+        a=HH(a,b,c,d,x[k+5], S31,0xFFFA3942);
+        d=HH(d,a,b,c,x[k+8], S32,0x8771F681);
+        c=HH(c,d,a,b,x[k+11],S33,0x6D9D6122);
+        b=HH(b,c,d,a,x[k+14],S34,0xFDE5380C);
+        a=HH(a,b,c,d,x[k+1], S31,0xA4BEEA44);
+        d=HH(d,a,b,c,x[k+4], S32,0x4BDECFA9);
+        c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
+        b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
+        a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
+        d=HH(d,a,b,c,x[k+0], S32,0xEAA127FA);
+        c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
+        b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
+        a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
+        d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
+        c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
+        b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
+        a=II(a,b,c,d,x[k+0], S41,0xF4292244);
+        d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
+        c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
+        b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
+        a=II(a,b,c,d,x[k+12],S41,0x655B59C3);
+        d=II(d,a,b,c,x[k+3], S42,0x8F0CCC92);
+        c=II(c,d,a,b,x[k+10],S43,0xFFEFF47D);
+        b=II(b,c,d,a,x[k+1], S44,0x85845DD1);
+        a=II(a,b,c,d,x[k+8], S41,0x6FA87E4F);
+        d=II(d,a,b,c,x[k+15],S42,0xFE2CE6E0);
+        c=II(c,d,a,b,x[k+6], S43,0xA3014314);
+        b=II(b,c,d,a,x[k+13],S44,0x4E0811A1);
+        a=II(a,b,c,d,x[k+4], S41,0xF7537E82);
+        d=II(d,a,b,c,x[k+11],S42,0xBD3AF235);
+        c=II(c,d,a,b,x[k+2], S43,0x2AD7D2BB);
+        b=II(b,c,d,a,x[k+9], S44,0xEB86D391);
+        a=AddUnsigned(a,AA);
+        b=AddUnsigned(b,BB);
+        c=AddUnsigned(c,CC);
+        d=AddUnsigned(d,DD);
     }
-    return [a, b, c, d];
+
+    var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
+
+    return temp.toLowerCase();
 }
 
-/*
- * These functions implement the four basic operations the algorithm uses.
- */
-function md5_cmn(q, a, b, x, s, t) {
-    return safe_add(bit_rol(safe_add(safe_add(a, q), safe_add(x, t)), s), b);
-}
-function md5_ff(a, b, c, d, x, s, t) {
-    return md5_cmn((b & c) | ((~b) & d), a, b, x, s, t);
-}
-function md5_gg(a, b, c, d, x, s, t) {
-    return md5_cmn((b & d) | (c & (~d)), a, b, x, s, t);
-}
-function md5_hh(a, b, c, d, x, s, t) {
-    return md5_cmn(b ^ c ^ d, a, b, x, s, t);
-}
-function md5_ii(a, b, c, d, x, s, t) {
-    return md5_cmn(c ^ (b | (~d)), a, b, x, s, t);
-}
-
-/*
- * Add integers, wrapping at 2^32. This uses 16-bit operations internally
- * to work around bugs in some JS interpreters.
- */
-function safe_add(x, y) {
-    var lsw = (x & 0xFFFF) + (y & 0xFFFF);
-    var msw = (x >> 16) + (y >> 16) + (lsw >> 16);
-    return (msw << 16) | (lsw & 0xFFFF);
-}
-
-/*
- * Bitwise rotate a 32-bit number to the left.
- */
-function bit_rol(num, cnt) {
-    return (num << cnt) | (num >>> (32 - cnt));
-}
-
+Metro.md5 = MD5;
 
 var TemplateEngine = function(html, options, conf) {
     var ReEx, re = '<%(.+?)%>',
@@ -6654,16 +6598,17 @@ var TemplateEngine = function(html, options, conf) {
         result,
         match;
     var add = function(line, js) {
+        /* jshint -W030 */
         js? (code += line.match(reExp) ? line + '\n' : 'r.push(' + line + ');\n') :
             (code += line !== '' ? 'r.push("' + line.replace(/"/g, '\\"') + '");\n' : '');
         return add;
     };
 
     if (Utils.isValue(conf)) {
-        if ((conf.hasOwnProperty('beginToken'))) {
+        if (($.hasProp(conf, 'beginToken'))) {
             re = re.replace('<%', conf.beginToken);
         }
-        if ((conf.hasOwnProperty('endToken'))) {
+        if (($.hasProp(conf,'endToken'))) {
             re = re.replace('%>', conf.endToken);
         }
     }
@@ -6678,24 +6623,28 @@ var TemplateEngine = function(html, options, conf) {
     }
     add(html.substr(cursor, html.length - cursor));
     code = (code + 'return r.join(""); }').replace(/[\r\t\n]/g, ' ');
+    /* jshint -W054 */
     try { result = new Function('obj', code).apply(options, [options]); }
     catch(err) { console.error("'" + err.message + "'", " in \n\nCode:\n", code, "\n"); }
     return result;
 };
 
-Metro['template'] = TemplateEngine;
+Metro.template = TemplateEngine;
 
 
 var Utils = {
     isUrl: function (val) {
+        /* eslint-disable-next-line */
         return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
     },
 
     isTag: function(val){
+        /* eslint-disable-next-line */
         return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
     },
 
     isColor: function (val) {
+        /* eslint-disable-next-line */
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
 
@@ -6719,7 +6668,7 @@ var Utils = {
     isDate: function(val, format){
         var result;
 
-        if (typeof val === "object" && Utils.isFunc(val['getMonth'])) {
+        if (Utils.isDateObject(val)) {
             return true;
         }
 
@@ -6733,7 +6682,7 @@ var Utils = {
     },
 
     isDateObject: function(v){
-        return typeof v === 'object' && v['getMonth'] !== undefined;
+        return typeof v === 'object' && v.getMonth !== undefined;
     },
 
     isInt: function(n){
@@ -6746,8 +6695,8 @@ var Utils = {
 
     isTouchDevice: function() {
         return (('ontouchstart' in window)
-            || (navigator["MaxTouchPoints"] > 0)
-            || (navigator["msMaxTouchPoints"] > 0));
+            || (navigator.MaxTouchPoints > 0)
+            || (navigator.msMaxTouchPoints > 0));
     },
 
     isFunc: function(f){
@@ -6755,7 +6704,7 @@ var Utils = {
     },
 
     isObject: function(o){
-        return Utils.isType(o, 'object')
+        return Utils.isType(o, 'object');
     },
 
     isArray: function(a){
@@ -6846,7 +6795,7 @@ var Utils = {
     },
 
     isIE11: function(){
-        return !!window.MSInputMethodContext && !!document["documentMode"];
+        return !!window.MSInputMethodContext && !!document.documentMode;
     },
 
     embedObject: function(val){
@@ -6908,6 +6857,7 @@ var Utils = {
     },
 
     func: function(f){
+        /* jshint -W054 */
         return new Function("a", f);
     },
 
@@ -7031,7 +6981,7 @@ var Utils = {
         });
         return arr.filter(function(item){
             return item !== undefined;
-        })
+        });
     },
 
     arrayDelete: function(arr, val){
@@ -7049,7 +6999,7 @@ var Utils = {
     objectClone: function(obj){
         var copy = {};
         for(var key in obj) {
-            if (obj.hasOwnProperty(key)) {
+            if ($.hasProp(obj, key)) {
                 copy[key] = obj[key];
             }
         }
@@ -7092,7 +7042,7 @@ var Utils = {
     },
 
     md5: function(s){
-        return hex_md5(s);
+        return MD5(s);
     },
 
     encodeURI: function(str){
@@ -7121,6 +7071,8 @@ var Utils = {
 
             var mat, str, re = /^[\t ]+/gm, len, min = 1e3;
 
+            /* jshint -W084 */
+            /* eslint-disable-next-line */
             while (mat = re.exec(txt)) {
                 len = mat[0].length;
 
@@ -7152,7 +7104,7 @@ var Utils = {
             case 'client': return Utils.clientXY(e);
             case 'screen': return Utils.screenXY(e);
             case 'page': return Utils.pageXY(e);
-            default: return {x: 0, y: 0}
+            default: return {x: 0, y: 0};
         }
     },
 
@@ -7216,7 +7168,7 @@ var Utils = {
         return {
             width: width,
             height: height
-        }
+        };
     },
 
     getStyle: function(element, pseudo){
@@ -7318,6 +7270,7 @@ var Utils = {
 
     getURIParameter: function(url, name){
         if (!url) url = window.location.href;
+        /* eslint-disable-next-line */
         name = name.replace(/[\[\]]/g, "\\$&");
         var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
             results = regex.exec(url);
@@ -7382,7 +7335,7 @@ var Utils = {
     },
 
     media: function(query){
-        return window.matchMedia(query).matches
+        return window.matchMedia(query).matches;
     },
 
     mediaModes: function(){
@@ -7505,7 +7458,7 @@ var Utils = {
             location.hostname === "" ||
             window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
             location.hostname.indexOf(pattern) !== -1
-        )
+        );
     },
 
     decCount: function(v){
@@ -7513,7 +7466,7 @@ var Utils = {
     }
 };
 
-Metro['utils'] = Utils;
+Metro.utils = Utils;
 
 $.extend(Metro['locales'], {
     'cn-ZH': {
@@ -7979,7 +7932,7 @@ Component('accordion', {
             } else {
                 $.each(active, function(){
                     that._openFrame(this);
-                })
+                });
             }
         }
     },
@@ -7998,6 +7951,8 @@ Component('accordion', {
 
             if (frame.hasClass("active")) {
                 if (active.length === 1 && o.oneFrame) {
+                    /* eslint-disable-next-line */
+
                 } else {
                     that._closeFrame(frame);
                 }
@@ -8082,6 +8037,7 @@ Component('accordion', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -8166,9 +8122,10 @@ Component('activity', {
         }
 
         Utils.exec(this.options.onActivityCreate, [this.element]);
-        element.fire("activitycreate")
+        element.fire("activitycreate");
     },
 
+    /*eslint-disable-next-line*/
     changeAttribute: function(attributeName){
     },
 
@@ -8177,7 +8134,7 @@ Component('activity', {
     }
 });
 
-Metro['activity'] = {
+Metro.activity = {
     open: function(options){
         var o = options || {};
         var activity = '<div data-role="activity" data-type="'+( o.type ? o.type : 'cycle' )+'" data-style="'+( o.style ? o.style : 'color' )+'"></div>';
@@ -8190,10 +8147,10 @@ Metro['activity'] = {
             clsDialog: "no-border no-shadow bg-transparent global-dialog",
             autoHide: o.autoHide ? o.autoHide : 0,
             overlayClickClose: o.overlayClickClose === true,
-            overlayColor: o.overlayColor ? o.overlayColor:'#000000',
-            overlayAlpha: o.overlayAlpha ? o.overlayAlpha:.5,
+            overlayColor: o.overlayColor ? o.overlayColor : '#000000',
+            overlayAlpha: o.overlayAlpha ? o.overlayAlpha : 0.5,
             clsOverlay: "global-overlay"
-        })
+        });
     },
 
     close: function(a){
@@ -8249,7 +8206,7 @@ var Adblock = {
             var done = function(){
                 clearInterval(interval);
                 a.remove();
-            }
+            };
 
             if (   !a.length
                 || !b.length
@@ -8274,24 +8231,24 @@ var Adblock = {
                     }
                 }
             }
-        }
+        };
 
         interval = setInterval(function(){
             run();
-        }, Adblock.options.checkInterval)
+        }, Adblock.options.checkInterval);
 
         run();
     }
-}
+};
 
-Metro['Adblock'] = Adblock;
+Metro.Adblock = Adblock;
 
 $(function(){
     Adblock.options = $.extend({}, AdblockDefaultConfig);
     $(window).on("metroinitied", function(){
         Adblock.bite();
     });
-})
+});
 
 
 var AppBarDefaultConfig = {
@@ -8461,6 +8418,7 @@ Component('app-bar', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -8495,7 +8453,7 @@ Component('audio-button', {
 
         this.audio = null;
         this.canPlay = false;
-        this.id = Utils.elementId("audioButton")
+        this.id = Utils.elementId("audioButton");
 
         this._create();
 
@@ -9129,8 +9087,8 @@ Component('bottom-sheet', {
         }
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
@@ -9274,6 +9232,7 @@ Component('button-group', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -9509,7 +9468,7 @@ Component('calendar', {
             }
         }, {ns: element.attr("id")});
 
-        element.on(Metro.events.click, function(e){
+        element.on(Metro.events.click, function(){
             var months = element.find(".calendar-months");
             var years = element.find(".calendar-years");
             if (months.hasClass("open")) {
@@ -9520,7 +9479,7 @@ Component('calendar', {
             }
         });
 
-        element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(e){
+        element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(){
             var new_date, el = $(this);
 
             if (el.hasClass("prev-month")) {
@@ -9570,7 +9529,7 @@ Component('calendar', {
             }, o.ripple ? 300 : 1);
         });
 
-        element.on(Metro.events.click, ".button.today", function(e){
+        element.on(Metro.events.click, ".button.today", function(){
             that.toDay();
             Utils.exec(o.onToday, [that.today, element]);
             element.fire("today", {
@@ -9578,20 +9537,20 @@ Component('calendar', {
             });
         });
 
-        element.on(Metro.events.click, ".button.clear", function(e){
+        element.on(Metro.events.click, ".button.clear", function(){
             that.selected = [];
             that._drawContent();
             Utils.exec(o.onClear, [element]);
             element.fire("clear");
         });
 
-        element.on(Metro.events.click, ".button.cancel", function(e){
+        element.on(Metro.events.click, ".button.cancel", function(){
             that._drawContent();
             Utils.exec(o.onCancel, [element]);
             element.fire("cancel");
         });
 
-        element.on(Metro.events.click, ".button.done", function(e){
+        element.on(Metro.events.click, ".button.done", function(){
             that._drawContent();
             Utils.exec(o.onDone, [that.selected, element]);
             element.fire("done");
@@ -10193,7 +10152,7 @@ Component('calendar', {
     },
 
     changeAttrLocale: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
         this.i18n(element.attr("data-locale"));
     },
 
@@ -10233,7 +10192,7 @@ Component('calendar', {
     }
 });
 
-$(document).on(Metro.events.click, function(e){
+$(document).on(Metro.events.click, function(){
     $('.calendar .calendar-years').each(function(){
         $(this).removeClass("open");
     });
@@ -10652,7 +10611,7 @@ Component('calendar-picker', {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var that = this, element = this.element;
         var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
         var changeAttrLocale = function(){
@@ -10823,6 +10782,8 @@ Component('carousel', {
         slides.addClass(o.clsSlides);
 
         if (slides.length === 0) {
+            /* eslint-disable-next-line */
+
         } else {
 
             this._createSlides();
@@ -11152,10 +11113,10 @@ Component('carousel', {
         }
 
         switch (effect) {
-            case 'slide': Animation[func](current, next, duration, effectFunc); break;
-            case 'slide-v': Animation[func](current, next, duration, effectFunc); break;
-            case 'fade': Animation['fade'](current, next, duration, effectFunc); break;
-            default: Animation['switch'](current, next);
+            case 'slide': FrameAnimation[func](current, next, duration, effectFunc); break;
+            case 'slide-v': FrameAnimation[func](current, next, duration, effectFunc); break;
+            case 'fade': FrameAnimation['fade'](current, next, duration, effectFunc); break;
+            default: FrameAnimation['switch'](current, next);
         }
 
         setTimeout(function(){
@@ -11211,8 +11172,8 @@ Component('carousel', {
         this.element.fire("play");
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
@@ -11832,7 +11793,7 @@ Component('checkbox', {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var parent = element.parent();
 
         var changeStyle = function(){
@@ -11973,8 +11934,8 @@ Component('clock', {
         element.html(result);
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
@@ -12182,6 +12143,7 @@ Component('countdown', {
         this.locale = null;
 
         this.inactiveTab = false;
+        this.id = Utils.elementId("countdown");
 
         Metro.createExec(this);
 
@@ -12280,14 +12242,14 @@ Component('countdown', {
     },
 
     _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        var that = this;
         $(document).on("visibilitychange", function() {
             if (document.hidden) {
                 that.pause();
             } else {
                 that.resume();
             }
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     blink: function(){
@@ -12671,7 +12633,7 @@ Component('countdown', {
         clearInterval(this.blinkInterval);
         clearInterval(this.tickInterval);
 
-        $(document).off("visibilitychange", {ns: element.attr("id")});
+        $(document).off("visibilitychange", {ns: this.id});
 
         return this.element;
     }
@@ -13783,6 +13745,7 @@ Component('dialog', {
 
         this.interval = null;
         this.overlay = null;
+        this.id = Utils.elementId("dialog");
 
         Metro.createExec(this);
 
@@ -13807,10 +13770,6 @@ Component('dialog', {
 
         if (o.shadow === true) {
             element.addClass("shadow-on");
-        }
-
-        if (element.attr("id") === undefined) {
-            element.attr("id", Utils.elementId("dialog"));
         }
 
         if (o.title !== "") {
@@ -13885,7 +13844,7 @@ Component('dialog', {
 
         $(window).on(Metro.events.resize, function(){
             that.setPosition();
-        }, {ns: element.attr('id')});
+        }, {ns: this.id});
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
         element.fire("dialogcreate");
@@ -14045,15 +14004,16 @@ Component('dialog', {
         return this.element.data('open') === true;
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         element.off(Metro.events.click, ".js-dialog-close");
         element.find(".button").off(Metro.events.click);
-        $(window).off(Metro.events.resize,{ns: element.attr('id')});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }
@@ -14167,12 +14127,10 @@ Component('donut', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var html = "";
         var r = o.radius  * (1 - (1 - o.hole) / 2);
         var width = o.radius * (1 - o.hole);
-        var circumference = 2 * Math.PI * r;
-        var strokeDasharray = ((o.value * circumference) / o.total) + ' ' + circumference;
         var transform = 'rotate(-90 ' + o.radius + ',' + o.radius + ')';
         var fontSize = r * o.hole * 0.6;
 
@@ -14201,7 +14159,7 @@ Component('donut', {
     },
 
     _setValue: function(v){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var fill = element.find(".donut-fill");
         var title = element.find(".donut-title");
@@ -14236,7 +14194,7 @@ Component('donut', {
     },
 
     val: function(v){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (v === undefined) {
             return this.value
@@ -14514,7 +14472,7 @@ Component('double-slider', {
 
     _move: function(e){
         var isMin = $(e.target).hasClass("marker-min");
-        var slider = this.slider, o = this.options;
+        var slider = this.slider;
         var offset = slider.offset(),
             marker_size = slider.find(".marker").outerWidth(),
             markerMin = slider.find(".marker-min"),
@@ -14597,7 +14555,7 @@ Component('double-slider', {
     },
 
     _marker: function(){
-        var slider = this.slider, o = this.options;
+        var slider = this.slider;
         var markerMin = slider.find(".marker-min");
         var markerMax = slider.find(".marker-max");
         var complete = slider.find(".complete");
@@ -14932,7 +14890,7 @@ Component('drag-items', {
     },
 
     destroy: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
         element.off(Metro.events.startAll, (o.drawDragMarker ? o.dragMarker : o.dragItem));
         return element;
     }
@@ -14988,7 +14946,7 @@ Component('draggable', {
     },
 
     _createStructure: function(){
-        var that = this, element = this.element, elem = this.elem, o = this.options;
+        var that = this, element = this.element, o = this.options;
         var offset = element.offset();
         var dragElement  = o.dragElement !== 'self' ? element.find(o.dragElement) : element;
 
@@ -15114,11 +15072,12 @@ Component('draggable', {
         this.element.data("canDrag", true);
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
         this.dragElement.off(Metro.events.startAll);
         return element;
     }
@@ -15313,8 +15272,8 @@ Component('dropdown', {
             this.open();
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
@@ -15604,7 +15563,7 @@ Component('gravatar', {
     },
 
     get: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var img = element[0].tagName === 'IMG' ? element : element.find("img");
         if (img.length === 0) {
             return;
@@ -16009,8 +15968,6 @@ Component('html-container', {
     },
 
     load: function(source, data, opt){
-        var o = this.options;
-
         if (source) {
             this.htmlSource = source;
         }
@@ -16085,6 +16042,8 @@ Component('image-compare', {
     init: function( options, elem ) {
         this._super(elem, options, ImageCompareDefaultConfig);
 
+        this.id = Utils.elementId("image-compare");
+
         Metro.createExec(this);
 
         return this;
@@ -16142,7 +16101,7 @@ Component('image-compare', {
 
         images = element.find("img");
 
-        $.each(images, function(i, v){
+        $.each(images, function(i){
             var img = $("<div>").addClass("image-wrapper");
             img.css({
                 width: element_width,
@@ -16154,12 +16113,12 @@ Component('image-compare', {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
 
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
 
-        slider.on(Metro.events.startAll, function(e){
+        slider.on(Metro.events.startAll, function(){
             var w = element.width();
             $(document).on(Metro.events.moveAll, function(e){
                 var x = Utils.getCursorPositionX(element[0], e), left_pos;
@@ -16177,11 +16136,11 @@ Component('image-compare', {
                     x: x,
                     l: left_pos
                 });
-            });
+            }, {ns: that.id});
             $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll);
-                $(document).off(Metro.events.stopAll);
-            })
+                $(document).off(Metro.events.moveAll, {ns: that.id});
+                $(document).off(Metro.events.stopAll, {ns: that.id});
+            }, {ns: that.id})
         });
 
         $(window).on(Metro.events.resize, function(){
@@ -16224,9 +16183,10 @@ Component('image-compare', {
                 width: element_width,
                 height: element_height
             });
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -16234,7 +16194,7 @@ Component('image-compare', {
         var element = this.element;
 
         element.off(Metro.events.start);
-        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         return element;
     }
@@ -16483,8 +16443,8 @@ Component('image-magnifier', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){
@@ -16528,6 +16488,7 @@ Component('info-box', {
         this._super(elem, options, InfoBoxDefaultConfig);
 
         this.overlay = null;
+        this.id = Utils.elementId("info-box");
 
         Metro.createExec(this);
 
@@ -16571,10 +16532,6 @@ Component('info-box', {
             this.overlay = this._overlay();
         }
 
-        if (element.attr("id") === undefined) {
-            element.attr("id", Utils.elementId("infobox"));
-        }
-
         element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
 
         closer = element.find("closer");
@@ -16616,7 +16573,7 @@ Component('info-box', {
 
         $(window).on(Metro.events.resize, function(){
             that.reposition();
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
     _setPosition: function(){
@@ -16697,6 +16654,7 @@ Component('info-box', {
         return this.element.data("open") === true;
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -16704,7 +16662,7 @@ Component('info-box', {
         var element = this.element;
 
         element.off("all");
-        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         return element;
     }
@@ -19644,11 +19602,12 @@ Component('nav-view', {
         pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         element.off(Metro.events.click, ".pull-button, .holder");
         element.off(Metro.events.click, ".navview-menu li");
@@ -19797,6 +19756,8 @@ var Notify = {
                         Utils.exec(o.onNotifyCreate, null, this);
 
                         if (options !== undefined && options.keepOpen === true) {
+                            /* eslint-disable-next-line */
+
                         } else {
                             setTimeout(function(){
                                 that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
@@ -20137,11 +20098,12 @@ Component('panel', {
         Metro.getPlugin(element, 'collapse').expand();
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
 
         if (o.collapsible === true) {
             Metro.getPlugin(element, "collapse").destroy();
@@ -21193,7 +21155,7 @@ Component('resizeable', {
     },
 
     changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var canResize = function(){
             o.canResize = JSON.parse(element.attr('data-can-resize')) === true;
@@ -21323,8 +21285,7 @@ Component('resizer', {
         }, {ns: this.id});
     },
 
-    changeAttribute: function(attributeName){
-
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -21449,7 +21410,7 @@ Component('ribbon-menu', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -21478,7 +21439,6 @@ if (typeof window["metroRippleSetup"] !== undefined) {
 
 var getRipple = function(target, color, alpha, event){
     var el = target ? $(target) : this.element;
-    var timer = null;
     var rect = el[0].getBoundingClientRect();
     var x, y;
 
@@ -21526,8 +21486,8 @@ var getRipple = function(target, color, alpha, event){
         top: y + 'px',
         left: x + 'px'
     }).addClass("rippleEffect");
-    timer = setTimeout(function(){
-        timer = null;
+
+    setTimeout(function(){
         ripple.remove();
     }, 400);
 };
@@ -21542,7 +21502,7 @@ Component('ripple', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
         Metro.checkRuntime(element, this.name);
@@ -21760,7 +21720,7 @@ Component('select', {
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
+        var input, drop_container, drop_container_input, list, filter_input, dropdown_toggle;
         var checkboxID = Utils.elementId("select-focus-trigger");
         var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
@@ -21913,11 +21873,9 @@ Component('select', {
             that._setPlaceholder();
         });
 
-        container.on(Metro.events.click, function(e){
+        container.on(Metro.events.click, function(){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            // e.preventDefault();
-            // e.stopPropagation();
         });
 
         input.on(Metro.events.click, function(){
@@ -21934,16 +21892,13 @@ Component('select', {
             var leaf = $(this);
             var val = leaf.data('value');
             var html = leaf.children('a').html();
-            var selected_item, selected;
+            var selected;
             var option = leaf.data("option");
             var options = element.find("option");
 
             if (element[0].multiple) {
                 leaf.addClass("d-none");
                 input.append(that._addTag(html, leaf));
-                // selected_item = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                // selected_item.data("option", leaf);
-                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);
@@ -22428,11 +22383,11 @@ Component('sidebar', {
         this.element.fire("toggle");
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var toggle = this.toggle_element;
 
         if (toggle !== null) {
@@ -22838,7 +22793,7 @@ Component('slider', {
     },
 
     _value: function(){
-        var element = this.element, o = this.options, slider = this.slider;
+        var element = this.element, o = this.options;
         var value = o.returnType === 'value' ? this.value : this.percent;
         var percent = this.percent;
         var buffer = this.buffer;
@@ -23226,7 +23181,7 @@ Component('sorter', {
     },
 
     reset: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var items;
         var id = Utils.elementId('sorter');
         var prev;
@@ -23763,7 +23718,7 @@ Component('splitter', {
             }, {ns: that.id})
         });
 
-        $(window).on(Metro.events.resize, function(e){
+        $(window).on(Metro.events.resize, function(){
             var gutter = element.children(".gutter");
             var prev_block = gutter.prev(".split-block");
             var next_block = gutter.next(".split-block");
@@ -23899,7 +23854,7 @@ Component('stepper', {
         element.addClass("stepper").addClass(o.view).addClass(o.clsStepper);
 
         for(i = 1; i <= o.steps; i++) {
-            var step = $("<span>").addClass("step").addClass(o.clsStep).data("step", i).html("<span>"+i+"</span>").appendTo(element);
+            $("<span>").addClass("step").addClass(o.clsStep).data("step", i).html("<span>"+i+"</span>").appendTo(element);
         }
 
         this.current = 1;
@@ -23922,7 +23877,7 @@ Component('stepper', {
     },
 
     next: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var steps = element.find(".step");
 
         if (this.current + 1 > steps.length) {
@@ -23935,8 +23890,6 @@ Component('stepper', {
     },
 
     prev: function(){
-        var that = this, element = this.element, o = this.options;
-
         if (this.current - 1 === 0) {
             return ;
         }
@@ -23947,7 +23900,7 @@ Component('stepper', {
     },
 
     last: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         this.toStep(element.find(".step").length);
     },
@@ -23957,7 +23910,7 @@ Component('stepper', {
     },
 
     toStep: function(step){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target = $(element.find(".step").get(step - 1));
 
         if (target.length === 0) {
@@ -23980,7 +23933,7 @@ Component('stepper', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -23991,11 +23944,11 @@ Component('stepper', {
 });
 
 
-var Storage = function(type){
-    return new Storage.init(type);
+var MetroStorage = function(type){
+    return new MetroStorage.init(type);
 };
 
-Storage.prototype = {
+MetroStorage.prototype = {
     setKey: function(key){
         this.key = key
     },
@@ -24055,7 +24008,7 @@ Storage.prototype = {
     }
 };
 
-Storage.init = function(type){
+MetroStorage.init = function(type){
 
     this.key = "";
     this.storage = type ? type : window.localStorage;
@@ -24063,10 +24016,10 @@ Storage.init = function(type){
     return this;
 };
 
-Storage.init.prototype = Storage.prototype;
+MetroStorage.init.prototype = MetroStorage.prototype;
 
-Metro['storage'] = Storage(window.localStorage);
-Metro['session'] = Storage(window.sessionStorage);
+Metro.storage = MetroStorage(window.localStorage);
+Metro.session = MetroStorage(window.sessionStorage);
 
 
 var StreamerDefaultConfig = {
@@ -24511,11 +24464,12 @@ Component('streamer', {
             }
 
             if (o.closed === false && event.data("closed") !== true && o.eventClick === 'select') {
-
                 if (o.excludeSelectClass !== "" && event.hasClass(o.excludeSelectClass)) {
+                    /* eslint-disable-next-line */
 
                 } else {
                     if (o.excludeSelectElement !== null && $(e.target).is(o.excludeSelectElement)) {
+                        /* eslint-disable-next-line */
 
                     } else {
                         if (event.hasClass("global-event")) {
@@ -24537,10 +24491,12 @@ Component('streamer', {
                 }
             } else {
                 if (o.excludeClickClass !== "" && event.hasClass(o.excludeClickClass)) {
+                    /* eslint-disable-next-line */
 
                 } else {
 
                     if (o.excludeClickElement !== null && $(e.target).is(o.excludeClickElement)) {
+                        /* eslint-disable-next-line */
 
                     } else {
 
@@ -24561,7 +24517,7 @@ Component('streamer', {
             }
         });
 
-        element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(e){
+        element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(){
             var stream = $(this);
             var index = stream.index();
 
@@ -24607,15 +24563,16 @@ Component('streamer', {
 
             });
 
-            element.find(".events-area").off("mouseenter").on("mouseenter", function(e) {
+            element.find(".events-area").off("mouseenter").on("mouseenter", function() {
                 disableScroll();
             });
-            element.find(".events-area").off("mouseleave").on("mouseleave", function(e) {
+
+            element.find(".events-area").off("mouseleave").on("mouseleave", function() {
                 enableScroll();
             });
         }
 
-        element.find(".events-area").last().off("scroll").on("scroll", function(e){
+        element.find(".events-area").last().off("scroll").on("scroll", function(){
             that._fireScroll();
         });
 
@@ -24632,13 +24589,12 @@ Component('streamer', {
     },
 
     _changeURI: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
         var link = this.getLink();
         history.pushState({}, document.title, link);
     },
 
     slideTo: function(time){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element, o = this.options;
         var target;
         if (time === undefined) {
             target = $(element.find(".streamer-timeline li")[0]);
@@ -24657,14 +24613,14 @@ Component('streamer', {
     },
 
     enableStream: function(stream){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var index = stream.index()-1;
         stream.removeClass("disabled").data("streamDisabled", false);
         element.find(".stream-events").eq(index).find(".stream-event").removeClass("disabled");
     },
 
     disableStream: function(stream){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var index = stream.index()-1;
         stream.addClass("disabled").data("streamDisabled", true);
         element.find(".stream-events").eq(index).find(".stream-event").addClass("disabled");
@@ -24679,7 +24635,7 @@ Component('streamer', {
     },
 
     getLink: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element, o = this.options;
         var events = element.find(".stream-event");
         var a = [];
         var link;
@@ -24704,7 +24660,7 @@ Component('streamer', {
     },
 
     getTimes: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var times = element.find(".streamer-timeline > li");
         var result = [];
         $.each(times, function(){
@@ -24714,7 +24670,7 @@ Component('streamer', {
     },
 
     getEvents: function(event_type, include_global){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element;
         var items, events = [];
 
         switch (event_type) {
@@ -24738,7 +24694,7 @@ Component('streamer', {
     },
 
     source: function(s){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
 
         if (s === undefined) {
             return this.options.source;
@@ -24764,7 +24720,7 @@ Component('streamer', {
     },
 
     toggleEvent: function(event){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var o = this.options;
         event = $(event);
 
         if (event.hasClass("global-event") && o.selectGlobal !== true) {
@@ -24779,7 +24735,7 @@ Component('streamer', {
     },
 
     selectEvent: function(event, state){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var that = this, element = this.element, o = this.options;
         if (state === undefined) {
             state = true;
         }
@@ -24802,7 +24758,7 @@ Component('streamer', {
     },
 
     changeSource: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var that = this, element = this.element, o = this.options;
         var new_source = element.attr("data-source");
 
         if (String(new_source).trim() === "") {
@@ -24836,7 +24792,7 @@ Component('streamer', {
     },
 
     changeData: function(data){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var old_data = this.data;
 
         o.data =  typeof data === 'object' ? data : JSON.parse(element.attr("data-data"));
@@ -24852,7 +24808,7 @@ Component('streamer', {
     },
 
     changeStreamSelectOption: function(){
-        var that = this, element = this.element, o = this.options, data = this.data;
+        var element = this.element, o = this.options;
 
         o.streamSelect = element.attr("data-stream-select").toLowerCase() === "true";
     },
@@ -25177,7 +25133,7 @@ Component('table', {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var id = Utils.elementId("table");
-        var table_component, table_container, activity, loadActivity;
+        var table_component, table_container, activity;
 
         Metro.checkRuntime(element, this.name);
 
@@ -26843,8 +26799,6 @@ Component('table', {
                 }, function(xhr){
                     that.activity.hide();
                     Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                    that._createItemsFromJSON(data);
-                    that._rebuild(review);
                     element.fire("dataloaderror", {
                         source: o.source,
                         xhr: xhr
@@ -27395,7 +27349,7 @@ Component('material-tabs', {
         this.openTab(tab, tab_next);
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -27667,7 +27621,7 @@ Component('tabs', {
         }
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -28133,7 +28087,6 @@ Component('textarea', {
         var container = $("<div>").addClass("textarea " + element[0].className);
         var fakeTextarea = $("<textarea>").addClass("fake-textarea");
         var clearButton;
-        var timer = null;
 
         container.insertBefore(element);
         element.appendTo(container);
@@ -28187,8 +28140,7 @@ Component('textarea', {
 
             container.addClass("autosize no-scroll-vertical");
 
-            timer = setTimeout(function(){
-                timer = null;
+            setTimeout(function(){
                 that.resize();
             }, 100);
         }
@@ -28403,7 +28355,7 @@ Component('tile', {
         if (o.effect === "image-set") {
             element.addClass("image-set");
 
-            $.each(element.children("img"), function(i){
+            $.each(element.children("img"), function(){
                 that.images.push(this);
                 $(this).remove();
             });
@@ -28453,11 +28405,11 @@ Component('tile', {
 
             next = that.slides[that.currentSlide];
 
-            if (o.effect === "animate-slide-up") Animation.slideUp($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-down") Animation.slideDown($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-left") Animation.slideLeft($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-right") Animation.slideRight($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-fade") Animation.fade($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-up") FrameAnimation.slideUp($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-down") FrameAnimation.slideDown($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-left") FrameAnimation.slideLeft($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-slide-right") FrameAnimation.slideRight($(current), $(next), o.effectDuration);
+            if (o.effect === "animate-fade") FrameAnimation.fade($(current), $(next), o.effectDuration);
 
         }, o.effectInterval);
     },
@@ -28525,7 +28477,7 @@ Component('tile', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -29051,7 +29003,6 @@ var Toast = {
         var o = $.extend({}, ToastDefaultConfig, options);
         var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
         var width = toast.outerWidth();
-        var timer = null;
 
         toast.hide();
 
@@ -29077,8 +29028,7 @@ var Toast = {
         toast.addClass(cls);
         toast.fadeIn(METRO_ANIMATION_DURATION);
 
-        timer = setTimeout(function(){
-            timer = null;
+        setTimeout(function(){
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
                 Utils.exec(callback, null, toast[0]);
@@ -29832,7 +29782,7 @@ Component('touch', {
         var result, options = this.options;
 
         if (options.maxTimeThreshold) {
-            result = duration < options.maxTimeThreshold;
+            result = this.duration < options.maxTimeThreshold;
         } else {
             result = true;
         }
@@ -30237,8 +30187,7 @@ Component('touch', {
         return this.element;
     },
 
-    changeAttribute: function(attributeName){
-
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -30639,7 +30588,7 @@ Component('tree-view', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
@@ -30710,12 +30659,15 @@ var ValidatorFuncs = {
         return Number(val) <= Number(max_value);
     },
     email: function(val){
+        /* eslint-disable-next-line */
         return /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i.test(val);
     },
     domain: function(val){
+        /* eslint-disable-next-line */
         return /^((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/.test(val);
     },
     url: function(val){
+        /* eslint-disable-next-line */
         return /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(val);
     },
     date: function(val, format, locale){
@@ -30738,6 +30690,7 @@ var ValidatorFuncs = {
         return /^\d+$/.test(val);
     },
     hexcolor: function(val){
+        /* eslint-disable-next-line */
         return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
     },
     color: function(val){
@@ -31089,10 +31042,19 @@ Component('validator', {
         return result.val === 0;
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     }
 });
 
+
+/**
+ * Component Vegas based on Vegas by Jay Salvat (http://jaysalvat.com/)
+ * Original code https://github.com/jaysalvat/vegas
+ * MIT License, Copyright 2018 Jay Salvat
+ *
+ * Adaptation for Metro 4 by Serhii Pimenov,
+ * Copyright 2020 Serhii Pimenov
+ */
 
 var VegasDefaultConfig = {
     duration: 4000,
@@ -31337,11 +31299,11 @@ Component('vegas', {
         var video, source;
         var cacheKey = sources.toString();
 
-        if (Vegas.videoCache[cacheKey]) {
-            return Vegas.videoCache[cacheKey];
+        if (this.videoCache[cacheKey]) {
+            return this.videoCache[cacheKey];
         }
 
-        if (!sources instanceof Array) {
+        if (!Array.isArray(sources)) {
             sources = [sources];
         }
 
@@ -31354,7 +31316,7 @@ Component('vegas', {
             video.appendChild(source);
         });
 
-        Vegas.videoCache[cacheKey] = video;
+        this.videoCache[cacheKey] = video;
 
         return video;
     },
@@ -31598,7 +31560,7 @@ Component('vegas', {
 
         this.slide = n - 1;
 
-        Utils.exec(o.onJump, [this.current(true)], this.elem);
+        Utils.exec(this.options.onJump, [this.current(true)], this.elem);
         this.element.fire('jump', {
             slide: this.current(true)
         });
@@ -31765,7 +31727,7 @@ Component('video-player', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options, video = this.video;
+        var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, this.name);
 
@@ -31851,7 +31813,7 @@ Component('video-player', {
     },
 
     _createControls: function(){
-        var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
+        var that = this, element = this.element, o = this.options, video = this.elem;
 
         var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
 
@@ -31907,13 +31869,13 @@ Component('video-player', {
             volume.hide();
         }
 
-        var loop, play, stop, mute, full;
+        var loop;
 
         if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button square loop").html(o.loopIcon).appendTo(controls);
-        if (o.showPlay === true) play = $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
-        if (o.showStop === true) stop = $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
-        if (o.showMute === true) mute = $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
-        if (o.showFull === true) full = $("<button>").attr("type", "button").addClass("button square full").html(o.screenMoreIcon).appendTo(controls);
+        if (o.showPlay === true) $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
+        if (o.showStop === true) $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
+        if (o.showMute === true) $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
+        if (o.showFull === true) $("<button>").attr("type", "button").addClass("button square full").html(o.screenMoreIcon).appendTo(controls);
 
         if (o.loop === true) {
             loop.addClass("active");
@@ -31996,7 +31958,7 @@ Component('video-player', {
             that._setVolume();
         });
 
-        player.on(Metro.events.click, ".play", function(e){
+        player.on(Metro.events.click, ".play", function(){
             if (video.paused) {
                 that.play();
             } else {
@@ -32004,11 +31966,11 @@ Component('video-player', {
             }
         });
 
-        player.on(Metro.events.click, ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(){
             that.stop();
         });
 
-        player.on(Metro.events.click, ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(){
             that._toggleMute();
         });
 
@@ -32068,7 +32030,7 @@ Component('video-player', {
     },
 
     _onMouse: function(){
-        var that = this, o = this.options, player = this.player;
+        var o = this.options, player = this.player;
 
         player.on(Metro.events.enter, function(){
             var controls = player.find(".controls");
@@ -32461,7 +32423,7 @@ Component('window', {
     },
 
     _window: function(o){
-        var that = this, element = this.element;
+        var that = this;
         var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
         var width = o.width, height = o.height;
 
@@ -32688,7 +32650,6 @@ Component('window', {
 
     close: function(){
         var that = this, win = this.win,  element = this.element, o = this.options;
-        var timer = null;
 
         if (Utils.exec(o.onCanClose, [win]) === false) {
             return false;
@@ -32705,8 +32666,7 @@ Component('window', {
             win: win[0]
         });
 
-        timer = setTimeout(function(){
-            timer = null;
+        setTimeout(function(){
             if (o.modal === true) {
                 win.siblings(".overlay").remove();
             }
@@ -33062,7 +33022,7 @@ Component('wizard', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, this.name);
 
@@ -33074,7 +33034,7 @@ Component('wizard', {
     },
 
     _createWizard: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var bar;
 
         element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
@@ -33097,7 +33057,7 @@ Component('wizard', {
     },
 
     _setHeight: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var pages = element.children("section");
         var max_height = 0;
 
@@ -33240,7 +33200,7 @@ Component('wizard', {
     },
 
     toPage: function(page){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target = $(element.children("section").get(page - 1));
         var sections = element.children("section");
         var actions = element.find(".action-bar");
@@ -33301,7 +33261,7 @@ Component('wizard', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

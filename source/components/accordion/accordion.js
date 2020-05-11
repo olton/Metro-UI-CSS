@@ -1,3 +1,4 @@
+/*global Metro, Component, METRO_ANIMATION_DURATION, Utils */
 var AccordionDefaultConfig = {
     accordionDeferred: 0,
     showMarker: true,
@@ -74,7 +75,7 @@ Component('accordion', {
             } else {
                 $.each(active, function(){
                     that._openFrame(this);
-                })
+                });
             }
         }
     },
@@ -93,6 +94,8 @@ Component('accordion', {
 
             if (frame.hasClass("active")) {
                 if (active.length === 1 && o.oneFrame) {
+                    /* eslint-disable-next-line */
+
                 } else {
                     that._closeFrame(frame);
                 }
@@ -177,6 +180,7 @@ Component('accordion', {
         });
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 

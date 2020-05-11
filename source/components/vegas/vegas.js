@@ -1,3 +1,5 @@
+/* global Metro, Utils, Component */
+
 /**
  * Component Vegas based on Vegas by Jay Salvat (http://jaysalvat.com/)
  * Original code https://github.com/jaysalvat/vegas
@@ -250,11 +252,11 @@ Component('vegas', {
         var video, source;
         var cacheKey = sources.toString();
 
-        if (Vegas.videoCache[cacheKey]) {
-            return Vegas.videoCache[cacheKey];
+        if (this.videoCache[cacheKey]) {
+            return this.videoCache[cacheKey];
         }
 
-        if (!sources instanceof Array) {
+        if (!Array.isArray(sources)) {
             sources = [sources];
         }
 
@@ -267,7 +269,7 @@ Component('vegas', {
             video.appendChild(source);
         });
 
-        Vegas.videoCache[cacheKey] = video;
+        this.videoCache[cacheKey] = video;
 
         return video;
     },
@@ -511,7 +513,7 @@ Component('vegas', {
 
         this.slide = n - 1;
 
-        Utils.exec(o.onJump, [this.current(true)], this.elem);
+        Utils.exec(this.options.onJump, [this.current(true)], this.elem);
         this.element.fire('jump', {
             slide: this.current(true)
         });

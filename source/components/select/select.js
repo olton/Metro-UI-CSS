@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var SelectDefaultConfig = {
     size: "normal",
     selectDeferred: 0,
@@ -169,7 +170,7 @@ Component('select', {
         var multiple = element[0].multiple;
         var select_id = Utils.elementId("select");
         var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, drop_container_input, list, filter_input, placeholder, dropdown_toggle;
+        var input, drop_container, drop_container_input, list, filter_input, dropdown_toggle;
         var checkboxID = Utils.elementId("select-focus-trigger");
         var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
@@ -322,11 +323,9 @@ Component('select', {
             that._setPlaceholder();
         });
 
-        container.on(Metro.events.click, function(e){
+        container.on(Metro.events.click, function(){
             $(".focused").removeClass("focused");
             container.addClass("focused");
-            // e.preventDefault();
-            // e.stopPropagation();
         });
 
         input.on(Metro.events.click, function(){
@@ -343,16 +342,13 @@ Component('select', {
             var leaf = $(this);
             var val = leaf.data('value');
             var html = leaf.children('a').html();
-            var selected_item, selected;
+            var selected;
             var option = leaf.data("option");
             var options = element.find("option");
 
             if (element[0].multiple) {
                 leaf.addClass("d-none");
                 input.append(that._addTag(html, leaf));
-                // selected_item = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                // selected_item.data("option", leaf);
-                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(selected_item);
             } else {
                 list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
                 leaf.addClass("active").addClass(o.clsOptionActive);

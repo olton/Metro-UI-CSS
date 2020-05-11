@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var DragItemsDefaultConfig = {
     dragitemsDeferred: 0,
     target: null,
@@ -222,7 +223,7 @@ Component('drag-items', {
     },
 
     destroy: function(){
-        var element = this.element;
+        var element = this.element, o = this.options;
         element.off(Metro.events.startAll, (o.drawDragMarker ? o.dragMarker : o.dragItem));
         return element;
     }

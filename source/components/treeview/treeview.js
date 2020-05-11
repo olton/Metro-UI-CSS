@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var TreeViewDefaultConfig = {
     treeviewDeferred: 0,
     showChildCount: false,
@@ -388,7 +389,7 @@ Component('tree-view', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

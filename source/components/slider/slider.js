@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var SliderDefaultConfig = {
     sliderDeferred: 0,
     roundValue: true,
@@ -349,7 +350,7 @@ Component('slider', {
     },
 
     _value: function(){
-        var element = this.element, o = this.options, slider = this.slider;
+        var element = this.element, o = this.options;
         var value = o.returnType === 'value' ? this.value : this.percent;
         var percent = this.percent;
         var buffer = this.buffer;

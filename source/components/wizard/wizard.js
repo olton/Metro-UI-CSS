@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var WizardDefaultConfig = {
     wizardDeferred: 0,
     start: 1,
@@ -53,7 +54,7 @@ Component('wizard', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, this.name);
 
@@ -65,7 +66,7 @@ Component('wizard', {
     },
 
     _createWizard: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var bar;
 
         element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
@@ -88,7 +89,7 @@ Component('wizard', {
     },
 
     _setHeight: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element;
         var pages = element.children("section");
         var max_height = 0;
 
@@ -231,7 +232,7 @@ Component('wizard', {
     },
 
     toPage: function(page){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target = $(element.children("section").get(page - 1));
         var sections = element.children("section");
         var actions = element.find(".action-bar");
@@ -292,7 +293,7 @@ Component('wizard', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var TextareaDefaultConfig = {
     textareaDeferred: 0,
     charsCounter: null,
@@ -51,7 +52,6 @@ Component('textarea', {
         var container = $("<div>").addClass("textarea " + element[0].className);
         var fakeTextarea = $("<textarea>").addClass("fake-textarea");
         var clearButton;
-        var timer = null;
 
         container.insertBefore(element);
         element.appendTo(container);
@@ -105,8 +105,7 @@ Component('textarea', {
 
             container.addClass("autosize no-scroll-vertical");
 
-            timer = setTimeout(function(){
-                timer = null;
+            setTimeout(function(){
                 that.resize();
             }, 100);
         }

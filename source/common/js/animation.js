@@ -1,4 +1,6 @@
-var Animation = {
+/* global Metro, METRO_ANIMATION_DURATION */
+
+var FrameAnimation = {
 
     duration: METRO_ANIMATION_DURATION,
     func: "linear",
@@ -159,4 +161,4 @@ var Animation = {
     }
 };
 
-Metro['animation'] = Animation;
+Metro.animation = FrameAnimation;

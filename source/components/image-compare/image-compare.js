@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ImageCompareDefaultConfig = {
     imagecompareDeferred: 0,
     width: "100%",
@@ -18,6 +19,8 @@ if (typeof window["metroImageCompareSetup"] !== undefined) {
 Component('image-compare', {
     init: function( options, elem ) {
         this._super(elem, options, ImageCompareDefaultConfig);
+
+        this.id = Utils.elementId("image-compare");
 
         Metro.createExec(this);
 
@@ -76,7 +79,7 @@ Component('image-compare', {
 
         images = element.find("img");
 
-        $.each(images, function(i, v){
+        $.each(images, function(i){
             var img = $("<div>").addClass("image-wrapper");
             img.css({
                 width: element_width,
@@ -88,12 +91,12 @@ Component('image-compare', {
     },
 
     _createEvents: function(){
-        var element = this.element, o = this.options;
+        var that = this, element = this.element, o = this.options;
 
         var overlay = element.find(".image-container-overlay");
         var slider = element.find(".image-slider");
 
-        slider.on(Metro.events.startAll, function(e){
+        slider.on(Metro.events.startAll, function(){
             var w = element.width();
             $(document).on(Metro.events.moveAll, function(e){
                 var x = Utils.getCursorPositionX(element[0], e), left_pos;
@@ -111,11 +114,11 @@ Component('image-compare', {
                     x: x,
                     l: left_pos
                 });
-            });
+            }, {ns: that.id});
             $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll);
-                $(document).off(Metro.events.stopAll);
-            })
+                $(document).off(Metro.events.moveAll, {ns: that.id});
+                $(document).off(Metro.events.stopAll, {ns: that.id});
+            }, {ns: that.id})
         });
 
         $(window).on(Metro.events.resize, function(){
@@ -158,9 +161,10 @@ Component('image-compare', {
                 width: element_width,
                 height: element_height
             });
-        }, {ns: element.attr("id")});
+        }, {ns: this.id});
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
@@ -168,7 +172,7 @@ Component('image-compare', {
         var element = this.element;
 
         element.off(Metro.events.start);
-        $(window).off(Metro.events.resize, {ns: element.attr("id")});
+        $(window).off(Metro.events.resize, {ns: this.id});
 
         return element;
     }

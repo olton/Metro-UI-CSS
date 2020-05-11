@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var ClockDefaultConfig = {
     clockDeferred: 0,
     showTime: true,
@@ -107,8 +108,8 @@ Component('clock', {
         element.html(result);
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){

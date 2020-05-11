@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var BottomSheetDefaultConfig = {
     bottomsheetDeferred: 0,
     mode: "list",
@@ -96,8 +97,8 @@ Component('bottom-sheet', {
         }
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
-
     },
 
     destroy: function(){

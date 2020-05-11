@@ -1,3 +1,4 @@
+/* global Metro, Utils, METRO_TIMEOUT, METRO_ANIMATION_DURATION */
 var NotifyDefaultConfig = {
     container: null,
     width: 220,
@@ -130,6 +131,8 @@ var Notify = {
                         Utils.exec(o.onNotifyCreate, null, this);
 
                         if (options !== undefined && options.keepOpen === true) {
+                            /* eslint-disable-next-line */
+
                         } else {
                             setTimeout(function(){
                                 that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);

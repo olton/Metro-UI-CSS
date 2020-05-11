@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var SorterDefaultConfig = {
     sorterDeferred: 0,
     thousandSeparator: ",",
@@ -163,7 +164,7 @@ Component('sorter', {
     },
 
     reset: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var items;
         var id = Utils.elementId('sorter');
         var prev;

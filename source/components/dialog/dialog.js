@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_LOCALE */
 var DialogDefaultConfig = {
     dialogDeferred: 0,
     closeButton: false,
@@ -53,6 +54,7 @@ Component('dialog', {
 
         this.interval = null;
         this.overlay = null;
+        this.id = Utils.elementId("dialog");
 
         Metro.createExec(this);
 
@@ -77,10 +79,6 @@ Component('dialog', {
 
         if (o.shadow === true) {
             element.addClass("shadow-on");
-        }
-
-        if (element.attr("id") === undefined) {
-            element.attr("id", Utils.elementId("dialog"));
         }
 
         if (o.title !== "") {
@@ -155,7 +153,7 @@ Component('dialog', {
 
         $(window).on(Metro.events.resize, function(){
             that.setPosition();
-        }, {ns: element.attr('id')});
+        }, {ns: this.id});
 
         Utils.exec(this.options.onDialogCreate, [this.element]);
         element.fire("dialogcreate");
@@ -315,15 +313,16 @@ Component('dialog', {
         return this.element.data('open') === true;
     },
 
+    /* eslint-disable-next-line */
     changeAttribute: function(attributeName){
     },
 
     destroy: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         element.off(Metro.events.click, ".js-dialog-close");
         element.find(".button").off(Metro.events.click);
-        $(window).off(Metro.events.resize,{ns: element.attr('id')});
+        $(window).off(Metro.events.resize,{ns: this.id});
 
         return element;
     }

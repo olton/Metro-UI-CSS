@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var RibbonMenuDefaultConfig = {
     ribbonmenuDeferred: 0,
     onStatic: Metro.noop,
@@ -114,7 +115,7 @@ Component('ribbon-menu', {
         });
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

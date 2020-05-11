@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var VideoPlayerDefaultConfig = {
     videoDeferred: 0,
     src: null,
@@ -76,7 +77,7 @@ Component('video-player', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options, video = this.video;
+        var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, this.name);
 
@@ -162,7 +163,7 @@ Component('video-player', {
     },
 
     _createControls: function(){
-        var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
+        var that = this, element = this.element, o = this.options, video = this.elem;
 
         var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
 
@@ -218,13 +219,13 @@ Component('video-player', {
             volume.hide();
         }
 
-        var loop, play, stop, mute, full;
+        var loop;
 
         if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button square loop").html(o.loopIcon).appendTo(controls);
-        if (o.showPlay === true) play = $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
-        if (o.showStop === true) stop = $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
-        if (o.showMute === true) mute = $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
-        if (o.showFull === true) full = $("<button>").attr("type", "button").addClass("button square full").html(o.screenMoreIcon).appendTo(controls);
+        if (o.showPlay === true) $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
+        if (o.showStop === true) $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
+        if (o.showMute === true) $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
+        if (o.showFull === true) $("<button>").attr("type", "button").addClass("button square full").html(o.screenMoreIcon).appendTo(controls);
 
         if (o.loop === true) {
             loop.addClass("active");
@@ -307,7 +308,7 @@ Component('video-player', {
             that._setVolume();
         });
 
-        player.on(Metro.events.click, ".play", function(e){
+        player.on(Metro.events.click, ".play", function(){
             if (video.paused) {
                 that.play();
             } else {
@@ -315,11 +316,11 @@ Component('video-player', {
             }
         });
 
-        player.on(Metro.events.click, ".stop", function(e){
+        player.on(Metro.events.click, ".stop", function(){
             that.stop();
         });
 
-        player.on(Metro.events.click, ".mute", function(e){
+        player.on(Metro.events.click, ".mute", function(){
             that._toggleMute();
         });
 
@@ -379,7 +380,7 @@ Component('video-player', {
     },
 
     _onMouse: function(){
-        var that = this, o = this.options, player = this.player;
+        var o = this.options, player = this.player;
 
         player.on(Metro.events.enter, function(){
             var controls = player.find(".controls");

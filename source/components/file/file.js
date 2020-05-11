@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var FileDefaultConfig = {
     fileDeferred: 0,
     mode: "input",

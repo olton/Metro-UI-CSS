@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, Colors */
 var TabsDefaultConfig = {
     tabsDeferred: 0,
     expand: false,
@@ -256,7 +257,7 @@ Component('tabs', {
         }
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){

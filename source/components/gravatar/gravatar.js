@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var GravatarDefaultConfig = {
     gravatarDeferred: 0,
     email: "",
@@ -46,7 +47,7 @@ Component('gravatar', {
     },
 
     get: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var img = element[0].tagName === 'IMG' ? element : element.find("img");
         if (img.length === 0) {
             return;

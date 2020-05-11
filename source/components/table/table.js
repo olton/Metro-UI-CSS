@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, setImmediate, createPagination, METRO_LOCALE, Export */
 var TableDefaultConfig = {
     tableDeferred: 0,
     emptyTableTitle: "Nothing to show",
@@ -191,7 +192,7 @@ Component('table', {
     _create: function(){
         var that = this, element = this.element, o = this.options;
         var id = Utils.elementId("table");
-        var table_component, table_container, activity, loadActivity;
+        var table_component, table_container, activity;
 
         Metro.checkRuntime(element, this.name);
 
@@ -1857,8 +1858,6 @@ Component('table', {
                 }, function(xhr){
                     that.activity.hide();
                     Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                    that._createItemsFromJSON(data);
-                    that._rebuild(review);
                     element.fire("dataloaderror", {
                         source: o.source,
                         xhr: xhr

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/05/2020 23:09:39
+ * Built at 11/05/2020 20:54:16
  * Licensed under MIT
  */
 *,
@@ -8045,7 +8045,6 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 1000px white inset;
   background-color: #ffffff !important;
   -webkit-transition: background-color 5000s ease-in-out 0s;
-  -o-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
 }
 ::-webkit-input-placeholder {
@@ -29178,7 +29177,6 @@ input.input-small:-ms-input-placeholder {
   opacity: 1;
   color: #bebebe;
   -webkit-transition: linear all 0.3s;
-  -o-transition: linear all 0.3s;
   transition: linear all 0.3s;
 }
 .input-material .helper-button {
@@ -29240,7 +29238,6 @@ input.input-small:-ms-input-placeholder {
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
   -webkit-transition: linear all 0.2s;
-  -o-transition: linear all 0.2s;
   transition: linear all 0.2s;
 }
 .input-material input:focus ~ .informer {
@@ -29265,7 +29262,6 @@ input.input-small:-ms-input-placeholder {
 .input-material input:-webkit-autofill:focus,
 .input-material input:-webkit-autofill:active {
   -webkit-transition: background-color 5000s ease-in-out 0s;
-  -o-transition: background-color 5000s ease-in-out 0s;
   transition: background-color 5000s ease-in-out 0s;
   -webkit-text-fill-color: #fff !important;
 }

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var DoubleSliderDefaultConfig = {
     doublesliderDeferred: 0,
     roundValue: true,
@@ -240,7 +241,7 @@ Component('double-slider', {
 
     _move: function(e){
         var isMin = $(e.target).hasClass("marker-min");
-        var slider = this.slider, o = this.options;
+        var slider = this.slider;
         var offset = slider.offset(),
             marker_size = slider.find(".marker").outerWidth(),
             markerMin = slider.find(".marker-min"),
@@ -323,7 +324,7 @@ Component('double-slider', {
     },
 
     _marker: function(){
-        var slider = this.slider, o = this.options;
+        var slider = this.slider;
         var markerMin = slider.find(".marker-min");
         var markerMax = slider.find(".marker-max");
         var complete = slider.find(".complete");

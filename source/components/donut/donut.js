@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var DonutDefaultConfig = {
     donutDeferred: 0,
     size: 100,
@@ -39,12 +40,10 @@ Component('donut', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var html = "";
         var r = o.radius  * (1 - (1 - o.hole) / 2);
         var width = o.radius * (1 - o.hole);
-        var circumference = 2 * Math.PI * r;
-        var strokeDasharray = ((o.value * circumference) / o.total) + ' ' + circumference;
         var transform = 'rotate(-90 ' + o.radius + ',' + o.radius + ')';
         var fontSize = r * o.hole * 0.6;
 
@@ -73,7 +72,7 @@ Component('donut', {
     },
 
     _setValue: function(v){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         var fill = element.find(".donut-fill");
         var title = element.find(".donut-title");
@@ -108,7 +107,7 @@ Component('donut', {
     },
 
     val: function(v){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
 
         if (v === undefined) {
             return this.value

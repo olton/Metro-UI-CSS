@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component, METRO_ANIMATION_DURATION */
 var SidebarDefaultConfig = {
     menuScrollbar: false,
     sidebarDeferred: 0,
@@ -226,11 +227,11 @@ Component('sidebar', {
         this.element.fire("toggle");
     },
 
-    changeAttribute: function(attributeName){
+    changeAttribute: function(){
     },
 
     destroy: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var toggle = this.toggle_element;
 
         if (toggle !== null) {

@@ -1,3 +1,4 @@
+/* global Metro, Utils, Component */
 var RippleDefaultConfig = {
     rippleDeferred: 0,
     rippleColor: "#fff",
@@ -16,7 +17,6 @@ if (typeof window["metroRippleSetup"] !== undefined) {
 
 var getRipple = function(target, color, alpha, event){
     var el = target ? $(target) : this.element;
-    var timer = null;
     var rect = el[0].getBoundingClientRect();
     var x, y;
 
@@ -64,8 +64,8 @@ var getRipple = function(target, color, alpha, event){
         top: y + 'px',
         left: x + 'px'
     }).addClass("rippleEffect");
-    timer = setTimeout(function(){
-        timer = null;
+
+    setTimeout(function(){
         ripple.remove();
     }, 400);
 };
@@ -80,7 +80,7 @@ Component('ripple', {
     },
 
     _create: function(){
-        var that = this, element = this.element, o = this.options;
+        var element = this.element, o = this.options;
         var target = o.rippleTarget === 'default' ? null : o.rippleTarget;
 
         Metro.checkRuntime(element, this.name);
