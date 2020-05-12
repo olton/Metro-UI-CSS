@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/05/2020 15:55:28
+ * Built at 12/05/2020 22:48:29
  * Licensed under MIT
  */
 
@@ -4343,7 +4343,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "12/05/2020 15:55:36",
+    compileTime: "12/05/2020 22:48:38",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12145,7 +12145,7 @@ Metro.cookieDisclaimer = {
         wrapper.appendTo($('body'));
 
         wrapper.on(Metro.events.click, o.acceptButton, function(){
-            cookie.setCookie(o.name, true, o.duration);
+            cookie.setCookie(o.name, true, o.duration*24*60*60*1000);
             Utils.exec(o.onAccept);
             wrapper.remove();
         });
@@ -12158,6 +12158,16 @@ Metro.cookieDisclaimer = {
 }
 
 Metro.cookie = {
+    getCookies: function(){
+        var a = document.cookie.split(";");
+        var o = {};
+        $.each(a, function(){
+            var i = this.split('=');
+            o[i[0]] = i[1];
+        });
+        return o;
+    },
+
     getCookie: function(name){
         var cookieName = encodeURIComponent(name) + "=";
         var cookies = document.cookie.split(";");
@@ -12175,16 +12185,16 @@ Metro.cookie = {
         return null;
     },
 
-    setCookie: function(name, value, duration){
+    setCookie: function(name, value, duration, path){
         var date, expires = '';
 
         if (duration) {
             date = new Date();
-            date.setTime(date.getTime()+(duration*24*60*60*1000));
+            date.setTime(date.getTime()+(duration));
             expires = '; expires=' + date.toUTCString();
         }
 
-        document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=/';
+        document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=' + (path || '/');
     },
 
     delCookie: function(name){
