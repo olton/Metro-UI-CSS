@@ -60,7 +60,7 @@ Metro.cookieDisclaimer = {
         wrapper.appendTo($('body'));
 
         wrapper.on(Metro.events.click, o.acceptButton, function(){
-            cookie.setCookie(o.name, true, o.duration);
+            cookie.setCookie(o.name, true, o.duration*24*60*60*1000);
             Utils.exec(o.onAccept);
             wrapper.remove();
         });

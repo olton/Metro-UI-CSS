@@ -1,6 +1,16 @@
 /* global Metro */
 
 Metro.cookie = {
+    getCookies: function(){
+        var a = document.cookie.split(";");
+        var o = {};
+        $.each(a, function(){
+            var i = this.split('=');
+            o[i[0]] = i[1];
+        });
+        return o;
+    },
+
     getCookie: function(name){
         var cookieName = encodeURIComponent(name) + "=";
         var cookies = document.cookie.split(";");
@@ -18,16 +28,16 @@ Metro.cookie = {
         return null;
     },
 
-    setCookie: function(name, value, duration){
+    setCookie: function(name, value, duration, path){
         var date, expires = '';
 
         if (duration) {
             date = new Date();
-            date.setTime(date.getTime()+(duration*24*60*60*1000));
+            date.setTime(date.getTime()+(duration));
             expires = '; expires=' + date.toUTCString();
         }
 
-        document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=/';
+        document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=' + (path || '/');
     },
 
     delCookie: function(name){
