@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/05/2020 10:08:50
+ * Built at 12/05/2020 10:57:27
  * Licensed under MIT
  */
 .accordion {
@@ -906,6 +906,9 @@
 }
 .app-bar .app-bar-menu > li {
   position: relative;
+}
+.app-bar .app-bar-menu a:hover {
+  text-decoration: none;
 }
 .app-bar .brand:not(.no-hover):hover,
 .app-bar .app-bar-menu li:not(.no-hover):hover,
@@ -3675,6 +3678,10 @@ aside::after {
   white-space: nowrap;
   border: none;
 }
+.d-menu li a:hover,
+.v-menu li a:hover {
+  text-decoration: none;
+}
 .d-menu li a img,
 .v-menu li a img,
 .d-menu li a .icon,
@@ -6092,6 +6099,9 @@ fieldset.disabled,
   background-color: inherit;
   white-space: nowrap;
 }
+.h-menu > li > a:hover {
+  text-decoration: none;
+}
 .h-menu > li > a.dropdown-toggle {
   padding-right: 2rem!important;
 }
@@ -8429,6 +8439,9 @@ input.input-small:-ms-input-placeholder {
   white-space: nowrap;
   border: 2px solid transparent;
   height: 40px;
+}
+.navview .navview-menu li a:hover {
+  text-decoration: none;
 }
 .navview .navview-menu .icon {
   width: 48px;
@@ -10843,6 +10856,9 @@ input.input-small:-ms-input-placeholder {
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
 }
+.sidebar-menu li a:hover {
+  text-decoration: none;
+}
 .sidebar-menu li a .icon {
   position: absolute;
   left: 16px;
@@ -10958,6 +10974,9 @@ input.input-small:-ms-input-placeholder {
 .sidenav-counter a {
   padding: 0.625rem 0 0.625rem 0;
   line-height: 0.875rem;
+  text-decoration: none;
+}
+.sidenav-counter a:hover {
   text-decoration: none;
 }
 .sidenav-counter .icon {
@@ -11205,6 +11224,9 @@ input.input-small:-ms-input-placeholder {
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
 }
+.sidenav-m3 a:hover {
+  text-decoration: none;
+}
 .sidenav-m3 li + li {
   border-top: 1px solid #dfdfdf;
 }
@@ -11299,6 +11321,9 @@ input.input-small:-ms-input-placeholder {
 .sidenav-simple a {
   padding: 0.625rem 0 0.625rem 0;
   line-height: 0.875rem;
+  text-decoration: none;
+}
+.sidenav-simple a:hover {
   text-decoration: none;
 }
 .sidenav-simple .icon {
@@ -13160,6 +13185,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .t-menu a {
   text-decoration: none!important;
 }
+.t-menu a:hover {
+  text-decoration: none!important;
+}
 .t-menu.horizontal > li {
   float: left;
 }
@@ -13947,6 +13975,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
       -ms-flex-pack: center;
           justify-content: center;
 }
+.tabs > ul.tabs-list > li > a:hover {
+  text-decoration: none;
+}
 .tabs > ul.tabs-list > li > a > [class*=mif-] {
   margin: 0 4px;
 }
@@ -14178,6 +14209,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   text-transform: uppercase;
   line-height: 20px;
   width: 100%;
+}
+.tabs-material li a:hover {
+  text-decoration: none;
 }
 .tabs-material li .icon {
   width: 24px;
@@ -16378,6 +16412,9 @@ a.tool-button {
 .topbar-menu li a:hover,
 .topbar-menu li a:active {
   background: rgba(29, 29, 29, 0.1);
+}
+.topbar-menu li a:hover {
+  text-decoration: none;
 }
 @media screen and (min-width: 0) {
   .topbar-expand-fs {
