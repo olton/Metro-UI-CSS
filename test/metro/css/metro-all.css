@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/05/2020 20:57:33
+ * Built at 12/05/2020 10:09:00
  * Licensed under MIT
  */
 *,
@@ -31931,7 +31931,7 @@ input.input-small:-ms-input-placeholder {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 2px 4px;
+  padding: 0 4px;
 }
 .ribbon-icon-button:hover {
   border-color: #a4cef9;
@@ -31943,6 +31943,17 @@ input.input-small:-ms-input-placeholder {
 }
 .ribbon-icon-button .caption {
   font-size: 12px;
+}
+.ribbon-icon-button .icon {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 .ribbon-icon-button .icon * {
   width: 16px;
@@ -31960,7 +31971,7 @@ input.input-small:-ms-input-placeholder {
 .ribbon-tool-button {
   width: 24px;
   height: 24px;
-  padding: 2px;
+  padding: 0 2px;
   margin: 0;
 }
 .ribbon-tool-button * {
@@ -32182,8 +32193,10 @@ input.input-small:-ms-input-placeholder {
 .ribbon-toggle-group .ribbon-icon-button {
   height: 20px;
   margin: 1px;
-  padding: 1px 4px;
   background-color: inherit;
+}
+.ribbon-toggle-group .ribbon-icon-button > * {
+  height: 18px;
 }
 .ribbon-button:hover,
 .ribbon-tool-button:hover,
