@@ -40,6 +40,7 @@
 + [x] Utils: remove method `callback`, execute function or code, use method `Utils.exec(fn, args, context)`
 + [x] Sidebar: add attribute `data-menu-scrollbar="true|false"`. Attribute enable or disable scrollbar in the sidebar menu, issue #1528
 + [x] Tag: new component. Used in `tag-input`, `select`, can be used as standalone.
++ [x] Ribbon menu: fix sizes and positions for `ribbon-icon-button`, `ribbon-tool-button` 
 
 
 ### 4.3.6

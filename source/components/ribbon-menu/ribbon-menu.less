@@ -191,7 +191,7 @@
     display: inline-flex;
     flex-flow: row nowrap;
     align-items: center;
-    padding: 2px 4px;
+    padding: 0 4px;
 
     &:hover {
         border-color: @ribbonMenuItemBorder;
@@ -207,6 +207,9 @@
     }
 
     .icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
         * {
             width: 16px;
@@ -228,7 +231,7 @@
 .ribbon-tool-button {
     width: 24px;
     height: 24px;
-    padding: 2px;
+    padding: 0 2px;
     margin: 0;
 
     * {
@@ -469,8 +472,11 @@
     .ribbon-icon-button {
         height: 20px;
         margin: 1px;
-        padding: 1px 4px;
         background-color: inherit;
+
+        & > * {
+            height: 18px;
+        }
     }
 }
 
