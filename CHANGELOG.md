@@ -50,7 +50,7 @@
 + [x] Sidebar: add attribute `data-menu-scrollbar="true|false"`. Attribute enable or disable scrollbar in the sidebar menu, issue #1528
 + [x] Tag: new component. Used in `tag-input`, `select`, can be used as standalone.
 + [x] Ribbon menu: fix sizes and positions for `ribbon-icon-button`, `ribbon-tool-button` 
-
++ [x] Menus: removed `text-decoration` for anchors (`a`) inside any types of menus
 
 ### 4.3.6
 ##### M4Q
