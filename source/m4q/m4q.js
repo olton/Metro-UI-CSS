@@ -98,7 +98,7 @@ function setStyleProp(el, key, val){
 }
 
 function acceptData(owner){
-    return typeof owner.nodeType !== "undefined" && (owner.nodeType === 1 || owner.nodeType === 9);
+    return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
 }
 
 function getData(data){
@@ -566,7 +566,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.6. Built at 11/05/2020 15:08:55";
+var m4qVersion = "v1.0.6. Built at 12/05/2020 12:15:32";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches

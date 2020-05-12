@@ -184,8 +184,6 @@ Component('splitter', {
             var gutter = element.children(".gutter");
             var prev_block = gutter.prev(".split-block");
             var next_block = gutter.next(".split-block");
-            // var prev_block_size = 100 * (o.splitMode === "horizontal" ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
-            // var next_block_size = 100 * (o.splitMode === "horizontal" ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
 
             Utils.exec(o.onResizeWindow, [prev_block[0], next_block[0]], element[0]);
             element.fire("resizewindow", {
@@ -207,7 +205,8 @@ Component('splitter', {
                 itemsSize.push(item.css("flex-basis"));
             });
 
-            storage.setItem(this.storageKey + id, itemsSize);
+            if (storage)
+                storage.setItem(this.storageKey + id, itemsSize);
         }
 
     },

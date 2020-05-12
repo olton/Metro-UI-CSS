@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/05/2020 10:57:42
+ * Built at 12/05/2020 14:08:21
  * Licensed under MIT
  */
 
@@ -109,7 +109,7 @@ function setStyleProp(el, key, val){
 }
 
 function acceptData(owner){
-    return typeof owner.nodeType !== "undefined" && (owner.nodeType === 1 || owner.nodeType === 9);
+    return owner.nodeType === 1 || owner.nodeType === 9 || !( +owner.nodeType );
 }
 
 function getData(data){
@@ -577,7 +577,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.6. Built at 11/05/2020 15:08:55";
+var m4qVersion = "v1.0.6. Built at 12/05/2020 12:15:32";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -4343,7 +4343,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "12/05/2020 10:57:52",
+    compileTime: "12/05/2020 14:08:30",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -23722,8 +23722,6 @@ Component('splitter', {
             var gutter = element.children(".gutter");
             var prev_block = gutter.prev(".split-block");
             var next_block = gutter.next(".split-block");
-            // var prev_block_size = 100 * (o.splitMode === "horizontal" ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
-            // var next_block_size = 100 * (o.splitMode === "horizontal" ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
 
             Utils.exec(o.onResizeWindow, [prev_block[0], next_block[0]], element[0]);
             element.fire("resizewindow", {
@@ -23745,7 +23743,8 @@ Component('splitter', {
                 itemsSize.push(item.css("flex-basis"));
             });
 
-            storage.setItem(this.storageKey + id, itemsSize);
+            if (storage)
+                storage.setItem(this.storageKey + id, itemsSize);
         }
 
     },
