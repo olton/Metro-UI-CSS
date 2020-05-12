@@ -10,6 +10,8 @@
 + [x] Utils: add method `$.hasProp(obj, prop)` 
 
 #### Metro 4
++ [x] Source: reposition source code
++ [x] Builder: new builder config, and new builder version `2020.1`. New version not compatibility with 4.3.6
 + [x] Input: fix append size and padding, issue #1512
 + [x] Ripple: added ripple call for any element, issue #1515
 + [x] Splitter: added event `onResizeWindow`. Setup this event with prop `data-on-resize-window` or event `$(...).on('resizewindow', ...)`, issue #1516
