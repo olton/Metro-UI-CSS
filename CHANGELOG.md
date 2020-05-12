@@ -1,6 +1,13 @@
 ### 4.3.7
 #### M4Q
 + [x] Animation: a new engine for animation. The `animate` function changed. Now function receives one argument. Also, you can use old syntax :)
++ [x] Init: fix minor bug for creating elements in context
++ [x] Ajax: add parameter `contentType`. If this param has value `false`, `Content-type` can't be defined.
++ [x] Contains: add checks with `:visible` to method `is`. Example: `$(...).is(':visible')`
++ [x] Utils: add method `$.random(array | a, b)` 
++ [x] Utils: add method `$.getUnit(a)` 
++ [x] Utils: add method `$.strip(where, what)` 
++ [x] Utils: add method `$.hasProp(obj, prop)` 
 
 #### Metro 4
 + [x] Input: fix append size and padding, issue #1512
