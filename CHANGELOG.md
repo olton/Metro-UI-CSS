@@ -51,6 +51,8 @@
 + [x] Tag: new component. Used in `tag-input`, `select`, can be used as standalone.
 + [x] Ribbon menu: fix sizes and positions for `ribbon-icon-button`, `ribbon-tool-button` 
 + [x] Menus: removed `text-decoration` for anchors (`a`) inside any types of menus
++ [x] Cookie: new class for cookie manipulation `Metro.cookie`. Contains methods: `setCookie()`, `getCookie()`, `delCookie()` 
++ [x] Cookie disclaimer: new component for accept cookies for GDPR, issue #1530
 
 ### 4.3.6
 ##### M4Q
