@@ -1,0 +1,8 @@
+@import (once) "../include/vars";
+
+each(@colorList, {
+    .fc-@{value} {color: @@value !important;}
+    .fc-@{value}-active {&:active {color: @@value !important;}}
+    .fc-@{value}-hover {&:hover {color: @@value !important;}}
+    .fc-@{value}-focus {&:focus {color: @@value !important;}}
+})
