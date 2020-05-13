@@ -4,10 +4,7 @@
 + [x] Init: fix minor bug for creating elements in context
 + [x] Ajax: add parameter `contentType`. If this param has value `false`, `Content-type` can't be defined.
 + [x] Contains: add checks with `:visible` to method `is`. Example: `$(...).is(':visible')`
-+ [x] Utils: add method `$.random(array | a, b)` 
-+ [x] Utils: add method `$.getUnit(a)` 
-+ [x] Utils: add method `$.strip(where, what)` 
-+ [x] Utils: add method `$.hasProp(obj, prop)` 
++ [x] Utils: add methods `$.random(array | a, b)`, `$.getUnit(a)`, `$.strip(where, what)`, `$.hasProp(obj, prop)` 
 
 #### Metro 4
 + [x] Source: reposition source code
@@ -52,7 +49,7 @@
 + [x] Ribbon menu: fix sizes and positions for `ribbon-icon-button`, `ribbon-tool-button` 
 + [x] Menus: removed `text-decoration` for anchors (`a`) inside any types of menus
 + [x] Cookie: new class for cookie manipulation `Metro.cookie`. Contains methods: `setCookie()`, `getCookie()`, `delCookie()` 
-+ [x] Cookie disclaimer: new component for accept cookies for GDPR, issue #1530
++ [x] Cookie disclaimer: new component for accept cookies for GDPR, and not only, issue #1530
 + [x] Metro icon font: add 65 new icons `cross-light`, `document-file-*` (64)
 
 ### 4.3.6
