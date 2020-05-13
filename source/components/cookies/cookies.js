@@ -1,8 +1,25 @@
 /* global Metro */
 
+var CookieDefaultConfig = {
+    path: "/",
+    expires: null,
+    maxAge: null,
+    domain: null,
+    secure: false,
+    samesite: null
+}
+
+Metro.cookieSetup = function (options) {
+    CookieDefaultConfig = $.extend({}, CookieDefaultConfig, options);
+};
+
+if (typeof window["metroCookieSetup"] !== undefined) {
+    Metro.cookieSetup(window["metroCookieSetup"]);
+}
+
 Metro.cookie = {
     getCookies: function(){
-        var a = document.cookie.split(";");
+        var a = document.cookie.toArray(";");
         var o = {};
         $.each(a, function(){
             var i = this.split('=');
@@ -13,7 +30,7 @@ Metro.cookie = {
 
     getCookie: function(name){
         var cookieName = encodeURIComponent(name) + "=";
-        var cookies = document.cookie.split(";");
+        var cookies = document.cookie.toArray(";");
         var i, cookie;
 
         for(i = 0; i < cookies.length; i++) {
@@ -28,19 +45,37 @@ Metro.cookie = {
         return null;
     },
 
-    setCookie: function(name, value, duration, path){
-        var date, expires = '';
+    setCookie: function(name, value, options){
+        var date;
+        var cookieName = encodeURIComponent(name);
+        var cookieValue = encodeURIComponent(value);
+        var opt, a = [];
 
-        if (duration) {
+        if (options && typeof options !== "object") {
             date = new Date();
-            date.setTime(date.getTime()+(duration));
-            expires = '; expires=' + date.toUTCString();
+            date.setTime(date.getTime()+(parseInt(options)));
+            opt = $.extend({}, CookieDefaultConfig, {
+                expires: date.toUTCString()
+            });
+        } else {
+            opt = $.extend({}, CookieDefaultConfig, options);
         }
 
-        document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + expires + '; path=' + (path || '/');
+        $.each(opt, function(key, val){
+            if (key !== 'secure' && val) {
+                a.push($.dashedName(key) + "=" + val);
+            }
+            if (key === 'secure' && val === true) {
+                a.push( "secure" );
+            }
+        });
+
+        document.cookie = cookieName + '=' + cookieValue + "; " +  a.join("; ");
     },
 
     delCookie: function(name){
-        this.setCookie(name, false, -1);
+        this.setCookie(name, false, {
+            maxAge: -1
+        });
     }
 }

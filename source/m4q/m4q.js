@@ -15,7 +15,7 @@
 // Source: src/func.js
 
 /* global dataSet */
-/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip */
+/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName */
 
 var numProps = ['opacity', 'zIndex'];
 
@@ -40,6 +40,10 @@ function camelCase(string){
     return string.replace( /-([a-z])/g, function(all, letter){
         return letter.toUpperCase();
     });
+}
+
+function dashedName(str){
+    return str.replace(/([A-Z])/g, function(u) { return "-" + u.toLowerCase(); });
 }
 
 function isPlainObject( obj ) {
@@ -566,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.6. Built at 12/05/2020 12:15:32";
+var m4qVersion = "v1.0.6. Built at 13/05/2020 18:32:19";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1500,7 +1504,7 @@ $.fn.extend({
 
 // Source: src/utils.js
 
-/* global $, not, camelCase, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp */
+/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp */
 
 $.extend({
     uniqueId: function (prefix) {
@@ -1577,6 +1581,7 @@ $.extend({
     },
 
     camelCase: function(string){return camelCase(string);},
+    dashedName: function(str){return dashedName(str);},
     isPlainObject: function(obj){return isPlainObject(obj);},
     isEmptyObject: function(obj){return isEmptyObject(obj);},
     isArrayLike: function(obj){return isArrayLike(obj);},
