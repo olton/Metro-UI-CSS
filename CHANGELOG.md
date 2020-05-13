@@ -53,6 +53,7 @@
 + [x] Menus: removed `text-decoration` for anchors (`a`) inside any types of menus
 + [x] Cookie: new class for cookie manipulation `Metro.cookie`. Contains methods: `setCookie()`, `getCookie()`, `delCookie()` 
 + [x] Cookie disclaimer: new component for accept cookies for GDPR, issue #1530
++ [x] Metro icon font: add 65 new icons `cross-light`, `document-file-*` (64)
 
 ### 4.3.6
 ##### M4Q
