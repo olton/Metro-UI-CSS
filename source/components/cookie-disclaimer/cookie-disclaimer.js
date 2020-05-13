@@ -21,7 +21,7 @@ Metro.cookieDisclaimer = {
         var that = this, cookie = Metro.cookie;
 
         this.options = $.extend({}, cookieDisclaimerDefaults, options);
-        this.disclaimer = $("<div>").addClass("cookie-disclaimer-block");
+        this.disclaimer = $("<div>");
 
         if (cookie.getCookie(this.options.name)) {
             return ;
@@ -41,14 +41,17 @@ Metro.cookieDisclaimer = {
         var o = this.options, wrapper = this.disclaimer, buttons;
 
         wrapper
-            .addClass(o.clsContainer);
+            .addClass("cookie-disclaimer-block");
 
         if (!html) {
-            buttons = $("<div>").addClass("cookie-disclaimer-actions").addClass(o.clsButtons)
+            buttons = $("<div>")
+                .addClass("cookie-disclaimer-actions")
+                .addClass(o.clsButtons)
                 .append( $('<button>').addClass('button cookie-accept-button').addClass(o.clsAcceptButton).html('Accept') )
                 .append( $('<button>').addClass('button cookie-cancel-button').addClass(o.clsCancelButton).html('Cancel') );
 
             wrapper
+                .addClass(o.clsContainer)
                 .html( $("<div>").addClass(o.clsMessage).html(o.message) )
                 .append( $("<hr>").addClass('thin') )
                 .append(buttons);

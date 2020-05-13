@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/05/2020 22:48:29
+ * Built at 13/05/2020 09:58:04
  * Licensed under MIT
  */
 
@@ -4343,7 +4343,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "12/05/2020 22:48:38",
+    compileTime: "13/05/2020 09:58:12",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -12106,7 +12106,7 @@ Metro.cookieDisclaimer = {
         var that = this, cookie = Metro.cookie;
 
         this.options = $.extend({}, cookieDisclaimerDefaults, options);
-        this.disclaimer = $("<div>").addClass("cookie-disclaimer-block");
+        this.disclaimer = $("<div>");
 
         if (cookie.getCookie(this.options.name)) {
             return ;
@@ -12126,14 +12126,17 @@ Metro.cookieDisclaimer = {
         var o = this.options, wrapper = this.disclaimer, buttons;
 
         wrapper
-            .addClass(o.clsContainer);
+            .addClass("cookie-disclaimer-block");
 
         if (!html) {
-            buttons = $("<div>").addClass("cookie-disclaimer-actions").addClass(o.clsButtons)
+            buttons = $("<div>")
+                .addClass("cookie-disclaimer-actions")
+                .addClass(o.clsButtons)
                 .append( $('<button>').addClass('button cookie-accept-button').addClass(o.clsAcceptButton).html('Accept') )
                 .append( $('<button>').addClass('button cookie-cancel-button').addClass(o.clsCancelButton).html('Cancel') );
 
             wrapper
+                .addClass(o.clsContainer)
                 .html( $("<div>").addClass(o.clsMessage).html(o.message) )
                 .append( $("<hr>").addClass('thin') )
                 .append(buttons);
