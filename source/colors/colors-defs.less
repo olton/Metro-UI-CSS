@@ -39,7 +39,7 @@ each(@colorList, {
     .bg-@{value} {background-color: @@value !important;}
     .bd-@{value} {border-color: @@value !important;}
     .ol-@{value} {outline-color: @@value !important;}
-
+    .fc-@{value} {fill: @@value !important;}
 
     .fg-@{value}-active {&:active {color: @@value !important;}}
     .fg-@{value}-hover {&:hover {color: @@value !important;}}
@@ -56,6 +56,11 @@ each(@colorList, {
     .ol-@{value}-active {&:active {outline-color: @@value !important;}}
     .ol-@{value}-hover {&:hover {outline-color: @@value !important;}}
     .ol-@{value}-focus {&:focus {outline-color: @@value !important;}}
+
+    .fc-@{value}-active {&:active {fill: @@value !important;}}
+    .fc-@{value}-hover {&:hover {fill: @@value !important;}}
+    .fc-@{value}-focus {&:focus {fill: @@value !important;}}
+
 
     .ribbed-@{value} {background: @@value linear-gradient(@ribbedAngle, rgba(255,255,255,@ribbedAlpha) 25%, transparent 25%, transparent 50%, rgba(255,255,255,@ribbedAlpha) 50%, rgba(255,255,255,@ribbedAlpha) 75%, transparent 75%, transparent) !important; background-size: @ribbedSize @ribbedSize !important;}
 
