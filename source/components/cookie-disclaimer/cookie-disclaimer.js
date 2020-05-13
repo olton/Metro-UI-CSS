@@ -3,6 +3,7 @@
 var cookieDisclaimerDefaults = {
     name: 'cookies_accepted',
     template: null,
+    templateTarget: null,
     acceptButton: '.cookie-accept-button',
     cancelButton: '.cookie-cancel-button',
     message: 'Our website uses cookies to monitor traffic on our website and ensure that we can provide our customers with the best online experience possible. Please read our <a href="/cookies">cookie policy</a> to view more details on the cookies we use.',
@@ -31,6 +32,8 @@ Metro.cookieDisclaimer = {
             $.get(this.options.template).then(function(response){
                 that.create(response);
             });
+        } else if (this.options.templateTarget) {
+            this.create($(this.options.templateTarget));
         } else {
             this.create();
         }
@@ -41,7 +44,8 @@ Metro.cookieDisclaimer = {
         var o = this.options, wrapper = this.disclaimer, buttons;
 
         wrapper
-            .addClass("cookie-disclaimer-block");
+            .addClass("cookie-disclaimer-block")
+            .addClass(o.clsContainer);
 
         if (!html) {
             buttons = $("<div>")
@@ -51,11 +55,12 @@ Metro.cookieDisclaimer = {
                 .append( $('<button>').addClass('button cookie-cancel-button').addClass(o.clsCancelButton).html('Cancel') );
 
             wrapper
-                .addClass(o.clsContainer)
                 .html( $("<div>").addClass(o.clsMessage).html(o.message) )
                 .append( $("<hr>").addClass('thin') )
                 .append(buttons);
 
+        } else if (html instanceof $) {
+            wrapper.append(html);
         } else {
             wrapper.html(html);
         }
