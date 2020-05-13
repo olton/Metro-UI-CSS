@@ -352,6 +352,18 @@
             "name": "Container",
             "less": ["container"]
         },
+        "cookie": {
+            "name": "Cookie manager",
+            "js": ["cookie"]
+        },
+        "cookie-disclaimer": {
+            "name": "Cookie disclaimer",
+            "js": ["cookie-disclaimer"],
+            "less": ["cookie-disclaimer"],
+            "dependencies": {
+                "components": ["cookie"]
+            }
+        },
         "countdown": {
             "name": "Countdown",
             "js": ["countdown"],
