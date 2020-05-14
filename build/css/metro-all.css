@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/05/2020 19:31:16
+ * Built at 14/05/2020 09:18:33
  * Licensed under MIT
  */
 *,
@@ -42999,6 +42999,930 @@ body.vegas-container > .vegas-slide {
 }
 .fg-darkGrayBlue-focus:focus {
   color: #41545e !important;
+}
+.fc-black {
+  fill: #000000 !important;
+}
+.fc-black-active:active {
+  fill: #000000 !important;
+}
+.fc-black-hover:hover {
+  fill: #000000 !important;
+}
+.fc-black-focus:focus {
+  fill: #000000 !important;
+}
+.fc-white {
+  fill: #ffffff !important;
+}
+.fc-white-active:active {
+  fill: #ffffff !important;
+}
+.fc-white-hover:hover {
+  fill: #ffffff !important;
+}
+.fc-white-focus:focus {
+  fill: #ffffff !important;
+}
+.fc-dark {
+  fill: #1d1d1d !important;
+}
+.fc-dark-active:active {
+  fill: #1d1d1d !important;
+}
+.fc-dark-hover:hover {
+  fill: #1d1d1d !important;
+}
+.fc-dark-focus:focus {
+  fill: #1d1d1d !important;
+}
+.fc-light {
+  fill: #f8f8f8 !important;
+}
+.fc-light-active:active {
+  fill: #f8f8f8 !important;
+}
+.fc-light-hover:hover {
+  fill: #f8f8f8 !important;
+}
+.fc-light-focus:focus {
+  fill: #f8f8f8 !important;
+}
+.fc-grayBlue {
+  fill: #607d8b !important;
+}
+.fc-grayBlue-active:active {
+  fill: #607d8b !important;
+}
+.fc-grayBlue-hover:hover {
+  fill: #607d8b !important;
+}
+.fc-grayBlue-focus:focus {
+  fill: #607d8b !important;
+}
+.fc-grayWhite {
+  fill: #f5f5f5 !important;
+}
+.fc-grayWhite-active:active {
+  fill: #f5f5f5 !important;
+}
+.fc-grayWhite-hover:hover {
+  fill: #f5f5f5 !important;
+}
+.fc-grayWhite-focus:focus {
+  fill: #f5f5f5 !important;
+}
+.fc-grayMouse {
+  fill: #455a64 !important;
+}
+.fc-grayMouse-active:active {
+  fill: #455a64 !important;
+}
+.fc-grayMouse-hover:hover {
+  fill: #455a64 !important;
+}
+.fc-grayMouse-focus:focus {
+  fill: #455a64 !important;
+}
+.fc-brandColor1 {
+  fill: #2ac4f4 !important;
+}
+.fc-brandColor1-active:active {
+  fill: #2ac4f4 !important;
+}
+.fc-brandColor1-hover:hover {
+  fill: #2ac4f4 !important;
+}
+.fc-brandColor1-focus:focus {
+  fill: #2ac4f4 !important;
+}
+.fc-brandColor2 {
+  fill: #004d6f !important;
+}
+.fc-brandColor2-active:active {
+  fill: #004d6f !important;
+}
+.fc-brandColor2-hover:hover {
+  fill: #004d6f !important;
+}
+.fc-brandColor2-focus:focus {
+  fill: #004d6f !important;
+}
+.fc-lime {
+  fill: #a4c400 !important;
+}
+.fc-lime-active:active {
+  fill: #a4c400 !important;
+}
+.fc-lime-hover:hover {
+  fill: #a4c400 !important;
+}
+.fc-lime-focus:focus {
+  fill: #a4c400 !important;
+}
+.fc-green {
+  fill: #60a917 !important;
+}
+.fc-green-active:active {
+  fill: #60a917 !important;
+}
+.fc-green-hover:hover {
+  fill: #60a917 !important;
+}
+.fc-green-focus:focus {
+  fill: #60a917 !important;
+}
+.fc-emerald {
+  fill: #008a00 !important;
+}
+.fc-emerald-active:active {
+  fill: #008a00 !important;
+}
+.fc-emerald-hover:hover {
+  fill: #008a00 !important;
+}
+.fc-emerald-focus:focus {
+  fill: #008a00 !important;
+}
+.fc-blue {
+  fill: #00AFF0 !important;
+}
+.fc-blue-active:active {
+  fill: #00AFF0 !important;
+}
+.fc-blue-hover:hover {
+  fill: #00AFF0 !important;
+}
+.fc-blue-focus:focus {
+  fill: #00AFF0 !important;
+}
+.fc-teal {
+  fill: #00aba9 !important;
+}
+.fc-teal-active:active {
+  fill: #00aba9 !important;
+}
+.fc-teal-hover:hover {
+  fill: #00aba9 !important;
+}
+.fc-teal-focus:focus {
+  fill: #00aba9 !important;
+}
+.fc-cyan {
+  fill: #1ba1e2 !important;
+}
+.fc-cyan-active:active {
+  fill: #1ba1e2 !important;
+}
+.fc-cyan-hover:hover {
+  fill: #1ba1e2 !important;
+}
+.fc-cyan-focus:focus {
+  fill: #1ba1e2 !important;
+}
+.fc-cobalt {
+  fill: #0050ef !important;
+}
+.fc-cobalt-active:active {
+  fill: #0050ef !important;
+}
+.fc-cobalt-hover:hover {
+  fill: #0050ef !important;
+}
+.fc-cobalt-focus:focus {
+  fill: #0050ef !important;
+}
+.fc-indigo {
+  fill: #6a00ff !important;
+}
+.fc-indigo-active:active {
+  fill: #6a00ff !important;
+}
+.fc-indigo-hover:hover {
+  fill: #6a00ff !important;
+}
+.fc-indigo-focus:focus {
+  fill: #6a00ff !important;
+}
+.fc-violet {
+  fill: #aa00ff !important;
+}
+.fc-violet-active:active {
+  fill: #aa00ff !important;
+}
+.fc-violet-hover:hover {
+  fill: #aa00ff !important;
+}
+.fc-violet-focus:focus {
+  fill: #aa00ff !important;
+}
+.fc-pink {
+  fill: #dc4fad !important;
+}
+.fc-pink-active:active {
+  fill: #dc4fad !important;
+}
+.fc-pink-hover:hover {
+  fill: #dc4fad !important;
+}
+.fc-pink-focus:focus {
+  fill: #dc4fad !important;
+}
+.fc-magenta {
+  fill: #d80073 !important;
+}
+.fc-magenta-active:active {
+  fill: #d80073 !important;
+}
+.fc-magenta-hover:hover {
+  fill: #d80073 !important;
+}
+.fc-magenta-focus:focus {
+  fill: #d80073 !important;
+}
+.fc-crimson {
+  fill: #a20025 !important;
+}
+.fc-crimson-active:active {
+  fill: #a20025 !important;
+}
+.fc-crimson-hover:hover {
+  fill: #a20025 !important;
+}
+.fc-crimson-focus:focus {
+  fill: #a20025 !important;
+}
+.fc-red {
+  fill: #CE352C !important;
+}
+.fc-red-active:active {
+  fill: #CE352C !important;
+}
+.fc-red-hover:hover {
+  fill: #CE352C !important;
+}
+.fc-red-focus:focus {
+  fill: #CE352C !important;
+}
+.fc-orange {
+  fill: #fa6800 !important;
+}
+.fc-orange-active:active {
+  fill: #fa6800 !important;
+}
+.fc-orange-hover:hover {
+  fill: #fa6800 !important;
+}
+.fc-orange-focus:focus {
+  fill: #fa6800 !important;
+}
+.fc-amber {
+  fill: #f0a30a !important;
+}
+.fc-amber-active:active {
+  fill: #f0a30a !important;
+}
+.fc-amber-hover:hover {
+  fill: #f0a30a !important;
+}
+.fc-amber-focus:focus {
+  fill: #f0a30a !important;
+}
+.fc-yellow {
+  fill: #fff000 !important;
+}
+.fc-yellow-active:active {
+  fill: #fff000 !important;
+}
+.fc-yellow-hover:hover {
+  fill: #fff000 !important;
+}
+.fc-yellow-focus:focus {
+  fill: #fff000 !important;
+}
+.fc-brown {
+  fill: #825a2c !important;
+}
+.fc-brown-active:active {
+  fill: #825a2c !important;
+}
+.fc-brown-hover:hover {
+  fill: #825a2c !important;
+}
+.fc-brown-focus:focus {
+  fill: #825a2c !important;
+}
+.fc-olive {
+  fill: #6d8764 !important;
+}
+.fc-olive-active:active {
+  fill: #6d8764 !important;
+}
+.fc-olive-hover:hover {
+  fill: #6d8764 !important;
+}
+.fc-olive-focus:focus {
+  fill: #6d8764 !important;
+}
+.fc-steel {
+  fill: #647687 !important;
+}
+.fc-steel-active:active {
+  fill: #647687 !important;
+}
+.fc-steel-hover:hover {
+  fill: #647687 !important;
+}
+.fc-steel-focus:focus {
+  fill: #647687 !important;
+}
+.fc-mauve {
+  fill: #76608a !important;
+}
+.fc-mauve-active:active {
+  fill: #76608a !important;
+}
+.fc-mauve-hover:hover {
+  fill: #76608a !important;
+}
+.fc-mauve-focus:focus {
+  fill: #76608a !important;
+}
+.fc-taupe {
+  fill: #87794e !important;
+}
+.fc-taupe-active:active {
+  fill: #87794e !important;
+}
+.fc-taupe-hover:hover {
+  fill: #87794e !important;
+}
+.fc-taupe-focus:focus {
+  fill: #87794e !important;
+}
+.fc-gray {
+  fill: #bebebe !important;
+}
+.fc-gray-active:active {
+  fill: #bebebe !important;
+}
+.fc-gray-hover:hover {
+  fill: #bebebe !important;
+}
+.fc-gray-focus:focus {
+  fill: #bebebe !important;
+}
+.fc-lightLime {
+  fill: #d8ff12 !important;
+}
+.fc-lightLime-active:active {
+  fill: #d8ff12 !important;
+}
+.fc-lightLime-hover:hover {
+  fill: #d8ff12 !important;
+}
+.fc-lightLime-focus:focus {
+  fill: #d8ff12 !important;
+}
+.fc-lightGreen {
+  fill: #86e22a !important;
+}
+.fc-lightGreen-active:active {
+  fill: #86e22a !important;
+}
+.fc-lightGreen-hover:hover {
+  fill: #86e22a !important;
+}
+.fc-lightGreen-focus:focus {
+  fill: #86e22a !important;
+}
+.fc-lightEmerald {
+  fill: #00d600 !important;
+}
+.fc-lightEmerald-active:active {
+  fill: #00d600 !important;
+}
+.fc-lightEmerald-hover:hover {
+  fill: #00d600 !important;
+}
+.fc-lightEmerald-focus:focus {
+  fill: #00d600 !important;
+}
+.fc-lightBlue {
+  fill: #3ecbff !important;
+}
+.fc-lightBlue-active:active {
+  fill: #3ecbff !important;
+}
+.fc-lightBlue-hover:hover {
+  fill: #3ecbff !important;
+}
+.fc-lightBlue-focus:focus {
+  fill: #3ecbff !important;
+}
+.fc-lightTeal {
+  fill: #00f7f5 !important;
+}
+.fc-lightTeal-active:active {
+  fill: #00f7f5 !important;
+}
+.fc-lightTeal-hover:hover {
+  fill: #00f7f5 !important;
+}
+.fc-lightTeal-focus:focus {
+  fill: #00f7f5 !important;
+}
+.fc-lightCyan {
+  fill: #5ebdec !important;
+}
+.fc-lightCyan-active:active {
+  fill: #5ebdec !important;
+}
+.fc-lightCyan-hover:hover {
+  fill: #5ebdec !important;
+}
+.fc-lightCyan-focus:focus {
+  fill: #5ebdec !important;
+}
+.fc-lightCobalt {
+  fill: #3d7eff !important;
+}
+.fc-lightCobalt-active:active {
+  fill: #3d7eff !important;
+}
+.fc-lightCobalt-hover:hover {
+  fill: #3d7eff !important;
+}
+.fc-lightCobalt-focus:focus {
+  fill: #3d7eff !important;
+}
+.fc-lightIndigo {
+  fill: #974dff !important;
+}
+.fc-lightIndigo-active:active {
+  fill: #974dff !important;
+}
+.fc-lightIndigo-hover:hover {
+  fill: #974dff !important;
+}
+.fc-lightIndigo-focus:focus {
+  fill: #974dff !important;
+}
+.fc-lightViolet {
+  fill: #c44dff !important;
+}
+.fc-lightViolet-active:active {
+  fill: #c44dff !important;
+}
+.fc-lightViolet-hover:hover {
+  fill: #c44dff !important;
+}
+.fc-lightViolet-focus:focus {
+  fill: #c44dff !important;
+}
+.fc-lightPink {
+  fill: #e98fcb !important;
+}
+.fc-lightPink-active:active {
+  fill: #e98fcb !important;
+}
+.fc-lightPink-hover:hover {
+  fill: #e98fcb !important;
+}
+.fc-lightPink-focus:focus {
+  fill: #e98fcb !important;
+}
+.fc-lightMagenta {
+  fill: #ff2599 !important;
+}
+.fc-lightMagenta-active:active {
+  fill: #ff2599 !important;
+}
+.fc-lightMagenta-hover:hover {
+  fill: #ff2599 !important;
+}
+.fc-lightMagenta-focus:focus {
+  fill: #ff2599 !important;
+}
+.fc-lightCrimson {
+  fill: #ef0036 !important;
+}
+.fc-lightCrimson-active:active {
+  fill: #ef0036 !important;
+}
+.fc-lightCrimson-hover:hover {
+  fill: #ef0036 !important;
+}
+.fc-lightCrimson-focus:focus {
+  fill: #ef0036 !important;
+}
+.fc-lightRed {
+  fill: #df6e68 !important;
+}
+.fc-lightRed-active:active {
+  fill: #df6e68 !important;
+}
+.fc-lightRed-hover:hover {
+  fill: #df6e68 !important;
+}
+.fc-lightRed-focus:focus {
+  fill: #df6e68 !important;
+}
+.fc-lightOrange {
+  fill: #ff9447 !important;
+}
+.fc-lightOrange-active:active {
+  fill: #ff9447 !important;
+}
+.fc-lightOrange-hover:hover {
+  fill: #ff9447 !important;
+}
+.fc-lightOrange-focus:focus {
+  fill: #ff9447 !important;
+}
+.fc-lightAmber {
+  fill: #f8bf4f !important;
+}
+.fc-lightAmber-active:active {
+  fill: #f8bf4f !important;
+}
+.fc-lightAmber-hover:hover {
+  fill: #f8bf4f !important;
+}
+.fc-lightAmber-focus:focus {
+  fill: #f8bf4f !important;
+}
+.fc-lightYellow {
+  fill: #fff44d !important;
+}
+.fc-lightYellow-active:active {
+  fill: #fff44d !important;
+}
+.fc-lightYellow-hover:hover {
+  fill: #fff44d !important;
+}
+.fc-lightYellow-focus:focus {
+  fill: #fff44d !important;
+}
+.fc-lightBrown {
+  fill: #bb823f !important;
+}
+.fc-lightBrown-active:active {
+  fill: #bb823f !important;
+}
+.fc-lightBrown-hover:hover {
+  fill: #bb823f !important;
+}
+.fc-lightBrown-focus:focus {
+  fill: #bb823f !important;
+}
+.fc-lightOlive {
+  fill: #95ab8d !important;
+}
+.fc-lightOlive-active:active {
+  fill: #95ab8d !important;
+}
+.fc-lightOlive-hover:hover {
+  fill: #95ab8d !important;
+}
+.fc-lightOlive-focus:focus {
+  fill: #95ab8d !important;
+}
+.fc-lightSteel {
+  fill: #8d9cab !important;
+}
+.fc-lightSteel-active:active {
+  fill: #8d9cab !important;
+}
+.fc-lightSteel-hover:hover {
+  fill: #8d9cab !important;
+}
+.fc-lightSteel-focus:focus {
+  fill: #8d9cab !important;
+}
+.fc-lightMauve {
+  fill: #9c89ad !important;
+}
+.fc-lightMauve-active:active {
+  fill: #9c89ad !important;
+}
+.fc-lightMauve-hover:hover {
+  fill: #9c89ad !important;
+}
+.fc-lightMauve-focus:focus {
+  fill: #9c89ad !important;
+}
+.fc-lightTaupe {
+  fill: #aea073 !important;
+}
+.fc-lightTaupe-active:active {
+  fill: #aea073 !important;
+}
+.fc-lightTaupe-hover:hover {
+  fill: #aea073 !important;
+}
+.fc-lightTaupe-focus:focus {
+  fill: #aea073 !important;
+}
+.fc-lightGray {
+  fill: #e4e4e4 !important;
+}
+.fc-lightGray-active:active {
+  fill: #e4e4e4 !important;
+}
+.fc-lightGray-hover:hover {
+  fill: #e4e4e4 !important;
+}
+.fc-lightGray-focus:focus {
+  fill: #e4e4e4 !important;
+}
+.fc-lightGrayBlue {
+  fill: #8aa2ae !important;
+}
+.fc-lightGrayBlue-active:active {
+  fill: #8aa2ae !important;
+}
+.fc-lightGrayBlue-hover:hover {
+  fill: #8aa2ae !important;
+}
+.fc-lightGrayBlue-focus:focus {
+  fill: #8aa2ae !important;
+}
+.fc-darkLime {
+  fill: #647800 !important;
+}
+.fc-darkLime-active:active {
+  fill: #647800 !important;
+}
+.fc-darkLime-hover:hover {
+  fill: #647800 !important;
+}
+.fc-darkLime-focus:focus {
+  fill: #647800 !important;
+}
+.fc-darkGreen {
+  fill: #3a660e !important;
+}
+.fc-darkGreen-active:active {
+  fill: #3a660e !important;
+}
+.fc-darkGreen-hover:hover {
+  fill: #3a660e !important;
+}
+.fc-darkGreen-focus:focus {
+  fill: #3a660e !important;
+}
+.fc-darkEmerald {
+  fill: #003d00 !important;
+}
+.fc-darkEmerald-active:active {
+  fill: #003d00 !important;
+}
+.fc-darkEmerald-hover:hover {
+  fill: #003d00 !important;
+}
+.fc-darkEmerald-focus:focus {
+  fill: #003d00 !important;
+}
+.fc-darkBlue {
+  fill: #0077a3 !important;
+}
+.fc-darkBlue-active:active {
+  fill: #0077a3 !important;
+}
+.fc-darkBlue-hover:hover {
+  fill: #0077a3 !important;
+}
+.fc-darkBlue-focus:focus {
+  fill: #0077a3 !important;
+}
+.fc-darkTeal {
+  fill: #005e5d !important;
+}
+.fc-darkTeal-active:active {
+  fill: #005e5d !important;
+}
+.fc-darkTeal-hover:hover {
+  fill: #005e5d !important;
+}
+.fc-darkTeal-focus:focus {
+  fill: #005e5d !important;
+}
+.fc-darkCyan {
+  fill: #13709e !important;
+}
+.fc-darkCyan-active:active {
+  fill: #13709e !important;
+}
+.fc-darkCyan-hover:hover {
+  fill: #13709e !important;
+}
+.fc-darkCyan-focus:focus {
+  fill: #13709e !important;
+}
+.fc-darkCobalt {
+  fill: #0036a3 !important;
+}
+.fc-darkCobalt-active:active {
+  fill: #0036a3 !important;
+}
+.fc-darkCobalt-hover:hover {
+  fill: #0036a3 !important;
+}
+.fc-darkCobalt-focus:focus {
+  fill: #0036a3 !important;
+}
+.fc-darkIndigo {
+  fill: #4a00b3 !important;
+}
+.fc-darkIndigo-active:active {
+  fill: #4a00b3 !important;
+}
+.fc-darkIndigo-hover:hover {
+  fill: #4a00b3 !important;
+}
+.fc-darkIndigo-focus:focus {
+  fill: #4a00b3 !important;
+}
+.fc-darkViolet {
+  fill: #7700b3 !important;
+}
+.fc-darkViolet-active:active {
+  fill: #7700b3 !important;
+}
+.fc-darkViolet-hover:hover {
+  fill: #7700b3 !important;
+}
+.fc-darkViolet-focus:focus {
+  fill: #7700b3 !important;
+}
+.fc-darkPink {
+  fill: #ba2588 !important;
+}
+.fc-darkPink-active:active {
+  fill: #ba2588 !important;
+}
+.fc-darkPink-hover:hover {
+  fill: #ba2588 !important;
+}
+.fc-darkPink-focus:focus {
+  fill: #ba2588 !important;
+}
+.fc-darkMagenta {
+  fill: #8c004a !important;
+}
+.fc-darkMagenta-active:active {
+  fill: #8c004a !important;
+}
+.fc-darkMagenta-hover:hover {
+  fill: #8c004a !important;
+}
+.fc-darkMagenta-focus:focus {
+  fill: #8c004a !important;
+}
+.fc-darkCrimson {
+  fill: #560014 !important;
+}
+.fc-darkCrimson-active:active {
+  fill: #560014 !important;
+}
+.fc-darkCrimson-hover:hover {
+  fill: #560014 !important;
+}
+.fc-darkCrimson-focus:focus {
+  fill: #560014 !important;
+}
+.fc-darkRed {
+  fill: #8f251f !important;
+}
+.fc-darkRed-active:active {
+  fill: #8f251f !important;
+}
+.fc-darkRed-hover:hover {
+  fill: #8f251f !important;
+}
+.fc-darkRed-focus:focus {
+  fill: #8f251f !important;
+}
+.fc-darkOrange {
+  fill: #ae4800 !important;
+}
+.fc-darkOrange-active:active {
+  fill: #ae4800 !important;
+}
+.fc-darkOrange-hover:hover {
+  fill: #ae4800 !important;
+}
+.fc-darkOrange-focus:focus {
+  fill: #ae4800 !important;
+}
+.fc-darkAmber {
+  fill: #a77107 !important;
+}
+.fc-darkAmber-active:active {
+  fill: #a77107 !important;
+}
+.fc-darkAmber-hover:hover {
+  fill: #a77107 !important;
+}
+.fc-darkAmber-focus:focus {
+  fill: #a77107 !important;
+}
+.fc-darkYellow {
+  fill: #b3a800 !important;
+}
+.fc-darkYellow-active:active {
+  fill: #b3a800 !important;
+}
+.fc-darkYellow-hover:hover {
+  fill: #b3a800 !important;
+}
+.fc-darkYellow-focus:focus {
+  fill: #b3a800 !important;
+}
+.fc-darkBrown {
+  fill: #493219 !important;
+}
+.fc-darkBrown-active:active {
+  fill: #493219 !important;
+}
+.fc-darkBrown-hover:hover {
+  fill: #493219 !important;
+}
+.fc-darkBrown-focus:focus {
+  fill: #493219 !important;
+}
+.fc-darkOlive {
+  fill: #4a5b43 !important;
+}
+.fc-darkOlive-active:active {
+  fill: #4a5b43 !important;
+}
+.fc-darkOlive-hover:hover {
+  fill: #4a5b43 !important;
+}
+.fc-darkOlive-focus:focus {
+  fill: #4a5b43 !important;
+}
+.fc-darkSteel {
+  fill: #43505b !important;
+}
+.fc-darkSteel-active:active {
+  fill: #43505b !important;
+}
+.fc-darkSteel-hover:hover {
+  fill: #43505b !important;
+}
+.fc-darkSteel-focus:focus {
+  fill: #43505b !important;
+}
+.fc-darkMauve {
+  fill: #4f415d !important;
+}
+.fc-darkMauve-active:active {
+  fill: #4f415d !important;
+}
+.fc-darkMauve-hover:hover {
+  fill: #4f415d !important;
+}
+.fc-darkMauve-focus:focus {
+  fill: #4f415d !important;
+}
+.fc-darkTaupe {
+  fill: #574e32 !important;
+}
+.fc-darkTaupe-active:active {
+  fill: #574e32 !important;
+}
+.fc-darkTaupe-hover:hover {
+  fill: #574e32 !important;
+}
+.fc-darkTaupe-focus:focus {
+  fill: #574e32 !important;
+}
+.fc-darkGray {
+  fill: #989898 !important;
+}
+.fc-darkGray-active:active {
+  fill: #989898 !important;
+}
+.fc-darkGray-hover:hover {
+  fill: #989898 !important;
+}
+.fc-darkGray-focus:focus {
+  fill: #989898 !important;
+}
+.fc-darkGrayBlue {
+  fill: #41545e !important;
+}
+.fc-darkGrayBlue-active:active {
+  fill: #41545e !important;
+}
+.fc-darkGrayBlue-hover:hover {
+  fill: #41545e !important;
+}
+.fc-darkGrayBlue-focus:focus {
+  fill: #41545e !important;
 }
 .ol-black {
   outline-color: #000000 !important;

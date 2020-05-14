@@ -51,6 +51,7 @@
 + [x] Cookie: new class for cookie manipulation `Metro.cookie`. Contains methods: `setCookie()`, `getCookie()`, `delCookie()` 
 + [x] Cookie disclaimer: new component for accept cookies for GDPR, and not only, issue #1530
 + [x] Metro icon font: add 65 new icons `cross-light`, `document-file-*` (64)
++ [x] Select: improved performance for creating options, issue #1534
 
 ### 4.3.6
 ##### M4Q

@@ -93,17 +93,15 @@ Component('select', {
         return tag;
     },
 
-    _addOption: function(item, parent){
+    /* eslint-disable */
+    _addOption: function(item, parent, input, multiple){
         var option = $(item);
         var l, a;
         var element = this.element, o = this.options;
-        var multiple = element[0].multiple;
-        var input = element.siblings(".select-input");
         var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
-        // var tag;
 
-        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "").appendTo(parent);
-        a = $("<a>").html(html).appendTo(l);
+        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "");
+        a = $("<a>").html(html);
 
         l.addClass(item.className);
 
@@ -115,9 +113,6 @@ Component('select', {
             if (multiple) {
                 l.addClass("d-none");
                 input.append(this._addTag(html, l));
-                // tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                // tag.data("option", l);
-                // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
             } else {
                 element.val(item.value);
                 input.html(html);
@@ -128,18 +123,17 @@ Component('select', {
             }
         }
 
-        a.appendTo(l);
-        l.appendTo(parent);
+        l.append(a).appendTo(parent);
     },
 
-    _addOptionGroup: function(item, parent){
+    _addOptionGroup: function(item, parent, input, multiple){
         var that = this;
         var group = $(item);
 
         $("<li>").html(item.label).addClass("group-title").appendTo(parent);
 
         $.each(group.children(), function(){
-            that._addOption(this, parent);
+            that._addOption(this, parent, input, multiple);
         })
     },
 
@@ -147,6 +141,9 @@ Component('select', {
         var that = this, element = this.element, o = this.options, select = element.parent();
         var list = select.find("ul").empty();
         var selected = element.find("option[selected]").length > 0;
+        var multiple = element[0].multiple;
+        var input = element.siblings(".select-input");
+        var start = performance.now();
 
         element.siblings(".select-input").empty();
 
@@ -156,11 +153,13 @@ Component('select', {
 
         $.each(element.children(), function(){
             if (this.tagName === "OPTION") {
-                that._addOption(this, list);
+                that._addOption(this, list, input, multiple);
             } else if (this.tagName === "OPTGROUP") {
-                that._addOptionGroup(this, list);
+                that._addOptionGroup(this, list, input, multiple);
             }
         });
+
+        console.log(performance.now() - start);
     },
 
     _createSelect: function(){
