@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/05/2020 09:39:15
+ * Built at 14/05/2020 12:15:35
  * Licensed under MIT
  */
 .accordion {
@@ -10302,9 +10302,45 @@ input.input-small:-ms-input-placeholder {
 .select .dropdown-toggle::before {
   margin-left: -1.1rem;
 }
-.select .d-menu li a,
-.select .v-menu li a {
+.select .option-list {
+  margin: 0;
+  padding: 0;
+  list-style: none inside;
+  overflow-y: auto;
+  position: relative;
+  display: block;
+  background-color: #ffffff;
+  font-size: 0.875rem;
+}
+.select .option-list li,
+.select .option-list a {
+  display: block;
+}
+.select .option-list a {
   min-width: auto;
+  height: 32px;
+  line-height: 32px;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  padding: 0 2rem 0 2.5rem;
+}
+.select .option-list .icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  left: 8px;
+  position: absolute;
+  vertical-align: middle;
+  text-align: center;
+}
+.select .option-list li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.select .option-list li.active {
+  background-color: #5ebdec;
+  color: #ffffff;
+  font-weight: bold;
 }
 .select input[type=checkbox] {
   width: 1px;
@@ -10395,33 +10431,6 @@ input.input-small:-ms-input-placeholder {
 .select .drop-container .input {
   margin: 4px 2px 6px;
   width: calc(100% - 4px);
-}
-.select .d-menu {
-  width: 100%;
-  overflow-y: auto;
-  position: relative;
-  display: block;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-.select .d-menu li a {
-  height: 32px;
-  line-height: 32px;
-  overflow: hidden;
-  white-space: nowrap;
-  -o-text-overflow: ellipsis;
-     text-overflow: ellipsis;
-}
-.select .d-menu li a .icon {
-  top: 0.3rem;
-  margin-top: 0;
-}
-.select .d-menu .active {
-  border: none;
-  color: #ffffff;
-}
-.select .d-menu .active:hover {
-  color: #ffffff;
 }
 .select.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);

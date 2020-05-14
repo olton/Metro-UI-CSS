@@ -189,7 +189,7 @@ Component('select', {
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
         drop_container_input = $("<div>").appendTo(drop_container);
-        list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
+        list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
             "max-height": o.dropHeight
         });
         filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);

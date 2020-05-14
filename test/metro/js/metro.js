@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/05/2020 09:39:24
+ * Built at 14/05/2020 12:15:46
  * Licensed under MIT
  */
 
@@ -274,7 +274,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2635,7 +2635,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4348,7 +4348,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "14/05/2020 09:39:32",
+    compileTime: "14/05/2020 12:15:54",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4598,7 +4598,7 @@ var Metro = {
                     }
 
                 } else  {
-                    //
+                    //console.log(mutation);
                 }
             });
         };
@@ -21904,7 +21904,7 @@ Component('select', {
         input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
         drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
         drop_container_input = $("<div>").appendTo(drop_container);
-        list = $("<ul>").addClass( o.clsDropList === "" ? "d-menu" : o.clsDropList).css({
+        list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
             "max-height": o.dropHeight
         });
         filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);

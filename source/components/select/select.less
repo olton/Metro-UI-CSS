@@ -22,8 +22,48 @@
         }
     }
 
-    .d-menu li a, .v-menu li a {
-        min-width: auto;
+    .option-list {
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+        overflow-y: auto;
+        position: relative;
+        display: block;
+        background-color: @white;
+        font-size: 0.875rem;
+
+        li, a {
+            display: block;
+        }
+
+        a {
+            min-width: auto;
+            height: 32px;
+            line-height: 32px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            padding: 0 2rem 0 2.5rem;
+        }
+
+        .icon {
+            font-size: 20px;
+            width: 20px;
+            height: 20px;
+            left: 8px;
+            position: absolute;
+            vertical-align: middle;
+            text-align: center;
+        }
+
+        li:hover {
+            background-color: rgba(29, 29, 29, 0.1);
+        }
+
+        li.active {
+            background-color: #5ebdec;
+            color: #ffffff;
+            font-weight: bold;
+        }
     }
 
     input[type=checkbox]{
@@ -110,33 +150,6 @@
         }
     }
 
-    .d-menu {
-        width: 100%;
-        overflow-y: auto;
-        position: relative;
-        display: block;
-        box-shadow: none;
-
-        li a {
-            height: 32px;
-            line-height: 32px;
-            .text-ellipsis();
-
-            .icon {
-                top: .3rem;
-                margin-top: 0;
-            }
-        }
-
-        .active {
-            border: none;
-            color: @white;
-            &:hover {
-                color: @white;
-            }
-        }
-    }
-
     &.focused {
         box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
     }
@@ -181,39 +194,6 @@
     }
 
     @selected-item-size: 26px;
-
-    //.selected-item {
-    //    display: inline-flex;
-    //    justify-content: space-between;
-    //    align-items: flex-start;
-    //    position: relative;
-    //    margin: 2px;
-    //    padding: 0;
-    //    height: @selected-item-size;
-    //    line-height: @selected-item-size;
-    //    background-color: @light;
-    //    cursor: default;
-    //
-    //    .title {
-    //        display: block;
-    //        position: relative;
-    //        max-width: 120px;
-    //        font-size: 14px;
-    //        .text-ellipsis();
-    //        margin: 0 4px;
-    //    }
-    //
-    //    .remover {
-    //        display: block;
-    //        position: relative;
-    //        width: @selected-item-size - 1;
-    //        height: @selected-item-size - 1;
-    //        line-height: @selected-item-size - 2;
-    //        text-align: center;
-    //        cursor: pointer;
-    //        background-color: @lightGray;
-    //    }
-    //}
 
     &.multiple {
         flex-wrap: wrap;
@@ -293,23 +273,6 @@
             height: .6rem;
             margin-left: -1.3rem;
         }
-
-        //.selected-item {
-        //    margin: 2px 2px;
-        //    height: @input-lx - 14;
-        //    line-height: @input-lx - 14;
-        //    .title {
-        //        font-size: 1.3rem;
-        //        line-height: @input-lx - 14;
-        //        padding: 0 8px;
-        //    }
-        //    .remover {
-        //        width: @input-lx - 15;
-        //        height: @input-lx - 15;
-        //        line-height: @input-lx - 20;
-        //        font-size: 1.6rem;
-        //    }
-        //}
     }
 
     &.input-small {
@@ -354,21 +317,5 @@
             height: .325rem;
             margin-left: -.9rem;
         }
-
-        //.selected-item {
-        //    height: @input-sx - 10;
-        //    line-height: @input-sx - 10;
-        //
-        //    .title {
-        //        font-size: .7rem;
-        //        line-height: @input-sx - 10;
-        //    }
-        //    .remover {
-        //        width: @input-sx - 10;
-        //        height: @input-sx - 10;
-        //        line-height: @input-sx - 10;
-        //        font-size: .8rem;
-        //    }
-        //}
     }
 }
