@@ -4,7 +4,8 @@
 + [x] Init: fix minor bug for creating elements in context
 + [x] Ajax: add parameter `contentType`. If this param has value `false`, `Content-type` can't be defined.
 + [x] Contains: add checks with `:visible` to method `is`. Example: `$(...).is(':visible')`
-+ [x] Utils: add methods `$.random(array | a, b)`, `$.getUnit(a)`, `$.strip(where, what)`, `$.hasProp(obj, prop)` 
++ [x] Utils: add methods `$.random(array | a, b)`, `$.getUnit(a)`, `$.strip(where, what)`, `$.hasProp(obj, prop)`, `$.dashedName(val)` 
++ [x] Classes: add method `$(...).removeClassBy(mask)`
 
 #### Metro 4
 + [x] Source: reposition source code
