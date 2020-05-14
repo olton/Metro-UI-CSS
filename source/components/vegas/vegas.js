@@ -101,7 +101,7 @@ Component('vegas', {
             this._preload();
         }
 
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

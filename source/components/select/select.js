@@ -93,7 +93,6 @@ Component('select', {
         return tag;
     },
 
-    /* eslint-disable */
     _addOption: function(item, parent, input, multiple){
         var option = $(item);
         var l, a;
@@ -143,7 +142,6 @@ Component('select', {
         var selected = element.find("option[selected]").length > 0;
         var multiple = element[0].multiple;
         var input = element.siblings(".select-input");
-        var start = performance.now();
 
         element.siblings(".select-input").empty();
 
@@ -158,8 +156,6 @@ Component('select', {
                 that._addOptionGroup(this, list, input, multiple);
             }
         });
-
-        console.log(performance.now() - start);
     },
 
     _createSelect: function(){

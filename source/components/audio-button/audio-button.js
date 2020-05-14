@@ -23,7 +23,7 @@ Component('audio-button', {
         this.canPlay = false;
         this.id = Utils.elementId("audioButton");
 
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },

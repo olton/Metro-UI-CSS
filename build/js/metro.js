@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/05/2020 09:23:41
+ * Built at 14/05/2020 09:39:24
  * Licensed under MIT
  */
 
@@ -4348,7 +4348,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "14/05/2020 09:23:49",
+    compileTime: "14/05/2020 09:39:32",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -8460,7 +8460,7 @@ Component('audio-button', {
         this.canPlay = false;
         this.id = Utils.elementId("audioButton");
 
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
@@ -21808,7 +21808,6 @@ Component('select', {
         return tag;
     },
 
-    /* eslint-disable */
     _addOption: function(item, parent, input, multiple){
         var option = $(item);
         var l, a;
@@ -21858,7 +21857,6 @@ Component('select', {
         var selected = element.find("option[selected]").length > 0;
         var multiple = element[0].multiple;
         var input = element.siblings(".select-input");
-        var start = performance.now();
 
         element.siblings(".select-input").empty();
 
@@ -21873,8 +21871,6 @@ Component('select', {
                 that._addOptionGroup(this, list, input, multiple);
             }
         });
-
-        
     },
 
     _createSelect: function(){
@@ -31311,7 +31307,7 @@ Component('vegas', {
             this._preload();
         }
 
-        this._create();
+        Metro.createExec(this);
 
         return this;
     },
