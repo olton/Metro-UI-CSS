@@ -24,9 +24,9 @@ module.exports = function(grunt) {
 
     if (!develop) {
         tasks.push('concurrent:remove_log');
+        tasks.push('concurrent:min');
     }
 
-    tasks.push('concurrent:min');
     tasks.push('concurrent:replace');
     tasks.push('concurrent:copy');
 

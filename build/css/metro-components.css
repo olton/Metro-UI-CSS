@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/05/2020 12:17:38
+ * Built at 16/05/2020 22:34:00
  * Licensed under MIT
  */
 .accordion {
@@ -8396,7 +8396,7 @@ input.input-small:-ms-input-placeholder {
   height: 100%;
   -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
-  z-index: 1;
+  z-index: 3;
 }
 .navview .navview-pane.open {
   -webkit-transform: translate3d(0, 0, 0);
@@ -8436,12 +8436,8 @@ input.input-small:-ms-input-placeholder {
   padding: 0;
   width: 100%;
   background-color: #e5e5e5;
-  overflow-y: auto;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  overflow: -moz-scrollbars-none;
-}
-.navview .navview-menu::-webkit-scrollbar {
-  display: none!important;
+  overflow-x: visible;
+  overflow-y: scroll;
 }
 .navview .navview-menu li {
   display: block;
@@ -8555,7 +8551,8 @@ input.input-small:-ms-input-placeholder {
   content: "";
   display: block;
   position: absolute;
-  bottom: 0;
+  top: 0;
+  bottom: auto;
   right: 0;
   width: 0;
   height: 0;
@@ -8563,6 +8560,21 @@ input.input-small:-ms-input-placeholder {
   border-width: 0 0 8px 8px;
   border-color: transparent transparent #1d1d1d transparent;
   z-index: 1;
+  -webkit-transform: rotate(-90deg);
+      -ms-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+  -webkit-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
+}
+.navview .navview-menu .dropdown-toggle.active-toggle::after {
+  border-width: 0 0 8px 8px;
+  border-color: transparent transparent #1d1d1d transparent;
+  -webkit-transform: rotate(0);
+      -ms-transform: rotate(0);
+          transform: rotate(0);
+  bottom: 0;
+  top: auto;
 }
 .navview.focusableItems .pull-button:focus,
 .navview.focusableItems .holder:focus,
@@ -8977,10 +8989,6 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-expand-xxl .data-box {
     display: block;
   }
-}
-.navview.compacted .navview-pane > .navview-menu,
-.navview.js-compact:not(.expanded) .navview-pane > .navview-menu {
-  overflow: visible;
 }
 .navview.compacted .navview-menu .navview-menu,
 .navview.js-compact:not(.expanded) .navview-menu .navview-menu {

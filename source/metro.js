@@ -457,18 +457,18 @@ var Metro = {
     plugin: function(name, object){
         var _name = normalizeComponentName(name);
 
-        $.fn[_name] = function( options ) {
-            return this.each(function() {
-                $.data( this, _name, Object.create(object).init(options, this ));
-            });
-        };
-
-        if (window.METRO_JQUERY && window.jquery_present) {
-            jQuery.fn[_name] = function (options) {
-                return this.each(function () {
-                    jQuery.data(this, _name, Object.create(object).init(options, this));
+        var register = function($){
+            $.fn[_name] = function( options ) {
+                return this.each(function() {
+                    $.data( this, _name, Object.create(object).init(options, this ));
                 });
             };
+        }
+
+        register(m4q);
+
+        if (window.METRO_JQUERY && window.jquery_present) {
+            register(jQuery);
         }
     },
 
@@ -477,14 +477,16 @@ var Metro = {
         var el = $(element);
         var _name = normalizeComponentName(name);
 
-        p = el.data(_name);
+        p = Metro.getPlugin(el, _name);
 
-        if (!Utils.isValue(p)) {
-            throw new Error("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
+        if (typeof p === 'undefined') {
+            console.warn("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
+            return ;
         }
 
-        if (!Utils.isFunc(p['destroy'])) {
-            throw new Error("Component "+name+" can not be destroyed: method destroy not found.");
+        if (typeof p['destroy'] !== 'function') {
+            console.warn("Component "+name+" can not be destroyed: method destroy not found.");
+            return ;
         }
 
         p['destroy']();
@@ -629,9 +631,11 @@ var Component = function(nameName, compObj){
     return component;
 }
 
-Metro['locales'] = {};
+Metro.Component = Component;
 
-window['Metro'] = Metro;
+Metro.locales = {};
+
+window.Metro = Metro;
 
 $(window).on(Metro.events.resize, function(){
     window.METRO_MEDIA = [];

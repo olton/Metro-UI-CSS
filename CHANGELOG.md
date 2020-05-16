@@ -40,7 +40,7 @@
 + [x] Select: add using empty value for `option`, issue #1527
 + [x] Action button: fix sub actions position 
 + [x] Additional colors: refactoring
-+ [x] Utils: remove method `random`, to get random value from array or two values, use `$.random(array | a, b)` from `m4q`
++ [x] Utils: remove method `random`, to get random value from an array or two values, use `$.random(array | a, b)` from `m4q`
 + [x] Utils: remove method `uniqueID`, to get unique GUID, use `$.uniqueID(prefix)` from `m4q`
 + [x] Utils: remove method `formData`, to get form data as array, use `$.serializeToArray(form)` from `m4q` and `$.serialize(form)` to get stringify value with `&` divider
 + [x] Utils: remove method `strToArray`, to transform string to array, use String.prototype method `String.prototype.toArray(delimiter, type, format)`
