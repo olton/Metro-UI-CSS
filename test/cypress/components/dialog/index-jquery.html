@@ -49,7 +49,7 @@
 <script src="../../../metro/js/metro.js?ver=@@b-version"></script>
 <script>
     function openDialog(){
-        var dlg = $("#idDialog").data("dialog");
+        var dlg = Metro.getPlugin("#idDialog", "dialog");
         dlg.open();
     }
 

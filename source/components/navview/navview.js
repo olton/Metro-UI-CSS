@@ -9,12 +9,12 @@ var NavigationViewDefaultConfig = {
     onNavViewCreate: Metro.noop
 };
 
-Metro.navigationViewSetup = function (options) {
+Metro.navViewSetup = function (options) {
     NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
 };
 
-if (typeof window["metroNavigationViewSetup"] !== undefined) {
-    Metro.navigationViewSetup(window["metroNavigationSetup"]);
+if (typeof window["metroNavViewSetup"] !== undefined) {
+    Metro.navViewSetup(window["metroNavViewSetup"]);
 }
 
 Component('nav-view', {
@@ -36,7 +36,7 @@ Component('nav-view', {
 
         Metro.checkRuntime(element, this.name);
 
-        this._createView();
+        this._createStructure();
         this._createEvents();
 
         Utils.exec(o.onNavViewCreate, null, element[0]);
@@ -65,11 +65,11 @@ Component('nav-view', {
             elements_height += $(this).outerHeight(true);
         });
         menu.css({
-            height: "calc(100% - "+(elements_height + 20)+"px)"
+            height: "calc(100% - "+(elements_height)+"px)"
         });
     },
 
-    _createView: function(){
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
 

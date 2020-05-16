@@ -4,7 +4,7 @@ var DropdownDefaultConfig = {
     dropFilter: null,
     toggleElement: null,
     noClose: false,
-    duration: 100,
+    duration: 50,
     onDrop: Metro.noop,
     onUp: Metro.noop,
     onDropdownCreate: Metro.noop

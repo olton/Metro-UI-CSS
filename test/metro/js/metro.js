@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/05/2020 12:17:47
+ * Built at 16/05/2020 22:34:12
  * Licensed under MIT
  */
 
@@ -274,7 +274,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2635,7 +2635,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4348,7 +4348,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "14/05/2020 12:17:55",
+    compileTime: "16/05/2020 22:34:13",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4598,7 +4598,7 @@ var Metro = {
                     }
 
                 } else  {
-                    //
+                    //console.log(mutation);
                 }
             });
         };
@@ -4705,18 +4705,18 @@ var Metro = {
     plugin: function(name, object){
         var _name = normalizeComponentName(name);
 
-        $.fn[_name] = function( options ) {
-            return this.each(function() {
-                $.data( this, _name, Object.create(object).init(options, this ));
-            });
-        };
-
-        if (window.METRO_JQUERY && window.jquery_present) {
-            jQuery.fn[_name] = function (options) {
-                return this.each(function () {
-                    jQuery.data(this, _name, Object.create(object).init(options, this));
+        var register = function($){
+            $.fn[_name] = function( options ) {
+                return this.each(function() {
+                    $.data( this, _name, Object.create(object).init(options, this ));
                 });
             };
+        }
+
+        register(m4q);
+
+        if (window.METRO_JQUERY && window.jquery_present) {
+            register(jQuery);
         }
     },
 
@@ -4725,14 +4725,16 @@ var Metro = {
         var el = $(element);
         var _name = normalizeComponentName(name);
 
-        p = el.data(_name);
+        p = Metro.getPlugin(el, _name);
 
-        if (!Utils.isValue(p)) {
-            throw new Error("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
+        if (typeof p === 'undefined') {
+            console.warn("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
+            return ;
         }
 
-        if (!Utils.isFunc(p['destroy'])) {
-            throw new Error("Component "+name+" can not be destroyed: method destroy not found.");
+        if (typeof p['destroy'] !== 'function') {
+            console.warn("Component "+name+" can not be destroyed: method destroy not found.");
+            return ;
         }
 
         p['destroy']();
@@ -4877,9 +4879,11 @@ var Component = function(nameName, compObj){
     return component;
 }
 
-Metro['locales'] = {};
+Metro.Component = Component;
 
-window['Metro'] = Metro;
+Metro.locales = {};
+
+window.Metro = Metro;
 
 $(window).on(Metro.events.resize, function(){
     window.METRO_MEDIA = [];
@@ -15254,7 +15258,7 @@ var DropdownDefaultConfig = {
     dropFilter: null,
     toggleElement: null,
     noClose: false,
-    duration: 100,
+    duration: 50,
     onDrop: Metro.noop,
     onUp: Metro.noop,
     onDropdownCreate: Metro.noop
@@ -19579,12 +19583,12 @@ var NavigationViewDefaultConfig = {
     onNavViewCreate: Metro.noop
 };
 
-Metro.navigationViewSetup = function (options) {
+Metro.navViewSetup = function (options) {
     NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
 };
 
-if (typeof window["metroNavigationViewSetup"] !== undefined) {
-    Metro.navigationViewSetup(window["metroNavigationSetup"]);
+if (typeof window["metroNavViewSetup"] !== undefined) {
+    Metro.navViewSetup(window["metroNavViewSetup"]);
 }
 
 Component('nav-view', {
@@ -19606,7 +19610,7 @@ Component('nav-view', {
 
         Metro.checkRuntime(element, this.name);
 
-        this._createView();
+        this._createStructure();
         this._createEvents();
 
         Utils.exec(o.onNavViewCreate, null, element[0]);
@@ -19635,11 +19639,11 @@ Component('nav-view', {
             elements_height += $(this).outerHeight(true);
         });
         menu.css({
-            height: "calc(100% - "+(elements_height + 20)+"px)"
+            height: "calc(100% - "+(elements_height)+"px)"
         });
     },
 
-    _createView: function(){
+    _createStructure: function(){
         var that = this, element = this.element, o = this.options;
         var pane, content, toggle;
 
