@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/05/2020 19:31:14
+ * Built at 17/05/2020 19:34:36
  * Licensed under MIT
  */
 
@@ -4362,7 +4362,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "17/05/2020 19:31:22",
+    compileTime: "17/05/2020 19:34:44",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
