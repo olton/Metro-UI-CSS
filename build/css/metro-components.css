@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 16/05/2020 22:34:00
+ * Built at 17/05/2020 11:15:20
  * Licensed under MIT
  */
 .accordion {
@@ -8402,6 +8402,9 @@ input.input-small:-ms-input-placeholder {
   -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
 }
+.navview .navview-pane.open .navview-menu-container {
+  overflow-y: auto!important;
+}
 .navview .navview-content {
   position: relative;
 }
@@ -8428,16 +8431,24 @@ input.input-small:-ms-input-placeholder {
   height: 40px;
   display: none;
 }
+.navview .navview-container,
+.navview .navview-menu-container {
+  display: block;
+  position: relative;
+  width: auto;
+  background-color: inherit;
+}
+.navview .navview-menu-container {
+  z-index: -1;
+}
 .navview .navview-menu {
   display: block;
   position: relative;
   list-style: none inside;
-  margin: 0;
+  margin: 0 0 20px 0;
   padding: 0;
   width: 100%;
   background-color: #e5e5e5;
-  overflow-x: visible;
-  overflow-y: scroll;
 }
 .navview .navview-menu li {
   display: block;
@@ -8612,6 +8623,9 @@ input.input-small:-ms-input-placeholder {
 .navview.expanded .navview-pane .holder {
   display: none!important;
 }
+.navview.expanded .navview-pane .navview-menu-container {
+  overflow-y: auto;
+}
 .navview.expanded .badges {
   display: -webkit-box!important;
   display: -ms-flexbox!important;
@@ -8634,6 +8648,9 @@ input.input-small:-ms-input-placeholder {
 }
 .navview.compacted .navview-pane .holder {
   display: block!important;
+}
+.navview.compacted .navview-pane .navview-menu-container {
+  overflow-y: initial!important;
 }
 .navview.compacted .navview-content {
   margin-left: 48px !important;
@@ -8664,6 +8681,9 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-compact-fs .navview-pane .holder {
     display: block;
   }
+  .navview.navview-compact-fs .navview-pane .navview-menu-container {
+    overflow-y: initial;
+  }
   .navview.navview-compact-fs .navview-content {
     margin-left: 48px;
   }
@@ -8687,6 +8707,9 @@ input.input-small:-ms-input-placeholder {
   }
   .navview.navview-expand-fs .navview-pane .holder {
     display: none;
+  }
+  .navview.navview-expand-fs .navview-pane .navview-menu-container {
+    overflow-y: auto;
   }
   .navview.navview-expand-fs .navview-content {
     margin-left: 280px;
@@ -8722,6 +8745,9 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-compact-sm .navview-pane .holder {
     display: block;
   }
+  .navview.navview-compact-sm .navview-pane .navview-menu-container {
+    overflow-y: initial;
+  }
   .navview.navview-compact-sm .navview-content {
     margin-left: 48px;
   }
@@ -8745,6 +8771,9 @@ input.input-small:-ms-input-placeholder {
   }
   .navview.navview-expand-sm .navview-pane .holder {
     display: none;
+  }
+  .navview.navview-expand-sm .navview-pane .navview-menu-container {
+    overflow-y: auto;
   }
   .navview.navview-expand-sm .navview-content {
     margin-left: 280px;
@@ -8780,6 +8809,9 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-compact-md .navview-pane .holder {
     display: block;
   }
+  .navview.navview-compact-md .navview-pane .navview-menu-container {
+    overflow-y: initial;
+  }
   .navview.navview-compact-md .navview-content {
     margin-left: 48px;
   }
@@ -8803,6 +8835,9 @@ input.input-small:-ms-input-placeholder {
   }
   .navview.navview-expand-md .navview-pane .holder {
     display: none;
+  }
+  .navview.navview-expand-md .navview-pane .navview-menu-container {
+    overflow-y: auto;
   }
   .navview.navview-expand-md .navview-content {
     margin-left: 280px;
@@ -8838,6 +8873,9 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-compact-lg .navview-pane .holder {
     display: block;
   }
+  .navview.navview-compact-lg .navview-pane .navview-menu-container {
+    overflow-y: initial;
+  }
   .navview.navview-compact-lg .navview-content {
     margin-left: 48px;
   }
@@ -8861,6 +8899,9 @@ input.input-small:-ms-input-placeholder {
   }
   .navview.navview-expand-lg .navview-pane .holder {
     display: none;
+  }
+  .navview.navview-expand-lg .navview-pane .navview-menu-container {
+    overflow-y: auto;
   }
   .navview.navview-expand-lg .navview-content {
     margin-left: 280px;
@@ -8896,6 +8937,9 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-compact-xl .navview-pane .holder {
     display: block;
   }
+  .navview.navview-compact-xl .navview-pane .navview-menu-container {
+    overflow-y: initial;
+  }
   .navview.navview-compact-xl .navview-content {
     margin-left: 48px;
   }
@@ -8919,6 +8963,9 @@ input.input-small:-ms-input-placeholder {
   }
   .navview.navview-expand-xl .navview-pane .holder {
     display: none;
+  }
+  .navview.navview-expand-xl .navview-pane .navview-menu-container {
+    overflow-y: auto;
   }
   .navview.navview-expand-xl .navview-content {
     margin-left: 280px;
@@ -8954,6 +9001,9 @@ input.input-small:-ms-input-placeholder {
   .navview.navview-compact-xxl .navview-pane .holder {
     display: block;
   }
+  .navview.navview-compact-xxl .navview-pane .navview-menu-container {
+    overflow-y: initial;
+  }
   .navview.navview-compact-xxl .navview-content {
     margin-left: 48px;
   }
@@ -8977,6 +9027,9 @@ input.input-small:-ms-input-placeholder {
   }
   .navview.navview-expand-xxl .navview-pane .holder {
     display: none;
+  }
+  .navview.navview-expand-xxl .navview-pane .navview-menu-container {
+    overflow-y: auto;
   }
   .navview.navview-expand-xxl .navview-content {
     margin-left: 280px;

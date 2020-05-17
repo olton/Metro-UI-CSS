@@ -25,6 +25,8 @@ Component('nav-view', {
         this.content = null;
         this.paneToggle = null;
         this.id = Utils.elementId("navview");
+        this.menuScrollDistance = 0;
+        this.menuScrollStep = 0;
 
         Metro.createExec(this);
 
@@ -52,7 +54,7 @@ Component('nav-view', {
             return;
         }
 
-        menu = pane.children(".navview-menu");
+        menu = pane.children(".navview-menu-container");
 
         if (menu.length === 0) {
             return ;
@@ -71,7 +73,8 @@ Component('nav-view', {
 
     _createStructure: function(){
         var that = this, element = this.element, o = this.options;
-        var pane, content, toggle;
+        var pane, content, toggle, menu, menu_container, menu_h, menu_container_h;
+        var other_pane_container, prev;
 
         element
             .addClass("navview")
@@ -81,8 +84,28 @@ Component('nav-view', {
         pane = element.children(".navview-pane");
         content = element.children(".navview-content");
         toggle = $(o.toggle);
+        menu = pane.children(".navview-menu");
+
+        if (menu.length) {
+            prev = menu.prevAll();
+            other_pane_container = $("<div>").addClass("navview-container");
+            other_pane_container.append(prev.reverse());
+            pane.prepend(other_pane_container);
+
+            menu_container = $("<div>").addClass("navview-menu-container").insertBefore(menu);
+            menu.appendTo(menu_container);
+        }
 
         this._calcMenuHeight();
+
+        if (menu.length) {
+            setTimeout(function(){
+                menu_h = menu.height();
+                menu_container_h = menu_container.height();
+                that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
+                that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
+            }, 0)
+        }
 
         this.pane = pane.length > 0 ? pane : null;
         this.content = content.length > 0 ? content : null;
@@ -99,6 +122,28 @@ Component('nav-view', {
 
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
+        var menu_container = element.find(".navview-menu-container");
+        var menu = menu_container.children(".navview-menu");
+
+        if (menu_container.length) {
+            menu_container.on("mousewheel", function(e){
+                var dir = e.deltaY > 0 ? -1 : 1;
+                var step = that.menuScrollStep;
+                var top = parseInt(menu.css('top'));
+
+                if (!element.hasClass("compacted")) {
+                    return false;
+                }
+
+                if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
+                    menu.css('top', parseInt(menu.css('top')) + step * dir);
+                }
+
+                if(dir === 1 && top <= -step) {
+                    menu.css('top', parseInt(menu.css('top')) + step * dir);
+                }
+            });
+        }
 
         element.on(Metro.events.click, ".pull-button, .holder", function(){
             that.pullClick(this);
@@ -125,6 +170,7 @@ Component('nav-view', {
         }
 
         $(window).on(Metro.events.resize, function(){
+            var menu_h, menu_container_h, menu_container = element.children(".navview-menu-container"), menu;
 
             element.removeClass("expanded");
             that.pane.removeClass("open");
@@ -133,7 +179,19 @@ Component('nav-view', {
                 element.removeClass("compacted");
             }
 
-            that._calcMenuHeight();
+            if (menu_container.length) {
+
+                that._calcMenuHeight();
+
+                menu = menu_container.children(".navview-menu");
+
+                setTimeout(function () {
+                    menu_h = menu.height();
+                    menu_container_h = menu_container.height();
+                    that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
+                    that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
+                }, 0);
+            }
 
             element.removeClass("js-compact");
 

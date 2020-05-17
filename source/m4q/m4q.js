@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.6. Built at 13/05/2020 18:32:19";
+var m4qVersion = "v1.0.6. Built at 17/05/2020 10:25:07";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -595,7 +595,8 @@ $.fn = $.prototype = {
     push: [].push,
     sort: [].sort,
     splice: [].splice,
-    indexOf: [].indexOf
+    indexOf: [].indexOf,
+    reverse: [].reverse
 };
 
 $.extend = $.fn.extend = function(){
@@ -2311,6 +2312,19 @@ $.fn.extend({
 
     cls: function(array){
         return this.length === 0 ? undefined : array ? this[0].className.split(" ") : this[0].className;
+    },
+
+    removeClassBy: function(mask){
+        return this.each(function(){
+            var el = $(this);
+            var classes = el.cls(true);
+            $.each(classes, function(){
+                var elClass = this;
+                if (elClass.indexOf(mask) > -1) {
+                    el.removeClass(elClass);
+                }
+            });
+        });
     }
 });
 

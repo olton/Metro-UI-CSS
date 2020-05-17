@@ -42,6 +42,9 @@
 
         &.open {
             .translate3d(0);
+            .navview-menu-container {
+                overflow-y: auto!important;
+            }
         }
     }
 
@@ -69,16 +72,25 @@
         display: none;
     }
 
+    .navview-container, .navview-menu-container {
+        display: block;
+        position: relative;
+        width: auto;
+        background-color: inherit;
+    }
+
+    .navview-menu-container {
+        z-index: -1;
+    }
+
     .navview-menu {
         display: block;
         position: relative;
         list-style: none inside;
-        margin: 0;
+        margin: 0 0 20px 0;
         padding: 0;
         width: 100%;
         background-color: @navviewPaneBackground;
-        overflow-x: visible;
-        overflow-y: scroll;
 
         li {
             display: block;
@@ -271,6 +283,10 @@
             .holder {
                 display: none!important;
             }
+
+            .navview-menu-container {
+                overflow-y: auto;
+            }
         }
         .badges {
             display: flex!important;
@@ -299,6 +315,11 @@
             .holder {
                 display: block!important;
             }
+
+            .navview-menu-container {
+                overflow-y: initial!important;
+            }
+
         }
         .navview-content {
             margin-left: @navviewPaneWidthCompact!important;
@@ -327,6 +348,11 @@
         .holder {
             display: block;
         }
+
+        .navview-menu-container {
+            overflow-y: initial;
+        }
+
     }
     .navview-content {
         margin-left: @navviewPaneWidthCompact;
@@ -354,6 +380,10 @@
         .holder {
             display: none;
         }
+
+        .navview-menu-container {
+            overflow-y: auto;
+        }
     }
     .navview-content {
         margin-left: @navviewPaneWidth;
@@ -366,35 +396,24 @@
     }
 }
 
-.generate-navview-media-options(@mediaBreakpointListMobileLength);
-.generate-navview-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
-    @media screen and (min-width: @@m) {
-
-        .navview-margin-@{m} {margin-left: @navviewPaneWidth;}
-        .navview-margin-compact-@{m} {margin-left: @navviewPaneWidthCompact;}
+each(@mediaBreakpointListMobile, {
+    @media screen and (min-width: @@value) {
+        .navview-margin-@{value} {margin-left: @navviewPaneWidth;}
+        .navview-margin-compact-@{value} {margin-left: @navviewPaneWidthCompact;}
 
         .navview {
-            &.navview-compact-@{m} {
+            &.navview-compact-@{value} {
                 .navview-compact();
             }
-            &.navview-expand-@{m} {
+            &.navview-expand-@{value} {
                 .navview-expanded();
             }
         }
     }
-
-    .generate-navview-media-options(@name, @i + 1);
-}
+})
 
 .navview {
     &.compacted, &.js-compact:not(.expanded) {
-
-        .navview-pane > .navview-menu {
-            //overflow: visible;
-        }
-
         .navview-menu .navview-menu {
             position: absolute;
             left: 100%;
