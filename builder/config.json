@@ -10,8 +10,7 @@
         "animations-css": ["Animation CSS", "animations"],
         "common-js": ["Common JS", "common/js"],
         "i18n": ["i18n", "i18n"],
-        "components": ["Components", "components"],
-        "icons": ["Metro icons", "icons"]
+        "components": ["Components", "components"]
     },
 
     "common-css": {
@@ -133,6 +132,10 @@
         "opacity": {
             "name": "Opacity",
             "less": ["opacity"]
+        },
+        "fill": {
+            "name": "Fill",
+            "less": ["fill"]
         }
     },
 
