@@ -54,6 +54,7 @@
 + [x] Metro icon font: add 65 new icons `cross-light`, `document-file-*` (64)
 + [x] Select: improved performance for creating options, issue #1534
 + [x] Select: remove dependency from `d-menu`
++ [x] Navview: add scrollable to `navview-menu` in `compacted` mode
 
 ### 4.3.6
 ##### M4Q
