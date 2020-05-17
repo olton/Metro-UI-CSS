@@ -70,7 +70,10 @@ module.exports = function(grunt) {
         },
 
         eslint: {
-            target: ['source/**/*.js']
+            target: ['source/**/*.js'],
+            rules: {
+                "no-unused-vars": 1
+            }
         },
 
         concat: {
