@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.6. Built at 17/05/2020 10:25:07";
+var m4qVersion = "v1.0.6. Built at 17/05/2020 19:27:22";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
