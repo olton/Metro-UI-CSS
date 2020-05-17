@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.7  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/05/2020 11:15:30
+ * Built at 17/05/2020 11:17:47
  * Licensed under MIT
  */
 
@@ -274,7 +274,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2649,7 +2649,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4362,7 +4362,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.7",
-    compileTime: "17/05/2020 11:15:31",
+    compileTime: "17/05/2020 11:17:55",
     buildNumber: "745",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4612,7 +4612,7 @@ var Metro = {
                     }
 
                 } else  {
-                    //console.log(mutation);
+                    //
                 }
             });
         };
