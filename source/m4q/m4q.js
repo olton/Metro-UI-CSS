@@ -3047,7 +3047,7 @@ function _setStyle (el, key, val, unit, toInt) {
         if (typeof el[key] !== "undefined") {
             el[key] = val;
         } else {
-            el.style[key] = key === "transform" || key.toLowerCase().includes('color') ? val : val + unit;
+            el.style[key] = key === "transform" || key.toLowerCase().indexOf('color') > -1 ? val : val + unit;
         }
     } else {
         el[key] = val;
