@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/05/2020 11:12:50
+ * Built at 21/05/2020 19:12:06
  * Licensed under MIT
  */
 
@@ -274,7 +274,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2649,7 +2649,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4362,7 +4362,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "21/05/2020 11:12:51",
+    compileTime: "21/05/2020 19:12:14",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4612,7 +4612,7 @@ var Metro = {
                     }
 
                 } else  {
-                    //console.log(mutation);
+                    //
                 }
             });
         };
@@ -31019,6 +31019,7 @@ var ValidatorFuncs = {
         var input = $(el);
         var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
         var errors = [];
+        var hasForm = input.closest('form').length > 0;
 
         if (funcs.length === 0) {
             return true;
@@ -31061,7 +31062,7 @@ var ValidatorFuncs = {
                 a = rule.join("=");
 
                 if (['compare', 'equals', 'notequals'].indexOf(f) > -1) {
-                    a = input[0].form.elements[a].value;
+                    a = hasForm ? input[0].form.elements[a].value : $("[name="+a+"]").val();
                 }
 
                 if (f === 'date') {

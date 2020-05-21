@@ -145,12 +145,22 @@ module.exports = function(grunt) {
                 paths: "source/",
                 strictMath: false,
                 sourceMap: false,
-                banner: '<%= copyright %>'
+                banner: '<%= copyright %>',
+                ieCompat: false,
+                optimization: 2
             },
             src: {
                 expand: true,
                 cwd: "source/",
-                src: [
+                src: develop
+                    ? [
+                        "metro.less",
+                        "metro-rtl.less",
+                        "metro-colors.less",
+                        "metro-animations.less",
+                        "metro-icons.less"
+                    ]
+                    :[
                     "metro.less",
                     "metro-reset.less",
                     "metro-common.less",
@@ -260,7 +270,6 @@ module.exports = function(grunt) {
 
         concurrent: {
             options: {
-                limit: 8
             },
             clean: ['clean'],
             compile_less: ['less:src', 'less:schemes'],
