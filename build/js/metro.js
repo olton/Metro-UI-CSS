@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/05/2020 19:58:56
+ * Built at 21/05/2020 11:17:20
  * Licensed under MIT
  */
 
@@ -581,7 +581,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.6. Built at 17/05/2020 19:27:22";
+var m4qVersion = "v1.0.7. Built at 21/05/2020 11:10:58";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -3058,7 +3058,7 @@ function _setStyle (el, key, val, unit, toInt) {
         if (typeof el[key] !== "undefined") {
             el[key] = val;
         } else {
-            el.style[key] = key === "transform" || key.toLowerCase().includes('color') ? val : val + unit;
+            el.style[key] = key === "transform" || key.toLowerCase().indexOf('color') > -1 ? val : val + unit;
         }
     } else {
         el[key] = val;
@@ -4361,9 +4361,9 @@ var normalizeComponentName = function(name){
 
 var Metro = {
 
-    version: "4.3.8",
-    compileTime: "17/05/2020 19:59:04",
-    buildNumber: "746",
+    version: "4.3.8-dev 21/05/2020 11:17",
+    compileTime: "@@compile",
+    buildNumber: "@@build",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
     sheet: null,
