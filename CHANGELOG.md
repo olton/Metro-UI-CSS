@@ -1,4 +1,10 @@
 ### 4.3.8
+#### M4Q
++ [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
+
+#### Metro 4
++ [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
+
 
 ### 4.3.7
 #### M4Q

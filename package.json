@@ -40,8 +40,8 @@
     "last 3 versions"
   ],
   "devDependencies": {
-    "autoprefixer": "^9.7.6",
-    "cypress": "^4.5.0",
+    "autoprefixer": "^9.8.0",
+    "cypress": "^4.6.0",
     "eslint": "^7.0.0",
     "grunt": "^1.1.0",
     "grunt-build-number": "^1.0.0",
@@ -55,7 +55,7 @@
     "grunt-contrib-less": "^2.0.0",
     "grunt-contrib-uglify": "^4.0.1",
     "grunt-contrib-watch": "^1.1.0",
-    "grunt-eslint": "^22.0.0",
+    "grunt-eslint": "^23.0.0",
     "grunt-ftp-push": "^1.2.1",
     "grunt-postcss": "^0.9.0",
     "grunt-remove-logging": "^0.2.0",

@@ -178,6 +178,7 @@ var ValidatorFuncs = {
         var input = $(el);
         var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
         var errors = [];
+        var hasForm = input.closest('form').length > 0;
 
         if (funcs.length === 0) {
             return true;
@@ -220,7 +221,7 @@ var ValidatorFuncs = {
                 a = rule.join("=");
 
                 if (['compare', 'equals', 'notequals'].indexOf(f) > -1) {
-                    a = input[0].form.elements[a].value;
+                    a = hasForm ? input[0].form.elements[a].value : $("[name="+a+"]").val();
                 }
 
                 if (f === 'date') {
