@@ -224,7 +224,7 @@
         "accordion": {
             "name": "Accordion",
             "js": ["accordion"],
-            "less": ["accordion", "accordion-rtl"]
+            "less": ["accordion"]
         },
         "action-button": {
             "name": "Action button",
@@ -454,7 +454,7 @@
         },
         "form": {
             "name": "Form",
-            "less": ["form", "form-rtl"]
+            "less": ["form"]
         },
         "gravatar": {
             "name": "Gravatar",

@@ -80,3 +80,20 @@
 .file-button {
     text-align: center;
 }
+
+.file {
+    &[dir=rtl], &.rtl {
+        .append {order: 1}
+        .prepend {order: 4}
+        .caption {
+            order: 3;
+            text-align: right;
+        }
+
+        button {
+            order: 2;
+            margin-left: 0;
+            margin-right: auto;
+        }
+    }
+}

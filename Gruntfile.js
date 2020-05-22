@@ -107,7 +107,6 @@ module.exports = function(grunt) {
                     'build/css/metro.css',
                     'build/css/metro-animations.css',
                     'build/css/metro-colors.css',
-                    'build/css/metro-rtl.css',
                     'build/css/metro-icons.css'
                 ],
                 dest: 'build/css/metro-all.css'
@@ -155,7 +154,6 @@ module.exports = function(grunt) {
                 src: develop
                     ? [
                         "metro.less",
-                        "metro-rtl.less",
                         "metro-colors.less",
                         "metro-animations.less",
                         "metro-icons.less"
@@ -165,7 +163,6 @@ module.exports = function(grunt) {
                     "metro-reset.less",
                     "metro-common.less",
                     "metro-components.less",
-                    "metro-rtl.less",
                     "metro-colors.less",
                     "metro-animations.less",
                     "metro-icons.less"

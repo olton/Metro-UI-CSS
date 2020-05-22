@@ -1,9 +1,11 @@
 ### 4.3.8
 #### M4Q
 + [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
++ [x] Animation: add operator `/` to `_getRelativeValue()`.
 
 #### Metro 4
 + [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
++ [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. Styles moved to component style.
 
 
 ### 4.3.7
