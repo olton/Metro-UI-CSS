@@ -226,3 +226,26 @@ input.input-small[placeholder]          {font-size: .8rem;}
 input.input-small::-moz-placeholder     {font-size: .8rem;}
 input.input-small:-moz-placeholder      {font-size: .8rem;}
 input.input-small:-ms-input-placeholder {font-size: .8rem;}
+
+.input {
+    &[dir=rtl], &.rtl {
+        input {
+            order: 3;
+            direction: rtl;
+        }
+
+        .button-group {
+            order: 2;
+        }
+
+        .prepend {
+            order: 4;
+        }
+
+        .append {
+            order: 1;
+        }
+
+        flex-flow: row-reverse nowrap;
+    }
+}

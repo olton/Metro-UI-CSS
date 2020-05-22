@@ -70,3 +70,24 @@ textarea {
         padding-right: 48px;
     }
 }
+
+.textarea {
+    &[dir=rtl], &.rtl {
+
+        flex-direction: row-reverse;
+
+        .prepend {order: 3;}
+        .append {order: 1;}
+        textarea {order: 2;}
+
+        .input-clear-button {
+            right: auto;
+            left: .25rem;
+        }
+
+        .input-clear-button ~ textarea {
+            padding-left: 48px;
+            padding-right: .75rem;
+        }
+    }
+}
