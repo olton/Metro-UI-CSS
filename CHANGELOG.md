@@ -6,6 +6,7 @@
 #### Metro 4
 + [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
 + [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. Styles moved to component style.
++ [x] Locales: added `pt-BR` Brazilian Portuguese language
 
 
 ### 4.3.7
