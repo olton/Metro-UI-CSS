@@ -224,7 +224,7 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'build',
                 src: '**/*',
-                dest: 'test/metro'
+                dest: 'tests/metro'
             }
         },
 

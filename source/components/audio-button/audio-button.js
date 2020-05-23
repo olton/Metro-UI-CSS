@@ -1,5 +1,6 @@
 /* global Metro, Utils, Component */
 var AudioButtonDefaultConfig = {
+    audioVolume: 0.5,
     audioSrc: "",
     onAudioStart: Metro.noop,
     onAudioEnd: Metro.noop,
@@ -29,20 +30,22 @@ Component('audio-button', {
     },
 
     _create: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAudioButtonCreate, [element], element[0]);
-        element.fire('audiobuttoncreate');
+        this._fireEvent('audioButtonCreate', {
+            element: element
+        });
     },
 
     _createStructure: function(){
         var o = this.options;
         this.audio = new Audio(o.audioSrc);
+        this.audio.volume = o.audioVolume;
     },
 
     _createEvents: function(){
@@ -54,25 +57,49 @@ Component('audio-button', {
         });
 
         audio.addEventListener('ended', function(){
-            Utils.exec(o.onAudioEnd, [o.audioSrc, audio], element[0]);
-            element.fire("audioend", {
+            that._fireEvent("audioEnd", {
                 src: o.audioSrc,
                 audio: audio
             });
         })
 
         element.on(Metro.events.click, function(){
-            if (o.audioSrc !== "" && that.audio.duration && that.canPlay) {
-                Utils.exec(o.onAudioStart, [o.audioSrc, audio], element[0]);
-                element.fire("audiostart", {
-                    src: o.audioSrc,
-                    audio: audio
-                });
-                audio.pause();
-                audio.currentTime = 0;
-                audio.play();
-            }
+            that.play();
         }, {ns: this.id});
+    },
+
+    play: function(cb){
+        var element = this.element, o = this.options;
+        var audio = this.audio;
+
+        if (o.audioSrc !== "" && this.audio.duration && this.canPlay) {
+
+            this._fireEvent("audioStart", {
+                src: o.audioSrc,
+                audio: audio
+            });
+
+            audio.pause();
+            audio.currentTime = 0;
+            audio.play();
+
+            Utils.exec(cb, [audio], element[0]);
+        }
+    },
+
+    stop: function(cb){
+        var element = this.element, o = this.options;
+        var audio = this.audio;
+
+        audio.pause();
+        audio.currentTime = 0;
+
+        this._fireEvent("audioEnd", {
+            src: o.audioSrc,
+            audio: audio
+        });
+
+        Utils.exec(cb, [audio], element[0]);
     },
 
     changeAttribute: function(attributeName){
@@ -87,8 +114,21 @@ Component('audio-button', {
             }
         }
 
+        var changeVolume = function(){
+            var volume = parseFloat(element.attr('data-audio-volume'));
+            if (isNaN(volume)) {
+                return ;
+            }
+            o.audioVolume = volume;
+            audio.volume = volume;
+        }
+
         if (attributeName === 'data-audio-src') {
             changeSrc();
+        }
+
+        if (attributeName === 'data-audio-volume') {
+            changeVolume();
         }
     },
 
@@ -99,14 +139,26 @@ Component('audio-button', {
     }
 });
 
-Metro["playSound"] = function(src, cb){
-    var audio = new Audio(src);
+Metro["playSound"] = function(data){
+    var audio;
+    var src = typeof data === "string" ? data : data.audioSrc;
+    var volume = data && data.audioVolume ? data.audioVolume : 0.5;
+
+    if (!src) {
+        return;
+    }
+
+    audio = new Audio(src);
+    audio.volume = parseFloat(volume);
 
     audio.addEventListener('loadeddata', function(){
-        audio.play();
+        if (data && data.onAudioStart)
+            Utils.exec(data.onAudioStart, [src], this);
+        this.play();
     });
 
     audio.addEventListener('ended', function(){
-        Utils.exec(cb, [src], null);
-    })
+        if (data && data.onAudioEnd)
+            Utils.exec(data.onAudioEnd, [null], this);
+    });
 }

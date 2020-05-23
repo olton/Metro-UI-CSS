@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test App bar - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Audio-button test page</h1>
+
+    <button id="b1" class="button cycle large bg-green fg-white" data-role="audio-button" data-audio-src="../data/modem.mp3" data-audio-volume=".1">
+        <span class="mif-play"></span>
+    </button>
+
+    <button id="b2" class="button cycle large bg-orange fg-white">
+        <span class="mif-checkmark"></span>
+    </button>
+
+    <button id="b3" class="button cycle large bg-cyan fg-white">
+        <span class="mif-library"></span>
+    </button>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $("#b1")
+        .on("audio-start", function(e){
+            $(this)
+                .removeClassBy("bg-")
+                .addClass("bg-red")
+                .children("span")
+                .removeClassBy("mif-")
+                .addClass("mif-pause");
+        })
+        .on("audio-end", function(){
+            $(this)
+                .removeClassBy("bg-")
+                .addClass("bg-green")
+                .children("span")
+                .removeClassBy("mif-")
+                .addClass("mif-play");
+        });
+
+    $("#b2").on("click", function(){
+        Metro.getPlugin("#b1", "audio-button").play();
+    })
+
+    $("#b3").on("click", function(){
+        Metro.playSound("../data/modem.mp3");
+    })
+</script>
+</body>
+</html>
