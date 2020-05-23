@@ -34,15 +34,16 @@ Component('accordion', {
     },
 
     _create: function(){
-        var element = this.element, o = this.options;
+        var element = this.element;
 
         Metro.checkRuntime(element, this.name);
 
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAccordionCreate, [element], element[0]);
-        element.fire("accordioncreate");
+        this._fireEvent('accordionCreate', {
+            element: element
+        });
     },
 
     _createStructure: function(){
@@ -121,9 +122,7 @@ Component('accordion', {
         frame.children(".heading").addClass(o.activeHeadingClass);
         frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
-        Utils.exec(o.onFrameOpen, [frame[0]], element[0]);
-
-        element.fire("frameopen", {
+        this._fireEvent("frameOpen", {
             frame: frame[0]
         });
     },
@@ -144,9 +143,7 @@ Component('accordion', {
         frame.children(".heading").removeClass(o.activeHeadingClass);
         frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
 
-        Utils.exec(o.onFrameClose, [frame[0]], element[0]);
-
-        element.fire("frameclose", {
+        this._fireEvent("frameClose", {
             frame: frame[0]
         });
     },
@@ -167,7 +164,6 @@ Component('accordion', {
 
         $.each(frames, function(){
             $(this).children(".content").hide();
-            // $(this).children(".content").css("display", "none");
         });
     },
 
