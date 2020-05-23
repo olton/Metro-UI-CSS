@@ -35,7 +35,7 @@ Component('image-compare', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageCompareCreate, null, element[0]);
+        Utils.exec(o.onImageCompareCreate, [element], element[0]);
         element.fire("imagecomparecreate");
     },
 

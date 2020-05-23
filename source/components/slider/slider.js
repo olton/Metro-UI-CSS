@@ -75,7 +75,7 @@ Component('slider', {
         this.buff(o.buffer);
         this.val(o.value);
 
-        Utils.exec(o.onSliderCreate, null, element[0]);
+        Utils.exec(o.onSliderCreate, [element], element[0]);
         element.fire("slidercreate");
     },
 

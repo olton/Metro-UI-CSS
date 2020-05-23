@@ -84,7 +84,7 @@ Component('rating', {
         this._createRating();
         this._createEvents();
 
-        Utils.exec(o.onRatingCreate, null, element[0]);
+        Utils.exec(o.onRatingCreate, [element], element[0]);
         element.fire("ratingcreate");
     },
 

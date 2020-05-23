@@ -145,7 +145,7 @@ Component('list', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onListCreate, null, element[0]);
+        Utils.exec(o.onListCreate, [element], element[0]);
         element.fire("listcreate");
     },
 

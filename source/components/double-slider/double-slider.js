@@ -76,7 +76,7 @@ Component('double-slider', {
 
         this.val(this.valueMin, this.valueMax);
 
-        Utils.exec(o.onDoubleSliderCreate, null, element[0]);
+        Utils.exec(o.onDoubleSliderCreate, [element], element[0]);
         element.fire("doubleslidercreate");
     },
 

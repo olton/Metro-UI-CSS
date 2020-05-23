@@ -43,7 +43,7 @@ Component('draggable', {
         Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
-        Utils.exec(this.options.onDraggableCreate, [this.element]);
+        Utils.exec(this.options.onDraggableCreate, [this.element], this.elem);
         this.element.fire("draggablecreate");
     },
 

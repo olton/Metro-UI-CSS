@@ -368,7 +368,7 @@ Component('validator', {
             return that._reset();
         };
 
-        Utils.exec(o.onValidatorCreate, null, element[0]);
+        Utils.exec(o.onValidatorCreate, [element], element[0]);
         element.fire("validatorcreate");
     },
 

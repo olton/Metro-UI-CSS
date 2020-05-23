@@ -71,7 +71,7 @@ Component('activity', {
             default: _ring();
         }
 
-        Utils.exec(this.options.onActivityCreate, [this.element]);
+        Utils.exec(this.options.onActivityCreate, [element], element[0]);
         element.fire("activitycreate");
     },
 

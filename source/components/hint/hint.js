@@ -58,7 +58,7 @@ Component('hint', {
             if (that.hint !== null) that.setPosition();
         }, {ns: this.id});
 
-        Utils.exec(o.onHintCreate, null, element[0]);
+        Utils.exec(o.onHintCreate, [element], element[0]);
         element.fire("hintcreate");
     },
 

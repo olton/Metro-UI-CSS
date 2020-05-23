@@ -46,7 +46,7 @@ Component('tabs', {
         this._createEvents();
         this._open(tab);
 
-        Utils.exec(o.onTabsCreate, null, element[0]);
+        Utils.exec(o.onTabsCreate, [element], element[0]);
         element.fire("tabscreate");
     },
 

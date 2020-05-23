@@ -67,7 +67,7 @@ Component('keypad', {
         this._createKeys();
         this._createEvents();
 
-        Utils.exec(o.onKeypadCreate, null,element[0]);
+        Utils.exec(o.onKeypadCreate, [element],element[0]);
         element.fire("keypadcreate");
     },
 

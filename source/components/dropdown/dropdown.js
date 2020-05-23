@@ -39,7 +39,7 @@ Component('dropdown', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onDropdownCreate, null, element);
+        Utils.exec(o.onDropdownCreate, [element], element[0]);
         element.fire("dropdowncreate");
 
         if (element.hasClass("open")) {

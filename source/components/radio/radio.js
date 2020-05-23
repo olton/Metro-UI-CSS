@@ -39,7 +39,7 @@ Component('radio', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onRadioCreate, null, element[0]);
+        Utils.exec(o.onRadioCreate, [element], element[0]);
         element.fire("radiocreate");
     },
 

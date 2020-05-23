@@ -194,6 +194,10 @@
         "uk-UA": {
             "name": "uk-UA",
             "js": ["uk-UA"]
+        },
+        "pt-BR": {
+            "name": "pt-BR",
+            "js": ["pt-BR"]
         }
     },
 

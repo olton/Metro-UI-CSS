@@ -61,7 +61,7 @@ Component('wizard', {
         this._createWizard();
         this._createEvents();
 
-        Utils.exec(o.onWizardCreate, null, element[0]);
+        Utils.exec(o.onWizardCreate, [element], element[0]);
         element.fire("wizardcreate");
     },
 

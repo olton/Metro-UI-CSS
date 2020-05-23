@@ -7,6 +7,8 @@
 + [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
 + [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. Styles moved to component style.
 + [x] Locales: added `pt-BR` Brazilian Portuguese language
++ [x] Toast: added method `Metro.createToast()`. This eq to `Metro.toast.create()`
++ [x] Components: event `on[Component]Create` now have context a `HTMLElement` and receive `$(HTMLElement)` as argument 
 
 
 ### 4.3.7

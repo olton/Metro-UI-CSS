@@ -45,7 +45,7 @@ Component('drag-items', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onDragItemsCreate, [element]);
+        Utils.exec(o.onDragItemsCreate, [element], element[0]);
         element.fire("dragitemscreate");
     },
 

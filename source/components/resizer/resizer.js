@@ -44,7 +44,8 @@ Component('resizer', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onMyObjectCreate, [element]);
+        Utils.exec(o.onResizerCreate, [element], element[0]);
+        element.fire('resizercreate');
     },
 
     _createStructure: function(){

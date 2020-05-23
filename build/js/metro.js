@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/05/2020 21:40:22
+ * Built at 23/05/2020 12:11:30
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "22/05/2020 21:40:32",
+    compileTime: "23/05/2020 12:11:38",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7962,7 +7962,7 @@ Component('accordion', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAccordionCreate, [element]);
+        Utils.exec(o.onAccordionCreate, [element], element[0]);
         element.fire("accordioncreate");
     },
 
@@ -8185,7 +8185,7 @@ Component('activity', {
             default: _ring();
         }
 
-        Utils.exec(this.options.onActivityCreate, [this.element]);
+        Utils.exec(this.options.onActivityCreate, [element], element[0]);
         element.fire("activitycreate");
     },
 
@@ -8354,7 +8354,7 @@ Component('app-bar', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAppBarCreate, [element]);
+        Utils.exec(o.onAppBarCreate, [element], element[0]);
         element.fire("appbarcreate");
     },
 
@@ -8532,7 +8532,7 @@ Component('audio-button', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAudioButtonCreate, null, element[0]);
+        Utils.exec(o.onAudioButtonCreate, [element], element[0]);
         element.fire('audiobuttoncreate');
     },
 
@@ -9242,7 +9242,7 @@ Component('button-group', {
         this._createGroup();
         this._createEvents();
 
-        Utils.exec(o.onButtonsGroupCreate, [element]);
+        Utils.exec(o.onButtonsGroupCreate, [element], element[0]);
         element.fire("buttongroupcreate");
     },
 
@@ -9488,7 +9488,7 @@ Component('calendar', {
             });
         }
 
-        Utils.exec(this.options.onCalendarCreate, [this.element]);
+        Utils.exec(this.options.onCalendarCreate, [element], element[0]);
         element.fire("calendarcreate");
     },
 
@@ -10873,7 +10873,7 @@ Component('carousel', {
 
         }
 
-        Utils.exec(o.onCarouselCreate, [element]);
+        Utils.exec(o.onCarouselCreate, [element], element[0]);
         element.fire("carouselcreate");
     },
 
@@ -11305,7 +11305,7 @@ Component('charms', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCharmCreate, [element]);
+        Utils.exec(o.onCharmCreate, [element], element[0]);
         element.fire("charmcreate");
     },
 
@@ -11492,7 +11492,7 @@ Component('chat', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onChatCreate, [element]);
+        Utils.exec(o.onChatCreate, [element], element[0]);
         element.fire("chatcreate");
     },
 
@@ -11763,7 +11763,7 @@ Component('checkbox', {
         Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
-        Utils.exec(this.options.onCheckboxCreate, null, this.element[0]);
+        Utils.exec(this.options.onCheckboxCreate, [this.element], this.element[0]);
         this.element.fire("checkboxcreate");
     },
 
@@ -11928,7 +11928,7 @@ Component('clock', {
 
         this._tick();
 
-        Utils.exec(this.options.onClockCreate, [this.element]);
+        Utils.exec(this.options.onClockCreate, [element], element[0]);
         element.fire("clockcreate");
 
         this._clockInterval = setInterval(function(){
@@ -12066,7 +12066,7 @@ Component('collapse', {
 
         this.toggle = toggle;
 
-        Utils.exec(this.options.onCollapseCreate, [this.element]);
+        Utils.exec(this.options.onCollapseCreate, [element], element[0]);
         element.fire("collapsecreate");
     },
 
@@ -13085,7 +13085,7 @@ Component('cube', {
         this._createCube();
         this._createEvents();
 
-        Utils.exec(o.onCubeCreate, [element]);
+        Utils.exec(o.onCubeCreate, [element], element[0]);
         element.fire("cubecreate");
     },
 
@@ -13537,7 +13537,7 @@ Component('date-picker', {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onDatePickerCreate, [element]);
+        Utils.exec(o.onDatePickerCreate, [element], element[0]);
         element.fire("datepickercreate");
     },
 
@@ -14070,7 +14070,7 @@ Component('dialog', {
             that.setPosition();
         }, {ns: this.id});
 
-        Utils.exec(this.options.onDialogCreate, [this.element]);
+        Utils.exec(this.options.onDialogCreate, [element], element[0]);
         element.fire("dialogcreate");
     },
 
@@ -14378,7 +14378,7 @@ Component('donut', {
 
         this.val(o.value);
 
-        Utils.exec(o.onDonutCreate, null, element[0]);
+        Utils.exec(o.onDonutCreate, [element], element[0]);
         element.fire("donutcreate");
     },
 
@@ -14531,7 +14531,7 @@ Component('double-slider', {
 
         this.val(this.valueMin, this.valueMax);
 
-        Utils.exec(o.onDoubleSliderCreate, null, element[0]);
+        Utils.exec(o.onDoubleSliderCreate, [element], element[0]);
         element.fire("doubleslidercreate");
     },
 
@@ -14936,7 +14936,7 @@ Component('drag-items', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onDragItemsCreate, [element]);
+        Utils.exec(o.onDragItemsCreate, [element], element[0]);
         element.fire("dragitemscreate");
     },
 
@@ -15165,7 +15165,7 @@ Component('draggable', {
         Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
-        Utils.exec(this.options.onDraggableCreate, [this.element]);
+        Utils.exec(this.options.onDraggableCreate, [this.element], this.elem);
         this.element.fire("draggablecreate");
     },
 
@@ -15348,7 +15348,7 @@ Component('dropdown', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onDropdownCreate, null, element);
+        Utils.exec(o.onDropdownCreate, [element], element[0]);
         element.fire("dropdowncreate");
 
         if (element.hasClass("open")) {
@@ -15551,10 +15551,14 @@ Component('file', {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
         Metro.checkRuntime(this.element, this.name);
 
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onFileCreate, [element], element[0]);
+        element.fire("filecreate");
     },
 
     _createStructure: function(){
@@ -15608,9 +15612,6 @@ Component('file', {
         } else {
             this.enable();
         }
-
-        Utils.exec(o.onFileCreate, null, element[0]);
-        element.fire("filecreate");
     },
 
     _createEvents: function(){
@@ -15765,14 +15766,22 @@ Component('gravatar', {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         Metro.checkRuntime(this.element, this.name);
+
         this.get();
+
+        Utils.exec(o.onGravatarCreate, [element], element[0]);
+        element.fire("gravatarcreate");
     },
 
-    getImage: function(email, size, def, is_jquery_object){
-        var image = $("<img>");
+    getImage: function(email, size, def, is_object){
+        var image = $("<img>").attr('alt', email);
+
         image.attr("src", this.getImageSrc(email, size));
-        return is_jquery_object === true ? image : image[0];
+
+        return is_object === true ? image : image[0];
     },
 
     getImageSrc: function(email, size, def){
@@ -15789,13 +15798,11 @@ Component('gravatar', {
     get: function(){
         var element = this.element, o = this.options;
         var img = element[0].tagName === 'IMG' ? element : element.find("img");
+
         if (img.length === 0) {
             return;
         }
         img.attr("src", this.getImageSrc(o.email, o.size, o.default));
-
-        Utils.exec(o.onGravatarCreate, null, element[0]);
-        element.fire("gravatarcreate");
 
         return this;
     },
@@ -15882,7 +15889,7 @@ Component('hint', {
             if (that.hint !== null) that.setPosition();
         }, {ns: this.id});
 
-        Utils.exec(o.onHintCreate, null, element[0]);
+        Utils.exec(o.onHintCreate, [element], element[0]);
         element.fire("hintcreate");
     },
 
@@ -16159,7 +16166,7 @@ Component('html-container', {
             this._load();
         }
 
-        Utils.exec(o.onHtmlContainerCreate, null, element[0]);
+        Utils.exec(o.onHtmlContainerCreate, [element], element[0]);
         element.fire("htmlcontainercreate");
     },
 
@@ -16281,7 +16288,7 @@ Component('image-compare', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageCompareCreate, null, element[0]);
+        Utils.exec(o.onImageCompareCreate, [element], element[0]);
         element.fire("imagecomparecreate");
     },
 
@@ -16471,7 +16478,7 @@ Component('image-magnifier', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageMagnifierCreate, null, element[0]);
+        Utils.exec(o.onImageMagnifierCreate, [element], element[0]);
         element.fire("imagemagnifiercreate");
     },
 
@@ -16727,7 +16734,7 @@ Component('info-box', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInfoBoxCreate, null, element[0]);
+        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
         element.fire("infoboxcreate");
     },
 
@@ -17025,7 +17032,7 @@ Component('material-input', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInputCreate, null, element[0]);
+        Utils.exec(o.onInputCreate, [element], element[0]);
         element.fire("inputcreate");
     },
 
@@ -17183,7 +17190,7 @@ Component('input', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInputCreate, null, element[0]);
+        Utils.exec(o.onInputCreate, [element], element[0]);
 
         element.fire("inputcreate");
     },
@@ -17629,7 +17636,7 @@ Component('keypad', {
         this._createKeys();
         this._createEvents();
 
-        Utils.exec(o.onKeypadCreate, null,element[0]);
+        Utils.exec(o.onKeypadCreate, [element],element[0]);
         element.fire("keypadcreate");
     },
 
@@ -18084,7 +18091,7 @@ Component('list', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onListCreate, null, element[0]);
+        Utils.exec(o.onListCreate, [element], element[0]);
         element.fire("listcreate");
     },
 
@@ -18850,7 +18857,7 @@ Component('listview', {
         this._createView();
         this._createEvents();
 
-        Utils.exec(o.onListViewCreate, null, element[0]);
+        Utils.exec(o.onListViewCreate, [element], element[0]);
         element.fire("listviewcreate");
     },
 
@@ -19304,7 +19311,7 @@ Component('master', {
         this._createPages();
         this._createEvents();
 
-        Utils.exec(o.onMasterCreate, null, element[0]);
+        Utils.exec(o.onMasterCreate, [element], element[0]);
         element.fire("mastercreate");
     },
 
@@ -19670,7 +19677,7 @@ Component('nav-view', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onNavViewCreate, null, element[0]);
+        Utils.exec(o.onNavViewCreate, [element], element[0]);
         element.fire("navviewcreate");
     },
 
@@ -20356,7 +20363,7 @@ Component('panel', {
 
         this.panel = panel;
 
-        Utils.exec(o.onPanelCreate, null,element[0]);
+        Utils.exec(o.onPanelCreate, [element],element[0]);
         element.fire("panelcreate");
     },
 
@@ -20572,7 +20579,7 @@ Component('popover', {
 
         this.popovered = true;
 
-        Utils.exec(o.onPopoverCreate, [popover], element[0]);
+        Utils.exec(o.onPopoverCreate, [element, popover], element[0]);
         element.fire("popovercreate", {
             popover: popover
         });
@@ -20779,7 +20786,7 @@ Component('progress', {
         this.val(o.value);
         this.buff(o.buffer);
 
-        Utils.exec(o.onProgressCreate, null, element[0]);
+        Utils.exec(o.onProgressCreate, [element], element[0]);
         element.fire("progresscreate");
     },
 
@@ -20918,7 +20925,7 @@ Component('radio', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onRadioCreate, null, element[0]);
+        Utils.exec(o.onRadioCreate, [element], element[0]);
         element.fire("radiocreate");
     },
 
@@ -21097,7 +21104,7 @@ Component('rating', {
         this._createRating();
         this._createEvents();
 
-        Utils.exec(o.onRatingCreate, null, element[0]);
+        Utils.exec(o.onRatingCreate, [element], element[0]);
         element.fire("ratingcreate");
     },
 
@@ -21344,7 +21351,7 @@ Component('resizeable', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onResizableCreate, null, element[0]);
+        Utils.exec(o.onResizableCreate, [element], element[0]);
         element.fire("resizeablecreate");
     },
 
@@ -21500,7 +21507,8 @@ Component('resizer', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onMyObjectCreate, [element]);
+        Utils.exec(o.onResizerCreate, [element], element[0]);
+        element.fire('resizercreate');
     },
 
     _createStructure: function(){
@@ -21609,7 +21617,7 @@ Component('ribbon-menu', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onRibbonMenuCreate, null, element[0]);
+        Utils.exec(o.onRibbonMenuCreate, [element], element[0]);
         element.fire("ribbonmenucreate");
     },
 
@@ -21793,7 +21801,7 @@ Component('ripple', {
             getRipple(this, o.rippleColor, o.rippleAlpha, e);
         });
 
-        Utils.exec(o.onRippleCreate, null, element[0]);
+        Utils.exec(o.onRippleCreate, [element], element[0]);
         element.fire("ripplecreate");
     },
 
@@ -21896,7 +21904,7 @@ Component('select', {
         this._createSelect();
         this._createEvents();
 
-        Utils.exec(o.onSelectCreate, null, element[0]);
+        Utils.exec(o.onSelectCreate, [element], element[0]);
         element.fire("selectcreate");
     },
 
@@ -22482,7 +22490,7 @@ Component('sidebar', {
         $(window).resize();
         this._checkStatic();
 
-        Utils.exec(o.onSidebarCreate, null, element[0]);
+        Utils.exec(o.onSidebarCreate, [element], element[0]);
         element.fire("sidebarcreate");
     },
 
@@ -22795,7 +22803,7 @@ Component('slider', {
         this.buff(o.buffer);
         this.val(o.value);
 
-        Utils.exec(o.onSliderCreate, null, element[0]);
+        Utils.exec(o.onSliderCreate, [element], element[0]);
         element.fire("slidercreate");
     },
 
@@ -23334,7 +23342,7 @@ Component('sorter', {
 
         this._createStructure();
 
-        Utils.exec(o.onSorterCreate, null, element[0]);
+        Utils.exec(o.onSorterCreate, [element], element[0]);
         element.fire("sortercreate");
     },
 
@@ -23592,7 +23600,7 @@ Component('spinner', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onSpinnerCreate, null, element[0]);
+        Utils.exec(o.onSpinnerCreate, [element], element[0]);
         element.fire("spinnercreate");
     },
 
@@ -23859,7 +23867,7 @@ Component('splitter', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onSplitterCreate, null, element[0]);
+        Utils.exec(o.onSplitterCreate, [element], element[0]);
         element.fire("splittercreate");
     },
 
@@ -24119,7 +24127,7 @@ Component('stepper', {
         this._createStepper();
         this._createEvents();
 
-        Utils.exec(o.onStepperCreate, null, element[0]);
+        Utils.exec(o.onStepperCreate, [element], element[0]);
         element.fire("steppercreate");
     },
 
@@ -24684,7 +24692,7 @@ Component('streamer', {
             }, o.startSlideSleep);
         }
 
-        Utils.exec(o.onStreamerCreate, null, element[0]);
+        Utils.exec(o.onStreamerCreate, [element], element[0]);
         element.fire("streamercreate");
 
         this._fireScroll();
@@ -25182,7 +25190,7 @@ Component('switch', {
             this.enable();
         }
 
-        Utils.exec(o.onSwitchCreate, null, element[0]);
+        Utils.exec(o.onSwitchCreate, [element], element[0]);
         element.fire("switchcreate");
     },
 
@@ -27480,7 +27488,7 @@ Component('material-tabs', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTabsCreate, null, element[0]);
+        Utils.exec(o.onTabsCreate, [element], element[0]);
         element.fire("tabscreate");
     },
 
@@ -27686,7 +27694,7 @@ Component('tabs', {
         this._createEvents();
         this._open(tab);
 
-        Utils.exec(o.onTabsCreate, null, element[0]);
+        Utils.exec(o.onTabsCreate, [element], element[0]);
         element.fire("tabscreate");
     },
 
@@ -27983,7 +27991,7 @@ Component('tag-input', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTagInputCreate, null, element[0]);
+        Utils.exec(o.onTagInputCreate, [element], element[0]);
         element.fire("taginputcreate");
     },
 
@@ -28354,7 +28362,7 @@ Component('textarea', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTextareaCreate, null, element[0]);
+        Utils.exec(o.onTextareaCreate, [element], element[0]);
         element.fire("textareacreate");
     },
 
@@ -28571,7 +28579,7 @@ Component('tile', {
         this._createTile();
         this._createEvents();
 
-        Utils.exec(o.onTileCreate, null, element[0]);
+        Utils.exec(o.onTileCreate, [element], element[0]);
         element.fire("tilecreate");
     },
 
@@ -28869,7 +28877,7 @@ Component('time-picker', {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimePickerCreate, null, element[0]);
+        Utils.exec(o.onTimePickerCreate, [element], element[0]);
         element.fire("timepickercreate");
     },
 
@@ -29314,6 +29322,7 @@ var Toast = {
 };
 
 Metro['toast'] = Toast;
+Metro['createToast'] = Toast.create;
 
 var TouchConst = {
     LEFT : "left",
@@ -29450,7 +29459,7 @@ Component('touch', {
             throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
         }
 
-        Utils.exec(o.onSwipeCreate, null, element[0]);
+        Utils.exec(o.onSwipeCreate, [element], element[0]);
         element.fire("swipecreate");
     },
 
@@ -30520,7 +30529,7 @@ Component('tree-view', {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeViewCreate, null, element[0]);
+        Utils.exec(o.onTreeViewCreate, [element], element[0]);
         element.fire("treeviewcreate");
     },
 
@@ -31250,7 +31259,7 @@ Component('validator', {
             return that._reset();
         };
 
-        Utils.exec(o.onValidatorCreate, null, element[0]);
+        Utils.exec(o.onValidatorCreate, [element], element[0]);
         element.fire("validatorcreate");
     },
 
@@ -31438,7 +31447,7 @@ Component('vegas', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onVegasCreate, null,element[0]);
+        Utils.exec(o.onVegasCreate, [element],element[0]);
     },
 
     _createStructure: function(){
@@ -32735,14 +32744,6 @@ Component('window', {
 
         if (!Utils.isNull(o.content)) {
 
-            // if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
-            //     o.content = Utils.embedUrl(o.content);
-            // }
-            //
-            // if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
-            //     o.content = Utils.exec(o.content);
-            // }
-            //
             if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {
@@ -33306,7 +33307,7 @@ Component('wizard', {
         this._createWizard();
         this._createEvents();
 
-        Utils.exec(o.onWizardCreate, null, element[0]);
+        Utils.exec(o.onWizardCreate, [element], element[0]);
         element.fire("wizardcreate");
     },
 

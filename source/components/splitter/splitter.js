@@ -44,7 +44,7 @@ Component('splitter', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onSplitterCreate, null, element[0]);
+        Utils.exec(o.onSplitterCreate, [element], element[0]);
         element.fire("splittercreate");
     },
 

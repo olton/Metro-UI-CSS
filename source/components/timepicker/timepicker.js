@@ -100,7 +100,7 @@ Component('time-picker', {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onTimePickerCreate, null, element[0]);
+        Utils.exec(o.onTimePickerCreate, [element], element[0]);
         element.fire("timepickercreate");
     },
 

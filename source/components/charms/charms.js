@@ -39,7 +39,7 @@ Component('charms', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onCharmCreate, [element]);
+        Utils.exec(o.onCharmCreate, [element], element[0]);
         element.fire("charmcreate");
     },
 

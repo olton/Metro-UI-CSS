@@ -100,7 +100,7 @@ Component('date-picker', {
         this._createEvents();
         this._set();
 
-        Utils.exec(o.onDatePickerCreate, [element]);
+        Utils.exec(o.onDatePickerCreate, [element], element[0]);
         element.fire("datepickercreate");
     },
 

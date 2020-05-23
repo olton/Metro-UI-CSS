@@ -54,7 +54,7 @@ Component('spinner', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onSpinnerCreate, null, element[0]);
+        Utils.exec(o.onSpinnerCreate, [element], element[0]);
         element.fire("spinnercreate");
     },
 

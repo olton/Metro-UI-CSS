@@ -37,7 +37,7 @@ Component('checkbox', {
         Metro.checkRuntime(this.element, this.name);
         this._createStructure();
         this._createEvents();
-        Utils.exec(this.options.onCheckboxCreate, null, this.element[0]);
+        Utils.exec(this.options.onCheckboxCreate, [this.element], this.element[0]);
         this.element.fire("checkboxcreate");
     },
 

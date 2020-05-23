@@ -45,7 +45,7 @@ Component('image-magnifier', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onImageMagnifierCreate, null, element[0]);
+        Utils.exec(o.onImageMagnifierCreate, [element], element[0]);
         element.fire("imagemagnifiercreate");
     },
 

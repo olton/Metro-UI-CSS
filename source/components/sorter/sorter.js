@@ -40,7 +40,7 @@ Component('sorter', {
 
         this._createStructure();
 
-        Utils.exec(o.onSorterCreate, null, element[0]);
+        Utils.exec(o.onSorterCreate, [element], element[0]);
         element.fire("sortercreate");
     },
 

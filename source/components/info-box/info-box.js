@@ -46,7 +46,7 @@ Component('info-box', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInfoBoxCreate, null, element[0]);
+        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
         element.fire("infoboxcreate");
     },
 

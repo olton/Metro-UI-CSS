@@ -89,7 +89,7 @@ Component('ripple', {
             getRipple(this, o.rippleColor, o.rippleAlpha, e);
         });
 
-        Utils.exec(o.onRippleCreate, null, element[0]);
+        Utils.exec(o.onRippleCreate, [element], element[0]);
         element.fire("ripplecreate");
     },
 
