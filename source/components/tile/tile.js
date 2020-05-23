@@ -44,7 +44,7 @@ Component('tile', {
         this._createTile();
         this._createEvents();
 
-        Utils.exec(o.onTileCreate, null, element[0]);
+        Utils.exec(o.onTileCreate, [element], element[0]);
         element.fire("tilecreate");
     },
 

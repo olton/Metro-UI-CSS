@@ -67,7 +67,7 @@ Component('donut', {
 
         this.val(o.value);
 
-        Utils.exec(o.onDonutCreate, null, element[0]);
+        Utils.exec(o.onDonutCreate, [element], element[0]);
         element.fire("donutcreate");
     },
 

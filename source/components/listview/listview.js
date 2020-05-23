@@ -43,7 +43,7 @@ Component('listview', {
         this._createView();
         this._createEvents();
 
-        Utils.exec(o.onListViewCreate, null, element[0]);
+        Utils.exec(o.onListViewCreate, [element], element[0]);
         element.fire("listviewcreate");
     },
 

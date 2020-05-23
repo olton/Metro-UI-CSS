@@ -108,7 +108,7 @@ Component('cube', {
         this._createCube();
         this._createEvents();
 
-        Utils.exec(o.onCubeCreate, [element]);
+        Utils.exec(o.onCubeCreate, [element], element[0]);
         element.fire("cubecreate");
     },
 

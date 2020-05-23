@@ -216,14 +216,6 @@ Component('window', {
 
         if (!Utils.isNull(o.content)) {
 
-            // if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
-            //     o.content = Utils.embedUrl(o.content);
-            // }
-            //
-            // if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
-            //     o.content = Utils.exec(o.content);
-            // }
-            //
             if (Utils.isQ(o.content)) {
                 o.content.appendTo(content);
             } else {

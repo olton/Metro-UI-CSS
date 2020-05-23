@@ -178,7 +178,7 @@ Component('calendar', {
             });
         }
 
-        Utils.exec(this.options.onCalendarCreate, [this.element]);
+        Utils.exec(this.options.onCalendarCreate, [element], element[0]);
         element.fire("calendarcreate");
     },
 

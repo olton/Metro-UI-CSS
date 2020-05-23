@@ -59,7 +59,7 @@ Component('chat', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onChatCreate, [element]);
+        Utils.exec(o.onChatCreate, [element], element[0]);
         element.fire("chatcreate");
     },
 

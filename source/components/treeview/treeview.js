@@ -45,7 +45,7 @@ Component('tree-view', {
             that._recheck(this);
         });
 
-        Utils.exec(o.onTreeViewCreate, null, element[0]);
+        Utils.exec(o.onTreeViewCreate, [element], element[0]);
         element.fire("treeviewcreate");
     },
 

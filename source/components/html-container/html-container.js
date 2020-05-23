@@ -64,7 +64,7 @@ Component('html-container', {
             this._load();
         }
 
-        Utils.exec(o.onHtmlContainerCreate, null, element[0]);
+        Utils.exec(o.onHtmlContainerCreate, [element], element[0]);
         element.fire("htmlcontainercreate");
     },
 

@@ -105,7 +105,7 @@ Component('progress', {
         this.val(o.value);
         this.buff(o.buffer);
 
-        Utils.exec(o.onProgressCreate, null, element[0]);
+        Utils.exec(o.onProgressCreate, [element], element[0]);
         element.fire("progresscreate");
     },
 

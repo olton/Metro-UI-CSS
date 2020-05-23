@@ -41,7 +41,7 @@ Component('nav-view', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onNavViewCreate, null, element[0]);
+        Utils.exec(o.onNavViewCreate, [element], element[0]);
         element.fire("navviewcreate");
     },
 

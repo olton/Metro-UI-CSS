@@ -67,7 +67,7 @@ Component('tag-input', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTagInputCreate, null, element[0]);
+        Utils.exec(o.onTagInputCreate, [element], element[0]);
         element.fire("taginputcreate");
     },
 

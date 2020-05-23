@@ -43,7 +43,7 @@ Component('textarea', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTextareaCreate, null, element[0]);
+        Utils.exec(o.onTextareaCreate, [element], element[0]);
         element.fire("textareacreate");
     },
 

@@ -126,7 +126,7 @@ Component('carousel', {
 
         }
 
-        Utils.exec(o.onCarouselCreate, [element]);
+        Utils.exec(o.onCarouselCreate, [element], element[0]);
         element.fire("carouselcreate");
     },
 

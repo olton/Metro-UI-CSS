@@ -45,7 +45,7 @@ Component('stepper', {
         this._createStepper();
         this._createEvents();
 
-        Utils.exec(o.onStepperCreate, null, element[0]);
+        Utils.exec(o.onStepperCreate, [element], element[0]);
         element.fire("steppercreate");
     },
 

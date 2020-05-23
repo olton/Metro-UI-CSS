@@ -69,7 +69,7 @@ Component('switch', {
             this.enable();
         }
 
-        Utils.exec(o.onSwitchCreate, null, element[0]);
+        Utils.exec(o.onSwitchCreate, [element], element[0]);
         element.fire("switchcreate");
     },
 

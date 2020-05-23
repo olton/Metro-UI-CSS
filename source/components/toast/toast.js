@@ -55,3 +55,4 @@ var Toast = {
 };
 
 Metro['toast'] = Toast;
+Metro['createToast'] = Toast.create;

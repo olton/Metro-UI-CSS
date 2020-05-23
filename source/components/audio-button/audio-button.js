@@ -36,7 +36,7 @@ Component('audio-button', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAudioButtonCreate, null, element[0]);
+        Utils.exec(o.onAudioButtonCreate, [element], element[0]);
         element.fire('audiobuttoncreate');
     },
 

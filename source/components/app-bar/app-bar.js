@@ -38,7 +38,7 @@ Component('app-bar', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAppBarCreate, [element]);
+        Utils.exec(o.onAppBarCreate, [element], element[0]);
         element.fire("appbarcreate");
     },
 

@@ -43,7 +43,7 @@ Component('resizeable', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onResizableCreate, null, element[0]);
+        Utils.exec(o.onResizableCreate, [element], element[0]);
         element.fire("resizeablecreate");
     },
 

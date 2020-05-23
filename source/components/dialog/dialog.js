@@ -155,7 +155,7 @@ Component('dialog', {
             that.setPosition();
         }, {ns: this.id});
 
-        Utils.exec(this.options.onDialogCreate, [this.element]);
+        Utils.exec(this.options.onDialogCreate, [element], element[0]);
         element.fire("dialogcreate");
     },
 

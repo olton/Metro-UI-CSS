@@ -38,7 +38,7 @@ Component('clock', {
 
         this._tick();
 
-        Utils.exec(this.options.onClockCreate, [this.element]);
+        Utils.exec(this.options.onClockCreate, [element], element[0]);
         element.fire("clockcreate");
 
         this._clockInterval = setInterval(function(){

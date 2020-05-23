@@ -36,7 +36,7 @@ Component('button-group', {
         this._createGroup();
         this._createEvents();
 
-        Utils.exec(o.onButtonsGroupCreate, [element]);
+        Utils.exec(o.onButtonsGroupCreate, [element], element[0]);
         element.fire("buttongroupcreate");
     },
 

@@ -134,7 +134,7 @@ Component('touch', {
             throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
         }
 
-        Utils.exec(o.onSwipeCreate, null, element[0]);
+        Utils.exec(o.onSwipeCreate, [element], element[0]);
         element.fire("swipecreate");
     },
 

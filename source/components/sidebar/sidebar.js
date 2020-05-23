@@ -49,7 +49,7 @@ Component('sidebar', {
         $(window).resize();
         this._checkStatic();
 
-        Utils.exec(o.onSidebarCreate, null, element[0]);
+        Utils.exec(o.onSidebarCreate, [element], element[0]);
         element.fire("sidebarcreate");
     },
 

@@ -178,7 +178,7 @@ Component('panel', {
 
         this.panel = panel;
 
-        Utils.exec(o.onPanelCreate, null,element[0]);
+        Utils.exec(o.onPanelCreate, [element],element[0]);
         element.fire("panelcreate");
     },
 

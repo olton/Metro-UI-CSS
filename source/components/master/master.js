@@ -62,7 +62,7 @@ Component('master', {
         this._createPages();
         this._createEvents();
 
-        Utils.exec(o.onMasterCreate, null, element[0]);
+        Utils.exec(o.onMasterCreate, [element], element[0]);
         element.fire("mastercreate");
     },
 

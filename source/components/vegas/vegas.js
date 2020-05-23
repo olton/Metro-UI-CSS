@@ -114,7 +114,7 @@ Component('vegas', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onVegasCreate, null,element[0]);
+        Utils.exec(o.onVegasCreate, [element],element[0]);
     },
 
     _createStructure: function(){

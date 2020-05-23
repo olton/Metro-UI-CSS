@@ -32,7 +32,7 @@ Component('ribbon-menu', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onRibbonMenuCreate, null, element[0]);
+        Utils.exec(o.onRibbonMenuCreate, [element], element[0]);
         element.fire("ribbonmenucreate");
     },
 

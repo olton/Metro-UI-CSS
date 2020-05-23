@@ -385,7 +385,7 @@ Component('streamer', {
             }, o.startSlideSleep);
         }
 
-        Utils.exec(o.onStreamerCreate, null, element[0]);
+        Utils.exec(o.onStreamerCreate, [element], element[0]);
         element.fire("streamercreate");
 
         this._fireScroll();

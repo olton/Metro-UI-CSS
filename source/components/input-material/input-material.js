@@ -45,7 +45,7 @@ Component('material-input', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onInputCreate, null, element[0]);
+        Utils.exec(o.onInputCreate, [element], element[0]);
         element.fire("inputcreate");
     },
 

@@ -171,7 +171,7 @@ Component('popover', {
 
         this.popovered = true;
 
-        Utils.exec(o.onPopoverCreate, [popover], element[0]);
+        Utils.exec(o.onPopoverCreate, [element, popover], element[0]);
         element.fire("popovercreate", {
             popover: popover
         });

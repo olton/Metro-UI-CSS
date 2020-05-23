@@ -44,7 +44,7 @@ Component('material-tabs', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onTabsCreate, null, element[0]);
+        Utils.exec(o.onTabsCreate, [element], element[0]);
         element.fire("tabscreate");
     },
 

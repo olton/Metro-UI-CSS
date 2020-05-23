@@ -34,10 +34,14 @@ Component('file', {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
         Metro.checkRuntime(this.element, this.name);
 
         this._createStructure();
         this._createEvents();
+
+        Utils.exec(o.onFileCreate, [element], element[0]);
+        element.fire("filecreate");
     },
 
     _createStructure: function(){
@@ -91,9 +95,6 @@ Component('file', {
         } else {
             this.enable();
         }
-
-        Utils.exec(o.onFileCreate, null, element[0]);
-        element.fire("filecreate");
     },
 
     _createEvents: function(){

@@ -64,7 +64,7 @@ Component('select', {
         this._createSelect();
         this._createEvents();
 
-        Utils.exec(o.onSelectCreate, null, element[0]);
+        Utils.exec(o.onSelectCreate, [element], element[0]);
         element.fire("selectcreate");
     },
 

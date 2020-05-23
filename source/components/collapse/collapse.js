@@ -55,7 +55,7 @@ Component('collapse', {
 
         this.toggle = toggle;
 
-        Utils.exec(this.options.onCollapseCreate, [this.element]);
+        Utils.exec(this.options.onCollapseCreate, [element], element[0]);
         element.fire("collapsecreate");
     },
 

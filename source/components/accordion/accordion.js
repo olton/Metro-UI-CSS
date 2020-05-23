@@ -41,7 +41,7 @@ Component('accordion', {
         this._createStructure();
         this._createEvents();
 
-        Utils.exec(o.onAccordionCreate, [element]);
+        Utils.exec(o.onAccordionCreate, [element], element[0]);
         element.fire("accordioncreate");
     },
 

@@ -25,14 +25,22 @@ Component('gravatar', {
     },
 
     _create: function(){
+        var element = this.element, o = this.options;
+
         Metro.checkRuntime(this.element, this.name);
+
         this.get();
+
+        Utils.exec(o.onGravatarCreate, [element], element[0]);
+        element.fire("gravatarcreate");
     },
 
-    getImage: function(email, size, def, is_jquery_object){
-        var image = $("<img>");
+    getImage: function(email, size, def, is_object){
+        var image = $("<img>").attr('alt', email);
+
         image.attr("src", this.getImageSrc(email, size));
-        return is_jquery_object === true ? image : image[0];
+
+        return is_object === true ? image : image[0];
     },
 
     getImageSrc: function(email, size, def){
@@ -49,13 +57,11 @@ Component('gravatar', {
     get: function(){
         var element = this.element, o = this.options;
         var img = element[0].tagName === 'IMG' ? element : element.find("img");
+
         if (img.length === 0) {
             return;
         }
         img.attr("src", this.getImageSrc(o.email, o.size, o.default));
-
-        Utils.exec(o.onGravatarCreate, null, element[0]);
-        element.fire("gravatarcreate");
 
         return this;
     },
