@@ -43,7 +43,7 @@ Component('keypad', {
     init: function( options, elem ) {
         this._super(elem, options, KeypadDefaultConfig);
 
-        this.value = "";
+        this.value = elem.tagName === 'INPUT' ? elem.value : elem.innerText;
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
         this.keypad = null;
 
@@ -297,12 +297,14 @@ Component('keypad', {
     },
 
     val: function(v){
-        if (v !== undefined) {
-            this.value = v;
-            this.element[0].tagName === "INPUT" ? this.element.val(v) : this.element.text(v);
-        } else {
+
+        if (typeof v === "undefined") {
             return this.value;
         }
+
+        this.value = v;
+        this.element[0].tagName === "INPUT" ? this.element.val(v) : this.element.text(v);
+        return this;
     },
 
     open: function(){

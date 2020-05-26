@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/05/2020 15:33:31
+ * Built at 26/05/2020 10:47:40
  * Licensed under MIT
  */
 
@@ -274,7 +274,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2649,7 +2649,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "23/05/2020 15:33:33",
+    compileTime: "26/05/2020 10:47:48",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4614,7 +4614,7 @@ var Metro = {
                     }
 
                 } else  {
-                    //console.log(mutation);
+                    //
                 }
             });
         };
@@ -17669,7 +17669,7 @@ Component('keypad', {
     init: function( options, elem ) {
         this._super(elem, options, KeypadDefaultConfig);
 
-        this.value = "";
+        this.value = elem.tagName === 'INPUT' ? elem.value : elem.innerText;
         this.positions = ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"];
         this.keypad = null;
 
@@ -17923,12 +17923,14 @@ Component('keypad', {
     },
 
     val: function(v){
-        if (v !== undefined) {
-            this.value = v;
-            this.element[0].tagName === "INPUT" ? this.element.val(v) : this.element.text(v);
-        } else {
+
+        if (typeof v === "undefined") {
             return this.value;
         }
+
+        this.value = v;
+        this.element[0].tagName === "INPUT" ? this.element.val(v) : this.element.text(v);
+        return this;
     },
 
     open: function(){

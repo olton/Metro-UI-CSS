@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Keypad - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Keypad test page</h1>
+
+    <div>
+        <input type="text" data-role="keypad">
+    </div>
+
+    <br>
+    <div>
+        <button class="button" onclick="addKeypad()">Add keypad</button>
+        <div id="wrapper"></div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function addKeypad(){
+        $("#wrapper").append("<input id='aaa' value='113232' type='text' data-role='keypad'>");
+    }
+</script>
+</body>
+</html>
