@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Bottom sheet - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .emulator {
+            width: 360px;
+            height: 480px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Bottom sheet test page</h1>
+
+    <div class="emulator bg-light win-shadow" style="height: 350px;">
+        <div class="text-center m-4">
+            <button class="button info" onclick="Metro.bottomsheet.toggle('#bottom-sheet', 'list')">List style</button>
+            <button class="button info" onclick="Metro.bottomsheet.toggle('#bottom-sheet', 'grid')">Grid style</button>
+        </div>
+        <ul class="bottom-sheet pos-absolute" id="bottom-sheet" data-role="bottomsheet">
+            <li class=""><span class="icon mif-comment"></span>Message</li>
+            <li class=""><span class="icon mif-location"></span>Location</li>
+            <li class=""><span class="icon mif-keyboard-voice"></span>Voice</li>
+            <li class=""><span class="icon mif-phone"></span>Dialer</li>
+            <li class="divider"></li>
+            <li class=""><span class="icon mif-file-upload"></span>Upload</li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

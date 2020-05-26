@@ -8,7 +8,8 @@
 + [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. Styles moved to component style.
 + [x] Locales: added `pt-BR` Brazilian Portuguese language
 + [x] Toast: added method `Metro.createToast()`. This eq to `Metro.toast.create()`
-+ [x] Components: event `on[Component]Create` now have context a `HTMLElement` and receive `$(HTMLElement)` as argument 
++ [x] Components: event `on[Component]Create` now have context a `HTMLElement` and receive `$(HTMLElement)` as argument
++ [x] Keypad: fix Keypad backspace button click behavior on `keypad`, created at `runtime`, issue #1547
 
 
 ### 4.3.7
