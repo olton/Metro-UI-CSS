@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Collapse - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Collapse test page</h1>
+
+    <button class="button alert">Toggle</button>
+
+    <div class="border bd-dark mt-10" data-role="collapse" id="collapsedBlock">
+        <div class="p-20">This is a collapsed block</div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $("button").on("click", function(){
+        var collapse = Metro.getPlugin('#collapsedBlock', 'collapse');
+
+        collapse.isCollapsed() ? collapse.expand() : collapse.collapse();
+    })
+</script>
+</body>
+</html>

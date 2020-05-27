@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Charms - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Charms test page</h1>
+
+    <div data-role="charms" id="default-charms"><div>default</div></div>
+    <div data-role="charms" data-position="top" id="top-charms"><div>top</div></div>
+    <div data-role="charms" data-position="bottom" id="bottom-charms"><div>bottom</div></div>
+    <div data-role="charms" data-position="left" id="left-charms"><div>left</div></div>
+    <div data-role="charms" data-position="right" id="right-charms"><div>right</div></div>
+
+    <div class="example text-center">
+        <button class="button" onclick="Metro.getPlugin('#default-charms', 'charms').toggle()">Default</button>
+        <button class="button" onclick="Metro.getPlugin('#top-charms', 'charms').toggle()">Top</button>
+        <button class="button" onclick="Metro.getPlugin('#bottom-charms', 'charms').toggle()">Bottom</button>
+        <button class="button" onclick="Metro.getPlugin('#left-charms', 'charms').toggle()">Left</button>
+        <button class="button" onclick="Metro.getPlugin('#right-charms', 'charms').toggle()">Right</button>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>
