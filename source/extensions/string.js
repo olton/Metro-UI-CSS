@@ -1,4 +1,32 @@
 /* global Metro, Utils */
+String.prototype.camelCase = function(){
+    return $.camelCase(this);
+};
+
+String.prototype.dashedName = function(){
+    return $.dashedName(this);
+};
+
+String.prototype.shuffle = function(){
+    var _shuffle = function (a) {
+        var currentIndex = a.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = a[currentIndex];
+            a[currentIndex] = a[randomIndex];
+            a[randomIndex] = temporaryValue;
+        }
+
+        return a;
+    };
+
+    return _shuffle(this.split("")).join("");
+}
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -6,6 +34,12 @@ String.prototype.capitalize = function() {
 String.prototype.contains = function() {
     return !!~String.prototype.indexOf.apply(this, arguments);
 };
+
+if (typeof String.includes !== "function") {
+    String.prototype.includes = function(){
+        return !!~String.prototype.indexOf.apply(this, arguments);
+    }
+}
 
 String.prototype.toDate = function(format, locale) {
     var result;
@@ -118,9 +152,9 @@ String.prototype.toArray = function(delimiter, type, format){
 
         switch (type) {
             case "int":
-            case "integer": result = parseInt(s); break;
+            case "integer": result = isNaN(s) ? s.trim() : parseInt(s); break;
             case "number":
-            case "float": result = parseFloat(s); break;
+            case "float": result = isNaN(s) ? s : parseFloat(s); break;
             case "date": result = !format ? new Date(s) : s.toDate(format); break;
             default: result = s.trim();
         }
