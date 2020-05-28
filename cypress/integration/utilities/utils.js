@@ -1,4 +1,4 @@
-import metro4 from '../../../build/js/metro';
+import '../../../build/js/metro';
 const Utils = Metro.utils;
 
 describe("Test Metro 4 Utils functions", function(){
@@ -82,6 +82,22 @@ describe("Test Metro 4 Utils functions", function(){
         });
         it("isColor must return false for #kkk", ()=>{
             assert.equal(Utils.isColor("#kkk"), false);
+        });
+
+    });
+
+    describe('Utils.isType', () => {
+        it("isType for '123' and string return '123'", ()=>{
+            assert.equal(Utils.isType("123", "string"), '123');
+        });
+        it("isType for 123 and number return 123", ()=>{
+            assert.equal(Utils.isType(123, "number"), 123);
+        });
+        it("isType for [] and array return []", ()=>{
+            assert.notEqual(Utils.isType([1, 2, 3], "array"), false);
+        });
+        it("isType for {} and object return {}", ()=>{
+            assert.notEqual(Utils.isType({}, "object"), false);
         });
 
     });

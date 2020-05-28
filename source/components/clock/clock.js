@@ -1,4 +1,4 @@
-/* global Metro, Utils, Component */
+/* global Metro, Component */
 var ClockDefaultConfig = {
     clockDeferred: 0,
     showTime: true,
@@ -9,6 +9,8 @@ var ClockDefaultConfig = {
     leadingZero: true,
     dateDivider: '-',
     timeDivider: ":",
+    onTick: Metro.noop,
+    onSecond: Metro.noop,
     onClockCreate: Metro.noop
 };
 
@@ -36,19 +38,31 @@ Component('clock', {
 
         Metro.checkRuntime(element, this.name);
 
-        this._tick();
+        this._fireEvent('clock-create', {
+            element: element
+        });
 
-        Utils.exec(this.options.onClockCreate, [element], element[0]);
-        element.fire("clockcreate");
+        this._tick();
 
         this._clockInterval = setInterval(function(){
             that._tick();
         }, 500);
+        this._secondInterval = setInterval(function(){
+            that._second();
+        }, 1000);
     },
 
     _addLeadingZero: function(i){
         if (i<10){i="0" + i;}
         return i;
+    },
+
+    _second: function(){
+        var timestamp = new Date();
+
+        this._fireEvent('second', {
+            timestamp: timestamp
+        })
     },
 
     _tick: function(){
@@ -106,6 +120,10 @@ Component('clock', {
         }
 
         element.html(result);
+
+        this._fireEvent('tick', {
+            timestamp: timestamp
+        })
     },
 
     /* eslint-disable-next-line */

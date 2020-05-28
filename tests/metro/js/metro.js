@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 26/05/2020 10:47:40
+ * Built at 28/05/2020 12:58:28
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "26/05/2020 10:47:48",
+    compileTime: "28/05/2020 12:58:37",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4894,7 +4894,7 @@ var Component = function(nameName, compObj){
         _fireEvent: function(eventName, data){
             var element = this.element, o = this.options;
 
-            Utils.exec(o["on"+eventName.capitalize()], Object.values(data), element[0]);
+            Utils.exec(o["on"+eventName.camelCase().capitalize()], Object.values(data), element[0]);
             element.fire(eventName.toLowerCase(), data);
         }
     }, compObj);
@@ -5139,6 +5139,34 @@ if (typeof Object.values !== 'function') {
 }
 
 
+String.prototype.camelCase = function(){
+    return $.camelCase(this);
+};
+
+String.prototype.dashedName = function(){
+    return $.dashedName(this);
+};
+
+String.prototype.shuffle = function(){
+    var _shuffle = function (a) {
+        var currentIndex = a.length, temporaryValue, randomIndex;
+
+        while (0 !== currentIndex) {
+
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            temporaryValue = a[currentIndex];
+            a[currentIndex] = a[randomIndex];
+            a[randomIndex] = temporaryValue;
+        }
+
+        return a;
+    };
+
+    return _shuffle(this.split("")).join("");
+}
+
 String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 };
@@ -5146,6 +5174,12 @@ String.prototype.capitalize = function() {
 String.prototype.contains = function() {
     return !!~String.prototype.indexOf.apply(this, arguments);
 };
+
+if (typeof String.includes !== "function") {
+    String.prototype.includes = function(){
+        return !!~String.prototype.indexOf.apply(this, arguments);
+    }
+}
 
 String.prototype.toDate = function(format, locale) {
     var result;
@@ -5258,9 +5292,9 @@ String.prototype.toArray = function(delimiter, type, format){
 
         switch (type) {
             case "int":
-            case "integer": result = parseInt(s); break;
+            case "integer": result = isNaN(s) ? s.trim() : parseInt(s); break;
             case "number":
-            case "float": result = parseFloat(s); break;
+            case "float": result = isNaN(s) ? s : parseFloat(s); break;
             case "date": result = !format ? new Date(s) : s.toDate(format); break;
             default: result = s.trim();
         }
@@ -6754,6 +6788,18 @@ var Utils = {
             return o;
         }
 
+        if ((""+t).toLowerCase() === 'tag' && Utils.isTag(o)) {
+            return o;
+        }
+
+        if ((""+t).toLowerCase() === 'url' && Utils.isUrl(o)) {
+            return o;
+        }
+
+        if ((""+t).toLowerCase() === 'array' && Utils.isArray(o)) {
+            return o;
+        }
+
         if (Utils.isTag(o) || Utils.isUrl(o)) {
             return false;
         }
@@ -6766,19 +6812,7 @@ var Utils = {
             return false;
         }
 
-        if (typeof o === 'string' && o.indexOf("/") !== -1) {
-            return false;
-        }
-
-        if (typeof o === 'string' && o.indexOf(" ") !== -1) {
-            return false;
-        }
-
-        if (typeof o === 'string' && o.indexOf("(") !== -1) {
-            return false;
-        }
-
-        if (typeof o === 'string' && o.indexOf("[") !== -1) {
+        if (typeof o === 'string' && /[/\s([]+/gm.test(o)) {
             return false;
         }
 
@@ -7501,6 +7535,7 @@ var Utils = {
 };
 
 Metro.utils = Utils;
+Metro.Utils = Utils;
 
 $.extend(Metro['locales'], {
     'cn-ZH': {
@@ -11956,6 +11991,8 @@ var ClockDefaultConfig = {
     leadingZero: true,
     dateDivider: '-',
     timeDivider: ":",
+    onTick: Metro.noop,
+    onSecond: Metro.noop,
     onClockCreate: Metro.noop
 };
 
@@ -11983,19 +12020,31 @@ Component('clock', {
 
         Metro.checkRuntime(element, this.name);
 
-        this._tick();
+        this._fireEvent('clock-create', {
+            element: element
+        });
 
-        Utils.exec(this.options.onClockCreate, [element], element[0]);
-        element.fire("clockcreate");
+        this._tick();
 
         this._clockInterval = setInterval(function(){
             that._tick();
         }, 500);
+        this._secondInterval = setInterval(function(){
+            that._second();
+        }, 1000);
     },
 
     _addLeadingZero: function(i){
         if (i<10){i="0" + i;}
         return i;
+    },
+
+    _second: function(){
+        var timestamp = new Date();
+
+        this._fireEvent('second', {
+            timestamp: timestamp
+        })
     },
 
     _tick: function(){
@@ -12053,6 +12102,10 @@ Component('clock', {
         }
 
         element.html(result);
+
+        this._fireEvent('tick', {
+            timestamp: timestamp
+        })
     },
 
     /* eslint-disable-next-line */

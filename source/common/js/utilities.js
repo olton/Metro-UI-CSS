@@ -88,6 +88,18 @@ var Utils = {
             return o;
         }
 
+        if ((""+t).toLowerCase() === 'tag' && Utils.isTag(o)) {
+            return o;
+        }
+
+        if ((""+t).toLowerCase() === 'url' && Utils.isUrl(o)) {
+            return o;
+        }
+
+        if ((""+t).toLowerCase() === 'array' && Utils.isArray(o)) {
+            return o;
+        }
+
         if (Utils.isTag(o) || Utils.isUrl(o)) {
             return false;
         }
@@ -100,19 +112,7 @@ var Utils = {
             return false;
         }
 
-        if (typeof o === 'string' && o.indexOf("/") !== -1) {
-            return false;
-        }
-
-        if (typeof o === 'string' && o.indexOf(" ") !== -1) {
-            return false;
-        }
-
-        if (typeof o === 'string' && o.indexOf("(") !== -1) {
-            return false;
-        }
-
-        if (typeof o === 'string' && o.indexOf("[") !== -1) {
+        if (typeof o === 'string' && /[/\s([]+/gm.test(o)) {
             return false;
         }
 
@@ -835,3 +835,4 @@ var Utils = {
 };
 
 Metro.utils = Utils;
+Metro.Utils = Utils;

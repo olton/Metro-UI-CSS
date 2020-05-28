@@ -630,7 +630,7 @@ var Component = function(nameName, compObj){
         _fireEvent: function(eventName, data){
             var element = this.element, o = this.options;
 
-            Utils.exec(o["on"+eventName.capitalize()], Object.values(data), element[0]);
+            Utils.exec(o["on"+eventName.camelCase().capitalize()], Object.values(data), element[0]);
             element.fire(eventName.toLowerCase(), data);
         }
     }, compObj);
