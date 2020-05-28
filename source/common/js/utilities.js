@@ -315,14 +315,6 @@ var Utils = {
         return round_value === true ? Math.round(result) : Math.round(result * 100) / 100;
     },
 
-    camelCase: function(str){
-        return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
-    },
-
-    dashedName: function(str){
-        return str.replace(/([A-Z])/g, function(u) { return "-" + u.toLowerCase(); });
-    },
-
     objectShift: function(obj){
         var min = 0;
         $.each(obj, function(i){
