@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 28/05/2020 12:59:25
+ * Built at 28/05/2020 14:17:35
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "28/05/2020 12:59:34",
+    compileTime: "28/05/2020 14:17:44",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -7013,14 +7013,6 @@ var Utils = {
         }
         var result = part * 100 / total;
         return round_value === true ? Math.round(result) : Math.round(result * 100) / 100;
-    },
-
-    camelCase: function(str){
-        return str.replace(/-([a-z])/g, function (g) { return g[1].toUpperCase(); });
-    },
-
-    dashedName: function(str){
-        return str.replace(/([A-Z])/g, function(u) { return "-" + u.toLowerCase(); });
     },
 
     objectShift: function(obj){

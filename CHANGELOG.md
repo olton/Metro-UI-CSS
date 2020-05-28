@@ -11,6 +11,7 @@
 + [x] Components: event `on[Component]Create` now have context a `HTMLElement` and receive `$(HTMLElement)` as argument
 + [x] Keypad: fix Keypad backspace button click behavior on `keypad`, created at `runtime`, issue #1547
 + [x] Utils: improve function `isType`
++ [x] Utils: remove functions `camelCase()`, `dashedName()`. Use `String.camelCase` (`$.camelCase()`) and `String.dashedName())` (`$.dashedName()`).
 + [x] Clock: add events `onTick`, `onSecond`
 + [x] String: add extensions `includes()`, `camelCase()`, `dashedName()`, `shuffle()`
 
