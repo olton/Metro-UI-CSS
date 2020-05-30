@@ -13,6 +13,17 @@
     <h1>ListView test page</h1>
 
     <div>
+        <div class="p-4 bg-light d-flex flex-justify-between">
+            <input type="radio" name="r1" value="list" data-role="radio" data-caption="List" title="">
+            <input type="radio" name="r1" value="table" data-role="radio" data-caption="Table" checked="checked"  title="">
+            <input type="radio" name="r1" value="content" data-role="radio" data-caption="Content" title="">
+            <input type="radio" name="r1" value="tiles" data-role="radio" data-caption="Tiles" title="">
+            <input type="radio" name="r1" value="icons" data-role="radio" data-caption="Icons" title="">
+            <input type="radio" name="r1" value="icons-medium" data-role="radio" data-caption="Medium icons" title="">
+            <input type="radio" name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
+        </div>
+    </div>
+    <div>
         <ul data-role="listview" data-view="list" data-select-node="true" data-on-node-click="nodeClick" data-on-node-dblclick="nodeDblClick">
             <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
             <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
@@ -32,9 +43,18 @@
     function nodeClick() {
         console.log('node click');
     }
+
     function nodeDblClick() {
         console.log('node dbl click');
     }
+
+    $("input[name=r1]").on("click", function(){
+        var checked = $(this).is(":checked");
+        if (checked) {
+            $("#listview-1").data("listview").view(this.value);
+        }
+    });
+
 </script>
 </body>
 </html>

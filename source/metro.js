@@ -262,6 +262,7 @@ var Metro = {
     hotkeys: {},
     locales: {},
     utils: {},
+    colors: {},
 
     about: function(){
         var content =
@@ -600,7 +601,9 @@ var Metro = {
         } else {
             that._create();
         }
-    }
+    },
+
+    Component: function(){},
 };
 
 /* eslint-disable-next-line */
@@ -613,6 +616,8 @@ var Component = function(nameName, compObj){
             this.options = $.extend( {}, defaults, options );
 
             this._setOptionsFromDOM();
+            this._runtime();
+            this._createExec();
         },
 
         _setOptionsFromDOM: function(){
@@ -627,6 +632,33 @@ var Component = function(nameName, compObj){
                     }
                 }
             });
+        },
+
+        _runtime: function(){
+            var element = this.element, mc;
+            if (!element.attr('data-role-'+this.name)) {
+                element.attr("data-role-"+this.name, true);
+                element.attr("data-role", this.name);
+                mc = element.data('metroComponent');
+                if (mc === undefined) {
+                    mc = [this.name];
+                } else {
+                    mc.push(this.name);
+                }
+                element.data('metroComponent', mc);
+            }
+        },
+
+        _createExec: function(){
+            var that = this, timeout = this.options[this.name+'Deferred'];
+
+            if (timeout > 0) {
+                setTimeout(function(){
+                    that._create();
+                }, timeout)
+            } else {
+                that._create();
+            }
         },
 
         _fireEvent: function(eventName, data, log){

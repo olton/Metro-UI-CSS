@@ -1,8 +1,5 @@
 /* global Metro */
-(function() {
-    var Utils = Metro.Utils;
-    var Component = Metro.Component;
-
+(function(Metro, $) {
     var MyObjectDefaultConfig = {
         onMyObjectCreate: Metro.noop
     };
@@ -15,24 +12,19 @@
         Metro.myObjectSetup(window["metroMyObjectSetup"]);
     }
 
-    Component('name', {
+    Metro.Component('name', {
         init: function( options, elem ) {
             this._super(elem, options, MyObjectDefaultConfig);
-
-            this._create();
-
             return this;
         },
 
         _create: function(){
             var that = this, element = this.element, o = this.options;
 
-            Metro.checkRuntime(element, this.name);
-
             this._createStructure();
             this._createEvents();
 
-            Utils.exec(o.onMyObjectCreate, [element]);
+            this._fireEvent('component-create');
         },
 
         _createStructure: function(){
@@ -49,6 +41,8 @@
 
         },
 
-        destroy: function(){}
+        destroy: function(){
+            this.element.remove();
+        }
     });
-}());
+}(Metro, m4q));
