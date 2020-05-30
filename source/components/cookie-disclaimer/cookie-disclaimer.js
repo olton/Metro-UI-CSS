@@ -1,5 +1,4 @@
 /* global Metro, Utils */
-
 var cookieDisclaimerDefaults = {
     name: 'cookies_accepted',
     template: null,
@@ -78,4 +77,4 @@ Metro.cookieDisclaimer = {
             wrapper.remove();
         });
     }
-}
+};

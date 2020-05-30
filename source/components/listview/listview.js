@@ -14,7 +14,7 @@ var ListViewDefaultConfig = {
     onExpandNode: Metro.noop,
     onGroupNodeClick: Metro.noop,
     onNodeClick: Metro.noop,
-    onNodeDblClick: Metro.noop,
+    onNodeDblclick: Metro.noop,
     onListViewCreate: Metro.noop
 };
 
@@ -146,6 +146,13 @@ Component('listview', {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
+        element.on(Metro.events.dblclick, ".node", function(){
+            var node = $(this);
+            that._fireEvent("node-dblclick", {
+                node: node
+            });
+        });
+
         element.on(Metro.events.click, ".node", function(){
             var node = $(this);
             element.find(".node").removeClass("current");
@@ -154,8 +161,7 @@ Component('listview', {
                 element.find(".node").removeClass("current-select");
                 node.toggleClass("current-select");
             }
-            Utils.exec(o.onNodeClick, [node], element[0]);
-            element.fire("nodeclick", {
+            that._fireEvent("node-click", {
                 node: node
             });
         });

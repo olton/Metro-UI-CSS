@@ -14,6 +14,7 @@
 + [x] Utils: remove functions `camelCase()`, `dashedName()`. Use `String.camelCase` (`$.camelCase()`) and `String.dashedName())` (`$.dashedName()`).
 + [x] Clock: add events `onTick`, `onSecond`
 + [x] String: add extensions `includes()`, `camelCase()`, `dashedName()`, `shuffle()`
++ [x] ListView: fixed event `onNodeDblclick`, issue #1453
 
 
 ### 4.3.7

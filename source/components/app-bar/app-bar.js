@@ -11,7 +11,7 @@ var AppBarDefaultConfig = {
     onAppBarCreate: Metro.noop
 };
 
-Metro.appBarSetup = function(options){
+Metro.appBarSetup = function (options) {
     AppBarDefaultConfig = $.extend({}, AppBarDefaultConfig, options);
 };
 
@@ -20,7 +20,7 @@ if (typeof window["metroAppBarSetup"] !== undefined) {
 }
 
 Component('app-bar', {
-    init: function( options, elem ) {
+    init: function (options, elem) {
         this._super(elem, options, AppBarDefaultConfig);
 
         this.id = Utils.elementId('appbar');
@@ -30,7 +30,7 @@ Component('app-bar', {
         return this;
     },
 
-    _create: function(){
+    _create: function () {
         var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, this.name);
@@ -42,7 +42,7 @@ Component('app-bar', {
         element.fire("appbarcreate");
     },
 
-    _createStructure: function(){
+    _createStructure: function () {
         var element = this.element, o = this.options;
         var hamburger, menu;
 
@@ -51,7 +51,7 @@ Component('app-bar', {
         hamburger = element.find(".hamburger");
         if (hamburger.length === 0) {
             hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down");
-            for(var i = 0; i < 3; i++) {
+            for (var i = 0; i < 3; i++) {
                 $("<span>").addClass("line").appendTo(hamburger);
             }
 
@@ -87,13 +87,13 @@ Component('app-bar', {
         }
     },
 
-    _createEvents: function(){
+    _createEvents: function () {
         var that = this, element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
-        element.on(Metro.events.click, ".hamburger", function(){
-            if (menu.length === 0) return ;
+        element.on(Metro.events.click, ".hamburger", function () {
+            if (menu.length === 0) return;
             var collapsed = menu.hasClass("collapsed");
             if (collapsed) {
                 that.open();
@@ -102,7 +102,7 @@ Component('app-bar', {
             }
         });
 
-        $(window).on(Metro.events.resize, function(){
+        $(window).on(Metro.events.resize, function () {
 
             if (o.expand !== true) {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
@@ -116,10 +116,10 @@ Component('app-bar', {
                 }
             }
 
-            if (menu.length === 0) return ;
+            if (menu.length === 0) return;
 
             if (hamburger.css('display') !== 'block') {
-                menu.show(function(){
+                menu.show(function () {
                     $(this).removeStyleProperty("display");
                 });
                 hamburger.addClass("hidden");
@@ -134,12 +134,12 @@ Component('app-bar', {
         }, {ns: this.id});
     },
 
-    close: function(){
+    close: function () {
         var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
-        menu.slideUp(o.duration, function(){
+        menu.slideUp(o.duration, function () {
             menu.addClass("collapsed").removeClass("opened");
             hamburger.removeClass("active");
         });
@@ -150,12 +150,12 @@ Component('app-bar', {
         });
     },
 
-    open: function(){
+    open: function () {
         var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
-        menu.slideDown(o.duration, function(){
+        menu.slideDown(o.duration, function () {
             menu.removeClass("collapsed").addClass("opened");
             hamburger.addClass("active");
         });
@@ -167,10 +167,10 @@ Component('app-bar', {
     },
 
     /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
+    changeAttribute: function (attributeName) {
     },
 
-    destroy: function(){
+    destroy: function () {
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
         $(window).off(Metro.events.resize, {ns: this.id});

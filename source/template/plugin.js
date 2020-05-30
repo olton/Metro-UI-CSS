@@ -1,48 +1,54 @@
-var MyObjectDefaultConfig = {
-    onMyObjectCreate: Metro.noop
-};
+/* global Metro */
+(function() {
+    var Utils = Metro.Utils;
+    var Component = Metro.Component;
 
-Metro.myObjectSetup = function (options) {
-    MyObjectDefaultConfig = $.extend({}, MyObjectDefaultConfig, options);
-};
+    var MyObjectDefaultConfig = {
+        onMyObjectCreate: Metro.noop
+    };
 
-if (typeof window["metroMyObjectSetup"] !== undefined) {
-    Metro.myObjectSetup(window["metroMyObjectSetup"]);
-}
+    Metro.myObjectSetup = function (options) {
+        MyObjectDefaultConfig = $.extend({}, MyObjectDefaultConfig, options);
+    };
 
-Component('name', {
-    init: function( options, elem ) {
-        this._super(elem, options, MyObjectDefaultConfig);
+    if (typeof window["metroMyObjectSetup"] !== undefined) {
+        Metro.myObjectSetup(window["metroMyObjectSetup"]);
+    }
 
-        this._create();
+    Component('name', {
+        init: function( options, elem ) {
+            this._super(elem, options, MyObjectDefaultConfig);
 
-        return this;
-    },
+            this._create();
 
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
+            return this;
+        },
 
-        Metro.checkRuntime(element, this.name);
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
 
-        this._createStructure();
-        this._createEvents();
+            Metro.checkRuntime(element, this.name);
 
-        Utils.exec(o.onMyObjectCreate, [element]);
-    },
+            this._createStructure();
+            this._createEvents();
 
-    _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
+            Utils.exec(o.onMyObjectCreate, [element]);
+        },
 
-    },
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+        },
 
-    },
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
 
-    changeAttribute: function(attributeName){
+        },
 
-    },
+        changeAttribute: function(attributeName){
 
-    destroy: function(){}
-});
+        },
+
+        destroy: function(){}
+    });
+}());
