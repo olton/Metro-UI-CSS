@@ -1,4 +1,4 @@
-/* global Metro, Component, Utils */
+/* global Metro, Utils, Component */
 var ActivityDefaultConfig = {
     activityDeferred: 0,
     type: "ring",

@@ -1,5 +1,5 @@
 /* global Metro */
-
+(function(){
 var CookieDefaultConfig = {
     path: "/",
     expires: null,
@@ -78,4 +78,5 @@ Metro.cookie = {
             maxAge: -1
         });
     }
-}
+};
+})()

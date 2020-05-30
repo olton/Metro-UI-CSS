@@ -161,4 +161,4 @@ Metro["playSound"] = function(data){
         if (data && data.onAudioEnd)
             Utils.exec(data.onAudioEnd, [null], this);
     });
-}
+};

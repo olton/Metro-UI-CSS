@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 28/05/2020 14:17:35
+ * Built at 30/05/2020 13:17:33
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "28/05/2020 14:17:44",
+    compileTime: "30/05/2020 13:17:42",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4524,6 +4524,8 @@ var Metro = {
     },
 
     hotkeys: {},
+    locales: {},
+    utils: {},
 
     about: function(){
         var content =
@@ -4891,11 +4893,20 @@ var Component = function(nameName, compObj){
             });
         },
 
-        _fireEvent: function(eventName, data){
+        _fireEvent: function(eventName, data, log){
             var element = this.element, o = this.options;
+            var _data = data ? Object.values(data) : {};
+            var event = eventName.camelCase().capitalize();
 
-            Utils.exec(o["on"+eventName.camelCase().capitalize()], Object.values(data), element[0]);
-            element.fire(eventName.toLowerCase(), data);
+            Utils.exec(o["on"+event], _data, element[0]);
+            element.fire(event.toLowerCase(), _data);
+
+            if (log) {
+                
+                
+                
+                
+            }
         }
     }, compObj);
 
@@ -4905,8 +4916,6 @@ var Component = function(nameName, compObj){
 }
 
 Metro.Component = Component;
-
-Metro.locales = {};
 
 window.Metro = Metro;
 
@@ -7956,194 +7965,197 @@ $.extend(Metro['locales'], {
 });
 
 
-var AccordionDefaultConfig = {
-    accordionDeferred: 0,
-    showMarker: true,
-    material: false,
-    duration: METRO_ANIMATION_DURATION,
-    oneFrame: true,
-    showActive: true,
-    activeFrameClass: "",
-    activeHeadingClass: "",
-    activeContentClass: "",
-    onFrameOpen: Metro.noop,
-    onFrameBeforeOpen: Metro.noop_true,
-    onFrameClose: Metro.noop,
-    onFrameBeforeClose: Metro.noop_true,
-    onAccordionCreate: Metro.noop
-};
+(function(Metro, $){
+    var Utils = Metro.Utils;
+    var Component = Metro.Component;
+    var AccordionDefaultConfig = {
+        accordionDeferred: 0,
+        showMarker: true,
+        material: false,
+        duration: METRO_ANIMATION_DURATION,
+        oneFrame: true,
+        showActive: true,
+        activeFrameClass: "",
+        activeHeadingClass: "",
+        activeContentClass: "",
+        onFrameOpen: Metro.noop,
+        onFrameBeforeOpen: Metro.noop_true,
+        onFrameClose: Metro.noop,
+        onFrameBeforeClose: Metro.noop_true,
+        onAccordionCreate: Metro.noop
+    };
 
-Metro.accordionSetup = function(options){
-    AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
-};
+    Metro.accordionSetup = function(options){
+        AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
+    };
 
-if (typeof window["metroAccordionSetup"] !== undefined) {
-    Metro.accordionSetup(window["metroAccordionSetup"]);
-}
+    if (typeof window["metroAccordionSetup"] !== undefined) {
+        Metro.accordionSetup(window["metroAccordionSetup"]);
+    }
 
-Component('accordion', {
-    init: function( options, elem ) {
-        this._super(elem, options, AccordionDefaultConfig);
+    Component('accordion', {
+        init: function( options, elem ) {
+            this._super(elem, options, AccordionDefaultConfig);
 
-        Metro.createExec(this);
+            Metro.createExec(this);
 
-        return this;
-    },
+            return this;
+        },
 
-    _create: function(){
-        var element = this.element;
+        _create: function(){
+            var element = this.element;
 
-        Metro.checkRuntime(element, this.name);
+            Metro.checkRuntime(element, this.name);
 
-        this._createStructure();
-        this._createEvents();
+            this._createStructure();
+            this._createEvents();
 
-        this._fireEvent('accordionCreate', {
-            element: element
-        });
-    },
+            this._fireEvent('accordionCreate', {
+                element: element
+            });
+        },
 
-    _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var frames = element.children(".frame");
-        var active = element.children(".frame.active");
-        var frame_to_open;
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+            var frames = element.children(".frame");
+            var active = element.children(".frame.active");
+            var frame_to_open;
 
-        element.addClass("accordion");
+            element.addClass("accordion");
 
-        if (o.showMarker === true) {
-            element.addClass("marker-on");
-        }
-
-        if (o.material === true) {
-            element.addClass("material");
-        }
-
-        if (active.length === 0) {
-            frame_to_open = frames[0];
-        } else {
-            frame_to_open = active[0];
-        }
-
-        this._hideAll();
-
-        if (o.showActive === true) {
-            if (o.oneFrame === true) {
-                this._openFrame(frame_to_open);
-            } else {
-                $.each(active, function(){
-                    that._openFrame(this);
-                });
+            if (o.showMarker === true) {
+                element.addClass("marker-on");
             }
-        }
-    },
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var active = element.children(".frame.active");
+            if (o.material === true) {
+                element.addClass("material");
+            }
 
-        element.on(Metro.events.click, ".heading", function(){
-            var heading = $(this);
-            var frame = heading.parent();
+            if (active.length === 0) {
+                frame_to_open = frames[0];
+            } else {
+                frame_to_open = active[0];
+            }
 
-            if (heading.closest(".accordion")[0] !== element[0]) {
+            this._hideAll();
+
+            if (o.showActive === true) {
+                if (o.oneFrame === true) {
+                    this._openFrame(frame_to_open);
+                } else {
+                    $.each(active, function(){
+                        that._openFrame(this);
+                    });
+                }
+            }
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var active = element.children(".frame.active");
+
+            element.on(Metro.events.click, ".heading", function(){
+                var heading = $(this);
+                var frame = heading.parent();
+
+                if (heading.closest(".accordion")[0] !== element[0]) {
+                    return false;
+                }
+
+                if (frame.hasClass("active")) {
+                    if (active.length === 1 && o.oneFrame) {
+                        /* eslint-disable-next-line */
+
+                    } else {
+                        that._closeFrame(frame);
+                    }
+                } else {
+                    that._openFrame(frame);
+                }
+            });
+        },
+
+        _openFrame: function(f){
+            var element = this.element, o = this.options;
+            var frame = $(f);
+
+            if (Utils.exec(o.onFrameBeforeOpen, [frame[0]], element[0]) === false) {
                 return false;
             }
 
-            if (frame.hasClass("active")) {
-                if (active.length === 1 && o.oneFrame) {
-                    /* eslint-disable-next-line */
-
-                } else {
-                    that._closeFrame(frame);
-                }
-            } else {
-                that._openFrame(frame);
+            if (o.oneFrame === true) {
+                this._closeAll(frame[0]);
             }
-        });
-    },
 
-    _openFrame: function(f){
-        var element = this.element, o = this.options;
-        var frame = $(f);
+            frame.addClass("active " + o.activeFrameClass);
+            frame.children(".heading").addClass(o.activeHeadingClass);
+            frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
 
-        if (Utils.exec(o.onFrameBeforeOpen, [frame[0]], element[0]) === false) {
-            return false;
+            this._fireEvent("frameOpen", {
+                frame: frame[0]
+            });
+        },
+
+        _closeFrame: function(f){
+            var element = this.element, o = this.options;
+            var frame = $(f);
+
+            if (!frame.hasClass("active")) {
+                return ;
+            }
+
+            if (Utils.exec(o.onFrameBeforeClose, [frame[0]], element[0]) === false) {
+                return ;
+            }
+
+            frame.removeClass("active " + o.activeFrameClass);
+            frame.children(".heading").removeClass(o.activeHeadingClass);
+            frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
+
+            this._fireEvent("frameClose", {
+                frame: frame[0]
+            });
+        },
+
+        _closeAll: function(skip){
+            var that = this, element = this.element;
+            var frames = element.children(".frame");
+
+            $.each(frames, function(){
+                if (skip === this) return;
+                that._closeFrame(this);
+            });
+        },
+
+        _hideAll: function(){
+            var element = this.element;
+            var frames = element.children(".frame");
+
+            $.each(frames, function(){
+                $(this).children(".content").hide();
+            });
+        },
+
+        _openAll: function(){
+            var that = this, element = this.element;
+            var frames = element.children(".frame");
+
+            $.each(frames, function(){
+                that._openFrame(this);
+            });
+        },
+
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
+
+        destroy: function(){
+            var element = this.element;
+            element.off(Metro.events.click, ".heading");
+            return element;
         }
-
-        if (o.oneFrame === true) {
-            this._closeAll(frame[0]);
-        }
-
-        frame.addClass("active " + o.activeFrameClass);
-        frame.children(".heading").addClass(o.activeHeadingClass);
-        frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
-
-        this._fireEvent("frameOpen", {
-            frame: frame[0]
-        });
-    },
-
-    _closeFrame: function(f){
-        var element = this.element, o = this.options;
-        var frame = $(f);
-
-        if (!frame.hasClass("active")) {
-            return ;
-        }
-
-        if (Utils.exec(o.onFrameBeforeClose, [frame[0]], element[0]) === false) {
-            return ;
-        }
-
-        frame.removeClass("active " + o.activeFrameClass);
-        frame.children(".heading").removeClass(o.activeHeadingClass);
-        frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
-
-        this._fireEvent("frameClose", {
-            frame: frame[0]
-        });
-    },
-
-    _closeAll: function(skip){
-        var that = this, element = this.element;
-        var frames = element.children(".frame");
-
-        $.each(frames, function(){
-            if (skip === this) return;
-            that._closeFrame(this);
-        });
-    },
-
-    _hideAll: function(){
-        var element = this.element;
-        var frames = element.children(".frame");
-
-        $.each(frames, function(){
-            $(this).children(".content").hide();
-        });
-    },
-
-    _openAll: function(){
-        var that = this, element = this.element;
-        var frames = element.children(".frame");
-
-        $.each(frames, function(){
-            that._openFrame(this);
-        });
-    },
-
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
-
-    destroy: function(){
-        var element = this.element;
-        element.off(Metro.events.click, ".heading");
-        return element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 var ActivityDefaultConfig = {
     activityDeferred: 0,
@@ -8254,6 +8266,7 @@ Metro.activity = {
     }
 };
 
+
 var AdblockDefaultConfig = {
     adblockDeferred: 0,
     checkInterval: 1000,
@@ -8359,7 +8372,7 @@ var AppBarDefaultConfig = {
     onAppBarCreate: Metro.noop
 };
 
-Metro.appBarSetup = function(options){
+Metro.appBarSetup = function (options) {
     AppBarDefaultConfig = $.extend({}, AppBarDefaultConfig, options);
 };
 
@@ -8368,7 +8381,7 @@ if (typeof window["metroAppBarSetup"] !== undefined) {
 }
 
 Component('app-bar', {
-    init: function( options, elem ) {
+    init: function (options, elem) {
         this._super(elem, options, AppBarDefaultConfig);
 
         this.id = Utils.elementId('appbar');
@@ -8378,7 +8391,7 @@ Component('app-bar', {
         return this;
     },
 
-    _create: function(){
+    _create: function () {
         var element = this.element, o = this.options;
 
         Metro.checkRuntime(element, this.name);
@@ -8390,7 +8403,7 @@ Component('app-bar', {
         element.fire("appbarcreate");
     },
 
-    _createStructure: function(){
+    _createStructure: function () {
         var element = this.element, o = this.options;
         var hamburger, menu;
 
@@ -8399,7 +8412,7 @@ Component('app-bar', {
         hamburger = element.find(".hamburger");
         if (hamburger.length === 0) {
             hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down");
-            for(var i = 0; i < 3; i++) {
+            for (var i = 0; i < 3; i++) {
                 $("<span>").addClass("line").appendTo(hamburger);
             }
 
@@ -8435,13 +8448,13 @@ Component('app-bar', {
         }
     },
 
-    _createEvents: function(){
+    _createEvents: function () {
         var that = this, element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
-        element.on(Metro.events.click, ".hamburger", function(){
-            if (menu.length === 0) return ;
+        element.on(Metro.events.click, ".hamburger", function () {
+            if (menu.length === 0) return;
             var collapsed = menu.hasClass("collapsed");
             if (collapsed) {
                 that.open();
@@ -8450,7 +8463,7 @@ Component('app-bar', {
             }
         });
 
-        $(window).on(Metro.events.resize, function(){
+        $(window).on(Metro.events.resize, function () {
 
             if (o.expand !== true) {
                 if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
@@ -8464,10 +8477,10 @@ Component('app-bar', {
                 }
             }
 
-            if (menu.length === 0) return ;
+            if (menu.length === 0) return;
 
             if (hamburger.css('display') !== 'block') {
-                menu.show(function(){
+                menu.show(function () {
                     $(this).removeStyleProperty("display");
                 });
                 hamburger.addClass("hidden");
@@ -8482,12 +8495,12 @@ Component('app-bar', {
         }, {ns: this.id});
     },
 
-    close: function(){
+    close: function () {
         var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
-        menu.slideUp(o.duration, function(){
+        menu.slideUp(o.duration, function () {
             menu.addClass("collapsed").removeClass("opened");
             hamburger.removeClass("active");
         });
@@ -8498,12 +8511,12 @@ Component('app-bar', {
         });
     },
 
-    open: function(){
+    open: function () {
         var element = this.element, o = this.options;
         var menu = element.find(".app-bar-menu");
         var hamburger = element.find(".hamburger");
 
-        menu.slideDown(o.duration, function(){
+        menu.slideDown(o.duration, function () {
             menu.removeClass("collapsed").addClass("opened");
             hamburger.addClass("active");
         });
@@ -8515,10 +8528,10 @@ Component('app-bar', {
     },
 
     /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
+    changeAttribute: function (attributeName) {
     },
 
-    destroy: function(){
+    destroy: function () {
         var element = this.element;
         element.off(Metro.events.click, ".hamburger");
         $(window).off(Metro.events.resize, {ns: this.id});
@@ -8689,7 +8702,8 @@ Metro["playSound"] = function(data){
         if (data && data.onAudioEnd)
             Utils.exec(data.onAudioEnd, [null], this);
     });
-}
+};
+
 
 var AudioPlayerDefaultConfig = {
     audioDeferred: 0,
@@ -12329,8 +12343,10 @@ Metro.cookieDisclaimer = {
             wrapper.remove();
         });
     }
-}
+};
 
+
+(function(){
 var CookieDefaultConfig = {
     path: "/",
     expires: null,
@@ -12409,7 +12425,8 @@ Metro.cookie = {
             maxAge: -1
         });
     }
-}
+};
+})()
 
 var CountdownDefaultConfig = {
     countdownDeferred: 0,
@@ -18932,7 +18949,7 @@ var ListViewDefaultConfig = {
     onExpandNode: Metro.noop,
     onGroupNodeClick: Metro.noop,
     onNodeClick: Metro.noop,
-    onNodeDblClick: Metro.noop,
+    onNodeDblclick: Metro.noop,
     onListViewCreate: Metro.noop
 };
 
@@ -19064,6 +19081,13 @@ Component('listview', {
     _createEvents: function(){
         var that = this, element = this.element, o = this.options;
 
+        element.on(Metro.events.dblclick, ".node", function(){
+            var node = $(this);
+            that._fireEvent("node-dblclick", {
+                node: node
+            });
+        });
+
         element.on(Metro.events.click, ".node", function(){
             var node = $(this);
             element.find(".node").removeClass("current");
@@ -19072,8 +19096,7 @@ Component('listview', {
                 element.find(".node").removeClass("current-select");
                 node.toggleClass("current-select");
             }
-            Utils.exec(o.onNodeClick, [node], element[0]);
-            element.fire("nodeclick", {
+            that._fireEvent("node-click", {
                 node: node
             });
         });

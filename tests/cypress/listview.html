@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test ListView - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>ListView test page</h1>
+
+    <div>
+        <ul data-role="listview" data-view="list" data-select-node="true" data-on-node-click="nodeClick" data-on-node-dblclick="nodeDblClick">
+            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
+            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
+            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
+            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
+            <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
+            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini"></li>
+            <li data-icon="images/setup.png" data-caption="setup.exe"></li>
+            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat"></li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function nodeClick() {
+        console.log('node click');
+    }
+    function nodeDblClick() {
+        console.log('node dbl click');
+    }
+</script>
+</body>
+</html>

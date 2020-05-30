@@ -260,6 +260,8 @@ var Metro = {
     },
 
     hotkeys: {},
+    locales: {},
+    utils: {},
 
     about: function(){
         var content =
@@ -627,11 +629,20 @@ var Component = function(nameName, compObj){
             });
         },
 
-        _fireEvent: function(eventName, data){
+        _fireEvent: function(eventName, data, log){
             var element = this.element, o = this.options;
+            var _data = data ? Object.values(data) : {};
+            var event = eventName.camelCase().capitalize();
 
-            Utils.exec(o["on"+eventName.camelCase().capitalize()], Object.values(data), element[0]);
-            element.fire(eventName.toLowerCase(), data);
+            Utils.exec(o["on"+event], _data, element[0]);
+            element.fire(event.toLowerCase(), _data);
+
+            if (log) {
+                console.log(log);
+                console.log("Event: " + "on"+eventName.camelCase().capitalize());
+                console.log("Data: ", _data);
+                console.log("Element: ", element[0]);
+            }
         }
     }, compObj);
 
@@ -641,8 +652,6 @@ var Component = function(nameName, compObj){
 }
 
 Metro.Component = Component;
-
-Metro.locales = {};
 
 window.Metro = Metro;
 
