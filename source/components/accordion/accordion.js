@@ -1,7 +1,6 @@
 /*global Metro, METRO_ANIMATION_DURATION */
 (function(Metro, $){
-    var Utils = Metro.Utils;
-    var Component = Metro.Component;
+    var Utils = Metro.utils;
     var AccordionDefaultConfig = {
         accordionDeferred: 0,
         showMarker: true,
@@ -27,19 +26,14 @@
         Metro.accordionSetup(window["metroAccordionSetup"]);
     }
 
-    Component('accordion', {
+    Metro.Component('accordion', {
         init: function( options, elem ) {
             this._super(elem, options, AccordionDefaultConfig);
-
-            Metro.createExec(this);
-
             return this;
         },
 
         _create: function(){
             var element = this.element;
-
-            Metro.checkRuntime(element, this.name);
 
             this._createStructure();
             this._createEvents();
