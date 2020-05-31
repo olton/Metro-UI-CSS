@@ -16,6 +16,7 @@ module.exports = function(grunt) {
     var timestamp = (day < 10 ? "0"+day:day) + "/" + (month < 10 ? "0"+month:month) + "/" + (year) + " " + (hour<10?"0"+hour:hour) + ":" + (mins<10?"0"+mins:mins) + ":" + (sec<10?"0"+sec:sec);
 
     tasks = [
+        'clear',
         'concurrent:clean',
         'concurrent:eslint',
         'concurrent:compile_less',
@@ -68,6 +69,8 @@ module.exports = function(grunt) {
         clean: {
             build: ['build/js', 'build/css', 'build/mif']
         },
+
+        clear: {},
 
         eslint: {
             target: ['source/**/*.js'],
