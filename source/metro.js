@@ -263,6 +263,7 @@ var Metro = {
     locales: {},
     utils: {},
     colors: {},
+    dialog: null,
 
     about: function(){
         var content =
@@ -399,7 +400,7 @@ var Metro = {
                 dur: 300,
                 onDone: function(){
                     $(".m4-cloak").removeClass("m4-cloak");
-                    $(window).fire("metroinitied");
+                    $(window).fire("metro-initiated");
                 }
             });
         }
@@ -610,13 +611,22 @@ var Metro = {
 var Component = function(nameName, compObj){
     var name = normalizeComponentName(nameName);
     var component = $.extend({name: name}, {
-        _super: function(el, options, defaults){
+        _super: function(el, options, defaults, setup){
+            var self = this;
+
             this.elem = el;
             this.element = $(el);
             this.options = $.extend( {}, defaults, options );
 
             this._setOptionsFromDOM();
             this._runtime();
+
+            if (setup && typeof setup === 'object') {
+                $.each(setup, function(key, val){
+                    self[key] = val;
+                })
+            }
+
             this._createExec();
         },
 
@@ -652,7 +662,7 @@ var Component = function(nameName, compObj){
         _createExec: function(){
             var that = this, timeout = this.options[this.name+'Deferred'];
 
-            if (timeout > 0) {
+            if (timeout) {
                 setTimeout(function(){
                     that._create();
                 }, timeout)

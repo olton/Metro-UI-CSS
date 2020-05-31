@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Adblock - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Adblock test page</h1>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(window).on('fishing-start', function(){
+        console.log('Start fishing!');
+    })
+    $(window).on('fishing-done', function(){
+        console.log('Fishing done!');
+    })
+</script>
+</body>
+</html>

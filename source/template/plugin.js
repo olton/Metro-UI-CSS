@@ -14,7 +14,7 @@
 
     Metro.Component('name', {
         init: function( options, elem ) {
-            this._super(elem, options, MyObjectDefaultConfig);
+            this._super(elem, options, MyObjectDefaultConfig, {});
             return this;
         },
 

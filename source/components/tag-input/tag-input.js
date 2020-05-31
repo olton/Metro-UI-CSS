@@ -41,11 +41,15 @@
 
     Metro.Component('tag-input', {
         init: function( options, elem ) {
-            this._super(elem, options, TagInputDefaultConfig);
+            this._super(elem, options, TagInputDefaultConfig, {
+                values: [],
+                triggers: []
+            });
 
-            this.values = [];
-            this.triggers = [];
+            return this;
+        },
 
+        _create: function(){
             this.triggers = (""+this.options.tagTrigger).toArray(",");
 
             if (this.triggers.contains("Space") || this.triggers.contains("Spacebar")) {
@@ -57,10 +61,6 @@
                 this.triggers.push(",");
             }
 
-            return this;
-        },
-
-        _create: function(){
             this._createStructure();
             this._createEvents();
 

@@ -72,6 +72,40 @@
         </div>
     </div>
 
+    <div class="example text-center mt-20">
+        <button class="button" onclick="
+                        Metro.activity.open({autoHide: 3000})
+                    ">Open</button>
+
+        <button class="button" onclick="
+                        Metro.activity.open({
+                            type: 'metro',
+                            overlayClickClose: true
+                        })
+                    ">Open</button>
+
+        <button class="button" onclick="
+                        var activity = Metro.activity.open({
+                            type: 'square',
+                            overlayColor: '#fff',
+                            overlayAlpha: 1
+                        });
+                        setTimeout(function(){
+                            Metro.activity.close(activity);
+                        }, 5000)
+                    ">Open</button>
+
+        <button class="button" onclick="
+                        Metro.activity.open({
+                            type: 'square',
+                            overlayColor: '#fff',
+                            overlayAlpha: 1,
+                            text: '<div class=\'mt-2 text-small\'>Please, wait...</div>',
+                            overlayClickClose: true
+                        });
+                    ">Open</button>
+    </div>
+
     <script src="../metro/js/metro.js?ver=@@b-version"></script>
     <script>
         $(function(){
