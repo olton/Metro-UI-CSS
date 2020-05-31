@@ -46,6 +46,7 @@
     "grunt": "^1.1.0",
     "grunt-build-number": "^1.0.0",
     "grunt-bump": "^0.8.0",
+    "grunt-clear": "^0.2.1",
     "grunt-concurrent": "^3.0.0",
     "grunt-contrib-clean": "^2.0.0",
     "grunt-contrib-compress": "^1.6.0",

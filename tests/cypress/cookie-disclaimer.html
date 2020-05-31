@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Tag input - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .cookie-disclaimer {
+            box-shadow: 0 -1px 5px 0 rgba(0,0,0,0.35);
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Cookie acceptor demo</h1>
+    <button class="button" onclick="Metro.cookie.delCookie('cookies_accepted')">Withdraw accept</button>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+        Metro.cookieDisclaimer.init({
+            clsCancelButton: "ml-2",
+            clsContainer: "cookie-disclaimer",
+            duration: "1day"
+        });
+    });
+</script>
+</body>
+</html>
