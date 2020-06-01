@@ -28,10 +28,6 @@
             flex-flow: column wrap;
         }
     }
-
-    &.view-table {
-        display: table;
-    }
 }
 
 .listview {
@@ -114,6 +110,18 @@
 
     &.view-table {
 
+        display: table;
+        width: 100%;
+
+        & > li {
+            display: table-row;
+            width: 100%;
+        }
+
+        & > li > * {
+            display: table-cell;
+        }
+
         .icon {
             width: 20px;
             height: 20px;
@@ -129,14 +137,6 @@
             .data > .caption {
                 padding: 0 .5rem;
                 line-height: 26px;
-            }
-        }
-
-        & > li {
-            display: table-row;
-
-            & > * {
-                display: table-cell;
             }
         }
 
