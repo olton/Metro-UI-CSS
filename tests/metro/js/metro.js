@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 01/06/2020 14:31:48
+ * Built at 01/06/2020 15:41:10
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "01/06/2020 14:31:49",
+    compileTime: "01/06/2020 15:41:12",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -16107,591 +16107,594 @@ $.extend(Metro['locales'], {
     });
 }(Metro, m4q));
 
-var FileDefaultConfig = {
-    fileDeferred: 0,
-    mode: "input",
-    buttonTitle: "Choose file(s)",
-    filesTitle: "file(s) selected",
-    dropTitle: "<strong>Choose a file(s)</strong> or drop it here",
-    dropIcon: "<span class='default-icon-upload'></span>",
-    prepend: "",
-    clsComponent: "",
-    clsPrepend: "",
-    clsButton: "",
-    clsCaption: "",
-    copyInlineStyles: false,
-    onSelect: Metro.noop,
-    onFileCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var FileDefaultConfig = {
+        fileDeferred: 0,
+        mode: "input",
+        buttonTitle: "Choose file(s)",
+        filesTitle: "file(s) selected",
+        dropTitle: "<strong>Choose a file(s)</strong> or drop it here",
+        dropIcon: "<span class='default-icon-upload'></span>",
+        prepend: "",
+        clsComponent: "",
+        clsPrepend: "",
+        clsButton: "",
+        clsCaption: "",
+        copyInlineStyles: false,
+        onSelect: Metro.noop,
+        onFileCreate: Metro.noop
+    };
 
-Metro.fileSetup = function (options) {
-    FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
-};
+    Metro.fileSetup = function (options) {
+        FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
+    };
 
-if (typeof window["metroFileSetup"] !== undefined) {
-    Metro.fileSetup(window["metroFileSetup"]);
-}
+    if (typeof window["metroFileSetup"] !== undefined) {
+        Metro.fileSetup(window["metroFileSetup"]);
+    }
 
-Component('file', {
-    init: function( options, elem ) {
-        this._super(elem, options, FileDefaultConfig);
+    Metro.Component('file', {
+        init: function( options, elem ) {
+            this._super(elem, options, FileDefaultConfig);
 
-        Metro.createExec(this);
+            return this;
+        },
 
-        return this;
-    },
+        _create: function(){
+            var element = this.element;
 
-    _create: function(){
-        var element = this.element, o = this.options;
-        Metro.checkRuntime(this.element, this.name);
+            this._createStructure();
+            this._createEvents();
 
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onFileCreate, [element], element[0]);
-        element.fire("filecreate");
-    },
-
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var container = $("<label>").addClass((o.mode === "input" ? " file " : o.mode === "button" ? " file-button " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
-        var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
-        var files = $("<span>").addClass("files").addClass(o.clsCaption);
-        var icon, button;
-
-
-        container.insertBefore(element);
-        element.appendTo(container);
-
-        if (o.mode === 'drop' || o.mode === 'dropzone') {
-            icon = $(o.dropIcon).addClass("icon").appendTo(container);
-            caption.html(o.dropTitle).insertAfter(icon);
-            files.html("0" + " " + o.filesTitle).insertAfter(caption);
-        } else if (o.mode === 'button') {
-
-            button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
-            button.appendTo(container);
-            button.addClass(o.clsButton);
-
-        } else {
-            caption.insertBefore(element);
-
-            button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
-            button.appendTo(container);
-            button.addClass(o.clsButton);
-
-            if (element.attr('dir') === 'rtl' ) {
-                container.addClass("rtl");
-            }
-
-            if (o.prepend !== "") {
-                var prepend = $("<div>").html(o.prepend);
-                prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
-            }
-        }
-
-        element[0].className = '';
-
-        if (o.copyInlineStyles === true) {
-            for (var i = 0, l = element[0].style.length; i < l; i++) {
-                container.css(element[0].style[i], element.css(element[0].style[i]));
-            }
-        }
-
-        if (element.is(":disabled")) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var container = element.closest("label");
-        var caption = container.find(".caption");
-        var files = container.find(".files");
-        var form = element.closest("form");
-
-        if (form.length) {
-            form.on("reset", function(){
-                that.clear();
-            })
-        }
-
-        container.on(Metro.events.click, "button", function(){
-            element[0].click();
-        });
-
-        element.on(Metro.events.change, function(){
-            var fi = this;
-            var file_names = [];
-            var entry;
-
-            // if (fi.files.length === 0) {
-            //     return ;
-            // }
-
-            Array.from(fi.files).forEach(function(file){
-                file_names.push(file.name);
+            this._fireEvent("file-create", {
+                element: element
             });
+        },
 
-            if (o.mode === "input") {
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var container = $("<label>").addClass((o.mode === "input" ? " file " : o.mode === "button" ? " file-button " : " drop-zone ") + element[0].className).addClass(o.clsComponent);
+            var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
+            var files = $("<span>").addClass("files").addClass(o.clsCaption);
+            var icon, button;
 
-                entry = file_names.join(", ");
 
-                caption.html(entry);
-                caption.attr('title', entry);
+            container.insertBefore(element);
+            element.appendTo(container);
+
+            if (o.mode === 'drop' || o.mode === 'dropzone') {
+                icon = $(o.dropIcon).addClass("icon").appendTo(container);
+                caption.html(o.dropTitle).insertAfter(icon);
+                files.html("0" + " " + o.filesTitle).insertAfter(caption);
+            } else if (o.mode === 'button') {
+
+                button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
+                button.appendTo(container);
+                button.addClass(o.clsButton);
+
             } else {
-                files.html(element[0].files.length + " " +o.filesTitle);
-            }
-
-            Utils.exec(o.onSelect, [fi.files], element[0]);
-            element.fire("select", {
-                files: fi.files
-            });
-        });
-
-        element.on(Metro.events.focus, function(){container.addClass("focused");});
-        element.on(Metro.events.blur, function(){container.removeClass("focused");});
-
-        if (o.mode !== "input") {
-            container.on('drag dragstart dragend dragover dragenter dragleave drop', function(e){
-                e.preventDefault();
-            });
-
-            container.on('dragenter dragover', function(){
-                container.addClass("drop-on");
-            });
-
-            container.on('dragleave', function(){
-                container.removeClass("drop-on");
-            });
-
-            container.on('drop', function(e){
-                element[0].files = e.dataTransfer.files;
-                files.html(element[0].files.length + " " +o.filesTitle);
-                container.removeClass("drop-on");
-                element.trigger("change");
-            });
-        }
-    },
-
-    clear: function(){
-        var element = this.element, o = this.options;
-        if (o.mode === "input") {
-            element.siblings(".caption").html("");
-        } else {
-            element.siblings(".caption").html(o.dropTitle);
-            element.siblings(".files").html("0" + " " + o.filesTitle);
-        }
-
-        element.val("");
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.parent().addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.parent().removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    toggleDir: function(){
-        if (this.element.attr("dir") === 'rtl') {
-            this.element.parent().addClass("rtl");
-        } else {
-            this.element.parent().removeClass("rtl");
-        }
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case 'disabled': this.toggleState(); break;
-            case 'dir': this.toggleDir(); break;
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        var parent = element.parent();
-        element.off(Metro.events.change);
-        parent.off(Metro.events.click, "button");
-        return element;
-    }
-});
-
-
-var GravatarDefaultConfig = {
-    gravatarDeferred: 0,
-    email: "",
-    size: 80,
-    default: "mp",
-    onGravatarCreate: Metro.noop
-};
-
-Metro.gravatarSetup = function (options) {
-    GravatarDefaultConfig = $.extend({}, GravatarDefaultConfig, options);
-};
-
-if (typeof window["metroGravatarSetup"] !== undefined) {
-    Metro.gravatarSetup(window["metroGravatarSetup"]);
-}
-
-Component('gravatar', {
-    init: function( options, elem ) {
-        this._super(elem, options, GravatarDefaultConfig);
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(this.element, this.name);
-
-        this.get();
-
-        Utils.exec(o.onGravatarCreate, [element], element[0]);
-        element.fire("gravatarcreate");
-    },
-
-    getImage: function(email, size, def, is_object){
-        var image = $("<img>").attr('alt', email);
-
-        image.attr("src", this.getImageSrc(email, size));
-
-        return is_object === true ? image : image[0];
-    },
-
-    getImageSrc: function(email, size, def){
-        if (email === undefined || email.trim() === '') {
-            return "";
-        }
-
-        size = size || 80;
-        def = Utils.encodeURI(def) || '404';
-
-        return "//www.gravatar.com/avatar/" + Utils.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
-    },
-
-    get: function(){
-        var element = this.element, o = this.options;
-        var img = element[0].tagName === 'IMG' ? element : element.find("img");
-
-        if (img.length === 0) {
-            return;
-        }
-        img.attr("src", this.getImageSrc(o.email, o.size, o.default));
-
-        return this;
-    },
-
-    resize: function(new_size){
-        this.options.size = new_size !== undefined ? new_size : this.element.attr("data-size");
-        this.get();
-    },
-
-    email: function(new_email){
-        this.options.email = new_email !== undefined ? new_email : this.element.attr("data-email");
-        this.get();
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case 'data-size': this.resize(); break;
-            case 'data-email': this.email(); break;
-        }
-    },
-
-    destroy: function(){
-        return this.element;
-    }
-});
-
-
-var HintDefaultConfig = {
-    hintDeferred: 0,
-    hintHide: 5000,
-    clsHint: "",
-    hintText: "",
-    hintPosition: Metro.position.TOP,
-    hintOffset: 4,
-    onHintShow: Metro.noop,
-    onHintHide: Metro.noop,
-    onHintCreate: Metro.noop
-};
-
-Metro.hintSetup = function (options) {
-    HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
-};
-
-if (typeof window["metroHintSetup"] !== undefined) {
-    Metro.hintSetup(window["metroHintSetup"]);
-}
-
-Component('hint', {
-    init: function( options, elem ) {
-        this._super(elem, options, HintDefaultConfig);
-
-        this.hint = null;
-        this.hint_size = {
-            width: 0,
-            height: 0
-        };
-
-        this.id = Utils.elementId("hint");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        element.on(Metro.events.enter, function(){
-            that.createHint();
-            if (+o.hintHide > 0) {
-                setTimeout(function(){
-                    that.removeHint();
-                }, o.hintHide);
-            }
-        });
-
-        element.on(Metro.events.leave, function(){
-            that.removeHint();
-        });
-
-        $(window).on(Metro.events.scroll+" "+Metro.events.resize, function(){
-            if (that.hint !== null) that.setPosition();
-        }, {ns: this.id});
-
-        Utils.exec(o.onHintCreate, [element], element[0]);
-        element.fire("hintcreate");
-    },
-
-    createHint: function(){
-        var elem = this.elem, element = this.element, o = this.options;
-        var hint = $("<div>").addClass("hint").addClass(o.clsHint).html(o.hintText);
-
-        this.hint = hint;
-        this.hint_size = Utils.hiddenElementSize(hint);
-
-        $(".hint:not(.permanent-hint)").remove();
-
-        if (elem.tagName === 'TD' || elem.tagName === 'TH') {
-            var wrp = $("<div/>").css("display", "inline-block").html(element.html());
-            element.html(wrp);
-            element = wrp;
-        }
-
-        this.setPosition();
-
-        hint.appendTo($('body'));
-        Utils.exec(o.onHintShow, [hint[0]], element[0]);
-        element.fire("hintshow", {
-            hint: hint[0]
-        });
-    },
-
-    setPosition: function(){
-        var hint = this.hint, hint_size = this.hint_size, o = this.options, element = this.element;
-
-        if (o.hintPosition === Metro.position.BOTTOM) {
-            hint.addClass('bottom');
-            hint.css({
-                top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
-                left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
-            });
-        } else if (o.hintPosition === Metro.position.RIGHT) {
-            hint.addClass('right');
-            hint.css({
-                top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
-                left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.hintOffset
-            });
-        } else if (o.hintPosition === Metro.position.LEFT) {
-            hint.addClass('left');
-            hint.css({
-                top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
-                left: element.offset().left - hint_size.width - $(window).scrollLeft() - o.hintOffset
-            });
-        } else {
-            hint.addClass('top');
-            hint.css({
-                top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
-                left: element.offset().left - $(window).scrollLeft() + element.outerWidth()/2 - hint_size.width/2
-            });
-        }
-    },
-
-    removeHint: function(){
-        var that = this;
-        var hint = this.hint;
-        var element = this.element;
-        var options = this.options;
-        var timeout = options.onHintHide === Metro.noop ? 0 : 300;
-
-        if (hint !== null) {
-
-            Utils.exec(options.onHintHide, [hint[0]], element[0]);
-            element.fire("hinthide", {
-                hint: hint[0]
-            });
-
-            setTimeout(function(){
-                hint.hide(0, function(){
-                    hint.remove();
-                    that.hint = null;
-                });
-            }, timeout);
-        }
-    },
-
-    changeText: function(){
-        this.options.hintText = this.element.attr("data-hint-text");
-    },
-
-    changeAttribute: function(attributeName){
-        if (attributeName === "data-hint-text") {
-            this.changeText();
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        this.removeHint();
-        element.off(Metro.events.enter + "-hint");
-        element.off(Metro.events.leave + "-hint");
-        $(window).off(Metro.events.scroll + "-hint");
-    }
-});
-
-
-var Hotkey = {
-    specialKeys: {
-        8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
-        20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home",
-        37: "left", 38: "up", 39: "right", 40: "down", 45: "insert", 46: "del",
-        96: "0", 97: "1", 98: "2", 99: "3", 100: "4", 101: "5", 102: "6", 103: "7",
-        104: "8", 105: "9", 106: "*", 107: "+", 109: "-", 110: ".", 111 : "/",
-        112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8",
-        120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 188: ",", 190: ".",
-        191: "/", 224: "meta" },
-
-    shiftNums: {
-        "~":"`", "!":"1", "@":"2", "#":"3", "$":"4", "%":"5", "^":"6", "&":"7",
-        "*":"8", "(":"9", ")":"0", "_":"-", "+":"=", ":":";", "\"":"'", "<":",",
-        ">":".",  "?":"/",   "|":"\\"
-    },
-
-    shiftNumsInverse: {
-        "`": "~", "1": "!", "2": "@", "3": "#", "4": "$", "5": "%", "6": "^", "7": "&",
-        "8": "*", "9": "(", "0": ")", "-": "_", "=": "+", ";": ": ", "'": "\"", ",": "<",
-        ".": ">",  "/": "?",  "\\": "|"
-    },
-
-    textAcceptingInputTypes: [
-        "text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime",
-        "datetime-local", "search", "color", "tel"
-    ],
-
-    getKey: function(e){
-        var key, k = e.keyCode, char = String.fromCharCode( k ).toLowerCase();
-        if( e.shiftKey ){
-            key = Hotkey.shiftNums[ char ] ? Hotkey.shiftNums[ char ] : char;
-        }
-        else {
-            key = Hotkey.specialKeys[ k ] === undefined
-                ? char
-                : Hotkey.specialKeys[ k ];
-        }
-
-        return Hotkey.getModifier(e).length ? Hotkey.getModifier(e).join("+") + "+" + key : key;
-    },
-
-    getModifier: function(e){
-        var m = [];
-        if (e.altKey) {m.push("alt");}
-        if (e.ctrlKey) {m.push("ctrl");}
-        if (e.shiftKey) {m.push("shift");}
-        return m;
-    }
-};
-
-function bindKey(key, fn){
-    return this.each(function(){
-        $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
-            var _key = Hotkey.getKey(e);
-            var el = $(this);
-            var href = ""+el.attr("href");
-
-            if (key !== _key) {
-                return;
-            }
-
-            if (el.is("a")) {
-                if (href && href.trim() !== "#") {
-                    window.location.href = href;
+                caption.insertBefore(element);
+
+                button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
+                button.appendTo(container);
+                button.addClass(o.clsButton);
+
+                if (element.attr('dir') === 'rtl' ) {
+                    container.addClass("rtl");
+                }
+
+                if (o.prepend !== "") {
+                    var prepend = $("<div>").html(o.prepend);
+                    prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
                 }
             }
 
-            Utils.exec(fn, [e, _key, key], this);
-        })
-    })
-}
+            element[0].className = '';
 
-$.fn.hotkey = bindKey;
+            if (o.copyInlineStyles === true) {
+                for (var i = 0, l = element[0].style.length; i < l; i++) {
+                    container.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
 
-if (METRO_JQUERY && jquery_present) {
-    jQuery.fn.hotkey = bindKey;
-}
+            if (element.is(":disabled")) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
 
-$(document).on(Metro.events.keyup + ".hotkey-data", function(e){
-    var el, fn, key, href;
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var container = element.closest("label");
+            var caption = container.find(".caption");
+            var files = container.find(".files");
+            var form = element.closest("form");
 
-    if (
-        (METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS && /textarea|input|select/i.test(e.target.nodeName)) ||
-        (METRO_HOTKEYS_FILTER_CONTENT_EDITABLE && $(e.target).attr('contenteditable')) ||
-        (METRO_HOTKEYS_FILTER_TEXT_INPUTS && Hotkey.textAcceptingInputTypes.indexOf(e.target.type) > -1)
-    )
-    {
-        return;
+            if (form.length) {
+                form.on("reset", function(){
+                    that.clear();
+                })
+            }
+
+            container.on(Metro.events.click, "button", function(){
+                element[0].click();
+            });
+
+            element.on(Metro.events.change, function(){
+                var fi = this;
+                var file_names = [];
+                var entry;
+
+                // if (fi.files.length === 0) {
+                //     return ;
+                // }
+
+                Array.from(fi.files).forEach(function(file){
+                    file_names.push(file.name);
+                });
+
+                if (o.mode === "input") {
+
+                    entry = file_names.join(", ");
+
+                    caption.html(entry);
+                    caption.attr('title', entry);
+                } else {
+                    files.html(element[0].files.length + " " +o.filesTitle);
+                }
+
+                Utils.exec(o.onSelect, [fi.files], element[0]);
+                element.fire("select", {
+                    files: fi.files
+                });
+            });
+
+            element.on(Metro.events.focus, function(){container.addClass("focused");});
+            element.on(Metro.events.blur, function(){container.removeClass("focused");});
+
+            if (o.mode !== "input") {
+                container.on('drag dragstart dragend dragover dragenter dragleave drop', function(e){
+                    e.preventDefault();
+                });
+
+                container.on('dragenter dragover', function(){
+                    container.addClass("drop-on");
+                });
+
+                container.on('dragleave', function(){
+                    container.removeClass("drop-on");
+                });
+
+                container.on('drop', function(e){
+                    element[0].files = e.dataTransfer.files;
+                    files.html(element[0].files.length + " " +o.filesTitle);
+                    container.removeClass("drop-on");
+                    element.trigger("change");
+                });
+            }
+        },
+
+        clear: function(){
+            var element = this.element, o = this.options;
+            if (o.mode === "input") {
+                element.siblings(".caption").html("");
+            } else {
+                element.siblings(".caption").html(o.dropTitle);
+                element.siblings(".files").html("0" + " " + o.filesTitle);
+            }
+
+            element.val("");
+        },
+
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
+
+        toggleDir: function(){
+            if (this.element.attr("dir") === 'rtl') {
+                this.element.parent().addClass("rtl");
+            } else {
+                this.element.parent().removeClass("rtl");
+            }
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case 'disabled': this.toggleState(); break;
+                case 'dir': this.toggleDir(); break;
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            var parent = element.parent();
+            element.off(Metro.events.change);
+            parent.off(Metro.events.click, "button");
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var GravatarDefaultConfig = {
+        gravatarDeferred: 0,
+        email: "",
+        size: 80,
+        default: "mp",
+        onGravatarCreate: Metro.noop
+    };
+
+    Metro.gravatarSetup = function (options) {
+        GravatarDefaultConfig = $.extend({}, GravatarDefaultConfig, options);
+    };
+
+    if (typeof window["metroGravatarSetup"] !== undefined) {
+        Metro.gravatarSetup(window["metroGravatarSetup"]);
     }
 
-    key = Hotkey.getKey(e);
+    Metro.Component('gravatar', {
+        init: function( options, elem ) {
+            this._super(elem, options, GravatarDefaultConfig);
 
-    if (Utils.keyInObject(Metro.hotkeys, key)) {
-        el = $(Metro.hotkeys[key][0]);
-        fn = Metro.hotkeys[key][1];
-        href = (""+el.attr("href")).trim();
+            return this;
+        },
 
-        if (fn) {
-            Utils.exec(fn);
-        } else {
-            if (el.is("a") && href && href.length > 0 && href.trim() !== "#") {
-                window.location.href = href;
+        _create: function(){
+            var element = this.element;
+
+            this.get();
+
+            this._fireEvent("gravatar-create", {
+                element: element
+            });
+        },
+
+        getImage: function(email, size, def, is_object){
+            var image = $("<img>").attr('alt', email);
+
+            image.attr("src", this.getImageSrc(email, size));
+
+            return is_object === true ? image : image[0];
+        },
+
+        getImageSrc: function(email, size, def){
+            if (email === undefined || email.trim() === '') {
+                return "";
+            }
+
+            size = size || 80;
+            def = Utils.encodeURI(def) || '404';
+
+            return "//www.gravatar.com/avatar/" + Utils.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
+        },
+
+        get: function(){
+            var element = this.element, o = this.options;
+            var img = element[0].tagName === 'IMG' ? element : element.find("img");
+
+            if (img.length === 0) {
+                return;
+            }
+            img.attr("src", this.getImageSrc(o.email, o.size, o.default));
+
+            return this;
+        },
+
+        resize: function(new_size){
+            this.options.size = new_size !== undefined ? new_size : this.element.attr("data-size");
+            this.get();
+        },
+
+        email: function(new_email){
+            this.options.email = new_email !== undefined ? new_email : this.element.attr("data-email");
+            this.get();
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case 'data-size': this.resize(); break;
+                case 'data-email': this.email(); break;
+            }
+        },
+
+        destroy: function(){
+            return this.element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var HintDefaultConfig = {
+        hintDeferred: 0,
+        hintHide: 5000,
+        clsHint: "",
+        hintText: "",
+        hintPosition: Metro.position.TOP,
+        hintOffset: 4,
+        onHintShow: Metro.noop,
+        onHintHide: Metro.noop,
+        onHintCreate: Metro.noop
+    };
+
+    Metro.hintSetup = function (options) {
+        HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
+    };
+
+    if (typeof window["metroHintSetup"] !== undefined) {
+        Metro.hintSetup(window["metroHintSetup"]);
+    }
+
+    Metro.Component('hint', {
+        init: function( options, elem ) {
+            this._super(elem, options, HintDefaultConfig, {
+                hint: null,
+                hint_size: {
+                    width: 0,
+                    height: 0
+                },
+                id: Utils.elementId("hint")
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            this._createEvents();
+            this._fireEvent("hint-create", {
+                element: this.element
+            });
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            element.on(Metro.events.enter, function(){
+                that.createHint();
+                if (+o.hintHide > 0) {
+                    setTimeout(function(){
+                        that.removeHint();
+                    }, o.hintHide);
+                }
+            });
+
+            element.on(Metro.events.leave, function(){
+                that.removeHint();
+            });
+
+            $(window).on(Metro.events.scroll+" "+Metro.events.resize, function(){
+                if (that.hint !== null) that.setPosition();
+            }, {ns: this.id});
+        },
+
+        createHint: function(){
+            var elem = this.elem, element = this.element, o = this.options;
+            var hint = $("<div>").addClass("hint").addClass(o.clsHint).html(o.hintText);
+
+            this.hint = hint;
+            this.hint_size = Utils.hiddenElementSize(hint);
+
+            $(".hint:not(.permanent-hint)").remove();
+
+            if (elem.tagName === 'TD' || elem.tagName === 'TH') {
+                var wrp = $("<div/>").css("display", "inline-block").html(element.html());
+                element.html(wrp);
+                element = wrp;
+            }
+
+            this.setPosition();
+
+            hint.appendTo($('body'));
+            Utils.exec(o.onHintShow, [hint[0]], element[0]);
+            element.fire("hintshow", {
+                hint: hint[0]
+            });
+        },
+
+        setPosition: function(){
+            var hint = this.hint, hint_size = this.hint_size, o = this.options, element = this.element;
+
+            if (o.hintPosition === Metro.position.BOTTOM) {
+                hint.addClass('bottom');
+                hint.css({
+                    top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
+                    left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
+                });
+            } else if (o.hintPosition === Metro.position.RIGHT) {
+                hint.addClass('right');
+                hint.css({
+                    top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
+                    left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.hintOffset
+                });
+            } else if (o.hintPosition === Metro.position.LEFT) {
+                hint.addClass('left');
+                hint.css({
+                    top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
+                    left: element.offset().left - hint_size.width - $(window).scrollLeft() - o.hintOffset
+                });
             } else {
-                el.click();
+                hint.addClass('top');
+                hint.css({
+                    top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
+                    left: element.offset().left - $(window).scrollLeft() + element.outerWidth()/2 - hint_size.width/2
+                });
+            }
+        },
+
+        removeHint: function(){
+            var that = this;
+            var hint = this.hint;
+            var element = this.element;
+            var options = this.options;
+            var timeout = options.onHintHide === Metro.noop ? 0 : 300;
+
+            if (hint !== null) {
+
+                Utils.exec(options.onHintHide, [hint[0]], element[0]);
+                element.fire("hinthide", {
+                    hint: hint[0]
+                });
+
+                setTimeout(function(){
+                    hint.hide(0, function(){
+                        hint.remove();
+                        that.hint = null;
+                    });
+                }, timeout);
+            }
+        },
+
+        changeText: function(){
+            this.options.hintText = this.element.attr("data-hint-text");
+        },
+
+        changeAttribute: function(attributeName){
+            if (attributeName === "data-hint-text") {
+                this.changeText();
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            this.removeHint();
+            element.off(Metro.events.enter + "-hint");
+            element.off(Metro.events.leave + "-hint");
+            $(window).off(Metro.events.scroll + "-hint");
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Hotkey = {
+        specialKeys: {
+            8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
+            20: "capslock", 27: "esc", 32: "space", 33: "pageup", 34: "pagedown", 35: "end", 36: "home",
+            37: "left", 38: "up", 39: "right", 40: "down", 45: "insert", 46: "del",
+            96: "0", 97: "1", 98: "2", 99: "3", 100: "4", 101: "5", 102: "6", 103: "7",
+            104: "8", 105: "9", 106: "*", 107: "+", 109: "-", 110: ".", 111 : "/",
+            112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8",
+            120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 188: ",", 190: ".",
+            191: "/", 224: "meta" },
+
+        shiftNums: {
+            "~":"`", "!":"1", "@":"2", "#":"3", "$":"4", "%":"5", "^":"6", "&":"7",
+            "*":"8", "(":"9", ")":"0", "_":"-", "+":"=", ":":";", "\"":"'", "<":",",
+            ">":".",  "?":"/",   "|":"\\"
+        },
+
+        shiftNumsInverse: {
+            "`": "~", "1": "!", "2": "@", "3": "#", "4": "$", "5": "%", "6": "^", "7": "&",
+            "8": "*", "9": "(", "0": ")", "-": "_", "=": "+", ";": ": ", "'": "\"", ",": "<",
+            ".": ">",  "/": "?",  "\\": "|"
+        },
+
+        textAcceptingInputTypes: [
+            "text", "password", "number", "email", "url", "range", "date", "month", "week", "time", "datetime",
+            "datetime-local", "search", "color", "tel"
+        ],
+
+        getKey: function(e){
+            var key, k = e.keyCode, char = String.fromCharCode( k ).toLowerCase();
+            if( e.shiftKey ){
+                key = Hotkey.shiftNums[ char ] ? Hotkey.shiftNums[ char ] : char;
+            }
+            else {
+                key = Hotkey.specialKeys[ k ] === undefined
+                    ? char
+                    : Hotkey.specialKeys[ k ];
+            }
+
+            return Hotkey.getModifier(e).length ? Hotkey.getModifier(e).join("+") + "+" + key : key;
+        },
+
+        getModifier: function(e){
+            var m = [];
+            if (e.altKey) {m.push("alt");}
+            if (e.ctrlKey) {m.push("ctrl");}
+            if (e.shiftKey) {m.push("shift");}
+            return m;
+        }
+    };
+
+    function bindKey(key, fn){
+        return this.each(function(){
+            $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
+                var _key = Hotkey.getKey(e);
+                var el = $(this);
+                var href = ""+el.attr("href");
+
+                if (key !== _key) {
+                    return;
+                }
+
+                if (el.is("a")) {
+                    if (href && href.trim() !== "#") {
+                        window.location.href = href;
+                    }
+                }
+
+                Utils.exec(fn, [e, _key, key], this);
+            })
+        })
+    }
+
+    $.fn.hotkey = bindKey;
+
+    if (window.METRO_JQUERY && window.jquery_present) {
+        jQuery.fn.hotkey = bindKey;
+    }
+
+    // TODO keyup or keydown ?
+    $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
+        var el, fn, key, href;
+
+        if (
+            (METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS && /textarea|input|select/i.test(e.target.nodeName)) ||
+            (METRO_HOTKEYS_FILTER_CONTENT_EDITABLE && $(e.target).attr('contenteditable')) ||
+            (METRO_HOTKEYS_FILTER_TEXT_INPUTS && Hotkey.textAcceptingInputTypes.indexOf(e.target.type) > -1)
+        )
+        {
+            return;
+        }
+
+        key = Hotkey.getKey(e);
+
+        if (Utils.keyInObject(Metro.hotkeys, key)) {
+            el = $(Metro.hotkeys[key][0]);
+            fn = Metro.hotkeys[key][1];
+            href = (""+el.attr("href")).trim();
+
+            if (fn) {
+                Utils.exec(fn);
+            } else {
+                if (el.is("a") && href && href.length > 0 && href.trim() !== "#") {
+                    window.location.href = href;
+                } else {
+                    el.click();
+                }
             }
         }
-    }
-});
+    });
 
-// TODO add destroy
+    // TODO add destroy
+}(Metro, m4q));
 
 // TODO source as array, mode as array
 
