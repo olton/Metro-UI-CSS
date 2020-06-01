@@ -24,15 +24,15 @@
         </div>
     </div>
     <div>
-        <ul data-role="listview" data-view="list" data-select-node="true" data-on-node-click="nodeClick" data-on-node-dblclick="nodeDblClick">
-            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video"></li>
-            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images"></li>
-            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents"></li>
-            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads"></li>
-            <li data-icon="<span class='mif-folder'>" data-caption="Desktop"></li>
-            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini"></li>
-            <li data-icon="images/setup.png" data-caption="setup.exe"></li>
-            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat"></li>
+        <ul data-role="listview" data-view="table" id="listview-1" data-select-node="true" data-structure='{"date": true, "name": true}'>
+            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>" data-date="12/21/2017" data-name="Video library"></li>
+            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images" data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>" data-date="12/21/2017" data-name="My images"></li>
+            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents" data-content="<div class='mt-1' data-role='progress' data-value='24' data-small='true'>" data-date="12/21/2017" data-name="My documents"></li>
+            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads" data-content="<div class='mt-1' data-role='progress' data-value='85' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+            <li data-icon="<span class='mif-folder'>" data-caption="Desktop" data-content="<div class='mt-1' data-role='progress' data-value='10' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini" data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
+            <li data-icon="images/setup.png" data-caption="setup.exe" data-content="<span class='text-muted'>Executable</span>"></li>
+            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat" data-content="<span class='text-muted'>Data file</span>"></li>
         </ul>
     </div>
 
@@ -51,7 +51,7 @@
     $("input[name=r1]").on("click", function(){
         var checked = $(this).is(":checked");
         if (checked) {
-            $("#listview-1").data("listview").view(this.value);
+            Metro.getPlugin("#listview-1", "listview").view(this.value);
         }
     });
 

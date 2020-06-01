@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 31/05/2020 21:25:37
+ * Built at 01/06/2020 14:31:41
  * Licensed under MIT
  */
 *,
@@ -23,7 +23,6 @@ body {
   overflow-x: hidden;
   background-color: #ffffff;
   min-height: 100vh;
-  min-height: -webkit-fill-available;
   text-rendering: optimizeSpeed;
 }
 html,
@@ -19698,6 +19697,26 @@ h6 > .small {
   line-height: 1;
   color: #777;
 }
+.leader:nth-child(1),
+.h1:nth-child(1),
+h1:nth-child(1),
+.sub-leader:nth-child(1),
+.h2:nth-child(1),
+h2:nth-child(1),
+.header:nth-child(1),
+.h3:nth-child(1),
+h3:nth-child(1),
+.sub-header:nth-child(1),
+.h4:nth-child(1),
+h4:nth-child(1),
+.alt-header:nth-child(1),
+.h5:nth-child(1),
+h5:nth-child(1),
+.sub-alt-header:nth-child(1),
+.h6:nth-child(1),
+h6:nth-child(1) {
+  margin-top: 0;
+}
 .text-upper {
   text-transform: uppercase !important;
 }
@@ -29629,9 +29648,6 @@ input.input-small:-ms-input-placeholder {
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
 }
-.listview.view-table {
-  display: table;
-}
 .listview .node {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -29697,6 +29713,17 @@ input.input-small:-ms-input-placeholder {
 .listview.view-list .node > .icon ~ .data {
   padding-left: 8px;
 }
+.listview.view-table {
+  display: table;
+  width: 100%;
+}
+.listview.view-table > li {
+  display: table-row;
+  width: 100%;
+}
+.listview.view-table > li > * {
+  display: table-cell;
+}
 .listview.view-table .icon {
   width: 20px;
   height: 20px;
@@ -29709,12 +29736,6 @@ input.input-small:-ms-input-placeholder {
 .listview.view-table > li .data > .caption {
   padding: 0 0.5rem;
   line-height: 26px;
-}
-.listview.view-table > li {
-  display: table-row;
-}
-.listview.view-table > li > * {
-  display: table-cell;
 }
 .listview.view-table .node-data {
   display: table-cell;
