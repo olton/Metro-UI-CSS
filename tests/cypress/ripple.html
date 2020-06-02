@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Ripple effect - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .box {
+            width: 300px;
+            height: 300px;
+            background: #0a87c1;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Ripple effect test page</h1>
+
+    <div class="example">
+        <button class="button" onclick="Metro.ripple('#b2')">Ripple button</button>
+        <button class="button" onclick="Metro.ripple('.box')">Ripple block</button>
+    </div>
+    <br>
+    <div class="example">
+        <button class="command-button" data-role="ripple" id="b1">
+            <span class="mif-share icon"></span>
+            <span class="caption">
+                Yes, share and connect
+                <small>Use this option for home or work</small>
+            </span>
+        </button>
+
+        <button class="command-button alert" id="b2">
+            <span class="mif-alarm icon"></span>
+            <span class="caption">
+                Alarm!
+                <small>Use this option for home or work</small>
+            </span>
+        </button>
+    </div>
+    <br>
+    <div class="example">
+        <div class="box"></div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>
