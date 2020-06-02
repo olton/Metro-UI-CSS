@@ -264,6 +264,7 @@ var Metro = {
     utils: {},
     colors: {},
     dialog: null,
+    pagination: function(){},
 
     about: function(){
         var content =

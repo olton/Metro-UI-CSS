@@ -6,7 +6,7 @@
         selectDeferred: 0,
         clearButton: false,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
-        usePlaceholder: true,
+        usePlaceholder: false,
         placeholder: "",
         addEmptyValue: false,
         emptyValue: "",

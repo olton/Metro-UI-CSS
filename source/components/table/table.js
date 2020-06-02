@@ -1,4 +1,4 @@
-/* global Metro, Utils, Component, setImmediate, createPagination, METRO_LOCALE, Export */
+/* global Metro, Utils, Component, setImmediate, METRO_LOCALE, Export */
 var TableDefaultConfig = {
     tableDeferred: 0,
     emptyTableTitle: "Nothing to show",
@@ -1308,7 +1308,7 @@ Component('table', {
         var element = this.element, o = this.options;
         var component = element.closest(".table-component");
         this.pagesCount = Math.ceil(length / o.rows); // Костыль
-        createPagination({
+        Metro.pagination({
             length: length,
             rows: o.rows,
             current: this.currentPage,

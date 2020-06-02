@@ -1,4 +1,4 @@
-/* global Metro, createPagination */
+/* global Metro */
 (function(Metro, $) {
     var Utils = Metro.utils;
     var ListDefaultConfig = {
@@ -420,7 +420,7 @@
             var element = this.element, o = this.options;
             var component = element.parent();
             this.pagesCount = Math.ceil(length / o.items); // Костыль
-            createPagination({
+            Metro.pagination({
                 length: length,
                 rows: o.items,
                 current: this.currentPage,

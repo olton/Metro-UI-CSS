@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/06/2020 12:59:34
+ * Built at 02/06/2020 20:53:56
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "02/06/2020 12:59:36",
+    compileTime: "02/06/2020 20:53:58",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4528,6 +4528,7 @@ var Metro = {
     utils: {},
     colors: {},
     dialog: null,
+    pagination: function(){},
 
     about: function(){
         var content =
@@ -18960,7 +18961,7 @@ $.extend(Metro['locales'], {
             var element = this.element, o = this.options;
             var component = element.parent();
             this.pagesCount = Math.ceil(length / o.items); // Костыль
-            createPagination({
+            Metro.pagination({
                 length: length,
                 rows: o.items,
                 current: this.currentPage,
@@ -20228,840 +20229,999 @@ Component('master', {
 });
 
 
-var NavigationViewDefaultConfig = {
-    navviewDeferred: 0,
-    compact: "md",
-    expand: "lg",
-    toggle: null,
-    activeState: false,
-    onMenuItemClick: Metro.noop,
-    onNavViewCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var NavigationViewDefaultConfig = {
+        navviewDeferred: 0,
+        compact: "md",
+        expand: "lg",
+        toggle: null,
+        activeState: false,
+        onMenuItemClick: Metro.noop,
+        onNavviewCreate: Metro.noop
+    };
 
-Metro.navViewSetup = function (options) {
-    NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
-};
+    Metro.navViewSetup = function (options) {
+        NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
+    };
 
-if (typeof window["metroNavViewSetup"] !== undefined) {
-    Metro.navViewSetup(window["metroNavViewSetup"]);
-}
+    if (typeof window["metroNavViewSetup"] !== undefined) {
+        Metro.navViewSetup(window["metroNavViewSetup"]);
+    }
 
-Component('nav-view', {
-    init: function( options, elem ) {
-        this._super(elem, options, NavigationViewDefaultConfig);
-
-        this.pane = null;
-        this.content = null;
-        this.paneToggle = null;
-        this.id = Utils.elementId("navview");
-        this.menuScrollDistance = 0;
-        this.menuScrollStep = 0;
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onNavViewCreate, [element], element[0]);
-        element.fire("navviewcreate");
-    },
-
-    _calcMenuHeight: function(){
-        var element = this.element, pane, menu;
-        var elements_height = 0;
-
-        pane = element.children(".navview-pane");
-        if (pane.length === 0) {
-            return;
-        }
-
-        menu = pane.children(".navview-menu-container");
-
-        if (menu.length === 0) {
-            return ;
-        }
-
-        $.each(menu.prevAll(), function(){
-            elements_height += $(this).outerHeight(true);
-        });
-        $.each(menu.nextAll(), function(){
-            elements_height += $(this).outerHeight(true);
-        });
-        menu.css({
-            height: "calc(100% - "+(elements_height)+"px)"
-        });
-    },
-
-    _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var pane, content, toggle, menu, menu_container, menu_h, menu_container_h;
-        var other_pane_container, prev;
-
-        element
-            .addClass("navview")
-            .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
-            .addClass(o.expand !== false ? "navview-expand-"+o.expand : "");
-
-        pane = element.children(".navview-pane");
-        content = element.children(".navview-content");
-        toggle = $(o.toggle);
-        menu = pane.children(".navview-menu");
-
-        if (menu.length) {
-            prev = menu.prevAll();
-            other_pane_container = $("<div>").addClass("navview-container");
-            other_pane_container.append(prev.reverse());
-            pane.prepend(other_pane_container);
-
-            menu_container = $("<div>").addClass("navview-menu-container").insertBefore(menu);
-            menu.appendTo(menu_container);
-        }
-
-        this._calcMenuHeight();
-
-        if (menu.length) {
-            setTimeout(function(){
-                menu_h = menu.height();
-                menu_container_h = menu_container.height();
-                that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
-                that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
-            }, 0)
-        }
-
-        this.pane = pane.length > 0 ? pane : null;
-        this.content = content.length > 0 ? content : null;
-        this.paneToggle = toggle.length > 0 ? toggle : null;
-
-        setTimeout(function(){
-            if (that.pane.width() === 48) {
-                element.addClass("js-compact");
-            } else {
-                element.removeClass("js-compact");
-            }
-        }, 200);
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var menu_container = element.find(".navview-menu-container");
-        var menu = menu_container.children(".navview-menu");
-
-        if (menu_container.length) {
-            menu_container.on("mousewheel", function(e){
-                var dir = e.deltaY > 0 ? -1 : 1;
-                var step = that.menuScrollStep;
-                var top = parseInt(menu.css('top'));
-
-                if (!element.hasClass("compacted")) {
-                    return false;
-                }
-
-                if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
-                    menu.css('top', parseInt(menu.css('top')) + step * dir);
-                }
-
-                if(dir === 1 && top <= -step) {
-                    menu.css('top', parseInt(menu.css('top')) + step * dir);
-                }
+    Metro.Component('nav-view', {
+        init: function( options, elem ) {
+            this._super(elem, options, NavigationViewDefaultConfig, {
+                pane: null,
+                content: null,
+                paneToggle: null,
+                id: Utils.elementId("navview"),
+                menuScrollDistance: 0,
+                menuScrollStep: 0
             });
-        }
 
-        element.on(Metro.events.click, ".pull-button, .holder", function(){
-            that.pullClick(this);
-        });
+            return this;
+        },
 
-        element.on(Metro.events.click, ".navview-menu li", function(){
-            if (o.activeState === true) {
-                element.find(".navview-menu li").removeClass("active");
-                $(this).toggleClass("active");
-            }
-        });
+        _create: function(){
+            var element = this.element;
 
-        element.on(Metro.events.click, ".navview-menu li > a", function(){
-            Utils.exec(o.onMenuItemClick, null, this);
-            element.fire("menuitemclick", {
-                item: this
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent("navview-create", {
+                element: element
             });
-        });
+        },
 
-        if (this.paneToggle !== null) {
-            this.paneToggle.on(Metro.events.click, function(){
-                that.pane.toggleClass("open");
-            })
-        }
+        _calcMenuHeight: function(){
+            var element = this.element, pane, menu;
+            var elements_height = 0;
 
-        $(window).on(Metro.events.resize, function(){
-            var menu_h, menu_container_h, menu_container = element.children(".navview-menu-container"), menu;
-
-            element.removeClass("expanded");
-            that.pane.removeClass("open");
-
-            if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
-                element.removeClass("compacted");
+            pane = element.children(".navview-pane");
+            if (pane.length === 0) {
+                return;
             }
 
-            if (menu_container.length) {
+            menu = pane.children(".navview-menu-container");
 
-                that._calcMenuHeight();
+            if (menu.length === 0) {
+                return ;
+            }
 
-                menu = menu_container.children(".navview-menu");
+            $.each(menu.prevAll(), function(){
+                elements_height += $(this).outerHeight(true);
+            });
+            $.each(menu.nextAll(), function(){
+                elements_height += $(this).outerHeight(true);
+            });
+            menu.css({
+                height: "calc(100% - "+(elements_height)+"px)"
+            });
+        },
 
-                setTimeout(function () {
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+            var pane, content, toggle, menu, menu_container, menu_h, menu_container_h;
+            var other_pane_container, prev;
+
+            element
+                .addClass("navview")
+                .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
+                .addClass(o.expand !== false ? "navview-expand-"+o.expand : "");
+
+            pane = element.children(".navview-pane");
+            content = element.children(".navview-content");
+            toggle = $(o.toggle);
+            menu = pane.children(".navview-menu");
+
+            if (menu.length) {
+                prev = menu.prevAll();
+                other_pane_container = $("<div>").addClass("navview-container");
+                other_pane_container.append(prev.reverse());
+                pane.prepend(other_pane_container);
+
+                menu_container = $("<div>").addClass("navview-menu-container").insertBefore(menu);
+                menu.appendTo(menu_container);
+            }
+
+            this._calcMenuHeight();
+
+            if (menu.length) {
+                setTimeout(function(){
                     menu_h = menu.height();
                     menu_container_h = menu_container.height();
                     that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
                     that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
-                }, 0);
+                }, 0)
             }
 
-            element.removeClass("js-compact");
+            this.pane = pane.length > 0 ? pane : null;
+            this.content = content.length > 0 ? content : null;
+            this.paneToggle = toggle.length > 0 ? toggle : null;
 
             setTimeout(function(){
                 if (that.pane.width() === 48) {
                     element.addClass("js-compact");
+                } else {
+                    element.removeClass("js-compact");
                 }
             }, 200);
+        },
 
-        }, {ns: this.id})
-    },
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var menu_container = element.find(".navview-menu-container");
+            var menu = menu_container.children(".navview-menu");
 
-    pullClick: function(el){
-        var that = this, element = this.element;
-        var pane = this.pane;
-        var pane_compact = pane.width() < 280;
-        var input;
+            if (menu_container.length) {
+                menu_container.on("mousewheel", function(e){
+                    var dir = e.deltaY > 0 ? -1 : 1;
+                    var step = that.menuScrollStep;
+                    var top = parseInt(menu.css('top'));
 
-        var target = $(el);
+                    if (!element.hasClass("compacted")) {
+                        return false;
+                    }
 
-        if (target && target.hasClass("holder")) {
-            input = target.parent().find("input");
-            setTimeout(function(){
-                input.focus();
-            }, 200);
-        }
+                    if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
+                        menu.css('top', parseInt(menu.css('top')) + step * dir);
+                    }
 
-        if (that.pane.hasClass("open")) {
-            that.close();
-        } else
-
-        if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
-            element.toggleClass("expanded");
-        } else
-
-        if (element.hasClass("compacted") || !pane_compact) {
-            element.toggleClass("compacted");
-        }
-
-        setTimeout(function(){
-            if (that.pane.width() === 48) {
-                element.addClass("js-compact");
-            } else {
-                element.removeClass("js-compact");
-            }
-        }, 200);
-
-        return true;
-    },
-
-    open: function(){
-        this.pane.addClass("open");
-    },
-
-    close: function(){
-        this.pane.removeClass("open");
-    },
-
-    toggle: function(){
-        var pane = this.pane;
-        pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
-    },
-
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off(Metro.events.click, ".pull-button, .holder");
-        element.off(Metro.events.click, ".navview-menu li");
-        element.off(Metro.events.click, ".navview-menu li > a");
-
-        if (this.paneToggle !== null) {
-            this.paneToggle.off(Metro.events.click);
-        }
-
-        $(window).off(Metro.events.resize,{ns: this.id});
-
-        return element;
-    }
-});
-
-
-var NotifyDefaultConfig = {
-    container: null,
-    width: 220,
-    timeout: METRO_TIMEOUT,
-    duration: METRO_ANIMATION_DURATION,
-    distance: "max",
-    animation: "linear",
-    onClick: Metro.noop,
-    onClose: Metro.noop,
-    onShow: Metro.noop,
-    onAppend: Metro.noop,
-    onNotifyCreate: Metro.noop
-
-};
-
-Metro.notifySetup = function(options){
-    NotifyDefaultConfig = $.extend({}, NotifyDefaultConfig, options);
-};
-
-if (typeof window["metroNotifySetup"] !== undefined) {
-    Metro.notifySetup(window["metroNotifySetup"]);
-}
-
-var Notify = {
-
-    container: null,
-
-    options: {
-    },
-
-    notifies: [],
-
-    setup: function(options){
-        this.options = $.extend({}, NotifyDefaultConfig, options);
-
-        return this;
-    },
-
-    reset: function(){
-        var reset_options = {
-            width: 220,
-            timeout: METRO_TIMEOUT,
-            duration: METRO_ANIMATION_DURATION,
-            distance: "max",
-            animation: "linear"
-        };
-        this.options = $.extend({}, NotifyDefaultConfig, reset_options);
-    },
-
-    _createContainer: function(){
-
-        var container = $("<div>").addClass("notify-container");
-        $("body").prepend(container);
-
-        return container;
-    },
-
-    create: function(message, title, options){
-        var notify, that = this, o = this.options;
-        var m, t, id = Utils.elementId("notify");
-
-        if (Utils.isNull(options)) {
-            options = {};
-        }
-
-        if (!Utils.isValue(message)) {
-            return false;
-        }
-
-        notify = $("<div>").addClass("notify").attr("id", id);
-        notify.css({
-            width: o.width
-        });
-
-        if (title) {
-            t = $("<div>").addClass("notify-title").html(title);
-            notify.prepend(t);
-        }
-        m = $("<div>").addClass("notify-message").html(message);
-        m.appendTo(notify);
-
-        // Set options
-        /*
-        * keepOpen, cls, width, callback
-        * */
-        if (options !== undefined) {
-            if (options.cls !== undefined) {
-                notify.addClass(options.cls);
-            }
-            if (options.width !== undefined) {
-                notify.css({
-                    width: options.width
-                });
-            }
-        }
-
-        notify.on(Metro.events.click, function(){
-            Utils.exec(Utils.isValue(options.onClick) ? options.onClick : o.onClick, null, this);
-            that.kill($(this).closest(".notify"), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
-        });
-
-        // Show
-        if (Notify.container === null) {
-            Notify.container = Notify._createContainer();
-        }
-        notify.appendTo(Notify.container);
-
-        notify.hide(function(){
-
-            Utils.exec(Utils.isValue(options.onAppend) ? options.onAppend : o.onAppend, null, notify[0]);
-
-            var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
-            var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
-            var distance = Utils.isValue(options.distance) ? options.distance : o.distance;
-
-            if (distance === "max" || isNaN(distance)) {
-                distance = $(window).height();
-            }
-
-            notify
-                .show()
-                .animate({
-                    draw: {
-                        marginTop: [distance, 4],
-                        opacity: [0, 1]
-                    },
-                    dur: duration,
-                    ease: animation,
-                    onDone: function(){
-                        Utils.exec(o.onNotifyCreate, null, this);
-
-                        if (options !== undefined && options.keepOpen === true) {
-                            /* eslint-disable-next-line */
-
-                        } else {
-                            setTimeout(function(){
-                                that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
-                            }, o.timeout);
-                        }
-
-                        Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
+                    if(dir === 1 && top <= -step) {
+                        menu.css('top', parseInt(menu.css('top')) + step * dir);
                     }
                 });
+            }
 
-        });
-    },
+            element.on(Metro.events.click, ".pull-button, .holder", function(){
+                that.pullClick(this);
+            });
 
-    kill: function(notify, callback){
-        var that = this, o = this.options;
-        notify.off(Metro.events.click);
-        notify.fadeOut(o.duration, 'linear', function(){
-            Utils.exec(Utils.isValue(callback) ? callback : that.options.onClose, null, notify[0]);
-            notify.remove();
-        });
-    },
+            element.on(Metro.events.click, ".navview-menu li", function(){
+                if (o.activeState === true) {
+                    element.find(".navview-menu li").removeClass("active");
+                    $(this).toggleClass("active");
+                }
+            });
 
-    killAll: function(){
-        var that = this;
-        var notifies = $(".notify");
-        $.each(notifies, function(){
-            that.kill($(this));
-        });
-    }
-};
+            element.on(Metro.events.click, ".navview-menu li > a", function(){
+                Utils.exec(o.onMenuItemClick, null, this);
+                element.fire("menuitemclick", {
+                    item: this
+                });
+            });
 
-Metro['notify'] = Notify.setup();
+            if (this.paneToggle !== null) {
+                this.paneToggle.on(Metro.events.click, function(){
+                    that.pane.toggleClass("open");
+                })
+            }
 
-var createPagination = function(c){
-    var defConf = {
-        length: 0,
-        rows: 0,
-        current: 0,
-        target: "body",
-        clsPagination: "",
-        prevTitle: "Prev",
-        nextTitle: "Next",
-        distance: 5
-    }, conf;
-    var pagination;
-    var pagination_wrapper;
-    var i, prev, next;
-    var shortDistance;
+            $(window).on(Metro.events.resize, function(){
+                var menu_h, menu_container_h, menu_container = element.children(".navview-menu-container"), menu;
 
-    conf = $.extend( {}, defConf, c);
+                element.removeClass("expanded");
+                that.pane.removeClass("open");
 
-    shortDistance = parseInt(conf.distance);
-    pagination_wrapper = $(conf.target);
-    pagination_wrapper.html("");
-    pagination = $("<ul>").addClass("pagination").addClass(conf.clsPagination).appendTo(pagination_wrapper);
+                if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
+                    element.removeClass("compacted");
+                }
 
-    if (conf.length === 0) {
-        return ;
-    }
+                if (menu_container.length) {
 
-    if (conf.rows === -1) {
-        return ;
-    }
+                    that._calcMenuHeight();
 
-    conf.pages = Math.ceil(conf.length / conf.rows);
+                    menu = menu_container.children(".navview-menu");
 
-    var add_item = function(item_title, item_type, data){
-        var li, a;
+                    setTimeout(function () {
+                        menu_h = menu.height();
+                        menu_container_h = menu_container.height();
+                        that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
+                        that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
+                    }, 0);
+                }
 
-        li = $("<li>").addClass("page-item").addClass(item_type);
-        a  = $("<a>").addClass("page-link").html(item_title);
-        a.data("page", data);
-        a.appendTo(li);
+                element.removeClass("js-compact");
 
-        return li;
+                setTimeout(function(){
+                    if (that.pane.width() === 48) {
+                        element.addClass("js-compact");
+                    }
+                }, 200);
+
+            }, {ns: this.id})
+        },
+
+        pullClick: function(el){
+            var that = this, element = this.element;
+            var pane = this.pane;
+            var pane_compact = pane.width() < 280;
+            var input;
+
+            var target = $(el);
+
+            if (target && target.hasClass("holder")) {
+                input = target.parent().find("input");
+                setTimeout(function(){
+                    input.focus();
+                }, 200);
+            }
+
+            if (that.pane.hasClass("open")) {
+                that.close();
+            } else
+
+            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
+                element.toggleClass("expanded");
+            } else
+
+            if (element.hasClass("compacted") || !pane_compact) {
+                element.toggleClass("compacted");
+            }
+
+            setTimeout(function(){
+                if (that.pane.width() === 48) {
+                    element.addClass("js-compact");
+                } else {
+                    element.removeClass("js-compact");
+                }
+            }, 200);
+
+            return true;
+        },
+
+        open: function(){
+            this.pane.addClass("open");
+        },
+
+        close: function(){
+            this.pane.removeClass("open");
+        },
+
+        toggle: function(){
+            var pane = this.pane;
+            pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
+        },
+
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off(Metro.events.click, ".pull-button, .holder");
+            element.off(Metro.events.click, ".navview-menu li");
+            element.off(Metro.events.click, ".navview-menu li > a");
+
+            if (this.paneToggle !== null) {
+                this.paneToggle.off(Metro.events.click);
+            }
+
+            $(window).off(Metro.events.resize,{ns: this.id});
+
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var NotifyDefaultConfig = {
+        container: null,
+        width: 220,
+        timeout: METRO_TIMEOUT,
+        duration: METRO_ANIMATION_DURATION,
+        distance: "max",
+        animation: "linear",
+        onClick: Metro.noop,
+        onClose: Metro.noop,
+        onShow: Metro.noop,
+        onAppend: Metro.noop,
+        onNotifyCreate: Metro.noop
+
     };
 
-    prev = add_item(conf.prevTitle, "service prev-page", "prev");
-    pagination.append(prev);
+    Metro.notifySetup = function(options){
+        NotifyDefaultConfig = $.extend({}, NotifyDefaultConfig, options);
+    };
 
-    pagination.append(add_item(1, conf.current === 1 ? "active" : "", 1));
-
-    if (shortDistance === 0 || conf.pages <= 7) {
-        for (i = 2; i < conf.pages; i++) {
-            pagination.append(add_item(i, i === conf.current ? "active" : "", i));
-        }
-    } else {
-        if (conf.current < shortDistance) {
-            for (i = 2; i <= shortDistance; i++) {
-                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
-            }
-
-            if (conf.pages > shortDistance) {
-                pagination.append(add_item("...", "no-link", null));
-            }
-        } else if (conf.current <= conf.pages && conf.current > conf.pages - shortDistance + 1) {
-            if (conf.pages > shortDistance) {
-                pagination.append(add_item("...", "no-link", null));
-            }
-
-            for (i = conf.pages - shortDistance + 1; i < conf.pages; i++) {
-                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
-            }
-        } else {
-            pagination.append(add_item("...", "no-link", null));
-
-            pagination.append(add_item(conf.current - 1, "", conf.current - 1));
-            pagination.append(add_item(conf.current, "active", conf.current));
-            pagination.append(add_item(conf.current + 1, "", conf.current + 1));
-
-            pagination.append(add_item("...", "no-link", null));
-        }
+    if (typeof window["metroNotifySetup"] !== undefined) {
+        Metro.notifySetup(window["metroNotifySetup"]);
     }
 
-    if (conf.pages > 1 || conf.current < conf.pages) pagination.append(add_item(conf.pages, conf.current === conf.pages ? "active" : "", conf.pages));
+    var Notify = {
 
-    next = add_item(conf.nextTitle, "service next-page", "next");
-    pagination.append(next);
+        container: null,
 
-    if (conf.current === 1) {
-        prev.addClass("disabled");
-    }
+        options: {
+        },
 
-    if (conf.current === conf.pages) {
-        next.addClass("disabled");
-    }
+        notifies: [],
 
-    if (conf.length === 0) {
-        pagination.addClass("disabled");
-        pagination.children().addClass("disabled");
-    }
+        setup: function(options){
+            this.options = $.extend({}, NotifyDefaultConfig, options);
 
-    return pagination;
-};
+            return this;
+        },
 
-Metro['pagination'] = createPagination;
+        reset: function(){
+            var reset_options = {
+                width: 220,
+                timeout: METRO_TIMEOUT,
+                duration: METRO_ANIMATION_DURATION,
+                distance: "max",
+                animation: "linear"
+            };
+            this.options = $.extend({}, NotifyDefaultConfig, reset_options);
+        },
 
-var PanelDefaultConfig = {
-    panelDeferred: 0,
-    id: null,
-    titleCaption: "",
-    titleIcon: "",
-    collapsible: false,
-    collapsed: false,
-    collapseDuration: METRO_ANIMATION_DURATION,
-    width: "auto",
-    height: "auto",
-    draggable: false,
+        _createContainer: function(){
 
-    customButtons: null,
-    clsCustomButton: "",
+            var container = $("<div>").addClass("notify-container");
+            $("body").prepend(container);
 
-    clsPanel: "",
-    clsTitle: "",
-    clsTitleCaption: "",
-    clsTitleIcon: "",
-    clsContent: "",
-    clsCollapseToggle: "",
+            return container;
+        },
 
-    onCollapse: Metro.noop,
-    onExpand: Metro.noop,
-    onDragStart: Metro.noop,
-    onDragStop: Metro.noop,
-    onDragMove: Metro.noop,
-    onPanelCreate: Metro.noop
-};
+        create: function(message, title, options){
+            var notify, that = this, o = this.options;
+            var m, t, id = Utils.elementId("notify");
 
-Metro.panelSetup = function (options) {
-    PanelDefaultConfig = $.extend({}, PanelDefaultConfig, options);
-};
-
-if (typeof window["metroPanelSetup"] !== undefined) {
-    Metro.panelSetup(window["metroPanelSetup"]);
-}
-
-Component('panel', {
-    init: function( options, elem ) {
-        this._super(elem, options, PanelDefaultConfig);
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _addCustomButtons: function(buttons){
-        var element = this.element, o = this.options;
-        var title = element.closest(".panel").find(".panel-title");
-        var buttonsContainer, customButtons = [];
-
-        if (typeof buttons === "string" && buttons.indexOf("{") > -1) {
-            customButtons = JSON.parse(buttons);
-        } else if (typeof buttons === "string" && Utils.isObject(buttons)) {
-            customButtons = Utils.isObject(buttons);
-        } else if (typeof buttons === "object" && Utils.objectLength(buttons) > 0) {
-            customButtons = buttons;
-        } else {
-            console.warn("Unknown format for custom buttons", buttons);
-            return ;
-        }
-
-        if (title.length === 0) {
-            console.warn("No place for custom buttons");
-            return ;
-        }
-
-        buttonsContainer = title.find(".custom-buttons");
-
-        if (buttonsContainer.length === 0) {
-            buttonsContainer = $("<div>").addClass("custom-buttons").appendTo(title);
-        } else {
-            buttonsContainer.find(".btn-custom").off(Metro.events.click);
-            buttonsContainer.html("");
-        }
-
-        $.each(customButtons, function(){
-            var item = this;
-            var customButton = $("<span>");
-
-            customButton
-                .addClass("button btn-custom")
-                .addClass(o.clsCustomButton)
-                .addClass(item.cls)
-                .attr("tabindex", -1)
-                .html(item.html);
-
-            customButton.data("action", item.onclick);
-
-            buttonsContainer.prepend(customButton);
-        });
-
-        title.on(Metro.events.click, ".btn-custom", function(e){
-            if (Utils.isRightMouse(e)) return;
-            var button = $(this);
-            var action = button.data("action");
-            Utils.exec(action, [button], this);
-        });
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-        var panel = $("<div>").addClass("panel").addClass(o.clsPanel);
-        var id = o.id ? o.id : Utils.elementId("panel");
-        var original_classes = element[0].className;
-        var title;
-
-        Metro.checkRuntime(element, this.name);
-
-        panel.attr("id", id).addClass(original_classes);
-        panel.insertBefore(element);
-        element.appendTo(panel);
-
-        element[0].className = '';
-        element.addClass("panel-content").addClass(o.clsContent).appendTo(panel);
-
-        if (o.titleCaption !== "" || o.titleIcon !== "" || o.collapsible === true) {
-            title = $("<div>").addClass("panel-title").addClass(o.clsTitle);
-
-            if (o.titleCaption !== "") {
-                $("<span>").addClass("caption").addClass(o.clsTitleCaption).html(o.titleCaption).appendTo(title)
+            if (Utils.isNull(options)) {
+                options = {};
             }
 
-            if (o.titleIcon !== "") {
-                $(o.titleIcon).addClass("icon").addClass(o.clsTitleIcon).appendTo(title)
+            if (!Utils.isValue(message)) {
+                return false;
             }
 
-            if (o.collapsible === true) {
-                var collapseToggle = $("<span>").addClass("dropdown-toggle marker-center active-toggle").addClass(o.clsCollapseToggle).appendTo(title);
-                Metro.makePlugin(element, "collapse", {
-                    toggleElement: collapseToggle,
-                    duration: o.collapseDuration,
-                    onCollapse: o.onCollapse,
-                    onExpand: o.onExpand
-                });
+            notify = $("<div>").addClass("notify").attr("id", id);
+            notify.css({
+                width: o.width
+            });
 
-                if (o.collapsed === true) {
-                    this.collapse();
+            if (title) {
+                t = $("<div>").addClass("notify-title").html(title);
+                notify.prepend(t);
+            }
+            m = $("<div>").addClass("notify-message").html(message);
+            m.appendTo(notify);
+
+            // Set options
+            /*
+            * keepOpen, cls, width, callback
+            * */
+            if (options !== undefined) {
+                if (options.cls !== undefined) {
+                    notify.addClass(options.cls);
+                }
+                if (options.width !== undefined) {
+                    notify.css({
+                        width: options.width
+                    });
                 }
             }
 
-            title.appendTo(panel);
-        }
+            notify.on(Metro.events.click, function(){
+                Utils.exec(Utils.isValue(options.onClick) ? options.onClick : o.onClick, null, this);
+                that.kill($(this).closest(".notify"), Utils.isValue(options.onClose) ? options.onClose : o.onClose);
+            });
 
-        if (title && Utils.isValue(o.customButtons)) {
-            this._addCustomButtons(o.customButtons);
-        }
-
-        if (o.draggable === true) {
-            var dragElement;
-
-            if (title) {
-                dragElement = title.find(".caption, .icon");
-            } else {
-                dragElement = panel;
+            // Show
+            if (Notify.container === null) {
+                Notify.container = Notify._createContainer();
             }
+            notify.appendTo(Notify.container);
 
-            Metro.makePlugin(panel, "draggable", {
-                dragElement: dragElement,
-                onDragStart: o.onDragStart,
-                onDragStop: o.onDragStop,
-                onDragMove: o.onDragMove
+            notify.hide(function(){
+
+                Utils.exec(Utils.isValue(options.onAppend) ? options.onAppend : o.onAppend, null, notify[0]);
+
+                var duration = Utils.isValue(options.duration) ? options.duration : o.duration;
+                var animation = Utils.isValue(options.animation) ? options.animation : o.animation;
+                var distance = Utils.isValue(options.distance) ? options.distance : o.distance;
+
+                if (distance === "max" || isNaN(distance)) {
+                    distance = $(window).height();
+                }
+
+                notify
+                    .show()
+                    .animate({
+                        draw: {
+                            marginTop: [distance, 4],
+                            opacity: [0, 1]
+                        },
+                        dur: duration,
+                        ease: animation,
+                        onDone: function(){
+                            Utils.exec(o.onNotifyCreate, null, this);
+
+                            if (options !== undefined && options.keepOpen === true) {
+                                /* eslint-disable-next-line */
+
+                            } else {
+                                setTimeout(function(){
+                                    that.kill(notify, Utils.isValue(options.onClose) ? options.onClose : o.onClose);
+                                }, o.timeout);
+                            }
+
+                            Utils.exec(Utils.isValue(options.onShow) ? options.onShow : o.onShow, null, notify[0]);
+                        }
+                    });
+
+            });
+        },
+
+        kill: function(notify, callback){
+            var that = this, o = this.options;
+            notify.off(Metro.events.click);
+            notify.fadeOut(o.duration, 'linear', function(){
+                Utils.exec(Utils.isValue(callback) ? callback : that.options.onClose, null, notify[0]);
+                notify.remove();
+            });
+        },
+
+        killAll: function(){
+            var that = this;
+            var notifies = $(".notify");
+            $.each(notifies, function(){
+                that.kill($(this));
             });
         }
+    };
 
-        if (o.width !== "auto" && parseInt(o.width) >= 0) {
-            panel.outerWidth(parseInt(o.width));
-        }
+    Metro['notify'] = Notify.setup();
+}(Metro, m4q));
 
-        if (o.height !== "auto" && parseInt(o.height) >= 0) {
-            panel.outerHeight(parseInt(o.height));
-            element.css({overflow: "auto"});
-        }
+(function(Metro, $) {
+    Metro.pagination = function(c){
+        var defConf = {
+            length: 0,
+            rows: 0,
+            current: 0,
+            target: "body",
+            clsPagination: "",
+            prevTitle: "Prev",
+            nextTitle: "Next",
+            distance: 5
+        }, conf;
+        var pagination;
+        var pagination_wrapper;
+        var i, prev, next;
+        var shortDistance;
 
-        this.panel = panel;
+        conf = $.extend( {}, defConf, c);
 
-        Utils.exec(o.onPanelCreate, [element],element[0]);
-        element.fire("panelcreate");
-    },
+        shortDistance = parseInt(conf.distance);
+        pagination_wrapper = $(conf.target);
+        pagination_wrapper.html("");
+        pagination = $("<ul>").addClass("pagination").addClass(conf.clsPagination).appendTo(pagination_wrapper);
 
-    customButtons: function(buttons){
-        return this._addCustomButtons(buttons);
-    },
-
-    collapse: function(){
-        var element = this.element;
-        if (Utils.isMetroObject(element, 'collapse') === false) {
+        if (conf.length === 0) {
             return ;
         }
-        Metro.getPlugin(element, 'collapse').collapse();
-    },
 
-    expand: function(){
-        var element = this.element;
-        if (Utils.isMetroObject(element, 'collapse') === false) {
+        if (conf.rows === -1) {
             return ;
         }
-        Metro.getPlugin(element, 'collapse').expand();
-    },
 
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
+        conf.pages = Math.ceil(conf.length / conf.rows);
 
-    destroy: function(){
-        var element = this.element, o = this.options;
+        var add_item = function(item_title, item_type, data){
+            var li, a;
 
-        if (o.collapsible === true) {
-            Metro.getPlugin(element, "collapse").destroy();
-        }
+            li = $("<li>").addClass("page-item").addClass(item_type);
+            a  = $("<a>").addClass("page-link").html(item_title);
+            a.data("page", data);
+            a.appendTo(li);
 
-        if (o.draggable === true) {
-            Metro.getPlugin(element, "draggable").destroy();
-        }
-
-        return element;
-    }
-});
-
-
-var PopoverDefaultConfig = {
-    popoverDeferred: 0,
-    popoverText: "",
-    popoverHide: 3000,
-    popoverTimeout: 10,
-    popoverOffset: 10,
-    popoverTrigger: Metro.popoverEvents.HOVER,
-    popoverPosition: Metro.position.TOP,
-    hideOnLeave: false,
-    closeButton: true,
-    clsPopover: "",
-    clsPopoverContent: "",
-    onPopoverShow: Metro.noop,
-    onPopoverHide: Metro.noop,
-    onPopoverCreate: Metro.noop
-};
-
-Metro.popoverSetup = function (options) {
-    PopoverDefaultConfig = $.extend({}, PopoverDefaultConfig, options);
-};
-
-if (typeof window["metroPopoverSetup"] !== undefined) {
-    Metro.popoverSetup(window["metroPopoverSetup"]);
-}
-
-Component('popover', {
-    init: function( options, elem ) {
-        this._super(elem, options, PopoverDefaultConfig);
-
-        this.popover = null;
-        this.popovered = false;
-        this.size = {
-            width: 0,
-            height: 0
+            return li;
         };
 
-        this.id = Utils.elementId("popover");
+        prev = add_item(conf.prevTitle, "service prev-page", "prev");
+        pagination.append(prev);
 
-        Metro.createExec(this);
+        pagination.append(add_item(1, conf.current === 1 ? "active" : "", 1));
 
-        return this;
-    },
+        if (shortDistance === 0 || conf.pages <= 7) {
+            for (i = 2; i < conf.pages; i++) {
+                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+            }
+        } else {
+            if (conf.current < shortDistance) {
+                for (i = 2; i <= shortDistance; i++) {
+                    pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+                }
 
-    _create: function(){
-        Metro.checkRuntime(this.element, this.name);
-        this._createEvents();
-    },
+                if (conf.pages > shortDistance) {
+                    pagination.append(add_item("...", "no-link", null));
+                }
+            } else if (conf.current <= conf.pages && conf.current > conf.pages - shortDistance + 1) {
+                if (conf.pages > shortDistance) {
+                    pagination.append(add_item("...", "no-link", null));
+                }
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var event;
+                for (i = conf.pages - shortDistance + 1; i < conf.pages; i++) {
+                    pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+                }
+            } else {
+                pagination.append(add_item("...", "no-link", null));
 
-        switch (o.popoverTrigger) {
-            case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
-            case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
-            default: event = Metro.events.enter;
+                pagination.append(add_item(conf.current - 1, "", conf.current - 1));
+                pagination.append(add_item(conf.current, "active", conf.current));
+                pagination.append(add_item(conf.current + 1, "", conf.current + 1));
+
+                pagination.append(add_item("...", "no-link", null));
+            }
         }
 
-        element.on(event, function(){
-            if (that.popover !== null || that.popovered === true) {
+        if (conf.pages > 1 || conf.current < conf.pages) pagination.append(add_item(conf.pages, conf.current === conf.pages ? "active" : "", conf.pages));
+
+        next = add_item(conf.nextTitle, "service next-page", "next");
+        pagination.append(next);
+
+        if (conf.current === 1) {
+            prev.addClass("disabled");
+        }
+
+        if (conf.current === conf.pages) {
+            next.addClass("disabled");
+        }
+
+        if (conf.length === 0) {
+            pagination.addClass("disabled");
+            pagination.children().addClass("disabled");
+        }
+
+        return pagination;
+    };
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var PanelDefaultConfig = {
+        panelDeferred: 0,
+        id: null,
+        titleCaption: "",
+        titleIcon: "",
+        collapsible: false,
+        collapsed: false,
+        collapseDuration: METRO_ANIMATION_DURATION,
+        width: "auto",
+        height: "auto",
+        draggable: false,
+
+        customButtons: null,
+        clsCustomButton: "",
+
+        clsPanel: "",
+        clsTitle: "",
+        clsTitleCaption: "",
+        clsTitleIcon: "",
+        clsContent: "",
+        clsCollapseToggle: "",
+
+        onCollapse: Metro.noop,
+        onExpand: Metro.noop,
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onPanelCreate: Metro.noop
+    };
+
+    Metro.panelSetup = function (options) {
+        PanelDefaultConfig = $.extend({}, PanelDefaultConfig, options);
+    };
+
+    if (typeof window["metroPanelSetup"] !== undefined) {
+        Metro.panelSetup(window["metroPanelSetup"]);
+    }
+
+    Metro.Component('panel', {
+        init: function( options, elem ) {
+            this._super(elem, options, PanelDefaultConfig);
+
+            return this;
+        },
+
+        _addCustomButtons: function(buttons){
+            var element = this.element, o = this.options;
+            var title = element.closest(".panel").find(".panel-title");
+            var buttonsContainer, customButtons = [];
+
+            if (typeof buttons === "string" && buttons.indexOf("{") > -1) {
+                customButtons = JSON.parse(buttons);
+            } else if (typeof buttons === "string" && Utils.isObject(buttons)) {
+                customButtons = Utils.isObject(buttons);
+            } else if (typeof buttons === "object" && Utils.objectLength(buttons) > 0) {
+                customButtons = buttons;
+            } else {
+                console.warn("Unknown format for custom buttons", buttons);
                 return ;
             }
+
+            if (title.length === 0) {
+                console.warn("No place for custom buttons");
+                return ;
+            }
+
+            buttonsContainer = title.find(".custom-buttons");
+
+            if (buttonsContainer.length === 0) {
+                buttonsContainer = $("<div>").addClass("custom-buttons").appendTo(title);
+            } else {
+                buttonsContainer.find(".btn-custom").off(Metro.events.click);
+                buttonsContainer.html("");
+            }
+
+            $.each(customButtons, function(){
+                var item = this;
+                var customButton = $("<span>");
+
+                customButton
+                    .addClass("button btn-custom")
+                    .addClass(o.clsCustomButton)
+                    .addClass(item.cls)
+                    .attr("tabindex", -1)
+                    .html(item.html);
+
+                customButton.data("action", item.onclick);
+
+                buttonsContainer.prepend(customButton);
+            });
+
+            title.on(Metro.events.click, ".btn-custom", function(e){
+                if (Utils.isRightMouse(e)) return;
+                var button = $(this);
+                var action = button.data("action");
+                Utils.exec(action, [button], this);
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element, o = this.options;
+            var panel = $("<div>").addClass("panel").addClass(o.clsPanel);
+            var id = o.id ? o.id : Utils.elementId("panel");
+            var original_classes = element[0].className;
+            var title;
+
+            Metro.checkRuntime(element, this.name);
+
+            panel.attr("id", id).addClass(original_classes);
+            panel.insertBefore(element);
+            element.appendTo(panel);
+
+            element[0].className = '';
+            element.addClass("panel-content").addClass(o.clsContent).appendTo(panel);
+
+            if (o.titleCaption !== "" || o.titleIcon !== "" || o.collapsible === true) {
+                title = $("<div>").addClass("panel-title").addClass(o.clsTitle);
+
+                if (o.titleCaption !== "") {
+                    $("<span>").addClass("caption").addClass(o.clsTitleCaption).html(o.titleCaption).appendTo(title)
+                }
+
+                if (o.titleIcon !== "") {
+                    $(o.titleIcon).addClass("icon").addClass(o.clsTitleIcon).appendTo(title)
+                }
+
+                if (o.collapsible === true) {
+                    var collapseToggle = $("<span>").addClass("dropdown-toggle marker-center active-toggle").addClass(o.clsCollapseToggle).appendTo(title);
+                    Metro.makePlugin(element, "collapse", {
+                        toggleElement: collapseToggle,
+                        duration: o.collapseDuration,
+                        onCollapse: o.onCollapse,
+                        onExpand: o.onExpand
+                    });
+
+                    if (o.collapsed === true) {
+                        this.collapse();
+                    }
+                }
+
+                title.appendTo(panel);
+            }
+
+            if (title && Utils.isValue(o.customButtons)) {
+                this._addCustomButtons(o.customButtons);
+            }
+
+            if (o.draggable === true) {
+                var dragElement;
+
+                if (title) {
+                    dragElement = title.find(".caption, .icon");
+                } else {
+                    dragElement = panel;
+                }
+
+                Metro.makePlugin(panel, "draggable", {
+                    dragElement: dragElement,
+                    onDragStart: o.onDragStart,
+                    onDragStop: o.onDragStop,
+                    onDragMove: o.onDragMove
+                });
+            }
+
+            if (o.width !== "auto" && parseInt(o.width) >= 0) {
+                panel.outerWidth(parseInt(o.width));
+            }
+
+            if (o.height !== "auto" && parseInt(o.height) >= 0) {
+                panel.outerHeight(parseInt(o.height));
+                element.css({overflow: "auto"});
+            }
+
+            this.panel = panel;
+
+            this._fireEvent("panel-create", {
+                element: element,
+                panel: panel
+            });
+        },
+
+        customButtons: function(buttons){
+            return this._addCustomButtons(buttons);
+        },
+
+        collapse: function(){
+            var element = this.element;
+            if (Utils.isMetroObject(element, 'collapse') === false) {
+                return ;
+            }
+            Metro.getPlugin(element, 'collapse').collapse();
+        },
+
+        open: function(){
+            this.expand();
+        },
+
+        close: function(){
+            this.collapse();
+        },
+
+        expand: function(){
+            var element = this.element;
+            if (Utils.isMetroObject(element, 'collapse') === false) {
+                return ;
+            }
+            Metro.getPlugin(element, 'collapse').expand();
+        },
+
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
+
+        destroy: function(){
+            var element = this.element, o = this.options;
+
+            if (o.collapsible === true) {
+                Metro.getPlugin(element, "collapse").destroy();
+            }
+
+            if (o.draggable === true) {
+                Metro.getPlugin(element, "draggable").destroy();
+            }
+
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var PopoverDefaultConfig = {
+        popoverDeferred: 0,
+        popoverText: "",
+        popoverHide: 3000,
+        popoverTimeout: 10,
+        popoverOffset: 10,
+        popoverTrigger: Metro.popoverEvents.HOVER,
+        popoverPosition: Metro.position.TOP,
+        hideOnLeave: false,
+        closeButton: true,
+        clsPopover: "",
+        clsPopoverContent: "",
+        onPopoverShow: Metro.noop,
+        onPopoverHide: Metro.noop,
+        onPopoverCreate: Metro.noop
+    };
+
+    Metro.popoverSetup = function (options) {
+        PopoverDefaultConfig = $.extend({}, PopoverDefaultConfig, options);
+    };
+
+    if (typeof window["metroPopoverSetup"] !== undefined) {
+        Metro.popoverSetup(window["metroPopoverSetup"]);
+    }
+
+    Metro.Component('popover', {
+        init: function( options, elem ) {
+            this._super(elem, options, PopoverDefaultConfig, {
+                popover: null,
+                popovered: false,
+                size: {
+                    width: 0,
+                    height: 0
+                },
+                id: Utils.elementId("popover")
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            this._createEvents();
+            this._fireEvent("popover-create", {
+                element: this.element
+            })
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var event;
+
+            switch (o.popoverTrigger) {
+                case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
+                case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
+                default: event = Metro.events.enter;
+            }
+
+            element.on(event, function(){
+                if (that.popover !== null || that.popovered === true) {
+                    return ;
+                }
+                setTimeout(function(){
+                    that.createPopover();
+
+                    Utils.exec(o.onPopoverShow, [that.popover], element[0]);
+                    element.fire("popovershow", {
+                        popover: that.popover
+                    });
+
+                    if (o.popoverHide > 0) {
+                        setTimeout(function(){
+                            that.removePopover();
+                        }, o.popoverHide);
+                    }
+                }, o.popoverTimeout);
+            });
+
+            if (o.hideOnLeave === true) {
+                element.on(Metro.events.leave, function(){
+                    that.removePopover();
+                });
+            }
+
+            $(window).on(Metro.events.scroll, function(){
+                if (that.popover !== null) that.setPosition();
+            }, {ns: this.id});
+        },
+
+        setPosition: function(){
+            var popover = this.popover, size = this.size, o = this.options, element = this.element;
+
+            if (o.popoverPosition === Metro.position.BOTTOM) {
+                popover.addClass('bottom');
+                popover.css({
+                    top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.popoverOffset,
+                    left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
+                });
+            } else if (o.popoverPosition === Metro.position.RIGHT) {
+                popover.addClass('right');
+                popover.css({
+                    top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
+                    left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.popoverOffset
+                });
+            } else if (o.popoverPosition === Metro.position.LEFT) {
+                popover.addClass('left');
+                popover.css({
+                    top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
+                    left: element.offset().left - size.width - $(window).scrollLeft() - o.popoverOffset
+                });
+            } else {
+                popover.addClass('top');
+                popover.css({
+                    top: element.offset().top - $(window).scrollTop() - size.height - o.popoverOffset,
+                    left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
+                });
+            }
+        },
+
+        createPopover: function(){
+            var that = this, elem = this.elem, element = this.element, o = this.options;
+            var popover;
+            var neb_pos;
+            var id = Utils.elementId("popover");
+            var closeButton;
+
+            if (this.popovered) {
+                return ;
+            }
+
+            popover = $("<div>").addClass("popover neb").addClass(o.clsPopover);
+            popover.attr("id", id);
+
+            $("<div>").addClass("popover-content").addClass(o.clsPopoverContent).html(o.popoverText).appendTo(popover);
+
+            if (o.popoverHide === 0 && o.closeButton === true) {
+                closeButton = $("<button>").addClass("button square small popover-close-button bg-white").html("&times;").appendTo(popover);
+                closeButton.on(Metro.events.click, function(){
+                    that.removePopover();
+                });
+            }
+
+            switch (o.popoverPosition) {
+                case Metro.position.TOP: neb_pos = "neb-s"; break;
+                case Metro.position.BOTTOM: neb_pos = "neb-n"; break;
+                case Metro.position.RIGHT: neb_pos = "neb-w"; break;
+                case Metro.position.LEFT: neb_pos = "neb-e"; break;
+            }
+
+            popover.addClass(neb_pos);
+
+            if (o.closeButton !== true) {
+                popover.on(Metro.events.click, function(){
+                    that.removePopover();
+                });
+            }
+
+            this.popover = popover;
+            this.size = Utils.hiddenElementSize(popover);
+
+            if (elem.tagName === 'TD' || elem.tagName === 'TH') {
+                var wrp = $("<div/>").css("display", "inline-block").html(element.html());
+                element.html(wrp);
+                element = wrp;
+            }
+
+            this.setPosition();
+
+            popover.appendTo($('body'));
+
+            this.popovered = true;
+
+            Utils.exec(o.onPopoverCreate, [element, popover], element[0]);
+            element.fire("popovercreate", {
+                popover: popover
+            });
+        },
+
+        removePopover: function(){
+            var that = this, element = this.element;
+            var timeout = this.options.onPopoverHide === Metro.noop ? 0 : 300;
+            var popover = this.popover;
+
+            if (!this.popovered) {
+                return ;
+            }
+
+            Utils.exec(this.options.onPopoverHide, [popover], this.elem);
+            element.fire("popoverhide", {
+                popover: popover
+            });
+
+            setTimeout(function(){
+                popover.hide(0, function(){
+                    popover.remove();
+                    that.popover = null;
+                    that.popovered = false;
+                });
+            }, timeout);
+        },
+
+        show: function(){
+            var that = this, element = this.element, o = this.options;
+
+            if (this.popovered === true) {
+                return ;
+            }
+
             setTimeout(function(){
                 that.createPopover();
 
@@ -21076,407 +21236,260 @@ Component('popover', {
                     }, o.popoverHide);
                 }
             }, o.popoverTimeout);
-        });
+        },
 
-        if (o.hideOnLeave === true) {
-            element.on(Metro.events.leave, function(){
-                that.removePopover();
-            });
-        }
+        hide: function(){
+            this.removePopover();
+        },
 
-        $(window).on(Metro.events.scroll, function(){
-            if (that.popover !== null) that.setPosition();
-        }, {ns: this.id});
-    },
+        changeAttribute: function(attributeName){
+            var that = this, element = this.element, o = this.options;
 
-    setPosition: function(){
-        var popover = this.popover, size = this.size, o = this.options, element = this.element;
+            var changeText = function(){
+                o.popoverText = element.attr("data-popover-text");
+                if (that.popover) {
+                    that.popover.find(".popover-content").html(o.popoverText);
+                    that.setPosition();
+                }
+            };
 
-        if (o.popoverPosition === Metro.position.BOTTOM) {
-            popover.addClass('bottom');
-            popover.css({
-                top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.popoverOffset,
-                left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
-            });
-        } else if (o.popoverPosition === Metro.position.RIGHT) {
-            popover.addClass('right');
-            popover.css({
-                top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
-                left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.popoverOffset
-            });
-        } else if (o.popoverPosition === Metro.position.LEFT) {
-            popover.addClass('left');
-            popover.css({
-                top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
-                left: element.offset().left - size.width - $(window).scrollLeft() - o.popoverOffset
-            });
-        } else {
-            popover.addClass('top');
-            popover.css({
-                top: element.offset().top - $(window).scrollTop() - size.height - o.popoverOffset,
-                left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
-            });
-        }
-    },
-
-    createPopover: function(){
-        var that = this, elem = this.elem, element = this.element, o = this.options;
-        var popover;
-        var neb_pos;
-        var id = Utils.elementId("popover");
-        var closeButton;
-
-        if (this.popovered) {
-            return ;
-        }
-
-        popover = $("<div>").addClass("popover neb").addClass(o.clsPopover);
-        popover.attr("id", id);
-
-        $("<div>").addClass("popover-content").addClass(o.clsPopoverContent).html(o.popoverText).appendTo(popover);
-
-        if (o.popoverHide === 0 && o.closeButton === true) {
-            closeButton = $("<button>").addClass("button square small popover-close-button bg-white").html("&times;").appendTo(popover);
-            closeButton.on(Metro.events.click, function(){
-                that.removePopover();
-            });
-        }
-
-        switch (o.popoverPosition) {
-            case Metro.position.TOP: neb_pos = "neb-s"; break;
-            case Metro.position.BOTTOM: neb_pos = "neb-n"; break;
-            case Metro.position.RIGHT: neb_pos = "neb-w"; break;
-            case Metro.position.LEFT: neb_pos = "neb-e"; break;
-        }
-
-        popover.addClass(neb_pos);
-
-        if (o.closeButton !== true) {
-            popover.on(Metro.events.click, function(){
-                that.removePopover();
-            });
-        }
-
-        this.popover = popover;
-        this.size = Utils.hiddenElementSize(popover);
-
-        if (elem.tagName === 'TD' || elem.tagName === 'TH') {
-            var wrp = $("<div/>").css("display", "inline-block").html(element.html());
-            element.html(wrp);
-            element = wrp;
-        }
-
-        this.setPosition();
-
-        popover.appendTo($('body'));
-
-        this.popovered = true;
-
-        Utils.exec(o.onPopoverCreate, [element, popover], element[0]);
-        element.fire("popovercreate", {
-            popover: popover
-        });
-    },
-
-    removePopover: function(){
-        var that = this, element = this.element;
-        var timeout = this.options.onPopoverHide === Metro.noop ? 0 : 300;
-        var popover = this.popover;
-
-        if (!this.popovered) {
-            return ;
-        }
-
-        Utils.exec(this.options.onPopoverHide, [popover], this.elem);
-        element.fire("popoverhide", {
-            popover: popover
-        });
-
-        setTimeout(function(){
-            popover.hide(0, function(){
-                popover.remove();
-                that.popover = null;
-                that.popovered = false;
-            });
-        }, timeout);
-    },
-
-    show: function(){
-        var that = this, element = this.element, o = this.options;
-
-        if (this.popovered === true) {
-            return ;
-        }
-
-        setTimeout(function(){
-            that.createPopover();
-
-            Utils.exec(o.onPopoverShow, [that.popover], element[0]);
-            element.fire("popovershow", {
-                popover: that.popover
-            });
-
-            if (o.popoverHide > 0) {
-                setTimeout(function(){
-                    that.removePopover();
-                }, o.popoverHide);
-            }
-        }, o.popoverTimeout);
-    },
-
-    hide: function(){
-        this.removePopover();
-    },
-
-    changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
-
-        var changeText = function(){
-            o.popoverText = element.attr("data-popover-text");
-            if (that.popover) {
-                that.popover.find(".popover-content").html(o.popoverText);
+            var changePosition = function(){
+                o.popoverPosition = element.attr("data-popover-position");
                 that.setPosition();
+            };
+
+            switch (attributeName) {
+                case "data-popover-text": changeText(); break;
+                case "data-popover-position": changePosition(); break;
             }
-        };
+        },
 
-        var changePosition = function(){
-            o.popoverPosition = element.attr("data-popover-position");
-            that.setPosition();
-        };
+        destroy: function(){
+            var element = this.element, o = this.options;
+            var event;
 
-        switch (attributeName) {
-            case "data-popover-text": changeText(); break;
-            case "data-popover-position": changePosition(); break;
+            switch (o.popoverTrigger) {
+                case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
+                case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
+                default: event = Metro.events.enter;
+            }
+
+            element.off(event);
+
+            if (o.hideOnLeave === true) {
+                element.off(Metro.events.leave);
+            }
+
+            $(window).off(Metro.events.scroll,{ns: this.id});
+
+            return element;
         }
-    },
+    });
+}(Metro, m4q));
 
-    destroy: function(){
-        var element = this.element, o = this.options;
-        var event;
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ProgressDefaultConfig = {
+        progressDeferred: 0,
+        showValue: false,
+        valuePosition: "free", // center, free
+        showLabel: false,
+        labelPosition: "before", // before, after
+        labelTemplate: "",
+        value: 0,
+        buffer: 0,
+        type: "bar",
+        small: false,
+        clsBack: "",
+        clsBar: "",
+        clsBuffer: "",
+        clsValue: "",
+        clsLabel: "",
+        onValueChange: Metro.noop,
+        onBufferChange: Metro.noop,
+        onComplete: Metro.noop,
+        onBuffered: Metro.noop,
+        onProgressCreate: Metro.noop
+    };
 
-        switch (o.popoverTrigger) {
-            case Metro.popoverEvents.CLICK: event = Metro.events.click; break;
-            case Metro.popoverEvents.FOCUS: event = Metro.events.focus; break;
-            default: event = Metro.events.enter;
-        }
+    Metro.progressSetup = function (options) {
+        ProgressDefaultConfig = $.extend({}, ProgressDefaultConfig, options);
+    };
 
-        element.off(event);
-
-        if (o.hideOnLeave === true) {
-            element.off(Metro.events.leave);
-        }
-
-        $(window).off(Metro.events.scroll,{ns: this.id});
-
-        return element;
+    if (typeof window["metroProgressSetup"] !== undefined) {
+        Metro.progressSetup(window["metroProgressSetup"]);
     }
-});
 
-
-var ProgressDefaultConfig = {
-    progressDeferred: 0,
-    showValue: false,
-    valuePosition: "free", // center, free
-    showLabel: false,
-    labelPosition: "before", // before, after
-    labelTemplate: "",
-    value: 0,
-    buffer: 0,
-    type: "bar",
-    small: false,
-    clsBack: "",
-    clsBar: "",
-    clsBuffer: "",
-    clsValue: "",
-    clsLabel: "",
-    onValueChange: Metro.noop,
-    onBufferChange: Metro.noop,
-    onComplete: Metro.noop,
-    onBuffered: Metro.noop,
-    onProgressCreate: Metro.noop
-};
-
-Metro.progressSetup = function (options) {
-    ProgressDefaultConfig = $.extend({}, ProgressDefaultConfig, options);
-};
-
-if (typeof window["metroProgressSetup"] !== undefined) {
-    Metro.progressSetup(window["metroProgressSetup"]);
-}
-
-Component('progress', {
-    init: function( options, elem ) {
-        this._super(elem, options, ProgressDefaultConfig);
-
-        this.value = 0;
-        this.buffer = 0;
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-        var value;
-
-        Metro.checkRuntime(element, this.name);
-
-        if (typeof o.type === "string") o.type = o.type.toLowerCase();
-
-        element
-            .html("")
-            .addClass("progress");
-
-        function _progress(){
-            $("<div>").addClass("bar").appendTo(element);
-        }
-
-        function _buffer(){
-            $("<div>").addClass("bar").appendTo(element);
-            $("<div>").addClass("buffer").appendTo(element);
-        }
-
-        function _load(){
-            element.addClass("with-load");
-            $("<div>").addClass("bar").appendTo(element);
-            $("<div>").addClass("buffer").appendTo(element);
-            $("<div>").addClass("load").appendTo(element);
-        }
-
-        function _line(){
-            element.addClass("line");
-        }
-
-        switch (o.type) {
-            case "buffer": _buffer(); break;
-            case "load": _load(); break;
-            case "line": _line(); break;
-            default: _progress();
-        }
-
-        if (o.type !== 'line') {
-            value = $("<span>").addClass("value").addClass(o.clsValue).appendTo(element);
-            if (o.valuePosition === "center") value.addClass("centered");
-            if (o.showValue === false) value.hide();
-        }
-
-        if (o.small === true) element.addClass("small");
-
-        element.addClass(o.clsBack);
-        element.find(".bar").addClass(o.clsBar);
-        element.find(".buffer").addClass(o.clsBuffer);
-
-        if (o.showLabel === true) {
-            var label = $("<span>").addClass("progress-label").addClass(o.clsLabel).html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
-            if (o.labelPosition === 'before') {
-                label.insertBefore(element);
-            } else {
-                label.insertAfter(element);
-            }
-        }
-
-        this.val(o.value);
-        this.buff(o.buffer);
-
-        Utils.exec(o.onProgressCreate, [element], element[0]);
-        element.fire("progresscreate");
-    },
-
-    val: function(v){
-        var that = this, element = this.element, o = this.options;
-        var value = element.find(".value");
-
-        if (v === undefined) {
-            return that.value;
-        }
-
-        var bar  = element.find(".bar");
-
-        if (bar.length === 0) {
-            return false;
-        }
-
-        this.value = parseInt(v, 10);
-
-        bar.css("width", this.value + "%");
-        value.html(this.value+"%");
-
-        var diff = element.width() - bar.width();
-        var valuePosition = value.width() > diff ? {left: "auto", right: diff + 'px'} : {left: v + '%'};
-
-        if (o.valuePosition === "free") value.css(valuePosition);
-
-        if (o.showLabel === true) {
-            var label = element[o.labelPosition === "before" ? "prev" : "next"](".progress-label");
-            if (label.length) {
-                label.html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
-            }
-        }
-
-        Utils.exec(o.onValueChange, [this.value], element[0]);
-        element.fire("valuechange", {
-            vsl: this.value
-        });
-
-        if (this.value === 100) {
-            Utils.exec(o.onComplete, [this.value], element[0]);
-            element.fire("complete", {
-                val: this.value
+    Metro.Component('progress', {
+        init: function( options, elem ) {
+            this._super(elem, options, ProgressDefaultConfig, {
+                value: 0,
+                buffer: 0
             });
-        }
-    },
 
-    buff: function(v){
-        var that = this, element = this.element, o = this.options;
+            return this;
+        },
 
-        if (v === undefined) {
-            return that.buffer;
-        }
+        _create: function(){
+            var element = this.element, o = this.options;
+            var value;
 
-        var bar  = element.find(".buffer");
+            if (typeof o.type === "string") o.type = o.type.toLowerCase();
 
-        if (bar.length === 0) {
-            return false;
-        }
+            element
+                .html("")
+                .addClass("progress");
 
-        this.buffer = parseInt(v, 10);
+            function _progress(){
+                $("<div>").addClass("bar").appendTo(element);
+            }
 
-        bar.css("width", this.buffer + "%");
+            function _buffer(){
+                $("<div>").addClass("bar").appendTo(element);
+                $("<div>").addClass("buffer").appendTo(element);
+            }
 
-        Utils.exec(o.onBufferChange, [this.buffer], element[0]);
-        element.fire("bufferchange", {
-            val: this.buffer
-        });
+            function _load(){
+                element.addClass("with-load");
+                $("<div>").addClass("bar").appendTo(element);
+                $("<div>").addClass("buffer").appendTo(element);
+                $("<div>").addClass("load").appendTo(element);
+            }
 
-        if (this.buffer === 100) {
-            Utils.exec(o.onBuffered, [this.buffer], element[0]);
-            element.fire("buffered", {
+            function _line(){
+                element.addClass("line");
+            }
+
+            switch (o.type) {
+                case "buffer": _buffer(); break;
+                case "load": _load(); break;
+                case "line": _line(); break;
+                default: _progress();
+            }
+
+            if (o.type !== 'line') {
+                value = $("<span>").addClass("value").addClass(o.clsValue).appendTo(element);
+                if (o.valuePosition === "center") value.addClass("centered");
+                if (o.showValue === false) value.hide();
+            }
+
+            if (o.small === true) element.addClass("small");
+
+            element.addClass(o.clsBack);
+            element.find(".bar").addClass(o.clsBar);
+            element.find(".buffer").addClass(o.clsBuffer);
+
+            if (o.showLabel === true) {
+                var label = $("<span>").addClass("progress-label").addClass(o.clsLabel).html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
+                if (o.labelPosition === 'before') {
+                    label.insertBefore(element);
+                } else {
+                    label.insertAfter(element);
+                }
+            }
+
+            this.val(o.value);
+            this.buff(o.buffer);
+
+            this._fireEvent("progress-create", {
+                element: element
+            });
+        },
+
+        val: function(v){
+            var that = this, element = this.element, o = this.options;
+            var value = element.find(".value");
+
+            if (v === undefined) {
+                return that.value;
+            }
+
+            var bar  = element.find(".bar");
+
+            if (bar.length === 0) {
+                return false;
+            }
+
+            this.value = parseInt(v, 10);
+
+            bar.css("width", this.value + "%");
+            value.html(this.value+"%");
+
+            var diff = element.width() - bar.width();
+            var valuePosition = value.width() > diff ? {left: "auto", right: diff + 'px'} : {left: v + '%'};
+
+            if (o.valuePosition === "free") value.css(valuePosition);
+
+            if (o.showLabel === true) {
+                var label = element[o.labelPosition === "before" ? "prev" : "next"](".progress-label");
+                if (label.length) {
+                    label.html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
+                }
+            }
+
+            Utils.exec(o.onValueChange, [this.value], element[0]);
+            element.fire("valuechange", {
+                vsl: this.value
+            });
+
+            if (this.value === 100) {
+                Utils.exec(o.onComplete, [this.value], element[0]);
+                element.fire("complete", {
+                    val: this.value
+                });
+            }
+        },
+
+        buff: function(v){
+            var that = this, element = this.element, o = this.options;
+
+            if (v === undefined) {
+                return that.buffer;
+            }
+
+            var bar  = element.find(".buffer");
+
+            if (bar.length === 0) {
+                return false;
+            }
+
+            this.buffer = parseInt(v, 10);
+
+            bar.css("width", this.buffer + "%");
+
+            Utils.exec(o.onBufferChange, [this.buffer], element[0]);
+            element.fire("bufferchange", {
                 val: this.buffer
             });
+
+            if (this.buffer === 100) {
+                Utils.exec(o.onBuffered, [this.buffer], element[0]);
+                element.fire("buffered", {
+                    val: this.buffer
+                });
+            }
+        },
+
+        changeValue: function(){
+            this.val(this.element.attr('data-value'));
+        },
+
+        changeBuffer: function(){
+            this.buff(this.element.attr('data-buffer'));
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case 'data-value': this.changeValue(); break;
+                case 'data-buffer': this.changeBuffer(); break;
+            }
+        },
+
+        destroy: function(){
+            return this.element;
         }
-    },
-
-    changeValue: function(){
-        this.val(this.element.attr('data-value'));
-    },
-
-    changeBuffer: function(){
-        this.buff(this.element.attr('data-buffer'));
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case 'data-value': this.changeValue(); break;
-            case 'data-buffer': this.changeBuffer(); break;
-        }
-    },
-
-    destroy: function(){
-        return this.element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 (function(Metro, $) {
     var Utils = Metro.utils;
@@ -21612,293 +21625,293 @@ Component('progress', {
     });
 }(Metro, m4q));
 
-var RatingDefaultConfig = {
-    ratingDeferred: 0,
-    static: false,
-    title: null,
-    value: 0,
-    values: null,
-    message: "",
-    stars: 5,
-    starColor: null,
-    staredColor: null,
-    roundFunc: "round", // ceil, floor, round
-    half: true,
-    clsRating: "",
-    clsTitle: "",
-    clsStars: "",
-    clsResult: "",
-    onStarClick: Metro.noop,
-    onRatingCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var Colors = Metro.colors;
+    var RatingDefaultConfig = {
+        ratingDeferred: 0,
+        static: false,
+        title: null,
+        value: 0,
+        values: null,
+        message: "",
+        stars: 5,
+        starColor: null,
+        staredColor: null,
+        roundFunc: "round", // ceil, floor, round
+        half: true,
+        clsRating: "",
+        clsTitle: "",
+        clsStars: "",
+        clsResult: "",
+        onStarClick: Metro.noop,
+        onRatingCreate: Metro.noop
+    };
 
-Metro.ratingSetup = function (options) {
-    RatingDefaultConfig = $.extend({}, RatingDefaultConfig, options);
-};
+    Metro.ratingSetup = function (options) {
+        RatingDefaultConfig = $.extend({}, RatingDefaultConfig, options);
+    };
 
-if (typeof window["metroRatingSetup"] !== undefined) {
-    Metro.ratingSetup(window["metroRatingSetup"]);
-}
+    if (typeof window["metroRatingSetup"] !== undefined) {
+        Metro.ratingSetup(window["metroRatingSetup"]);
+    }
 
-Component('rating', {
-    init: function( options, elem ) {
-        this._super(elem, options, RatingDefaultConfig);
+    Metro.Component('rating', {
+        init: function( options, elem ) {
+            this._super(elem, options, RatingDefaultConfig, {
+                value: 0,
+                originValue: 0,
+                values: [],
+                rate: 0,
+                rating: null
+            });
 
-        this.value = 0;
-        this.originValue = 0;
-        this.values = [];
-        this.rate = 0;
-        this.rating = null;
+            return this;
+        },
 
-        Metro.createExec(this);
+        _create: function(){
+            var element = this.element, o = this.options;
+            var i;
 
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-        var i;
-
-        Metro.checkRuntime(element, this.name);
-
-        if (isNaN(o.value)) {
-            o.value = 0;
-        } else {
-            o.value = parseFloat(o.value).toFixed(1);
-        }
-
-        if (o.values !== null) {
-            if (Array.isArray(o.values)) {
-                this.values = o.values;
-            } else if (typeof o.values === "string") {
-                this.values = o.values.toArray()
+            if (isNaN(o.value)) {
+                o.value = 0;
+            } else {
+                o.value = parseFloat(o.value).toFixed(1);
             }
-        } else {
-            for(i = 1; i <= o.stars; i++) {
-                this.values.push(i);
-            }
-        }
 
-        this.originValue = o.value;
-        this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
-
-        if (o.starColor !== null) {
-            if (!Utils.isColor(o.starColor)) {
-                o.starColor = Colors.color(o.starColor);
-            }
-        }
-
-        if (o.staredColor !== null) {
-            if (!Utils.isColor(o.staredColor)) {
-                o.staredColor = Colors.color(o.staredColor);
-            }
-        }
-
-        this._createRating();
-        this._createEvents();
-
-        Utils.exec(o.onRatingCreate, [element], element[0]);
-        element.fire("ratingcreate");
-    },
-
-    _createRating: function(){
-        var element = this.element, o = this.options;
-
-        var id = Utils.elementId("rating");
-        var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
-        var i, stars, result, li;
-        var sheet = Metro.sheet;
-        var value = o.static ? Math.floor(this.originValue) : this.value;
-
-        element.val(this.value);
-
-        rating.attr("id", id);
-
-        rating.insertBefore(element);
-        element.appendTo(rating);
-
-        stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);
-
-        for(i = 1; i <= o.stars; i++) {
-            li = $("<li>").data("value", this.values[i-1]).appendTo(stars);
-            if (i <= value) {
-                li.addClass("on");
-            }
-        }
-
-        result = $("<span>").addClass("result").addClass(o.clsResult).appendTo(rating);
-
-        result.html(o.message);
-
-        if (o.starColor !== null) {
-            Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
-        }
-        if (o.staredColor !== null) {
-            Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
-            Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
-        }
-
-        if (o.title !== null) {
-            var title = $("<span>").addClass("title").addClass(o.clsTitle).html(o.title);
-            rating.prepend(title);
-        }
-
-        if (o.static === true) {
-            rating.addClass("static");
-            if (o.half === true){
-                var dec = Math.round((this.originValue % 1) * 10);
-                if (dec > 0 && dec <= 9) {
-                    rating.find('.stars li.on').last().next("li").addClass("half half-" + ( dec * 10));
+            if (o.values !== null) {
+                if (Array.isArray(o.values)) {
+                    this.values = o.values;
+                } else if (typeof o.values === "string") {
+                    this.values = o.values.toArray()
+                }
+            } else {
+                for(i = 1; i <= o.stars; i++) {
+                    this.values.push(i);
                 }
             }
-        }
 
-        element[0].className = '';
-        if (o.copyInlineStyles === true) {
-            for (i = 0; i < element[0].style.length; i++) {
-                rating.css(element[0].style[i], element.css(element[0].style[i]));
+            this.originValue = o.value;
+            this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
+
+            if (o.starColor !== null) {
+                if (!Utils.isColor(o.starColor)) {
+                    o.starColor = Colors.color(o.starColor);
+                }
             }
-        }
 
-        if (element.is(":disabled")) {
-            this.disable();
-        } else {
-            this.enable();
-        }
+            if (o.staredColor !== null) {
+                if (!Utils.isColor(o.staredColor)) {
+                    o.staredColor = Colors.color(o.staredColor);
+                }
+            }
 
-        this.rating = rating;
-    },
+            this._createRating();
+            this._createEvents();
 
-    _createEvents: function(){
-        var element = this.element, o = this.options;
-        var rating = this.rating;
+            this._fireEvent("rating-create", {
+                element: element
+            });
+        },
 
-        rating.on(Metro.events.click, ".stars li", function(){
+        _createRating: function(){
+            var element = this.element, o = this.options;
+
+            var id = Utils.elementId("rating");
+            var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
+            var i, stars, result, li;
+            var sheet = Metro.sheet;
+            var value = o.static ? Math.floor(this.originValue) : this.value;
+
+            element.val(this.value);
+
+            rating.attr("id", id);
+
+            rating.insertBefore(element);
+            element.appendTo(rating);
+
+            stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);
+
+            for(i = 1; i <= o.stars; i++) {
+                li = $("<li>").data("value", this.values[i-1]).appendTo(stars);
+                if (i <= value) {
+                    li.addClass("on");
+                }
+            }
+
+            result = $("<span>").addClass("result").addClass(o.clsResult).appendTo(rating);
+
+            result.html(o.message);
+
+            if (o.starColor !== null) {
+                Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
+            }
+            if (o.staredColor !== null) {
+                Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
+                Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
+            }
+
+            if (o.title !== null) {
+                var title = $("<span>").addClass("title").addClass(o.clsTitle).html(o.title);
+                rating.prepend(title);
+            }
 
             if (o.static === true) {
+                rating.addClass("static");
+                if (o.half === true){
+                    var dec = Math.round((this.originValue % 1) * 10);
+                    if (dec > 0 && dec <= 9) {
+                        rating.find('.stars li.on').last().next("li").addClass("half half-" + ( dec * 10));
+                    }
+                }
+            }
+
+            element[0].className = '';
+            if (o.copyInlineStyles === true) {
+                for (i = 0; i < element[0].style.length; i++) {
+                    rating.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (element.is(":disabled")) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+
+            this.rating = rating;
+        },
+
+        _createEvents: function(){
+            var element = this.element, o = this.options;
+            var rating = this.rating;
+
+            rating.on(Metro.events.click, ".stars li", function(){
+
+                if (o.static === true) {
+                    return ;
+                }
+
+                var star = $(this);
+                var value = star.data("value");
+                star.addClass("scale");
+                setTimeout(function(){
+                    star.removeClass("scale");
+                }, 300);
+                element.val(value).trigger("change");
+                star.addClass("on");
+                star.prevAll().addClass("on");
+                star.nextAll().removeClass("on");
+
+                Utils.exec(o.onStarClick, [value, star[0]], element[0]);
+                element.fire("starclick", {
+                    value: value,
+                    star: star[0]
+                });
+            });
+        },
+
+        val: function(v){
+            var that = this, element = this.element, o = this.options;
+            var rating = this.rating;
+
+            if (v === undefined) {
+                return this.value;
+            }
+
+            this.value = v > 0 ? Math[o.roundFunc](v) : 0;
+            element.val(this.value).trigger("change");
+
+            var stars = rating.find(".stars li").removeClass("on");
+            $.each(stars, function(){
+                var star = $(this);
+                if (star.data("value") <= that.value) {
+                    star.addClass("on");
+                }
+            });
+
+            return this;
+        },
+
+        msg: function(m){
+            var rating = this.rating;
+            if (m ===  undefined) {
                 return ;
             }
+            rating.find(".result").html(m);
+            return this;
+        },
 
-            var star = $(this);
-            var value = star.data("value");
-            star.addClass("scale");
-            setTimeout(function(){
-                star.removeClass("scale");
-            }, 300);
-            element.val(value).trigger("change");
-            star.addClass("on");
-            star.prevAll().addClass("on");
-            star.nextAll().removeClass("on");
+        static: function (mode) {
+            var o = this.options;
+            var rating = this.rating;
 
-            Utils.exec(o.onStarClick, [value, star[0]], element[0]);
-            element.fire("starclick", {
-                value: value,
-                star: star[0]
-            });
-        });
-    },
+            o.static = mode;
 
-    val: function(v){
-        var that = this, element = this.element, o = this.options;
-        var rating = this.rating;
-
-        if (v === undefined) {
-            return this.value;
-        }
-
-        this.value = v > 0 ? Math[o.roundFunc](v) : 0;
-        element.val(this.value).trigger("change");
-
-        var stars = rating.find(".stars li").removeClass("on");
-        $.each(stars, function(){
-            var star = $(this);
-            if (star.data("value") <= that.value) {
-                star.addClass("on");
+            if (mode === true) {
+                rating.addClass("static");
+            } else {
+                rating.removeClass("static");
             }
-        });
+        },
 
-        return this;
-    },
+        changeAttributeValue: function(a){
+            var element = this.element;
+            var value = a === "value" ? element.val() : element.attr("data-value");
+            this.val(value);
+        },
 
-    msg: function(m){
-        var rating = this.rating;
-        if (m ===  undefined) {
-            return ;
+        changeAttributeMessage: function(){
+            var element = this.element;
+            var message = element.attr("data-message");
+            this.msg(message);
+        },
+
+        changeAttributeStatic: function(){
+            var element = this.element;
+            var isStatic = JSON.parse(element.attr("data-static")) === true;
+
+            this.static(isStatic);
+        },
+
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case "value":
+                case "data-value": this.changeAttributeValue(attributeName); break;
+                case "disabled": this.toggleState(); break;
+                case "data-message": this.changeAttributeMessage(); break;
+                case "data-static": this.changeAttributeStatic(); break;
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            var rating = this.rating;
+
+            rating.off(Metro.events.click, ".stars li");
+
+            return element;
         }
-        rating.find(".result").html(m);
-        return this;
-    },
-
-    static: function (mode) {
-        var o = this.options;
-        var rating = this.rating;
-
-        o.static = mode;
-
-        if (mode === true) {
-            rating.addClass("static");
-        } else {
-            rating.removeClass("static");
-        }
-    },
-
-    changeAttributeValue: function(a){
-        var element = this.element;
-        var value = a === "value" ? element.val() : element.attr("data-value");
-        this.val(value);
-    },
-
-    changeAttributeMessage: function(){
-        var element = this.element;
-        var message = element.attr("data-message");
-        this.msg(message);
-    },
-
-    changeAttributeStatic: function(){
-        var element = this.element;
-        var isStatic = JSON.parse(element.attr("data-static")) === true;
-
-        this.static(isStatic);
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.parent().addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.parent().removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "value":
-            case "data-value": this.changeAttributeValue(attributeName); break;
-            case "disabled": this.toggleState(); break;
-            case "data-message": this.changeAttributeMessage(); break;
-            case "data-static": this.changeAttributeStatic(); break;
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        var rating = this.rating;
-
-        rating.off(Metro.events.click, ".stars li");
-
-        return element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 var ResizableDefaultConfig = {
     resizeableDeferred: 0,
@@ -22439,7 +22452,7 @@ Metro.ripple = getRipple;
         selectDeferred: 0,
         clearButton: false,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
-        usePlaceholder: true,
+        usePlaceholder: false,
         placeholder: "",
         addEmptyValue: false,
         emptyValue: "",
@@ -27111,7 +27124,7 @@ Component('table', {
         var element = this.element, o = this.options;
         var component = element.closest(".table-component");
         this.pagesCount = Math.ceil(length / o.rows); // Костыль
-        createPagination({
+        Metro.pagination({
             length: length,
             rows: o.rows,
             current: this.currentPage,
