@@ -148,11 +148,6 @@
     padding: 4px;
     margin: 0;
 
-    &:hover {
-        border-color: @ribbonMenuItemBorder;
-        background-color: @ribbonMenuItemHoverBackground;
-    }
-
     .caption, .icon {
         display: block;
         text-align: center;
@@ -192,11 +187,6 @@
     flex-flow: row nowrap;
     align-items: center;
     padding: 0 4px;
-
-    &:hover {
-        border-color: @ribbonMenuItemBorder;
-        background-color: @ribbonMenuItemHoverBackground;
-    }
 
     .caption, .icon {
         display: block;
@@ -276,7 +266,7 @@
     padding: 0;
     margin: 0;
 
-    &:hover {
+    &:not([disabled]):hover, &:not(.disabled):hover {
         border-color: @ribbonMenuItemBorder;
 
         .ribbon-split {
@@ -374,7 +364,7 @@
         border: 1px solid transparent;
         padding-left: 24px;
 
-        &:hover {
+        &:not([disabled]):hover, &:not(.disabled):hover {
             border-color: @ribbonMenuItemBorder;
             background-color: @ribbonMenuItemHoverBackground;
         }
@@ -481,7 +471,7 @@
 }
 
 .ribbon-button, .ribbon-tool-button, .ribbon-icon-button {
-    &:hover {
+    &:hover:enabled, &:not(.disabled):hover {
         border-color: @ribbonMenuItemBorder;
         background-color: @ribbonMenuItemHoverBackground;
     }

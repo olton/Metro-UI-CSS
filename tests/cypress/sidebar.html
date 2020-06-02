@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Sidebar - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Sidebar test page</h1>
+
+    <div class="example border" style="height: 400px">
+        <aside class="sidebar pos-absolute open z-2" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
+            <div class="sidebar-header" data-image="../images/sb-bg-1.jpg">
+                <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span class="mif-arrow-left mif-2x"></span></a>
+                <div class="avatar">
+                    <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                </div>
+                <span class="title fg-white">Metro 4 Components Library</span>
+                <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a><span class="mif-home icon"></span>Home</a></li>
+                <li><a><span class="mif-books icon"></span>Guide</a></li>
+                <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                <li class="divider"></li>
+                <li><a><span class="mif-images icon"></span>Icons</a></li>
+            </ul>
+        </aside>
+        <div class="aaa h-100 p-ab">
+            <div class="app-bar pos-absolute bg-red z-1" data-role="appbar" id="app-bar-1">
+                <button class="app-bar-item c-pointer" id="sidebar-toggle"><span class="mif-menu fg-white"></span></button>
+            </div>
+
+            <div class="h-100 p-4">
+                <p class="h1">What is Lorem Ipsum?</p>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                    It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
+                    It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages,
+                    and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

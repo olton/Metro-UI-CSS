@@ -15,6 +15,10 @@
 + [x] Clock: add events `onTick`, `onSecond`
 + [x] String: add extensions `includes()`, `camelCase()`, `dashedName()`, `shuffle()`
 + [x] ListView: fixed event `onNodeDblclick`, issue #1453
++ [x] Ribbon menu: fix hovering when button disabled, issue #1551
++ [x] Components: new constructor function
++ [x] Colors: full refactoring, now its full eq to `ColorJS`
++ [x] ColorType: new custom type for `color` variable. Var can be defined as `var c = new Color(...)` or `var c = new Metro.Color(...)` 
 
 
 ### 4.3.7
