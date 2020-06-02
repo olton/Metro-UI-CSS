@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/06/2020 20:53:50
+ * Built at 02/06/2020 22:11:28
  * Licensed under MIT
  */
 *,
@@ -230,6 +230,10 @@ select {
             transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+[disabled] {
+  pointer-events: none!important;
+  color: #e4e4e4 !important;
 }
 .button.primary,
 .command-button.primary,
@@ -3254,7 +3258,7 @@ textarea.light.focused,
   border-color: transparent !important;
 }
 .border {
-  border: 1px solid transparent;
+  border: 1px solid #dfdfdf;
 }
 .border-left {
   border-left: 1px solid transparent;
@@ -32097,10 +32101,6 @@ input.input-small:-ms-input-placeholder {
   padding: 4px;
   margin: 0;
 }
-.ribbon-button:hover {
-  border-color: #a4cef9;
-  background-color: rgba(164, 206, 249, 0.2);
-}
 .ribbon-button .caption,
 .ribbon-button .icon {
   display: block;
@@ -32139,10 +32139,6 @@ input.input-small:-ms-input-placeholder {
       -ms-flex-align: center;
           align-items: center;
   padding: 0 4px;
-}
-.ribbon-icon-button:hover {
-  border-color: #a4cef9;
-  background-color: rgba(164, 206, 249, 0.2);
 }
 .ribbon-icon-button .caption,
 .ribbon-icon-button .icon {
@@ -32218,10 +32214,12 @@ input.input-small:-ms-input-placeholder {
   padding: 0;
   margin: 0;
 }
-.ribbon-split-button:hover {
+.ribbon-split-button:not([disabled]):hover,
+.ribbon-split-button:not(.disabled):hover {
   border-color: #a4cef9;
 }
-.ribbon-split-button:hover .ribbon-split {
+.ribbon-split-button:not([disabled]):hover .ribbon-split,
+.ribbon-split-button:not(.disabled):hover .ribbon-split {
   border-color: #a4cef9;
 }
 .ribbon-split-button .ribbon-main,
@@ -32311,7 +32309,8 @@ input.input-small:-ms-input-placeholder {
   border: 1px solid transparent;
   padding-left: 24px;
 }
-.ribbon-dropdown li:hover {
+.ribbon-dropdown li:not([disabled]):hover,
+.ribbon-dropdown li:not(.disabled):hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
 }
@@ -32405,9 +32404,12 @@ input.input-small:-ms-input-placeholder {
 .ribbon-toggle-group .ribbon-icon-button > * {
   height: 18px;
 }
-.ribbon-button:hover,
-.ribbon-tool-button:hover,
-.ribbon-icon-button:hover {
+.ribbon-button:hover:enabled,
+.ribbon-tool-button:hover:enabled,
+.ribbon-icon-button:hover:enabled,
+.ribbon-button:not(.disabled):hover,
+.ribbon-tool-button:not(.disabled):hover,
+.ribbon-icon-button:not(.disabled):hover {
   border-color: #a4cef9;
   background-color: rgba(164, 206, 249, 0.2);
 }

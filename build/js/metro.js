@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/06/2020 20:53:56
+ * Built at 02/06/2020 22:11:36
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "02/06/2020 20:53:58",
+    compileTime: "02/06/2020 22:11:38",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -21913,409 +21913,406 @@ Component('master', {
     });
 }(Metro, m4q));
 
-var ResizableDefaultConfig = {
-    resizeableDeferred: 0,
-    canResize: true,
-    resizeElement: ".resize-element",
-    minWidth: 0,
-    minHeight: 0,
-    maxWidth: 0,
-    maxHeight: 0,
-    preserveRatio: false,
-    onResizeStart: Metro.noop,
-    onResizeStop: Metro.noop,
-    onResize: Metro.noop,
-    onResizableCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ResizableDefaultConfig = {
+        resizeableDeferred: 0,
+        canResize: true,
+        resizeElement: ".resize-element",
+        minWidth: 0,
+        minHeight: 0,
+        maxWidth: 0,
+        maxHeight: 0,
+        preserveRatio: false,
+        onResizeStart: Metro.noop,
+        onResizeStop: Metro.noop,
+        onResize: Metro.noop,
+        onResizableCreate: Metro.noop
+    };
 
-Metro.resizeableSetup = function (options) {
-    ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
-};
+    Metro.resizeableSetup = function (options) {
+        ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
+    };
 
-if (typeof window["metroResizeableSetup"] !== undefined) {
-    Metro.resizeableSetup(window["metroResizeableSetup"]);
-}
-
-Component('resizeable', {
-    init: function( options, elem ) {
-        this._super(elem, options, ResizableDefaultConfig);
-
-        this.resizer = null;
-
-        this.id = Utils.elementId("resizeable");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onResizableCreate, [element], element[0]);
-        element.fire("resizeablecreate");
-    },
-
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-
-        element.data("canResize", true);
-        element.addClass("resizeable-element");
-
-        if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
-            this.resizer = element.find(o.resizeElement);
-        } else {
-            this.resizer = $("<span>").addClass("resize-element").appendTo(element);
-        }
-
-        element.data("canResize", o.canResize);
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-
-        this.resizer.on(Metro.events.start, function(e){
-
-            if (element.data('canResize') === false) {
-                return ;
-            }
-
-            var startXY = Utils.pageXY(e);
-            var startWidth = parseInt(element.outerWidth());
-            var startHeight = parseInt(element.outerHeight());
-            var size = {width: startWidth, height: startHeight};
-
-            element.addClass("stop-pointer");
-
-            Utils.exec(o.onResizeStart, [size], element[0]);
-            element.fire("resizestart", {
-                size: size
-            });
-
-            $(document).on(Metro.events.move, function(e){
-                var moveXY = Utils.pageXY(e);
-                var size = {
-                    width: startWidth + moveXY.x - startXY.x,
-                    height: startHeight + moveXY.y - startXY.y
-                };
-
-                if (o.maxWidth > 0 && size.width > o.maxWidth) {return true;}
-                if (o.minWidth > 0 && size.width < o.minWidth) {return true;}
-
-                if (o.maxHeight > 0 && size.height > o.maxHeight) {return true;}
-                if (o.minHeight > 0 && size.height < o.minHeight) {return true;}
-
-                element.css(size);
-
-                Utils.exec(o.onResize, [size], element[0]);
-                element.fire("resize", {
-                    size: size
-                });
-            }, {ns: that.id});
-
-            $(document).on(Metro.events.stop, function(){
-                element.removeClass("stop-pointer");
-
-                $(document).off(Metro.events.move, {ns: that.id});
-                $(document).off(Metro.events.stop, {ns: that.id});
-
-                var size = {
-                    width: parseInt(element.outerWidth()),
-                    height: parseInt(element.outerHeight())
-                };
-
-                Utils.exec(o.onResizeStop, [size], element[0]);
-                element.fire("resizestop", {
-                    size: size
-                });
-            }, {ns: that.id});
-
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-    },
-
-    off: function(){
-        this.element.data("canResize", false);
-    },
-
-    on: function(){
-        this.element.data("canResize", true);
-    },
-
-    changeAttribute: function(attributeName){
-        var element = this.element, o = this.options;
-
-        var canResize = function(){
-            o.canResize = JSON.parse(element.attr('data-can-resize')) === true;
-        };
-
-        switch (attributeName) {
-            case "data-can-resize": canResize(); break;
-        }
-    },
-
-    destroy: function(){
-        this.resizer.off(Metro.events.start);
-        return this.element;
+    if (typeof window["metroResizeableSetup"] !== undefined) {
+        Metro.resizeableSetup(window["metroResizeableSetup"]);
     }
-});
 
-
-var ResizerDefaultConfig = {
-    resizerDeferred: 0,
-    onMediaPoint: Metro.noop,
-    onMediaPointEnter: Metro.noop,
-    onMediaPointLeave: Metro.noop,
-    onWindowResize: Metro.noop,
-    onElementResize: Metro.noop,
-    onResizerCreate: Metro.noop
-};
-
-Metro.resizerSetup = function (options) {
-    ResizerDefaultConfig = $.extend({}, ResizerDefaultConfig, options);
-};
-
-if (typeof window["metroResizerSetup"] !== undefined) {
-    Metro.resizerSetup(window["metroResizerSetup"]);
-}
-
-Component('resizer', {
-    init: function( options, elem ) {
-        this._super(elem, options, ResizerDefaultConfig);
-
-        this.id = null;
-        this.size = {width: 0, height: 0};
-        this.media = window.METRO_MEDIA;
-        this.id = Utils.elementId("resizer");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this.size = {
-            width: element.width(),
-            height: element.height()
-        };
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onResizerCreate, [element], element[0]);
-        element.fire('resizercreate');
-    },
-
-    _createStructure: function(){
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var win = $.window();
-
-        win.on("resize", function(){
-            var windowWidth = win.width(), windowHeight = win.height();
-            var elementWidth = element.width(), elementHeight = element.height();
-            var oldSize = that.size;
-            var point;
-
-            Utils.exec(o.onWindowResize, [windowWidth, windowHeight, window.METRO_MEDIA], element[0]);
-            element.fire("windowresize", {
-                width: windowWidth,
-                height: windowHeight,
-                media: window.METRO_MEDIA
+    Metro.Component('resizeable', {
+        init: function( options, elem ) {
+            this._super(elem, options, ResizableDefaultConfig, {
+                resizer: null,
+                id: Utils.elementId("resizeable")
             });
 
-            if (that.size.width !== elementWidth || that.size.height !== elementHeight) {
-                that.size = {
-                    width: elementWidth,
-                    height: elementHeight
-                };
-                Utils.exec(o.onElementResize, [elementWidth, elementHeight, oldSize, window.METRO_MEDIA], element[0]);
-                element.fire("windowresize", {
-                    width: elementWidth,
-                    height: elementHeight,
-                    oldSize: oldSize,
-                    media: window.METRO_MEDIA
-                });
-            }
+            return this;
+        },
 
-            if (that.media.length !== window.METRO_MEDIA.length) {
-                if (that.media.length > window.METRO_MEDIA.length) {
-                    point = that.media.filter(function(x){
-                        return !window.METRO_MEDIA.contains(x);
-                    });
-                    Utils.exec(o.onMediaPointLeave, [point, window.METRO_MEDIA], element[0]);
-                    element.fire("mediapointleave", {
-                        point: point,
-                        media: window.METRO_MEDIA
-                    });
-                } else {
-                    point = window.METRO_MEDIA.filter(function(x){
-                        return !that.media.contains(x);
-                    });
-                    Utils.exec(o.onMediaPointEnter, [point, window.METRO_MEDIA], element[0]);
-                    element.fire("mediapointenter", {
-                        point: point,
-                        media: window.METRO_MEDIA
-                    });
-                }
-                that.media = window.METRO_MEDIA;
-                Utils.exec(o.onMediaPoint, [point, window.METRO_MEDIA], element[0]);
-                element.fire("mediapoint", {
-                    point: point,
-                    media: window.METRO_MEDIA
-                });
-            }
-        }, {ns: this.id});
-    },
+        _create: function(){
+            var element = this.element;
 
-    changeAttribute: function(){
-    },
+            this._createStructure();
+            this._createEvents();
 
-    destroy: function(){
-        $(window).off("resize", {ns: this.id});
-    }
-});
-
-
-var RibbonMenuDefaultConfig = {
-    ribbonmenuDeferred: 0,
-    onStatic: Metro.noop,
-    onBeforeTab: Metro.noop_true,
-    onTab: Metro.noop,
-    onRibbonMenuCreate: Metro.noop
-};
-
-Metro.ribbonMenuSetup = function (options) {
-    RibbonMenuDefaultConfig = $.extend({}, RibbonMenuDefaultConfig, options);
-};
-
-if (typeof window["metroRibbonMenuSetup"] !== undefined) {
-    Metro.ribbonMenuSetup(window["metroRibbonMenuSetup"]);
-}
-
-Component('ribbon-menu', {
-    init: function( options, elem ) {
-        this._super(elem, options, RibbonMenuDefaultConfig);
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onRibbonMenuCreate, [element], element[0]);
-        element.fire("ribbonmenucreate");
-    },
-
-    _createStructure: function(){
-        var element = this.element;
-
-        element.addClass("ribbon-menu");
-
-        var tabs = element.find(".tabs-holder li:not(.static)");
-        var active_tab = element.find(".tabs-holder li.active");
-        if (active_tab.length > 0) {
-            this.open($(active_tab[0]));
-        } else {
-            if (tabs.length > 0) {
-                this.open($(tabs[0]));
-            }
-        }
-
-        var fluentGroups = element.find(".ribbon-toggle-group");
-        $.each(fluentGroups, function(){
-            var g = $(this);
-            g.buttongroup({
-                clsActive: "active"
+            this._fireEvent("resizeable-create", {
+                element: element
             });
+        },
 
-            var gw = 0;
-            var btns = g.find(".ribbon-icon-button");
-            $.each(btns, function(){
-                var b = $(this);
-                var w = b.outerWidth(true);
-                if (w > gw) gw = w;
-            });
+        _createStructure: function(){
+            var element = this.element, o = this.options;
 
-            g.css("width", gw * Math.ceil(btns.length / 3) + 4);
-        });
-    },
+            element.data("canResize", true);
+            element.addClass("resizeable-element");
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-
-        element.on(Metro.events.click, ".tabs-holder li a", function(e){
-            var link = $(this);
-            var tab = $(this).parent("li");
-
-            if (tab.hasClass("static")) {
-                if (o.onStatic === Metro.noop && link.attr("href") !== undefined) {
-                    document.location.href = link.attr("href");
-                } else {
-                    Utils.exec(o.onStatic, [tab[0]], element[0]);
-                    element.fire("static", {
-                        tab: tab[0]
-                    });
-                }
+            if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
+                this.resizer = element.find(o.resizeElement);
             } else {
-                if (Utils.exec(o.onBeforeTab, [tab[0]], element[0]) === true) {
-                    that.open(tab[0]);
+                this.resizer = $("<span>").addClass("resize-element").appendTo(element);
+            }
+
+            element.data("canResize", o.canResize);
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            this.resizer.on(Metro.events.start, function(e){
+
+                if (element.data('canResize') === false) {
+                    return ;
+                }
+
+                var startXY = Utils.pageXY(e);
+                var startWidth = parseInt(element.outerWidth());
+                var startHeight = parseInt(element.outerHeight());
+                var size = {width: startWidth, height: startHeight};
+
+                element.addClass("stop-pointer");
+
+                Utils.exec(o.onResizeStart, [size], element[0]);
+                element.fire("resizestart", {
+                    size: size
+                });
+
+                $(document).on(Metro.events.move, function(e){
+                    var moveXY = Utils.pageXY(e);
+                    var size = {
+                        width: startWidth + moveXY.x - startXY.x,
+                        height: startHeight + moveXY.y - startXY.y
+                    };
+
+                    if (o.maxWidth > 0 && size.width > o.maxWidth) {return true;}
+                    if (o.minWidth > 0 && size.width < o.minWidth) {return true;}
+
+                    if (o.maxHeight > 0 && size.height > o.maxHeight) {return true;}
+                    if (o.minHeight > 0 && size.height < o.minHeight) {return true;}
+
+                    element.css(size);
+
+                    Utils.exec(o.onResize, [size], element[0]);
+                    element.fire("resize", {
+                        size: size
+                    });
+                }, {ns: that.id});
+
+                $(document).on(Metro.events.stop, function(){
+                    element.removeClass("stop-pointer");
+
+                    $(document).off(Metro.events.move, {ns: that.id});
+                    $(document).off(Metro.events.stop, {ns: that.id});
+
+                    var size = {
+                        width: parseInt(element.outerWidth()),
+                        height: parseInt(element.outerHeight())
+                    };
+
+                    Utils.exec(o.onResizeStop, [size], element[0]);
+                    element.fire("resizestop", {
+                        size: size
+                    });
+                }, {ns: that.id});
+
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+        },
+
+        off: function(){
+            this.element.data("canResize", false);
+        },
+
+        on: function(){
+            this.element.data("canResize", true);
+        },
+
+        changeAttribute: function(attributeName){
+            var element = this.element, o = this.options;
+
+            var canResize = function(){
+                o.canResize = JSON.parse(element.attr('data-can-resize')) === true;
+            };
+
+            switch (attributeName) {
+                case "data-can-resize": canResize(); break;
+            }
+        },
+
+        destroy: function(){
+            this.resizer.off(Metro.events.start);
+            return this.element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ResizerDefaultConfig = {
+        resizerDeferred: 0,
+        onMediaPoint: Metro.noop,
+        onMediaPointEnter: Metro.noop,
+        onMediaPointLeave: Metro.noop,
+        onWindowResize: Metro.noop,
+        onElementResize: Metro.noop,
+        onResizerCreate: Metro.noop
+    };
+
+    Metro.resizerSetup = function (options) {
+        ResizerDefaultConfig = $.extend({}, ResizerDefaultConfig, options);
+    };
+
+    if (typeof window["metroResizerSetup"] !== undefined) {
+        Metro.resizerSetup(window["metroResizerSetup"]);
+    }
+
+    Metro.Component('resizer', {
+        init: function( options, elem ) {
+            this._super(elem, options, ResizerDefaultConfig, {
+                size: {width: 0, height: 0},
+                media: window.METRO_MEDIA,
+                id: Utils.elementId("resizer")
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element;
+
+            Metro.checkRuntime(element, this.name);
+
+            this.size = {
+                width: element.width(),
+                height: element.height()
+            };
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent("resizer-create", {
+                element: element
+            });
+        },
+
+        _createStructure: function(){
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var win = $.window();
+
+            win.on("resize", function(){
+                var windowWidth = win.width(), windowHeight = win.height();
+                var elementWidth = element.width(), elementHeight = element.height();
+                var oldSize = that.size;
+                var point;
+
+                Utils.exec(o.onWindowResize, [windowWidth, windowHeight, window.METRO_MEDIA], element[0]);
+                element.fire("windowresize", {
+                    width: windowWidth,
+                    height: windowHeight,
+                    media: window.METRO_MEDIA
+                });
+
+                if (that.size.width !== elementWidth || that.size.height !== elementHeight) {
+                    that.size = {
+                        width: elementWidth,
+                        height: elementHeight
+                    };
+                    Utils.exec(o.onElementResize, [elementWidth, elementHeight, oldSize, window.METRO_MEDIA], element[0]);
+                    element.fire("windowresize", {
+                        width: elementWidth,
+                        height: elementHeight,
+                        oldSize: oldSize,
+                        media: window.METRO_MEDIA
+                    });
+                }
+
+                if (that.media.length !== window.METRO_MEDIA.length) {
+                    if (that.media.length > window.METRO_MEDIA.length) {
+                        point = that.media.filter(function(x){
+                            return !window.METRO_MEDIA.contains(x);
+                        });
+                        Utils.exec(o.onMediaPointLeave, [point, window.METRO_MEDIA], element[0]);
+                        element.fire("mediapointleave", {
+                            point: point,
+                            media: window.METRO_MEDIA
+                        });
+                    } else {
+                        point = window.METRO_MEDIA.filter(function(x){
+                            return !that.media.contains(x);
+                        });
+                        Utils.exec(o.onMediaPointEnter, [point, window.METRO_MEDIA], element[0]);
+                        element.fire("mediapointenter", {
+                            point: point,
+                            media: window.METRO_MEDIA
+                        });
+                    }
+                    that.media = window.METRO_MEDIA;
+                    Utils.exec(o.onMediaPoint, [point, window.METRO_MEDIA], element[0]);
+                    element.fire("mediapoint", {
+                        point: point,
+                        media: window.METRO_MEDIA
+                    });
+                }
+            }, {ns: this.id});
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            $(window).off("resize", {ns: this.id});
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var RibbonMenuDefaultConfig = {
+        ribbonmenuDeferred: 0,
+        onStatic: Metro.noop,
+        onBeforeTab: Metro.noop_true,
+        onTab: Metro.noop,
+        onRibbonMenuCreate: Metro.noop
+    };
+
+    Metro.ribbonMenuSetup = function (options) {
+        RibbonMenuDefaultConfig = $.extend({}, RibbonMenuDefaultConfig, options);
+    };
+
+    if (typeof window["metroRibbonMenuSetup"] !== undefined) {
+        Metro.ribbonMenuSetup(window["metroRibbonMenuSetup"]);
+    }
+
+    Metro.Component('ribbon-menu', {
+        init: function( options, elem ) {
+            this._super(elem, options, RibbonMenuDefaultConfig);
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element;
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent("ribbon-menu-create", {
+                element: element
+            });
+        },
+
+        _createStructure: function(){
+            var element = this.element;
+
+            element.addClass("ribbon-menu");
+
+            var tabs = element.find(".tabs-holder li:not(.static)");
+            var active_tab = element.find(".tabs-holder li.active");
+            if (active_tab.length > 0) {
+                this.open($(active_tab[0]));
+            } else {
+                if (tabs.length > 0) {
+                    this.open($(tabs[0]));
                 }
             }
-            e.preventDefault();
-        })
-    },
 
-    open: function(tab){
-        var element = this.element, o = this.options;
-        var $tab = $(tab);
-        var tabs = element.find(".tabs-holder li");
-        var sections = element.find(".content-holder .section");
-        var target = $tab.children("a").attr("href");
-        var target_section = target !== "#" ? element.find(target) : null;
+            var fluentGroups = element.find(".ribbon-toggle-group");
+            $.each(fluentGroups, function(){
+                var g = $(this);
+                g.buttongroup({
+                    clsActive: "active"
+                });
 
-        tabs.removeClass("active");
-        $tab.addClass("active");
+                var gw = 0;
+                var btns = g.find(".ribbon-icon-button");
+                $.each(btns, function(){
+                    var b = $(this);
+                    var w = b.outerWidth(true);
+                    if (w > gw) gw = w;
+                });
 
-        sections.removeClass("active");
-        if (target_section) target_section.addClass("active");
+                g.css("width", gw * Math.ceil(btns.length / 3) + 4);
+            });
+        },
 
-        Utils.exec(o.onTab, [$tab[0]], element[0]);
-        element.fire("tab", {
-            tab: $tab[0]
-        });
-    },
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
 
-    changeAttribute: function(){
-    },
+            element.on(Metro.events.click, ".tabs-holder li a", function(e){
+                var link = $(this);
+                var tab = $(this).parent("li");
 
-    destroy: function(){
-        var element = this.element;
-        element.off(Metro.events.click, ".tabs-holder li a");
-        return element;
-    }
-});
+                if (tab.hasClass("static")) {
+                    if (o.onStatic === Metro.noop && link.attr("href") !== undefined) {
+                        document.location.href = link.attr("href");
+                    } else {
+                        Utils.exec(o.onStatic, [tab[0]], element[0]);
+                        element.fire("static", {
+                            tab: tab[0]
+                        });
+                    }
+                } else {
+                    if (Utils.exec(o.onBeforeTab, [tab[0]], element[0]) === true) {
+                        that.open(tab[0]);
+                    }
+                }
+                e.preventDefault();
+            })
+        },
 
+        open: function(tab){
+            var element = this.element, o = this.options;
+            var $tab = $(tab);
+            var tabs = element.find(".tabs-holder li");
+            var sections = element.find(".content-holder .section");
+            var target = $tab.children("a").attr("href");
+            var target_section = target !== "#" ? element.find(target) : null;
+
+            tabs.removeClass("active");
+            $tab.addClass("active");
+
+            sections.removeClass("active");
+            if (target_section) target_section.addClass("active");
+
+            Utils.exec(o.onTab, [$tab[0]], element[0]);
+            element.fire("tab", {
+                tab: $tab[0]
+            });
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            var element = this.element;
+            element.off(Metro.events.click, ".tabs-holder li a");
+            return element;
+        }
+    });
+}(Metro, m4q));
 
 var RippleDefaultConfig = {
     rippleDeferred: 0,
@@ -23045,292 +23042,292 @@ Metro.ripple = getRipple;
     }, {ns: "blur-select-elements"});
 }(Metro, m4q));
 
-var SidebarDefaultConfig = {
-    menuScrollbar: false,
-    sidebarDeferred: 0,
-    shadow: true,
-    position: "left",
-    size: 290,
-    shift: null,
-    staticShift: null,
-    toggle: null,
-    duration: METRO_ANIMATION_DURATION,
-    static: null,
-    menuItemClick: true,
-    onOpen: Metro.noop,
-    onClose: Metro.noop,
-    onToggle: Metro.noop,
-    onStaticSet: Metro.noop,
-    onStaticLoss: Metro.noop,
-    onSidebarCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var SidebarDefaultConfig = {
+        menuScrollbar: false,
+        sidebarDeferred: 0,
+        shadow: true,
+        position: "left",
+        size: 290,
+        shift: null,
+        staticShift: null,
+        toggle: null,
+        duration: METRO_ANIMATION_DURATION,
+        static: null,
+        menuItemClick: true,
+        onOpen: Metro.noop,
+        onClose: Metro.noop,
+        onToggle: Metro.noop,
+        onStaticSet: Metro.noop,
+        onStaticLoss: Metro.noop,
+        onSidebarCreate: Metro.noop
+    };
 
-Metro.sidebarSetup = function (options) {
-    SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
-};
+    Metro.sidebarSetup = function (options) {
+        SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
+    };
 
-if (typeof window["metroSidebarSetup"] !== undefined) {
-    Metro.sidebarSetup(window["metroSidebarSetup"]);
-}
+    if (typeof window["metroSidebarSetup"] !== undefined) {
+        Metro.sidebarSetup(window["metroSidebarSetup"]);
+    }
 
-Component('sidebar', {
-    init: function( options, elem ) {
-        this._super(elem, options, SidebarDefaultConfig);
+    Metro.Component('sidebar', {
+        init: function( options, elem ) {
+            this._super(elem, options, SidebarDefaultConfig, {
+                toggle_element: null,
+                id: Utils.elementId('sidebar')
+            });
 
-        this.toggle_element = null;
-        this.id = Utils.elementId('sidebar');
+            return this;
+        },
 
-        Metro.createExec(this);
+        _create: function(){
+            var element = this.element;
 
-        return this;
-    },
+            this._createStructure();
+            this._createEvents();
+            $(window).resize();
+            this._checkStatic();
 
-    _create: function(){
-        var element = this.element, o = this.options;
+            this._fireEvent("sidebar-create", {
+                element: element
+            });
+        },
 
-        Metro.checkRuntime(element, this.name);
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var header = element.find(".sidebar-header");
+            var sheet = Metro.sheet;
+            var menu = element.find(".sidebar-menu");
 
-        this._createStructure();
-        this._createEvents();
-        $(window).resize();
-        this._checkStatic();
+            element.addClass("sidebar").addClass("on-"+o.position);
 
-        Utils.exec(o.onSidebarCreate, [element], element[0]);
-        element.fire("sidebarcreate");
-    },
-
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var header = element.find(".sidebar-header");
-        var sheet = Metro.sheet;
-        var menu = element.find(".sidebar-menu");
-
-        element.addClass("sidebar").addClass("on-"+o.position);
-
-        if (o.menuScrollbar === false) {
-            menu.addClass("hide-scroll");
-        }
-
-        if (o.size !== 290) {
-            Utils.addCssRule(sheet, ".sidebar", "width: " + o.size + "px;");
-
-            if (o.position === "left") {
-                Utils.addCssRule(sheet, ".sidebar.on-left", "left: " + -o.size + "px;");
-            } else {
-                Utils.addCssRule(sheet, ".sidebar.on-right", "right: " + -o.size + "px;");
+            if (o.menuScrollbar === false) {
+                menu.addClass("hide-scroll");
             }
-        }
 
-        if (o.shadow === true) {
-            element.addClass("sidebar-shadow");
-        }
+            if (o.size !== 290) {
+                Utils.addCssRule(sheet, ".sidebar", "width: " + o.size + "px;");
 
-        if (o.toggle !== null && $(o.toggle).length > 0) {
-            this.toggle_element = $(o.toggle);
-        }
-
-        if (header.length > 0) {
-            if (header.data("image") !== undefined) {
-                header.css({
-                    backgroundImage: "url("+header.data("image")+")"
-                });
-            }
-        }
-
-        if (o.static !== null) {
-            if (o.staticShift !== null) {
-                if (o.position === 'left') {
-                    Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-left: " + o.size + "px; width: calc(100% - " + o.size + "px);}");
+                if (o.position === "left") {
+                    Utils.addCssRule(sheet, ".sidebar.on-left", "left: " + -o.size + "px;");
                 } else {
-                    Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-right: " + o.size + "px; width: calc(100% - " + o.size + "px);}");
+                    Utils.addCssRule(sheet, ".sidebar.on-right", "right: " + -o.size + "px;");
                 }
             }
-        }
-    },
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var toggle = this.toggle_element;
+            if (o.shadow === true) {
+                element.addClass("sidebar-shadow");
+            }
 
-        if (toggle !== null) {
-            toggle.on(Metro.events.click, function(e){
-                that.toggle();
-                e.stopPropagation();
-            });
-        } else if (o.toggle) {
-            $.document().on("click", o.toggle, function (e) {
-                that.toggle();
-                e.stopPropagation();
-            })
-        }
+            if (o.toggle !== null && $(o.toggle).length > 0) {
+                this.toggle_element = $(o.toggle);
+            }
 
-        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-            $(window).on(Metro.events.resize,function(){
-                that._checkStatic();
-            }, {ns: this.id});
-        }
+            if (header.length > 0) {
+                if (header.data("image") !== undefined) {
+                    header.css({
+                        backgroundImage: "url("+header.data("image")+")"
+                    });
+                }
+            }
 
-        if (o.menuItemClick === true) {
-            element.on(Metro.events.click, ".sidebar-menu li > a", function(e){
+            if (o.static !== null) {
+                if (o.staticShift !== null) {
+                    if (o.position === 'left') {
+                        Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-left: " + o.size + "px; width: calc(100% - " + o.size + "px);}");
+                    } else {
+                        Utils.addCssRule(sheet, "@media screen and " + Metro.media_queries[o.static.toUpperCase()], o.staticShift + "{margin-right: " + o.size + "px; width: calc(100% - " + o.size + "px);}");
+                    }
+                }
+            }
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var toggle = this.toggle_element;
+
+            if (toggle !== null) {
+                toggle.on(Metro.events.click, function(e){
+                    that.toggle();
+                    e.stopPropagation();
+                });
+            } else if (o.toggle) {
+                $.document().on("click", o.toggle, function (e) {
+                    that.toggle();
+                    e.stopPropagation();
+                })
+            }
+
+            if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
+                $(window).on(Metro.events.resize,function(){
+                    that._checkStatic();
+                }, {ns: this.id});
+            }
+
+            if (o.menuItemClick === true) {
+                element.on(Metro.events.click, ".sidebar-menu li > a", function(e){
+                    that.close();
+                    e.stopPropagation();
+                });
+            }
+
+            element.on(Metro.events.click, ".sidebar-menu .js-sidebar-close", function(e){
                 that.close();
                 e.stopPropagation();
             });
-        }
 
-        element.on(Metro.events.click, ".sidebar-menu .js-sidebar-close", function(e){
-            that.close();
-            e.stopPropagation();
-        });
+            element.on(Metro.events.click, function(e){
+                e.stopPropagation();
+            });
+        },
 
-        element.on(Metro.events.click, function(e){
-            e.stopPropagation();
-        });
-    },
-
-    _checkStatic: function(){
-        var element = this.element, o = this.options;
-        if (Utils.mediaExist(o.static) && !element.hasClass("static")) {
-            element.addClass("static");
-            element.data("opened", false).removeClass('open');
-            if (o.shift !== null) {
-                $.each(o.shift.split(","), function(){
-                    $(this)
-                        .animate({
-                            draw: {
-                                left: 0
-                            },
-                            dur: o.duration
-                        })
-                });
+        _checkStatic: function(){
+            var element = this.element, o = this.options;
+            if (Utils.mediaExist(o.static) && !element.hasClass("static")) {
+                element.addClass("static");
+                element.data("opened", false).removeClass('open');
+                if (o.shift !== null) {
+                    $.each(o.shift.split(","), function(){
+                        $(this)
+                            .animate({
+                                draw: {
+                                    left: 0
+                                },
+                                dur: o.duration
+                            })
+                    });
+                }
+                Utils.exec(o.onStaticSet, null, element[0]);
+                element.fire("staticset");
             }
-            Utils.exec(o.onStaticSet, null, element[0]);
-            element.fire("staticset");
+            if (!Utils.mediaExist(o.static)) {
+                element.removeClass("static");
+                Utils.exec(o.onStaticLoss, null, element[0]);
+                element.fire("staticloss");
+            }
+        },
+
+        isOpen: function(){
+            return this.element.data("opened") === true;
+        },
+
+        open: function(){
+            var element = this.element, o = this.options;
+
+            if (element.hasClass("static")) {
+                return ;
+            }
+
+            element.data("opened", true).addClass('open');
+
+            if (o.shift !== null) {
+                $(o.shift)
+                    .animate({
+                        draw: {
+                            left: element.outerWidth()
+                        },
+                        dur: o.duration
+                    });
+            }
+
+            Utils.exec(o.onOpen, null, element[0]);
+            element.fire("open");
+        },
+
+        close: function(){
+            var element = this.element, o = this.options;
+
+            if (element.hasClass("static")) {
+                return ;
+            }
+
+            element.data("opened", false).removeClass('open');
+
+            if (o.shift !== null) {
+                $(o.shift)
+                    .animate({
+                        draw: {
+                            left: 0
+                        },
+                        dur: o.duration
+                    });
+            }
+
+            Utils.exec(o.onClose, null, element[0]);
+            element.fire("close");
+        },
+
+        toggle: function(){
+            if (this.isOpen()) {
+                this.close();
+            } else {
+                this.open();
+            }
+            Utils.exec(this.options.onToggle, null, this.element[0]);
+            this.element.fire("toggle");
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            var element = this.element, o = this.options;
+            var toggle = this.toggle_element;
+
+            if (toggle !== null) {
+                toggle.off(Metro.events.click);
+            }
+
+            if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
+                $(window).off(Metro.events.resize, {ns: this.id});
+            }
+
+            if (o.menuItemClick === true) {
+                element.off(Metro.events.click, ".sidebar-menu li > a");
+            }
+
+            element.off(Metro.events.click, ".sidebar-menu .js-sidebar-close");
+
+            return element;
         }
-        if (!Utils.mediaExist(o.static)) {
-            element.removeClass("static");
-            Utils.exec(o.onStaticLoss, null, element[0]);
-            element.fire("staticloss");
+    });
+
+    Metro['sidebar'] = {
+        isSidebar: function(el){
+            return Utils.isMetroObject(el, "sidebar");
+        },
+
+        open: function(el){
+            if (!this.isSidebar(el)) {
+                return ;
+            }
+            Metro.getPlugin(el, "sidebar").open();
+        },
+
+        close: function(el){
+            if (!this.isSidebar(el)) {
+                return ;
+            }
+            Metro.getPlugin(el, "sidebar").close();
+        },
+
+        toggle: function(el){
+            if (!this.isSidebar(el)) {
+                return ;
+            }
+            Metro.getPlugin(el, "sidebar").toggle();
+        },
+
+        isOpen: function(el){
+            if (!this.isSidebar(el)) {
+                return ;
+            }
+            return Metro.getPlugin(el, "sidebar").isOpen();
         }
-    },
-
-    isOpen: function(){
-        return this.element.data("opened") === true;
-    },
-
-    open: function(){
-        var element = this.element, o = this.options;
-
-        if (element.hasClass("static")) {
-            return ;
-        }
-
-        element.data("opened", true).addClass('open');
-
-        if (o.shift !== null) {
-            $(o.shift)
-                .animate({
-                    draw: {
-                        left: element.outerWidth()
-                    },
-                    dur: o.duration
-                });
-        }
-
-        Utils.exec(o.onOpen, null, element[0]);
-        element.fire("open");
-    },
-
-    close: function(){
-        var element = this.element, o = this.options;
-
-        if (element.hasClass("static")) {
-            return ;
-        }
-
-        element.data("opened", false).removeClass('open');
-
-        if (o.shift !== null) {
-            $(o.shift)
-                .animate({
-                    draw: {
-                        left: 0
-                    },
-                    dur: o.duration
-                });
-        }
-
-        Utils.exec(o.onClose, null, element[0]);
-        element.fire("close");
-    },
-
-    toggle: function(){
-        if (this.isOpen()) {
-            this.close();
-        } else {
-            this.open();
-        }
-        Utils.exec(this.options.onToggle, null, this.element[0]);
-        this.element.fire("toggle");
-    },
-
-    changeAttribute: function(){
-    },
-
-    destroy: function(){
-        var element = this.element, o = this.options;
-        var toggle = this.toggle_element;
-
-        if (toggle !== null) {
-            toggle.off(Metro.events.click);
-        }
-
-        if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-            $(window).off(Metro.events.resize, {ns: this.id});
-        }
-
-        if (o.menuItemClick === true) {
-            element.off(Metro.events.click, ".sidebar-menu li > a");
-        }
-
-        element.off(Metro.events.click, ".sidebar-menu .js-sidebar-close");
-
-        return element;
-    }
-});
-
-Metro['sidebar'] = {
-    isSidebar: function(el){
-        return Utils.isMetroObject(el, "sidebar");
-    },
-
-    open: function(el){
-        if (!this.isSidebar(el)) {
-            return ;
-        }
-        Metro.getPlugin(el, "sidebar").open();
-    },
-
-    close: function(el){
-        if (!this.isSidebar(el)) {
-            return ;
-        }
-        Metro.getPlugin(el, "sidebar").close();
-    },
-
-    toggle: function(el){
-        if (!this.isSidebar(el)) {
-            return ;
-        }
-        Metro.getPlugin(el, "sidebar").toggle();
-    },
-
-    isOpen: function(el){
-        if (!this.isSidebar(el)) {
-            return ;
-        }
-        return Metro.getPlugin(el, "sidebar").isOpen();
-    }
-};
+    };
+}(Metro, m4q));
 
 (function(Metro, $) {
     var Utils = Metro.utils;
