@@ -14,7 +14,9 @@
 
     Metro.Component('name', {
         init: function( options, elem ) {
-            this._super(elem, options, MyObjectDefaultConfig, {});
+            this._super(elem, options, MyObjectDefaultConfig, {
+                // define instance vars here
+            });
             return this;
         },
 
@@ -38,7 +40,6 @@
         },
 
         changeAttribute: function(attributeName){
-
         },
 
         destroy: function(){

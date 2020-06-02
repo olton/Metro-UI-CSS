@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 01/06/2020 15:41:10
+ * Built at 02/06/2020 12:59:34
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "01/06/2020 15:41:12",
+    compileTime: "02/06/2020 12:59:36",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -16698,282 +16698,209 @@ $.extend(Metro['locales'], {
 
 // TODO source as array, mode as array
 
-var HtmlContainerDefaultConfig = {
-    htmlcontainerDeferred: 0,
-    method: "get",
-    htmlSource: null,
-    requestData: null,
-    requestOptions: null,
-    insertMode: "replace", // replace, append, prepend
-    onHtmlLoad: Metro.noop,
-    onHtmlLoadFail: Metro.noop,
-    onHtmlLoadDone: Metro.noop,
-    onHtmlContainerCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var HtmlContainerDefaultConfig = {
+        htmlcontainerDeferred: 0,
+        method: "get",
+        htmlSource: null,
+        requestData: null,
+        requestOptions: null,
+        insertMode: "default", // replace, append, prepend
+        onHtmlLoad: Metro.noop,
+        onHtmlLoadFail: Metro.noop,
+        onHtmlLoadDone: Metro.noop,
+        onHtmlContainerCreate: Metro.noop
+    };
 
-Metro.htmlContainerSetup = function (options) {
-    HtmlContainerDefaultConfig = $.extend({}, HtmlContainerDefaultConfig, options);
-};
+    Metro.htmlContainerSetup = function (options) {
+        HtmlContainerDefaultConfig = $.extend({}, HtmlContainerDefaultConfig, options);
+    };
 
-if (typeof window["metroHtmlContainerSetup"] !== undefined) {
-    Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
-}
+    if (typeof window["metroHtmlContainerSetup"] !== undefined) {
+        Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
+    }
 
-Component('html-container', {
-    init: function( options, elem ) {
-        this._super(elem, options, HtmlContainerDefaultConfig);
+    Metro.Component('html-container', {
+        init: function( options, elem ) {
+            this._super(elem, options, HtmlContainerDefaultConfig, {
+                data: {},
+                opt: {},
+                htmlSource: ''
+            });
 
-        this.data = {};
-        this.opt = {};
-        this.htmlSource = '';
+            return this;
+        },
 
-        Metro.createExec(this);
+        _create: function(){
+            var element = this.element, o = this.options;
 
-        return this;
-    },
+            if (typeof o.requestData === 'string') {
+                o.requestData = JSON.parse(o.requestData);
+            }
 
-    _create: function(){
-        var element = this.element, o = this.options;
+            if (Utils.isObject(o.requestData)) {
+                this.data = Utils.isObject(o.requestData);
+            }
 
-        Metro.checkRuntime(element, this.name);
+            if (typeof o.requestOptions === 'string') {
+                o.requestOptions = JSON.parse(o.requestOptions);
+            }
 
-        if (typeof o.requestData === 'string') {
-            o.requestData = JSON.parse(o.requestData);
-        }
+            if (Utils.isObject(o.requestOptions)) {
+                this.opt = Utils.isObject(o.requestOptions);
+            }
 
-        if (Utils.isObject(o.requestData)) {
-            this.data = Utils.isObject(o.requestData);
-        }
+            o.method = o.method.toLowerCase();
 
-        if (typeof o.requestOptions === 'string') {
-            o.requestOptions = JSON.parse(o.requestOptions);
-        }
+            if (Utils.isValue(o.htmlSource)) {
+                this.htmlSource = o.htmlSource;
+                this._load();
+            }
 
-        if (Utils.isObject(o.requestOptions)) {
-            this.opt = Utils.isObject(o.requestOptions);
-        }
+            this._fireEvent("html-container-create", {
+                element: element
+            });
+        },
 
-        o.method = o.method.toLowerCase();
+        _load: function(){
+            var that = this, element = this.element, o = this.options;
 
-        if (Utils.isValue(o.htmlSource)) {
-            this.htmlSource = o.htmlSource;
-            this._load();
-        }
+            $[o.method](this.htmlSource, this.data, this.opt).then(function(data){
+                var _data = $(data);
 
-        Utils.exec(o.onHtmlContainerCreate, [element], element[0]);
-        element.fire("htmlcontainercreate");
-    },
-
-    _load: function(){
-        var that = this, element = this.element, o = this.options;
-
-        $[o.method](this.htmlSource, this.data, this.opt).then(function(data){
-            var _data = $(data);
-            switch (o.insertMode.toLowerCase()) {
-                case "prepend": element.prepend(_data); break;
-                case "append": element.append(_data); break;
-                case "replace": _data.insertBefore(element).script(); element.remove(); break;
-                default: {
-                    element.html(_data);
+                if (_data.length === 0) {
+                    _data = $("<div>").html(data);
                 }
-            }
-            Utils.exec(o.onHtmlLoad, [data, o.htmlSource, that.data, that.opt], element[0]);
-            element.fire("htmlload", {
-                data: data,
-                source: o.htmlSource,
-                requestData: that.data,
-                requestOptions: that.opt
-            });
-        }, function(xhr){
-            Utils.exec(o.onHtmlLoadFail, [xhr], element[0]);
-            element.fire("htmlloadfail", {
-                xhr: xhr
-            });
-        });
-    },
 
-    load: function(source, data, opt){
-        if (source) {
-            this.htmlSource = source;
-        }
-
-        if (data) {
-            this.data = Utils.isObject(data);
-        }
-
-        if (opt) {
-            this.opt = Utils.isObject(opt);
-        }
-
-        this._load();
-    },
-
-    changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
-
-        var changeHTMLSource = function(){
-            var html = element.attr("data-html-source");
-            if (Utils.isNull(html)) {
-                return ;
-            }
-            if (html.trim() === "") {
-                element.html("");
-            }
-            o.htmlSource = html;
-            that._load();
-        };
-
-        var changeInsertMode = function(){
-            var attr = element.attr("data-insert-mode");
-            if (Utils.isValue(attr)) {
-                o.insertMode = attr;
-            }
-        };
-
-        var changeRequestData = function(){
-            var data = element.attr("data-request-data");
-            that.load(o.htmlSource, data);
-        };
-
-        switch (attributeName) {
-            case "data-html-source": changeHTMLSource(); break;
-            case "data-insert-mode": changeInsertMode(); break;
-            case "data-request-data": changeRequestData(); break;
-        }
-    },
-
-    destroy: function(){}
-});
-
-
-var ImageCompareDefaultConfig = {
-    imagecompareDeferred: 0,
-    width: "100%",
-    height: "auto",
-    onResize: Metro.noop,
-    onSliderMove: Metro.noop,
-    onImageCompareCreate: Metro.noop
-};
-
-Metro.imageCompareSetup = function (options) {
-    ImageCompareDefaultConfig = $.extend({}, ImageCompareDefaultConfig, options);
-};
-
-if (typeof window["metroImageCompareSetup"] !== undefined) {
-    Metro.imageCompareSetup(window["metroImageCompareSetup"]);
-}
-
-Component('image-compare', {
-    init: function( options, elem ) {
-        this._super(elem, options, ImageCompareDefaultConfig);
-
-        this.id = Utils.elementId("image-compare");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onImageCompareCreate, [element], element[0]);
-        element.fire("imagecomparecreate");
-    },
-
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var container, container_overlay, slider;
-        var images, element_width, element_height;
-
-        if (!Utils.isValue(element.attr("id"))) {
-            element.attr("id", Utils.elementId("image-compare"));
-        }
-
-        element.addClass("image-compare").css({
-            width: o.width
-        });
-
-        element_width = element.width();
-
-        switch (o.height) {
-            case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
-            case "21/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
-            case "4/3": element_height = Utils.aspectRatioH(element_width, o.height); break;
-            case "auto": element_height = Utils.aspectRatioH(element_width, "16/9"); break;
-            default: element_height = o.height;
-        }
-
-        element.css({
-            height: element_height
-        });
-
-        container = $("<div>").addClass("image-container").appendTo(element);
-        container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
-            width: element_width / 2
-        });
-
-        slider = $("<div>").addClass("image-slider").appendTo(element);
-        slider.css({
-            top: element_height / 2 - slider.height() / 2,
-            left: element_width / 2 - slider.width() / 2
-        });
-
-        images = element.find("img");
-
-        $.each(images, function(i){
-            var img = $("<div>").addClass("image-wrapper");
-            img.css({
-                width: element_width,
-                height: element_height,
-                backgroundImage: "url("+this.src+")"
-            });
-            img.appendTo(i === 0 ? container : container_overlay);
-        });
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-
-        var overlay = element.find(".image-container-overlay");
-        var slider = element.find(".image-slider");
-
-        slider.on(Metro.events.startAll, function(){
-            var w = element.width();
-            $(document).on(Metro.events.moveAll, function(e){
-                var x = Utils.getCursorPositionX(element[0], e), left_pos;
-                if (x < 0) x = 0;
-                if (x > w) x = w;
-                overlay.css({
-                    width: x
+                switch (o.insertMode.toLowerCase()) {
+                    case "prepend": element.prepend(_data); break;
+                    case "append": element.append(_data); break;
+                    case "replace": _data.insertBefore(element).script(); element.remove(); break;
+                    default: {
+                        element.html(_data);
+                    }
+                }
+                that._fireEvent("html-load", {
+                    data: data,
+                    source: o.htmlSource,
+                    requestData: that.data,
+                    requestOptions: that.opt
                 });
-                left_pos = x - slider.width() / 2;
-                slider.css({
-                    left: left_pos
+            }, function(xhr){
+                that._fireEvent("html-load-fail", {
+                    xhr: xhr
                 });
-                Utils.exec(o.onSliderMove, [x, left_pos], slider[0]);
-                element.fire("slidermove", {
-                    x: x,
-                    l: left_pos
-                });
-            }, {ns: that.id});
-            $(document).on(Metro.events.stopAll, function(){
-                $(document).off(Metro.events.moveAll, {ns: that.id});
-                $(document).off(Metro.events.stopAll, {ns: that.id});
-            }, {ns: that.id})
-        });
+            });
+        },
 
-        $(window).on(Metro.events.resize, function(){
-            var element_width = element.width(), element_height;
-
-            if (o.width !== "100%") {
-                return ;
+        load: function(source, data, opt){
+            if (source) {
+                this.htmlSource = source;
             }
+
+            if (data) {
+                this.data = Utils.isObject(data);
+            }
+
+            if (opt) {
+                this.opt = Utils.isObject(opt);
+            }
+
+            this._load();
+        },
+
+        changeAttribute: function(attributeName){
+            var that = this, element = this.element, o = this.options;
+
+            var changeHTMLSource = function(){
+                var html = element.attr("data-html-source");
+                if (Utils.isNull(html)) {
+                    return ;
+                }
+                if (html.trim() === "") {
+                    element.html("");
+                }
+                o.htmlSource = html;
+                that._load();
+            };
+
+            var changeInsertMode = function(){
+                var attr = element.attr("data-insert-mode");
+                if (Utils.isValue(attr)) {
+                    o.insertMode = attr;
+                }
+            };
+
+            var changeRequestData = function(){
+                var data = element.attr("data-request-data");
+                that.load(o.htmlSource, data);
+            };
+
+            switch (attributeName) {
+                case "data-html-source": changeHTMLSource(); break;
+                case "data-insert-mode": changeInsertMode(); break;
+                case "data-request-data": changeRequestData(); break;
+            }
+        },
+
+        destroy: function(){}
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ImageCompareDefaultConfig = {
+        imagecompareDeferred: 0,
+        width: "100%",
+        height: "auto",
+        onResize: Metro.noop,
+        onSliderMove: Metro.noop,
+        onImageCompareCreate: Metro.noop
+    };
+
+    Metro.imageCompareSetup = function (options) {
+        ImageCompareDefaultConfig = $.extend({}, ImageCompareDefaultConfig, options);
+    };
+
+    if (typeof window["metroImageCompareSetup"] !== undefined) {
+        Metro.imageCompareSetup(window["metroImageCompareSetup"]);
+    }
+
+    Metro.Component('image-compare', {
+        init: function( options, elem ) {
+            this._super(elem, options, ImageCompareDefaultConfig, {
+                id: Utils.elementId("image-compare")
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element;
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent("image-compare-create", {
+                element: element
+            });
+        },
+
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var container, container_overlay, slider;
+            var images, element_width, element_height;
+
+            if (!Utils.isValue(element.attr("id"))) {
+                element.attr("id", Utils.elementId("image-compare"));
+            }
+
+            element.addClass("image-compare").css({
+                width: o.width
+            });
+
+            element_width = element.width();
 
             switch (o.height) {
                 case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
@@ -16987,727 +16914,799 @@ Component('image-compare', {
                 height: element_height
             });
 
-            $.each(element.find(".image-wrapper"), function(){
-                $(this).css({
-                    width: element_width,
-                    height: element_height
-                })
-            });
-
-            element.find(".image-container-overlay").css({
+            container = $("<div>").addClass("image-container").appendTo(element);
+            container_overlay = $("<div>").addClass("image-container-overlay").appendTo(element).css({
                 width: element_width / 2
             });
 
+            slider = $("<div>").addClass("image-slider").appendTo(element);
             slider.css({
                 top: element_height / 2 - slider.height() / 2,
                 left: element_width / 2 - slider.width() / 2
             });
 
-            Utils.exec(o.onResize, [element_width, element_height], element[0]);
-            element.fire("comparerresize", {
-                width: element_width,
+            images = element.find("img");
+
+            $.each(images, function(i){
+                var img = $("<div>").addClass("image-wrapper");
+                img.css({
+                    width: element_width,
+                    height: element_height,
+                    backgroundImage: "url("+this.src+")"
+                });
+                img.appendTo(i === 0 ? container : container_overlay);
+            });
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            var overlay = element.find(".image-container-overlay");
+            var slider = element.find(".image-slider");
+
+            slider.on(Metro.events.startAll, function(){
+                var w = element.width();
+                $(document).on(Metro.events.moveAll, function(e){
+                    var x = Utils.getCursorPositionX(element[0], e), left_pos;
+                    if (x < 0) x = 0;
+                    if (x > w) x = w;
+                    overlay.css({
+                        width: x
+                    });
+                    left_pos = x - slider.width() / 2;
+                    slider.css({
+                        left: left_pos
+                    });
+                    Utils.exec(o.onSliderMove, [x, left_pos], slider[0]);
+                    element.fire("slidermove", {
+                        x: x,
+                        l: left_pos
+                    });
+                }, {ns: that.id});
+                $(document).on(Metro.events.stopAll, function(){
+                    $(document).off(Metro.events.moveAll, {ns: that.id});
+                    $(document).off(Metro.events.stopAll, {ns: that.id});
+                }, {ns: that.id})
+            });
+
+            $(window).on(Metro.events.resize, function(){
+                var element_width = element.width(), element_height;
+
+                if (o.width !== "100%") {
+                    return ;
+                }
+
+                switch (o.height) {
+                    case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                    case "21/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                    case "4/3": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                    case "auto": element_height = Utils.aspectRatioH(element_width, "16/9"); break;
+                    default: element_height = o.height;
+                }
+
+                element.css({
+                    height: element_height
+                });
+
+                $.each(element.find(".image-wrapper"), function(){
+                    $(this).css({
+                        width: element_width,
+                        height: element_height
+                    })
+                });
+
+                element.find(".image-container-overlay").css({
+                    width: element_width / 2
+                });
+
+                slider.css({
+                    top: element_height / 2 - slider.height() / 2,
+                    left: element_width / 2 - slider.width() / 2
+                });
+
+                Utils.exec(o.onResize, [element_width, element_height], element[0]);
+                element.fire("comparerresize", {
+                    width: element_width,
+                    height: element_height
+                });
+            }, {ns: this.id});
+        },
+
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off(Metro.events.start);
+            $(window).off(Metro.events.resize, {ns: this.id});
+
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ImageMagnifierDefaultConfig = {
+        imagemagnifierDeferred: 0,
+        width: "100%",
+        height: "auto",
+        lensSize: 100,
+        lensType: "square", // square, circle
+        magnifierZoom: 2,
+        magnifierMode: "glass", // glass, zoom
+        magnifierZoomElement: null,
+
+        clsMagnifier: "",
+        clsLens: "",
+        clsZoom: "",
+
+        onMagnifierMove: Metro.noop,
+        onImageMagnifierCreate: Metro.noop
+    };
+
+    Metro.imageMagnifierSetup = function (options) {
+        ImageMagnifierDefaultConfig = $.extend({}, ImageMagnifierDefaultConfig, options);
+    };
+
+    if (typeof window["metroImageMagnifierSetup"] !== undefined) {
+        Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
+    }
+
+    Metro.Component('image-magnifier', {
+        init: function( options, elem ) {
+            this._super(elem, options, ImageMagnifierDefaultConfig, {
+                zoomElement: null,
+                id: Utils.elementId("image-magnifier")
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element;
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent("image-magnifier-create", {
+                element: element
+            });
+        },
+
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var magnifier, element_width, element_height;
+            var image = element.find("img");
+
+            if (image.length === 0) {
+                throw new Error("Image not defined");
+            }
+
+            if (!Utils.isValue(element.attr("id"))) {
+                element.attr("id", Utils.elementId("image-magnifier"));
+            }
+
+            element.addClass("image-magnifier").css({
+                width: o.width
+            }).addClass(o.clsMagnifier);
+
+            element_width = element.width();
+
+            switch (o.height) {
+                case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                case "21/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                case "4/3": element_height = Utils.aspectRatioH(element_width, o.height); break;
+                case "auto": element_height = Utils.aspectRatioH(element_width, "16/9"); break;
+                default: element_height = o.height;
+            }
+
+            element.css({
                 height: element_height
             });
-        }, {ns: this.id});
-    },
 
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off(Metro.events.start);
-        $(window).off(Metro.events.resize, {ns: this.id});
-
-        return element;
-    }
-});
-
-
-var ImageMagnifierDefaultConfig = {
-    imagemagnifierDeferred: 0,
-    width: "100%",
-    height: "auto",
-    lensSize: 100,
-    lensType: "square", // square, circle
-    magnifierZoom: 2,
-    magnifierMode: "glass", // glass, zoom
-    magnifierZoomElement: null,
-
-    clsMagnifier: "",
-    clsLens: "",
-    clsZoom: "",
-
-    onMagnifierMove: Metro.noop,
-    onImageMagnifierCreate: Metro.noop
-};
-
-Metro.imageMagnifierSetup = function (options) {
-    ImageMagnifierDefaultConfig = $.extend({}, ImageMagnifierDefaultConfig, options);
-};
-
-if (typeof window["metroImageMagnifierSetup"] !== undefined) {
-    Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
-}
-
-Component('image-magnifier', {
-    init: function( options, elem ) {
-        this._super(elem, options, ImageMagnifierDefaultConfig);
-
-        this.zoomElement = null;
-        this.id = Utils.elementId("magnifier");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onImageMagnifierCreate, [element], element[0]);
-        element.fire("imagemagnifiercreate");
-    },
-
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var magnifier, element_width, element_height;
-        var image = element.find("img");
-
-        if (image.length === 0) {
-            throw new Error("Image not defined");
-        }
-
-        if (!Utils.isValue(element.attr("id"))) {
-            element.attr("id", Utils.elementId("image-magnifier"));
-        }
-
-        element.addClass("image-magnifier").css({
-            width: o.width
-        }).addClass(o.clsMagnifier);
-
-        element_width = element.width();
-
-        switch (o.height) {
-            case "16/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
-            case "21/9": element_height = Utils.aspectRatioH(element_width, o.height); break;
-            case "4/3": element_height = Utils.aspectRatioH(element_width, o.height); break;
-            case "auto": element_height = Utils.aspectRatioH(element_width, "16/9"); break;
-            default: element_height = o.height;
-        }
-
-        element.css({
-            height: element_height
-        });
-
-        var x = element_width / 2 - o.lensSize / 2;
-        var y = element_height / 2 - o.lensSize / 2;
-
-        if (o.magnifierMode === "glass") {
-
-            magnifier = $("<div>").addClass("image-magnifier-glass").appendTo(element);
-            magnifier.css({
-                width: o.lensSize,
-                height: o.lensSize,
-                borderRadius: o.lensType !== "circle" ? 0 : "50%",
-                top: y,
-                left: x,
-                backgroundImage: "url(" + image[0].src + ")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "-" + ((x * o.magnifierZoom) - o.lensSize / 4 + 4) + "px -" + ((y * o.magnifierZoom) - o.lensSize / 4 + 4) + "px",
-                backgroundSize: (image[0].width * o.magnifierZoom) + "px " + (image[0].height * o.magnifierZoom) + "px"
-            }).addClass(o.clsLens);
-
-        } else {
-
-            magnifier = $("<div>").addClass("image-magnifier-glass").appendTo(element);
-            magnifier.css({
-                width: o.lensSize,
-                height: o.lensSize,
-                borderRadius: 0,
-                borderWidth: 1,
-                top: y,
-                left: x
-            }).addClass(o.clsLens);
-
-            if (!Utils.isValue(o.magnifierZoomElement) || $(o.magnifierZoomElement).length === 0) {
-                this.zoomElement = $("<div>").insertAfter(element);
-            } else {
-                this.zoomElement = $(o.magnifierZoomElement);
-            }
-
-            var zoom_element_width = magnifier[0].offsetWidth * o.magnifierZoom;
-            var zoom_element_height = magnifier[0].offsetHeight * o.magnifierZoom;
-            var cx = zoom_element_width / o.lensSize;
-            var cy = zoom_element_height / o.lensSize;
-
-            this.zoomElement.css({
-                width: zoom_element_width,
-                height: zoom_element_height,
-                backgroundImage: "url(" + image[0].src + ")",
-                backgroundRepeat: "no-repeat",
-                backgroundPosition: "-" + (x * cx) + "px -" + (y * cy) + "px",
-                backgroundSize: (image[0].width * cx) + "px " + (image[0].height * cy) + "px"
-            }).addClass(o.clsZoom);
-        }
-    },
-
-    _createEvents: function(){
-        var element = this.element, o = this.options;
-        var glass = element.find(".image-magnifier-glass");
-        var glass_size = glass[0].offsetWidth / 2;
-        var image = element.find("img")[0];
-        var zoomElement = this.zoomElement;
-        var cx, cy;
-
-        $(window).on(Metro.events.resize, function(){
-            var x = element.width() / 2 - o.lensSize / 2;
-            var y = element.height() / 2 - o.lensSize / 2;
+            var x = element_width / 2 - o.lensSize / 2;
+            var y = element_height / 2 - o.lensSize / 2;
 
             if (o.magnifierMode === "glass") {
-                glass.css({
+
+                magnifier = $("<div>").addClass("image-magnifier-glass").appendTo(element);
+                magnifier.css({
+                    width: o.lensSize,
+                    height: o.lensSize,
+                    borderRadius: o.lensType !== "circle" ? 0 : "50%",
+                    top: y,
+                    left: x,
+                    backgroundImage: "url(" + image[0].src + ")",
+                    backgroundRepeat: "no-repeat",
                     backgroundPosition: "-" + ((x * o.magnifierZoom) - o.lensSize / 4 + 4) + "px -" + ((y * o.magnifierZoom) - o.lensSize / 4 + 4) + "px",
-                    backgroundSize: (image.width * o.magnifierZoom) + "px " + (image.height * o.magnifierZoom) + "px"
-                });
-            }
-        }, {ns: this.id})
+                    backgroundSize: (image[0].width * o.magnifierZoom) + "px " + (image[0].height * o.magnifierZoom) + "px"
+                }).addClass(o.clsLens);
 
-        if (o.magnifierMode !== "glass") {
-            cx = zoomElement[0].offsetWidth / glass_size / 2;
-            cy = zoomElement[0].offsetHeight / glass_size / 2;
-
-            zoomElement.css({
-                backgroundSize: (image.width * cx) + "px " + (image.height * cy) + "px"
-            });
-        }
-
-        var lens_move = function(pos){
-            var x, y;
-            var magic = 4, zoom = parseInt(o.magnifierZoom);
-
-            if (o.magnifierMode === "glass") {
-
-                x = pos.x;
-                y = pos.y;
-
-                if (x > image.width - (glass_size / zoom)) {
-                    x = image.width - (glass_size / zoom);
-                }
-                if (x < glass_size / zoom) {
-                    x = glass_size / zoom;
-                }
-                if (y > image.height - (glass_size / zoom)) {
-                    y = image.height - (glass_size / zoom);
-                }
-                if (y < glass_size / zoom) {
-                    y = glass_size / zoom;
-                }
-
-                glass.css({
-                    top: y - glass_size,
-                    left: x - glass_size,
-                    backgroundPosition: "-" + ((x * zoom) - glass_size + magic) + "px -" + ((y * zoom) - glass_size + magic) + "px"
-                });
             } else {
 
-                x = pos.x - (glass_size);
-                y = pos.y - (glass_size);
-
-                if (x > image.width - glass_size * 2) {x = image.width - glass_size * 2;}
-                if (x < 0) {x = 0;}
-                if (y > image.height - glass_size * 2) {y = image.height - glass_size * 2;}
-                if (y < 0) {y = 0;}
-
-                glass.css({
+                magnifier = $("<div>").addClass("image-magnifier-glass").appendTo(element);
+                magnifier.css({
+                    width: o.lensSize,
+                    height: o.lensSize,
+                    borderRadius: 0,
+                    borderWidth: 1,
                     top: y,
                     left: x
-                });
+                }).addClass(o.clsLens);
+
+                if (!Utils.isValue(o.magnifierZoomElement) || $(o.magnifierZoomElement).length === 0) {
+                    this.zoomElement = $("<div>").insertAfter(element);
+                } else {
+                    this.zoomElement = $(o.magnifierZoomElement);
+                }
+
+                var zoom_element_width = magnifier[0].offsetWidth * o.magnifierZoom;
+                var zoom_element_height = magnifier[0].offsetHeight * o.magnifierZoom;
+                var cx = zoom_element_width / o.lensSize;
+                var cy = zoom_element_height / o.lensSize;
+
+                this.zoomElement.css({
+                    width: zoom_element_width,
+                    height: zoom_element_height,
+                    backgroundImage: "url(" + image[0].src + ")",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "-" + (x * cx) + "px -" + (y * cy) + "px",
+                    backgroundSize: (image[0].width * cx) + "px " + (image[0].height * cy) + "px"
+                }).addClass(o.clsZoom);
+            }
+        },
+
+        _createEvents: function(){
+            var element = this.element, o = this.options;
+            var glass = element.find(".image-magnifier-glass");
+            var glass_size = glass[0].offsetWidth / 2;
+            var image = element.find("img")[0];
+            var zoomElement = this.zoomElement;
+            var cx, cy;
+
+            $(window).on(Metro.events.resize, function(){
+                var x = element.width() / 2 - o.lensSize / 2;
+                var y = element.height() / 2 - o.lensSize / 2;
+
+                if (o.magnifierMode === "glass") {
+                    glass.css({
+                        backgroundPosition: "-" + ((x * o.magnifierZoom) - o.lensSize / 4 + 4) + "px -" + ((y * o.magnifierZoom) - o.lensSize / 4 + 4) + "px",
+                        backgroundSize: (image.width * o.magnifierZoom) + "px " + (image.height * o.magnifierZoom) + "px"
+                    });
+                }
+            }, {ns: this.id})
+
+            if (o.magnifierMode !== "glass") {
+                cx = zoomElement[0].offsetWidth / glass_size / 2;
+                cy = zoomElement[0].offsetHeight / glass_size / 2;
 
                 zoomElement.css({
-                    backgroundPosition: "-" + (x * cx) + "px -" + (y * cy) + "px"
+                    backgroundSize: (image.width * cx) + "px " + (image.height * cy) + "px"
                 });
             }
-        };
 
-        element.on(Metro.events.move, function(e){
-            var pos = Utils.getCursorPosition(image, e);
+            var lens_move = function(pos){
+                var x, y;
+                var magic = 4, zoom = parseInt(o.magnifierZoom);
 
-            lens_move(pos);
+                if (o.magnifierMode === "glass") {
 
-            Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement ? zoomElement[0] : undefined], element[0]);
-            element.fire("magnifiermove", {
-                pos: pos,
-                glass: glass[0],
-                zoomElement: zoomElement ? zoomElement[0] : undefined
-            });
+                    x = pos.x;
+                    y = pos.y;
 
-            e.preventDefault();
-        });
+                    if (x > image.width - (glass_size / zoom)) {
+                        x = image.width - (glass_size / zoom);
+                    }
+                    if (x < glass_size / zoom) {
+                        x = glass_size / zoom;
+                    }
+                    if (y > image.height - (glass_size / zoom)) {
+                        y = image.height - (glass_size / zoom);
+                    }
+                    if (y < glass_size / zoom) {
+                        y = glass_size / zoom;
+                    }
 
-        element.on(Metro.events.leave, function(){
-            var x = element.width() / 2 - o.lensSize / 2;
-            var y = element.height() / 2 - o.lensSize / 2;
+                    glass.css({
+                        top: y - glass_size,
+                        left: x - glass_size,
+                        backgroundPosition: "-" + ((x * zoom) - glass_size + magic) + "px -" + ((y * zoom) - glass_size + magic) + "px"
+                    });
+                } else {
 
-            glass.animate({
-                draw: {
-                    top: y,
-                    left: x
+                    x = pos.x - (glass_size);
+                    y = pos.y - (glass_size);
+
+                    if (x > image.width - glass_size * 2) {x = image.width - glass_size * 2;}
+                    if (x < 0) {x = 0;}
+                    if (y > image.height - glass_size * 2) {y = image.height - glass_size * 2;}
+                    if (y < 0) {y = 0;}
+
+                    glass.css({
+                        top: y,
+                        left: x
+                    });
+
+                    zoomElement.css({
+                        backgroundPosition: "-" + (x * cx) + "px -" + (y * cy) + "px"
+                    });
                 }
+            };
+
+            element.on(Metro.events.move, function(e){
+                var pos = Utils.getCursorPosition(image, e);
+
+                lens_move(pos);
+
+                Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement ? zoomElement[0] : undefined], element[0]);
+                element.fire("magnifiermove", {
+                    pos: pos,
+                    glass: glass[0],
+                    zoomElement: zoomElement ? zoomElement[0] : undefined
+                });
+
+                e.preventDefault();
             });
 
-            lens_move({
-                x: x + o.lensSize / 2, y: y + o.lensSize / 2
+            element.on(Metro.events.leave, function(){
+                var x = element.width() / 2 - o.lensSize / 2;
+                var y = element.height() / 2 - o.lensSize / 2;
+
+                glass.animate({
+                    draw: {
+                        top: y,
+                        left: x
+                    }
+                });
+
+                lens_move({
+                    x: x + o.lensSize / 2, y: y + o.lensSize / 2
+                });
             });
-        });
-    },
+        },
 
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
 
-    destroy: function(){
-        var element = this.element;
-        element.off(Metro.events.move);
-        element.off(Metro.events.leave);
-        return element;
+        destroy: function(){
+            var element = this.element;
+            element.off(Metro.events.move);
+            element.off(Metro.events.leave);
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var InfoBoxDefaultConfig = {
+        infoboxDeferred: 0,
+        type: "",
+        width: 480,
+        height: "auto",
+        overlay: true,
+        overlayColor: '#000000',
+        overlayAlpha: .5,
+        autoHide: 0,
+        removeOnClose: false,
+        closeButton: true,
+        clsBox: "",
+        clsBoxContent: "",
+        clsOverlay: "",
+        onOpen: Metro.noop,
+        onClose: Metro.noop,
+        onInfoBoxCreate: Metro.noop
+    };
+
+    Metro.infoBoxSetup = function (options) {
+        InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
+    };
+
+    if (typeof window["metroInfoBoxSetup"] !== undefined) {
+        Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
     }
-});
 
-
-var InfoBoxDefaultConfig = {
-    infoboxDeferred: 0,
-    type: "",
-    width: 480,
-    height: "auto",
-    overlay: true,
-    overlayColor: '#000000',
-    overlayAlpha: .5,
-    autoHide: 0,
-    removeOnClose: false,
-    closeButton: true,
-    clsBox: "",
-    clsBoxContent: "",
-    clsOverlay: "",
-    onOpen: Metro.noop,
-    onClose: Metro.noop,
-    onInfoBoxCreate: Metro.noop
-};
-
-Metro.infoBoxSetup = function (options) {
-    InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
-};
-
-if (typeof window["metroInfoBoxSetup"] !== undefined) {
-    Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
-}
-
-Component('info-box', {
-    init: function( options, elem ) {
-        this._super(elem, options, InfoBoxDefaultConfig);
-
-        this.overlay = null;
-        this.id = Utils.elementId("info-box");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
-        element.fire("infoboxcreate");
-    },
-
-    _overlay: function(){
-        var o = this.options;
-
-        var overlay = $("<div>");
-        overlay.addClass("overlay").addClass(o.clsOverlay);
-
-        if (o.overlayColor === 'transparent') {
-            overlay.addClass("transparent");
-        } else {
-            overlay.css({
-                background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+    Metro.Component('info-box', {
+        init: function( options, elem ) {
+            this._super(elem, options, InfoBoxDefaultConfig, {
+                overlay: null,
+                id: Utils.elementId("info-box")
             });
-        }
 
-        return overlay;
-    },
+            return this;
+        },
 
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var closer, content;
+        _create: function(){
+            var element = this.element;
 
-        if (o.overlay === true) {
-            this.overlay = this._overlay();
-        }
+            this._createStructure();
+            this._createEvents();
 
-        element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
+            this._fireEvent("info-box-create", {
+                element: element
+            });
+        },
 
-        closer = element.find("closer");
-        if (closer.length === 0) {
-            closer = $("<span>").addClass("button square closer");
-            closer.appendTo(element);
-        }
+        _overlay: function(){
+            var o = this.options;
 
-        if (o.closeButton !== true) {
-            closer.hide();
-        }
+            var overlay = $("<div>");
+            overlay.addClass("overlay").addClass(o.clsOverlay);
 
-        content = element.find(".info-box-content");
-        if (content.length > 0) {
-            content.addClass(o.clsBoxContent);
-        }
+            if (o.overlayColor === 'transparent') {
+                overlay.addClass("transparent");
+            } else {
+                overlay.css({
+                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                });
+            }
 
-        element.css({
-            width: o.width,
-            height: o.height,
-            visibility: "hidden",
-            top: '100%',
-            left: ( $(window).width() - element.outerWidth() ) / 2
-        });
+            return overlay;
+        },
 
-        element.appendTo($('body'));
-    },
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var closer, content;
 
-    _createEvents: function(){
-        var that = this, element = this.element;
+            if (o.overlay === true) {
+                this.overlay = this._overlay();
+            }
 
-        element.on(Metro.events.click, ".closer", function(){
-            that.close();
-        });
+            element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
 
-        element.on(Metro.events.click, ".js-dialog-close", function(){
-            that.close();
-        });
+            closer = element.find("closer");
+            if (closer.length === 0) {
+                closer = $("<span>").addClass("button square closer");
+                closer.appendTo(element);
+            }
 
-        $(window).on(Metro.events.resize, function(){
-            that.reposition();
-        }, {ns: this.id});
-    },
+            if (o.closeButton !== true) {
+                closer.hide();
+            }
 
-    _setPosition: function(){
-        var element = this.element;
-        element.css({
-            top: ( $(window).height() - element.outerHeight() ) / 2,
-            left: ( $(window).width() - element.outerWidth() ) / 2
-        });
-    },
+            content = element.find(".info-box-content");
+            if (content.length > 0) {
+                content.addClass(o.clsBoxContent);
+            }
 
-    reposition: function(){
-        this._setPosition();
-    },
+            element.css({
+                width: o.width,
+                height: o.height,
+                visibility: "hidden",
+                top: '100%',
+                left: ( $(window).width() - element.outerWidth() ) / 2
+            });
 
-    setContent: function(c){
-        var element = this.element;
-        var content = element.find(".info-box-content");
-        if (content.length === 0) {
-            return ;
-        }
-        content.html(c);
-        this.reposition();
-    },
+            element.appendTo($('body'));
+        },
 
-    setType: function(t){
-        var element = this.element;
-        element.removeClass("success info alert warning").addClass(t);
-    },
+        _createEvents: function(){
+            var that = this, element = this.element;
 
-    open: function(){
-        var that = this, element = this.element, o = this.options;
-
-        if (o.overlay === true) {
-            this.overlay.appendTo($("body"));
-        }
-
-        this._setPosition();
-
-        element.css({
-            visibility: "visible"
-        });
-
-        Utils.exec(o.onOpen, null, element[0]);
-        element.fire("open");
-
-        element.data("open", true);
-        if (parseInt(o.autoHide) > 0) {
-            setTimeout(function(){
+            element.on(Metro.events.click, ".closer", function(){
                 that.close();
-            }, parseInt(o.autoHide));
+            });
+
+            element.on(Metro.events.click, ".js-dialog-close", function(){
+                that.close();
+            });
+
+            $(window).on(Metro.events.resize, function(){
+                that.reposition();
+            }, {ns: this.id});
+        },
+
+        _setPosition: function(){
+            var element = this.element;
+            element.css({
+                top: ( $(window).height() - element.outerHeight() ) / 2,
+                left: ( $(window).width() - element.outerWidth() ) / 2
+            });
+        },
+
+        reposition: function(){
+            this._setPosition();
+        },
+
+        setContent: function(c){
+            var element = this.element;
+            var content = element.find(".info-box-content");
+            if (content.length === 0) {
+                return ;
+            }
+            content.html(c);
+            this.reposition();
+        },
+
+        setType: function(t){
+            var element = this.element;
+            element.removeClass("success info alert warning").addClass(t);
+        },
+
+        open: function(){
+            var that = this, element = this.element, o = this.options;
+
+            if (o.overlay === true) {
+                this.overlay.appendTo($("body"));
+            }
+
+            this._setPosition();
+
+            element.css({
+                visibility: "visible"
+            });
+
+            Utils.exec(o.onOpen, null, element[0]);
+            element.fire("open");
+
+            element.data("open", true);
+            if (parseInt(o.autoHide) > 0) {
+                setTimeout(function(){
+                    that.close();
+                }, parseInt(o.autoHide));
+            }
+        },
+
+        close: function(){
+            var element = this.element, o = this.options;
+
+            if (o.overlay === true) {
+                $('body').find('.overlay').remove();
+            }
+
+            element.css({
+                visibility: "hidden",
+                top: "100%"
+            });
+
+            Utils.exec(o.onClose, null, element[0]);
+            element.fire("close");
+
+            element.data("open", false);
+
+            if (o.removeOnClose === true) {
+                this.destroy();
+                element.remove();
+            }
+        },
+
+        isOpen: function(){
+            return this.element.data("open") === true;
+        },
+
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off("all");
+            $(window).off(Metro.events.resize, {ns: this.id});
+
+            return element;
         }
-    },
+    });
 
-    close: function(){
-        var element = this.element, o = this.options;
+    Metro['infobox'] = {
+        isInfoBox: function(el){
+            return Utils.isMetroObject(el, "infobox");
+        },
 
-        if (o.overlay === true) {
-            $('body').find('.overlay').remove();
-        }
-
-        element.css({
-            visibility: "hidden",
-            top: "100%"
-        });
-
-        Utils.exec(o.onClose, null, element[0]);
-        element.fire("close");
-
-        element.data("open", false);
-
-        if (o.removeOnClose === true) {
-            this.destroy();
-            element.remove();
-        }
-    },
-
-    isOpen: function(){
-        return this.element.data("open") === true;
-    },
-
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off("all");
-        $(window).off(Metro.events.resize, {ns: this.id});
-
-        return element;
-    }
-});
-
-Metro['infobox'] = {
-    isInfoBox: function(el){
-        return Utils.isMetroObject(el, "infobox");
-    },
-
-    open: function(el, c, t){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-        var ib = Metro.getPlugin(el, "infobox");
-        if (c !== undefined) {
-            ib.setContent(c);
-        }
-        if (t !== undefined) {
-            ib.setType(t);
-        }
-        ib.open();
-    },
-
-    close: function(el){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-        var ib = Metro.getPlugin(el, "infobox");
-        ib.close();
-    },
-
-    setContent: function(el, c){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-
-        if (c === undefined) {
-            c = "";
-        }
-
-        var ib = Metro.getPlugin(el, "infobox");
-        ib.setContent(c);
-        ib.reposition();
-    },
-
-    setType: function(el, t){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-
-        var ib = Metro.getPlugin(el, "infobox");
-        ib.setType(t);
-        ib.reposition();
-    },
-
-    isOpen: function(el){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-        var ib = Metro.getPlugin(el, "infobox");
-        return ib.isOpen();
-    },
-
-    create: function(c, t, o, open){
-        var $$ = Utils.$();
-        var el, ib, box_type;
-
-        box_type = t !== undefined ? t : "";
-
-        el = $$("<div>").appendTo($$("body"));
-        $$("<div>").addClass("info-box-content").appendTo(el);
-
-        var ib_options = $$.extend({}, {
-            removeOnClose: true,
-            type: box_type
-        }, (o !== undefined ? o : {}));
-
-        ib_options._runtime = true;
-
-        el.infobox(ib_options);
-
-        ib = Metro.getPlugin(el, 'infobox');
-        ib.setContent(c);
-        if (open !== false) {
+        open: function(el, c, t){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+            var ib = Metro.getPlugin(el, "infobox");
+            if (c !== undefined) {
+                ib.setContent(c);
+            }
+            if (t !== undefined) {
+                ib.setType(t);
+            }
             ib.open();
-        }
+        },
 
-        return el;
+        close: function(el){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+            var ib = Metro.getPlugin(el, "infobox");
+            ib.close();
+        },
+
+        setContent: function(el, c){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+
+            if (c === undefined) {
+                c = "";
+            }
+
+            var ib = Metro.getPlugin(el, "infobox");
+            ib.setContent(c);
+            ib.reposition();
+        },
+
+        setType: function(el, t){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+
+            var ib = Metro.getPlugin(el, "infobox");
+            ib.setType(t);
+            ib.reposition();
+        },
+
+        isOpen: function(el){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+            var ib = Metro.getPlugin(el, "infobox");
+            return ib.isOpen();
+        },
+
+        create: function(c, t, o, open){
+            var $$ = Utils.$();
+            var el, ib, box_type;
+
+            box_type = t !== undefined ? t : "";
+
+            el = $$("<div>").appendTo($$("body"));
+            $$("<div>").addClass("info-box-content").appendTo(el);
+
+            var ib_options = $$.extend({}, {
+                removeOnClose: true,
+                type: box_type
+            }, (o !== undefined ? o : {}));
+
+            ib_options._runtime = true;
+
+            el.infobox(ib_options);
+
+            ib = Metro.getPlugin(el, 'infobox');
+            ib.setContent(c);
+            if (open !== false) {
+                ib.open();
+            }
+
+            return el;
+        }
+    };
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var MaterialInputDefaultConfig = {
+        materialinputDeferred: 0,
+        label: "",
+        informer: "",
+        icon: "",
+
+        permanentLabel: false,
+
+        clsComponent: "",
+        clsInput: "",
+        clsLabel: "",
+        clsInformer: "",
+        clsIcon: "",
+        clsLine: "",
+
+        onInputCreate: Metro.noop
+    };
+
+    Metro.materialInputSetup = function (options) {
+        MaterialInputDefaultConfig = $.extend({}, MaterialInputDefaultConfig, options);
+    };
+
+    if (typeof window["metroMaterialInputSetup"] !== undefined) {
+        Metro.materialInputSetup(window["metroMaterialInputSetup"]);
     }
-};
 
-var MaterialInputDefaultConfig = {
-    materialinputDeferred: 0,
-    label: "",
-    informer: "",
-    icon: "",
+    Metro.Component('material-input', {
+        init: function( options, elem ) {
+            this._super(elem, options, MaterialInputDefaultConfig, {
+                history: [],
+                historyIndex: -1
+            });
 
-    permanentLabel: false,
+            return this;
+        },
 
-    clsComponent: "",
-    clsInput: "",
-    clsLabel: "",
-    clsInformer: "",
-    clsIcon: "",
-    clsLine: "",
+        _create: function(){
+            var element = this.element;
 
-    onInputCreate: Metro.noop
-};
+            this._createStructure();
+            this._createEvents();
 
-Metro.materialInputSetup = function (options) {
-    MaterialInputDefaultConfig = $.extend({}, MaterialInputDefaultConfig, options);
-};
+            this._fireEvent("input-create", {
+                element: element
+            });
+        },
 
-if (typeof window["metroMaterialInputSetup"] !== undefined) {
-    Metro.materialInputSetup(window["metroMaterialInputSetup"]);
-}
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var container = $("<div>").addClass("input-material " + element[0].className);
 
-Component('material-input', {
-    init: function( options, elem ) {
-        this._super(elem, options, MaterialInputDefaultConfig);
+            element[0].className = "";
+            element.attr("autocomplete", "nope");
 
-        this.history = [];
-        this.historyIndex = -1;
+            if (element.attr("type") === undefined) {
+                element.attr("type", "text");
+            }
 
-        Metro.createExec(this);
+            container.insertBefore(element);
+            element.appendTo(container);
 
-        return this;
-    },
+            if (Utils.isValue(o.label)) {
+                $("<span>").html(o.label).addClass("label").addClass(o.clsLabel).insertAfter(element);
+            }
+            if (Utils.isValue(o.informer)) {
+                $("<span>").html(o.informer).addClass("informer").addClass(o.clsInformer).insertAfter(element);
+            }
+            if (Utils.isValue(o.icon)) {
+                container.addClass("with-icon");
+                $("<span>").html(o.icon).addClass("icon").addClass(o.clsIcon).insertAfter(element);
+            }
 
-    _create: function(){
-        var element = this.element, o = this.options;
+            container.append($("<hr>").addClass(o.clsLine));
 
-        Metro.checkRuntime(element, this.name);
+            if (o.permanentLabel === true) {
+                container.addClass("permanent-label");
+            }
 
-        this._createStructure();
-        this._createEvents();
+            container.addClass(o.clsComponent);
+            element.addClass(o.clsInput);
 
-        Utils.exec(o.onInputCreate, [element], element[0]);
-        element.fire("inputcreate");
-    },
+            if (element.is(":disabled")) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
 
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var container = $("<div>").addClass("input-material " + element[0].className);
+        _createEvents: function(){
 
-        element[0].className = "";
-        element.attr("autocomplete", "nope");
+        },
 
-        if (element.attr("type") === undefined) {
-            element.attr("type", "text");
+        clear: function(){
+            this.element.val('');
+        },
+
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
+
+        changeAttribute: function(attributeName){
+            if (attributeName === 'disabled') {
+                this.toggleState();
+            }
+        },
+
+        destroy: function(){
+            return this.element;
         }
-
-        container.insertBefore(element);
-        element.appendTo(container);
-
-        if (Utils.isValue(o.label)) {
-            $("<span>").html(o.label).addClass("label").addClass(o.clsLabel).insertAfter(element);
-        }
-        if (Utils.isValue(o.informer)) {
-            $("<span>").html(o.informer).addClass("informer").addClass(o.clsInformer).insertAfter(element);
-        }
-        if (Utils.isValue(o.icon)) {
-            container.addClass("with-icon");
-            $("<span>").html(o.icon).addClass("icon").addClass(o.clsIcon).insertAfter(element);
-        }
-
-        container.append($("<hr>").addClass(o.clsLine));
-
-        if (o.permanentLabel === true) {
-            container.addClass("permanent-label");
-        }
-
-        container.addClass(o.clsComponent);
-        element.addClass(o.clsInput);
-
-        if (element.is(":disabled")) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    _createEvents: function(){
-
-    },
-
-    clear: function(){
-        this.element.val('');
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.parent().addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.parent().removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    changeAttribute: function(attributeName){
-        if (attributeName === 'disabled') {
-            this.toggleState();
-        }
-    },
-
-    destroy: function(){
-        return this.element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 (function(Metro, $) {
     var Utils = Metro.utils;
@@ -18540,690 +18539,302 @@ Component('material-input', {
     });
 }(Metro, m4q));
 
-var ListDefaultConfig = {
-    listDeferred: 0,
-    templateBeginToken: "<%",
-    templateEndToken: "%>",
-    paginationDistance: 5,
-    paginationShortMode: true,
-    thousandSeparator: ",",
-    decimalSeparator: ",",
-    sortTarget: "li",
-    sortClass: null,
-    sortDir: "asc",
-    sortInitial: true,
-    filterClass: null,
-    filter: null,
-    filterString: "",
-    filters: null,
-    source: null,
-    showItemsSteps: false,
-    showSearch: false,
-    showListInfo: false,
-    showPagination: false,
-    showActivity: true,
-    muteList: true,
-    items: -1,
-    itemsSteps: "all, 10,25,50,100",
-    itemsAllTitle: "Show all",
-    listItemsCountTitle: "Show entries:",
-    listSearchTitle: "Search:",
-    listInfoTitle: "Showing $1 to $2 of $3 entries",
-    paginationPrevTitle: "Prev",
-    paginationNextTitle: "Next",
-    activityType: "cycle",
-    activityStyle: "color",
-    activityTimeout: 100,
-    searchWrapper: null,
-    rowsWrapper: null,
-    infoWrapper: null,
-    paginationWrapper: null,
-    clsComponent: "",
-    clsList: "",
-    clsListItem: "",
-    clsListTop: "",
-    clsItemsCount: "",
-    clsSearch: "",
-    clsListBottom: "",
-    clsListInfo: "",
-    clsListPagination: "",
-    clsPagination: "",
-    onDraw: Metro.noop,
-    onDrawItem: Metro.noop,
-    onSortStart: Metro.noop,
-    onSortStop: Metro.noop,
-    onSortItemSwitch: Metro.noop,
-    onSearch: Metro.noop,
-    onRowsCountChange: Metro.noop,
-    onDataLoad: Metro.noop,
-    onDataLoaded: Metro.noop,
-    onDataLoadError: Metro.noop,
-    onFilterItemAccepted: Metro.noop,
-    onFilterItemDeclined: Metro.noop,
-    onListCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ListDefaultConfig = {
+        listDeferred: 0,
+        templateBeginToken: "<%",
+        templateEndToken: "%>",
+        paginationDistance: 5,
+        paginationShortMode: true,
+        thousandSeparator: ",",
+        decimalSeparator: ",",
+        sortTarget: "li",
+        sortClass: null,
+        sortDir: "asc",
+        sortInitial: true,
+        filterClass: null,
+        filter: null,
+        filterString: "",
+        filters: null,
+        source: null,
+        showItemsSteps: false,
+        showSearch: false,
+        showListInfo: false,
+        showPagination: false,
+        showActivity: true,
+        muteList: true,
+        items: -1,
+        itemsSteps: "all, 10,25,50,100",
+        itemsAllTitle: "Show all",
+        listItemsCountTitle: "Show entries:",
+        listSearchTitle: "Search:",
+        listInfoTitle: "Showing $1 to $2 of $3 entries",
+        paginationPrevTitle: "Prev",
+        paginationNextTitle: "Next",
+        activityType: "cycle",
+        activityStyle: "color",
+        activityTimeout: 100,
+        searchWrapper: null,
+        rowsWrapper: null,
+        infoWrapper: null,
+        paginationWrapper: null,
+        clsComponent: "",
+        clsList: "",
+        clsListItem: "",
+        clsListTop: "",
+        clsItemsCount: "",
+        clsSearch: "",
+        clsListBottom: "",
+        clsListInfo: "",
+        clsListPagination: "",
+        clsPagination: "",
+        onDraw: Metro.noop,
+        onDrawItem: Metro.noop,
+        onSortStart: Metro.noop,
+        onSortStop: Metro.noop,
+        onSortItemSwitch: Metro.noop,
+        onSearch: Metro.noop,
+        onRowsCountChange: Metro.noop,
+        onDataLoad: Metro.noop,
+        onDataLoaded: Metro.noop,
+        onDataLoadError: Metro.noop,
+        onFilterItemAccepted: Metro.noop,
+        onFilterItemDeclined: Metro.noop,
+        onListCreate: Metro.noop
+    };
 
-Metro.listSetup = function (options) {
-    ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
-};
+    Metro.listSetup = function (options) {
+        ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
+    };
 
-if (typeof window["metroListSetup"] !== undefined) {
-    Metro.listSetup(window["metroListSetup"]);
-}
+    if (typeof window["metroListSetup"] !== undefined) {
+        Metro.listSetup(window["metroListSetup"]);
+    }
 
-Component('list', {
-    init: function( options, elem ) {
-        this._super(elem, options, ListDefaultConfig);
+    Metro.Component('list', {
+        init: function( options, elem ) {
+            this._super(elem, options, ListDefaultConfig, {
+                currentPage: 1,
+                pagesCount: 1,
+                filterString: "",
+                data: null,
+                activity: null,
+                busy: false,
+                filters: [],
+                wrapperInfo: null,
+                wrapperSearch: null,
+                wrapperRows: null,
+                wrapperPagination: null,
+                filterIndex: null,
+                filtersIndexes: [],
+                itemTemplate: null,
 
-        this.currentPage = 1;
-        this.pagesCount = 1;
-        this.filterString = "";
-        this.data = null;
-        this.activity = null;
-        this.busy = false;
-        this.filters = [];
-        this.wrapperInfo = null;
-        this.wrapperSearch = null;
-        this.wrapperRows = null;
-        this.wrapperPagination = null;
-        this.filterIndex = null;
-        this.filtersIndexes = [];
-        this.itemTemplate = null;
+                sort: {
+                    dir: "asc",
+                    colIndex: 0
+                },
 
-        this.sort = {
-            dir: "asc",
-            colIndex: 0
-        };
-
-        this.header = null;
-        this.items = [];
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        if (o.source !== null) {
-            Utils.exec(o.onDataLoad, [o.source], element[0]);
-            element.fire("dataload", {
-                source: o.source
+                header: null,
+                items: []
             });
 
+            return this;
+        },
 
-            $.json(o.source).then(function(data){
-                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                element.fire("dataloaded", {
-                    source: o.source,
-                    data: data
+        _create: function(){
+            var that = this, o = this.options;
+
+            if (o.source) {
+                that._fireEvent("data-load", {
+                    source: o.source
                 });
-                that._build(data);
-            }, function(xhr){
-                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                element.fire("dataloaderror", {
-                    source: o.source,
-                    xhr: xhr
+
+                $.json(o.source).then(function(data){
+                    that._fireEvent("data-loaded", {
+                        source: o.source,
+                        data: data
+                    });
+                    that._build(data);
+                }, function(xhr){
+                    that._fireEvent("data-load-error", {
+                        source: o.source,
+                        xhr: xhr
+                    });
                 });
+            } else {
+                that._build();
+            }
+        },
+
+        _build: function(data){
+            var element = this.element, o = this.options;
+
+            if (Utils.isValue(data)) {
+                this._createItemsFromJSON(data);
+            } else {
+                this._createItemsFromHTML()
+            }
+
+            this._createStructure();
+            this._createEvents();
+
+            Utils.exec(o.onListCreate, [element], element[0]);
+            element.fire("listcreate");
+        },
+
+        _createItemsFromHTML: function(){
+            var that = this, element = this.element, o = this.options;
+
+            this.items = [];
+
+            $.each(element.children(o.sortTarget), function(){
+                that.items.push(this);
             });
-        } else {
-            that._build();
-        }
-    },
+        },
 
-    _build: function(data){
-        var element = this.element, o = this.options;
+        _createItemsFromJSON: function(source){
+            var that = this, o = this.options;
 
-        if (Utils.isValue(data)) {
-            this._createItemsFromJSON(data);
-        } else {
-            this._createItemsFromHTML()
-        }
+            this.items = [];
 
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onListCreate, [element], element[0]);
-        element.fire("listcreate");
-    },
-
-    _createItemsFromHTML: function(){
-        var that = this, element = this.element, o = this.options;
-
-        this.items = [];
-
-        $.each(element.children(o.sortTarget), function(){
-            that.items.push(this);
-        });
-    },
-
-    _createItemsFromJSON: function(source){
-        var that = this, o = this.options;
-
-        this.items = [];
-
-        if (Utils.isValue(source.template)) {
-            this.itemTemplate = source.template;
-        }
-
-        if (Utils.isValue(source.header)) {
-            this.header = source.header;
-        }
-
-        if (Utils.isValue(source.data)) {
-            $.each(source.data, function(){
-                var item, row = this;
-                var li = document.createElement("li");
-
-                if (!Utils.isValue(that.itemTemplate)) {
-                    return ;
-                }
-
-                item = Metro.template(that.itemTemplate, row, {
-                    beginToken: o.templateBeginToken,
-                    endToken: o.templateEndToken
-                });
-
-                li.innerHTML = item;
-                that.items.push(li);
-            });
-        }
-    },
-
-    _createTopBlock: function (){
-        var that = this, element = this.element, o = this.options;
-        var top_block = $("<div>").addClass("list-top").addClass(o.clsListTop).insertBefore(element);
-        var search_block, search_input, rows_block, rows_select;
-
-        search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("list-search-block").addClass(o.clsSearch).appendTo(top_block);
-
-        search_input = $("<input>").attr("type", "text").appendTo(search_block);
-        search_input.input({
-            prepend: o.listSearchTitle
-        });
-
-        if (o.showSearch !== true) {
-            search_block.hide();
-        }
-
-        rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("list-rows-block").addClass(o.clsItemsCount).appendTo(top_block);
-
-        rows_select = $("<select>").appendTo(rows_block);
-        $.each(o.itemsSteps.toArray(), function () {
-            var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
-            if (parseInt(this) === parseInt(o.items)) {
-                option.attr("selected", "selected");
+            if (Utils.isValue(source.template)) {
+                this.itemTemplate = source.template;
             }
-        });
-        rows_select.select({
-            filter: false,
-            prepend: o.listItemsCountTitle,
-            onChange: function (val) {
-                if (parseInt(val) === parseInt(o.items)) {
-                    return;
-                }
-                o.items = parseInt(val);
-                that.currentPage = 1;
-                that._draw();
-                Utils.exec(o.onRowsCountChange, [val], element[0]);
-                element.fire("rowscountchange", {
-                    val: val
-                });
+
+            if (Utils.isValue(source.header)) {
+                this.header = source.header;
             }
-        });
 
-        if (o.showItemsSteps !== true) {
-            rows_block.hide();
-        }
+            if (Utils.isValue(source.data)) {
+                $.each(source.data, function(){
+                    var item, row = this;
+                    var li = document.createElement("li");
 
-        return top_block;
-    },
-
-    _createBottomBlock: function (){
-        var element = this.element, o = this.options;
-        var bottom_block = $("<div>").addClass("list-bottom").addClass(o.clsListBottom).insertAfter(element);
-        var info, pagination;
-
-        info = $("<div>").addClass("list-info").addClass(o.clsListInfo).appendTo(bottom_block);
-        if (o.showListInfo !== true) {
-            info.hide();
-        }
-
-        pagination = $("<div>").addClass("list-pagination").addClass(o.clsListPagination).appendTo(bottom_block);
-        if (o.showPagination !== true) {
-            pagination.hide();
-        }
-
-        return bottom_block;
-    },
-
-    _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var list_component;
-        var w_search = $(o.searchWrapper),
-            w_info = $(o.infoWrapper),
-            w_rows = $(o.rowsWrapper),
-            w_paging = $(o.paginationWrapper);
-
-        if (w_search.length > 0) {this.wrapperSearch = w_search;}
-        if (w_info.length > 0) {this.wrapperInfo = w_info;}
-        if (w_rows.length > 0) {this.wrapperRows = w_rows;}
-        if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
-
-        if (!element.parent().hasClass("list-component")) {
-            list_component = $("<div>").addClass("list-component").insertBefore(element);
-            element.appendTo(list_component);
-        } else {
-            list_component = element.parent();
-        }
-
-        list_component.addClass(o.clsComponent);
-
-        this.activity =  $("<div>").addClass("list-progress").appendTo(list_component);
-        $("<div>").activity({
-            type: o.activityType,
-            style: o.activityStyle
-        }).appendTo(this.activity);
-
-        if (o.showActivity !== true) {
-            this.activity.css({
-                visibility: "hidden"
-            })
-        }
-
-        // element.html("").addClass(o.clsList);
-        element.addClass(o.clsList);
-
-        this._createTopBlock();
-        this._createBottomBlock();
-
-        if (Utils.isValue(o.filterString)) {
-            this.filterString = o.filterString;
-        }
-
-        var filter_func;
-
-        if (Utils.isValue(o.filter)) {
-            filter_func = Utils.isFunc(o.filter);
-            if (filter_func === false) {
-                filter_func = Utils.func(o.filter);
-            }
-            that.filterIndex = that.addFilter(filter_func);
-        }
-
-        if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
-            $.each(o.filters.toArray(), function(){
-                filter_func = Utils.isFunc(this);
-                if (filter_func !== false) {
-                    that.filtersIndexes.push(that.addFilter(filter_func));
-                }
-            });
-        }
-
-        this.currentPage = 1;
-
-        if (o.sortInitial !== false)
-            this.sorting(o.sortClass, o.sortDir, true);
-        else
-            this.draw();
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element;
-        var component = element.parent();
-        var search = component.find(".list-search-block input");
-        var customSearch;
-
-        search.on(Metro.events.inputchange, function(){
-            that.filterString = this.value.trim().toLowerCase();
-            if (that.filterString[that.filterString.length - 1] === ":") {
-                return ;
-            }
-            that.currentPage = 1;
-            that._draw();
-        });
-
-        if (Utils.isValue(this.wrapperSearch)) {
-            customSearch = this.wrapperSearch.find("input");
-            if (customSearch.length > 0) {
-                customSearch.on(Metro.events.inputchange, function(){
-                    that.filterString = this.value.trim().toLowerCase();
-                    if (that.filterString[that.filterString.length - 1] === ":") {
+                    if (!Utils.isValue(that.itemTemplate)) {
                         return ;
                     }
+
+                    item = Metro.template(that.itemTemplate, row, {
+                        beginToken: o.templateBeginToken,
+                        endToken: o.templateEndToken
+                    });
+
+                    li.innerHTML = item;
+                    that.items.push(li);
+                });
+            }
+        },
+
+        _createTopBlock: function (){
+            var that = this, element = this.element, o = this.options;
+            var top_block = $("<div>").addClass("list-top").addClass(o.clsListTop).insertBefore(element);
+            var search_block, search_input, rows_block, rows_select;
+
+            search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("list-search-block").addClass(o.clsSearch).appendTo(top_block);
+
+            search_input = $("<input>").attr("type", "text").appendTo(search_block);
+            search_input.input({
+                prepend: o.listSearchTitle
+            });
+
+            if (o.showSearch !== true) {
+                search_block.hide();
+            }
+
+            rows_block = Utils.isValue(this.wrapperRows) ? this.wrapperRows : $("<div>").addClass("list-rows-block").addClass(o.clsItemsCount).appendTo(top_block);
+
+            rows_select = $("<select>").appendTo(rows_block);
+            $.each(o.itemsSteps.toArray(), function () {
+                var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
+                if (parseInt(this) === parseInt(o.items)) {
+                    option.attr("selected", "selected");
+                }
+            });
+            rows_select.select({
+                filter: false,
+                prepend: o.listItemsCountTitle,
+                onChange: function (val) {
+                    if (parseInt(val) === parseInt(o.items)) {
+                        return;
+                    }
+                    o.items = parseInt(val);
                     that.currentPage = 1;
                     that._draw();
-                });
-            }
-        }
-
-        function pageLinkClick(l){
-            var link = $(l);
-            var item = link.parent();
-
-            if (item.hasClass("active")) {
-                return ;
-            }
-
-            if (item.hasClass("service")) {
-                if (link.data("page") === "prev") {
-                    that.currentPage--;
-                    if (that.currentPage === 0) {
-                        that.currentPage = 1;
-                    }
-                } else {
-                    that.currentPage++;
-                    if (that.currentPage > that.pagesCount) {
-                        that.currentPage = that.pagesCount;
-                    }
-                }
-            } else {
-                that.currentPage = link.data("page");
-            }
-
-            that._draw();
-        }
-
-        component.on(Metro.events.click, ".pagination .page-link", function(){
-            pageLinkClick(this)
-        });
-
-        if (Utils.isValue(this.wrapperPagination)) {
-            this.wrapperPagination.on(Metro.events.click, ".pagination .page-link", function(){
-                pageLinkClick(this)
-            });
-        }
-    },
-
-    _info: function(start, stop, length){
-        var element = this.element, o = this.options;
-        var component = element.parent();
-        var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".list-info");
-        var text;
-
-        if (info.length === 0) {
-            return ;
-        }
-
-        if (stop > length) {
-            stop = length;
-        }
-
-        if (this.items.length === 0) {
-            start = stop = length = 0;
-        }
-
-        text = o.listInfoTitle;
-        text = text.replace("$1", start);
-        text = text.replace("$2", stop);
-        text = text.replace("$3", length);
-        info.html(text);
-    },
-
-    _paging: function(length){
-        var element = this.element, o = this.options;
-        var component = element.parent();
-        this.pagesCount = Math.ceil(length / o.items); // Костыль
-        createPagination({
-            length: length,
-            rows: o.items,
-            current: this.currentPage,
-            target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination"),
-            claPagination: o.clsPagination,
-            prevTitle: o.paginationPrevTitle,
-            nextTitle: o.paginationNextTitle,
-            distance: o.paginationShortMode === true ? o.paginationDistance : 0
-        });
-    },
-
-    _filter: function(){
-        var that = this,
-            element = this.element,
-            o = this.options,
-            items, i, data, inset, c1, result;
-
-        if (Utils.isValue(this.filterString) || this.filters.length > 0) {
-            items = this.items.filter(function(item){
-                data = "";
-
-                if (Utils.isValue(o.filterClass)) {
-                    inset = item.getElementsByClassName(o.filterClass);
-
-                    if (inset.length > 0) for (i = 0; i < inset.length; i++) {
-                        data += inset[i].textContent;
-                    }
-                } else {
-                    data = item.textContent;
-                }
-
-                c1 = data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
-                result = Utils.isValue(that.filterString) ? c1.indexOf(that.filterString) > -1 : true;
-
-                if (result === true && that.filters.length > 0) {
-                    for (i = 0; i < that.filters.length; i++) {
-                        if (Utils.exec(that.filters[i], [item]) !== true) {
-                            result = false;
-                            break;
-                        }
-                    }
-                }
-
-                if (result) {
-                    Utils.exec(o.onFilterItemAccepted, [item], element[0]);
-                    element.fire("filteritemaccepted", {
-                        item: item
-                    });
-                } else {
-                    Utils.exec(o.onFilterItemDeclined, [item], element[0]);
-                    element.fire("filteritemdeclined", {
-                        item: item
+                    Utils.exec(o.onRowsCountChange, [val], element[0]);
+                    element.fire("rowscountchange", {
+                        val: val
                     });
                 }
-
-                return result;
             });
 
-            Utils.exec(o.onSearch, [that.filterString, items], element[0]);
-            element.fire("search", {
-                search: that.filterString,
-                items: items
-            });
-        } else {
-            items = this.items;
-        }
-
-        return items;
-    },
-
-    _draw: function(cb){
-        var element = this.element, o = this.options;
-        var i;
-        var start = o.items === -1 ? 0 : o.items * (this.currentPage - 1),
-            stop = o.items === -1 ? this.items.length - 1 : start + o.items - 1;
-        var items;
-
-        items = this._filter();
-
-        element.children(o.sortTarget).remove();
-
-        for (i = start; i <= stop; i++) {
-            if (Utils.isValue(items[i])) {
-                $(items[i]).addClass(o.clsListItem).appendTo(element);
-            }
-            Utils.exec(o.onDrawItem, [items[i]], element[0]);
-            element.fire("drawitem", {
-                item: items[i]
-            });
-        }
-
-        this._info(start + 1, stop + 1, items.length);
-        this._paging(items.length);
-
-        this.activity.hide();
-
-        Utils.exec(o.onDraw, null, element[0]);
-        element.fire("draw");
-
-        if (cb !== undefined) {
-            Utils.exec(cb, [element], element[0])
-        }
-    },
-
-    _getItemContent: function(item){
-        var o = this.options, $item = $(item);
-        var i, inset, data;
-        var format, formatMask = Utils.isValue($item.data("formatMask")) ? $item.data("formatMask") : null;
-
-        if (Utils.isValue(o.sortClass)) {
-            data = "";
-            inset = $(item).find("."+o.sortClass);
-
-            if (inset.length > 0) for (i = 0; i < inset.length; i++) {
-                data += inset[i].textContent;
-            }
-            format = inset.length > 0 ? inset[0].getAttribute("data-format") : "";
-        } else {
-            data = item.textContent;
-            format = item.getAttribute("data-format");
-        }
-
-        data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
-
-        if (Utils.isValue(format)) {
-
-            if (['number', 'int', 'integer', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
-                data = Utils.parseNumber(data, o.thousandSeparator, o.decimalSeparator);
+            if (o.showItemsSteps !== true) {
+                rows_block.hide();
             }
 
-            switch (format) {
-                case "date": data = Utils.isValue(formatMask) ? data.toDate(formatMask) : new Date(data); break;
-                case "number": data = Number(data); break;
-                case "int":
-                case "integer": data = parseInt(data); break;
-                case "float": data = parseFloat(data); break;
-                case "money": data = Utils.parseMoney(data); break;
-                case "card": data = Utils.parseCard(data); break;
-                case "phone": data = Utils.parsePhone(data); break;
+            return top_block;
+        },
+
+        _createBottomBlock: function (){
+            var element = this.element, o = this.options;
+            var bottom_block = $("<div>").addClass("list-bottom").addClass(o.clsListBottom).insertAfter(element);
+            var info, pagination;
+
+            info = $("<div>").addClass("list-info").addClass(o.clsListInfo).appendTo(bottom_block);
+            if (o.showListInfo !== true) {
+                info.hide();
             }
-        }
 
-        return data;
-    },
+            pagination = $("<div>").addClass("list-pagination").addClass(o.clsListPagination).appendTo(bottom_block);
+            if (o.showPagination !== true) {
+                pagination.hide();
+            }
 
-    deleteItem: function(value){
-        var i, deleteIndexes = [], item;
-        var is_func = Utils.isFunc(value);
+            return bottom_block;
+        },
 
-        for (i = 0; i < this.items.length; i++) {
-            item = this.items[i];
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+            var list_component;
+            var w_search = $(o.searchWrapper),
+                w_info = $(o.infoWrapper),
+                w_rows = $(o.rowsWrapper),
+                w_paging = $(o.paginationWrapper);
 
-            if (is_func) {
-                if (Utils.exec(value, [item])) {
-                    deleteIndexes.push(i);
-                }
+            if (w_search.length > 0) {this.wrapperSearch = w_search;}
+            if (w_info.length > 0) {this.wrapperInfo = w_info;}
+            if (w_rows.length > 0) {this.wrapperRows = w_rows;}
+            if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
+
+            if (!element.parent().hasClass("list-component")) {
+                list_component = $("<div>").addClass("list-component").insertBefore(element);
+                element.appendTo(list_component);
             } else {
-                if (item.textContent.contains(value)) {
-                    deleteIndexes.push(i);
-                }
-            }
-        }
-
-        this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
-
-        return this;
-    },
-
-    draw: function(){
-        return this._draw();
-    },
-
-    sorting: function(source, dir, redraw){
-        var that = this, element = this.element, o = this.options;
-
-        if (Utils.isValue(source)) {
-            o.sortClass = source;
-        }
-        if (Utils.isValue(dir) && ["asc", "desc"].indexOf(dir) > -1) {
-            o.sortDir= dir;
-        }
-
-        Utils.exec(o.onSortStart, [this.items], element[0]);
-        element.fire("sortstart", {
-            items: this.items
-        });
-
-        this.items.sort(function(a, b){
-            var c1 = that._getItemContent(a);
-            var c2 = that._getItemContent(b);
-            var result = 0;
-
-            if (c1 < c2) {
-                result = o.sortDir === "asc" ? -1 : 1;
-            }
-            if (c1 > c2) {
-                result = o.sortDir === "asc" ? 1 : -1;
+                list_component = element.parent();
             }
 
-            if (result !== 0) {
-                Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
-                element.fire("sortitemswitch", {
-                    a: a,
-                    b: b,
-                    result: result
-                });
+            list_component.addClass(o.clsComponent);
+
+            this.activity =  $("<div>").addClass("list-progress").appendTo(list_component);
+            $("<div>").activity({
+                type: o.activityType,
+                style: o.activityStyle
+            }).appendTo(this.activity);
+
+            if (o.showActivity !== true) {
+                this.activity.css({
+                    visibility: "hidden"
+                })
             }
 
-            return result;
-        });
+            // element.html("").addClass(o.clsList);
+            element.addClass(o.clsList);
 
-        Utils.exec(o.onSortStop, [this.items], element[0]);
-        element.fire("sortstop", {
-            items: this.items
-        });
-
-        if (redraw === true) {
-            this._draw();
-        }
-
-        return this;
-    },
-
-    filter: function(val){
-        this.filterString = val.trim().toLowerCase();
-        this.currentPage = 1;
-        this._draw();
-    },
-
-    loadData: function(source){
-        var that = this, element = this.element, o = this.options;
-
-        if (Utils.isValue(source) !== true) {
-            return ;
-        }
-
-        o.source = source;
-
-        Utils.exec(o.onDataLoad, [o.source], element[0]);
-        element.fire("dataload", {
-            source: o.source
-        });
-
-        $.json(o.source).then(function(data){
-            Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-            element.fire("dataloaded", {
-                source: o.source,
-                data: data
-            });
-
-            that._createItemsFromJSON(data);
-
-            element.html("");
+            this._createTopBlock();
+            this._createBottomBlock();
 
             if (Utils.isValue(o.filterString)) {
-                that.filterString = o.filterString;
+                this.filterString = o.filterString;
             }
 
             var filter_func;
@@ -19245,168 +18856,550 @@ Component('list', {
                 });
             }
 
-            that.currentPage = 1;
+            this.currentPage = 1;
 
-            that.sorting(o.sortClass, o.sortDir, true);
-        }, function(xhr){
-            Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-            element.fire("dataloaderror", {
-                source: o.source,
-                xhr: xhr
+            if (o.sortInitial !== false)
+                this.sorting(o.sortClass, o.sortDir, true);
+            else
+                this.draw();
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element;
+            var component = element.parent();
+            var search = component.find(".list-search-block input");
+            var customSearch;
+
+            search.on(Metro.events.inputchange, function(){
+                that.filterString = this.value.trim().toLowerCase();
+                if (that.filterString[that.filterString.length - 1] === ":") {
+                    return ;
+                }
+                that.currentPage = 1;
+                that._draw();
             });
-        });
-    },
 
-    next: function(){
-        if (this.items.length === 0) return ;
-        this.currentPage++;
-        if (this.currentPage > this.pagesCount) {
+            if (Utils.isValue(this.wrapperSearch)) {
+                customSearch = this.wrapperSearch.find("input");
+                if (customSearch.length > 0) {
+                    customSearch.on(Metro.events.inputchange, function(){
+                        that.filterString = this.value.trim().toLowerCase();
+                        if (that.filterString[that.filterString.length - 1] === ":") {
+                            return ;
+                        }
+                        that.currentPage = 1;
+                        that._draw();
+                    });
+                }
+            }
+
+            function pageLinkClick(l){
+                var link = $(l);
+                var item = link.parent();
+
+                if (item.hasClass("active")) {
+                    return ;
+                }
+
+                if (item.hasClass("service")) {
+                    if (link.data("page") === "prev") {
+                        that.currentPage--;
+                        if (that.currentPage === 0) {
+                            that.currentPage = 1;
+                        }
+                    } else {
+                        that.currentPage++;
+                        if (that.currentPage > that.pagesCount) {
+                            that.currentPage = that.pagesCount;
+                        }
+                    }
+                } else {
+                    that.currentPage = link.data("page");
+                }
+
+                that._draw();
+            }
+
+            component.on(Metro.events.click, ".pagination .page-link", function(){
+                pageLinkClick(this)
+            });
+
+            if (Utils.isValue(this.wrapperPagination)) {
+                this.wrapperPagination.on(Metro.events.click, ".pagination .page-link", function(){
+                    pageLinkClick(this)
+                });
+            }
+        },
+
+        _info: function(start, stop, length){
+            var element = this.element, o = this.options;
+            var component = element.parent();
+            var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".list-info");
+            var text;
+
+            if (info.length === 0) {
+                return ;
+            }
+
+            if (stop > length) {
+                stop = length;
+            }
+
+            if (this.items.length === 0) {
+                start = stop = length = 0;
+            }
+
+            text = o.listInfoTitle;
+            text = text.replace("$1", start);
+            text = text.replace("$2", stop);
+            text = text.replace("$3", length);
+            info.html(text);
+        },
+
+        _paging: function(length){
+            var element = this.element, o = this.options;
+            var component = element.parent();
+            this.pagesCount = Math.ceil(length / o.items); // Костыль
+            createPagination({
+                length: length,
+                rows: o.items,
+                current: this.currentPage,
+                target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".list-pagination"),
+                claPagination: o.clsPagination,
+                prevTitle: o.paginationPrevTitle,
+                nextTitle: o.paginationNextTitle,
+                distance: o.paginationShortMode === true ? o.paginationDistance : 0
+            });
+        },
+
+        _filter: function(){
+            var that = this,
+                element = this.element,
+                o = this.options,
+                items, i, data, inset, c1, result;
+
+            if (Utils.isValue(this.filterString) || this.filters.length > 0) {
+                items = this.items.filter(function(item){
+                    data = "";
+
+                    if (Utils.isValue(o.filterClass)) {
+                        inset = item.getElementsByClassName(o.filterClass);
+
+                        if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                            data += inset[i].textContent;
+                        }
+                    } else {
+                        data = item.textContent;
+                    }
+
+                    c1 = data.replace(/[\n\r]+|[\s]{2,}/g, ' ').trim().toLowerCase();
+                    result = Utils.isValue(that.filterString) ? c1.indexOf(that.filterString) > -1 : true;
+
+                    if (result === true && that.filters.length > 0) {
+                        for (i = 0; i < that.filters.length; i++) {
+                            if (Utils.exec(that.filters[i], [item]) !== true) {
+                                result = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (result) {
+                        Utils.exec(o.onFilterItemAccepted, [item], element[0]);
+                        element.fire("filteritemaccepted", {
+                            item: item
+                        });
+                    } else {
+                        Utils.exec(o.onFilterItemDeclined, [item], element[0]);
+                        element.fire("filteritemdeclined", {
+                            item: item
+                        });
+                    }
+
+                    return result;
+                });
+
+                Utils.exec(o.onSearch, [that.filterString, items], element[0]);
+                element.fire("search", {
+                    search: that.filterString,
+                    items: items
+                });
+            } else {
+                items = this.items;
+            }
+
+            return items;
+        },
+
+        _draw: function(cb){
+            var element = this.element, o = this.options;
+            var i;
+            var start = o.items === -1 ? 0 : o.items * (this.currentPage - 1),
+                stop = o.items === -1 ? this.items.length - 1 : start + o.items - 1;
+            var items;
+
+            items = this._filter();
+
+            element.children(o.sortTarget).remove();
+
+            for (i = start; i <= stop; i++) {
+                if (Utils.isValue(items[i])) {
+                    $(items[i]).addClass(o.clsListItem).appendTo(element);
+                }
+                Utils.exec(o.onDrawItem, [items[i]], element[0]);
+                element.fire("drawitem", {
+                    item: items[i]
+                });
+            }
+
+            this._info(start + 1, stop + 1, items.length);
+            this._paging(items.length);
+
+            this.activity.hide();
+
+            Utils.exec(o.onDraw, null, element[0]);
+            element.fire("draw");
+
+            if (cb !== undefined) {
+                Utils.exec(cb, [element], element[0])
+            }
+        },
+
+        _getItemContent: function(item){
+            var o = this.options, $item = $(item);
+            var i, inset, data;
+            var format, formatMask = Utils.isValue($item.data("formatMask")) ? $item.data("formatMask") : null;
+
+            if (Utils.isValue(o.sortClass)) {
+                data = "";
+                inset = $(item).find("."+o.sortClass);
+
+                if (inset.length > 0) for (i = 0; i < inset.length; i++) {
+                    data += inset[i].textContent;
+                }
+                format = inset.length > 0 ? inset[0].getAttribute("data-format") : "";
+            } else {
+                data = item.textContent;
+                format = item.getAttribute("data-format");
+            }
+
+            data = (""+data).toLowerCase().replace(/[\n\r]+|[\s]{2,}/g, ' ').trim();
+
+            if (Utils.isValue(format)) {
+
+                if (['number', 'int', 'integer', 'float', 'money'].indexOf(format) !== -1 && (o.thousandSeparator !== "," || o.decimalSeparator !== "." )) {
+                    data = Utils.parseNumber(data, o.thousandSeparator, o.decimalSeparator);
+                }
+
+                switch (format) {
+                    case "date": data = Utils.isValue(formatMask) ? data.toDate(formatMask) : new Date(data); break;
+                    case "number": data = Number(data); break;
+                    case "int":
+                    case "integer": data = parseInt(data); break;
+                    case "float": data = parseFloat(data); break;
+                    case "money": data = Utils.parseMoney(data); break;
+                    case "card": data = Utils.parseCard(data); break;
+                    case "phone": data = Utils.parsePhone(data); break;
+                }
+            }
+
+            return data;
+        },
+
+        deleteItem: function(value){
+            var i, deleteIndexes = [], item;
+            var is_func = Utils.isFunc(value);
+
+            for (i = 0; i < this.items.length; i++) {
+                item = this.items[i];
+
+                if (is_func) {
+                    if (Utils.exec(value, [item])) {
+                        deleteIndexes.push(i);
+                    }
+                } else {
+                    if (item.textContent.contains(value)) {
+                        deleteIndexes.push(i);
+                    }
+                }
+            }
+
+            this.items = Utils.arrayDeleteByMultipleKeys(this.items, deleteIndexes);
+
+            return this;
+        },
+
+        draw: function(){
+            return this._draw();
+        },
+
+        sorting: function(source, dir, redraw){
+            var that = this, element = this.element, o = this.options;
+
+            if (Utils.isValue(source)) {
+                o.sortClass = source;
+            }
+            if (Utils.isValue(dir) && ["asc", "desc"].indexOf(dir) > -1) {
+                o.sortDir= dir;
+            }
+
+            Utils.exec(o.onSortStart, [this.items], element[0]);
+            element.fire("sortstart", {
+                items: this.items
+            });
+
+            this.items.sort(function(a, b){
+                var c1 = that._getItemContent(a);
+                var c2 = that._getItemContent(b);
+                var result = 0;
+
+                if (c1 < c2) {
+                    result = o.sortDir === "asc" ? -1 : 1;
+                }
+                if (c1 > c2) {
+                    result = o.sortDir === "asc" ? 1 : -1;
+                }
+
+                if (result !== 0) {
+                    Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
+                    element.fire("sortitemswitch", {
+                        a: a,
+                        b: b,
+                        result: result
+                    });
+                }
+
+                return result;
+            });
+
+            Utils.exec(o.onSortStop, [this.items], element[0]);
+            element.fire("sortstop", {
+                items: this.items
+            });
+
+            if (redraw === true) {
+                this._draw();
+            }
+
+            return this;
+        },
+
+        filter: function(val){
+            this.filterString = val.trim().toLowerCase();
+            this.currentPage = 1;
+            this._draw();
+        },
+
+        loadData: function(source){
+            var that = this, element = this.element, o = this.options;
+
+            if (Utils.isValue(source) !== true) {
+                return ;
+            }
+
+            o.source = source;
+
+            Utils.exec(o.onDataLoad, [o.source], element[0]);
+            element.fire("dataload", {
+                source: o.source
+            });
+
+            $.json(o.source).then(function(data){
+                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
+                element.fire("dataloaded", {
+                    source: o.source,
+                    data: data
+                });
+
+                that._createItemsFromJSON(data);
+
+                element.html("");
+
+                if (Utils.isValue(o.filterString)) {
+                    that.filterString = o.filterString;
+                }
+
+                var filter_func;
+
+                if (Utils.isValue(o.filter)) {
+                    filter_func = Utils.isFunc(o.filter);
+                    if (filter_func === false) {
+                        filter_func = Utils.func(o.filter);
+                    }
+                    that.filterIndex = that.addFilter(filter_func);
+                }
+
+                if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                    $.each(o.filters.toArray(), function(){
+                        filter_func = Utils.isFunc(this);
+                        if (filter_func !== false) {
+                            that.filtersIndexes.push(that.addFilter(filter_func));
+                        }
+                    });
+                }
+
+                that.currentPage = 1;
+
+                that.sorting(o.sortClass, o.sortDir, true);
+            }, function(xhr){
+                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
+                element.fire("dataloaderror", {
+                    source: o.source,
+                    xhr: xhr
+                });
+            });
+        },
+
+        next: function(){
+            if (this.items.length === 0) return ;
+            this.currentPage++;
+            if (this.currentPage > this.pagesCount) {
+                this.currentPage = this.pagesCount;
+                return ;
+            }
+            this._draw();
+        },
+
+        prev: function(){
+            if (this.items.length === 0) return ;
+            this.currentPage--;
+            if (this.currentPage === 0) {
+                this.currentPage = 1;
+                return ;
+            }
+            this._draw();
+        },
+
+        first: function(){
+            if (this.items.length === 0) return ;
+            this.currentPage = 1;
+            this._draw();
+        },
+
+        last: function(){
+            if (this.items.length === 0) return ;
             this.currentPage = this.pagesCount;
-            return ;
-        }
-        this._draw();
-    },
+            this._draw();
+        },
 
-    prev: function(){
-        if (this.items.length === 0) return ;
-        this.currentPage--;
-        if (this.currentPage === 0) {
-            this.currentPage = 1;
-            return ;
-        }
-        this._draw();
-    },
+        page: function(num){
+            if (num <= 0) {
+                num = 1;
+            }
 
-    first: function(){
-        if (this.items.length === 0) return ;
-        this.currentPage = 1;
-        this._draw();
-    },
+            if (num > this.pagesCount) {
+                num = this.pagesCount;
+            }
 
-    last: function(){
-        if (this.items.length === 0) return ;
-        this.currentPage = this.pagesCount;
-        this._draw();
-    },
+            this.currentPage = num;
+            this._draw();
+        },
 
-    page: function(num){
-        if (num <= 0) {
-            num = 1;
-        }
-
-        if (num > this.pagesCount) {
-            num = this.pagesCount;
-        }
-
-        this.currentPage = num;
-        this._draw();
-    },
-
-    addFilter: function(f, redraw){
-        var func = Utils.isFunc(f);
-        if (func === false) {
-            return ;
-        }
-        this.filters.push(func);
-
-        if (redraw === true) {
-            this.currentPage = 1;
-            this.draw();
-        }
-
-        return this.filters.length - 1;
-    },
-
-    removeFilter: function(key, redraw){
-        Utils.arrayDeleteByKey(this.filters, key);
-        if (redraw === true) {
-            this.currentPage = 1;
-            this.draw();
-        }
-        return this;
-    },
-
-    removeFilters: function(redraw){
-        this.filters = [];
-        if (redraw === true) {
-            this.currentPage = 1;
-            this.draw();
-        }
-    },
-
-    getFilters: function(){
-        return this.filters;
-    },
-
-    getFilterIndex: function(){
-        return this.filterIndex;
-    },
-
-    getFiltersIndexes: function(){
-        return this.filtersIndexes;
-    },
-
-    changeAttribute: function(attributeName){
-        var that = this, element = this.element, o = this.options;
-
-        var changeSortDir = function(){
-            var dir = element.attr("data-sort-dir");
-            if (!Utils.isValue(dir)) {
+        addFilter: function(f, redraw){
+            var func = Utils.isFunc(f);
+            if (func === false) {
                 return ;
             }
-            o.sortDir = dir;
-            that.sorting(o.sortClass, o.sortDir, true);
-        };
+            this.filters.push(func);
 
-        var changeSortClass = function(){
-            var target = element.attr("data-sort-source");
-            if (!Utils.isValue(target)) {
-                return ;
+            if (redraw === true) {
+                this.currentPage = 1;
+                this.draw();
             }
-            o.sortClass = target;
-            that.sorting(o.sortClass, o.sortDir, true);
-        };
 
-        var changeFilterString = function(){
-            var filter = element.attr("data-filter-string");
-            if (!Utils.isValue(filter)) {
-                return ;
+            return this.filters.length - 1;
+        },
+
+        removeFilter: function(key, redraw){
+            Utils.arrayDeleteByKey(this.filters, key);
+            if (redraw === true) {
+                this.currentPage = 1;
+                this.draw();
             }
-            o.filterString = filter;
-            that.filter(o.filterString);
-        };
+            return this;
+        },
 
-        switch (attributeName) {
-            case "data-sort-dir": changeSortDir(); break;
-            case "data-sort-source": changeSortClass(); break;
-            case "data-filter-string": changeFilterString(); break;
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        var component = element.parent();
-        var search = component.find(".list-search-block input");
-        var customSearch;
-
-        search.off(Metro.events.inputchange);
-        if (Utils.isValue(this.wrapperSearch)) {
-            customSearch = this.wrapperSearch.find("input");
-            if (customSearch.length > 0) {
-                customSearch.off(Metro.events.inputchange);
+        removeFilters: function(redraw){
+            this.filters = [];
+            if (redraw === true) {
+                this.currentPage = 1;
+                this.draw();
             }
+        },
+
+        getFilters: function(){
+            return this.filters;
+        },
+
+        getFilterIndex: function(){
+            return this.filterIndex;
+        },
+
+        getFiltersIndexes: function(){
+            return this.filtersIndexes;
+        },
+
+        changeAttribute: function(attributeName){
+            var that = this, element = this.element, o = this.options;
+
+            var changeSortDir = function(){
+                var dir = element.attr("data-sort-dir");
+                if (!Utils.isValue(dir)) {
+                    return ;
+                }
+                o.sortDir = dir;
+                that.sorting(o.sortClass, o.sortDir, true);
+            };
+
+            var changeSortClass = function(){
+                var target = element.attr("data-sort-source");
+                if (!Utils.isValue(target)) {
+                    return ;
+                }
+                o.sortClass = target;
+                that.sorting(o.sortClass, o.sortDir, true);
+            };
+
+            var changeFilterString = function(){
+                var filter = element.attr("data-filter-string");
+                if (!Utils.isValue(filter)) {
+                    return ;
+                }
+                o.filterString = filter;
+                that.filter(o.filterString);
+            };
+
+            switch (attributeName) {
+                case "data-sort-dir": changeSortDir(); break;
+                case "data-sort-source": changeSortClass(); break;
+                case "data-filter-string": changeFilterString(); break;
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            var component = element.parent();
+            var search = component.find(".list-search-block input");
+            var customSearch;
+
+            search.off(Metro.events.inputchange);
+            if (Utils.isValue(this.wrapperSearch)) {
+                customSearch = this.wrapperSearch.find("input");
+                if (customSearch.length > 0) {
+                    customSearch.off(Metro.events.inputchange);
+                }
+            }
+
+            component.off(Metro.events.click, ".pagination .page-link");
+
+            if (Utils.isValue(this.wrapperPagination)) {
+                this.wrapperPagination.off(Metro.events.click, ".pagination .page-link");
+            }
+
+            return element;
         }
-
-        component.off(Metro.events.click, ".pagination .page-link");
-
-        if (Utils.isValue(this.wrapperPagination)) {
-            this.wrapperPagination.off(Metro.events.click, ".pagination .page-link");
-        }
-
-        return element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 (function(Metro, $) {
     var Utils = Metro.utils;
@@ -22439,606 +22432,605 @@ Component('ripple', {
 
 Metro.ripple = getRipple;
 
-var SelectDefaultConfig = {
-    size: "normal",
-    selectDeferred: 0,
-    clearButton: false,
-    clearButtonIcon: "<span class='default-icon-cross'></span>",
-    usePlaceholder: true,
-    placeholder: "",
-    addEmptyValue: false,
-    emptyValue: "",
-    duration: 100,
-    prepend: "",
-    append: "",
-    filterPlaceholder: "",
-    filter: true,
-    copyInlineStyles: false,
-    dropHeight: 200,
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var SelectDefaultConfig = {
+        size: "normal",
+        selectDeferred: 0,
+        clearButton: false,
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        usePlaceholder: true,
+        placeholder: "",
+        addEmptyValue: false,
+        emptyValue: "",
+        duration: 100,
+        prepend: "",
+        append: "",
+        filterPlaceholder: "",
+        filter: true,
+        copyInlineStyles: false,
+        dropHeight: 200,
 
-    clsSelect: "",
-    clsSelectInput: "",
-    clsPrepend: "",
-    clsAppend: "",
-    clsOption: "",
-    clsOptionActive: "",
-    clsOptionGroup: "",
-    clsDropList: "",
-    clsDropContainer: "",
-    clsSelectedItem: "",
-    clsSelectedItemRemover: "",
+        clsSelect: "",
+        clsSelectInput: "",
+        clsPrepend: "",
+        clsAppend: "",
+        clsOption: "",
+        clsOptionActive: "",
+        clsOptionGroup: "",
+        clsDropList: "",
+        clsDropContainer: "",
+        clsSelectedItem: "",
+        clsSelectedItemRemover: "",
 
-    onChange: Metro.noop,
-    onUp: Metro.noop,
-    onDrop: Metro.noop,
-    onItemSelect: Metro.noop,
-    onItemDeselect: Metro.noop,
-    onSelectCreate: Metro.noop
-};
+        onChange: Metro.noop,
+        onUp: Metro.noop,
+        onDrop: Metro.noop,
+        onItemSelect: Metro.noop,
+        onItemDeselect: Metro.noop,
+        onSelectCreate: Metro.noop
+    };
 
-Metro.selectSetup = function (options) {
-    SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
-};
+    Metro.selectSetup = function (options) {
+        SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
+    };
 
-if (typeof window["metroSelectSetup"] !== undefined) {
-    Metro.selectSetup(window["metroSelectSetup"]);
-}
+    if (typeof window["metroSelectSetup"] !== undefined) {
+        Metro.selectSetup(window["metroSelectSetup"]);
+    }
 
-Component('select', {
-    init: function( options, elem ) {
-        this._super(elem, options, SelectDefaultConfig);
+    Metro.Component('select', {
+        init: function( options, elem ) {
+            this._super(elem, options, SelectDefaultConfig, {
+                list: null,
+                placeholder: null
+            });
 
-        this.list = null;
-        this.placeholder = null;
+            return this;
+        },
 
-        Metro.createExec(this);
+        _create: function(){
+            var element = this.element;
 
-        return this;
-    },
+            this._createSelect();
+            this._createEvents();
 
-    _create: function(){
-        var element = this.element, o = this.options;
+            this._fireEvent("select-create", {
+                element: element
+            });
+        },
 
-        Metro.checkRuntime(element, this.name);
-
-        this._createSelect();
-        this._createEvents();
-
-        Utils.exec(o.onSelectCreate, [element], element[0]);
-        element.fire("selectcreate");
-    },
-
-    _setPlaceholder: function(){
-        var element = this.element, o = this.options;
-        var input = element.siblings(".select-input");
-        if (o.usePlaceholder === true && (!Utils.isValue(element.val()) || element.val() == o.emptyValue)) {
-            input.html(this.placeholder);
-        }
-    },
-
-    _addTag: function(val, data){
-        var element = this.element, o = this.options;
-        var tag, tagSize, container = element.closest(".select");
-        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
-        $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
-
-        if (container.hasClass("input-large")) {
-            tagSize = "large";
-        } else if (container.hasClass("input-small")) {
-            tagSize = "small"
-        }
-
-        tag.addClass(tagSize);
-
-        return tag;
-    },
-
-    _addOption: function(item, parent, input, multiple){
-        var option = $(item);
-        var l, a;
-        var element = this.element, o = this.options;
-        var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
-
-        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "");
-        a = $("<a>").html(html);
-
-        l.addClass(item.className);
-
-        if (option.is(":disabled")) {
-            l.addClass("disabled");
-        }
-
-        if (option.is(":selected")) {
-            if (multiple) {
-                l.addClass("d-none");
-                input.append(this._addTag(html, l));
-            } else {
-                element.val(item.value);
-                input.html(html);
-                element.fire("change", {
-                    val: item.value
-                });
-                l.addClass("active");
+        _setPlaceholder: function(){
+            var element = this.element, o = this.options;
+            var input = element.siblings(".select-input");
+            if (o.usePlaceholder === true && (!Utils.isValue(element.val()) || element.val() == o.emptyValue)) {
+                input.html(this.placeholder);
             }
-        }
+        },
 
-        l.append(a).appendTo(parent);
-    },
+        _addTag: function(val, data){
+            var element = this.element, o = this.options;
+            var tag, tagSize, container = element.closest(".select");
+            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
+            $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
 
-    _addOptionGroup: function(item, parent, input, multiple){
-        var that = this;
-        var group = $(item);
-
-        $("<li>").html(item.label).addClass("group-title").appendTo(parent);
-
-        $.each(group.children(), function(){
-            that._addOption(this, parent, input, multiple);
-        })
-    },
-
-    _createOptions: function(){
-        var that = this, element = this.element, o = this.options, select = element.parent();
-        var list = select.find("ul").empty();
-        var selected = element.find("option[selected]").length > 0;
-        var multiple = element[0].multiple;
-        var input = element.siblings(".select-input");
-
-        element.siblings(".select-input").empty();
-
-        if (o.addEmptyValue === true) {
-            element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
-        }
-
-        $.each(element.children(), function(){
-            if (this.tagName === "OPTION") {
-                that._addOption(this, list, input, multiple);
-            } else if (this.tagName === "OPTGROUP") {
-                that._addOptionGroup(this, list, input, multiple);
+            if (container.hasClass("input-large")) {
+                tagSize = "large";
+            } else if (container.hasClass("input-small")) {
+                tagSize = "small"
             }
-        });
-    },
 
-    _createSelect: function(){
-        var element = this.element, o = this.options;
+            tag.addClass(tagSize);
 
-        var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
-        var multiple = element[0].multiple;
-        var select_id = Utils.elementId("select");
-        var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, drop_container_input, list, filter_input, dropdown_toggle;
-        var checkboxID = Utils.elementId("select-focus-trigger");
-        var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
+            return tag;
+        },
 
-        this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
+        _addOption: function(item, parent, input, multiple){
+            var option = $(item);
+            var l, a;
+            var element = this.element, o = this.options;
+            var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
 
-        container.attr("id", select_id).attr("for", checkboxID);
-        container.addClass("input-" + o.size);
+            l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "");
+            a = $("<a>").html(html);
 
-        dropdown_toggle = $("<span>").addClass("dropdown-toggle");
-        dropdown_toggle.appendTo(container);
+            l.addClass(item.className);
 
-        if (multiple) {
-            container.addClass("multiple");
-        }
+            if (option.is(":disabled")) {
+                l.addClass("disabled");
+            }
 
-        container.insertBefore(element);
-        element.appendTo(container);
-        buttons.appendTo(container);
-        checkbox.appendTo(container);
-
-        input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
-        drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
-        drop_container_input = $("<div>").appendTo(drop_container);
-        list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
-            "max-height": o.dropHeight
-        });
-        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
-
-        container.append(input);
-        container.append(drop_container);
-
-        drop_container.append(drop_container_input);
-
-        if (o.filter !== true) {
-            drop_container_input.hide();
-        }
-
-        drop_container.append(list);
-
-        this._createOptions();
-
-        this._setPlaceholder();
-
-        Metro.makePlugin(drop_container, "dropdown", {
-            dropFilter: ".select",
-            duration: o.duration,
-            toggleElement: [container],
-            onDrop: function(){
-                var dropped, target;
-                dropdown_toggle.addClass("active-toggle");
-                dropped = $(".select .drop-container");
-                $.each(dropped, function(){
-                    var drop = $(this);
-                    if (drop.is(drop_container)) {
-                        return ;
-                    }
-                    var dataDrop = drop.data('dropdown');
-                    if (dataDrop && dataDrop.close) {
-                        dataDrop.close();
-                    }
-                });
-
-                filter_input.val("").trigger(Metro.events.keyup).focus();
-
-                target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
-                if (target !== undefined) {
-                    list[0].scrollTop = target.position().top - ( (list.height() - target.height() )/ 2);
+            if (option.is(":selected")) {
+                if (multiple) {
+                    l.addClass("d-none");
+                    input.append(this._addTag(html, l));
+                } else {
+                    element.val(item.value);
+                    input.html(html);
+                    element.fire("change", {
+                        val: item.value
+                    });
+                    l.addClass("active");
                 }
-
-                Utils.exec(o.onDrop, [list[0]], element[0]);
-                element.fire("drop", {
-                    list: list[0]
-                });
-            },
-            onUp: function(){
-                dropdown_toggle.removeClass("active-toggle");
-                Utils.exec(o.onUp, [list[0]], element[0]);
-                element.fire("up", {
-                    list: list[0]
-                });
             }
-        });
 
-        this.list = list;
+            l.append(a).appendTo(parent);
+        },
 
-        if (o.clearButton === true && !element[0].readOnly) {
-            var clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.appendTo(buttons);
-        } else {
-            buttons.addClass("d-none");
-        }
+        _addOptionGroup: function(item, parent, input, multiple){
+            var that = this;
+            var group = $(item);
 
-        if (o.prepend !== "" && !multiple) {
-            var prepend = $("<div>").html(o.prepend);
-            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
-        }
+            $("<li>").html(item.label).addClass("group-title").appendTo(parent);
 
-        if (o.append !== "" && !multiple) {
-            var append = $("<div>").html(o.append);
-            append.addClass("append").addClass(o.clsAppend).appendTo(container);
-        }
+            $.each(group.children(), function(){
+                that._addOption(this, parent, input, multiple);
+            })
+        },
 
-        if (o.copyInlineStyles === true) {
-            for (var i = 0, l = element[0].style.length; i < l; i++) {
-                container.css(element[0].style[i], element.css(element[0].style[i]));
+        _createOptions: function(){
+            var that = this, element = this.element, o = this.options, select = element.parent();
+            var list = select.find("ul").empty();
+            var selected = element.find("option[selected]").length > 0;
+            var multiple = element[0].multiple;
+            var input = element.siblings(".select-input");
+
+            element.siblings(".select-input").empty();
+
+            if (o.addEmptyValue === true) {
+                element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
             }
-        }
 
-        if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl").attr("dir", "rtl");
-        }
+            $.each(element.children(), function(){
+                if (this.tagName === "OPTION") {
+                    that._addOption(this, list, input, multiple);
+                } else if (this.tagName === "OPTGROUP") {
+                    that._addOptionGroup(this, list, input, multiple);
+                }
+            });
+        },
 
-        if (element.is(':disabled')) {
-            this.disable();
-        } else {
-            this.enable();
-        }
+        _createSelect: function(){
+            var element = this.element, o = this.options;
 
-    },
+            var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
+            var multiple = element[0].multiple;
+            var select_id = Utils.elementId("select");
+            var buttons = $("<div>").addClass("button-group");
+            var input, drop_container, drop_container_input, list, filter_input, dropdown_toggle;
+            var checkboxID = Utils.elementId("select-focus-trigger");
+            var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var container = element.closest(".select");
-        var drop_container = container.find(".drop-container");
-        var input = element.siblings(".select-input");
-        var filter_input = drop_container.find("input");
-        var list = drop_container.find("ul");
-        var clearButton = container.find(".input-clear-button");
-        var checkbox = container.find(".select-focus-trigger");
+            this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-        checkbox.on("focus", function(){
-            container.addClass("focused");
-        });
+            container.attr("id", select_id).attr("for", checkboxID);
+            container.addClass("input-" + o.size);
 
-        checkbox.on("blur", function(){
-            container.removeClass("focused");
-        });
+            dropdown_toggle = $("<span>").addClass("dropdown-toggle");
+            dropdown_toggle.appendTo(container);
 
-        clearButton.on(Metro.events.click, function(e){
-            element.val(o.emptyValue);
-            if (element[0].multiple) {
-                list.find("li").removeClass("d-none");
+            if (multiple) {
+                container.addClass("multiple");
             }
-            that._setPlaceholder();
-            e.preventDefault();
-            e.stopPropagation();
-        });
 
-        element.on(Metro.events.change, function(){
-            that._setPlaceholder();
-        });
+            container.insertBefore(element);
+            element.appendTo(container);
+            buttons.appendTo(container);
+            checkbox.appendTo(container);
 
-        container.on(Metro.events.click, function(){
-            $(".focused").removeClass("focused");
-            container.addClass("focused");
-        });
+            input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
+            drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
+            drop_container_input = $("<div>").appendTo(drop_container);
+            list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
+                "max-height": o.dropHeight
+            });
+            filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
 
-        input.on(Metro.events.click, function(){
-            $(".focused").removeClass("focused");
-            container.addClass("focused");
-        });
+            container.append(input);
+            container.append(drop_container);
 
-        list.on(Metro.events.click, "li", function(e){
-            if ($(this).hasClass("group-title")) {
+            drop_container.append(drop_container_input);
+
+            if (o.filter !== true) {
+                drop_container_input.hide();
+            }
+
+            drop_container.append(list);
+
+            this._createOptions();
+
+            this._setPlaceholder();
+
+            Metro.makePlugin(drop_container, "dropdown", {
+                dropFilter: ".select",
+                duration: o.duration,
+                toggleElement: [container],
+                onDrop: function(){
+                    var dropped, target;
+                    dropdown_toggle.addClass("active-toggle");
+                    dropped = $(".select .drop-container");
+                    $.each(dropped, function(){
+                        var drop = $(this);
+                        if (drop.is(drop_container)) {
+                            return ;
+                        }
+                        var dataDrop = drop.data('dropdown');
+                        if (dataDrop && dataDrop.close) {
+                            dataDrop.close();
+                        }
+                    });
+
+                    filter_input.val("").trigger(Metro.events.keyup).focus();
+
+                    target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
+                    if (target !== undefined) {
+                        list[0].scrollTop = target.position().top - ( (list.height() - target.height() )/ 2);
+                    }
+
+                    Utils.exec(o.onDrop, [list[0]], element[0]);
+                    element.fire("drop", {
+                        list: list[0]
+                    });
+                },
+                onUp: function(){
+                    dropdown_toggle.removeClass("active-toggle");
+                    Utils.exec(o.onUp, [list[0]], element[0]);
+                    element.fire("up", {
+                        list: list[0]
+                    });
+                }
+            });
+
+            this.list = list;
+
+            if (o.clearButton === true && !element[0].readOnly) {
+                var clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+                clearButton.appendTo(buttons);
+            } else {
+                buttons.addClass("d-none");
+            }
+
+            if (o.prepend !== "" && !multiple) {
+                var prepend = $("<div>").html(o.prepend);
+                prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+            }
+
+            if (o.append !== "" && !multiple) {
+                var append = $("<div>").html(o.append);
+                append.addClass("append").addClass(o.clsAppend).appendTo(container);
+            }
+
+            if (o.copyInlineStyles === true) {
+                for (var i = 0, l = element[0].style.length; i < l; i++) {
+                    container.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (element.attr('dir') === 'rtl' ) {
+                container.addClass("rtl").attr("dir", "rtl");
+            }
+
+            if (element.is(':disabled')) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var container = element.closest(".select");
+            var drop_container = container.find(".drop-container");
+            var input = element.siblings(".select-input");
+            var filter_input = drop_container.find("input");
+            var list = drop_container.find("ul");
+            var clearButton = container.find(".input-clear-button");
+            var checkbox = container.find(".select-focus-trigger");
+
+            checkbox.on("focus", function(){
+                container.addClass("focused");
+            });
+
+            checkbox.on("blur", function(){
+                container.removeClass("focused");
+            });
+
+            clearButton.on(Metro.events.click, function(e){
+                element.val(o.emptyValue);
+                if (element[0].multiple) {
+                    list.find("li").removeClass("d-none");
+                }
+                that._setPlaceholder();
                 e.preventDefault();
                 e.stopPropagation();
-                return ;
-            }
-            var leaf = $(this);
-            var val = leaf.data('value');
-            var html = leaf.children('a').html();
-            var selected;
-            var option = leaf.data("option");
-            var options = element.find("option");
+            });
 
-            if (element[0].multiple) {
-                leaf.addClass("d-none");
-                input.append(that._addTag(html, leaf));
-            } else {
-                list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
-                leaf.addClass("active").addClass(o.clsOptionActive);
-                input.html(html);
-                Metro.getPlugin(drop_container, "dropdown").close();
-            }
+            element.on(Metro.events.change, function(){
+                that._setPlaceholder();
+            });
 
-            $.each(options, function(){
-                if (this === option) {
-                    this.selected = true;
+            container.on(Metro.events.click, function(){
+                $(".focused").removeClass("focused");
+                container.addClass("focused");
+            });
+
+            input.on(Metro.events.click, function(){
+                $(".focused").removeClass("focused");
+                container.addClass("focused");
+            });
+
+            list.on(Metro.events.click, "li", function(e){
+                if ($(this).hasClass("group-title")) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return ;
                 }
-            });
+                var leaf = $(this);
+                var val = leaf.data('value');
+                var html = leaf.children('a').html();
+                var selected;
+                var option = leaf.data("option");
+                var options = element.find("option");
 
-            Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
-            element.fire("itemselect", {
-                val: val,
-                option: option,
-                leaf: leaf[0]
-            });
-
-            selected = that.getSelected();
-
-            Utils.exec(o.onChange, [selected], element[0]);
-            element.fire("change", {
-                selected: selected
-            });
-        });
-
-        input.on("click", ".tag .remover", function(e){
-            var item = $(this).closest(".tag");
-            var leaf = item.data("option");
-            var option = leaf.data('option');
-            var selected;
-
-            leaf.removeClass("d-none");
-            $.each(element.find("option"), function(){
-                if (this === option) {
-                    this.selected = false;
-                }
-            });
-            item.remove();
-
-            Utils.exec(o.onItemDeselect, [option], element[0]);
-            element.fire("itemdeselect", {
-                option: option
-            });
-
-            selected = that.getSelected();
-            Utils.exec(o.onChange, [selected], element[0]);
-            element.fire("change", {
-                selected: selected
-            });
-
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        filter_input.on(Metro.events.keyup, function(){
-            var filter = this.value.toUpperCase();
-            var li = list.find("li");
-            var i, a;
-            for (i = 0; i < li.length; i++) {
-                if ($(li[i]).hasClass("group-title")) continue;
-                a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
+                if (element[0].multiple) {
+                    leaf.addClass("d-none");
+                    input.append(that._addTag(html, leaf));
                 } else {
-                    li[i].style.display = "none";
+                    list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
+                    leaf.addClass("active").addClass(o.clsOptionActive);
+                    input.html(html);
+                    Metro.getPlugin(drop_container, "dropdown").close();
                 }
+
+                $.each(options, function(){
+                    if (this === option) {
+                        this.selected = true;
+                    }
+                });
+
+                Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
+                element.fire("itemselect", {
+                    val: val,
+                    option: option,
+                    leaf: leaf[0]
+                });
+
+                selected = that.getSelected();
+
+                Utils.exec(o.onChange, [selected], element[0]);
+                element.fire("change", {
+                    selected: selected
+                });
+            });
+
+            input.on("click", ".tag .remover", function(e){
+                var item = $(this).closest(".tag");
+                var leaf = item.data("option");
+                var option = leaf.data('option');
+                var selected;
+
+                leaf.removeClass("d-none");
+                $.each(element.find("option"), function(){
+                    if (this === option) {
+                        this.selected = false;
+                    }
+                });
+                item.remove();
+
+                Utils.exec(o.onItemDeselect, [option], element[0]);
+                element.fire("itemdeselect", {
+                    option: option
+                });
+
+                selected = that.getSelected();
+                Utils.exec(o.onChange, [selected], element[0]);
+                element.fire("change", {
+                    selected: selected
+                });
+
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            filter_input.on(Metro.events.keyup, function(){
+                var filter = this.value.toUpperCase();
+                var li = list.find("li");
+                var i, a;
+                for (i = 0; i < li.length; i++) {
+                    if ($(li[i]).hasClass("group-title")) continue;
+                    a = li[i].getElementsByTagName("a")[0];
+                    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+                    } else {
+                        li[i].style.display = "none";
+                    }
+                }
+            });
+
+            filter_input.on(Metro.events.click, function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            drop_container.on(Metro.events.click, function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        },
+
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.closest(".select").addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.closest(".select").removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
             }
-        });
+        },
 
-        filter_input.on(Metro.events.click, function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        reset: function(to_default){
+            var element = this.element, o = this.options;
+            var options = element.find("option");
+            var select = element.closest('.select');
+            var selected;
 
-        drop_container.on(Metro.events.click, function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.closest(".select").addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.closest(".select").removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    reset: function(to_default){
-        var element = this.element, o = this.options;
-        var options = element.find("option");
-        var select = element.closest('.select');
-        var selected;
-
-        $.each(options, function(){
-            this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
-        });
-
-        this.list.find("li").remove();
-        select.find(".select-input").html('');
-
-        this._createOptions();
-
-        selected = this.getSelected();
-        Utils.exec(o.onChange, [selected], element[0]);
-        element.fire("change", {
-            selected: selected
-        });
-    },
-
-    getSelected: function(){
-        var element = this.element;
-        var result = [];
-
-        element.find("option").each(function(){
-            if (this.selected) result.push(this.value);
-        });
-
-        return result;
-    },
-
-    val: function(val){
-        var element = this.element, o = this.options;
-        var input = element.siblings(".select-input");
-        var options = element.find("option");
-        var list_items = this.list.find("li");
-        var result = [];
-        var multiple = element.attr("multiple") !== undefined;
-        var option;
-        var i, html, list_item, option_value, tag, selected;
-
-        if (Utils.isNull(val)) {
             $.each(options, function(){
+                this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
+            });
+
+            this.list.find("li").remove();
+            select.find(".select-input").html('');
+
+            this._createOptions();
+
+            selected = this.getSelected();
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
+        },
+
+        getSelected: function(){
+            var element = this.element;
+            var result = [];
+
+            element.find("option").each(function(){
                 if (this.selected) result.push(this.value);
             });
-            return multiple ? result : result[0];
-        }
 
-        $.each(options, function(){
-            this.selected = false;
-        });
-        list_items.removeClass("active");
-        input.html('');
+            return result;
+        },
 
-        if (Array.isArray(val) === false) {
-            val  = [val];
-        }
+        val: function(val){
+            var element = this.element, o = this.options;
+            var input = element.siblings(".select-input");
+            var options = element.find("option");
+            var list_items = this.list.find("li");
+            var result = [];
+            var multiple = element.attr("multiple") !== undefined;
+            var option;
+            var i, html, list_item, option_value, tag, selected;
 
-        $.each(val, function(){
-            for (i = 0; i < options.length; i++) {
-                option = options[i];
-                html = Utils.isValue(option.getAttribute('data-template')) ? option.getAttribute('data-template').replace("$1", option.text) : option.text;
-                if (""+option.value === ""+this) {
-                    option.selected = true;
-                    break;
-                }
+            if (Utils.isNull(val)) {
+                $.each(options, function(){
+                    if (this.selected) result.push(this.value);
+                });
+                return multiple ? result : result[0];
             }
 
-            for(i = 0; i < list_items.length; i++) {
-                list_item = $(list_items[i]);
-                option_value = list_item.attr("data-value");
-                if (""+option_value === ""+this) {
-                    if (multiple) {
-                        list_item.addClass("d-none");
-                        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                        tag.data("option", list_item);
-                        $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
-                    } else {
-                        list_item.addClass("active");
-                        input.html(html);
+            $.each(options, function(){
+                this.selected = false;
+            });
+            list_items.removeClass("active");
+            input.html('');
+
+            if (Array.isArray(val) === false) {
+                val  = [val];
+            }
+
+            $.each(val, function(){
+                for (i = 0; i < options.length; i++) {
+                    option = options[i];
+                    html = Utils.isValue(option.getAttribute('data-template')) ? option.getAttribute('data-template').replace("$1", option.text) : option.text;
+                    if (""+option.value === ""+this) {
+                        option.selected = true;
+                        break;
                     }
-                    break;
                 }
-            }
-        });
 
-        selected = this.getSelected();
-        Utils.exec(o.onChange, [selected], element[0]);
-        element.fire("change", {
-            selected: selected
-        });
-    },
-
-    data: function(op){
-        var element = this.element;
-        var option_group;
-
-        element.empty();
-
-        if (typeof op === 'string') {
-            element.html(op);
-        } else if (Utils.isObject(op)) {
-            $.each(op, function(key, val){
-                if (Utils.isObject(val)) {
-                    option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
-                    $.each(val, function(key2, val2){
-                        $("<option>").attr("value", key2).text(val2).appendTo(option_group);
-                    });
-                } else {
-                    $("<option>").attr("value", key).text(val).appendTo(element);
+                for(i = 0; i < list_items.length; i++) {
+                    list_item = $(list_items[i]);
+                    option_value = list_item.attr("data-value");
+                    if (""+option_value === ""+this) {
+                        if (multiple) {
+                            list_item.addClass("d-none");
+                            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                            tag.data("option", list_item);
+                            $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+                        } else {
+                            list_item.addClass("active");
+                            input.html(html);
+                        }
+                        break;
+                    }
                 }
             });
+
+            selected = this.getSelected();
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
+        },
+
+        data: function(op){
+            var element = this.element;
+            var option_group;
+
+            element.empty();
+
+            if (typeof op === 'string') {
+                element.html(op);
+            } else if (Utils.isObject(op)) {
+                $.each(op, function(key, val){
+                    if (Utils.isObject(val)) {
+                        option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
+                        $.each(val, function(key2, val2){
+                            $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                        });
+                    } else {
+                        $("<option>").attr("value", key).text(val).appendTo(element);
+                    }
+                });
+            }
+
+            this._createOptions();
+        },
+
+        changeAttribute: function(attributeName){
+            if (attributeName === 'disabled') {
+                this.toggleState();
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            var container = element.closest(".select");
+            var drop_container = container.find(".drop-container");
+            var input = element.siblings(".select-input");
+            var filter_input = drop_container.find("input");
+            var list = drop_container.find("ul");
+            var clearButton = container.find(".input-clear-button");
+
+            container.off(Metro.events.click);
+            container.off(Metro.events.click, ".input-clear-button");
+            input.off(Metro.events.click);
+            filter_input.off(Metro.events.blur);
+            filter_input.off(Metro.events.focus);
+            list.off(Metro.events.click, "li");
+            filter_input.off(Metro.events.keyup);
+            drop_container.off(Metro.events.click);
+            clearButton.off(Metro.events.click);
+
+            drop_container.data("dropdown").destroy();
+
+            return element;
         }
+    });
 
-        this._createOptions();
-    },
-
-    changeAttribute: function(attributeName){
-        if (attributeName === 'disabled') {
-            this.toggleState();
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        var container = element.closest(".select");
-        var drop_container = container.find(".drop-container");
-        var input = element.siblings(".select-input");
-        var filter_input = drop_container.find("input");
-        var list = drop_container.find("ul");
-        var clearButton = container.find(".input-clear-button");
-
-        container.off(Metro.events.click);
-        container.off(Metro.events.click, ".input-clear-button");
-        input.off(Metro.events.click);
-        filter_input.off(Metro.events.blur);
-        filter_input.off(Metro.events.focus);
-        list.off(Metro.events.click, "li");
-        filter_input.off(Metro.events.keyup);
-        drop_container.off(Metro.events.click);
-        clearButton.off(Metro.events.click);
-
-        drop_container.data("dropdown").destroy();
-
-        return element;
-    }
-});
-
-$(document).on(Metro.events.click, function(){
-    $(".select").removeClass("focused");
-}, {ns: "blur-select-elements"});
-
+    $(document).on(Metro.events.click, function(){
+        $(".select").removeClass("focused");
+    }, {ns: "blur-select-elements"});
+}(Metro, m4q));
 
 var SidebarDefaultConfig = {
     menuScrollbar: false,

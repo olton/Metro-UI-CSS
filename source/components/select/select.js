@@ -1,600 +1,600 @@
-/* global Metro, Utils, Component */
-var SelectDefaultConfig = {
-    size: "normal",
-    selectDeferred: 0,
-    clearButton: false,
-    clearButtonIcon: "<span class='default-icon-cross'></span>",
-    usePlaceholder: true,
-    placeholder: "",
-    addEmptyValue: false,
-    emptyValue: "",
-    duration: 100,
-    prepend: "",
-    append: "",
-    filterPlaceholder: "",
-    filter: true,
-    copyInlineStyles: false,
-    dropHeight: 200,
+/* global Metro */
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var SelectDefaultConfig = {
+        size: "normal",
+        selectDeferred: 0,
+        clearButton: false,
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        usePlaceholder: true,
+        placeholder: "",
+        addEmptyValue: false,
+        emptyValue: "",
+        duration: 100,
+        prepend: "",
+        append: "",
+        filterPlaceholder: "",
+        filter: true,
+        copyInlineStyles: false,
+        dropHeight: 200,
 
-    clsSelect: "",
-    clsSelectInput: "",
-    clsPrepend: "",
-    clsAppend: "",
-    clsOption: "",
-    clsOptionActive: "",
-    clsOptionGroup: "",
-    clsDropList: "",
-    clsDropContainer: "",
-    clsSelectedItem: "",
-    clsSelectedItemRemover: "",
+        clsSelect: "",
+        clsSelectInput: "",
+        clsPrepend: "",
+        clsAppend: "",
+        clsOption: "",
+        clsOptionActive: "",
+        clsOptionGroup: "",
+        clsDropList: "",
+        clsDropContainer: "",
+        clsSelectedItem: "",
+        clsSelectedItemRemover: "",
 
-    onChange: Metro.noop,
-    onUp: Metro.noop,
-    onDrop: Metro.noop,
-    onItemSelect: Metro.noop,
-    onItemDeselect: Metro.noop,
-    onSelectCreate: Metro.noop
-};
+        onChange: Metro.noop,
+        onUp: Metro.noop,
+        onDrop: Metro.noop,
+        onItemSelect: Metro.noop,
+        onItemDeselect: Metro.noop,
+        onSelectCreate: Metro.noop
+    };
 
-Metro.selectSetup = function (options) {
-    SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
-};
+    Metro.selectSetup = function (options) {
+        SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
+    };
 
-if (typeof window["metroSelectSetup"] !== undefined) {
-    Metro.selectSetup(window["metroSelectSetup"]);
-}
+    if (typeof window["metroSelectSetup"] !== undefined) {
+        Metro.selectSetup(window["metroSelectSetup"]);
+    }
 
-Component('select', {
-    init: function( options, elem ) {
-        this._super(elem, options, SelectDefaultConfig);
+    Metro.Component('select', {
+        init: function( options, elem ) {
+            this._super(elem, options, SelectDefaultConfig, {
+                list: null,
+                placeholder: null
+            });
 
-        this.list = null;
-        this.placeholder = null;
+            return this;
+        },
 
-        Metro.createExec(this);
+        _create: function(){
+            var element = this.element;
 
-        return this;
-    },
+            this._createSelect();
+            this._createEvents();
 
-    _create: function(){
-        var element = this.element, o = this.options;
+            this._fireEvent("select-create", {
+                element: element
+            });
+        },
 
-        Metro.checkRuntime(element, this.name);
-
-        this._createSelect();
-        this._createEvents();
-
-        Utils.exec(o.onSelectCreate, [element], element[0]);
-        element.fire("selectcreate");
-    },
-
-    _setPlaceholder: function(){
-        var element = this.element, o = this.options;
-        var input = element.siblings(".select-input");
-        if (o.usePlaceholder === true && (!Utils.isValue(element.val()) || element.val() == o.emptyValue)) {
-            input.html(this.placeholder);
-        }
-    },
-
-    _addTag: function(val, data){
-        var element = this.element, o = this.options;
-        var tag, tagSize, container = element.closest(".select");
-        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
-        $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
-
-        if (container.hasClass("input-large")) {
-            tagSize = "large";
-        } else if (container.hasClass("input-small")) {
-            tagSize = "small"
-        }
-
-        tag.addClass(tagSize);
-
-        return tag;
-    },
-
-    _addOption: function(item, parent, input, multiple){
-        var option = $(item);
-        var l, a;
-        var element = this.element, o = this.options;
-        var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
-
-        l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "");
-        a = $("<a>").html(html);
-
-        l.addClass(item.className);
-
-        if (option.is(":disabled")) {
-            l.addClass("disabled");
-        }
-
-        if (option.is(":selected")) {
-            if (multiple) {
-                l.addClass("d-none");
-                input.append(this._addTag(html, l));
-            } else {
-                element.val(item.value);
-                input.html(html);
-                element.fire("change", {
-                    val: item.value
-                });
-                l.addClass("active");
+        _setPlaceholder: function(){
+            var element = this.element, o = this.options;
+            var input = element.siblings(".select-input");
+            if (o.usePlaceholder === true && (!Utils.isValue(element.val()) || element.val() == o.emptyValue)) {
+                input.html(this.placeholder);
             }
-        }
+        },
 
-        l.append(a).appendTo(parent);
-    },
+        _addTag: function(val, data){
+            var element = this.element, o = this.options;
+            var tag, tagSize, container = element.closest(".select");
+            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
+            $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
 
-    _addOptionGroup: function(item, parent, input, multiple){
-        var that = this;
-        var group = $(item);
-
-        $("<li>").html(item.label).addClass("group-title").appendTo(parent);
-
-        $.each(group.children(), function(){
-            that._addOption(this, parent, input, multiple);
-        })
-    },
-
-    _createOptions: function(){
-        var that = this, element = this.element, o = this.options, select = element.parent();
-        var list = select.find("ul").empty();
-        var selected = element.find("option[selected]").length > 0;
-        var multiple = element[0].multiple;
-        var input = element.siblings(".select-input");
-
-        element.siblings(".select-input").empty();
-
-        if (o.addEmptyValue === true) {
-            element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
-        }
-
-        $.each(element.children(), function(){
-            if (this.tagName === "OPTION") {
-                that._addOption(this, list, input, multiple);
-            } else if (this.tagName === "OPTGROUP") {
-                that._addOptionGroup(this, list, input, multiple);
+            if (container.hasClass("input-large")) {
+                tagSize = "large";
+            } else if (container.hasClass("input-small")) {
+                tagSize = "small"
             }
-        });
-    },
 
-    _createSelect: function(){
-        var element = this.element, o = this.options;
+            tag.addClass(tagSize);
 
-        var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
-        var multiple = element[0].multiple;
-        var select_id = Utils.elementId("select");
-        var buttons = $("<div>").addClass("button-group");
-        var input, drop_container, drop_container_input, list, filter_input, dropdown_toggle;
-        var checkboxID = Utils.elementId("select-focus-trigger");
-        var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
+            return tag;
+        },
 
-        this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
+        _addOption: function(item, parent, input, multiple){
+            var option = $(item);
+            var l, a;
+            var element = this.element, o = this.options;
+            var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
 
-        container.attr("id", select_id).attr("for", checkboxID);
-        container.addClass("input-" + o.size);
+            l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "");
+            a = $("<a>").html(html);
 
-        dropdown_toggle = $("<span>").addClass("dropdown-toggle");
-        dropdown_toggle.appendTo(container);
+            l.addClass(item.className);
 
-        if (multiple) {
-            container.addClass("multiple");
-        }
+            if (option.is(":disabled")) {
+                l.addClass("disabled");
+            }
 
-        container.insertBefore(element);
-        element.appendTo(container);
-        buttons.appendTo(container);
-        checkbox.appendTo(container);
-
-        input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
-        drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
-        drop_container_input = $("<div>").appendTo(drop_container);
-        list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
-            "max-height": o.dropHeight
-        });
-        filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
-
-        container.append(input);
-        container.append(drop_container);
-
-        drop_container.append(drop_container_input);
-
-        if (o.filter !== true) {
-            drop_container_input.hide();
-        }
-
-        drop_container.append(list);
-
-        this._createOptions();
-
-        this._setPlaceholder();
-
-        Metro.makePlugin(drop_container, "dropdown", {
-            dropFilter: ".select",
-            duration: o.duration,
-            toggleElement: [container],
-            onDrop: function(){
-                var dropped, target;
-                dropdown_toggle.addClass("active-toggle");
-                dropped = $(".select .drop-container");
-                $.each(dropped, function(){
-                    var drop = $(this);
-                    if (drop.is(drop_container)) {
-                        return ;
-                    }
-                    var dataDrop = drop.data('dropdown');
-                    if (dataDrop && dataDrop.close) {
-                        dataDrop.close();
-                    }
-                });
-
-                filter_input.val("").trigger(Metro.events.keyup).focus();
-
-                target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
-                if (target !== undefined) {
-                    list[0].scrollTop = target.position().top - ( (list.height() - target.height() )/ 2);
+            if (option.is(":selected")) {
+                if (multiple) {
+                    l.addClass("d-none");
+                    input.append(this._addTag(html, l));
+                } else {
+                    element.val(item.value);
+                    input.html(html);
+                    element.fire("change", {
+                        val: item.value
+                    });
+                    l.addClass("active");
                 }
-
-                Utils.exec(o.onDrop, [list[0]], element[0]);
-                element.fire("drop", {
-                    list: list[0]
-                });
-            },
-            onUp: function(){
-                dropdown_toggle.removeClass("active-toggle");
-                Utils.exec(o.onUp, [list[0]], element[0]);
-                element.fire("up", {
-                    list: list[0]
-                });
             }
-        });
 
-        this.list = list;
+            l.append(a).appendTo(parent);
+        },
 
-        if (o.clearButton === true && !element[0].readOnly) {
-            var clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.appendTo(buttons);
-        } else {
-            buttons.addClass("d-none");
-        }
+        _addOptionGroup: function(item, parent, input, multiple){
+            var that = this;
+            var group = $(item);
 
-        if (o.prepend !== "" && !multiple) {
-            var prepend = $("<div>").html(o.prepend);
-            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
-        }
+            $("<li>").html(item.label).addClass("group-title").appendTo(parent);
 
-        if (o.append !== "" && !multiple) {
-            var append = $("<div>").html(o.append);
-            append.addClass("append").addClass(o.clsAppend).appendTo(container);
-        }
+            $.each(group.children(), function(){
+                that._addOption(this, parent, input, multiple);
+            })
+        },
 
-        if (o.copyInlineStyles === true) {
-            for (var i = 0, l = element[0].style.length; i < l; i++) {
-                container.css(element[0].style[i], element.css(element[0].style[i]));
+        _createOptions: function(){
+            var that = this, element = this.element, o = this.options, select = element.parent();
+            var list = select.find("ul").empty();
+            var selected = element.find("option[selected]").length > 0;
+            var multiple = element[0].multiple;
+            var input = element.siblings(".select-input");
+
+            element.siblings(".select-input").empty();
+
+            if (o.addEmptyValue === true) {
+                element.prepend($("<option "+(!selected ? 'selected' : '')+" value='"+o.emptyValue+"' class='d-none'></option>"));
             }
-        }
 
-        if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl").attr("dir", "rtl");
-        }
+            $.each(element.children(), function(){
+                if (this.tagName === "OPTION") {
+                    that._addOption(this, list, input, multiple);
+                } else if (this.tagName === "OPTGROUP") {
+                    that._addOptionGroup(this, list, input, multiple);
+                }
+            });
+        },
 
-        if (element.is(':disabled')) {
-            this.disable();
-        } else {
-            this.enable();
-        }
+        _createSelect: function(){
+            var element = this.element, o = this.options;
 
-    },
+            var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
+            var multiple = element[0].multiple;
+            var select_id = Utils.elementId("select");
+            var buttons = $("<div>").addClass("button-group");
+            var input, drop_container, drop_container_input, list, filter_input, dropdown_toggle;
+            var checkboxID = Utils.elementId("select-focus-trigger");
+            var checkbox = $("<input type='checkbox'>").addClass("select-focus-trigger").attr("id", checkboxID);
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var container = element.closest(".select");
-        var drop_container = container.find(".drop-container");
-        var input = element.siblings(".select-input");
-        var filter_input = drop_container.find("input");
-        var list = drop_container.find("ul");
-        var clearButton = container.find(".input-clear-button");
-        var checkbox = container.find(".select-focus-trigger");
+            this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-        checkbox.on("focus", function(){
-            container.addClass("focused");
-        });
+            container.attr("id", select_id).attr("for", checkboxID);
+            container.addClass("input-" + o.size);
 
-        checkbox.on("blur", function(){
-            container.removeClass("focused");
-        });
+            dropdown_toggle = $("<span>").addClass("dropdown-toggle");
+            dropdown_toggle.appendTo(container);
 
-        clearButton.on(Metro.events.click, function(e){
-            element.val(o.emptyValue);
-            if (element[0].multiple) {
-                list.find("li").removeClass("d-none");
+            if (multiple) {
+                container.addClass("multiple");
             }
-            that._setPlaceholder();
-            e.preventDefault();
-            e.stopPropagation();
-        });
 
-        element.on(Metro.events.change, function(){
-            that._setPlaceholder();
-        });
+            container.insertBefore(element);
+            element.appendTo(container);
+            buttons.appendTo(container);
+            checkbox.appendTo(container);
 
-        container.on(Metro.events.click, function(){
-            $(".focused").removeClass("focused");
-            container.addClass("focused");
-        });
+            input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
+            drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
+            drop_container_input = $("<div>").appendTo(drop_container);
+            list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
+                "max-height": o.dropHeight
+            });
+            filter_input = $("<input type='text' data-role='input'>").attr("placeholder", o.filterPlaceholder).appendTo(drop_container_input);
 
-        input.on(Metro.events.click, function(){
-            $(".focused").removeClass("focused");
-            container.addClass("focused");
-        });
+            container.append(input);
+            container.append(drop_container);
 
-        list.on(Metro.events.click, "li", function(e){
-            if ($(this).hasClass("group-title")) {
+            drop_container.append(drop_container_input);
+
+            if (o.filter !== true) {
+                drop_container_input.hide();
+            }
+
+            drop_container.append(list);
+
+            this._createOptions();
+
+            this._setPlaceholder();
+
+            Metro.makePlugin(drop_container, "dropdown", {
+                dropFilter: ".select",
+                duration: o.duration,
+                toggleElement: [container],
+                onDrop: function(){
+                    var dropped, target;
+                    dropdown_toggle.addClass("active-toggle");
+                    dropped = $(".select .drop-container");
+                    $.each(dropped, function(){
+                        var drop = $(this);
+                        if (drop.is(drop_container)) {
+                            return ;
+                        }
+                        var dataDrop = drop.data('dropdown');
+                        if (dataDrop && dataDrop.close) {
+                            dataDrop.close();
+                        }
+                    });
+
+                    filter_input.val("").trigger(Metro.events.keyup).focus();
+
+                    target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
+                    if (target !== undefined) {
+                        list[0].scrollTop = target.position().top - ( (list.height() - target.height() )/ 2);
+                    }
+
+                    Utils.exec(o.onDrop, [list[0]], element[0]);
+                    element.fire("drop", {
+                        list: list[0]
+                    });
+                },
+                onUp: function(){
+                    dropdown_toggle.removeClass("active-toggle");
+                    Utils.exec(o.onUp, [list[0]], element[0]);
+                    element.fire("up", {
+                        list: list[0]
+                    });
+                }
+            });
+
+            this.list = list;
+
+            if (o.clearButton === true && !element[0].readOnly) {
+                var clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+                clearButton.appendTo(buttons);
+            } else {
+                buttons.addClass("d-none");
+            }
+
+            if (o.prepend !== "" && !multiple) {
+                var prepend = $("<div>").html(o.prepend);
+                prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+            }
+
+            if (o.append !== "" && !multiple) {
+                var append = $("<div>").html(o.append);
+                append.addClass("append").addClass(o.clsAppend).appendTo(container);
+            }
+
+            if (o.copyInlineStyles === true) {
+                for (var i = 0, l = element[0].style.length; i < l; i++) {
+                    container.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (element.attr('dir') === 'rtl' ) {
+                container.addClass("rtl").attr("dir", "rtl");
+            }
+
+            if (element.is(':disabled')) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var container = element.closest(".select");
+            var drop_container = container.find(".drop-container");
+            var input = element.siblings(".select-input");
+            var filter_input = drop_container.find("input");
+            var list = drop_container.find("ul");
+            var clearButton = container.find(".input-clear-button");
+            var checkbox = container.find(".select-focus-trigger");
+
+            checkbox.on("focus", function(){
+                container.addClass("focused");
+            });
+
+            checkbox.on("blur", function(){
+                container.removeClass("focused");
+            });
+
+            clearButton.on(Metro.events.click, function(e){
+                element.val(o.emptyValue);
+                if (element[0].multiple) {
+                    list.find("li").removeClass("d-none");
+                }
+                that._setPlaceholder();
                 e.preventDefault();
                 e.stopPropagation();
-                return ;
-            }
-            var leaf = $(this);
-            var val = leaf.data('value');
-            var html = leaf.children('a').html();
-            var selected;
-            var option = leaf.data("option");
-            var options = element.find("option");
+            });
 
-            if (element[0].multiple) {
-                leaf.addClass("d-none");
-                input.append(that._addTag(html, leaf));
-            } else {
-                list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
-                leaf.addClass("active").addClass(o.clsOptionActive);
-                input.html(html);
-                Metro.getPlugin(drop_container, "dropdown").close();
-            }
+            element.on(Metro.events.change, function(){
+                that._setPlaceholder();
+            });
 
-            $.each(options, function(){
-                if (this === option) {
-                    this.selected = true;
+            container.on(Metro.events.click, function(){
+                $(".focused").removeClass("focused");
+                container.addClass("focused");
+            });
+
+            input.on(Metro.events.click, function(){
+                $(".focused").removeClass("focused");
+                container.addClass("focused");
+            });
+
+            list.on(Metro.events.click, "li", function(e){
+                if ($(this).hasClass("group-title")) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return ;
                 }
-            });
+                var leaf = $(this);
+                var val = leaf.data('value');
+                var html = leaf.children('a').html();
+                var selected;
+                var option = leaf.data("option");
+                var options = element.find("option");
 
-            Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
-            element.fire("itemselect", {
-                val: val,
-                option: option,
-                leaf: leaf[0]
-            });
-
-            selected = that.getSelected();
-
-            Utils.exec(o.onChange, [selected], element[0]);
-            element.fire("change", {
-                selected: selected
-            });
-        });
-
-        input.on("click", ".tag .remover", function(e){
-            var item = $(this).closest(".tag");
-            var leaf = item.data("option");
-            var option = leaf.data('option');
-            var selected;
-
-            leaf.removeClass("d-none");
-            $.each(element.find("option"), function(){
-                if (this === option) {
-                    this.selected = false;
-                }
-            });
-            item.remove();
-
-            Utils.exec(o.onItemDeselect, [option], element[0]);
-            element.fire("itemdeselect", {
-                option: option
-            });
-
-            selected = that.getSelected();
-            Utils.exec(o.onChange, [selected], element[0]);
-            element.fire("change", {
-                selected: selected
-            });
-
-            e.preventDefault();
-            e.stopPropagation();
-        });
-
-        filter_input.on(Metro.events.keyup, function(){
-            var filter = this.value.toUpperCase();
-            var li = list.find("li");
-            var i, a;
-            for (i = 0; i < li.length; i++) {
-                if ($(li[i]).hasClass("group-title")) continue;
-                a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
+                if (element[0].multiple) {
+                    leaf.addClass("d-none");
+                    input.append(that._addTag(html, leaf));
                 } else {
-                    li[i].style.display = "none";
+                    list.find("li.active").removeClass("active").removeClass(o.clsOptionActive);
+                    leaf.addClass("active").addClass(o.clsOptionActive);
+                    input.html(html);
+                    Metro.getPlugin(drop_container, "dropdown").close();
                 }
+
+                $.each(options, function(){
+                    if (this === option) {
+                        this.selected = true;
+                    }
+                });
+
+                Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
+                element.fire("itemselect", {
+                    val: val,
+                    option: option,
+                    leaf: leaf[0]
+                });
+
+                selected = that.getSelected();
+
+                Utils.exec(o.onChange, [selected], element[0]);
+                element.fire("change", {
+                    selected: selected
+                });
+            });
+
+            input.on("click", ".tag .remover", function(e){
+                var item = $(this).closest(".tag");
+                var leaf = item.data("option");
+                var option = leaf.data('option');
+                var selected;
+
+                leaf.removeClass("d-none");
+                $.each(element.find("option"), function(){
+                    if (this === option) {
+                        this.selected = false;
+                    }
+                });
+                item.remove();
+
+                Utils.exec(o.onItemDeselect, [option], element[0]);
+                element.fire("itemdeselect", {
+                    option: option
+                });
+
+                selected = that.getSelected();
+                Utils.exec(o.onChange, [selected], element[0]);
+                element.fire("change", {
+                    selected: selected
+                });
+
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            filter_input.on(Metro.events.keyup, function(){
+                var filter = this.value.toUpperCase();
+                var li = list.find("li");
+                var i, a;
+                for (i = 0; i < li.length; i++) {
+                    if ($(li[i]).hasClass("group-title")) continue;
+                    a = li[i].getElementsByTagName("a")[0];
+                    if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                        li[i].style.display = "";
+                    } else {
+                        li[i].style.display = "none";
+                    }
+                }
+            });
+
+            filter_input.on(Metro.events.click, function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            drop_container.on(Metro.events.click, function(e){
+                e.preventDefault();
+                e.stopPropagation();
+            });
+        },
+
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.closest(".select").addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.closest(".select").removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
             }
-        });
+        },
 
-        filter_input.on(Metro.events.click, function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
+        reset: function(to_default){
+            var element = this.element, o = this.options;
+            var options = element.find("option");
+            var select = element.closest('.select');
+            var selected;
 
-        drop_container.on(Metro.events.click, function(e){
-            e.preventDefault();
-            e.stopPropagation();
-        });
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.closest(".select").addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.closest(".select").removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    reset: function(to_default){
-        var element = this.element, o = this.options;
-        var options = element.find("option");
-        var select = element.closest('.select');
-        var selected;
-
-        $.each(options, function(){
-            this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
-        });
-
-        this.list.find("li").remove();
-        select.find(".select-input").html('');
-
-        this._createOptions();
-
-        selected = this.getSelected();
-        Utils.exec(o.onChange, [selected], element[0]);
-        element.fire("change", {
-            selected: selected
-        });
-    },
-
-    getSelected: function(){
-        var element = this.element;
-        var result = [];
-
-        element.find("option").each(function(){
-            if (this.selected) result.push(this.value);
-        });
-
-        return result;
-    },
-
-    val: function(val){
-        var element = this.element, o = this.options;
-        var input = element.siblings(".select-input");
-        var options = element.find("option");
-        var list_items = this.list.find("li");
-        var result = [];
-        var multiple = element.attr("multiple") !== undefined;
-        var option;
-        var i, html, list_item, option_value, tag, selected;
-
-        if (Utils.isNull(val)) {
             $.each(options, function(){
+                this.selected = !Utils.isNull(to_default) ? this.defaultSelected : false;
+            });
+
+            this.list.find("li").remove();
+            select.find(".select-input").html('');
+
+            this._createOptions();
+
+            selected = this.getSelected();
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
+        },
+
+        getSelected: function(){
+            var element = this.element;
+            var result = [];
+
+            element.find("option").each(function(){
                 if (this.selected) result.push(this.value);
             });
-            return multiple ? result : result[0];
-        }
 
-        $.each(options, function(){
-            this.selected = false;
-        });
-        list_items.removeClass("active");
-        input.html('');
+            return result;
+        },
 
-        if (Array.isArray(val) === false) {
-            val  = [val];
-        }
+        val: function(val){
+            var element = this.element, o = this.options;
+            var input = element.siblings(".select-input");
+            var options = element.find("option");
+            var list_items = this.list.find("li");
+            var result = [];
+            var multiple = element.attr("multiple") !== undefined;
+            var option;
+            var i, html, list_item, option_value, tag, selected;
 
-        $.each(val, function(){
-            for (i = 0; i < options.length; i++) {
-                option = options[i];
-                html = Utils.isValue(option.getAttribute('data-template')) ? option.getAttribute('data-template').replace("$1", option.text) : option.text;
-                if (""+option.value === ""+this) {
-                    option.selected = true;
-                    break;
-                }
+            if (Utils.isNull(val)) {
+                $.each(options, function(){
+                    if (this.selected) result.push(this.value);
+                });
+                return multiple ? result : result[0];
             }
 
-            for(i = 0; i < list_items.length; i++) {
-                list_item = $(list_items[i]);
-                option_value = list_item.attr("data-value");
-                if (""+option_value === ""+this) {
-                    if (multiple) {
-                        list_item.addClass("d-none");
-                        tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                        tag.data("option", list_item);
-                        $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
-                    } else {
-                        list_item.addClass("active");
-                        input.html(html);
+            $.each(options, function(){
+                this.selected = false;
+            });
+            list_items.removeClass("active");
+            input.html('');
+
+            if (Array.isArray(val) === false) {
+                val  = [val];
+            }
+
+            $.each(val, function(){
+                for (i = 0; i < options.length; i++) {
+                    option = options[i];
+                    html = Utils.isValue(option.getAttribute('data-template')) ? option.getAttribute('data-template').replace("$1", option.text) : option.text;
+                    if (""+option.value === ""+this) {
+                        option.selected = true;
+                        break;
                     }
-                    break;
                 }
-            }
-        });
 
-        selected = this.getSelected();
-        Utils.exec(o.onChange, [selected], element[0]);
-        element.fire("change", {
-            selected: selected
-        });
-    },
-
-    data: function(op){
-        var element = this.element;
-        var option_group;
-
-        element.empty();
-
-        if (typeof op === 'string') {
-            element.html(op);
-        } else if (Utils.isObject(op)) {
-            $.each(op, function(key, val){
-                if (Utils.isObject(val)) {
-                    option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
-                    $.each(val, function(key2, val2){
-                        $("<option>").attr("value", key2).text(val2).appendTo(option_group);
-                    });
-                } else {
-                    $("<option>").attr("value", key).text(val).appendTo(element);
+                for(i = 0; i < list_items.length; i++) {
+                    list_item = $(list_items[i]);
+                    option_value = list_item.attr("data-value");
+                    if (""+option_value === ""+this) {
+                        if (multiple) {
+                            list_item.addClass("d-none");
+                            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                            tag.data("option", list_item);
+                            $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+                        } else {
+                            list_item.addClass("active");
+                            input.html(html);
+                        }
+                        break;
+                    }
                 }
             });
+
+            selected = this.getSelected();
+            Utils.exec(o.onChange, [selected], element[0]);
+            element.fire("change", {
+                selected: selected
+            });
+        },
+
+        data: function(op){
+            var element = this.element;
+            var option_group;
+
+            element.empty();
+
+            if (typeof op === 'string') {
+                element.html(op);
+            } else if (Utils.isObject(op)) {
+                $.each(op, function(key, val){
+                    if (Utils.isObject(val)) {
+                        option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
+                        $.each(val, function(key2, val2){
+                            $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                        });
+                    } else {
+                        $("<option>").attr("value", key).text(val).appendTo(element);
+                    }
+                });
+            }
+
+            this._createOptions();
+        },
+
+        changeAttribute: function(attributeName){
+            if (attributeName === 'disabled') {
+                this.toggleState();
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            var container = element.closest(".select");
+            var drop_container = container.find(".drop-container");
+            var input = element.siblings(".select-input");
+            var filter_input = drop_container.find("input");
+            var list = drop_container.find("ul");
+            var clearButton = container.find(".input-clear-button");
+
+            container.off(Metro.events.click);
+            container.off(Metro.events.click, ".input-clear-button");
+            input.off(Metro.events.click);
+            filter_input.off(Metro.events.blur);
+            filter_input.off(Metro.events.focus);
+            list.off(Metro.events.click, "li");
+            filter_input.off(Metro.events.keyup);
+            drop_container.off(Metro.events.click);
+            clearButton.off(Metro.events.click);
+
+            drop_container.data("dropdown").destroy();
+
+            return element;
         }
+    });
 
-        this._createOptions();
-    },
-
-    changeAttribute: function(attributeName){
-        if (attributeName === 'disabled') {
-            this.toggleState();
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        var container = element.closest(".select");
-        var drop_container = container.find(".drop-container");
-        var input = element.siblings(".select-input");
-        var filter_input = drop_container.find("input");
-        var list = drop_container.find("ul");
-        var clearButton = container.find(".input-clear-button");
-
-        container.off(Metro.events.click);
-        container.off(Metro.events.click, ".input-clear-button");
-        input.off(Metro.events.click);
-        filter_input.off(Metro.events.blur);
-        filter_input.off(Metro.events.focus);
-        list.off(Metro.events.click, "li");
-        filter_input.off(Metro.events.keyup);
-        drop_container.off(Metro.events.click);
-        clearButton.off(Metro.events.click);
-
-        drop_container.data("dropdown").destroy();
-
-        return element;
-    }
-});
-
-$(document).on(Metro.events.click, function(){
-    $(".select").removeClass("focused");
-}, {ns: "blur-select-elements"});
+    $(document).on(Metro.events.click, function(){
+        $(".select").removeClass("focused");
+    }, {ns: "blur-select-elements"});
+}(Metro, m4q));
