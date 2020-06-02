@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Pagination - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Pagination test page</h1>
+
+    <div class="example"></div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+        var pagination = Metro.pagination({
+            length: 100,
+            rows: 10,
+            current: 5,
+            target: ".example"
+        });
+
+        console.log(pagination);
+    })
+</script>
+</body>
+</html>
