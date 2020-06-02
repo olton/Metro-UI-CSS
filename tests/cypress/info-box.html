@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Info box - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Info box test page</h1>
+
+    <div class="info-box" data-role="info-box" id="info-box">
+        <span class="button square closer"></span>
+        <div class="info-box-content">
+            <h3>What is Lorem Ipsum?</h3>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div>
+    </div>
+
+    <button class="button" onclick="Metro.getPlugin('#info-box', 'info-box').open()">Open InfoBox</button>
+    <button class="button" onclick="
+        var html_content = '<h3>What is Lorem Ipsum?</h3>' + '<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>';
+        Metro.infobox.create(html_content, 'info');
+    ">Create InfoBox</button>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

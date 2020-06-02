@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test List - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>List test page</h1>
+
+    <div class="example">
+        <p class="text-center h3 text-light">Sort by</p>
+        <div class="d-flex flex-justify-center flex-wrap m-2">
+            <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-price','asc',true)">Price <span class="mif-arrow-up"></span></button>
+            <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-price','desc',true)">Price <span class="mif-arrow-down"></span></button>
+            <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-author','asc',true)">Author <span class="mif-arrow-up"></span></button>
+            <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-author','desc',true)">Author <span class="mif-arrow-down"></span></button>
+            <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-name','asc',true)">Name <span class="mif-arrow-up"></span></button>
+            <button class="button m-1" onclick="$('#paintings').data('list').sorting('painting-name','desc',true)">Name <span class="mif-arrow-down"></span></button>
+            <div class="w-100 row flex-justify-center">
+                <div class="cell-md-4 mt-4">
+                    <select data-role="select" data-filter="false" data-prepend="Paints By:" data-on-change="$('#paintings').data('list').filter(this.value)">
+                        <option value="" selected>All</option>
+                        <option value="gogen">Gogen</option>
+                        <option value="sezann">Sezann</option>
+                        <option value="bacon">Bacon</option>
+                        <option value="klimt">Klimt</option>
+                        <option value="munk">Munk</option>
+                        <option value="picasso">Picasso</option>
+                        <option value="kuning">Kuning</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <ul id="paintings"
+            data-role="list"
+            data-sort-class="painting-price"
+            data-filter-class="painting-author"
+            data-sort-dir="desc"
+            data-cls-list="unstyled-list row flex-justify-center mt-4"
+            data-cls-list-item="cell-sm-6 cell-md-4"
+        >
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/gogen.jpg" alt="Gogen, When is the wedding">
+                    </div>
+                    <figcaption class="painting-name">When is the wedding</figcaption>
+                    <figcaption class="painting-author text-bold">Gogen</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 300M</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/sezann.jpg" alt="Sezann, Players in cards">
+                    </div>
+                    <figcaption class="painting-name">Players in cards</figcaption>
+                    <figcaption class="painting-author text-bold">Sezann</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 250M</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/kuning.jpg" alt="Kunning, Woman III">
+                    </div>
+                    <figcaption class="painting-name">Woman III</figcaption>
+                    <figcaption class="painting-author text-bold">Kuning</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 137M</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/klimt.jpg" alt="Klimt, Gold Adele">
+                    </div>
+                    <figcaption class="painting-name">Gold Adele</figcaption>
+                    <figcaption class="painting-author text-bold">Klimt</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 135M</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/munk.jpg" alt="Munk, The Scream">
+                    </div>
+                    <figcaption class="painting-name">The Scream</figcaption>
+                    <figcaption class="painting-author text-bold">Munk</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 119M</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/picasso.jpg" alt="Picasso, Nude, green leaves and bust">
+                    </div>
+                    <figcaption class="painting-name">Nude, green leaves and bust</figcaption>
+                    <figcaption class="painting-author text-bold">Picasso</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 106M</figcaption>
+                </figure>
+            </li>
+            <li>
+                <figure class="text-center">
+                    <div class="img-container thumbnail">
+                        <img src="../images/bacon.jpg">
+                    </div>
+                    <figcaption class="painting-name">Three Studies of Lucian Freud</figcaption>
+                    <figcaption class="painting-author text-bold">Bacon</figcaption>
+                    <figcaption class="painting-price" data-format="money">$ 142M</figcaption>
+                </figure>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

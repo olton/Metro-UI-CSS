@@ -1,299 +1,299 @@
-/* global Metro, Utils, Component */
-var InfoBoxDefaultConfig = {
-    infoboxDeferred: 0,
-    type: "",
-    width: 480,
-    height: "auto",
-    overlay: true,
-    overlayColor: '#000000',
-    overlayAlpha: .5,
-    autoHide: 0,
-    removeOnClose: false,
-    closeButton: true,
-    clsBox: "",
-    clsBoxContent: "",
-    clsOverlay: "",
-    onOpen: Metro.noop,
-    onClose: Metro.noop,
-    onInfoBoxCreate: Metro.noop
-};
+/* global Metro */
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var InfoBoxDefaultConfig = {
+        infoboxDeferred: 0,
+        type: "",
+        width: 480,
+        height: "auto",
+        overlay: true,
+        overlayColor: '#000000',
+        overlayAlpha: .5,
+        autoHide: 0,
+        removeOnClose: false,
+        closeButton: true,
+        clsBox: "",
+        clsBoxContent: "",
+        clsOverlay: "",
+        onOpen: Metro.noop,
+        onClose: Metro.noop,
+        onInfoBoxCreate: Metro.noop
+    };
 
-Metro.infoBoxSetup = function (options) {
-    InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
-};
+    Metro.infoBoxSetup = function (options) {
+        InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
+    };
 
-if (typeof window["metroInfoBoxSetup"] !== undefined) {
-    Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
-}
+    if (typeof window["metroInfoBoxSetup"] !== undefined) {
+        Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
+    }
 
-Component('info-box', {
-    init: function( options, elem ) {
-        this._super(elem, options, InfoBoxDefaultConfig);
-
-        this.overlay = null;
-        this.id = Utils.elementId("info-box");
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onInfoBoxCreate, [element], element[0]);
-        element.fire("infoboxcreate");
-    },
-
-    _overlay: function(){
-        var o = this.options;
-
-        var overlay = $("<div>");
-        overlay.addClass("overlay").addClass(o.clsOverlay);
-
-        if (o.overlayColor === 'transparent') {
-            overlay.addClass("transparent");
-        } else {
-            overlay.css({
-                background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+    Metro.Component('info-box', {
+        init: function( options, elem ) {
+            this._super(elem, options, InfoBoxDefaultConfig, {
+                overlay: null,
+                id: Utils.elementId("info-box")
             });
-        }
 
-        return overlay;
-    },
+            return this;
+        },
 
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var closer, content;
+        _create: function(){
+            var element = this.element;
 
-        if (o.overlay === true) {
-            this.overlay = this._overlay();
-        }
+            this._createStructure();
+            this._createEvents();
 
-        element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
+            this._fireEvent("info-box-create", {
+                element: element
+            });
+        },
 
-        closer = element.find("closer");
-        if (closer.length === 0) {
-            closer = $("<span>").addClass("button square closer");
-            closer.appendTo(element);
-        }
+        _overlay: function(){
+            var o = this.options;
 
-        if (o.closeButton !== true) {
-            closer.hide();
-        }
+            var overlay = $("<div>");
+            overlay.addClass("overlay").addClass(o.clsOverlay);
 
-        content = element.find(".info-box-content");
-        if (content.length > 0) {
-            content.addClass(o.clsBoxContent);
-        }
+            if (o.overlayColor === 'transparent') {
+                overlay.addClass("transparent");
+            } else {
+                overlay.css({
+                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                });
+            }
 
-        element.css({
-            width: o.width,
-            height: o.height,
-            visibility: "hidden",
-            top: '100%',
-            left: ( $(window).width() - element.outerWidth() ) / 2
-        });
+            return overlay;
+        },
 
-        element.appendTo($('body'));
-    },
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var closer, content;
 
-    _createEvents: function(){
-        var that = this, element = this.element;
+            if (o.overlay === true) {
+                this.overlay = this._overlay();
+            }
 
-        element.on(Metro.events.click, ".closer", function(){
-            that.close();
-        });
+            element.addClass("info-box").addClass(o.type).addClass(o.clsBox);
 
-        element.on(Metro.events.click, ".js-dialog-close", function(){
-            that.close();
-        });
+            closer = element.find("closer");
+            if (closer.length === 0) {
+                closer = $("<span>").addClass("button square closer");
+                closer.appendTo(element);
+            }
 
-        $(window).on(Metro.events.resize, function(){
-            that.reposition();
-        }, {ns: this.id});
-    },
+            if (o.closeButton !== true) {
+                closer.hide();
+            }
 
-    _setPosition: function(){
-        var element = this.element;
-        element.css({
-            top: ( $(window).height() - element.outerHeight() ) / 2,
-            left: ( $(window).width() - element.outerWidth() ) / 2
-        });
-    },
+            content = element.find(".info-box-content");
+            if (content.length > 0) {
+                content.addClass(o.clsBoxContent);
+            }
 
-    reposition: function(){
-        this._setPosition();
-    },
+            element.css({
+                width: o.width,
+                height: o.height,
+                visibility: "hidden",
+                top: '100%',
+                left: ( $(window).width() - element.outerWidth() ) / 2
+            });
 
-    setContent: function(c){
-        var element = this.element;
-        var content = element.find(".info-box-content");
-        if (content.length === 0) {
-            return ;
-        }
-        content.html(c);
-        this.reposition();
-    },
+            element.appendTo($('body'));
+        },
 
-    setType: function(t){
-        var element = this.element;
-        element.removeClass("success info alert warning").addClass(t);
-    },
+        _createEvents: function(){
+            var that = this, element = this.element;
 
-    open: function(){
-        var that = this, element = this.element, o = this.options;
-
-        if (o.overlay === true) {
-            this.overlay.appendTo($("body"));
-        }
-
-        this._setPosition();
-
-        element.css({
-            visibility: "visible"
-        });
-
-        Utils.exec(o.onOpen, null, element[0]);
-        element.fire("open");
-
-        element.data("open", true);
-        if (parseInt(o.autoHide) > 0) {
-            setTimeout(function(){
+            element.on(Metro.events.click, ".closer", function(){
                 that.close();
-            }, parseInt(o.autoHide));
+            });
+
+            element.on(Metro.events.click, ".js-dialog-close", function(){
+                that.close();
+            });
+
+            $(window).on(Metro.events.resize, function(){
+                that.reposition();
+            }, {ns: this.id});
+        },
+
+        _setPosition: function(){
+            var element = this.element;
+            element.css({
+                top: ( $(window).height() - element.outerHeight() ) / 2,
+                left: ( $(window).width() - element.outerWidth() ) / 2
+            });
+        },
+
+        reposition: function(){
+            this._setPosition();
+        },
+
+        setContent: function(c){
+            var element = this.element;
+            var content = element.find(".info-box-content");
+            if (content.length === 0) {
+                return ;
+            }
+            content.html(c);
+            this.reposition();
+        },
+
+        setType: function(t){
+            var element = this.element;
+            element.removeClass("success info alert warning").addClass(t);
+        },
+
+        open: function(){
+            var that = this, element = this.element, o = this.options;
+
+            if (o.overlay === true) {
+                this.overlay.appendTo($("body"));
+            }
+
+            this._setPosition();
+
+            element.css({
+                visibility: "visible"
+            });
+
+            Utils.exec(o.onOpen, null, element[0]);
+            element.fire("open");
+
+            element.data("open", true);
+            if (parseInt(o.autoHide) > 0) {
+                setTimeout(function(){
+                    that.close();
+                }, parseInt(o.autoHide));
+            }
+        },
+
+        close: function(){
+            var element = this.element, o = this.options;
+
+            if (o.overlay === true) {
+                $('body').find('.overlay').remove();
+            }
+
+            element.css({
+                visibility: "hidden",
+                top: "100%"
+            });
+
+            Utils.exec(o.onClose, null, element[0]);
+            element.fire("close");
+
+            element.data("open", false);
+
+            if (o.removeOnClose === true) {
+                this.destroy();
+                element.remove();
+            }
+        },
+
+        isOpen: function(){
+            return this.element.data("open") === true;
+        },
+
+        /* eslint-disable-next-line */
+        changeAttribute: function(attributeName){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off("all");
+            $(window).off(Metro.events.resize, {ns: this.id});
+
+            return element;
         }
-    },
+    });
 
-    close: function(){
-        var element = this.element, o = this.options;
+    Metro['infobox'] = {
+        isInfoBox: function(el){
+            return Utils.isMetroObject(el, "infobox");
+        },
 
-        if (o.overlay === true) {
-            $('body').find('.overlay').remove();
-        }
-
-        element.css({
-            visibility: "hidden",
-            top: "100%"
-        });
-
-        Utils.exec(o.onClose, null, element[0]);
-        element.fire("close");
-
-        element.data("open", false);
-
-        if (o.removeOnClose === true) {
-            this.destroy();
-            element.remove();
-        }
-    },
-
-    isOpen: function(){
-        return this.element.data("open") === true;
-    },
-
-    /* eslint-disable-next-line */
-    changeAttribute: function(attributeName){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off("all");
-        $(window).off(Metro.events.resize, {ns: this.id});
-
-        return element;
-    }
-});
-
-Metro['infobox'] = {
-    isInfoBox: function(el){
-        return Utils.isMetroObject(el, "infobox");
-    },
-
-    open: function(el, c, t){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-        var ib = Metro.getPlugin(el, "infobox");
-        if (c !== undefined) {
-            ib.setContent(c);
-        }
-        if (t !== undefined) {
-            ib.setType(t);
-        }
-        ib.open();
-    },
-
-    close: function(el){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-        var ib = Metro.getPlugin(el, "infobox");
-        ib.close();
-    },
-
-    setContent: function(el, c){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-
-        if (c === undefined) {
-            c = "";
-        }
-
-        var ib = Metro.getPlugin(el, "infobox");
-        ib.setContent(c);
-        ib.reposition();
-    },
-
-    setType: function(el, t){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-
-        var ib = Metro.getPlugin(el, "infobox");
-        ib.setType(t);
-        ib.reposition();
-    },
-
-    isOpen: function(el){
-        if (!this.isInfoBox(el)) {
-            return false;
-        }
-        var ib = Metro.getPlugin(el, "infobox");
-        return ib.isOpen();
-    },
-
-    create: function(c, t, o, open){
-        var $$ = Utils.$();
-        var el, ib, box_type;
-
-        box_type = t !== undefined ? t : "";
-
-        el = $$("<div>").appendTo($$("body"));
-        $$("<div>").addClass("info-box-content").appendTo(el);
-
-        var ib_options = $$.extend({}, {
-            removeOnClose: true,
-            type: box_type
-        }, (o !== undefined ? o : {}));
-
-        ib_options._runtime = true;
-
-        el.infobox(ib_options);
-
-        ib = Metro.getPlugin(el, 'infobox');
-        ib.setContent(c);
-        if (open !== false) {
+        open: function(el, c, t){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+            var ib = Metro.getPlugin(el, "infobox");
+            if (c !== undefined) {
+                ib.setContent(c);
+            }
+            if (t !== undefined) {
+                ib.setType(t);
+            }
             ib.open();
-        }
+        },
 
-        return el;
-    }
-};
+        close: function(el){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+            var ib = Metro.getPlugin(el, "infobox");
+            ib.close();
+        },
+
+        setContent: function(el, c){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+
+            if (c === undefined) {
+                c = "";
+            }
+
+            var ib = Metro.getPlugin(el, "infobox");
+            ib.setContent(c);
+            ib.reposition();
+        },
+
+        setType: function(el, t){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+
+            var ib = Metro.getPlugin(el, "infobox");
+            ib.setType(t);
+            ib.reposition();
+        },
+
+        isOpen: function(el){
+            if (!this.isInfoBox(el)) {
+                return false;
+            }
+            var ib = Metro.getPlugin(el, "infobox");
+            return ib.isOpen();
+        },
+
+        create: function(c, t, o, open){
+            var $$ = Utils.$();
+            var el, ib, box_type;
+
+            box_type = t !== undefined ? t : "";
+
+            el = $$("<div>").appendTo($$("body"));
+            $$("<div>").addClass("info-box-content").appendTo(el);
+
+            var ib_options = $$.extend({}, {
+                removeOnClose: true,
+                type: box_type
+            }, (o !== undefined ? o : {}));
+
+            ib_options._runtime = true;
+
+            el.infobox(ib_options);
+
+            ib = Metro.getPlugin(el, 'infobox');
+            ib.setContent(c);
+            if (open !== false) {
+                ib.open();
+            }
+
+            return el;
+        }
+    };
+}(Metro, m4q));
