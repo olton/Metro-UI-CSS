@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/06/2020 14:17:26
+ * Built at 03/06/2020 15:40:55
  * Licensed under MIT
  */
 *,
@@ -36416,10 +36416,17 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   border-color: #dfdfdf;
   background: #e4e4e4;
 }
+.tabs-material-wrapper {
+  overflow: hidden;
+  height: 48px;
+  position: fixed;
+  display: block;
+  width: 100%;
+}
 .tabs-material {
   margin: 0;
   padding: 0 52px;
-  position: fixed;
+  position: relative;
   height: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -36437,11 +36444,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   white-space: nowrap;
   list-style: none inside;
   line-height: 1;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  overflow: -moz-scrollbars-none;
-}
-.tabs-material::-webkit-scrollbar {
-  display: none!important;
 }
 .tabs-material li {
   -ms-flex-negative: 0;
@@ -36533,11 +36535,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   min-width: 0;
 }
 .head-bar ~ .fixed-tabs,
-.tabs-material.app-bar-present {
+.tabs-material-wrapper.app-bar-present {
   top: 56px;
 }
 .head-bar.more ~ .fixed-tabs,
-.tabs-material.app-bar-present-more {
+.tabs-material-wrapper.app-bar-present-more {
   top: 112px;
 }
 .tag {
