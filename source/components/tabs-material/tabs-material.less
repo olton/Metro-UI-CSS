@@ -1,10 +1,18 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+.tabs-material-wrapper {
+    overflow: hidden;
+    height: 48px;
+    position: fixed;
+    display: block;
+    width: 100%;
+}
+
 .tabs-material {
     margin: 0;
     padding: 0 52px;
-    position: fixed;
+    position: relative;
     height: auto;
     display: flex;
     flex-flow: row nowrap;
@@ -18,7 +26,7 @@
     list-style: none inside;
     line-height: 1;
 
-    .hideScrollBars();
+    //.hideScrollBars();
 
     li {
         flex-shrink: 0;
@@ -122,10 +130,10 @@
     }
 }
 
-.head-bar ~ .fixed-tabs, .tabs-material.app-bar-present {
+.head-bar ~ .fixed-tabs, .tabs-material-wrapper.app-bar-present {
     top: 56px;
 }
 
-.head-bar.more ~ .fixed-tabs, .tabs-material.app-bar-present-more {
+.head-bar.more ~ .fixed-tabs, .tabs-material-wrapper.app-bar-present-more {
     top: 112px;
 }
