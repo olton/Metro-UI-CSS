@@ -1,4 +1,4 @@
-/* global METRO_JQUERY, jquery_present, jQuery, Metro, METRO_THROWS, MD5, METRO_MEDIA */
+/* global METRO_JQUERY, jquery_present, jQuery, Metro, METRO_THROWS METRO_MEDIA */
 
 var Utils = {
     isUrl: function (val) {
@@ -399,10 +399,6 @@ var Utils = {
 
     detectChrome: function(){
         return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-    },
-
-    md5: function(s){
-        return MD5(s);
     },
 
     encodeURI: function(str){

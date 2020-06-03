@@ -1,110 +1,112 @@
 /* global Metro, Utils */
-var Export = {
+(function(Metro, $) {
+    var Export = {
 
-    init: function(){
-        return this;
-    },
+        init: function(){
+            return this;
+        },
 
-    options: {
-        csvDelimiter: "\t",
-        csvNewLine: "\r\n",
-        includeHeader: true
-    },
+        options: {
+            csvDelimiter: "\t",
+            csvNewLine: "\r\n",
+            includeHeader: true
+        },
 
-    setup: function(options){
-        this.options = $.extend({}, this.options, options);
-        return this;
-    },
+        setup: function(options){
+            this.options = $.extend({}, this.options, options);
+            return this;
+        },
 
-    base64: function(data){
-        return window.btoa(unescape(encodeURIComponent(data)));
-    },
+        base64: function(data){
+            return window.btoa(unescape(encodeURIComponent(data)));
+        },
 
-    b64toBlob: function (b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
+        b64toBlob: function (b64Data, contentType, sliceSize) {
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
 
-        var byteCharacters = window.atob(b64Data);
-        var byteArrays = [];
+            var byteCharacters = window.atob(b64Data);
+            var byteArrays = [];
 
-        var offset;
-        for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
+            var offset;
+            for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
 
-            var byteNumbers = new Array(slice.length);
-            var i;
-            for (i = 0; i < slice.length; i = i + 1) {
-                byteNumbers[i] = slice.charCodeAt(i);
+                var byteNumbers = new Array(slice.length);
+                var i;
+                for (i = 0; i < slice.length; i = i + 1) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new window.Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
             }
 
-            var byteArray = new window.Uint8Array(byteNumbers);
+            return new Blob(byteArrays, {
+                type: contentType
+            });
+        },
 
-            byteArrays.push(byteArray);
-        }
+        tableToCSV: function(table, filename, options){
+            var o = this.options;
+            var body, head, data = "";
+            var i, j, row, cell;
 
-        return new Blob(byteArrays, {
-            type: contentType
-        });
-    },
+            o = $.extend({}, o, options);
 
-    tableToCSV: function(table, filename, options){
-        var o = this.options;
-        var body, head, data = "";
-        var i, j, row, cell;
+            table = $(table)[0];
 
-        o = $.extend({}, o, options);
+            if (Utils.bool(o.includeHeader)) {
 
-        table = $(table)[0];
+                head = table.querySelectorAll("thead")[0];
 
-        if (Utils.bool(o.includeHeader)) {
+                for(i = 0; i < head.rows.length; i++) {
+                    row = head.rows[i];
+                    for(j = 0; j < row.cells.length; j++){
+                        cell = row.cells[j];
+                        data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+                    }
+                    data += o.csvNewLine;
+                }
+            }
 
-            head = table.querySelectorAll("thead")[0];
+            body = table.querySelectorAll("tbody")[0];
 
-            for(i = 0; i < head.rows.length; i++) {
-                row = head.rows[i];
+            for(i = 0; i < body.rows.length; i++) {
+                row = body.rows[i];
                 for(j = 0; j < row.cells.length; j++){
                     cell = row.cells[j];
                     data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                 }
                 data += o.csvNewLine;
             }
-        }
 
-        body = table.querySelectorAll("tbody")[0];
-
-        for(i = 0; i < body.rows.length; i++) {
-            row = body.rows[i];
-            for(j = 0; j < row.cells.length; j++){
-                cell = row.cells[j];
-                data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+            if (Utils.isValue(filename)) {
+                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
             }
-            data += o.csvNewLine;
+
+            return data;
+        },
+
+        createDownload: function (data, contentType, filename) {
+            var blob, anchor, url;
+
+            anchor = document.createElement('a');
+            anchor.style.display = "none";
+            document.body.appendChild(anchor);
+
+            blob = this.b64toBlob(data, contentType);
+
+            url = window.URL.createObjectURL(blob);
+            anchor.href = url;
+            anchor.download = filename || Utils.elementId("download");
+            anchor.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(anchor);
+            return true;
         }
+    };
 
-        if (Utils.isValue(filename)) {
-            return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
-        }
-
-        return data;
-    },
-
-    createDownload: function (data, contentType, filename) {
-        var blob, anchor, url;
-
-        anchor = document.createElement('a');
-        anchor.style.display = "none";
-        document.body.appendChild(anchor);
-
-        blob = this.b64toBlob(data, contentType);
-
-        url = window.URL.createObjectURL(blob);
-        anchor.href = url;
-        anchor.download = filename || Utils.elementId("download");
-        anchor.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(anchor);
-        return true;
-    }
-};
-
-Metro['export'] = Export.init();
+    Metro['export'] = Export.init();
+}(Metro, m4q));

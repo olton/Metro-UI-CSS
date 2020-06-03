@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/06/2020 23:08:14
+ * Built at 03/06/2020 23:27:53
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "03/06/2020 23:08:15",
+    compileTime: "03/06/2020 23:27:54",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4529,7 +4529,9 @@ var Metro = {
     colors: {},
     dialog: null,
     pagination: function(){},
+    md5: function(){},
     storage: null,
+    export: null,
 
     about: function(){
         var content =
@@ -6841,119 +6843,119 @@ Metro.animation = FrameAnimation;
 
 }(Metro, m4q));
 
-var Export = {
+(function(Metro, $) {
+    var Export = {
 
-    init: function(){
-        return this;
-    },
+        init: function(){
+            return this;
+        },
 
-    options: {
-        csvDelimiter: "\t",
-        csvNewLine: "\r\n",
-        includeHeader: true
-    },
+        options: {
+            csvDelimiter: "\t",
+            csvNewLine: "\r\n",
+            includeHeader: true
+        },
 
-    setup: function(options){
-        this.options = $.extend({}, this.options, options);
-        return this;
-    },
+        setup: function(options){
+            this.options = $.extend({}, this.options, options);
+            return this;
+        },
 
-    base64: function(data){
-        return window.btoa(unescape(encodeURIComponent(data)));
-    },
+        base64: function(data){
+            return window.btoa(unescape(encodeURIComponent(data)));
+        },
 
-    b64toBlob: function (b64Data, contentType, sliceSize) {
-        contentType = contentType || '';
-        sliceSize = sliceSize || 512;
+        b64toBlob: function (b64Data, contentType, sliceSize) {
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
 
-        var byteCharacters = window.atob(b64Data);
-        var byteArrays = [];
+            var byteCharacters = window.atob(b64Data);
+            var byteArrays = [];
 
-        var offset;
-        for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-            var slice = byteCharacters.slice(offset, offset + sliceSize);
+            var offset;
+            for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
 
-            var byteNumbers = new Array(slice.length);
-            var i;
-            for (i = 0; i < slice.length; i = i + 1) {
-                byteNumbers[i] = slice.charCodeAt(i);
+                var byteNumbers = new Array(slice.length);
+                var i;
+                for (i = 0; i < slice.length; i = i + 1) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new window.Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
             }
 
-            var byteArray = new window.Uint8Array(byteNumbers);
+            return new Blob(byteArrays, {
+                type: contentType
+            });
+        },
 
-            byteArrays.push(byteArray);
-        }
+        tableToCSV: function(table, filename, options){
+            var o = this.options;
+            var body, head, data = "";
+            var i, j, row, cell;
 
-        return new Blob(byteArrays, {
-            type: contentType
-        });
-    },
+            o = $.extend({}, o, options);
 
-    tableToCSV: function(table, filename, options){
-        var o = this.options;
-        var body, head, data = "";
-        var i, j, row, cell;
+            table = $(table)[0];
 
-        o = $.extend({}, o, options);
+            if (Utils.bool(o.includeHeader)) {
 
-        table = $(table)[0];
+                head = table.querySelectorAll("thead")[0];
 
-        if (Utils.bool(o.includeHeader)) {
+                for(i = 0; i < head.rows.length; i++) {
+                    row = head.rows[i];
+                    for(j = 0; j < row.cells.length; j++){
+                        cell = row.cells[j];
+                        data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+                    }
+                    data += o.csvNewLine;
+                }
+            }
 
-            head = table.querySelectorAll("thead")[0];
+            body = table.querySelectorAll("tbody")[0];
 
-            for(i = 0; i < head.rows.length; i++) {
-                row = head.rows[i];
+            for(i = 0; i < body.rows.length; i++) {
+                row = body.rows[i];
                 for(j = 0; j < row.cells.length; j++){
                     cell = row.cells[j];
                     data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                 }
                 data += o.csvNewLine;
             }
-        }
 
-        body = table.querySelectorAll("tbody")[0];
-
-        for(i = 0; i < body.rows.length; i++) {
-            row = body.rows[i];
-            for(j = 0; j < row.cells.length; j++){
-                cell = row.cells[j];
-                data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+            if (Utils.isValue(filename)) {
+                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
             }
-            data += o.csvNewLine;
+
+            return data;
+        },
+
+        createDownload: function (data, contentType, filename) {
+            var blob, anchor, url;
+
+            anchor = document.createElement('a');
+            anchor.style.display = "none";
+            document.body.appendChild(anchor);
+
+            blob = this.b64toBlob(data, contentType);
+
+            url = window.URL.createObjectURL(blob);
+            anchor.href = url;
+            anchor.download = filename || Utils.elementId("download");
+            anchor.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(anchor);
+            return true;
         }
+    };
 
-        if (Utils.isValue(filename)) {
-            return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
-        }
+    Metro['export'] = Export.init();
+}(Metro, m4q));
 
-        return data;
-    },
-
-    createDownload: function (data, contentType, filename) {
-        var blob, anchor, url;
-
-        anchor = document.createElement('a');
-        anchor.style.display = "none";
-        document.body.appendChild(anchor);
-
-        blob = this.b64toBlob(data, contentType);
-
-        url = window.URL.createObjectURL(blob);
-        anchor.href = url;
-        anchor.download = filename || Utils.elementId("download");
-        anchor.click();
-        window.URL.revokeObjectURL(url);
-        document.body.removeChild(anchor);
-        return true;
-    }
-};
-
-Metro['export'] = Export.init();
-
-
-var MD5 = function (string) {
-
+Metro.md5 = function (string) {
     function RotateLeft(lValue, iShiftBits) {
         return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
     }
@@ -7078,7 +7080,7 @@ var MD5 = function (string) {
 
     for (k=0;k<x.length;k+=16) {
         AA=a; BB=b; CC=c; DD=d;
-        a=FF(a,b,c,d,x[k+0], S11,0xD76AA478);
+        a=FF(a,b,c,d,x[k], S11,0xD76AA478);
         d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
         c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
         b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
@@ -7097,7 +7099,7 @@ var MD5 = function (string) {
         a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
         d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
         c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
-        b=GG(b,c,d,a,x[k+0], S24,0xE9B6C7AA);
+        b=GG(b,c,d,a,x[k], S24,0xE9B6C7AA);
         a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
         d=GG(d,a,b,c,x[k+10],S22,0x2441453);
         c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
@@ -7119,14 +7121,14 @@ var MD5 = function (string) {
         c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
         b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
         a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
-        d=HH(d,a,b,c,x[k+0], S32,0xEAA127FA);
+        d=HH(d,a,b,c,x[k], S32,0xEAA127FA);
         c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
         b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
         a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
         d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
         c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
         b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
-        a=II(a,b,c,d,x[k+0], S41,0xF4292244);
+        a=II(a,b,c,d,x[k], S41,0xF4292244);
         d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
         c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
         b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
@@ -7151,11 +7153,9 @@ var MD5 = function (string) {
     var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
 
     return temp.toLowerCase();
-}
+};
 
-Metro.md5 = MD5;
-
-var TemplateEngine = function(html, options, conf) {
+Metro.template = function(html, options, conf) {
     var ReEx, re = '<%(.+?)%>',
         reExp = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(.*)?/g,
         code = 'with(obj) { var r=[];\n',
@@ -7194,7 +7194,6 @@ var TemplateEngine = function(html, options, conf) {
     return result;
 };
 
-Metro.template = TemplateEngine;
 
 
 var Utils = {
@@ -7596,10 +7595,6 @@ var Utils = {
 
     detectChrome: function(){
         return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-    },
-
-    md5: function(s){
-        return MD5(s);
     },
 
     encodeURI: function(str){
@@ -16394,7 +16389,7 @@ $.extend(Metro['locales'], {
             size = size || 80;
             def = Utils.encodeURI(def) || '404';
 
-            return "//www.gravatar.com/avatar/" + Utils.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
+            return "//www.gravatar.com/avatar/" + Metro.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
         },
 
         get: function(){
@@ -33130,1035 +33125,1032 @@ $.extend(Metro['locales'], {
     });
 }(Metro, m4q));
 
-var WindowDefaultConfig = {
-    windowDeferred: 0,
-    hidden: false,
-    width: "auto",
-    height: "auto",
-    btnClose: true,
-    btnMin: true,
-    btnMax: true,
-    draggable: true,
-    dragElement: ".window-caption .icon, .window-caption .title",
-    dragArea: "parent",
-    shadow: false,
-    icon: "",
-    title: "Window",
-    content: null,
-    resizable: true,
-    overlay: false,
-    overlayColor: 'transparent',
-    overlayAlpha: .5,
-    modal: false,
-    position: "absolute",
-    checkEmbed: true,
-    top: "auto",
-    left: "auto",
-    place: "auto",
-    closeAction: Metro.actions.REMOVE,
-    customButtons: null,
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var WindowDefaultConfig = {
+        windowDeferred: 0,
+        hidden: false,
+        width: "auto",
+        height: "auto",
+        btnClose: true,
+        btnMin: true,
+        btnMax: true,
+        draggable: true,
+        dragElement: ".window-caption .icon, .window-caption .title",
+        dragArea: "parent",
+        shadow: false,
+        icon: "",
+        title: "Window",
+        content: null,
+        resizable: true,
+        overlay: false,
+        overlayColor: 'transparent',
+        overlayAlpha: .5,
+        modal: false,
+        position: "absolute",
+        checkEmbed: true,
+        top: "auto",
+        left: "auto",
+        place: "auto",
+        closeAction: Metro.actions.REMOVE,
+        customButtons: null,
 
-    clsCustomButton: "",
-    clsCaption: "",
-    clsContent: "",
-    clsWindow: "",
+        clsCustomButton: "",
+        clsCaption: "",
+        clsContent: "",
+        clsWindow: "",
 
-    _runtime: false,
+        _runtime: false,
 
-    minWidth: 0,
-    minHeight: 0,
-    maxWidth: 0,
-    maxHeight: 0,
-    onDragStart: Metro.noop,
-    onDragStop: Metro.noop,
-    onDragMove: Metro.noop,
-    onCaptionDblClick: Metro.noop,
-    onCloseClick: Metro.noop,
-    onMaxClick: Metro.noop,
-    onMinClick: Metro.noop,
-    onResizeStart: Metro.noop,
-    onResizeStop: Metro.noop,
-    onResize: Metro.noop,
-    onWindowCreate: Metro.noop,
-    onShow: Metro.noop,
-    onWindowDestroy: Metro.noop,
-    onCanClose: Metro.noop_true,
-    onClose: Metro.noop
-};
+        minWidth: 0,
+        minHeight: 0,
+        maxWidth: 0,
+        maxHeight: 0,
+        onDragStart: Metro.noop,
+        onDragStop: Metro.noop,
+        onDragMove: Metro.noop,
+        onCaptionDblClick: Metro.noop,
+        onCloseClick: Metro.noop,
+        onMaxClick: Metro.noop,
+        onMinClick: Metro.noop,
+        onResizeStart: Metro.noop,
+        onResizeStop: Metro.noop,
+        onResize: Metro.noop,
+        onWindowCreate: Metro.noop,
+        onShow: Metro.noop,
+        onWindowDestroy: Metro.noop,
+        onCanClose: Metro.noop_true,
+        onClose: Metro.noop
+    };
 
-Metro.windowSetup = function (options) {
-    WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
-};
+    Metro.windowSetup = function (options) {
+        WindowDefaultConfig = $.extend({}, WindowDefaultConfig, options);
+    };
 
-if (typeof window["metroWindowSetup"] !== undefined) {
-    Metro.windowSetup(window["metroWindowSetup"]);
-}
+    if (typeof window["metroWindowSetup"] !== undefined) {
+        Metro.windowSetup(window["metroWindowSetup"]);
+    }
 
-Component('window', {
-    init: function( options, elem ) {
-        this._super(elem, options, WindowDefaultConfig);
-
-        this.win = null;
-        this.overlay = null;
-        this.position = {
-            top: 0,
-            left: 0
-        };
-        this.hidden = false;
-        this.content = null;
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var win, overlay;
-        var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
-
-        Metro.checkRuntime(element, this.name);
-
-        if (o.modal === true) {
-            o.btnMax = false;
-            o.btnMin = false;
-            o.resizable = false;
-        }
-
-        //o.content = !Utils.isNull(o.content) ? element.append(o.content) : element;
-
-        if (Utils.isNull(o.content)) {
-            o.content = element;
-        } else {
-            if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
-                o.content = Utils.embedUrl(o.content);
-                element.css({
-                    height: "100%"
-                });
-            } else
-
-            if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
-                o.content = Utils.exec(o.content);
-            }
-
-            element.append(o.content);
-            o.content = element;
-        }
-
-        if (o._runtime === true) {
-            Metro.makeRuntime(element, "window");
-        }
-
-        win = this._window(o);
-        win.addClass("no-visible");
-
-        parent.append(win);
-
-        if (o.overlay === true) {
-            overlay = this._overlay();
-            overlay.appendTo(win.parent());
-            this.overlay = overlay;
-        }
-
-        this.win = win;
-
-        Utils.exec(o.onWindowCreate, [this.win[0]], element[0]);
-        element.fire("windowcreate", {
-            win: win[0]
-        });
-
-        setTimeout(function(){
-            that._setPosition();
-
-            if (o.hidden !== true) {
-                that.win.removeClass("no-visible");
-            }
-            Utils.exec(o.onShow, [that.win[0]], element[0]);
-            element.fire("show", {
-                win: that.win[0]
+    Metro.Component('window', {
+        init: function( options, elem ) {
+            this._super(elem, options, WindowDefaultConfig, {
+                win: null,
+                overlay: null,
+                position: {
+                    top: 0,
+                    left: 0
+                },
+                hidden: false,
+                content: null
             });
-        }, 100);
-    },
 
-    _setPosition: function(){
-        var o = this.options;
-        var win = this.win;
-        var parent = o.dragArea === "parent" ? win.parent() : $(o.dragArea);
-        var top_center = parent.height() / 2 - win[0].offsetHeight / 2;
-        var left_center = parent.width() / 2 - win[0].offsetWidth / 2;
-        var top, left, right, bottom;
+            return this;
+        },
 
-        if (o.place !== 'auto') {
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
+            var win, overlay;
+            var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
 
-            switch (o.place.toLowerCase()) {
-                case "top-left": top = 0; left = 0; right = "auto"; bottom = "auto"; break;
-                case "top-center": top = 0; left = left_center; right = "auto"; bottom = "auto"; break;
-                case "top-right": top = 0; right = 0; left = "auto"; bottom = "auto"; break;
-                case "right-center": top = top_center; right = 0; left = "auto"; bottom = "auto"; break;
-                case "bottom-right": bottom = 0; right = 0; left = "auto"; top = "auto"; break;
-                case "bottom-center": bottom = 0; left = left_center; right = "auto"; top = "auto"; break;
-                case "bottom-left": bottom = 0; left = 0; right = "auto"; top = "auto"; break;
-                case "left-center": top = top_center; left = 0; right = "auto"; bottom = "auto"; break;
-                default: top = top_center; left = left_center; bottom = "auto"; right = "auto";
+            if (o.modal === true) {
+                o.btnMax = false;
+                o.btnMin = false;
+                o.resizable = false;
+            }
+
+            if (Utils.isNull(o.content)) {
+                o.content = element;
+            } else {
+                if (Utils.isUrl(o.content) && Utils.isVideoUrl(o.content)) {
+                    o.content = Utils.embedUrl(o.content);
+                    element.css({
+                        height: "100%"
+                    });
+                } else
+
+                if (!Utils.isQ(o.content) && Utils.isFunc(o.content)) {
+                    o.content = Utils.exec(o.content);
+                }
+
+                element.append(o.content);
+                o.content = element;
+            }
+
+            if (o._runtime === true) {
+                Metro.makeRuntime(element, "window");
+            }
+
+            win = this._window(o);
+            win.addClass("no-visible");
+
+            parent.append(win);
+
+            if (o.overlay === true) {
+                overlay = this._overlay();
+                overlay.appendTo(win.parent());
+                this.overlay = overlay;
+            }
+
+            this.win = win;
+
+            this._fireEvent("window-create", {
+                win: this.win[0],
+                element: element
+            });
+
+            setTimeout(function(){
+                that._setPosition();
+
+                if (o.hidden !== true) {
+                    that.win.removeClass("no-visible");
+                }
+
+                that._fireEvent("show", {
+                    win: that.win[0],
+                    element: element
+                });
+            }, 100);
+        },
+
+        _setPosition: function(){
+            var o = this.options;
+            var win = this.win;
+            var parent = o.dragArea === "parent" ? win.parent() : $(o.dragArea);
+            var top_center = parent.height() / 2 - win[0].offsetHeight / 2;
+            var left_center = parent.width() / 2 - win[0].offsetWidth / 2;
+            var top, left, right, bottom;
+
+            if (o.place !== 'auto') {
+
+                switch (o.place.toLowerCase()) {
+                    case "top-left": top = 0; left = 0; right = "auto"; bottom = "auto"; break;
+                    case "top-center": top = 0; left = left_center; right = "auto"; bottom = "auto"; break;
+                    case "top-right": top = 0; right = 0; left = "auto"; bottom = "auto"; break;
+                    case "right-center": top = top_center; right = 0; left = "auto"; bottom = "auto"; break;
+                    case "bottom-right": bottom = 0; right = 0; left = "auto"; top = "auto"; break;
+                    case "bottom-center": bottom = 0; left = left_center; right = "auto"; top = "auto"; break;
+                    case "bottom-left": bottom = 0; left = 0; right = "auto"; top = "auto"; break;
+                    case "left-center": top = top_center; left = 0; right = "auto"; bottom = "auto"; break;
+                    default: top = top_center; left = left_center; bottom = "auto"; right = "auto";
+                }
+
+                win.css({
+                    top: top,
+                    left: left,
+                    bottom: bottom,
+                    right: right
+                });
+            }
+        },
+
+        _window: function(o){
+            var that = this;
+            var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
+            var width = o.width, height = o.height;
+
+            win = $("<div>").addClass("window");
+
+            if (o.modal === true) {
+                win.addClass("modal");
+            }
+
+            caption = $("<div>").addClass("window-caption");
+            content = $("<div>").addClass("window-content");
+
+            win.append(caption);
+            win.append(content);
+
+            if (o.status === true) {
+                status = $("<div>").addClass("window-status");
+                win.append(status);
+            }
+
+            if (o.shadow === true) {
+                win.addClass("win-shadow");
+            }
+
+            if (Utils.isValue(o.icon)) {
+                icon = $("<span>").addClass("icon").html(o.icon);
+                icon.appendTo(caption);
+            }
+
+            title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
+            title.appendTo(caption);
+
+            if (!Utils.isNull(o.content)) {
+
+                if (Utils.isQ(o.content)) {
+                    o.content.appendTo(content);
+                } else {
+                    content.html(o.content);
+                }
+            }
+
+            buttons = $("<div>").addClass("buttons");
+            buttons.appendTo(caption);
+
+            if (o.btnMax === true) {
+                btnMax = $("<span>").addClass("button btn-max sys-button");
+                btnMax.appendTo(buttons);
+            }
+
+            if (o.btnMin === true) {
+                btnMin = $("<span>").addClass("button btn-min sys-button");
+                btnMin.appendTo(buttons);
+            }
+
+            if (o.btnClose === true) {
+                btnClose = $("<span>").addClass("button btn-close sys-button");
+                btnClose.appendTo(buttons);
+            }
+
+            if (Utils.isValue(o.customButtons)) {
+                var customButtons = [];
+
+                if (Utils.isObject(o.customButtons) !== false) {
+                    o.customButtons = Utils.isObject(o.customButtons);
+                }
+
+                if (typeof o.customButtons === "string" && o.customButtons.indexOf("{") > -1) {
+                    customButtons = JSON.parse(o.customButtons);
+                } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
+                    customButtons = o.customButtons;
+                } else {
+                    console.warn("Unknown format for custom buttons");
+                }
+
+                $.each(customButtons, function(){
+                    var item = this;
+                    var customButton = $("<span>");
+
+                    customButton
+                        .addClass("button btn-custom")
+                        .addClass(o.clsCustomButton)
+                        .addClass(item.cls)
+                        .attr("tabindex", -1)
+                        .html(item.html);
+
+                    customButton.data("action", item.onclick);
+
+                    buttons.prepend(customButton);
+                });
+            }
+
+            caption.on(Metro.events.stop, ".btn-custom", function(e){
+                if (Utils.isRightMouse(e)) return;
+                var button = $(this);
+                var action = button.data("action");
+                Utils.exec(action, [button], this);
+            });
+
+            win.attr("id", o.id === undefined ? Utils.elementId("window") : o.id);
+
+            win.on(Metro.events.dblclick, ".window-caption", function(e){
+                that.maximized(e);
+            });
+
+            caption.on(Metro.events.click, ".btn-max, .btn-min, .btn-close", function(e){
+                if (Utils.isRightMouse(e)) return;
+                var target = $(e.target);
+                if (target.hasClass("btn-max")) that.maximized(e);
+                if (target.hasClass("btn-min")) that.minimized(e);
+                if (target.hasClass("btn-close")) that.close(e);
+            });
+
+            if (o.draggable === true) {
+                Metro.makePlugin(win, "draggable", {
+                    dragElement: o.dragElement,
+                    dragArea: o.dragArea,
+                    onDragStart: o.onDragStart,
+                    onDragStop: o.onDragStop,
+                    onDragMove: o.onDragMove
+                })
+            }
+
+            win.addClass(o.clsWindow);
+            caption.addClass(o.clsCaption);
+            content.addClass(o.clsContent);
+
+            if (o.minWidth === 0) {
+                o.minWidth = 34;
+                $.each(buttons.children(".btn-custom"), function(){
+                    o.minWidth += Utils.hiddenElementSize(this).width;
+                });
+                if (o.btnMax) o.minWidth += 34;
+                if (o.btnMin) o.minWidth += 34;
+                if (o.btnClose) o.minWidth += 34;
+            }
+
+            if (o.minWidth > 0 && !isNaN(o.width) && o.width < o.minWidth) {
+                width = o.minWidth;
+            }
+            if (o.minHeight > 0 && !isNaN(o.height) && o.height > o.minHeight) {
+                height = o.minHeight;
+            }
+
+            if (o.resizable === true) {
+                resizer = $("<span>").addClass("resize-element");
+                resizer.appendTo(win);
+                win.addClass("resizable");
+
+                Metro.makePlugin(win, "resizable", {
+                    minWidth: o.minWidth,
+                    minHeight: o.minHeight,
+                    maxWidth: o.maxWidth,
+                    maxHeight: o.maxHeight,
+                    resizeElement: ".resize-element",
+                    onResizeStart: o.onResizeStart,
+                    onResizeStop: o.onResizeStop,
+                    onResize: o.onResize
+                });
             }
 
             win.css({
-                top: top,
-                left: left,
-                bottom: bottom,
-                right: right
+                width: width,
+                height: height,
+                position: o.position,
+                top: o.top,
+                left: o.left
             });
-        }
-    },
 
-    _window: function(o){
-        var that = this;
-        var win, caption, content, icon, title, buttons, btnClose, btnMin, btnMax, resizer, status;
-        var width = o.width, height = o.height;
+            return win;
+        },
 
-        win = $("<div>").addClass("window");
+        _overlay: function(){
+            var o = this.options;
 
-        if (o.modal === true) {
-            win.addClass("modal");
-        }
+            var overlay = $("<div>");
+            overlay.addClass("overlay");
 
-        caption = $("<div>").addClass("window-caption");
-        content = $("<div>").addClass("window-content");
-
-        win.append(caption);
-        win.append(content);
-
-        if (o.status === true) {
-            status = $("<div>").addClass("window-status");
-            win.append(status);
-        }
-
-        if (o.shadow === true) {
-            win.addClass("win-shadow");
-        }
-
-        if (Utils.isValue(o.icon)) {
-            icon = $("<span>").addClass("icon").html(o.icon);
-            icon.appendTo(caption);
-        }
-
-        title = $("<span>").addClass("title").html(Utils.isValue(o.title) ? o.title : "&nbsp;");
-        title.appendTo(caption);
-
-        if (!Utils.isNull(o.content)) {
-
-            if (Utils.isQ(o.content)) {
-                o.content.appendTo(content);
+            if (o.overlayColor === 'transparent') {
+                overlay.addClass("transparent");
             } else {
-                content.html(o.content);
-            }
-        }
-
-        buttons = $("<div>").addClass("buttons");
-        buttons.appendTo(caption);
-
-        if (o.btnMax === true) {
-            btnMax = $("<span>").addClass("button btn-max sys-button");
-            btnMax.appendTo(buttons);
-        }
-
-        if (o.btnMin === true) {
-            btnMin = $("<span>").addClass("button btn-min sys-button");
-            btnMin.appendTo(buttons);
-        }
-
-        if (o.btnClose === true) {
-            btnClose = $("<span>").addClass("button btn-close sys-button");
-            btnClose.appendTo(buttons);
-        }
-
-        if (Utils.isValue(o.customButtons)) {
-            var customButtons = [];
-
-            if (Utils.isObject(o.customButtons) !== false) {
-                o.customButtons = Utils.isObject(o.customButtons);
+                overlay.css({
+                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                });
             }
 
-            if (typeof o.customButtons === "string" && o.customButtons.indexOf("{") > -1) {
-                customButtons = JSON.parse(o.customButtons);
-            } else if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
-                customButtons = o.customButtons;
+            return overlay;
+        },
+
+        maximized: function(e){
+            var win = this.win,  element = this.element, o = this.options;
+            var target = $(e.currentTarget);
+            win.removeClass("minimized");
+            win.toggleClass("maximized");
+            if (target.hasClass("window-caption")) {
+                Utils.exec(o.onCaptionDblClick, [win[0]], element[0]);
+                element.fire("captiondblclick", {
+                    win: win[0]
+                });
             } else {
-                console.warn("Unknown format for custom buttons");
+                Utils.exec(o.onMaxClick, [win[0]], element[0]);
+                element.fire("maxclick", {
+                    win: win[0]
+                });
+            }
+        },
+
+        minimized: function(){
+            var win = this.win,  element = this.element, o = this.options;
+            win.removeClass("maximized");
+            win.toggleClass("minimized");
+            Utils.exec(o.onMinClick, [win[0]], element[0]);
+            element.fire("minclick", {
+                win: win[0]
+            });
+        },
+
+        close: function(){
+            var that = this, win = this.win,  element = this.element, o = this.options;
+
+            if (Utils.exec(o.onCanClose, [win]) === false) {
+                return false;
             }
 
-            $.each(customButtons, function(){
-                var item = this;
-                var customButton = $("<span>");
+            var timeout = 0;
 
-                customButton
-                    .addClass("button btn-custom")
-                    .addClass(o.clsCustomButton)
-                    .addClass(item.cls)
-                    .attr("tabindex", -1)
-                    .html(item.html);
-
-                customButton.data("action", item.onclick);
-
-                buttons.prepend(customButton);
-            });
-        }
-
-        caption.on(Metro.events.stop, ".btn-custom", function(e){
-            if (Utils.isRightMouse(e)) return;
-            var button = $(this);
-            var action = button.data("action");
-            Utils.exec(action, [button], this);
-        });
-
-        win.attr("id", o.id === undefined ? Utils.elementId("window") : o.id);
-
-        win.on(Metro.events.dblclick, ".window-caption", function(e){
-            that.maximized(e);
-        });
-
-        caption.on(Metro.events.click, ".btn-max, .btn-min, .btn-close", function(e){
-            if (Utils.isRightMouse(e)) return;
-            var target = $(e.target);
-            if (target.hasClass("btn-max")) that.maximized(e);
-            if (target.hasClass("btn-min")) that.minimized(e);
-            if (target.hasClass("btn-close")) that.close(e);
-        });
-
-        if (o.draggable === true) {
-            Metro.makePlugin(win, "draggable", {
-                dragElement: o.dragElement,
-                dragArea: o.dragArea,
-                onDragStart: o.onDragStart,
-                onDragStop: o.onDragStop,
-                onDragMove: o.onDragMove
-            })
-        }
-
-        win.addClass(o.clsWindow);
-        caption.addClass(o.clsCaption);
-        content.addClass(o.clsContent);
-
-        if (o.minWidth === 0) {
-            o.minWidth = 34;
-            $.each(buttons.children(".btn-custom"), function(){
-                o.minWidth += Utils.hiddenElementSize(this).width;
-            });
-            if (o.btnMax) o.minWidth += 34;
-            if (o.btnMin) o.minWidth += 34;
-            if (o.btnClose) o.minWidth += 34;
-        }
-
-        if (o.minWidth > 0 && !isNaN(o.width) && o.width < o.minWidth) {
-            width = o.minWidth;
-        }
-        if (o.minHeight > 0 && !isNaN(o.height) && o.height > o.minHeight) {
-            height = o.minHeight;
-        }
-
-        if (o.resizable === true) {
-            resizer = $("<span>").addClass("resize-element");
-            resizer.appendTo(win);
-            win.addClass("resizable");
-
-            Metro.makePlugin(win, "resizable", {
-                minWidth: o.minWidth,
-                minHeight: o.minHeight,
-                maxWidth: o.maxWidth,
-                maxHeight: o.maxHeight,
-                resizeElement: ".resize-element",
-                onResizeStart: o.onResizeStart,
-                onResizeStop: o.onResizeStop,
-                onResize: o.onResize
-            });
-        }
-
-        win.css({
-            width: width,
-            height: height,
-            position: o.position,
-            top: o.top,
-            left: o.left
-        });
-
-        return win;
-    },
-
-    _overlay: function(){
-        var o = this.options;
-
-        var overlay = $("<div>");
-        overlay.addClass("overlay");
-
-        if (o.overlayColor === 'transparent') {
-            overlay.addClass("transparent");
-        } else {
-            overlay.css({
-                background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
-            });
-        }
-
-        return overlay;
-    },
-
-    maximized: function(e){
-        var win = this.win,  element = this.element, o = this.options;
-        var target = $(e.currentTarget);
-        win.removeClass("minimized");
-        win.toggleClass("maximized");
-        if (target.hasClass("window-caption")) {
-            Utils.exec(o.onCaptionDblClick, [win[0]], element[0]);
-            element.fire("captiondblclick", {
-                win: win[0]
-            });
-        } else {
-            Utils.exec(o.onMaxClick, [win[0]], element[0]);
-            element.fire("maxclick", {
-                win: win[0]
-            });
-        }
-    },
-
-    minimized: function(){
-        var win = this.win,  element = this.element, o = this.options;
-        win.removeClass("maximized");
-        win.toggleClass("minimized");
-        Utils.exec(o.onMinClick, [win[0]], element[0]);
-        element.fire("minclick", {
-            win: win[0]
-        });
-    },
-
-    close: function(){
-        var that = this, win = this.win,  element = this.element, o = this.options;
-
-        if (Utils.exec(o.onCanClose, [win]) === false) {
-            return false;
-        }
-
-        var timeout = 0;
-
-        if (o.onClose !== Metro.noop) {
-            timeout = 500;
-        }
-
-        Utils.exec(o.onClose, [win[0]], element[0]);
-        element.fire("close", {
-            win: win[0]
-        });
-
-        setTimeout(function(){
-            if (o.modal === true) {
-                win.siblings(".overlay").remove();
+            if (o.onClose !== Metro.noop) {
+                timeout = 500;
             }
-            Utils.exec(o.onCloseClick, [win[0]], element[0]);
-            element.fire("closeclick", {
+
+            Utils.exec(o.onClose, [win[0]], element[0]);
+            element.fire("close", {
                 win: win[0]
             });
 
-            Utils.exec(o.onWindowDestroy, [win[0]], element[0]);
-            element.fire("windowdestroy", {
-                win: win[0]
+            setTimeout(function(){
+                if (o.modal === true) {
+                    win.siblings(".overlay").remove();
+                }
+                Utils.exec(o.onCloseClick, [win[0]], element[0]);
+                element.fire("closeclick", {
+                    win: win[0]
+                });
+
+                Utils.exec(o.onWindowDestroy, [win[0]], element[0]);
+                element.fire("windowdestroy", {
+                    win: win[0]
+                });
+
+                if (o.closeAction === Metro.actions.REMOVE) {
+                    win.remove();
+                } else {
+                    that.hide();
+                }
+
+            }, timeout);
+        },
+
+        hide: function(){
+            var element = this.element, o = this.options;
+            this.win.css({
+                display: "none"
+            });
+            Utils.exec(o.onHide, [this.win[0]], element[0]);
+            element.fire("hide", {
+                win: this.win[0]
+            });
+        },
+
+        show: function(){
+            var element = this.element, o = this.options;
+
+            this.win.removeClass("no-visible");
+            this.win.css({
+                display: "flex"
             });
 
-            if (o.closeAction === Metro.actions.REMOVE) {
-                win.remove();
+            Utils.exec(o.onShow, [this.win[0]], element[0]);
+            element.fire("show", {
+                win: this.win[0]
+            });
+        },
+
+        toggle: function(){
+            if (this.win.css("display") === "none" || this.win.hasClass("no-visible")) {
+                this.show();
             } else {
-                that.hide();
+                this.hide();
+            }
+        },
+
+        isOpen: function(){
+            return this.win.hasClass("no-visible");
+        },
+
+        min: function(a){
+            a ? this.win.addClass("minimized") : this.win.removeClass("minimized");
+        },
+
+        max: function(a){
+            a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
+        },
+
+        toggleButtons: function(a) {
+            var win = this.win;
+            var btnClose = win.find(".btn-close");
+            var btnMin = win.find(".btn-min");
+            var btnMax = win.find(".btn-max");
+
+            if (a === "data-btn-close") {
+                btnClose.toggle();
+            }
+            if (a === "data-btn-min") {
+                btnMin.toggle();
+            }
+            if (a === "data-btn-max") {
+                btnMax.toggle();
+            }
+        },
+
+        changeSize: function(a){
+            var element = this.element, win = this.win;
+            if (a === "data-width") {
+                win.css("width", element.data("width"));
+            }
+            if (a === "data-height") {
+                win.css("height", element.data("height"));
+            }
+        },
+
+        changeClass: function(a){
+            var element = this.element, win = this.win, o = this.options;
+
+            if (a === "data-cls-window") {
+                win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
+            }
+            if (a === "data-cls-caption") {
+                win.find(".window-caption")[0].className = "window-caption " + element.attr("data-cls-caption");
+            }
+            if (a === "data-cls-content") {
+                win.find(".window-content")[0].className = "window-content " + element.attr("data-cls-content");
+            }
+        },
+
+        toggleShadow: function(){
+            var element = this.element, win = this.win;
+            var flag = JSON.parse(element.attr("data-shadow"));
+            if (flag === true) {
+                win.addClass("win-shadow");
+            } else {
+                win.removeClass("win-shadow");
+            }
+        },
+
+        setContent: function(c){
+            var element = this.element, win = this.win;
+            var content = Utils.isValue(c) ? c : element.attr("data-content");
+            var result;
+
+            if (!Utils.isQ(content) && Utils.isFunc(content)) {
+                result = Utils.exec(content);
+            } else if (Utils.isQ(content)) {
+                result = content.html();
+            } else {
+                result = content;
             }
 
-        }, timeout);
-    },
+            win.find(".window-content").html(result);
+        },
 
-    hide: function(){
-        var element = this.element, o = this.options;
-        this.win.css({
-            display: "none"
-        });
-        Utils.exec(o.onHide, [this.win[0]], element[0]);
-        element.fire("hide", {
-            win: this.win[0]
-        });
-    },
+        setTitle: function(t){
+            var element = this.element, win = this.win;
+            var title = Utils.isValue(t) ? t : element.attr("data-title");
+            win.find(".window-caption .title").html(title);
+        },
 
-    show: function(){
-        var element = this.element, o = this.options;
+        setIcon: function(i){
+            var element = this.element, win = this.win;
+            var icon = Utils.isValue(i) ? i : element.attr("data-icon");
+            win.find(".window-caption .icon").html(icon);
+        },
 
-        this.win.removeClass("no-visible");
-        this.win.css({
-            display: "flex"
-        });
+        getIcon: function(){
+            return this.win.find(".window-caption .icon").html();
+        },
 
-        Utils.exec(o.onShow, [this.win[0]], element[0]);
-        element.fire("show", {
-            win: this.win[0]
-        });
-    },
+        getTitle: function(){
+            return this.win.find(".window-caption .title").html();
+        },
 
-    toggle: function(){
-        if (this.win.css("display") === "none" || this.win.hasClass("no-visible")) {
-            this.show();
-        } else {
-            this.hide();
+        toggleDraggable: function(){
+            var element = this.element, win = this.win;
+            var flag = JSON.parse(element.attr("data-draggable"));
+            var drag = Metro.getPlugin(win, "draggable");
+            if (flag === true) {
+                drag.on();
+            } else {
+                drag.off();
+            }
+        },
+
+        toggleResizable: function(){
+            var element = this.element, win = this.win;
+            var flag = JSON.parse(element.attr("data-resizable"));
+            var resize = Metro.getPlugin(win, "resizable");
+            if (flag === true) {
+                resize.on();
+                win.find(".resize-element").removeClass("resize-element-disabled");
+            } else {
+                resize.off();
+                win.find(".resize-element").addClass("resize-element-disabled");
+            }
+        },
+
+        changeTopLeft: function(a){
+            var element = this.element, win = this.win;
+            var pos;
+            if (a === "data-top") {
+                pos = parseInt(element.attr("data-top"));
+                if (!isNaN(pos)) {
+                    return ;
+                }
+                win.css("top", pos);
+            }
+            if (a === "data-left") {
+                pos = parseInt(element.attr("data-left"));
+                if (!isNaN(pos)) {
+                    return ;
+                }
+                win.css("left", pos);
+            }
+        },
+
+        changePlace: function (p) {
+            var element = this.element, win = this.win;
+            var place = Utils.isValue(p) ? p : element.attr("data-place");
+            win.addClass(place);
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case "data-btn-close":
+                case "data-btn-min":
+                case "data-btn-max": this.toggleButtons(attributeName); break;
+                case "data-width":
+                case "data-height": this.changeSize(attributeName); break;
+                case "data-cls-window":
+                case "data-cls-caption":
+                case "data-cls-content": this.changeClass(attributeName); break;
+                case "data-shadow": this.toggleShadow(); break;
+                case "data-icon": this.setIcon(); break;
+                case "data-title": this.setTitle(); break;
+                case "data-content": this.setContent(); break;
+                case "data-draggable": this.toggleDraggable(); break;
+                case "data-resizable": this.toggleResizable(); break;
+                case "data-top":
+                case "data-left": this.changeTopLeft(attributeName); break;
+                case "data-place": this.changePlace(); break;
+            }
+        },
+
+        destroy: function(){
+            return this.element;
         }
-    },
+    });
 
-    isOpen: function(){
-        return this.win.hasClass("no-visible");
-    },
+    Metro['window'] = {
 
-    min: function(a){
-        a ? this.win.addClass("minimized") : this.win.removeClass("minimized");
-    },
+        isWindow: function(el){
+            return Utils.isMetroObject(el, "window");
+        },
 
-    max: function(a){
-        a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
-    },
+        min: function(el, a){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el,"window").min(a);
+        },
 
-    toggleButtons: function(a) {
-        var win = this.win;
-        var btnClose = win.find(".btn-close");
-        var btnMin = win.find(".btn-min");
-        var btnMax = win.find(".btn-max");
+        max: function(el, a){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").max(a);
+        },
 
-        if (a === "data-btn-close") {
-            btnClose.toggle();
+        show: function(el){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").show();
+        },
+
+        hide: function(el){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").hide();
+        },
+
+        toggle: function(el){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").toggle();
+        },
+
+        isOpen: function(el){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            var win = Metro.getPlugin(el,"window");
+            return win.isOpen();
+        },
+
+        close: function(el){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").close();
+        },
+
+        create: function(options){
+            var w;
+
+            w = $("<div>").appendTo($("body"));
+
+            var w_options = $.extend({}, {
+            }, (options !== undefined ? options : {}));
+
+            w_options._runtime = true;
+
+            return Metro.makePlugin(w, "window", w_options);
         }
-        if (a === "data-btn-min") {
-            btnMin.toggle();
-        }
-        if (a === "data-btn-max") {
-            btnMax.toggle();
-        }
-    },
+    };
+}(Metro, m4q));
 
-    changeSize: function(a){
-        var element = this.element, win = this.win;
-        if (a === "data-width") {
-            win.css("width", element.data("width"));
-        }
-        if (a === "data-height") {
-            win.css("height", element.data("height"));
-        }
-    },
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var WizardDefaultConfig = {
+        wizardDeferred: 0,
+        start: 1,
+        finish: 0,
+        iconHelp: "<span class='default-icon-help'></span>",
+        iconPrev: "<span class='default-icon-left-arrow'></span>",
+        iconNext: "<span class='default-icon-right-arrow'></span>",
+        iconFinish: "<span class='default-icon-check'></span>",
 
-    changeClass: function(a){
-        var element = this.element, win = this.win, o = this.options;
+        buttonMode: "cycle", // default, cycle, square
+        buttonOutline: true,
+        duration: 300,
 
-        if (a === "data-cls-window") {
-            win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
-        }
-        if (a === "data-cls-caption") {
-            win.find(".window-caption")[0].className = "window-caption " + element.attr("data-cls-caption");
-        }
-        if (a === "data-cls-content") {
-            win.find(".window-content")[0].className = "window-content " + element.attr("data-cls-content");
-        }
-    },
+        clsWizard: "",
+        clsActions: "",
+        clsHelp: "",
+        clsPrev: "",
+        clsNext: "",
+        clsFinish: "",
 
-    toggleShadow: function(){
-        var element = this.element, win = this.win;
-        var flag = JSON.parse(element.attr("data-shadow"));
-        if (flag === true) {
-            win.addClass("win-shadow");
-        } else {
-            win.removeClass("win-shadow");
-        }
-    },
+        onPage: Metro.noop,
+        onNextPage: Metro.noop,
+        onPrevPage: Metro.noop,
+        onFirstPage: Metro.noop,
+        onLastPage: Metro.noop,
+        onFinishPage: Metro.noop,
+        onHelpClick: Metro.noop,
+        onPrevClick: Metro.noop,
+        onNextClick: Metro.noop,
+        onFinishClick: Metro.noop,
+        onBeforePrev: Metro.noop_true,
+        onBeforeNext: Metro.noop_true,
+        onWizardCreate: Metro.noop
+    };
 
-    setContent: function(c){
-        var element = this.element, win = this.win;
-        var content = Utils.isValue(c) ? c : element.attr("data-content");
-        var result;
+    Metro.wizardSetup = function (options) {
+        WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
+    };
 
-        if (!Utils.isQ(content) && Utils.isFunc(content)) {
-            result = Utils.exec(content);
-        } else if (Utils.isQ(content)) {
-            result = content.html();
-        } else {
-            result = content;
-        }
+    if (typeof window["metroWizardSetup"] !== undefined) {
+        Metro.wizardSetup(window["metroWizardSetup"]);
+    }
 
-        win.find(".window-content").html(result);
-    },
+    Metro.Component('wizard', {
+        init: function( options, elem ) {
+            this._super(elem, options, WizardDefaultConfig, {
+                id: Utils.elementId('wizard')
+            });
 
-    setTitle: function(t){
-        var element = this.element, win = this.win;
-        var title = Utils.isValue(t) ? t : element.attr("data-title");
-        win.find(".window-caption .title").html(title);
-    },
+            return this;
+        },
 
-    setIcon: function(i){
-        var element = this.element, win = this.win;
-        var icon = Utils.isValue(i) ? i : element.attr("data-icon");
-        win.find(".window-caption .icon").html(icon);
-    },
+        _create: function(){
+            var element = this.element;
 
-    getIcon: function(){
-        return this.win.find(".window-caption .icon").html();
-    },
+            this._createWizard();
+            this._createEvents();
 
-    getTitle: function(){
-        return this.win.find(".window-caption .title").html();
-    },
+            this._fireEvent("wizard-create", {
+                element: element
+            });
+        },
 
-    toggleDraggable: function(){
-        var element = this.element, win = this.win;
-        var flag = JSON.parse(element.attr("data-draggable"));
-        var drag = Metro.getPlugin(win, "draggable");
-        if (flag === true) {
-            drag.on();
-        } else {
-            drag.off();
-        }
-    },
+        _createWizard: function(){
+            var element = this.element, o = this.options;
+            var bar;
 
-    toggleResizable: function(){
-        var element = this.element, win = this.win;
-        var flag = JSON.parse(element.attr("data-resizable"));
-        var resize = Metro.getPlugin(win, "resizable");
-        if (flag === true) {
-            resize.on();
-            win.find(".resize-element").removeClass("resize-element-disabled");
-        } else {
-            resize.off();
-            win.find(".resize-element").addClass("resize-element-disabled");
-        }
-    },
+            element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
 
-    changeTopLeft: function(a){
-        var element = this.element, win = this.win;
-        var pos;
-        if (a === "data-top") {
-            pos = parseInt(element.attr("data-top"));
-            if (!isNaN(pos)) {
+            bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
+
+            var buttonMode = o.buttonMode === "button" ? "" : o.buttonMode;
+            if (o.buttonOutline === true) {
+                buttonMode += " outline";
+            }
+
+            if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
+            if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
+            if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
+            if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
+
+            this.toPage(o.start);
+
+            this._setHeight();
+        },
+
+        _setHeight: function(){
+            var element = this.element;
+            var pages = element.children("section");
+            var max_height = 0;
+
+            pages.children(".page-content").css("max-height", "none");
+
+            $.each(pages, function(){
+                var h = $(this).height();
+                if (max_height < parseInt(h)) {
+                    max_height = h;
+                }
+            });
+
+            element.height(max_height);
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            element.on(Metro.events.click, ".wizard-btn-help", function(){
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+
+                Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
+                element.fire("helpclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".wizard-btn-prev", function(){
+                that.prev();
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+                Utils.exec(o.onPrevClick, [that.current, page], element[0]);
+                element.fire("prevclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".wizard-btn-next", function(){
+                that.next();
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+                Utils.exec(o.onNextClick, [that.current, page], element[0]);
+                element.fire("nextclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".wizard-btn-finish", function(){
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+                Utils.exec(o.onFinishClick, [that.current, page], element[0]);
+                element.fire("finishclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".complete", function(){
+                var index = $(this).index() + 1;
+                that.toPage(index);
+            });
+
+            $(window).on(Metro.events.resize, function(){
+                that._setHeight();
+            }, {ns: this.id});
+        },
+
+        next: function(){
+            var that = this, element = this.element, o = this.options;
+            var pages = element.children("section");
+            var page = $(element.children("section").get(this.current - 1));
+
+            if (this.current + 1 > pages.length || Utils.exec(o.onBeforeNext, [this.current, page, element]) === false) {
                 return ;
             }
-            win.css("top", pos);
-        }
-        if (a === "data-left") {
-            pos = parseInt(element.attr("data-left"));
-            if (!isNaN(pos)) {
+
+            this.current++;
+
+            this.toPage(this.current);
+
+            page = $(element.children("section").get(this.current - 1));
+            Utils.exec(o.onNextPage, [this.current, page[0]], element[0]);
+            element.fire("nextpage", {
+                index: that.current,
+                page: page[0]
+            });
+        },
+
+        prev: function(){
+            var that = this, element = this.element, o = this.options;
+            var page = $(element.children("section").get(this.current - 1));
+
+            if (this.current - 1 === 0 || Utils.exec(o.onBeforePrev, [this.current, page, element]) === false) {
                 return ;
             }
-            win.css("left", pos);
-        }
-    },
 
-    changePlace: function (p) {
-        var element = this.element, win = this.win;
-        var place = Utils.isValue(p) ? p : element.attr("data-place");
-        win.addClass(place);
-    },
+            this.current--;
 
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-btn-close":
-            case "data-btn-min":
-            case "data-btn-max": this.toggleButtons(attributeName); break;
-            case "data-width":
-            case "data-height": this.changeSize(attributeName); break;
-            case "data-cls-window":
-            case "data-cls-caption":
-            case "data-cls-content": this.changeClass(attributeName); break;
-            case "data-shadow": this.toggleShadow(); break;
-            case "data-icon": this.setIcon(); break;
-            case "data-title": this.setTitle(); break;
-            case "data-content": this.setContent(); break;
-            case "data-draggable": this.toggleDraggable(); break;
-            case "data-resizable": this.toggleResizable(); break;
-            case "data-top":
-            case "data-left": this.changeTopLeft(attributeName); break;
-            case "data-place": this.changePlace(); break;
-        }
-    },
+            this.toPage(this.current);
 
-    destroy: function(){
-        return this.element;
-    }
-});
+            page = $(element.children("section").get(this.current - 1));
+            Utils.exec(o.onPrevPage, [this.current, page[0]], element[0]);
+            element.fire("prevpage", {
+                index: that.current,
+                page: page[0]
+            });
+        },
 
-Metro['window'] = {
+        last: function(){
+            var that = this, element = this.element, o = this.options;
+            var page;
 
-    isWindow: function(el){
-        return Utils.isMetroObject(el, "window");
-    },
+            this.toPage(element.children("section").length);
 
-    min: function(el, a){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        Metro.getPlugin(el,"window").min(a);
-    },
+            page = $(element.children("section").get(this.current - 1));
+            Utils.exec(o.onLastPage, [this.current, page[0]], element[0]);
+            element.fire("lastpage", {
+                index: that.current,
+                page: page[0]
+            });
 
-    max: function(el, a){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        Metro.getPlugin(el, "window").max(a);
-    },
+        },
 
-    show: function(el){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        Metro.getPlugin(el, "window").show();
-    },
+        first: function(){
+            var that = this, element = this.element, o = this.options;
+            var page;
 
-    hide: function(el){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        Metro.getPlugin(el, "window").hide();
-    },
+            this.toPage(1);
 
-    toggle: function(el){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        Metro.getPlugin(el, "window").toggle();
-    },
+            page = $(element.children("section").get(0));
+            Utils.exec(o.onFirstPage, [this.current, page[0]], element[0]);
+            element.fire("firstpage", {
+                index: that.current,
+                page: page[0]
+            });
+        },
 
-    isOpen: function(el){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        var win = Metro.getPlugin(el,"window");
-        return win.isOpen();
-    },
+        toPage: function(page){
+            var element = this.element, o = this.options;
+            var target = $(element.children("section").get(page - 1));
+            var sections = element.children("section");
+            var actions = element.find(".action-bar");
 
-    close: function(el){
-        if (!this.isWindow(el)) {
-            return false;
-        }
-        Metro.getPlugin(el, "window").close();
-    },
-
-    create: function(options){
-        var w;
-
-        w = $("<div>").appendTo($("body"));
-
-        var w_options = $.extend({}, {
-        }, (options !== undefined ? options : {}));
-
-        w_options._runtime = true;
-
-        return Metro.makePlugin(w, "window", w_options);
-    }
-};
-
-var WizardDefaultConfig = {
-    wizardDeferred: 0,
-    start: 1,
-    finish: 0,
-    iconHelp: "<span class='default-icon-help'></span>",
-    iconPrev: "<span class='default-icon-left-arrow'></span>",
-    iconNext: "<span class='default-icon-right-arrow'></span>",
-    iconFinish: "<span class='default-icon-check'></span>",
-
-    buttonMode: "cycle", // default, cycle, square
-    buttonOutline: true,
-    duration: 300,
-
-    clsWizard: "",
-    clsActions: "",
-    clsHelp: "",
-    clsPrev: "",
-    clsNext: "",
-    clsFinish: "",
-
-    onPage: Metro.noop,
-    onNextPage: Metro.noop,
-    onPrevPage: Metro.noop,
-    onFirstPage: Metro.noop,
-    onLastPage: Metro.noop,
-    onFinishPage: Metro.noop,
-    onHelpClick: Metro.noop,
-    onPrevClick: Metro.noop,
-    onNextClick: Metro.noop,
-    onFinishClick: Metro.noop,
-    onBeforePrev: Metro.noop_true,
-    onBeforeNext: Metro.noop_true,
-    onWizardCreate: Metro.noop
-};
-
-Metro.wizardSetup = function (options) {
-    WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
-};
-
-if (typeof window["metroWizardSetup"] !== undefined) {
-    Metro.wizardSetup(window["metroWizardSetup"]);
-}
-
-Component('wizard', {
-    init: function( options, elem ) {
-        this._super(elem, options, WizardDefaultConfig);
-
-        this.id = Utils.elementId('wizard');
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createWizard();
-        this._createEvents();
-
-        Utils.exec(o.onWizardCreate, [element], element[0]);
-        element.fire("wizardcreate");
-    },
-
-    _createWizard: function(){
-        var element = this.element, o = this.options;
-        var bar;
-
-        element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
-
-        bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
-
-        var buttonMode = o.buttonMode === "button" ? "" : o.buttonMode;
-        if (o.buttonOutline === true) {
-            buttonMode += " outline";
-        }
-
-        if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
-        if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
-        if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
-        if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
-
-        this.toPage(o.start);
-
-        this._setHeight();
-    },
-
-    _setHeight: function(){
-        var element = this.element;
-        var pages = element.children("section");
-        var max_height = 0;
-
-        pages.children(".page-content").css("max-height", "none");
-
-        $.each(pages, function(){
-            var h = $(this).height();
-            if (max_height < parseInt(h)) {
-                max_height = h;
+            if (target.length === 0) {
+                return ;
             }
-        });
 
-        element.height(max_height);
-    },
+            var finish = element.find(".wizard-btn-finish").addClass("disabled");
+            var next = element.find(".wizard-btn-next").addClass("disabled");
+            var prev = element.find(".wizard-btn-prev").addClass("disabled");
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+            this.current = page;
 
-        element.on(Metro.events.click, ".wizard-btn-help", function(){
-            var pages = element.children("section");
-            var page = pages.get(that.current - 1);
+            element.children("section")
+                .removeClass("complete current")
+                .removeClass(o.clsCurrent)
+                .removeClass(o.clsComplete);
 
-            Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
-            element.fire("helpclick", {
-                index: that.current,
-                page: page
+            target.addClass("current").addClass(o.clsCurrent);
+            target.prevAll().addClass("complete").addClass(o.clsComplete);
+
+            var border_size = element.children("section.complete").length === 0 ? 0 : parseInt(Utils.getStyleOne(element.children("section.complete")[0], "border-left-width"));
+
+            actions.animate({
+                draw: {
+                    left: element.children("section.complete").length * border_size + 41
+                },
+                dur: o.duration
             });
-        });
 
-        element.on(Metro.events.click, ".wizard-btn-prev", function(){
-            that.prev();
-            var pages = element.children("section");
-            var page = pages.get(that.current - 1);
-            Utils.exec(o.onPrevClick, [that.current, page], element[0]);
-            element.fire("prevclick", {
-                index: that.current,
-                page: page
-            });
-        });
+            if (
+                (this.current === sections.length) || (o.finish > 0 && this.current >= o.finish)
+            ) {
+                finish.removeClass("disabled");
+            }
 
-        element.on(Metro.events.click, ".wizard-btn-next", function(){
-            that.next();
-            var pages = element.children("section");
-            var page = pages.get(that.current - 1);
-            Utils.exec(o.onNextClick, [that.current, page], element[0]);
-            element.fire("nextclick", {
-                index: that.current,
-                page: page
-            });
-        });
+            if (parseInt(o.finish) > 0 && this.current === parseInt(o.finish)) {
+                Utils.exec(o.onFinishPage, [this.current, target[0]], element[0]);
+                element.fire("finishpage", {
+                    index: this.current,
+                    page: target[0]
+                });
+            }
 
-        element.on(Metro.events.click, ".wizard-btn-finish", function(){
-            var pages = element.children("section");
-            var page = pages.get(that.current - 1);
-            Utils.exec(o.onFinishClick, [that.current, page], element[0]);
-            element.fire("finishclick", {
-                index: that.current,
-                page: page
-            });
-        });
+            if (this.current < sections.length) {
+                next.removeClass("disabled");
+            }
 
-        element.on(Metro.events.click, ".complete", function(){
-            var index = $(this).index() + 1;
-            that.toPage(index);
-        });
+            if (this.current > 1) {
+                prev.removeClass("disabled");
+            }
 
-        $(window).on(Metro.events.resize, function(){
-            that._setHeight();
-        }, {ns: this.id});
-    },
-
-    next: function(){
-        var that = this, element = this.element, o = this.options;
-        var pages = element.children("section");
-        var page = $(element.children("section").get(this.current - 1));
-
-        if (this.current + 1 > pages.length || Utils.exec(o.onBeforeNext, [this.current, page, element]) === false) {
-            return ;
-        }
-
-        this.current++;
-
-        this.toPage(this.current);
-
-        page = $(element.children("section").get(this.current - 1));
-        Utils.exec(o.onNextPage, [this.current, page[0]], element[0]);
-        element.fire("nextpage", {
-            index: that.current,
-            page: page[0]
-        });
-    },
-
-    prev: function(){
-        var that = this, element = this.element, o = this.options;
-        var page = $(element.children("section").get(this.current - 1));
-
-        if (this.current - 1 === 0 || Utils.exec(o.onBeforePrev, [this.current, page, element]) === false) {
-            return ;
-        }
-
-        this.current--;
-
-        this.toPage(this.current);
-
-        page = $(element.children("section").get(this.current - 1));
-        Utils.exec(o.onPrevPage, [this.current, page[0]], element[0]);
-        element.fire("prevpage", {
-            index: that.current,
-            page: page[0]
-        });
-    },
-
-    last: function(){
-        var that = this, element = this.element, o = this.options;
-        var page;
-
-        this.toPage(element.children("section").length);
-
-        page = $(element.children("section").get(this.current - 1));
-        Utils.exec(o.onLastPage, [this.current, page[0]], element[0]);
-        element.fire("lastpage", {
-            index: that.current,
-            page: page[0]
-        });
-
-    },
-
-    first: function(){
-        var that = this, element = this.element, o = this.options;
-        var page;
-
-        this.toPage(1);
-
-        page = $(element.children("section").get(0));
-        Utils.exec(o.onFirstPage, [this.current, page[0]], element[0]);
-        element.fire("firstpage", {
-            index: that.current,
-            page: page[0]
-        });
-    },
-
-    toPage: function(page){
-        var element = this.element, o = this.options;
-        var target = $(element.children("section").get(page - 1));
-        var sections = element.children("section");
-        var actions = element.find(".action-bar");
-
-        if (target.length === 0) {
-            return ;
-        }
-
-        var finish = element.find(".wizard-btn-finish").addClass("disabled");
-        var next = element.find(".wizard-btn-next").addClass("disabled");
-        var prev = element.find(".wizard-btn-prev").addClass("disabled");
-
-        this.current = page;
-
-        element.children("section")
-            .removeClass("complete current")
-            .removeClass(o.clsCurrent)
-            .removeClass(o.clsComplete);
-
-        target.addClass("current").addClass(o.clsCurrent);
-        target.prevAll().addClass("complete").addClass(o.clsComplete);
-
-        var border_size = element.children("section.complete").length === 0 ? 0 : parseInt(Utils.getStyleOne(element.children("section.complete")[0], "border-left-width"));
-
-        actions.animate({
-            draw: {
-                left: element.children("section.complete").length * border_size + 41
-            },
-            dur: o.duration
-        });
-
-        if (
-            (this.current === sections.length) || (o.finish > 0 && this.current >= o.finish)
-        ) {
-            finish.removeClass("disabled");
-        }
-
-        if (parseInt(o.finish) > 0 && this.current === parseInt(o.finish)) {
-            Utils.exec(o.onFinishPage, [this.current, target[0]], element[0]);
-            element.fire("finishpage", {
+            Utils.exec(o.onPage, [this.current, target[0]], element[0]);
+            element.fire("page", {
                 index: this.current,
                 page: target[0]
             });
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off(Metro.events.click, ".wizard-btn-help");
+            element.off(Metro.events.click, ".wizard-btn-prev");
+            element.off(Metro.events.click, ".wizard-btn-next");
+            element.off(Metro.events.click, ".wizard-btn-finish");
+            element.off(Metro.events.click, ".complete");
+            $(window).off(Metro.events.resize,{ns: this.id});
+
+            return element;
         }
-
-        if (this.current < sections.length) {
-            next.removeClass("disabled");
-        }
-
-        if (this.current > 1) {
-            prev.removeClass("disabled");
-        }
-
-        Utils.exec(o.onPage, [this.current, target[0]], element[0]);
-        element.fire("page", {
-            index: this.current,
-            page: target[0]
-        });
-    },
-
-    changeAttribute: function(){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off(Metro.events.click, ".wizard-btn-help");
-        element.off(Metro.events.click, ".wizard-btn-prev");
-        element.off(Metro.events.click, ".wizard-btn-next");
-        element.off(Metro.events.click, ".wizard-btn-finish");
-        element.off(Metro.events.click, ".complete");
-        $(window).off(Metro.events.resize,{ns: this.id});
-
-        return element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 if (METRO_INIT ===  true) {
 	METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});
