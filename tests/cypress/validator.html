@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Validator - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Validator test page</h1>
+
+    <div class="example">
+        <h4>Standalone</h4>
+        <input type="text" data-validate="required" id="input1">
+        <input type="text" data-validate="required" id="input2" value="123">
+    </div>
+    <br>
+    <div class="example">
+        <h4>In form</h4>
+        <form data-role="validator">
+            <input type="text" data-validate="required">
+            <input type="text" data-validate="required" value="123">
+            <br>
+            <button class="button">Submit</button>
+        </form>
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function () {
+        if (Metro.validator.validate($('#input1')) === true) {
+            throw new Error("Validate error");
+        }
+        if (Metro.validator.validate($('#input2')) === false) {
+            throw new Error("Validate error");
+        }
+    })
+</script>
+</body>
+</html>

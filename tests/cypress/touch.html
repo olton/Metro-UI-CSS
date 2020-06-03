@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Touch - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .emulator {
+            width: 360px;
+            height: 640px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Touch test page</h1>
+
+    <div class="example">
+        <div class="emulator border" data-role="touch" data-on-swipe="mySwipe">
+            <div class="head-bar pos-absolute bg-red fg-white z-1">
+                <button class="expand-button light ml-2" id="sidebar-toggle"><span></span></button>
+                <span class="app-title">Metro 4</span>
+            </div>
+
+            <aside class="sidebar pos-absolute z-2" data-role="sidebar" data-toggle="#sidebar-toggle" id="sb1">
+                <div class="sidebar-header" data-image="../images/sb-bg-1.jpg">
+                    <a href="/" class="fg-white sub-action" onclick="Metro.sidebar.close('#sb1'); return false;"><span class="mif-arrow-left mif-2x"></span></a>
+                    <div class="avatar">
+                        <img data-role="gravatar" data-email="sergey@pimenov.com.ua">
+                    </div>
+                    <span class="title fg-white">Metro 4 Components Library</span>
+                    <span class="subtitle fg-white"> 2018 &copy; Sergey Pimenov</span>
+                </div>
+                <ul class="sidebar-menu">
+                    <li><a><span class="mif-home icon"></span>Home</a></li>
+                    <li><a><span class="mif-books icon"></span>Guide</a></li>
+                    <li><a><span class="mif-files-empty icon"></span>Examples</a></li>
+                    <li class="divider"></li>
+                    <li><a><span class="mif-images icon"></span>Icons</a></li>
+                </ul>
+            </aside>
+
+            <div class="app-holder h-100 d-flex flex-justify-center flex-align-center">
+                <p class="text-center text-leader">Swipe left or right<br>to show/hide sidebar</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function mySwipe(event, direction, distance, duration, fingerCount, fingerData, currentDirection){
+        var sb = Metro.getPlugin("#sb1", "sidebar");
+        if (direction === "right") {
+            if (!sb.isOpen()) {
+                sb.open();
+            }
+        }
+        if (direction === "left") {
+            if (sb.isOpen()) {
+                sb.close();
+            }
+        }
+    }
+</script>
+</body>
+</html>

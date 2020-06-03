@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/06/2020 15:40:48
+ * Built at 03/06/2020 23:08:07
  * Licensed under MIT
  */
 *,
@@ -233,7 +233,7 @@ select {
 }
 [disabled] {
   pointer-events: none!important;
-  color: #e4e4e4 !important;
+  color: lightgray!important;
 }
 .button.primary,
 .command-button.primary,

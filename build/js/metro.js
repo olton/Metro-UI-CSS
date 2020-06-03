@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/06/2020 15:40:55
+ * Built at 03/06/2020 23:08:14
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "03/06/2020 15:40:57",
+    compileTime: "03/06/2020 23:08:15",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -8020,6 +8020,16 @@ var Utils = {
 
     decCount: function(v){
         return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
+    },
+
+    randomColor: function(){
+        var r, g, b;
+
+        r = $.random(0, 255);
+        g = $.random(0, 255);
+        b = $.random(0, 255);
+
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
     }
 };
 
@@ -28909,1543 +28919,1522 @@ $.extend(Metro['locales'], {
     });
 }(Metro, m4q));
 
-var TextareaDefaultConfig = {
-    textareaDeferred: 0,
-    charsCounter: null,
-    charsCounterTemplate: "$1",
-    defaultValue: "",
-    prepend: "",
-    append: "",
-    copyInlineStyles: false,
-    clearButton: true,
-    clearButtonIcon: "<span class='default-icon-cross'></span>",
-    autoSize: true,
-    clsPrepend: "",
-    clsAppend: "",
-    clsComponent: "",
-    clsTextarea: "",
-    onChange: Metro.noop,
-    onTextareaCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var TextareaDefaultConfig = {
+        textareaDeferred: 0,
+        charsCounter: null,
+        charsCounterTemplate: "$1",
+        defaultValue: "",
+        prepend: "",
+        append: "",
+        copyInlineStyles: false,
+        clearButton: true,
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        autoSize: true,
+        clsPrepend: "",
+        clsAppend: "",
+        clsComponent: "",
+        clsTextarea: "",
+        onChange: Metro.noop,
+        onTextareaCreate: Metro.noop
+    };
 
-Metro.textareaSetup = function (options) {
-    TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
-};
+    Metro.textareaSetup = function (options) {
+        TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
+    };
 
-if (typeof window["metroTextareaSetup"] !== undefined) {
-    Metro.textareaSetup(window["metroTextareaSetup"]);
-}
-
-Component('textarea', {
-    init: function( options, elem ) {
-        this._super(elem, options, TextareaDefaultConfig);
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onTextareaCreate, [element], element[0]);
-        element.fire("textareacreate");
-    },
-
-    _createStructure: function(){
-        var that = this, element = this.element, elem = this.elem, o = this.options;
-        var container = $("<div>").addClass("textarea " + element[0].className);
-        var fakeTextarea = $("<textarea>").addClass("fake-textarea");
-        var clearButton;
-
-        container.insertBefore(element);
-        element.appendTo(container);
-        fakeTextarea.appendTo(container);
-
-        if (o.clearButton !== false && !element[0].readOnly) {
-            clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
-            clearButton.appendTo(container);
-        }
-
-        if (element.attr('dir') === 'rtl' ) {
-            container.addClass("rtl").attr("dir", "rtl");
-        }
-
-        if (o.prepend !== "") {
-            var prepend = $("<div>").html(o.prepend);
-            prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
-        }
-
-        if (o.append !== "") {
-            var append = $("<div>").html(o.append);
-            append.addClass("append").addClass(o.clsAppend).appendTo(container);
-            clearButton.css({
-                right: append.outerWidth() + 4
-            });
-        }
-
-        elem.className = '';
-        if (o.copyInlineStyles === true) {
-            for (var i = 0, l = elem.style.length; i < l; i++) {
-                container.css(elem.style[i], element.css(elem.style[i]));
-            }
-        }
-
-        if (Utils.isValue(o.defaultValue) && element.val().trim() === "") {
-            element.val(o.defaultValue);
-        }
-
-        container.addClass(o.clsComponent);
-        element.addClass(o.clsTextarea);
-
-        if (element.is(':disabled')) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-
-        fakeTextarea.val(element.val());
-
-        if (o.autoSize === true) {
-
-            container.addClass("autosize no-scroll-vertical");
-
-            setTimeout(function(){
-                that.resize();
-            }, 100);
-        }
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-        var textarea = element.closest(".textarea");
-        var fakeTextarea = textarea.find(".fake-textarea");
-        var chars_counter = $(o.charsCounter);
-
-        textarea.on(Metro.events.click, ".input-clear-button", function(){
-            element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
-        });
-
-        if (o.autoSize) {
-            element.on(Metro.events.inputchange + " " + Metro.events.keyup, function(){
-                fakeTextarea.val(this.value);
-                that.resize();
-            });
-        }
-
-        element.on(Metro.events.blur, function(){textarea.removeClass("focused");});
-        element.on(Metro.events.focus, function(){textarea.addClass("focused");});
-
-        element.on(Metro.events.keyup, function(){
-            if (Utils.isValue(o.charsCounter) && chars_counter.length > 0) {
-                if (chars_counter[0].tagName === "INPUT") {
-                    chars_counter.val(that.length());
-                } else {
-                    chars_counter.html(o.charsCounterTemplate.replace("$1", that.length()));
-                }
-            }
-            Utils.exec(o.onChange, [element.val(), that.length()], element[0]);
-            element.fire("change", {
-                val: element.val(),
-                length: that.length()
-            });
-        })
-    },
-
-    resize: function(){
-        var element = this.element,
-            textarea = element.closest(".textarea"),
-            fakeTextarea = textarea.find(".fake-textarea");
-
-        fakeTextarea[0].style.cssText = 'height:auto;';
-        fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
-        element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
-
-    },
-
-    clear: function(){
-        this.element.val("").trigger('change').trigger('keyup').focus();
-    },
-
-    toDefault: function(){
-        this.element.val(Utils.isValue(this.options.defaultValue) ? this.options.defaultValue : "").trigger('change').trigger('keyup').focus();
-    },
-
-    length: function(){
-        var characters = this.elem.value.split('');
-        return characters.length;
-    },
-
-    disable: function(){
-        this.element.data("disabled", true);
-        this.element.parent().addClass("disabled");
-    },
-
-    enable: function(){
-        this.element.data("disabled", false);
-        this.element.parent().removeClass("disabled");
-    },
-
-    toggleState: function(){
-        if (this.elem.disabled) {
-            this.disable();
-        } else {
-            this.enable();
-        }
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case 'disabled': this.toggleState(); break;
-        }
-    },
-
-    destroy: function(){
-        var element = this.element, o = this.options;
-        var textarea = element.closest(".textarea");
-
-        textarea.off(Metro.events.click, ".input-clear-button");
-
-        if (o.autoSize) {
-            element.off(Metro.events.inputchange + " " + Metro.events.keyup);
-        }
-
-        element.off(Metro.events.blur);
-        element.off(Metro.events.focus);
-
-        element.off(Metro.events.keyup);
-
-        return element;
+    if (typeof window["metroTextareaSetup"] !== undefined) {
+        Metro.textareaSetup(window["metroTextareaSetup"]);
     }
-});
 
+    Metro.Component('textarea', {
+        init: function( options, elem ) {
+            this._super(elem, options, TextareaDefaultConfig);
+            return this;
+        },
 
-var TileDefaultConfig = {
-    tileDeferred: 0,
-    size: "medium",
-    cover: "",
-    coverPosition: "center",
-    effect: "",
-    effectInterval: 3000,
-    effectDuration: 500,
-    target: null,
-    canTransform: true,
-    onClick: Metro.noop,
-    onTileCreate: Metro.noop
-};
+        _create: function(){
+            var element = this.element;
 
-Metro.tileSetup = function (options) {
-    TileDefaultConfig = $.extend({}, TileDefaultConfig, options);
-};
+            this._createStructure();
+            this._createEvents();
 
-if (typeof window["metroTileSetup"] !== undefined) {
-    Metro.tileSetup(window["metroTileSetup"]);
-}
-
-Component('tile', {
-    init: function( options, elem ) {
-        this._super(elem, options, TileDefaultConfig);
-
-        this.effectInterval = false;
-        this.images = [];
-        this.slides = [];
-        this.currentSlide = -1;
-        this.unload = false;
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createTile();
-        this._createEvents();
-
-        Utils.exec(o.onTileCreate, [element], element[0]);
-        element.fire("tilecreate");
-    },
-
-    _createTile: function(){
-        function switchImage(el, img_src, i){
-            $.setTimeout(function(){
-                el.fadeOut(500, function(){
-                    el.css("background-image", "url(" + img_src + ")");
-                    el.fadeIn();
-                });
-            }, i * 300);
-        }
-
-        var that = this, element = this.element, o = this.options;
-        var slides = element.find(".slide");
-        var slides2 = element.find(".slide-front, .slide-back");
-
-        element.addClass("tile-" + o.size);
-
-        if (o.effect.indexOf("hover-") > -1) {
-            element.addClass("effect-" + o.effect);
-            $.each(slides2, function(){
-                var slide = $(this);
-
-                if (slide.data("cover") !== undefined) {
-                    that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
-                }
-            })
-        }
-
-        if (o.effect.indexOf("animate-") > -1 && slides.length > 1) {
-            $.each(slides, function(i){
-                var slide = $(this);
-
-                that.slides.push(this);
-
-                if (slide.data("cover") !== undefined) {
-                    that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
-                }
-
-                if (i > 0) {
-                    if (["animate-slide-up", "animate-slide-down"].indexOf(o.effect) > -1) slide.css("top", "100%");
-                    if (["animate-slide-left", "animate-slide-right"].indexOf(o.effect) > -1) slide.css("left", "100%");
-                    if (["animate-fade"].indexOf(o.effect) > -1) slide.css("opacity", 0);
-                }
+            this._fireEvent("textarea-create", {
+                element: element
             });
+        },
 
-            this.currentSlide = 0;
+        _createStructure: function(){
+            var that = this, element = this.element, elem = this.elem, o = this.options;
+            var container = $("<div>").addClass("textarea " + element[0].className);
+            var fakeTextarea = $("<textarea>").addClass("fake-textarea");
+            var clearButton;
 
-            this._runEffects();
-        }
+            container.insertBefore(element);
+            element.appendTo(container);
+            fakeTextarea.appendTo(container);
 
-        if (o.cover !== "") {
-            this._setCover(element, o.cover);
-        }
-
-        if (o.effect === "image-set") {
-            element.addClass("image-set");
-
-            $.each(element.children("img"), function(){
-                that.images.push(this);
-                $(this).remove();
-            });
-
-            var temp = this.images.slice();
-
-            for(var i = 0; i < 5; i++) {
-                var rnd_index = $.random(0, temp.length - 1);
-                var div = $("<div>").addClass("img -js-img-"+i).css("background-image", "url("+temp[rnd_index].src+")");
-                element.prepend(div);
-                temp.splice(rnd_index, 1);
+            if (o.clearButton !== false && !element[0].readOnly) {
+                clearButton = $("<button>").addClass("button input-clear-button").attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+                clearButton.appendTo(container);
             }
 
-            var a = [0, 1, 4, 3, 2];
+            if (element.attr('dir') === 'rtl' ) {
+                container.addClass("rtl").attr("dir", "rtl");
+            }
 
-            $.setInterval(function(){
-                var temp = that.images.slice();
-                var colors = Colors.colors(Colors.PALETTES.ALL), bg;
-                bg = colors[$.random(0, colors.length - 1)];
+            if (o.prepend !== "") {
+                var prepend = $("<div>").html(o.prepend);
+                prepend.addClass("prepend").addClass(o.clsPrepend).appendTo(container);
+            }
 
-                element.css("background-color", bg);
+            if (o.append !== "") {
+                var append = $("<div>").html(o.append);
+                append.addClass("append").addClass(o.clsAppend).appendTo(container);
+                clearButton.css({
+                    right: append.outerWidth() + 4
+                });
+            }
 
-                for(var i = 0; i < a.length; i++) {
+            elem.className = '';
+            if (o.copyInlineStyles === true) {
+                for (var i = 0, l = elem.style.length; i < l; i++) {
+                    container.css(elem.style[i], element.css(elem.style[i]));
+                }
+            }
+
+            if (Utils.isValue(o.defaultValue) && element.val().trim() === "") {
+                element.val(o.defaultValue);
+            }
+
+            container.addClass(o.clsComponent);
+            element.addClass(o.clsTextarea);
+
+            if (element.is(':disabled')) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+
+            fakeTextarea.val(element.val());
+
+            if (o.autoSize === true) {
+
+                container.addClass("autosize no-scroll-vertical");
+
+                setTimeout(function(){
+                    that.resize();
+                }, 100);
+            }
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var textarea = element.closest(".textarea");
+            var fakeTextarea = textarea.find(".fake-textarea");
+            var chars_counter = $(o.charsCounter);
+
+            textarea.on(Metro.events.click, ".input-clear-button", function(){
+                element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+            });
+
+            if (o.autoSize) {
+                element.on(Metro.events.inputchange + " " + Metro.events.keyup, function(){
+                    fakeTextarea.val(this.value);
+                    that.resize();
+                });
+            }
+
+            element.on(Metro.events.blur, function(){textarea.removeClass("focused");});
+            element.on(Metro.events.focus, function(){textarea.addClass("focused");});
+
+            element.on(Metro.events.keyup, function(){
+                if (Utils.isValue(o.charsCounter) && chars_counter.length > 0) {
+                    if (chars_counter[0].tagName === "INPUT") {
+                        chars_counter.val(that.length());
+                    } else {
+                        chars_counter.html(o.charsCounterTemplate.replace("$1", that.length()));
+                    }
+                }
+                Utils.exec(o.onChange, [element.val(), that.length()], element[0]);
+                element.fire("change", {
+                    val: element.val(),
+                    length: that.length()
+                });
+            })
+        },
+
+        resize: function(){
+            var element = this.element,
+                textarea = element.closest(".textarea"),
+                fakeTextarea = textarea.find(".fake-textarea");
+
+            fakeTextarea[0].style.cssText = 'height:auto;';
+            fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
+            element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
+
+        },
+
+        clear: function(){
+            this.element.val("").trigger('change').trigger('keyup').focus();
+        },
+
+        toDefault: function(){
+            this.element.val(Utils.isValue(this.options.defaultValue) ? this.options.defaultValue : "").trigger('change').trigger('keyup').focus();
+        },
+
+        length: function(){
+            var characters = this.elem.value.split('');
+            return characters.length;
+        },
+
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case 'disabled': this.toggleState(); break;
+            }
+        },
+
+        destroy: function(){
+            var element = this.element, o = this.options;
+            var textarea = element.closest(".textarea");
+
+            textarea.off(Metro.events.click, ".input-clear-button");
+
+            if (o.autoSize) {
+                element.off(Metro.events.inputchange + " " + Metro.events.keyup);
+            }
+
+            element.off(Metro.events.blur);
+            element.off(Metro.events.focus);
+
+            element.off(Metro.events.keyup);
+
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var TileDefaultConfig = {
+        tileDeferred: 0,
+        size: "medium",
+        cover: "",
+        coverPosition: "center",
+        effect: "",
+        effectInterval: 3000,
+        effectDuration: 500,
+        target: null,
+        canTransform: true,
+        onClick: Metro.noop,
+        onTileCreate: Metro.noop
+    };
+
+    Metro.tileSetup = function (options) {
+        TileDefaultConfig = $.extend({}, TileDefaultConfig, options);
+    };
+
+    if (typeof window["metroTileSetup"] !== undefined) {
+        Metro.tileSetup(window["metroTileSetup"]);
+    }
+
+    Metro.Component('tile', {
+        init: function( options, elem ) {
+            this._super(elem, options, TileDefaultConfig, {
+                effectInterval: false,
+                images: [],
+                slides: [],
+                currentSlide: -1,
+                unload: false
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element;
+
+            Metro.checkRuntime(element, this.name);
+
+            this._createTile();
+            this._createEvents();
+
+            this._fireEvent("tile-create", {
+                element: element
+            });
+        },
+
+        _createTile: function(){
+            function switchImage(el, img_src, i){
+                $.setTimeout(function(){
+                    el.fadeOut(500, function(){
+                        el.css("background-image", "url(" + img_src + ")");
+                        el.fadeIn();
+                    });
+                }, i * 300);
+            }
+
+            var that = this, element = this.element, o = this.options;
+            var slides = element.find(".slide");
+            var slides2 = element.find(".slide-front, .slide-back");
+
+            element.addClass("tile-" + o.size);
+
+            if (o.effect.indexOf("hover-") > -1) {
+                element.addClass("effect-" + o.effect);
+                $.each(slides2, function(){
+                    var slide = $(this);
+
+                    if (slide.data("cover") !== undefined) {
+                        that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
+                    }
+                })
+            }
+
+            if (o.effect.indexOf("animate-") > -1 && slides.length > 1) {
+                $.each(slides, function(i){
+                    var slide = $(this);
+
+                    that.slides.push(this);
+
+                    if (slide.data("cover") !== undefined) {
+                        that._setCover(slide, slide.data("cover"), slide.data("cover-position"));
+                    }
+
+                    if (i > 0) {
+                        if (["animate-slide-up", "animate-slide-down"].indexOf(o.effect) > -1) slide.css("top", "100%");
+                        if (["animate-slide-left", "animate-slide-right"].indexOf(o.effect) > -1) slide.css("left", "100%");
+                        if (["animate-fade"].indexOf(o.effect) > -1) slide.css("opacity", 0);
+                    }
+                });
+
+                this.currentSlide = 0;
+
+                this._runEffects();
+            }
+
+            if (o.cover !== "") {
+                this._setCover(element, o.cover);
+            }
+
+            if (o.effect === "image-set") {
+                element.addClass("image-set");
+
+                $.each(element.children("img"), function(){
+                    that.images.push(this);
+                    $(this).remove();
+                });
+
+                var temp = this.images.slice();
+
+                for(var i = 0; i < 5; i++) {
                     var rnd_index = $.random(0, temp.length - 1);
-                    var div = element.find(".-js-img-"+a[i]);
-                    switchImage(div, temp[rnd_index].src, i);
+                    var div = $("<div>").addClass("img -js-img-"+i).css("background-image", "url("+temp[rnd_index].src+")");
+                    element.prepend(div);
                     temp.splice(rnd_index, 1);
                 }
 
-                a = a.reverse();
-            }, 5000);
-        }
-    },
-
-    _runEffects: function(){
-        var that = this, o = this.options;
-
-        if (this.effectInterval === false) this.effectInterval = $.setInterval(function(){
-            var current, next;
-
-            current = $(that.slides[that.currentSlide]);
-
-            that.currentSlide++;
-            if (that.currentSlide === that.slides.length) {
-                that.currentSlide = 0;
-            }
-
-            next = that.slides[that.currentSlide];
-
-            if (o.effect === "animate-slide-up") FrameAnimation.slideUp($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-down") FrameAnimation.slideDown($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-left") FrameAnimation.slideLeft($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-slide-right") FrameAnimation.slideRight($(current), $(next), o.effectDuration);
-            if (o.effect === "animate-fade") FrameAnimation.fade($(current), $(next), o.effectDuration);
-
-        }, o.effectInterval);
-    },
-
-    _stopEffects: function(){
-        $.clearInterval(this.effectInterval);
-        this.effectInterval = false;
-    },
-
-    _setCover: function(to, src, pos){
-        if (!Utils.isValue(pos)) {
-            pos = this.options.coverPosition;
-        }
-        to.css({
-            backgroundImage: "url("+src+")",
-            backgroundSize: "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: pos
-        });
-    },
-
-    _createEvents: function(){
-        var element = this.element, o = this.options;
-
-        element.on(Metro.events.startAll, function(e){
-            var tile = $(this);
-            var dim = {w: element.width(), h: element.height()};
-            var X = Utils.pageXY(e).x - tile.offset().left,
-                Y = Utils.pageXY(e).y - tile.offset().top;
-            var side;
-
-            if (Utils.isRightMouse(e) === false) {
-
-                if (X < dim.w * 1 / 3 && (Y < dim.h * 1 / 2 || Y > dim.h * 1 / 2)) {
-                    side = 'left';
-                } else if (X > dim.w * 2 / 3 && (Y < dim.h * 1 / 2 || Y > dim.h * 1 / 2)) {
-                    side = 'right';
-                } else if (X > dim.w * 1 / 3 && X < dim.w * 2 / 3 && Y > dim.h / 2) {
-                    side = 'bottom';
-                } else {
-                    side = "top";
-                }
-
-                if (o.canTransform === true) tile.addClass("transform-" + side);
-
-                if (o.target !== null) {
-                    setTimeout(function(){
-                        document.location.href = o.target;
-                    }, 100);
-                }
-
-                Utils.exec(o.onClick, [side], element[0]);
-                element.fire("click", {
-                    side: side
-                });
-            }
-        });
-
-        element.on([Metro.events.stopAll, Metro.events.leave].join(" "), function(){
-            $(this)
-                .removeClass("transform-left")
-                .removeClass("transform-right")
-                .removeClass("transform-top")
-                .removeClass("transform-bottom");
-        });
-    },
-
-    changeAttribute: function(){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off(Metro.events.startAll);
-
-        element.off([Metro.events.stopAll, Metro.events.leave].join(" "));
-
-        return element;
-    }
-});
-
-
-var TimePickerDefaultConfig = {
-    timepickerDeferred: 0,
-    hoursStep: 1,
-    minutesStep: 1,
-    secondsStep: 1,
-    value: null,
-    locale: METRO_LOCALE,
-    distance: 3,
-    hours: true,
-    minutes: true,
-    seconds: true,
-    showLabels: true,
-    scrollSpeed: 4,
-    copyInlineStyles: false,
-    clsPicker: "",
-    clsPart: "",
-    clsHours: "",
-    clsMinutes: "",
-    clsSeconds: "",
-    okButtonIcon: "<span class='default-icon-check'></span>",
-    cancelButtonIcon: "<span class='default-icon-cross'></span>",
-    onSet: Metro.noop,
-    onOpen: Metro.noop,
-    onClose: Metro.noop,
-    onScroll: Metro.noop,
-    onTimePickerCreate: Metro.noop
-};
-
-Metro.timePickerSetup = function (options) {
-    TimePickerDefaultConfig = $.extend({}, TimePickerDefaultConfig, options);
-};
-
-if (typeof window["metroTimePickerSetup"] !== undefined) {
-    Metro.timePickerSetup(window["metroTimePickerSetup"]);
-}
-
-Component('time-picker', {
-    init: function( options, elem ) {
-        this._super(elem, options, TimePickerDefaultConfig);
-
-        this.picker = null;
-        this.isOpen = false;
-        this.value = [];
-        this.locale = Metro.locales[METRO_LOCALE]['calendar'];
-        this.listTimer = {
-            hours: null,
-            minutes: null,
-            seconds: null
-        };
-
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-        var i;
-
-        Metro.checkRuntime(element, this.name);
-
-        if (o.distance < 1) {
-            o.distance = 1;
-        }
-
-        if (o.hoursStep < 1) {o.hoursStep = 1;}
-        if (o.hoursStep > 23) {o.hoursStep = 23;}
-
-        if (o.minutesStep < 1) {o.minutesStep = 1;}
-        if (o.minutesStep > 59) {o.minutesStep = 59;}
-
-        if (o.secondsStep < 1) {o.secondsStep = 1;}
-        if (o.secondsStep > 59) {o.secondsStep = 59;}
-
-        if (element.val() === "" && (!Utils.isValue(o.value))) {
-            o.value = (new Date()).format("%H:%M:%S");
-        }
-
-        this.value = (element.val() !== "" ? element.val() : ""+o.value).toArray(":");
-
-        for(i = 0; i < 3; i++) {
-            if (this.value[i] === undefined || this.value[i] === null) {
-                this.value[i] = 0;
-            } else {
-                this.value[i] = parseInt(this.value[i]);
-            }
-        }
-
-        this._normalizeValue();
-
-        if (Metro.locales[o.locale] === undefined) {
-            o.locale = METRO_LOCALE;
-        }
-
-        this.locale = Metro.locales[o.locale]['calendar'];
-
-        this._createStructure();
-        this._createEvents();
-        this._set();
-
-        Utils.exec(o.onTimePickerCreate, [element], element[0]);
-        element.fire("timepickercreate");
-    },
-
-    _normalizeValue: function(){
-        var o = this.options;
-
-        if (o.hoursStep > 1) {
-            this.value[0] = Utils.nearest(this.value[0], o.hoursStep, true);
-        }
-        if (o.minutesStep > 1) {
-            this.value[1] = Utils.nearest(this.value[1], o.minutesStep, true);
-        }
-        if (o.minutesStep > 1) {
-            this.value[2] = Utils.nearest(this.value[2], o.secondsStep, true);
-        }
-    },
-
-    _createStructure: function(){
-        var element = this.element, o = this.options;
-        var picker, hours, minutes, seconds, i;
-        var timeWrapper, selectWrapper, selectBlock, actionBlock;
-
-        var prev = element.prev();
-        var parent = element.parent();
-        var id = Utils.elementId("time-picker");
-
-        picker = $("<div>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
-
-        if (prev.length === 0) {
-            parent.prepend(picker);
-        } else {
-            picker.insertAfter(prev);
-        }
-
-        element.attr("readonly", true).appendTo(picker);
-
-
-        timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
-
-        if (o.hours === true) {
-            hours = $("<div>").attr("data-title", this.locale['time']['hours']).addClass("hours").addClass(o.clsPart).addClass(o.clsHours).appendTo(timeWrapper);
-        }
-        if (o.minutes === true) {
-            minutes = $("<div>").attr("data-title", this.locale['time']['minutes']).addClass("minutes").addClass(o.clsPart).addClass(o.clsMinutes).appendTo(timeWrapper);
-        }
-        if (o.seconds === true) {
-            seconds = $("<div>").attr("data-title", this.locale['time']['seconds']).addClass("seconds").addClass(o.clsPart).addClass(o.clsSeconds).appendTo(timeWrapper);
-        }
-
-        selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
-
-        selectBlock = $("<div>").addClass("select-block").appendTo(selectWrapper);
-        if (o.hours === true) {
-            hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-            for (i = 0; i < 24; i = i + o.hoursStep) {
-                $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
-            }
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
-        }
-        if (o.minutes === true) {
-            minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
-            for (i = 0; i < 60; i = i + o.minutesStep) {
-                $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
-            }
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
-        }
-        if (o.seconds === true) {
-            seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
-            for (i = 0; i < 60; i = i + o.secondsStep) {
-                $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
-            }
-            for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
-        }
-
-        selectBlock.height((o.distance * 2 + 1) * 40);
-
-        actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-        $("<button>").attr("type", "button").addClass("button action-ok").html(o.okButtonIcon).appendTo(actionBlock);
-        $("<button>").attr("type", "button").addClass("button action-cancel").html(o.cancelButtonIcon).appendTo(actionBlock);
-
-
-        element[0].className = '';
-        if (o.copyInlineStyles === true) {
-            for (i = 0; i < element[0].style.length; i++) {
-                picker.css(element[0].style[i], element.css(element[0].style[i]));
-            }
-        }
-
-        if (o.showLabels === true) {
-            picker.addClass("show-labels");
-        }
-
-        this.picker = picker;
-    },
-
-    _createEvents: function(){
-        var that = this, o = this.options;
-        var picker = this.picker;
-
-        picker.on(Metro.events.start, ".select-block ul", function(e){
-
-            if (e.changedTouches) {
-                return ;
-            }
-
-            var target = this;
-            var pageY = Utils.pageXY(e).y;
-
-            $(document).on(Metro.events.move, function(e){
-
-                target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
-
-                pageY = Utils.pageXY(e).y;
-            }, {ns: picker.attr("id")});
-
-            $(document).on(Metro.events.stop, function(){
-                $(document).off(Metro.events.move, {ns: picker.attr("id")});
-                $(document).off(Metro.events.stop, {ns: picker.attr("id")});
-            }, {ns: picker.attr("id")});
-        });
-
-        picker.on(Metro.events.click, function(e){
-            if (that.isOpen === false) that.open();
-            e.stopPropagation();
-        });
-
-        picker.on(Metro.events.click, ".action-ok", function(e){
-            var h, m, s;
-            var sh = picker.find(".sel-hours li.active"),
-                sm = picker.find(".sel-minutes li.active"),
-                ss = picker.find(".sel-seconds li.active");
-
-            h = sh.length === 0 ? 0 : sh.data("value");
-            m = sm.length === 0 ? 0 : sm.data("value");
-            s = ss.length === 0 ? 0 : ss.data("value");
-
-            that.value = [h, m, s];
-            that._normalizeValue();
-            that._set();
-
-            that.close();
-            e.stopPropagation();
-        });
-
-        picker.on(Metro.events.click, ".action-cancel", function(e){
-            that.close();
-            e.stopPropagation();
-        });
-
-        var scrollLatency = 150;
-        $.each(['hours', 'minutes', 'seconds'], function(){
-            var part = this, list = picker.find(".sel-"+part);
-
-            list.on("scroll", function(){
-                if (that.isOpen) {
-                    if (that.listTimer[part]) {
-                        clearTimeout(that.listTimer[part]);
-                        that.listTimer[part] = null;
+                var a = [0, 1, 4, 3, 2];
+
+                $.setInterval(function(){
+                    var temp = that.images.slice();
+                    var bg = Utils.randomColor();
+
+                    element.css("background-color", bg);
+
+                    for(var i = 0; i < a.length; i++) {
+                        var rnd_index = $.random(0, temp.length - 1);
+                        var div = element.find(".-js-img-"+a[i]);
+                        switchImage(div, temp[rnd_index].src, i);
+                        temp.splice(rnd_index, 1);
                     }
 
-                    if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
+                    a = a.reverse();
+                }, 5000);
+            }
+        },
 
-                        var target, targetElement, scrollTop;
+        _runEffects: function(){
+            var that = this, o = this.options;
 
-                        that.listTimer[part] = null;
+            if (this.effectInterval === false) this.effectInterval = $.setInterval(function(){
+                var current, next;
 
-                        target = Math.round((Math.ceil(list.scrollTop()) / 40));
+                current = $(that.slides[that.currentSlide]);
 
-                        targetElement = list.find(".js-" + part + "-" + target);
-                        scrollTop = targetElement.position().top - (o.distance * 40);
-
-                        list.find(".active").removeClass("active");
-
-                        list[0].scrollTop = scrollTop;
-                        targetElement.addClass("active");
-                        Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
-
-                    }, scrollLatency);
+                that.currentSlide++;
+                if (that.currentSlide === that.slides.length) {
+                    that.currentSlide = 0;
                 }
-            })
-        });
-    },
 
-    _set: function(){
-        var element = this.element, o = this.options;
-        var picker = this.picker;
-        var h = "00", m = "00", s = "00";
+                next = that.slides[that.currentSlide];
 
-        if (o.hours === true) {
-            h = parseInt(this.value[0]);
-            if (h < 10) {
-                h = "0"+h;
+                if (o.effect === "animate-slide-up") FrameAnimation.slideUp($(current), $(next), o.effectDuration);
+                if (o.effect === "animate-slide-down") FrameAnimation.slideDown($(current), $(next), o.effectDuration);
+                if (o.effect === "animate-slide-left") FrameAnimation.slideLeft($(current), $(next), o.effectDuration);
+                if (o.effect === "animate-slide-right") FrameAnimation.slideRight($(current), $(next), o.effectDuration);
+                if (o.effect === "animate-fade") FrameAnimation.fade($(current), $(next), o.effectDuration);
+
+            }, o.effectInterval);
+        },
+
+        _stopEffects: function(){
+            $.clearInterval(this.effectInterval);
+            this.effectInterval = false;
+        },
+
+        _setCover: function(to, src, pos){
+            if (!Utils.isValue(pos)) {
+                pos = this.options.coverPosition;
             }
-            picker.find(".hours").html(h);
+            to.css({
+                backgroundImage: "url("+src+")",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+                backgroundPosition: pos
+            });
+        },
+
+        _createEvents: function(){
+            var element = this.element, o = this.options;
+
+            element.on(Metro.events.startAll, function(e){
+                var tile = $(this);
+                var dim = {w: element.width(), h: element.height()};
+                var X = Utils.pageXY(e).x - tile.offset().left,
+                    Y = Utils.pageXY(e).y - tile.offset().top;
+                var side;
+
+                if (Utils.isRightMouse(e) === false) {
+
+                    if (X < dim.w * 1 / 3 && (Y < dim.h * 1 / 2 || Y > dim.h * 1 / 2)) {
+                        side = 'left';
+                    } else if (X > dim.w * 2 / 3 && (Y < dim.h * 1 / 2 || Y > dim.h * 1 / 2)) {
+                        side = 'right';
+                    } else if (X > dim.w * 1 / 3 && X < dim.w * 2 / 3 && Y > dim.h / 2) {
+                        side = 'bottom';
+                    } else {
+                        side = "top";
+                    }
+
+                    if (o.canTransform === true) tile.addClass("transform-" + side);
+
+                    if (o.target !== null) {
+                        setTimeout(function(){
+                            document.location.href = o.target;
+                        }, 100);
+                    }
+
+                    Utils.exec(o.onClick, [side], element[0]);
+                    element.fire("click", {
+                        side: side
+                    });
+                }
+            });
+
+            element.on([Metro.events.stopAll, Metro.events.leave].join(" "), function(){
+                $(this)
+                    .removeClass("transform-left")
+                    .removeClass("transform-right")
+                    .removeClass("transform-top")
+                    .removeClass("transform-bottom");
+            });
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off(Metro.events.startAll);
+
+            element.off([Metro.events.stopAll, Metro.events.leave].join(" "));
+
+            return element;
         }
-        if (o.minutes === true) {
-            m = parseInt(this.value[1]);
-            if (m < 10) {
-                m = "0"+m;
-            }
-            picker.find(".minutes").html(m);
-        }
-        if (o.seconds === true) {
-            s = parseInt(this.value[2]);
-            if (s < 10) {
-                s = "0"+s;
-            }
-            picker.find(".seconds").html(s);
-        }
+    });
+}(Metro, m4q));
 
-        element.val([h, m, s].join(":")).trigger("change");
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var TimePickerDefaultConfig = {
+        timepickerDeferred: 0,
+        hoursStep: 1,
+        minutesStep: 1,
+        secondsStep: 1,
+        value: null,
+        locale: METRO_LOCALE,
+        distance: 3,
+        hours: true,
+        minutes: true,
+        seconds: true,
+        showLabels: true,
+        scrollSpeed: 4,
+        copyInlineStyles: false,
+        clsPicker: "",
+        clsPart: "",
+        clsHours: "",
+        clsMinutes: "",
+        clsSeconds: "",
+        okButtonIcon: "<span class='default-icon-check'></span>",
+        cancelButtonIcon: "<span class='default-icon-cross'></span>",
+        onSet: Metro.noop,
+        onOpen: Metro.noop,
+        onClose: Metro.noop,
+        onScroll: Metro.noop,
+        onTimePickerCreate: Metro.noop
+    };
 
-        Utils.exec(o.onSet, [this.value, element.val()], element[0]);
-        element.fire("set", {
-            val: this.value,
-            elementVal: element.val()
-        });
-    },
+    Metro.timePickerSetup = function (options) {
+        TimePickerDefaultConfig = $.extend({}, TimePickerDefaultConfig, options);
+    };
 
-    open: function(){
-        var element = this.element, o = this.options;
-        var picker = this.picker;
-        var h, m, s;
-        var h_list, m_list, s_list;
-        var items = picker.find("li");
-        var select_wrapper = picker.find(".select-wrapper");
-        var select_wrapper_in_viewport, select_wrapper_rect;
-        var h_item, m_item, s_item;
-
-        select_wrapper.parent().removeClass("for-top for-bottom");
-        select_wrapper.show(0);
-        items.removeClass("active");
-
-        select_wrapper_in_viewport = Utils.inViewport(select_wrapper[0]);
-        select_wrapper_rect = Utils.rect(select_wrapper[0]);
-
-        if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
-            select_wrapper.parent().addClass("for-bottom");
-        }
-
-        if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
-            select_wrapper.parent().addClass("for-top");
-        }
-
-        var animateList = function(list, item){
-            list
-                .scrollTop(0)
-                .animate({
-                    draw: {
-                        scrollTop: item.position().top - (o.distance * 40) + list.scrollTop()
-                    },
-                    dur: 100
-                });
-        };
-
-        if (o.hours === true) {
-            h = parseInt(this.value[0]);
-            h_list = picker.find(".sel-hours");
-            h_item = h_list.find("li.js-hours-" + h).addClass("active");
-            animateList(h_list, h_item);
-        }
-        if (o.minutes === true) {
-            m = parseInt(this.value[1]);
-            m_list = picker.find(".sel-minutes");
-            m_item = m_list.find("li.js-minutes-" + m).addClass("active");
-            animateList(m_list, m_item);
-        }
-        if (o.seconds === true) {
-            s = parseInt(this.value[2]);
-            s_list = picker.find(".sel-seconds");
-            s_item = s_list.find("li.js-seconds-" + s).addClass("active");
-            animateList(s_list, s_item);
-        }
-
-        this.isOpen = true;
-
-        Utils.exec(o.onOpen, [this.value], element[0]);
-        element.fire("open", {
-            val: this.value
-        });
-    },
-
-    close: function(){
-        var picker = this.picker, o = this.options, element = this.element;
-        picker.find(".select-wrapper").hide(0);
-        this.isOpen = false;
-        Utils.exec(o.onClose, [this.value], element[0]);
-        element.fire("close", {
-            val: this.value
-        });
-    },
-
-    _convert: function(t){
-        var result;
-
-        if (Array.isArray(t)) {
-            result = t;
-        } else if (typeof  t.getMonth === 'function') {
-            result = [t.getHours(), t.getMinutes(), t.getSeconds()];
-        } else if (Utils.isObject(t)) {
-            result = [t.h, t.m, t.s];
-        } else {
-            result = t.toArray(":");
-        }
-
-        return result;
-    },
-
-    val: function(t){
-        if (t === undefined) {
-            return this.element.val();
-        }
-        this.value = this._convert(t);
-        this._normalizeValue();
-        this._set();
-    },
-
-    time: function(t){
-        if (t === undefined) {
-            return {
-                h: this.value[0],
-                m: this.value[1],
-                s: this.value[2]
-            }
-        }
-
-        this.value = this._convert(t);
-        this._normalizeValue();
-        this._set();
-    },
-
-    date: function(t){
-        if (t === undefined || typeof t.getMonth !== 'function') {
-            var ret = new Date();
-            ret.setHours(this.value[0]);
-            ret.setMinutes(this.value[1]);
-            ret.setSeconds(this.value[2]);
-            ret.setMilliseconds(0);
-            return ret;
-        }
-
-        this.value = this._convert(t);
-        this._normalizeValue();
-        this._set();
-    },
-
-    changeAttribute: function(attributeName){
-        var that = this, element = this.element;
-
-        var changeValueAttribute = function(){
-            that.val(element.attr("data-value"));
-        };
-
-        if (attributeName === "data-value") {
-            changeValueAttribute();
-        }
-    },
-
-    destroy: function(){
-        var element = this.element;
-        var picker = this.picker;
-
-        $.each(['hours', 'minutes', 'seconds'], function(){
-            picker.find(".sel-"+this).off("scroll");
-        });
-
-        picker.off(Metro.events.start, ".select-block ul");
-        picker.off(Metro.events.click);
-        picker.off(Metro.events.click, ".action-ok");
-        picker.off(Metro.events.click, ".action-cancel");
-
-        return element;
+    if (typeof window["metroTimePickerSetup"] !== undefined) {
+        Metro.timePickerSetup(window["metroTimePickerSetup"]);
     }
 
-});
+    Metro.Component('time-picker', {
+        init: function( options, elem ) {
+            this._super(elem, options, TimePickerDefaultConfig, {
+                picker: null,
+                isOpen: false,
+                value: [],
+                locale: Metro.locales[METRO_LOCALE]['calendar'],
+                listTimer: {
+                    hours: null,
+                    minutes: null,
+                    seconds: null
+                }
+            });
 
-$(document).on(Metro.events.click, function(){
-    $.each($(".time-picker"), function(){
-        $(this).find("input").each(function(){
-            Metro.getPlugin(this, "timepicker").close();
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element, o = this.options;
+            var i;
+
+            if (o.distance < 1) {
+                o.distance = 1;
+            }
+
+            if (o.hoursStep < 1) {o.hoursStep = 1;}
+            if (o.hoursStep > 23) {o.hoursStep = 23;}
+
+            if (o.minutesStep < 1) {o.minutesStep = 1;}
+            if (o.minutesStep > 59) {o.minutesStep = 59;}
+
+            if (o.secondsStep < 1) {o.secondsStep = 1;}
+            if (o.secondsStep > 59) {o.secondsStep = 59;}
+
+            if (element.val() === "" && (!Utils.isValue(o.value))) {
+                o.value = (new Date()).format("%H:%M:%S");
+            }
+
+            this.value = (element.val() !== "" ? element.val() : ""+o.value).toArray(":");
+
+            for(i = 0; i < 3; i++) {
+                if (this.value[i] === undefined || this.value[i] === null) {
+                    this.value[i] = 0;
+                } else {
+                    this.value[i] = parseInt(this.value[i]);
+                }
+            }
+
+            this._normalizeValue();
+
+            if (Metro.locales[o.locale] === undefined) {
+                o.locale = METRO_LOCALE;
+            }
+
+            this.locale = Metro.locales[o.locale]['calendar'];
+
+            this._createStructure();
+            this._createEvents();
+            this._set();
+
+            this._fireEvent("time-picker-create", {
+                element: element
+            });
+        },
+
+        _normalizeValue: function(){
+            var o = this.options;
+
+            if (o.hoursStep > 1) {
+                this.value[0] = Utils.nearest(this.value[0], o.hoursStep, true);
+            }
+            if (o.minutesStep > 1) {
+                this.value[1] = Utils.nearest(this.value[1], o.minutesStep, true);
+            }
+            if (o.minutesStep > 1) {
+                this.value[2] = Utils.nearest(this.value[2], o.secondsStep, true);
+            }
+        },
+
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var picker, hours, minutes, seconds, i;
+            var timeWrapper, selectWrapper, selectBlock, actionBlock;
+
+            var prev = element.prev();
+            var parent = element.parent();
+            var id = Utils.elementId("time-picker");
+
+            picker = $("<div>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
+
+            if (prev.length === 0) {
+                parent.prepend(picker);
+            } else {
+                picker.insertAfter(prev);
+            }
+
+            element.attr("readonly", true).appendTo(picker);
+
+
+            timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
+
+            if (o.hours === true) {
+                hours = $("<div>").attr("data-title", this.locale['time']['hours']).addClass("hours").addClass(o.clsPart).addClass(o.clsHours).appendTo(timeWrapper);
+            }
+            if (o.minutes === true) {
+                minutes = $("<div>").attr("data-title", this.locale['time']['minutes']).addClass("minutes").addClass(o.clsPart).addClass(o.clsMinutes).appendTo(timeWrapper);
+            }
+            if (o.seconds === true) {
+                seconds = $("<div>").attr("data-title", this.locale['time']['seconds']).addClass("seconds").addClass(o.clsPart).addClass(o.clsSeconds).appendTo(timeWrapper);
+            }
+
+            selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
+
+            selectBlock = $("<div>").addClass("select-block").appendTo(selectWrapper);
+            if (o.hours === true) {
+                hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
+                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
+                for (i = 0; i < 24; i = i + o.hoursStep) {
+                    $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
+                }
+                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
+            }
+            if (o.minutes === true) {
+                minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
+                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
+                for (i = 0; i < 60; i = i + o.minutesStep) {
+                    $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
+                }
+                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
+            }
+            if (o.seconds === true) {
+                seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
+                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
+                for (i = 0; i < 60; i = i + o.secondsStep) {
+                    $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
+                }
+                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
+            }
+
+            selectBlock.height((o.distance * 2 + 1) * 40);
+
+            actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
+            $("<button>").attr("type", "button").addClass("button action-ok").html(o.okButtonIcon).appendTo(actionBlock);
+            $("<button>").attr("type", "button").addClass("button action-cancel").html(o.cancelButtonIcon).appendTo(actionBlock);
+
+
+            element[0].className = '';
+            if (o.copyInlineStyles === true) {
+                for (i = 0; i < element[0].style.length; i++) {
+                    picker.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (o.showLabels === true) {
+                picker.addClass("show-labels");
+            }
+
+            this.picker = picker;
+        },
+
+        _createEvents: function(){
+            var that = this, o = this.options;
+            var picker = this.picker;
+
+            picker.on(Metro.events.start, ".select-block ul", function(e){
+
+                if (e.changedTouches) {
+                    return ;
+                }
+
+                var target = this;
+                var pageY = Utils.pageXY(e).y;
+
+                $(document).on(Metro.events.move, function(e){
+
+                    target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
+
+                    pageY = Utils.pageXY(e).y;
+                }, {ns: picker.attr("id")});
+
+                $(document).on(Metro.events.stop, function(){
+                    $(document).off(Metro.events.move, {ns: picker.attr("id")});
+                    $(document).off(Metro.events.stop, {ns: picker.attr("id")});
+                }, {ns: picker.attr("id")});
+            });
+
+            picker.on(Metro.events.click, function(e){
+                if (that.isOpen === false) that.open();
+                e.stopPropagation();
+            });
+
+            picker.on(Metro.events.click, ".action-ok", function(e){
+                var h, m, s;
+                var sh = picker.find(".sel-hours li.active"),
+                    sm = picker.find(".sel-minutes li.active"),
+                    ss = picker.find(".sel-seconds li.active");
+
+                h = sh.length === 0 ? 0 : sh.data("value");
+                m = sm.length === 0 ? 0 : sm.data("value");
+                s = ss.length === 0 ? 0 : ss.data("value");
+
+                that.value = [h, m, s];
+                that._normalizeValue();
+                that._set();
+
+                that.close();
+                e.stopPropagation();
+            });
+
+            picker.on(Metro.events.click, ".action-cancel", function(e){
+                that.close();
+                e.stopPropagation();
+            });
+
+            var scrollLatency = 150;
+            $.each(['hours', 'minutes', 'seconds'], function(){
+                var part = this, list = picker.find(".sel-"+part);
+
+                list.on("scroll", function(){
+                    if (that.isOpen) {
+                        if (that.listTimer[part]) {
+                            clearTimeout(that.listTimer[part]);
+                            that.listTimer[part] = null;
+                        }
+
+                        if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
+
+                            var target, targetElement, scrollTop;
+
+                            that.listTimer[part] = null;
+
+                            target = Math.round((Math.ceil(list.scrollTop()) / 40));
+
+                            targetElement = list.find(".js-" + part + "-" + target);
+                            scrollTop = targetElement.position().top - (o.distance * 40);
+
+                            list.find(".active").removeClass("active");
+
+                            list[0].scrollTop = scrollTop;
+                            targetElement.addClass("active");
+                            Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
+
+                        }, scrollLatency);
+                    }
+                })
+            });
+        },
+
+        _set: function(){
+            var element = this.element, o = this.options;
+            var picker = this.picker;
+            var h = "00", m = "00", s = "00";
+
+            if (o.hours === true) {
+                h = parseInt(this.value[0]);
+                if (h < 10) {
+                    h = "0"+h;
+                }
+                picker.find(".hours").html(h);
+            }
+            if (o.minutes === true) {
+                m = parseInt(this.value[1]);
+                if (m < 10) {
+                    m = "0"+m;
+                }
+                picker.find(".minutes").html(m);
+            }
+            if (o.seconds === true) {
+                s = parseInt(this.value[2]);
+                if (s < 10) {
+                    s = "0"+s;
+                }
+                picker.find(".seconds").html(s);
+            }
+
+            element.val([h, m, s].join(":")).trigger("change");
+
+            Utils.exec(o.onSet, [this.value, element.val()], element[0]);
+            element.fire("set", {
+                val: this.value,
+                elementVal: element.val()
+            });
+        },
+
+        open: function(){
+            var element = this.element, o = this.options;
+            var picker = this.picker;
+            var h, m, s;
+            var h_list, m_list, s_list;
+            var items = picker.find("li");
+            var select_wrapper = picker.find(".select-wrapper");
+            var select_wrapper_in_viewport, select_wrapper_rect;
+            var h_item, m_item, s_item;
+
+            select_wrapper.parent().removeClass("for-top for-bottom");
+            select_wrapper.show(0);
+            items.removeClass("active");
+
+            select_wrapper_in_viewport = Utils.inViewport(select_wrapper[0]);
+            select_wrapper_rect = Utils.rect(select_wrapper[0]);
+
+            if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
+                select_wrapper.parent().addClass("for-bottom");
+            }
+
+            if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
+                select_wrapper.parent().addClass("for-top");
+            }
+
+            var animateList = function(list, item){
+                list
+                    .scrollTop(0)
+                    .animate({
+                        draw: {
+                            scrollTop: item.position().top - (o.distance * 40) + list.scrollTop()
+                        },
+                        dur: 100
+                    });
+            };
+
+            if (o.hours === true) {
+                h = parseInt(this.value[0]);
+                h_list = picker.find(".sel-hours");
+                h_item = h_list.find("li.js-hours-" + h).addClass("active");
+                animateList(h_list, h_item);
+            }
+            if (o.minutes === true) {
+                m = parseInt(this.value[1]);
+                m_list = picker.find(".sel-minutes");
+                m_item = m_list.find("li.js-minutes-" + m).addClass("active");
+                animateList(m_list, m_item);
+            }
+            if (o.seconds === true) {
+                s = parseInt(this.value[2]);
+                s_list = picker.find(".sel-seconds");
+                s_item = s_list.find("li.js-seconds-" + s).addClass("active");
+                animateList(s_list, s_item);
+            }
+
+            this.isOpen = true;
+
+            Utils.exec(o.onOpen, [this.value], element[0]);
+            element.fire("open", {
+                val: this.value
+            });
+        },
+
+        close: function(){
+            var picker = this.picker, o = this.options, element = this.element;
+            picker.find(".select-wrapper").hide(0);
+            this.isOpen = false;
+            Utils.exec(o.onClose, [this.value], element[0]);
+            element.fire("close", {
+                val: this.value
+            });
+        },
+
+        _convert: function(t){
+            var result;
+
+            if (Array.isArray(t)) {
+                result = t;
+            } else if (typeof  t.getMonth === 'function') {
+                result = [t.getHours(), t.getMinutes(), t.getSeconds()];
+            } else if (Utils.isObject(t)) {
+                result = [t.h, t.m, t.s];
+            } else {
+                result = t.toArray(":");
+            }
+
+            return result;
+        },
+
+        val: function(t){
+            if (t === undefined) {
+                return this.element.val();
+            }
+            this.value = this._convert(t);
+            this._normalizeValue();
+            this._set();
+        },
+
+        time: function(t){
+            if (t === undefined) {
+                return {
+                    h: this.value[0],
+                    m: this.value[1],
+                    s: this.value[2]
+                }
+            }
+
+            this.value = this._convert(t);
+            this._normalizeValue();
+            this._set();
+        },
+
+        date: function(t){
+            if (t === undefined || typeof t.getMonth !== 'function') {
+                var ret = new Date();
+                ret.setHours(this.value[0]);
+                ret.setMinutes(this.value[1]);
+                ret.setSeconds(this.value[2]);
+                ret.setMilliseconds(0);
+                return ret;
+            }
+
+            this.value = this._convert(t);
+            this._normalizeValue();
+            this._set();
+        },
+
+        changeAttribute: function(attributeName){
+            var that = this, element = this.element;
+
+            var changeValueAttribute = function(){
+                that.val(element.attr("data-value"));
+            };
+
+            if (attributeName === "data-value") {
+                changeValueAttribute();
+            }
+        },
+
+        destroy: function(){
+            var element = this.element;
+            var picker = this.picker;
+
+            $.each(['hours', 'minutes', 'seconds'], function(){
+                picker.find(".sel-"+this).off("scroll");
+            });
+
+            picker.off(Metro.events.start, ".select-block ul");
+            picker.off(Metro.events.click);
+            picker.off(Metro.events.click, ".action-ok");
+            picker.off(Metro.events.click, ".action-cancel");
+
+            return element;
+        }
+
+    });
+
+    $(document).on(Metro.events.click, function(){
+        $.each($(".time-picker"), function(){
+            $(this).find("input").each(function(){
+                Metro.getPlugin(this, "timepicker").close();
+            });
         });
     });
-});
+}(Metro, m4q));
 
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var ToastDefaultConfig = {
+        callback: Metro.noop,
+        timeout: METRO_TIMEOUT,
+        distance: 20,
+        showTop: false,
+        clsToast: ""
+    };
 
-var ToastDefaultConfig = {
-    callback: Metro.noop,
-    timeout: METRO_TIMEOUT,
-    distance: 20,
-    showTop: false,
-    clsToast: ""
-};
+    Metro.toastSetup = function(options){
+        ToastDefaultConfig = $.extend({}, ToastDefaultConfig, options);
+    };
 
-Metro.toastSetup = function(options){
-    ToastDefaultConfig = $.extend({}, ToastDefaultConfig, options);
-};
-
-if (typeof window["metroToastSetup"] !== undefined) {
-    Metro.toastSetup(window["metroToastSetup"]);
-}
-
-var Toast = {
-    create: function(message, callback, timeout, cls, options){
-        var o = $.extend({}, ToastDefaultConfig, options);
-        var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
-        var width = toast.outerWidth();
-
-        toast.hide();
-
-        timeout = timeout || o.timeout;
-        callback = callback || o.callback;
-        cls = cls || o.clsToast;
-
-        if (o.showTop === true) {
-            toast.addClass("show-top").css({
-                top: o.distance
-            });
-        } else {
-            toast.css({
-                bottom: o.distance
-            })
-        }
-
-        toast.css({
-            'left': '50%',
-            'margin-left': -(width / 2)
-        });
-        toast.addClass(o.clsToast);
-        toast.addClass(cls);
-        toast.fadeIn(METRO_ANIMATION_DURATION);
-
-        setTimeout(function(){
-            toast.fadeOut(METRO_ANIMATION_DURATION, function(){
-                toast.remove();
-                Utils.exec(callback, null, toast[0]);
-            });
-        }, timeout);
+    if (typeof window["metroToastSetup"] !== undefined) {
+        Metro.toastSetup(window["metroToastSetup"]);
     }
-};
 
-Metro['toast'] = Toast;
-Metro['createToast'] = Toast.create;
+    var Toast = {
+        create: function(message, callback, timeout, cls, options){
+            var o = $.extend({}, ToastDefaultConfig, options);
+            var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
+            var width = toast.outerWidth();
 
-var TouchConst = {
-    LEFT : "left",
-    RIGHT : "right",
-    UP : "up",
-    DOWN : "down",
-    IN : "in",
-    OUT : "out",
-    NONE : "none",
-    AUTO : "auto",
-    SWIPE : "swipe",
-    PINCH : "pinch",
-    TAP : "tap",
-    DOUBLE_TAP : "doubletap",
-    LONG_TAP : "longtap",
-    HOLD : "hold",
-    HORIZONTAL : "horizontal",
-    VERTICAL : "vertical",
-    ALL_FINGERS : "all",
-    DOUBLE_TAP_THRESHOLD : 10,
-    PHASE_START : "start",
-    PHASE_MOVE : "move",
-    PHASE_END : "end",
-    PHASE_CANCEL : "cancel",
-    SUPPORTS_TOUCH : 'ontouchstart' in window,
-    SUPPORTS_POINTER_IE10 : window.navigator.msPointerEnabled && !window.navigator.pointerEnabled && !('ontouchstart' in window),
-    SUPPORTS_POINTER : (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && !('ontouchstart' in window),
-    IN_TOUCH: "intouch"
-};
+            toast.hide();
 
-var TouchDefaultConfig = {
-    touchDeferred: 0,
-    fingers: 1,
-    threshold: 75,
-    cancelThreshold: null,
-    pinchThreshold: 20,
-    maxTimeThreshold: null,
-    fingerReleaseThreshold: 250,
-    longTapThreshold: 500,
-    doubleTapThreshold: 200,
-    triggerOnTouchEnd: true,
-    triggerOnTouchLeave: false,
-    allowPageScroll: "auto",
-    fallbackToMouseEvents: true,
-    excludedElements: ".no-swipe",
-    preventDefaultEvents: true,
+            timeout = timeout || o.timeout;
+            callback = callback || o.callback;
+            cls = cls || o.clsToast;
 
-    onSwipe: Metro.noop,
-    onSwipeLeft: Metro.noop,
-    onSwipeRight: Metro.noop,
-    onSwipeUp: Metro.noop,
-    onSwipeDown: Metro.noop,
-    onSwipeStatus: Metro.noop_true, // params: phase, direction, distance, duration, fingerCount, fingerData, currentDirection
-    onPinchIn: Metro.noop,
-    onPinchOut: Metro.noop,
-    onPinchStatus: Metro.noop_true,
-    onTap: Metro.noop,
-    onDoubleTap: Metro.noop,
-    onLongTap: Metro.noop,
-    onHold: Metro.noop,
-
-    onSwipeCreate: Metro.noop
-};
-
-Metro.touchSetup = function (options) {
-    TouchDefaultConfig = $.extend({}, TouchDefaultConfig, options);
-};
-
-if (typeof window["metroTouchSetup"] !== undefined) {
-    Metro.sliderSetup(window["metroTouchSetup"]);
-}
-
-Component('touch', {
-    init: function( options, elem ) {
-        this._super(elem, options, TouchDefaultConfig);
-
-        this.useTouchEvents = (TouchConst.SUPPORTS_TOUCH || TouchConst.SUPPORTS_POINTER || !this.options.fallbackToMouseEvents);
-        this.START_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown';
-        this.MOVE_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerMove' : 'pointermove') : 'touchmove') : 'mousemove';
-        this.END_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerUp' : 'pointerup') : 'touchend') : 'mouseup';
-        this.LEAVE_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? 'mouseleave' : null) : 'mouseleave'; //we manually detect leave on touch devices, so null event here
-        this.CANCEL_EV = (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerCancel' : 'pointercancel') : 'touchcancel');
-
-        //touch properties
-        this.distance = 0;
-        this.direction = null;
-        this.currentDirection = null;
-        this.duration = 0;
-        this.startTouchesDistance = 0;
-        this.endTouchesDistance = 0;
-        this.pinchZoom = 1;
-        this.pinchDistance = 0;
-        this.pinchDirection = 0;
-        this.maximumsMap = null;
-
-        //Current phase of th touch cycle
-        this.phase = "start";
-
-        // the current number of fingers being used.
-        this.fingerCount = 0;
-
-        //track mouse points / delta
-        this.fingerData = {};
-
-        //track times
-        this.startTime = 0;
-        this.endTime = 0;
-        this.previousTouchEndTime = 0;
-        this.fingerCountAtRelease = 0;
-        this.doubleTapStartTime = 0;
-
-        //Timeouts
-        this.singleTapTimeout = null;
-        this.holdTimeout = null;
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        if (o.allowPageScroll === undefined && (o.onSwipe !== Metro.noop || o.onSwipeStatus !== Metro.noop)) {
-            o.allowPageScroll = TouchConst.NONE;
-        }
-
-        try {
-            element.on(this.START_EV, $.proxy(this.touchStart, that));
-            element.on(this.CANCEL_EV, $.proxy(this.touchCancel, that));
-        } catch (e) {
-            throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
-        }
-
-        Utils.exec(o.onSwipeCreate, [element], element[0]);
-        element.fire("swipecreate");
-    },
-
-    touchStart: function(e) {
-        var element = this.element, options = this.options;
-
-        //If we already in a touch event (a finger already in use) then ignore subsequent ones..
-        if (this.getTouchInProgress()) {
-            return;
-        }
-
-        //Check if this element matches any in the excluded elements selectors,  or its parent is excluded, if so, DON'T swipe
-        if ($(e.target).closest(options.excludedElements).length > 0) {
-            return;
-        }
-
-        //As we use Jquery bind for events, we need to target the original event object
-        //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e;
-
-        var ret,
-            touches = event.touches,
-            evt = touches ? touches[0] : event;
-
-        this.phase = TouchConst.PHASE_START;
-
-        //If we support touches, get the finger count
-        if (touches) {
-            // get the total number of fingers touching the screen
-            this.fingerCount = touches.length;
-        }
-        //Else this is the desktop, so stop the browser from dragging content
-        else if (options.preventDefaultEvents !== false) {
-            e.preventDefault(); //call this on jq event so we are cross browser
-        }
-
-        //clear vars..
-        this.distance = 0;
-        this.direction = null;
-        this.currentDirection=null;
-        this.pinchDirection = null;
-        this.duration = 0;
-        this.startTouchesDistance = 0;
-        this.endTouchesDistance = 0;
-        this.pinchZoom = 1;
-        this.pinchDistance = 0;
-        this.maximumsMap = this.createMaximumsData();
-        this.cancelMultiFingerRelease();
-
-        //Create the default finger data
-        this.createFingerData(0, evt);
-
-        // check the number of fingers is what we are looking for, or we are capturing pinches
-        if (!touches || (this.fingerCount === options.fingers || options.fingers === TouchConst.ALL_FINGERS) || this.hasPinches()) {
-            // get the coordinates of the touch
-            this.startTime = this.getTimeStamp();
-
-            if (this.fingerCount === 2) {
-                //Keep track of the initial pinch distance, so we can calculate the diff later
-                //Store second finger data as start
-                this.createFingerData(1, touches[1]);
-                this.startTouchesDistance = this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].start, this.fingerData[1].start);
-            }
-
-            if (options.onSwipeStatus !== Metro.noop || options.onPinchStatus !== Metro.noop) {
-                ret = this.triggerHandler(event, this.phase);
-            }
-        } else {
-            //A touch with more or less than the fingers we are looking for, so cancel
-            ret = false;
-        }
-
-        //If we have a return value from the users handler, then return and cancel
-        if (ret === false) {
-            this.phase = TouchConst.PHASE_CANCEL;
-            this.triggerHandler(event, this.phase);
-            return ret;
-        } else {
-            if (options.onHold !== Metro.noop) {
-                this.holdTimeout = setTimeout($.proxy(function() {
-                    //Trigger the event
-                    element.trigger('hold', [event.target]);
-                    //Fire the callback
-                    if (options.onHold !== Metro.noop) { // TODO Remove this if
-                        ret = Utils.exec(options.onHold, [event, event.target], element[0]);
-                        element.fire("hold", {
-                            event: event,
-                            target: event.target
-                        });
-                    }
-                }, this), options.longTapThreshold);
-            }
-
-            this.setTouchInProgress(true);
-        }
-
-        return null;
-    },
-
-    touchMove: function(e) {
-        //As we use Jquery bind for events, we need to target the original event object
-        //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e;
-
-        //If we are ending, cancelling, or within the threshold of 2 fingers being released, don't track anything..
-        if (this.phase === TouchConst.PHASE_END || this.phase === TouchConst.PHASE_CANCEL || this.inMultiFingerRelease())
-            return;
-
-        var ret,
-            touches = event.touches,
-            evt = touches ? touches[0] : event;
-
-        //Update the  finger data
-        var currentFinger = this.updateFingerData(evt);
-        this.endTime = this.getTimeStamp();
-
-        if (touches) {
-            this.fingerCount = touches.length;
-        }
-
-        if (this.options.onHold !== Metro.noop) {
-            clearTimeout(this.holdTimeout);
-        }
-
-        this.phase = TouchConst.PHASE_MOVE;
-
-        //If we have 2 fingers get Touches distance as well
-        if (this.fingerCount === 2) {
-
-            //Keep track of the initial pinch distance, so we can calculate the diff later
-            //We do this here as well as the start event, in case they start with 1 finger, and the press 2 fingers
-            if (this.startTouchesDistance === 0) {
-                //Create second finger if this is the first time...
-                this.createFingerData(1, touches[1]);
-
-                this.startTouchesDistance = this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].start, this.fingerData[1].start);
+            if (o.showTop === true) {
+                toast.addClass("show-top").css({
+                    top: o.distance
+                });
             } else {
-                //Else just update the second finger
-                this.updateFingerData(touches[1]);
-
-                this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].end, this.fingerData[1].end);
-                this.pinchDirection = this.calculatePinchDirection(this.fingerData[0].end, this.fingerData[1].end);
+                toast.css({
+                    bottom: o.distance
+                })
             }
 
-            this.pinchZoom = this.calculatePinchZoom(this.startTouchesDistance, this.endTouchesDistance);
-            this.pinchDistance = Math.abs(this.startTouchesDistance - this.endTouchesDistance);
+            toast.css({
+                'left': '50%',
+                'margin-left': -(width / 2)
+            });
+            toast.addClass(o.clsToast);
+            toast.addClass(cls);
+            toast.fadeIn(METRO_ANIMATION_DURATION);
+
+            setTimeout(function(){
+                toast.fadeOut(METRO_ANIMATION_DURATION, function(){
+                    toast.remove();
+                    Utils.exec(callback, null, toast[0]);
+                });
+            }, timeout);
         }
+    };
 
-        if ((this.fingerCount === this.options.fingers || this.options.fingers === TouchConst.ALL_FINGERS) || !touches || this.hasPinches()) {
+    Metro['toast'] = Toast;
+    Metro['createToast'] = Toast.create;
+}(Metro, m4q));
 
-            //The overall direction of the swipe. From start to now.
-            this.direction = this.calculateDirection(currentFinger.start, currentFinger.end);
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var TouchConst = {
+        LEFT : "left",
+        RIGHT : "right",
+        UP : "up",
+        DOWN : "down",
+        IN : "in",
+        OUT : "out",
+        NONE : "none",
+        AUTO : "auto",
+        SWIPE : "swipe",
+        PINCH : "pinch",
+        TAP : "tap",
+        DOUBLE_TAP : "doubletap",
+        LONG_TAP : "longtap",
+        HOLD : "hold",
+        HORIZONTAL : "horizontal",
+        VERTICAL : "vertical",
+        ALL_FINGERS : "all",
+        DOUBLE_TAP_THRESHOLD : 10,
+        PHASE_START : "start",
+        PHASE_MOVE : "move",
+        PHASE_END : "end",
+        PHASE_CANCEL : "cancel",
+        SUPPORTS_TOUCH : 'ontouchstart' in window,
+        SUPPORTS_POINTER_IE10 : window.navigator.msPointerEnabled && !window.navigator.pointerEnabled && !('ontouchstart' in window),
+        SUPPORTS_POINTER : (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && !('ontouchstart' in window),
+        IN_TOUCH: "intouch"
+    };
 
-            //The immediate direction of the swipe, direction between the last movement and this one.
-            this.currentDirection = this.calculateDirection(currentFinger.last, currentFinger.end);
+    var TouchDefaultConfig = {
+        touchDeferred: 0,
+        fingers: 1,
+        threshold: 75,
+        cancelThreshold: null,
+        pinchThreshold: 20,
+        maxTimeThreshold: null,
+        fingerReleaseThreshold: 250,
+        longTapThreshold: 500,
+        doubleTapThreshold: 200,
+        triggerOnTouchEnd: true,
+        triggerOnTouchLeave: false,
+        allowPageScroll: "auto",
+        fallbackToMouseEvents: true,
+        excludedElements: ".no-swipe",
+        preventDefaultEvents: true,
 
-            //Check if we need to prevent default event (page scroll / pinch zoom) or not
-            this.validateDefaultEvent(e, this.currentDirection);
+        onSwipe: Metro.noop,
+        onSwipeLeft: Metro.noop,
+        onSwipeRight: Metro.noop,
+        onSwipeUp: Metro.noop,
+        onSwipeDown: Metro.noop,
+        onSwipeStatus: Metro.noop_true, // params: phase, direction, distance, duration, fingerCount, fingerData, currentDirection
+        onPinchIn: Metro.noop,
+        onPinchOut: Metro.noop,
+        onPinchStatus: Metro.noop_true,
+        onTap: Metro.noop,
+        onDoubleTap: Metro.noop,
+        onLongTap: Metro.noop,
+        onHold: Metro.noop,
 
-            //Distance and duration are all off the main finger
-            this.distance = this.calculateDistance(currentFinger.start, currentFinger.end);
+        onTouchCreate: Metro.noop
+    };
+
+    Metro.touchSetup = function (options) {
+        TouchDefaultConfig = $.extend({}, TouchDefaultConfig, options);
+    };
+
+    if (typeof window["metroTouchSetup"] !== undefined) {
+        Metro.touchSetup(window["metroTouchSetup"]);
+    }
+
+    Metro.Component('touch', {
+        init: function( options, elem ) {
+            this._super(elem, options, TouchDefaultConfig, {
+                useTouchEvents: null,
+                START_EV: null,
+                MOVE_EV: null,
+                END_EV: null,
+                LEAVE_EV: null,
+                CANCEL_EV: null,
+
+                distance: 0,
+                direction: null,
+                currentDirection: null,
+                duration: 0,
+                startTouchesDistance: 0,
+                endTouchesDistance: 0,
+                pinchZoom: 1,
+                pinchDistance: 0,
+                pinchDirection: 0,
+                maximumsMap: null,
+
+                phase: "start",
+
+                fingerCount: 0,
+
+                fingerData: {},
+
+                startTime: 0,
+                endTime: 0,
+                previousTouchEndTime: 0,
+                fingerCountAtRelease: 0,
+                doubleTapStartTime: 0,
+
+                singleTapTimeout: null,
+                holdTimeout: null
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
+
+            this.useTouchEvents = (TouchConst.SUPPORTS_TOUCH || TouchConst.SUPPORTS_POINTER || !this.options.fallbackToMouseEvents);
+            this.START_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerDown' : 'pointerdown') : 'touchstart') : 'mousedown';
+            this.MOVE_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerMove' : 'pointermove') : 'touchmove') : 'mousemove';
+            this.END_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerUp' : 'pointerup') : 'touchend') : 'mouseup';
+            this.LEAVE_EV = this.useTouchEvents ? (TouchConst.SUPPORTS_POINTER ? 'mouseleave' : null) : 'mouseleave'; //we manually detect leave on touch devices, so null event here
+            this.CANCEL_EV = (TouchConst.SUPPORTS_POINTER ? (TouchConst.SUPPORTS_POINTER_IE10 ? 'MSPointerCancel' : 'pointercancel') : 'touchcancel');
+
+            if (o.allowPageScroll === undefined && (o.onSwipe !== Metro.noop || o.onSwipeStatus !== Metro.noop)) {
+                o.allowPageScroll = TouchConst.NONE;
+            }
+
+            try {
+                element.on(this.START_EV, $.proxy(this.touchStart, that));
+                element.on(this.CANCEL_EV, $.proxy(this.touchCancel, that));
+            } catch (e) {
+                throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
+            }
+
+            this._fireEvent("touch-create", {
+                element: element
+            });
+        },
+
+        touchStart: function(e) {
+            var element = this.element, options = this.options;
+
+            //If we already in a touch event (a finger already in use) then ignore subsequent ones..
+            if (this.getTouchInProgress()) {
+                return;
+            }
+
+            //Check if this element matches any in the excluded elements selectors,  or its parent is excluded, if so, DON'T swipe
+            if ($(e.target).closest(options.excludedElements).length > 0) {
+                return;
+            }
+
+            //As we use Jquery bind for events, we need to target the original event object
+            //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
+            var event = e;
+
+            var ret,
+                touches = event.touches,
+                evt = touches ? touches[0] : event;
+
+            this.phase = TouchConst.PHASE_START;
+
+            //If we support touches, get the finger count
+            if (touches) {
+                // get the total number of fingers touching the screen
+                this.fingerCount = touches.length;
+            }
+            //Else this is the desktop, so stop the browser from dragging content
+            else if (options.preventDefaultEvents !== false) {
+                e.preventDefault(); //call this on jq event so we are cross browser
+            }
+
+            //clear vars..
+            this.distance = 0;
+            this.direction = null;
+            this.currentDirection=null;
+            this.pinchDirection = null;
+            this.duration = 0;
+            this.startTouchesDistance = 0;
+            this.endTouchesDistance = 0;
+            this.pinchZoom = 1;
+            this.pinchDistance = 0;
+            this.maximumsMap = this.createMaximumsData();
+            this.cancelMultiFingerRelease();
+
+            //Create the default finger data
+            this.createFingerData(0, evt);
+
+            // check the number of fingers is what we are looking for, or we are capturing pinches
+            if (!touches || (this.fingerCount === options.fingers || options.fingers === TouchConst.ALL_FINGERS) || this.hasPinches()) {
+                // get the coordinates of the touch
+                this.startTime = this.getTimeStamp();
+
+                if (this.fingerCount === 2) {
+                    //Keep track of the initial pinch distance, so we can calculate the diff later
+                    //Store second finger data as start
+                    this.createFingerData(1, touches[1]);
+                    this.startTouchesDistance = this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].start, this.fingerData[1].start);
+                }
+
+                if (options.onSwipeStatus !== Metro.noop || options.onPinchStatus !== Metro.noop) {
+                    ret = this.triggerHandler(event, this.phase);
+                }
+            } else {
+                //A touch with more or less than the fingers we are looking for, so cancel
+                ret = false;
+            }
+
+            //If we have a return value from the users handler, then return and cancel
+            if (ret === false) {
+                this.phase = TouchConst.PHASE_CANCEL;
+                this.triggerHandler(event, this.phase);
+                return ret;
+            } else {
+                if (options.onHold !== Metro.noop) {
+                    this.holdTimeout = setTimeout($.proxy(function() {
+                        //Trigger the event
+                        element.trigger('hold', [event.target]);
+                        //Fire the callback
+                        if (options.onHold !== Metro.noop) { // TODO Remove this if
+                            ret = Utils.exec(options.onHold, [event, event.target], element[0]);
+                            element.fire("hold", {
+                                event: event,
+                                target: event.target
+                            });
+                        }
+                    }, this), options.longTapThreshold);
+                }
+
+                this.setTouchInProgress(true);
+            }
+
+            return null;
+        },
+
+        touchMove: function(e) {
+            //As we use Jquery bind for events, we need to target the original event object
+            //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
+            var event = e;
+
+            //If we are ending, cancelling, or within the threshold of 2 fingers being released, don't track anything..
+            if (this.phase === TouchConst.PHASE_END || this.phase === TouchConst.PHASE_CANCEL || this.inMultiFingerRelease())
+                return;
+
+            var ret,
+                touches = event.touches,
+                evt = touches ? touches[0] : event;
+
+            //Update the  finger data
+            var currentFinger = this.updateFingerData(evt);
+            this.endTime = this.getTimeStamp();
+
+            if (touches) {
+                this.fingerCount = touches.length;
+            }
+
+            if (this.options.onHold !== Metro.noop) {
+                clearTimeout(this.holdTimeout);
+            }
+
+            this.phase = TouchConst.PHASE_MOVE;
+
+            //If we have 2 fingers get Touches distance as well
+            if (this.fingerCount === 2) {
+
+                //Keep track of the initial pinch distance, so we can calculate the diff later
+                //We do this here as well as the start event, in case they start with 1 finger, and the press 2 fingers
+                if (this.startTouchesDistance === 0) {
+                    //Create second finger if this is the first time...
+                    this.createFingerData(1, touches[1]);
+
+                    this.startTouchesDistance = this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].start, this.fingerData[1].start);
+                } else {
+                    //Else just update the second finger
+                    this.updateFingerData(touches[1]);
+
+                    this.endTouchesDistance = this.calculateTouchesDistance(this.fingerData[0].end, this.fingerData[1].end);
+                    this.pinchDirection = this.calculatePinchDirection(this.fingerData[0].end, this.fingerData[1].end);
+                }
+
+                this.pinchZoom = this.calculatePinchZoom(this.startTouchesDistance, this.endTouchesDistance);
+                this.pinchDistance = Math.abs(this.startTouchesDistance - this.endTouchesDistance);
+            }
+
+            if ((this.fingerCount === this.options.fingers || this.options.fingers === TouchConst.ALL_FINGERS) || !touches || this.hasPinches()) {
+
+                //The overall direction of the swipe. From start to now.
+                this.direction = this.calculateDirection(currentFinger.start, currentFinger.end);
+
+                //The immediate direction of the swipe, direction between the last movement and this one.
+                this.currentDirection = this.calculateDirection(currentFinger.last, currentFinger.end);
+
+                //Check if we need to prevent default event (page scroll / pinch zoom) or not
+                this.validateDefaultEvent(e, this.currentDirection);
+
+                //Distance and duration are all off the main finger
+                this.distance = this.calculateDistance(currentFinger.start, currentFinger.end);
+                this.duration = this.calculateDuration();
+
+                //Cache the maximum distance we made in this direction
+                this.setMaxDistance(this.direction, this.distance);
+
+                //Trigger status handler
+                ret = this.triggerHandler(event, this.phase);
+
+
+                //If we trigger end events when threshold are met, or trigger events when touch leaves element
+                if (!this.options.triggerOnTouchEnd || this.options.triggerOnTouchLeave) {
+
+                    var inBounds = true;
+
+                    //If checking if we leave the element, run the bounds check (we can use touchleave as its not supported on webkit)
+                    if (this.options.triggerOnTouchLeave) {
+                        var bounds = this.getBounds(this);
+                        inBounds = this.isInBounds(currentFinger.end, bounds);
+                    }
+
+                    //Trigger end handles as we swipe if thresholds met or if we have left the element if the user has asked to check these..
+                    if (!this.options.triggerOnTouchEnd && inBounds) {
+                        this.phase = this.getNextPhase(TouchConst.PHASE_MOVE);
+                    }
+                    //We end if out of bounds here, so set current phase to END, and check if its modified
+                    else if (this.options.triggerOnTouchLeave && !inBounds) {
+                        this.phase = this.getNextPhase(TouchConst.PHASE_END);
+                    }
+
+                    if (this.phase === TouchConst.PHASE_CANCEL || this.phase === TouchConst.PHASE_END) {
+                        this.triggerHandler(event, this.phase);
+                    }
+                }
+            } else {
+                this.phase = TouchConst.PHASE_CANCEL;
+                this.triggerHandler(event, this.phase);
+            }
+
+            if (ret === false) {
+                this.phase = TouchConst.PHASE_CANCEL;
+                this.triggerHandler(event, this.phase);
+            }
+        },
+
+        touchEnd: function(e) {
+            //As we use Jquery bind for events, we need to target the original event object
+            //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
+            var event = e,
+                touches = event.touches;
+
+            //If we are still in a touch with the device wait a fraction and see if the other finger comes up
+            //if it does within the threshold, then we treat it as a multi release, not a single release and end the touch / swipe
+            if (touches) {
+                if (touches.length && !this.inMultiFingerRelease()) {
+                    this.startMultiFingerRelease(event);
+                    return true;
+                } else if (touches.length && this.inMultiFingerRelease()) {
+                    return true;
+                }
+            }
+
+            //If a previous finger has been released, check how long ago, if within the threshold, then assume it was a multifinger release.
+            //This is used to allow 2 fingers to release fractionally after each other, whilst maintaining the event as containing 2 fingers, not 1
+            if (this.inMultiFingerRelease()) {
+                this.fingerCount = this.fingerCountAtRelease;
+            }
+
+            //Set end of swipe
+            this.endTime = this.getTimeStamp();
+
+            //Get duration incase move was never fired
             this.duration = this.calculateDuration();
 
-            //Cache the maximum distance we made in this direction
-            this.setMaxDistance(this.direction, this.distance);
-
-            //Trigger status handler
-            ret = this.triggerHandler(event, this.phase);
-
-
-            //If we trigger end events when threshold are met, or trigger events when touch leaves element
-            if (!this.options.triggerOnTouchEnd || this.options.triggerOnTouchLeave) {
-
-                var inBounds = true;
-
-                //If checking if we leave the element, run the bounds check (we can use touchleave as its not supported on webkit)
-                if (this.options.triggerOnTouchLeave) {
-                    var bounds = this.getBounds(this);
-                    inBounds = this.isInBounds(currentFinger.end, bounds);
+            //If we trigger handlers at end of swipe OR, we trigger during, but they didnt trigger and we are still in the move phase
+            if (this.didSwipeBackToCancel() || !this.validateSwipeDistance()) {
+                this.phase = TouchConst.PHASE_CANCEL;
+                this.triggerHandler(event, this.phase);
+            } else if (this.options.triggerOnTouchEnd || (this.options.triggerOnTouchEnd === false && this.phase === TouchConst.PHASE_MOVE)) {
+                //call this on jq event so we are cross browser
+                if (this.options.preventDefaultEvents !== false) {
+                    e.preventDefault();
                 }
-
-                //Trigger end handles as we swipe if thresholds met or if we have left the element if the user has asked to check these..
-                if (!this.options.triggerOnTouchEnd && inBounds) {
-                    this.phase = this.getNextPhase(TouchConst.PHASE_MOVE);
-                }
-                //We end if out of bounds here, so set current phase to END, and check if its modified
-                else if (this.options.triggerOnTouchLeave && !inBounds) {
-                    this.phase = this.getNextPhase(TouchConst.PHASE_END);
-                }
-
-                if (this.phase === TouchConst.PHASE_CANCEL || this.phase === TouchConst.PHASE_END) {
-                    this.triggerHandler(event, this.phase);
-                }
+                this.phase = TouchConst.PHASE_END;
+                this.triggerHandler(event, this.phase);
             }
-        } else {
-            this.phase = TouchConst.PHASE_CANCEL;
-            this.triggerHandler(event, this.phase);
-        }
-
-        if (ret === false) {
-            this.phase = TouchConst.PHASE_CANCEL;
-            this.triggerHandler(event, this.phase);
-        }
-    },
-
-    touchEnd: function(e) {
-        //As we use Jquery bind for events, we need to target the original event object
-        //If these events are being programmatically triggered, we don't have an original event object, so use the Jq one.
-        var event = e,
-            touches = event.touches;
-
-        //If we are still in a touch with the device wait a fraction and see if the other finger comes up
-        //if it does within the threshold, then we treat it as a multi release, not a single release and end the touch / swipe
-        if (touches) {
-            if (touches.length && !this.inMultiFingerRelease()) {
-                this.startMultiFingerRelease(event);
-                return true;
-            } else if (touches.length && this.inMultiFingerRelease()) {
-                return true;
+            //Special cases - A tap should always fire on touch end regardless,
+            //So here we manually trigger the tap end handler by itself
+            //We dont run trigger handler as it will re-trigger events that may have fired already
+            else if (!this.options.triggerOnTouchEnd && this.hasTap()) {
+                //Trigger the pinch events...
+                this.phase = TouchConst.PHASE_END;
+                this.triggerHandlerForGesture(event, this.phase, TouchConst.TAP);
+            } else if (this.phase === TouchConst.PHASE_MOVE) {
+                this.phase = TouchConst.PHASE_CANCEL;
+                this.triggerHandler(event, this.phase);
             }
-        }
 
-        //If a previous finger has been released, check how long ago, if within the threshold, then assume it was a multifinger release.
-        //This is used to allow 2 fingers to release fractionally after each other, whilst maintaining the event as containing 2 fingers, not 1
-        if (this.inMultiFingerRelease()) {
-            this.fingerCount = this.fingerCountAtRelease;
-        }
+            this.setTouchInProgress(false);
 
-        //Set end of swipe
-        this.endTime = this.getTimeStamp();
+            return null;
+        },
 
-        //Get duration incase move was never fired
-        this.duration = this.calculateDuration();
+        touchCancel: function() {
+            // reset the variables back to default values
+            this.fingerCount = 0;
+            this.endTime = 0;
+            this.startTime = 0;
+            this.startTouchesDistance = 0;
+            this.endTouchesDistance = 0;
+            this.pinchZoom = 1;
 
-        //If we trigger handlers at end of swipe OR, we trigger during, but they didnt trigger and we are still in the move phase
-        if (this.didSwipeBackToCancel() || !this.validateSwipeDistance()) {
-            this.phase = TouchConst.PHASE_CANCEL;
-            this.triggerHandler(event, this.phase);
-        } else if (this.options.triggerOnTouchEnd || (this.options.triggerOnTouchEnd === false && this.phase === TouchConst.PHASE_MOVE)) {
-            //call this on jq event so we are cross browser
-            if (this.options.preventDefaultEvents !== false) {
-                e.preventDefault();
+            //If we were in progress of tracking a possible multi touch end, then re set it.
+            this.cancelMultiFingerRelease();
+
+            this.setTouchInProgress(false);
+        },
+
+        touchLeave: function(e) {
+            if (this.options.triggerOnTouchLeave) {
+                this.phase = this.getNextPhase(TouchConst.PHASE_END);
+                this.triggerHandler(e, this.phase);
             }
-            this.phase = TouchConst.PHASE_END;
-            this.triggerHandler(event, this.phase);
-        }
-        //Special cases - A tap should always fire on touch end regardless,
-        //So here we manually trigger the tap end handler by itself
-        //We dont run trigger handler as it will re-trigger events that may have fired already
-        else if (!this.options.triggerOnTouchEnd && this.hasTap()) {
-            //Trigger the pinch events...
-            this.phase = TouchConst.PHASE_END;
-            this.triggerHandlerForGesture(event, this.phase, TouchConst.TAP);
-        } else if (this.phase === TouchConst.PHASE_MOVE) {
-            this.phase = TouchConst.PHASE_CANCEL;
-            this.triggerHandler(event, this.phase);
-        }
+        },
 
-        this.setTouchInProgress(false);
+        getNextPhase: function(currentPhase) {
+            var options  = this.options;
+            var nextPhase = currentPhase;
 
-        return null;
-    },
+            // Ensure we have valid swipe (under time and over distance  and check if we are out of bound...)
+            var validTime = this.validateSwipeTime();
+            var validDistance = this.validateSwipeDistance();
+            var didCancel = this.didSwipeBackToCancel();
 
-    touchCancel: function() {
-        // reset the variables back to default values
-        this.fingerCount = 0;
-        this.endTime = 0;
-        this.startTime = 0;
-        this.startTouchesDistance = 0;
-        this.endTouchesDistance = 0;
-        this.pinchZoom = 1;
+            //If we have exceeded our time, then cancel
+            if (!validTime || didCancel) {
+                nextPhase = TouchConst.PHASE_CANCEL;
+            }
+            //Else if we are moving, and have reached distance then end
+            else if (validDistance && currentPhase === TouchConst.PHASE_MOVE && (!options.triggerOnTouchEnd || options.triggerOnTouchLeave)) {
+                nextPhase = TouchConst.PHASE_END;
+            }
+            //Else if we have ended by leaving and didn't reach distance, then cancel
+            else if (!validDistance && currentPhase === TouchConst.PHASE_END && options.triggerOnTouchLeave) {
+                nextPhase = TouchConst.PHASE_CANCEL;
+            }
 
-        //If we were in progress of tracking a possible multi touch end, then re set it.
-        this.cancelMultiFingerRelease();
+            return nextPhase;
+        },
 
-        this.setTouchInProgress(false);
-    },
+        triggerHandler: function(event, phase) {
+            var ret,
+                touches = event.touches;
 
-    touchLeave: function(e) {
-        if (this.options.triggerOnTouchLeave) {
-            this.phase = this.getNextPhase(TouchConst.PHASE_END);
-            this.triggerHandler(e, this.phase);
-        }
-    },
+            // SWIPE GESTURES
+            if (this.didSwipe() || this.hasSwipes()) {
+                ret = this.triggerHandlerForGesture(event, phase, TouchConst.SWIPE);
+            }
 
-    getNextPhase: function(currentPhase) {
-        var options  = this.options;
-        var nextPhase = currentPhase;
+            // PINCH GESTURES (if the above didn't cancel)
+            if ((this.didPinch() || this.hasPinches()) && ret !== false) {
+                ret = this.triggerHandlerForGesture(event, phase, TouchConst.PINCH);
+            }
 
-        // Ensure we have valid swipe (under time and over distance  and check if we are out of bound...)
-        var validTime = this.validateSwipeTime();
-        var validDistance = this.validateSwipeDistance();
-        var didCancel = this.didSwipeBackToCancel();
+            // CLICK / TAP (if the above didn't cancel)
+            if (this.didDoubleTap() && ret !== false) {
+                //Trigger the tap events...
+                ret = this.triggerHandlerForGesture(event, phase, TouchConst.DOUBLE_TAP);
+            }
 
-        //If we have exceeded our time, then cancel
-        if (!validTime || didCancel) {
-            nextPhase = TouchConst.PHASE_CANCEL;
-        }
-        //Else if we are moving, and have reached distance then end
-        else if (validDistance && currentPhase === TouchConst.PHASE_MOVE && (!options.triggerOnTouchEnd || options.triggerOnTouchLeave)) {
-            nextPhase = TouchConst.PHASE_END;
-        }
-        //Else if we have ended by leaving and didn't reach distance, then cancel
-        else if (!validDistance && currentPhase === TouchConst.PHASE_END && options.triggerOnTouchLeave) {
-            nextPhase = TouchConst.PHASE_CANCEL;
-        }
+            // CLICK / TAP (if the above didn't cancel)
+            else if (this.didLongTap() && ret !== false) {
+                //Trigger the tap events...
+                ret = this.triggerHandlerForGesture(event, phase, TouchConst.LONG_TAP);
+            }
 
-        return nextPhase;
-    },
+            // CLICK / TAP (if the above didn't cancel)
+            else if (this.didTap() && ret !== false) {
+                //Trigger the tap event..
+                ret = this.triggerHandlerForGesture(event, phase, TouchConst.TAP);
+            }
 
-    triggerHandler: function(event, phase) {
-        var ret,
-            touches = event.touches;
-
-        // SWIPE GESTURES
-        if (this.didSwipe() || this.hasSwipes()) {
-            ret = this.triggerHandlerForGesture(event, phase, TouchConst.SWIPE);
-        }
-
-        // PINCH GESTURES (if the above didn't cancel)
-        if ((this.didPinch() || this.hasPinches()) && ret !== false) {
-            ret = this.triggerHandlerForGesture(event, phase, TouchConst.PINCH);
-        }
-
-        // CLICK / TAP (if the above didn't cancel)
-        if (this.didDoubleTap() && ret !== false) {
-            //Trigger the tap events...
-            ret = this.triggerHandlerForGesture(event, phase, TouchConst.DOUBLE_TAP);
-        }
-
-        // CLICK / TAP (if the above didn't cancel)
-        else if (this.didLongTap() && ret !== false) {
-            //Trigger the tap events...
-            ret = this.triggerHandlerForGesture(event, phase, TouchConst.LONG_TAP);
-        }
-
-        // CLICK / TAP (if the above didn't cancel)
-        else if (this.didTap() && ret !== false) {
-            //Trigger the tap event..
-            ret = this.triggerHandlerForGesture(event, phase, TouchConst.TAP);
-        }
-
-        // If we are cancelling the gesture, then manually trigger the reset handler
-        if (phase === TouchConst.PHASE_CANCEL) {
-            this.touchCancel(event);
-        }
-
-        // If we are ending the gesture, then manually trigger the reset handler IF all fingers are off
-        if (phase === TouchConst.PHASE_END) {
-            //If we support touch, then check that all fingers are off before we cancel
-            if (touches) {
-                if (!touches.length) {
-                    this.touchCancel(event);
-                }
-            } else {
+            // If we are cancelling the gesture, then manually trigger the reset handler
+            if (phase === TouchConst.PHASE_CANCEL) {
                 this.touchCancel(event);
             }
-        }
 
-        return ret;
-    },
+            // If we are ending the gesture, then manually trigger the reset handler IF all fingers are off
+            if (phase === TouchConst.PHASE_END) {
+                //If we support touch, then check that all fingers are off before we cancel
+                if (touches) {
+                    if (!touches.length) {
+                        this.touchCancel(event);
+                    }
+                } else {
+                    this.touchCancel(event);
+                }
+            }
 
-    triggerHandlerForGesture: function(event, phase, gesture) {
+            return ret;
+        },
 
-        var ret, element = this.element, options = this.options;
+        triggerHandlerForGesture: function(event, phase, gesture) {
 
-        //SWIPES....
-        if (gesture === TouchConst.SWIPE) {
-            //Trigger status every time..
-            element.trigger('swipeStatus', [phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection]);
+            var ret, element = this.element, options = this.options;
 
-            ret = Utils.exec(options.onSwipeStatus, [event, phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
-            element.fire("swipestatus", {
-                event: event,
-                phase: phase,
-                direction: this.direction,
-                distance: this.distance,
-                duration: this.duration,
-                fingerCount: this.fingerCount,
-                fingerData: this.fingerData,
-                currentDirection: this.currentDirection
-            });
-            if (ret === false) return false;
+            //SWIPES....
+            if (gesture === TouchConst.SWIPE) {
+                //Trigger status every time..
+                element.trigger('swipeStatus', [phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection]);
 
-            if (phase === TouchConst.PHASE_END && this.validateSwipe()) {
-
-                //Cancel any taps that were in progress...
-                clearTimeout(this.singleTapTimeout);
-                clearTimeout(this.holdTimeout);
-
-                element.trigger('swipe', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-
-                ret = Utils.exec(options.onSwipe, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
-                element.fire("swipe", {
+                ret = Utils.exec(options.onSwipeStatus, [event, phase, this.direction || null, this.distance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                element.fire("swipestatus", {
                     event: event,
+                    phase: phase,
                     direction: this.direction,
                     distance: this.distance,
                     duration: this.duration,
@@ -30453,1476 +30442,1495 @@ Component('touch', {
                     fingerData: this.fingerData,
                     currentDirection: this.currentDirection
                 });
-
                 if (ret === false) return false;
 
-                //trigger direction specific event handlers
-                switch (this.direction) {
-                    case TouchConst.LEFT:
-                        element.trigger('swipeLeft', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-                        ret = Utils.exec(options.onSwipeLeft, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
-                        element.fire("swipeleft", {
-                            event: event,
-                            direction: this.direction,
-                            distance: this.distance,
-                            duration: this.duration,
-                            fingerCount: this.fingerCount,
-                            fingerData: this.fingerData,
-                            currentDirection: this.currentDirection
-                        });
-                        break;
+                if (phase === TouchConst.PHASE_END && this.validateSwipe()) {
 
-                    case TouchConst.RIGHT:
-                        element.trigger('swipeRight', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-                        ret = Utils.exec(options.onSwipeRight, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
-                        element.fire("swiperight", {
-                            event: event,
-                            direction: this.direction,
-                            distance: this.distance,
-                            duration: this.duration,
-                            fingerCount: this.fingerCount,
-                            fingerData: this.fingerData,
-                            currentDirection: this.currentDirection
-                        });
-                        break;
+                    //Cancel any taps that were in progress...
+                    clearTimeout(this.singleTapTimeout);
+                    clearTimeout(this.holdTimeout);
 
-                    case TouchConst.UP:
-                        element.trigger('swipeUp', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-                        ret = Utils.exec(options.onSwipeUp, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
-                        element.fire("swipeup", {
-                            event: event,
-                            direction: this.direction,
-                            distance: this.distance,
-                            duration: this.duration,
-                            fingerCount: this.fingerCount,
-                            fingerData: this.fingerData,
-                            currentDirection: this.currentDirection
-                        });
-                        break;
+                    element.trigger('swipe', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
 
-                    case TouchConst.DOWN:
-                        element.trigger('swipeDown', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
-                        ret = Utils.exec(options.onSwipeDown, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
-                        element.fire("swipedown", {
-                            event: event,
-                            direction: this.direction,
-                            distance: this.distance,
-                            duration: this.duration,
-                            fingerCount: this.fingerCount,
-                            fingerData: this.fingerData,
-                            currentDirection: this.currentDirection
-                        });
-                        break;
+                    ret = Utils.exec(options.onSwipe, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                    element.fire("swipe", {
+                        event: event,
+                        direction: this.direction,
+                        distance: this.distance,
+                        duration: this.duration,
+                        fingerCount: this.fingerCount,
+                        fingerData: this.fingerData,
+                        currentDirection: this.currentDirection
+                    });
+
+                    if (ret === false) return false;
+
+                    //trigger direction specific event handlers
+                    switch (this.direction) {
+                        case TouchConst.LEFT:
+                            element.trigger('swipeLeft', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
+                            ret = Utils.exec(options.onSwipeLeft, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                            element.fire("swipeleft", {
+                                event: event,
+                                direction: this.direction,
+                                distance: this.distance,
+                                duration: this.duration,
+                                fingerCount: this.fingerCount,
+                                fingerData: this.fingerData,
+                                currentDirection: this.currentDirection
+                            });
+                            break;
+
+                        case TouchConst.RIGHT:
+                            element.trigger('swipeRight', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
+                            ret = Utils.exec(options.onSwipeRight, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                            element.fire("swiperight", {
+                                event: event,
+                                direction: this.direction,
+                                distance: this.distance,
+                                duration: this.duration,
+                                fingerCount: this.fingerCount,
+                                fingerData: this.fingerData,
+                                currentDirection: this.currentDirection
+                            });
+                            break;
+
+                        case TouchConst.UP:
+                            element.trigger('swipeUp', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
+                            ret = Utils.exec(options.onSwipeUp, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                            element.fire("swipeup", {
+                                event: event,
+                                direction: this.direction,
+                                distance: this.distance,
+                                duration: this.duration,
+                                fingerCount: this.fingerCount,
+                                fingerData: this.fingerData,
+                                currentDirection: this.currentDirection
+                            });
+                            break;
+
+                        case TouchConst.DOWN:
+                            element.trigger('swipeDown', [this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection]);
+                            ret = Utils.exec(options.onSwipeDown, [event, this.direction, this.distance, this.duration, this.fingerCount, this.fingerData, this.currentDirection], element[0]);
+                            element.fire("swipedown", {
+                                event: event,
+                                direction: this.direction,
+                                distance: this.distance,
+                                duration: this.duration,
+                                fingerCount: this.fingerCount,
+                                fingerData: this.fingerData,
+                                currentDirection: this.currentDirection
+                            });
+                            break;
+                    }
                 }
             }
-        }
 
 
-        //PINCHES....
-        if (gesture === TouchConst.PINCH) {
-            element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
+            //PINCHES....
+            if (gesture === TouchConst.PINCH) {
+                element.trigger('pinchStatus', [phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
 
-            ret = Utils.exec(options.onPinchStatus, [event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
-            element.fire("pinchstatus", {
-                event: event,
-                phase: phase,
-                direction: this.pinchDirection,
-                distance: this.pinchDistance,
-                duration: this.duration,
-                fingerCount: this.fingerCount,
-                fingerData: this.fingerData,
-                zoom: this.pinchZoom
-            });
-            if (ret === false) return false;
+                ret = Utils.exec(options.onPinchStatus, [event, phase, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                element.fire("pinchstatus", {
+                    event: event,
+                    phase: phase,
+                    direction: this.pinchDirection,
+                    distance: this.pinchDistance,
+                    duration: this.duration,
+                    fingerCount: this.fingerCount,
+                    fingerData: this.fingerData,
+                    zoom: this.pinchZoom
+                });
+                if (ret === false) return false;
 
-            if (phase === TouchConst.PHASE_END && this.validatePinch()) {
+                if (phase === TouchConst.PHASE_END && this.validatePinch()) {
 
-                switch (this.pinchDirection) {
-                    case TouchConst.IN:
-                        element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
-                        ret = Utils.exec(options.onPinchIn, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
-                        element.fire("pinchin", {
-                            event: event,
-                            direction: this.pinchDirection,
-                            distance: this.pinchDistance,
-                            duration: this.duration,
-                            fingerCount: this.fingerCount,
-                            fingerData: this.fingerData,
-                            zoom: this.pinchZoom
-                        });
-                        break;
+                    switch (this.pinchDirection) {
+                        case TouchConst.IN:
+                            element.trigger('pinchIn', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
+                            ret = Utils.exec(options.onPinchIn, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                            element.fire("pinchin", {
+                                event: event,
+                                direction: this.pinchDirection,
+                                distance: this.pinchDistance,
+                                duration: this.duration,
+                                fingerCount: this.fingerCount,
+                                fingerData: this.fingerData,
+                                zoom: this.pinchZoom
+                            });
+                            break;
 
-                    case TouchConst.OUT:
-                        element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
-                        ret = Utils.exec(options.onPinchOut, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
-                        element.fire("pinchout", {
-                            event: event,
-                            direction: this.pinchDirection,
-                            distance: this.pinchDistance,
-                            duration: this.duration,
-                            fingerCount: this.fingerCount,
-                            fingerData: this.fingerData,
-                            zoom: this.pinchZoom
-                        });
-                        break;
+                        case TouchConst.OUT:
+                            element.trigger('pinchOut', [this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom]);
+                            ret = Utils.exec(options.onPinchOut, [event, this.pinchDirection || null, this.pinchDistance || 0, this.duration || 0, this.fingerCount, this.fingerData, this.pinchZoom], element[0]);
+                            element.fire("pinchout", {
+                                event: event,
+                                direction: this.pinchDirection,
+                                distance: this.pinchDistance,
+                                duration: this.duration,
+                                fingerCount: this.fingerCount,
+                                fingerData: this.fingerData,
+                                zoom: this.pinchZoom
+                            });
+                            break;
+                    }
                 }
             }
-        }
 
-        if (gesture === TouchConst.TAP) {
-            if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
+            if (gesture === TouchConst.TAP) {
+                if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
 
-                clearTimeout(this.singleTapTimeout);
-                clearTimeout(this.holdTimeout);
+                    clearTimeout(this.singleTapTimeout);
+                    clearTimeout(this.holdTimeout);
 
-                //If we are also looking for doubelTaps, wait incase this is one...
-                if (this.hasDoubleTap() && !this.inDoubleTap()) {
-                    this.doubleTapStartTime = this.getTimeStamp();
+                    //If we are also looking for doubelTaps, wait incase this is one...
+                    if (this.hasDoubleTap() && !this.inDoubleTap()) {
+                        this.doubleTapStartTime = this.getTimeStamp();
 
-                    //Now wait for the double tap timeout, and trigger this single tap
-                    //if its not cancelled by a double tap
-                    this.singleTapTimeout = setTimeout($.proxy(function() {
+                        //Now wait for the double tap timeout, and trigger this single tap
+                        //if its not cancelled by a double tap
+                        this.singleTapTimeout = setTimeout($.proxy(function() {
+                            this.doubleTapStartTime = null;
+                            ret = Utils.exec(options.onTap, [event, event.target], element[0]);
+                            element.fire("tap", {
+                                event: event,
+                                target: event.target
+                            });
+                        }, this), options.doubleTapThreshold);
+
+                    } else {
                         this.doubleTapStartTime = null;
                         ret = Utils.exec(options.onTap, [event, event.target], element[0]);
                         element.fire("tap", {
                             event: event,
                             target: event.target
                         });
-                    }, this), options.doubleTapThreshold);
-
-                } else {
+                    }
+                }
+            } else if (gesture === TouchConst.DOUBLE_TAP) {
+                if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
+                    clearTimeout(this.singleTapTimeout);
+                    clearTimeout(this.holdTimeout);
                     this.doubleTapStartTime = null;
-                    ret = Utils.exec(options.onTap, [event, event.target], element[0]);
-                    element.fire("tap", {
+
+                    ret = Utils.exec(options.onDoubleTap, [event, event.target], element[0]);
+                    element.fire("doubletap", {
+                        event: event,
+                        target: event.target
+                    });
+                }
+            } else if (gesture === TouchConst.LONG_TAP) {
+                if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
+                    clearTimeout(this.singleTapTimeout);
+                    this.doubleTapStartTime = null;
+
+                    ret = Utils.exec(options.onLongTap, [event, event.target], element[0]);
+                    element.fire("longtap", {
                         event: event,
                         target: event.target
                     });
                 }
             }
-        } else if (gesture === TouchConst.DOUBLE_TAP) {
-            if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
-                clearTimeout(this.singleTapTimeout);
-                clearTimeout(this.holdTimeout);
-                this.doubleTapStartTime = null;
 
-                ret = Utils.exec(options.onDoubleTap, [event, event.target], element[0]);
-                element.fire("doubletap", {
-                    event: event,
-                    target: event.target
-                });
+            return ret;
+        },
+
+        validateSwipeDistance: function() {
+            var valid = true;
+            //If we made it past the min swipe distance..
+            if (this.options.threshold !== null) {
+                valid = this.distance >= this.options.threshold;
             }
-        } else if (gesture === TouchConst.LONG_TAP) {
-            if (phase === TouchConst.PHASE_CANCEL || phase === TouchConst.PHASE_END) {
-                clearTimeout(this.singleTapTimeout);
-                this.doubleTapStartTime = null;
 
-                ret = Utils.exec(options.onLongTap, [event, event.target], element[0]);
-                element.fire("longtap", {
-                    event: event,
-                    target: event.target
-                });
+            return valid;
+        },
+
+        didSwipeBackToCancel: function() {
+            var options = this.options;
+            var cancelled = false;
+            if (options.cancelThreshold !== null && this.direction !== null) {
+                cancelled = (this.getMaxDistance(this.direction) - this.distance) >= options.cancelThreshold;
             }
-        }
 
-        return ret;
-    },
+            return cancelled;
+        },
 
-    validateSwipeDistance: function() {
-        var valid = true;
-        //If we made it past the min swipe distance..
-        if (this.options.threshold !== null) {
-            valid = this.distance >= this.options.threshold;
-        }
-
-        return valid;
-    },
-
-    didSwipeBackToCancel: function() {
-        var options = this.options;
-        var cancelled = false;
-        if (options.cancelThreshold !== null && this.direction !== null) {
-            cancelled = (this.getMaxDistance(this.direction) - this.distance) >= options.cancelThreshold;
-        }
-
-        return cancelled;
-    },
-
-    validatePinchDistance: function() {
-        if (this.options.pinchThreshold !== null) {
-            return this.pinchDistance >= this.options.pinchThreshold;
-        }
-        return true;
-    },
-
-    validateSwipeTime: function() {
-        var result, options = this.options;
-
-        if (options.maxTimeThreshold) {
-            result = this.duration < options.maxTimeThreshold;
-        } else {
-            result = true;
-        }
-
-        return result;
-    },
-
-    validateDefaultEvent: function(e, direction) {
-        var options = this.options;
-
-        //If the option is set, allways allow the event to bubble up (let user handle weirdness)
-        if (options.preventDefaultEvents === false) {
-            return;
-        }
-
-        if (options.allowPageScroll === TouchConst.NONE) {
-            e.preventDefault();
-        } else {
-            var auto = options.allowPageScroll === TouchConst.AUTO;
-
-            switch (direction) {
-                case TouchConst.LEFT:
-                    if ((options.onSwipeLeft !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.HORIZONTAL)) {
-                        e.preventDefault();
-                    }
-                    break;
-
-                case TouchConst.RIGHT:
-                    if ((options.onSwipeRight !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.HORIZONTAL)) {
-                        e.preventDefault();
-                    }
-                    break;
-
-                case TouchConst.UP:
-                    if ((options.onSwipeUp !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.VERTICAL)) {
-                        e.preventDefault();
-                    }
-                    break;
-
-                case TouchConst.DOWN:
-                    if ((options.onSwipeDown !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.VERTICAL)) {
-                        e.preventDefault();
-                    }
-                    break;
-
-                case TouchConst.NONE:
-
-                    break;
+        validatePinchDistance: function() {
+            if (this.options.pinchThreshold !== null) {
+                return this.pinchDistance >= this.options.pinchThreshold;
             }
-        }
-    },
+            return true;
+        },
 
-    validatePinch: function() {
-        var hasCorrectFingerCount = this.validateFingers();
-        var hasEndPoint = this.validateEndPoint();
-        var hasCorrectDistance = this.validatePinchDistance();
-        return hasCorrectFingerCount && hasEndPoint && hasCorrectDistance;
-    },
+        validateSwipeTime: function() {
+            var result, options = this.options;
 
-    hasPinches: function() {
-        //Enure we dont return 0 or null for false values
-        return !!(this.options.onPinchStatus || this.options.onPinchIn || this.options.onPinchOut);
-    },
-
-    didPinch: function() {
-        //Enure we dont return 0 or null for false values
-        return !!(this.validatePinch() && this.hasPinches());
-    },
-
-    validateSwipe: function() {
-        //Check validity of swipe
-        var hasValidTime = this.validateSwipeTime();
-        var hasValidDistance = this.validateSwipeDistance();
-        var hasCorrectFingerCount = this.validateFingers();
-        var hasEndPoint = this.validateEndPoint();
-        var didCancel = this.didSwipeBackToCancel();
-
-        // if the user swiped more than the minimum length, perform the appropriate action
-        // hasValidDistance is null when no distance is set
-        return !didCancel && hasEndPoint && hasCorrectFingerCount && hasValidDistance && hasValidTime;
-    },
-
-    hasSwipes: function() {
-        var o = this.options;
-        //Enure we dont return 0 or null for false values
-        return !!(
-            o.onSwipe !== Metro.noop
-            || o.onSwipeStatus  !== Metro.noop
-            || o.onSwipeLeft  !== Metro.noop
-            || o.onSwipeRight  !== Metro.noop
-            || o.onSwipeUp  !== Metro.noop
-            || o.onSwipeDown !== Metro.noop
-        );
-    },
-
-    didSwipe: function() {
-        //Enure we dont return 0 or null for false values
-        return !!(this.validateSwipe() && this.hasSwipes());
-    },
-
-    validateFingers: function() {
-        //The number of fingers we want were matched, or on desktop we ignore
-        return ((this.fingerCount === this.options.fingers || this.options.fingers === TouchConst.ALL_FINGERS) || !TouchConst.SUPPORTS_TOUCH);
-    },
-
-    validateEndPoint: function() {
-        //We have an end value for the finger
-        return this.fingerData[0].end.x !== 0;
-    },
-
-    hasTap: function() {
-        //Enure we dont return 0 or null for false values
-        return this.options.onTap !== Metro.noop;
-    },
-
-    hasDoubleTap: function() {
-        //Enure we dont return 0 or null for false values
-        return this.options.onDoubleTap !== Metro.noop;
-    },
-
-    hasLongTap: function() {
-        //Enure we dont return 0 or null for false values
-        return this.options.onLongTap !== Metro.noop;
-    },
-
-    validateDoubleTap: function() {
-        if (this.doubleTapStartTime == null) {
-            return false;
-        }
-        var now = this.getTimeStamp();
-        return (this.hasDoubleTap() && ((now - this.doubleTapStartTime) <= this.options.doubleTapThreshold));
-    },
-
-    inDoubleTap: function() {
-        return this.validateDoubleTap();
-    },
-
-    validateTap: function() {
-        return ((this.fingerCount === 1 || !TouchConst.SUPPORTS_TOUCH) && (isNaN(this.distance) || this.distance < this.options.threshold));
-    },
-
-    validateLongTap: function() {
-        var options = this.options;
-        //slight threshold on moving finger
-        return ((this.duration > options.longTapThreshold) && (this.distance < TouchConst.DOUBLE_TAP_THRESHOLD)); // check double_tab_threshold where from
-    },
-
-    didTap: function() {
-        //Enure we dont return 0 or null for false values
-        return !!(this.validateTap() && this.hasTap());
-    },
-
-    didDoubleTap: function() {
-        //Enure we dont return 0 or null for false values
-        return !!(this.validateDoubleTap() && this.hasDoubleTap());
-    },
-
-    didLongTap: function() {
-        //Enure we dont return 0 or null for false values
-        return !!(this.validateLongTap() && this.hasLongTap());
-    },
-
-    startMultiFingerRelease: function(event) {
-        this.previousTouchEndTime = this.getTimeStamp();
-        this.fingerCountAtRelease = event.touches.length + 1;
-    },
-
-    cancelMultiFingerRelease: function() {
-        this.previousTouchEndTime = 0;
-        this.fingerCountAtRelease = 0;
-    },
-
-    inMultiFingerRelease: function() {
-        var withinThreshold = false;
-
-        if (this.previousTouchEndTime) {
-            var diff = this.getTimeStamp() - this.previousTouchEndTime;
-            if (diff <= this.options.fingerReleaseThreshold) {
-                withinThreshold = true;
+            if (options.maxTimeThreshold) {
+                result = this.duration < options.maxTimeThreshold;
+            } else {
+                result = true;
             }
-        }
 
-        return withinThreshold;
-    },
+            return result;
+        },
 
-    getTouchInProgress: function() {
-        var element = this.element;
-        //strict equality to ensure only true and false are returned
-        return (element.data('intouch') === true);
-    },
+        validateDefaultEvent: function(e, direction) {
+            var options = this.options;
 
-    setTouchInProgress: function(val) {
-        var element = this.element;
-
-        //If destroy is called in an event handler, we have no el, and we have already cleaned up, so return.
-        if(!element) { return; }
-
-        //Add or remove event listeners depending on touch status
-        if (val === true) {
-            element.on(this.MOVE_EV, $.proxy(this.touchMove, this));
-            element.on(this.END_EV, $.proxy(this.touchEnd, this));
-
-            //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
-            if (this.LEAVE_EV) {
-                element.on(this.LEAVE_EV, $.proxy(this.touchLeave, this));
+            //If the option is set, allways allow the event to bubble up (let user handle weirdness)
+            if (options.preventDefaultEvents === false) {
+                return;
             }
-        } else {
 
+            if (options.allowPageScroll === TouchConst.NONE) {
+                e.preventDefault();
+            } else {
+                var auto = options.allowPageScroll === TouchConst.AUTO;
+
+                switch (direction) {
+                    case TouchConst.LEFT:
+                        if ((options.onSwipeLeft !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.HORIZONTAL)) {
+                            e.preventDefault();
+                        }
+                        break;
+
+                    case TouchConst.RIGHT:
+                        if ((options.onSwipeRight !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.HORIZONTAL)) {
+                            e.preventDefault();
+                        }
+                        break;
+
+                    case TouchConst.UP:
+                        if ((options.onSwipeUp !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.VERTICAL)) {
+                            e.preventDefault();
+                        }
+                        break;
+
+                    case TouchConst.DOWN:
+                        if ((options.onSwipeDown !== Metro.noop && auto) || (!auto && options.allowPageScroll.toLowerCase() !== TouchConst.VERTICAL)) {
+                            e.preventDefault();
+                        }
+                        break;
+
+                    case TouchConst.NONE:
+
+                        break;
+                }
+            }
+        },
+
+        validatePinch: function() {
+            var hasCorrectFingerCount = this.validateFingers();
+            var hasEndPoint = this.validateEndPoint();
+            var hasCorrectDistance = this.validatePinchDistance();
+            return hasCorrectFingerCount && hasEndPoint && hasCorrectDistance;
+        },
+
+        hasPinches: function() {
+            //Enure we dont return 0 or null for false values
+            return !!(this.options.onPinchStatus || this.options.onPinchIn || this.options.onPinchOut);
+        },
+
+        didPinch: function() {
+            //Enure we dont return 0 or null for false values
+            return !!(this.validatePinch() && this.hasPinches());
+        },
+
+        validateSwipe: function() {
+            //Check validity of swipe
+            var hasValidTime = this.validateSwipeTime();
+            var hasValidDistance = this.validateSwipeDistance();
+            var hasCorrectFingerCount = this.validateFingers();
+            var hasEndPoint = this.validateEndPoint();
+            var didCancel = this.didSwipeBackToCancel();
+
+            // if the user swiped more than the minimum length, perform the appropriate action
+            // hasValidDistance is null when no distance is set
+            return !didCancel && hasEndPoint && hasCorrectFingerCount && hasValidDistance && hasValidTime;
+        },
+
+        hasSwipes: function() {
+            var o = this.options;
+            //Enure we dont return 0 or null for false values
+            return !!(
+                o.onSwipe !== Metro.noop
+                || o.onSwipeStatus  !== Metro.noop
+                || o.onSwipeLeft  !== Metro.noop
+                || o.onSwipeRight  !== Metro.noop
+                || o.onSwipeUp  !== Metro.noop
+                || o.onSwipeDown !== Metro.noop
+            );
+        },
+
+        didSwipe: function() {
+            //Enure we dont return 0 or null for false values
+            return !!(this.validateSwipe() && this.hasSwipes());
+        },
+
+        validateFingers: function() {
+            //The number of fingers we want were matched, or on desktop we ignore
+            return ((this.fingerCount === this.options.fingers || this.options.fingers === TouchConst.ALL_FINGERS) || !TouchConst.SUPPORTS_TOUCH);
+        },
+
+        validateEndPoint: function() {
+            //We have an end value for the finger
+            return this.fingerData[0].end.x !== 0;
+        },
+
+        hasTap: function() {
+            //Enure we dont return 0 or null for false values
+            return this.options.onTap !== Metro.noop;
+        },
+
+        hasDoubleTap: function() {
+            //Enure we dont return 0 or null for false values
+            return this.options.onDoubleTap !== Metro.noop;
+        },
+
+        hasLongTap: function() {
+            //Enure we dont return 0 or null for false values
+            return this.options.onLongTap !== Metro.noop;
+        },
+
+        validateDoubleTap: function() {
+            if (this.doubleTapStartTime == null) {
+                return false;
+            }
+            var now = this.getTimeStamp();
+            return (this.hasDoubleTap() && ((now - this.doubleTapStartTime) <= this.options.doubleTapThreshold));
+        },
+
+        inDoubleTap: function() {
+            return this.validateDoubleTap();
+        },
+
+        validateTap: function() {
+            return ((this.fingerCount === 1 || !TouchConst.SUPPORTS_TOUCH) && (isNaN(this.distance) || this.distance < this.options.threshold));
+        },
+
+        validateLongTap: function() {
+            var options = this.options;
+            //slight threshold on moving finger
+            return ((this.duration > options.longTapThreshold) && (this.distance < TouchConst.DOUBLE_TAP_THRESHOLD)); // check double_tab_threshold where from
+        },
+
+        didTap: function() {
+            //Enure we dont return 0 or null for false values
+            return !!(this.validateTap() && this.hasTap());
+        },
+
+        didDoubleTap: function() {
+            //Enure we dont return 0 or null for false values
+            return !!(this.validateDoubleTap() && this.hasDoubleTap());
+        },
+
+        didLongTap: function() {
+            //Enure we dont return 0 or null for false values
+            return !!(this.validateLongTap() && this.hasLongTap());
+        },
+
+        startMultiFingerRelease: function(event) {
+            this.previousTouchEndTime = this.getTimeStamp();
+            this.fingerCountAtRelease = event.touches.length + 1;
+        },
+
+        cancelMultiFingerRelease: function() {
+            this.previousTouchEndTime = 0;
+            this.fingerCountAtRelease = 0;
+        },
+
+        inMultiFingerRelease: function() {
+            var withinThreshold = false;
+
+            if (this.previousTouchEndTime) {
+                var diff = this.getTimeStamp() - this.previousTouchEndTime;
+                if (diff <= this.options.fingerReleaseThreshold) {
+                    withinThreshold = true;
+                }
+            }
+
+            return withinThreshold;
+        },
+
+        getTouchInProgress: function() {
+            var element = this.element;
+            //strict equality to ensure only true and false are returned
+            return (element.data('intouch') === true);
+        },
+
+        setTouchInProgress: function(val) {
+            var element = this.element;
+
+            //If destroy is called in an event handler, we have no el, and we have already cleaned up, so return.
+            if(!element) { return; }
+
+            //Add or remove event listeners depending on touch status
+            if (val === true) {
+                element.on(this.MOVE_EV, $.proxy(this.touchMove, this));
+                element.on(this.END_EV, $.proxy(this.touchEnd, this));
+
+                //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
+                if (this.LEAVE_EV) {
+                    element.on(this.LEAVE_EV, $.proxy(this.touchLeave, this));
+                }
+            } else {
+
+                element.off(this.MOVE_EV);
+                element.off(this.END_EV);
+
+                //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
+                if (this.LEAVE_EV) {
+                    element.off(this.LEAVE_EV);
+                }
+            }
+
+            //strict equality to ensure only true and false can update the value
+            element.data('intouch', val === true);
+        },
+
+        createFingerData: function(id, evt) {
+            var f = {
+                start: {
+                    x: 0,
+                    y: 0
+                },
+                last: {
+                    x: 0,
+                    y: 0
+                },
+                end: {
+                    x: 0,
+                    y: 0
+                }
+            };
+            f.start.x = f.last.x = f.end.x = evt.pageX || evt.clientX;
+            f.start.y = f.last.y = f.end.y = evt.pageY || evt.clientY;
+            this.fingerData[id] = f;
+            return f;
+        },
+
+        updateFingerData: function(evt) {
+            var id = evt.identifier !== undefined ? evt.identifier : 0;
+            var f = this.getFingerData(id);
+
+            if (f === null) {
+                f = this.createFingerData(id, evt);
+            }
+
+            f.last.x = f.end.x;
+            f.last.y = f.end.y;
+
+            f.end.x = evt.pageX || evt.clientX;
+            f.end.y = evt.pageY || evt.clientY;
+
+            return f;
+        },
+
+        getFingerData: function(id) {
+            return this.fingerData[id] || null;
+        },
+
+        setMaxDistance: function(direction, distance) {
+            if (direction === TouchConst.NONE) return;
+            distance = Math.max(distance, this.getMaxDistance(direction));
+            this.maximumsMap[direction].distance = distance;
+        },
+
+        getMaxDistance: function(direction) {
+            return (this.maximumsMap[direction]) ? this.maximumsMap[direction].distance : undefined;
+        },
+
+        createMaximumsData: function() {
+            var maxData = {};
+            maxData[TouchConst.LEFT] = this.createMaximumVO(TouchConst.LEFT);
+            maxData[TouchConst.RIGHT] = this.createMaximumVO(TouchConst.RIGHT);
+            maxData[TouchConst.UP] = this.createMaximumVO(TouchConst.UP);
+            maxData[TouchConst.DOWN] = this.createMaximumVO(TouchConst.DOWN);
+
+            return maxData;
+        },
+
+        createMaximumVO: function(dir) {
+            return {
+                direction: dir,
+                distance: 0
+            }
+        },
+
+        calculateDuration: function(){
+            return this.endTime - this.startTime;
+        },
+
+        calculateTouchesDistance: function(startPoint, endPoint){
+            var diffX = Math.abs(startPoint.x - endPoint.x);
+            var diffY = Math.abs(startPoint.y - endPoint.y);
+
+            return Math.round(Math.sqrt(diffX * diffX + diffY * diffY));
+        },
+
+        calculatePinchZoom: function(startDistance, endDistance){
+            var percent = (endDistance / startDistance) * 100; // 1 ? 100
+            return percent.toFixed(2);
+        },
+
+        calculatePinchDirection: function(){
+            if (this.pinchZoom < 1) {
+                return TouchConst.OUT;
+            } else {
+                return TouchConst.IN;
+            }
+        },
+
+        calculateDistance: function(startPoint, endPoint){
+            return Math.round(Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2)));
+        },
+
+        calculateAngle: function(startPoint, endPoint){
+            var x = startPoint.x - endPoint.x;
+            var y = endPoint.y - startPoint.y;
+            var r = Math.atan2(y, x); //radians
+            var angle = Math.round(r * 180 / Math.PI); //degrees
+
+            //ensure value is positive
+            if (angle < 0) {
+                angle = 360 - Math.abs(angle);
+            }
+
+            return angle;
+        },
+
+        calculateDirection: function(startPoint, endPoint){
+            if( this.comparePoints(startPoint, endPoint) ) {
+                return TouchConst.NONE;
+            }
+
+            var angle = this.calculateAngle(startPoint, endPoint);
+
+            if ((angle <= 45) && (angle >= 0)) {
+                return TouchConst.LEFT;
+            } else if ((angle <= 360) && (angle >= 315)) {
+                return TouchConst.LEFT;
+            } else if ((angle >= 135) && (angle <= 225)) {
+                return TouchConst.RIGHT;
+            } else if ((angle > 45) && (angle < 135)) {
+                return TouchConst.DOWN;
+            } else {
+                return TouchConst.UP;
+            }
+        },
+
+        getTimeStamp: function(){
+            return (new Date()).getTime();
+        },
+
+        getBounds: function (el) {
+            el = $(el);
+            var offset = el.offset();
+
+            return {
+                left: offset.left,
+                right: offset.left + el.outerWidth(),
+                top: offset.top,
+                bottom: offset.top + el.outerHeight()
+            };
+        },
+
+        isInBounds: function(point, bounds){
+            return (point.x > bounds.left && point.x < bounds.right && point.y > bounds.top && point.y < bounds.bottom);
+        },
+
+        comparePoints: function(pointA, pointB) {
+            return (pointA.x === pointB.x && pointA.y === pointB.y);
+        },
+
+        removeListeners: function() {
+            var element = this.element;
+
+            element.off(this.START_EV);
+            element.off(this.CANCEL_EV);
             element.off(this.MOVE_EV);
             element.off(this.END_EV);
 
-            //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
+            //we only have leave events on desktop, we manually calculate leave on touch as its not supported in webkit
             if (this.LEAVE_EV) {
                 element.off(this.LEAVE_EV);
             }
+
+            this.setTouchInProgress(false);
+        },
+
+        enable: function(){
+            this.disable();
+            this.element.on(this.START_EV, this.touchStart);
+            this.element.on(this.CANCEL_EV, this.touchCancel);
+            return this.element;
+        },
+
+        disable: function(){
+            this.removeListeners();
+            return this.element;
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            this.removeListeners();
         }
+    });
 
-        //strict equality to ensure only true and false can update the value
-        element.data('intouch', val === true);
-    },
+    Metro['touch'] = TouchConst;
+}(Metro, m4q));
 
-    createFingerData: function(id, evt) {
-        var f = {
-            start: {
-                x: 0,
-                y: 0
-            },
-            last: {
-                x: 0,
-                y: 0
-            },
-            end: {
-                x: 0,
-                y: 0
-            }
-        };
-        f.start.x = f.last.x = f.end.x = evt.pageX || evt.clientX;
-        f.start.y = f.last.y = f.end.y = evt.pageY || evt.clientY;
-        this.fingerData[id] = f;
-        return f;
-    },
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var TreeViewDefaultConfig = {
+        treeviewDeferred: 0,
+        showChildCount: false,
+        duration: 100,
+        onNodeClick: Metro.noop,
+        onNodeDblClick: Metro.noop,
+        onNodeDelete: Metro.noop,
+        onNodeInsert: Metro.noop,
+        onNodeClean: Metro.noop,
+        onCheckClick: Metro.noop,
+        onRadioClick: Metro.noop,
+        onExpandNode: Metro.noop,
+        onCollapseNode: Metro.noop,
+        onTreeViewCreate: Metro.noop
+    };
 
-    updateFingerData: function(evt) {
-        var id = evt.identifier !== undefined ? evt.identifier : 0;
-        var f = this.getFingerData(id);
+    Metro.treeViewSetup = function (options) {
+        TreeViewDefaultConfig = $.extend({}, TreeViewDefaultConfig, options);
+    };
 
-        if (f === null) {
-            f = this.createFingerData(id, evt);
-        }
-
-        f.last.x = f.end.x;
-        f.last.y = f.end.y;
-
-        f.end.x = evt.pageX || evt.clientX;
-        f.end.y = evt.pageY || evt.clientY;
-
-        return f;
-    },
-
-    getFingerData: function(id) {
-        return this.fingerData[id] || null;
-    },
-
-    setMaxDistance: function(direction, distance) {
-        if (direction === TouchConst.NONE) return;
-        distance = Math.max(distance, this.getMaxDistance(direction));
-        this.maximumsMap[direction].distance = distance;
-    },
-
-    getMaxDistance: function(direction) {
-        return (this.maximumsMap[direction]) ? this.maximumsMap[direction].distance : undefined;
-    },
-
-    createMaximumsData: function() {
-        var maxData = {};
-        maxData[TouchConst.LEFT] = this.createMaximumVO(TouchConst.LEFT);
-        maxData[TouchConst.RIGHT] = this.createMaximumVO(TouchConst.RIGHT);
-        maxData[TouchConst.UP] = this.createMaximumVO(TouchConst.UP);
-        maxData[TouchConst.DOWN] = this.createMaximumVO(TouchConst.DOWN);
-
-        return maxData;
-    },
-
-    createMaximumVO: function(dir) {
-        return {
-            direction: dir,
-            distance: 0
-        }
-    },
-
-    calculateDuration: function(){
-        return this.endTime - this.startTime;
-    },
-
-    calculateTouchesDistance: function(startPoint, endPoint){
-        var diffX = Math.abs(startPoint.x - endPoint.x);
-        var diffY = Math.abs(startPoint.y - endPoint.y);
-
-        return Math.round(Math.sqrt(diffX * diffX + diffY * diffY));
-    },
-
-    calculatePinchZoom: function(startDistance, endDistance){
-        var percent = (endDistance / startDistance) * 100; // 1 ? 100
-        return percent.toFixed(2);
-    },
-
-    calculatePinchDirection: function(){
-        if (this.pinchZoom < 1) {
-            return TouchConst.OUT;
-        } else {
-            return TouchConst.IN;
-        }
-    },
-
-    calculateDistance: function(startPoint, endPoint){
-        return Math.round(Math.sqrt(Math.pow(endPoint.x - startPoint.x, 2) + Math.pow(endPoint.y - startPoint.y, 2)));
-    },
-
-    calculateAngle: function(startPoint, endPoint){
-        var x = startPoint.x - endPoint.x;
-        var y = endPoint.y - startPoint.y;
-        var r = Math.atan2(y, x); //radians
-        var angle = Math.round(r * 180 / Math.PI); //degrees
-
-        //ensure value is positive
-        if (angle < 0) {
-            angle = 360 - Math.abs(angle);
-        }
-
-        return angle;
-    },
-
-    calculateDirection: function(startPoint, endPoint){
-        if( this.comparePoints(startPoint, endPoint) ) {
-            return TouchConst.NONE;
-        }
-
-        var angle = this.calculateAngle(startPoint, endPoint);
-
-        if ((angle <= 45) && (angle >= 0)) {
-            return TouchConst.LEFT;
-        } else if ((angle <= 360) && (angle >= 315)) {
-            return TouchConst.LEFT;
-        } else if ((angle >= 135) && (angle <= 225)) {
-            return TouchConst.RIGHT;
-        } else if ((angle > 45) && (angle < 135)) {
-            return TouchConst.DOWN;
-        } else {
-            return TouchConst.UP;
-        }
-    },
-
-    getTimeStamp: function(){
-        return (new Date()).getTime();
-    },
-
-    getBounds: function (el) {
-        el = $(el);
-        var offset = el.offset();
-
-        return {
-            left: offset.left,
-            right: offset.left + el.outerWidth(),
-            top: offset.top,
-            bottom: offset.top + el.outerHeight()
-        };
-    },
-
-    isInBounds: function(point, bounds){
-        return (point.x > bounds.left && point.x < bounds.right && point.y > bounds.top && point.y < bounds.bottom);
-    },
-
-    comparePoints: function(pointA, pointB) {
-        return (pointA.x === pointB.x && pointA.y === pointB.y);
-    },
-
-    removeListeners: function() {
-        var element = this.element;
-
-        element.off(this.START_EV);
-        element.off(this.CANCEL_EV);
-        element.off(this.MOVE_EV);
-        element.off(this.END_EV);
-
-        //we only have leave events on desktop, we manually calculate leave on touch as its not supported in webkit
-        if (this.LEAVE_EV) {
-            element.off(this.LEAVE_EV);
-        }
-
-        this.setTouchInProgress(false);
-    },
-
-    enable: function(){
-        this.disable();
-        this.element.on(this.START_EV, this.touchStart);
-        this.element.on(this.CANCEL_EV, this.touchCancel);
-        return this.element;
-    },
-
-    disable: function(){
-        this.removeListeners();
-        return this.element;
-    },
-
-    changeAttribute: function(){
-    },
-
-    destroy: function(){
-        this.removeListeners();
+    if (typeof window["metroTreeViewSetup"] !== undefined) {
+        Metro.treeViewSetup(window["metroTreeViewSetup"]);
     }
-});
 
-Metro['touch'] = TouchConst;
+    Metro.Component('tree-view', {
+        init: function( options, elem ) {
+            this._super(elem, options, TreeViewDefaultConfig);
+            return this;
+        },
 
+        _create: function(){
+            var that = this, element = this.element;
 
-var TreeViewDefaultConfig = {
-    treeviewDeferred: 0,
-    showChildCount: false,
-    duration: 100,
-    onNodeClick: Metro.noop,
-    onNodeDblClick: Metro.noop,
-    onNodeDelete: Metro.noop,
-    onNodeInsert: Metro.noop,
-    onNodeClean: Metro.noop,
-    onCheckClick: Metro.noop,
-    onRadioClick: Metro.noop,
-    onExpandNode: Metro.noop,
-    onCollapseNode: Metro.noop,
-    onTreeViewCreate: Metro.noop
-};
+            Metro.checkRuntime(element, this.name);
 
-Metro.treeViewSetup = function (options) {
-    TreeViewDefaultConfig = $.extend({}, TreeViewDefaultConfig, options);
-};
+            this._createTree();
+            this._createEvents();
 
-if (typeof window["metroTreeViewSetup"] !== undefined) {
-    Metro.treeViewSetup(window["metroTreeViewSetup"]);
-}
-
-Component('tree-view', {
-    init: function( options, elem ) {
-        this._super(elem, options, TreeViewDefaultConfig);
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createTree();
-        this._createEvents();
-
-        $.each(element.find("input"), function(){
-            if (!$(this).is(":checked")) return;
-            that._recheck(this);
-        });
-
-        Utils.exec(o.onTreeViewCreate, [element], element[0]);
-        element.fire("treeviewcreate");
-    },
-
-    _createIcon: function(data){
-        var icon, src;
-
-        src = Utils.isTag(data) ? $(data) : $("<img src='' alt=''>").attr("src", data);
-        icon = $("<span>").addClass("icon");
-        icon.html(src.outerHTML());
-
-        return icon;
-    },
-
-    _createCaption: function(data){
-        return $("<span>").addClass("caption").html(data);
-    },
-
-
-    _createToggle: function(){
-        return $("<span>").addClass("node-toggle");
-    },
-
-
-    _createNode: function(data){
-        var node;
-
-        node = $("<li>");
-
-        if (data.caption !== undefined) {
-            node.prepend(this._createCaption(data.caption));
-        }
-
-        if (data.icon !== undefined) {
-            node.prepend(this._createIcon(data.icon));
-        }
-
-        if (data.html !== undefined) {
-            node.append(data.html);
-        }
-
-        return node;
-    },
-
-    _createTree: function(){
-        var that = this, element = this.element, o = this.options;
-        var nodes = element.find("li");
-
-        element.addClass("treeview");
-
-        $.each(nodes, function(){
-            var node = $(this);
-            var caption, icon;
-
-            caption = node.data("caption");
-            icon = node.data("icon");
-
-            if (caption !== undefined) {
-                if (node.children("ul").length > 0 && o.showChildCount === true) {
-                    caption += " ("+node.children("ul").children("li").length+")"
-                }
-                node.prepend(that._createCaption(caption));
-            }
-
-            if (icon !== undefined) {
-                node.prepend(that._createIcon(icon));
-            }
-
-            if (node.children("ul").length > 0) {
-
-                node.addClass("tree-node");
-
-                node.append(that._createToggle());
-
-                if (Utils.bool(node.attr("data-collapsed")) !== true) {
-                    node.addClass("expanded");
-                } else {
-                    node.children("ul").hide();
-                }
-            }
-
-        });
-    },
-
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
-
-        element.on(Metro.events.click, ".node-toggle", function(e){
-            var toggle = $(this);
-            var node = toggle.parent();
-
-            that.toggleNode(node);
-
-            e.preventDefault();
-        });
-
-        element.on(Metro.events.click, "li > .caption", function(e){
-            var node = $(this).parent();
-
-            that.current(node);
-
-            Utils.exec(o.onNodeClick, [node[0]], element[0]);
-            element.fire("nodeclick", {
-                node: node[0]
+            $.each(element.find("input"), function(){
+                if (!$(this).is(":checked")) return;
+                that._recheck(this);
             });
 
-            e.preventDefault();
-        });
-
-        element.on(Metro.events.dblclick, "li > .caption", function(e){
-            var node = $(this).closest("li");
-            var toggle = node.children(".node-toggle");
-            var subtree = node.children("ul");
-
-            if (toggle.length > 0 || subtree.length > 0) {
-                that.toggleNode(node);
-            }
-
-            Utils.exec(o.onNodeDblClick, [node[0]], element[0]);
-            element.fire("nodedblclick", {
-                node: node[0]
+            this._fireEvent("tree-view-create", {
+                element: element
             });
+        },
 
-            e.preventDefault();
-        });
+        _createIcon: function(data){
+            var icon, src;
 
-        element.on(Metro.events.click, "input[type=radio]", function(){
-            var check = $(this);
-            var checked = check.is(":checked");
-            var node = check.closest("li");
+            src = Utils.isTag(data) ? $(data) : $("<img src='' alt=''>").attr("src", data);
+            icon = $("<span>").addClass("icon");
+            icon.html(src.outerHTML());
 
-            that.current(node);
+            return icon;
+        },
 
-            Utils.exec(o.onRadioClick, [checked, check[0], node[0]], element[0]);
-            element.fire("radioclick", {
-                checked: checked,
-                check: check[0],
-                node: node[0]
-            });
-        });
+        _createCaption: function(data){
+            return $("<span>").addClass("caption").html(data);
+        },
 
-        element.on(Metro.events.click, "input[type=checkbox]", function(){
-            var check = $(this);
-            var checked = check.is(":checked");
-            var node = check.closest("li");
 
-            that._recheck(check);
+        _createToggle: function(){
+            return $("<span>").addClass("node-toggle");
+        },
 
-            Utils.exec(o.onCheckClick, [checked, check[0], node[0]], element[0]);
-            element.fire("checkclick", {
-                checked: checked,
-                check: check[0],
-                node: node[0]
-            });
-        });
-    },
 
-    _recheck: function(check){
-        var element = this.element;
-        var checked, node, checks, all_checks;
+        _createNode: function(data){
+            var node;
 
-        check = $(check);
+            node = $("<li>");
 
-        checked = check.is(":checked");
-        node = check.closest("li");
-
-        this.current(node);
-
-        // down
-        checks = check.closest("li").find("ul input[type=checkbox]");
-        checks.attr("data-indeterminate", false);
-        checks.prop("checked", checked);
-        checks.trigger('change');
-        
-        all_checks = [];
-
-        $.each(element.find("input[type=checkbox]"), function(){
-            all_checks.push(this);
-        });
-
-        $.each(all_checks.reverse(), function(){
-            var ch = $(this);
-            var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
-            var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]").filter(function(el){
-                return el.checked;
-            }).length;
-
-            if (children > 0 && children_checked === 0) {
-                ch.attr("data-indeterminate", false);
-                ch.prop("checked", false);
-                ch.trigger('change');
+            if (data.caption !== undefined) {
+                node.prepend(this._createCaption(data.caption));
             }
 
-            if (children_checked === 0) {
-                ch.attr("data-indeterminate", false);
-            } else {
-                if (children_checked > 0 && children > children_checked) {
-                    ch.attr("data-indeterminate", true);
-                } else if (children === children_checked) {
-                    ch.attr("data-indeterminate", false);
-                    ch.prop("checked", true);
-                    ch.trigger('change');
-                }
-            }
-        });
-    },
-
-    current: function(node){
-        var element = this.element;
-
-        if (node === undefined) {
-            return element.find("li.current")
-        }
-
-        element.find("li").removeClass("current");
-        node.addClass("current");
-    },
-
-    toggleNode: function(n){
-        var node = $(n);
-        var element = this.element, o = this.options;
-        var func;
-        var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
-
-        node.toggleClass("expanded");
-        node.data("collapsed", toBeExpanded);
-
-        func = toBeExpanded === true ? "slideUp" : "slideDown";
-
-        if (!toBeExpanded) {
-            Utils.exec(o.onExpandNode, [node[0]], element[0]);
-            element.fire("expandnode", {
-                node: node[0]
-            });
-        } else {
-            Utils.exec(o.onCollapseNode, [node[0]], element[0]);
-            element.fire("collapsenode", {
-                node: node[0]
-            });
-        }
-
-        node.children("ul")[func](o.duration);
-    },
-
-    addTo: function(node, data){
-        var element = this.element, o = this.options;
-        var target;
-        var new_node;
-        var toggle;
-
-        if (node === null) {
-            target = element;
-        } else {
-            node = $(node);
-            target = node.children("ul");
-            if (target.length === 0) {
-                target = $("<ul>").appendTo(node);
-                toggle = this._createToggle();
-                toggle.appendTo(node);
-                node.addClass("expanded");
-            }
-        }
-
-        new_node = this._createNode(data);
-
-        new_node.appendTo(target);
-
-        Utils.exec(o.onNodeInsert, [new_node[0], node ? node[0] : null], element[0]);
-        element.fire("nodeinsert", {
-            node: new_node[0],
-            parent: node ? node[0] : null
-        });
-
-        return new_node;
-    },
-
-    insertBefore: function(node, data){
-        var element = this.element, o = this.options;
-        var new_node = this._createNode(data);
-
-        if (Utils.isNull(node)) {
-            return this.addTo(node, data);
-        }
-
-        node = $(node);
-        new_node.insertBefore(node);
-        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
-        element.fire("nodeinsert", {
-            node: new_node[0],
-            parent: node ? node[0] : null
-        });
-        return new_node;
-    },
-
-    insertAfter: function(node, data){
-        var element = this.element, o = this.options;
-        var new_node = this._createNode(data);
-
-        if (Utils.isNull(node)) {
-            return this.addTo(node, data);
-        }
-
-        node = $(node);
-        new_node.insertAfter(node);
-        Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
-        element.fire("nodeinsert", {
-            node: new_node[0],
-            parent: node[0]
-        });
-        return new_node;
-    },
-
-    del: function(node){
-        var element = this.element, o = this.options;
-        node = $(node);
-        var parent_list = node.closest("ul");
-        var parent_node = parent_list.closest("li");
-
-        Utils.exec(o.onNodeDelete, [node[0]], element[0]);
-        element.fire("nodedelete", {
-            node: node[0]
-        });
-
-        node.remove();
-
-        if (parent_list.children().length === 0 && !parent_list.is(element)) {
-            parent_list.remove();
-            parent_node.removeClass("expanded");
-            parent_node.children(".node-toggle").remove();
-        }
-    },
-
-    clean: function(node){
-        var element = this.element, o = this.options;
-        node = $(node);
-        node.children("ul").remove();
-        node.removeClass("expanded");
-        node.children(".node-toggle").remove();
-        Utils.exec(o.onNodeClean, [node[0]], element[0]);
-        element.fire("nodeclean", {
-            node: node[0]
-        });
-    },
-
-    changeAttribute: function(){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off(Metro.events.click, ".node-toggle");
-        element.off(Metro.events.click, "li > .caption");
-        element.off(Metro.events.dblclick, "li > .caption");
-        element.off(Metro.events.click, "input[type=radio]");
-        element.off(Metro.events.click, "input[type=checkbox]");
-
-        return element;
-    }
-});
-
-
-var ValidatorFuncs = {
-    required: function(val){
-        if (Array.isArray(val)) {
-            return val.length > 0 ? val : false;
-        } else {
-            return Utils.isValue(val) ? val.trim() : false;
-        }
-    },
-    length: function(val, len){
-        if (Array.isArray(val)) {return val.length === parseInt(len);}
-        if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
-            return false;
-        }
-        return val.trim().length === parseInt(len);
-    },
-    minlength: function(val, len){
-        if (Array.isArray(val)) {return val.length >= parseInt(len);}
-        if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
-            return false;
-        }
-        return val.trim().length >= parseInt(len);
-    },
-    maxlength: function(val, len){
-        if (Array.isArray(val)) {return val.length <= parseInt(len);}
-        if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
-            return false;
-        }
-        return val.trim().length <= parseInt(len);
-    },
-    min: function(val, min_value){
-        if (!Utils.isValue(min_value) || isNaN(min_value)) {
-            return false;
-        }
-        if (!this.number(val)) {
-            return false;
-        }
-        if (isNaN(val)) {
-            return false;
-        }
-        return Number(val) >= Number(min_value);
-    },
-    max: function(val, max_value){
-        if (!Utils.isValue(max_value) || isNaN(max_value)) {
-            return false;
-        }
-        if (!this.number(val)) {
-            return false;
-        }
-        if (isNaN(val)) {
-            return false;
-        }
-        return Number(val) <= Number(max_value);
-    },
-    email: function(val){
-        /* eslint-disable-next-line */
-        return /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i.test(val);
-    },
-    domain: function(val){
-        /* eslint-disable-next-line */
-        return /^((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/.test(val);
-    },
-    url: function(val){
-        /* eslint-disable-next-line */
-        return /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(val);
-    },
-    date: function(val, format, locale){
-        if (Utils.isNull(format)) {
-            return String(new Date(val)).toLowerCase() !== "invalid date";
-        } else {
-            return String(val.toDate(format, locale)).toLowerCase() !== "invalid date";
-        }
-    },
-    number: function(val){
-        return !isNaN(val);
-    },
-    integer: function(val){
-        return Utils.isInt(val);
-    },
-    float: function(val){
-        return Utils.isFloat(val);
-    },
-    digits: function(val){
-        return /^\d+$/.test(val);
-    },
-    hexcolor: function(val){
-        /* eslint-disable-next-line */
-        return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
-    },
-    color: function(val){
-        if (!Utils.isValue(val)) return false;
-        return Colors.color(val, Colors.PALETTES.STANDARD) !== false;
-    },
-    pattern: function(val, pat){
-        if (!Utils.isValue(val)) return false;
-        if (!Utils.isValue(pat)) return false;
-        var reg = new RegExp(pat);
-        return reg.test(val);
-    },
-    compare: function(val, val2){
-        return val === val2;
-    },
-    not: function(val, not_this){
-        return val !== not_this;
-    },
-    notequals: function(val, val2){
-        if (Utils.isNull(val)) return false;
-        if (Utils.isNull(val2)) return false;
-        return val.trim() !== val2.trim();
-    },
-    equals: function(val, val2){
-        if (Utils.isNull(val)) return false;
-        if (Utils.isNull(val2)) return false;
-        return val.trim() === val2.trim();
-    },
-    custom: function(val, func){
-        if (Utils.isFunc(func) === false) {
-            return false;
-        }
-        return Utils.exec(func, [val]);
-    },
-
-    is_control: function(el){
-        return el.parent().hasClass("input")
-            || el.parent().hasClass("select")
-            || el.parent().hasClass("textarea")
-            || el.parent().hasClass("checkbox")
-            || el.parent().hasClass("switch")
-            || el.parent().hasClass("radio")
-            || el.parent().hasClass("spinner")
-            ;
-    },
-
-    reset_state: function(el){
-        var input = $(el);
-        var is_control = ValidatorFuncs.is_control(input);
-
-        if (is_control) {
-            input.parent().removeClass("invalid valid");
-        } else {
-            input.removeClass("invalid valid");
-        }
-    },
-
-    set_valid_state: function(el){
-        var input = $(el);
-        var is_control = ValidatorFuncs.is_control(input);
-
-        if (is_control) {
-            input.parent().addClass("valid");
-        } else {
-            input.addClass("valid");
-        }
-    },
-
-    set_invalid_state: function(el){
-        var input = $(el);
-        var is_control = ValidatorFuncs.is_control(input);
-
-        if (is_control) {
-            input.parent().addClass("invalid");
-        } else {
-            input.addClass("invalid");
-        }
-    },
-
-    reset: function(form){
-        var that = this;
-        $.each($(form).find("[data-validate]"), function(){
-            that.reset_state(this);
-        });
-
-        return this;
-    },
-
-    validate: function(el, result, cb_ok, cb_error, required_mode){
-        var this_result = true;
-        var input = $(el);
-        var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
-        var errors = [];
-        var hasForm = input.closest('form').length > 0;
-
-        if (funcs.length === 0) {
-            return true;
-        }
-
-        this.reset_state(input);
-
-        if (input.attr('type') && input.attr('type').toLowerCase() === "checkbox") {
-            if (funcs.indexOf('required') === -1) {
-                this_result = true;
-            } else {
-                this_result = input.is(":checked");
+            if (data.icon !== undefined) {
+                node.prepend(this._createIcon(data.icon));
             }
 
-            if (this_result === false) {
-                errors.push('required');
+            if (data.html !== undefined) {
+                node.append(data.html);
             }
 
-            if (result !== undefined) {
-                result.val += this_result ? 0 : 1;
-            }
-        } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
-            if (input.attr('name') === undefined) {
-                this_result = true;
-            }
+            return node;
+        },
 
-            var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
-            this_result = $(radio_selector).length > 0;
+        _createTree: function(){
+            var that = this, element = this.element, o = this.options;
+            var nodes = element.find("li");
 
-            if (result !== undefined) {
-                result.val += this_result ? 0 : 1;
-            }
-        } else {
-            $.each(funcs, function(){
-                if (this_result === false) return;
-                var rule = this.split("=");
-                var f, a, b;
+            element.addClass("treeview");
 
-                f = rule[0]; rule.shift();
-                a = rule.join("=");
+            $.each(nodes, function(){
+                var node = $(this);
+                var caption, icon;
 
-                if (['compare', 'equals', 'notequals'].indexOf(f) > -1) {
-                    a = hasForm ? input[0].form.elements[a].value : $("[name="+a+"]").val();
+                caption = node.data("caption");
+                icon = node.data("icon");
+
+                if (caption !== undefined) {
+                    if (node.children("ul").length > 0 && o.showChildCount === true) {
+                        caption += " ("+node.children("ul").children("li").length+")"
+                    }
+                    node.prepend(that._createCaption(caption));
                 }
 
-                if (f === 'date') {
-                    a = input.attr("data-value-format");
-                    b = input.attr("data-value-locale");
+                if (icon !== undefined) {
+                    node.prepend(that._createIcon(icon));
                 }
 
-                if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
-                    this_result = true;
-                } else {
-                    if (required_mode === true || f === "required") {
-                        this_result = ValidatorFuncs[f](input.val(), a, b);
+                if (node.children("ul").length > 0) {
+
+                    node.addClass("tree-node");
+
+                    node.append(that._createToggle());
+
+                    if (Utils.bool(node.attr("data-collapsed")) !== true) {
+                        node.addClass("expanded");
                     } else {
-                        if (input.val().trim() !== "") {
-                            this_result = ValidatorFuncs[f](input.val(), a, b);
-                        } else {
-                            this_result = true;
-                        }
+                        node.children("ul").hide();
                     }
                 }
 
+            });
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            element.on(Metro.events.click, ".node-toggle", function(e){
+                var toggle = $(this);
+                var node = toggle.parent();
+
+                that.toggleNode(node);
+
+                e.preventDefault();
+            });
+
+            element.on(Metro.events.click, "li > .caption", function(e){
+                var node = $(this).parent();
+
+                that.current(node);
+
+                Utils.exec(o.onNodeClick, [node[0]], element[0]);
+                element.fire("nodeclick", {
+                    node: node[0]
+                });
+
+                e.preventDefault();
+            });
+
+            element.on(Metro.events.dblclick, "li > .caption", function(e){
+                var node = $(this).closest("li");
+                var toggle = node.children(".node-toggle");
+                var subtree = node.children("ul");
+
+                if (toggle.length > 0 || subtree.length > 0) {
+                    that.toggleNode(node);
+                }
+
+                Utils.exec(o.onNodeDblClick, [node[0]], element[0]);
+                element.fire("nodedblclick", {
+                    node: node[0]
+                });
+
+                e.preventDefault();
+            });
+
+            element.on(Metro.events.click, "input[type=radio]", function(){
+                var check = $(this);
+                var checked = check.is(":checked");
+                var node = check.closest("li");
+
+                that.current(node);
+
+                Utils.exec(o.onRadioClick, [checked, check[0], node[0]], element[0]);
+                element.fire("radioclick", {
+                    checked: checked,
+                    check: check[0],
+                    node: node[0]
+                });
+            });
+
+            element.on(Metro.events.click, "input[type=checkbox]", function(){
+                var check = $(this);
+                var checked = check.is(":checked");
+                var node = check.closest("li");
+
+                that._recheck(check);
+
+                Utils.exec(o.onCheckClick, [checked, check[0], node[0]], element[0]);
+                element.fire("checkclick", {
+                    checked: checked,
+                    check: check[0],
+                    node: node[0]
+                });
+            });
+        },
+
+        _recheck: function(check){
+            var element = this.element;
+            var checked, node, checks, all_checks;
+
+            check = $(check);
+
+            checked = check.is(":checked");
+            node = check.closest("li");
+
+            this.current(node);
+
+            // down
+            checks = check.closest("li").find("ul input[type=checkbox]");
+            checks.attr("data-indeterminate", false);
+            checks.prop("checked", checked);
+            checks.trigger('change');
+
+            all_checks = [];
+
+            $.each(element.find("input[type=checkbox]"), function(){
+                all_checks.push(this);
+            });
+
+            $.each(all_checks.reverse(), function(){
+                var ch = $(this);
+                var children = ch.closest("li").children("ul").find("input[type=checkbox]").length;
+                var children_checked = ch.closest("li").children("ul").find("input[type=checkbox]").filter(function(el){
+                    return el.checked;
+                }).length;
+
+                if (children > 0 && children_checked === 0) {
+                    ch.attr("data-indeterminate", false);
+                    ch.prop("checked", false);
+                    ch.trigger('change');
+                }
+
+                if (children_checked === 0) {
+                    ch.attr("data-indeterminate", false);
+                } else {
+                    if (children_checked > 0 && children > children_checked) {
+                        ch.attr("data-indeterminate", true);
+                    } else if (children === children_checked) {
+                        ch.attr("data-indeterminate", false);
+                        ch.prop("checked", true);
+                        ch.trigger('change');
+                    }
+                }
+            });
+        },
+
+        current: function(node){
+            var element = this.element;
+
+            if (node === undefined) {
+                return element.find("li.current")
+            }
+
+            element.find("li").removeClass("current");
+            node.addClass("current");
+        },
+
+        toggleNode: function(n){
+            var node = $(n);
+            var element = this.element, o = this.options;
+            var func;
+            var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+            node.toggleClass("expanded");
+            node.data("collapsed", toBeExpanded);
+
+            func = toBeExpanded === true ? "slideUp" : "slideDown";
+
+            if (!toBeExpanded) {
+                Utils.exec(o.onExpandNode, [node[0]], element[0]);
+                element.fire("expandnode", {
+                    node: node[0]
+                });
+            } else {
+                Utils.exec(o.onCollapseNode, [node[0]], element[0]);
+                element.fire("collapsenode", {
+                    node: node[0]
+                });
+            }
+
+            node.children("ul")[func](o.duration);
+        },
+
+        addTo: function(node, data){
+            var element = this.element, o = this.options;
+            var target;
+            var new_node;
+            var toggle;
+
+            if (node === null) {
+                target = element;
+            } else {
+                node = $(node);
+                target = node.children("ul");
+                if (target.length === 0) {
+                    target = $("<ul>").appendTo(node);
+                    toggle = this._createToggle();
+                    toggle.appendTo(node);
+                    node.addClass("expanded");
+                }
+            }
+
+            new_node = this._createNode(data);
+
+            new_node.appendTo(target);
+
+            Utils.exec(o.onNodeInsert, [new_node[0], node ? node[0] : null], element[0]);
+            element.fire("nodeinsert", {
+                node: new_node[0],
+                parent: node ? node[0] : null
+            });
+
+            return new_node;
+        },
+
+        insertBefore: function(node, data){
+            var element = this.element, o = this.options;
+            var new_node = this._createNode(data);
+
+            if (Utils.isNull(node)) {
+                return this.addTo(node, data);
+            }
+
+            node = $(node);
+            new_node.insertBefore(node);
+            Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+            element.fire("nodeinsert", {
+                node: new_node[0],
+                parent: node ? node[0] : null
+            });
+            return new_node;
+        },
+
+        insertAfter: function(node, data){
+            var element = this.element, o = this.options;
+            var new_node = this._createNode(data);
+
+            if (Utils.isNull(node)) {
+                return this.addTo(node, data);
+            }
+
+            node = $(node);
+            new_node.insertAfter(node);
+            Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
+            element.fire("nodeinsert", {
+                node: new_node[0],
+                parent: node[0]
+            });
+            return new_node;
+        },
+
+        del: function(node){
+            var element = this.element, o = this.options;
+            node = $(node);
+            var parent_list = node.closest("ul");
+            var parent_node = parent_list.closest("li");
+
+            Utils.exec(o.onNodeDelete, [node[0]], element[0]);
+            element.fire("nodedelete", {
+                node: node[0]
+            });
+
+            node.remove();
+
+            if (parent_list.children().length === 0 && !parent_list.is(element)) {
+                parent_list.remove();
+                parent_node.removeClass("expanded");
+                parent_node.children(".node-toggle").remove();
+            }
+        },
+
+        clean: function(node){
+            var element = this.element, o = this.options;
+            node = $(node);
+            node.children("ul").remove();
+            node.removeClass("expanded");
+            node.children(".node-toggle").remove();
+            Utils.exec(o.onNodeClean, [node[0]], element[0]);
+            element.fire("nodeclean", {
+                node: node[0]
+            });
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off(Metro.events.click, ".node-toggle");
+            element.off(Metro.events.click, "li > .caption");
+            element.off(Metro.events.dblclick, "li > .caption");
+            element.off(Metro.events.click, "input[type=radio]");
+            element.off(Metro.events.click, "input[type=checkbox]");
+
+            return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var Colors = Metro.colors;
+    var ValidatorFuncs = {
+        required: function(val){
+            if (Array.isArray(val)) {
+                return val.length > 0 ? val : false;
+            } else {
+                return Utils.isValue(val) ? val.trim() : false;
+            }
+        },
+        length: function(val, len){
+            if (Array.isArray(val)) {return val.length === parseInt(len);}
+            if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
+                return false;
+            }
+            return val.trim().length === parseInt(len);
+        },
+        minlength: function(val, len){
+            if (Array.isArray(val)) {return val.length >= parseInt(len);}
+            if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
+                return false;
+            }
+            return val.trim().length >= parseInt(len);
+        },
+        maxlength: function(val, len){
+            if (Array.isArray(val)) {return val.length <= parseInt(len);}
+            if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
+                return false;
+            }
+            return val.trim().length <= parseInt(len);
+        },
+        min: function(val, min_value){
+            if (!Utils.isValue(min_value) || isNaN(min_value)) {
+                return false;
+            }
+            if (!this.number(val)) {
+                return false;
+            }
+            if (isNaN(val)) {
+                return false;
+            }
+            return Number(val) >= Number(min_value);
+        },
+        max: function(val, max_value){
+            if (!Utils.isValue(max_value) || isNaN(max_value)) {
+                return false;
+            }
+            if (!this.number(val)) {
+                return false;
+            }
+            if (isNaN(val)) {
+                return false;
+            }
+            return Number(val) <= Number(max_value);
+        },
+        email: function(val){
+            /* eslint-disable-next-line */
+            return /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i.test(val);
+        },
+        domain: function(val){
+            /* eslint-disable-next-line */
+            return /^((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/.test(val);
+        },
+        url: function(val){
+            /* eslint-disable-next-line */
+            return /^(?:(?:https?|ftp):\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,}))\.?)(?::\d{2,5})?(?:[/?#]\S*)?$/i.test(val);
+        },
+        date: function(val, format, locale){
+            if (Utils.isNull(format)) {
+                return String(new Date(val)).toLowerCase() !== "invalid date";
+            } else {
+                return String(val.toDate(format, locale)).toLowerCase() !== "invalid date";
+            }
+        },
+        number: function(val){
+            return !isNaN(val);
+        },
+        integer: function(val){
+            return Utils.isInt(val);
+        },
+        float: function(val){
+            return Utils.isFloat(val);
+        },
+        digits: function(val){
+            return /^\d+$/.test(val);
+        },
+        hexcolor: function(val){
+            /* eslint-disable-next-line */
+            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
+        },
+        color: function(val){
+            if (!Utils.isValue(val)) return false;
+            return Colors.color(val, Colors.PALETTES.STANDARD) !== false;
+        },
+        pattern: function(val, pat){
+            if (!Utils.isValue(val)) return false;
+            if (!Utils.isValue(pat)) return false;
+            var reg = new RegExp(pat);
+            return reg.test(val);
+        },
+        compare: function(val, val2){
+            return val === val2;
+        },
+        not: function(val, not_this){
+            return val !== not_this;
+        },
+        notequals: function(val, val2){
+            if (Utils.isNull(val)) return false;
+            if (Utils.isNull(val2)) return false;
+            return val.trim() !== val2.trim();
+        },
+        equals: function(val, val2){
+            if (Utils.isNull(val)) return false;
+            if (Utils.isNull(val2)) return false;
+            return val.trim() === val2.trim();
+        },
+        custom: function(val, func){
+            if (Utils.isFunc(func) === false) {
+                return false;
+            }
+            return Utils.exec(func, [val]);
+        },
+
+        is_control: function(el){
+            return el.parent().hasClass("input")
+                || el.parent().hasClass("select")
+                || el.parent().hasClass("textarea")
+                || el.parent().hasClass("checkbox")
+                || el.parent().hasClass("switch")
+                || el.parent().hasClass("radio")
+                || el.parent().hasClass("spinner")
+                ;
+        },
+
+        reset_state: function(el){
+            var input = $(el);
+            var is_control = ValidatorFuncs.is_control(input);
+
+            if (is_control) {
+                input.parent().removeClass("invalid valid");
+            } else {
+                input.removeClass("invalid valid");
+            }
+        },
+
+        set_valid_state: function(el){
+            var input = $(el);
+            var is_control = ValidatorFuncs.is_control(input);
+
+            if (is_control) {
+                input.parent().addClass("valid");
+            } else {
+                input.addClass("valid");
+            }
+        },
+
+        set_invalid_state: function(el){
+            var input = $(el);
+            var is_control = ValidatorFuncs.is_control(input);
+
+            if (is_control) {
+                input.parent().addClass("invalid");
+            } else {
+                input.addClass("invalid");
+            }
+        },
+
+        reset: function(form){
+            var that = this;
+            $.each($(form).find("[data-validate]"), function(){
+                that.reset_state(this);
+            });
+
+            return this;
+        },
+
+        validate: function(el, result, cb_ok, cb_error, required_mode){
+            var this_result = true;
+            var input = $(el);
+            var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
+            var errors = [];
+            var hasForm = input.closest('form').length > 0;
+
+            if (funcs.length === 0) {
+                return true;
+            }
+
+            this.reset_state(input);
+
+            if (input.attr('type') && input.attr('type').toLowerCase() === "checkbox") {
+                if (funcs.indexOf('required') === -1) {
+                    this_result = true;
+                } else {
+                    this_result = input.is(":checked");
+                }
+
                 if (this_result === false) {
-                    errors.push(f);
+                    errors.push('required');
                 }
 
                 if (result !== undefined) {
                     result.val += this_result ? 0 : 1;
                 }
-            });
-        }
-
-        if (this_result === false) {
-            this.set_invalid_state(input);
-
-            if (result !== undefined) {
-                result.log.push({
-                    input: input[0],
-                    name: input.attr("name"),
-                    value: input.val(),
-                    funcs: funcs,
-                    errors: errors
-                });
-            }
-
-            if (cb_error !== undefined) Utils.exec(cb_error, [input, input.val()], input[0]);
-
-        } else {
-            this.set_valid_state(input);
-
-            if (cb_ok !== undefined) Utils.exec(cb_ok, [input, input.val()], input[0]);
-        }
-
-        return this_result;
-    }
-};
-
-Metro['validator'] = ValidatorFuncs;
-
-var ValidatorDefaultConfig = {
-    validatorDeferred: 0,
-    submitTimeout: 200,
-    interactiveCheck: false,
-    clearInvalid: 0,
-    requiredMode: true,
-    useRequiredClass: true,
-    onBeforeSubmit: Metro.noop_true,
-    onSubmit: Metro.noop,
-    onError: Metro.noop,
-    onValidate: Metro.noop,
-    onErrorForm: Metro.noop,
-    onValidateForm: Metro.noop,
-    onValidatorCreate: Metro.noop
-};
-
-Metro.validatorSetup = function (options) {
-    ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
-};
-
-if (typeof window["metroValidatorSetup"] !== undefined) {
-    Metro.validatorSetup(window["metroValidatorSetup"]);
-}
-
-Component('validator', {
-    name: "Validator",
-
-    init: function( options, elem ) {
-        this._super(elem, options, ValidatorDefaultConfig);
-
-        this._onsubmit = null;
-        this._onreset = null;
-        this.result = [];
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var that = this, element = this.element, o = this.options;
-        var inputs = element.find("[data-validate]");
-
-        Metro.checkRuntime(element, this.name);
-
-        element
-            .attr("novalidate", 'novalidate');
-            //.attr("action", "javascript:");
-
-        $.each(inputs, function(){
-            var input = $(this);
-            var funcs = input.data("validate");
-            var required = funcs.indexOf("required") > -1;
-            if (required && o.useRequiredClass === true) {
-                if (ValidatorFuncs.is_control(input)) {
-                    input.parent().addClass("required");
-                } else {
-                    input.addClass("required");
+            } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
+                if (input.attr('name') === undefined) {
+                    this_result = true;
                 }
-            }
-            if (o.interactiveCheck === true) {
-                input.on(Metro.events.inputchange, function () {
-                    ValidatorFuncs.validate(this, undefined, undefined, undefined, o.requiredMode);
+
+                var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
+                this_result = $(radio_selector).length > 0;
+
+                if (result !== undefined) {
+                    result.val += this_result ? 0 : 1;
+                }
+            } else {
+                $.each(funcs, function(){
+                    if (this_result === false) return;
+                    var rule = this.split("=");
+                    var f, a, b;
+
+                    f = rule[0]; rule.shift();
+                    a = rule.join("=");
+
+                    if (['compare', 'equals', 'notequals'].indexOf(f) > -1) {
+                        a = hasForm ? input[0].form.elements[a].value : $("[name="+a+"]").val();
+                    }
+
+                    if (f === 'date') {
+                        a = input.attr("data-value-format");
+                        b = input.attr("data-value-locale");
+                    }
+
+                    if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
+                        this_result = true;
+                    } else {
+                        if (required_mode === true || f === "required") {
+                            this_result = ValidatorFuncs[f](input.val(), a, b);
+                        } else {
+                            if (input.val().trim() !== "") {
+                                this_result = ValidatorFuncs[f](input.val(), a, b);
+                            } else {
+                                this_result = true;
+                            }
+                        }
+                    }
+
+                    if (this_result === false) {
+                        errors.push(f);
+                    }
+
+                    if (result !== undefined) {
+                        result.val += this_result ? 0 : 1;
+                    }
                 });
             }
-        });
 
-        this._onsubmit = null;
-        this._onreset = null;
+            if (this_result === false) {
+                this.set_invalid_state(input);
 
-        if (element[0].onsubmit !== null) {
-            this._onsubmit = element[0].onsubmit;
-            element[0].onsubmit = null;
+                if (result !== undefined) {
+                    result.log.push({
+                        input: input[0],
+                        name: input.attr("name"),
+                        value: input.val(),
+                        funcs: funcs,
+                        errors: errors
+                    });
+                }
+
+                if (cb_error !== undefined) Utils.exec(cb_error, [input, input.val()], input[0]);
+
+            } else {
+                this.set_valid_state(input);
+
+                if (cb_ok !== undefined) Utils.exec(cb_ok, [input, input.val()], input[0]);
+            }
+
+            return this_result;
         }
+    };
 
-        if (element[0].onreset !== null) {
-            this._onreset = element[0].onreset;
-            element[0].onreset = null;
-        }
+    Metro['validator'] = ValidatorFuncs;
 
-        element[0].onsubmit = function(){
-            return that._submit();
-        };
+    var ValidatorDefaultConfig = {
+        validatorDeferred: 0,
+        submitTimeout: 200,
+        interactiveCheck: false,
+        clearInvalid: 0,
+        requiredMode: true,
+        useRequiredClass: true,
+        onBeforeSubmit: Metro.noop_true,
+        onSubmit: Metro.noop,
+        onError: Metro.noop,
+        onValidate: Metro.noop,
+        onErrorForm: Metro.noop,
+        onValidateForm: Metro.noop,
+        onValidatorCreate: Metro.noop
+    };
 
-        element[0].onreset = function(){
-            return that._reset();
-        };
+    Metro.validatorSetup = function (options) {
+        ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
+    };
 
-        Utils.exec(o.onValidatorCreate, [element], element[0]);
-        element.fire("validatorcreate");
-    },
+    if (typeof window["metroValidatorSetup"] !== undefined) {
+        Metro.validatorSetup(window["metroValidatorSetup"]);
+    }
 
-    _reset: function(){
-        ValidatorFuncs.reset(this.element);
-        if (this._onsubmit !==  null) Utils.exec(this._onsubmit, null, this.element[0]);
-    },
+    Metro.Component('validator', {
+        name: "Validator",
 
-    _submit: function(){
-        var that = this, element = this.element, o = this.options;
-        var form = this.elem;
-        var inputs = element.find("[data-validate]");
-        var submit = element.find("input[type=submit], button[type=submit]");
-        var result = {
-            val: 0,
-            log: []
-        };
-        var formData = $.serializeToArray(element);
-
-        if (submit.length > 0) {
-            submit.attr('disabled', 'disabled').addClass('disabled');
-        }
-
-        $.each(inputs, function(){
-            ValidatorFuncs.validate(this, result, o.onValidate, o.onError, o.requiredMode);
-        });
-
-        submit.removeAttr("disabled").removeClass("disabled");
-
-        result.val += Utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
-
-        if (result.val === 0) {
-            Utils.exec(o.onValidateForm, [formData], form);
-            element.fire("validateform", {
-                data: formData
+        init: function( options, elem ) {
+            this._super(elem, options, ValidatorDefaultConfig, {
+                _onsubmit: null,
+                _onreset: null,
+                result: []
             });
 
-            setTimeout(function(){
-                Utils.exec(o.onSubmit, [formData], form);
-                element.fire("formsubmit", {
+            return this;
+        },
+
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
+            var inputs = element.find("[data-validate]");
+
+            element
+                .attr("novalidate", 'novalidate');
+
+            $.each(inputs, function(){
+                var input = $(this);
+                var funcs = input.data("validate");
+                var required = funcs.indexOf("required") > -1;
+                if (required && o.useRequiredClass === true) {
+                    if (ValidatorFuncs.is_control(input)) {
+                        input.parent().addClass("required");
+                    } else {
+                        input.addClass("required");
+                    }
+                }
+                if (o.interactiveCheck === true) {
+                    input.on(Metro.events.inputchange, function () {
+                        ValidatorFuncs.validate(this, undefined, undefined, undefined, o.requiredMode);
+                    });
+                }
+            });
+
+            this._onsubmit = null;
+            this._onreset = null;
+
+            if (element[0].onsubmit !== null) {
+                this._onsubmit = element[0].onsubmit;
+                element[0].onsubmit = null;
+            }
+
+            if (element[0].onreset !== null) {
+                this._onreset = element[0].onreset;
+                element[0].onreset = null;
+            }
+
+            element[0].onsubmit = function(){
+                return that._submit();
+            };
+
+            element[0].onreset = function(){
+                return that._reset();
+            };
+
+            this._fireEvent("validator-create", {
+                element: element
+            });
+        },
+
+        _reset: function(){
+            ValidatorFuncs.reset(this.element);
+            if (this._onsubmit !==  null) Utils.exec(this._onsubmit, null, this.element[0]);
+        },
+
+        _submit: function(){
+            var that = this, element = this.element, o = this.options;
+            var form = this.elem;
+            var inputs = element.find("[data-validate]");
+            var submit = element.find("input[type=submit], button[type=submit]");
+            var result = {
+                val: 0,
+                log: []
+            };
+            var formData = $.serializeToArray(element);
+
+            if (submit.length > 0) {
+                submit.attr('disabled', 'disabled').addClass('disabled');
+            }
+
+            $.each(inputs, function(){
+                ValidatorFuncs.validate(this, result, o.onValidate, o.onError, o.requiredMode);
+            });
+
+            submit.removeAttr("disabled").removeClass("disabled");
+
+            result.val += Utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
+
+            if (result.val === 0) {
+                Utils.exec(o.onValidateForm, [formData], form);
+                element.fire("validateform", {
                     data: formData
                 });
-                if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
-            }, o.submitTimeout);
-        } else {
-            Utils.exec(o.onErrorForm, [result.log, formData], form);
-            element.fire("errorform", {
-                log: result.log,
-                data: formData
-            });
 
-            if (o.clearInvalid > 0) {
                 setTimeout(function(){
-                    $.each(inputs, function(){
-                        var inp  = $(this);
-                        if (ValidatorFuncs.is_control(inp)) {
-                            inp.parent().removeClass("invalid");
-                        } else {
-                            inp.removeClass("invalid");
-                        }
-                    })
-                }, o.clearInvalid);
+                    Utils.exec(o.onSubmit, [formData], form);
+                    element.fire("formsubmit", {
+                        data: formData
+                    });
+                    if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
+                }, o.submitTimeout);
+            } else {
+                Utils.exec(o.onErrorForm, [result.log, formData], form);
+                element.fire("errorform", {
+                    log: result.log,
+                    data: formData
+                });
+
+                if (o.clearInvalid > 0) {
+                    setTimeout(function(){
+                        $.each(inputs, function(){
+                            var inp  = $(this);
+                            if (ValidatorFuncs.is_control(inp)) {
+                                inp.parent().removeClass("invalid");
+                            } else {
+                                inp.removeClass("invalid");
+                            }
+                        })
+                    }, o.clearInvalid);
+                }
             }
+
+            return result.val === 0;
+        },
+
+        changeAttribute: function(){
         }
-
-        return result.val === 0;
-    },
-
-    changeAttribute: function(){
-    }
-});
-
+    });
+}(Metro, m4q));
 
 /**
  * Component Vegas based on Vegas by Jay Salvat (http://jaysalvat.com/)
@@ -31933,1190 +31941,1194 @@ Component('validator', {
  * Copyright 2020 Serhii Pimenov
  */
 
-var VegasDefaultConfig = {
-    duration: 4000,
-    animationDuration: null,
-    transitionDuration: null,
-    transition: "fade",
-    animation: null,
-    slides: [],
-    shuffle: false,
-    align: "center",
-    valign: "center",
-    loop: true,
-    autoplay: true,
-    mute: true,
-    cover: true,
-    preload: true,
-    timer: true,
-    overlay: 2,
-    color: null,
-    volume: 1,
-    onPlay: Metro.noop,
-    onPause: Metro.noop,
-    onEnd: Metro.noop,
-    onWalk: Metro.noop,
-    onNext: Metro.noop,
-    onPrev: Metro.noop,
-    onJump: Metro.noop,
-    onVegasCreate: Metro.noop
-};
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var VegasDefaultConfig = {
+        duration: 4000,
+        animationDuration: null,
+        transitionDuration: null,
+        transition: "fade",
+        animation: null,
+        slides: [],
+        shuffle: false,
+        align: "center",
+        valign: "center",
+        loop: true,
+        autoplay: true,
+        mute: true,
+        cover: true,
+        preload: true,
+        timer: true,
+        overlay: 2,
+        color: null,
+        volume: 1,
+        onPlay: Metro.noop,
+        onPause: Metro.noop,
+        onEnd: Metro.noop,
+        onWalk: Metro.noop,
+        onNext: Metro.noop,
+        onPrev: Metro.noop,
+        onJump: Metro.noop,
+        onVegasCreate: Metro.noop
+    };
 
-Metro.vegasSetup = function (options) {
-    VegasDefaultConfig = $.extend({}, VegasDefaultConfig, options);
-};
+    Metro.vegasSetup = function (options) {
+        VegasDefaultConfig = $.extend({}, VegasDefaultConfig, options);
+    };
 
-if (typeof window["metroVegasSetup"] !== undefined) {
-    Metro.vegasSetup(window["metroVegasSetup"]);
-}
+    if (typeof window["metroVegasSetup"] !== undefined) {
+        Metro.vegasSetup(window["metroVegasSetup"]);
+    }
 
-Component('vegas', {
+    Metro.Component('vegas', {
 
-    videoCache: {},
+        videoCache: {},
 
-    init: function( options, elem ) {
+        init: function( options, elem ) {
+            this.transitions = [
+                "fade", "fade2",
+                "slideLeft", "slideLeft2",
+                "slideRight", "slideRight2",
+                "slideUp", "slideUp2",
+                "slideDown", "slideDown2",
+                "zoomIn", "zoomIn2",
+                "zoomOut", "zoomOut2",
+                "swirlLeft", "swirlLeft2",
+                "swirlRight", "swirlRight2"
+            ];
+            this.animations = [
+                "kenburns",
+                "kenburnsUp",
+                "kenburnsDown",
+                "kenburnsRight",
+                "kenburnsLeft",
+                "kenburnsUpLeft",
+                "kenburnsUpRight",
+                "kenburnsDownLeft",
+                "kenburnsDownRight"
+            ];
 
-        this._super(elem, options, VegasDefaultConfig);
-
-        this.transitions = [
-            "fade", "fade2",
-            "slideLeft", "slideLeft2",
-            "slideRight", "slideRight2",
-            "slideUp", "slideUp2",
-            "slideDown", "slideDown2",
-            "zoomIn", "zoomIn2",
-            "zoomOut", "zoomOut2",
-            "swirlLeft", "swirlLeft2",
-            "swirlRight", "swirlRight2"
-        ];
-        this.animations = [
-            "kenburns",
-            "kenburnsUp",
-            "kenburnsDown",
-            "kenburnsRight",
-            "kenburnsLeft",
-            "kenburnsUpLeft",
-            "kenburnsUpRight",
-            "kenburnsDownLeft",
-            "kenburnsDownRight"
-        ];
-
-        this.support = {
-            objectFit:  'objectFit'  in document.body.style,
-            video: !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent)
-        }
-
-        this.slide = 0;
-        this.slides = Utils.isObject(this.options.slides) || [];
-        this.total = this.slides.length;
-        this.noshow = this.total < 2;
-        this.paused = !this.options.autoplay || this.noshow;
-        this.ended = false;
-        this.timer = null;
-        this.overlay = null;
-        this.first = true;
-        this.timeout = false;
-
-        if (this.options.shuffle) {
-            this.slides.shuffle();
-        }
-
-        if (this.options.preload) {
-            this._preload();
-        }
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        this._createStructure();
-        this._createEvents();
-
-        Utils.exec(o.onVegasCreate, [element],element[0]);
-    },
-
-    _createStructure: function(){
-        var that = this, element = this.element, o = this.options;
-        var isBody = element[0].tagName === 'BODY';
-        var wrapper;
-
-        if (!isBody) {
-            element.css('height', element.css('height')); // it is not clear why this line
-
-            wrapper = $('<div class="vegas-wrapper">')
-                .css('overflow', element.css('overflow'))
-                .css('padding',  element.css('padding'));
-
-            if (!element.css('padding')) {
-                wrapper
-                    .css('padding-top',    element.css('padding-top'))
-                    .css('padding-bottom', element.css('padding-bottom'))
-                    .css('padding-left',   element.css('padding-left'))
-                    .css('padding-right',  element.css('padding-right'));
+            this.support = {
+                objectFit:  'objectFit'  in document.body.style,
+                video: !/(Android|webOS|Phone|iPad|iPod|BlackBerry|Windows Phone)/i.test(navigator.userAgent)
             }
 
-            element.children().appendTo(wrapper);
-            element.clear();
-        }
-
-        element.addClass("vegas-container");
-
-        if (!isBody) {
-            element.append(wrapper);
-        }
-
-        if (o.timer) {
-            this.timer = $('<div class="vegas-timer"><div class="vegas-timer-progress">');
-            element.append(this.timer);
-        }
-
-        if (o.overlay) {
-            this.overlay = $('<div class="vegas-overlay">').addClass('overlay' + (typeof o.overlay === 'boolean' || isNaN(o.overlay) ? 2 : +o.overlay));
-            element.append(this.overlay);
-        }
-
-        setTimeout(function(){
-            Utils.exec(o.onPlay, null, element[0]);
-            that._goto(that.slide);
-        },1)
-    },
-
-    _createEvents: function(){
-    },
-
-    _preload: function(){
-        var img, i;
-
-        for (i = 0; i < this.slides.length; i++) {
-
-            var obj = this.slides[i];
-
-            if (obj.src) {
-                img = new Image();
-                img.src = this.slides[i].src;
-            }
-
-            if (obj.video) {
-                if (obj.video instanceof Array) {
-                    this._video(obj.video);
-                } else {
-                    this._video(obj.video.src);
-                }
-            }
-        }
-    },
-
-    _slideShow: function () {
-        var that = this, o = this.options;
-
-        if (this.total > 1 && !this.ended && !this.paused && !this.noshow) {
-            this.timeout = setTimeout(function () {
-                that.next();
-            }, o.duration);
-        }
-    },
-
-    _timer: function (state) {
-        var that = this, o = this.options;
-
-        clearTimeout(this.timeout);
-
-        if (!this.timer) {
-            return;
-        }
-
-        this.timer
-            .removeClass('vegas-timer-running')
-            .find('div')
-            .css('transition-duration', '0ms');
-
-        if (this.ended || this.paused || this.noshow) {
-            return;
-        }
-
-        if (state) {
-            setTimeout(function () {
-                that.timer
-                    .addClass('vegas-timer-running')
-                    .find('div')
-                    .css('transition-duration', +o.duration - 100 + 'ms');
-            }, 100);
-        }
-    },
-
-    _fadeSoundIn: function(video, duration){
-        var o = this.options;
-
-        $.animate({
-            el: video,
-            draw: {
-                volume: +o.volume
-            },
-            dur: duration
-        })
-    },
-
-    _fadeSoundOut: function(video, duration){
-        $.animate({
-            el: video,
-            draw: {
-                volume: 0
-            },
-            dur: duration
-        })
-    },
-
-    _video: function(sources){
-        var video, source;
-        var cacheKey = sources.toString();
-
-        if (this.videoCache[cacheKey]) {
-            return this.videoCache[cacheKey];
-        }
-
-        if (!Array.isArray(sources)) {
-            sources = [sources];
-        }
-
-        video = document.createElement("video");
-        video.preload = true;
-
-        sources.forEach(function(src){
-            source = document.createElement("source");
-            source.src = src;
-            video.appendChild(source);
-        });
-
-        this.videoCache[cacheKey] = video;
-
-        return video;
-    },
-
-    _goto: function(n){
-        var that = this, element = this.element, o = this.options;
-
-        if (typeof this.slides[n] === 'undefined') {
-            n = 0;
-        }
-
-        this.slide = n;
-
-        var $slide, $inner, video, img, $video;
-        var slides = element.children(".vegas-slide");
-        var obj = this.slides[n];
-        var cover = o.cover;
-        var transition, animation;
-        var transitionDuration, animationDuration;
-
-        if (this.first) {
-            this.first = false;
-        }
-
-        if (cover !== 'repeat') {
-            if (cover === true) {
-                cover = 'cover';
-            } else if (cover === false) {
-                cover = 'contain';
-            }
-        }
-
-        if (o.transition === 'random') {
-            transition = $.random(this.transitions);
-        } else {
-            transition = o.transition ? o.transition : this.transitions[0];
-        }
-
-        if (o.animation === 'random') {
-            animation = $.random(this.animations);
-        } else {
-            animation = o.animation ? o.animation : this.animations[0];
-        }
-
-        if (!o.transitionDuration) {
-            transitionDuration = +o.duration;
-        } else if (o.transitionDuration === 'auto' || +o.transitionDuration > +o.duration) {
-            transitionDuration = +o.duration;
-        } else {
-            transitionDuration = +o.transitionDuration;
-        }
-
-        if (!o.animationDuration) {
-            animationDuration = +o.duration;
-        } else if (o.animationDuration === 'auto' || +o.animationDuration > +o.duration) {
-            animationDuration = +o.duration;
-        } else {
-            animationDuration = +o.animationDuration;
-        }
-
-        $slide = $("<div>").addClass("vegas-slide").addClass('vegas-transition-' + transition);
-
-        if (this.support.video && obj.video) {
-            video = obj.video instanceof Array ? this._video(obj.video) : this._video(obj.video.src);
-            video.loop = obj.video.loop ? obj.video.loop : o.loop;
-            video.muted = obj.video.mute ? obj.video.mute : o.mute;
-
-            if (!video.muted) {
-                this._fadeSoundIn(video, transitionDuration);
-            } else {
-                video.pause();
-            }
-
-            $video = $(video)
-                .addClass('vegas-video')
-                .css('background-color', o.color || '#000000');
-
-            if (this.support.objectFit) {
-                $video
-                    .css('object-position', o.align + ' ' + o.valign)
-                    .css('object-fit', cover)
-                    .css('width',  '100%')
-                    .css('height', '100%');
-            } else if (cover === 'contain') {
-                $video
-                    .css('width',  '100%')
-                    .css('height', '100%');
-            }
-
-            $slide.append($video);
-        } else {
-            img = new Image();
-            $inner = $("<div>").addClass('vegas-slide-inner')
-                .css({
-                    backgroundImage: 'url("'+obj.src+'")',
-                    backgroundColor: o.color || '#000000',
-                    backgroundPosition: o.align + ' ' + o.valign
-                });
-
-            if (cover === 'repeat') {
-                $inner.css('background-repeat', 'repeat');
-            } else {
-                $inner.css('background-size', cover);
-            }
-
-            if (animation) {
-                $inner
-                    .addClass('vegas-animation-' + animation)
-                    .css('animation-duration',  animationDuration + 'ms');
-            }
-
-            $slide.append($inner);
-        }
-
-        if (slides.length) {
-            slides.eq(slides.length - 1).after($slide);
-        } else {
-            element.prepend($slide);
-        }
-
-        slides
-            .css('transition', 'all 0ms')
-            .each(function(){
-                this.className  = 'vegas-slide';
-
-                if (this.tagName === 'VIDEO') {
-                    this.className += ' vegas-video';
-                }
-
-                if (transition) {
-                    this.className += ' vegas-transition-' + transition;
-                    this.className += ' vegas-transition-' + transition + '-in';
-                }
-            }
-        );
-
-        this._timer(false);
-
-        function go(){
-            that._timer(true);
-            setTimeout(function () {
-                slides
-                    .css('transition', 'all ' + transitionDuration + 'ms')
-                    .addClass('vegas-transition-' + transition + '-out');
-
-                slides.each(function () {
-                    var video = slides.find('video').get(0);
-
-                    if (video) {
-                        video.volume = 1;
-                        that._fadeSoundOut(video, transitionDuration);
-                    }
-                });
-
-                $slide
-                    .css('transition', 'all ' + transitionDuration + 'ms')
-                    .addClass('vegas-transition-' + transition + '-in');
-
-                for (var i = 0; i < slides.length - 1; i++) {
-                    slides.eq(i).remove();
-                }
-
-                Utils.exec(o.onWalk, [that.current(true)], element[0]);
-                element.fire('walk', {
-                    slide: that.current(true)
-                })
-
-                that._slideShow();
-            }, 100);
-        }
-
-        if (video) {
-            if (video.readyState === 4) {
-                video.currentTime = 0;
-            }
-
-            video.play();
-            go();
-        } else {
-            img.src = obj.src;
-
-            if (img.complete) {
-                go();
-            } else {
-                img.onload = go;
-            }
-        }
-    },
-
-    _end: function(){
-        this.ended = this.options.autoplay;
-        this._timer(false);
-        Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
-        this.element.fire('end', {
-            slide: this.current(true)
-        });
-    },
-
-    play: function(){
-        if (this.paused) {
-            Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
-            this.element.fire('play', {
-                slide: this.current(true)
+            this._super(elem, options, VegasDefaultConfig, {
+                slide: 0,
+                slides: null,
+                total: 0,
+                noshow: false,
+                paused: false,
+                ended: false,
+                timer: null,
+                overlay: null,
+                first: true,
+                timeout: false
             });
-            this.paused = false;
-            this.next();
-        }
-    },
 
-    pause: function(){
-        this._timer(false);
-        this.paused = true;
-        Utils.exec(this.options.onPause, [this.current(true)], this.elem);
-        this.element.fire('pause', {
-            slide: this.current(true)
-        });
-    },
-
-    toggle: function(){
-        this.paused ? this.play() : this.pause();
-    },
-
-    playing: function(){
-        return !this.paused && !this.noshow;
-    },
-
-    current: function (advanced) {
-        if (advanced) {
-            return {
-                slide: this.slide,
-                data:  this.slides[this.slide]
-            };
-        }
-        return this.slide;
-    },
-
-    jump: function(n){
-        if (n <= 0 || n > this.slides.length || n === this.slide + 1) {
             return this;
-        }
+        },
 
-        this.slide = n - 1;
+        _create: function(){
+            var element = this.element;
 
-        Utils.exec(this.options.onJump, [this.current(true)], this.elem);
-        this.element.fire('jump', {
-            slide: this.current(true)
-        });
-
-        this._goto(this.slide);
-    },
-
-    next: function(){
-        var o = this.options;
-
-        this.slide++;
-
-        if (this.slide >= this.slides.length) {
-            if (!o.loop) {
-                return this._end();
-            }
-
-            this.slide = 0;
-        }
-
-        Utils.exec(o.onNext , [this.current(true)], this.elem);
-        this.element.fire('next', {
-            slide: this.current(true)
-        });
-
-        this._goto(this.slide);
-    },
-
-    prev: function(){
-        var o = this.options;
-
-        this.slide--;
-
-        if (this.slide < 0) {
-            if (!o.loop) {
-                this.slide++;
-                return this._end();
-            }
-
-            this.slide = this.slides.length - 1;
-        }
-
-        Utils.exec(o.onPrev, [this.current(true)], this.elem);
-        this.element.fire('prev', {
-            slide: this.current(true)
-        });
-
-        this._goto(this.slide);
-    },
-
-    changeAttribute: function(attributeName){
-        var element = this.element, o = this.options;
-        var propName = $.camelCase(attributeName.replace("data-", ""));
-
-        if (propName === 'slides') {
-            o.slides = element.attr('data-slides');
-            this.slides = Utils.isObject(o.slides) || [];
+            this.slides = Utils.isObject(this.options.slides) || [];
             this.total = this.slides.length;
             this.noshow = this.total < 2;
             this.paused = !this.options.autoplay || this.noshow;
-        } else {
-            if (typeof VegasDefaultConfig[propName] !== 'undefined')
-                o[propName] = JSON.parse(element.attr(attributeName));
-        }
-    },
 
-    destroy: function(){
-        var element = this.element, o = this.options;
+            if (this.options.shuffle) {
+                this.slides.shuffle();
+            }
 
-        clearTimeout(this.timeout);
-        element.removeClass('vegas-container');
-        element.find('> .vegas-slide').remove();
-        element.find('> .vegas-wrapper').children().appendTo(element);
-        element.find('> .vegas-wrapper').remove();
+            if (this.options.preload) {
+                this._preload();
+            }
 
-        if (o.timer) {
-            this.timer.remove();
-        }
+            this._createStructure();
+            this._createEvents();
 
-        if (o.overlay) {
-            this.overlay.remove();
-        }
-
-        return element[0];
-    }
-});
-
-
-var VideoPlayerDefaultConfig = {
-    videoDeferred: 0,
-    src: null,
-
-    poster: "",
-    logo: "",
-    logoHeight: 32,
-    logoWidth: "auto",
-    logoTarget: "",
-
-    volume: .5,
-    loop: false,
-    autoplay: false,
-
-    fullScreenMode: Metro.fullScreenMode.DESKTOP,
-    aspectRatio: Metro.aspectRatio.HD,
-
-    controlsHide: 3000,
-
-    showLoop: true,
-    showPlay: true,
-    showStop: true,
-    showMute: true,
-    showFull: true,
-    showStream: true,
-    showVolume: true,
-    showInfo: true,
-
-    loopIcon: "<span class='default-icon-loop'></span>",
-    stopIcon: "<span class='default-icon-stop'></span>",
-    playIcon: "<span class='default-icon-play'></span>",
-    pauseIcon: "<span class='default-icon-pause'></span>",
-    muteIcon: "<span class='default-icon-mute'></span>",
-    volumeLowIcon: "<span class='default-icon-low-volume'></span>",
-    volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
-    volumeHighIcon: "<span class='default-icon-high-volume'></span>",
-    screenMoreIcon: "<span class='default-icon-enlarge'></span>",
-    screenLessIcon: "<span class='default-icon-shrink'></span>",
-
-    onPlay: Metro.noop,
-    onPause: Metro.noop,
-    onStop: Metro.noop,
-    onEnd: Metro.noop,
-    onMetadata: Metro.noop,
-    onTime: Metro.noop,
-    onVideoCreate: Metro.noop
-};
-
-Metro.videoPlayerSetup = function (options) {
-    VideoPlayerDefaultConfig = $.extend({}, VideoPlayerDefaultConfig, options);
-};
-
-if (typeof window["metroVideoPlayerSetup"] !== undefined) {
-    Metro.videoPlayerSetup(window["metroVideoPlayerSetup"]);
-}
-
-Component('video-player', {
-    init: function( options, elem ) {
-        this._super(elem, options, VideoPlayerDefaultConfig);
-
-        this.fullscreen = false;
-        this.preloader = null;
-        this.player = null;
-        this.video = elem;
-        this.stream = null;
-        this.volume = null;
-        this.volumeBackup = 0;
-        this.muted = false;
-        this.fullScreenInterval = false;
-        this.isPlaying = false;
-        this.id = Utils.elementId('videoplayer');
-
-        Metro.createExec(this);
-
-        return this;
-    },
-
-    _create: function(){
-        var element = this.element, o = this.options;
-
-        Metro.checkRuntime(element, this.name);
-
-        if (Metro.fullScreenEnabled === false) {
-            o.fullScreenMode = Metro.fullScreenMode.WINDOW;
-        }
-
-        this._createPlayer();
-        this._createControls();
-        this._createEvents();
-        this._setAspectRatio();
-
-        if (o.autoplay === true) {
-            this.play();
-        }
-
-        Utils.exec(o.onVideoCreate, [element, this.player], element[0]);
-        element.fire("videocreate");
-    },
-
-    _createPlayer: function(){
-        var element = this.element, o = this.options, video = this.video;
-        var player = $("<div>").addClass("media-player video-player " + element[0].className);
-        var preloader = $("<div>").addClass("preloader").appendTo(player);
-        var logo = $("<a>").attr("href", o.logoTarget).addClass("logo").appendTo(player);
-
-        player.insertBefore(element);
-        element.appendTo(player);
-
-        $.each(['muted', 'autoplay', 'controls', 'height', 'width', 'loop', 'poster', 'preload'], function(){
-            element.removeAttr(this);
-        });
-
-        element.attr("preload", "auto");
-
-        if (o.poster !== "") {
-            element.attr("poster", o.poster);
-        }
-
-        video.volume = o.volume;
-
-        preloader.activity({
-            type: "cycle",
-            style: "color"
-        });
-
-        preloader.hide();
-
-        this.preloader = preloader;
-
-        if (o.logo !== "") {
-            $("<img>")
-                .css({
-                    height: o.logoHeight,
-                    width: o.logoWidth
-                })
-                .attr("src", o.logo).appendTo(logo);
-        }
-
-        if (o.src !== null) {
-            this._setSource(o.src);
-        }
-
-        element[0].className = "";
-
-        this.player = player;
-    },
-
-    _setSource: function(src){
-        var element = this.element;
-
-        element.find("source").remove();
-        element.removeAttr("src");
-        if (Array.isArray(src)) {
-            $.each(src, function(){
-                var item = this;
-                if (item.src === undefined) return ;
-                $("<source>").attr('src', item.src).attr('type', item.type !== undefined ? item.type : '').appendTo(element);
+            this._fireEvent("vegas-create", {
+                element: element
             });
-        } else {
-            element.attr("src", src);
-        }
-    },
+        },
 
-    _createControls: function(){
-        var that = this, element = this.element, o = this.options, video = this.elem;
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+            var isBody = element[0].tagName === 'BODY';
+            var wrapper;
 
-        var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
+            if (!isBody) {
+                element.css('height', element.css('height')); // it is not clear why this line
 
-        var stream = $("<div>").addClass("stream").appendTo(controls);
-        var streamSlider = $("<input>").addClass("stream-slider ultra-thin cycle-marker").appendTo(stream);
+                wrapper = $('<div class="vegas-wrapper">')
+                    .css('overflow', element.css('overflow'))
+                    .css('padding',  element.css('padding'));
 
-        var volume = $("<div>").addClass("volume").appendTo(controls);
-        var volumeSlider = $("<input>").addClass("volume-slider ultra-thin cycle-marker").appendTo(volume);
-
-        var infoBox = $("<div>").addClass("info-box").appendTo(controls);
-
-        if (o.showInfo !== true) {
-            infoBox.hide();
-        }
-
-        Metro.makePlugin(streamSlider, "slider", {
-            clsMarker: "bg-red",
-            clsHint: "bg-cyan fg-white",
-            clsComplete: "bg-cyan",
-            hint: true,
-            onStart: function(){
-                if (!video.paused) video.pause();
-            },
-            onStop: function(val){
-                if (video.seekable.length > 0) {
-                    video.currentTime = (that.duration * val / 100).toFixed(0);
+                if (!element.css('padding')) {
+                    wrapper
+                        .css('padding-top',    element.css('padding-top'))
+                        .css('padding-bottom', element.css('padding-bottom'))
+                        .css('padding-left',   element.css('padding-left'))
+                        .css('padding-right',  element.css('padding-right'));
                 }
-                if (video.paused && video.currentTime > 0) {
-                    video.play();
+
+                element.children().appendTo(wrapper);
+                element.clear();
+            }
+
+            element.addClass("vegas-container");
+
+            if (!isBody) {
+                element.append(wrapper);
+            }
+
+            if (o.timer) {
+                this.timer = $('<div class="vegas-timer"><div class="vegas-timer-progress">');
+                element.append(this.timer);
+            }
+
+            if (o.overlay) {
+                this.overlay = $('<div class="vegas-overlay">').addClass('overlay' + (typeof o.overlay === 'boolean' || isNaN(o.overlay) ? 2 : +o.overlay));
+                element.append(this.overlay);
+            }
+
+            setTimeout(function(){
+                Utils.exec(o.onPlay, null, element[0]);
+                that._goto(that.slide);
+            },1)
+        },
+
+        _createEvents: function(){
+        },
+
+        _preload: function(){
+            var img, i;
+
+            for (i = 0; i < this.slides.length; i++) {
+
+                var obj = this.slides[i];
+
+                if (obj.src) {
+                    img = new Image();
+                    img.src = this.slides[i].src;
+                }
+
+                if (obj.video) {
+                    if (obj.video instanceof Array) {
+                        this._video(obj.video);
+                    } else {
+                        this._video(obj.video.src);
+                    }
                 }
             }
-        });
+        },
 
-        this.stream = streamSlider;
+        _slideShow: function () {
+            var that = this, o = this.options;
 
-        if (o.showStream !== true) {
-            stream.hide();
-        }
-
-        Metro.makePlugin(volumeSlider, "slider", {
-            clsMarker: "bg-red",
-            clsHint: "bg-cyan fg-white",
-            hint: true,
-            value: o.volume * 100,
-            onChangeValue: function(val){
-                video.volume = val / 100;
+            if (this.total > 1 && !this.ended && !this.paused && !this.noshow) {
+                this.timeout = setTimeout(function () {
+                    that.next();
+                }, o.duration);
             }
-        });
+        },
 
-        this.volume = volumeSlider;
+        _timer: function (state) {
+            var that = this, o = this.options;
 
-        if (o.showVolume !== true) {
-            volume.hide();
-        }
+            clearTimeout(this.timeout);
 
-        var loop;
+            if (!this.timer) {
+                return;
+            }
 
-        if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button square loop").html(o.loopIcon).appendTo(controls);
-        if (o.showPlay === true) $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
-        if (o.showStop === true) $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
-        if (o.showMute === true) $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
-        if (o.showFull === true) $("<button>").attr("type", "button").addClass("button square full").html(o.screenMoreIcon).appendTo(controls);
+            this.timer
+                .removeClass('vegas-timer-running')
+                .find('div')
+                .css('transition-duration', '0ms');
 
-        if (o.loop === true) {
-            loop.addClass("active");
-            element.attr("loop", "loop");
-        }
+            if (this.ended || this.paused || this.noshow) {
+                return;
+            }
 
-        this._setVolume();
+            if (state) {
+                setTimeout(function () {
+                    that.timer
+                        .addClass('vegas-timer-running')
+                        .find('div')
+                        .css('transition-duration', +o.duration - 100 + 'ms');
+                }, 100);
+            }
+        },
 
-        if (o.muted) {
-            that.volumeBackup = video.volume;
-            Metro.getPlugin(that.volume, 'slider').val(0);
-            video.volume = 0;
-        }
+        _fadeSoundIn: function(video, duration){
+            var o = this.options;
 
-        infoBox.html("00:00 / 00:00");
-    },
+            $.animate({
+                el: video,
+                draw: {
+                    volume: +o.volume
+                },
+                dur: duration
+            })
+        },
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
+        _fadeSoundOut: function(video, duration){
+            $.animate({
+                el: video,
+                draw: {
+                    volume: 0
+                },
+                dur: duration
+            })
+        },
 
-        element.on("loadstart", function(){
-            that.preloader.show();
-        });
+        _video: function(sources){
+            var video, source;
+            var cacheKey = sources.toString();
 
-        element.on("loadedmetadata", function(){
-            that.duration = video.duration.toFixed(0);
-            that._setInfo(0, that.duration);
-            Utils.exec(o.onMetadata, [video, player], element[0]);
-        });
+            if (this.videoCache[cacheKey]) {
+                return this.videoCache[cacheKey];
+            }
 
-        element.on("canplay", function(){
-            that._setBuffer();
-            that.preloader.hide();
-        });
+            if (!Array.isArray(sources)) {
+                sources = [sources];
+            }
 
-        element.on("progress", function(){
-            that._setBuffer();
-        });
+            video = document.createElement("video");
+            video.preload = true;
 
-        element.on("timeupdate", function(){
-            var position = Math.round(video.currentTime * 100 / that.duration);
-            that._setInfo(video.currentTime, that.duration);
-            Metro.getPlugin(that.stream, 'slider').val(position);
-            Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
-        });
+            sources.forEach(function(src){
+                source = document.createElement("source");
+                source.src = src;
+                video.appendChild(source);
+            });
 
-        element.on("waiting", function(){
-            that.preloader.show();
-        });
+            this.videoCache[cacheKey] = video;
 
-        element.on("loadeddata", function(){
+            return video;
+        },
 
-        });
+        _goto: function(n){
+            var that = this, element = this.element, o = this.options;
 
-        element.on("play", function(){
-            player.find(".play").html(o.pauseIcon);
-            Utils.exec(o.onPlay, [video, player], element[0]);
-            that._onMouse();
-        });
+            if (typeof this.slides[n] === 'undefined') {
+                n = 0;
+            }
 
-        element.on("pause", function(){
-            player.find(".play").html(o.playIcon);
-            Utils.exec(o.onPause, [video, player], element[0]);
-            that._offMouse();
-        });
+            this.slide = n;
 
-        element.on("stop", function(){
-            Metro.getPlugin(that.stream, 'slider').val(0);
-            Utils.exec(o.onStop, [video, player], element[0]);
-            that._offMouse();
-        });
+            var $slide, $inner, video, img, $video;
+            var slides = element.children(".vegas-slide");
+            var obj = this.slides[n];
+            var cover = o.cover;
+            var transition, animation;
+            var transitionDuration, animationDuration;
 
-        element.on("ended", function(){
-            Metro.getPlugin(that.stream, 'slider').val(0);
-            Utils.exec(o.onEnd, [video, player], element[0]);
-            that._offMouse();
-        });
+            if (this.first) {
+                this.first = false;
+            }
 
-        element.on("volumechange", function(){
-            that._setVolume();
-        });
+            if (cover !== 'repeat') {
+                if (cover === true) {
+                    cover = 'cover';
+                } else if (cover === false) {
+                    cover = 'contain';
+                }
+            }
 
-        player.on(Metro.events.click, ".play", function(){
-            if (video.paused) {
-                that.play();
+            if (o.transition === 'random') {
+                transition = $.random(this.transitions);
             } else {
-                that.pause();
+                transition = o.transition ? o.transition : this.transitions[0];
             }
-        });
 
-        player.on(Metro.events.click, ".stop", function(){
-            that.stop();
-        });
+            if (o.animation === 'random') {
+                animation = $.random(this.animations);
+            } else {
+                animation = o.animation ? o.animation : this.animations[0];
+            }
 
-        player.on(Metro.events.click, ".mute", function(){
-            that._toggleMute();
-        });
+            if (!o.transitionDuration) {
+                transitionDuration = +o.duration;
+            } else if (o.transitionDuration === 'auto' || +o.transitionDuration > +o.duration) {
+                transitionDuration = +o.duration;
+            } else {
+                transitionDuration = +o.transitionDuration;
+            }
 
-        player.on(Metro.events.click, ".loop", function(){
-            that._toggleLoop();
-        });
+            if (!o.animationDuration) {
+                animationDuration = +o.duration;
+            } else if (o.animationDuration === 'auto' || +o.animationDuration > +o.duration) {
+                animationDuration = +o.duration;
+            } else {
+                animationDuration = +o.animationDuration;
+            }
 
-        player.on(Metro.events.click, ".full", function(){
-            that.fullscreen = !that.fullscreen;
-            player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
-            if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
-                if (that.fullscreen === true) {
-                    player.addClass("full-screen");
+            $slide = $("<div>").addClass("vegas-slide").addClass('vegas-transition-' + transition);
+
+            if (this.support.video && obj.video) {
+                video = obj.video instanceof Array ? this._video(obj.video) : this._video(obj.video.src);
+                video.loop = obj.video.loop ? obj.video.loop : o.loop;
+                video.muted = obj.video.mute ? obj.video.mute : o.mute;
+
+                if (!video.muted) {
+                    this._fadeSoundIn(video, transitionDuration);
                 } else {
-                    player.removeClass("full-screen");
+                    video.pause();
                 }
+
+                $video = $(video)
+                    .addClass('vegas-video')
+                    .css('background-color', o.color || '#000000');
+
+                if (this.support.objectFit) {
+                    $video
+                        .css('object-position', o.align + ' ' + o.valign)
+                        .css('object-fit', cover)
+                        .css('width',  '100%')
+                        .css('height', '100%');
+                } else if (cover === 'contain') {
+                    $video
+                        .css('width',  '100%')
+                        .css('height', '100%');
+                }
+
+                $slide.append($video);
             } else {
-                if (that.fullscreen === true) {
+                img = new Image();
+                $inner = $("<div>").addClass('vegas-slide-inner')
+                    .css({
+                        backgroundImage: 'url("'+obj.src+'")',
+                        backgroundColor: o.color || '#000000',
+                        backgroundPosition: o.align + ' ' + o.valign
+                    });
 
-                    Metro.requestFullScreen(video);
+                if (cover === 'repeat') {
+                    $inner.css('background-repeat', 'repeat');
+                } else {
+                    $inner.css('background-size', cover);
+                }
 
-                    if (that.fullScreenInterval === false) that.fullScreenInterval = setInterval(function(){
-                        if (Metro.inFullScreen() === false) {
-                            that.fullscreen = false;
-                            clearInterval(that.fullScreenInterval);
-                            that.fullScreenInterval = false;
-                            player.find(".full").html(o.screenMoreIcon);
+                if (animation) {
+                    $inner
+                        .addClass('vegas-animation-' + animation)
+                        .css('animation-duration',  animationDuration + 'ms');
+                }
+
+                $slide.append($inner);
+            }
+
+            if (slides.length) {
+                slides.eq(slides.length - 1).after($slide);
+            } else {
+                element.prepend($slide);
+            }
+
+            slides
+                .css('transition', 'all 0ms')
+                .each(function(){
+                    this.className  = 'vegas-slide';
+
+                    if (this.tagName === 'VIDEO') {
+                        this.className += ' vegas-video';
+                    }
+
+                    if (transition) {
+                        this.className += ' vegas-transition-' + transition;
+                        this.className += ' vegas-transition-' + transition + '-in';
+                    }
+                }
+            );
+
+            this._timer(false);
+
+            function go(){
+                that._timer(true);
+                setTimeout(function () {
+                    slides
+                        .css('transition', 'all ' + transitionDuration + 'ms')
+                        .addClass('vegas-transition-' + transition + '-out');
+
+                    slides.each(function () {
+                        var video = slides.find('video').get(0);
+
+                        if (video) {
+                            video.volume = 1;
+                            that._fadeSoundOut(video, transitionDuration);
                         }
+                    });
 
-                    }, 1000);
+                    $slide
+                        .css('transition', 'all ' + transitionDuration + 'ms')
+                        .addClass('vegas-transition-' + transition + '-in');
+
+                    for (var i = 0; i < slides.length - 1; i++) {
+                        slides.eq(i).remove();
+                    }
+
+                    Utils.exec(o.onWalk, [that.current(true)], element[0]);
+                    element.fire('walk', {
+                        slide: that.current(true)
+                    })
+
+                    that._slideShow();
+                }, 100);
+            }
+
+            if (video) {
+                if (video.readyState === 4) {
+                    video.currentTime = 0;
+                }
+
+                video.play();
+                go();
+            } else {
+                img.src = obj.src;
+
+                if (img.complete) {
+                    go();
                 } else {
-                    Metro.exitFullScreen();
+                    img.onload = go;
                 }
             }
+        },
 
-            // if (that.fullscreen === true) {
-            //     $(document).on(Metro.events.keyup + ".video-player", function(e){
-            //         if (e.keyCode === 27) {
-            //             player.find(".full").click();
-            //         }
-            //     });
-            // } else {
-            //     $(document).off(Metro.events.keyup + ".video-player");
-            // }
-        });
+        _end: function(){
+            this.ended = this.options.autoplay;
+            this._timer(false);
+            Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
+            this.element.fire('end', {
+                slide: this.current(true)
+            });
+        },
 
-        $(window).on(Metro.events.keyup, function(e){
-            if (that.fullscreen && e.keyCode === 27) {
-                player.find(".full").click();
+        play: function(){
+            if (this.paused) {
+                Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
+                this.element.fire('play', {
+                    slide: this.current(true)
+                });
+                this.paused = false;
+                this.next();
             }
-        }, {ns: this.id});
+        },
 
-        $(window).on(Metro.events.resize, function(){
-            that._setAspectRatio();
-        }, {ns: this.id});
+        pause: function(){
+            this._timer(false);
+            this.paused = true;
+            Utils.exec(this.options.onPause, [this.current(true)], this.elem);
+            this.element.fire('pause', {
+                slide: this.current(true)
+            });
+        },
 
-    },
+        toggle: function(){
+            this.paused ? this.play() : this.pause();
+        },
 
-    _onMouse: function(){
-        var o = this.options, player = this.player;
+        playing: function(){
+            return !this.paused && !this.noshow;
+        },
 
-        player.on(Metro.events.enter, function(){
+        current: function (advanced) {
+            if (advanced) {
+                return {
+                    slide: this.slide,
+                    data:  this.slides[this.slide]
+                };
+            }
+            return this.slide;
+        },
+
+        jump: function(n){
+            if (n <= 0 || n > this.slides.length || n === this.slide + 1) {
+                return this;
+            }
+
+            this.slide = n - 1;
+
+            Utils.exec(this.options.onJump, [this.current(true)], this.elem);
+            this.element.fire('jump', {
+                slide: this.current(true)
+            });
+
+            this._goto(this.slide);
+        },
+
+        next: function(){
+            var o = this.options;
+
+            this.slide++;
+
+            if (this.slide >= this.slides.length) {
+                if (!o.loop) {
+                    return this._end();
+                }
+
+                this.slide = 0;
+            }
+
+            Utils.exec(o.onNext , [this.current(true)], this.elem);
+            this.element.fire('next', {
+                slide: this.current(true)
+            });
+
+            this._goto(this.slide);
+        },
+
+        prev: function(){
+            var o = this.options;
+
+            this.slide--;
+
+            if (this.slide < 0) {
+                if (!o.loop) {
+                    this.slide++;
+                    return this._end();
+                }
+
+                this.slide = this.slides.length - 1;
+            }
+
+            Utils.exec(o.onPrev, [this.current(true)], this.elem);
+            this.element.fire('prev', {
+                slide: this.current(true)
+            });
+
+            this._goto(this.slide);
+        },
+
+        changeAttribute: function(attributeName){
+            var element = this.element, o = this.options;
+            var propName = $.camelCase(attributeName.replace("data-", ""));
+
+            if (propName === 'slides') {
+                o.slides = element.attr('data-slides');
+                this.slides = Utils.isObject(o.slides) || [];
+                this.total = this.slides.length;
+                this.noshow = this.total < 2;
+                this.paused = !this.options.autoplay || this.noshow;
+            } else {
+                if (typeof VegasDefaultConfig[propName] !== 'undefined')
+                    o[propName] = JSON.parse(element.attr(attributeName));
+            }
+        },
+
+        destroy: function(){
+            var element = this.element, o = this.options;
+
+            clearTimeout(this.timeout);
+            element.removeClass('vegas-container');
+            element.find('> .vegas-slide').remove();
+            element.find('> .vegas-wrapper').children().appendTo(element);
+            element.find('> .vegas-wrapper').remove();
+
+            if (o.timer) {
+                this.timer.remove();
+            }
+
+            if (o.overlay) {
+                this.overlay.remove();
+            }
+
+            return element[0];
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var VideoPlayerDefaultConfig = {
+        videoDeferred: 0,
+        src: null,
+
+        poster: "",
+        logo: "",
+        logoHeight: 32,
+        logoWidth: "auto",
+        logoTarget: "",
+
+        volume: .5,
+        loop: false,
+        autoplay: false,
+
+        fullScreenMode: Metro.fullScreenMode.DESKTOP,
+        aspectRatio: Metro.aspectRatio.HD,
+
+        controlsHide: 3000,
+
+        showLoop: true,
+        showPlay: true,
+        showStop: true,
+        showMute: true,
+        showFull: true,
+        showStream: true,
+        showVolume: true,
+        showInfo: true,
+
+        loopIcon: "<span class='default-icon-loop'></span>",
+        stopIcon: "<span class='default-icon-stop'></span>",
+        playIcon: "<span class='default-icon-play'></span>",
+        pauseIcon: "<span class='default-icon-pause'></span>",
+        muteIcon: "<span class='default-icon-mute'></span>",
+        volumeLowIcon: "<span class='default-icon-low-volume'></span>",
+        volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
+        volumeHighIcon: "<span class='default-icon-high-volume'></span>",
+        screenMoreIcon: "<span class='default-icon-enlarge'></span>",
+        screenLessIcon: "<span class='default-icon-shrink'></span>",
+
+        onPlay: Metro.noop,
+        onPause: Metro.noop,
+        onStop: Metro.noop,
+        onEnd: Metro.noop,
+        onMetadata: Metro.noop,
+        onTime: Metro.noop,
+        onVideoPlayerCreate: Metro.noop
+    };
+
+    Metro.videoPlayerSetup = function (options) {
+        VideoPlayerDefaultConfig = $.extend({}, VideoPlayerDefaultConfig, options);
+    };
+
+    if (typeof window["metroVideoPlayerSetup"] !== undefined) {
+        Metro.videoPlayerSetup(window["metroVideoPlayerSetup"]);
+    }
+
+    Metro.Component('video-player', {
+        init: function( options, elem ) {
+            this._super(elem, options, VideoPlayerDefaultConfig, {
+                fullscreen: false,
+                preloader: null,
+                player: null,
+                video: elem,
+                stream: null,
+                volume: null,
+                volumeBackup: 0,
+                muted: false,
+                fullScreenInterval: false,
+                isPlaying: false,
+                id: Utils.elementId('video-player')
+            });
+
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element, o = this.options;
+
+            if (Metro.fullScreenEnabled === false) {
+                o.fullScreenMode = Metro.fullScreenMode.WINDOW;
+            }
+
+            this._createPlayer();
+            this._createControls();
+            this._createEvents();
+            this._setAspectRatio();
+
+            if (o.autoplay === true) {
+                this.play();
+            }
+
+            this._fireEvent("video-player-create", {
+                element: element,
+                player: this.player
+            });
+        },
+
+        _createPlayer: function(){
+            var element = this.element, o = this.options, video = this.video;
+            var player = $("<div>").addClass("media-player video-player " + element[0].className);
+            var preloader = $("<div>").addClass("preloader").appendTo(player);
+            var logo = $("<a>").attr("href", o.logoTarget).addClass("logo").appendTo(player);
+
+            player.insertBefore(element);
+            element.appendTo(player);
+
+            $.each(['muted', 'autoplay', 'controls', 'height', 'width', 'loop', 'poster', 'preload'], function(){
+                element.removeAttr(this);
+            });
+
+            element.attr("preload", "auto");
+
+            if (o.poster !== "") {
+                element.attr("poster", o.poster);
+            }
+
+            video.volume = o.volume;
+
+            preloader.activity({
+                type: "cycle",
+                style: "color"
+            });
+
+            preloader.hide();
+
+            this.preloader = preloader;
+
+            if (o.logo !== "") {
+                $("<img>")
+                    .css({
+                        height: o.logoHeight,
+                        width: o.logoWidth
+                    })
+                    .attr("src", o.logo).appendTo(logo);
+            }
+
+            if (o.src !== null) {
+                this._setSource(o.src);
+            }
+
+            element[0].className = "";
+
+            this.player = player;
+        },
+
+        _setSource: function(src){
+            var element = this.element;
+
+            element.find("source").remove();
+            element.removeAttr("src");
+            if (Array.isArray(src)) {
+                $.each(src, function(){
+                    var item = this;
+                    if (item.src === undefined) return ;
+                    $("<source>").attr('src', item.src).attr('type', item.type !== undefined ? item.type : '').appendTo(element);
+                });
+            } else {
+                element.attr("src", src);
+            }
+        },
+
+        _createControls: function(){
+            var that = this, element = this.element, o = this.options, video = this.elem;
+
+            var controls = $("<div>").addClass("controls").addClass(o.clsControls).insertAfter(element);
+
+            var stream = $("<div>").addClass("stream").appendTo(controls);
+            var streamSlider = $("<input>").addClass("stream-slider ultra-thin cycle-marker").appendTo(stream);
+
+            var volume = $("<div>").addClass("volume").appendTo(controls);
+            var volumeSlider = $("<input>").addClass("volume-slider ultra-thin cycle-marker").appendTo(volume);
+
+            var infoBox = $("<div>").addClass("info-box").appendTo(controls);
+
+            if (o.showInfo !== true) {
+                infoBox.hide();
+            }
+
+            Metro.makePlugin(streamSlider, "slider", {
+                clsMarker: "bg-red",
+                clsHint: "bg-cyan fg-white",
+                clsComplete: "bg-cyan",
+                hint: true,
+                onStart: function(){
+                    if (!video.paused) video.pause();
+                },
+                onStop: function(val){
+                    if (video.seekable.length > 0) {
+                        video.currentTime = (that.duration * val / 100).toFixed(0);
+                    }
+                    if (video.paused && video.currentTime > 0) {
+                        video.play();
+                    }
+                }
+            });
+
+            this.stream = streamSlider;
+
+            if (o.showStream !== true) {
+                stream.hide();
+            }
+
+            Metro.makePlugin(volumeSlider, "slider", {
+                clsMarker: "bg-red",
+                clsHint: "bg-cyan fg-white",
+                hint: true,
+                value: o.volume * 100,
+                onChangeValue: function(val){
+                    video.volume = val / 100;
+                }
+            });
+
+            this.volume = volumeSlider;
+
+            if (o.showVolume !== true) {
+                volume.hide();
+            }
+
+            var loop;
+
+            if (o.showLoop === true) loop = $("<button>").attr("type", "button").addClass("button square loop").html(o.loopIcon).appendTo(controls);
+            if (o.showPlay === true) $("<button>").attr("type", "button").addClass("button square play").html(o.playIcon).appendTo(controls);
+            if (o.showStop === true) $("<button>").attr("type", "button").addClass("button square stop").html(o.stopIcon).appendTo(controls);
+            if (o.showMute === true) $("<button>").attr("type", "button").addClass("button square mute").html(o.muteIcon).appendTo(controls);
+            if (o.showFull === true) $("<button>").attr("type", "button").addClass("button square full").html(o.screenMoreIcon).appendTo(controls);
+
+            if (o.loop === true) {
+                loop.addClass("active");
+                element.attr("loop", "loop");
+            }
+
+            this._setVolume();
+
+            if (o.muted) {
+                that.volumeBackup = video.volume;
+                Metro.getPlugin(that.volume, 'slider').val(0);
+                video.volume = 0;
+            }
+
+            infoBox.html("00:00 / 00:00");
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options, video = this.elem, player = this.player;
+
+            element.on("loadstart", function(){
+                that.preloader.show();
+            });
+
+            element.on("loadedmetadata", function(){
+                that.duration = video.duration.toFixed(0);
+                that._setInfo(0, that.duration);
+                Utils.exec(o.onMetadata, [video, player], element[0]);
+            });
+
+            element.on("canplay", function(){
+                that._setBuffer();
+                that.preloader.hide();
+            });
+
+            element.on("progress", function(){
+                that._setBuffer();
+            });
+
+            element.on("timeupdate", function(){
+                var position = Math.round(video.currentTime * 100 / that.duration);
+                that._setInfo(video.currentTime, that.duration);
+                Metro.getPlugin(that.stream, 'slider').val(position);
+                Utils.exec(o.onTime, [video.currentTime, that.duration, video, player], element[0]);
+            });
+
+            element.on("waiting", function(){
+                that.preloader.show();
+            });
+
+            element.on("loadeddata", function(){
+
+            });
+
+            element.on("play", function(){
+                player.find(".play").html(o.pauseIcon);
+                Utils.exec(o.onPlay, [video, player], element[0]);
+                that._onMouse();
+            });
+
+            element.on("pause", function(){
+                player.find(".play").html(o.playIcon);
+                Utils.exec(o.onPause, [video, player], element[0]);
+                that._offMouse();
+            });
+
+            element.on("stop", function(){
+                Metro.getPlugin(that.stream, 'slider').val(0);
+                Utils.exec(o.onStop, [video, player], element[0]);
+                that._offMouse();
+            });
+
+            element.on("ended", function(){
+                Metro.getPlugin(that.stream, 'slider').val(0);
+                Utils.exec(o.onEnd, [video, player], element[0]);
+                that._offMouse();
+            });
+
+            element.on("volumechange", function(){
+                that._setVolume();
+            });
+
+            player.on(Metro.events.click, ".play", function(){
+                if (video.paused) {
+                    that.play();
+                } else {
+                    that.pause();
+                }
+            });
+
+            player.on(Metro.events.click, ".stop", function(){
+                that.stop();
+            });
+
+            player.on(Metro.events.click, ".mute", function(){
+                that._toggleMute();
+            });
+
+            player.on(Metro.events.click, ".loop", function(){
+                that._toggleLoop();
+            });
+
+            player.on(Metro.events.click, ".full", function(){
+                that.fullscreen = !that.fullscreen;
+                player.find(".full").html(that.fullscreen === true ? o.screenLessIcon : o.screenMoreIcon);
+                if (o.fullScreenMode === Metro.fullScreenMode.WINDOW) {
+                    if (that.fullscreen === true) {
+                        player.addClass("full-screen");
+                    } else {
+                        player.removeClass("full-screen");
+                    }
+                } else {
+                    if (that.fullscreen === true) {
+
+                        Metro.requestFullScreen(video);
+
+                        if (that.fullScreenInterval === false) that.fullScreenInterval = setInterval(function(){
+                            if (Metro.inFullScreen() === false) {
+                                that.fullscreen = false;
+                                clearInterval(that.fullScreenInterval);
+                                that.fullScreenInterval = false;
+                                player.find(".full").html(o.screenMoreIcon);
+                            }
+
+                        }, 1000);
+                    } else {
+                        Metro.exitFullScreen();
+                    }
+                }
+
+                // if (that.fullscreen === true) {
+                //     $(document).on(Metro.events.keyup + ".video-player", function(e){
+                //         if (e.keyCode === 27) {
+                //             player.find(".full").click();
+                //         }
+                //     });
+                // } else {
+                //     $(document).off(Metro.events.keyup + ".video-player");
+                // }
+            });
+
+            $(window).on(Metro.events.keyup, function(e){
+                if (that.fullscreen && e.keyCode === 27) {
+                    player.find(".full").click();
+                }
+            }, {ns: this.id});
+
+            $(window).on(Metro.events.resize, function(){
+                that._setAspectRatio();
+            }, {ns: this.id});
+
+        },
+
+        _onMouse: function(){
+            var o = this.options, player = this.player;
+
+            player.on(Metro.events.enter, function(){
+                var controls = player.find(".controls");
+                if (o.controlsHide > 0 && controls.style('display') === 'none') {
+                    controls.stop(true).fadeIn(500, function(){
+                        controls.css("display", "flex");
+                    });
+                }
+            });
+
+            player.on(Metro.events.leave, function(){
+                var controls = player.find(".controls");
+                if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 1) {
+                    setTimeout(function () {
+                        controls.stop(true).fadeOut(500);
+                    }, o.controlsHide);
+                }
+            });
+        },
+
+        _offMouse: function(){
+            var player = this.player, o = this.options;
             var controls = player.find(".controls");
+
+            player.off(Metro.events.enter);
+            player.off(Metro.events.leave);
+
             if (o.controlsHide > 0 && controls.style('display') === 'none') {
                 controls.stop(true).fadeIn(500, function(){
                     controls.css("display", "flex");
                 });
             }
-        });
+        },
 
-        player.on(Metro.events.leave, function(){
-            var controls = player.find(".controls");
-            if (o.controlsHide > 0 && parseInt(controls.style('opacity')) === 1) {
-                setTimeout(function () {
-                    controls.stop(true).fadeOut(500);
-                }, o.controlsHide);
+        _toggleLoop: function(){
+            var loop = this.player.find(".loop");
+            if (loop.length === 0) return ;
+            loop.toggleClass("active");
+            if (loop.hasClass("active")) {
+                this.element.attr("loop", "loop");
+            } else {
+                this.element.removeAttr("loop");
             }
-        });
-    },
+        },
 
-    _offMouse: function(){
-        var player = this.player, o = this.options;
-        var controls = player.find(".controls");
+        _toggleMute: function(){
+            this.muted = !this.muted;
+            if (this.muted === false) {
+                this.video.volume = this.volumeBackup;
+            } else {
+                this.volumeBackup = this.video.volume;
+                this.video.volume = 0;
+            }
+            Metro.getPlugin(this.volume, 'slider').val(this.muted === false ? this.volumeBackup * 100 : 0);
+        },
 
-        player.off(Metro.events.enter);
-        player.off(Metro.events.leave);
+        _setInfo: function(a, b){
+            this.player.find(".info-box").html(Utils.secondsToFormattedString(Math.round(a)) + " / " + Utils.secondsToFormattedString(Math.round(b)));
+        },
 
-        if (o.controlsHide > 0 && controls.style('display') === 'none') {
-            controls.stop(true).fadeIn(500, function(){
-                controls.css("display", "flex");
-            });
+        _setBuffer: function(){
+            var buffer = this.video.buffered.length ? Math.round(Math.floor(this.video.buffered.end(0)) / Math.floor(this.video.duration) * 100) : 0;
+            Metro.getPlugin(this.stream, 'slider').buff(buffer);
+        },
+
+        _setVolume: function(){
+            var video = this.video, player = this.player, o = this.options;
+
+            var volumeButton = player.find(".mute");
+            var volume = video.volume * 100;
+            if (volume > 1 && volume < 30) {
+                volumeButton.html(o.volumeLowIcon);
+            } else if (volume >= 30 && volume < 60) {
+                volumeButton.html(o.volumeMediumIcon);
+            } else if (volume >= 60 && volume <= 100) {
+                volumeButton.html(o.volumeHighIcon);
+            } else {
+                volumeButton.html(o.muteIcon);
+            }
+        },
+
+        _setAspectRatio: function(){
+            var player = this.player, o = this.options;
+            var width = player.outerWidth();
+            var height;
+
+            switch (o.aspectRatio) {
+                case Metro.aspectRatio.SD: height = Utils.aspectRatioH(width, "4/3"); break;
+                case Metro.aspectRatio.CINEMA: height = Utils.aspectRatioH(width, "21/9"); break;
+                default: height = Utils.aspectRatioH(width, "16/9");
+            }
+
+            player.outerHeight(height);
+        },
+
+        aspectRatio: function(ratio){
+            this.options.aspectRatio = ratio;
+            this._setAspectRatio();
+        },
+
+        play: function(src){
+            if (src !== undefined) {
+                this._setSource(src);
+            }
+
+            if (this.element.attr("src") === undefined && this.element.find("source").length === 0) {
+                return ;
+            }
+
+            this.isPlaying = true;
+
+            this.video.play();
+        },
+
+        pause: function(){
+            this.isPlaying = false;
+            this.video.pause();
+        },
+
+        resume: function(){
+            if (this.video.paused) {
+                this.play();
+            }
+        },
+
+        stop: function(){
+            this.isPlaying = false;
+            this.video.pause();
+            this.video.currentTime = 0;
+            Metro.getPlugin(this.stream, 'slider').val(0);
+            this._offMouse();
+        },
+
+        setVolume: function(v){
+            if (v === undefined) {
+                return this.video.volume;
+            }
+
+            if (v > 1) {
+                v /= 100;
+            }
+
+            this.video.volume = v;
+            Metro.getPlugin(this.volume[0], 'slider').val(v*100);
+        },
+
+        loop: function(){
+            this._toggleLoop();
+        },
+
+        mute: function(){
+            this._toggleMute();
+        },
+
+        changeAspectRatio: function(){
+            this.options.aspectRatio = this.element.attr("data-aspect-ratio");
+            this._setAspectRatio();
+        },
+
+        changeSource: function(){
+            var src = JSON.parse(this.element.attr('data-src'));
+            this.play(src);
+        },
+
+        changeVolume: function(){
+            var volume = this.element.attr("data-volume");
+            this.setVolume(volume);
+        },
+
+        changeAttribute: function(attributeName){
+            switch (attributeName) {
+                case "data-aspect-ratio": this.changeAspectRatio(); break;
+                case "data-src": this.changeSource(); break;
+                case "data-volume": this.changeVolume(); break;
+            }
+        },
+
+        destroy: function(){
+            var element = this.element, player = this.player;
+
+            Metro.getPlugin(this.stream, "slider").destroy();
+            Metro.getPlugin(this.volume, "slider").destroy();
+
+            element.off("loadstart");
+            element.off("loadedmetadata");
+            element.off("canplay");
+            element.off("progress");
+            element.off("timeupdate");
+            element.off("waiting");
+            element.off("loadeddata");
+            element.off("play");
+            element.off("pause");
+            element.off("stop");
+            element.off("ended");
+            element.off("volumechange");
+
+            player.off(Metro.events.click, ".play");
+            player.off(Metro.events.click, ".stop");
+            player.off(Metro.events.click, ".mute");
+            player.off(Metro.events.click, ".loop");
+            player.off(Metro.events.click, ".full");
+
+            $(window).off(Metro.events.keyup,{ns: this.id});
+            $(window).off(Metro.events.resize,{ns: this.id});
+
+            return element;
         }
-    },
-
-    _toggleLoop: function(){
-        var loop = this.player.find(".loop");
-        if (loop.length === 0) return ;
-        loop.toggleClass("active");
-        if (loop.hasClass("active")) {
-            this.element.attr("loop", "loop");
-        } else {
-            this.element.removeAttr("loop");
-        }
-    },
-
-    _toggleMute: function(){
-        this.muted = !this.muted;
-        if (this.muted === false) {
-            this.video.volume = this.volumeBackup;
-        } else {
-            this.volumeBackup = this.video.volume;
-            this.video.volume = 0;
-        }
-        Metro.getPlugin(this.volume, 'slider').val(this.muted === false ? this.volumeBackup * 100 : 0);
-    },
-
-    _setInfo: function(a, b){
-        this.player.find(".info-box").html(Utils.secondsToFormattedString(Math.round(a)) + " / " + Utils.secondsToFormattedString(Math.round(b)));
-    },
-
-    _setBuffer: function(){
-        var buffer = this.video.buffered.length ? Math.round(Math.floor(this.video.buffered.end(0)) / Math.floor(this.video.duration) * 100) : 0;
-        Metro.getPlugin(this.stream, 'slider').buff(buffer);
-    },
-
-    _setVolume: function(){
-        var video = this.video, player = this.player, o = this.options;
-
-        var volumeButton = player.find(".mute");
-        var volume = video.volume * 100;
-        if (volume > 1 && volume < 30) {
-            volumeButton.html(o.volumeLowIcon);
-        } else if (volume >= 30 && volume < 60) {
-            volumeButton.html(o.volumeMediumIcon);
-        } else if (volume >= 60 && volume <= 100) {
-            volumeButton.html(o.volumeHighIcon);
-        } else {
-            volumeButton.html(o.muteIcon);
-        }
-    },
-
-    _setAspectRatio: function(){
-        var player = this.player, o = this.options;
-        var width = player.outerWidth();
-        var height;
-
-        switch (o.aspectRatio) {
-            case Metro.aspectRatio.SD: height = Utils.aspectRatioH(width, "4/3"); break;
-            case Metro.aspectRatio.CINEMA: height = Utils.aspectRatioH(width, "21/9"); break;
-            default: height = Utils.aspectRatioH(width, "16/9");
-        }
-
-        player.outerHeight(height);
-    },
-
-    aspectRatio: function(ratio){
-        this.options.aspectRatio = ratio;
-        this._setAspectRatio();
-    },
-
-    play: function(src){
-        if (src !== undefined) {
-            this._setSource(src);
-        }
-
-        if (this.element.attr("src") === undefined && this.element.find("source").length === 0) {
-            return ;
-        }
-
-        this.isPlaying = true;
-
-        this.video.play();
-    },
-
-    pause: function(){
-        this.isPlaying = false;
-        this.video.pause();
-    },
-
-    resume: function(){
-        if (this.video.paused) {
-            this.play();
-        }
-    },
-
-    stop: function(){
-        this.isPlaying = false;
-        this.video.pause();
-        this.video.currentTime = 0;
-        Metro.getPlugin(this.stream, 'slider').val(0);
-        this._offMouse();
-    },
-
-    setVolume: function(v){
-        if (v === undefined) {
-            return this.video.volume;
-        }
-
-        if (v > 1) {
-            v /= 100;
-        }
-
-        this.video.volume = v;
-        Metro.getPlugin(this.volume[0], 'slider').val(v*100);
-    },
-
-    loop: function(){
-        this._toggleLoop();
-    },
-
-    mute: function(){
-        this._toggleMute();
-    },
-
-    changeAspectRatio: function(){
-        this.options.aspectRatio = this.element.attr("data-aspect-ratio");
-        this._setAspectRatio();
-    },
-
-    changeSource: function(){
-        var src = JSON.parse(this.element.attr('data-src'));
-        this.play(src);
-    },
-
-    changeVolume: function(){
-        var volume = this.element.attr("data-volume");
-        this.setVolume(volume);
-    },
-
-    changeAttribute: function(attributeName){
-        switch (attributeName) {
-            case "data-aspect-ratio": this.changeAspectRatio(); break;
-            case "data-src": this.changeSource(); break;
-            case "data-volume": this.changeVolume(); break;
-        }
-    },
-
-    destroy: function(){
-        var element = this.element, player = this.player;
-
-        Metro.getPlugin(this.stream, "slider").destroy();
-        Metro.getPlugin(this.volume, "slider").destroy();
-
-        element.off("loadstart");
-        element.off("loadedmetadata");
-        element.off("canplay");
-        element.off("progress");
-        element.off("timeupdate");
-        element.off("waiting");
-        element.off("loadeddata");
-        element.off("play");
-        element.off("pause");
-        element.off("stop");
-        element.off("ended");
-        element.off("volumechange");
-
-        player.off(Metro.events.click, ".play");
-        player.off(Metro.events.click, ".stop");
-        player.off(Metro.events.click, ".mute");
-        player.off(Metro.events.click, ".loop");
-        player.off(Metro.events.click, ".full");
-
-        $(window).off(Metro.events.keyup,{ns: this.id});
-        $(window).off(Metro.events.resize,{ns: this.id});
-
-        return element;
-    }
-});
-
+    });
+}(Metro, m4q));
 
 var WindowDefaultConfig = {
     windowDeferred: 0,
