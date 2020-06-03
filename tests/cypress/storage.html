@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Storage - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Storage test page</h1>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+        var storage = Metro.storage;
+        var session = Metro.session;
+
+        storage.setItem("metro-storage-key", "metro-storage-val");
+        if (storage.getItem("metro-storage-key") !== "metro-storage-val") {
+            throw new Error("Storage fail!");
+        }
+
+        session.setItem("metro-session-key", "metro-session-val");
+        if (session.getItem("metro-session-key") !== "metro-session-val") {
+            throw new Error("Session storage fail!");
+        }
+    })
+</script>
+</body>
+</html>
