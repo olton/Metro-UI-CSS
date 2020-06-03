@@ -50,7 +50,7 @@
             size = size || 80;
             def = Utils.encodeURI(def) || '404';
 
-            return "//www.gravatar.com/avatar/" + Utils.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
+            return "//www.gravatar.com/avatar/" + Metro.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
         },
 
         get: function(){

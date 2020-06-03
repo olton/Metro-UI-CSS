@@ -1,6 +1,6 @@
 /* global Metro, Utils */
 
-var TemplateEngine = function(html, options, conf) {
+Metro.template = function(html, options, conf) {
     var ReEx, re = '<%(.+?)%>',
         reExp = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(.*)?/g,
         code = 'with(obj) { var r=[];\n',
@@ -39,4 +39,3 @@ var TemplateEngine = function(html, options, conf) {
     return result;
 };
 
-Metro.template = TemplateEngine;

@@ -1,311 +1,311 @@
-/* global Metro, Utils, Component */
-var WizardDefaultConfig = {
-    wizardDeferred: 0,
-    start: 1,
-    finish: 0,
-    iconHelp: "<span class='default-icon-help'></span>",
-    iconPrev: "<span class='default-icon-left-arrow'></span>",
-    iconNext: "<span class='default-icon-right-arrow'></span>",
-    iconFinish: "<span class='default-icon-check'></span>",
+/* global Metro */
+(function(Metro, $) {
+    var Utils = Metro.utils;
+    var WizardDefaultConfig = {
+        wizardDeferred: 0,
+        start: 1,
+        finish: 0,
+        iconHelp: "<span class='default-icon-help'></span>",
+        iconPrev: "<span class='default-icon-left-arrow'></span>",
+        iconNext: "<span class='default-icon-right-arrow'></span>",
+        iconFinish: "<span class='default-icon-check'></span>",
 
-    buttonMode: "cycle", // default, cycle, square
-    buttonOutline: true,
-    duration: 300,
+        buttonMode: "cycle", // default, cycle, square
+        buttonOutline: true,
+        duration: 300,
 
-    clsWizard: "",
-    clsActions: "",
-    clsHelp: "",
-    clsPrev: "",
-    clsNext: "",
-    clsFinish: "",
+        clsWizard: "",
+        clsActions: "",
+        clsHelp: "",
+        clsPrev: "",
+        clsNext: "",
+        clsFinish: "",
 
-    onPage: Metro.noop,
-    onNextPage: Metro.noop,
-    onPrevPage: Metro.noop,
-    onFirstPage: Metro.noop,
-    onLastPage: Metro.noop,
-    onFinishPage: Metro.noop,
-    onHelpClick: Metro.noop,
-    onPrevClick: Metro.noop,
-    onNextClick: Metro.noop,
-    onFinishClick: Metro.noop,
-    onBeforePrev: Metro.noop_true,
-    onBeforeNext: Metro.noop_true,
-    onWizardCreate: Metro.noop
-};
+        onPage: Metro.noop,
+        onNextPage: Metro.noop,
+        onPrevPage: Metro.noop,
+        onFirstPage: Metro.noop,
+        onLastPage: Metro.noop,
+        onFinishPage: Metro.noop,
+        onHelpClick: Metro.noop,
+        onPrevClick: Metro.noop,
+        onNextClick: Metro.noop,
+        onFinishClick: Metro.noop,
+        onBeforePrev: Metro.noop_true,
+        onBeforeNext: Metro.noop_true,
+        onWizardCreate: Metro.noop
+    };
 
-Metro.wizardSetup = function (options) {
-    WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
-};
+    Metro.wizardSetup = function (options) {
+        WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
+    };
 
-if (typeof window["metroWizardSetup"] !== undefined) {
-    Metro.wizardSetup(window["metroWizardSetup"]);
-}
+    if (typeof window["metroWizardSetup"] !== undefined) {
+        Metro.wizardSetup(window["metroWizardSetup"]);
+    }
 
-Component('wizard', {
-    init: function( options, elem ) {
-        this._super(elem, options, WizardDefaultConfig);
+    Metro.Component('wizard', {
+        init: function( options, elem ) {
+            this._super(elem, options, WizardDefaultConfig, {
+                id: Utils.elementId('wizard')
+            });
 
-        this.id = Utils.elementId('wizard');
+            return this;
+        },
 
-        Metro.createExec(this);
+        _create: function(){
+            var element = this.element;
 
-        return this;
-    },
+            this._createWizard();
+            this._createEvents();
 
-    _create: function(){
-        var element = this.element, o = this.options;
+            this._fireEvent("wizard-create", {
+                element: element
+            });
+        },
 
-        Metro.checkRuntime(element, this.name);
+        _createWizard: function(){
+            var element = this.element, o = this.options;
+            var bar;
 
-        this._createWizard();
-        this._createEvents();
+            element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
 
-        Utils.exec(o.onWizardCreate, [element], element[0]);
-        element.fire("wizardcreate");
-    },
+            bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
 
-    _createWizard: function(){
-        var element = this.element, o = this.options;
-        var bar;
-
-        element.addClass("wizard").addClass(o.view).addClass(o.clsWizard);
-
-        bar = $("<div>").addClass("action-bar").addClass(o.clsActions).appendTo(element);
-
-        var buttonMode = o.buttonMode === "button" ? "" : o.buttonMode;
-        if (o.buttonOutline === true) {
-            buttonMode += " outline";
-        }
-
-        if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
-        if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
-        if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
-        if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
-
-        this.toPage(o.start);
-
-        this._setHeight();
-    },
-
-    _setHeight: function(){
-        var element = this.element;
-        var pages = element.children("section");
-        var max_height = 0;
-
-        pages.children(".page-content").css("max-height", "none");
-
-        $.each(pages, function(){
-            var h = $(this).height();
-            if (max_height < parseInt(h)) {
-                max_height = h;
+            var buttonMode = o.buttonMode === "button" ? "" : o.buttonMode;
+            if (o.buttonOutline === true) {
+                buttonMode += " outline";
             }
-        });
 
-        element.height(max_height);
-    },
+            if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
+            if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
+            if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
+            if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
 
-    _createEvents: function(){
-        var that = this, element = this.element, o = this.options;
+            this.toPage(o.start);
 
-        element.on(Metro.events.click, ".wizard-btn-help", function(){
+            this._setHeight();
+        },
+
+        _setHeight: function(){
+            var element = this.element;
             var pages = element.children("section");
-            var page = pages.get(that.current - 1);
+            var max_height = 0;
 
-            Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
-            element.fire("helpclick", {
-                index: that.current,
-                page: page
+            pages.children(".page-content").css("max-height", "none");
+
+            $.each(pages, function(){
+                var h = $(this).height();
+                if (max_height < parseInt(h)) {
+                    max_height = h;
+                }
             });
-        });
 
-        element.on(Metro.events.click, ".wizard-btn-prev", function(){
-            that.prev();
+            element.height(max_height);
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            element.on(Metro.events.click, ".wizard-btn-help", function(){
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+
+                Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
+                element.fire("helpclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".wizard-btn-prev", function(){
+                that.prev();
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+                Utils.exec(o.onPrevClick, [that.current, page], element[0]);
+                element.fire("prevclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".wizard-btn-next", function(){
+                that.next();
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+                Utils.exec(o.onNextClick, [that.current, page], element[0]);
+                element.fire("nextclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".wizard-btn-finish", function(){
+                var pages = element.children("section");
+                var page = pages.get(that.current - 1);
+                Utils.exec(o.onFinishClick, [that.current, page], element[0]);
+                element.fire("finishclick", {
+                    index: that.current,
+                    page: page
+                });
+            });
+
+            element.on(Metro.events.click, ".complete", function(){
+                var index = $(this).index() + 1;
+                that.toPage(index);
+            });
+
+            $(window).on(Metro.events.resize, function(){
+                that._setHeight();
+            }, {ns: this.id});
+        },
+
+        next: function(){
+            var that = this, element = this.element, o = this.options;
             var pages = element.children("section");
-            var page = pages.get(that.current - 1);
-            Utils.exec(o.onPrevClick, [that.current, page], element[0]);
-            element.fire("prevclick", {
+            var page = $(element.children("section").get(this.current - 1));
+
+            if (this.current + 1 > pages.length || Utils.exec(o.onBeforeNext, [this.current, page, element]) === false) {
+                return ;
+            }
+
+            this.current++;
+
+            this.toPage(this.current);
+
+            page = $(element.children("section").get(this.current - 1));
+            Utils.exec(o.onNextPage, [this.current, page[0]], element[0]);
+            element.fire("nextpage", {
                 index: that.current,
-                page: page
+                page: page[0]
             });
-        });
+        },
 
-        element.on(Metro.events.click, ".wizard-btn-next", function(){
-            that.next();
-            var pages = element.children("section");
-            var page = pages.get(that.current - 1);
-            Utils.exec(o.onNextClick, [that.current, page], element[0]);
-            element.fire("nextclick", {
+        prev: function(){
+            var that = this, element = this.element, o = this.options;
+            var page = $(element.children("section").get(this.current - 1));
+
+            if (this.current - 1 === 0 || Utils.exec(o.onBeforePrev, [this.current, page, element]) === false) {
+                return ;
+            }
+
+            this.current--;
+
+            this.toPage(this.current);
+
+            page = $(element.children("section").get(this.current - 1));
+            Utils.exec(o.onPrevPage, [this.current, page[0]], element[0]);
+            element.fire("prevpage", {
                 index: that.current,
-                page: page
+                page: page[0]
             });
-        });
+        },
 
-        element.on(Metro.events.click, ".wizard-btn-finish", function(){
-            var pages = element.children("section");
-            var page = pages.get(that.current - 1);
-            Utils.exec(o.onFinishClick, [that.current, page], element[0]);
-            element.fire("finishclick", {
+        last: function(){
+            var that = this, element = this.element, o = this.options;
+            var page;
+
+            this.toPage(element.children("section").length);
+
+            page = $(element.children("section").get(this.current - 1));
+            Utils.exec(o.onLastPage, [this.current, page[0]], element[0]);
+            element.fire("lastpage", {
                 index: that.current,
-                page: page
+                page: page[0]
             });
-        });
 
-        element.on(Metro.events.click, ".complete", function(){
-            var index = $(this).index() + 1;
-            that.toPage(index);
-        });
+        },
 
-        $(window).on(Metro.events.resize, function(){
-            that._setHeight();
-        }, {ns: this.id});
-    },
+        first: function(){
+            var that = this, element = this.element, o = this.options;
+            var page;
 
-    next: function(){
-        var that = this, element = this.element, o = this.options;
-        var pages = element.children("section");
-        var page = $(element.children("section").get(this.current - 1));
+            this.toPage(1);
 
-        if (this.current + 1 > pages.length || Utils.exec(o.onBeforeNext, [this.current, page, element]) === false) {
-            return ;
-        }
+            page = $(element.children("section").get(0));
+            Utils.exec(o.onFirstPage, [this.current, page[0]], element[0]);
+            element.fire("firstpage", {
+                index: that.current,
+                page: page[0]
+            });
+        },
 
-        this.current++;
+        toPage: function(page){
+            var element = this.element, o = this.options;
+            var target = $(element.children("section").get(page - 1));
+            var sections = element.children("section");
+            var actions = element.find(".action-bar");
 
-        this.toPage(this.current);
+            if (target.length === 0) {
+                return ;
+            }
 
-        page = $(element.children("section").get(this.current - 1));
-        Utils.exec(o.onNextPage, [this.current, page[0]], element[0]);
-        element.fire("nextpage", {
-            index: that.current,
-            page: page[0]
-        });
-    },
+            var finish = element.find(".wizard-btn-finish").addClass("disabled");
+            var next = element.find(".wizard-btn-next").addClass("disabled");
+            var prev = element.find(".wizard-btn-prev").addClass("disabled");
 
-    prev: function(){
-        var that = this, element = this.element, o = this.options;
-        var page = $(element.children("section").get(this.current - 1));
+            this.current = page;
 
-        if (this.current - 1 === 0 || Utils.exec(o.onBeforePrev, [this.current, page, element]) === false) {
-            return ;
-        }
+            element.children("section")
+                .removeClass("complete current")
+                .removeClass(o.clsCurrent)
+                .removeClass(o.clsComplete);
 
-        this.current--;
+            target.addClass("current").addClass(o.clsCurrent);
+            target.prevAll().addClass("complete").addClass(o.clsComplete);
 
-        this.toPage(this.current);
+            var border_size = element.children("section.complete").length === 0 ? 0 : parseInt(Utils.getStyleOne(element.children("section.complete")[0], "border-left-width"));
 
-        page = $(element.children("section").get(this.current - 1));
-        Utils.exec(o.onPrevPage, [this.current, page[0]], element[0]);
-        element.fire("prevpage", {
-            index: that.current,
-            page: page[0]
-        });
-    },
+            actions.animate({
+                draw: {
+                    left: element.children("section.complete").length * border_size + 41
+                },
+                dur: o.duration
+            });
 
-    last: function(){
-        var that = this, element = this.element, o = this.options;
-        var page;
+            if (
+                (this.current === sections.length) || (o.finish > 0 && this.current >= o.finish)
+            ) {
+                finish.removeClass("disabled");
+            }
 
-        this.toPage(element.children("section").length);
+            if (parseInt(o.finish) > 0 && this.current === parseInt(o.finish)) {
+                Utils.exec(o.onFinishPage, [this.current, target[0]], element[0]);
+                element.fire("finishpage", {
+                    index: this.current,
+                    page: target[0]
+                });
+            }
 
-        page = $(element.children("section").get(this.current - 1));
-        Utils.exec(o.onLastPage, [this.current, page[0]], element[0]);
-        element.fire("lastpage", {
-            index: that.current,
-            page: page[0]
-        });
+            if (this.current < sections.length) {
+                next.removeClass("disabled");
+            }
 
-    },
+            if (this.current > 1) {
+                prev.removeClass("disabled");
+            }
 
-    first: function(){
-        var that = this, element = this.element, o = this.options;
-        var page;
-
-        this.toPage(1);
-
-        page = $(element.children("section").get(0));
-        Utils.exec(o.onFirstPage, [this.current, page[0]], element[0]);
-        element.fire("firstpage", {
-            index: that.current,
-            page: page[0]
-        });
-    },
-
-    toPage: function(page){
-        var element = this.element, o = this.options;
-        var target = $(element.children("section").get(page - 1));
-        var sections = element.children("section");
-        var actions = element.find(".action-bar");
-
-        if (target.length === 0) {
-            return ;
-        }
-
-        var finish = element.find(".wizard-btn-finish").addClass("disabled");
-        var next = element.find(".wizard-btn-next").addClass("disabled");
-        var prev = element.find(".wizard-btn-prev").addClass("disabled");
-
-        this.current = page;
-
-        element.children("section")
-            .removeClass("complete current")
-            .removeClass(o.clsCurrent)
-            .removeClass(o.clsComplete);
-
-        target.addClass("current").addClass(o.clsCurrent);
-        target.prevAll().addClass("complete").addClass(o.clsComplete);
-
-        var border_size = element.children("section.complete").length === 0 ? 0 : parseInt(Utils.getStyleOne(element.children("section.complete")[0], "border-left-width"));
-
-        actions.animate({
-            draw: {
-                left: element.children("section.complete").length * border_size + 41
-            },
-            dur: o.duration
-        });
-
-        if (
-            (this.current === sections.length) || (o.finish > 0 && this.current >= o.finish)
-        ) {
-            finish.removeClass("disabled");
-        }
-
-        if (parseInt(o.finish) > 0 && this.current === parseInt(o.finish)) {
-            Utils.exec(o.onFinishPage, [this.current, target[0]], element[0]);
-            element.fire("finishpage", {
+            Utils.exec(o.onPage, [this.current, target[0]], element[0]);
+            element.fire("page", {
                 index: this.current,
                 page: target[0]
             });
+        },
+
+        changeAttribute: function(){
+        },
+
+        destroy: function(){
+            var element = this.element;
+
+            element.off(Metro.events.click, ".wizard-btn-help");
+            element.off(Metro.events.click, ".wizard-btn-prev");
+            element.off(Metro.events.click, ".wizard-btn-next");
+            element.off(Metro.events.click, ".wizard-btn-finish");
+            element.off(Metro.events.click, ".complete");
+            $(window).off(Metro.events.resize,{ns: this.id});
+
+            return element;
         }
-
-        if (this.current < sections.length) {
-            next.removeClass("disabled");
-        }
-
-        if (this.current > 1) {
-            prev.removeClass("disabled");
-        }
-
-        Utils.exec(o.onPage, [this.current, target[0]], element[0]);
-        element.fire("page", {
-            index: this.current,
-            page: target[0]
-        });
-    },
-
-    changeAttribute: function(){
-    },
-
-    destroy: function(){
-        var element = this.element;
-
-        element.off(Metro.events.click, ".wizard-btn-help");
-        element.off(Metro.events.click, ".wizard-btn-prev");
-        element.off(Metro.events.click, ".wizard-btn-next");
-        element.off(Metro.events.click, ".wizard-btn-finish");
-        element.off(Metro.events.click, ".complete");
-        $(window).off(Metro.events.resize,{ns: this.id});
-
-        return element;
-    }
-});
+    });
+}(Metro, m4q));
