@@ -802,7 +802,7 @@
             "js": ["tile"],
             "less": ["tile"],
             "dependencies": {
-                "common-js": ["animation", "colors"]
+                "common-js": ["animation"]
             }
         },
         "timepicker": {

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Treeview - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Treeview test page</h1>
+    <div class="example">
+        <ul data-role="treeview">
+            <li data-icon="<span class='mif-star-full fg-red'></span>" data-caption="Favorites">
+                <ul>
+                    <li data-icon="<span class='mif-library fg-green'></span>" data-caption="Projects"></li>
+                    <li data-icon="<span class='mif-download fg-cyan'></span>" data-caption="Downloads"></li>
+                    <li data-icon="<span class='mif-apps'></span>" data-caption="Desktop"></li>
+                </ul>
+            </li>
+            <li data-icon="<span class='mif-onedrive'></span>" data-caption="OneDrive">
+                <ul>
+                    <li data-caption="Documents"></li>
+                    <li data-caption="Projects" data-collapsed="true">
+                        <ul>
+                            <li data-caption="Web"></li>
+                            <li data-caption="Android"></li>
+                            <li data-caption="Windows"></li>
+                            <li data-caption="iOS"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>
