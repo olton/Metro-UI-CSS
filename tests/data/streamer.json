@@ -31,7 +31,7 @@
             "cls": "bg-teal fg-white",
             "events": [
                 {
-                    "icon": "images/olshanskysmall.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:00",
                     "title": "Alexandr Olshansky",
                     "subtitle": "Internet Invest Group",
@@ -46,7 +46,7 @@
                     "clsClosedIcon": "fg-red"
                 },
                 {
-                    "icon": "images/ambass.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:20",
                     "title": "Marie Yovanovitch",
                     "subtitle": "U.S. Ambassador to Ukraine",
@@ -58,7 +58,7 @@
                     "cls": "exclude-select-class"
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -67,7 +67,7 @@
                     "cls": "exclude-class"
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -75,7 +75,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -83,7 +83,7 @@
                     "size": 2
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "11:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -99,7 +99,7 @@
             "cls": "bg-orange fg-white",
             "events": [
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -107,7 +107,7 @@
                     "size": 2
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -115,7 +115,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -123,7 +123,7 @@
                     "size": 3
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "11:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -139,7 +139,7 @@
             "cls": "bg-cyan fg-white",
             "events": [
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -147,7 +147,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -163,7 +163,7 @@
             "cls": "bg-green fg-white",
             "events": [
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -171,7 +171,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -179,7 +179,7 @@
                     "size": 2
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "11:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -195,7 +195,7 @@
             "cls": "bg-pink fg-white",
             "events": [
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -203,7 +203,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -211,7 +211,7 @@
                     "size": 2
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -219,7 +219,7 @@
                     "size": 2
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "11:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -235,7 +235,7 @@
             "cls": "bg-violet fg-white",
             "events": [
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -243,7 +243,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -251,7 +251,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "09:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -259,7 +259,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -267,7 +267,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -275,7 +275,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "10:40",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -283,7 +283,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "11:00",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
@@ -291,7 +291,7 @@
                     "size": 1
                 },
                 {
-                    "icon": "images/ChernodubAr.jpg",
+                    "icon": "../images/user.png",
                     "time": "11:20",
                     "title": "Artem Chernodub",
                     "subtitle": "Clikque Technology",
