@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var ClockDefaultConfig = {
         clockDeferred: 0,
         showTime: true,

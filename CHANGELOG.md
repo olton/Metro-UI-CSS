@@ -22,6 +22,7 @@
 + [x] Material Tabs: update to work in all browsers 
 + [x] Animation: redesign module
 + [x] Animation: add effect `zoom`
++ [x] Tiles: remove prefix `animate-*` for values for attribute `data-effect`   
 
 
 ### 4.3.7

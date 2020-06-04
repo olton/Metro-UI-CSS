@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ButtonGroupDefaultConfig = {
         buttongroupDeferred: 0,

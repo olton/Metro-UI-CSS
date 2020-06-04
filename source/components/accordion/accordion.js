@@ -1,5 +1,6 @@
 /*global Metro, METRO_ANIMATION_DURATION */
 (function(Metro, $){
+    'use strict';
     var Utils = Metro.utils;
     var AccordionDefaultConfig = {
         accordionDeferred: 0,

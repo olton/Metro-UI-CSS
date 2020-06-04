@@ -1,21 +1,9 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/06/2020 15:42:19
+ * Built at 04/06/2020 18:09:11
  * Licensed under MIT
  */
-
-(function( factory ) {
-    if ( typeof define === 'function' && define.amd ) {
-        define('metro4', factory );
-    } else {
-        factory( );
-    }
-}(function( ) { 
-'use strict';
-
-window.hideM4QVersion = true;
-
 (function (global, undefined) {
 
 // Source: src/mode.js
@@ -274,7 +262,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2649,7 +2637,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4265,682 +4253,622 @@ $.noConflict = function() {
 
 
 /* Metro 4 Core */
+(function( factory ) {
+    if ( typeof define === 'function' && define.amd ) {
+        define('metro4', factory );
+    } else {
+        factory( );
+    }
+}(function( ) {
+    'use strict';
 
-var $ = m4q; // eslint-disable-line
+    var $ = m4q; // eslint-disable-line
 
-if (typeof m4q === 'undefined') {
-    throw new Error('Metro 4 requires m4q helper!');
-}
+    if (typeof m4q === 'undefined') {
+        throw new Error('Metro 4 requires m4q helper!');
+    }
 
-if (!('MutationObserver' in window)) {
-    throw new Error('Metro 4 requires MutationObserver!');
-}
+    if (!('MutationObserver' in window)) {
+        throw new Error('Metro 4 requires MutationObserver!');
+    }
 
-var meta_init = $.meta('metro4:init').attr("content");
-var meta_init_mode = $.meta('metro4:init:mode').attr("content");
-var meta_locale = $.meta('metro4:locale').attr("content");
-var meta_week_start = $.meta('metro4:week_start').attr("content");
-var meta_date_format = $.meta('metro4:date_format').attr("content");
-var meta_date_format_input = $.meta('metro4:date_format_input').attr("content");
-var meta_animation_duration = $.meta('metro4:animation_duration').attr("content");
-var meta_callback_timeout = $.meta('metro4:callback_timeout').attr("content");
-var meta_timeout = $.meta('metro4:timeout').attr("content");
-var meta_scroll_multiple = $.meta('metro4:scroll_multiple').attr("content");
-var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
-var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
+    var meta_init = $.meta('metro4:init').attr("content");
+    var meta_init_mode = $.meta('metro4:init:mode').attr("content");
+    var meta_locale = $.meta('metro4:locale').attr("content");
+    var meta_week_start = $.meta('metro4:week_start').attr("content");
+    var meta_date_format = $.meta('metro4:date_format').attr("content");
+    var meta_date_format_input = $.meta('metro4:date_format_input').attr("content");
+    var meta_animation_duration = $.meta('metro4:animation_duration').attr("content");
+    var meta_callback_timeout = $.meta('metro4:callback_timeout').attr("content");
+    var meta_timeout = $.meta('metro4:timeout').attr("content");
+    var meta_scroll_multiple = $.meta('metro4:scroll_multiple').attr("content");
+    var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
+    var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
 
-var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
-window.jquery_present = typeof jQuery !== "undefined";
-if (window.METRO_JQUERY === undefined) {
-    window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
-}
+    var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
+    window.jquery_present = typeof jQuery !== "undefined";
+    if (window.METRO_JQUERY === undefined) {
+        window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
+    }
 
-/* Added by Ken Kitay https://github.com/kens-code*/
-var meta_about = $.meta('metro4:about').attr("content");
-if (window.METRO_SHOW_ABOUT === undefined) {
-    window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
-}
-/* --- end ---*/
+    /* Added by Ken Kitay https://github.com/kens-code*/
+    var meta_about = $.meta('metro4:about').attr("content");
+    if (window.METRO_SHOW_ABOUT === undefined) {
+        window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
+    }
+    /* --- end ---*/
 
-var meta_compile = $.meta('metro4:compile').attr("content");
-if (window.METRO_SHOW_COMPILE_TIME === undefined) {
-    window.METRO_SHOW_COMPILE_TIME = meta_compile !== undefined ? JSON.parse(meta_compile) : true;
-}
+    var meta_compile = $.meta('metro4:compile').attr("content");
+    if (window.METRO_SHOW_COMPILE_TIME === undefined) {
+        window.METRO_SHOW_COMPILE_TIME = meta_compile !== undefined ? JSON.parse(meta_compile) : true;
+    }
 
-if (window.METRO_INIT === undefined) {
-    window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
-}
+    if (window.METRO_INIT === undefined) {
+        window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
+    }
 
-if (window.METRO_INIT_MODE === undefined) {
-    window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "contentloaded";
-}
+    if (window.METRO_INIT_MODE === undefined) {
+        window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "contentloaded";
+    }
 
-if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
+    if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
 
-if (window.METRO_WEEK_START === undefined) {
-    window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 0;
-}
-if (window.METRO_DATE_FORMAT === undefined) {
-    window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
-}
-if (window.METRO_DATE_FORMAT_INPUT === undefined) {
-    window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "%Y-%m-%d";
-}
-if (window.METRO_LOCALE === undefined) {
-    window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
-}
-if (window.METRO_ANIMATION_DURATION === undefined) {
-    window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 100;
-}
-if (window.METRO_CALLBACK_TIMEOUT === undefined) {
-    window.METRO_CALLBACK_TIMEOUT = meta_callback_timeout !== undefined ? parseInt(meta_callback_timeout) : 500;
-}
-if (window.METRO_TIMEOUT === undefined) {
-    window.METRO_TIMEOUT = meta_timeout !== undefined ? parseInt(meta_timeout) : 2000;
-}
-if (window.METRO_SCROLL_MULTIPLE === undefined) {
-    window.METRO_SCROLL_MULTIPLE = meta_scroll_multiple !== undefined ? parseInt(meta_scroll_multiple) : 20;
-}
-if (window.METRO_CLOAK_REMOVE === undefined) {
-    window.METRO_CLOAK_REMOVE = meta_cloak !== undefined ? (""+meta_cloak).toLowerCase() : "fade";
-}
-if (window.METRO_CLOAK_DURATION === undefined) {
-    window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 500;
-}
-if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
-if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
-if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
-if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
-if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
+    if (window.METRO_WEEK_START === undefined) {
+        window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 0;
+    }
+    if (window.METRO_DATE_FORMAT === undefined) {
+        window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
+    }
+    if (window.METRO_DATE_FORMAT_INPUT === undefined) {
+        window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "%Y-%m-%d";
+    }
+    if (window.METRO_LOCALE === undefined) {
+        window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
+    }
+    if (window.METRO_ANIMATION_DURATION === undefined) {
+        window.METRO_ANIMATION_DURATION = meta_animation_duration !== undefined ? parseInt(meta_animation_duration) : 100;
+    }
+    if (window.METRO_CALLBACK_TIMEOUT === undefined) {
+        window.METRO_CALLBACK_TIMEOUT = meta_callback_timeout !== undefined ? parseInt(meta_callback_timeout) : 500;
+    }
+    if (window.METRO_TIMEOUT === undefined) {
+        window.METRO_TIMEOUT = meta_timeout !== undefined ? parseInt(meta_timeout) : 2000;
+    }
+    if (window.METRO_SCROLL_MULTIPLE === undefined) {
+        window.METRO_SCROLL_MULTIPLE = meta_scroll_multiple !== undefined ? parseInt(meta_scroll_multiple) : 20;
+    }
+    if (window.METRO_CLOAK_REMOVE === undefined) {
+        window.METRO_CLOAK_REMOVE = meta_cloak !== undefined ? (""+meta_cloak).toLowerCase() : "fade";
+    }
+    if (window.METRO_CLOAK_DURATION === undefined) {
+        window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 500;
+    }
+    if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
+    if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
+    if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
+    if (window.METRO_HOTKEYS_BUBBLE_UP === undefined) {window.METRO_HOTKEYS_BUBBLE_UP = false;}
+    if (window.METRO_THROWS === undefined) {window.METRO_THROWS = true;}
 
-window.METRO_MEDIA = [];
+    window.METRO_MEDIA = [];
 
-var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
+    var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
-var normalizeComponentName = function(name){
-    return typeof name !== "string" ? undefined : name.replace(/-/g, "").toLowerCase();
-};
+    var normalizeComponentName = function(name){
+        return typeof name !== "string" ? undefined : name.replace(/-/g, "").toLowerCase();
+    };
 
-var Metro = {
+    var Metro = {
 
-    version: "4.3.8",
-    compileTime: "04/06/2020 15:42:21",
-    buildNumber: "746",
-    isTouchable: isTouch,
-    fullScreenEnabled: document.fullscreenEnabled,
-    sheet: null,
+        version: "4.3.8",
+        compileTime: "04/06/2020 18:09:20",
+        buildNumber: "746",
+        isTouchable: isTouch,
+        fullScreenEnabled: document.fullscreenEnabled,
+        sheet: null,
 
-    controlsPosition: {
-        INSIDE: "inside",
-        OUTSIDE: "outside"
-    },
+        controlsPosition: {
+            INSIDE: "inside",
+            OUTSIDE: "outside"
+        },
 
-    groupMode: {
-        ONE: "one",
-        MULTI: "multi"
-    },
+        groupMode: {
+            ONE: "one",
+            MULTI: "multi"
+        },
 
-    aspectRatio: {
-        HD: "hd",
-        SD: "sd",
-        CINEMA: "cinema"
-    },
+        aspectRatio: {
+            HD: "hd",
+            SD: "sd",
+            CINEMA: "cinema"
+        },
 
-    fullScreenMode: {
-        WINDOW: "window",
-        DESKTOP: "desktop"
-    },
+        fullScreenMode: {
+            WINDOW: "window",
+            DESKTOP: "desktop"
+        },
 
-    position: {
-        TOP: "top",
-        BOTTOM: "bottom",
-        LEFT: "left",
-        RIGHT: "right",
-        TOP_RIGHT: "top-right",
-        TOP_LEFT: "top-left",
-        BOTTOM_LEFT: "bottom-left",
-        BOTTOM_RIGHT: "bottom-right",
-        LEFT_BOTTOM: "left-bottom",
-        LEFT_TOP: "left-top",
-        RIGHT_TOP: "right-top",
-        RIGHT_BOTTOM: "right-bottom"
-    },
+        position: {
+            TOP: "top",
+            BOTTOM: "bottom",
+            LEFT: "left",
+            RIGHT: "right",
+            TOP_RIGHT: "top-right",
+            TOP_LEFT: "top-left",
+            BOTTOM_LEFT: "bottom-left",
+            BOTTOM_RIGHT: "bottom-right",
+            LEFT_BOTTOM: "left-bottom",
+            LEFT_TOP: "left-top",
+            RIGHT_TOP: "right-top",
+            RIGHT_BOTTOM: "right-bottom"
+        },
 
-    popoverEvents: {
-        CLICK: "click",
-        HOVER: "hover",
-        FOCUS: "focus"
-    },
+        popoverEvents: {
+            CLICK: "click",
+            HOVER: "hover",
+            FOCUS: "focus"
+        },
 
-    stepperView: {
-        SQUARE: "square",
-        CYCLE: "cycle",
-        DIAMOND: "diamond"
-    },
+        stepperView: {
+            SQUARE: "square",
+            CYCLE: "cycle",
+            DIAMOND: "diamond"
+        },
 
-    listView: {
-        LIST: "list",
-        CONTENT: "content",
-        ICONS: "icons",
-        ICONS_MEDIUM: "icons-medium",
-        ICONS_LARGE: "icons-large",
-        TILES: "tiles",
-        TABLE: "table"
-    },
+        listView: {
+            LIST: "list",
+            CONTENT: "content",
+            ICONS: "icons",
+            ICONS_MEDIUM: "icons-medium",
+            ICONS_LARGE: "icons-large",
+            TILES: "tiles",
+            TABLE: "table"
+        },
 
-    events: {
-        click: 'click',
-        start: isTouch ? 'touchstart' : 'mousedown',
-        stop: isTouch ? 'touchend' : 'mouseup',
-        move: isTouch ? 'touchmove' : 'mousemove',
-        enter: isTouch ? 'touchstart' : 'mouseenter',
+        events: {
+            click: 'click',
+            start: isTouch ? 'touchstart' : 'mousedown',
+            stop: isTouch ? 'touchend' : 'mouseup',
+            move: isTouch ? 'touchmove' : 'mousemove',
+            enter: isTouch ? 'touchstart' : 'mouseenter',
 
-        startAll: 'mousedown touchstart',
-        stopAll: 'mouseup touchend',
-        moveAll: 'mousemove touchmove',
+            startAll: 'mousedown touchstart',
+            stopAll: 'mouseup touchend',
+            moveAll: 'mousemove touchmove',
 
-        leave: 'mouseleave',
-        focus: 'focus',
-        blur: 'blur',
-        resize: 'resize',
-        keyup: 'keyup',
-        keydown: 'keydown',
-        keypress: 'keypress',
-        dblclick: 'dblclick',
-        input: 'input',
-        change: 'change',
-        cut: 'cut',
-        paste: 'paste',
-        scroll: 'scroll',
-        mousewheel: 'mousewheel',
-        inputchange: "change input propertychange cut paste copy drop",
-        dragstart: "dragstart",
-        dragend: "dragend",
-        dragenter: "dragenter",
-        dragover: "dragover",
-        dragleave: "dragleave",
-        drop: 'drop',
-        drag: 'drag'
-    },
+            leave: 'mouseleave',
+            focus: 'focus',
+            blur: 'blur',
+            resize: 'resize',
+            keyup: 'keyup',
+            keydown: 'keydown',
+            keypress: 'keypress',
+            dblclick: 'dblclick',
+            input: 'input',
+            change: 'change',
+            cut: 'cut',
+            paste: 'paste',
+            scroll: 'scroll',
+            mousewheel: 'mousewheel',
+            inputchange: "change input propertychange cut paste copy drop",
+            dragstart: "dragstart",
+            dragend: "dragend",
+            dragenter: "dragenter",
+            dragover: "dragover",
+            dragleave: "dragleave",
+            drop: 'drop',
+            drag: 'drag'
+        },
 
-    keyCode: {
-        BACKSPACE: 8,
-        TAB: 9,
-        ENTER: 13,
-        SHIFT: 16,
-        CTRL: 17,
-        ALT: 18,
-        BREAK: 19,
-        CAPS: 20,
-        ESCAPE: 27,
-        SPACE: 32,
-        PAGEUP: 33,
-        PAGEDOWN: 34,
-        END: 35,
-        HOME: 36,
-        LEFT_ARROW: 37,
-        UP_ARROW: 38,
-        RIGHT_ARROW: 39,
-        DOWN_ARROW: 40,
-        COMMA: 188
-    },
+        keyCode: {
+            BACKSPACE: 8,
+            TAB: 9,
+            ENTER: 13,
+            SHIFT: 16,
+            CTRL: 17,
+            ALT: 18,
+            BREAK: 19,
+            CAPS: 20,
+            ESCAPE: 27,
+            SPACE: 32,
+            PAGEUP: 33,
+            PAGEDOWN: 34,
+            END: 35,
+            HOME: 36,
+            LEFT_ARROW: 37,
+            UP_ARROW: 38,
+            RIGHT_ARROW: 39,
+            DOWN_ARROW: 40,
+            COMMA: 188
+        },
 
-    media_queries: {
-        FS: "(min-width: 0px)",
-        XS: "(min-width: 360px)",
-        SM: "(min-width: 576px)",
-        MD: "(min-width: 768px)",
-        LG: "(min-width: 992px)",
-        XL: "(min-width: 1200px)",
-        XXL: "(min-width: 1452px)"
-    },
+        media_queries: {
+            FS: "(min-width: 0px)",
+            XS: "(min-width: 360px)",
+            SM: "(min-width: 576px)",
+            MD: "(min-width: 768px)",
+            LG: "(min-width: 992px)",
+            XL: "(min-width: 1200px)",
+            XXL: "(min-width: 1452px)"
+        },
 
-    media_sizes: {
-        FS: 0,
-        XS: 360,
-        SM: 576,
-        LD: 640,
-        MD: 768,
-        LG: 992,
-        XL: 1200,
-        XXL: 1452
-    },
+        media_sizes: {
+            FS: 0,
+            XS: 360,
+            SM: 576,
+            LD: 640,
+            MD: 768,
+            LG: 992,
+            XL: 1200,
+            XXL: 1452
+        },
 
-    media_mode: {
-        FS: "fs",
-        XS: "xs",
-        SM: "sm",
-        MD: "md",
-        LG: "lg",
-        XL: "xl",
-        XXL: "xxl"
-    },
+        media_mode: {
+            FS: "fs",
+            XS: "xs",
+            SM: "sm",
+            MD: "md",
+            LG: "lg",
+            XL: "xl",
+            XXL: "xxl"
+        },
 
-    media_modes: ["fs","xs","sm","md","lg","xl","xxl"],
+        media_modes: ["fs","xs","sm","md","lg","xl","xxl"],
 
-    actions: {
-        REMOVE: 1,
-        HIDE: 2
-    },
+        actions: {
+            REMOVE: 1,
+            HIDE: 2
+        },
 
-    hotkeys: {},
-    locales: {},
-    utils: {},
-    colors: {},
-    dialog: null,
-    pagination: null,
-    md5: null,
-    storage: null,
-    export: null,
-    animations: null,
+        hotkeys: {},
+        locales: {},
+        utils: {},
+        colors: {},
+        dialog: null,
+        pagination: null,
+        md5: null,
+        storage: null,
+        export: null,
+        animations: null,
 
-    about: function(){
-        var content =
-            "<h3>About</h3>" +
-            "<hr>" +
-            "<div><b>Metro 4</b> - v" + Metro.version +". "+ Metro.showCompileTime() + "</div>" +
-            "<div><b>M4Q</b> - " + m4q.version + "</div>";
-        Metro.infobox.create(content)
-    },
+        about: function(){
+            var content =
+                "<h3>About</h3>" +
+                "<hr>" +
+                "<div><b>Metro 4</b> - v" + Metro.version +". "+ Metro.showCompileTime() + "</div>" +
+                "<div><b>M4Q</b> - " + m4q.version + "</div>";
+            Metro.infobox.create(content)
+        },
 
-    info: function(){
-        console.info("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
-        console.info("m4q - " + m4q.version);
-    },
+        info: function(){
+            console.info("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+            console.info("m4q - " + m4q.version);
+        },
 
-    showCompileTime: function(){
-        return "Built at: " + Metro.compileTime;
-    },
+        showCompileTime: function(){
+            return "Built at: " + Metro.compileTime;
+        },
 
-    aboutDlg: function(){
-        alert("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
-    },
+        aboutDlg: function(){
+            alert("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+        },
 
-    ver: function(){
-        return Metro.version;
-    },
+        ver: function(){
+            return Metro.version;
+        },
 
-    build: function(){
-        return Metro.build;
-    },
+        build: function(){
+            return Metro.build;
+        },
 
-    compile: function(){
-        return Metro.compileTime;
-    },
+        compile: function(){
+            return Metro.compileTime;
+        },
 
-    observe: function(){
-        var observer, observerCallback;
-        var observerConfig = {
-            childList: true,
-            attributes: true,
-            subtree: true
-        };
-        observerCallback = function(mutations){
-            mutations.map(function(mutation){
+        observe: function(){
+            var observer, observerCallback;
+            var observerConfig = {
+                childList: true,
+                attributes: true,
+                subtree: true
+            };
+            observerCallback = function(mutations){
+                mutations.map(function(mutation){
 
-                if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
-                    if (mutation.attributeName === 'data-hotkey') {
+                    if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
+                        if (mutation.attributeName === 'data-hotkey') {
 
-                        Metro.initHotkeys([mutation.target], true);
+                            Metro.initHotkeys([mutation.target], true);
 
-                    } else {
+                        } else {
 
-                        var element = $(mutation.target);
-                        var mc = element.data('metroComponent');
-                        var newValue;
+                            var element = $(mutation.target);
+                            var mc = element.data('metroComponent');
+                            var newValue;
 
-                        if (mc !== undefined) {
-                            $.each(mc, function(){
-                                var plug = Metro.getPlugin(element, this);
-                                if (plug && typeof plug.changeAttribute === "function") {
-                                    newValue = element.attr(mutation.attributeName);
-                                    plug.changeAttribute(mutation.attributeName, newValue, mutation.oldValue);
-                                }
-                            });
+                            if (mc !== undefined) {
+                                $.each(mc, function(){
+                                    var plug = Metro.getPlugin(element, this);
+                                    if (plug && typeof plug.changeAttribute === "function") {
+                                        newValue = element.attr(mutation.attributeName);
+                                        plug.changeAttribute(mutation.attributeName, newValue, mutation.oldValue);
+                                    }
+                                });
+                            }
                         }
-                    }
-                } else
+                    } else
 
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    var i, widgets = [];
-                    var $node, node, nodes = mutation.addedNodes;
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        var i, widgets = [];
+                        var $node, node, nodes = mutation.addedNodes;
 
-                    if (nodes.length) {
-                        for(i = 0; i < nodes.length; i++) {
-                            node = nodes[i];
-                            $node = $(node);
+                        if (nodes.length) {
+                            for(i = 0; i < nodes.length; i++) {
+                                node = nodes[i];
+                                $node = $(node);
 
-                            if ($node.attr("data-role") !== undefined) {
-                                widgets.push(node);
+                                if ($node.attr("data-role") !== undefined) {
+                                    widgets.push(node);
+                                }
+
+                                $.each($node.find("[data-role]"), function(){
+                                    var o = this;
+                                    if (widgets.indexOf(o) !== -1) {
+                                        return;
+                                    }
+                                    widgets.push(o);
+                                });
                             }
 
-                            $.each($node.find("[data-role]"), function(){
-                                var o = this;
-                                if (widgets.indexOf(o) !== -1) {
-                                    return;
-                                }
-                                widgets.push(o);
-                            });
+                            if (widgets.length) Metro.initWidgets(widgets, "observe");
                         }
 
-                        if (widgets.length) Metro.initWidgets(widgets, "observe");
+                    } else  {
+                        //
                     }
-
-                } else  {
-                    //console.log(mutation);
-                }
-            });
-        };
-        observer = new MutationObserver(observerCallback);
-        observer.observe($("html")[0], observerConfig);
-    },
-
-    init: function(){
-        var widgets = $("[data-role]");
-        var hotkeys = $("[data-hotkey]");
-        var html = $("html");
-        var that = this;
-
-        if (window.METRO_SHOW_ABOUT) Metro.info(true);
-
-        if (isTouch === true) {
-            html.addClass("metro-touch-device");
-        } else {
-            html.addClass("metro-no-touch-device");
-        }
-
-        Metro.sheet = this.utils.newCssSheet();
-
-        window.METRO_MEDIA = [];
-        $.each(Metro.media_queries, function(key, query){
-            if (that.utils.media(query)) {
-                window.METRO_MEDIA.push(Metro.media_mode[key]);
-            }
-        });
-
-        Metro.observe();
-
-        Metro.initHotkeys(hotkeys);
-        Metro.initWidgets(widgets, "init");
-
-        if (window.METRO_CLOAK_REMOVE !== "fade") {
-            $(".m4-cloak").removeClass("m4-cloak");
-            $(window).fire("metroinitied");
-        } else {
-            $(".m4-cloak").animate({
-                draw: {
-                    opacity: 1
-                },
-                dur: 300,
-                onDone: function(){
-                    $(".m4-cloak").removeClass("m4-cloak");
-                    $(window).fire("metro-initiated");
-                }
-            });
-        }
-    },
-
-    initHotkeys: function(hotkeys, redefine){
-        var that = this;
-        $.each(hotkeys, function(){
-            var element = $(this);
-            var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
-            var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
-
-            if (hotkey === false) {
-                return;
-            }
-
-            if (element.data('hotKeyBonded') === true && !that.utils.bool(redefine)) {
-                return;
-            }
-
-            Metro.hotkeys[hotkey] = [this, fn];
-
-            element.data('hotKeyBonded', true);
-        });
-    },
-
-    initWidgets: function(widgets) {
-        var that = this;
-
-        $.each(widgets, function () {
-            var $this = $(this);
-            var roles = $this.data('role').split(/\s*,\s*/);
-
-            roles.map(function (func) {
-
-                var $$ = that.utils.$();
-                var _func = normalizeComponentName(func);
-
-                if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
-                    try {
-                        $$.fn[_func].call($this);
-                        $this.attr("data-role-"+_func, true);
-
-                        var mc = $this.data('metroComponent');
-
-                        if (mc === undefined) {
-                            mc = [_func];
-                        } else {
-                            mc.push(_func);
-                        }
-                        $this.data('metroComponent', mc);
-                    } catch (e) {
-                        console.error("Error creating component " + func);
-                        throw e;
-                    }
-                }
-            });
-        });
-    },
-
-    plugin: function(name, object){
-        var _name = normalizeComponentName(name);
-
-        var register = function($){
-            $.fn[_name] = function( options ) {
-                return this.each(function() {
-                    $.data( this, _name, Object.create(object).init(options, this ));
                 });
             };
-        }
-
-        register(m4q);
-
-        if (window.METRO_JQUERY && window.jquery_present) {
-            register(jQuery);
-        }
-    },
-
-    destroyPlugin: function(element, name){
-        var p, mc;
-        var el = $(element);
-        var _name = normalizeComponentName(name);
-
-        p = Metro.getPlugin(el, _name);
-
-        if (typeof p === 'undefined') {
-            console.warn("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
-            return ;
-        }
-
-        if (typeof p['destroy'] !== 'function') {
-            console.warn("Component "+name+" can not be destroyed: method destroy not found.");
-            return ;
-        }
-
-        p['destroy']();
-        mc = el.data("metroComponent");
-        this.utils.arrayDelete(mc, _name);
-        el.data("metroComponent", mc);
-        $.removeData(el[0], _name);
-        el.removeAttr("data-role-"+_name);
-    },
-
-    destroyPluginAll: function(element){
-        var el = $(element);
-        var mc = el.data("metroComponent");
-
-        if (mc !== undefined && mc.length > 0) $.each(mc, function(){
-            Metro.destroyPlugin(el[0], this);
-        });
-    },
-
-    noop: function(){},
-    noop_true: function(){return true;},
-    noop_false: function(){return false;},
-
-    requestFullScreen: function(element){
-        if (element["mozRequestFullScreen"]) {
-            element["mozRequestFullScreen"]();
-        } else if (element["webkitRequestFullScreen"]) {
-            element["webkitRequestFullScreen"]();
-        } else if (element["msRequestFullscreen"]) {
-            element["msRequestFullscreen"]();
-        } else {
-            element.requestFullscreen().catch( function(err){
-                console.warn("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
-            });
-        }
-    },
-
-    exitFullScreen: function(){
-        if (document["mozCancelFullScreen"]) {
-            document["mozCancelFullScreen"]();
-        }
-        else if (document["webkitCancelFullScreen"]) {
-            document["webkitCancelFullScreen"]();
-        }
-        else if (document["msExitFullscreen"]) {
-            document["msExitFullscreen"]();
-        } else {
-            document.exitFullscreen().catch( function(err){
-                console.warn("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
-            });
-        }
-    },
-
-    inFullScreen: function(){
-        var fsm = (document.fullscreenElement || document["webkitFullscreenElement"] || document["mozFullScreenElement"] || document["msFullscreenElement"]);
-        return fsm !== undefined;
-    },
-
-    checkRuntime: function(el, name){
-        var element = $(el);
-        var _name = normalizeComponentName(name);
-        if (!element.attr("data-role-"+_name)) {
-            Metro.makeRuntime(element, _name);
-        }
-    },
-
-    makeRuntime: function(el, name){
-        var element = $(el);
-        var _name = normalizeComponentName(name);
-
-        element.attr("data-role-"+_name, true);
-        element.attr("data-role", _name);
-        var mc = element.data('metroComponent');
-
-        if (mc === undefined) {
-            mc = [_name];
-        } else {
-            mc.push(_name);
-        }
-        element.data('metroComponent', mc);
-    },
-
-    $: function(){
-        return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
-    },
-
-    get$el: function(el){
-        return Metro.$()($(el)[0]);
-    },
-
-    getPlugin: function(el, name){
-        var _name = normalizeComponentName(name);
-        var $el = Metro.get$el(el);
-        return $el.length ? $el.data(_name) : undefined;
-    },
-
-    makePlugin: function(el, name, options){
-        var _name = normalizeComponentName(name);
-        var $el = Metro.get$el(el);
-        return $el.length && typeof $el[_name] === "function" ? $el[_name](options) : undefined;
-    },
-
-    createExec: function(that){
-        var timeout = that.options[that.name.toLowerCase()+'Deferred'];
-        if (timeout > 0) {
-            setTimeout(function(){
-                that._create();
-            }, timeout)
-        } else {
-            that._create();
-        }
-    },
-
-    Component: function(){},
-};
-
-/* eslint-disable-next-line */
-var Component = function(nameName, compObj){
-    var name = normalizeComponentName(nameName);
-    var Utils = Metro.utils;
-    var component = $.extend({name: name}, {
-        _super: function(el, options, defaults, setup){
-            var self = this;
-
-            this.elem = el;
-            this.element = $(el);
-            this.options = $.extend( {}, defaults, options );
-
-            this._setOptionsFromDOM();
-            this._runtime();
-
-            if (setup && typeof setup === 'object') {
-                $.each(setup, function(key, val){
-                    self[key] = val;
-                })
-            }
-
-            this._createExec();
+            observer = new MutationObserver(observerCallback);
+            observer.observe($("html")[0], observerConfig);
         },
 
-        _setOptionsFromDOM: function(){
-            var element = this.element, o = this.options;
+        init: function(){
+            var widgets = $("[data-role]");
+            var hotkeys = $("[data-hotkey]");
+            var html = $("html");
+            var that = this;
 
-            $.each(element.data(), function(key, value){
-                if (key in o) {
-                    try {
-                        o[key] = JSON.parse(value);
-                    } catch (e) {
-                        o[key] = value;
+            if (window.METRO_SHOW_ABOUT) Metro.info(true);
+
+            if (isTouch === true) {
+                html.addClass("metro-touch-device");
+            } else {
+                html.addClass("metro-no-touch-device");
+            }
+
+            Metro.sheet = this.utils.newCssSheet();
+
+            window.METRO_MEDIA = [];
+            $.each(Metro.media_queries, function(key, query){
+                if (that.utils.media(query)) {
+                    window.METRO_MEDIA.push(Metro.media_mode[key]);
+                }
+            });
+
+            Metro.observe();
+
+            Metro.initHotkeys(hotkeys);
+            Metro.initWidgets(widgets, "init");
+
+            if (window.METRO_CLOAK_REMOVE !== "fade") {
+                $(".m4-cloak").removeClass("m4-cloak");
+                $(window).fire("metroinitied");
+            } else {
+                $(".m4-cloak").animate({
+                    draw: {
+                        opacity: 1
+                    },
+                    dur: 300,
+                    onDone: function(){
+                        $(".m4-cloak").removeClass("m4-cloak");
+                        $(window).fire("metro-initiated");
                     }
-                }
-            });
-        },
-
-        _runtime: function(){
-            var element = this.element, mc;
-            if (!element.attr('data-role-'+this.name)) {
-                element.attr("data-role-"+this.name, true);
-                element.attr("data-role", this.name);
-                mc = element.data('metroComponent');
-                if (mc === undefined) {
-                    mc = [this.name];
-                } else {
-                    mc.push(this.name);
-                }
-                element.data('metroComponent', mc);
+                });
             }
         },
 
-        _createExec: function(){
-            var that = this, timeout = this.options[this.name+'Deferred'];
+        initHotkeys: function(hotkeys, redefine){
+            var that = this;
+            $.each(hotkeys, function(){
+                var element = $(this);
+                var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
+                var fn = element.attr('data-hotkey-func') ? element.attr('data-hotkey-func') : false;
 
-            if (timeout) {
+                if (hotkey === false) {
+                    return;
+                }
+
+                if (element.data('hotKeyBonded') === true && !that.utils.bool(redefine)) {
+                    return;
+                }
+
+                Metro.hotkeys[hotkey] = [this, fn];
+
+                element.data('hotKeyBonded', true);
+            });
+        },
+
+        initWidgets: function(widgets) {
+            var that = this;
+
+            $.each(widgets, function () {
+                var $this = $(this);
+                var roles = $this.data('role').split(/\s*,\s*/);
+
+                roles.map(function (func) {
+
+                    var $$ = that.utils.$();
+                    var _func = normalizeComponentName(func);
+
+                    if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
+                        try {
+                            $$.fn[_func].call($this);
+                            $this.attr("data-role-"+_func, true);
+
+                            var mc = $this.data('metroComponent');
+
+                            if (mc === undefined) {
+                                mc = [_func];
+                            } else {
+                                mc.push(_func);
+                            }
+                            $this.data('metroComponent', mc);
+                        } catch (e) {
+                            console.error("Error creating component " + func);
+                            throw e;
+                        }
+                    }
+                });
+            });
+        },
+
+        plugin: function(name, object){
+            var _name = normalizeComponentName(name);
+
+            var register = function($){
+                $.fn[_name] = function( options ) {
+                    return this.each(function() {
+                        $.data( this, _name, Object.create(object).init(options, this ));
+                    });
+                };
+            }
+
+            register(m4q);
+
+            if (window.METRO_JQUERY && window.jquery_present) {
+                register(jQuery);
+            }
+        },
+
+        destroyPlugin: function(element, name){
+            var p, mc;
+            var el = $(element);
+            var _name = normalizeComponentName(name);
+
+            p = Metro.getPlugin(el, _name);
+
+            if (typeof p === 'undefined') {
+                console.warn("Component "+name+" can not be destroyed: the element is not a Metro 4 component.");
+                return ;
+            }
+
+            if (typeof p['destroy'] !== 'function') {
+                console.warn("Component "+name+" can not be destroyed: method destroy not found.");
+                return ;
+            }
+
+            p['destroy']();
+            mc = el.data("metroComponent");
+            this.utils.arrayDelete(mc, _name);
+            el.data("metroComponent", mc);
+            $.removeData(el[0], _name);
+            el.removeAttr("data-role-"+_name);
+        },
+
+        destroyPluginAll: function(element){
+            var el = $(element);
+            var mc = el.data("metroComponent");
+
+            if (mc !== undefined && mc.length > 0) $.each(mc, function(){
+                Metro.destroyPlugin(el[0], this);
+            });
+        },
+
+        noop: function(){},
+        noop_true: function(){return true;},
+        noop_false: function(){return false;},
+
+        requestFullScreen: function(element){
+            if (element["mozRequestFullScreen"]) {
+                element["mozRequestFullScreen"]();
+            } else if (element["webkitRequestFullScreen"]) {
+                element["webkitRequestFullScreen"]();
+            } else if (element["msRequestFullscreen"]) {
+                element["msRequestFullscreen"]();
+            } else {
+                element.requestFullscreen().catch( function(err){
+                    console.warn("Error attempting to enable full-screen mode: "+err.message+" "+err.name);
+                });
+            }
+        },
+
+        exitFullScreen: function(){
+            if (document["mozCancelFullScreen"]) {
+                document["mozCancelFullScreen"]();
+            }
+            else if (document["webkitCancelFullScreen"]) {
+                document["webkitCancelFullScreen"]();
+            }
+            else if (document["msExitFullscreen"]) {
+                document["msExitFullscreen"]();
+            } else {
+                document.exitFullscreen().catch( function(err){
+                    console.warn("Error attempting to disable full-screen mode: "+err.message+" "+err.name);
+                });
+            }
+        },
+
+        inFullScreen: function(){
+            var fsm = (document.fullscreenElement || document["webkitFullscreenElement"] || document["mozFullScreenElement"] || document["msFullscreenElement"]);
+            return fsm !== undefined;
+        },
+
+        checkRuntime: function(el, name){
+            var element = $(el);
+            var _name = normalizeComponentName(name);
+            if (!element.attr("data-role-"+_name)) {
+                Metro.makeRuntime(element, _name);
+            }
+        },
+
+        makeRuntime: function(el, name){
+            var element = $(el);
+            var _name = normalizeComponentName(name);
+
+            element.attr("data-role-"+_name, true);
+            element.attr("data-role", _name);
+            var mc = element.data('metroComponent');
+
+            if (mc === undefined) {
+                mc = [_name];
+            } else {
+                mc.push(_name);
+            }
+            element.data('metroComponent', mc);
+        },
+
+        $: function(){
+            return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
+        },
+
+        get$el: function(el){
+            return Metro.$()($(el)[0]);
+        },
+
+        getPlugin: function(el, name){
+            var _name = normalizeComponentName(name);
+            var $el = Metro.get$el(el);
+            return $el.length ? $el.data(_name) : undefined;
+        },
+
+        makePlugin: function(el, name, options){
+            var _name = normalizeComponentName(name);
+            var $el = Metro.get$el(el);
+            return $el.length && typeof $el[_name] === "function" ? $el[_name](options) : undefined;
+        },
+
+        createExec: function(that){
+            var timeout = that.options[that.name.toLowerCase()+'Deferred'];
+            if (timeout > 0) {
                 setTimeout(function(){
                     that._create();
                 }, timeout)
@@ -4949,434 +4877,530 @@ var Component = function(nameName, compObj){
             }
         },
 
-        _fireEvent: function(eventName, data, log){
-            var element = this.element, o = this.options;
-            var _data = data ? Object.values(data) : {};
-            var event = eventName.camelCase().capitalize();
-
-            Utils.exec(o["on"+event], _data, element[0]);
-            element.fire(event.toLowerCase(), _data);
-
-            if (log) {
-                console.log(log);
-                console.log("Event: " + "on"+eventName.camelCase().capitalize());
-                console.log("Data: ", _data);
-                console.log("Element: ", element[0]);
-            }
-        }
-    }, compObj);
-
-    Metro.plugin(name, component);
-
-    return component;
-}
-
-Metro.Component = Component;
-
-window.Metro = Metro;
-
-$(window).on(Metro.events.resize, function(){
-    window.METRO_MEDIA = [];
-    $.each(Metro.media_queries, function(key, query){
-        if (Metro.utils.media(query)) {
-            window.METRO_MEDIA.push(Metro.media_mode[key]);
-        }
-    });
-});
-
-
-if (typeof Array.shuffle !== "function") {
-    Array.prototype.shuffle = function () {
-        var currentIndex = this.length, temporaryValue, randomIndex;
-
-        while (0 !== currentIndex) {
-
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            temporaryValue = this[currentIndex];
-            this[currentIndex] = this[randomIndex];
-            this[randomIndex] = temporaryValue;
-        }
-
-        return this;
-    };
-}
-
-if (typeof Array.clone !== "function") {
-    Array.prototype.clone = function () {
-        return this.slice(0);
-    };
-}
-
-if (typeof Array.unique !== "function") {
-    Array.prototype.unique = function () {
-        var a = this.concat();
-        for (var i = 0; i < a.length; ++i) {
-            for (var j = i + 1; j < a.length; ++j) {
-                if (a[i] === a[j])
-                    a.splice(j--, 1);
-            }
-        }
-
-        return a;
-    };
-}
-
-if (typeof Array.from !== "function") {
-    Array.from = function(val) {
-        var i, a = [];
-
-        if (val.length === undefined && typeof val === "object") {
-            return Object.values(val);
-        }
-
-        if (val.length !== undefined) {
-            for(i = 0; i < val.length; i++) {
-                a.push(val[i]);
-            }
-            return a;
-        }
-
-        throw new Error("Value can not be converted to array");
-    };
-}
-
-if (typeof Array.contains !== "function") {
-    Array.prototype.contains = function(val, from){
-        return this.indexOf(val, from) > -1;
-    }
-}
-
-if (typeof Array.includes !== "function") {
-    Array.prototype.includes = function(val, from){
-        return this.indexOf(val, from) > -1;
-    }
-}
-
-
-Date.prototype.getWeek = function (dowOffset) {
-    var nYear, nday, newYear, day, daynum, weeknum;
-
-    dowOffset = !Utils.isValue(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
-    newYear = new Date(this.getFullYear(),0,1);
-    day = newYear.getDay() - dowOffset;
-    day = (day >= 0 ? day : day + 7);
-    daynum = Math.floor((this.getTime() - newYear.getTime() -
-        (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
-
-    if(day < 4) {
-        weeknum = Math.floor((daynum+day-1)/7) + 1;
-        if(weeknum > 52) {
-            nYear = new Date(this.getFullYear() + 1,0,1);
-            nday = nYear.getDay() - dowOffset;
-            nday = nday >= 0 ? nday : nday + 7;
-            weeknum = nday < 4 ? 1 : 53;
-        }
-    }
-    else {
-        weeknum = Math.floor((daynum+day-1)/7);
-    }
-    return weeknum;
-};
-
-Date.prototype.getYear = function(){
-    return this.getFullYear().toString().substr(-2);
-};
-
-Date.prototype.format = function(format, locale){
-
-    if (locale === undefined) {
-        locale = "en-US";
-    }
-
-    var cal = (Metro.locales !== undefined && Metro.locales[locale] !== undefined ? Metro.locales[locale] : Metro.locales["en-US"])['calendar'];
-
-    var date = this;
-    var nDay = date.getDay(),
-        nDate = date.getDate(),
-        nMonth = date.getMonth(),
-        nYear = date.getFullYear(),
-        nHour = date.getHours(),
-        aDays = cal['days'],
-        aMonths = cal['months'],
-        aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
-        isLeapYear = function() {
-            return (nYear%4===0 && nYear%100!==0) || nYear%400===0;
-        },
-        getThursday = function() {
-            var target = new Date(date);
-            target.setDate(nDate - ((nDay+6)%7) + 3);
-            return target;
-        },
-        zeroPad = function(nNum, nPad) {
-            return ('' + (Math.pow(10, nPad) + nNum)).slice(1);
-        };
-    return format.replace(/(%[a-z])/gi, function(sMatch) {
-        return {
-            '%a': aDays[nDay].slice(0,3),
-            '%A': aDays[nDay],
-            '%b': aMonths[nMonth].slice(0,3),
-            '%B': aMonths[nMonth],
-            '%c': date.toUTCString(),
-            '%C': Math.floor(nYear/100),
-            '%d': zeroPad(nDate, 2),
-            'dd': zeroPad(nDate, 2),
-            '%e': nDate,
-            '%F': date.toISOString().slice(0,10),
-            '%G': getThursday().getFullYear(),
-            '%g': ('' + getThursday().getFullYear()).slice(2),
-            '%H': zeroPad(nHour, 2),
-            // 'HH': zeroPad(nHour, 2),
-            '%I': zeroPad((nHour+11)%12 + 1, 2),
-            '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth>1 && isLeapYear()) ? 1 : 0), 3),
-            '%k': '' + nHour,
-            '%l': (nHour+11)%12 + 1,
-            '%m': zeroPad(nMonth + 1, 2),
-            // 'mm': zeroPad(nMonth + 1, 2),
-            '%M': zeroPad(date.getMinutes(), 2),
-            // 'MM': zeroPad(date.getMinutes(), 2),
-            '%p': (nHour<12) ? 'AM' : 'PM',
-            '%P': (nHour<12) ? 'am' : 'pm',
-            '%s': Math.round(date.getTime()/1000),
-            // 'ss': Math.round(date.getTime()/1000),
-            '%S': zeroPad(date.getSeconds(), 2),
-            // 'SS': zeroPad(date.getSeconds(), 2),
-            '%u': nDay || 7,
-            '%V': (function() {
-                var target = getThursday(),
-                    n1stThu = target.valueOf();
-                target.setMonth(0, 1);
-                var nJan1 = target.getDay();
-                if (nJan1!==4) target.setMonth(0, 1 + ((4-nJan1)+7)%7);
-                return zeroPad(1 + Math.ceil((n1stThu-target)/604800000), 2);
-            })(),
-            '%w': '' + nDay,
-            '%x': date.toLocaleDateString(),
-            '%X': date.toLocaleTimeString(),
-            '%y': ('' + nYear).slice(2),
-            // 'yy': ('' + nYear).slice(2),
-            '%Y': nYear,
-            // 'YYYY': nYear,
-            '%z': date.toTimeString().replace(/.+GMT([+-]\d+).+/, '$1'),
-            '%Z': date.toTimeString().replace(/.+\((.+?)\)$/, '$1')
-        }[sMatch] || sMatch;
-    });
-};
-
-Date.prototype.addHours = function(n) {
-    this.setTime(this.getTime() + (n*60*60*1000));
-    return this;
-};
-
-Date.prototype.addDays = function(n) {
-    this.setDate(this.getDate() + (n));
-    return this;
-};
-
-Date.prototype.addMonths = function(n) {
-    this.setMonth(this.getMonth() + (n));
-    return this;
-};
-
-Date.prototype.addYears = function(n) {
-    this.setFullYear(this.getFullYear() + (n));
-    return this;
-};
-
-
-Number.prototype.format = function(n, x, s, c) {
-    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
-        num = this.toFixed(Math.max(0, ~~n));
-
-    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
-};
-
-
-if ( typeof Object.create !== 'function' ) {
-    Object.create = function (o) {
-        function F() {}
-        F.prototype = o;
-        return new F();
-    };
-}
-
-if (typeof Object.values !== 'function') {
-    Object.values = function(obj) {
-        return Object.keys(obj).map(function(e) {
-            return obj[e]
-        });
-    }
-}
-
-
-String.prototype.camelCase = function(){
-    return $.camelCase(this);
-};
-
-String.prototype.dashedName = function(){
-    return $.dashedName(this);
-};
-
-String.prototype.shuffle = function(){
-    var _shuffle = function (a) {
-        var currentIndex = a.length, temporaryValue, randomIndex;
-
-        while (0 !== currentIndex) {
-
-            randomIndex = Math.floor(Math.random() * currentIndex);
-            currentIndex -= 1;
-
-            temporaryValue = a[currentIndex];
-            a[currentIndex] = a[randomIndex];
-            a[randomIndex] = temporaryValue;
-        }
-
-        return a;
+        Component: null
     };
 
-    return _shuffle(this.split("")).join("");
-}
+    /* eslint-disable-next-line */
+    Metro.Component = function(nameName, compObj){
+        var name = normalizeComponentName(nameName);
+        var Utils = Metro.utils;
+        var component = $.extend({name: name}, {
+            _super: function(el, options, defaults, setup){
+                var self = this;
 
-String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-};
+                this.elem = el;
+                this.element = $(el);
+                this.options = $.extend( {}, defaults, options );
 
-String.prototype.contains = function() {
-    return !!~String.prototype.indexOf.apply(this, arguments);
-};
+                this._setOptionsFromDOM();
+                this._runtime();
 
-if (typeof String.includes !== "function") {
-    String.prototype.includes = function(){
-        return !!~String.prototype.indexOf.apply(this, arguments);
-    }
-}
+                if (setup && typeof setup === 'object') {
+                    $.each(setup, function(key, val){
+                        self[key] = val;
+                    })
+                }
 
-String.prototype.toDate = function(format, locale) {
-    var result;
-    var normalized, normalizedFormat, formatItems, dateItems, checkValue;
-    var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
-    var year, month, day, hour, minute, second;
-    var parsedMonth;
+                this._createExec();
+            },
 
-    locale = locale || "en-US";
+            _setOptionsFromDOM: function(){
+                var element = this.element, o = this.options;
 
-    var monthNameToNumber = function(month){
-        var d, months, index, i;
-        var Locales = Metro.locales;
+                $.each(element.data(), function(key, value){
+                    if (key in o) {
+                        try {
+                            o[key] = JSON.parse(value);
+                        } catch (e) {
+                            o[key] = value;
+                        }
+                    }
+                });
+            },
 
-        if (typeof month === "undefined" || month === null) {
-            return -1;
-        }
+            _runtime: function(){
+                var element = this.element, mc;
+                if (!element.attr('data-role-'+this.name)) {
+                    element.attr("data-role-"+this.name, true);
+                    element.attr("data-role", this.name);
+                    mc = element.data('metroComponent');
+                    if (mc === undefined) {
+                        mc = [this.name];
+                    } else {
+                        mc.push(this.name);
+                    }
+                    element.data('metroComponent', mc);
+                }
+            },
 
-        month = month.substr(0, 3);
+            _createExec: function(){
+                var that = this, timeout = this.options[this.name+'Deferred'];
 
-        if (
-            locale !== undefined
-            && locale !== "en-US"
-            && Locales !== undefined
-            && Locales[locale] !== undefined
-            && Locales[locale]['calendar'] !== undefined
-            && Locales[locale]['calendar']['months'] !== undefined
-        ) {
-            months = Locales[locale]['calendar']['months'];
-            for(i = 12; i < months.length; i++) {
-                if (months[i].toLowerCase() === month.toLowerCase()) {
-                    index = i - 12;
-                    break;
+                if (timeout) {
+                    setTimeout(function(){
+                        that._create();
+                    }, timeout)
+                } else {
+                    that._create();
+                }
+            },
+
+            _fireEvent: function(eventName, data, log){
+                var element = this.element, o = this.options;
+                var _data = data ? Object.values(data) : {};
+                var event = eventName.camelCase().capitalize();
+
+                Utils.exec(o["on"+event], _data, element[0]);
+                element.fire(event.toLowerCase(), _data);
+
+                if (log) {
+                    
+                    
+                    
+                    
                 }
             }
-            month = Locales["en-US"]['calendar']['months'][index];
-        }
+        }, compObj);
 
-        d = Date.parse(month + " 1, 1972");
-        if(!isNaN(d)){
-            return new Date(d).getMonth() + 1;
+        Metro.plugin(name, component);
+
+        return component;
+    }
+
+    $(window).on(Metro.events.resize, function(){
+        window.METRO_MEDIA = [];
+        $.each(Metro.media_queries, function(key, query){
+            if (Metro.utils.media(query)) {
+                window.METRO_MEDIA.push(Metro.media_mode[key]);
+            }
+        });
+    });
+
+    window.Metro = Metro;
+
+    if (window.METRO_INIT ===  true) {
+        window.METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});
+    }
+
+    return Metro;
+
+}));
+
+
+(function() {
+    'use strict';
+
+    if (typeof Array.shuffle !== "function") {
+        Array.prototype.shuffle = function () {
+            var currentIndex = this.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = this[currentIndex];
+                this[currentIndex] = this[randomIndex];
+                this[randomIndex] = temporaryValue;
+            }
+
+            return this;
+        };
+    }
+
+    if (typeof Array.clone !== "function") {
+        Array.prototype.clone = function () {
+            return this.slice(0);
+        };
+    }
+
+    if (typeof Array.unique !== "function") {
+        Array.prototype.unique = function () {
+            var a = this.concat();
+            for (var i = 0; i < a.length; ++i) {
+                for (var j = i + 1; j < a.length; ++j) {
+                    if (a[i] === a[j])
+                        a.splice(j--, 1);
+                }
+            }
+
+            return a;
+        };
+    }
+
+    if (typeof Array.from !== "function") {
+        Array.from = function(val) {
+            var i, a = [];
+
+            if (val.length === undefined && typeof val === "object") {
+                return Object.values(val);
+            }
+
+            if (val.length !== undefined) {
+                for(i = 0; i < val.length; i++) {
+                    a.push(val[i]);
+                }
+                return a;
+            }
+
+            throw new Error("Value can not be converted to array");
+        };
+    }
+
+    if (typeof Array.contains !== "function") {
+        Array.prototype.contains = function(val, from){
+            return this.indexOf(val, from) > -1;
         }
-        return -1;
+    }
+
+    if (typeof Array.includes !== "function") {
+        Array.prototype.includes = function(val, from){
+            return this.indexOf(val, from) > -1;
+        }
+    }
+}());
+
+(function(Metro) {
+    'use strict';
+    Date.prototype.getWeek = function (dowOffset) {
+        var nYear, nday, newYear, day, daynum, weeknum;
+
+        dowOffset = !Utils.isValue(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
+        newYear = new Date(this.getFullYear(),0,1);
+        day = newYear.getDay() - dowOffset;
+        day = (day >= 0 ? day : day + 7);
+        daynum = Math.floor((this.getTime() - newYear.getTime() -
+            (this.getTimezoneOffset()-newYear.getTimezoneOffset())*60000)/86400000) + 1;
+
+        if(day < 4) {
+            weeknum = Math.floor((daynum+day-1)/7) + 1;
+            if(weeknum > 52) {
+                nYear = new Date(this.getFullYear() + 1,0,1);
+                nday = nYear.getDay() - dowOffset;
+                nday = nday >= 0 ? nday : nday + 7;
+                weeknum = nday < 4 ? 1 : 53;
+            }
+        }
+        else {
+            weeknum = Math.floor((daynum+day-1)/7);
+        }
+        return weeknum;
     };
 
-    if (format === undefined || format === null || format === "") {
-        return new Date(this);
-    }
+    Date.prototype.getYear = function(){
+        return this.getFullYear().toString().substr(-2);
+    };
 
-    /* eslint-disable-next-line */
-    normalized      = this.replace(/[\/,.:\s]/g, '-');
-    /* eslint-disable-next-line */
-    normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
-    formatItems     = normalizedFormat.split('-');
-    dateItems       = normalized.split('-');
-    checkValue      = normalized.replace(/-/g,"");
+    Date.prototype.format = function(format, locale){
 
-    if (checkValue.trim() === "") {
-        return "Invalid Date";
-    }
-
-    monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
-    dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
-    yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
-    hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
-    minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
-    secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
-
-    if (monthIndex > -1 && dateItems[monthIndex] !== "") {
-        if (isNaN(parseInt(dateItems[monthIndex]))) {
-            dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
-            if (dateItems[monthIndex] === -1) {
-                return "Invalid Date";
-            }
-        } else {
-            parsedMonth = parseInt(dateItems[monthIndex]);
-            if (parsedMonth < 1 || parsedMonth > 12) {
-                return "Invalid Date";
-            }
-        }
-    } else {
-        return "Invalid Date";
-    }
-
-    year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
-    month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
-    day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
-
-    hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
-    minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
-    second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
-
-    result = new Date(year,month-1,day,hour,minute,second);
-
-    return result;
-};
-
-String.prototype.toArray = function(delimiter, type, format){
-    var str = this;
-    var a;
-
-    type = type || "string";
-    delimiter = delimiter || ",";
-    format = format === undefined || format === null ? false : format;
-
-    a = (""+str).split(delimiter);
-
-    return a.map(function(s){
-        var result;
-
-        switch (type) {
-            case "int":
-            case "integer": result = isNaN(s) ? s.trim() : parseInt(s); break;
-            case "number":
-            case "float": result = isNaN(s) ? s : parseFloat(s); break;
-            case "date": result = !format ? new Date(s) : s.toDate(format); break;
-            default: result = s.trim();
+        if (locale === undefined) {
+            locale = "en-US";
         }
 
-        return result;
-    });
-};
+        var cal = (Metro.locales !== undefined && Metro.locales[locale] !== undefined ? Metro.locales[locale] : Metro.locales["en-US"])['calendar'];
 
+        var date = this;
+        var nDay = date.getDay(),
+            nDate = date.getDate(),
+            nMonth = date.getMonth(),
+            nYear = date.getFullYear(),
+            nHour = date.getHours(),
+            aDays = cal['days'],
+            aMonths = cal['months'],
+            aDayCount = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334],
+            isLeapYear = function() {
+                return (nYear%4===0 && nYear%100!==0) || nYear%400===0;
+            },
+            getThursday = function() {
+                var target = new Date(date);
+                target.setDate(nDate - ((nDay+6)%7) + 3);
+                return target;
+            },
+            zeroPad = function(nNum, nPad) {
+                return ('' + (Math.pow(10, nPad) + nNum)).slice(1);
+            };
+        return format.replace(/(%[a-z])/gi, function(sMatch) {
+            return {
+                '%a': aDays[nDay].slice(0,3),
+                '%A': aDays[nDay],
+                '%b': aMonths[nMonth].slice(0,3),
+                '%B': aMonths[nMonth],
+                '%c': date.toUTCString(),
+                '%C': Math.floor(nYear/100),
+                '%d': zeroPad(nDate, 2),
+                'dd': zeroPad(nDate, 2),
+                '%e': nDate,
+                '%F': date.toISOString().slice(0,10),
+                '%G': getThursday().getFullYear(),
+                '%g': ('' + getThursday().getFullYear()).slice(2),
+                '%H': zeroPad(nHour, 2),
+                // 'HH': zeroPad(nHour, 2),
+                '%I': zeroPad((nHour+11)%12 + 1, 2),
+                '%j': zeroPad(aDayCount[nMonth] + nDate + ((nMonth>1 && isLeapYear()) ? 1 : 0), 3),
+                '%k': '' + nHour,
+                '%l': (nHour+11)%12 + 1,
+                '%m': zeroPad(nMonth + 1, 2),
+                // 'mm': zeroPad(nMonth + 1, 2),
+                '%M': zeroPad(date.getMinutes(), 2),
+                // 'MM': zeroPad(date.getMinutes(), 2),
+                '%p': (nHour<12) ? 'AM' : 'PM',
+                '%P': (nHour<12) ? 'am' : 'pm',
+                '%s': Math.round(date.getTime()/1000),
+                // 'ss': Math.round(date.getTime()/1000),
+                '%S': zeroPad(date.getSeconds(), 2),
+                // 'SS': zeroPad(date.getSeconds(), 2),
+                '%u': nDay || 7,
+                '%V': (function() {
+                    var target = getThursday(),
+                        n1stThu = target.valueOf();
+                    target.setMonth(0, 1);
+                    var nJan1 = target.getDay();
+                    if (nJan1!==4) target.setMonth(0, 1 + ((4-nJan1)+7)%7);
+                    return zeroPad(1 + Math.ceil((n1stThu-target)/604800000), 2);
+                })(),
+                '%w': '' + nDay,
+                '%x': date.toLocaleDateString(),
+                '%X': date.toLocaleTimeString(),
+                '%y': ('' + nYear).slice(2),
+                // 'yy': ('' + nYear).slice(2),
+                '%Y': nYear,
+                // 'YYYY': nYear,
+                '%z': date.toTimeString().replace(/.+GMT([+-]\d+).+/, '$1'),
+                '%Z': date.toTimeString().replace(/.+\((.+?)\)$/, '$1')
+            }[sMatch] || sMatch;
+        });
+    };
+
+    Date.prototype.addHours = function(n) {
+        this.setTime(this.getTime() + (n*60*60*1000));
+        return this;
+    };
+
+    Date.prototype.addDays = function(n) {
+        this.setDate(this.getDate() + (n));
+        return this;
+    };
+
+    Date.prototype.addMonths = function(n) {
+        this.setMonth(this.getMonth() + (n));
+        return this;
+    };
+
+    Date.prototype.addYears = function(n) {
+        this.setFullYear(this.getFullYear() + (n));
+        return this;
+    };
+}(Metro));
+
+(function() {
+    'use strict';
+
+    /**
+     * Number.prototype.format(n, x, s, c)
+     *
+     * @param  n: length of decimal
+     * @param  x: length of whole part
+     * @param  s: sections delimiter
+     * @param  c: decimal delimiter
+     */
+    Number.prototype.format = function(n, x, s, c) {
+        var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+            num = this.toFixed(Math.max(0, ~~n));
+
+        return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+    };
+}());
+
+(function() {
+    'use strict';
+
+    if ( typeof Object.create !== 'function' ) {
+        Object.create = function (o) {
+            function F() {}
+            F.prototype = o;
+            return new F();
+        };
+    }
+
+    if (typeof Object.values !== 'function') {
+        Object.values = function(obj) {
+            return Object.keys(obj).map(function(e) {
+                return obj[e]
+            });
+        }
+    }
+}());
 
 (function(Metro, $) {
+    'use strict';
 
+    String.prototype.camelCase = function(){
+        return $.camelCase(this);
+    };
+
+    String.prototype.dashedName = function(){
+        return $.dashedName(this);
+    };
+
+    String.prototype.shuffle = function(){
+        var _shuffle = function (a) {
+            var currentIndex = a.length, temporaryValue, randomIndex;
+
+            while (0 !== currentIndex) {
+
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = a[currentIndex];
+                a[currentIndex] = a[randomIndex];
+                a[randomIndex] = temporaryValue;
+            }
+
+            return a;
+        };
+
+        return _shuffle(this.split("")).join("");
+    }
+
+    String.prototype.capitalize = function() {
+        return this.charAt(0).toUpperCase() + this.slice(1);
+    };
+
+    String.prototype.contains = function() {
+        return !!~String.prototype.indexOf.apply(this, arguments);
+    };
+
+    if (typeof String.includes !== "function") {
+        String.prototype.includes = function(){
+            return !!~String.prototype.indexOf.apply(this, arguments);
+        }
+    }
+
+    String.prototype.toDate = function(format, locale) {
+        var result;
+        var normalized, normalizedFormat, formatItems, dateItems, checkValue;
+        var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
+        var year, month, day, hour, minute, second;
+        var parsedMonth;
+
+        locale = locale || "en-US";
+
+        var monthNameToNumber = function(month){
+            var d, months, index, i;
+            var Locales = Metro.locales;
+
+            if (typeof month === "undefined" || month === null) {
+                return -1;
+            }
+
+            month = month.substr(0, 3);
+
+            if (
+                locale !== undefined
+                && locale !== "en-US"
+                && Locales !== undefined
+                && Locales[locale] !== undefined
+                && Locales[locale]['calendar'] !== undefined
+                && Locales[locale]['calendar']['months'] !== undefined
+            ) {
+                months = Locales[locale]['calendar']['months'];
+                for(i = 12; i < months.length; i++) {
+                    if (months[i].toLowerCase() === month.toLowerCase()) {
+                        index = i - 12;
+                        break;
+                    }
+                }
+                month = Locales["en-US"]['calendar']['months'][index];
+            }
+
+            d = Date.parse(month + " 1, 1972");
+            if(!isNaN(d)){
+                return new Date(d).getMonth() + 1;
+            }
+            return -1;
+        };
+
+        if (format === undefined || format === null || format === "") {
+            return new Date(this);
+        }
+
+        /* eslint-disable-next-line */
+        normalized      = this.replace(/[\/,.:\s]/g, '-');
+        /* eslint-disable-next-line */
+        normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
+        formatItems     = normalizedFormat.split('-');
+        dateItems       = normalized.split('-');
+        checkValue      = normalized.replace(/-/g,"");
+
+        if (checkValue.trim() === "") {
+            return "Invalid Date";
+        }
+
+        monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
+        dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
+        yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
+        hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
+        minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
+        secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
+
+        if (monthIndex > -1 && dateItems[monthIndex] !== "") {
+            if (isNaN(parseInt(dateItems[monthIndex]))) {
+                dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
+                if (dateItems[monthIndex] === -1) {
+                    return "Invalid Date";
+                }
+            } else {
+                parsedMonth = parseInt(dateItems[monthIndex]);
+                if (parsedMonth < 1 || parsedMonth > 12) {
+                    return "Invalid Date";
+                }
+            }
+        } else {
+            return "Invalid Date";
+        }
+
+        year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
+        month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
+        day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
+
+        hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
+        minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
+        second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
+
+        result = new Date(year,month-1,day,hour,minute,second);
+
+        return result;
+    };
+
+    String.prototype.toArray = function(delimiter, type, format){
+        var str = this;
+        var a;
+
+        type = type || "string";
+        delimiter = delimiter || ",";
+        format = format === undefined || format === null ? false : format;
+
+        a = (""+str).split(delimiter);
+
+        return a.map(function(s){
+            var result;
+
+            switch (type) {
+                case "int":
+                case "integer": result = isNaN(s) ? s.trim() : parseInt(s); break;
+                case "number":
+                case "float": result = isNaN(s) ? s : parseFloat(s); break;
+                case "date": result = !format ? new Date(s) : s.toDate(format); break;
+                default: result = s.trim();
+            }
+
+            return result;
+        });
+    };
+}(Metro, m4q));
+
+(function(Metro, $) {
+    'use strict';
     var AnimationDefaultConfig = {
         duration: METRO_ANIMATION_DURATION,
         ease: "linear"
@@ -5722,6 +5746,7 @@ String.prototype.toArray = function(delimiter, type, format){
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Types = {
         HEX: "hex",
         HEXA: "hexa",
@@ -7043,7 +7068,8 @@ String.prototype.toArray = function(delimiter, type, format){
 }(Metro, m4q));
 
 (function(Metro, $) {
-    var Export = {
+   'use strict';
+   var Export = {
 
         init: function(){
             return this;
@@ -7154,207 +7180,211 @@ String.prototype.toArray = function(delimiter, type, format){
     Metro.export = Export.init();
 }(Metro, m4q));
 
-Metro.md5 = function (string) {
-    function RotateLeft(lValue, iShiftBits) {
-        return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
-    }
-
-    function AddUnsigned(lX,lY) {
-        var lX4,lY4,lX8,lY8,lResult;
-        lX8 = (lX & 0x80000000);
-        lY8 = (lY & 0x80000000);
-        lX4 = (lX & 0x40000000);
-        lY4 = (lY & 0x40000000);
-        lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
-        if (lX4 & lY4) {
-            return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+(function(Metro) {
+    'use strict';
+    Metro.md5 = function (string) {
+        function RotateLeft(lValue, iShiftBits) {
+            return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
         }
-        if (lX4 | lY4) {
-            if (lResult & 0x40000000) {
-                return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
-            } else {
-                return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
+
+        function AddUnsigned(lX,lY) {
+            var lX4,lY4,lX8,lY8,lResult;
+            lX8 = (lX & 0x80000000);
+            lY8 = (lY & 0x80000000);
+            lX4 = (lX & 0x40000000);
+            lY4 = (lY & 0x40000000);
+            lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
+            if (lX4 & lY4) {
+                return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
             }
-        } else {
-            return (lResult ^ lX8 ^ lY8);
+            if (lX4 | lY4) {
+                if (lResult & 0x40000000) {
+                    return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
+                } else {
+                    return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
+                }
+            } else {
+                return (lResult ^ lX8 ^ lY8);
+            }
         }
-    }
 
-    function F(x,y,z) { return (x & y) | ((~x) & z); }
-    function G(x,y,z) { return (x & z) | (y & (~z)); }
-    function H(x,y,z) { return (x ^ y ^ z); }
-    function I(x,y,z) { return (y ^ (x | (~z))); }
+        function F(x,y,z) { return (x & y) | ((~x) & z); }
+        function G(x,y,z) { return (x & z) | (y & (~z)); }
+        function H(x,y,z) { return (x ^ y ^ z); }
+        function I(x,y,z) { return (y ^ (x | (~z))); }
 
-    function FF(a,b,c,d,x,s,ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    }
+        function FF(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
 
-    function GG(a,b,c,d,x,s,ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    }
+        function GG(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
 
-    function HH(a,b,c,d,x,s,ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    }
+        function HH(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
 
-    function II(a,b,c,d,x,s,ac) {
-        a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
-        return AddUnsigned(RotateLeft(a, s), b);
-    }
+        function II(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
 
-    function ConvertToWordArray(string) {
-        var lWordCount;
-        var lMessageLength = string.length;
-        var lNumberOfWords_temp1=lMessageLength + 8;
-        var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
-        var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
-        var lWordArray=Array(lNumberOfWords-1);
-        var lBytePosition = 0;
-        var lByteCount = 0;
-        while ( lByteCount < lMessageLength ) {
+        function ConvertToWordArray(string) {
+            var lWordCount;
+            var lMessageLength = string.length;
+            var lNumberOfWords_temp1=lMessageLength + 8;
+            var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
+            var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
+            var lWordArray=Array(lNumberOfWords-1);
+            var lBytePosition = 0;
+            var lByteCount = 0;
+            while ( lByteCount < lMessageLength ) {
+                lWordCount = (lByteCount-(lByteCount % 4))/4;
+                lBytePosition = (lByteCount % 4)*8;
+                lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount)<<lBytePosition));
+                lByteCount++;
+            }
             lWordCount = (lByteCount-(lByteCount % 4))/4;
             lBytePosition = (lByteCount % 4)*8;
-            lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount)<<lBytePosition));
-            lByteCount++;
-        }
-        lWordCount = (lByteCount-(lByteCount % 4))/4;
-        lBytePosition = (lByteCount % 4)*8;
-        lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
-        lWordArray[lNumberOfWords-2] = lMessageLength<<3;
-        lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
-        return lWordArray;
-    }
-
-    function WordToHex(lValue) {
-        var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
-        for (lCount = 0;lCount<=3;lCount++) {
-            lByte = (lValue>>>(lCount*8)) & 255;
-            WordToHexValue_temp = "0" + lByte.toString(16);
-            WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
-        }
-        return WordToHexValue;
-    }
-
-    function Utf8Encode(string) {
-        string = string.replace(/\r\n/g,"\n");
-        var utftext = "";
-
-        for (var n = 0; n < string.length; n++) {
-
-            var c = string.charCodeAt(n);
-
-            if (c < 128) {
-                utftext += String.fromCharCode(c);
-            }
-            else if((c > 127) && (c < 2048)) {
-                utftext += String.fromCharCode((c >> 6) | 192);
-                utftext += String.fromCharCode((c & 63) | 128);
-            }
-            else {
-                utftext += String.fromCharCode((c >> 12) | 224);
-                utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-                utftext += String.fromCharCode((c & 63) | 128);
-            }
-
+            lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
+            lWordArray[lNumberOfWords-2] = lMessageLength<<3;
+            lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
+            return lWordArray;
         }
 
-        return utftext;
-    }
+        function WordToHex(lValue) {
+            var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
+            for (lCount = 0;lCount<=3;lCount++) {
+                lByte = (lValue>>>(lCount*8)) & 255;
+                WordToHexValue_temp = "0" + lByte.toString(16);
+                WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
+            }
+            return WordToHexValue;
+        }
 
-    var x=Array();
-    var k,AA,BB,CC,DD,a,b,c,d;
-    var S11=7, S12=12, S13=17, S14=22;
-    var S21=5, S22=9 , S23=14, S24=20;
-    var S31=4, S32=11, S33=16, S34=23;
-    var S41=6, S42=10, S43=15, S44=21;
+        function Utf8Encode(string) {
+            string = string.replace(/\r\n/g,"\n");
+            var utftext = "";
 
-    string = Utf8Encode(string);
+            for (var n = 0; n < string.length; n++) {
 
-    x = ConvertToWordArray(string);
+                var c = string.charCodeAt(n);
 
-    a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
+                if (c < 128) {
+                    utftext += String.fromCharCode(c);
+                }
+                else if((c > 127) && (c < 2048)) {
+                    utftext += String.fromCharCode((c >> 6) | 192);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
+                else {
+                    utftext += String.fromCharCode((c >> 12) | 224);
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
 
-    for (k=0;k<x.length;k+=16) {
-        AA=a; BB=b; CC=c; DD=d;
-        a=FF(a,b,c,d,x[k], S11,0xD76AA478);
-        d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
-        c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
-        b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
-        a=FF(a,b,c,d,x[k+4], S11,0xF57C0FAF);
-        d=FF(d,a,b,c,x[k+5], S12,0x4787C62A);
-        c=FF(c,d,a,b,x[k+6], S13,0xA8304613);
-        b=FF(b,c,d,a,x[k+7], S14,0xFD469501);
-        a=FF(a,b,c,d,x[k+8], S11,0x698098D8);
-        d=FF(d,a,b,c,x[k+9], S12,0x8B44F7AF);
-        c=FF(c,d,a,b,x[k+10],S13,0xFFFF5BB1);
-        b=FF(b,c,d,a,x[k+11],S14,0x895CD7BE);
-        a=FF(a,b,c,d,x[k+12],S11,0x6B901122);
-        d=FF(d,a,b,c,x[k+13],S12,0xFD987193);
-        c=FF(c,d,a,b,x[k+14],S13,0xA679438E);
-        b=FF(b,c,d,a,x[k+15],S14,0x49B40821);
-        a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
-        d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
-        c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
-        b=GG(b,c,d,a,x[k], S24,0xE9B6C7AA);
-        a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
-        d=GG(d,a,b,c,x[k+10],S22,0x2441453);
-        c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
-        b=GG(b,c,d,a,x[k+4], S24,0xE7D3FBC8);
-        a=GG(a,b,c,d,x[k+9], S21,0x21E1CDE6);
-        d=GG(d,a,b,c,x[k+14],S22,0xC33707D6);
-        c=GG(c,d,a,b,x[k+3], S23,0xF4D50D87);
-        b=GG(b,c,d,a,x[k+8], S24,0x455A14ED);
-        a=GG(a,b,c,d,x[k+13],S21,0xA9E3E905);
-        d=GG(d,a,b,c,x[k+2], S22,0xFCEFA3F8);
-        c=GG(c,d,a,b,x[k+7], S23,0x676F02D9);
-        b=GG(b,c,d,a,x[k+12],S24,0x8D2A4C8A);
-        a=HH(a,b,c,d,x[k+5], S31,0xFFFA3942);
-        d=HH(d,a,b,c,x[k+8], S32,0x8771F681);
-        c=HH(c,d,a,b,x[k+11],S33,0x6D9D6122);
-        b=HH(b,c,d,a,x[k+14],S34,0xFDE5380C);
-        a=HH(a,b,c,d,x[k+1], S31,0xA4BEEA44);
-        d=HH(d,a,b,c,x[k+4], S32,0x4BDECFA9);
-        c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
-        b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
-        a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
-        d=HH(d,a,b,c,x[k], S32,0xEAA127FA);
-        c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
-        b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
-        a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
-        d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
-        c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
-        b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
-        a=II(a,b,c,d,x[k], S41,0xF4292244);
-        d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
-        c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
-        b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
-        a=II(a,b,c,d,x[k+12],S41,0x655B59C3);
-        d=II(d,a,b,c,x[k+3], S42,0x8F0CCC92);
-        c=II(c,d,a,b,x[k+10],S43,0xFFEFF47D);
-        b=II(b,c,d,a,x[k+1], S44,0x85845DD1);
-        a=II(a,b,c,d,x[k+8], S41,0x6FA87E4F);
-        d=II(d,a,b,c,x[k+15],S42,0xFE2CE6E0);
-        c=II(c,d,a,b,x[k+6], S43,0xA3014314);
-        b=II(b,c,d,a,x[k+13],S44,0x4E0811A1);
-        a=II(a,b,c,d,x[k+4], S41,0xF7537E82);
-        d=II(d,a,b,c,x[k+11],S42,0xBD3AF235);
-        c=II(c,d,a,b,x[k+2], S43,0x2AD7D2BB);
-        b=II(b,c,d,a,x[k+9], S44,0xEB86D391);
-        a=AddUnsigned(a,AA);
-        b=AddUnsigned(b,BB);
-        c=AddUnsigned(c,CC);
-        d=AddUnsigned(d,DD);
-    }
+            }
 
-    var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
+            return utftext;
+        }
 
-    return temp.toLowerCase();
-};
+        var x=Array();
+        var k,AA,BB,CC,DD,a,b,c,d;
+        var S11=7, S12=12, S13=17, S14=22;
+        var S21=5, S22=9 , S23=14, S24=20;
+        var S31=4, S32=11, S33=16, S34=23;
+        var S41=6, S42=10, S43=15, S44=21;
+
+        string = Utf8Encode(string);
+
+        x = ConvertToWordArray(string);
+
+        a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
+
+        for (k=0;k<x.length;k+=16) {
+            AA=a; BB=b; CC=c; DD=d;
+            a=FF(a,b,c,d,x[k], S11,0xD76AA478);
+            d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
+            c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
+            b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
+            a=FF(a,b,c,d,x[k+4], S11,0xF57C0FAF);
+            d=FF(d,a,b,c,x[k+5], S12,0x4787C62A);
+            c=FF(c,d,a,b,x[k+6], S13,0xA8304613);
+            b=FF(b,c,d,a,x[k+7], S14,0xFD469501);
+            a=FF(a,b,c,d,x[k+8], S11,0x698098D8);
+            d=FF(d,a,b,c,x[k+9], S12,0x8B44F7AF);
+            c=FF(c,d,a,b,x[k+10],S13,0xFFFF5BB1);
+            b=FF(b,c,d,a,x[k+11],S14,0x895CD7BE);
+            a=FF(a,b,c,d,x[k+12],S11,0x6B901122);
+            d=FF(d,a,b,c,x[k+13],S12,0xFD987193);
+            c=FF(c,d,a,b,x[k+14],S13,0xA679438E);
+            b=FF(b,c,d,a,x[k+15],S14,0x49B40821);
+            a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
+            d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
+            c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
+            b=GG(b,c,d,a,x[k], S24,0xE9B6C7AA);
+            a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
+            d=GG(d,a,b,c,x[k+10],S22,0x2441453);
+            c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
+            b=GG(b,c,d,a,x[k+4], S24,0xE7D3FBC8);
+            a=GG(a,b,c,d,x[k+9], S21,0x21E1CDE6);
+            d=GG(d,a,b,c,x[k+14],S22,0xC33707D6);
+            c=GG(c,d,a,b,x[k+3], S23,0xF4D50D87);
+            b=GG(b,c,d,a,x[k+8], S24,0x455A14ED);
+            a=GG(a,b,c,d,x[k+13],S21,0xA9E3E905);
+            d=GG(d,a,b,c,x[k+2], S22,0xFCEFA3F8);
+            c=GG(c,d,a,b,x[k+7], S23,0x676F02D9);
+            b=GG(b,c,d,a,x[k+12],S24,0x8D2A4C8A);
+            a=HH(a,b,c,d,x[k+5], S31,0xFFFA3942);
+            d=HH(d,a,b,c,x[k+8], S32,0x8771F681);
+            c=HH(c,d,a,b,x[k+11],S33,0x6D9D6122);
+            b=HH(b,c,d,a,x[k+14],S34,0xFDE5380C);
+            a=HH(a,b,c,d,x[k+1], S31,0xA4BEEA44);
+            d=HH(d,a,b,c,x[k+4], S32,0x4BDECFA9);
+            c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
+            b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
+            a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
+            d=HH(d,a,b,c,x[k], S32,0xEAA127FA);
+            c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
+            b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
+            a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
+            d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
+            c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
+            b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
+            a=II(a,b,c,d,x[k], S41,0xF4292244);
+            d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
+            c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
+            b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
+            a=II(a,b,c,d,x[k+12],S41,0x655B59C3);
+            d=II(d,a,b,c,x[k+3], S42,0x8F0CCC92);
+            c=II(c,d,a,b,x[k+10],S43,0xFFEFF47D);
+            b=II(b,c,d,a,x[k+1], S44,0x85845DD1);
+            a=II(a,b,c,d,x[k+8], S41,0x6FA87E4F);
+            d=II(d,a,b,c,x[k+15],S42,0xFE2CE6E0);
+            c=II(c,d,a,b,x[k+6], S43,0xA3014314);
+            b=II(b,c,d,a,x[k+13],S44,0x4E0811A1);
+            a=II(a,b,c,d,x[k+4], S41,0xF7537E82);
+            d=II(d,a,b,c,x[k+11],S42,0xBD3AF235);
+            c=II(c,d,a,b,x[k+2], S43,0x2AD7D2BB);
+            b=II(b,c,d,a,x[k+9], S44,0xEB86D391);
+            a=AddUnsigned(a,AA);
+            b=AddUnsigned(b,BB);
+            c=AddUnsigned(c,CC);
+            d=AddUnsigned(d,DD);
+        }
+
+        var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
+
+        return temp.toLowerCase();
+    };
+}(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     Metro.template = function(html, options, conf) {
         var ReEx, re = '<%(.+?)%>',
@@ -7397,6 +7427,7 @@ Metro.md5 = function (string) {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     Metro.utils = {
         isUrl: function (val) {
             /* eslint-disable-next-line */
@@ -8230,434 +8261,447 @@ Metro.md5 = function (string) {
     };
 }(Metro, m4q));
 
-$.extend(Metro['locales'], {
-    'cn-ZH': {
-        "calendar": {
-            "months": [
-                "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
-                "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
-            ],
-            "days": [
-                "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
-                "日", "一", "二", "三", "四", "五", "六",
-                "周日", "周一", "周二", "周三", "周四", "周五", "周六"
-            ],
-            "time": {
-                "days": "天",
-                "hours": "时",
-                "minutes": "分",
-                "seconds": "秒",
-                "month": "月",
-                "day": "日",
-                "year": "年"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'cn-ZH': {
+            "calendar": {
+                "months": [
+                    "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
+                    "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
+                ],
+                "days": [
+                    "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
+                    "日", "一", "二", "三", "四", "五", "六",
+                    "周日", "周一", "周二", "周三", "周四", "周五", "周六"
+                ],
+                "time": {
+                    "days": "天",
+                    "hours": "时",
+                    "minutes": "分",
+                    "seconds": "秒",
+                    "month": "月",
+                    "day": "日",
+                    "year": "年"
+                }
+            },
+            "buttons": {
+                "ok": "确认",
+                "cancel": "取消",
+                "done": "完成",
+                "today": "今天",
+                "now": "现在",
+                "clear": "清除",
+                "help": "帮助",
+                "yes": "是",
+                "no": "否",
+                "random": "随机",
+                "save": "保存",
+                "reset": "重啟"
             }
-        },
-        "buttons": {
-            "ok": "确认",
-            "cancel": "取消",
-            "done": "完成",
-            "today": "今天",
-            "now": "现在",
-            "clear": "清除",
-            "help": "帮助",
-            "yes": "是",
-            "no": "否",
-            "random": "随机",
-            "save": "保存",
-            "reset": "重啟"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'de-DE': {
-        "calendar": {
-            "months": [
-                "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
-                "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
-            ],
-            "days": [
-                "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
-                "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
-                "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
-            ],
-            "time": {
-                "days": "TAGE",
-                "hours": "STD",
-                "minutes": "MIN",
-                "seconds": "SEK"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'de-DE': {
+            "calendar": {
+                "months": [
+                    "Januar", "Februar", "März", "April", "Mai", "Juni", "Juli", "August", "September", "Oktober", "November", "Dezember",
+                    "Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"
+                ],
+                "days": [
+                    "Sonntag", "Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag",
+                    "So", "Mo", "Di", "Mi", "Do", "Fr", "Sa",
+                    "Son", "Mon", "Die", "Mit", "Don", "Fre", "Sam"
+                ],
+                "time": {
+                    "days": "TAGE",
+                    "hours": "STD",
+                    "minutes": "MIN",
+                    "seconds": "SEK"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Abbrechen",
+                "done": "Fertig",
+                "today": "Heute",
+                "now": "Jetzt",
+                "clear": "Löschen",
+                "help": "Hilfe",
+                "yes": "Ja",
+                "no": "Nein",
+                "random": "Zufällig",
+                "save": "Speichern",
+                "reset": "Zurücksetzen"
             }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Abbrechen",
-            "done": "Fertig",
-            "today": "Heute",
-            "now": "Jetzt",
-            "clear": "Löschen",
-            "help": "Hilfe",
-            "yes": "Ja",
-            "no": "Nein",
-            "random": "Zufällig",
-            "save": "Speichern",
-            "reset": "Zurücksetzen"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'en-US': {
-        "calendar": {
-            "months": [
-                "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
-                "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-            ],
-            "days": [
-                "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
-                "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
-                "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
-            ],
-            "time": {
-                "days": "DAYS",
-                "hours": "HOURS",
-                "minutes": "MINS",
-                "seconds": "SECS",
-                "month": "MON",
-                "day": "DAY",
-                "year": "YEAR"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'en-US': {
+            "calendar": {
+                "months": [
+                    "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December",
+                    "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+                ],
+                "days": [
+                    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday",
+                    "Su", "Mo", "Tu", "We", "Th", "Fr", "Sa",
+                    "Sun", "Mon", "Tus", "Wen", "Thu", "Fri", "Sat"
+                ],
+                "time": {
+                    "days": "DAYS",
+                    "hours": "HOURS",
+                    "minutes": "MINS",
+                    "seconds": "SECS",
+                    "month": "MON",
+                    "day": "DAY",
+                    "year": "YEAR"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Cancel",
+                "done": "Done",
+                "today": "Today",
+                "now": "Now",
+                "clear": "Clear",
+                "help": "Help",
+                "yes": "Yes",
+                "no": "No",
+                "random": "Random",
+                "save": "Save",
+                "reset": "Reset"
             }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Cancel",
-            "done": "Done",
-            "today": "Today",
-            "now": "Now",
-            "clear": "Clear",
-            "help": "Help",
-            "yes": "Yes",
-            "no": "No",
-            "random": "Random",
-            "save": "Save",
-            "reset": "Reset"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'es-MX': {
-        "calendar": {
-            "months": [
-                "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
-                "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
-            ],
-            "days": [
-                "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
-                "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa",
-                "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
-            ],
-            "time": {
-                "days": "DÍAS",
-                "hours": "HORAS",
-                "minutes": "MINS",
-                "seconds": "SEGS",
-                "month": "MES",
-                "day": "DÍA",
-                "year": "AÑO"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'es-MX': {
+            "calendar": {
+                "months": [
+                    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre",
+                    "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"
+                ],
+                "days": [
+                    "Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado",
+                    "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa",
+                    "Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"
+                ],
+                "time": {
+                    "days": "DÍAS",
+                    "hours": "HORAS",
+                    "minutes": "MINS",
+                    "seconds": "SEGS",
+                    "month": "MES",
+                    "day": "DÍA",
+                    "year": "AÑO"
+                }
+            },
+            "buttons": {
+                "ok": "Aceptar",
+                "cancel": "Cancelar",
+                "done": "Hecho",
+                "today": "Hoy",
+                "now": "Ahora",
+                "clear": "Limpiar",
+                "help": "Ayuda",
+                "yes": "Si",
+                "no": "No",
+                "random": "Aleatorio",
+                "save": "Salvar",
+                "reset": "Reiniciar"
             }
-        },
-        "buttons": {
-            "ok": "Aceptar",
-            "cancel": "Cancelar",
-            "done": "Hecho",
-            "today": "Hoy",
-            "now": "Ahora",
-            "clear": "Limpiar",
-            "help": "Ayuda",
-            "yes": "Si",
-            "no": "No",
-            "random": "Aleatorio",
-            "save": "Salvar",
-            "reset": "Reiniciar"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'fr-FR': {
-        "calendar": {
-            "months": [
-                "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
-                "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
-            ],
-            "days": [
-                "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
-                "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
-                "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
-            ],
-            "time": {
-                "days": "JOURS",
-                "hours": "HEURES",
-                "minutes": "MINS",
-                "seconds": "SECS",
-                "month": "MOIS",
-                "day": "JOUR",
-                "year": "ANNEE"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'fr-FR': {
+            "calendar": {
+                "months": [
+                    "Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre",
+                    "Janv", "Févr", "Mars", "Avr", "Mai", "Juin", "Juil", "Août", "Sept", "Oct", "Nov", "Déc"
+                ],
+                "days": [
+                    "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi",
+                    "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa",
+                    "Dim", "Lun", "Mar", "Mer", "Jeu", "Ven", "Sam"
+                ],
+                "time": {
+                    "days": "JOURS",
+                    "hours": "HEURES",
+                    "minutes": "MINS",
+                    "seconds": "SECS",
+                    "month": "MOIS",
+                    "day": "JOUR",
+                    "year": "ANNEE"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Annulé",
+                "done": "Fait",
+                "today": "Aujourd'hui",
+                "now": "Maintenant",
+                "clear": "Effacé",
+                "help": "Aide",
+                "yes": "Oui",
+                "no": "Non",
+                "random": "Aléatoire",
+                "save": "Sauvegarder",
+                "reset": "Réinitialiser"
             }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Annulé",
-            "done": "Fait",
-            "today": "Aujourd'hui",
-            "now": "Maintenant",
-            "clear": "Effacé",
-            "help": "Aide",
-            "yes": "Oui",
-            "no": "Non",
-            "random": "Aléatoire",
-            "save": "Sauvegarder",
-            "reset": "Réinitialiser"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'hu-HU': {
-        "calendar": {
-            "months": [
-                'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
-                'Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'
-            ],
-            "days": [
-                'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
-                'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz',
-                'Vas', 'Hét', 'Ke', 'Sze', 'Csü', 'Pén', 'Szom'
-            ],
-            "time": {
-                "days": "NAP",
-                "hours": "ÓRA",
-                "minutes": "PERC",
-                "seconds": "MP"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'hu-HU': {
+            "calendar": {
+                "months": [
+                    'Január', 'Február', 'Március', 'Április', 'Május', 'Június', 'Július', 'Augusztus', 'Szeptember', 'Október', 'November', 'December',
+                    'Jan', 'Feb', 'Már', 'Ápr', 'Máj', 'Jún', 'Júl', 'Aug', 'Szep', 'Okt', 'Nov', 'Dec'
+                ],
+                "days": [
+                    'Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat',
+                    'V', 'H', 'K', 'Sz', 'Cs', 'P', 'Sz',
+                    'Vas', 'Hét', 'Ke', 'Sze', 'Csü', 'Pén', 'Szom'
+                ],
+                "time": {
+                    "days": "NAP",
+                    "hours": "ÓRA",
+                    "minutes": "PERC",
+                    "seconds": "MP"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Mégse",
+                "done": "Kész",
+                "today": "Ma",
+                "now": "Most",
+                "clear": "Törlés",
+                "help": "Segítség",
+                "yes": "Igen",
+                "no": "Nem",
+                "random": "Véletlen",
+                "save": "Mentés",
+                "reset": "Visszaállítás"
             }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Mégse",
-            "done": "Kész",
-            "today": "Ma",
-            "now": "Most",
-            "clear": "Törlés",
-            "help": "Segítség",
-            "yes": "Igen",
-            "no": "Nem",
-            "random": "Véletlen",
-            "save": "Mentés",
-            "reset": "Visszaállítás"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'it-IT': {
-        "calendar": {
-            "months": [
-                "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre",
-                "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
-            ],
-            "days": [
-                "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato",
-                "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa",
-                "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
-            ],
-            "time": {
-                "days": "GIORNI",
-                "hours": "ORE",
-                "minutes": "MIN",
-                "seconds": "SEC",
-                "month": "MESE",
-                "day": "GIORNO",
-                "year": "ANNO"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'it-IT': {
+            "calendar": {
+                "months": [
+                    "Gennaio", "Febbraio", "Marzo", "Aprile", "Maggio", "Giugno", "Luglio", "Agosto", "Settembre", "Ottobre", "Novembre", "Dicembre",
+                    "Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"
+                ],
+                "days": [
+                    "Domenica", "Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato",
+                    "Do", "Lu", "Ma", "Me", "Gi", "Ve", "Sa",
+                    "Dom", "Lun", "Mar", "Mer", "Gio", "Ven", "Sab"
+                ],
+                "time": {
+                    "days": "GIORNI",
+                    "hours": "ORE",
+                    "minutes": "MIN",
+                    "seconds": "SEC",
+                    "month": "MESE",
+                    "day": "GIORNO",
+                    "year": "ANNO"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Annulla",
+                "done": "Fatto",
+                "today": "Oggi",
+                "now": "Adesso",
+                "clear": "Cancella",
+                "help": "Aiuto",
+                "yes": "Sì",
+                "no": "No",
+                "random": "Random",
+                "save": "Salvare",
+                "reset": "Reset"
             }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Annulla",
-            "done": "Fatto",
-            "today": "Oggi",
-            "now": "Adesso",
-            "clear": "Cancella",
-            "help": "Aiuto",
-            "yes": "Sì",
-            "no": "No",
-            "random": "Random",
-            "save": "Salvare",
-            "reset": "Reset"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'pt-BR': {
-        "calendar": {
-            "months": [
-                "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
-                "Jan", "Fev", "Mar", "Abr", "Maio", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"
-            ],
-            "days": [
-                "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado",
-                "Do", "Se", "Te", "Qa", "Qi", "Se", "Sa",
-                "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"
-            ],
-            "time": {
-                "days": "DIAS",
-                "hours": "HORAS",
-                "minutes": "MINUTOS",
-                "seconds": "SEGUNDOS",
-                "month": "MÊS",
-                "day": "DIA",
-                "year": "ANO"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'pt-BR': {
+            "calendar": {
+                "months": [
+                    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro",
+                    "Jan", "Fev", "Mar", "Abr", "Maio", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"
+                ],
+                "days": [
+                    "Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado",
+                    "Do", "Se", "Te", "Qa", "Qi", "Se", "Sa",
+                    "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sab"
+                ],
+                "time": {
+                    "days": "DIAS",
+                    "hours": "HORAS",
+                    "minutes": "MINUTOS",
+                    "seconds": "SEGUNDOS",
+                    "month": "MÊS",
+                    "day": "DIA",
+                    "year": "ANO"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Cancelar",
+                "done": "Feito",
+                "today": "Hoje",
+                "now": "Agora",
+                "clear": "Limpar",
+                "help": "Ajuda",
+                "yes": "Sim",
+                "no": "Não",
+                "random": "Aleatório",
+                "save": "Salvar",
+                "reset": "Restaurar"
             }
-        },
-        "buttons": {
-            "ok": "OK",
-            "cancel": "Cancelar",
-            "done": "Feito",
-            "today": "Hoje",
-            "now": "Agora",
-            "clear": "Limpar",
-            "help": "Ajuda",
-            "yes": "Sim",
-            "no": "Não",
-            "random": "Aleatório",
-            "save": "Salvar",
-            "reset": "Restaurar"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-$.extend(Metro['locales'], {
-    'ru-RU': {
-        "calendar": {
-            "months": [
-                "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
-                "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
-            ],
-            "days": [
-                "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
-                "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
-                "Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"
-            ],
-            "time": {
-                "days": "ДНИ",
-                "hours": "ЧАСЫ",
-                "minutes": "МИН",
-                "seconds": "СЕК"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'ru-RU': {
+            "calendar": {
+                "months": [
+                    "Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
+                    "Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл", "Авг", "Сен", "Окт", "Ноя", "Дек"
+                ],
+                "days": [
+                    "Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота",
+                    "Вс", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+                    "Вос", "Пон", "Вто", "Сре", "Чет", "Пят", "Суб"
+                ],
+                "time": {
+                    "days": "ДНИ",
+                    "hours": "ЧАСЫ",
+                    "minutes": "МИН",
+                    "seconds": "СЕК"
+                }
+            },
+            "buttons": {
+                "ok": "ОК",
+                "cancel": "Отмена",
+                "done": "Готово",
+                "today": "Сегодня",
+                "now": "Сейчас",
+                "clear": "Очистить",
+                "help": "Помощь",
+                "yes": "Да",
+                "no": "Нет",
+                "random": "Случайно",
+                "save": "Сохранить",
+                "reset": "Сброс"
             }
-        },
-        "buttons": {
-            "ok": "ОК",
-            "cancel": "Отмена",
-            "done": "Готово",
-            "today": "Сегодня",
-            "now": "Сейчас",
-            "clear": "Очистить",
-            "help": "Помощь",
-            "yes": "Да",
-            "no": "Нет",
-            "random": "Случайно",
-            "save": "Сохранить",
-            "reset": "Сброс"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'tw-ZH': {
-        "calendar": {
-            "months": [
-                "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
-                "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
-            ],
-            "days": [
-                "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
-                "日", "一", "二", "三", "四", "五", "六",
-                "週日", "週一", "週二", "週三", "週四", "週五", "週六"
-            ],
-            "time": {
-                "days": "天",
-                "hours": "時",
-                "minutes": "分",
-                "seconds": "秒",
-                "month": "月",
-                "day": "日",
-                "year": "年"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'tw-ZH': {
+            "calendar": {
+                "months": [
+                    "一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月",
+                    "1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"
+                ],
+                "days": [
+                    "星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六",
+                    "日", "一", "二", "三", "四", "五", "六",
+                    "週日", "週一", "週二", "週三", "週四", "週五", "週六"
+                ],
+                "time": {
+                    "days": "天",
+                    "hours": "時",
+                    "minutes": "分",
+                    "seconds": "秒",
+                    "month": "月",
+                    "day": "日",
+                    "year": "年"
+                }
+            },
+            "buttons": {
+                "ok": "確認",
+                "cancel": "取消",
+                "done": "完成",
+                "today": "今天",
+                "now": "現在",
+                "clear": "清除",
+                "help": "幫助",
+                "yes": "是",
+                "no": "否",
+                "random": "隨機",
+                "save": "保存",
+                "reset": "重啟"
             }
-        },
-        "buttons": {
-            "ok": "確認",
-            "cancel": "取消",
-            "done": "完成",
-            "today": "今天",
-            "now": "現在",
-            "clear": "清除",
-            "help": "幫助",
-            "yes": "是",
-            "no": "否",
-            "random": "隨機",
-            "save": "保存",
-            "reset": "重啟"
         }
-    }
-});
+    });
+}(Metro, m4q));
 
-
-$.extend(Metro['locales'], {
-    'uk-UA': {
-        "calendar": {
-            "months": [
-                "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень",
-                "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"
-            ],
-            "days": [
-                "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота",
-                "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
-                "Нед", "Пон", "Вiв", "Сер", "Чет", "Пят", "Суб"
-            ],
-            "time": {
-                "days": "ДНІ",
-                "hours": "ГОД",
-                "minutes": "ХВИЛ",
-                "seconds": "СЕК"
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'uk-UA': {
+            "calendar": {
+                "months": [
+                    "Січень", "Лютий", "Березень", "Квітень", "Травень", "Червень", "Липень", "Серпень", "Вересень", "Жовтень", "Листопад", "Грудень",
+                    "Січ", "Лют", "Бер", "Кві", "Тра", "Чер", "Лип", "Сер", "Вер", "Жов", "Лис", "Гру"
+                ],
+                "days": [
+                    "Неділя", "Понеділок", "Вівторок", "Середа", "Четвер", "П’ятниця", "Субота",
+                    "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб",
+                    "Нед", "Пон", "Вiв", "Сер", "Чет", "Пят", "Суб"
+                ],
+                "time": {
+                    "days": "ДНІ",
+                    "hours": "ГОД",
+                    "minutes": "ХВИЛ",
+                    "seconds": "СЕК"
+                }
+            },
+            "buttons": {
+                "ok": "ОК",
+                "cancel": "Відміна",
+                "done": "Готово",
+                "today": "Сьогодні",
+                "now": "Зараз",
+                "clear": "Очистити",
+                "help": "Допомога",
+                "yes": "Так",
+                "no": "Ні",
+                "random": "Випадково",
+                "save": "Зберегти",
+                "reset": "Скинути"
             }
-        },
-        "buttons": {
-            "ok": "ОК",
-            "cancel": "Відміна",
-            "done": "Готово",
-            "today": "Сьогодні",
-            "now": "Зараз",
-            "clear": "Очистити",
-            "help": "Допомога",
-            "yes": "Так",
-            "no": "Ні",
-            "random": "Випадково",
-            "save": "Зберегти",
-            "reset": "Скинути"
         }
-    }
-});
-
+    });
+}(Metro, m4q));
 
 (function(Metro, $){
+    'use strict';
     var Utils = Metro.utils;
     var AccordionDefaultConfig = {
         accordionDeferred: 0,
@@ -8844,6 +8888,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var ActivityDefaultConfig = {
         activityDeferred: 0,
         type: "ring",
@@ -8951,6 +8996,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var AdblockDefaultConfig = {
         adblockDeferred: 0,
@@ -9054,6 +9100,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Colors = Metro.colors;
     var Utils = Metro.utils;
     var AppBarDefaultConfig = {
@@ -9234,6 +9281,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var AudioButtonDefaultConfig = {
         audioVolume: 0.5,
@@ -9397,6 +9445,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var AudioPlayerDefaultConfig = {
         audioDeferred: 0,
@@ -9843,6 +9892,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var BottomSheetDefaultConfig = {
         bottomsheetDeferred: 0,
@@ -9999,6 +10049,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ButtonGroupDefaultConfig = {
         buttongroupDeferred: 0,
@@ -10101,6 +10152,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
         calendarDeferred: 0,
@@ -11062,6 +11114,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
         value:'',
@@ -11539,6 +11592,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var effects = [
         "slide", "slide-v", "fade", "switch", "zoom", "swirl"
@@ -12080,6 +12134,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CharmsDefaultConfig = {
         charmsDeferred: 0,
@@ -12247,6 +12302,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var defaultAvatar = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAUABQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+t+KKPxo/GgA70Yo/Gj8aADFH4VesdC1HUl3WtjcXCf344yV/PGKW+0HUtNXddWNzbp/fkjIX88YoAofhR+FH40fjQAfhR+FH40fjQAUUUUAFepeAPh5D9li1LVYhK8g3Q27j5VXszDuT6f5HA+FtOXVvEWn2rjMcko3j1UckfkDX0MBgYHAoARVCKFUBVHAA6ClZQwKkZBGCDS0UAec+Pvh3BJay6lpUQimjBeW3QYVx3Kjsfbv/PyqvpuvnvxfpqaT4l1C1QbY0lJUDsrfMB+RoAyKKKKACiiigDa8GXq6f4p02eQgIJQpJ7Bvlz+tfQP4V8yDg17P4A8cw65ZxWV5IE1KMbfmP+uA7j39R+NAHaUfhSUUAL+FeA+OL1NQ8WalNGQU83YCO+0Bf6V6b498cQ6BZyWlrIJNSkXaApz5QP8AEff0FeKk5OTyTQAUUUUAH40fjRU1naTX93DbQIXmlYIijuTQBc0Dw/eeI74W1mm49XkbhUHqTXsHhz4eaXoCpI8YvbscmaYZAP8Asr0H8/etHwv4cg8M6XHaxANIfmllxy7dz9PStigA/Gk/GlooA5bxJ8PdL19XkWMWd43PnwjGT/tL0P8AP3rx/X/D954cvjbXibT1SReVceoNfRFZHijw5B4m0uS1lAWQfNFLjlG7H6etAHz5+NH41NeWk1hdzW06FJonKMp7EGoaACvQfhBowudTudRkXK2y7I8j+Nup/Afzrz6vafhRaCDwmkgHM8zufwO3/wBloA7Kiij8KACkpaSgBaSj8KKAPJvi/owttTttRjXC3K7JMf3l6H8R/KvPq9p+K1qJ/CbyEcwTI4P1O3/2avFqAP/Z";
     var ChatDefaultConfig = {
@@ -12538,6 +12594,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CheckboxDefaultConfig = {
         checkboxDeferred: 0,
@@ -12702,6 +12759,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var ClockDefaultConfig = {
         clockDeferred: 0,
         showTime: true,
@@ -12838,6 +12896,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CollapseDefaultConfig = {
         collapseDeferred: 0,
@@ -12976,6 +13035,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var cookieDisclaimerDefaults = {
         name: 'cookies_accepted',
@@ -13066,7 +13126,7 @@ $.extend(Metro['locales'], {
                     }
                 })
 
-                console.log(dur);
+                
 
                 cookie.setCookie(o.name, true, dur);
                 Utils.exec(o.onAccept);
@@ -13082,6 +13142,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var CookieDefaultConfig = {
         path: "/",
         expires: null,
@@ -13164,6 +13225,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CountdownDefaultConfig = {
         countdownDeferred: 0,
@@ -13713,6 +13775,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CounterDefaultConfig = {
         startOnViewport: true,
@@ -13824,6 +13887,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CubeDefaultConfig = {
         cubeDeferred: 0,
@@ -14283,6 +14347,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DatePickerDefaultConfig = {
         datepickerDeferred: 0,
@@ -14758,6 +14823,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DialogDefaultConfig = {
         dialogDeferred: 0,
@@ -15152,6 +15218,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DonutDefaultConfig = {
         donutDeferred: 0,
@@ -15295,6 +15362,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DoubleSliderDefaultConfig = {
         doublesliderDeferred: 0,
@@ -15725,6 +15793,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DragItemsDefaultConfig = {
         dragitemsDeferred: 0,
@@ -15955,6 +16024,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DraggableDefaultConfig = {
         draggableDeferred: 0,
@@ -16140,6 +16210,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DropdownDefaultConfig = {
         dropdownDeferred: 0,
@@ -16341,6 +16412,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var FileDefaultConfig = {
         fileDeferred: 0,
@@ -16565,6 +16637,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var GravatarDefaultConfig = {
         gravatarDeferred: 0,
@@ -16654,6 +16727,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var HintDefaultConfig = {
         hintDeferred: 0,
@@ -16815,6 +16889,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Hotkey = {
         specialKeys: {
             8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
@@ -16929,9 +17004,8 @@ $.extend(Metro['locales'], {
     // TODO add destroy
 }(Metro, m4q));
 
-// TODO source as array, mode as array
-
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var HtmlContainerDefaultConfig = {
         htmlcontainerDeferred: 0,
@@ -17082,6 +17156,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ImageCompareDefaultConfig = {
         imagecompareDeferred: 0,
@@ -17261,6 +17336,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ImageMagnifierDefaultConfig = {
         imagemagnifierDeferred: 0,
@@ -17515,6 +17591,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var InfoBoxDefaultConfig = {
         infoboxDeferred: 0,
@@ -17814,6 +17891,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var MaterialInputDefaultConfig = {
         materialinputDeferred: 0,
@@ -17942,6 +18020,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var InputDefaultConfig = {
         inputDeferred: 0,
@@ -18393,6 +18472,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var KeypadDefaultConfig = {
         keypadDeferred: 0,
@@ -18773,6 +18853,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ListDefaultConfig = {
         listDeferred: 0,
@@ -19635,6 +19716,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ListViewDefaultConfig = {
         listviewDeferred: 0,
@@ -20075,6 +20157,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var MasterDefaultConfig = {
         masterDeferred: 0,
@@ -20461,6 +20544,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var NavigationViewDefaultConfig = {
         navviewDeferred: 0,
@@ -20738,6 +20822,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var NotifyDefaultConfig = {
         container: null,
@@ -20908,6 +20993,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     Metro.pagination = function(c){
         var defConf = {
             length: 0,
@@ -21012,6 +21098,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var PanelDefaultConfig = {
         panelDeferred: 0,
@@ -21245,6 +21332,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var PopoverDefaultConfig = {
         popoverDeferred: 0,
@@ -21519,6 +21607,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ProgressDefaultConfig = {
         progressDeferred: 0,
@@ -21723,6 +21812,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var RadioDefaultConfig = {
         radioDeferred: 0,
@@ -21857,6 +21947,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var Colors = Metro.colors;
     var RatingDefaultConfig = {
@@ -22145,6 +22236,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ResizableDefaultConfig = {
         resizeableDeferred: 0,
@@ -22298,6 +22390,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ResizerDefaultConfig = {
         resizerDeferred: 0,
@@ -22420,6 +22513,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var RibbonMenuDefaultConfig = {
         ribbonmenuDeferred: 0,
@@ -22546,6 +22640,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var RippleDefaultConfig = {
         rippleDeferred: 0,
@@ -22678,6 +22773,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var SelectDefaultConfig = {
         size: "normal",
@@ -23278,6 +23374,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var SidebarDefaultConfig = {
         menuScrollbar: false,
@@ -23565,6 +23662,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var SliderDefaultConfig = {
         sliderDeferred: 0,
@@ -24125,6 +24223,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var SorterDefaultConfig = {
         sorterDeferred: 0,
@@ -24368,6 +24467,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var SpinnerDefaultConfig = {
         spinnerDeferred: 0,
@@ -24643,6 +24743,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var Storage = Metro.storage;
     var SplitterDefaultConfig = {
@@ -24902,6 +25003,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var StepperDefaultConfig = {
         stepperDeferred: 0,
@@ -25048,6 +25150,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro) {
+    'use strict';
     var Utils = Metro.utils;
 
     var MetroStorage = function(type){
@@ -25129,6 +25232,7 @@ $.extend(Metro['locales'], {
 }(Metro));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var StreamerDefaultConfig = {
         streamerDeferred: 0,
@@ -25941,6 +26045,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var SwitchDefaultConfig = {
         switchDeferred: 0,
         material: false,
@@ -26043,6 +26148,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TableDefaultConfig = {
         tableDeferred: 0,
@@ -28256,6 +28362,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var MaterialTabsDefaultConfig = {
         materialtabsDeferred: 0,
@@ -28472,6 +28579,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var Colors = Metro.colors;
     var TabsDefaultConfig = {
@@ -28748,6 +28856,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Colors = Metro.colors;
     var Utils = Metro.utils;
     var TagInputDefaultConfig = {
@@ -29141,6 +29250,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TextareaDefaultConfig = {
         textareaDeferred: 0,
@@ -29355,6 +29465,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var effects = [
         "slide-up", "slide-down", "slide-left", "slide-right", "fade", "zoom", "swirl", "switch"
@@ -29512,7 +29623,7 @@ $.extend(Metro['locales'], {
 
                 next = that.slides[that.currentSlide];
 
-                console.log(o.effect.camelCase());
+                
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
@@ -29608,6 +29719,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TimePickerDefaultConfig = {
         timepickerDeferred: 0,
@@ -30096,6 +30208,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var ToastDefaultConfig = {
         callback: Metro.noop,
@@ -30157,6 +30270,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TouchConst = {
         LEFT : "left",
@@ -31316,6 +31430,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TreeViewDefaultConfig = {
         treeviewDeferred: 0,
@@ -31723,6 +31838,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var Colors = Metro.colors;
     var ValidatorFuncs = {
@@ -32174,6 +32290,7 @@ $.extend(Metro['locales'], {
  */
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var VegasDefaultConfig = {
         duration: 4000,
@@ -32771,6 +32888,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var VideoPlayerDefaultConfig = {
         videoDeferred: 0,
@@ -33363,6 +33481,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var WindowDefaultConfig = {
         windowDeferred: 0,
@@ -34079,6 +34198,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var WizardDefaultConfig = {
         wizardDeferred: 0,
@@ -34388,11 +34508,3 @@ $.extend(Metro['locales'], {
         }
     });
 }(Metro, m4q));
-
-if (METRO_INIT ===  true) {
-	METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});
-}
-
-return Metro;
-
-}));

@@ -1,5 +1,6 @@
 /* global Metro, setImmediate, isTouch */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DraggableDefaultConfig = {
         draggableDeferred: 0,

@@ -1,6 +1,6 @@
 /* global Metro */
-
 (function(Metro, $) {
+    'use strict';
     var Types = {
         HEX: "hex",
         HEXA: "hexa",

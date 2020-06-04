@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var CookieDefaultConfig = {
         path: "/",
         expires: null,

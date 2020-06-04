@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var effects = [
         "slide-up", "slide-down", "slide-left", "slide-right", "fade", "zoom", "swirl", "switch"

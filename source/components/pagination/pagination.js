@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     Metro.pagination = function(c){
         var defConf = {
             length: 0,

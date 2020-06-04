@@ -1,5 +1,6 @@
 /* global Metro, METRO_LOCALE */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TimePickerDefaultConfig = {
         timepickerDeferred: 0,

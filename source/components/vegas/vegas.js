@@ -10,6 +10,7 @@
  */
 
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var VegasDefaultConfig = {
         duration: 4000,

@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var SwitchDefaultConfig = {
         switchDeferred: 0,
         material: false,
