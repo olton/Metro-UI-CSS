@@ -58,6 +58,8 @@ validation-status.json
 bower_components
 node_modules
 adsense
+cypress/screenshots
+cypress/videos
 
 # Special files
 update_builder.bat

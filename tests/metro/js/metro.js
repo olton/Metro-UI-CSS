@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/06/2020 15:35:23
+ * Built at 04/06/2020 15:42:19
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "04/06/2020 15:35:24",
+    compileTime: "04/06/2020 15:42:21",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -5265,7 +5265,7 @@ String.prototype.toDate = function(format, locale) {
         var d, months, index, i;
         var Locales = Metro.locales;
 
-        if (!Utils.isValue(month)) {
+        if (typeof month === "undefined" || month === null) {
             return -1;
         }
 

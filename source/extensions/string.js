@@ -1,4 +1,4 @@
-/* global Metro, Utils */
+/* global Metro */
 String.prototype.camelCase = function(){
     return $.camelCase(this);
 };
@@ -54,7 +54,7 @@ String.prototype.toDate = function(format, locale) {
         var d, months, index, i;
         var Locales = Metro.locales;
 
-        if (!Utils.isValue(month)) {
+        if (typeof month === "undefined" || month === null) {
             return -1;
         }
 
