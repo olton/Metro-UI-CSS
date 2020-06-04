@@ -6,10 +6,16 @@ module.exports = function(grunt) {
     var develop = grunt.option('develop');
     var tasks;
     var watch_files = [
-        'source/i18n/*.json',
-        'source/*.js',
+        // 'source/i18n/*.json',
+        // 'source/*.js',
         'source/**/*.js',
-        'source/**/*.less',
+        'source/components/**/*.less',
+        'source/icons/**/*.less',
+        'source/include/*.less',
+        'source/colors/*.less',
+        'source/animations/**/*.less',
+        'source/schemes/**/*.less',
+        'source/common/**/*.less',
         'Gruntfile.js'
     ];
     var time = new Date(), day = time.getDate(), month = time.getMonth()+1, year = time.getFullYear(), hour = time.getHours(), mins = time.getMinutes(), sec = time.getSeconds();
@@ -17,11 +23,13 @@ module.exports = function(grunt) {
 
     tasks = [
         'clear',
-        'concurrent:clean',
+        'concurrent:clean_build',
         'concurrent:eslint',
+        'concurrent:file_creator',
         'concurrent:compile_less',
         'concurrent:postcss',
-        'concurrent:concat'];
+        'concurrent:concat'
+    ];
 
     if (!develop) {
         tasks.push('concurrent:remove_log');
@@ -30,6 +38,8 @@ module.exports = function(grunt) {
 
     tasks.push('concurrent:replace');
     tasks.push('concurrent:copy');
+
+    // tasks.push('concurrent:clean_less');
 
     if (watching) {
         tasks.push('watch');
@@ -49,25 +59,9 @@ module.exports = function(grunt) {
         ' * Licensed under <%= pkg.license %>\n' +
         ' */\n',
 
-        banner: "\n(function( factory ) {\n"+
-        "    if ( typeof define === 'function' && define.amd ) {\n" +
-        "        define('metro4', factory );\n"+
-        "    } else {\n" +
-        "        factory( );\n"+
-        "    }\n"+
-        "}(function( ) { \n"+
-        "'use strict';\n\n"+
-        "window.hideM4QVersion = true;\n\n",
-
-        footer: "\n\n" +
-            "if (METRO_INIT ===  true) {\n" +
-            "\tMETRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});\n" +
-            "}" +
-            "\n\nreturn Metro;"+
-            "\n\n}));",
-
         clean: {
-            build: ['build/js', 'build/css', 'build/mif']
+            build: ['build/js', 'build/css', 'build/mif'],
+            less: ['source/*.less']
         },
 
         clear: {},
@@ -79,17 +73,117 @@ module.exports = function(grunt) {
             }
         },
 
+        "file-creator": {
+            "components-less": {
+                "source/metro-components.less": function(fs, fd, done){
+                    var glob = grunt.file.glob;
+                    var _ = grunt.util._;
+                    glob('source/components/**/*.less', function(err, files){
+                        var components = [];
+                        _.each(files, function(file){
+                            components.push(file);
+                        });
+                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
+                        _.each(components, function(file) {
+                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
+                        });
+                        done();
+                    })
+                }
+            },
+            "colors-less": {
+                "source/metro-colors.less": function(fs, fd, done){
+                    var glob = grunt.file.glob;
+                    var _ = grunt.util._;
+                    glob('source/colors/*.less', function(err, files){
+                        var components = [];
+                        _.each(files, function(file){
+                            components.push(file);
+                        });
+                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
+                        _.each(components, function(file) {
+                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
+                        });
+                        done();
+                    })
+                }
+            },
+            "animations-less": {
+                "source/metro-animations.less": function(fs, fd, done){
+                    var glob = grunt.file.glob;
+                    var _ = grunt.util._;
+                    glob('source/animations/**/*.less', function(err, files){
+                        var components = [];
+                        _.each(files, function(file){
+                            components.push(file);
+                        });
+                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
+                        _.each(components, function(file) {
+                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
+                        });
+                        done();
+                    })
+                }
+            },
+            "common-less": {
+                "source/metro-common.less": function(fs, fd, done){
+                    var glob = grunt.file.glob;
+                    var _ = grunt.util._;
+                    glob('source/common/less/*.less', function(err, files){
+                        var components = [];
+                        _.each(files, function(file){
+                            components.push(file);
+                        });
+                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
+                        _.each(components, function(file) {
+                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
+                        });
+                        done();
+                    })
+                }
+            },
+            "icons-less": {
+                "source/metro-icons.less": function(fs, fd, done){
+                    var components = ['icons/mif-base', 'icons/mif-icons'];
+                    var _ = grunt.util._;
+                    _.each(components, function(file) {
+                        fs.writeSync(fd, '@import "' + file + '";\n');
+                    });
+                    done();
+                }
+            },
+            "reset-less": {
+                "source/metro-reset.less": function(fs, fd, done){
+                    var components = ['common/less/reset'];
+                    var _ = grunt.util._;
+                    _.each(components, function(file) {
+                        fs.writeSync(fd, '@import "' + file + '";\n');
+                    });
+                    done();
+                }
+            },
+            "metro-less": {
+                "source/metro.less": function(fs, fd, done){
+                    var components = ['metro-reset', 'metro-common', 'metro-components'];
+                    var _ = grunt.util._;
+                    _.each(components, function(file) {
+                        fs.writeSync(fd, '@import "' + file + '";\n');
+                    });
+                    done();
+                }
+            }
+        },
+
         concat: {
             js: {
                 options: {
                     banner: '<%= copyright %>',
-                    footer: '',
                     stripBanners: true,
                     separator: "\n\n"
                 },
                 src: [
                     'source/m4q/*.js',
-                    'source/metro.js',
+                    'source/core/metro.js',
                     'source/i18n/*.js',
                     'source/extensions/*.js',
                     'source/common/js/utilities.js',
@@ -275,7 +369,8 @@ module.exports = function(grunt) {
         concurrent: {
             options: {
             },
-            clean: ['clean'],
+            clean_build: ['clean:build'],
+            file_creator: ['file-creator'],
             compile_less: ['less:src', 'less:schemes'],
             postcss: ['postcss'],
             eslint: ['eslint'],
@@ -284,6 +379,7 @@ module.exports = function(grunt) {
             min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
             replace: ['replace'],
             copy: ['copy'],
+            clean_less: ['clean:less'],
             watch: ['watch']
         },
 

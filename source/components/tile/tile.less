@@ -457,3 +457,17 @@
         }
     }
 }
+
+
+// IE 10, 11
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .tiles-grid {
+        display: block;
+        .clear();
+
+        [class*=tile-] {
+            margin: 5px;
+            float: left;
+        }
+    }
+}
