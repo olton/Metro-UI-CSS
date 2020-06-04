@@ -20,6 +20,8 @@
 + [x] Colors: full refactoring, now its full eq to `ColorJS`
 + [x] ColorType: new custom type for `color` variable. Var can be defined as `var c = new Color(...)` or `var c = new Metro.Color(...)` 
 + [x] Material Tabs: update to work in all browsers 
++ [x] Animation: redesign module
++ [x] Animation: add effect `zoom`
 
 
 ### 4.3.7

@@ -60,3 +60,9 @@ if (typeof Array.contains !== "function") {
         return this.indexOf(val, from) > -1;
     }
 }
+
+if (typeof Array.includes !== "function") {
+    Array.prototype.includes = function(val, from){
+        return this.indexOf(val, from) > -1;
+    }
+}
