@@ -295,6 +295,53 @@
         zoom: function(current, next, o){
             this.zoomOut(current, o);
             this.zoomIn(next, o);
+        },
+
+        swirlIn: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    top: 0,
+                    left: 0,
+                    opacity: 0,
+                    transform: "scale(3) rotate(180deg)",
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        scale: 1,
+                        rotate: 0,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        swirlOut: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        scale: 3,
+                        rotate: "180deg",
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        swirl: function(current, next, o){
+            this.swirlOut(current, o);
+            this.swirlIn(next, o);
         }
     };
 }(Metro, m4q));

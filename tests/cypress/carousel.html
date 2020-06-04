@@ -13,7 +13,15 @@
     <h1>Carousel test page</h1>
 
     <div>
-        <div data-role="carousel" data-effect="zoom" data-duration="1000">
+        <div class="mt-4 mb-4 bg-light">
+            <input type="radio" name="r1" data-role="radio" value="slide" data-caption="slide">
+            <input type="radio" name="r1" data-role="radio" value="slide-v" data-caption="slide-v">
+            <input type="radio" name="r1" data-role="radio" value="fade" data-caption="fade">
+            <input type="radio" name="r1" data-role="radio" value="switch" data-caption="switch">
+            <input type="radio" name="r1" data-role="radio" value="zoom" data-caption="zoom">
+            <input type="radio" name="r1" data-role="radio" value="swirl" data-caption="swirl" checked>
+        </div>
+        <div data-role="carousel" data-effect="swirl" data-duration="1000" id="carousel">
             <div class="slide" data-cover="../images/1.jpg"></div>
             <div class="slide" data-cover="../images/2.jpg"></div>
             <div class="slide" data-cover="../images/3.jpg"></div>
@@ -28,6 +36,9 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $("input[name=r1]").on("click", function(){
+        $("#carousel").attr("data-effect", this.value);
+    })
 </script>
 </body>
 </html>

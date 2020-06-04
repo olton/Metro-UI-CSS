@@ -108,5 +108,5 @@
         }
     };
 
-    Metro['export'] = Export.init();
+    Metro.export = Export.init();
 }(Metro, m4q));

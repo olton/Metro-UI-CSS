@@ -1,12 +1,15 @@
-/* global Metro, FrameAnimation */
+/* global Metro */
 (function(Metro, $) {
     var Utils = Metro.utils;
+    var effects = [
+        "slide-up", "slide-down", "slide-left", "slide-right", "fade", "zoom", "swirl", "switch"
+    ];
     var TileDefaultConfig = {
         tileDeferred: 0,
         size: "medium",
         cover: "",
         coverPosition: "center",
-        effect: "",
+        effect: "", // slide-up, slide-down, slide-left, slide-right, fade, zoom, swirl, switch
         effectInterval: 3000,
         effectDuration: 500,
         target: null,
@@ -76,7 +79,7 @@
                 })
             }
 
-            if (o.effect.indexOf("animate-") > -1 && slides.length > 1) {
+            if (effects.includes(o.effect) && slides.length > 1) {
                 $.each(slides, function(i){
                     var slide = $(this);
 
@@ -87,9 +90,9 @@
                     }
 
                     if (i > 0) {
-                        if (["animate-slide-up", "animate-slide-down"].indexOf(o.effect) > -1) slide.css("top", "100%");
-                        if (["animate-slide-left", "animate-slide-right"].indexOf(o.effect) > -1) slide.css("left", "100%");
-                        if (["animate-fade"].indexOf(o.effect) > -1) slide.css("opacity", 0);
+                        if (["slide-up", "slide-down"].indexOf(o.effect) > -1) slide.css("top", "100%");
+                        if (["slide-left", "slide-right"].indexOf(o.effect) > -1) slide.css("left", "100%");
+                        if (["fade", "zoom", "swirl", "switch"].indexOf(o.effect) > -1) slide.css("opacity", 0);
                     }
                 });
 
@@ -154,11 +157,19 @@
 
                 next = that.slides[that.currentSlide];
 
-                if (o.effect === "animate-slide-up") FrameAnimation.slideUp($(current), $(next), o.effectDuration);
-                if (o.effect === "animate-slide-down") FrameAnimation.slideDown($(current), $(next), o.effectDuration);
-                if (o.effect === "animate-slide-left") FrameAnimation.slideLeft($(current), $(next), o.effectDuration);
-                if (o.effect === "animate-slide-right") FrameAnimation.slideRight($(current), $(next), o.effectDuration);
-                if (o.effect === "animate-fade") FrameAnimation.fade($(current), $(next), o.effectDuration);
+                console.log(o.effect.camelCase());
+                if (effects.includes(o.effect)) {
+                    Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
+                }
+
+                // if (o.effect === "slide-up") Metro.animations.slideUp($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "slide-down") Metro.animations.slideDown($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "slide-left") Metro.animations.slideLeft($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "slide-right") Metro.animations.slideRight($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "fade") Metro.animations.fade($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "zoom") Metro.animations.zoom($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "swirl") Metro.animations.swirl($(current), $(next), {duration: o.effectDuration});
+                // if (o.effect === "switch") Metro.animations.swirl($(current), $(next), {duration: o.effectDuration});
 
             }, o.effectInterval);
         },

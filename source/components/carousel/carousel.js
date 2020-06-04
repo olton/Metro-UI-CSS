@@ -1,12 +1,15 @@
 /* global Metro, METRO_ANIMATION_DURATION */
 (function(Metro, $) {
     var Utils = Metro.utils;
+    var effects = [
+        "slide", "slide-v", "fade", "switch", "zoom", "swirl"
+    ];
     var CarouselDefaultConfig = {
         carouselDeferred: 0,
         autoStart: false,
         width: "100%",
         height: "16/9", // 3/4, 21/9
-        effect: "slide", // slide, slide-v, fade, switch, custom
+        effect: effects[0],
         effectFunc: "linear",
         direction: "left", //left, right
         duration: METRO_ANIMATION_DURATION,
@@ -110,8 +113,7 @@
                 if (o.autoStart === true) {
                     this._start();
                 } else {
-                    Utils.exec(o.onSlideShow, [this.slides[this.currentIndex][0], undefined], this.slides[this.currentIndex][0]);
-                    element.fire("slideshow", {
+                    this._fireEvent("slide-show", {
                         current: this.slides[this.currentIndex][0],
                         prev: undefined
                     });
@@ -141,8 +143,10 @@
                 var t = o.direction === 'left' ? 'next' : 'prior';
                 that._slideTo(t, true);
             }, period);
-            Utils.exec(o.onStart, [element], element[0]);
-            element.fire("start");
+
+            this._fireEvent("start", {
+                element: element
+            });
         },
 
         _stop: function(){
@@ -204,6 +208,7 @@
                             break;
                         case "fade":
                         case "zoom":
+                        case "swirl":
                             slide.css("opacity", "0");
                             break;
                     }
@@ -398,6 +403,10 @@
             var func, effectFunc = o.effectFunc;
             var period = o.period;
 
+            var run = function(f, c, n, o){
+                Metro.animations[f](c, n, o);
+            }
+
             if (next.data('duration') !== undefined) {
                 duration = next.data('duration');
             }
@@ -414,23 +423,25 @@
             next.stop(true);
             this.isAnimate = true;
 
-            setTimeout(function(){that.isAnimate = false;}, duration);
+            setTimeout(function(){that.isAnimate = false;}, duration + 100);
 
             if (effect === 'slide') {
                 func = to === 'next' ? 'slideLeft': 'slideRight';
-            }
-
+            } else
             if (effect === 'slide-v') {
                 func = to === 'next' ? 'slideUp': 'slideDown';
+            } else {
+                func = effect;
             }
 
-            switch (effect) {
-                case 'slide': Metro.animations[func](current, next, {duration: duration, ease: effectFunc}); break;
-                case 'slide-v': Metro.animations[func](current, next, {duration: duration, ease: effectFunc}); break;
-                case 'fade': Metro.animations['fade'](current, next, {duration: duration, ease: effectFunc}); break;
-                case 'zoom': Metro.animations['zoom'](current, next, {duration: duration, ease: effectFunc}); break;
-                default: Metro.animations['switch'](current, next);
+            if (!effects.includes(effect)) {
+                func = "switch";
             }
+
+            run(func, current, next, {duration: duration, ease: effectFunc});
+
+            current.removeClass("active-slide");
+            next.addClass("active-slide");
 
             setTimeout(function(){
                 that._fireEvent("slide-show", {
@@ -483,8 +494,25 @@
             this.element.fire("play");
         },
 
+        setEffect: function(effect){
+            var element = this.element, o = this.options;
+            var slides = element.find(".slide");
+
+            if (!effects.includes(effect)) return ;
+
+            o.effect = effect;
+
+            slides.removeStyleProperty("transform").css({
+                top: 0,
+                left: 0
+            });
+        },
+
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attributeName, newValue){
+            if (attributeName === 'data-effect') {
+                this.setEffect(newValue);
+            }
         },
 
         destroy: function(){

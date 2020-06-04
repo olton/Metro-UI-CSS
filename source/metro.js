@@ -323,11 +323,15 @@ var Metro = {
 
                         var element = $(mutation.target);
                         var mc = element.data('metroComponent');
+                        var newValue;
 
                         if (mc !== undefined) {
                             $.each(mc, function(){
                                 var plug = Metro.getPlugin(element, this);
-                                if (plug) plug.changeAttribute(mutation.attributeName);
+                                if (plug && typeof plug.changeAttribute === "function") {
+                                    newValue = element.attr(mutation.attributeName);
+                                    plug.changeAttribute(mutation.attributeName, newValue, mutation.oldValue);
+                                }
                             });
                         }
                     }
