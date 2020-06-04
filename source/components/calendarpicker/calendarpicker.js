@@ -1,5 +1,6 @@
 /* global Metro, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
         value:'',

@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var Colors = Metro.colors;
     var RatingDefaultConfig = {

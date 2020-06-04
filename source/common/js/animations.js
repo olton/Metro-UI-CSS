@@ -1,7 +1,6 @@
 /* global Metro, METRO_ANIMATION_DURATION */
-
 (function(Metro, $) {
-
+    'use strict';
     var AnimationDefaultConfig = {
         duration: METRO_ANIMATION_DURATION,
         ease: "linear"

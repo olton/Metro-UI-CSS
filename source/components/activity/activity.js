@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var ActivityDefaultConfig = {
         activityDeferred: 0,
         type: "ring",

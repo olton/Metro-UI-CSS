@@ -1,5 +1,6 @@
 /* global METRO_JQUERY, jquery_present, jQuery, Metro, METRO_THROWS METRO_MEDIA */
 (function(Metro, $) {
+    'use strict';
     Metro.utils = {
         isUrl: function (val) {
             /* eslint-disable-next-line */

@@ -1,8 +1,6 @@
 /* global Metro */
-
-// TODO source as array, mode as array
-
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var HtmlContainerDefaultConfig = {
         htmlcontainerDeferred: 0,

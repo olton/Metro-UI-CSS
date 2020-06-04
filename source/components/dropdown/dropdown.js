@@ -1,5 +1,6 @@
 /* global Metro, setImmediate */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var DropdownDefaultConfig = {
         dropdownDeferred: 0,

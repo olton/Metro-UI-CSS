@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var CollapseDefaultConfig = {
         collapseDeferred: 0,

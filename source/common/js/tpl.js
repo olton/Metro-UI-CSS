@@ -1,5 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     Metro.template = function(html, options, conf) {
         var ReEx, re = '<%(.+?)%>',

@@ -1,5 +1,7 @@
 /* global Metro */
 (function(Metro, $) {
+    'use strict';
+
     var MyObjectDefaultConfig = {
         onMyObjectCreate: Metro.noop
     };

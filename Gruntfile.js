@@ -82,8 +82,8 @@ module.exports = function(grunt) {
         concat: {
             js: {
                 options: {
-                    banner: '<%= copyright %>' + '<%= banner%>',
-                    footer: '<%= footer %>',
+                    banner: '<%= copyright %>',
+                    footer: '',
                     stripBanners: true,
                     separator: "\n\n"
                 },

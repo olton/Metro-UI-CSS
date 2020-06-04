@@ -1,5 +1,6 @@
 /* global Metro, setImmediate, METRO_LOCALE, Export */
 (function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TableDefaultConfig = {
         tableDeferred: 0,
