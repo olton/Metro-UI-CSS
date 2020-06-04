@@ -84,3 +84,15 @@ html.metro-no-touch-device {
 
     .generate-display-media-options(@name, @i + 1);
 }
+
+// IE 10, 11
+@media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
+    .d-none-ie {display: none!important;}
+    .d-block-ie {display: block!important;}
+}
+
+// Edge
+@supports (-ms-ime-align:auto) {
+    .d-none-edge {display: none!important;}
+    .d-block-edge {display: block!important;}
+}
