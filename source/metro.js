@@ -20,7 +20,6 @@
     }
 
     var meta_init = $.meta('metro4:init').attr("content");
-    var meta_init_mode = $.meta('metro4:init:mode').attr("content");
     var meta_locale = $.meta('metro4:locale').attr("content");
     var meta_week_start = $.meta('metro4:week_start').attr("content");
     var meta_date_format = $.meta('metro4:date_format').attr("content");
@@ -52,10 +51,6 @@
 
     if (window.METRO_INIT === undefined) {
         window.METRO_INIT = meta_init !== undefined ? JSON.parse(meta_init) : true;
-    }
-
-    if (window.METRO_INIT_MODE === undefined) {
-        window.METRO_INIT_MODE = meta_init_mode !== undefined ? meta_init_mode : "contentloaded";
     }
 
     if (window.METRO_DEBUG === undefined) {window.METRO_DEBUG = true;}
@@ -624,95 +619,92 @@
             }
         },
 
-        Component: null
-    };
+        Component: function(nameName, compObj){
+            var name = normalizeComponentName(nameName);
+            var Utils = Metro.utils;
+            var component = $.extend({name: name}, {
+                _super: function(el, options, defaults, setup){
+                    var self = this;
 
-    /* eslint-disable-next-line */
-    Metro.Component = function(nameName, compObj){
-        var name = normalizeComponentName(nameName);
-        var Utils = Metro.utils;
-        var component = $.extend({name: name}, {
-            _super: function(el, options, defaults, setup){
-                var self = this;
+                    this.elem = el;
+                    this.element = $(el);
+                    this.options = $.extend( {}, defaults, options );
 
-                this.elem = el;
-                this.element = $(el);
-                this.options = $.extend( {}, defaults, options );
+                    this._setOptionsFromDOM();
+                    this._runtime();
 
-                this._setOptionsFromDOM();
-                this._runtime();
+                    if (setup && typeof setup === 'object') {
+                        $.each(setup, function(key, val){
+                            self[key] = val;
+                        })
+                    }
 
-                if (setup && typeof setup === 'object') {
-                    $.each(setup, function(key, val){
-                        self[key] = val;
-                    })
-                }
+                    this._createExec();
+                },
 
-                this._createExec();
-            },
+                _setOptionsFromDOM: function(){
+                    var element = this.element, o = this.options;
 
-            _setOptionsFromDOM: function(){
-                var element = this.element, o = this.options;
-
-                $.each(element.data(), function(key, value){
-                    if (key in o) {
-                        try {
-                            o[key] = JSON.parse(value);
-                        } catch (e) {
-                            o[key] = value;
+                    $.each(element.data(), function(key, value){
+                        if (key in o) {
+                            try {
+                                o[key] = JSON.parse(value);
+                            } catch (e) {
+                                o[key] = value;
+                            }
                         }
-                    }
-                });
-            },
+                    });
+                },
 
-            _runtime: function(){
-                var element = this.element, mc;
-                if (!element.attr('data-role-'+this.name)) {
-                    element.attr("data-role-"+this.name, true);
-                    element.attr("data-role", this.name);
-                    mc = element.data('metroComponent');
-                    if (mc === undefined) {
-                        mc = [this.name];
+                _runtime: function(){
+                    var element = this.element, mc;
+                    if (!element.attr('data-role-'+this.name)) {
+                        element.attr("data-role-"+this.name, true);
+                        element.attr("data-role", this.name);
+                        mc = element.data('metroComponent');
+                        if (mc === undefined) {
+                            mc = [this.name];
+                        } else {
+                            mc.push(this.name);
+                        }
+                        element.data('metroComponent', mc);
+                    }
+                },
+
+                _createExec: function(){
+                    var that = this, timeout = this.options[this.name+'Deferred'];
+
+                    if (timeout) {
+                        setTimeout(function(){
+                            that._create();
+                        }, timeout)
                     } else {
-                        mc.push(this.name);
-                    }
-                    element.data('metroComponent', mc);
-                }
-            },
-
-            _createExec: function(){
-                var that = this, timeout = this.options[this.name+'Deferred'];
-
-                if (timeout) {
-                    setTimeout(function(){
                         that._create();
-                    }, timeout)
-                } else {
-                    that._create();
+                    }
+                },
+
+                _fireEvent: function(eventName, data, log){
+                    var element = this.element, o = this.options;
+                    var _data = data ? Object.values(data) : {};
+                    var event = eventName.camelCase().capitalize();
+
+                    Utils.exec(o["on"+event], _data, element[0]);
+                    element.fire(event.toLowerCase(), _data);
+
+                    if (log) {
+                        console.log(log);
+                        console.log("Event: " + "on"+eventName.camelCase().capitalize());
+                        console.log("Data: ", _data);
+                        console.log("Element: ", element[0]);
+                    }
                 }
-            },
+            }, compObj);
 
-            _fireEvent: function(eventName, data, log){
-                var element = this.element, o = this.options;
-                var _data = data ? Object.values(data) : {};
-                var event = eventName.camelCase().capitalize();
+            Metro.plugin(name, component);
 
-                Utils.exec(o["on"+event], _data, element[0]);
-                element.fire(event.toLowerCase(), _data);
-
-                if (log) {
-                    console.log(log);
-                    console.log("Event: " + "on"+eventName.camelCase().capitalize());
-                    console.log("Data: ", _data);
-                    console.log("Element: ", element[0]);
-                }
-            }
-        }, compObj);
-
-        Metro.plugin(name, component);
-
-        return component;
-    }
+            return component;
+        }
+    };
 
     $(window).on(Metro.events.resize, function(){
         window.METRO_MEDIA = [];
@@ -726,7 +718,9 @@
     window.Metro = Metro;
 
     if (window.METRO_INIT ===  true) {
-        window.METRO_INIT_MODE === 'immediate' ? Metro.init() : $(function(){Metro.init()});
+        $(function(){
+            Metro.init()
+        });
     }
 
     return Metro;

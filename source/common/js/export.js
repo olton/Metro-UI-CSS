@@ -1,6 +1,7 @@
-/* global Metro, Utils */
+/* global Metro */
 (function(Metro, $) {
    'use strict';
+   var Utils = Metro.utils;
    var Export = {
 
         init: function(){

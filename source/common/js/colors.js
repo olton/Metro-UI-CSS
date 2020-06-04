@@ -797,7 +797,7 @@
         },
 
         lighten: function(color, amount){
-            var type, res, alpha, ring = amount > 0;
+            var type, res, alpha, ring;
 
             var calc = function (_color, _amount) {
                 var r, g, b;
@@ -821,6 +821,10 @@
 
                 return "#" + (g | (b << 8) | (r << 16)).toString(16);
             };
+
+            if (isNaN(amount)) amount = 10;
+
+            ring = amount > 0;
 
             type = this.colorType(color).toLowerCase();
 
@@ -977,35 +981,42 @@
                         rgb.g = toRange(Math.round(rgb.g * opt.shade2), 0, 255);
                         rgb.b = toRange(Math.round(rgb.b * opt.shade2), 0, 255);
                         scheme.push(this.rgb2hsv(rgb));
+
                     } else if (opt.algorithm === 2) {
+
                         scheme.push(hsv);
                         for (i = 1; i <= opt.distance; i++) {
                             v = clamp(v - opt.step, 0, 1);
                             s = clamp(s - opt.step, 0, 1);
-                            scheme.push({ h: h, s: s, v: v });
+                            scheme.push(new HSV(h, s, v));
                         }
+
                     } else if (opt.algorithm === 3) {
+
                         scheme.push(hsv);
                         for (i = 1; i <= opt.distance; i++) {
                             v = clamp(v - opt.step, 0, 1);
-                            scheme.push({ h: h, s: s, v: v });
+                            scheme.push(new HSV(h, s, v));
                         }
+
                     } else {
+
                         v = clamp(hsv.v + opt.step * 2, 0, 1);
-                        scheme.push({ h: h, s: s, v: v });
+                        scheme.push(new HSV(h, s, v));
 
                         v = clamp(hsv.v + opt.step, 0, 1);
-                        scheme.push({ h: h, s: s, v: v });
+                        scheme.push(new HSV(h, s, v));
 
                         scheme.push(hsv);
                         s = hsv.s;
                         v = hsv.v;
 
                         v = clamp(hsv.v - opt.step, 0, 1);
-                        scheme.push({ h: h, s: s, v: v });
+                        scheme.push(new HSV(h, s, v));
 
                         v = clamp(hsv.v - opt.step * 2, 0, 1);
-                        scheme.push({ h: h, s: s, v: v });
+                        scheme.push(new HSV(h, s, v));
+
                     }
                     break;
 
