@@ -1,4 +1,4 @@
-/* global Metro, METRO_ANIMATION_DURATION, FrameAnimation */
+/* global Metro, METRO_ANIMATION_DURATION */
 (function(Metro, $) {
     var Utils = Metro.utils;
     var CarouselDefaultConfig = {
@@ -6,7 +6,7 @@
         autoStart: false,
         width: "100%",
         height: "16/9", // 3/4, 21/9
-        effect: "slide", // slide, fade, switch, slowdown, custom
+        effect: "slide", // slide, slide-v, fade, switch, custom
         effectFunc: "linear",
         direction: "left", //left, right
         duration: METRO_ANIMATION_DURATION,
@@ -94,10 +94,7 @@
 
             slides.addClass(o.clsSlides);
 
-            if (slides.length === 0) {
-                /* eslint-disable-next-line */
-
-            } else {
+            if (slides.length > 0) {
 
                 this._createSlides();
                 this._createControls();
@@ -122,8 +119,9 @@
 
             }
 
-            Utils.exec(o.onCarouselCreate, [element], element[0]);
-            element.fire("carouselcreate");
+            this._fireEvent("carousel-create", {
+                element: element
+            });
         },
 
         _start: function(){
@@ -205,6 +203,7 @@
                             slide.css("top", "100%");
                             break;
                         case "fade":
+                        case "zoom":
                             slide.css("opacity", "0");
                             break;
                     }
@@ -273,45 +272,46 @@
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
 
-            element.on(Metro.events.click, ".carousel-bullet", function(e){
+            element.on(Metro.events.click, ".carousel-bullet", function(){
                 var bullet = $(this);
                 if (that.isAnimate === false) {
                     that._slideToSlide(bullet.data('slide'));
-                    Utils.exec(o.onBulletClick, [bullet,  element, e]);
-                    element.fire("bulletclick", {
+                    that._fireEvent("bullet-click", {
                         bullet: bullet
                     });
                 }
             });
 
-            element.on(Metro.events.click, ".carousel-switch-next", function(e){
+            element.on(Metro.events.click, ".carousel-switch-next", function(){
                 if (that.isAnimate === false) {
                     that._slideTo("next", false);
-                    Utils.exec(o.onNextClick, [element, e]);
-                    element.fire("nextclick", {
+                    that._fireEvent("next-click", {
                         button: this
                     });
                 }
             });
 
-            element.on(Metro.events.click, ".carousel-switch-prev", function(e){
+            element.on(Metro.events.click, ".carousel-switch-prev", function(){
                 if (that.isAnimate === false) {
                     that._slideTo("prev", false);
-                    Utils.exec(o.onPrevClick, [element, e]);
-                    element.fire("prevclick", {
+                    that._fireEvent("prev-click", {
                         button: this
                     });
                 }
             });
 
             if (o.stopOnMouse === true && o.autoStart === true) {
-                element.on(Metro.events.enter, function (e) {
+                element.on(Metro.events.enter, function () {
                     that._stop();
-                    Utils.exec(o.onMouseEnter, [element, e]);
+                    that._fireEvent("mouse-enter", {
+                        element: element
+                    });
                 });
-                element.on(Metro.events.leave, function (e) {
+                element.on(Metro.events.leave, function () {
                     that._start();
-                    Utils.exec(o.onMouseLeave, [element, e])
+                    that._fireEvent("mouse-leave", {
+                        element: element
+                    });
                 });
             }
 
@@ -326,10 +326,9 @@
                 });
             }
 
-            element.on(Metro.events.click, ".slide", function(e){
+            element.on(Metro.events.click, ".slide", function(){
                 var slide = $(this);
-                Utils.exec(o.onSlideClick, [slide, element, e]);
-                element.fire("slideclick", {
+                that._fireEvent("slide-click", {
                     slide: slide
                 });
             });
@@ -394,7 +393,7 @@
         },
 
         _effect: function(current, next, effect, to, interval){
-            var that = this, element = this.element, o = this.options;
+            var that = this, o = this.options;
             var duration = o.duration;
             var func, effectFunc = o.effectFunc;
             var period = o.period;
@@ -426,26 +425,25 @@
             }
 
             switch (effect) {
-                case 'slide': FrameAnimation[func](current, next, duration, effectFunc); break;
-                case 'slide-v': FrameAnimation[func](current, next, duration, effectFunc); break;
-                case 'fade': FrameAnimation['fade'](current, next, duration, effectFunc); break;
-                default: FrameAnimation['switch'](current, next);
+                case 'slide': Metro.animations[func](current, next, {duration: duration, ease: effectFunc}); break;
+                case 'slide-v': Metro.animations[func](current, next, {duration: duration, ease: effectFunc}); break;
+                case 'fade': Metro.animations['fade'](current, next, {duration: duration, ease: effectFunc}); break;
+                case 'zoom': Metro.animations['zoom'](current, next, {duration: duration, ease: effectFunc}); break;
+                default: Metro.animations['switch'](current, next);
             }
 
             setTimeout(function(){
-                Utils.exec(o.onSlideShow, [next[0], current[0]], next[0]);
-                element.fire("slideshow", {
+                that._fireEvent("slide-show", {
                     current: next[0],
                     prev: current[0]
-                });
+                })
             }, duration);
 
             setTimeout(function(){
-                Utils.exec(o.onSlideHide, [current[0], next[0]], current[0]);
-                element.fire("slidehide", {
+                that._fireEvent("slide-hide", {
                     current: current[0],
                     next: next[0]
-                });
+                })
             }, duration);
 
             if (interval === true) {
