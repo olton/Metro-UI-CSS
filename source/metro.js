@@ -264,10 +264,11 @@ var Metro = {
     utils: {},
     colors: {},
     dialog: null,
-    pagination: function(){},
-    md5: function(){},
+    pagination: null,
+    md5: null,
     storage: null,
     export: null,
+    animations: null,
 
     about: function(){
         var content =
