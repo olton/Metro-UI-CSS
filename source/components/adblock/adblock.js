@@ -26,11 +26,13 @@
             $("<div>")
                 .addClass(classes.split(" ").shuffle().join(" "))
                 .css({
-                    position: "absolute",
+                    position: "fixed",
                     height: 1,
                     width: 1,
                     overflow: "hidden",
-                    visibility: "visible"
+                    visibility: "visible",
+                    top: 0,
+                    left: 0
                 })
                 .append($("<a href='https://dblclick.net'>").html('dblclick.net'))
                 .appendTo('body');

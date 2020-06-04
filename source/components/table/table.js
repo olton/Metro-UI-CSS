@@ -1,7 +1,8 @@
-/* global Metro, setImmediate, METRO_LOCALE, Export */
+/* global Metro, setImmediate, METRO_LOCALE */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
+    var Export = Metro.export;
     var TableDefaultConfig = {
         tableDeferred: 0,
         emptyTableTitle: "Nothing to show",

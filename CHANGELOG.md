@@ -23,6 +23,7 @@
 + [x] Animation: redesign module
 + [x] Animation: add effect `zoom`
 + [x] Tiles: remove prefix `animate-*` for values for attribute `data-effect`   
++ [x] Core: removed meta attribute `metro4:init:mode`. Now Metro is **ALWAYS** initialized after the content has been loaded.
 
 
 ### 4.3.7
