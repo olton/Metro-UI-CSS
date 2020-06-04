@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 04/06/2020 15:19:41
+ * Built at 04/06/2020 15:35:23
  * Licensed under MIT
  */
 
@@ -4364,7 +4364,7 @@ var normalizeComponentName = function(name){
 var Metro = {
 
     version: "4.3.8",
-    compileTime: "04/06/2020 15:19:43",
+    compileTime: "04/06/2020 15:35:24",
     buildNumber: "746",
     isTouchable: isTouch,
     fullScreenEnabled: document.fullscreenEnabled,
@@ -4639,6 +4639,7 @@ var Metro = {
         var widgets = $("[data-role]");
         var hotkeys = $("[data-hotkey]");
         var html = $("html");
+        var that = this;
 
         if (window.METRO_SHOW_ABOUT) Metro.info(true);
 
@@ -4648,11 +4649,11 @@ var Metro = {
             html.addClass("metro-no-touch-device");
         }
 
-        Metro.sheet = Utils.newCssSheet();
+        Metro.sheet = this.utils.newCssSheet();
 
         window.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
-            if (Utils.media(query)) {
+            if (that.utils.media(query)) {
                 window.METRO_MEDIA.push(Metro.media_mode[key]);
             }
         });
@@ -4680,6 +4681,7 @@ var Metro = {
     },
 
     initHotkeys: function(hotkeys, redefine){
+        var that = this;
         $.each(hotkeys, function(){
             var element = $(this);
             var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
@@ -4689,7 +4691,7 @@ var Metro = {
                 return;
             }
 
-            if (element.data('hotKeyBonded') === true && !Utils.bool(redefine)) {
+            if (element.data('hotKeyBonded') === true && !that.utils.bool(redefine)) {
                 return;
             }
 
@@ -4700,13 +4702,15 @@ var Metro = {
     },
 
     initWidgets: function(widgets) {
+        var that = this;
+
         $.each(widgets, function () {
             var $this = $(this);
             var roles = $this.data('role').split(/\s*,\s*/);
 
             roles.map(function (func) {
 
-                var $$ = Utils.$();
+                var $$ = that.utils.$();
                 var _func = normalizeComponentName(func);
 
                 if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
@@ -4768,7 +4772,7 @@ var Metro = {
 
         p['destroy']();
         mc = el.data("metroComponent");
-        Utils.arrayDelete(mc, _name);
+        this.utils.arrayDelete(mc, _name);
         el.data("metroComponent", mc);
         $.removeData(el[0], _name);
         el.removeAttr("data-role-"+_name);
@@ -4883,6 +4887,7 @@ var Metro = {
 /* eslint-disable-next-line */
 var Component = function(nameName, compObj){
     var name = normalizeComponentName(nameName);
+    var Utils = Metro.utils;
     var component = $.extend({name: name}, {
         _super: function(el, options, defaults, setup){
             var self = this;
@@ -4973,7 +4978,7 @@ window.Metro = Metro;
 $(window).on(Metro.events.resize, function(){
     window.METRO_MEDIA = [];
     $.each(Metro.media_queries, function(key, query){
-        if (Utils.media(query)) {
+        if (Metro.utils.media(query)) {
             window.METRO_MEDIA.push(Metro.media_mode[key]);
         }
     });
@@ -8946,6 +8951,7 @@ $.extend(Metro['locales'], {
 }(Metro, m4q));
 
 (function(Metro, $) {
+    var Utils = Metro.utils;
     var AdblockDefaultConfig = {
         adblockDeferred: 0,
         checkInterval: 1000,

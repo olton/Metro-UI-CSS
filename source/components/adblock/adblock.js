@@ -1,5 +1,6 @@
-/* global Metro, Utils */
+/* global Metro */
 (function(Metro, $) {
+    var Utils = Metro.utils;
     var AdblockDefaultConfig = {
         adblockDeferred: 0,
         checkInterval: 1000,
