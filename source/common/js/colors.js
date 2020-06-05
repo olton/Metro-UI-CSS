@@ -1106,8 +1106,11 @@
             }
 
             return convert(scheme, format);
-        }
+        },
 
+        getScheme: function(){
+            return this.createScheme.apply(this, arguments)
+        }
     };
 
     var ColorType = function(color, options){
