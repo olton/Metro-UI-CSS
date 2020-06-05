@@ -1319,10 +1319,14 @@
             return Colors.colorType(this._value);
         },
 
-        getScheme: function(name, format, options) {
+        createScheme: function(name, format, options) {
             return this._value
                 ? Colors.createScheme(this._value, name, format, options)
                 : undefined;
+        },
+
+        getScheme: function(){
+            return this.createScheme.apply(this, arguments);
         },
 
         equal: function(color) {
