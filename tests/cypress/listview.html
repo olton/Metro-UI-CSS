@@ -13,6 +13,10 @@
     <h1>ListView test page</h1>
 
     <div>
+        <button class="button" onclick="selectSpecified()">Select specified</button>
+        <button class="button" onclick="selectSpecified(false)">Deselect specified</button>
+    </div>
+    <div>
         <div class="p-4 bg-light d-flex flex-justify-between">
             <input type="radio" name="r1" value="list" data-role="radio" data-caption="List" title="">
             <input type="radio" name="r1" value="table" data-role="radio" data-caption="Table" checked="checked"  title="">
@@ -23,16 +27,19 @@
             <input type="radio" name="r1" value="icons-large" data-role="radio" data-caption="Large icons" title="">
         </div>
     </div>
+
+    <br>
+
     <div>
-        <ul data-role="listview" data-view="table" id="listview-1" data-select-node="true" data-structure='{"date": true, "name": true}'>
-            <li data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>" data-date="12/21/2017" data-name="Video library"></li>
-            <li data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images" data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>" data-date="12/21/2017" data-name="My images"></li>
-            <li data-icon="<span class='mif-folder fg-green'>" data-caption="Documents" data-content="<div class='mt-1' data-role='progress' data-value='24' data-small='true'>" data-date="12/21/2017" data-name="My documents"></li>
-            <li data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads" data-content="<div class='mt-1' data-role='progress' data-value='85' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
-            <li data-icon="<span class='mif-folder'>" data-caption="Desktop" data-content="<div class='mt-1' data-role='progress' data-value='10' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
-            <li data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini" data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
-            <li data-icon="images/setup.png" data-caption="setup.exe" data-content="<span class='text-muted'>Executable</span>"></li>
-            <li data-icon="<span class='mif-file-empty'>" data-caption="file1.dat" data-content="<span class='text-muted'>Data file</span>"></li>
+        <ul data-role="listview" data-selectable="true" data-view="table" id="listview" data-select-node="true" data-structure='{"date": true, "name": true}'>
+            <li id="l1" data-icon="<span class='mif-folder fg-orange'>" data-caption="Video" data-content="<div class='mt-1' data-role='progress' data-value='35' data-small='true'>" data-date="12/21/2017" data-name="Video library"></li>
+            <li id="l2" data-icon="<span class='mif-folder fg-cyan'>" data-caption="Images" data-content="<div class='mt-1' data-role='progress' data-value='78' data-small='true'>" data-date="12/21/2017" data-name="My images"></li>
+            <li id="l3" data-icon="<span class='mif-folder fg-green'>" data-caption="Documents" data-content="<div class='mt-1' data-role='progress' data-value='24' data-small='true'>" data-date="12/21/2017" data-name="My documents"></li>
+            <li id="l4" data-icon="<span class='mif-folder-download fg-blue'>" data-caption="Downloads" data-content="<div class='mt-1' data-role='progress' data-value='85' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+            <li id="l5" data-icon="<span class='mif-folder'>" data-caption="Desktop" data-content="<div class='mt-1' data-role='progress' data-value='10' data-small='true'>" data-date="12/21/2017" data-name="System folder"></li>
+            <li id="l6" data-icon="<span class='mif-file-empty'>" data-caption="desktop.ini" data-content="<span class='text-muted'>Created: 12.21.2017</span>"></li>
+            <li id="l7" data-icon="<span class='mif-file-binary'>" data-caption="setup.exe" data-content="<span class='text-muted'>Executable</span>"></li>
+            <li id="l8" data-icon="<span class='mif-file-empty'>" data-caption="file1.dat" data-content="<span class='text-muted'>Data file</span>"></li>
         </ul>
     </div>
 
@@ -40,6 +47,16 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    "use strict";
+
+    function selectSpecified(select){
+        var val = ["l2", "l5", "l7", "l8"], attr = "id";
+        var lv = Metro.getPlugin("#listview", "listview");
+        $.each(val, function(){
+            lv.selectByAttribute(attr, this, select);
+        })
+    }
+
     function nodeClick() {
         console.log('node click');
     }
@@ -51,7 +68,7 @@
     $("input[name=r1]").on("click", function(){
         var checked = $(this).is(":checked");
         if (checked) {
-            Metro.getPlugin("#listview-1", "listview").view(this.value);
+            Metro.getPlugin("#listview", "listview").view(this.value);
         }
     });
 
