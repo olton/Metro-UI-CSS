@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/06/2020 19:46:47
+ * Built at 05/06/2020 22:09:03
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4355,7 +4355,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "05/06/2020 19:46:54",
+        compileTime: "05/06/2020 22:09:10",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -13012,10 +13012,10 @@ $.noConflict = function() {
     var cookieDisclaimerDefaults = {
         name: 'cookies_accepted',
         template: null,
-        templateTarget: null,
+        templateSource: null,
         acceptButton: '.cookie-accept-button',
         cancelButton: '.cookie-cancel-button',
-        message: 'Our website uses cookies to monitor traffic on our website and ensure that we can provide our customers with the best online experience possible. Please read our <a href="/cookies">cookie policy</a> to view more details on the cookies we use.',
+        message: 'Our website uses cookies to monitor traffic on our website and ensure that we can provide our customers with the best online experience possible.',
         duration: "30days",
         clsContainer: "",
         clsMessage: "",
@@ -13041,8 +13041,8 @@ $.noConflict = function() {
                 $.get(this.options.template).then(function(response){
                     that.create(response);
                 });
-            } else if (this.options.templateTarget) {
-                this.create($(this.options.templateTarget));
+            } else if (this.options.templateSource) {
+                this.create($(this.options.templateSource));
             } else {
                 this.create();
             }
@@ -13097,8 +13097,6 @@ $.noConflict = function() {
                         dur += parseInt(d);
                     }
                 })
-
-                
 
                 cookie.setCookie(o.name, true, dur);
                 Utils.exec(o.onAccept);

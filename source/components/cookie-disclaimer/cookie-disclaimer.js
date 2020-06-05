@@ -5,10 +5,10 @@
     var cookieDisclaimerDefaults = {
         name: 'cookies_accepted',
         template: null,
-        templateTarget: null,
+        templateSource: null,
         acceptButton: '.cookie-accept-button',
         cancelButton: '.cookie-cancel-button',
-        message: 'Our website uses cookies to monitor traffic on our website and ensure that we can provide our customers with the best online experience possible. Please read our <a href="/cookies">cookie policy</a> to view more details on the cookies we use.',
+        message: 'Our website uses cookies to monitor traffic on our website and ensure that we can provide our customers with the best online experience possible.',
         duration: "30days",
         clsContainer: "",
         clsMessage: "",
@@ -34,8 +34,8 @@
                 $.get(this.options.template).then(function(response){
                     that.create(response);
                 });
-            } else if (this.options.templateTarget) {
-                this.create($(this.options.templateTarget));
+            } else if (this.options.templateSource) {
+                this.create($(this.options.templateSource));
             } else {
                 this.create();
             }
@@ -90,8 +90,6 @@
                         dur += parseInt(d);
                     }
                 })
-
-                console.log(dur);
 
                 cookie.setCookie(o.name, true, dur);
                 Utils.exec(o.onAccept);
