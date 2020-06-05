@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/06/2020 10:35:12
+ * Built at 05/06/2020 11:00:44
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -262,7 +262,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2637,7 +2637,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4355,7 +4355,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "05/06/2020 10:35:13",
+        compileTime: "05/06/2020 11:00:52",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4618,7 +4618,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //console.log(mutation);
+                        //
                     }
                 });
             };
@@ -4945,10 +4945,10 @@ $.noConflict = function() {
                     element.fire(event.toLowerCase(), _data);
 
                     if (log) {
-                        console.log(log);
-                        console.log("Event: " + "on"+eventName.camelCase().capitalize());
-                        console.log("Data: ", _data);
-                        console.log("Element: ", element[0]);
+                        
+                        
+                        
+                        
                     }
                 }
             }, compObj);
@@ -13091,7 +13091,7 @@ $.noConflict = function() {
                     }
                 })
 
-                console.log(dur);
+                
 
                 cookie.setCookie(o.name, true, dur);
                 Utils.exec(o.onAccept);
@@ -29632,7 +29632,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                console.log(o.effect.camelCase());
+                
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
