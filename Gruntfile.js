@@ -39,7 +39,9 @@ module.exports = function(grunt) {
     tasks.push('concurrent:replace');
     tasks.push('concurrent:copy');
 
-    // tasks.push('concurrent:clean_less');
+    if (!develop) {
+        tasks.push('concurrent:clean_less');
+    }
 
     if (watching) {
         tasks.push('watch');
