@@ -16,9 +16,13 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
-    var c = new Color("#ff00cc");
-    console.log(c);
-    console.log(c.rgb()+"");
+    $(function(){
+        var c = new Color("#ff00cc");
+        var cm = Metro.colors;
+        console.log(c);
+        console.log(c.rgb()+"");
+        console.log(cm.getScheme("#ff00cc", 'mono', 'hex'));
+    })
 </script>
 </body>
 </html>
