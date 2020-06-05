@@ -408,6 +408,14 @@
             this.element.trigger('change');
         },
 
+        selectByAttribute: function(attributeName, attributeValue, select) {
+            if (select !== false) {
+                select = true;
+            }
+            this.element.find('li[' + attributeName + '="' + attributeValue + '"]' + ' > .checkbox input').prop("checked", select);
+            this.element.trigger('change');
+        },
+
         changeAttribute: function(attributeName){
             var that = this, element = this.element, o = this.options;
 

@@ -5,7 +5,7 @@
 
 #### Metro 4
 + [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
-+ [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. Styles moved to component style.
++ [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. RTL Styles moved to component style.
 + [x] Locales: added `pt-BR` Brazilian Portuguese language
 + [x] Toast: added method `Metro.createToast()`. This eq to `Metro.toast.create()`
 + [x] Components: event `on[Component]Create` now have context a `HTMLElement` and receive `$(HTMLElement)` as argument
@@ -21,9 +21,11 @@
 + [x] ColorType: new custom type for `color` variable. Var can be defined as `var c = new Color(...)` or `var c = new Metro.Color(...)` 
 + [x] Material Tabs: update to work in all browsers 
 + [x] Animation: redesign module
-+ [x] Animation: add effect `zoom`
++ [x] Animation: add effects `zoom`, `swirl`
 + [x] Tiles: remove prefix `animate-*` for values for attribute `data-effect`   
 + [x] Core: removed meta attribute `metro4:init:mode`. Now Metro is **ALWAYS** initialized after the content has been loaded.
++ [x] IE: removed file `ie.less`. Styles moved to component style.
++ [x] ListView: add method `selectByAttribute(attrName, attrValue, true|false)` for select/deselect items, issue #1554
 
 
 ### 4.3.7

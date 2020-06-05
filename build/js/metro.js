@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/06/2020 12:35:48
+ * Built at 05/06/2020 19:46:47
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4355,7 +4355,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "05/06/2020 12:35:56",
+        compileTime: "05/06/2020 19:46:54",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -20093,6 +20093,14 @@ $.noConflict = function() {
 
         selectAll: function(mode){
             this.element.find(".node > .checkbox input").prop("checked", mode !== false);
+            this.element.trigger('change');
+        },
+
+        selectByAttribute: function(attributeName, attributeValue, select) {
+            if (select !== false) {
+                select = true;
+            }
+            this.element.find('li[' + attributeName + '="' + attributeValue + '"]' + ' > .checkbox input').prop("checked", select);
             this.element.trigger('change');
         },
 
