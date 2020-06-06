@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/06/2020 13:20:25
+ * Built at 06/06/2020 23:39:00
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -262,7 +262,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2637,7 +2637,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4252,25 +4252,8 @@ $.noConflict = function() {
 }(window));
 
 
-/* Metro 4 Core */
-(function( factory ) {
-    if ( typeof define === 'function' && define.amd ) {
-        define('metro4', factory );
-    } else {
-        factory( );
-    }
-}(function( ) {
+(function($) {
     'use strict';
-
-    var $ = m4q; // eslint-disable-line
-
-    if (typeof m4q === 'undefined') {
-        throw new Error('Metro 4 requires m4q helper!');
-    }
-
-    if (!('MutationObserver' in window)) {
-        throw new Error('Metro 4 requires MutationObserver!');
-    }
 
     var meta_init = $.meta('metro4:init').attr("content");
     var meta_locale = $.meta('metro4:locale').attr("content");
@@ -4294,6 +4277,8 @@ $.noConflict = function() {
     if (window.METRO_JQUERY === undefined) {
         window.METRO_JQUERY = meta_jquery !== undefined ? JSON.parse(meta_jquery) : true;
     }
+    window.useJQuery = window.jquery_present && window.METRO_JQUERY;
+
 
     /* Added by Ken Kitay https://github.com/kens-code*/
     var meta_about = $.meta('metro4:about').attr("content");
@@ -4352,6 +4337,28 @@ $.noConflict = function() {
 
     window.METRO_MEDIA = [];
 
+}(m4q));
+
+/* Metro 4 Core */
+(function( factory ) {
+    if ( typeof define === 'function' && define.amd ) {
+        define('metro4', factory );
+    } else {
+        factory( );
+    }
+}(function( ) {
+    'use strict';
+
+    var $ = m4q; // eslint-disable-line
+
+    if (typeof m4q === 'undefined') {
+        throw new Error('Metro 4 requires m4q helper!');
+    }
+
+    if (!('MutationObserver' in window)) {
+        throw new Error('Metro 4 requires MutationObserver!');
+    }
+
     var isTouch = (('ontouchstart' in window) || (navigator["MaxTouchPoints"] > 0) || (navigator["msMaxTouchPoints"] > 0));
 
     var normalizeComponentName = function(name){
@@ -4361,7 +4368,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "06/06/2020 13:20:33",
+        compileTime: "06/06/2020 23:39:02",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4625,7 +4632,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -4663,7 +4670,7 @@ $.noConflict = function() {
 
             if (window.METRO_CLOAK_REMOVE !== "fade") {
                 $(".m4-cloak").removeClass("m4-cloak");
-                $(window).fire("metroinitied");
+                $(window).fire("metro-initiated");
             } else {
                 $(".m4-cloak").animate({
                     draw: {
@@ -4824,32 +4831,8 @@ $.noConflict = function() {
             return fsm !== undefined;
         },
 
-        checkRuntime: function(el, name){
-            var element = $(el);
-            var _name = normalizeComponentName(name);
-            if (!element.attr("data-role-"+_name)) {
-                Metro.makeRuntime(element, _name);
-            }
-        },
-
-        makeRuntime: function(el, name){
-            var element = $(el);
-            var _name = normalizeComponentName(name);
-
-            element.attr("data-role-"+_name, true);
-            element.attr("data-role", _name);
-            var mc = element.data('metroComponent');
-
-            if (mc === undefined) {
-                mc = [_name];
-            } else {
-                mc.push(_name);
-            }
-            element.data('metroComponent', mc);
-        },
-
         $: function(){
-            return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
+            return window.useJQuery ? jQuery : m4q;
         },
 
         get$el: function(el){
@@ -4952,10 +4935,10 @@ $.noConflict = function() {
                     element.fire(event.toLowerCase(), _data);
 
                     if (log) {
-                        
-                        
-                        
-                        
+                        console.log(log);
+                        console.log("Event: " + "on"+eventName.camelCase().capitalize());
+                        console.log("Data: ", _data);
+                        console.log("Element: ", element[0]);
                     }
                 }
             }, compObj);
@@ -21215,8 +21198,6 @@ $.noConflict = function() {
             var original_classes = element[0].className;
             var title;
 
-            Metro.checkRuntime(element, this.name);
-
             panel.attr("id", id).addClass(original_classes);
             panel.insertBefore(element);
             element.appendTo(panel);
@@ -22430,8 +22411,6 @@ $.noConflict = function() {
 
         _create: function(){
             var element = this.element;
-
-            Metro.checkRuntime(element, this.name);
 
             this.size = {
                 width: element.width(),
@@ -29559,8 +29538,6 @@ $.noConflict = function() {
         _create: function(){
             var element = this.element;
 
-            Metro.checkRuntime(element, this.name);
-
             this._createTile();
             this._createEvents();
 
@@ -29674,7 +29651,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                
+                console.log(o.effect.camelCase());
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
@@ -31515,8 +31492,6 @@ $.noConflict = function() {
 
         _create: function(){
             var that = this, element = this.element;
-
-            Metro.checkRuntime(element, this.name);
 
             this._createTree();
             this._createEvents();

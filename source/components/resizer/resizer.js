@@ -34,8 +34,6 @@
         _create: function(){
             var element = this.element;
 
-            Metro.checkRuntime(element, this.name);
-
             this.size = {
                 width: element.width(),
                 height: element.height()

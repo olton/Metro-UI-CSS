@@ -35,8 +35,6 @@
         _create: function(){
             var that = this, element = this.element;
 
-            Metro.checkRuntime(element, this.name);
-
             this._createTree();
             this._createEvents();
 

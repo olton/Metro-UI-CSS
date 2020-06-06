@@ -110,8 +110,6 @@
             var original_classes = element[0].className;
             var title;
 
-            Metro.checkRuntime(element, this.name);
-
             panel.attr("id", id).addClass(original_classes);
             panel.insertBefore(element);
             element.appendTo(panel);
