@@ -343,4 +343,8 @@
             this.swirlIn(next, o);
         }
     };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Animations = Metro.animations;
+    }
 }(Metro, m4q));

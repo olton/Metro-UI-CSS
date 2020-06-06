@@ -111,7 +111,7 @@
             return utftext;
         }
 
-        var x=Array();
+        var x=[];
         var k,AA,BB,CC,DD,a,b,c,d;
         var S11=7, S12=12, S13=17, S14=22;
         var S21=5, S22=9 , S23=14, S24=20;
@@ -200,4 +200,8 @@
 
         return temp.toLowerCase();
     };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.md5 = Metro.md5;
+    }
 }(Metro, m4q));

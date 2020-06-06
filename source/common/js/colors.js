@@ -1337,4 +1337,8 @@
     Metro.colors = Colors.init();
     window.Color = Metro.Color = ColorType;
 
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Colors = Metro.colors;
+    }
+
 }(Metro, m4q));

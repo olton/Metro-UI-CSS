@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/06/2020 22:09:03
+ * Built at 06/06/2020 13:20:25
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4281,8 +4281,13 @@ $.noConflict = function() {
     var meta_callback_timeout = $.meta('metro4:callback_timeout').attr("content");
     var meta_timeout = $.meta('metro4:timeout').attr("content");
     var meta_scroll_multiple = $.meta('metro4:scroll_multiple').attr("content");
-    var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
-    var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
+    var meta_cloak = $.meta('metro4:cloak').attr("content");
+    var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content");
+    var meta_global_common = $.meta('metro4:global_common').attr("content");
+
+    if (window.METRO_GLOBAL_COMMON === undefined) {
+        window.METRO_GLOBAL_COMMON = meta_global_common !== undefined ? JSON.parse(meta_global_common) : false;
+    }
 
     var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
     window.jquery_present = typeof jQuery !== "undefined";
@@ -4338,6 +4343,7 @@ $.noConflict = function() {
     if (window.METRO_CLOAK_DURATION === undefined) {
         window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 500;
     }
+
     if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
     if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
     if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
@@ -4355,7 +4361,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "05/06/2020 22:09:10",
+        compileTime: "06/06/2020 13:20:33",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4524,6 +4530,7 @@ $.noConflict = function() {
         storage: null,
         export: null,
         animations: null,
+        cookie: null,
 
         about: function(){
             var content =
@@ -5835,6 +5842,13 @@ $.noConflict = function() {
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
+        isVisible: function(element){
+            var el = $(element)[0];
+            return this.getStyleOne(el, "display") !== "none"
+                && this.getStyleOne(el, "visibility") !== "hidden"
+                && el.offsetParent !== null;
+        },
+
         isUrl: function (val) {
             /* eslint-disable-next-line */
             return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
@@ -5965,7 +5979,7 @@ $.noConflict = function() {
         },
 
         $: function(){
-            return METRO_JQUERY && jquery_present ? jQuery : m4q;
+            return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
         },
 
         isMetroObject: function(el, type){
@@ -6576,11 +6590,6 @@ $.noConflict = function() {
             return this.parseCard(val);
         },
 
-        isVisible: function(element){
-            var el = $(element)[0];
-            return this.getStyleOne(el, "display") !== "none" && this.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
-        },
-
         parseNumber: function(val, thousand, decimal){
             return val.replace(new RegExp('\\'+thousand, "g"), "").replace(new RegExp('\\'+decimal, 'g'), ".");
         },
@@ -6665,6 +6674,10 @@ $.noConflict = function() {
             return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         }
     };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Utils = Metro.utils;
+    }
 }(Metro, m4q));
 
 (function(Metro, $) {
@@ -7011,6 +7024,10 @@ $.noConflict = function() {
             this.swirlIn(next, o);
         }
     };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Animations = Metro.animations;
+    }
 }(Metro, m4q));
 
 (function(Metro, $) {
@@ -8351,6 +8368,10 @@ $.noConflict = function() {
     Metro.colors = Colors.init();
     window.Color = Metro.Color = ColorType;
 
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Colors = Metro.colors;
+    }
+
 }(Metro, m4q));
 
 (function(Metro, $) {
@@ -8465,6 +8486,10 @@ $.noConflict = function() {
     };
 
     Metro.export = Export.init();
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Export = Metro.export;
+    }
 }(Metro, m4q));
 
 (function(Metro) {
@@ -8579,7 +8604,7 @@ $.noConflict = function() {
             return utftext;
         }
 
-        var x=Array();
+        var x=[];
         var k,AA,BB,CC,DD,a,b,c,d;
         var S11=7, S12=12, S13=17, S14=22;
         var S21=5, S22=9 , S23=14, S24=20;
@@ -8668,6 +8693,10 @@ $.noConflict = function() {
 
         return temp.toLowerCase();
     };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.md5 = Metro.md5;
+    }
 }(Metro, m4q));
 
 (function(Metro, $){

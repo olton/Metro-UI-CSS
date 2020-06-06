@@ -28,8 +28,13 @@
     var meta_callback_timeout = $.meta('metro4:callback_timeout').attr("content");
     var meta_timeout = $.meta('metro4:timeout').attr("content");
     var meta_scroll_multiple = $.meta('metro4:scroll_multiple').attr("content");
-    var meta_cloak = $.meta('metro4:cloak').attr("content"); //default or fade
-    var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content"); //100
+    var meta_cloak = $.meta('metro4:cloak').attr("content");
+    var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content");
+    var meta_global_common = $.meta('metro4:global_common').attr("content");
+
+    if (window.METRO_GLOBAL_COMMON === undefined) {
+        window.METRO_GLOBAL_COMMON = meta_global_common !== undefined ? JSON.parse(meta_global_common) : false;
+    }
 
     var meta_jquery = $.meta('metro4:jquery').attr("content"); //undefined
     window.jquery_present = typeof jQuery !== "undefined";
@@ -85,6 +90,7 @@
     if (window.METRO_CLOAK_DURATION === undefined) {
         window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 500;
     }
+
     if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
     if (window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS === undefined) {window.METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS = true;}
     if (window.METRO_HOTKEYS_FILTER_TEXT_INPUTS === undefined) {window.METRO_HOTKEYS_FILTER_TEXT_INPUTS = true;}
@@ -271,6 +277,7 @@
         storage: null,
         export: null,
         animations: null,
+        cookie: null,
 
         about: function(){
             var content =
