@@ -1,6 +1,6 @@
 {
     "setup": {
-        "release": "4.3.7",
+        "release": "4.3.8",
         "next": "4.3.8"
     },
 
@@ -93,10 +93,6 @@
         "debug": {
             "name": "Debug class",
             "less": ["debug"]
-        },
-        "ie": {
-            "name": "IE fixes",
-            "less": ["ie"]
         },
         "print": {
             "name": "Print",
@@ -202,9 +198,9 @@
     },
 
     "common-js": {
-        "animation":{
-            "name": "Animation",
-            "js": ["animation"]
+        "animations":{
+            "name": "Animations",
+            "js": ["animations"]
         },
         "colors":{
             "name": "Color module",
@@ -213,10 +209,6 @@
         "md5":{
             "name": "MD5",
             "js": ["md5"]
-        },
-        "tpl":{
-            "name": "Micro Templating",
-            "js": ["tpl"]
         },
         "export":{
             "name": "Data export",
@@ -317,7 +309,7 @@
             "js": ["carousel"],
             "less": ["carousel"],
             "dependencies": {
-                "common-js": ["animation"],
+                "common-js": ["animations"],
                 "components": ["button"]
             }
         },
@@ -788,6 +780,10 @@
                 "common-js": ["colors"]
             }
         },
+        "template":{
+            "name": "Micro Templating",
+            "js": ["template-engine"]
+        },
         "textarea": {
             "name": "Textarea",
             "js": ["textarea"],
@@ -802,7 +798,7 @@
             "js": ["tile"],
             "less": ["tile"],
             "dependencies": {
-                "common-js": ["animation"]
+                "common-js": ["animations"]
             }
         },
         "timepicker": {

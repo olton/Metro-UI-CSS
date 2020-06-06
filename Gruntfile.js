@@ -184,7 +184,8 @@ module.exports = function(grunt) {
                     separator: "\n\n"
                 },
                 src: [
-                    'source/m4q/*.js',
+                    'source/m4q/m4q.js',
+                    'source/core/global.js',
                     'source/core/metro.js',
                     'source/i18n/*.js',
                     'source/extensions/*.js',

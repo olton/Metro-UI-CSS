@@ -43,8 +43,6 @@
         _create: function(){
             var element = this.element;
 
-            Metro.checkRuntime(element, this.name);
-
             this._createTile();
             this._createEvents();
 
