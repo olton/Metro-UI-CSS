@@ -111,4 +111,8 @@
     };
 
     Metro.export = Export.init();
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Export = Metro.export;
+    }
 }(Metro, m4q));

@@ -1,7 +1,14 @@
-/* global METRO_JQUERY, jquery_present, jQuery, Metro, METRO_THROWS METRO_MEDIA */
+/* global jQuery, Metro, METRO_THROWS METRO_MEDIA */
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
+        isVisible: function(element){
+            var el = $(element)[0];
+            return this.getStyleOne(el, "display") !== "none"
+                && this.getStyleOne(el, "visibility") !== "hidden"
+                && el.offsetParent !== null;
+        },
+
         isUrl: function (val) {
             /* eslint-disable-next-line */
             return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
@@ -132,7 +139,7 @@
         },
 
         $: function(){
-            return METRO_JQUERY && jquery_present ? jQuery : m4q;
+            return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
         },
 
         isMetroObject: function(el, type){
@@ -743,11 +750,6 @@
             return this.parseCard(val);
         },
 
-        isVisible: function(element){
-            var el = $(element)[0];
-            return this.getStyleOne(el, "display") !== "none" && this.getStyleOne(el, "visibility") !== "hidden" && el.offsetParent !== null;
-        },
-
         parseNumber: function(val, thousand, decimal){
             return val.replace(new RegExp('\\'+thousand, "g"), "").replace(new RegExp('\\'+decimal, 'g'), ".");
         },
@@ -832,4 +834,8 @@
             return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         }
     };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Utils = Metro.utils;
+    }
 }(Metro, m4q));
