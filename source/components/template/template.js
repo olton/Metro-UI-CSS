@@ -20,16 +20,15 @@
     Metro.Component('template', {
         init: function( options, elem ) {
             this._super(elem, options, TemplateDefaultConfig, {
-                template: null
+                template: null,
+                data: {}
             });
             return this;
         },
 
         _exec: function(){
-            var element = this.element, o = this.options;
-            var template, data;
-
-            data = Utils.isObject(o.templateData) || {};
+            var element = this.element;
+            var template;
 
             template = this.template
                 .replace(/(&lt;%)/gm, "<%")
@@ -37,18 +36,29 @@
                 .replace(/(&lt;)/gm, "<")
                 .replace(/(&gt;)/gm, ">");
 
-            element.html(Tpl(template, data));
+            element.html(Tpl(template, this.data));
         },
 
         _create: function(){
             this.template = this.element.html();
+            this.data = Utils.isObject(this.options.templateData) || {};
             this._exec();
             this._fireEvent('template-create');
+        },
+
+        buildWith: function(obj){
+            var data = Utils.isObject(obj);
+            if (!data) {
+                return;
+            }
+            this.data = data;
+            this._exec();
         },
 
         changeAttribute: function(a, v){
             if (a === "data-template-data") {
                 this.options.templateData = v;
+                this.data = Utils.isObject(v) || {};
                 this._exec();
             }
         },
