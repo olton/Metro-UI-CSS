@@ -1,6 +1,7 @@
-/* global Metro, Utils, jQuery, METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS, METRO_HOTKEYS_FILTER_CONTENT_EDITABLE, METRO_HOTKEYS_FILTER_TEXT_INPUTS */
+/* global Metro, jQuery, METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS, METRO_HOTKEYS_FILTER_CONTENT_EDITABLE, METRO_HOTKEYS_FILTER_TEXT_INPUTS */
 (function(Metro, $) {
     'use strict';
+    var Utils = Metro.utils;
     var Hotkey = {
         specialKeys: {
             8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
