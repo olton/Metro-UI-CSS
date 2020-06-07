@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/06/2020 14:47:25
+ * Built at 07/06/2020 18:54:03
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -569,7 +569,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 22/05/2020 16:11:40";
+var m4qVersion = "v1.0.7. Built at 07/06/2020 18:51:18";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1947,7 +1947,7 @@ $.fn.extend({
     },
 
     fire: function(name, data){
-        var _name;
+        var _name, e;
 
         if (this.length === 0) {
             return ;
@@ -1960,9 +1960,17 @@ $.fn.extend({
             return this;
         }
 
-        var e = document.createEvent('Events');
-        e.detail = data;
-        e.initEvent(_name, true, false);
+        if (typeof CustomEvent !== "undefined") {
+            e = new CustomEvent(_name, {
+                bubbles: true,
+                cancelable: true,
+                detail: data
+            });
+        } else {
+            e = document.createEvent('Events');
+            e.detail = data;
+            e.initEvent(_name, true, true);
+        }
 
         return this.each(function(){
             this.dispatchEvent(e);
@@ -4368,7 +4376,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "07/06/2020 14:47:34",
+        compileTime: "07/06/2020 18:54:14",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4933,9 +4941,10 @@ $.noConflict = function() {
                     var event = eventName.camelCase().capitalize();
 
                     Utils.exec(o["on"+event], _data, element[0]);
-                    element.fire(event.toLowerCase(), _data);
+                    element.fire(event.toLowerCase(), data);
 
                     if (log) {
+                        
                         
                         
                         
@@ -29288,6 +29297,7 @@ $.noConflict = function() {
     var Tpl = Metro.template;
     var TemplateDefaultConfig = {
         templateData: null,
+        onTemplateCompile: Metro.noop,
         onTemplateCreate: Metro.noop
     };
 
@@ -29310,7 +29320,7 @@ $.noConflict = function() {
 
         _exec: function(){
             var element = this.element;
-            var template;
+            var template, compiled;
 
             template = this.template
                 .replace(/(&lt;%)/gm, "<%")
@@ -29318,14 +29328,24 @@ $.noConflict = function() {
                 .replace(/(&lt;)/gm, "<")
                 .replace(/(&gt;)/gm, ">");
 
-            element.html(Tpl(template, this.data));
+            compiled = Tpl(template, this.data);
+            element.html(compiled);
+
+            this._fireEvent('template-compile', {
+                template: template,
+                compiled: compiled,
+                element: element
+            });
         },
 
         _create: function(){
-            this.template = this.element.html();
-            this.data = Utils.isObject(this.options.templateData) || {};
+            var element = this.element, o = this.options;
+            this.template = element.html();
+            this.data = Utils.isObject(o.templateData) || {};
             this._exec();
-            this._fireEvent('template-create');
+            this._fireEvent('template-create', {
+                element: element
+            });
         },
 
         buildWith: function(obj){
@@ -29346,7 +29366,7 @@ $.noConflict = function() {
         },
 
         destroy: function(){
-            this.element.remove();
+            return this.element;
         }
     });
 }(Metro, m4q));

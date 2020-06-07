@@ -6,6 +6,7 @@
     var Tpl = Metro.template;
     var TemplateDefaultConfig = {
         templateData: null,
+        onTemplateCompile: Metro.noop,
         onTemplateCreate: Metro.noop
     };
 
@@ -28,7 +29,7 @@
 
         _exec: function(){
             var element = this.element;
-            var template;
+            var template, compiled;
 
             template = this.template
                 .replace(/(&lt;%)/gm, "<%")
@@ -36,14 +37,24 @@
                 .replace(/(&lt;)/gm, "<")
                 .replace(/(&gt;)/gm, ">");
 
-            element.html(Tpl(template, this.data));
+            compiled = Tpl(template, this.data);
+            element.html(compiled);
+
+            this._fireEvent('template-compile', {
+                template: template,
+                compiled: compiled,
+                element: element
+            });
         },
 
         _create: function(){
-            this.template = this.element.html();
-            this.data = Utils.isObject(this.options.templateData) || {};
+            var element = this.element, o = this.options;
+            this.template = element.html();
+            this.data = Utils.isObject(o.templateData) || {};
             this._exec();
-            this._fireEvent('template-create');
+            this._fireEvent('template-create', {
+                element: element
+            });
         },
 
         buildWith: function(obj){
@@ -64,7 +75,7 @@
         },
 
         destroy: function(){
-            this.element.remove();
+            return this.element;
         }
     });
 }(Metro, m4q));

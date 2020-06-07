@@ -2,6 +2,7 @@
 #### M4Q
 + [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
 + [x] Animation: add operator `/` to `_getRelativeValue()`.
++ [x] Events: fix `fire`. Now main is constructor `CustonEvent`, for old - `createEvent`
 
 #### Metro 4
 + [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
@@ -26,7 +27,7 @@
 + [x] Core: removed meta attribute `metro4:init:mode`. Now Metro is **ALWAYS** initialized after the content has been loaded.
 + [x] IE: removed file `ie.less`. Styles moved to component style.
 + [x] ListView: add method `selectByAttribute(attrName, attrValue, true|false)` for select/deselect items, issue #1554
-+ [x] Template: new component
++ [x] Template: new component. This component allows you to use javascript templates inside HTML elements.
 
 
 ### 4.3.7

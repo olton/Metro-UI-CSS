@@ -34,6 +34,10 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $(".example").on("template-compile", function(e){
+        console.log(e.detail.template);
+        console.log(e.detail.compiled);
+    });
     var webSkills = {
         skills: ["javascript", "html", "css"],
         showSkills: true
