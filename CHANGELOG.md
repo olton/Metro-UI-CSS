@@ -26,6 +26,7 @@
 + [x] Core: removed meta attribute `metro4:init:mode`. Now Metro is **ALWAYS** initialized after the content has been loaded.
 + [x] IE: removed file `ie.less`. Styles moved to component style.
 + [x] ListView: add method `selectByAttribute(attrName, attrValue, true|false)` for select/deselect items, issue #1554
++ [x] Template: new component
 
 
 ### 4.3.7
