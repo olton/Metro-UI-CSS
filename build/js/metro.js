@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/06/2020 14:06:31
+ * Built at 07/06/2020 14:47:25
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4368,7 +4368,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "07/06/2020 14:06:41",
+        compileTime: "07/06/2020 14:47:34",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29302,16 +29302,15 @@ $.noConflict = function() {
     Metro.Component('template', {
         init: function( options, elem ) {
             this._super(elem, options, TemplateDefaultConfig, {
-                template: null
+                template: null,
+                data: {}
             });
             return this;
         },
 
         _exec: function(){
-            var element = this.element, o = this.options;
-            var template, data;
-
-            data = Utils.isObject(o.templateData) || {};
+            var element = this.element;
+            var template;
 
             template = this.template
                 .replace(/(&lt;%)/gm, "<%")
@@ -29319,18 +29318,29 @@ $.noConflict = function() {
                 .replace(/(&lt;)/gm, "<")
                 .replace(/(&gt;)/gm, ">");
 
-            element.html(Tpl(template, data));
+            element.html(Tpl(template, this.data));
         },
 
         _create: function(){
             this.template = this.element.html();
+            this.data = Utils.isObject(this.options.templateData) || {};
             this._exec();
             this._fireEvent('template-create');
+        },
+
+        buildWith: function(obj){
+            var data = Utils.isObject(obj);
+            if (!data) {
+                return;
+            }
+            this.data = data;
+            this._exec();
         },
 
         changeAttribute: function(a, v){
             if (a === "data-template-data") {
                 this.options.templateData = v;
+                this.data = Utils.isObject(v) || {};
                 this._exec();
             }
         },
