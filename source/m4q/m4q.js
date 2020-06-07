@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 22/05/2020 16:11:40";
+var m4qVersion = "v1.0.7. Built at 07/06/2020 18:51:18";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1948,7 +1948,7 @@ $.fn.extend({
     },
 
     fire: function(name, data){
-        var _name;
+        var _name, e;
 
         if (this.length === 0) {
             return ;
@@ -1961,9 +1961,17 @@ $.fn.extend({
             return this;
         }
 
-        var e = document.createEvent('Events');
-        e.detail = data;
-        e.initEvent(_name, true, false);
+        if (typeof CustomEvent !== "undefined") {
+            e = new CustomEvent(_name, {
+                bubbles: true,
+                cancelable: true,
+                detail: data
+            });
+        } else {
+            e = document.createEvent('Events');
+            e.detail = data;
+            e.initEvent(_name, true, true);
+        }
 
         return this.each(function(){
             this.dispatchEvent(e);

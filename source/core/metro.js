@@ -593,12 +593,13 @@
                     var event = eventName.camelCase().capitalize();
 
                     Utils.exec(o["on"+event], _data, element[0]);
-                    element.fire(event.toLowerCase(), _data);
+                    element.fire(event.toLowerCase(), data);
 
                     if (log) {
                         console.log(log);
                         console.log("Event: " + "on"+eventName.camelCase().capitalize());
-                        console.log("Data: ", _data);
+                        console.log("Data: ", data);
+                        console.log("Values: ", _data);
                         console.log("Element: ", element[0]);
                     }
                 }

@@ -780,9 +780,16 @@
                 "common-js": ["colors"]
             }
         },
-        "template":{
+        "tpl":{
             "name": "Micro Templating",
             "js": ["template-engine"]
+        },
+        "template":{
+            "name": "Template",
+            "js": ["template"],
+            "dependencies": {
+                "components": ["tpl"]
+            }
         },
         "textarea": {
             "name": "Textarea",
