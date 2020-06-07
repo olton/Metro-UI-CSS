@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/06/2020 14:05:30
+ * Built at 07/06/2020 14:06:31
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -262,7 +262,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2637,7 +2637,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4368,7 +4368,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "07/06/2020 14:05:31",
+        compileTime: "07/06/2020 14:06:41",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4538,6 +4538,7 @@ $.noConflict = function() {
         export: null,
         animations: null,
         cookie: null,
+        template: null,
 
         about: function(){
             var content =
@@ -4632,7 +4633,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //console.log(mutation);
+                        //
                     }
                 });
             };
@@ -4935,10 +4936,10 @@ $.noConflict = function() {
                     element.fire(event.toLowerCase(), _data);
 
                     if (log) {
-                        console.log(log);
-                        console.log("Event: " + "on"+eventName.camelCase().capitalize());
-                        console.log("Data: ", _data);
-                        console.log("Element: ", element[0]);
+                        
+                        
+                        
+                        
                     }
                 }
             }, compObj);
@@ -16872,6 +16873,7 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+    var Utils = Metro.utils;
     var Hotkey = {
         specialKeys: {
             8: "backspace", 9: "tab", 13: "return", 16: "shift", 17: "ctrl", 18: "alt", 19: "pause",
@@ -29281,6 +29283,66 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+
+    var Utils = Metro.utils;
+    var Tpl = Metro.template;
+    var TemplateDefaultConfig = {
+        templateData: null,
+        onTemplateCreate: Metro.noop
+    };
+
+    Metro.templateSetup = function (options) {
+        TemplateDefaultConfig = $.extend({}, TemplateDefaultConfig, options);
+    };
+
+    if (typeof window["metroTemplateSetup"] !== undefined) {
+        Metro.templateSetup(window["metroTemplateSetup"]);
+    }
+
+    Metro.Component('template', {
+        init: function( options, elem ) {
+            this._super(elem, options, TemplateDefaultConfig, {
+                template: null
+            });
+            return this;
+        },
+
+        _exec: function(){
+            var element = this.element, o = this.options;
+            var template, data;
+
+            data = Utils.isObject(o.templateData) || {};
+
+            template = this.template
+                .replace(/(&lt;%)/gm, "<%")
+                .replace(/(%&gt;)/gm, "%>")
+                .replace(/(&lt;)/gm, "<")
+                .replace(/(&gt;)/gm, ">");
+
+            element.html(Tpl(template, data));
+        },
+
+        _create: function(){
+            this.template = this.element.html();
+            this._exec();
+            this._fireEvent('template-create');
+        },
+
+        changeAttribute: function(a, v){
+            if (a === "data-template-data") {
+                this.options.templateData = v;
+                this._exec();
+            }
+        },
+
+        destroy: function(){
+            this.element.remove();
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var TextareaDefaultConfig = {
         textareaDeferred: 0,
@@ -29651,7 +29713,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                console.log(o.effect.camelCase());
+                
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
