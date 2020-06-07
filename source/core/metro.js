@@ -198,6 +198,7 @@
         export: null,
         animations: null,
         cookie: null,
+        template: null,
 
         about: function(){
             var content =
