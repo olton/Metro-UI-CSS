@@ -54,6 +54,7 @@
         clsToday: "",
         clsSelected: "",
         clsExcluded: "",
+        clsPrepend: "",
 
         onDayClick: Metro.noop,
         onCalendarPickerCreate: Metro.noop,
