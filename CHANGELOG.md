@@ -5,6 +5,7 @@
 + [x] Events: fix `fire`. Now main is constructor `CustonEvent`, for old - `createEvent`
 
 #### Metro 4
++ [x] General: new module system. All components now defined as alone IIFE modules.
 + [x] Validator: fixed functions `compare`, `equals`, `notequals` to work not inside a form, issue #1542
 + [x] Rtl: remove `form-rtl`, `accordion-rtl` less files. RTL Styles moved to component style.
 + [x] Locales: added `pt-BR` Brazilian Portuguese language
