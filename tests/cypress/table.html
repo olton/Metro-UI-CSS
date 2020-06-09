@@ -22,8 +22,19 @@
                data-rows-steps="5, 10"
                data-show-activity="false"
                data-source="../data/table.json"
+               data-show-skip="true"
+               data-pagination-wrapper="#pagination"
+               data-skip-wrapper="#skip"
         >
         </table>
+        <div class="row">
+            <div class="cell-md-8">
+                <div id="pagination"></div>
+            </div>
+            <div class="cell-md-4">
+                <div id="skip" class="d-flex"></div>
+            </div>
+        </div>
     </div>
 
 </div>

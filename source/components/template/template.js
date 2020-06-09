@@ -27,7 +27,7 @@
             return this;
         },
 
-        _exec: function(){
+        _compile: function(){
             var element = this.element;
             var template, compiled;
 
@@ -51,7 +51,7 @@
             var element = this.element, o = this.options;
             this.template = element.html();
             this.data = Utils.isObject(o.templateData) || {};
-            this._exec();
+            this._compile();
             this._fireEvent('template-create', {
                 element: element
             });
@@ -63,14 +63,14 @@
                 return;
             }
             this.data = data;
-            this._exec();
+            this._compile();
         },
 
         changeAttribute: function(a, v){
             if (a === "data-template-data") {
                 this.options.templateData = v;
                 this.data = Utils.isObject(v) || {};
-                this._exec();
+                this._compile();
             }
         },
 

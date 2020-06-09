@@ -12,9 +12,10 @@
 + [x] Components: event `on[Component]Create` now have context a `HTMLElement` and receive `$(HTMLElement)` as argument
 + [x] Keypad: fix Keypad backspace button click behavior on `keypad`, created at `runtime`, issue #1547
 + [x] Utils: improve function `isType`
-+ [x] Utils: remove functions `camelCase()`, `dashedName()`. Use `String.camelCase` (`$.camelCase()`) and `String.dashedName())` (`$.dashedName()`).
++ [x] Utils: remove functions `camelCase()`, `dashedName()`. Use `String.camelCase` or `$.camelCase()` and `String.dashedName())` or `$.dashedName()`.
 + [x] Clock: add events `onTick`, `onSecond`
 + [x] String: add extensions `includes()`, `camelCase()`, `dashedName()`, `shuffle()`
++ [x] Array: add extensions `includes()`
 + [x] ListView: fixed event `onNodeDblclick`, issue #1453
 + [x] Ribbon menu: fix hovering when button disabled, issue #1551
 + [x] Components: new constructor function
@@ -25,9 +26,10 @@
 + [x] Animation: add effects `zoom`, `swirl`
 + [x] Tiles: remove prefix `animate-*` for values for attribute `data-effect`   
 + [x] Core: removed meta attribute `metro4:init:mode`. Now Metro is **ALWAYS** initialized after the content has been loaded.
-+ [x] IE: removed file `ie.less`. Styles moved to component style.
++ [x] IE: removed file `ie.less`. Styles moved to components styles.
 + [x] ListView: add method `selectByAttribute(attrName, attrValue, true|false)` for select/deselect items, issue #1554
 + [x] Template: new component. This component allows you to use javascript templates inside HTML elements.
++ [x] Table: fix using wrapper for `skip`, issue #1557
 
 
 ### 4.3.7

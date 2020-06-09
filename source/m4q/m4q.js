@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 07/06/2020 18:51:18";
+var m4qVersion = "v1.0.7. Built at 09/06/2020 11:10:23";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -653,7 +653,7 @@ $.assign = function(){
     return target;
 };
 
-if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q " + $.version);
+// if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q " + $.version);
 
 // Source: src/interval.js
 
