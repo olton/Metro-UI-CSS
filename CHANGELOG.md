@@ -2,7 +2,7 @@
 #### M4Q
 + [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
 + [x] Animation: add operator `/` to `_getRelativeValue()`.
-+ [x] Events: fix `fire`. Now main is constructor `CustonEvent`, for old - `createEvent`
++ [x] Events: fix `fire`. Main constructor `CustomEvent`, for old - `createEvent`
 
 #### Metro 4
 + [x] General: new module system. All components now defined as alone IIFE modules.
@@ -20,7 +20,7 @@
 + [x] ListView: fixed event `onNodeDblclick`, issue #1453
 + [x] Ribbon menu: fix hovering when button disabled, issue #1551
 + [x] Components: new constructor function
-+ [x] Colors: full refactoring, now its full eq to `ColorJS`
++ [x] Colors: full refactoring, now its full equals to `ColorJS`
 + [x] ColorType: new custom type for `color` variable. Var can be defined as `var c = new Color(...)` or `var c = new Metro.Color(...)` 
 + [x] Material Tabs: update to work in all browsers 
 + [x] Animation: redesign module
@@ -31,6 +31,7 @@
 + [x] ListView: add method `selectByAttribute(attrName, attrValue, true|false)` for select/deselect items, issue #1554
 + [x] Template: new component. This component allows you to use javascript templates inside HTML elements.
 + [x] Table: fix using wrapper for `skip`, issue #1557
++ [x] Calendar picker: fix using attribute `clsPrepend`, issue #1558
 
 
 ### 4.3.7
