@@ -512,17 +512,6 @@
             return $el.length && typeof $el[_name] === "function" ? $el[_name](options) : undefined;
         },
 
-        createExec: function(that){
-            var timeout = that.options[that.name.toLowerCase()+'Deferred'];
-            if (timeout > 0) {
-                setTimeout(function(){
-                    that._create();
-                }, timeout)
-            } else {
-                that._create();
-            }
-        },
-
         Component: function(nameName, compObj){
             var name = normalizeComponentName(nameName);
             var Utils = Metro.utils;
@@ -599,7 +588,6 @@
                         console.log(log);
                         console.log("Event: " + "on"+eventName.camelCase().capitalize());
                         console.log("Data: ", data);
-                        console.log("Values: ", _data);
                         console.log("Element: ", element[0]);
                     }
                 }

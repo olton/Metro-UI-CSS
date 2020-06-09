@@ -833,7 +833,7 @@
             skip = Utils.isValue(this.wrapperSkip) ? this.wrapperSkip : $("<div>").addClass("table-skip").appendTo(bottom_block);
             skip.addClass(o.clsTableSkip);
 
-            $("<input type='text'>").addClass("input").addClass(o.clsTableSkipInput).appendTo(skip);
+            $("<input type='text'>").addClass("input table-skip-input").addClass(o.clsTableSkipInput).appendTo(skip);
             $("<button>").addClass("button table-skip-button").addClass(o.clsTableSkipButton).html(o.tableSkipTitle).appendTo(skip);
 
             if (o.showSkip !== true) {
@@ -909,8 +909,8 @@
             var component = element.closest(".table-component");
             var table_container = component.find(".table-container");
             var search = component.find(".table-search-block input");
-            var skip_button = component.find(".table-skip button");
-            var skip_input = component.find(".table-skip input");
+            var skip_button = o.skipWrapper ? $(o.skipWrapper).find('.table-skip-button') : component.find(".table-skip-button");
+            var skip_input = o.skipWrapper ? $(o.skipWrapper).find('.table-skip-input') : component.find(".table-skip-input");
             var customSearch;
             var id = element.attr("id");
 

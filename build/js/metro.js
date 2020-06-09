@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/06/2020 18:54:03
+ * Built at 09/06/2020 11:19:19
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -569,7 +569,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 07/06/2020 18:51:18";
+var m4qVersion = "v1.0.7. Built at 09/06/2020 11:10:23";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -652,7 +652,7 @@ $.assign = function(){
     return target;
 };
 
-if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q " + $.version);
+// if (typeof window["hideM4QVersion"] === "undefined") console.info("m4q " + $.version);
 
 // Source: src/interval.js
 
@@ -4376,7 +4376,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "07/06/2020 18:54:14",
+        compileTime: "09/06/2020 11:19:27",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4860,17 +4860,6 @@ $.noConflict = function() {
             return $el.length && typeof $el[_name] === "function" ? $el[_name](options) : undefined;
         },
 
-        createExec: function(that){
-            var timeout = that.options[that.name.toLowerCase()+'Deferred'];
-            if (timeout > 0) {
-                setTimeout(function(){
-                    that._create();
-                }, timeout)
-            } else {
-                that._create();
-            }
-        },
-
         Component: function(nameName, compObj){
             var name = normalizeComponentName(nameName);
             var Utils = Metro.utils;
@@ -4944,7 +4933,6 @@ $.noConflict = function() {
                     element.fire(event.toLowerCase(), data);
 
                     if (log) {
-                        
                         
                         
                         
@@ -26978,7 +26966,7 @@ $.noConflict = function() {
             skip = Utils.isValue(this.wrapperSkip) ? this.wrapperSkip : $("<div>").addClass("table-skip").appendTo(bottom_block);
             skip.addClass(o.clsTableSkip);
 
-            $("<input type='text'>").addClass("input").addClass(o.clsTableSkipInput).appendTo(skip);
+            $("<input type='text'>").addClass("input table-skip-input").addClass(o.clsTableSkipInput).appendTo(skip);
             $("<button>").addClass("button table-skip-button").addClass(o.clsTableSkipButton).html(o.tableSkipTitle).appendTo(skip);
 
             if (o.showSkip !== true) {
@@ -27054,8 +27042,8 @@ $.noConflict = function() {
             var component = element.closest(".table-component");
             var table_container = component.find(".table-container");
             var search = component.find(".table-search-block input");
-            var skip_button = component.find(".table-skip button");
-            var skip_input = component.find(".table-skip input");
+            var skip_button = o.skipWrapper ? $(o.skipWrapper).find('.table-skip-button') : component.find(".table-skip-button");
+            var skip_input = o.skipWrapper ? $(o.skipWrapper).find('.table-skip-input') : component.find(".table-skip-input");
             var customSearch;
             var id = element.attr("id");
 
@@ -29318,7 +29306,7 @@ $.noConflict = function() {
             return this;
         },
 
-        _exec: function(){
+        _compile: function(){
             var element = this.element;
             var template, compiled;
 
@@ -29342,7 +29330,7 @@ $.noConflict = function() {
             var element = this.element, o = this.options;
             this.template = element.html();
             this.data = Utils.isObject(o.templateData) || {};
-            this._exec();
+            this._compile();
             this._fireEvent('template-create', {
                 element: element
             });
@@ -29354,14 +29342,14 @@ $.noConflict = function() {
                 return;
             }
             this.data = data;
-            this._exec();
+            this._compile();
         },
 
         changeAttribute: function(a, v){
             if (a === "data-template-data") {
                 this.options.templateData = v;
                 this.data = Utils.isObject(v) || {};
-                this._exec();
+                this._compile();
             }
         },
 
