@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 09/06/2020 11:10:23";
+var m4qVersion = "v1.0.7. Built at 11/06/2020 19:37:27";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2955,6 +2955,32 @@ $.fn.extend({
         }
 
         return $.merge($(), res);
+    },
+
+    wrap: function( el ){
+        if (this.length === 0) {
+            return ;
+        }
+
+        var target, wrapper = $(normalizeElements(el));
+
+        if (!wrapper.length) {
+            return ;
+        }
+
+        target = wrapper;
+
+        while (target.children("*").length) {
+            target = target.children("*").eq(0);
+        }
+
+        wrapper.insertBefore(this[0]);
+
+        this.each(function(){
+            target.append(this);
+        });
+
+        return wrapper;
     }
 });
 
