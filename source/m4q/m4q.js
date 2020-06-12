@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 12/06/2020 12:25:17";
+var m4qVersion = "v1.0.7. Built at 12/06/2020 20:03:40";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2957,7 +2957,6 @@ $.fn.extend({
         return $.merge($(), res);
     },
 
-    /* eslint-disable */
     wrap: function( el ){
         if (this.length === 0) {
             return ;
@@ -2990,13 +2989,13 @@ $.fn.extend({
     },
 
     wrapAll: function( el ){
-        var _wrapper, _target;
+        var wrapper, _wrapper, _target;
 
         if (this.length === 0) {
             return ;
         }
 
-        var wrapper = $(normalizeElements(el));
+        wrapper = $(normalizeElements(el));
 
         if (!wrapper.length) {
             return ;
@@ -3015,8 +3014,31 @@ $.fn.extend({
         })
 
         return _wrapper;
+    },
+
+    wrapInner: function( el ){
+        if (this.length === 0) {
+            return ;
+        }
+
+        var wrapper = $(normalizeElements(el));
+
+        if (!wrapper.length) {
+            return ;
+        }
+
+        var res = [];
+
+        this.each(function(){
+            var elem = $(this);
+            var html = elem.html();
+            var wrp = wrapper.clone(true, true);
+            elem.html(wrp.html(html));
+            res.push(wrp);
+        });
+
+        return $(res);
     }
-    /* eslint-enable */
 });
 
 // Source: src/animation.js

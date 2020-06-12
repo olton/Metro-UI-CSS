@@ -3,7 +3,7 @@
 + [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
 + [x] Animation: add operator `/` to `_getRelativeValue()`.
 + [x] Events: fix `fire`. Main constructor `CustomEvent`, for old - `createEvent`
-+ [x] Manipulation: add method `wrap`, `wrapAll`. The method puts elements inside a wrapper.
++ [x] Manipulation: add method `wrap`, `wrapAll`, `wrapInner`. The method puts elements inside a wrapper and return `wrapper(s)`.
 
 #### Metro 4
 + [x] General: new module system. All components now defined as alone IIFE modules.
