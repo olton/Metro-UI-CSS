@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/06/2020 19:40:25
+ * Built at 12/06/2020 12:28:40
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -569,7 +569,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 11/06/2020 19:37:27";
+var m4qVersion = "v1.0.7. Built at 12/06/2020 12:25:17";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2956,31 +2956,66 @@ $.fn.extend({
         return $.merge($(), res);
     },
 
+    /* eslint-disable */
     wrap: function( el ){
         if (this.length === 0) {
             return ;
         }
 
-        var target, wrapper = $(normalizeElements(el));
+        var wrapper = $(normalizeElements(el));
 
         if (!wrapper.length) {
             return ;
         }
 
-        target = wrapper;
-
-        while (target.children("*").length) {
-            target = target.children("*").eq(0);
-        }
-
-        wrapper.insertBefore(this[0]);
+        var res = [];
 
         this.each(function(){
-            target.append(this);
+            var _target, _wrapper;
+
+            _wrapper = wrapper.clone(true, true);
+            _wrapper.insertBefore(this);
+
+            _target = _wrapper;
+            while (_target.children().length) {
+                _target = _target.children().eq(0);
+            }
+            _target.append(this);
+
+            res.push(_wrapper);
         });
 
-        return wrapper;
+        return $(res);
+    },
+
+    wrapAll: function( el ){
+        var _wrapper, _target;
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        var wrapper = $(normalizeElements(el));
+
+        if (!wrapper.length) {
+            return ;
+        }
+
+        _wrapper = wrapper.clone(true, true);
+        _wrapper.insertBefore(this[0]);
+
+        _target = _wrapper;
+        while (_target.children().length) {
+            _target = _target.children().eq(0);
+        }
+
+        this.each(function(){
+            _target.append(this);
+        })
+
+        return _wrapper;
     }
+    /* eslint-enable */
 });
 
 // Source: src/animation.js
@@ -4402,7 +4437,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "11/06/2020 19:40:32",
+        compileTime: "12/06/2020 12:28:51",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12647,12 +12682,14 @@ $.noConflict = function() {
 
         _createStructure: function(){
             var element = this.element, o = this.options;
-            var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
+            var checkbox;
             var check = $("<span>").addClass("check");
             var caption = $("<span>").addClass("caption").html(o.caption);
 
-            if (element.attr('id') === undefined) {
-                element.attr('id', Utils.elementId("checkbox"));
+            element.attr("type", "checkbox");
+
+            if (!Utils.isValue(element.attr("id"))) {
+                element.attr("id", Utils.elementId("checkbox"));
             }
 
             if (element.attr("readonly") !== undefined) {
@@ -12661,13 +12698,12 @@ $.noConflict = function() {
                 })
             }
 
-            checkbox.attr('for', element.attr('id'));
+            checkbox = element
+                .wrap("<label>")
+                .addClass("checkbox " + element[0].className)
+                .addClass(o.style === 2 ? "style2" : "")
+                .attr('for', element.attr('id'));
 
-            element.attr("type", "checkbox");
-
-            checkbox.insertBefore(element);
-
-            element.appendTo(checkbox);
             check.appendTo(checkbox);
             caption.appendTo(checkbox);
 

@@ -570,7 +570,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 11/06/2020 19:37:27";
+var m4qVersion = "v1.0.7. Built at 12/06/2020 12:25:17";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2957,31 +2957,66 @@ $.fn.extend({
         return $.merge($(), res);
     },
 
+    /* eslint-disable */
     wrap: function( el ){
         if (this.length === 0) {
             return ;
         }
 
-        var target, wrapper = $(normalizeElements(el));
+        var wrapper = $(normalizeElements(el));
 
         if (!wrapper.length) {
             return ;
         }
 
-        target = wrapper;
-
-        while (target.children("*").length) {
-            target = target.children("*").eq(0);
-        }
-
-        wrapper.insertBefore(this[0]);
+        var res = [];
 
         this.each(function(){
-            target.append(this);
+            var _target, _wrapper;
+
+            _wrapper = wrapper.clone(true, true);
+            _wrapper.insertBefore(this);
+
+            _target = _wrapper;
+            while (_target.children().length) {
+                _target = _target.children().eq(0);
+            }
+            _target.append(this);
+
+            res.push(_wrapper);
         });
 
-        return wrapper;
+        return $(res);
+    },
+
+    wrapAll: function( el ){
+        var _wrapper, _target;
+
+        if (this.length === 0) {
+            return ;
+        }
+
+        var wrapper = $(normalizeElements(el));
+
+        if (!wrapper.length) {
+            return ;
+        }
+
+        _wrapper = wrapper.clone(true, true);
+        _wrapper.insertBefore(this[0]);
+
+        _target = _wrapper;
+        while (_target.children().length) {
+            _target = _target.children().eq(0);
+        }
+
+        this.each(function(){
+            _target.append(this);
+        })
+
+        return _wrapper;
     }
+    /* eslint-enable */
 });
 
 // Source: src/animation.js
