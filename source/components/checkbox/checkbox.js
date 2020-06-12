@@ -44,12 +44,14 @@
 
         _createStructure: function(){
             var element = this.element, o = this.options;
-            var checkbox = $("<label>").addClass("checkbox " + element[0].className).addClass(o.style === 2 ? "style2" : "");
+            var checkbox;
             var check = $("<span>").addClass("check");
             var caption = $("<span>").addClass("caption").html(o.caption);
 
-            if (element.attr('id') === undefined) {
-                element.attr('id', Utils.elementId("checkbox"));
+            element.attr("type", "checkbox");
+
+            if (!Utils.isValue(element.attr("id"))) {
+                element.attr("id", Utils.elementId("checkbox"));
             }
 
             if (element.attr("readonly") !== undefined) {
@@ -58,13 +60,12 @@
                 })
             }
 
-            checkbox.attr('for', element.attr('id'));
+            checkbox = element
+                .wrap("<label>")
+                .addClass("checkbox " + element[0].className)
+                .addClass(o.style === 2 ? "style2" : "")
+                .attr('for', element.attr('id'));
 
-            element.attr("type", "checkbox");
-
-            checkbox.insertBefore(element);
-
-            element.appendTo(checkbox);
             check.appendTo(checkbox);
             caption.appendTo(checkbox);
 
