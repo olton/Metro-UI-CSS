@@ -7,7 +7,7 @@
         checkInterval: 1000,
         fireOnce: true,
         checkStop: 10,
-        onBite: Metro.noop,
+        onAlert: Metro.noop,
         onFishingStart: Metro.noop,
         onFishingDone: Metro.noop
     };
@@ -54,8 +54,10 @@
                 var b = a.find("a");
                 var done = function(){
                     clearInterval(interval);
+
                     Utils.exec(o.onFishingDone);
                     $(window).fire("fishing-done");
+
                     a.remove();
                 };
 
@@ -64,8 +66,10 @@
                     || a.css("display").indexOf('none') > -1
                     || b.css("display").indexOf('none') > -1
                 ) {
-                    Utils.exec(Adblock.options.onBite);
+
+                    Utils.exec(Adblock.options.onAlert);
                     $(window).fire("adblock-alert");
+
                     if (Adblock.options.fireOnce === true) {
                         done();
                     } else {

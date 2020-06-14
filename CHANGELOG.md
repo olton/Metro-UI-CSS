@@ -33,6 +33,7 @@
 + [x] Template: new component. This component allows you to use javascript templates inside HTML elements.
 + [x] Table: fix using wrapper for `skip`, issue #1557
 + [x] Calendar picker: fix using attribute `clsPrepend`, issue #1558
++ [x] Toast: add new arguments format `Metro.createToast(message, options)`. Where `options` is a `plain object`.
 
 
 ### 4.3.7

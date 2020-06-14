@@ -19,11 +19,22 @@
     }
 
     var Toast = {
-        create: function(message, callback, timeout, cls, options){
-            var o = $.extend({}, ToastDefaultConfig, options);
-            var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
-            var width = toast.outerWidth();
+        create: function(message, /*callback, timeout, cls, */options){
+            var o, toast, width;
+            var args = Array.from(arguments);
+            var timeout, callback, cls;
 
+            if (!$.isPlainObject(options)) {
+                options = args[4];
+                callback = args[1];
+                timeout = args[2];
+                cls = args[3];
+            }
+
+            o = $.extend({}, ToastDefaultConfig, options);
+
+            toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
+            width = toast.outerWidth();
             toast.hide();
 
             timeout = timeout || o.timeout;
@@ -40,20 +51,27 @@
                 })
             }
 
-            toast.css({
-                'left': '50%',
-                'margin-left': -(width / 2)
-            });
-            toast.addClass(o.clsToast);
-            toast.addClass(cls);
-            toast.fadeIn(METRO_ANIMATION_DURATION);
-
-            setTimeout(function(){
-                toast.fadeOut(METRO_ANIMATION_DURATION, function(){
-                    toast.remove();
-                    Utils.exec(callback, null, toast[0]);
+            toast
+                .css({
+                    'left': '50%',
+                    'margin-left': -(width / 2)
+                })
+                .addClass(o.clsToast)
+                .addClass(cls)
+                .fadeIn(METRO_ANIMATION_DURATION, function(){
+                    setTimeout(function(){
+                        Toast.remove(toast, callback);
+                    }, timeout);
                 });
-            }, timeout);
+        },
+
+        remove: function(toast, cb){
+            if (!toast) return ;
+
+            toast.fadeOut(METRO_ANIMATION_DURATION, function(){
+                toast.remove();
+                Utils.exec(cb, null, toast[0]);
+            });
         }
     };
 
