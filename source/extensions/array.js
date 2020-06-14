@@ -40,7 +40,7 @@
     }
 
     if (typeof Array.from !== "function") {
-        Array.from = function(val) {
+        Array.prototype.from = function(val) {
             var i, a = [];
 
             if (val.length === undefined && typeof val === "object") {

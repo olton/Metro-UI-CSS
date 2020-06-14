@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/06/2020 20:05:24
+ * Built at 14/06/2020 16:33:00
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -569,7 +569,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 12/06/2020 20:03:40";
+var m4qVersion = "v1.0.7. Built at 13/06/2020 12:02:32";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2357,8 +2357,7 @@ $.fn.extend({
 
 $.parseHTML = function(data, context){
     var base, singleTag, result = [], ctx, _context;
-    /* eslint-disable-next-line */
-    var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i;
+    var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i; // eslint-disable-line
 
     if (typeof data !== "string") {
         return [];
@@ -4284,7 +4283,8 @@ $.init = function(sel, ctx){
         sel = sel.trim();
 
         if (sel === "#" || sel === ".") {
-            throw new Error("sel can't be # or .") ;
+            console.warn("Selector can't be # or .") ;
+            return this;
         }
 
         parsed = $.parseHTML(sel, ctx);
@@ -4459,7 +4459,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "12/06/2020 20:05:32",
+        compileTime: "14/06/2020 16:33:08",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5533,7 +5533,7 @@ $.noConflict = function() {
     }
 
     if (typeof Array.from !== "function") {
-        Array.from = function(val) {
+        Array.prototype.from = function(val) {
             var i, a = [];
 
             if (val.length === undefined && typeof val === "object") {
@@ -9066,7 +9066,7 @@ $.noConflict = function() {
         checkInterval: 1000,
         fireOnce: true,
         checkStop: 10,
-        onBite: Metro.noop,
+        onAlert: Metro.noop,
         onFishingStart: Metro.noop,
         onFishingDone: Metro.noop
     };
@@ -9113,8 +9113,10 @@ $.noConflict = function() {
                 var b = a.find("a");
                 var done = function(){
                     clearInterval(interval);
+
                     Utils.exec(o.onFishingDone);
                     $(window).fire("fishing-done");
+
                     a.remove();
                 };
 
@@ -9123,8 +9125,10 @@ $.noConflict = function() {
                     || a.css("display").indexOf('none') > -1
                     || b.css("display").indexOf('none') > -1
                 ) {
-                    Utils.exec(Adblock.options.onBite);
+
+                    Utils.exec(Adblock.options.onAlert);
                     $(window).fire("adblock-alert");
+
                     if (Adblock.options.fireOnce === true) {
                         done();
                     } else {
@@ -30420,11 +30424,22 @@ $.noConflict = function() {
     }
 
     var Toast = {
-        create: function(message, callback, timeout, cls, options){
-            var o = $.extend({}, ToastDefaultConfig, options);
-            var toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
-            var width = toast.outerWidth();
+        create: function(message, /*callback, timeout, cls, */options){
+            var o, toast, width;
+            var args = Array.from(arguments);
+            var timeout, callback, cls;
 
+            if (!$.isPlainObject(options)) {
+                options = args[4];
+                callback = args[1];
+                timeout = args[2];
+                cls = args[3];
+            }
+
+            o = $.extend({}, ToastDefaultConfig, options);
+
+            toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
+            width = toast.outerWidth();
             toast.hide();
 
             timeout = timeout || o.timeout;
@@ -30441,20 +30456,27 @@ $.noConflict = function() {
                 })
             }
 
-            toast.css({
-                'left': '50%',
-                'margin-left': -(width / 2)
-            });
-            toast.addClass(o.clsToast);
-            toast.addClass(cls);
-            toast.fadeIn(METRO_ANIMATION_DURATION);
-
-            setTimeout(function(){
-                toast.fadeOut(METRO_ANIMATION_DURATION, function(){
-                    toast.remove();
-                    Utils.exec(callback, null, toast[0]);
+            toast
+                .css({
+                    'left': '50%',
+                    'margin-left': -(width / 2)
+                })
+                .addClass(o.clsToast)
+                .addClass(cls)
+                .fadeIn(METRO_ANIMATION_DURATION, function(){
+                    setTimeout(function(){
+                        Toast.remove(toast, callback);
+                    }, timeout);
                 });
-            }, timeout);
+        },
+
+        remove: function(toast, cb){
+            if (!toast) return ;
+
+            toast.fadeOut(METRO_ANIMATION_DURATION, function(){
+                toast.remove();
+                Utils.exec(cb, null, toast[0]);
+            });
         }
     };
 

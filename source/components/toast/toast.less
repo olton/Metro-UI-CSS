@@ -19,4 +19,20 @@
         bottom: auto;
         top: 20px;
     }
+
+    .closer {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        background-color: inherit;
+        color: inherit;
+        z-index: 100;
+        &::before {
+            display: block;
+            content: "\00d7";
+            font-size: 24px;
+            margin-top: -4px;
+        }
+    }
 }
