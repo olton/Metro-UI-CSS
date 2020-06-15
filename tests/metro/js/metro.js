@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/06/2020 16:33:00
+ * Built at 15/06/2020 14:40:10
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4459,7 +4459,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "14/06/2020 16:33:08",
+        compileTime: "15/06/2020 14:40:18",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -16096,6 +16096,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var DraggableDefaultConfig = {
+        dragContext: null,
         draggableDeferred: 0,
         dragElement: 'self',
         dragArea: "parent",
@@ -16211,7 +16212,7 @@ $.noConflict = function() {
                     return ;
                 }
 
-                if (isTouch === false && e.which !== 1) {
+                if (Metro.isTouchable === false && e.which !== 1) {
                     return ;
                 }
 
@@ -16225,15 +16226,19 @@ $.noConflict = function() {
                 moveElement(e);
 
                 that._fireEvent("drag-start", {
-                    position: position
+                    position: position,
+                    context: o.dragContext
                 });
 
                 $(document).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
                     moveElement(e);
+
                     that._fireEvent("drag-move", {
-                        position: position
+                        position: position,
+                        context: o.dragContext
                     });
+
                 }, {ns: that.id, passive: false});
 
                 $(document).on(Metro.events.stopAll, function(){
@@ -16251,7 +16256,8 @@ $.noConflict = function() {
                     that.move = false;
 
                     that._fireEvent("drag-stop", {
-                        position: position
+                        position: position,
+                        context: o.dragContext
                     });
 
                 }, {ns: that.id});
@@ -16267,7 +16273,7 @@ $.noConflict = function() {
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attributeName, newValue){
         },
 
         destroy: function(){
@@ -33988,12 +33994,13 @@ $.noConflict = function() {
 
             if (o.draggable === true) {
                 Metro.makePlugin(win, "draggable", {
+                    dragContext: win[0],
                     dragElement: o.dragElement,
                     dragArea: o.dragArea,
                     onDragStart: o.onDragStart,
                     onDragStop: o.onDragStop,
                     onDragMove: o.onDragMove
-                })
+                });
             }
 
             win.addClass(o.clsWindow);

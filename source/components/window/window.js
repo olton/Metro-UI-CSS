@@ -294,12 +294,13 @@
 
             if (o.draggable === true) {
                 Metro.makePlugin(win, "draggable", {
+                    dragContext: win[0],
                     dragElement: o.dragElement,
                     dragArea: o.dragArea,
                     onDragStart: o.onDragStart,
                     onDragStop: o.onDragStop,
                     onDragMove: o.onDragMove
-                })
+                });
             }
 
             win.addClass(o.clsWindow);

@@ -1,8 +1,9 @@
-/* global Metro, setImmediate, isTouch */
+/* global Metro, setImmediate */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
     var DraggableDefaultConfig = {
+        dragContext: null,
         draggableDeferred: 0,
         dragElement: 'self',
         dragArea: "parent",
@@ -118,7 +119,7 @@
                     return ;
                 }
 
-                if (isTouch === false && e.which !== 1) {
+                if (Metro.isTouchable === false && e.which !== 1) {
                     return ;
                 }
 
@@ -132,15 +133,19 @@
                 moveElement(e);
 
                 that._fireEvent("drag-start", {
-                    position: position
+                    position: position,
+                    context: o.dragContext
                 });
 
                 $(document).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
                     moveElement(e);
+
                     that._fireEvent("drag-move", {
-                        position: position
+                        position: position,
+                        context: o.dragContext
                     });
+
                 }, {ns: that.id, passive: false});
 
                 $(document).on(Metro.events.stopAll, function(){
@@ -158,7 +163,8 @@
                     that.move = false;
 
                     that._fireEvent("drag-stop", {
-                        position: position
+                        position: position,
+                        context: o.dragContext
                     });
 
                 }, {ns: that.id});
@@ -174,7 +180,7 @@
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attributeName, newValue){
         },
 
         destroy: function(){
