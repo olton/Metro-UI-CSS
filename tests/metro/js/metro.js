@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 15/06/2020 14:40:10
+ * Built at 15/06/2020 14:44:16
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4459,7 +4459,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "15/06/2020 14:40:18",
+        compileTime: "15/06/2020 14:44:27",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -21341,6 +21341,7 @@ $.noConflict = function() {
                 }
 
                 Metro.makePlugin(panel, "draggable", {
+                    dragContext: panel[0],
                     dragElement: dragElement,
                     onDragStart: o.onDragStart,
                     onDragStop: o.onDragStop,

@@ -159,6 +159,7 @@
                 }
 
                 Metro.makePlugin(panel, "draggable", {
+                    dragContext: panel[0],
                     dragElement: dragElement,
                     onDragStart: o.onDragStart,
                     onDragStop: o.onDragStop,
