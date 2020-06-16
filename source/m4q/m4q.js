@@ -144,6 +144,7 @@ function hasProp(obj, prop){
 
 // Source: src/setimmediate.js
 
+/* global global */
 /*
  * setImmediate polyfill
  * Version 1.0.5
@@ -219,6 +220,27 @@ function hasProp(obj, prop){
         }
     }
 
+    // global.process
+    function installNextTickImplementation() {
+        registerImmediate = function(handle) {
+            global.process.nextTick(function () { runIfPresent(handle); });
+        };
+    }
+
+    // web workers
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        registerImmediate = function(handle) {
+            channel.port2.postMessage(handle);
+        };
+    }
+
+    // Browsers
     function installPostMessageImplementation() {
         var messagePrefix = "setImmediate$" + Math.random() + "$";
         var onGlobalMessage = function(event) {
@@ -239,12 +261,24 @@ function hasProp(obj, prop){
     var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
     attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
 
-    installPostMessageImplementation();
+    if ({}.toString.call(global.process) === "[object process]") {
+
+        installNextTickImplementation();
+
+    } else if (global.MessageChannel) {
+
+        installMessageChannelImplementation();
+
+    } else {
+
+        installPostMessageImplementation();
+
+    }
 
     attachTo.setImmediate = setImmediate;
     attachTo.clearImmediate = clearImmediate;
 
-}(window));
+}(typeof self === "undefined" ? typeof global === "undefined" ? window : global : self));
 
 // Source: src/promise.js
 
@@ -570,7 +604,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 13/06/2020 12:02:32";
+var m4qVersion = "v1.0.7. Built at 16/06/2020 10:44:43";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
