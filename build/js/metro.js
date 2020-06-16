@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 16/06/2020 10:47:09
+ * Built at 16/06/2020 19:15:17
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "16/06/2020 10:47:17",
+        compileTime: "16/06/2020 19:15:25",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11232,7 +11232,7 @@ $.noConflict = function() {
 
 
         dialogMode: false,
-        dialogPoint: 360,
+        dialogPoint: 640,
         dialogOverlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
@@ -11454,6 +11454,7 @@ $.noConflict = function() {
             } else {
                 if (Utils.media("(max-width: "+o.dialogPoint+"px)")) {
                     container.addClass("dialog-mode");
+                    this.calendar.addClass("dialog-mode");
                 }
             }
 
@@ -11471,13 +11472,16 @@ $.noConflict = function() {
             var clear = container.find(".input-clear-button");
             var cal = this.calendar;
             var cal_plugin = Metro.getPlugin(cal[0], 'calendar');
+            var calendar = this.calendar;
 
             $(window).on(Metro.events.resize, function(){
                 if (o.dialogMode !== true) {
                     if (Utils.media("(max-width: " + o.dialogPoint + "px)")) {
                         container.addClass("dialog-mode");
+                        calendar.appendTo("body").addClass("dialog-mode");
                     } else {
                         container.removeClass("dialog-mode");
+                        calendar.appendTo(container).removeClass("dialog-mode");
                     }
                 }
             }, {ns: this.id});
