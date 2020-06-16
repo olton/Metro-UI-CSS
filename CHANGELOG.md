@@ -2,8 +2,10 @@
 #### M4Q
 + [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
 + [x] Animation: add operator `/` to `_getRelativeValue()`.
-+ [x] Events: fix `fire`. Main constructor `CustomEvent`, for old - `createEvent`
-+ [x] Manipulation: add method `wrap`, `wrapAll`, `wrapInner`. The method puts elements inside a wrapper and return `wrapper(s)`.
++ [x] Events: fix `fire`. Now main is constructor `CustonEvent`, for old - `createEvent`
++ [x] Manipulation: add method `wrap`, `wrapAll`, `wrapInner`. The method puts elements inside the wrapper and return `wrapper(s)`. 
++ [x] Init: change `throw Error` to `console.warn` when selector is `#` or `.`
++ [x] setImmediate: add support for `process` and `web workers` 
 
 #### Metro 4
 + [x] General: new module system. All components now defined as alone IIFE modules.
