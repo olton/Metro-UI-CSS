@@ -576,19 +576,19 @@
                     }
                 },
 
-                _fireEvent: function(eventName, data, log){
+                _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data = data ? Object.values(data) : {};
                     var event = eventName.camelCase().capitalize();
 
                     Utils.exec(o["on"+event], _data, element[0]);
-                    element.fire(event.toLowerCase(), data);
+                    if (noFire !== true) element.fire(event.toLowerCase(), data);
 
                     if (log) {
-                        console.log(log);
-                        console.log("Event: " + "on"+eventName.camelCase().capitalize());
-                        console.log("Data: ", data);
-                        console.log("Element: ", element[0]);
+                        console.warn(log);
+                        console.warn("Event: " + "on"+eventName.camelCase().capitalize());
+                        console.warn("Data: ", data);
+                        console.warn("Element: ", element[0]);
                     }
                 }
             }, compObj);

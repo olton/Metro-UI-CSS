@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 16/06/2020 19:15:17
+ * Built at 18/06/2020 10:05:08
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "16/06/2020 19:15:25",
+        compileTime: "18/06/2020 10:05:16",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5041,19 +5041,19 @@ $.noConflict = function() {
                     }
                 },
 
-                _fireEvent: function(eventName, data, log){
+                _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data = data ? Object.values(data) : {};
                     var event = eventName.camelCase().capitalize();
 
                     Utils.exec(o["on"+event], _data, element[0]);
-                    element.fire(event.toLowerCase(), data);
+                    if (noFire !== true) element.fire(event.toLowerCase(), data);
 
                     if (log) {
-                        
-                        
-                        
-                        
+                        console.warn(log);
+                        console.warn("Event: " + "on"+eventName.camelCase().capitalize());
+                        console.warn("Data: ", data);
+                        console.warn("Element: ", element[0]);
                     }
                 }
             }, compObj);
@@ -12011,13 +12011,13 @@ $.noConflict = function() {
                     that._stop();
                     that._fireEvent("mouse-enter", {
                         element: element
-                    });
+                    }, false, true);
                 });
                 element.on(Metro.events.leave, function () {
                     that._start();
                     that._fireEvent("mouse-leave", {
                         element: element
-                    });
+                    }, false, true);
                 });
             }
 

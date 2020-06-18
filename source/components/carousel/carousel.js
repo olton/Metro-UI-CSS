@@ -311,13 +311,13 @@
                     that._stop();
                     that._fireEvent("mouse-enter", {
                         element: element
-                    });
+                    }, false, true);
                 });
                 element.on(Metro.events.leave, function () {
                     that._start();
                     that._fireEvent("mouse-leave", {
                         element: element
-                    });
+                    }, false, true);
                 });
             }
 
