@@ -39,6 +39,7 @@
 + [x] Draggable: add attribute `dragContext`, you can set it for access to any object with drag events, issue #1565
 + [x] Window: add second argument `context` for events `onDragStart`, `onDragStop`, `onDragMove`, issue #1565
 + [x] Calendar picker: fix work in `dialog-mode`
++ [x] Tabs: fix work attribute `clsTabsListItemActive`, issue #1568
 
 
 ### 4.3.7
