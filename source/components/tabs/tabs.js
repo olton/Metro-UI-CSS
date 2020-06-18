@@ -197,7 +197,7 @@
                 return;
             }
 
-            tabs.removeClass("active");
+            tabs.removeClass("active").removeClass(o.clsTabsListItemActive);
             if (tab.parent().hasClass("d-menu")) {
                 tab.parent().parent().addClass("active");
             } else {
