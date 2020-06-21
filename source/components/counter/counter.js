@@ -60,7 +60,7 @@
         },
 
         start: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
 
             this.started = true;
 
@@ -81,6 +81,7 @@
                     this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
                 },
                 onDone: function(){
+                    that.started = false;
                     Utils.exec(o.onStop, null, element[0]);
                     element.fire("stop");
                 }
@@ -92,13 +93,9 @@
             this.element.html(this.html);
         },
 
-        setValueAttribute: function(){
-            this.options.value = this.element.attr("data-value");
-        },
-
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attributeName, newVal){
             if (attributeName === "data-value") {
-                this.setValueAttribute();
+                this.options.value = +newVal;
             }
         },
 
