@@ -1,3 +1,9 @@
+### 4.3.9
+#### M4Q
+
+#### Metro 4
++ [x] Utils: fix function `github()` for executing callback
+
 ### 4.3.8
 #### M4Q
 + [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
