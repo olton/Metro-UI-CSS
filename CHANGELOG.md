@@ -40,6 +40,7 @@
 + [x] Window: add second argument `context` for events `onDragStart`, `onDragStop`, `onDragMove`, issue #1565
 + [x] Calendar picker: fix work in `dialog-mode`
 + [x] Tabs: fix work attribute `clsTabsListItemActive`, issue #1568
++ [x] Locales: add danish locale `da-DK`, issue #1570
 
 
 ### 4.3.7
