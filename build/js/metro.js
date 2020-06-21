@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/06/2020 20:32:20
+ * Built at 21/06/2020 21:20:24
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,7 +296,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2678,7 +2678,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4493,8 +4493,8 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "21/06/2020 20:32:30",
-        buildNumber: "746",
+        compileTime: "21/06/2020 21:20:26",
+        buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
@@ -4758,7 +4758,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -6354,8 +6354,9 @@ $.noConflict = function() {
         },
 
         github: function(repo, callback){
+            var that = this;
             $.json('https://api.github.com/repos/' + repo).then(function(data){
-                this.exec(callback, [data]);
+                that.exec(callback, [data]);
             });
         },
 
@@ -13983,7 +13984,7 @@ $.noConflict = function() {
         },
 
         start: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
 
             this.started = true;
 
@@ -14004,6 +14005,7 @@ $.noConflict = function() {
                     this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
                 },
                 onDone: function(){
+                    that.started = false;
                     Utils.exec(o.onStop, null, element[0]);
                     element.fire("stop");
                 }
@@ -14015,13 +14017,9 @@ $.noConflict = function() {
             this.element.html(this.html);
         },
 
-        setValueAttribute: function(){
-            this.options.value = this.element.attr("data-value");
-        },
-
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attributeName, newVal){
             if (attributeName === "data-value") {
-                this.setValueAttribute();
+                this.options.value = +newVal;
             }
         },
 
@@ -29906,7 +29904,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                
+                console.log(o.effect.camelCase());
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }

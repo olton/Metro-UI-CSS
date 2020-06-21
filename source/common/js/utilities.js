@@ -375,8 +375,9 @@
         },
 
         github: function(repo, callback){
+            var that = this;
             $.json('https://api.github.com/repos/' + repo).then(function(data){
-                this.exec(callback, [data]);
+                that.exec(callback, [data]);
             });
         },
 
