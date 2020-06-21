@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.8  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/06/2020 23:00:05
+ * Built at 21/06/2020 18:54:53
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4451,7 +4451,7 @@ $.noConflict = function() {
         window.METRO_CLOAK_REMOVE = meta_cloak !== undefined ? (""+meta_cloak).toLowerCase() : "fade";
     }
     if (window.METRO_CLOAK_DURATION === undefined) {
-        window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 500;
+        window.METRO_CLOAK_DURATION = meta_cloak_duration !== undefined ? parseInt(meta_cloak_duration) : 300;
     }
 
     if (window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE === undefined) {window.METRO_HOTKEYS_FILTER_CONTENT_EDITABLE = true;}
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.8",
-        compileTime: "18/06/2020 23:00:14",
+        compileTime: "21/06/2020 18:55:01",
         buildNumber: "746",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5122,6 +5122,47 @@ $.noConflict = function() {
                 "random": "随机",
                 "save": "保存",
                 "reset": "重啟"
+            }
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    $.extend(Metro['locales'], {
+        'da-DK': {
+            "calendar": {
+                "months": [
+                    "Januar", "Februar", "Marts", "April", "Maj", "Juni", "Juli", "August", "September", "Oktober", "November", "December",
+                    "Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"
+                ],
+                "days": [
+                    "Søndag", "Mandag", "Tirsdag", "Onsdag", "Torsdag", "Fredag", "Lørdag",
+                    "Sø", "Ma", "Ti", "On", "To", "Fr", "Lø",
+                    "Søn", "Man", "Tir", "Ons", "Tor", "Fre", "Lør"
+                ],
+                "time": {
+                    "days": "DAGE",
+                    "hours": "TIMER",
+                    "minutes": "MIN",
+                    "seconds": "SEK",
+                    "month": "MON",
+                    "day": "DAG",
+                    "year": "ÅR"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Annuller",
+                "done": "Færdig",
+                "today": "Idag",
+                "now": "Nu",
+                "clear": "Ryd",
+                "help": "Hjælp",
+                "yes": "Ja",
+                "no": "Nej",
+                "random": "Tilfældig",
+                "save": "Gem",
+                "reset": "Nulstil"
             }
         }
     });
