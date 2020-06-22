@@ -59,13 +59,17 @@
             }
         },
 
-        start: function(){
+        start: function(v){
             var that = this, element = this.element, o = this.options;
+
+            if (Utils.isValue(v)) {
+                element.attr("data-value", +v);
+                o.value = +v;
+            }
 
             this.started = true;
 
-            Utils.exec(o.onStart, null, element[0]);
-            element.fire("start");
+            this._fireEvent("start");
 
             element.animate({
                 draw: {
@@ -74,16 +78,13 @@
                 defer: o.timeout,
                 dur: o.duration,
                 onFrame: function () {
-                    Utils.exec(o.onTick, [+this.innerHTML], element[0]);
-                    element.fire("tick", {
+                    that._fireEvent("tick", {
                         value: +this.innerHTML
                     });
                     this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
                 },
                 onDone: function(){
-                    that.started = false;
-                    Utils.exec(o.onStop, null, element[0]);
-                    element.fire("stop");
+                    that._fireEvent("stop");
                 }
             })
         },
@@ -96,6 +97,7 @@
         changeAttribute: function(attributeName, newVal){
             if (attributeName === "data-value") {
                 this.options.value = +newVal;
+                this.started = false;
             }
         },
 

@@ -18,7 +18,7 @@
 
     <div>
 <!--        <div data-role="counter" data-value="5000"></div>-->
-        <div data-role="counter" id="counter" data-start-on-viewpor="false">0</div>
+        <div data-role="counter" id="counter" data-start-on-viewpor="false" data-on-start="onStart">0</div>
     </div>
 </div>
 
@@ -28,16 +28,25 @@
         Metro.utils.github("olton/Metro-UI-CSS", function(data){
             console.log(data);
             // $("#github-forks").attr("data-value", data.forks).data("counter").start();
-            var a = $("#counter").attr("data-value", data.stargazers_count);
-
-            setTimeout(function(){
-                Metro.getPlugin(a, "counter").start();
-            })
+            // var a = $("#counter").attr("data-value", data.stargazers_count);
+            //
+            // setImmediate(function(){
+            //     Metro.getPlugin(a, "counter").start();
+            // })
+            Metro.getPlugin("#counter", "counter").start(data.stargazers_count);
 
             //.data("counter").start();
             // $("#github-watchers").attr("data-value", data.subscribers_count).data("counter").start();
         });
     }
+
+    function onStart(__this){
+        console.log(__this);
+    }
+
+    $("#counter").on("start", function(e){
+        console.log("event on", e.detail);
+    })
 </script>
 </body>
 </html>

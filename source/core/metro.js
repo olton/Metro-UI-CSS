@@ -414,7 +414,7 @@
 
             register(m4q);
 
-            if (window.METRO_JQUERY && window.jquery_present) {
+            if (window.useJQuery) {
                 register(jQuery);
             }
         },
@@ -578,8 +578,12 @@
 
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
-                    var _data = data ? Object.values(data) : {};
+                    var _data;
                     var event = eventName.camelCase().capitalize();
+
+                    data = $.extend({}, data, {__this: element[0]});
+
+                    _data = data ? Object.values(data) : {};
 
                     Utils.exec(o["on"+event], _data, element[0]);
                     if (noFire !== true) element.fire(event.toLowerCase(), data);
