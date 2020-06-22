@@ -6,13 +6,37 @@
     <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
 
     <title>Test Treeview - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .current::before {
+            content: "";
+            display: block;
+            position: absolute;
+            z-index: -1;
+            background: lightcyan;
+            height: 24px;
+            top: 0;
+            right: 0;
+            bottom: 0;
+        }
 
+        .treeview > li > ul > li > ul > .current::before {
+            left: -56px;
+        }
+
+        .treeview > li > ul > .current::before {
+            left: -40px;
+        }
+
+        .treeview > .current::before {
+            left: -24px;
+        }
+    </style>
 </head>
 <body class="m4-cloak">
 <div class="container">
     <h1>Treeview test page</h1>
     <div class="example">
-        <ul data-role="treeview">
+        <ul data-role="treeview" class="border">
             <li data-icon="<span class='mif-star-full fg-red'></span>" data-caption="Favorites">
                 <ul>
                     <li data-icon="<span class='mif-library fg-green'></span>" data-caption="Projects"></li>

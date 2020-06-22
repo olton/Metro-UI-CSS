@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/06/2020 21:34:13
+ * Built at 23/06/2020 00:42:41
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.9",
-        compileTime: "21/06/2020 21:34:20",
+        compileTime: "23/06/2020 00:42:50",
         buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4879,7 +4879,7 @@ $.noConflict = function() {
 
             register(m4q);
 
-            if (window.METRO_JQUERY && window.jquery_present) {
+            if (window.useJQuery) {
                 register(jQuery);
             }
         },
@@ -5043,8 +5043,12 @@ $.noConflict = function() {
 
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
-                    var _data = data ? Object.values(data) : {};
+                    var _data;
                     var event = eventName.camelCase().capitalize();
+
+                    data = $.extend({}, data, {__this: element[0]});
+
+                    _data = data ? Object.values(data) : {};
 
                     Utils.exec(o["on"+event], _data, element[0]);
                     if (noFire !== true) element.fire(event.toLowerCase(), data);
@@ -13983,13 +13987,17 @@ $.noConflict = function() {
             }
         },
 
-        start: function(){
+        start: function(v){
             var that = this, element = this.element, o = this.options;
+
+            if (Utils.isValue(v)) {
+                element.attr("data-value", +v);
+                o.value = +v;
+            }
 
             this.started = true;
 
-            Utils.exec(o.onStart, null, element[0]);
-            element.fire("start");
+            this._fireEvent("start");
 
             element.animate({
                 draw: {
@@ -13998,16 +14006,13 @@ $.noConflict = function() {
                 defer: o.timeout,
                 dur: o.duration,
                 onFrame: function () {
-                    Utils.exec(o.onTick, [+this.innerHTML], element[0]);
-                    element.fire("tick", {
+                    that._fireEvent("tick", {
                         value: +this.innerHTML
                     });
                     this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
                 },
                 onDone: function(){
-                    that.started = false;
-                    Utils.exec(o.onStop, null, element[0]);
-                    element.fire("stop");
+                    that._fireEvent("stop");
                 }
             })
         },
@@ -14020,6 +14025,7 @@ $.noConflict = function() {
         changeAttribute: function(attributeName, newVal){
             if (attributeName === "data-value") {
                 this.options.value = +newVal;
+                this.started = false;
             }
         },
 

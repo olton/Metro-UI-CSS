@@ -2,7 +2,9 @@
 #### M4Q
 
 #### Metro 4
++ [x] Component: `_fireEvent` now add argument `__this` to arguments, for access to context `this` in arrows funcs.  
 + [x] Utils: fix function `github()` for executing callback
++ [x] Counter: fix for starting when page scrolls 
 
 ### 4.3.8
 #### M4Q
