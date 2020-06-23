@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/06/2020 00:42:41
+ * Built at 23/06/2020 14:02:35
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.9",
-        compileTime: "23/06/2020 00:42:50",
+        compileTime: "23/06/2020 14:02:43",
         buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4708,25 +4708,26 @@ $.noConflict = function() {
             };
             observerCallback = function(mutations){
                 mutations.map(function(mutation){
-
                     if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
                         if (mutation.attributeName === 'data-hotkey') {
-
                             Metro.initHotkeys([mutation.target], true);
-
                         } else {
-
                             var element = $(mutation.target);
                             var mc = element.data('metroComponent');
-                            var newValue;
+                            var attr = mutation.attributeName, newValue = element.attr(attr), oldValue = mutation.oldValue;
 
                             if (mc !== undefined) {
                                 $.each(mc, function(){
                                     var plug = Metro.getPlugin(element, this);
                                     if (plug && typeof plug.changeAttribute === "function") {
-                                        newValue = element.attr(mutation.attributeName);
-                                        plug.changeAttribute(mutation.attributeName, newValue, mutation.oldValue);
+                                        plug.changeAttribute(attr, newValue, oldValue);
                                     }
+                                });
+
+                                element.fire("attr-change", {
+                                    attr: attr,
+                                    newValue: newValue,
+                                    oldValue: oldValue
                                 });
                             }
                         }
@@ -4857,6 +4858,15 @@ $.noConflict = function() {
                                 mc.push(_func);
                             }
                             $this.data('metroComponent', mc);
+
+                            $this.fire("create", {
+                                name: _func,
+                                __this: $this[0]
+                            });
+                            $(document).fire("component-create", {
+                                element: $this[0],
+                                name: _func
+                            });
                         } catch (e) {
                             console.error("Error creating component " + func);
                             throw e;
@@ -13935,8 +13945,11 @@ $.noConflict = function() {
         counterDeferred: 0,
         duration: 2000,
         value: 0,
+        from: 0,
         timeout: 0,
         delimiter: ",",
+        prefix: "",
+        suffix: "",
         onStart: Metro.noop,
         onStop: Metro.noop,
         onTick: Metro.noop,
@@ -13964,35 +13977,44 @@ $.noConflict = function() {
         },
 
         _create: function(){
+            this._createEvents();
+            this._fireEvent("counter-create");
+            this._run();
+        },
+
+        _createEvents: function(){
             var that = this, element = this.element, o = this.options;
 
-            this._fireEvent("counter-create", {
-                element: element
-            });
+            $.window().on("scroll", function(){
+                if (o.startOnViewport === true && Utils.inViewport(element[0]) && !that.started) {
+                    that.start();
+                }
+            }, {ns: this.id})
+        },
+
+        _run: function(){
+            var element = this.element, o = this.options;
+
+            this.started = false;
 
             if (o.startOnViewport !== true) {
                 this.start();
-            }
-
-            if (o.startOnViewport === true) {
-                if (Utils.inViewport(element[0]) && !this.started) {
+            } else {
+                if (Utils.inViewport(element[0])) {
                     this.start();
                 }
-
-                $.window().on("scroll", function(){
-                    if (Utils.inViewport(element[0]) && !that.started) {
-                        that.start();
-                    }
-                }, {ns: this.id})
             }
         },
 
-        start: function(v){
+        start: function(val, from){
             var that = this, element = this.element, o = this.options;
 
-            if (Utils.isValue(v)) {
-                element.attr("data-value", +v);
-                o.value = +v;
+            if (Utils.isValue(from)) {
+                o.from = +from;
+            }
+
+            if (Utils.isValue(val)) {
+                o.value = +val;
             }
 
             this.started = true;
@@ -14001,7 +14023,7 @@ $.noConflict = function() {
 
             element.animate({
                 draw: {
-                    innerHTML: [0, +o.value]
+                    innerHTML: [o.from, o.value]
                 },
                 defer: o.timeout,
                 dur: o.duration,
@@ -14009,7 +14031,7 @@ $.noConflict = function() {
                     that._fireEvent("tick", {
                         value: +this.innerHTML
                     });
-                    this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
+                    this.innerHTML = o.prefix + Number(this.innerHTML).format(0, 0, o.delimiter) + o.suffix
                 },
                 onDone: function(){
                     that._fireEvent("stop");
@@ -14022,17 +14044,19 @@ $.noConflict = function() {
             this.element.html(this.html);
         },
 
-        changeAttribute: function(attributeName, newVal){
-            if (attributeName === "data-value") {
-                this.options.value = +newVal;
-                this.started = false;
+        changeAttribute: function(attr, val){
+            var o = this.options;
+
+            if (attr === "data-value") {
+                o.value = +val;
+            }
+            if (attr === "data-from") {
+                o.from = +val;
             }
         },
 
         destroy: function(){
-            if (this.options.startOnViewport === true) {
-                $.window().off("scroll", {ns: this.id});
-            }
+            $.window().off("scroll", {ns: this.id});
             return this.element;
         }
     });

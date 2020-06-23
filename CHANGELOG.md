@@ -2,16 +2,20 @@
 #### M4Q
 
 #### Metro 4
-+ [x] Component: `_fireEvent` now add argument `__this` to arguments, for access to context `this` in arrows funcs.  
++ [x] Component: `_fireEvent` now add argument `__this` to arguments, for access to context `this` in arrows funcs
 + [x] Utils: fix function `github()` for executing callback
 + [x] Counter: fix for starting when page scrolls 
++ [x] Counter: add attributes `data-from`, `data-prefix`, `data-suffix`. Prefix and suffix must be a plain text.
++ [x] Observer: add firing event `attrchange` when component attribute was ben changed. `e.detail` contains an object `{attr, newValue, oldValue}`.
++ [x] General: all components fired event `create` when init. The `e.detail` contains an object `{name, __this}`. 
++ [x] General: the document fired event `component-create` when a component was ben initialized. The `e.detail` contains an object `{element, name}`. 
 
 ### 4.3.8
 #### M4Q
-+ [x] Animation: fixed using String.includes for IE11. Change to String.indexOF.
-+ [x] Animation: add operator `/` to `_getRelativeValue()`.
++ [x] Animation: fixed using String.includes for IE11. Change to String.indexOF
++ [x] Animation: add operator `/` to `_getRelativeValue()`
 + [x] Events: fix `fire`. Now main is constructor `CustonEvent`, for old - `createEvent`
-+ [x] Manipulation: add method `wrap`, `wrapAll`, `wrapInner`. The method puts elements inside the wrapper and return `wrapper(s)`. 
++ [x] Manipulation: add method `wrap`, `wrapAll`, `wrapInner`. The method puts elements inside the wrapper and return `wrapper(s)`
 + [x] Init: change `throw Error` to `console.warn` when selector is `#` or `.`
 + [x] setImmediate: add support for `process` and `web workers` 
 

@@ -7,8 +7,11 @@
         counterDeferred: 0,
         duration: 2000,
         value: 0,
+        from: 0,
         timeout: 0,
         delimiter: ",",
+        prefix: "",
+        suffix: "",
         onStart: Metro.noop,
         onStop: Metro.noop,
         onTick: Metro.noop,
@@ -36,35 +39,44 @@
         },
 
         _create: function(){
+            this._createEvents();
+            this._fireEvent("counter-create");
+            this._run();
+        },
+
+        _createEvents: function(){
             var that = this, element = this.element, o = this.options;
 
-            this._fireEvent("counter-create", {
-                element: element
-            });
+            $.window().on("scroll", function(){
+                if (o.startOnViewport === true && Utils.inViewport(element[0]) && !that.started) {
+                    that.start();
+                }
+            }, {ns: this.id})
+        },
+
+        _run: function(){
+            var element = this.element, o = this.options;
+
+            this.started = false;
 
             if (o.startOnViewport !== true) {
                 this.start();
-            }
-
-            if (o.startOnViewport === true) {
-                if (Utils.inViewport(element[0]) && !this.started) {
+            } else {
+                if (Utils.inViewport(element[0])) {
                     this.start();
                 }
-
-                $.window().on("scroll", function(){
-                    if (Utils.inViewport(element[0]) && !that.started) {
-                        that.start();
-                    }
-                }, {ns: this.id})
             }
         },
 
-        start: function(v){
+        start: function(val, from){
             var that = this, element = this.element, o = this.options;
 
-            if (Utils.isValue(v)) {
-                element.attr("data-value", +v);
-                o.value = +v;
+            if (Utils.isValue(from)) {
+                o.from = +from;
+            }
+
+            if (Utils.isValue(val)) {
+                o.value = +val;
             }
 
             this.started = true;
@@ -73,7 +85,7 @@
 
             element.animate({
                 draw: {
-                    innerHTML: [0, +o.value]
+                    innerHTML: [o.from, o.value]
                 },
                 defer: o.timeout,
                 dur: o.duration,
@@ -81,7 +93,7 @@
                     that._fireEvent("tick", {
                         value: +this.innerHTML
                     });
-                    this.innerHTML = Number(this.innerHTML).format(0, 0, o.delimiter)
+                    this.innerHTML = o.prefix + Number(this.innerHTML).format(0, 0, o.delimiter) + o.suffix
                 },
                 onDone: function(){
                     that._fireEvent("stop");
@@ -94,17 +106,19 @@
             this.element.html(this.html);
         },
 
-        changeAttribute: function(attributeName, newVal){
-            if (attributeName === "data-value") {
-                this.options.value = +newVal;
-                this.started = false;
+        changeAttribute: function(attr, val){
+            var o = this.options;
+
+            if (attr === "data-value") {
+                o.value = +val;
+            }
+            if (attr === "data-from") {
+                o.from = +val;
             }
         },
 
         destroy: function(){
-            if (this.options.startOnViewport === true) {
-                $.window().off("scroll", {ns: this.id});
-            }
+            $.window().off("scroll", {ns: this.id});
             return this.element;
         }
     });
