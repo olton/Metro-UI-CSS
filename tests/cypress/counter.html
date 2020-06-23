@@ -9,7 +9,7 @@
 
 </head>
 <body class="m4-cloak">
-<div class="container">
+<div class="container h-vh-100">
     <h1>Counter test page</h1>
 
     <div>
@@ -17,35 +17,31 @@
     </div>
 
     <div>
-<!--        <div data-role="counter" data-value="5000"></div>-->
-        <div data-role="counter" id="counter" data-start-on-viewpor="false" data-on-start="onStart">0</div>
+<!--        <div data-role="counter" data-value="5000" data-from="1000"></div>-->
     </div>
+
+    <div style="font-size: 72px;" class="fg-red text-bold" data-role="counter" id="counter" data-start-on-viewport="true" data-prefix="$">0</div>
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
     function start() {
         Metro.utils.github("olton/Metro-UI-CSS", function(data){
-            console.log(data);
-            // $("#github-forks").attr("data-value", data.forks).data("counter").start();
-            // var a = $("#counter").attr("data-value", data.stargazers_count);
-            //
-            // setImmediate(function(){
-            //     Metro.getPlugin(a, "counter").start();
-            // })
-            Metro.getPlugin("#counter", "counter").start(data.stargazers_count);
-
-            //.data("counter").start();
-            // $("#github-watchers").attr("data-value", data.subscribers_count).data("counter").start();
+            $("#counter").attr("data-value", data.stargazers_count);
         });
     }
 
-    function onStart(__this){
-        console.log(__this);
-    }
-
-    $("#counter").on("start", function(e){
-        console.log("event on", e.detail);
+    // $("#counter").on("start", function(){
+    //     console.log("event start");
+    // })
+    $("#counter").on("attr-change", function(e){
+        Metro.getPlugin(this, "counter").start();
+    })
+    $("#counter").on("create", function(e){
+        console.log(e.detail);
+    })
+    $(document).on("component-create", function(e){
+        console.log(e.detail);
     })
 </script>
 </body>

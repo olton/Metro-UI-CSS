@@ -243,25 +243,26 @@
             };
             observerCallback = function(mutations){
                 mutations.map(function(mutation){
-
                     if (mutation.type === 'attributes' && mutation.attributeName !== "data-role") {
                         if (mutation.attributeName === 'data-hotkey') {
-
                             Metro.initHotkeys([mutation.target], true);
-
                         } else {
-
                             var element = $(mutation.target);
                             var mc = element.data('metroComponent');
-                            var newValue;
+                            var attr = mutation.attributeName, newValue = element.attr(attr), oldValue = mutation.oldValue;
 
                             if (mc !== undefined) {
                                 $.each(mc, function(){
                                     var plug = Metro.getPlugin(element, this);
                                     if (plug && typeof plug.changeAttribute === "function") {
-                                        newValue = element.attr(mutation.attributeName);
-                                        plug.changeAttribute(mutation.attributeName, newValue, mutation.oldValue);
+                                        plug.changeAttribute(attr, newValue, oldValue);
                                     }
+                                });
+
+                                element.fire("attr-change", {
+                                    attr: attr,
+                                    newValue: newValue,
+                                    oldValue: oldValue
                                 });
                             }
                         }
@@ -392,6 +393,15 @@
                                 mc.push(_func);
                             }
                             $this.data('metroComponent', mc);
+
+                            $this.fire("create", {
+                                name: _func,
+                                __this: $this[0]
+                            });
+                            $(document).fire("component-create", {
+                                element: $this[0],
+                                name: _func
+                            });
                         } catch (e) {
                             console.error("Error creating component " + func);
                             throw e;
