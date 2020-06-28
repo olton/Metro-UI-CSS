@@ -31,11 +31,11 @@
         });
     }
 
-    // $("#counter").on("start", function(){
-    //     console.log("event start");
-    // })
+    $("#counter").on("start", function(){
+        console.log("event start");
+    })
     $("#counter").on("attr-change", function(e){
-        Metro.getPlugin(this, "counter").start();
+        Metro.getPlugin(this, "counter").startInViewport();
     })
     $("#counter").on("create", function(e){
         console.log(e.detail);
