@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/06/2020 14:02:35
+ * Built at 28/06/2020 20:20:39
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.9",
-        compileTime: "23/06/2020 14:02:43",
+        compileTime: "28/06/2020 20:20:47",
         buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4717,17 +4717,18 @@ $.noConflict = function() {
                             var attr = mutation.attributeName, newValue = element.attr(attr), oldValue = mutation.oldValue;
 
                             if (mc !== undefined) {
+                                element.fire("attr-change", {
+                                    attr: attr,
+                                    newValue: newValue,
+                                    oldValue: oldValue,
+                                    __this: element[0]
+                                });
+
                                 $.each(mc, function(){
                                     var plug = Metro.getPlugin(element, this);
                                     if (plug && typeof plug.changeAttribute === "function") {
                                         plug.changeAttribute(attr, newValue, oldValue);
                                     }
-                                });
-
-                                element.fire("attr-change", {
-                                    attr: attr,
-                                    newValue: newValue,
-                                    oldValue: oldValue
                                 });
                             }
                         }
@@ -4813,7 +4814,6 @@ $.noConflict = function() {
         },
 
         initHotkeys: function(hotkeys, redefine){
-            var that = this;
             $.each(hotkeys, function(){
                 var element = $(this);
                 var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
@@ -4823,13 +4823,17 @@ $.noConflict = function() {
                     return;
                 }
 
-                if (element.data('hotKeyBonded') === true && !that.utils.bool(redefine)) {
+                if (element.data('hotKeyBonded') === true && redefine !== true) {
                     return;
                 }
 
                 Metro.hotkeys[hotkey] = [this, fn];
-
                 element.data('hotKeyBonded', true);
+                element.fire("hot-key-bonded", {
+                    __this: element[0],
+                    hotkey: hotkey,
+                    fn: fn
+                });
             });
         },
 
@@ -4860,15 +4864,15 @@ $.noConflict = function() {
                             $this.data('metroComponent', mc);
 
                             $this.fire("create", {
-                                name: _func,
-                                __this: $this[0]
+                                __this: $this[0],
+                                name: _func
                             });
                             $(document).fire("component-create", {
                                 element: $this[0],
                                 name: _func
                             });
                         } catch (e) {
-                            console.error("Error creating component " + func);
+                            console.error("Error creating component " + func + " for ", $this[0]);
                             throw e;
                         }
                     }
@@ -6132,7 +6136,7 @@ $.noConflict = function() {
         },
 
         $: function(){
-            return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
+            return window.useJQuery ? jQuery : m4q;
         },
 
         isMetroObject: function(el, type){
@@ -6164,7 +6168,7 @@ $.noConflict = function() {
         },
 
         isIE11: function(){
-            return !!window.MSInputMethodContext && !!document.documentMode;
+            return !!window.MSInputMethodContext && !!document["documentMode"];
         },
 
         embedObject: function(val){
@@ -6783,9 +6787,9 @@ $.noConflict = function() {
                     range.selectNode(el);
                     sel.addRange(range);
                 }
-            } else if (body.createTextRange) {
-                range = body.createTextRange();
-                range.moveToElementText(el);
+            } else if (body["createTextRange"]) {
+                range = body["createTextRange"]();
+                range["moveToElementText"](el);
                 range.select();
             }
 
@@ -6797,8 +6801,8 @@ $.noConflict = function() {
                 } else if (window.getSelection().removeAllRanges) {  // Firefox
                     window.getSelection().removeAllRanges();
                 }
-            } else if (document.selection) {  // IE?
-                document.selection.empty();
+            } else if (document["selection"]) {  // IE?
+                document["selection"].empty();
             }
         },
 
@@ -14004,6 +14008,19 @@ $.noConflict = function() {
                     this.start();
                 }
             }
+        },
+
+        startInViewport: function(val, from){
+            var o = this.options;
+
+            if (Utils.isValue(from)) {
+                o.from = +from;
+            }
+
+            if (Utils.isValue(val)) {
+                o.value = +val;
+            }
+            this._run();
         },
 
         start: function(val, from){

@@ -252,17 +252,18 @@
                             var attr = mutation.attributeName, newValue = element.attr(attr), oldValue = mutation.oldValue;
 
                             if (mc !== undefined) {
+                                element.fire("attr-change", {
+                                    attr: attr,
+                                    newValue: newValue,
+                                    oldValue: oldValue,
+                                    __this: element[0]
+                                });
+
                                 $.each(mc, function(){
                                     var plug = Metro.getPlugin(element, this);
                                     if (plug && typeof plug.changeAttribute === "function") {
                                         plug.changeAttribute(attr, newValue, oldValue);
                                     }
-                                });
-
-                                element.fire("attr-change", {
-                                    attr: attr,
-                                    newValue: newValue,
-                                    oldValue: oldValue
                                 });
                             }
                         }
@@ -348,7 +349,6 @@
         },
 
         initHotkeys: function(hotkeys, redefine){
-            var that = this;
             $.each(hotkeys, function(){
                 var element = $(this);
                 var hotkey = element.attr('data-hotkey') ? element.attr('data-hotkey').toLowerCase() : false;
@@ -358,13 +358,17 @@
                     return;
                 }
 
-                if (element.data('hotKeyBonded') === true && !that.utils.bool(redefine)) {
+                if (element.data('hotKeyBonded') === true && redefine !== true) {
                     return;
                 }
 
                 Metro.hotkeys[hotkey] = [this, fn];
-
                 element.data('hotKeyBonded', true);
+                element.fire("hot-key-bonded", {
+                    __this: element[0],
+                    hotkey: hotkey,
+                    fn: fn
+                });
             });
         },
 
@@ -395,15 +399,15 @@
                             $this.data('metroComponent', mc);
 
                             $this.fire("create", {
-                                name: _func,
-                                __this: $this[0]
+                                __this: $this[0],
+                                name: _func
                             });
                             $(document).fire("component-create", {
                                 element: $this[0],
                                 name: _func
                             });
                         } catch (e) {
-                            console.error("Error creating component " + func);
+                            console.error("Error creating component " + func + " for ", $this[0]);
                             throw e;
                         }
                     }

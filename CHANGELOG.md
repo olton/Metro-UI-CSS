@@ -1,12 +1,10 @@
 ### 4.3.9
-#### M4Q
-
-#### Metro 4
 + [x] Component: `_fireEvent` now add argument `__this` to arguments, for access to context `this` in arrows funcs
 + [x] Utils: fix function `github()` for executing callback
 + [x] Counter: fix for starting when page scrolls 
 + [x] Counter: add attributes `data-from`, `data-prefix`, `data-suffix`. Prefix and suffix must be a plain text.
-+ [x] Observer: add firing event `attrchange` when component attribute was ben changed. `e.detail` contains an object `{attr, newValue, oldValue}`.
++ [x] Observer: add firing event `attrchange` when component attribute was ben changed. `e.detail` contains an object `{attr, newValue, oldValue, __this}`.
++ [x] General: add firing event `hotkeybonded` when hotkey for component was ben bonded. `e.detail` contains an object `{__this, hoitkey, fn}`.
 + [x] General: all components fired event `create` when init. The `e.detail` contains an object `{name, __this}`. 
 + [x] General: the document fired event `component-create` when a component was ben initialized. The `e.detail` contains an object `{element, name}`. 
 

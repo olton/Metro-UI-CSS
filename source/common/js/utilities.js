@@ -139,7 +139,7 @@
         },
 
         $: function(){
-            return window.METRO_JQUERY && window.jquery_present ? jQuery : m4q;
+            return window.useJQuery ? jQuery : m4q;
         },
 
         isMetroObject: function(el, type){
@@ -171,7 +171,7 @@
         },
 
         isIE11: function(){
-            return !!window.MSInputMethodContext && !!document.documentMode;
+            return !!window.MSInputMethodContext && !!document["documentMode"];
         },
 
         embedObject: function(val){
@@ -790,9 +790,9 @@
                     range.selectNode(el);
                     sel.addRange(range);
                 }
-            } else if (body.createTextRange) {
-                range = body.createTextRange();
-                range.moveToElementText(el);
+            } else if (body["createTextRange"]) {
+                range = body["createTextRange"]();
+                range["moveToElementText"](el);
                 range.select();
             }
 
@@ -804,8 +804,8 @@
                 } else if (window.getSelection().removeAllRanges) {  // Firefox
                     window.getSelection().removeAllRanges();
                 }
-            } else if (document.selection) {  // IE?
-                document.selection.empty();
+            } else if (document["selection"]) {  // IE?
+                document["selection"].empty();
             }
         },
 

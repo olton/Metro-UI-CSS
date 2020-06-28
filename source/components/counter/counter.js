@@ -68,6 +68,19 @@
             }
         },
 
+        startInViewport: function(val, from){
+            var o = this.options;
+
+            if (Utils.isValue(from)) {
+                o.from = +from;
+            }
+
+            if (Utils.isValue(val)) {
+                o.value = +val;
+            }
+            this._run();
+        },
+
         start: function(val, from){
             var that = this, element = this.element, o = this.options;
 
