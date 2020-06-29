@@ -112,7 +112,7 @@
             }
 
             if (o._runtime === true) {
-                Metro.makeRuntime(element, "window");
+                this._runtime(element, "window");
             }
 
             win = this._window(o);

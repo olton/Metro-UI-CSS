@@ -17,40 +17,36 @@
         onResizableCreate: Metro.noop
     };
 
-    Metro.resizeableSetup = function (options) {
+    Metro.resizableSetup = function (options) {
         ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
     };
 
-    if (typeof window["metroResizeableSetup"] !== undefined) {
-        Metro.resizeableSetup(window["metroResizeableSetup"]);
+    if (typeof window["metroResizableSetup"] !== undefined) {
+        Metro.resizableSetup(window["metroResizableSetup"]);
     }
 
-    Metro.Component('resizeable', {
+    Metro.Component('resizable', {
         init: function( options, elem ) {
             this._super(elem, options, ResizableDefaultConfig, {
                 resizer: null,
-                id: Utils.elementId("resizeable")
+                id: Utils.elementId("resizable")
             });
 
             return this;
         },
 
         _create: function(){
-            var element = this.element;
-
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent("resizeable-create", {
-                element: element
-            });
+            this._fireEvent("resizable-create");
         },
 
         _createStructure: function(){
             var element = this.element, o = this.options;
 
             element.data("canResize", true);
-            element.addClass("resizeable-element");
+            element.addClass("resizable-element");
 
             if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
                 this.resizer = element.find(o.resizeElement);
