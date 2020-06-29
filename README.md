@@ -21,7 +21,10 @@ It's an independent project with its ongoing development made possible entirely 
 </p>
 <p align="center">
 <a href="https://www.patreon.com/metroui">
-	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" width="160">
+	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="38">
+</a>
+<a href="https://www.buymeacoffee.com/pimenov">
+	<img src="https://metroui.org.ua/images/buy-me-coffee2.png" height="38">
 </a>
 </p>
 <br>
@@ -38,25 +41,18 @@ It's an independent project with its ongoing development made possible entirely 
 ![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
 [![xscode](https://img.shields.io/badge/Available%20on-xs%3Acode-blue?style=?style=plastic&logo=appveyor&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////////VXz1bAAAAAJ0Uk5T/wDltzBKAAAAlUlEQVR42uzXSwqAMAwE0Mn9L+3Ggtgkk35QwcnSJo9S+yGwM9DCooCbgn4YrJ4CIPUcQF7/XSBbx2TEz4sAZ2q1RAECBAiYBlCtvwN+KiYAlG7UDGj59MViT9hOwEqAhYCtAsUZvL6I6W8c2wcbd+LIWSCHSTeSAAECngN4xxIDSK9f4B9t377Wd7H5Nt7/Xz8eAgwAvesLRjYYPuUAAAAASUVORK5CYII=)](https://xscode.com/olton/Metro-UI-CSS)
-
-### Release
-![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS)
-![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?include_prereleases&label=pre-release)
-
-###  Info
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
 
 ### Donation
-![Donations on Patreon](https://img.shields.io/badge/Patreon-$90-red.svg)
+![Donations on Patreon](https://img.shields.io/badge/Patreon-$100-red.svg)
 ![Donations on Open Collective](https://img.shields.io/badge/OpenCollective-$1-darklime.svg)
 
 ### Community
 
 [![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
 [![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Join the forum at https://forum.metroui.org.ua](https://img.shields.io/badge/metro-forum-orange.svg)](https://forum.metroui.org.ua)
 
 
 ### Docs

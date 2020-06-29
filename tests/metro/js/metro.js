@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 28/06/2020 20:20:39
+ * Built at 29/06/2020 20:45:29
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.9",
-        compileTime: "28/06/2020 20:20:47",
+        compileTime: "29/06/2020 20:45:37",
         buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -22460,40 +22460,36 @@ $.noConflict = function() {
         onResizableCreate: Metro.noop
     };
 
-    Metro.resizeableSetup = function (options) {
+    Metro.resizableSetup = function (options) {
         ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
     };
 
-    if (typeof window["metroResizeableSetup"] !== undefined) {
-        Metro.resizeableSetup(window["metroResizeableSetup"]);
+    if (typeof window["metroResizableSetup"] !== undefined) {
+        Metro.resizableSetup(window["metroResizableSetup"]);
     }
 
-    Metro.Component('resizeable', {
+    Metro.Component('resizable', {
         init: function( options, elem ) {
             this._super(elem, options, ResizableDefaultConfig, {
                 resizer: null,
-                id: Utils.elementId("resizeable")
+                id: Utils.elementId("resizable")
             });
 
             return this;
         },
 
         _create: function(){
-            var element = this.element;
-
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent("resizeable-create", {
-                element: element
-            });
+            this._fireEvent("resizable-create");
         },
 
         _createStructure: function(){
             var element = this.element, o = this.options;
 
             element.data("canResize", true);
-            element.addClass("resizeable-element");
+            element.addClass("resizable-element");
 
             if (Utils.isValue(o.resizeElement) && element.find(o.resizeElement).length > 0) {
                 this.resizer = element.find(o.resizeElement);
@@ -33937,7 +33933,7 @@ $.noConflict = function() {
             }
 
             if (o._runtime === true) {
-                Metro.makeRuntime(element, "window");
+                this._runtime(element, "window");
             }
 
             win = this._window(o);

@@ -10,15 +10,40 @@
 <body class="m4-cloak">
 
 <h1>Window test page</h1>
-<div data-role="window" class="p-2" data-on-drag-start="dragStart">
+
+<button class="button" onclick="createWindow()">Create window</button>
+
+<div data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart">
     This is a simple window
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    function createWindow() {
+        Metro.window.create({
+            cls         : "p-0",
+            title       : "AGREGAR INFORMACION",
+            clsCaption  : 'bg-orange',
+            btnMin      : true,
+            shadow      : true,
+            resizable   : true,
+            btnMax      : true,
+            icon        : "<span class='mif-file-empty'></spam>",
+            onCaptionDblClick : function(){  } ,
+            btnClose    : true,
+            content     : "<div>Hello World</div>"
+        });
+    }
+
+    function resizeStart(){
+        console.log(arguments);
+    }
+
     function dragStart(pos, context) {
         console.log(pos, context);
     }
+
+    $(".resize-element").on()
 </script>
 </body>
 </html>
