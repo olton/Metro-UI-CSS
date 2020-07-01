@@ -3,7 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var ResizableDefaultConfig = {
-        resizeableDeferred: 0,
+        resizableDeferred: 0,
         canResize: true,
         resizeElement: ".resize-element",
         minWidth: 0,

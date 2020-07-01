@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 29/06/2020 22:40:52
+ * Built at 01/07/2020 22:06:49
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.9",
-        compileTime: "29/06/2020 22:41:00",
+        compileTime: "01/07/2020 22:06:56",
         buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -22446,7 +22446,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var ResizableDefaultConfig = {
-        resizeableDeferred: 0,
+        resizableDeferred: 0,
         canResize: true,
         resizeElement: ".resize-element",
         minWidth: 0,
@@ -34335,7 +34335,7 @@ $.noConflict = function() {
             var element = this.element, win = this.win, o = this.options;
 
             if (a === "data-cls-window") {
-                win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
+                win[0].className = "window " + (o.resizable ? " resizable " : " ") + element.attr("data-cls-window");
             }
             if (a === "data-cls-caption") {
                 win.find(".window-caption")[0].className = "window-caption " + element.attr("data-cls-caption");
