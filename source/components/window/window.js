@@ -514,7 +514,7 @@
             var element = this.element, win = this.win, o = this.options;
 
             if (a === "data-cls-window") {
-                win[0].className = "window " + (o.resizable ? " resizeable " : " ") + element.attr("data-cls-window");
+                win[0].className = "window " + (o.resizable ? " resizable " : " ") + element.attr("data-cls-window");
             }
             if (a === "data-cls-caption") {
                 win.find(".window-caption")[0].className = "window-caption " + element.attr("data-cls-caption");
