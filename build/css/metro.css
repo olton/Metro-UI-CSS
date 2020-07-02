@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 01/07/2020 22:06:41
+ * Built at 02/07/2020 13:49:26
  * Licensed under MIT
  */
 *,
@@ -19845,6 +19845,24 @@ h6:nth-child(1) {
   white-space: nowrap;
   -o-text-overflow: ellipsis;
      text-overflow: ellipsis;
+}
+.text-italic {
+  font-style: italic!important;
+}
+.text-oblique {
+  font-style: oblique!important;
+}
+.text-overline {
+  text-decoration: overline!important;
+}
+.text-linethrough {
+  text-decoration: line-through !important;
+}
+.text-underline {
+  text-decoration: underline!important;
+}
+.text-underover {
+  text-decoration: underline overline!important;
 }
 .va-top {
   vertical-align: top !important;
