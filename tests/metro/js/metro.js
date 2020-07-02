@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 01/07/2020 22:06:49
+ * Built at 02/07/2020 13:49:37
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.9",
-        compileTime: "01/07/2020 22:06:56",
+        compileTime: "02/07/2020 13:49:46",
         buildNumber: "747",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5064,15 +5064,17 @@ $.noConflict = function() {
 
                     _data = data ? Object.values(data) : {};
 
-                    Utils.exec(o["on"+event], _data, element[0]);
-                    if (noFire !== true) element.fire(event.toLowerCase(), data);
-
                     if (log) {
                         console.warn(log);
                         console.warn("Event: " + "on"+eventName.camelCase().capitalize());
                         console.warn("Data: ", data);
                         console.warn("Element: ", element[0]);
                     }
+
+                    if (noFire !== true)
+                        element.fire(event.toLowerCase(), data);
+
+                    return Utils.exec(o["on"+event], _data, element[0]);
                 }
             }, compObj);
 

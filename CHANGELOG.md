@@ -9,6 +9,7 @@
 + [x] General: the document fired event `component-create` when a component was ben initialized. The `e.detail` contains an object `{element, name}`.
 + [x] Window: fix `makeRuntime` calling, issue #1574 
 + [x] Window: fix make window `resizable` 
++ [x] Typography: add `italic` and `underline` text classes, issue #1577
 
 ### 4.3.8
 #### M4Q

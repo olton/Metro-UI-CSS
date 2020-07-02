@@ -599,15 +599,17 @@
 
                     _data = data ? Object.values(data) : {};
 
-                    Utils.exec(o["on"+event], _data, element[0]);
-                    if (noFire !== true) element.fire(event.toLowerCase(), data);
-
                     if (log) {
                         console.warn(log);
                         console.warn("Event: " + "on"+eventName.camelCase().capitalize());
                         console.warn("Data: ", data);
                         console.warn("Element: ", element[0]);
                     }
+
+                    if (noFire !== true)
+                        element.fire(event.toLowerCase(), data);
+
+                    return Utils.exec(o["on"+event], _data, element[0]);
                 }
             }, compObj);
 
