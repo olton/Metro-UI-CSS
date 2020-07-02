@@ -1,5 +1,5 @@
 ### 4.3.9
-+ [x] Component: `_fireEvent` now add argument `__this` to arguments, for access to context `this` in arrows funcs
++ [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
 + [x] Utils: fix function `github()` for executing callback
 + [x] Counter: fix for starting when page scrolls 
 + [x] Counter: add attributes `data-from`, `data-prefix`, `data-suffix`. Prefix and suffix must be a plain text.
