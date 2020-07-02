@@ -1,3 +1,5 @@
+### 4.3.10
+
 ### 4.3.9
 + [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
 + [x] Utils: fix function `github()` for executing callback
