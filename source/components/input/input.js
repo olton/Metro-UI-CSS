@@ -178,7 +178,7 @@
                 var autocomplete_obj = Utils.isObject(o.autocomplete);
 
                 if (autocomplete_obj !== false) {
-                    that.autocomplete = autocomplete_obj;
+                    this.autocomplete = autocomplete_obj;
                 } else {
                     this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
                 }
@@ -412,6 +412,15 @@
                 this.disable();
             } else {
                 this.enable();
+            }
+        },
+
+        setAutocompleteList: function(l){
+            var autocomplete_list = Utils.isObject(l);
+            if (autocomplete_list !== false) {
+                this.autocomplete = autocomplete_list;
+            } else if (typeof l === "string") {
+                this.autocomplete = l.toArray(this.options.autocompleteDivider);
             }
         },
 

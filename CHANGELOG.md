@@ -1,4 +1,5 @@
 ### 4.3.10
++ [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
 
 ### 4.3.9
 + [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
