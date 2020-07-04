@@ -97,6 +97,10 @@
         "print": {
             "name": "Print",
             "less": ["print"]
+        },
+        "scrollbar": {
+            "name": "Scrollbar",
+            "less": ["scrollbar"]
         }
     },
 

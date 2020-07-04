@@ -452,10 +452,7 @@ pre code {
     text-decoration: underline;
 }
 
-.generate-text-media-options(@mediaBreakpointListMobileLength);
-.generate-text-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
+each(@mediaBreakpointListMobile, .(@m) {
     @media screen and (min-width: @@m) {
         .text-upper-@{m} {text-transform: uppercase !important;}
         .text-lower-@{m} {text-transform: lowercase !important;}
@@ -500,6 +497,5 @@ pre code {
         .enlarge-3x-@{m} {font-size: 3em!important;}
         .enlarge-4x-@{m} {font-size: 4em!important;}
     }
+})
 
-    .generate-text-media-options(@name, @i + 1);
-}
