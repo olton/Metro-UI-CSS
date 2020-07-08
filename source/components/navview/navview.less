@@ -28,6 +28,7 @@
         display: block;
         transition: all .1s linear;
         min-height: 100%;
+        height: 100%;
     }
 
     .navview-pane {
@@ -36,7 +37,6 @@
         position: absolute;
         left: 0;
         top: 0;
-        height: 100%;
         .translate3d(-100%);
         z-index: 3;
 
@@ -427,6 +427,26 @@ each(@mediaBreakpointListMobile, {
 
             .item-header {
                 display: block!important;
+            }
+        }
+    }
+}
+
+.navview {
+    &.compacted, &.js-compact {
+        & .navview-pane > .navview-menu-container > .navview-menu > li > a {
+            & > .caption {
+                display: none;
+            }
+
+            & > .icon:hover + .caption {
+                display: block!important;
+                position: absolute;
+                left: ~"calc(100% + 4px)";
+                top: 0;
+                background-color: inherit;
+                padding: 0 16px;
+                //border-radius: 4px;
             }
         }
     }
