@@ -1,6 +1,7 @@
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
 + [x] Scrollbars: add styles with classes `.scrollbar-type-1`, `.scrollbar-type-2`, `.scrollbar-type-3`, `.scrollbar-type-4`
++ [x] NavView: fix pane close on mobile devices when inputs, inside a pane, receive a focus, issue #1580
 
 ### 4.3.9
 + [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
