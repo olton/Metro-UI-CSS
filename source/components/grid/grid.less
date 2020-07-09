@@ -118,7 +118,7 @@ each(@mediaBreakpointListMobile, .(@m) {
             max-width: none;
         }
 
-        each(range(12), .(@k) {
+        each(range(0, 12), .(@k) {
             .colspan-@{m}-@{k}, .cell-@{m}-@{k}, .col-@{m}-@{k} {
                 flex: 0 0 @gridCellBaseSize * @k ;
                 max-width: @gridCellBaseSize * @k ;
