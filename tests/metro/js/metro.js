@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/07/2020 11:02:20
+ * Built at 08/07/2020 15:49:11
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,7 +296,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2678,7 +2678,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.10",
-        compileTime: "08/07/2020 11:02:31",
+        compileTime: "08/07/2020 15:49:13",
         buildNumber: "749",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4760,7 +4760,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -20885,18 +20885,21 @@ $.noConflict = function() {
             var menu = menu_container.children(".navview-menu");
 
             menu_container.on("mousewheel", function(e){
-                //var pane_width = element.find(".navview-pane").width();
+                var pane_width = element.find(".navview-pane").width();
                 var dir = e.deltaY > 0 ? -1 : 1;
                 var step = that.menuScrollStep;
+                var distance = that.menuScrollDistance;
                 var top = parseInt(menu.css('top'));
 
-                if ( !element.hasClass("compacted") ) {
+                console.log(!element.hasClass("compacted"), pane_width, 48);
+
+                if (pane_width > 48 /*|| !element.hasClass("compacted") */) {
                     return false;
                 }
 
-                
+                console.log(step, distance);
 
-                if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
+                if(dir === -1 && Math.abs(top) <= distance) {
                     menu.css('top', parseInt(menu.css('top')) + step * dir);
                 }
 
@@ -29958,7 +29961,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                
+                console.log(o.effect.camelCase());
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
