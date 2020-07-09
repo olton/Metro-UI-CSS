@@ -122,18 +122,21 @@
             var menu = menu_container.children(".navview-menu");
 
             menu_container.on("mousewheel", function(e){
-                //var pane_width = element.find(".navview-pane").width();
+                var pane_width = element.find(".navview-pane").width();
                 var dir = e.deltaY > 0 ? -1 : 1;
                 var step = that.menuScrollStep;
+                var distance = that.menuScrollDistance;
                 var top = parseInt(menu.css('top'));
 
-                if ( !element.hasClass("compacted") ) {
+                console.log(!element.hasClass("compacted"), pane_width, 48);
+
+                if (pane_width > 48 /*|| !element.hasClass("compacted") */) {
                     return false;
                 }
 
-                console.log("+++");
+                console.log(step, distance);
 
-                if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
+                if(dir === -1 && Math.abs(top) <= distance) {
                     menu.css('top', parseInt(menu.css('top')) + step * dir);
                 }
 
