@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/07/2020 15:49:03
+ * Built at 09/07/2020 22:19:07
  * Licensed under MIT
  */
 *,
@@ -27383,6 +27383,17 @@ fieldset.disabled,
   width: auto;
   max-width: none;
 }
+.colspan-0,
+.cell-0,
+.col-0 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 0%;
+          flex: 0 0 0%;
+  max-width: 0%;
+}
+.offset-0 {
+  margin-left: 0%;
+}
 .colspan-1,
 .cell-1,
 .col-1 {
@@ -27598,6 +27609,17 @@ fieldset.disabled,
             flex: 0 0 auto;
     max-width: none;
   }
+  .colspan-fs-0,
+  .cell-fs-0,
+  .col-fs-0 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 0%;
+            flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .offset-fs-0 {
+    margin-left: 0%;
+  }
   .colspan-fs-1,
   .cell-fs-1,
   .col-fs-1 {
@@ -27782,6 +27804,17 @@ fieldset.disabled,
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     max-width: none;
+  }
+  .colspan-sm-0,
+  .cell-sm-0,
+  .col-sm-0 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 0%;
+            flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .offset-sm-0 {
+    margin-left: 0%;
   }
   .colspan-sm-1,
   .cell-sm-1,
@@ -27968,6 +28001,17 @@ fieldset.disabled,
             flex: 0 0 auto;
     max-width: none;
   }
+  .colspan-md-0,
+  .cell-md-0,
+  .col-md-0 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 0%;
+            flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .offset-md-0 {
+    margin-left: 0%;
+  }
   .colspan-md-1,
   .cell-md-1,
   .col-md-1 {
@@ -28152,6 +28196,17 @@ fieldset.disabled,
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     max-width: none;
+  }
+  .colspan-lg-0,
+  .cell-lg-0,
+  .col-lg-0 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 0%;
+            flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .offset-lg-0 {
+    margin-left: 0%;
   }
   .colspan-lg-1,
   .cell-lg-1,
@@ -28338,6 +28393,17 @@ fieldset.disabled,
             flex: 0 0 auto;
     max-width: none;
   }
+  .colspan-xl-0,
+  .cell-xl-0,
+  .col-xl-0 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 0%;
+            flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .offset-xl-0 {
+    margin-left: 0%;
+  }
   .colspan-xl-1,
   .cell-xl-1,
   .col-xl-1 {
@@ -28522,6 +28588,17 @@ fieldset.disabled,
         -ms-flex: 0 0 auto;
             flex: 0 0 auto;
     max-width: none;
+  }
+  .colspan-xxl-0,
+  .cell-xxl-0,
+  .col-xxl-0 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 0%;
+            flex: 0 0 0%;
+    max-width: 0%;
+  }
+  .offset-xxl-0 {
+    margin-left: 0%;
   }
   .colspan-xxl-1,
   .cell-xxl-1,
