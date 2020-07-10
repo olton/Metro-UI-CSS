@@ -29,14 +29,14 @@
 }
 
 each(range(0, 40, 8), {
-    .row.gap-@{value}, .grid.gap-@{value} {
+  .grid.gap-@{value}, .row.gap-@{value} {
         [class*=cell-], [class*=col-]{
             padding: unit(@value, px);
         }
     }
     .gap-@{value} {
         &[class*=cell-], &[class*=col-] {
-            padding: unit(@value, px);
+            padding: unit(@value, px)!important;
         }
     }
 })

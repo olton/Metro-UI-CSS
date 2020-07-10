@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/07/2020 09:59:37
+ * Built at 10/07/2020 10:06:42
  * Licensed under MIT
  */
 .accordion {
@@ -4845,65 +4845,65 @@ fieldset.disabled,
   width: 100%;
   min-height: 1px;
 }
-.row.gap-0 [class*=cell-],
 .grid.gap-0 [class*=cell-],
-.row.gap-0 [class*=col-],
-.grid.gap-0 [class*=col-] {
+.row.gap-0 [class*=cell-],
+.grid.gap-0 [class*=col-],
+.row.gap-0 [class*=col-] {
   padding: 0px;
 }
 .gap-0[class*=cell-],
 .gap-0[class*=col-] {
-  padding: 0px;
+  padding: 0px !important;
 }
-.row.gap-8 [class*=cell-],
 .grid.gap-8 [class*=cell-],
-.row.gap-8 [class*=col-],
-.grid.gap-8 [class*=col-] {
+.row.gap-8 [class*=cell-],
+.grid.gap-8 [class*=col-],
+.row.gap-8 [class*=col-] {
   padding: 8px;
 }
 .gap-8[class*=cell-],
 .gap-8[class*=col-] {
-  padding: 8px;
+  padding: 8px !important;
 }
-.row.gap-16 [class*=cell-],
 .grid.gap-16 [class*=cell-],
-.row.gap-16 [class*=col-],
-.grid.gap-16 [class*=col-] {
+.row.gap-16 [class*=cell-],
+.grid.gap-16 [class*=col-],
+.row.gap-16 [class*=col-] {
   padding: 16px;
 }
 .gap-16[class*=cell-],
 .gap-16[class*=col-] {
-  padding: 16px;
+  padding: 16px !important;
 }
-.row.gap-24 [class*=cell-],
 .grid.gap-24 [class*=cell-],
-.row.gap-24 [class*=col-],
-.grid.gap-24 [class*=col-] {
+.row.gap-24 [class*=cell-],
+.grid.gap-24 [class*=col-],
+.row.gap-24 [class*=col-] {
   padding: 24px;
 }
 .gap-24[class*=cell-],
 .gap-24[class*=col-] {
-  padding: 24px;
+  padding: 24px !important;
 }
-.row.gap-32 [class*=cell-],
 .grid.gap-32 [class*=cell-],
-.row.gap-32 [class*=col-],
-.grid.gap-32 [class*=col-] {
+.row.gap-32 [class*=cell-],
+.grid.gap-32 [class*=col-],
+.row.gap-32 [class*=col-] {
   padding: 32px;
 }
 .gap-32[class*=cell-],
 .gap-32[class*=col-] {
-  padding: 32px;
+  padding: 32px !important;
 }
-.row.gap-40 [class*=cell-],
 .grid.gap-40 [class*=cell-],
-.row.gap-40 [class*=col-],
-.grid.gap-40 [class*=col-] {
+.row.gap-40 [class*=cell-],
+.grid.gap-40 [class*=col-],
+.row.gap-40 [class*=col-] {
   padding: 40px;
 }
 .gap-40[class*=cell-],
 .gap-40[class*=col-] {
-  padding: 40px;
+  padding: 40px !important;
 }
 .cell-auto,
 .col-auto {
