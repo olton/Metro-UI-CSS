@@ -3,7 +3,7 @@
 
 @navviewPaneWidth: 280px;
 @navviewPaneWidthCompact: 48px;
-@navviewPaneItemHeight: 40px;
+@navviewPaneItemHeight: 48px;
 
 @navviewPaneBackground: #e5e5e5;
 @navviewPaneItemHover: #cecece;
@@ -87,7 +87,7 @@
         display: block;
         position: relative;
         list-style: none inside;
-        margin: 0 0 20px 0;
+        margin: 0;
         padding: 0;
         width: 100%;
         background-color: @navviewPaneBackground;
@@ -190,7 +190,7 @@
 
     .suggest-box {
         display: block;
-        margin: 8px 0;
+        padding: 8px 0;
 
         .input, .select, .textarea {
             display: flex;
@@ -285,7 +285,7 @@
             }
 
             .navview-menu-container {
-                overflow-y: auto;
+                overflow-y: auto!important;
             }
         }
         .badges {
@@ -442,11 +442,10 @@ each(@mediaBreakpointListMobile, {
             & > .icon:hover + .caption {
                 display: block!important;
                 position: absolute;
-                left: ~"calc(100% + 4px)";
+                left: ~"calc(100% + 0px)";
                 top: 0;
                 background-color: inherit;
                 padding: 0 16px;
-                //border-radius: 4px;
             }
         }
     }

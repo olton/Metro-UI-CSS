@@ -6,8 +6,6 @@ module.exports = function(grunt) {
     var develop = grunt.option('develop');
     var tasks;
     var watch_files = [
-        // 'source/i18n/*.json',
-        // 'source/*.js',
         'source/**/*.js',
         'source/components/**/*.less',
         'source/icons/**/*.less',

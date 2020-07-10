@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/07/2020 10:06:42
+ * Built at 10/07/2020 15:30:32
  * Licensed under MIT
  */
 *,
@@ -27594,28 +27594,28 @@ fieldset.disabled,
   padding: 0 12px;
 }
 .grid.no-gap .row {
-  margin-left: 0;
-  margin-right: 0;
+  margin-left: 0!important;
+  margin-right: 0!important;
 }
 .grid.no-gap .row .cell,
 .grid.no-gap .row .stub,
 .grid.no-gap .row .col {
-  padding: 0;
+  padding: 0!important;
 }
 .grid.no-gap .row + .row {
-  margin-top: 0;
+  margin-top: 0!important;
 }
 .row.no-gap {
-  margin-left: 0;
-  margin-right: 0;
-  margin-top: 0;
+  margin-left: 0!important;
+  margin-right: 0!important;
+  margin-top: 0!important;
 }
 .row.no-gap .cell,
 .row.no-gap .stub,
 .row.no-gap .col,
 .row.no-gap [class*=cell-],
 .row.no-gap [class*=col-] {
-  padding: 0;
+  padding: 0!important;
 }
 @media screen and (min-width: 0) {
   .cell-fs-full,
@@ -31209,7 +31209,7 @@ input.input-small:-ms-input-placeholder {
   display: block;
   position: relative;
   list-style: none inside;
-  margin: 0 0 20px 0;
+  margin: 0;
   padding: 0;
   width: 100%;
   background-color: #e5e5e5;
@@ -31226,12 +31226,12 @@ input.input-small:-ms-input-placeholder {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
-  line-height: 40px;
+  line-height: 48px;
   text-decoration: none;
   color: inherit;
   white-space: nowrap;
   border: 2px solid transparent;
-  height: 40px;
+  height: 48px;
 }
 .navview .navview-menu li a:hover {
   text-decoration: none;
@@ -31298,7 +31298,7 @@ input.input-small:-ms-input-placeholder {
 }
 .navview .suggest-box {
   display: block;
-  margin: 8px 0;
+  padding: 8px 0;
 }
 .navview .suggest-box .input,
 .navview .suggest-box .select,
@@ -31388,7 +31388,7 @@ input.input-small:-ms-input-placeholder {
   display: none!important;
 }
 .navview.expanded .navview-pane .navview-menu-container {
-  overflow-y: auto;
+  overflow-y: auto!important;
 }
 .navview.expanded .badges {
   display: -webkit-box!important;
@@ -31831,7 +31831,7 @@ input.input-small:-ms-input-placeholder {
 .navview.js-compact .navview-pane > .navview-menu-container > .navview-menu > li > a > .icon:hover + .caption {
   display: block!important;
   position: absolute;
-  left: calc(100% + 4px);
+  left: calc(100% + 0px);
   top: 0;
   background-color: inherit;
   padding: 0 16px;

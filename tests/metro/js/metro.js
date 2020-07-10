@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/07/2020 10:06:55
+ * Built at 10/07/2020 15:30:45
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.10",
-        compileTime: "10/07/2020 10:07:03",
+        compileTime: "10/07/2020 15:30:53",
         buildNumber: "749",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -20805,7 +20805,7 @@ $.noConflict = function() {
         },
 
         _calcMenuHeight: function(){
-            var element = this.element, pane, menu;
+            var element = this.element, pane, menu_container;
             var elements_height = 0;
 
             pane = element.children(".navview-pane");
@@ -20813,27 +20813,31 @@ $.noConflict = function() {
                 return;
             }
 
-            menu = pane.children(".navview-menu-container");
+            menu_container = pane.children(".navview-menu-container");
 
-            if (menu.length === 0) {
+            if (menu_container.length === 0) {
                 return ;
             }
 
-            $.each(menu.prevAll(), function(){
+            $.each(menu_container.prevAll(), function(){
                 elements_height += $(this).outerHeight(true);
             });
-            $.each(menu.nextAll(), function(){
+
+            $.each(menu_container.nextAll(), function(){
                 elements_height += $(this).outerHeight(true);
             });
-            menu.css({
+
+            menu_container.css({
                 height: "calc(100% - "+(elements_height)+"px)"
             });
-        },
+
+            this.menuScrollStep = 48;
+            this.menuScrollDistance = Utils.nearest(menu_container[0].scrollHeight - menu_container.height(), 48);
+       },
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var pane, content, toggle, menu, menu_container, menu_h, menu_container_h;
-            var other_pane_container, prev;
+            var pane, content, toggle, menu/*, menu_container, menu_h, menu_container_h*/;
 
             element
                 .addClass("navview")
@@ -20846,24 +20850,8 @@ $.noConflict = function() {
             menu = pane.children(".navview-menu");
 
             if (menu.length) {
-                prev = menu.prevAll();
-                other_pane_container = $("<div>").addClass("navview-container");
-                other_pane_container.append(prev.reverse());
-                pane.prepend(other_pane_container);
-
-                menu_container = $("<div>").addClass("navview-menu-container").insertBefore(menu);
-                menu.appendTo(menu_container);
-            }
-
-            this._calcMenuHeight();
-
-            if (menu.length) {
-                setTimeout(function(){
-                    menu_h = menu.height();
-                    menu_container_h = menu_container.height();
-                    that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
-                    that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
-                }, 0)
+                menu.prevAll().reverse().wrapAll($("<div>").addClass("navview-container"));
+                menu.wrap($("<div>").addClass("navview-menu-container"));
             }
 
             this.pane = pane.length > 0 ? pane : null;
@@ -20876,6 +20864,7 @@ $.noConflict = function() {
                 } else {
                     element.removeClass("js-compact");
                 }
+                that._calcMenuHeight();
             }, 200);
         },
 
@@ -20891,13 +20880,9 @@ $.noConflict = function() {
                 var distance = that.menuScrollDistance;
                 var top = parseInt(menu.css('top'));
 
-                
-
                 if (pane_width > 48 /*|| !element.hasClass("compacted") */) {
                     return false;
                 }
-
-                
 
                 if(dir === -1 && Math.abs(top) <= distance) {
                     menu.css('top', parseInt(menu.css('top')) + step * dir);
@@ -20937,6 +20922,8 @@ $.noConflict = function() {
                     menu_container = element.children(".navview-menu-container"),
                     menu;
 
+                that._calcMenuHeight();
+
                 if (that.pane.hasClass("open")) {
                     return ;
                 }
@@ -20949,7 +20936,6 @@ $.noConflict = function() {
                 }
 
                 if (menu_container.length) {
-                    that._calcMenuHeight();
                     menu = menu_container.children(".navview-menu");
                     setTimeout(function () {
                         menu_h = menu.height();
@@ -21003,6 +20989,7 @@ $.noConflict = function() {
                 } else {
                     element.removeClass("js-compact");
                 }
+                that._calcMenuHeight();
             }, 200);
 
             return true;
