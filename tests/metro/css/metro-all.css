@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 09/07/2020 22:30:34
+ * Built at 10/07/2020 09:59:51
  * Licensed under MIT
  */
 *,
@@ -27374,6 +27374,66 @@ fieldset.disabled,
   padding: 6px;
   width: 100%;
   min-height: 1px;
+}
+.row.gap-0 [class*=cell-],
+.grid.gap-0 [class*=cell-],
+.row.gap-0 [class*=col-],
+.grid.gap-0 [class*=col-] {
+  padding: 0px;
+}
+.gap-0[class*=cell-],
+.gap-0[class*=col-] {
+  padding: 0px;
+}
+.row.gap-8 [class*=cell-],
+.grid.gap-8 [class*=cell-],
+.row.gap-8 [class*=col-],
+.grid.gap-8 [class*=col-] {
+  padding: 8px;
+}
+.gap-8[class*=cell-],
+.gap-8[class*=col-] {
+  padding: 8px;
+}
+.row.gap-16 [class*=cell-],
+.grid.gap-16 [class*=cell-],
+.row.gap-16 [class*=col-],
+.grid.gap-16 [class*=col-] {
+  padding: 16px;
+}
+.gap-16[class*=cell-],
+.gap-16[class*=col-] {
+  padding: 16px;
+}
+.row.gap-24 [class*=cell-],
+.grid.gap-24 [class*=cell-],
+.row.gap-24 [class*=col-],
+.grid.gap-24 [class*=col-] {
+  padding: 24px;
+}
+.gap-24[class*=cell-],
+.gap-24[class*=col-] {
+  padding: 24px;
+}
+.row.gap-32 [class*=cell-],
+.grid.gap-32 [class*=cell-],
+.row.gap-32 [class*=col-],
+.grid.gap-32 [class*=col-] {
+  padding: 32px;
+}
+.gap-32[class*=cell-],
+.gap-32[class*=col-] {
+  padding: 32px;
+}
+.row.gap-40 [class*=cell-],
+.grid.gap-40 [class*=cell-],
+.row.gap-40 [class*=col-],
+.grid.gap-40 [class*=col-] {
+  padding: 40px;
+}
+.gap-40[class*=cell-],
+.gap-40[class*=col-] {
+  padding: 40px;
 }
 .cell-auto,
 .col-auto {
