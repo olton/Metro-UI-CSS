@@ -28,6 +28,19 @@
     min-height: 1px;
 }
 
+each(range(0, 40, 8), {
+    .row.gap-@{value}, .grid.gap-@{value} {
+        [class*=cell-], [class*=col-]{
+            padding: unit(@value, px);
+        }
+    }
+    .gap-@{value} {
+        &[class*=cell-], &[class*=col-] {
+            padding: unit(@value, px);
+        }
+    }
+})
+
 .cell-auto, .col-auto {
     flex: 0 0 auto;
     width: auto;

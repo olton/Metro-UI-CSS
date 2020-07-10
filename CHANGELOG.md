@@ -3,6 +3,7 @@
 + [x] Scrollbars: add styles with classes `.scrollbar-type-1`, `.scrollbar-type-2`, `.scrollbar-type-3`, `.scrollbar-type-4`
 + [x] NavView: fix pane close on mobile devices when inputs, inside a pane, receive a focus, issue #1580
 + [x] Grid: fix offset-*-0 are missing in the grid system, issue #1583
++ [x] Grid: add gaps with classes `gap-*`, where `*` is one of `0, 8, 16, 24, 32, 40` in pixels
 
 ### 4.3.9
 + [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
