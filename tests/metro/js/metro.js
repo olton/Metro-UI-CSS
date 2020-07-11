@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 10/07/2020 15:30:45
+ * Built at 11/07/2020 12:59:14
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.10",
-        compileTime: "10/07/2020 15:30:53",
+        compileTime: "11/07/2020 12:59:22",
         buildNumber: "749",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -20833,10 +20833,22 @@ $.noConflict = function() {
 
             this.menuScrollStep = 48;
             this.menuScrollDistance = Utils.nearest(menu_container[0].scrollHeight - menu_container.height(), 48);
-       },
+        },
+
+        _recalc: function(){
+            var that = this, element = this.element;
+            setTimeout(function(){
+                if (that.pane.width() === 48) {
+                    element.addClass("js-compact");
+                } else {
+                    element.removeClass("js-compact");
+                }
+                that._calcMenuHeight();
+            }, 200);
+        },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var pane, content, toggle, menu/*, menu_container, menu_h, menu_container_h*/;
 
             element
@@ -20858,14 +20870,7 @@ $.noConflict = function() {
             this.content = content.length > 0 ? content : null;
             this.paneToggle = toggle.length > 0 ? toggle : null;
 
-            setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
-                that._calcMenuHeight();
-            }, 200);
+            this._recalc();
         },
 
         _createEvents: function(){
@@ -20922,9 +20927,8 @@ $.noConflict = function() {
                     menu_container = element.children(".navview-menu-container"),
                     menu;
 
-                that._calcMenuHeight();
-
                 if (that.pane.hasClass("open")) {
+                    that._recalc();
                     return ;
                 }
 
@@ -20945,21 +20949,28 @@ $.noConflict = function() {
                     }, 0);
                 }
 
-                element.removeClass("js-compact");
-
-                setTimeout(function(){
-                    if (that.pane.width() === 48) {
-                        element.addClass("js-compact");
-                    }
-                }, 200);
+                that._recalc();
 
             }, {ns: this.id})
         },
 
-        pullClick: function(el){
-            var that = this, element = this.element;
+        _togglePaneMode: function(){
+            var element = this.element;
             var pane = this.pane;
             var pane_compact = pane.width() < 280;
+
+            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
+                element.toggleClass("expanded");
+            } else
+
+            if (element.hasClass("compacted") || !pane_compact) {
+                element.toggleClass("compacted");
+            }
+
+        },
+
+        pullClick: function(el){
+            var that = this;
             var input;
 
             var target = $(el);
@@ -20973,24 +20984,11 @@ $.noConflict = function() {
 
             if (that.pane.hasClass("open")) {
                 that.close();
-            } else
-
-            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
-                element.toggleClass("expanded");
-            } else
-
-            if (element.hasClass("compacted") || !pane_compact) {
-                element.toggleClass("compacted");
+            } else {
+                this._togglePaneMode();
             }
 
-            setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
-                that._calcMenuHeight();
-            }, 200);
+            this._recalc();
 
             return true;
         },
@@ -21006,6 +21004,10 @@ $.noConflict = function() {
         toggle: function(){
             var pane = this.pane;
             pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
+        },
+
+        toggleMode: function(){
+            this._togglePaneMode();
         },
 
         /* eslint-disable-next-line */

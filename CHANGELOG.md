@@ -6,6 +6,7 @@
 + [x] Grid: fix offset-*-0 are missing in the grid system, issue #1583
 + [x] Grid: add gaps with classes `gap-*`, where `*` is one of `0, 8, 16, 24, 32, 40` in pixels
 + [x] NavView: fix scrolling menu in compact mode, issue #1579
++ [x] NavView: add API method `toggleMode()` to toggle between expanded and compacted modes, issue #1538
 
 ### 4.3.9
 + [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
