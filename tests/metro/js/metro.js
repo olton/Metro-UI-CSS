@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/07/2020 12:59:14
+ * Built at 11/07/2020 13:38:20
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.3.10",
-        compileTime: "11/07/2020 12:59:22",
+        compileTime: "11/07/2020 13:38:32",
         buildNumber: "749",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -23517,9 +23517,17 @@ $.noConflict = function() {
             });
         },
 
-        data: function(op){
+        data: function(op, selected){
             var element = this.element;
-            var option_group;
+            var option_group, _selected;
+
+            if (typeof selected === "string") {
+                _selected = selected.toArray(",");
+            } else if (Array.isArray(selected)) {
+                _selected = selected.slice();
+            } else {
+                _selected = [];
+            }
 
             element.empty();
 
@@ -23530,10 +23538,16 @@ $.noConflict = function() {
                     if (Utils.isObject(val)) {
                         option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
                         $.each(val, function(key2, val2){
-                            $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                            var op = $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                            if (_selected.indexOf(+key2) > -1) {
+                                op.prop("selected", true);
+                            }
                         });
                     } else {
-                        $("<option>").attr("value", key).text(val).appendTo(element);
+                        var op = $("<option>").attr("value", key).text(val).appendTo(element);
+                        if (_selected.indexOf(+key) > -1) {
+                            op.prop("selected", true);
+                        }
                     }
                 });
             }
