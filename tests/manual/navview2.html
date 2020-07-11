@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
 
-    <title>Test Tag input - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <title>Test NavView - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
         body {
             background-color: #fff;
@@ -94,7 +94,7 @@
 </head>
 <body class="m4-cloak h-vh-100">
 
-<div data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
+<div id="nv" data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
     <div class="navview-pane">
         <div class="bg-cyan d-flex flex-align-center">
             <button class="pull-button m-0 bg-darkCyan-hover">
@@ -213,6 +213,8 @@
     <div class="navview-content">
         <div data-role="appbar" class="pos-absolute bg-darkCyan fg-white">
             <a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
+
+            <button class="app-bar-item" onclick="Metro.getPlugin('#nv', 'navview').toggleMode()">Toggle menu mode</button>
         </div>
     </div>
 </div>
