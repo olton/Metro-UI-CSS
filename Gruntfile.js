@@ -21,24 +21,25 @@ module.exports = function(grunt) {
 
     tasks = [
         'clear',
-        'concurrent:clean_build',
-        'concurrent:eslint',
-        'concurrent:file_creator',
-        'concurrent:compile_less',
-        'concurrent:postcss',
-        'concurrent:concat'
+        'clean:build',
+        'eslint',
+        'file-creator',
+        'less',
+        'postcss',
+        'concat'
     ];
 
     if (!develop) {
-        tasks.push('concurrent:remove_log');
-        tasks.push('concurrent:min');
+        tasks.push('removelogging');
+        tasks.push('uglify');
+        tasks.push('cssmin');
     }
 
-    tasks.push('concurrent:replace');
-    tasks.push('concurrent:copy');
+    tasks.push('replace');
+    tasks.push('copy');
 
     if (!develop) {
-        tasks.push('concurrent:clean_less');
+        tasks.push('clean:less');
     }
 
     if (watching) {
@@ -365,23 +366,6 @@ module.exports = function(grunt) {
                     }
                 ]
             }
-        },
-
-        concurrent: {
-            options: {
-            },
-            clean_build: ['clean:build'],
-            file_creator: ['file-creator'],
-            compile_less: ['less:src', 'less:schemes'],
-            postcss: ['postcss'],
-            eslint: ['eslint'],
-            concat: ['concat:js', 'concat:css'],
-            remove_log: develop ? [] : ['removelogging'],
-            min: ['uglify', 'cssmin:src', 'cssmin:schemes'],
-            replace: ['replace'],
-            copy: ['copy'],
-            clean_less: ['clean:less'],
-            watch: ['watch']
         },
 
         watch: {
