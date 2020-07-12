@@ -7,7 +7,7 @@
 + [x] Grid: add gaps with classes `gap-*`, where `*` is one of `0, 8, 16, 24, 32, 40` in pixels
 + [x] NavView: fix scrolling menu in compact mode, issue #1579
 + [x] NavView: add API method `toggleMode()` to toggle between expanded and compacted modes, issue #1538
-+ [x] Select: for API method `data(newOptions, selectedValues)` added second argument. Must be a `string` or `array`, issue #1497
++ [x] Select: for API method `data(newOptions, selected, delimiter)` added second argument. Must be a `string` or `array`, if `selected` is a `string`, you can use `delimiter` argument to split string into array, issue #1497
 
 ### 4.3.9
 + [x] Component: `_fireEvent` push `__this` to arguments. `__this` contains HTMLElement
