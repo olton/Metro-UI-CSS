@@ -540,14 +540,20 @@
             });
         },
 
-        data: function(op, selected){
+        data: function(op, selected, delimiter){
             var element = this.element;
             var option_group, _selected;
+            var _delimiter = delimiter || ",";
+
 
             if (typeof selected === "string") {
-                _selected = selected.toArray(",");
+                _selected = selected.toArray(_delimiter).map(function(v){
+                    return +v;
+                });
             } else if (Array.isArray(selected)) {
-                _selected = selected.slice();
+                _selected = selected.slice().map(function(v){
+                    return +v;
+                });
             } else {
                 _selected = [];
             }
