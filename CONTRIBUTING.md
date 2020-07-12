@@ -21,7 +21,7 @@ Thank you for your contribution and for your cooperation.
 
 Before create issue:
 - check for existing issues.
-- create pen on [Codepen.io](https://codepen.io) ro [Sandbox](https://sandbox.org.ua) with your problem.
+- create pen on [Codepen.io](https://codepen.io) with your problem.
 - describe the problem in detail.
 
 ## Pull Request Guidelines
