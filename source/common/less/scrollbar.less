@@ -1,0 +1,83 @@
+@import (once) "../../include/vars";
+
+@scrollbarBackgroundColor: rgb(232, 232, 232);
+@scrollbarThumbColor: rgba(101, 95, 95, 0.71);
+
+.scrollbar-type-1 {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: @scrollbarBackgroundColor;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: @scrollbarThumbColor;
+    }
+}
+
+.scrollbar-type-2 {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 6px;
+        background-color: @scrollbarBackgroundColor;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 6px;
+        background-color: @scrollbarThumbColor;
+    }
+}
+
+.scrollbar-type-3 {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background-color: @scrollbarBackgroundColor;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: @scrollbarThumbColor;
+    }
+}
+
+.scrollbar-type-4 {
+    ::-webkit-scrollbar {
+        width: 12px;
+    }
+
+    ::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: @scrollbarBackgroundColor;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: @scrollbarThumbColor;
+    }
+}
+
+[class*=scrollbar-type-] {
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: @scrollbarThumbColor @scrollbarBackgroundColor;
+    }
+}
+
+each(@colorList, {
+    .sb-@{value} {
+        ::-webkit-scrollbar-thumb {
+            background-color: @@value!important;
+        }
+
+        * {
+            scrollbar-color: @@value @scrollbarBackgroundColor!important;
+        }
+    }
+})

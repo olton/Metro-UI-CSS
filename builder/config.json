@@ -1,7 +1,7 @@
 {
     "setup": {
-        "release": "4.3.8",
-        "next": "4.3.8"
+        "release": "4.3.9",
+        "next": "4.3.10"
     },
 
     "parts": {
@@ -97,6 +97,10 @@
         "print": {
             "name": "Print",
             "less": ["print"]
+        },
+        "scrollbar": {
+            "name": "Scrollbar",
+            "less": ["scrollbar"]
         }
     },
 
@@ -194,6 +198,10 @@
         "pt-BR": {
             "name": "pt-BR",
             "js": ["pt-BR"]
+        },
+        "da-DK": {
+            "name": "da-DK",
+            "js": ["da-DK"]
         }
     },
 
@@ -626,9 +634,9 @@
             }
         },
         "resizeable": {
-            "name": "Resizeable",
-            "js": ["resizeable"],
-            "less": ["resizeable"]
+            "name": "Resizable",
+            "js": ["resizable"],
+            "less": ["resizable"]
         },
         "resizer": {
             "name": "Resizer",
