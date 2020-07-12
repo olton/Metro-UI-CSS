@@ -35,18 +35,14 @@
         },
 
         _create: function(){
-            var element = this.element;
-
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent("navview-create", {
-                element: element
-            });
+            this._fireEvent("navview-create");
         },
 
         _calcMenuHeight: function(){
-            var element = this.element, pane, menu;
+            var element = this.element, pane, menu_container;
             var elements_height = 0;
 
             pane = element.children(".navview-pane");
@@ -54,27 +50,43 @@
                 return;
             }
 
-            menu = pane.children(".navview-menu-container");
+            menu_container = pane.children(".navview-menu-container");
 
-            if (menu.length === 0) {
+            if (menu_container.length === 0) {
                 return ;
             }
 
-            $.each(menu.prevAll(), function(){
+            $.each(menu_container.prevAll(), function(){
                 elements_height += $(this).outerHeight(true);
             });
-            $.each(menu.nextAll(), function(){
+
+            $.each(menu_container.nextAll(), function(){
                 elements_height += $(this).outerHeight(true);
             });
-            menu.css({
+
+            menu_container.css({
                 height: "calc(100% - "+(elements_height)+"px)"
             });
+
+            this.menuScrollStep = 48;
+            this.menuScrollDistance = Utils.nearest(menu_container[0].scrollHeight - menu_container.height(), 48);
+        },
+
+        _recalc: function(){
+            var that = this, element = this.element;
+            setTimeout(function(){
+                if (that.pane.width() === 48) {
+                    element.addClass("js-compact");
+                } else {
+                    element.removeClass("js-compact");
+                }
+                that._calcMenuHeight();
+            }, 200);
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
-            var pane, content, toggle, menu, menu_container, menu_h, menu_container_h;
-            var other_pane_container, prev;
+            var element = this.element, o = this.options;
+            var pane, content, toggle, menu/*, menu_container, menu_h, menu_container_h*/;
 
             element
                 .addClass("navview")
@@ -87,37 +99,15 @@
             menu = pane.children(".navview-menu");
 
             if (menu.length) {
-                prev = menu.prevAll();
-                other_pane_container = $("<div>").addClass("navview-container");
-                other_pane_container.append(prev.reverse());
-                pane.prepend(other_pane_container);
-
-                menu_container = $("<div>").addClass("navview-menu-container").insertBefore(menu);
-                menu.appendTo(menu_container);
-            }
-
-            this._calcMenuHeight();
-
-            if (menu.length) {
-                setTimeout(function(){
-                    menu_h = menu.height();
-                    menu_container_h = menu_container.height();
-                    that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
-                    that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
-                }, 0)
+                menu.prevAll().reverse().wrapAll($("<div>").addClass("navview-container"));
+                menu.wrap($("<div>").addClass("navview-menu-container"));
             }
 
             this.pane = pane.length > 0 ? pane : null;
             this.content = content.length > 0 ? content : null;
             this.paneToggle = toggle.length > 0 ? toggle : null;
 
-            setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
-            }, 200);
+            this._recalc();
         },
 
         _createEvents: function(){
@@ -125,25 +115,25 @@
             var menu_container = element.find(".navview-menu-container");
             var menu = menu_container.children(".navview-menu");
 
-            if (menu_container.length) {
-                menu_container.on("mousewheel", function(e){
-                    var dir = e.deltaY > 0 ? -1 : 1;
-                    var step = that.menuScrollStep;
-                    var top = parseInt(menu.css('top'));
+            menu_container.on("mousewheel", function(e){
+                var pane_width = element.find(".navview-pane").width();
+                var dir = e.deltaY > 0 ? -1 : 1;
+                var step = that.menuScrollStep;
+                var distance = that.menuScrollDistance;
+                var top = parseInt(menu.css('top'));
 
-                    if (!element.hasClass("compacted")) {
-                        return false;
-                    }
+                if (pane_width > 48 /*|| !element.hasClass("compacted") */) {
+                    return false;
+                }
 
-                    if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
-                        menu.css('top', parseInt(menu.css('top')) + step * dir);
-                    }
+                if(dir === -1 && Math.abs(top) <= distance) {
+                    menu.css('top', parseInt(menu.css('top')) + step * dir);
+                }
 
-                    if(dir === 1 && top <= -step) {
-                        menu.css('top', parseInt(menu.css('top')) + step * dir);
-                    }
-                });
-            }
+                if(dir === 1 && top <= -step) {
+                    menu.css('top', parseInt(menu.css('top')) + step * dir);
+                }
+            });
 
             element.on(Metro.events.click, ".pull-button, .holder", function(){
                 that.pullClick(this);
@@ -170,21 +160,24 @@
             }
 
             $(window).on(Metro.events.resize, function(){
-                var menu_h, menu_container_h, menu_container = element.children(".navview-menu-container"), menu;
+                var menu_h, menu_container_h,
+                    menu_container = element.children(".navview-menu-container"),
+                    menu;
+
+                if (that.pane.hasClass("open")) {
+                    that._recalc();
+                    return ;
+                }
 
                 element.removeClass("expanded");
                 that.pane.removeClass("open");
 
-                if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
+                if ($(this).width() <= Metro.media_sizes[(""+o.compact).toUpperCase()]) {
                     element.removeClass("compacted");
                 }
 
                 if (menu_container.length) {
-
-                    that._calcMenuHeight();
-
                     menu = menu_container.children(".navview-menu");
-
                     setTimeout(function () {
                         menu_h = menu.height();
                         menu_container_h = menu_container.height();
@@ -193,21 +186,28 @@
                     }, 0);
                 }
 
-                element.removeClass("js-compact");
-
-                setTimeout(function(){
-                    if (that.pane.width() === 48) {
-                        element.addClass("js-compact");
-                    }
-                }, 200);
+                that._recalc();
 
             }, {ns: this.id})
         },
 
-        pullClick: function(el){
-            var that = this, element = this.element;
+        _togglePaneMode: function(){
+            var element = this.element;
             var pane = this.pane;
             var pane_compact = pane.width() < 280;
+
+            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
+                element.toggleClass("expanded");
+            } else
+
+            if (element.hasClass("compacted") || !pane_compact) {
+                element.toggleClass("compacted");
+            }
+
+        },
+
+        pullClick: function(el){
+            var that = this;
             var input;
 
             var target = $(el);
@@ -221,23 +221,11 @@
 
             if (that.pane.hasClass("open")) {
                 that.close();
-            } else
-
-            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
-                element.toggleClass("expanded");
-            } else
-
-            if (element.hasClass("compacted") || !pane_compact) {
-                element.toggleClass("compacted");
+            } else {
+                this._togglePaneMode();
             }
 
-            setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
-            }, 200);
+            this._recalc();
 
             return true;
         },
@@ -253,6 +241,10 @@
         toggle: function(){
             var pane = this.pane;
             pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
+        },
+
+        toggleMode: function(){
+            this._togglePaneMode();
         },
 
         /* eslint-disable-next-line */

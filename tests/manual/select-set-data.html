@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Select set data test - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Select set data test page</h1>
+
+    <div>
+        <button class="button" onclick="loadData()">Load data</button>
+    </div>
+
+    <div class="row">
+        <div class="cell-md-6">
+            <select id="sel1" data-role="select">
+                <option value="1">Item 1</option>
+                <option value="2" selected>Item 2</option>
+                <option value="3">Item 3</option>
+            </select>
+        </div>
+        <div class="cell-md-6">
+            <select id="sel2" data-role="select" multiple>
+                <option value="1">Item 1</option>
+                <option value="2" selected>Item 2</option>
+                <option value="3" selected>Item 3</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function loadData(){
+        var data = {
+            1: "Item 1",
+            "2": "Item 2",
+            3: "Item 3",
+            4: "Item 4",
+            5: "Item 5",
+        };
+        var selected1 = [2];
+        var selected2 = ["2", "3", "4"];
+
+        Metro.getPlugin("#sel1", "select").data(data, selected1);
+        Metro.getPlugin("#sel2", "select").data(data, selected2);
+    }
+</script>
+</body>
+</html>

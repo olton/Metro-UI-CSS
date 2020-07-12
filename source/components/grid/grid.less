@@ -28,13 +28,27 @@
     min-height: 1px;
 }
 
+each(range(0, 40, 8), {
+    .grid.gap-@{value}, .row.gap-@{value} {
+        [class*=cell-], [class*=col-]{
+            padding: unit(@value, px);
+        }
+    }
+
+    .gap-@{value} {
+        &[class*=cell-], &[class*=col-] {
+            padding: unit(@value, px)!important;
+        }
+    }
+})
+
 .cell-auto, .col-auto {
     flex: 0 0 auto;
     width: auto;
     max-width: none;
 }
 
-each(range(12), .(@k) {
+each(range(0, 12), .(@k) {
     .colspan-@{k}, .cell-@{k}, .col-@{k} {
         flex: 0 0 @gridCellBaseSize * @k;
         max-width: @gridCellBaseSize * @k;
@@ -53,28 +67,28 @@ each(range(12), .(@k) {
 .grid {
     &.no-gap {
         .row {
-            margin-left: 0;
-            margin-right: 0;
+            margin-left: 0!important;
+            margin-right: 0!important;
 
             .cell, .stub, .col {
-                padding: 0;
+                padding: 0!important;
             }
         }
 
         .row + .row {
-            margin-top: 0;
+            margin-top: 0!important;
         }
     }
 }
 
 .row {
     &.no-gap {
-        margin-left: 0;
-        margin-right: 0;
-        margin-top: 0;
+        margin-left: 0!important;
+        margin-right: 0!important;
+        margin-top: 0!important;
 
         .cell, .stub, .col, [class*=cell-], [class*=col-] {
-            padding: 0;
+            padding: 0!important;
         }
     }
 }
@@ -118,7 +132,7 @@ each(@mediaBreakpointListMobile, .(@m) {
             max-width: none;
         }
 
-        each(range(12), .(@k) {
+        each(range(0, 12), .(@k) {
             .colspan-@{m}-@{k}, .cell-@{m}-@{k}, .col-@{m}-@{k} {
                 flex: 0 0 @gridCellBaseSize * @k ;
                 max-width: @gridCellBaseSize * @k ;

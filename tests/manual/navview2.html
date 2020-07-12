@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test NavView - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        body {
+            background-color: #fff;
+            height: 100vh;
+        }
+        .navview {
+            height: 100%;
+        }
+        .navview .navview-pane {
+            background-color: #222D32;
+            color: #b8c7ce;
+            font-size: 14px;
+        }
+        .navview .navview-content {
+            padding-top: 52px;
+            background-color: #ffffff;
+        }
+        .navview .pull-button {
+            height: 52px;
+            width: 52px;
+        }
+        .navview .navview-menu {
+            background-color: #222D32;
+        }
+        .navview .navview-menu li a:hover {
+            color: #fff;
+            background: #1e282c;
+        }
+        .navview .navview-menu li.active a {
+            color: #fff;
+            background: #1e282c;
+        }
+        .navview .navview-menu .dropdown-toggle::after {
+            border-bottom-color: white!important;
+        }
+        .navview .navview-menu .item-header {
+            color: #4b646f;
+            background: #1a2226;
+            font-size: 12px;
+        }
+        .navview .suggest-box .holder:hover {
+            color: #fff;
+            background: #1e282c;
+        }
+        .navview .suggest-box .data-box {
+            display: flex;
+            padding: 8px 8px 0;
+        }
+        .navview .suggest-box img.holder {
+            width: 32px !important;
+            height: auto !important;
+        }
+        .navview .navview-menu .navview-menu {
+            background-color: #1a2226;
+        }
+        .avatar-title {
+            line-height: 1.2;
+        }
+        .navview .pull-button + .app-title,
+        .navview.compacted .pull-button + .app-title {
+            display: none;
+        }
+        .navview.expand .pull-button + .app-title,
+        .navview-pane.open .pull-button + .app-title {
+            display: flex;
+        }
+        @media screen and (min-width: 1200px) {
+            .navview .pull-button + .app-title {
+                display: flex;
+            }
+        }
+        .navview-pane .avatar,
+        .app-bar .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .navview-pane ::-webkit-scrollbar-track {
+            background-color: #4b646f !important;
+        }
+        .navview-pane * {
+            scrollbar-color: #1ba1e2 #4b646f !important;
+        }
+    </style>
+</head>
+<body class="m4-cloak h-vh-100">
+
+<div id="nv" data-role="navview" data-toggle="#paneToggle" data-expand="xl" data-compact="lg" data-active-state="true">
+    <div class="navview-pane">
+        <div class="bg-cyan d-flex flex-align-center">
+            <button class="pull-button m-0 bg-darkCyan-hover">
+                <span class="mif-menu fg-white"></span>
+            </button>
+            <div class="app-title h4 text-light m-0 fg-white pl-2" style="line-height: 52px">Панель реселлера</div>
+        </div>
+
+        <div class="suggest-box">
+            <div class="data-box">
+                <img data-role="gravatar" data-email="sergey@pimenov.com.ua" class="avatar">
+                <div class="ml-4 avatar-title flex-column">
+                    <a href="#" class="d-block fg-white text-medium no-decor"><span class="reduce-1">Sergey Pimenov</span></a>
+                    <p class="m-0"><span class="fg-green mr-2">&#x25cf;</span><span class="text-small">online</span></p>
+                </div>
+            </div>
+            <img data-role="gravatar" data-email="sergey@pimenov.com.ua" class="avatar holder ml-2">
+        </div>
+
+        <div class="suggest-box">
+            <input type="text" data-role="input" data-clear-button="false" data-search-button="true">
+            <button class="holder">
+                <span class="mif-search fg-white"></span>
+            </button>
+        </div>
+
+        <ul class="navview-menu" id="side-menu">
+            <li class="item-header">ОСНОВНЫЕ</li>
+            <li>
+                <a href="#dashboard">
+                    <span class="icon"><span class="mif-meter"></span></span>
+                    <span class="caption">Dashboard</span>
+                </a>
+            </li>
+            <li class="item-header">КЛИЕНТЫ</li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-user-plus"></span></span>
+                    <span class="caption">Новый клиент</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-users"></span></span>
+                    <span class="caption">Список клиентов</span>
+                </a>
+            </li>
+            <li class="item-header">ДОМЕНЫ</li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-add"></span></span>
+                    <span class="caption">Создать заявку</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-earth2"></span></span>
+                    <span class="caption">Зарегистрированные</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <span class="icon"><span class="mif-add-shopping-cart"></span></span>
+                    <span class="caption">Заявки</span>
+                </a>
+                <ul class="navview-menu" data-role="dropdown" >
+                    <li class="item-header">Заявки</li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><span class="mif-folder-plus"></span></span>
+                            <span class="caption">Ожидают регистрацию</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><span class="mif-download"></span></span>
+                            <span class="caption">Заявки на трансфер</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <span class="icon"><span class="mif-download2"></span></span>
+                            <span class="caption">Ожидают на трансфер</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-notification"></span></span>
+                    <span class="caption">Остановленные</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-bin"></span></span>
+                    <span class="caption">Удаленные</span>
+                </a>
+            </li>
+            <li class="item-header">ПАРАМЕТРЫ</li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-server"></span></span>
+                    <span class="caption">Сервера имен</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <span class="icon"><span class="mif-security"></span></span>
+                    <span class="caption">IP адреса доступа</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="navview-content">
+        <div data-role="appbar" class="pos-absolute bg-darkCyan fg-white">
+            <a href="#" class="app-bar-item d-block d-none-lg" id="paneToggle"><span class="mif-menu"></span></a>
+
+            <button class="app-bar-item" onclick="Metro.getPlugin('#nv', 'navview').toggleMode()">Toggle menu mode</button>
+        </div>
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

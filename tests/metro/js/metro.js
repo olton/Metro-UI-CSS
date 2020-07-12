@@ -1,7 +1,7 @@
 /*
- * Metro 4 Components Library v4.3.9  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.3.10  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/07/2020 21:35:52
+ * Built at 12/07/2020 20:23:11
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4492,9 +4492,9 @@ $.noConflict = function() {
 
     var Metro = {
 
-        version: "4.3.9",
-        compileTime: "02/07/2020 21:36:01",
-        buildNumber: "748",
+        version: "4.3.10",
+        compileTime: "12/07/2020 20:23:11",
+        buildNumber: "749",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
@@ -18400,7 +18400,7 @@ $.noConflict = function() {
                 var autocomplete_obj = Utils.isObject(o.autocomplete);
 
                 if (autocomplete_obj !== false) {
-                    that.autocomplete = autocomplete_obj;
+                    this.autocomplete = autocomplete_obj;
                 } else {
                     this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
                 }
@@ -18634,6 +18634,15 @@ $.noConflict = function() {
                 this.disable();
             } else {
                 this.enable();
+            }
+        },
+
+        setAutocompleteList: function(l){
+            var autocomplete_list = Utils.isObject(l);
+            if (autocomplete_list !== false) {
+                this.autocomplete = autocomplete_list;
+            } else if (typeof l === "string") {
+                this.autocomplete = l.toArray(this.options.autocompleteDivider);
             }
         },
 
@@ -20789,18 +20798,14 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var element = this.element;
-
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent("navview-create", {
-                element: element
-            });
+            this._fireEvent("navview-create");
         },
 
         _calcMenuHeight: function(){
-            var element = this.element, pane, menu;
+            var element = this.element, pane, menu_container;
             var elements_height = 0;
 
             pane = element.children(".navview-pane");
@@ -20808,27 +20813,43 @@ $.noConflict = function() {
                 return;
             }
 
-            menu = pane.children(".navview-menu-container");
+            menu_container = pane.children(".navview-menu-container");
 
-            if (menu.length === 0) {
+            if (menu_container.length === 0) {
                 return ;
             }
 
-            $.each(menu.prevAll(), function(){
+            $.each(menu_container.prevAll(), function(){
                 elements_height += $(this).outerHeight(true);
             });
-            $.each(menu.nextAll(), function(){
+
+            $.each(menu_container.nextAll(), function(){
                 elements_height += $(this).outerHeight(true);
             });
-            menu.css({
+
+            menu_container.css({
                 height: "calc(100% - "+(elements_height)+"px)"
             });
+
+            this.menuScrollStep = 48;
+            this.menuScrollDistance = Utils.nearest(menu_container[0].scrollHeight - menu_container.height(), 48);
+        },
+
+        _recalc: function(){
+            var that = this, element = this.element;
+            setTimeout(function(){
+                if (that.pane.width() === 48) {
+                    element.addClass("js-compact");
+                } else {
+                    element.removeClass("js-compact");
+                }
+                that._calcMenuHeight();
+            }, 200);
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
-            var pane, content, toggle, menu, menu_container, menu_h, menu_container_h;
-            var other_pane_container, prev;
+            var element = this.element, o = this.options;
+            var pane, content, toggle, menu/*, menu_container, menu_h, menu_container_h*/;
 
             element
                 .addClass("navview")
@@ -20841,37 +20862,15 @@ $.noConflict = function() {
             menu = pane.children(".navview-menu");
 
             if (menu.length) {
-                prev = menu.prevAll();
-                other_pane_container = $("<div>").addClass("navview-container");
-                other_pane_container.append(prev.reverse());
-                pane.prepend(other_pane_container);
-
-                menu_container = $("<div>").addClass("navview-menu-container").insertBefore(menu);
-                menu.appendTo(menu_container);
-            }
-
-            this._calcMenuHeight();
-
-            if (menu.length) {
-                setTimeout(function(){
-                    menu_h = menu.height();
-                    menu_container_h = menu_container.height();
-                    that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
-                    that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
-                }, 0)
+                menu.prevAll().reverse().wrapAll($("<div>").addClass("navview-container"));
+                menu.wrap($("<div>").addClass("navview-menu-container"));
             }
 
             this.pane = pane.length > 0 ? pane : null;
             this.content = content.length > 0 ? content : null;
             this.paneToggle = toggle.length > 0 ? toggle : null;
 
-            setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
-            }, 200);
+            this._recalc();
         },
 
         _createEvents: function(){
@@ -20879,25 +20878,25 @@ $.noConflict = function() {
             var menu_container = element.find(".navview-menu-container");
             var menu = menu_container.children(".navview-menu");
 
-            if (menu_container.length) {
-                menu_container.on("mousewheel", function(e){
-                    var dir = e.deltaY > 0 ? -1 : 1;
-                    var step = that.menuScrollStep;
-                    var top = parseInt(menu.css('top'));
+            menu_container.on("mousewheel", function(e){
+                var pane_width = element.find(".navview-pane").width();
+                var dir = e.deltaY > 0 ? -1 : 1;
+                var step = that.menuScrollStep;
+                var distance = that.menuScrollDistance;
+                var top = parseInt(menu.css('top'));
 
-                    if (!element.hasClass("compacted")) {
-                        return false;
-                    }
+                if (pane_width > 48 /*|| !element.hasClass("compacted") */) {
+                    return false;
+                }
 
-                    if(dir === -1 && Math.abs(top) <= that.menuScrollDistance) {
-                        menu.css('top', parseInt(menu.css('top')) + step * dir);
-                    }
+                if(dir === -1 && Math.abs(top) <= distance) {
+                    menu.css('top', parseInt(menu.css('top')) + step * dir);
+                }
 
-                    if(dir === 1 && top <= -step) {
-                        menu.css('top', parseInt(menu.css('top')) + step * dir);
-                    }
-                });
-            }
+                if(dir === 1 && top <= -step) {
+                    menu.css('top', parseInt(menu.css('top')) + step * dir);
+                }
+            });
 
             element.on(Metro.events.click, ".pull-button, .holder", function(){
                 that.pullClick(this);
@@ -20924,21 +20923,24 @@ $.noConflict = function() {
             }
 
             $(window).on(Metro.events.resize, function(){
-                var menu_h, menu_container_h, menu_container = element.children(".navview-menu-container"), menu;
+                var menu_h, menu_container_h,
+                    menu_container = element.children(".navview-menu-container"),
+                    menu;
+
+                if (that.pane.hasClass("open")) {
+                    that._recalc();
+                    return ;
+                }
 
                 element.removeClass("expanded");
                 that.pane.removeClass("open");
 
-                if ($(this).width() <= Metro.media_sizes[String(o.compact).toUpperCase()]) {
+                if ($(this).width() <= Metro.media_sizes[(""+o.compact).toUpperCase()]) {
                     element.removeClass("compacted");
                 }
 
                 if (menu_container.length) {
-
-                    that._calcMenuHeight();
-
                     menu = menu_container.children(".navview-menu");
-
                     setTimeout(function () {
                         menu_h = menu.height();
                         menu_container_h = menu_container.height();
@@ -20947,21 +20949,28 @@ $.noConflict = function() {
                     }, 0);
                 }
 
-                element.removeClass("js-compact");
-
-                setTimeout(function(){
-                    if (that.pane.width() === 48) {
-                        element.addClass("js-compact");
-                    }
-                }, 200);
+                that._recalc();
 
             }, {ns: this.id})
         },
 
-        pullClick: function(el){
-            var that = this, element = this.element;
+        _togglePaneMode: function(){
+            var element = this.element;
             var pane = this.pane;
             var pane_compact = pane.width() < 280;
+
+            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
+                element.toggleClass("expanded");
+            } else
+
+            if (element.hasClass("compacted") || !pane_compact) {
+                element.toggleClass("compacted");
+            }
+
+        },
+
+        pullClick: function(el){
+            var that = this;
             var input;
 
             var target = $(el);
@@ -20975,23 +20984,11 @@ $.noConflict = function() {
 
             if (that.pane.hasClass("open")) {
                 that.close();
-            } else
-
-            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
-                element.toggleClass("expanded");
-            } else
-
-            if (element.hasClass("compacted") || !pane_compact) {
-                element.toggleClass("compacted");
+            } else {
+                this._togglePaneMode();
             }
 
-            setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
-            }, 200);
+            this._recalc();
 
             return true;
         },
@@ -21007,6 +21004,10 @@ $.noConflict = function() {
         toggle: function(){
             var pane = this.pane;
             pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
+        },
+
+        toggleMode: function(){
+            this._togglePaneMode();
         },
 
         /* eslint-disable-next-line */
@@ -23516,9 +23517,23 @@ $.noConflict = function() {
             });
         },
 
-        data: function(op){
+        data: function(op, selected, delimiter){
             var element = this.element;
-            var option_group;
+            var option_group, _selected;
+            var _delimiter = delimiter || ",";
+
+
+            if (typeof selected === "string") {
+                _selected = selected.toArray(_delimiter).map(function(v){
+                    return +v;
+                });
+            } else if (Array.isArray(selected)) {
+                _selected = selected.slice().map(function(v){
+                    return +v;
+                });
+            } else {
+                _selected = [];
+            }
 
             element.empty();
 
@@ -23529,10 +23544,16 @@ $.noConflict = function() {
                     if (Utils.isObject(val)) {
                         option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
                         $.each(val, function(key2, val2){
-                            $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                            var op = $("<option>").attr("value", key2).text(val2).appendTo(option_group);
+                            if (_selected.indexOf(+key2) > -1) {
+                                op.prop("selected", true);
+                            }
                         });
                     } else {
-                        $("<option>").attr("value", key).text(val).appendTo(element);
+                        var op = $("<option>").attr("value", key).text(val).appendTo(element);
+                        if (_selected.indexOf(+key) > -1) {
+                            op.prop("selected", true);
+                        }
                     }
                 });
             }

@@ -50,42 +50,6 @@
 nbproject
 Thumbs.db
 
-# grunt-html-validation
-validation-report.json
-validation-status.json
-
 # Folders to ignore
 bower_components
 node_modules
-adsense
-cypress/screenshots
-cypress/videos
-
-# Special files
-update_builder.bat
-Update_Builder.js
-deploy.bat
-commit.bat
-build.bat
-final.bat
-dev.bat
-cdn-dev.bat
-tag.bat
-delete-tag.bat
-CDN.js
-Build.js
-Build_replace.js
-Build_dev.js
-CDN_dev.js
-Docs.js
-*.ftpauth
-*.nupkg
-/package-lock.json
-docs/test
-/.vs
-copy-dist.bat
-copy-doc.bat
-cypress/video
-test/manual
-serve.bat
-merge.bat
