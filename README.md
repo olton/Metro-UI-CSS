@@ -66,7 +66,7 @@ In addition to the permissive license, paying users will receive **ongoing prior
 
 ## Contributing
 All contributions are welcome. <br> Learn more about how you can contribute to this project
- [here](https://github.com/olton/Metro-UI-CSS/blob/master/CONTRIBUTING.md).
+ [here](CONTRIBUTING.md).
  
 ### Docs
 
