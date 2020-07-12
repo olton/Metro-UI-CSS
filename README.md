@@ -28,9 +28,9 @@ It's an independent project with its ongoing development made possible entirely 
 </a>
 </p>
 <br>
-<hr>
- 
-### Status
+
+----
+
 [![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
 [![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/css/metro-all.min.css)
@@ -45,18 +45,31 @@ It's an independent project with its ongoing development made possible entirely 
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
 
-### Donation
-![Donations on Patreon](https://img.shields.io/badge/Patreon-$100-red.svg)
+----
+
+## License and Premium Features
+[![dual license](https://github.com/xscode-resources/promotion-materials/blob/master/assets/Dual-license-badge.gif?raw=true)](https://xscode.com/olton/Metro-UI-CSS)
+
+As of **version 4.4.0**, this project is licensed under the **GPLv3** license.
+An **MIT** licensed version is available for an annual subscription [here](https://xscode.com/olton/Metro-UI-CSS) and for **Patrons** on [Patreon](https://www.patreon.com/metroui?fan_landing=true).
+In addition to the permissive license, paying users will receive **ongoing priority support** for any issue that might arise by my personal email **serhii@pimenov.com.ua**.
+
+### Donation on Patreon
+![Donations on Patreon](https://img.shields.io/badge/Patrons-4-green.svg)
+![Donations on Patreon](https://img.shields.io/badge/Donation-$100-red.svg)
 
 ### Community
 
 [![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
 [![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-
+## Contributing
+All contributions are welcome. <br> Learn more about how you can contribute to this project
+ [here](https://github.com/olton/Metro-UI-CSS/blob/master/CONTRIBUTING.md).
+ 
 ### Docs
 
- Documentation and Demo: [metroui.org.ua](https://metroui.org.ua/)   
+Please click [here](https://metroui.org.ua/) for Documentation and Demo.   
 
 ### Releases
 
@@ -96,10 +109,6 @@ Seamless experience by testing on 2000+ real devices and browsers.
 <a href="https://www.browserstack.com/"><img src="https://metroui.org.ua/images/Browserstack-logo.svg" width="200"></a>
 </p>
 
-### License
-
-Metro 4 has [MIT License](https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE)
-
 ### Old version
 Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olton/Metro-UI-CSS-3)     
 Metro UI CSS 2.x you can find in a repo [Metro-UI-CSS-2](https://github.com/olton/Metro-UI-CSS-2)     
@@ -112,6 +121,5 @@ Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/ol
 ### Thanks
 Thanks to all. Special thanks to all those who financially supported the project.    
 
-### Testers
-Thanks to all who a [testing](https://github.com/olton/Metro-UI-CSS/blob/master/TESTERS.md) a project. 
-
+2012-2020 © Copyright. Serhii Pimenov. All Rights Reserved.
+Created by Serhii Pimenov.
