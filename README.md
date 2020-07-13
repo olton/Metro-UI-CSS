@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://metroui.org.ua/v4/">
-    <img src="https://metroui.org.ua/images/logo4.png" alt="">
+    <img src="https://metroui.org.ua/images/metro-banner.jpg" alt="">
   </a>
 
   <h3 align="center">Metro 4 Components Library</h3>
