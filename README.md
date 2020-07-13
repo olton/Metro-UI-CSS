@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="https://metroui.org.ua/v4/">
+  <a href="https://metroui.org.ua/">
     <img src="https://metroui.org.ua/images/metro-banner.jpg" alt="">
   </a>
 
