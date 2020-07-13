@@ -1,3 +1,5 @@
+### 4.4.0
+
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
 + [x] Scrollbars: add styles with classes `.scrollbar-type-1`, `.scrollbar-type-2`, `.scrollbar-type-3`, `.scrollbar-type-4`
