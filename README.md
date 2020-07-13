@@ -82,33 +82,10 @@ The usual frequency of release of the new version is one week on Sundays.
 If your current version of Metro 4 works for you, you can stay on it for as long as you'd like. 
 If you want to make use of new features as they come in you should upgrade to a newer version.
 
-### Credits
-- Styles created using the [less](http://lesscss.org) preprocessor by  [Alexis Sellier](https://github.com/cloudhead)
-- preCode by Leon Sorokin [preCode](https://github.com/leeoniya/preCode.js)
-- strftime by Tom Doan [strftime](https://github.com/thdoan/strftime)
-- function b64toBlob by [Jeremy Banks](http://stackoverflow.com/users/1114/jeremy-banks)
-- Date.getWeek by [Nick Baicoianu](http://www.epoch-calendar.com)
-- Swipe component based on [Matt Bryson](https://github.com/mattbryson/TouchSwipe-Jquery-Plugin)  TouchSwipe plugin
-- All who brought something good 
-- Thank you jQuery and Goodbye!
-
 ### Browser Compatibility
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
 --- | --- | --- | --- | --- | --- |
 Latest ✔ | Latest ✔ | Latest ✔ | 11+ ✔ | 9.1+ ✔ | Latest ✔ |
-
-### Cross-browser Testing
-Cross-browser Testing Platform and Open Source Provided by [Sauce Labs](https://saucelabs.com).
-Sauce Labs ensures your favorite mobile apps and websites work flawlessly on every browser, operating system, and device.
-<p>
-<a href="https://saucelabs.com"><img src="https://metroui.org.ua/images/Sauce-Labs_Horiz_Red-Grey_RGB_200x28.png" width="200"></a>
-</p>
-
-Cross-browser Testing Platform Provided by [BrowserStack](https://www.browserstack.com/).
-Seamless experience by testing on 2000+ real devices and browsers.
-<p>
-<a href="https://www.browserstack.com/"><img src="https://metroui.org.ua/images/Browserstack-logo.svg" width="200"></a>
-</p>
 
 ### Old version
 Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olton/Metro-UI-CSS-3)     
@@ -122,5 +99,9 @@ Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/ol
 ### Thanks
 Thanks to all. Special thanks to all those who financially supported the project.    
 
-2012-2020 © Copyright. Serhii Pimenov. All Rights Reserved.
-Created by Serhii Pimenov.
+### Credits
+You can read about credits [here](CREDITS.md)
+
+---
+
+2012-2020 © Copyright by Serhii Pimenov. All Rights Reserved. Created by Serhii Pimenov.
