@@ -1,4 +1,4 @@
-/* global Metro, setImmediate */
+/* global Metro */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;

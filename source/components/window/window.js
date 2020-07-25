@@ -394,7 +394,7 @@
         },
 
         maximized: function(e){
-            var win = this.win,  element = this.element, o = this.options;
+            var win = this.win;
             var target = $(e.currentTarget);
             win.removeClass("minimized");
             win.toggleClass("maximized");
@@ -414,7 +414,7 @@
         },
 
         minimized: function(){
-            var win = this.win,  element = this.element, o = this.options;
+            var win = this.win;
             win.removeClass("maximized");
             win.toggleClass("minimized");
 
@@ -424,7 +424,7 @@
         },
 
         close: function(){
-            var that = this, win = this.win,  element = this.element, o = this.options;
+            var that = this, win = this.win,  o = this.options;
 
             if (Utils.exec(o.onCanClose, [win]) === false) {
                 return false;
