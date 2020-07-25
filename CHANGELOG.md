@@ -1,4 +1,8 @@
 ### 4.4.0
+#### M4Q
++ [x] M4Q: upd to 1.0.8 
++ [x] M4Q Constructor: add short-tag for selecting by `data-role` with `$('@rolename')` 
+
 #### Metro 4
 + [ ] Components: switch to `Component._fireEvent(...)` method for firing events 
 + [x] Calendar: add firing event `onMonthChange` when user clicks on outside day, issue #1589
