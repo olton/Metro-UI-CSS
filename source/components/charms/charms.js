@@ -62,7 +62,7 @@
         },
 
         open: function(){
-            var element = this.element, o = this.options;
+            var element = this.element;
 
             element.addClass("open");
 
@@ -70,7 +70,7 @@
         },
 
         close: function(){
-            var element = this.element, o = this.options;
+            var element = this.element;
 
             element.removeClass("open");
 
@@ -78,7 +78,7 @@
         },
 
         toggle: function(){
-            var element = this.element, o = this.options;
+            var element = this.element;
 
             if (element.hasClass("open") === true) {
                 this.close();
