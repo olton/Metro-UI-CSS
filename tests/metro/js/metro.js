@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/07/2020 20:41:38
+ * Built at 25/07/2020 09:27:58
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4493,7 +4493,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/07/2020 20:41:38",
+        compileTime: "25/07/2020 09:27:58",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -10497,9 +10497,7 @@ $.noConflict = function() {
                 });
             }
 
-            this._fireEvent("calendar-create", {
-                element: element
-            });
+            this._fireEvent("calendar-create");
         },
 
         _dates2array: function(val, category){
@@ -10589,14 +10587,12 @@ $.noConflict = function() {
                 setTimeout(function(){
                     that._drawContent();
                     if (el.hasClass("prev-month") || el.hasClass("next-month")) {
-                        Utils.exec(o.onMonthChange, [that.current, element], element[0]);
-                        element.fire("monthchange", {
+                        that._fireEvent("month-change", {
                             current: that.current
                         });
                     }
                     if (el.hasClass("prev-year") || el.hasClass("next-year")) {
-                        Utils.exec(o.onYearChange, [that.current, element], element[0]);
-                        element.fire("yearchange", {
+                        that._fireEvent("year-change", {
                             current: that.current
                         });
                     }
@@ -10605,8 +10601,7 @@ $.noConflict = function() {
 
             element.on(Metro.events.click, ".button.today", function(){
                 that.toDay();
-                Utils.exec(o.onToday, [that.today, element]);
-                element.fire("today", {
+                that._fireEvent("today", {
                     today: that.today
                 });
             });
@@ -10614,20 +10609,17 @@ $.noConflict = function() {
             element.on(Metro.events.click, ".button.clear", function(){
                 that.selected = [];
                 that._drawContent();
-                Utils.exec(o.onClear, [element]);
-                element.fire("clear");
+                that._fireEvent("clear");
             });
 
             element.on(Metro.events.click, ".button.cancel", function(){
                 that._drawContent();
-                Utils.exec(o.onCancel, [element]);
-                element.fire("cancel");
+                that._fireEvent("cancel");
             });
 
             element.on(Metro.events.click, ".button.done", function(){
                 that._drawContent();
-                Utils.exec(o.onDone, [that.selected, element]);
-                element.fire("done");
+                that._fireEvent("done");
             });
 
             if (o.weekDayClick === true) {
@@ -10651,10 +10643,9 @@ $.noConflict = function() {
                         });
                     }
 
-                    Utils.exec(o.onWeekDayClick, [that.selected, day], element[0]);
-                    element.fire("weekdayclick", {
-                        day: day,
-                        selected: that.selected
+                    that._fireEvent("week-day-click", {
+                        selected: that.selected,
+                        day: day
                     });
 
                     e.preventDefault();
@@ -10683,11 +10674,10 @@ $.noConflict = function() {
                         });
                     }
 
-                    Utils.exec(o.onWeekNumberClick, [that.selected, weekNumber, weekNumElement], element[0]);
-                    element.fire("weeknumberclick", {
-                        el: this,
+                    that._fireEvent("week-number-click", {
+                        selected: that.selected,
                         num: weekNumber,
-                        selected: that.selected
+                        numElement: weekNumElement
                     });
 
                     e.preventDefault();
@@ -10710,6 +10700,11 @@ $.noConflict = function() {
                         day: date.getDate()
                     };
                     that._drawContent();
+
+                    that._fireEvent("month-change", {
+                        current: that.current
+                    });
+
                     return ;
                 }
 
@@ -10739,10 +10734,9 @@ $.noConflict = function() {
 
                 }
 
-                Utils.exec(o.onDayClick, [that.selected, day, element]);
-                element.fire("dayclick", {
-                    day: day,
-                    selected: that.selected
+                that._fireEvent("day-click", {
+                    selected: that.selected,
+                    day: day
                 });
 
                 e.preventDefault();
@@ -10775,11 +10769,12 @@ $.noConflict = function() {
             element.on(Metro.events.click, ".calendar-months li", function(e){
                 that.current.month = $(this).index();
                 that._drawContent();
-                Utils.exec(o.onMonthChange, [that.current, element], element[0]);
-                element.fire("monthchange", {
+                element.find(".calendar-months").removeClass("open");
+
+                that._fireEvent("month-change", {
                     current: that.current
                 });
-                element.find(".calendar-months").removeClass("open");
+
                 e.preventDefault();
                 e.stopPropagation();
             });
@@ -10810,11 +10805,12 @@ $.noConflict = function() {
             element.on(Metro.events.click, ".calendar-years li", function(e){
                 that.current.year = $(this).text();
                 that._drawContent();
-                Utils.exec(o.onYearChange, [that.current, element], element[0]);
-                element.fire("yearchange", {
+                element.find(".calendar-years").removeClass("open");
+
+                that._fireEvent("year-change", {
                     current: that.current
                 });
-                element.find(".calendar-years").removeClass("open");
+
                 e.preventDefault();
                 e.stopPropagation();
             });
@@ -10974,10 +10970,9 @@ $.noConflict = function() {
                         }
                     }
 
-                    Utils.exec(o.onDayDraw, [s], d[0]);
-                    element.fire("daydraw", {
-                        cell: d[0],
-                        date: s
+                    this._fireEvent("day-draw", {
+                        date: s,
+                        cell: d[0]
                     });
                 }
 
@@ -11028,10 +11023,9 @@ $.noConflict = function() {
 
                 }
 
-                Utils.exec(o.onDayDraw, [first], d[0]);
-                element.fire("daydraw", {
-                    cell: d[0],
-                    date: first
+                this._fireEvent("day-draw", {
+                    date: first,
+                    cell: d[0]
                 });
 
                 counter++;
@@ -11069,10 +11063,9 @@ $.noConflict = function() {
                         }
                     }
 
-                    Utils.exec(o.onDayDraw, [s], d[0]);
-                    element.fire("daydraw", {
-                        cell: d[0],
-                        date: s
+                    this._fireEvent("day-draw", {
+                        date: s,
+                        cell: d[0]
                     });
 
                 }

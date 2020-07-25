@@ -13,13 +13,16 @@
     <h1>Calendar test page</h1>
 
     <div>
-        <div data-role="calendar"></div>
+        <div data-role="calendar" data-on-month-change="dateChange" data-on-year-change="dateChange"></div>
     </div>
 
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    function dateChange(date){
+        console.log(date)
+    }
 </script>
 </body>
 </html>

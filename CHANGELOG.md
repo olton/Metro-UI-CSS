@@ -1,4 +1,6 @@
 ### 4.4.0
+#### Metro 4
++ [x] Calendar: add firing event `onMonthChange` when user clicks on outside day, issue #1589
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
