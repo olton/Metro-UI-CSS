@@ -1,6 +1,9 @@
 ### 4.4.0
 #### Metro 4
++ [ ] Components: switch to `Component._fireEvent(...)` method for firing events 
 + [x] Calendar: add firing event `onMonthChange` when user clicks on outside day, issue #1589
++ [x] Window: add API methods `pos(top, left)`, `top(v)`, `left(v)`, `width(v)`, `height(v)`, issue #1590
++ [x] Metro.window: add methods `pos(top, left)`, `top(v)`, `left(v)`, `width(v)`, `height(v)`
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

@@ -108,12 +108,10 @@
                 if (o.expand !== true) {
                     if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
                         element.addClass("app-bar-expand");
-                        Utils.exec(o.onMenuExpand, null, element[0]);
-                        element.fire("menuexpand");
+                        that._fireEvent("menu-expand");
                     } else {
                         element.removeClass("app-bar-expand");
-                        Utils.exec(o.onMenuCollapse, null, element[0]);
-                        element.fire("menucollapse");
+                        that._fireEvent("menu-collapse");
                     }
                 }
 
@@ -145,8 +143,7 @@
                 hamburger.removeClass("active");
             });
 
-            Utils.exec(o.onMenuClose, [menu[0]], element[0]);
-            element.fire("menuclose", {
+            this._fireEvent("menu-close", {
                 menu: menu[0]
             });
         },
@@ -161,8 +158,7 @@
                 hamburger.addClass("active");
             });
 
-            Utils.exec(o.onMenuOpen, [menu[0]], element[0]);
-            element.fire("menuopen", {
+            this._fireEvent("menu-open", {
                 menu: menu[0]
             });
         },

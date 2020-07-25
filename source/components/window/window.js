@@ -369,21 +369,47 @@
             return overlay;
         },
 
+        width: function(v){
+            var win = this.win;
+
+            if (!Utils.isValue(v)) {
+                return win.width();
+            }
+
+            win.css("width", parseInt(v));
+
+            return this;
+        },
+
+        height: function(v){
+            var win = this.win;
+
+            if (!Utils.isValue(v)) {
+                return win.height();
+            }
+
+            win.css("height", parseInt(v));
+
+            return this;
+        },
+
         maximized: function(e){
             var win = this.win,  element = this.element, o = this.options;
             var target = $(e.currentTarget);
             win.removeClass("minimized");
             win.toggleClass("maximized");
             if (target.hasClass("window-caption")) {
-                Utils.exec(o.onCaptionDblClick, [win[0]], element[0]);
-                element.fire("captiondblclick", {
+
+                this._fireEvent("caption-dbl-click", {
                     win: win[0]
                 });
+
             } else {
-                Utils.exec(o.onMaxClick, [win[0]], element[0]);
-                element.fire("maxclick", {
+
+                this._fireEvent("max-click", {
                     win: win[0]
                 });
+
             }
         },
 
@@ -391,8 +417,8 @@
             var win = this.win,  element = this.element, o = this.options;
             win.removeClass("maximized");
             win.toggleClass("minimized");
-            Utils.exec(o.onMinClick, [win[0]], element[0]);
-            element.fire("minclick", {
+
+            this._fireEvent("min-click", {
                 win: win[0]
             });
         },
@@ -410,8 +436,7 @@
                 timeout = 500;
             }
 
-            Utils.exec(o.onClose, [win[0]], element[0]);
-            element.fire("close", {
+            this._fireEvent("close", {
                 win: win[0]
             });
 
@@ -419,17 +444,15 @@
                 if (o.modal === true) {
                     win.siblings(".overlay").remove();
                 }
-                Utils.exec(o.onCloseClick, [win[0]], element[0]);
-                element.fire("closeclick", {
-                    win: win[0]
-                });
 
-                Utils.exec(o.onWindowDestroy, [win[0]], element[0]);
-                element.fire("windowdestroy", {
+                that._fireEvent("close-click", {
                     win: win[0]
                 });
 
                 if (o.closeAction === Metro.actions.REMOVE) {
+                    that._fireEvent("window-destroy", {
+                        win: win[0]
+                    });
                     win.remove();
                 } else {
                     that.hide();
@@ -439,28 +462,30 @@
         },
 
         hide: function(){
-            var element = this.element, o = this.options;
-            this.win.css({
+            var win = this.win;
+
+            win.css({
                 display: "none"
             });
-            Utils.exec(o.onHide, [this.win[0]], element[0]);
-            element.fire("hide", {
-                win: this.win[0]
+
+            this._fireEvent("hide", {
+                win: win[0]
             });
         },
 
         show: function(){
-            var element = this.element, o = this.options;
+            var win = this.win;
 
-            this.win.removeClass("no-visible");
-            this.win.css({
-                display: "flex"
+            win
+                .removeClass("no-visible")
+                .css({
+                    display: "flex"
+                });
+
+            this._fireEvent("show", {
+                win: win[0]
             });
 
-            Utils.exec(o.onShow, [this.win[0]], element[0]);
-            element.fire("show", {
-                win: this.win[0]
-            });
         },
 
         toggle: function(){
@@ -481,33 +506,6 @@
 
         max: function(a){
             a ? this.win.addClass("maximized") : this.win.removeClass("maximized");
-        },
-
-        toggleButtons: function(a) {
-            var win = this.win;
-            var btnClose = win.find(".btn-close");
-            var btnMin = win.find(".btn-min");
-            var btnMax = win.find(".btn-max");
-
-            if (a === "data-btn-close") {
-                btnClose.toggle();
-            }
-            if (a === "data-btn-min") {
-                btnMin.toggle();
-            }
-            if (a === "data-btn-max") {
-                btnMax.toggle();
-            }
-        },
-
-        changeSize: function(a){
-            var element = this.element, win = this.win;
-            if (a === "data-width") {
-                win.css("width", element.data("width"));
-            }
-            if (a === "data-height") {
-                win.css("height", element.data("height"));
-            }
         },
 
         changeClass: function(a){
@@ -570,9 +568,9 @@
             return this.win.find(".window-caption .title").html();
         },
 
-        toggleDraggable: function(){
-            var element = this.element, win = this.win;
-            var flag = JSON.parse(element.attr("data-draggable"));
+        toggleDraggable: function(f){
+            var win = this.win;
+            var flag = Utils.bool(f);
             var drag = Metro.getPlugin(win, "draggable");
             if (flag === true) {
                 drag.on();
@@ -581,9 +579,9 @@
             }
         },
 
-        toggleResizable: function(){
-            var element = this.element, win = this.win;
-            var flag = JSON.parse(element.attr("data-resizable"));
+        toggleResizable: function(f){
+            var win = this.win;
+            var flag = Utils.bool(f);
             var resize = Metro.getPlugin(win, "resizable");
             if (flag === true) {
                 resize.on();
@@ -594,49 +592,97 @@
             }
         },
 
-        changeTopLeft: function(a){
-            var element = this.element, win = this.win;
-            var pos;
-            if (a === "data-top") {
-                pos = parseInt(element.attr("data-top"));
-                if (!isNaN(pos)) {
-                    return ;
-                }
-                win.css("top", pos);
-            }
-            if (a === "data-left") {
-                pos = parseInt(element.attr("data-left"));
-                if (!isNaN(pos)) {
-                    return ;
-                }
-                win.css("left", pos);
-            }
-        },
-
         changePlace: function (p) {
             var element = this.element, win = this.win;
             var place = Utils.isValue(p) ? p : element.attr("data-place");
             win.addClass(place);
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        pos: function(top, left){
+            var win = this.win;
+            win.css({
+                top: top,
+                left: left
+            });
+            return this;
+        },
+
+        top: function(v){
+            this.win.css({
+                top: v
+            });
+            return this;
+        },
+
+        left: function(v){
+            this.win.css({
+                left: v
+            });
+            return this;
+        },
+
+        changeAttribute: function(attr, value){
+            var changePos = function(a, v){
+                var win = this.win;
+                var pos;
+                if (a === "data-top") {
+                    pos = parseInt(v);
+                    if (!isNaN(pos)) {
+                        return ;
+                    }
+                    win.css("top", pos);
+                }
+                if (a === "data-left") {
+                    pos = parseInt(v);
+                    if (!isNaN(pos)) {
+                        return ;
+                    }
+                    win.css("left", pos);
+                }
+            };
+
+            var toggleButtons = function(a, v) {
+                var win = this.win;
+                var btnClose = win.find(".btn-close");
+                var btnMin = win.find(".btn-min");
+                var btnMax = win.find(".btn-max");
+                var _v = Utils.bool(v);
+                var func = _v ? "show" : "hide";
+
+                switch (a) {
+                    case "data-btn-close": btnClose[func](); break;
+                    case "data-btn-min": btnMin[func](); break;
+                    case "data-btn-max": btnMax[func](); break;
+                }
+            };
+
+            var changeSize = function(a, v){
+                var win = this.win;
+                if (a === "data-width") {
+                    win.css("width", +v);
+                }
+                if (a === "data-height") {
+                    win.css("height", +v);
+                }
+            };
+
+            switch (attr) {
                 case "data-btn-close":
                 case "data-btn-min":
-                case "data-btn-max": this.toggleButtons(attributeName); break;
+                case "data-btn-max": toggleButtons(attr, value); break;
                 case "data-width":
-                case "data-height": this.changeSize(attributeName); break;
+                case "data-height": changeSize(attr, value); break;
                 case "data-cls-window":
                 case "data-cls-caption":
-                case "data-cls-content": this.changeClass(attributeName); break;
+                case "data-cls-content": this.changeClass(attr); break;
                 case "data-shadow": this.toggleShadow(); break;
                 case "data-icon": this.setIcon(); break;
                 case "data-title": this.setTitle(); break;
                 case "data-content": this.setContent(); break;
-                case "data-draggable": this.toggleDraggable(); break;
-                case "data-resizable": this.toggleResizable(); break;
+                case "data-draggable": this.toggleDraggable(value); break;
+                case "data-resizable": this.toggleResizable(value); break;
                 case "data-top":
-                case "data-left": this.changeTopLeft(attributeName); break;
+                case "data-left": changePos(attr, value); break;
                 case "data-place": this.changePlace(); break;
             }
         },
@@ -700,6 +746,41 @@
                 return false;
             }
             Metro.getPlugin(el, "window").close();
+        },
+
+        pos: function(el, top, left){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").pos(top, left);
+        },
+
+        top: function(el, top){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").top(top);
+        },
+
+        left: function(el, left){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").left(left);
+        },
+
+        width: function(el, width){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").width(width);
+        },
+
+        height: function(el, height){
+            if (!this.isWindow(el)) {
+                return false;
+            }
+            Metro.getPlugin(el, "window").height(height);
         },
 
         create: function(options){

@@ -66,8 +66,7 @@
 
             element.addClass("open");
 
-            Utils.exec(o.onOpen, null, element[0]);
-            element.fire("open");
+            this._fireEvent("open");
         },
 
         close: function(){
@@ -75,8 +74,7 @@
 
             element.removeClass("open");
 
-            Utils.exec(o.onClose, null, element[0]);
-            element.fire("close");
+            this._fireEvent("close");
         },
 
         toggle: function(){
@@ -88,8 +86,7 @@
                 this.open();
             }
 
-            Utils.exec(o.onToggle, null, element[0]);
-            element.fire("toggle");
+            this._fireEvent("toggle");
         },
 
         opacity: function(v){

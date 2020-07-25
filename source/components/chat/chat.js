@@ -134,11 +134,10 @@
                     time: (new Date())
                 };
                 that.add(m);
-                Utils.exec(o.onSend, [m], element[0]);
-                element.fire("send", {
+                input.val("");
+                that._fireEvent("send", {
                     msg: m
                 });
-                input.val("");
             };
 
             sendButton.on(Metro.events.click, function () {
@@ -183,16 +182,7 @@
                 }
             }
 
-            Utils.exec(o.onMessage, [msg, {
-                message: message,
-                sender: sender,
-                time: time,
-                item: item,
-                avatar: avatar,
-                text: text
-            }], message[0]);
-
-            element.fire("message", {
+            that._fireEvent("message", {
                 msg: msg,
                 el: {
                     message: message,
@@ -204,12 +194,13 @@
                 }
             });
 
-            setImmediate(function(){
-                element.fire("onmessage", {
-                    message: msg,
-                    element: message[0]
-                });
-            });
+            // ???
+            // setImmediate(function(){
+            //     element.fire("onmessage", {
+            //         message: msg,
+            //         element: message[0]
+            //     });
+            // });
 
             messages.animate({
                 draw: {
