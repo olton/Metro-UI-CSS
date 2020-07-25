@@ -485,14 +485,12 @@
 
         stop: function () {
             clearInterval(this.interval);
-            Utils.exec(this.options.onStop, [this.element]);
-            this.element.fire("stop");
+            this._fireEvent("stop");
         },
 
         play: function(){
             this._start();
-            Utils.exec(this.options.onPlay, [this.element]);
-            this.element.fire("play");
+            this._fireEvent("play");
         },
 
         setEffect: function(effect){

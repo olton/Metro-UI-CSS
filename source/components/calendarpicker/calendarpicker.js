@@ -172,17 +172,15 @@
                     cal.removeClass("open open-up");
                     cal.hide();
 
-                    Utils.exec(o.onChange, [that.value], element[0]);
-                    element.fire("change", {
+                    that._fireEvent("change", {
                         val: that.value
                     });
 
-                    Utils.exec(o.onDayClick, [sel, day, el], element[0]);
-                    element.fire("dayclick", {
+                    that._fireEvent("day-click", {
                         sel: sel,
                         day: day,
                         el: el
-                    })
+                    });
                 },
                 onMonthChange: o.onMonthChange,
                 onYearChange: o.onYearChange
@@ -297,8 +295,8 @@
                     if (Utils.isOutsider(cal) === false) {
                         cal.addClass("open-up");
                     }
-                    Utils.exec(o.onCalendarShow, [element, cal], cal);
-                    element.fire("calendarshow", {
+
+                    that._fireEvent("calendar-show", {
                         calendar: cal
                     });
 
@@ -306,8 +304,8 @@
 
                     that._removeOverlay();
                     cal.removeClass("open open-up");
-                    Utils.exec(o.onCalendarHide, [element, cal], cal);
-                    element.fire("calendarhide", {
+
+                    that._fireEvent("calendar-hide", {
                         calendar: cal
                     });
 
