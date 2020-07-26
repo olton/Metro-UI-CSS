@@ -26,6 +26,20 @@
         <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled checked data-style="2">
     </div>
 
+    <br>
+    <div>
+        <div>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(-1)">Indeterminate</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(1)">Checked</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(0)">UnChecked</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle()">Toggle</button>
+        </div>
+        <br>
+        <div>
+            <input type="checkbox" data-role="checkbox" id="chk1" data-caption="Remote controlled">
+        </div>
+    </div>
+
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>

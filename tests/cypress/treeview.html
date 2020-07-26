@@ -7,7 +7,7 @@
 
     <title>Test Treeview - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
-        .current::before {
+        #tv .current::before {
             content: "";
             display: block;
             position: absolute;
@@ -19,15 +19,15 @@
             bottom: 0;
         }
 
-        .treeview > li > ul > li > ul > .current::before {
+        #tv > li > ul > li > ul > .current::before {
             left: -56px;
         }
 
-        .treeview > li > ul > .current::before {
+        #tv > li > ul > .current::before {
             left: -40px;
         }
 
-        .treeview > .current::before {
+        #tv > .current::before {
             left: -24px;
         }
     </style>
@@ -36,7 +36,7 @@
 <div class="container">
     <h1>Treeview test page</h1>
     <div class="example">
-        <ul data-role="treeview" class="border">
+        <ul data-role="treeview" class="border" id="tv">
             <li data-icon="<span class='mif-star-full fg-red'></span>" data-caption="Favorites">
                 <ul>
                     <li data-icon="<span class='mif-library fg-green'></span>" data-caption="Projects"></li>
@@ -59,6 +59,33 @@
             </li>
         </ul>
     </div>
+
+    <br>
+
+    <div class="example">
+        <ul data-role="treeview">
+            <li>
+                <input type="checkbox" data-role="checkbox" data-caption="Play video" title="">
+                <ul>
+                    <li><input type="checkbox" data-role="checkbox" data-caption="AVI" title=""></li>
+                    <li><input type="checkbox" data-role="checkbox" data-caption="MPEG" title=""></li>
+                    <li><input checked type="checkbox" data-role="checkbox" data-caption="VIDX" title=""></li>
+                    <li><input type="checkbox" data-role="checkbox" data-caption="MP4" title=""></li>
+                    <li><input checked type="checkbox" data-role="checkbox" data-caption="XVID" title=""></li>
+                </ul>
+            </li>
+            <li><input type="checkbox" data-role="checkbox" data-caption="Play audio" title=""></li>
+            <li>
+                <input type="checkbox" data-role="checkbox" data-caption="Subtitles" title="">
+                <ul>
+                    <li><input type="checkbox" data-role="checkbox" data-caption="English" title=""></li>
+                    <li><input checked type="checkbox" data-role="checkbox" data-caption="Ukrainian" title=""></li>
+                    <li><input type="checkbox" data-role="checkbox" data-caption="Dutch" title=""></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>

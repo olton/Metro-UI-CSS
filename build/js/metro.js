@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 26/07/2020 09:53:40
+ * Built at 26/07/2020 14:52:29
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "26/07/2020 09:53:40",
+        compileTime: "26/07/2020 14:52:29",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12791,10 +12791,6 @@ $.noConflict = function() {
 
             element.attr("type", "checkbox");
 
-            if (!Utils.isValue(element.attr("id"))) {
-                element.attr("id", Utils.elementId("checkbox"));
-            }
-
             if (element.attr("readonly") !== undefined) {
                 element.on("click", function(e){
                     e.preventDefault();
@@ -12804,8 +12800,7 @@ $.noConflict = function() {
             checkbox = element
                 .wrap("<label>")
                 .addClass("checkbox " + element[0].className)
-                .addClass(o.style === 2 ? "style2" : "")
-                .attr('for', element.attr('id'));
+                .addClass(o.style === 2 ? "style2" : "");
 
             check.appendTo(checkbox);
             caption.appendTo(checkbox);
@@ -12849,10 +12844,12 @@ $.noConflict = function() {
         },
 
         indeterminate: function(v){
-            if (Utils.isNull(v)) {
-                v = true;
-            }
-            this.element[0].indeterminate = v;
+            var element = this.element;
+
+            v = Utils.isNull(v) ? true : Utils.bool(v);
+
+            element[0].indeterminate = v;
+            element.attr("data-indeterminate", v);
         },
 
         disable: function(){
@@ -12871,6 +12868,23 @@ $.noConflict = function() {
             } else {
                 this.enable();
             }
+        },
+
+        toggle: function(v){
+            var element = this.element;
+
+            this.indeterminate(false);
+
+            if (!Utils.isValue(v)) {
+                element.prop("checked", !Utils.bool(element.prop("checked")));
+            } else {
+                if (v === -1) {
+                    this.indeterminate(true);
+                } else {
+                    element.prop("checked", v === 1);
+                }
+            }
+            return this;
         },
 
         changeAttribute: function(attributeName){
