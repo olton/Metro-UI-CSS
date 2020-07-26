@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 25/07/2020 21:41:20
+ * Built at 26/07/2020 09:45:25
  * Licensed under MIT
  */
 .accordion {
@@ -13316,8 +13316,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .switch .check {
   position: relative;
-  height: 1.25rem;
-  width: 2.8125rem;
+  height: 20px;
+  width: 45px;
   border: 2px #1d1d1d solid;
   cursor: pointer;
   background: transparent;
@@ -13348,6 +13348,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .switch input[type="checkbox"]:checked ~ .check {
   background: #1d1d1d;
   border-color: #1d1d1d;
+  color: #1d1d1d;
 }
 .switch input[type="checkbox"]:checked ~ .check::after {
   background-color: #ffffff;
@@ -13404,6 +13405,27 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
+.switch .check::before {
+  content: attr(data-off);
+  display: block;
+  position: absolute;
+  color: inherit;
+  left: 16px;
+  width: 24px;
+  top: -2px;
+  line-height: 20px;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.switch input[type="checkbox"]:checked ~ .check::before {
+  content: attr(data-on);
+  color: #ffffff;
+  left: 1px;
+}
+.switch input[type="checkbox"]:disabled ~ .check::before {
+  display: none;
+}
 .switch-material {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -13444,7 +13466,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin: 0 4px;
 }
 .switch-material .check {
-  width: 36px;
+  width: 45px;
   height: 16px;
   background-color: #929292;
   border-radius: 8px;
@@ -13452,7 +13474,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: relative;
   margin: 0 4px;
 }
-.switch-material .check::before {
+.switch-material .check::after {
   position: absolute;
   display: block;
   content: "";
@@ -13469,21 +13491,21 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .switch-material input:checked ~ .check {
   background-color: rgba(0, 150, 136, 0.5);
 }
-.switch-material input:not(:checked) ~ .check::before {
+.switch-material input:not(:checked) ~ .check::after {
   background-color: #ffffff;
 }
 .switch-material input:checked ~ .check {
   background-color: rgba(0, 150, 136, 0.5);
 }
-.switch-material input:checked ~ .check::before {
-  -webkit-transform: translateX(22px);
-      -ms-transform: translateX(22px);
-          transform: translateX(22px);
+.switch-material input:checked ~ .check::after {
+  -webkit-transform: translateX(27px);
+      -ms-transform: translateX(27px);
+          transform: translateX(27px);
 }
 .switch-material input:disabled ~ .check {
   background-color: #D5D5D5;
 }
-.switch-material input:disabled ~ .check:before {
+.switch-material input:disabled ~ .check::after {
   background-color: #BDBDBD;
 }
 .switch-material .check {
@@ -13507,15 +13529,36 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
-.switch-material.transition-on input:not(:checked) ~ .check::before {
+.switch-material.transition-on input:not(:checked) ~ .check::after {
   -webkit-transition: linear all 0.2s;
   -o-transition: linear all 0.2s;
   transition: linear all 0.2s;
 }
-.switch-material.transition-on input:checked ~ .check::before {
+.switch-material.transition-on input:checked ~ .check::after {
   -webkit-transition: linear all 0.2s;
   -o-transition: linear all 0.2s;
   transition: linear all 0.2s;
+}
+.switch-material .check::before {
+  content: attr(data-off);
+  display: block;
+  position: absolute;
+  color: inherit;
+  left: 18px;
+  width: 24px;
+  top: -2px;
+  line-height: 20px;
+  font-size: 10px;
+  text-transform: uppercase;
+  text-align: center;
+}
+.switch-material input[type="checkbox"]:checked ~ .check::before {
+  content: attr(data-on);
+  color: #ffffff;
+  left: 1px;
+}
+.switch-material input[type="checkbox"]:disabled ~ .check::before {
+  display: none;
 }
 .t-menu {
   list-style: none inside;

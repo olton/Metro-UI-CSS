@@ -126,7 +126,7 @@
                 var msg = ""+input.val(), m;
                 if (msg.trim() === "") {return false;}
                 m = {
-                    id: Utils.elementId(""),
+                    id: Utils.elementId("chat-message"),
                     name: o.name,
                     avatar: o.avatar,
                     text: msg,
@@ -193,14 +193,6 @@
                     text: text
                 }
             });
-
-            // ???
-            // setImmediate(function(){
-            //     element.fire("onmessage", {
-            //         message: msg,
-            //         element: message[0]
-            //     });
-            // });
 
             messages.animate({
                 draw: {
