@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 25/07/2020 21:41:20
+ * Built at 26/07/2020 09:45:25
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "25/07/2020 21:41:20",
+        compileTime: "26/07/2020 09:45:25",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12594,7 +12594,7 @@ $.noConflict = function() {
                 var msg = ""+input.val(), m;
                 if (msg.trim() === "") {return false;}
                 m = {
-                    id: Utils.elementId(""),
+                    id: Utils.elementId("chat-message"),
                     name: o.name,
                     avatar: o.avatar,
                     text: msg,
@@ -12661,14 +12661,6 @@ $.noConflict = function() {
                     text: text
                 }
             });
-
-            // ???
-            // setImmediate(function(){
-            //     element.fire("onmessage", {
-            //         message: msg,
-            //         element: message[0]
-            //     });
-            // });
 
             messages.animate({
                 draw: {
@@ -12788,9 +12780,7 @@ $.noConflict = function() {
         _create: function(){
             this._createStructure();
             this._createEvents();
-            this._fireEvent("checkbox-create", {
-                element: this.element
-            })
+            this._fireEvent("checkbox-create");
         },
 
         _createStructure: function(){
@@ -26286,7 +26276,7 @@ $.noConflict = function() {
 
         _create: function(){
             var element = this.element, o = this.options;
-            var container = $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className);
+            var container ;
             var check = $("<span>").addClass("check");
             var caption = $("<span>").addClass("caption").html(o.caption);
 
@@ -26298,10 +26288,15 @@ $.noConflict = function() {
                 })
             }
 
-            container.insertBefore(element);
-            element.appendTo(container);
+            container = element.wrap(
+                $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className)
+            );
+
             check.appendTo(container);
             caption.appendTo(container);
+
+            if (element.attr("data-on")) check.attr("data-on", element.attr("data-on"));
+            if (element.attr("data-off")) check.attr("data-off", element.attr("data-off"));
 
             if (o.transition === true) {
                 container.addClass("transition-on");
@@ -26323,9 +26318,7 @@ $.noConflict = function() {
                 this.enable();
             }
 
-            this._fireEvent("switch-create", {
-                element: element
-            });
+            this._fireEvent("switch-create");
         },
 
         disable: function(){

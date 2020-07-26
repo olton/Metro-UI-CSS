@@ -37,9 +37,7 @@
         _create: function(){
             this._createStructure();
             this._createEvents();
-            this._fireEvent("checkbox-create", {
-                element: this.element
-            })
+            this._fireEvent("checkbox-create");
         },
 
         _createStructure: function(){

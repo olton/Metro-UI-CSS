@@ -24,8 +24,8 @@
 
     .check {
         position: relative;
-        height: 1.25rem;
-        width: 2.8125rem;
+        height: 20px;
+        width: 45px;
         border: 2px @dark solid;
         cursor: pointer;
         background: @transparent;
@@ -55,6 +55,7 @@
     input[type="checkbox"]:checked ~ .check {
         background: @dark;
         border-color: @dark;
+        color: @dark;
         &::after {
             background-color: @white;
             border-color: @white;
@@ -105,6 +106,38 @@
     }
 }
 
+.switch {
+    .check {
+        &::before {
+            content: attr(data-off);
+            display: block;
+            position: absolute;
+            color: inherit;
+            left: 16px;
+            width: 24px;
+            top: -2px;
+            line-height: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        &::before {
+            content: attr(data-on);
+            color: @white;
+            left: 1px;
+        }
+    }
+
+    input[type="checkbox"]:disabled ~ .check {
+        &::before {
+            display: none;
+        }
+    }
+}
+
 .switch-material {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -127,7 +160,7 @@
     }
 
     .check {
-        width: 36px;
+        width: 45px;
         height: 16px;
         background-color: #929292;
         border-radius: 8px;
@@ -137,7 +170,7 @@
     }
 
     .check {
-        &::before {
+        &::after {
             position: absolute;
             display: block;
             content: "";
@@ -157,7 +190,7 @@
     }
 
     input:not(:checked) ~ .check {
-        &::before {
+        &::after {
             background-color: @white;
             //.transition(all, .2s, linear);
         }
@@ -165,15 +198,15 @@
 
     input:checked ~ .check {
         background-color: rgba(0, 150, 136, 0.5);
-        &::before {
-            .translateX(22px);
+        &::after {
+            .translateX(27px);
             //.transition(all, .2s, linear);
         }
     }
 
     input:disabled ~ .check {
         background-color: #D5D5D5;
-        &:before {
+        &::after {
             background-color: #BDBDBD;
         }
     }
@@ -189,15 +222,48 @@
         transition: @transition-base;
 
         input:not(:checked) ~ .check {
-            &::before {
+            &::after {
                 .transition(all, .2s, linear);
             }
         }
 
         input:checked ~ .check {
-            &::before {
+            &::after {
                 .transition(all, .2s, linear);
             }
+        }
+    }
+}
+
+.switch-material {
+    .check {
+        &::before {
+            content: attr(data-off);
+            display: block;
+            position: absolute;
+            color: inherit;
+            left: 18px;
+            width: 24px;
+            top: -2px;
+            line-height: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        &::before {
+            content: attr(data-on);
+            color: @white;
+            left: 1px;
+        }
+    }
+
+
+    input[type="checkbox"]:disabled ~ .check {
+        &::before {
+            display: none;
         }
     }
 }
