@@ -6,7 +6,6 @@
         imagecompareDeferred: 0,
         width: "100%",
         height: "auto",
-        onResize: Metro.noop,
         onSliderMove: Metro.noop,
         onImageCompareCreate: Metro.noop
     };
@@ -109,12 +108,13 @@
                     slider.css({
                         left: left_pos
                     });
-                    Utils.exec(o.onSliderMove, [x, left_pos], slider[0]);
-                    element.fire("slidermove", {
+
+                    that._fireEvent("slider-move", {
                         x: x,
                         l: left_pos
                     });
                 }, {ns: that.id});
+
                 $(document).on(Metro.events.stopAll, function(){
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
@@ -156,11 +156,6 @@
                     left: element_width / 2 - slider.width() / 2
                 });
 
-                Utils.exec(o.onResize, [element_width, element_height], element[0]);
-                element.fire("comparerresize", {
-                    width: element_width,
-                    height: element_height
-                });
             }, {ns: this.id});
         },
 

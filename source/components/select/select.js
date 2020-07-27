@@ -159,7 +159,7 @@
         },
 
         _createSelect: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
 
             var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
             var multiple = element[0].multiple;
@@ -235,15 +235,15 @@
                         list[0].scrollTop = target.position().top - ( (list.height() - target.height() )/ 2);
                     }
 
-                    Utils.exec(o.onDrop, [list[0]], element[0]);
-                    element.fire("drop", {
+                    that._fireEvent("drop", {
                         list: list[0]
                     });
+
                 },
                 onUp: function(){
                     dropdown_toggle.removeClass("active-toggle");
-                    Utils.exec(o.onUp, [list[0]], element[0]);
-                    element.fire("up", {
+
+                    that._fireEvent("up", {
                         list: list[0]
                     });
                 }
@@ -357,8 +357,7 @@
                     }
                 });
 
-                Utils.exec(o.onItemSelect, [val, option, leaf[0]], element[0]);
-                element.fire("itemselect", {
+                that._fireEvent("item-select", {
                     val: val,
                     option: option,
                     leaf: leaf[0]
@@ -366,8 +365,7 @@
 
                 selected = that.getSelected();
 
-                Utils.exec(o.onChange, [selected], element[0]);
-                element.fire("change", {
+                that._fireEvent("change", {
                     selected: selected
                 });
             });
@@ -386,14 +384,13 @@
                 });
                 item.remove();
 
-                Utils.exec(o.onItemDeselect, [option], element[0]);
-                element.fire("itemdeselect", {
+                that._fireEvent("item-deselect", {
                     option: option
                 });
 
                 selected = that.getSelected();
-                Utils.exec(o.onChange, [selected], element[0]);
-                element.fire("change", {
+
+                that._fireEvent("change", {
                     selected: selected
                 });
 
@@ -446,7 +443,7 @@
         },
 
         reset: function(to_default){
-            var element = this.element, o = this.options;
+            var element = this.element;
             var options = element.find("option");
             var select = element.closest('.select');
             var selected;
@@ -461,8 +458,8 @@
             this._createOptions();
 
             selected = this.getSelected();
-            Utils.exec(o.onChange, [selected], element[0]);
-            element.fire("change", {
+
+            this._fireEvent("change", {
                 selected: selected
             });
         },
@@ -534,8 +531,8 @@
             });
 
             selected = this.getSelected();
-            Utils.exec(o.onChange, [selected], element[0]);
-            element.fire("change", {
+
+            this._fireEvent("change", {
                 selected: selected
             });
         },

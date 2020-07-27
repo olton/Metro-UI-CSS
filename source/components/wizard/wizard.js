@@ -106,14 +106,13 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
 
             element.on(Metro.events.click, ".wizard-btn-help", function(){
                 var pages = element.children("section");
                 var page = pages.get(that.current - 1);
 
-                Utils.exec(o.onHelpClick, [that.current, page, element[0]]);
-                element.fire("helpclick", {
+                that._fireEvent("help-click", {
                     index: that.current,
                     page: page
                 });
@@ -123,8 +122,8 @@
                 that.prev();
                 var pages = element.children("section");
                 var page = pages.get(that.current - 1);
-                Utils.exec(o.onPrevClick, [that.current, page], element[0]);
-                element.fire("prevclick", {
+
+                that._fireEvent("prev-click", {
                     index: that.current,
                     page: page
                 });
@@ -134,8 +133,8 @@
                 that.next();
                 var pages = element.children("section");
                 var page = pages.get(that.current - 1);
-                Utils.exec(o.onNextClick, [that.current, page], element[0]);
-                element.fire("nextclick", {
+
+                that._fireEvent("next-click", {
                     index: that.current,
                     page: page
                 });
@@ -144,8 +143,8 @@
             element.on(Metro.events.click, ".wizard-btn-finish", function(){
                 var pages = element.children("section");
                 var page = pages.get(that.current - 1);
-                Utils.exec(o.onFinishClick, [that.current, page], element[0]);
-                element.fire("finishclick", {
+
+                that._fireEvent("finish-click", {
                     index: that.current,
                     page: page
                 });
@@ -175,8 +174,8 @@
             this.toPage(this.current);
 
             page = $(element.children("section").get(this.current - 1));
-            Utils.exec(o.onNextPage, [this.current, page[0]], element[0]);
-            element.fire("nextpage", {
+
+            this._fireEvent("next-page", {
                 index: that.current,
                 page: page[0]
             });
@@ -195,37 +194,36 @@
             this.toPage(this.current);
 
             page = $(element.children("section").get(this.current - 1));
-            Utils.exec(o.onPrevPage, [this.current, page[0]], element[0]);
-            element.fire("prevpage", {
+
+            this._fireEvent("prev-page", {
                 index: that.current,
                 page: page[0]
             });
         },
 
         last: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
             var page;
 
             this.toPage(element.children("section").length);
 
             page = $(element.children("section").get(this.current - 1));
-            Utils.exec(o.onLastPage, [this.current, page[0]], element[0]);
-            element.fire("lastpage", {
+
+            this._fireEvent("last-page", {
                 index: that.current,
                 page: page[0]
             });
-
         },
 
         first: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
             var page;
 
             this.toPage(1);
 
             page = $(element.children("section").get(0));
-            Utils.exec(o.onFirstPage, [this.current, page[0]], element[0]);
-            element.fire("firstpage", {
+
+            this._fireEvent("first-page", {
                 index: that.current,
                 page: page[0]
             });
@@ -271,8 +269,8 @@
             }
 
             if (parseInt(o.finish) > 0 && this.current === parseInt(o.finish)) {
-                Utils.exec(o.onFinishPage, [this.current, target[0]], element[0]);
-                element.fire("finishpage", {
+
+                this._fireEvent("finish-page", {
                     index: this.current,
                     page: target[0]
                 });
@@ -286,8 +284,7 @@
                 prev.removeClass("disabled");
             }
 
-            Utils.exec(o.onPage, [this.current, target[0]], element[0]);
-            element.fire("page", {
+            this._fireEvent("page", {
                 index: this.current,
                 page: target[0]
             });

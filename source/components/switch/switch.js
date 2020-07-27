@@ -1,6 +1,7 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
+    var Utils = Metro.utils;
     var SwitchDefaultConfig = {
         switchDeferred: 0,
         material: false,
@@ -91,6 +92,18 @@
             } else {
                 this.enable();
             }
+        },
+
+        toggle: function(v){
+            var element = this.element;
+
+            if (!Utils.isValue(v)) {
+                element.prop("checked", !Utils.bool(element.prop("checked")));
+            } else {
+                element.prop("checked", v === 1);
+            }
+
+            return this;
         },
 
         changeAttribute: function(attributeName){

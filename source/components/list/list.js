@@ -129,8 +129,6 @@
         },
 
         _build: function(data){
-            var element = this.element, o = this.options;
-
             if (Utils.isValue(data)) {
                 this._createItemsFromJSON(data);
             } else {
@@ -140,8 +138,7 @@
             this._createStructure();
             this._createEvents();
 
-            Utils.exec(o.onListCreate, [element], element[0]);
-            element.fire("listcreate");
+            this._fireEvent("list-create");
         },
 
         _createItemsFromHTML: function(){
@@ -222,8 +219,8 @@
                     o.items = parseInt(val);
                     that.currentPage = 1;
                     that._draw();
-                    Utils.exec(o.onRowsCountChange, [val], element[0]);
-                    element.fire("rowscountchange", {
+
+                    that._fireEvent("rows-count-change", {
                         val: val
                     });
                 }
@@ -435,7 +432,6 @@
 
         _filter: function(){
             var that = this,
-                element = this.element,
                 o = this.options,
                 items, i, data, inset, c1, result;
 
@@ -466,25 +462,27 @@
                     }
 
                     if (result) {
-                        Utils.exec(o.onFilterItemAccepted, [item], element[0]);
-                        element.fire("filteritemaccepted", {
+
+                        that._fireEvent("filter-item-accepted", {
                             item: item
                         });
+
                     } else {
-                        Utils.exec(o.onFilterItemDeclined, [item], element[0]);
-                        element.fire("filteritemdeclined", {
+
+                        that._fireEvent("filter-item-declined", {
                             item: item
                         });
+
                     }
 
                     return result;
                 });
 
-                Utils.exec(o.onSearch, [that.filterString, items], element[0]);
-                element.fire("search", {
+                that._fireEvent("search", {
                     search: that.filterString,
                     items: items
                 });
+
             } else {
                 items = this.items;
             }
@@ -507,10 +505,11 @@
                 if (Utils.isValue(items[i])) {
                     $(items[i]).addClass(o.clsListItem).appendTo(element);
                 }
-                Utils.exec(o.onDrawItem, [items[i]], element[0]);
-                element.fire("drawitem", {
+
+                this._fireEvent("draw-item", {
                     item: items[i]
                 });
+
             }
 
             this._info(start + 1, stop + 1, items.length);
@@ -518,8 +517,7 @@
 
             this.activity.hide();
 
-            Utils.exec(o.onDraw, null, element[0]);
-            element.fire("draw");
+            this._fireEvent("draw");
 
             if (cb !== undefined) {
                 Utils.exec(cb, [element], element[0])
@@ -595,7 +593,7 @@
         },
 
         sorting: function(source, dir, redraw){
-            var that = this, element = this.element, o = this.options;
+            var that = this, o = this.options;
 
             if (Utils.isValue(source)) {
                 o.sortClass = source;
@@ -604,8 +602,7 @@
                 o.sortDir= dir;
             }
 
-            Utils.exec(o.onSortStart, [this.items], element[0]);
-            element.fire("sortstart", {
+            this._fireEvent("sort-start", {
                 items: this.items
             });
 
@@ -622,8 +619,8 @@
                 }
 
                 if (result !== 0) {
-                    Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
-                    element.fire("sortitemswitch", {
+
+                    that._fireEvent("sort-item-switch", {
                         a: a,
                         b: b,
                         result: result
@@ -633,10 +630,9 @@
                 return result;
             });
 
-            Utils.exec(o.onSortStop, [this.items], element[0]);
-            element.fire("sortstop", {
+            this._fireEvent("sort-stop", {
                 items: this.items
-            });
+            })
 
             if (redraw === true) {
                 this._draw();
@@ -660,14 +656,13 @@
 
             o.source = source;
 
-            Utils.exec(o.onDataLoad, [o.source], element[0]);
-            element.fire("dataload", {
+            this._fireEvent("data-load", {
                 source: o.source
             });
 
             $.json(o.source).then(function(data){
-                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                element.fire("dataloaded", {
+
+                that._fireEvent("data-loaded", {
                     source: o.source,
                     data: data
                 });
@@ -703,11 +698,12 @@
 
                 that.sorting(o.sortClass, o.sortDir, true);
             }, function(xhr){
-                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                element.fire("dataloaderror", {
+
+                that._fireEvent("data-load-error", {
                     source: o.source,
                     xhr: xhr
                 });
+
             });
         },
 

@@ -162,12 +162,12 @@
         },
 
         blink: function(){
-            var element = this.element, o = this.options;
+            var element = this.element;
             element.toggleClass("blink");
-            Utils.exec(o.onBlink, [this.current], element[0]);
-            element.fire("blink", {
+
+            this._fireEvent("blink", {
                 time: this.current
-            })
+            });
         },
 
         tick: function(){
@@ -185,10 +185,11 @@
             if (left <= -1) {
                 this.stop();
                 element.addClass(o.clsAlarm);
-                Utils.exec(o.onAlarm, [now], element[0]);
-                element.fire("alarm", {
+
+                this._fireEvent("alarm", {
                     time: now
                 });
+
                 return ;
             }
 
@@ -203,9 +204,10 @@
                 if (this.zeroDaysFired === false) {
                     this.zeroDaysFired = true;
                     days.addClass(o.clsZero);
-                    Utils.exec(o.onZero, ["days", days], element[0]);
-                    element.fire("zero", {
-                        parts: ["days", days]
+
+                    this._fireEvent("zero", {
+                        part: "days",
+                        value: days
                     });
                 }
             }
@@ -221,9 +223,10 @@
                 if (this.zeroHoursFired === false) {
                     this.zeroHoursFired = true;
                     hours.addClass(o.clsZero);
-                    Utils.exec(o.onZero, ["hours", hours], element[0]);
-                    element.fire("zero", {
-                        parts: ["hours", hours]
+
+                    this._fireEvent("zero", {
+                        part: "hours",
+                        value: hours
                     });
                 }
             }
@@ -239,9 +242,10 @@
                 if (this.zeroMinutesFired === false) {
                     this.zeroMinutesFired = true;
                     minutes.addClass(o.clsZero);
-                    Utils.exec(o.onZero, ["minutes", minutes], element[0]);
-                    element.fire("zero", {
-                        parts: ["minutes", minutes]
+
+                    this._fireEvent("zero", {
+                        part: "minutes",
+                        value: minutes
                     });
 
                 }
@@ -257,17 +261,20 @@
                 if (this.zeroSecondsFired === false) {
                     this.zeroSecondsFired = true;
                     seconds.addClass(o.clsZero);
-                    Utils.exec(o.onZero, ["seconds", seconds], element[0]);
-                    element.fire("zero", {
-                        parts: ["seconds", seconds]
+
+                    this._fireEvent("zero", {
+                        part: "seconds",
+                        value: seconds
                     });
 
                 }
             }
 
-            Utils.exec(o.onTick, [{days:d, hours:h, minutes:m, seconds:s}], element[0]);
-            element.fire("tick", {
-                days:d, hours:h, minutes:m, seconds:s
+            this._fireEvent("tick", {
+                days: d,
+                hours: h,
+                minutes: m,
+                seconds: s
             });
         },
 

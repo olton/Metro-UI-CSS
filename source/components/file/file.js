@@ -1,7 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
     var FileDefaultConfig = {
         fileDeferred: 0,
         mode: "input",
@@ -138,8 +137,7 @@
                     files.html(element[0].files.length + " " +o.filesTitle);
                 }
 
-                Utils.exec(o.onSelect, [fi.files], element[0]);
-                element.fire("select", {
+                that._fireEvent("select", {
                     files: fi.files
                 });
             });

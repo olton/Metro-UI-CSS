@@ -138,11 +138,12 @@
                         chars_counter.html(o.charsCounterTemplate.replace("$1", that.length()));
                     }
                 }
-                Utils.exec(o.onChange, [element.val(), that.length()], element[0]);
-                element.fire("change", {
+
+                that._fireEvent("change", {
                     val: element.val(),
                     length: that.length()
                 });
+
             })
         },
 

@@ -147,8 +147,7 @@
                     return ;
                 }
 
-                Utils.exec(o.onTagTrigger, [key], element[0]);
-                element.fire("tagtrigger", {
+                that._fireEvent("tag-trigger", {
                     key: key
                 });
 
@@ -178,8 +177,8 @@
             container.on(Metro.events.click, ".input-clear-button", function(){
                 var val = element.val();
                 that.clear();
-                Utils.exec(o.onClear, [val], element[0]);
-                element.fire("clear", {
+
+                that._fireEvent("clear", {
                     val: val
                 });
             });
@@ -249,15 +248,13 @@
             this.values.push(val);
             element.val(this.values.join(o.tagSeparator));
 
-            Utils.exec(o.onTagAdd, [tag[0], val, this.values], element[0]);
-            element.fire("tagadd", {
+            this._fireEvent("tag-add", {
                 tag: tag[0],
                 val: val,
                 values: this.values
             });
 
-            Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
-            element.fire("tag", {
+            this._fireEvent("tag", {
                 tag: tag[0],
                 val: val,
                 values: this.values
@@ -275,15 +272,13 @@
             Utils.arrayDelete(this.values, val);
             element.val(this.values.join(o.tagSeparator));
 
-            Utils.exec(o.onTagRemove, [tag[0], val, this.values], element[0]);
-            element.fire("tagremove", {
+            this._fireEvent("tag-remove", {
                 tag: tag[0],
                 val: val,
                 values: this.values
             });
 
-            Utils.exec(o.onTag, [tag[0], val, this.values], element[0]);
-            element.fire("tag", {
+            this._fireEvent("tag", {
                 tag: tag[0],
                 val: val,
                 values: this.values

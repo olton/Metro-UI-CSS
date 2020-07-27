@@ -73,8 +73,7 @@
 
                 element.addClass("stop-pointer");
 
-                Utils.exec(o.onResizeStart, [size], element[0]);
-                element.fire("resizestart", {
+                that._fireEvent("resize-start", {
                     size: size
                 });
 
@@ -93,10 +92,10 @@
 
                     element.css(size);
 
-                    Utils.exec(o.onResize, [size], element[0]);
-                    element.fire("resize", {
+                    that._fireEvent("resize", {
                         size: size
-                    });
+                    })
+
                 }, {ns: that.id});
 
                 $(document).on(Metro.events.stop, function(){
@@ -110,10 +109,10 @@
                         height: parseInt(element.outerHeight())
                     };
 
-                    Utils.exec(o.onResizeStop, [size], element[0]);
-                    element.fire("resizestop", {
+                    that._fireEvent("resize-stop", {
                         size: size
                     });
+
                 }, {ns: that.id});
 
                 e.preventDefault();

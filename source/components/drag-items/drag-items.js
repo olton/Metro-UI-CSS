@@ -86,8 +86,7 @@
                     return;
                 }
 
-                Utils.exec(o.onTarget, [target], element[0]);
-                element.fire("target", {
+                that._fireEvent("target", {
                     target: target
                 });
 
@@ -153,8 +152,7 @@
                     height: height
                 }).appendTo(body);
 
-                Utils.exec(o.onDragStartItem, [dragItem[0], avatar[0]], element[0]);
-                element.fire("dragstartitem", {
+                that._fireEvent("drag-start-item", {
                     dragItem: dragItem[0],
                     avatar: avatar[0]
                 });
@@ -163,8 +161,7 @@
 
                     move(e_move, avatar, dragItem);
 
-                    Utils.exec(o.onDragMoveItem, [dragItem[0], avatar[0]], element[0]);
-                    element.fire("dragmoveitem", {
+                    that._fireEvent("drag-move-item", {
                         dragItem: dragItem[0],
                         avatar: avatar[0]
                     });
@@ -175,8 +172,7 @@
 
                 doc.on(Metro.events.stopAll, function(){
 
-                    Utils.exec(o.onDragDropItem, [dragItem[0], avatar[0]], element[0]);
-                    element.fire("dragdropitem", {
+                    that._fireEvent("drag-drop-item", {
                         dragItem: dragItem[0],
                         avatar: avatar[0]
                     });

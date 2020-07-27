@@ -401,12 +401,13 @@
             result.val += Utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
 
             if (result.val === 0) {
-                Utils.exec(o.onValidateForm, [formData], form);
-                element.fire("validateform", {
+
+                this._fireEvent("validate-form", {
                     data: formData
                 });
 
                 setTimeout(function(){
+                    // TODO need fix event name to equivalent
                     Utils.exec(o.onSubmit, [formData], form);
                     element.fire("formsubmit", {
                         data: formData
@@ -414,8 +415,8 @@
                     if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
                 }, o.submitTimeout);
             } else {
-                Utils.exec(o.onErrorForm, [result.log, formData], form);
-                element.fire("errorform", {
+
+                this._fireEvent("error-form", {
                     log: result.log,
                     data: formData
                 });

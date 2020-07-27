@@ -304,16 +304,17 @@
         },
 
         _tick: function(index, speed){
-            var that = this, element = this.element, o = this.options;
+            var that = this, o = this.options;
             if (speed === undefined) {
                 speed = o.flashInterval * index;
             }
 
             var interval = setTimeout(function(){
-                Utils.exec(o.onTick, [index], element[0]);
-                element.fire("tick", {
+
+                that._fireEvent("tick", {
                     index: index
                 });
+
                 clearInterval(interval);
                 Utils.arrayDelete(that.intervals, interval);
             }, speed);

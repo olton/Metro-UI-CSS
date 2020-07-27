@@ -437,10 +437,9 @@
                         slides.eq(i).remove();
                     }
 
-                    Utils.exec(o.onWalk, [that.current(true)], element[0]);
-                    element.fire('walk', {
+                    that._fireEvent("walk", {
                         slide: that.current(true)
-                    })
+                    });
 
                     that._slideShow();
                 }, 100);
@@ -467,28 +466,30 @@
         _end: function(){
             this.ended = this.options.autoplay;
             this._timer(false);
-            Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
-            this.element.fire('end', {
+
+            this._fireEvent("end", {
                 slide: this.current(true)
             });
         },
 
         play: function(){
-            if (this.paused) {
-                Utils.exec(this.options.onPlay, [this.current(true)], this.elem);
-                this.element.fire('play', {
-                    slide: this.current(true)
-                });
-                this.paused = false;
-                this.next();
+            if (!this.paused) {
+                return ;
             }
+
+            this._fireEvent("play", {
+                slide: this.current(true)
+            });
+
+            this.paused = false;
+            this.next();
         },
 
         pause: function(){
             this._timer(false);
             this.paused = true;
-            Utils.exec(this.options.onPause, [this.current(true)], this.elem);
-            this.element.fire('pause', {
+
+            this._fireEvent("pause", {
                 slide: this.current(true)
             });
         },
@@ -518,10 +519,9 @@
 
             this.slide = n - 1;
 
-            Utils.exec(this.options.onJump, [this.current(true)], this.elem);
-            this.element.fire('jump', {
+            this._fireEvent("jump", {
                 slide: this.current(true)
-            });
+            })
 
             this._goto(this.slide);
         },
@@ -539,8 +539,7 @@
                 this.slide = 0;
             }
 
-            Utils.exec(o.onNext , [this.current(true)], this.elem);
-            this.element.fire('next', {
+            this._fireEvent("next", {
                 slide: this.current(true)
             });
 
@@ -561,8 +560,7 @@
                 this.slide = this.slides.length - 1;
             }
 
-            Utils.exec(o.onPrev, [this.current(true)], this.elem);
-            this.element.fire('prev', {
+            this._fireEvent("prev", {
                 slide: this.current(true)
             });
 

@@ -124,8 +124,7 @@
                 prev_block.addClass("stop-pointer");
                 next_block.addClass("stop-pointer");
 
-                Utils.exec(o.onResizeStart, [start_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
-                element.fire("resizestart", {
+                that._fireEvent("resize-start", {
                     pos: start_pos,
                     gutter: gutter[0],
                     prevBlock: prev_block[0],
@@ -146,18 +145,17 @@
                     prev_block.css("flex-basis", "calc(" + (prev_block_size + new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
                     next_block.css("flex-basis", "calc(" + (next_block_size - new_pos) + "% - "+(gutters.length * o.gutterSize)+"px)");
 
-                    Utils.exec(o.onResizeSplit, [pos, gutter[0], prev_block[0], next_block[0]], element[0]);
-                    element.fire("resizesplit", {
+                    that._fireEvent("resize-split", {
                         pos: pos,
                         gutter: gutter[0],
                         prevBlock: prev_block[0],
                         nextBlock: next_block[0]
                     });
+
                 }, {ns: that.id});
 
                 $(window).on(Metro.events.stopAll, function(e){
                     var cur_pos;
-
 
                     prev_block.removeClass("stop-pointer");
                     next_block.removeClass("stop-pointer");
@@ -171,13 +169,13 @@
 
                     cur_pos = Utils.getCursorPosition(element[0], e);
 
-                    Utils.exec(o.onResizeStop, [cur_pos, gutter[0], prev_block[0], next_block[0]], element[0]);
-                    element.fire("resizestop", {
+                    that._fireEvent("resize-stop", {
                         pos: cur_pos,
                         gutter: gutter[0],
                         prevBlock: prev_block[0],
                         nextBlock: next_block[0]
                     });
+
                 }, {ns: that.id})
             });
 
@@ -186,11 +184,11 @@
                 var prev_block = gutter.prev(".split-block");
                 var next_block = gutter.next(".split-block");
 
-                Utils.exec(o.onResizeWindow, [prev_block[0], next_block[0]], element[0]);
-                element.fire("resizewindow", {
+                that._fireEvent("resize-window", {
                     prevBlock: prev_block[0],
                     nextBlock: next_block[0]
                 });
+
             }, {ns: that.id});
         },
 

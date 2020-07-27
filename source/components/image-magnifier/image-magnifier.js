@@ -133,7 +133,7 @@
         },
 
         _createEvents: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var glass = element.find(".image-magnifier-glass");
             var glass_size = glass[0].offsetWidth / 2;
             var image = element.find("img")[0];
@@ -214,8 +214,7 @@
 
                 lens_move(pos);
 
-                Utils.exec(o.onMagnifierMove, [pos, glass[0], zoomElement ? zoomElement[0] : undefined], element[0]);
-                element.fire("magnifiermove", {
+                that._fireEvent("magnifier-move", {
                     pos: pos,
                     glass: glass[0],
                     zoomElement: zoomElement ? zoomElement[0] : undefined

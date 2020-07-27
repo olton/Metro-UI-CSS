@@ -81,8 +81,7 @@
                     if (o.onStatic === Metro.noop && link.attr("href") !== undefined) {
                         document.location.href = link.attr("href");
                     } else {
-                        Utils.exec(o.onStatic, [tab[0]], element[0]);
-                        element.fire("static", {
+                        that._fireEvent("static", {
                             tab: tab[0]
                         });
                     }
@@ -96,7 +95,7 @@
         },
 
         open: function(tab){
-            var element = this.element, o = this.options;
+            var element = this.element;
             var $tab = $(tab);
             var tabs = element.find(".tabs-holder li");
             var sections = element.find(".content-holder .section");
@@ -109,8 +108,7 @@
             sections.removeClass("active");
             if (target_section) target_section.addClass("active");
 
-            Utils.exec(o.onTab, [$tab[0]], element[0]);
-            element.fire("tab", {
+            this._fireEvent("tab", {
                 tab: $tab[0]
             });
         },

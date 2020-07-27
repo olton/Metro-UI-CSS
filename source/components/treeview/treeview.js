@@ -129,7 +129,7 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
 
             element.on(Metro.events.click, ".node-toggle", function(e){
                 var toggle = $(this);
@@ -145,8 +145,7 @@
 
                 that.current(node);
 
-                Utils.exec(o.onNodeClick, [node[0]], element[0]);
-                element.fire("nodeclick", {
+                that._fireEvent("node-click", {
                     node: node[0]
                 });
 
@@ -162,10 +161,9 @@
                     that.toggleNode(node);
                 }
 
-                Utils.exec(o.onNodeDblClick, [node[0]], element[0]);
-                element.fire("nodedblclick", {
+                that._fireEvent("node-dbl-click", {
                     node: node[0]
-                });
+                })
 
                 e.preventDefault();
             });
@@ -177,8 +175,7 @@
 
                 that.current(node);
 
-                Utils.exec(o.onRadioClick, [checked, check[0], node[0]], element[0]);
-                element.fire("radioclick", {
+                that._fireEvent("radio-click", {
                     checked: checked,
                     check: check[0],
                     node: node[0]
@@ -192,8 +189,7 @@
 
                 that._recheck(check);
 
-                Utils.exec(o.onCheckClick, [checked, check[0], node[0]], element[0]);
-                element.fire("checkclick", {
+                that._fireEvent("check-click", {
                     checked: checked,
                     check: check[0],
                     node: node[0]
@@ -264,7 +260,7 @@
 
         toggleNode: function(n){
             var node = $(n);
-            var element = this.element, o = this.options;
+            var o = this.options;
             var func;
             var toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
 
@@ -274,22 +270,24 @@
             func = toBeExpanded === true ? "slideUp" : "slideDown";
 
             if (!toBeExpanded) {
-                Utils.exec(o.onExpandNode, [node[0]], element[0]);
-                element.fire("expandnode", {
+
+                this._fireEvent("expand-node", {
                     node: node[0]
                 });
+
             } else {
-                Utils.exec(o.onCollapseNode, [node[0]], element[0]);
-                element.fire("collapsenode", {
+
+                this._fireEvent("collapse-node", {
                     node: node[0]
                 });
+
             }
 
             node.children("ul")[func](o.duration);
         },
 
         addTo: function(node, data){
-            var element = this.element, o = this.options;
+            var element = this.element;
             var target;
             var new_node;
             var toggle;
@@ -311,8 +309,7 @@
 
             new_node.appendTo(target);
 
-            Utils.exec(o.onNodeInsert, [new_node[0], node ? node[0] : null], element[0]);
-            element.fire("nodeinsert", {
+            this._fireEvent("node-insert", {
                 node: new_node[0],
                 parent: node ? node[0] : null
             });
@@ -321,7 +318,6 @@
         },
 
         insertBefore: function(node, data){
-            var element = this.element, o = this.options;
             var new_node = this._createNode(data);
 
             if (Utils.isNull(node)) {
@@ -330,16 +326,16 @@
 
             node = $(node);
             new_node.insertBefore(node);
-            Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
-            element.fire("nodeinsert", {
+
+            this._fireEvent("node-insert", {
                 node: new_node[0],
                 parent: node ? node[0] : null
             });
+
             return new_node;
         },
 
         insertAfter: function(node, data){
-            var element = this.element, o = this.options;
             var new_node = this._createNode(data);
 
             if (Utils.isNull(node)) {
@@ -348,22 +344,22 @@
 
             node = $(node);
             new_node.insertAfter(node);
-            Utils.exec(o.onNodeInsert, [new_node[0], node[0]], element[0]);
-            element.fire("nodeinsert", {
+
+            this._fireEvent("node-insert", {
                 node: new_node[0],
                 parent: node[0]
             });
+
             return new_node;
         },
 
         del: function(node){
-            var element = this.element, o = this.options;
+            var element = this.element;
             node = $(node);
             var parent_list = node.closest("ul");
             var parent_node = parent_list.closest("li");
 
-            Utils.exec(o.onNodeDelete, [node[0]], element[0]);
-            element.fire("nodedelete", {
+            this._fireEvent("node-delete", {
                 node: node[0]
             });
 
@@ -377,13 +373,12 @@
         },
 
         clean: function(node){
-            var element = this.element, o = this.options;
             node = $(node);
             node.children("ul").remove();
             node.removeClass("expanded");
             node.children(".node-toggle").remove();
-            Utils.exec(o.onNodeClean, [node[0]], element[0]);
-            element.fire("nodeclean", {
+
+            this._fireEvent("node-clean", {
                 node: node[0]
             });
         },

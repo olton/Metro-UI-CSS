@@ -175,17 +175,18 @@
                 var node = $(this).closest("li");
                 element.find(".node-group").removeClass("current-group");
                 node.addClass("current-group");
-                Utils.exec(o.onGroupNodeClick, [node], element[0]);
-                element.fire("groupnodeclick", {
+
+                that._fireEvent("group-node-click", {
                     node: node
                 });
+
             });
 
             element.on(Metro.events.dblclick, ".node-group > .data > .caption", function(){
                 var node = $(this).closest("li");
                 that.toggleNode(node);
-                Utils.exec(o.onNodeDblClick, [node], element[0]);
-                element.fire("nodedblclick", {
+
+                that._fireEvent("node-dbl-click", {
                     node: node
                 });
             });
@@ -210,7 +211,7 @@
         },
 
         toggleNode: function(node){
-            var element = this.element, o = this.options;
+            var o = this.options;
             var func;
 
             node=$(node);
@@ -222,8 +223,8 @@
             node.toggleClass("expanded");
 
             func = node.hasClass("expanded") !== true ? "slideUp" : "slideDown";
-            Utils.exec(o.onCollapseNode, [node], element[0]);
-            element.fire("collapsenode", {
+
+            this._fireEvent("collapse-node", {
                 node: node
             });
 
@@ -271,8 +272,7 @@
             new_node.prepend(cb);
             Metro.makePlugin(cb, "checkbox", {});
 
-            Utils.exec(o.onNodeInsert, [new_node, node, target], element[0]);
-            element.fire("nodeinsert", {
+            this._fireEvent("node-insert", {
                 newNode: new_node,
                 parentNode: node,
                 list: target
@@ -293,18 +293,16 @@
             node.addClass("expanded");
             node.append($("<ul>").addClass("listview").addClass("view-"+o.view));
 
-            Utils.exec(o.onNodeInsert, [node, null, element], element[0]);
-            element.fire("nodeinsert", {
+            this._fireEvent("node-insert", {
                 newNode: node,
                 parentNode: null,
                 list: element
-            });
+            })
 
             return node;
         },
 
         insertBefore: function(node, data){
-            var element = this.element, o = this.options;
             var new_node, parent_node, list;
 
             node=$(node);
@@ -316,8 +314,7 @@
             parent_node = new_node.closest(".node");
             list = new_node.closest("ul");
 
-            Utils.exec(o.onNodeInsert, [new_node, parent_node, list], element[0]);
-            element.fire("nodeinsert", {
+            this._fireEvent("node-insert", {
                 newNode: new_node,
                 parentNode: parent_node,
                 list: list
@@ -327,7 +324,6 @@
         },
 
         insertAfter: function(node, data){
-            var element = this.element, o = this.options;
             var new_node, parent_node, list;
 
             node=$(node);
@@ -339,8 +335,7 @@
             parent_node = new_node.closest(".node");
             list = new_node.closest("ul");
 
-            Utils.exec(o.onNodeInsert, [new_node, parent_node, list], element[0]);
-            element.fire("nodeinsert", {
+            this._fireEvent("node-insert", {
                 newNode: new_node,
                 parentNode: parent_node,
                 list: list
@@ -350,7 +345,7 @@
         },
 
         del: function(node){
-            var element = this.element, o = this.options;
+            var element = this.element;
 
             node=$(node);
 
@@ -364,15 +359,13 @@
                 parent_node.removeClass("expanded");
                 parent_node.children(".node-toggle").remove();
             }
-            Utils.exec(o.onNodeDelete, [node], element[0]);
-            element.fire("nodedelete", {
+
+            this._fireEvent("node-delete", {
                 node: node
             });
         },
 
         clean: function(node){
-            var element = this.element, o = this.options;
-
             node=$(node);
 
             if (!node.length) {return;}
@@ -380,8 +373,8 @@
             node.children("ul").remove();
             node.removeClass("expanded");
             node.children(".node-toggle").remove();
-            Utils.exec(o.onNodeClean, [node], element[0]);
-            element.fire("nodeclean", {
+
+            this._fireEvent("node-clean", {
                 node: node
             });
         },
