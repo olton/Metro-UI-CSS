@@ -4,12 +4,13 @@
 + [x] M4Q Constructor: add short-tag for selecting by `data-role` with `$('@rolename')` 
 
 #### Metro 4
-+ [ ] Components: switch to `Component._fireEvent(...)` method for firing events 
++ [x] Components: switch to `Component._fireEvent(...)` method for firing component events `data-on-*` 
 + [x] Calendar: add firing event `onMonthChange` when user clicks on outside day, issue #1589
 + [x] Window: add API methods `pos(top, left)`, `top(v)`, `left(v)`, `width(v)`, `height(v)`, issue #1590
 + [x] Metro.window: add methods `pos(top, left)`, `top(v)`, `left(v)`, `width(v)`, `height(v)`
 + [x] Switch: add `data-on`, `data-off` attributes to show switch text state
 + [x] Checkbox: add API method `toggle( state )`. The `state` must be `-1` (indeterminate), `0` (unchecked), `1` (checked) or `undefined` (toggle between checked and unchecked), issue #1586 
++ [x] Switch: add API method `toggle( state )`. The `state` must be `0` (unchecked), `1` (checked) or `undefined` (toggle between checked and unchecked), issue #1586 
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

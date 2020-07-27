@@ -107,7 +107,7 @@
         },
 
         val: function(v){
-            var element = this.element, o = this.options;
+            var o = this.options;
 
             if (v === undefined) {
                 return this.value
@@ -121,8 +121,7 @@
 
             this.value = v;
 
-            Utils.exec(o.onChange, [this.value], element[0]);
-            element.fire("change", {
+            this._fireEvent("change", {
                 value: this.value
             });
         },

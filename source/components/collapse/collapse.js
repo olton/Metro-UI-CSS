@@ -1,7 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
     var CollapseDefaultConfig = {
         collapseDeferred: 0,
         collapsed: false,
@@ -72,8 +71,8 @@
                 el.trigger("onCollapse", null, el);
                 el.data("collapsed", true);
                 el.addClass("collapsed");
-                Utils.exec(options.onCollapse, null, elem[0]);
-                elem.fire("collapse");
+
+                dropdown._fireEvent("collapse");
             });
         },
 
@@ -90,8 +89,8 @@
                 el.trigger("onExpand", null, el);
                 el.data("collapsed", false);
                 el.removeClass("collapsed");
-                Utils.exec(options.onExpand, null, elem[0]);
-                elem.fire("expand");
+
+                dropdown._fireEvent("expand");
             });
         },
 

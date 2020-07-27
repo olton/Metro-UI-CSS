@@ -66,8 +66,7 @@
                 setTimeout(function(){
                     that.createPopover();
 
-                    Utils.exec(o.onPopoverShow, [that.popover], element[0]);
-                    element.fire("popovershow", {
+                    that._fireEvent("popover-show", {
                         popover: that.popover
                     });
 
@@ -173,14 +172,13 @@
 
             this.popovered = true;
 
-            Utils.exec(o.onPopoverCreate, [element, popover], element[0]);
-            element.fire("popovercreate", {
+            this._fireEvent("popover-create", {
                 popover: popover
             });
         },
 
         removePopover: function(){
-            var that = this, element = this.element;
+            var that = this;
             var timeout = this.options.onPopoverHide === Metro.noop ? 0 : 300;
             var popover = this.popover;
 
@@ -188,8 +186,7 @@
                 return ;
             }
 
-            Utils.exec(this.options.onPopoverHide, [popover], this.elem);
-            element.fire("popoverhide", {
+            this._fireEvent("popover-hide", {
                 popover: popover
             });
 
@@ -203,7 +200,7 @@
         },
 
         show: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, o = this.options;
 
             if (this.popovered === true) {
                 return ;
@@ -212,8 +209,7 @@
             setTimeout(function(){
                 that.createPopover();
 
-                Utils.exec(o.onPopoverShow, [that.popover], element[0]);
-                element.fire("popovershow", {
+                that._fireEvent("popover-show", {
                     popover: that.popover
                 });
 

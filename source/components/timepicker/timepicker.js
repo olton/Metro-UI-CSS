@@ -315,15 +315,15 @@
 
             element.val([h, m, s].join(":")).trigger("change");
 
-            Utils.exec(o.onSet, [this.value, element.val()], element[0]);
-            element.fire("set", {
+            this._fireEvent("set", {
                 val: this.value,
                 elementVal: element.val()
             });
+
         },
 
         open: function(){
-            var element = this.element, o = this.options;
+            var o = this.options;
             var picker = this.picker;
             var h, m, s;
             var h_list, m_list, s_list;
@@ -379,18 +379,18 @@
 
             this.isOpen = true;
 
-            Utils.exec(o.onOpen, [this.value], element[0]);
-            element.fire("open", {
+            this._fireEvent("open", {
                 val: this.value
             });
+
         },
 
         close: function(){
-            var picker = this.picker, o = this.options, element = this.element;
+            var picker = this.picker;
             picker.find(".select-wrapper").hide(0);
             this.isOpen = false;
-            Utils.exec(o.onClose, [this.value], element[0]);
-            element.fire("close", {
+
+            this._fireEvent("close", {
                 val: this.value
             });
         },

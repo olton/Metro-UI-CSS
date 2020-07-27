@@ -109,34 +109,30 @@
 
                 that._setValue(val.toFixed(o.fixed), true);
 
-                Utils.exec(plus ? o.onPlusClick : o.onMinusClick, [curr, val, element.val()], element[0]);
-                element.fire(plus ? "plusclick" : "minusclick", {
+                that._fireEvent(plus ? "plus-click" : "minus-click", {
                     curr: curr,
                     val: val,
                     elementVal: element.val()
                 });
 
-                Utils.exec(plus ? o.onArrowUp : o.onArrowDown, [curr, val, element.val()], element[0]);
-                element.fire(plus ? "arrowup" : "arrowdown", {
+                that._fireEvent(plus ? "arrow-up" : "arrow-down", {
                     curr: curr,
                     val: val,
                     elementVal: element.val()
                 });
 
-                Utils.exec(o.onButtonClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
-                element.fire("buttonclick", {
-                    button: plus ? "plus" : "minus",
+                that._fireEvent("button-click", {
                     curr: curr,
                     val: val,
-                    elementVal: element.val()
+                    elementVal: element.val(),
+                    button: plus ? "plus" : "minus"
                 });
 
-                Utils.exec(o.onArrowClick, [curr, val, element.val(), plus ? 'plus' : 'minus'], element[0]);
-                element.fire("arrowclick", {
-                    button: plus ? "plus" : "minus",
+                that._fireEvent("arrow-click", {
                     curr: curr,
                     val: val,
-                    elementVal: element.val()
+                    elementVal: element.val(),
+                    button: plus ? "plus" : "minus"
                 });
 
                 setTimeout(function(){
@@ -193,7 +189,7 @@
 
             element.val(val);
 
-            Utils.exec(o.onChange, [val], element[0]);
+            this._fireEvent("change", {val: val}, false, true);
 
             if (trigger_change === true) {
                 element.fire("change", {
@@ -212,11 +208,11 @@
         },
 
         toDefault: function(){
-            var element = this.element, o = this.options;
+            var o = this.options;
             var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
             this._setValue(val.toFixed(o.fixed), true);
-            Utils.exec(o.onChange, [val], element[0]);
-            element.fire("change", {
+
+            this._fireEvent("change", {
                 val: val
             });
         },

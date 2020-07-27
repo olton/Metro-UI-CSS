@@ -51,7 +51,7 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
             var win = $.window();
 
             win.on("resize", function(){
@@ -60,8 +60,7 @@
                 var oldSize = that.size;
                 var point;
 
-                Utils.exec(o.onWindowResize, [windowWidth, windowHeight, window.METRO_MEDIA], element[0]);
-                element.fire("windowresize", {
+                that._fireEvent("window-resize", {
                     width: windowWidth,
                     height: windowHeight,
                     media: window.METRO_MEDIA
@@ -72,13 +71,14 @@
                         width: elementWidth,
                         height: elementHeight
                     };
-                    Utils.exec(o.onElementResize, [elementWidth, elementHeight, oldSize, window.METRO_MEDIA], element[0]);
-                    element.fire("windowresize", {
+
+                    that._fireEvent("element-resize", {
                         width: elementWidth,
                         height: elementHeight,
                         oldSize: oldSize,
                         media: window.METRO_MEDIA
                     });
+
                 }
 
                 if (that.media.length !== window.METRO_MEDIA.length) {
@@ -86,24 +86,26 @@
                         point = that.media.filter(function(x){
                             return !window.METRO_MEDIA.contains(x);
                         });
-                        Utils.exec(o.onMediaPointLeave, [point, window.METRO_MEDIA], element[0]);
-                        element.fire("mediapointleave", {
+
+                        that._fireEvent("media-point-leave", {
                             point: point,
                             media: window.METRO_MEDIA
                         });
+
                     } else {
                         point = window.METRO_MEDIA.filter(function(x){
                             return !that.media.contains(x);
                         });
-                        Utils.exec(o.onMediaPointEnter, [point, window.METRO_MEDIA], element[0]);
-                        element.fire("mediapointenter", {
+
+                        that._fireEvent("media-point-enter", {
                             point: point,
                             media: window.METRO_MEDIA
                         });
                     }
+
                     that.media = window.METRO_MEDIA;
-                    Utils.exec(o.onMediaPoint, [point, window.METRO_MEDIA], element[0]);
-                    element.fire("mediapoint", {
+
+                    that._fireEvent("media-point", {
                         point: point,
                         media: window.METRO_MEDIA
                     });

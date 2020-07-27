@@ -296,14 +296,15 @@
 
             element.val(this.value.format(o.format, o.locale)).trigger("change");
 
-            Utils.exec(o.onSet, [this.value, element.val(), element, picker], element[0]);
-            element.fire("set", {
-                value: this.value
-            });
+            this._fireEvent("set", {
+                value: this.value,
+                elementValue: element.val(),
+                picker: picker
+            })
         },
 
         open: function(){
-            var element = this.element, o = this.options;
+            var o = this.options;
             var picker = this.picker;
             var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
             var m_list, d_list, y_list;
@@ -361,19 +362,21 @@
 
             this.isOpen = true;
 
-            Utils.exec(o.onOpen, [this.value, element, picker], element[0]);
-            element.fire("open", {
-                value: this.value
-            });
+            this._fireEvent("open", {
+                value: this.value,
+                picker: picker
+            })
+
         },
 
         close: function(){
-            var picker = this.picker, o = this.options, element = this.element;
+            var picker = this.picker;
             picker.find(".select-wrapper").hide(0);
             this.isOpen = false;
-            Utils.exec(o.onClose, [this.value, element, picker], element[0]);
-            element.fire("close", {
-                value: this.value
+
+            this._fireEvent("close", {
+                value: this.value,
+                picker: picker
             });
         },
 

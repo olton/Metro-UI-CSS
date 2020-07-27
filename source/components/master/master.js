@@ -205,7 +205,6 @@
         },
 
         _slideTo: function(to){
-            var element = this.element, o = this.options;
             var current, next, forward = to.toLowerCase() === 'next';
 
             current = this.pages[this.currentIndex];
@@ -224,8 +223,7 @@
 
             next = this.pages[this.currentIndex];
 
-            Utils.exec(forward ? o.onNextPage : o.onPrevPage, [current, next], element[0]);
-            element.fire(forward ? "nextpage" : "prevpage", {
+            this._fireEvent(forward ? "next-page" : "prev-page", {
                 current: current,
                 next: next,
                 forward: forward

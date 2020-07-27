@@ -82,25 +82,26 @@
 
             if (o.source !== null) {
 
-                Utils.exec(o.onDataLoad, [o.source], element[0]);
-                element.fire("dataload", {
+                this._fireEvent("data-load", {
                     source: o.source
                 });
 
                 $.json(o.source).then(function(data){
-                    Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                    element.fire("dataloaded", {
+
+                    that._fireEvent("data-loaded", {
                         source: o.source,
                         data: data
                     });
+
                     that.data = data;
                     that.build();
                 }, function(xhr){
-                    Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                    element.fire("dataloaderror", {
+
+                    that._fireEvent("data-load-error", {
                         source: o.source,
                         xhr: xhr
                     });
+
                 });
             } else {
                 this.data = o.data;
@@ -301,8 +302,7 @@
                                 event.html(event_item.html);
                             }
 
-                            Utils.exec(o.onDrawEvent, [event[0]], element[0]);
-                            element.fire("drawevent", {
+                            that._fireEvent("draw-event", {
                                 event: event[0]
                             });
 
@@ -320,8 +320,7 @@
                         height: stream_height * rows
                     });
 
-                    Utils.exec(o.onDrawStream, [stream[0]], element[0]);
-                    element.fire("drawstream", {
+                    that._fireEvent("draw-stream", {
                         stream: stream[0]
                     });
 
@@ -361,8 +360,7 @@
                                 height: "100%"
                             }).appendTo(streamer_events);
 
-                            Utils.exec(o.onDrawGlobalEvent, [event[0]], element[0]);
-                            element.fire("dataloaded", {
+                            that._fireEvent("draw-global-event", {
                                 event: event[0]
                             });
 
@@ -384,15 +382,13 @@
                 }, o.startSlideSleep);
             }
 
-            this._fireEvent("streamer-create", {
-                element: element
-            });
+            this._fireEvent("streamer-create");
 
             this._fireScroll();
         },
 
         _fireScroll: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
             var scrollable = element.find(".events-area");
             var oldScroll = this.scroll;
 
@@ -403,9 +399,7 @@
             this.scrollDir = this.scroll < scrollable[0].scrollLeft ? "left" : "right";
             this.scroll = scrollable[0].scrollLeft;
 
-            Utils.exec(o.onEventsScroll, [scrollable[0].scrollLeft, oldScroll, this.scrollDir, $.toArray(this.events)], element[0]);
-
-            element.fire("eventsscroll", {
+            this._fireEvent("events-scroll", {
                 scrollLeft: scrollable[0].scrollLeft,
                 oldScroll: oldScroll,
                 scrollDir: that.scrollDir,
@@ -459,8 +453,8 @@
                             if (o.changeUri === true) {
                                 that._changeURI();
                             }
-                            Utils.exec(o.onEventSelect, [event[0], event.hasClass("selected")], element[0]);
-                            element.fire("eventselect", {
+
+                            that._fireEvent("event-select", {
                                 event: event[0],
                                 selected: event.hasClass("selected")
                             });
@@ -477,8 +471,7 @@
 
                         } else {
 
-                            Utils.exec(o.onEventClick, [event[0]], element[0]);
-                            element.fire("eventclick", {
+                            that._fireEvent("event-click", {
                                 event: event[0]
                             });
 
@@ -509,14 +502,12 @@
                     element.data("stream", index);
                     element.find(".stream-event").addClass("disabled");
                     that.enableStream(stream);
-                    Utils.exec(o.onStreamSelect, [stream], element[0]);
-                    element.fire("streamselect", {
+                    that._fireEvent("stream-select", {
                         stream: stream
                     });
                 }
 
-                Utils.exec(o.onStreamClick, [stream], element[0]);
-                element.fire("streamclick", {
+                that._fireEvent("stream-click", {
                     stream: stream
                 });
             });
@@ -712,7 +703,7 @@
         },
 
         selectEvent: function(event, state){
-            var that = this, element = this.element, o = this.options;
+            var that = this, o = this.options;
             if (state === undefined) {
                 state = true;
             }
@@ -727,8 +718,8 @@
             if (o.changeUri === true) {
                 that._changeURI();
             }
-            Utils.exec(o.onEventSelect, [event[0], state], element[0]);
-            element.fire("eventselect", {
+
+            this._fireEvent("event-select", {
                 event: event[0],
                 selected: state
             });
@@ -744,28 +735,28 @@
 
             o.source = new_source;
 
-            Utils.exec(o.onDataLoad, [o.source], element[0]);
-            element.fire("dataload", {
+            this._fireEvent("data-load", {
                 source: o.source
             });
 
             $.json(o.source).then(function(data){
-                Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                element.fire("dataloaded", {
+
+                that._fireEvent("data-loaded", {
                     source: o.source,
                     data: data
                 });
+
                 that.data = data;
                 that.build();
             }, function(xhr){
-                Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                element.fire("dataloaderror", {
+
+                that._fireEvent("data-load-error", {
                     source: o.source,
                     xhr: xhr
                 });
             });
 
-            element.fire("sourcechange");
+            this._fireEvent("source-change");
         },
 
         changeData: function(data){
@@ -778,7 +769,7 @@
 
             this.build();
 
-            element.fire("datachange", {
+            this._fireEvent("data-change", {
                 oldData: old_data,
                 newData: o.data
             });

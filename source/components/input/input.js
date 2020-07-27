@@ -208,11 +208,12 @@
                         display: "none"
                     })
                 }
-                Utils.exec(o.onClearClick, [curr, element.val()], element[0]);
-                element.fire("clearclick", {
+
+                that._fireEvent("clear-click", {
                     prev: curr,
                     val: element.val()
                 });
+
             });
 
             container.on(Metro.events.click, ".input-reveal-button", function(){
@@ -222,19 +223,20 @@
                     element.attr('type', 'password');
                 }
 
-                Utils.exec(o.onRevealClick, [element.val()], element[0]);
-                element.fire("revealclick", {
+                that._fireEvent("reveal-click", {
                     val: element.val()
                 });
+
             });
 
             container.on(Metro.events.click, ".input-search-button", function(){
                 if (o.searchButtonClick !== 'submit') {
-                    Utils.exec(o.onSearchButtonClick, [element.val()], this);
-                    element.fire("searchbuttonclick", {
+
+                    that._fireEvent("search-button-click", {
                         val: element.val(),
                         button: this
                     });
+
                 } else {
                     this.form.submit();
                 }
@@ -257,12 +259,13 @@
                     element.val("");
                     that.history.push(val);
                     that.historyIndex = that.history.length - 1;
-                    Utils.exec(o.onHistoryChange, [val, that.history, that.historyIndex], element[0]);
-                    element.fire("historychange", {
+
+                    that._fireEvent("history-change", {
                         val: val,
                         history: that.history,
                         historyIndex: that.historyIndex
-                    });
+                    })
+
                     if (o.preventSubmit === true) {
                         e.preventDefault();
                     }
@@ -273,12 +276,12 @@
                     if (that.historyIndex >= 0) {
                         element.val("");
                         element.val(that.history[that.historyIndex]);
-                        Utils.exec(o.onHistoryDown, [element.val(), that.history, that.historyIndex], element[0]);
-                        element.fire("historydown", {
+
+                        that._fireEvent("history-down", {
                             val: element.val(),
                             history: that.history,
                             historyIndex: that.historyIndex
-                        });
+                        })
                     } else {
                         that.historyIndex = 0;
                     }
@@ -290,12 +293,12 @@
                     if (that.historyIndex < that.history.length) {
                         element.val("");
                         element.val(that.history[that.historyIndex]);
-                        Utils.exec(o.onHistoryUp, [element.val(), that.history, that.historyIndex], element[0]);
-                        element.fire("historyup", {
+
+                        that._fireEvent("history-up", {
                             val: element.val(),
                             history: that.history,
                             historyIndex: that.historyIndex
-                        });
+                        })
                     } else {
                         that.historyIndex = that.history.length - 1;
                     }
@@ -305,8 +308,7 @@
 
             element.on(Metro.events.keydown, function(e){
                 if (e.keyCode === Metro.keyCode.ENTER) {
-                    Utils.exec(o.onEnterClick, [element.val()], element[0]);
-                    element.fire("enterclick", {
+                    that._fireEvent("enter-click", {
                         val: element.val()
                     });
                 }

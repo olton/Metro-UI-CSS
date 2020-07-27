@@ -158,7 +158,7 @@
         },
 
         _createEvents: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var rating = this.rating;
 
             rating.on(Metro.events.click, ".stars li", function(){
@@ -178,11 +178,11 @@
                 star.prevAll().addClass("on");
                 star.nextAll().removeClass("on");
 
-                Utils.exec(o.onStarClick, [value, star[0]], element[0]);
-                element.fire("starclick", {
+                that._fireEvent("star-click", {
                     value: value,
                     star: star[0]
                 });
+
             });
         },
 

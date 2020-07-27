@@ -116,14 +116,12 @@
             });
 
             element.on(Metro.events.scroll, function(){
-                var oldScroll = this.scroll;
+                var oldScroll = that.scroll;
 
-                this.scrollDir = this.scroll < element[0].scrollLeft ? "left" : "right";
-                this.scroll = element[0].scrollLeft;
+                that.scrollDir = that.scroll < element[0].scrollLeft ? "left" : "right";
+                that.scroll = element[0].scrollLeft;
 
-                Utils.exec(o.onTabsScroll, [element[0].scrollLeft, oldScroll, this.scrollDir], element[0]);
-
-                element.fire("tabsscroll", {
+                that._fireEvent("tabs-scroll", {
                     scrollLeft: element[0].scrollLeft,
                     oldScroll: oldScroll,
                     scrollDir: that.scrollDir

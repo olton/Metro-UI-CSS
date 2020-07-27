@@ -263,8 +263,8 @@
             this.component = table_component;
 
             if (o.source !== null) {
-                Utils.exec(o.onDataLoad, [o.source], element[0]);
-                element.fire("dataload", {
+
+                this._fireEvent("data-load", {
                     source: o.source
                 });
 
@@ -272,28 +272,30 @@
 
                 if (objSource !== false && $.isPlainObject(objSource)) {
                     that._build(objSource);
-                } else
-                this.activity.show(function(){
-                    $.json(o.source).then(function(data){
-                        that.activity.hide();
-                        if (typeof data !== "object") {
-                            throw new Error("Data for table is not a object");
-                        }
-                        Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                        element.fire("dataloaded", {
-                            source: o.source,
-                            data: data
+                } else {
+                    this.activity.show(function () {
+                        $.json(o.source).then(function (data) {
+                            that.activity.hide();
+                            if (typeof data !== "object") {
+                                throw new Error("Data for table is not a object");
+                            }
+
+                            that._fireEvent("data-loaded", {
+                                source: o.source,
+                                data: data
+                            });
+
+                            that._build(data);
+                        }, function (xhr) {
+                            that.activity.hide();
+
+                            that._fireEvent("data-load-error", {
+                                source: o.source,
+                                xhr: xhr
+                            });
                         });
-                        that._build(data);
-                    }, function(xhr){
-                        that.activity.hide();
-                        Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                        element.fire("dataloaderror", {
-                            source: o.source,
-                            xhr: xhr
-                        })
                     });
-                });
+                }
             } else {
                 that._build();
             }
@@ -345,8 +347,8 @@
                 view = Metro.storage.getItem(viewPath);
                 if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(this.view)) {
                     this.view = view;
-                    Utils.exec(o.onViewGet, [view], element[0]);
-                    element.fire("viewget", {
+
+                    this._fireEvent("view-get", {
                         source: "client",
                         view: view
                     });
@@ -359,8 +361,7 @@
                 .then(function(view){
                     if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
                         that.view = view;
-                        Utils.exec(o.onViewGet, [view], element[0]);
-                        element.fire("viewget", {
+                        that._fireEvent("view-get", {
                             source: "server",
                             view: view
                         });
@@ -422,7 +423,7 @@
         },
 
         _createView: function(){
-            var view, element = this.element, o = this.options;
+            var view;
 
             view = {};
 
@@ -439,10 +440,10 @@
                 }
             });
 
-            Utils.exec(o.onViewCreated, [view], view);
-            element.fire("viewcreated", {
+            this._fireEvent("view-created", {
                 view: view
             });
+
             return view;
         },
 
@@ -799,8 +800,8 @@
                     o.rows = val;
                     that.currentPage = 1;
                     that._draw();
-                    Utils.exec(o.onRowsCountChange, [val], element[0]);
-                    element.fire("rowscountchange", {
+
+                    that._fireEvent("rows-count-change", {
                         val: val
                     });
                 }
@@ -923,11 +924,12 @@
                 }
 
                 skip_input.val('');
-                Utils.exec(o.onSkip, [skipTo, that.currentPage], element[0]);
-                element.fire("skip", {
+
+                that._fireEvent("skip", {
                     skipTo: skipTo,
                     skipFrom: that.currentPage
                 });
+
                 that.page(skipTo);
             });
 
@@ -1007,10 +1009,10 @@
 
                 storage.setItem(store_key, data);
 
-                Utils.exec(o.onCheckClick, [status], this);
-                element.fire("checkclick", {
+                that._fireEvent("check-click", {
                     check: this,
-                    status: status
+                    status: status,
+                    data: data
                 });
             });
 
@@ -1018,6 +1020,7 @@
                 var status = $(this).is(":checked");
                 var store_key = o.checkStoreKey.replace("$1", id);
                 var data = [];
+                var storage = Metro.storage;
 
                 if (status) {
                     $.each(that.filteredItems, function(){
@@ -1028,14 +1031,14 @@
                     data = [];
                 }
 
-                Metro.storage.setItem(store_key, data);
+                storage.setItem(store_key, data);
 
                 that._draw();
 
-                Utils.exec(o.onCheckClickAll, [status], this);
-                element.fire("checkclickall", {
+                that._fireEvent("check-click-all", {
                     check: this,
-                    status: status
+                    status: status,
+                    data: data
                 });
             });
 
@@ -1237,15 +1240,16 @@
         },
 
         _saveTableView: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var view = this.view;
             var id = element.attr("id");
             var viewPath = o.viewSavePath.replace("$1", id);
+            var storage = Metro.storage;
 
             if (o.viewSaveMode.toLowerCase() === "client") {
-                Metro.storage.setItem(viewPath, view);
-                Utils.exec(o.onViewSave, [o.viewSavePath, view], element[0]);
-                element.fire("viewsave", {
+                storage.setItem(viewPath, view);
+
+                this._fireEvent("view-save", {
                     target: "client",
                     path: o.viewSavePath,
                     view: view
@@ -1257,20 +1261,23 @@
                 };
                 $.post(viewPath, post_data)
                     .then(function(data){
-                        Utils.exec(o.onViewSave, [o.viewSavePath, view, post_data, data], element[0]);
-                        element.fire("viewsave", {
+
+                        that._fireEvent("view-save", {
                             target: "server",
                             path: o.viewSavePath,
                             view: view,
-                            post_data: post_data
+                            post_data: post_data,
+                            response: data
                         });
+
                     }, function(xhr){
-                        Utils.exec(o.onDataSaveError, [o.viewSavePath, post_data, xhr], element[0]);
-                        element.fire("datasaveerror", {
+
+                        that._fireEvent("data-save-error", {
                             source: o.viewSavePath,
                             xhr: xhr,
                             post_data: post_data
                         });
+
                     });
             }
         },
@@ -1317,7 +1324,7 @@
         },
 
         _filter: function(){
-            var that = this, o = this.options, element = this.element;
+            var that = this, o = this.options;
             var items;
             if ((Utils.isValue(this.searchString) && that.searchString.length >= o.searchMinLength) || this.filters.length > 0) {
                 items = this.items.filter(function(row){
@@ -1357,13 +1364,11 @@
                     result = result && search_result;
 
                     if (result) {
-                        Utils.exec(o.onFilterRowAccepted, [row], element[0]);
-                        element.fire("filterrowaccepted", {
+                        that._fireEvent("filter-row-accepted", {
                             row: row
                         });
                     } else {
-                        Utils.exec(o.onFilterRowDeclined, [row], element[0]);
-                        element.fire("filterrowdeclined", {
+                        that._fireEvent("filter-row-declined", {
                             row: row
                         });
                     }
@@ -1375,8 +1380,7 @@
                 items = this.items;
             }
 
-            Utils.exec(o.onSearch, [that.searchString, items], element[0]);
-            element.fire("search", {
+            this._fireEvent("search", {
                 search: that.searchString,
                 items: items
             });
@@ -1437,10 +1441,11 @@
                     }
 
                     check.addClass("table-service-check");
-                    Utils.exec(o.onCheckDraw, [check], check[0]);
-                    element.fire("checkdraw", {
+
+                    this._fireEvent("check-draw", {
                         check: check
                     });
+
                     check.appendTo(td);
                     if (that.service[1].clsColumn !== undefined) {
                         td.addClass(that.service[1].clsColumn);
@@ -1477,8 +1482,8 @@
                         td.data('original',this);
 
                         tds[view[cell_index]['index-view']] = td;
-                        Utils.exec(o.onDrawCell, [td, val, cell_index, that.heads[cell_index], cells], td[0]);
-                        element.fire("drawcell", {
+
+                        that._fireEvent("draw-cell", {
                             td: td,
                             val: val,
                             cellIndex: cell_index,
@@ -1494,16 +1499,15 @@
 
                     for (j = 0; j < cells.length; j++){
                         tds[j].appendTo(tr);
-                        Utils.exec(o.onAppendCell, [tds[j], tr, j, element], tds[j][0]);
-                        element.fire("appendcell", {
+
+                        that._fireEvent("append-cell", {
                             td: tds[j],
                             tr: tr,
                             index: j
-                        })
+                        });
                     }
 
-                    Utils.exec(o.onDrawRow, [tr, that.view, that.heads, cells], tr[0]);
-                    element.fire("drawrow", {
+                    that._fireEvent("draw-row", {
                         tr: tr,
                         view: that.view,
                         heads: that.heads,
@@ -1512,8 +1516,7 @@
 
                     tr.addClass(o.clsRow).addClass(is_even_row ? o.clsEvenRow : o.clsOddRow).appendTo(body);
 
-                    Utils.exec(o.onAppendRow, [tr, element], tr[0]);
-                    element.fire("appendrow", {
+                    that._fireEvent("append-row", {
                         tr: tr
                     });
                 }
@@ -1539,12 +1542,10 @@
 
             if (this.activity) this.activity.hide();
 
-            Utils.exec(o.onDraw, [element], element[0]);
-
-            element.fire("draw", element[0]);
+            this._fireEvent("draw");
 
             if (cb !== undefined) {
-                Utils.exec(cb, [element], element[0])
+                Utils.exec(cb, null, element[0])
             }
         },
 
@@ -1682,14 +1683,15 @@
         },
 
         sorting: function(dir){
-            var that = this, element = this.element, o = this.options;
+            var that = this;
 
             if (Utils.isValue(dir)) {
                 this.sort.dir = dir;
             }
 
-            Utils.exec(o.onSortStart, [this.items], element[0]);
-            element.fire("sortstart", this.items);
+            this._fireEvent("sort-start", {
+                items: this.items
+            });
 
             this.items.sort(function(a, b){
                 var c1 = that._getItemContent(a);
@@ -1704,19 +1706,20 @@
                 }
 
                 if (result !== 0) {
-                    Utils.exec(o.onSortItemSwitch, [a, b, result], element[0]);
-                    element.fire("sortitemswitch", {
+
+                    that._fireEvent("sort-item-switch", {
                         a: a,
                         b: b,
                         result: result
-                    })
+                    });
                 }
 
                 return result;
             });
 
-            Utils.exec(o.onSortStop, [this.items], element[0]);
-            element.fire("sortstop", this.items);
+            this._fireEvent("sort-stop", {
+                items: this.items
+            });
 
             return this;
         },
@@ -1823,8 +1826,7 @@
             } else {
                 o.source = source;
 
-                Utils.exec(o.onDataLoad, [o.source], element[0]);
-                element.fire("dataload", {
+                this._fireEvent("data-load", {
                     source: o.source
                 });
 
@@ -1835,8 +1837,7 @@
                         that.heads = [];
                         that.foots = [];
 
-                        Utils.exec(o.onDataLoaded, [o.source, data], element[0]);
-                        element.fire("dataloaded", {
+                        that._fireEvent("data-loaded", {
                             source: o.source,
                             data: data
                         });
@@ -1853,11 +1854,10 @@
                         that._rebuild(review);
                     }, function(xhr){
                         that.activity.hide();
-                        Utils.exec(o.onDataLoadError, [o.source, xhr], element[0]);
-                        element.fire("dataloaderror", {
+                        that._fireEvent("data-load-error", {
                             source: o.source,
                             xhr: xhr
-                        })
+                        });
                     });
                 });
 

@@ -147,10 +147,11 @@
             });
 
             element.on(Metro.events.click, ".navview-menu li > a", function(){
-                Utils.exec(o.onMenuItemClick, null, this);
-                element.fire("menuitemclick", {
+
+                that._fireEvent("menu-item-click", {
                     item: this
                 });
+
             });
 
             if (this.paneToggle !== null) {

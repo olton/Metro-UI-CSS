@@ -82,10 +82,10 @@
             this.setPosition();
 
             hint.appendTo($('body'));
-            Utils.exec(o.onHintShow, [hint[0]], element[0]);
-            element.fire("hintshow", {
+
+            this._fireEvent("hint-show", {
                 hint: hint[0]
-            });
+            })
         },
 
         setPosition: function(){
@@ -121,14 +121,12 @@
         removeHint: function(){
             var that = this;
             var hint = this.hint;
-            var element = this.element;
             var options = this.options;
             var timeout = options.onHintHide === Metro.noop ? 0 : 300;
 
             if (hint !== null) {
 
-                Utils.exec(options.onHintHide, [hint[0]], element[0]);
-                element.fire("hinthide", {
+                this._fireEvent("hint-hide", {
                     hint: hint[0]
                 });
 

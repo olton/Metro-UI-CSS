@@ -157,13 +157,12 @@
                             })
                     });
                 }
-                Utils.exec(o.onStaticSet, null, element[0]);
-                element.fire("staticset");
+
+                this._fireEvent("static-set");
             }
             if (!Utils.mediaExist(o.static)) {
                 element.removeClass("static");
-                Utils.exec(o.onStaticLoss, null, element[0]);
-                element.fire("staticloss");
+                this._fireEvent("static-loss");
             }
         },
 
@@ -190,8 +189,7 @@
                     });
             }
 
-            Utils.exec(o.onOpen, null, element[0]);
-            element.fire("open");
+            this._fireEvent("open");
         },
 
         close: function(){
@@ -213,8 +211,7 @@
                     });
             }
 
-            Utils.exec(o.onClose, null, element[0]);
-            element.fire("close");
+            this._fireEvent("close");
         },
 
         toggle: function(){
@@ -223,8 +220,8 @@
             } else {
                 this.open();
             }
-            Utils.exec(this.options.onToggle, null, this.element[0]);
-            this.element.fire("toggle");
+
+            this._fireEvent("toggle");
         },
 
         changeAttribute: function(){

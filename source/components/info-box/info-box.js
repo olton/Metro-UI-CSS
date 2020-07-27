@@ -159,10 +159,10 @@
                 visibility: "visible"
             });
 
-            Utils.exec(o.onOpen, null, element[0]);
-            element.fire("open");
+            this._fireEvent("open");
 
             element.data("open", true);
+
             if (parseInt(o.autoHide) > 0) {
                 setTimeout(function(){
                     that.close();
@@ -182,8 +182,7 @@
                 top: "100%"
             });
 
-            Utils.exec(o.onClose, null, element[0]);
-            element.fire("close");
+            this._fireEvent("close");
 
             element.data("open", false);
 

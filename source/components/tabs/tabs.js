@@ -217,10 +217,9 @@
 
             tab.addClass(o.clsTabsListItemActive);
 
-            Utils.exec(o.onTab, [tab[0]], element[0]);
-            element.fire("tab", {
+            this._fireEvent("tab", {
                 tab: tab[0]
-            })
+            });
         },
 
         next: function(){

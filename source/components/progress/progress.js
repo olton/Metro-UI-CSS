@@ -1,7 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
     var ProgressDefaultConfig = {
         progressDeferred: 0,
         showValue: false,
@@ -140,21 +139,21 @@
                 }
             }
 
-            Utils.exec(o.onValueChange, [this.value], element[0]);
-            element.fire("valuechange", {
-                vsl: this.value
+            this._fireEvent("value-change", {
+                val: this.value
             });
 
             if (this.value === 100) {
-                Utils.exec(o.onComplete, [this.value], element[0]);
-                element.fire("complete", {
+
+                this._fireEvent("complete", {
                     val: this.value
                 });
+
             }
         },
 
         buff: function(v){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
 
             if (v === undefined) {
                 return that.buffer;
@@ -170,14 +169,12 @@
 
             bar.css("width", this.buffer + "%");
 
-            Utils.exec(o.onBufferChange, [this.buffer], element[0]);
-            element.fire("bufferchange", {
+            this._fireEvent("buffer-change", {
                 val: this.buffer
             });
 
             if (this.buffer === 100) {
-                Utils.exec(o.onBuffered, [this.buffer], element[0]);
-                element.fire("buffered", {
+                this._fireEvent("buffered", {
                     val: this.buffer
                 });
             }

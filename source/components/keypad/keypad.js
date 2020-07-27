@@ -213,21 +213,24 @@
                         that._setKeysPosition();
                     }
 
-                    Utils.exec(o.onKey, [key.data('key'), that.value], element[0]);
-                    element.fire("key", {
+                    that._fireEvent("key", {
                         key: key.data("key"),
                         val: that.value
                     });
+
                 } else {
                     if (key.data('key') === '&times;') {
                         that.value = "";
-                        Utils.exec(o.onClear, null, element[0]);
-                        element.fire("clear");
+
+                        that._fireEvent("clear");
+
                     }
                     if (key.data('key') === '&larr;') {
                         that.value = (that.value.substring(0, that.value.length - 1));
-                        Utils.exec(o.onBackspace, [that.value], element[0]);
-                        element.fire("backspace");
+
+                        that._fireEvent("backspace", {
+                            val: that.value
+                        });
                     }
                 }
 
@@ -277,14 +280,14 @@
         },
 
         shuffle: function(){
-            var element = this.element, o = this.options;
+            var o = this.options;
             for (var i = 0; i < o.shuffleCount; i++) {
                 this.keys_to_work = this.keys_to_work.shuffle();
             }
-            Utils.exec(o.onShuffle, [this.keys_to_work, this.keys], element[0]);
-            element.fire("shuffle", {
-                keys: this.keys,
-                keysToWork: this.keys_to_work
+
+            this._fireEvent("shuffle", {
+                keysToWork: this.keys_to_work,
+                keys: this.keys
             });
         },
 

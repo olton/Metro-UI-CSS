@@ -180,8 +180,8 @@
             var timeout = 0;
             if (o.onHide !== Metro.noop) {
                 timeout = 500;
-                Utils.exec(o.onHide, null, element[0]);
-                element.fire("hide");
+
+                this._fireEvent("hide");
             }
             setTimeout(function(){
                 Utils.exec(callback, null, element[0]);
@@ -193,13 +193,14 @@
         },
 
         show: function(callback){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element;
             this.setPosition();
             element.css({
                 visibility: "visible"
             });
-            Utils.exec(o.onShow, [that], element[0]);
-            element.fire("show");
+
+            this._fireEvent("show");
+
             Utils.exec(callback, null, element[0]);
         },
 
@@ -259,7 +260,7 @@
         },
 
         close: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
 
             if (!Utils.bool(o.leaveOverlayOnClose)) {
                 $('body').find('.overlay').remove();
@@ -267,8 +268,9 @@
 
             this.hide(function(){
                 element.data("open", false);
-                Utils.exec(o.onClose, [element], element[0]);
-                element.fire("close");
+
+                that._fireEvent("close")
+
                 if (o.removeOnClose === true) {
                     element.remove();
                 }
@@ -288,8 +290,9 @@
             }
 
             this.show(function(){
-                Utils.exec(o.onOpen, [element], element[0]);
-                element.fire("open");
+
+                that._fireEvent("open");
+
                 element.data("open", true);
                 if (parseInt(o.autoHide) > 0) {
                     setTimeout(function(){

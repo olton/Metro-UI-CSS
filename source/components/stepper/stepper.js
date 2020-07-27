@@ -1,7 +1,6 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
     var StepperDefaultConfig = {
         stepperDeferred: 0,
         view: Metro.stepperView.SQUARE, // square, cycle, diamond
@@ -70,8 +69,8 @@
                 var step = $(this).data("step");
                 if (o.stepClick === true) {
                     that.toStep(step);
-                    Utils.exec(o.onStepClick, [step], element[0]);
-                    element.fire("stepclick", {
+
+                    that._fireEvent("step-click", {
                         step: step
                     });
                 }
@@ -114,6 +113,7 @@
         toStep: function(step){
             var element = this.element, o = this.options;
             var target = $(element.find(".step").get(step - 1));
+            var prevStep = this.current;
 
             if (target.length === 0) {
                 return ;
@@ -129,10 +129,11 @@
             target.addClass("current").addClass(o.clsCurrent);
             target.prevAll().addClass("complete").addClass(o.clsComplete);
 
-            Utils.exec(o.onStep, [this.current], element[0]);
-            element.fire("step", {
-                step: this.current
+            this._fireEvent("step", {
+                step: this.current,
+                prev: prevStep
             });
+
         },
 
         changeAttribute: function(){

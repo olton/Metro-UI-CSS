@@ -191,7 +191,7 @@
         },
 
         _createEvents: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
 
             element.on(Metro.events.startAll, function(e){
                 var tile = $(this);
@@ -220,8 +220,7 @@
                         }, 100);
                     }
 
-                    Utils.exec(o.onClick, [side], element[0]);
-                    element.fire("click", {
+                    that._fireEvent("click", {
                         side: side
                     });
                 }
