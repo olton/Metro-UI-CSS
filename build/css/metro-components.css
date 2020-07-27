@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/07/2020 13:16:45
+ * Built at 27/07/2020 14:42:52
  * Licensed under MIT
  */
 .accordion {
@@ -13354,9 +13354,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   background-color: #ffffff;
   border-color: #ffffff;
   left: auto;
-  -webkit-transform: translateX(1.625rem) translateY(-50%);
-      -ms-transform: translateX(1.625rem) translateY(-50%);
-          transform: translateX(1.625rem) translateY(-50%);
+  -webkit-transform: translateX(30px) translateY(-50%);
+      -ms-transform: translateX(30px) translateY(-50%);
+          transform: translateX(30px) translateY(-50%);
 }
 .switch input[type="checkbox"]:disabled ~ .check {
   background-color: #e9e9e9;
@@ -13411,7 +13411,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: absolute;
   color: inherit;
   left: 16px;
-  width: 24px;
+  width: 26px;
   top: -2px;
   line-height: 20px;
   font-size: 10px;
