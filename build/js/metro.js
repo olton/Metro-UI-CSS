@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/07/2020 14:42:52
+ * Built at 30/07/2020 18:13:46
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "27/07/2020 14:42:52",
+        compileTime: "30/07/2020 18:13:46",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -15797,7 +15797,8 @@ $.noConflict = function() {
         },
 
         _move: function(e){
-            var isMin = $(e.target).hasClass("marker-min");
+            var target = $(e.target).closest(".marker");
+            var isMin = target.hasClass("marker-min");
             var slider = this.slider;
             var offset = slider.offset(),
                 marker_size = slider.find(".marker").outerWidth(),
