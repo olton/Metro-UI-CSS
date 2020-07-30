@@ -237,7 +237,8 @@
         },
 
         _move: function(e){
-            var isMin = $(e.target).hasClass("marker-min");
+            var target = $(e.target).closest(".marker");
+            var isMin = target.hasClass("marker-min");
             var slider = this.slider;
             var offset = slider.offset(),
                 marker_size = slider.find(".marker").outerWidth(),
