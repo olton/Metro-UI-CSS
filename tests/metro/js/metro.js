@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/08/2020 12:14:44
+ * Built at 03/08/2020 12:31:02
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "03/08/2020 12:14:44",
+        compileTime: "03/08/2020 12:31:02",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18354,6 +18354,12 @@ $.noConflict = function() {
                         .attr("type", "button")
                         .html(item.html);
 
+                    if (item.attr && typeof item.attr === 'object') {
+                        $.each(item.attr, function(k, v){
+                            customButton.attr($.dashedName(k), v);
+                        });
+                    }
+
                     customButton.data("action", item.onclick);
 
                     customButton.appendTo(buttons);
@@ -21378,6 +21384,12 @@ $.noConflict = function() {
                     .addClass(item.cls)
                     .attr("tabindex", -1)
                     .html(item.html);
+
+                if (item.attr && typeof item.attr === 'object') {
+                    $.each(item.attr, function(k, v){
+                        customButton.attr($.dashedName(k), v);
+                    });
+                }
 
                 customButton.data("action", item.onclick);
 
