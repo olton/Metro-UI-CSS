@@ -12,6 +12,7 @@
 + [x] Checkbox: add API method `toggle( state )`. The `state` must be `-1` (indeterminate), `0` (unchecked), `1` (checked) or `undefined` (toggle between checked and unchecked), issue #1586 
 + [x] Switch: add API method `toggle( state )`. The `state` must be `0` (unchecked), `1` (checked) or `undefined` (toggle between checked and unchecked), issue #1586
 + [x] Double slider: fix right-hand button moves when grabbing the left-hand hint, issue #1591
++ [x] Window: added property `attr` to custom button definition. This attribute must be a `object` with pairs `key: value` where `key` - attribute name, `value` - attribute value, issue #1592   
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

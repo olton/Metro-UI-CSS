@@ -13,12 +13,29 @@
 
 <button class="button" onclick="createWindow()">Create window</button>
 
-<div data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart">
+<div data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart" data-custom-buttons="customButtons">
     This is a simple window
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    var customButtonHandler = function(btn){
+        console.log($(btn).attr("data-custom-id"));
+        console.log($(btn).attr("data-special-attr"));
+    }
+
+    var customButtons = [
+        {
+            html: "<span class='mif-cog'></span>",
+            onclick: customButtonHandler,
+            cls: "alert",
+            attr: {
+                "data-custom-id": "myID_1",
+                dataSpecialAttr: "additional attribute"
+            }
+        }
+    ];
+
     function createWindow() {
         Metro.window.create({
             cls         : "p-0",
