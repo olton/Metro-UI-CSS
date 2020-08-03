@@ -143,6 +143,12 @@
                         .attr("type", "button")
                         .html(item.html);
 
+                    if (item.attr && typeof item.attr === 'object') {
+                        $.each(item.attr, function(k, v){
+                            customButton.attr($.dashedName(k), v);
+                        });
+                    }
+
                     customButton.data("action", item.onclick);
 
                     customButton.appendTo(buttons);
