@@ -536,6 +536,7 @@
                     this.elem = el;
                     this.element = $(el);
                     this.options = $.extend( {}, defaults, options );
+                    this.component = this.elem;
 
                     this._setOptionsFromDOM();
                     this._runtime();
@@ -610,6 +611,14 @@
                         element.fire(event.toLowerCase(), data);
 
                     return Utils.exec(o["on"+event], _data, element[0]);
+                },
+
+                getComponent: function(){
+                    return this.component;
+                },
+
+                getComponentName: function(){
+                    return this.name;
                 }
             }, compObj);
 

@@ -12,8 +12,9 @@
 <h1>Window test page</h1>
 
 <button class="button" onclick="createWindow()">Create window</button>
+<button class="button" onclick="getPosition()">Get position</button>
 
-<div data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart" data-custom-buttons="customButtons">
+<div id="win1" data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart" data-custom-buttons="customButtons">
     This is a simple window
 </div>
 
@@ -58,6 +59,11 @@
 
     function dragStart(pos, context) {
         console.log(pos, context);
+    }
+
+    function getPosition(){
+        var pos = Metro.getPlugin("#win1", "window").win.pos();
+        console.log(pos);
     }
 
     $(function(){
