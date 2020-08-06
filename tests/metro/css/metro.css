@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/08/2020 12:31:02
+ * Built at 06/08/2020 19:15:02
  * Licensed under MIT
  */
 *,
@@ -30252,6 +30252,121 @@ input.input-small:-ms-input-placeholder {
 }
 .keypad .key.service-key {
   background-color: #f8f8f8;
+}
+.lightbox-overlay {
+  background-color: rgba(0, 0, 0, 0.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+}
+.lightbox {
+  z-index: 2001;
+  position: fixed;
+  background: transparent;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.lightbox__closer {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  background: #f8f8f8;
+  color: #1d1d1d;
+}
+.lightbox__closer * {
+  line-height: 32px;
+  font-size: 20px;
+  height: 20px;
+  width: 20px;
+}
+.lightbox__prev,
+.lightbox__next {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f8f8f8;
+  color: #1d1d1d;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: block;
+  position: relative;
+  margin: 10px;
+}
+.lightbox__prev *,
+.lightbox__next * {
+  line-height: 48px;
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+}
+.lightbox__prev,
+.lightbox__next,
+.lightbox__closer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+}
+.lightbox__image {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}
+.lightbox__image-portrait {
+  height: calc(100% - 80px);
+}
+.lightbox__image-landscape {
+  width: calc(100% - 80px);
+  max-height: calc(100% - 80px);
+}
+.lightbox__prev {
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1;
+}
+.lightbox__next {
+  -webkit-box-ordinal-group: 4;
+      -ms-flex-order: 3;
+          order: 3;
+}
+.lightbox__image {
+  -webkit-box-ordinal-group: 3;
+      -ms-flex-order: 2;
+          order: 2;
 }
 .listview {
   position: relative;

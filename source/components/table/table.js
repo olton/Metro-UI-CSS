@@ -260,7 +260,7 @@
                 })
             }
 
-            this.component = table_component;
+            this.component = table_component[0];
 
             if (o.source !== null) {
 

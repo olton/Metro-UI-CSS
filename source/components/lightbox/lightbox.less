@@ -1,0 +1,90 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.lightbox-overlay {
+    background-color: rgba(0,0,0,.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: @zindex-overlay;
+}
+
+.lightbox {
+    z-index: @zindex-overlay + 1;
+    position: fixed;
+    background: transparent;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.lightbox__closer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: @light;
+    color: @dark;
+
+    * {
+        line-height: 32px;
+        font-size: 20px;
+        height: 20px;
+        width: 20px;
+    }
+}
+
+.lightbox__prev, .lightbox__next {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: @light;
+    color: @dark;
+    flex-grow: 0;
+    flex-shrink: 0;
+    display: block;
+    position: relative;
+    margin: 10px;
+
+    * {
+        line-height: 48px;
+        font-size: 40px;
+        height: 40px;
+        width: 40px;
+    }
+}
+
+.lightbox__prev, .lightbox__next, .lightbox__closer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.lightbox__image {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    &-portrait {
+        height: ~"calc(100% - 80px)";
+    }
+
+    &-landscape {
+        width: ~"calc(100% - 80px)";
+        max-height: ~"calc(100% - 80px)";
+    }
+}
+
+.lightbox__prev {order: 1;}
+.lightbox__next {order: 3;}
+.lightbox__image {order: 2;}

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/08/2020 12:31:02
+ * Built at 06/08/2020 10:30:26
  * Licensed under MIT
  */
 .accordion {
@@ -7712,6 +7712,60 @@ input.input-small:-ms-input-placeholder {
 }
 .keypad .key.service-key {
   background-color: #f8f8f8;
+}
+.lightbox-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+}
+.lightbox {
+  z-index: 2001;
+  position: fixed;
+  background: transparent;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+}
+.lightbox__close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 32px;
+  height: 32px;
+  background: #f8f8f8;
+  color: #1d1d1d;
+}
+.lightbox__prev,
+.lightbox__next {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f8f8f8;
+  color: #1d1d1d;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  display: block;
+  position: relative;
+}
+.lightbox__image-wrapper {
+  width: 100%;
+  display: block;
+  position: relative;
 }
 .listview {
   position: relative;

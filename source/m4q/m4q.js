@@ -1,5 +1,5 @@
 /*
- * m4q v1.0.7, (https://github.com/olton/m4q.git)
+ * m4q v1.0.8, (https://github.com/olton/m4q.git)
  * Copyright 2018 - 2020 by Sergey Pimenov
  * Helper for DOM manipulation, animation, and ajax routines.
  * Licensed under MIT
@@ -604,7 +604,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.7. Built at 25/07/2020 18:43:54";
+var m4qVersion = "v1.0.8. Built at 06/08/2020 18:05:15";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -3856,14 +3856,14 @@ $.extend({
     hide: function(el, cb){
         var $el = $(el);
 
-        if (el.style.display) {
-            $el.origin('display', (el.style.display ? el.style.display : getComputedStyle(el, null).display));
-        }
+        $el.origin('display', (el.style.display ? el.style.display : getComputedStyle(el, null).display));
         el.style.display = 'none';
+
         if (typeof cb === "function") {
             $.bind(cb, el);
             cb.call(el, arguments);
         }
+
         return this;
     },
 

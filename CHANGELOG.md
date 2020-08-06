@@ -2,6 +2,7 @@
 #### M4Q
 + [x] M4Q: upd to 1.0.8 
 + [x] M4Q Constructor: add short-tag for selecting by `data-role` with `$('@rolename')` 
++ [x] M4Q Visibility: fix method `hide` for detecting initial `display` value
 
 #### Metro 4
 + [x] Components: switch to `Component._fireEvent(...)` method for firing component events `data-on-*` 
@@ -15,6 +16,7 @@
 + [x] Window: added property `attr` to custom button definition. This attribute must be a `object` with pairs `key: value` where `key` - attribute name, `value` - attribute value, issue #1592
 + [x] Input: added property `attr` to custom button definition
 + [x] Panel: added property `attr` to custom button definition
++ [x] Lightbox: new component to create a modal image gallery
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
