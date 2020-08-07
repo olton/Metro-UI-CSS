@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/08/2020 10:23:06
+ * Built at 07/08/2020 10:41:53
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "07/08/2020 10:23:06",
+        compileTime: "07/08/2020 10:41:53",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19072,16 +19072,25 @@ $.noConflict = function() {
     });
 }(Metro, m4q));
 
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
     var LightboxDefaultConfig = {
-        closeIcon: "<span class='default-icon-cross'>",
-        prevIcon: "<span class='default-icon-chevron-left'>",
-        nextIcon: "<span class='default-icon-chevron-right'>",
         loop: true,
         source: "img",
+
+        iconClose: "<span class='default-icon-cross'>",
+        iconPrev: "<span class='default-icon-chevron-left'>",
+        iconNext: "<span class='default-icon-chevron-right'>",
+
+        clsNext: "",
+        clsPrev: "",
+        clsClose: "",
+        clsImage: "",
+        clsImageContainer: "",
+        clsImageWrapper: "",
+        clsLightbox: "",
+
         onLightboxCreate: Metro.noop
     };
 
@@ -19106,7 +19115,7 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
+            var o = this.options;
 
             if (!o.source) {
                 o.source = "img";
@@ -19119,7 +19128,7 @@ $.noConflict = function() {
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            var o = this.options;
             var lightbox, overlay;
 
             overlay = $(".lightbox-overlay");
@@ -19128,12 +19137,12 @@ $.noConflict = function() {
                 overlay = $("<div>").addClass("lightbox-overlay").appendTo("body").hide();
             }
 
-            lightbox = $("<div>").addClass("lightbox").appendTo("body").hide();
+            lightbox = $("<div>").addClass("lightbox").addClass(o.clsLightbox).appendTo("body").hide();
 
-            $("<span>").addClass("lightbox__prev").html(o.prevIcon).appendTo(lightbox);
-            $("<span>").addClass("lightbox__next").html(o.nextIcon).appendTo(lightbox);
-            $("<span>").addClass("lightbox__closer").html(o.closeIcon).appendTo(lightbox);
-            $("<div>").addClass("lightbox__image").appendTo(lightbox);
+            $("<span>").addClass("lightbox__prev").addClass(o.clsPrev).html(o.iconPrev).appendTo(lightbox);
+            $("<span>").addClass("lightbox__next").addClass(o.clsNext).html(o.iconNext).appendTo(lightbox);
+            $("<span>").addClass("lightbox__closer").addClass(o.clsClose).html(o.iconClose).appendTo(lightbox);
+            $("<div>").addClass("lightbox__image").addClass(o.clsImageContainer).appendTo(lightbox);
 
             this.component = lightbox[0];
             this.lightbox = lightbox;
@@ -19162,7 +19171,7 @@ $.noConflict = function() {
         },
 
         _setupItems: function(){
-            var that = this, element = this.element, o = this.options;
+            var o = this.options;
             var items = $(o.source);
 
             if (items.length === 0) {
@@ -19173,11 +19182,16 @@ $.noConflict = function() {
         },
 
         _goto: function(el){
+            var o = this.options;
             var $el = $(el);
             var isImage = el.tagName === "IMG";
             var img = $("<img>"), src;
             var imageContainer = this.lightbox.find(".lightbox__image").html("");
-            var imageWrapper = $("<div>").addClass("lightbox__image-wrapper").attr("data-title", $el.attr("alt")).appendTo(imageContainer);
+            var imageWrapper = $("<div>")
+                .addClass("lightbox__image-wrapper")
+                .addClass(o.clsImageWrapper)
+                .attr("data-title", $el.attr("alt"))
+                .appendTo(imageContainer);
 
             this.current = el;
 
@@ -19186,7 +19200,7 @@ $.noConflict = function() {
                 img.attr("src", src);
                 img[0].onload = function(){
                     var port = this.height > this.width;
-                    img.addClass(port ? "lightbox__image-portrait" : "lightbox__image-landscape");
+                    img.addClass(port ? "lightbox__image-portrait" : "lightbox__image-landscape").addClass(o.clsImage);
                     img.attr("alt", $el.attr("alt"));
                     img.appendTo(imageWrapper);
 
@@ -19260,7 +19274,7 @@ $.noConflict = function() {
             this.lightbox.hide();
         },
 
-        changeAttribute: function(attr, val){
+        changeAttribute: function(){
         },
 
         destroy: function(){
