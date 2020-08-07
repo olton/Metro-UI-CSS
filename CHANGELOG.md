@@ -17,6 +17,7 @@
 + [x] Input: added property `attr` to custom button definition
 + [x] Panel: added property `attr` to custom button definition
 + [x] Lightbox: new component to create a modal image gallery
++ [x] ImageGrid: new component to create a simple beautiful image grid
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
