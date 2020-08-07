@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/08/2020 19:22:47
+ * Built at 07/08/2020 10:23:06
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "06/08/2020 19:22:47",
+        compileTime: "07/08/2020 10:23:06",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19081,7 +19081,7 @@ $.noConflict = function() {
         prevIcon: "<span class='default-icon-chevron-left'>",
         nextIcon: "<span class='default-icon-chevron-right'>",
         loop: true,
-        source: null,
+        source: "img",
         onLightboxCreate: Metro.noop
     };
 
@@ -19107,6 +19107,10 @@ $.noConflict = function() {
 
         _create: function(){
             var that = this, element = this.element, o = this.options;
+
+            if (!o.source) {
+                o.source = "img";
+            }
 
             this._createStructure();
             this._createEvents();
@@ -19134,16 +19138,13 @@ $.noConflict = function() {
             this.component = lightbox[0];
             this.lightbox = lightbox;
             this.overlay = overlay;
-
-            this._setupItems();
         },
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
             var lightbox = $(this.component);
-            var items = $(this.items);
 
-            items.on(Metro.events.click, function(){
+            element.on(Metro.events.click, o.source, function(){
                 that.open(this);
             });
 
@@ -19162,7 +19163,7 @@ $.noConflict = function() {
 
         _setupItems: function(){
             var that = this, element = this.element, o = this.options;
-            var items = o.source ? $(o.source) : element.children();
+            var items = $(o.source);
 
             if (items.length === 0) {
                 return ;
@@ -19175,7 +19176,8 @@ $.noConflict = function() {
             var $el = $(el);
             var isImage = el.tagName === "IMG";
             var img = $("<img>"), src;
-            var imageWrapper = this.lightbox.find(".lightbox__image").html("");
+            var imageContainer = this.lightbox.find(".lightbox__image").html("");
+            var imageWrapper = $("<div>").addClass("lightbox__image-wrapper").attr("data-title", $el.attr("alt")).appendTo(imageContainer);
 
             this.current = el;
 
@@ -19185,7 +19187,12 @@ $.noConflict = function() {
                 img[0].onload = function(){
                     var port = this.height > this.width;
                     img.addClass(port ? "lightbox__image-portrait" : "lightbox__image-landscape");
+                    img.attr("alt", $el.attr("alt"));
                     img.appendTo(imageWrapper);
+
+                    // setTimeout(function(){
+                    //     img.addClass("showing");
+                    // }, 100);
                 }
             }
         },
@@ -19236,6 +19243,9 @@ $.noConflict = function() {
 
         open: function(el){
             var lightbox = $(this.component), overlay = $(this.overlay);
+
+
+            this._setupItems();
 
             this._goto(el);
 
