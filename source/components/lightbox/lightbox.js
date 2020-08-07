@@ -98,8 +98,8 @@
         },
 
         _setupItems: function(){
-            var o = this.options;
-            var items = $(o.source);
+            var element = this.element, o = this.options;
+            var items = element.find(o.source);
 
             if (items.length === 0) {
                 return ;
@@ -120,6 +120,13 @@
                 .attr("data-title", $el.attr("alt"))
                 .appendTo(imageContainer);
 
+            var activity = $("<div>").appendTo(imageWrapper);
+
+            Metro.makePlugin(activity, "activity", {
+                type: "cycle",
+                style: "color"
+            });
+
             this.current = el;
 
             if (isImage) {
@@ -130,7 +137,7 @@
                     img.addClass(port ? "lightbox__image-portrait" : "lightbox__image-landscape").addClass(o.clsImage);
                     img.attr("alt", $el.attr("alt"));
                     img.appendTo(imageWrapper);
-
+                    activity.remove();
                     // setTimeout(function(){
                     //     img.addClass("showing");
                     // }, 100);

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/08/2020 14:17:15
+ * Built at 07/08/2020 15:29:34
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "07/08/2020 14:17:15",
+        compileTime: "07/08/2020 15:29:34",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19252,8 +19252,8 @@ $.noConflict = function() {
         },
 
         _setupItems: function(){
-            var o = this.options;
-            var items = $(o.source);
+            var element = this.element, o = this.options;
+            var items = element.find(o.source);
 
             if (items.length === 0) {
                 return ;
@@ -19274,6 +19274,13 @@ $.noConflict = function() {
                 .attr("data-title", $el.attr("alt"))
                 .appendTo(imageContainer);
 
+            var activity = $("<div>").appendTo(imageWrapper);
+
+            Metro.makePlugin(activity, "activity", {
+                type: "cycle",
+                style: "color"
+            });
+
             this.current = el;
 
             if (isImage) {
@@ -19284,7 +19291,7 @@ $.noConflict = function() {
                     img.addClass(port ? "lightbox__image-portrait" : "lightbox__image-landscape").addClass(o.clsImage);
                     img.attr("alt", $el.attr("alt"));
                     img.appendTo(imageWrapper);
-
+                    activity.remove();
                     // setTimeout(function(){
                     //     img.addClass("showing");
                     // }, 100);
