@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/08/2020 19:22:47
+ * Built at 07/08/2020 10:23:06
  * Licensed under MIT
  */
 *,
@@ -30287,7 +30287,7 @@ input.input-small:-ms-input-placeholder {
   right: 10px;
   width: 32px;
   height: 32px;
-  background: #f8f8f8;
+  background: rgba(248, 248, 248, 0.5);
   color: #1d1d1d;
 }
 .lightbox__closer * {
@@ -30301,7 +30301,7 @@ input.input-small:-ms-input-placeholder {
   width: 48px;
   height: 48px;
   border-radius: 50%;
-  background: #f8f8f8;
+  background: rgba(248, 248, 248, 0.5);
   color: #1d1d1d;
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
@@ -30309,8 +30309,10 @@ input.input-small:-ms-input-placeholder {
   -ms-flex-negative: 0;
       flex-shrink: 0;
   display: block;
-  position: relative;
-  margin: 10px;
+  position: absolute;
+  top: 50%;
+  margin-top: -24px;
+  left: 20px;
 }
 .lightbox__prev *,
 .lightbox__next * {
@@ -30318,6 +30320,10 @@ input.input-small:-ms-input-placeholder {
   font-size: 40px;
   height: 40px;
   width: 40px;
+}
+.lightbox__next {
+  left: auto;
+  right: 20px;
 }
 .lightbox__prev,
 .lightbox__next,
@@ -30332,6 +30338,7 @@ input.input-small:-ms-input-placeholder {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
+  z-index: 2;
 }
 .lightbox__image {
   width: 100%;
@@ -30345,13 +30352,30 @@ input.input-small:-ms-input-placeholder {
       -ms-flex-pack: center;
           justify-content: center;
   position: relative;
+  z-index: 1;
 }
-.lightbox__image-portrait {
-  height: calc(100% - 80px);
+.lightbox__image-wrapper {
+  display: block;
+  width: auto;
+  max-height: calc(100vh - 80px);
+  max-width: calc(100vw - 20px);
 }
-.lightbox__image-landscape {
-  width: calc(100% - 80px);
-  max-height: calc(100% - 80px);
+.lightbox__image-wrapper::before {
+  content: attr(data-title);
+  position: absolute;
+  color: #ffffff;
+  top: 100%;
+  left: 0;
+  right: 0;
+}
+.lightbox__image-wrapper.no-title::before {
+  display: none;
+}
+.lightbox__image-wrapper img {
+  display: block;
+  width: auto;
+  max-height: calc(100vh - 80px);
+  max-width: calc(100vw - 20px);
 }
 .lightbox__prev {
   -webkit-box-ordinal-group: 2;
