@@ -10,17 +10,9 @@
 <body class="m4-cloak">
     <div class="container">
         <h1>ImageGrid test page</h1>
-<!--
-        <div class="mt-10 mb-10">
-            <div class="place-right mt-5">
-                <button class="button alert" onclick="enableGrid()">Enable grid</button>
-            </div>
-            <span class="h1">ImageGrid test page</span>
-        </div>
--->
 
         <div class="example" id="example-1">
-            <div id="grid" data-role="image-grid, lightbox" data-cls-image-grid-image="border-radius-10">
+            <div id="grid" data-role="image-grid, lightbox" data-use-background="false" data-cls-image-grid-item="border bd-white border-1" data-source="img">
                 <img src="../images/thumb-1.jpg" alt="Image 1" data-original="../images/1.jpg">
                 <img src="../images/thumb-2.jpg" alt="Image 2" data-original="../images/2.jpg">
                 <img src="../images/thumb-3.jpg" alt="Image 3" data-original="../images/3.jpg">
@@ -43,9 +35,6 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
-    // function enableGrid(){
-    //     $("#grid").imagegrid()
-    // }
 </script>
 </body>
 </html>

@@ -18,6 +18,7 @@
         clsImageWrapper: "",
         clsLightbox: "",
 
+        onDrawImage: Metro.noop,
         onLightboxCreate: Metro.noop
     };
 
@@ -109,18 +110,21 @@
         },
 
         _goto: function(el){
-            var o = this.options;
+            var that = this, o = this.options;
             var $el = $(el);
-            var isImage = el.tagName === "IMG";
             var img = $("<img>"), src;
-            var imageContainer = this.lightbox.find(".lightbox__image").html("");
-            var imageWrapper = $("<div>")
+            var imageContainer, imageWrapper, activity;
+
+            imageContainer = this.lightbox.find(".lightbox__image");
+
+            imageContainer.find(".lightbox__image-wrapper").remove();
+            imageWrapper = $("<div>")
                 .addClass("lightbox__image-wrapper")
                 .addClass(o.clsImageWrapper)
-                .attr("data-title", $el.attr("alt"))
+                .attr("data-title", ($el.attr("alt") || ""))
                 .appendTo(imageContainer);
 
-            var activity = $("<div>").appendTo(imageWrapper);
+            activity = $("<div>").appendTo(imageWrapper);
 
             Metro.makePlugin(activity, "activity", {
                 type: "cycle",
@@ -129,7 +133,7 @@
 
             this.current = el;
 
-            if (isImage) {
+            if (el.tagName === "IMG" || el.tagName === "DIV") {
                 src = $el.attr("data-original") || $el.attr("src");
                 img.attr("src", src);
                 img[0].onload = function(){
@@ -138,9 +142,10 @@
                     img.attr("alt", $el.attr("alt"));
                     img.appendTo(imageWrapper);
                     activity.remove();
-                    // setTimeout(function(){
-                    //     img.addClass("showing");
-                    // }, 100);
+                    that._fireEvent("draw-image", {
+                        image: img[0],
+                        item: imageWrapper[0]
+                    });
                 }
             }
         },
@@ -190,15 +195,12 @@
         },
 
         open: function(el){
-            var lightbox = $(this.component), overlay = $(this.overlay);
-
-
             this._setupItems();
 
             this._goto(el);
 
-            overlay.show();
-            lightbox.show();
+            this.overlay.show();
+            this.lightbox.show();
 
             return this;
         },
