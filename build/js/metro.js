@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/08/2020 11:20:03
+ * Built at 08/08/2020 14:02:45
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "08/08/2020 11:20:03",
+        compileTime: "08/08/2020 14:02:45",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17544,6 +17544,7 @@ $.noConflict = function() {
     var ImageGridDefaultConfig = {
         useBackground: false,
         backgroundSize: "cover",
+        backgroundPosition: "top left",
 
         clsImageGrid: "",
         clsImageGridItem: "",
@@ -17615,10 +17616,15 @@ $.noConflict = function() {
                     el.addClass(o.clsImageGridImage).appendTo(wrapper);
 
                     if (o.useBackground) {
-                        wrapper.css({
-                            background: "url("+src+") top left no-repeat",
-                            backgroundSize: o.backgroundSize
-                        }).attr("data-original", el.attr("data-original") || src);
+                        wrapper
+                            .css({
+                                background: "url("+src+")",
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: o.backgroundSize,
+                                backgroundPosition: o.backgroundPosition
+                            })
+                            .attr("data-original", el.attr("data-original") || src)
+                            .attr("data-title", el.attr("alt") || el.attr("data-title") || "");
                         el.visible(false);
                     }
 
@@ -19307,7 +19313,7 @@ $.noConflict = function() {
             imageWrapper = $("<div>")
                 .addClass("lightbox__image-wrapper")
                 .addClass(o.clsImageWrapper)
-                .attr("data-title", ($el.attr("alt") || ""))
+                .attr("data-title", ($el.attr("alt") || $el.attr("data-title") || ""))
                 .appendTo(imageContainer);
 
             activity = $("<div>").appendTo(imageWrapper);
