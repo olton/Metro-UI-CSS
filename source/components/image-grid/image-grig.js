@@ -6,6 +6,7 @@
     var ImageGridDefaultConfig = {
         useBackground: false,
         backgroundSize: "cover",
+        backgroundPosition: "top left",
 
         clsImageGrid: "",
         clsImageGridItem: "",
@@ -77,10 +78,15 @@
                     el.addClass(o.clsImageGridImage).appendTo(wrapper);
 
                     if (o.useBackground) {
-                        wrapper.css({
-                            background: "url("+src+") top left no-repeat",
-                            backgroundSize: o.backgroundSize
-                        }).attr("data-original", el.attr("data-original") || src);
+                        wrapper
+                            .css({
+                                background: "url("+src+")",
+                                backgroundRepeat: "no-repeat",
+                                backgroundSize: o.backgroundSize,
+                                backgroundPosition: o.backgroundPosition
+                            })
+                            .attr("data-original", el.attr("data-original") || src)
+                            .attr("data-title", el.attr("alt") || el.attr("data-title") || "");
                         el.visible(false);
                     }
 

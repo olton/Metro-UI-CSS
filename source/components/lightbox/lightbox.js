@@ -121,7 +121,7 @@
             imageWrapper = $("<div>")
                 .addClass("lightbox__image-wrapper")
                 .addClass(o.clsImageWrapper)
-                .attr("data-title", ($el.attr("alt") || ""))
+                .attr("data-title", ($el.attr("alt") || $el.attr("data-title") || ""))
                 .appendTo(imageContainer);
 
             activity = $("<div>").appendTo(imageWrapper);
