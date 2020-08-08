@@ -45,7 +45,7 @@
 
 ### 4.3.8
 #### M4Q
-+ [x] Animation: fixed using String.includes for IE11. Change to String.indexOF
++ [x] Animation: fixed using String.includes for IE11. Changed to `String.indexOf`
 + [x] Animation: add operator `/` to `_getRelativeValue()`
 + [x] Events: fix `fire`. Now main is constructor `CustonEvent`, for old - `createEvent`
 + [x] Manipulation: add method `wrap`, `wrapAll`, `wrapInner`. The method puts elements inside the wrapper and return `wrapper(s)`

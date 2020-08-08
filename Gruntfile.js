@@ -371,7 +371,10 @@ module.exports = function(grunt) {
         watch: {
             scripts: {
                 files: watch_files,
-                tasks: tasks
+                tasks: tasks,
+                options: {
+                    spawn: false
+                }
             }
         }
     });

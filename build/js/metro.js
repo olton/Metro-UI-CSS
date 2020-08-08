@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/08/2020 15:29:34
+ * Built at 08/08/2020 11:13:20
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "07/08/2020 15:29:34",
+        compileTime: "08/08/2020 11:13:20",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17537,15 +17537,19 @@ $.noConflict = function() {
     });
 }(Metro, m4q));
 
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
+    var Utils = Metro.utils;
     var ImageGridDefaultConfig = {
+        useBackground: false,
+        backgroundSize: "cover",
+
         clsImageGrid: "",
         clsImageGridItem: "",
         clsImageGridImage: "",
 
+        onItemClick: Metro.noop,
         onDrawItem: Metro.noop,
         onImageGridCreate: Metro.noop
     };
@@ -17568,9 +17572,9 @@ $.noConflict = function() {
         },
 
         _create: function(){
+            this.items = this.element.children("img");
             this._createStructure();
             this._createEvents();
-
             this._fireEvent('image-grid-create');
         },
 
@@ -17583,24 +17587,41 @@ $.noConflict = function() {
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element;
 
+            element.on(Metro.events.click, ".image-grid__item", function(){
+                that._fireEvent("item-click", {
+                    item: this
+                });
+            });
         },
 
         _createItems: function(){
             var that = this, element = this.element, o = this.options;
-            var items = element.children("img");
+            var items = this.items;
+
+            element.clear();
 
             items.each(function(){
                 var el = $(this);
+                var src = this.src;
                 var wrapper = $("<div>").addClass("image-grid__item").addClass(o.clsImageGridItem).appendTo(element);
                 var img = new Image();
 
-                img.src = this.src;
+                img.src = src;
                 img.onload = function(){
                     var port = this.height >= this.width;
                     wrapper.addClass(port ? "image-grid__item-portrait" : "image-grid__item-landscape");
                     el.addClass(o.clsImageGridImage).appendTo(wrapper);
+
+                    if (o.useBackground) {
+                        wrapper.css({
+                            background: "url("+src+") top left no-repeat",
+                            backgroundSize: o.backgroundSize
+                        }).attr("data-original", el.attr("data-original") || src);
+                        el.visible(false);
+                    }
+
                     that._fireEvent("draw-item", {
                         item: wrapper[0],
                         image: el[0]
@@ -17609,7 +17630,18 @@ $.noConflict = function() {
             });
         },
 
-        changeAttribute: function(){
+        changeAttribute: function(attr, val){
+            var o = this.options;
+
+            if (attr === "data-use-background") {
+                o.useBackground = Utils.bool(val);
+                this._createItems();
+            }
+
+            if (attr === "data-background-size") {
+                o.backgroundSize = val;
+                this._createItems();
+            }
         },
 
         destroy: function(){
@@ -19172,6 +19204,7 @@ $.noConflict = function() {
         clsImageWrapper: "",
         clsLightbox: "",
 
+        onDrawImage: Metro.noop,
         onLightboxCreate: Metro.noop
     };
 
@@ -19263,18 +19296,21 @@ $.noConflict = function() {
         },
 
         _goto: function(el){
-            var o = this.options;
+            var that = this, o = this.options;
             var $el = $(el);
-            var isImage = el.tagName === "IMG";
             var img = $("<img>"), src;
-            var imageContainer = this.lightbox.find(".lightbox__image").html("");
-            var imageWrapper = $("<div>")
+            var imageContainer, imageWrapper, activity;
+
+            imageContainer = this.lightbox.find(".lightbox__image");
+
+            imageContainer.find(".lightbox__image-wrapper").remove();
+            imageWrapper = $("<div>")
                 .addClass("lightbox__image-wrapper")
                 .addClass(o.clsImageWrapper)
-                .attr("data-title", $el.attr("alt"))
+                .attr("data-title", ($el.attr("alt") || ""))
                 .appendTo(imageContainer);
 
-            var activity = $("<div>").appendTo(imageWrapper);
+            activity = $("<div>").appendTo(imageWrapper);
 
             Metro.makePlugin(activity, "activity", {
                 type: "cycle",
@@ -19283,7 +19319,7 @@ $.noConflict = function() {
 
             this.current = el;
 
-            if (isImage) {
+            if (el.tagName === "IMG" || el.tagName === "DIV") {
                 src = $el.attr("data-original") || $el.attr("src");
                 img.attr("src", src);
                 img[0].onload = function(){
@@ -19292,9 +19328,10 @@ $.noConflict = function() {
                     img.attr("alt", $el.attr("alt"));
                     img.appendTo(imageWrapper);
                     activity.remove();
-                    // setTimeout(function(){
-                    //     img.addClass("showing");
-                    // }, 100);
+                    that._fireEvent("draw-image", {
+                        image: img[0],
+                        item: imageWrapper[0]
+                    });
                 }
             }
         },
@@ -19344,15 +19381,12 @@ $.noConflict = function() {
         },
 
         open: function(el){
-            var lightbox = $(this.component), overlay = $(this.overlay);
-
-
             this._setupItems();
 
             this._goto(el);
 
-            overlay.show();
-            lightbox.show();
+            this.overlay.show();
+            this.lightbox.show();
 
             return this;
         },
@@ -29758,8 +29792,10 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+
     var Utils = Metro.utils;
-    Metro.template = function(html, options, conf) {
+
+    var Engine = function(html, options, conf) {
         var ReEx, re = '<%(.+?)%>',
             reExp = /(^( )?(var|if|for|else|switch|case|break|{|}|;))(.*)?/g,
             code = 'with(obj) { var r=[];\n',
@@ -29797,13 +29833,7 @@ $.noConflict = function() {
         catch(err) { console.error("'" + err.message + "'", " in \n\nCode:\n", code, "\n"); }
         return result;
     };
-}(Metro, m4q));
 
-(function(Metro, $) {
-    'use strict';
-
-    var Utils = Metro.utils;
-    var Tpl = Metro.template;
     var TemplateDefaultConfig = {
         templateData: null,
         onTemplateCompile: Metro.noop,
@@ -29837,7 +29867,7 @@ $.noConflict = function() {
                 .replace(/(&lt;)/gm, "<")
                 .replace(/(&gt;)/gm, ">");
 
-            compiled = Tpl(template, this.data);
+            compiled = Engine(template, this.data);
             element.html(compiled);
 
             this._fireEvent('template-compile', {
@@ -29878,6 +29908,8 @@ $.noConflict = function() {
             return this.element;
         }
     });
+
+    Metro.template = Engine;
 }(Metro, m4q));
 
 (function(Metro, $) {

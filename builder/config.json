@@ -1,7 +1,7 @@
 {
     "setup": {
-        "release": "4.3.9",
-        "next": "4.3.10"
+        "release": "4.3.10",
+        "next": "4.4.0"
     },
 
     "parts": {
@@ -513,6 +513,11 @@
             "js": ["image-compare"],
             "less": ["image-compare"]
         },
+        "image-grid": {
+            "name": "Image grid",
+            "js": ["image-grid"],
+            "less": ["image-grid"]
+        },
         "image-magnifier": {
             "name": "Image magnifier",
             "js": ["image-magnifier"],
@@ -555,6 +560,11 @@
             "dependencies": {
                 "common-css": ["inputs"]
             }
+        },
+        "lightbox": {
+            "name": "Lightbox",
+            "js": ["lightbox"],
+            "less": ["lightbox"]
         },
         "list": {
             "name": "List",
@@ -788,16 +798,9 @@
                 "common-js": ["colors"]
             }
         },
-        "tpl":{
-            "name": "Micro Templating",
-            "js": ["template-engine"]
-        },
         "template":{
             "name": "Template",
-            "js": ["template"],
-            "dependencies": {
-                "components": ["tpl"]
-            }
+            "js": ["template"]
         },
         "textarea": {
             "name": "Textarea",
