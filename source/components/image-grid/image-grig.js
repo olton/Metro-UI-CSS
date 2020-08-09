@@ -110,6 +110,11 @@
                 o.backgroundSize = val;
                 this._createItems();
             }
+
+            if (attr === "data-background-position") {
+                o.backgroundPosition = val;
+                this._createItems();
+            }
         },
 
         destroy: function(){

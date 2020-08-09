@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/08/2020 14:02:45
+ * Built at 09/08/2020 10:13:36
  * Licensed under MIT
  */
 *,
@@ -29399,6 +29399,14 @@ fieldset.disabled,
   display: block;
   width: 100%;
   height: 100%;
+}
+.image-grid.half-size .image-grid__item-landscape {
+  width: 160px;
+  height: 90px;
+}
+.image-grid.half-size .image-grid__item-portrait {
+  width: 80px;
+  height: 90px;
 }
 .image-magnifier {
   position: relative;
