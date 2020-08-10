@@ -8,6 +8,7 @@
         dragElement: 'self',
         dragArea: "parent",
         timeout: 0,
+        boundaryRestriction: true,
         onCanDrag: Metro.noop_true,
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
@@ -99,11 +100,13 @@
                     var top = Utils.pageXY(e).y - shiftY;
                     var left = Utils.pageXY(e).x - shiftX;
 
-                    if (top < 0) top = 0;
-                    if (left < 0) left = 0;
+                    if (o.boundaryRestriction) {
+                        if (top < 0) top = 0;
+                        if (left < 0) left = 0;
 
-                    if (top > that.dragArea.outerHeight() - element.outerHeight()) top = that.dragArea.outerHeight() - element.outerHeight();
-                    if (left > that.dragArea.outerWidth() - element.outerWidth()) left = that.dragArea.outerWidth() - element.outerWidth();
+                        if (top > that.dragArea.outerHeight() - element.outerHeight()) top = that.dragArea.outerHeight() - element.outerHeight();
+                        if (left > that.dragArea.outerWidth() - element.outerWidth()) left = that.dragArea.outerWidth() - element.outerWidth();
+                    }
 
                     position.y = top;
                     position.x = left;

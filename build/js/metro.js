@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 09/08/2020 10:13:36
+ * Built at 10/08/2020 21:27:23
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "09/08/2020 10:13:36",
+        compileTime: "10/08/2020 21:27:23",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -16236,6 +16236,7 @@ $.noConflict = function() {
         dragElement: 'self',
         dragArea: "parent",
         timeout: 0,
+        boundaryRestriction: true,
         onCanDrag: Metro.noop_true,
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
@@ -16327,11 +16328,13 @@ $.noConflict = function() {
                     var top = Utils.pageXY(e).y - shiftY;
                     var left = Utils.pageXY(e).x - shiftX;
 
-                    if (top < 0) top = 0;
-                    if (left < 0) left = 0;
+                    if (o.boundaryRestriction) {
+                        if (top < 0) top = 0;
+                        if (left < 0) left = 0;
 
-                    if (top > that.dragArea.outerHeight() - element.outerHeight()) top = that.dragArea.outerHeight() - element.outerHeight();
-                    if (left > that.dragArea.outerWidth() - element.outerWidth()) left = that.dragArea.outerWidth() - element.outerWidth();
+                        if (top > that.dragArea.outerHeight() - element.outerHeight()) top = that.dragArea.outerHeight() - element.outerHeight();
+                        if (left > that.dragArea.outerWidth() - element.outerWidth()) left = that.dragArea.outerWidth() - element.outerWidth();
+                    }
 
                     position.y = top;
                     position.x = left;
