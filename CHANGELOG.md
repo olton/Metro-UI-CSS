@@ -19,6 +19,7 @@
 + [x] Lightbox: new component to create a modal image gallery
 + [x] ImageGrid: new component to create a simple beautiful image grid
 + [x] Draggable: add attribute `data-boundary-restriction="true|false"`, issue #1595
++ [x] Tokenizer: new component to create tokenized text
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
