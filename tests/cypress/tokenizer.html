@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Tokenizer - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        #example1 {
+            font-size: 0;
+            display: flex;
+            justify-content: center;
+            align-items: baseline;
+        }
+        #example1 .char {
+            font-weight: bold;
+            /*margin-left: -13px;*/
+            padding: 0 8px;
+        }
+        #example1 .char.item-odd {
+            background: orangered;
+            font-size: 58px;
+        }
+        #example1 .char.item-even {
+            background: orange;
+            font-size: 48px;
+        }
+
+        #example2 {
+            font-size: 38px;
+            font-weight: bold;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            padding: 100px;
+            background: #3e372d;
+        }
+        #example2 .char:not(.space) {
+            font-weight: bold;
+            display: inline-block;
+            width: 48px;
+            height: 56px;
+            line-height: 56px;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        #example2 .char:not(.space).item-odd {
+            background: orangered;
+            transform: skewY(-20deg);
+        }
+        #example2 .char:not(.space).item-even {
+            background: orange;
+            transform: skewY(20deg);
+        }
+
+        #example3 {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            background: #3e372d;
+            padding: 100px;
+            justify-content: center;
+        }
+        #example3 .char:not(.space) {
+            display: inline-block;
+            background: #ffffff;
+            color: #282828;
+            border-bottom: 4px coral solid;
+            font-size: 48px;
+            padding: 10px 8px 0;
+            text-align: center;
+            box-shadow: 2px 2px 4px #000;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0 4px;
+            position: relative;
+            width: 64px;
+            height: 80px;
+        }
+        #example3 .char:not(.space)::before {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #39342e;
+            left: 50%;
+            top: 6px;
+            margin-left: -4px;
+        }
+        #example3 .char.item-odd {
+            margin-top: 3px;
+            transform: skew(-10deg, 10deg);
+        }
+        #example3 .char.item-even {
+            transform: skew(8deg, -8deg);
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+    <div class="container">
+        <br>
+        <h1 class="text-center">Tokenizer test page</h1>
+        <br>
+        <div id="example2" data-role="tokenizer" data-split="" data-space-symbol="" data-space-class="space" data-cls-token="char">
+            Metro 4
+        </div>
+        <br>
+        <br>
+        <div id="example3" data-role="tokenizer" data-split="" data-space-class="space" data-cls-token="char">
+            Metro 4
+        </div>
+    </div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>
