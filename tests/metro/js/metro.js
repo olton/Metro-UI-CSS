@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/08/2020 21:52:40
+ * Built at 13/08/2020 10:00:33
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/08/2020 21:52:40",
+        compileTime: "13/08/2020 10:00:33",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -31019,7 +31019,7 @@ $.noConflict = function() {
                     .html(isSpace ? o.spaceSymbol : symbol)
                     .attr("aria-hidden", true)
                     .addClass(isSpace ? o.spaceClass : "")
-                    .addClass(isSpace ? "" : "item-"+symbol.replace(" ", "_"))
+                    .addClass(isSpace ? "" : "item-"+symbol.replace(" ", "_").toLowerCase())
                     .addClass(o.tokenClass !== "" ? o.tokenClass + "-" + (i+1) : "")
                     .addClass(o.clsToken);
 
