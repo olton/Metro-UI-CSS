@@ -77,6 +77,7 @@
             position: relative;
             width: 64px;
             height: 80px;
+            transform-origin: 50% 6px;
         }
         #example3 .char:not(.space)::before {
             content: "";
@@ -92,10 +93,60 @@
         }
         #example3 .char.item-odd {
             margin-top: 3px;
-            transform: skew(-10deg, 10deg);
         }
         #example3 .char.item-even {
-            transform: skew(8deg, -8deg);
+        }
+        #example3 .item-m {
+            animation: skew 2s linear infinite;
+        }
+        #example3 .item-e {
+            animation: skew-reverse 2.2s linear infinite;
+        }
+        #example3 .item-t {
+            animation: skew 3s linear infinite;
+        }
+        #example3 .item-r {
+            animation: skew-reverse 2.8s linear infinite;
+        }
+        #example3 .item-o {
+            animation: skew-reverse 3.2s linear infinite;
+        }
+        #example3 .item-4 {
+            animation: skew 1.9s linear infinite;
+        }
+        @keyframes skew {
+            0% {
+                transform: skew(-10deg, 10deg)
+            }
+            25% {
+                transform: skew(0deg, 0deg)
+            }
+            50% {
+                transform: skew(8deg, -8deg);
+            }
+            75% {
+                transform: skew(0deg, 0deg);
+            }
+            100% {
+                transform: skew(-10deg, 10deg)
+            }
+        }
+        @keyframes skew-reverse {
+            0% {
+                transform: skew(8deg, -8deg)
+            }
+            25% {
+                transform: skew(0deg, 0deg)
+            }
+            50% {
+                transform: skew(-10deg, 10deg);
+            }
+            75% {
+                transform: skew(0deg, 0deg);
+            }
+            100% {
+                transform: skew(8deg, -8deg)
+            }
         }
     </style>
 </head>

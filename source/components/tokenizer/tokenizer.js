@@ -56,7 +56,7 @@
                     .html(isSpace ? o.spaceSymbol : symbol)
                     .attr("aria-hidden", true)
                     .addClass(isSpace ? o.spaceClass : "")
-                    .addClass(isSpace ? "" : "item-"+symbol.replace(" ", "_"))
+                    .addClass(isSpace ? "" : "item-"+symbol.replace(" ", "_").toLowerCase())
                     .addClass(o.tokenClass !== "" ? o.tokenClass + "-" + (i+1) : "")
                     .addClass(o.clsToken);
 
