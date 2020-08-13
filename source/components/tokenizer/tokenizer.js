@@ -15,6 +15,7 @@
         clsToken: "",
         clsTokenOdd: "",
         clsTokenEven: "",
+        onTokenCreate: Metro.noop,
         onTokenizerCreate: Metro.noop
     };
 
@@ -35,8 +36,6 @@
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
-
             this._createStructure();
             this._createEvents();
 
@@ -66,7 +65,12 @@
                 if (!isSpace) {
                     index++;
                     token.addClass(index % 2 === 0 ? "te-even" : "te-odd");
+                    token.addClass(index % 2 === 0 ? o.clsTokenEven : o.clsTokenOdd);
                 }
+
+                that._fireEvent("token-create", {
+                    token: token[0]
+                })
 
                 result += token.outerHTML()+"\n";
             });
@@ -80,8 +84,6 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
-
         },
 
         changeAttribute: function(){
