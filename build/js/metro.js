@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/08/2020 12:09:57
+ * Built at 13/08/2020 18:56:09
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "13/08/2020 12:09:57",
+        compileTime: "13/08/2020 18:56:09",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -30978,6 +30978,7 @@ $.noConflict = function() {
         clsToken: "",
         clsTokenOdd: "",
         clsTokenEven: "",
+        onTokenCreate: Metro.noop,
         onTokenizerCreate: Metro.noop
     };
 
@@ -30998,8 +30999,6 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
-
             this._createStructure();
             this._createEvents();
 
@@ -31029,7 +31028,12 @@ $.noConflict = function() {
                 if (!isSpace) {
                     index++;
                     token.addClass(index % 2 === 0 ? "te-even" : "te-odd");
+                    token.addClass(index % 2 === 0 ? o.clsTokenEven : o.clsTokenOdd);
                 }
+
+                that._fireEvent("token-create", {
+                    token: token[0]
+                })
 
                 result += token.outerHTML()+"\n";
             });
@@ -31043,8 +31047,6 @@ $.noConflict = function() {
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
-
         },
 
         changeAttribute: function(){
