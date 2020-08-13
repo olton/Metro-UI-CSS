@@ -8,23 +8,35 @@
     <title>Test Tokenizer - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
         #example1 {
-            font-size: 0;
+            padding: 100px;
+            background: #3e372d;
             display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
             justify-content: center;
-            align-items: baseline;
-        }
-        #example1 .char {
+            font-size: 40px;
             font-weight: bold;
-            /*margin-left: -13px;*/
-            padding: 0 8px;
         }
-        #example1 .char.item-odd {
-            background: orangered;
-            font-size: 58px;
+        #example1 .te-odd {
+            color: orange;
         }
-        #example1 .char.item-even {
-            background: orange;
-            font-size: 48px;
+        #example1 .te-even {
+            color: orangered;
+        }
+        #example1 .ts-4, #example1 .ts-e {
+            color: white;
+        }
+        #example1 .ts-o {
+            color: greenyellow;
+        }
+        #example1 .ts-s {
+            color: deepskyblue;
+        }
+        #example1 .ts-a {
+            color: #ffe34a;
+        }
+        #example1 .ts-M, #example1 .ts-m {
+            color: cyan;
         }
 
         #example2 {
@@ -35,8 +47,9 @@
             justify-content: center;
             padding: 100px;
             background: #3e372d;
+            position: relative;
         }
-        #example2 .char:not(.space) {
+        #example2 .char {
             font-weight: bold;
             display: inline-block;
             width: 48px;
@@ -44,12 +57,14 @@
             line-height: 56px;
             text-align: center;
             text-transform: uppercase;
+            z-index: 2;
+            opacity: .8;
         }
-        #example2 .char:not(.space).item-odd {
+        #example2 .char.te-odd {
             background: orangered;
             transform: skewY(-20deg);
         }
-        #example2 .char:not(.space).item-even {
+        #example2 .char:not(.space).te-even {
             background: orange;
             transform: skewY(20deg);
         }
@@ -62,7 +77,7 @@
             padding: 100px;
             justify-content: center;
         }
-        #example3 .char:not(.space) {
+        #example3 .char {
             display: inline-block;
             background: #ffffff;
             color: #282828;
@@ -79,7 +94,7 @@
             height: 80px;
             transform-origin: 50% 6px;
         }
-        #example3 .char:not(.space)::before {
+        #example3 .char::before {
             content: "";
             position: absolute;
             z-index: 2;
@@ -91,27 +106,27 @@
             top: 6px;
             margin-left: -4px;
         }
-        #example3 .char.item-odd {
+        #example3 .char.te-odd {
             margin-top: 3px;
         }
-        #example3 .char.item-even {
+        #example3 .char.te-even {
         }
-        #example3 .item-m {
+        #example3 .ts-M {
             animation: skew 2s linear infinite;
         }
-        #example3 .item-e {
+        #example3 .ts-e {
             animation: skew-reverse 2.2s linear infinite;
         }
-        #example3 .item-t {
+        #example3 .ts-t {
             animation: skew 3s linear infinite;
         }
-        #example3 .item-r {
+        #example3 .ts-r {
             animation: skew-reverse 2.8s linear infinite;
         }
-        #example3 .item-o {
+        #example3 .ts-o {
             animation: skew-reverse 3.2s linear infinite;
         }
-        #example3 .item-4 {
+        #example3 .ts-4 {
             animation: skew 1.9s linear infinite;
         }
         @keyframes skew {
@@ -155,12 +170,15 @@
         <br>
         <h1 class="text-center">Tokenizer test page</h1>
         <br>
-        <div id="example2" data-role="tokenizer" data-split="" data-space-symbol="" data-space-class="space" data-cls-token="char">
+        <div id="example1" data-role="tokenizer" data-cls-token="char" data-space-symbol="&nbsp;">Metro 4 is awesome!</div>
+        <br>
+        <br>
+        <div id="example2" data-cls-token="char" data-role="tokenizer">
             Metro 4
         </div>
         <br>
         <br>
-        <div id="example3" data-role="tokenizer" data-split="" data-space-class="space" data-cls-token="char">
+        <div id="example3" data-role="tokenizer" data-cls-token="char">
             Metro 4
         </div>
     </div>

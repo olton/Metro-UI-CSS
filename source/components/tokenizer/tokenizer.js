@@ -5,10 +5,12 @@
 
     var TokenizerDefaultConfig = {
         spaceSymbol: "",
-        spaceClass: "",
+        spaceClass: "space",
         tokenClass: "",
         splitter: "",
         tokenElement: "span",
+        useTokenSymbol: true,
+        useTokenIndex: true,
         clsTokenizer: "",
         clsToken: "",
         clsTokenOdd: "",
@@ -43,7 +45,7 @@
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var result = "", text, index = 1;
+            var result = "", text, index = 0;
 
             text = element.text().trim().replace(/[\r\n\t]/gi, '').replace(/\s\s+/g, " ");
 
@@ -56,20 +58,17 @@
                     .html(isSpace ? o.spaceSymbol : symbol)
                     .attr("aria-hidden", true)
                     .addClass(isSpace ? o.spaceClass : "")
-                    .addClass(isSpace ? "" : "item-"+symbol.replace(" ", "_").toLowerCase())
-                    .addClass(o.tokenClass !== "" ? o.tokenClass + "-" + (i+1) : "")
-                    .addClass(o.clsToken);
+                    .addClass(isSpace && o.useTokenSymbol ? "" : "ts-"+symbol.replace(" ", "_"))
+                    .addClass(isSpace && o.useTokenIndex ? "" : "ti-" + (i + 1))
+                    .addClass(o.tokenClass ? o.tokenClass : "")
+                    .addClass(!isSpace ? o.clsToken : "");
 
                 if (!isSpace) {
                     index++;
-                }
-
-                if (!isSpace) {
-                    token.addClass(index % 2 === 0 ? "item-even" : "item-odd");
+                    token.addClass(index % 2 === 0 ? "te-even" : "te-odd");
                 }
 
                 result += token.outerHTML()+"\n";
-
             });
 
             element

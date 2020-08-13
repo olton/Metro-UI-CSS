@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/08/2020 10:00:33
+ * Built at 13/08/2020 12:09:57
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "13/08/2020 10:00:33",
+        compileTime: "13/08/2020 12:09:57",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -30968,10 +30968,12 @@ $.noConflict = function() {
 
     var TokenizerDefaultConfig = {
         spaceSymbol: "",
-        spaceClass: "",
+        spaceClass: "space",
         tokenClass: "",
         splitter: "",
         tokenElement: "span",
+        useTokenSymbol: true,
+        useTokenIndex: true,
         clsTokenizer: "",
         clsToken: "",
         clsTokenOdd: "",
@@ -31006,7 +31008,7 @@ $.noConflict = function() {
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var result = "", text, index = 1;
+            var result = "", text, index = 0;
 
             text = element.text().trim().replace(/[\r\n\t]/gi, '').replace(/\s\s+/g, " ");
 
@@ -31019,20 +31021,17 @@ $.noConflict = function() {
                     .html(isSpace ? o.spaceSymbol : symbol)
                     .attr("aria-hidden", true)
                     .addClass(isSpace ? o.spaceClass : "")
-                    .addClass(isSpace ? "" : "item-"+symbol.replace(" ", "_").toLowerCase())
-                    .addClass(o.tokenClass !== "" ? o.tokenClass + "-" + (i+1) : "")
-                    .addClass(o.clsToken);
+                    .addClass(isSpace && o.useTokenSymbol ? "" : "ts-"+symbol.replace(" ", "_"))
+                    .addClass(isSpace && o.useTokenIndex ? "" : "ti-" + (i + 1))
+                    .addClass(o.tokenClass ? o.tokenClass : "")
+                    .addClass(!isSpace ? o.clsToken : "");
 
                 if (!isSpace) {
                     index++;
-                }
-
-                if (!isSpace) {
-                    token.addClass(index % 2 === 0 ? "item-even" : "item-odd");
+                    token.addClass(index % 2 === 0 ? "te-even" : "te-odd");
                 }
 
                 result += token.outerHTML()+"\n";
-
             });
 
             element
