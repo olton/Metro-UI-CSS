@@ -163,6 +163,12 @@
                 transform: skew(8deg, -8deg)
             }
         }
+        #example4 .word:not(:nth-child(1)) {
+            margin-left: 4px;
+        }
+        #example4 .char:not(:nth-child(1)) {
+            margin-left: -4px;
+        }
     </style>
 </head>
 <body class="m4-cloak">
@@ -181,10 +187,23 @@
         <div id="example3" data-role="tokenizer" data-cls-token="char">
             Metro 4
         </div>
+        <br>
+        <br>
+        <div id="example4">
+            This is a test text!
+        </div>
     </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $(function(){
+        $('#example4').tokenizer({
+            splitter: ' ',
+            clsToken: "word",
+        }).children().tokenizer({
+            clsToken: "char"
+        });
+    })
 </script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/08/2020 18:56:09
+ * Built at 14/08/2020 11:52:26
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4507,7 +4507,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "13/08/2020 18:56:09",
+        compileTime: "14/08/2020 11:52:26",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -30974,6 +30974,8 @@ $.noConflict = function() {
         tokenElement: "span",
         useTokenSymbol: true,
         useTokenIndex: true,
+        prependText: "",
+        appendText: "",
         clsTokenizer: "",
         clsToken: "",
         clsTokenOdd: "",
@@ -31000,8 +31002,6 @@ $.noConflict = function() {
 
         _create: function(){
             this._createStructure();
-            this._createEvents();
-
             this._fireEvent('tokenizer-create');
         },
 
@@ -31035,7 +31035,7 @@ $.noConflict = function() {
                     token: token[0]
                 })
 
-                result += token.outerHTML()+"\n";
+                result += o.prependText + token.outerHTML() + o.appendText +"\n";
             });
 
             element
@@ -31044,12 +31044,6 @@ $.noConflict = function() {
                 .addClass(o.clsTokenizer)
                 .clear()
                 .html(result);
-        },
-
-        _createEvents: function(){
-        },
-
-        changeAttribute: function(){
         },
 
         destroy: function(){

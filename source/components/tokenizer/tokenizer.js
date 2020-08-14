@@ -11,6 +11,8 @@
         tokenElement: "span",
         useTokenSymbol: true,
         useTokenIndex: true,
+        prependText: "",
+        appendText: "",
         clsTokenizer: "",
         clsToken: "",
         clsTokenOdd: "",
@@ -37,8 +39,6 @@
 
         _create: function(){
             this._createStructure();
-            this._createEvents();
-
             this._fireEvent('tokenizer-create');
         },
 
@@ -72,7 +72,7 @@
                     token: token[0]
                 })
 
-                result += token.outerHTML()+"\n";
+                result += o.prependText + token.outerHTML() + o.appendText +"\n";
             });
 
             element
@@ -81,12 +81,6 @@
                 .addClass(o.clsTokenizer)
                 .clear()
                 .html(result);
-        },
-
-        _createEvents: function(){
-        },
-
-        changeAttribute: function(){
         },
 
         destroy: function(){
