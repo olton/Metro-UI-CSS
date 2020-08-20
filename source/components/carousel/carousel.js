@@ -213,6 +213,8 @@
                             slide.css("opacity", "0");
                             break;
                     }
+                } else {
+                    slide.addClass("active-slide");
                 }
 
                 slide.addClass(o.clsSlide);

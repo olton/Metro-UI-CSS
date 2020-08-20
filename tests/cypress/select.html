@@ -58,6 +58,17 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $("#select1").on("change", function () {
+        console.log("changed");
+    });
+
+    $("#select1").on("drop", function () {
+        console.log("down");
+    });
+
+    $("#select1").on("up", function () {
+        console.log("up");
+    });
 </script>
 </body>
 </html>

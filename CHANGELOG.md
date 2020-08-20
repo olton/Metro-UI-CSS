@@ -3,6 +3,7 @@
 + [x] M4Q: upd to 1.0.8 
 + [x] M4Q Constructor: add short-tag for selecting by `data-role` with `$('@rolename')` 
 + [x] M4Q Visibility: fix method `hide` for detecting initial `display` value
++ [x] M4Q Init: improve init method
 
 #### Metro 4
 + [x] Components: switch to `Component._fireEvent(...)` method for firing component events `data-on-*` 
@@ -20,6 +21,7 @@
 + [x] ImageGrid: new component to create a simple beautiful image grid
 + [x] Draggable: add attribute `data-boundary-restriction="true|false"`, issue #1595
 + [x] Tokenizer: new component to create tokenized text
++ [x] Carousel: fix active slide `z-index`, issue #1605
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

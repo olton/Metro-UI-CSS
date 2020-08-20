@@ -376,8 +376,13 @@
             var that = this;
 
             $.each(widgets, function () {
-                var $this = $(this);
-                var roles = $this.data('role').split(/\s*,\s*/);
+                var $this = $(this), roles;
+
+                if (!this.hasAttribute("data-role")) {
+                    return ;
+                }
+
+                roles = $this.attr('data-role').split(/\s*,\s*/);
 
                 roles.map(function (func) {
 
