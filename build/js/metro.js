@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/08/2020 11:52:26
+ * Built at 20/08/2020 21:31:19
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -603,7 +603,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.8. Built at 06/08/2020 18:05:15";
+var m4qVersion = "v1.0.8. Built at 20/08/2020 20:02:55";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2387,9 +2387,9 @@ $.fn.extend({
 
 // Source: src/parser.js
 
-/* global $, isPlainObject, hasProp */
+/* global $ */
 
-$.parseHTML = function(data, context){
+$.parseHTML = function(data){
     var base, singleTag, result = [], ctx, _context;
     var regexpSingleTag = /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i; // eslint-disable-line
 
@@ -2414,16 +2414,6 @@ $.parseHTML = function(data, context){
         for(var i = 0; i < _context.childNodes.length; i++) {
             result.push(_context.childNodes[i]);
         }
-    }
-
-    if (context && !(context instanceof $) && isPlainObject(context)) {
-        $.each(result,function(){
-            var el = this;
-            for(var name in context) {
-                if (hasProp(context, name))
-                    el.setAttribute(name, context[name]);
-            }
-        });
     }
 
     return result;
@@ -4253,11 +4243,15 @@ $.fn.extend({
 
 // Source: src/init.js
 
-/* global $, isArrayLike */
+/* global $, isArrayLike, isPlainObject, hasProp, str2arr */
 
 $.init = function(sel, ctx){
-    var parsed, r;
+    var parsed;
     var that = this;
+
+    if (typeof sel === "string") {
+        sel = sel.trim();
+    }
 
     this.uid = $.uniqueId();
 
@@ -4269,80 +4263,79 @@ $.init = function(sel, ctx){
         return $.ready(sel);
     }
 
-    if (typeof sel === 'string' && sel === "document") {
-        sel = document;
-    }
-
-    if (typeof sel === 'string' && sel === "body") {
-        sel = document.body;
-    }
-
-    if (typeof sel === 'string' && sel === "html") {
-        sel = document.documentElement;
-    }
-
-    if (typeof sel === 'string' && sel === "doctype") {
-        sel = document.doctype;
-    }
-
-    if (sel && (sel.nodeType || sel.self === window)) {
-        this[0] = sel;
-        this.length = 1;
+    if (sel instanceof Element) {
+        this.push(sel);
         return this;
     }
 
     if (sel instanceof $) {
-        r = $();
         $.each(sel, function(){
-            r.push(this);
+            that.push(this);
         });
-        return r;
+        return this;
     }
 
     if (isArrayLike(sel)) {
-        r = $();
         $.each(sel, function(){
             $(this).each(function(){
-                r.push(this);
+                that.push(this);
             });
         });
-        return r;
+        return this;
     }
 
-    if (typeof sel === "object") {
-        return sel;
+    if (typeof sel !== "string" && (sel.self && sel.self !== window)) {
+        return this;
     }
 
-    if (typeof sel === "string") {
+    if (sel === "document") {
+        sel = document;
+    }
 
-        if (sel[0] === "@") {
+    if (sel === "body") {
+        sel = document.body;
+    }
 
-            $("[data-role]").each(function(){
-                var roles = $(this).attr("data-role").split(",").map(function(v){
-                    return (""+v).trim();
-                });
-                if (roles.indexOf(sel.slice(1)) > -1) {
-                    that.push(this);
-                }
-            });
+    if (sel === "html") {
+        sel = document.documentElement;
+    }
 
-        } else {
-            sel = sel.trim();
+    if (sel === "doctype") {
+        sel = document.doctype;
+    }
 
-            if (sel === "#" || sel === ".") {
-                console.warn("Selector can't be # or .") ;
-                return this;
+    if (sel && (sel.nodeType || sel.self === window)) {
+        this.push(sel);
+        return this;
+    }
+
+    if (sel === "#" || sel === ".") {
+        console.error("Selector can't be # or .") ;
+        return this;
+    }
+
+    if (sel[0] === "@") {
+
+        $("[data-role]").each(function(){
+            var roles = str2arr($(this).attr("data-role"), ",");
+            if (roles.indexOf(sel.slice(1)) > -1) {
+                that.push(this);
             }
+        });
 
-            parsed = $.parseHTML(sel, ctx);
+    } else {
 
-            if (parsed.length === 1 && parsed[0].nodeType === 3) { // Must be a text node -> css sel
+        parsed = $.parseHTML(sel);
+
+        if (parsed.length === 1 && parsed[0].nodeType === 3) { // Must be a text node -> css sel
+            try {
                 [].push.apply(this, document.querySelectorAll(sel));
-            } else {
-                $.merge(this, parsed);
+            } catch (e) {
+                console.error(sel + " is not a valid selector");
             }
+        } else {
+            $.merge(this, parsed);
         }
-
     }
 
     if (ctx !== undefined) {
@@ -4352,6 +4345,15 @@ $.init = function(sel, ctx){
             });
         } else if (ctx instanceof HTMLElement) {
             $(ctx).append(that);
+        } else {
+            if (isPlainObject(ctx)) {
+                $.each(this,function(){
+                    for(var name in ctx) {
+                        if (hasProp(ctx, name))
+                            this.setAttribute(name, ctx[name]);
+                    }
+                });
+            }
         }
     }
 
@@ -4507,7 +4509,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "14/08/2020 11:52:26",
+        compileTime: "20/08/2020 21:31:19",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4855,8 +4857,13 @@ $.noConflict = function() {
             var that = this;
 
             $.each(widgets, function () {
-                var $this = $(this);
-                var roles = $this.data('role').split(/\s*,\s*/);
+                var $this = $(this), roles;
+
+                if (!this.hasAttribute("data-role")) {
+                    return ;
+                }
+
+                roles = $this.attr('data-role').split(/\s*,\s*/);
 
                 roles.map(function (func) {
 
@@ -11985,6 +11992,8 @@ $.noConflict = function() {
                             slide.css("opacity", "0");
                             break;
                     }
+                } else {
+                    slide.addClass("active-slide");
                 }
 
                 slide.addClass(o.clsSlide);
@@ -23557,7 +23566,6 @@ $.noConflict = function() {
                     that._fireEvent("drop", {
                         list: list[0]
                     });
-
                 },
                 onUp: function(){
                     dropdown_toggle.removeClass("active-toggle");
@@ -30962,7 +30970,6 @@ $.noConflict = function() {
     Metro['createToast'] = Toast.create;
 }(Metro, m4q));
 
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -31040,7 +31047,6 @@ $.noConflict = function() {
 
             element
                 .attr("aria-label", text)
-                .addClass("tokenizer")
                 .addClass(o.clsTokenizer)
                 .clear()
                 .html(result);

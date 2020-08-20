@@ -29,6 +29,11 @@
         overflow: hidden;
         background-size: cover;
         background-repeat: no-repeat;
+        z-index: 1;
+
+        &.active-slide {
+            z-index: 2;
+        }
     }
 
     &.fixed-size {

@@ -238,7 +238,6 @@
                     that._fireEvent("drop", {
                         list: list[0]
                     });
-
                 },
                 onUp: function(){
                     dropdown_toggle.removeClass("active-toggle");

@@ -190,7 +190,7 @@
         <br>
         <br>
         <div id="example4">
-            This is a test text!
+            Metro4 is Awesome!
         </div>
     </div>
 
@@ -200,6 +200,7 @@
         $('#example4').tokenizer({
             splitter: ' ',
             clsToken: "word",
+            tokenElement: "div"
         }).children().tokenizer({
             clsToken: "char"
         });

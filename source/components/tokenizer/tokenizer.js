@@ -1,5 +1,4 @@
 /* global Metro */
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -77,7 +76,6 @@
 
             element
                 .attr("aria-label", text)
-                .addClass("tokenizer")
                 .addClass(o.clsTokenizer)
                 .clear()
                 .html(result);
