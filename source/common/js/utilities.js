@@ -259,7 +259,7 @@
 
         isOutsider: function(element) {
             var el = $(element);
-            var rect;
+            var inViewport;
             var clone = el.clone();
 
             clone.removeAttr("data-role").css({
@@ -269,15 +269,11 @@
             });
             el.parent().append(clone);
 
-            rect = clone[0].getBoundingClientRect();
+            inViewport = this.inViewport(clone[0]);
+
             clone.remove();
 
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
+            return !inViewport;
         },
 
         inViewport: function(el){

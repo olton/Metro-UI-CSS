@@ -11,13 +11,15 @@
         placeholder: "",
         addEmptyValue: false,
         emptyValue: "",
-        duration: 100,
+        duration: 0,
         prepend: "",
         append: "",
-        filterPlaceholder: "",
+        filterPlaceholder: "Search...",
         filter: true,
         copyInlineStyles: false,
         dropHeight: 200,
+        checkDropUp: true,
+        dropUp: false,
 
         clsSelect: "",
         clsSelectInput: "",
@@ -213,6 +215,8 @@
                 dropFilter: ".select",
                 duration: o.duration,
                 toggleElement: [container],
+                checkDropUp: o.checkDropUp,
+                dropUp: o.dropUp,
                 onDrop: function(){
                     var dropped, target;
                     dropdown_toggle.addClass("active-toggle");
@@ -222,13 +226,13 @@
                         if (drop.is(drop_container)) {
                             return ;
                         }
-                        var dataDrop = drop.data('dropdown');
+                        var dataDrop = Metro.getPlugin(drop, 'dropdown');
                         if (dataDrop && dataDrop.close) {
                             dataDrop.close();
                         }
                     });
 
-                    filter_input.val("").trigger(Metro.events.keyup).focus();
+                    filter_input.val("").trigger(Metro.events.keyup);//.focus();
 
                     target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
                     if (target !== undefined) {

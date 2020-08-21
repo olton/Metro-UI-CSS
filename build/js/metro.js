@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/08/2020 21:31:19
+ * Built at 21/08/2020 11:28:09
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4509,7 +4509,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "20/08/2020 21:31:19",
+        compileTime: "21/08/2020 11:28:09",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6288,7 +6288,7 @@ $.noConflict = function() {
 
         isOutsider: function(element) {
             var el = $(element);
-            var rect;
+            var inViewport;
             var clone = el.clone();
 
             clone.removeAttr("data-role").css({
@@ -6298,15 +6298,11 @@ $.noConflict = function() {
             });
             el.parent().append(clone);
 
-            rect = clone[0].getBoundingClientRect();
+            inViewport = this.inViewport(clone[0]);
+
             clone.remove();
 
-            return (
-                rect.top >= 0 &&
-                rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-            );
+            return !inViewport;
         },
 
         inViewport: function(el){
@@ -16440,6 +16436,8 @@ $.noConflict = function() {
         toggleElement: null,
         noClose: false,
         duration: 50,
+        checkDropUp: false,
+        dropUp: false,
         onDrop: Metro.noop,
         onUp: Metro.noop,
         onDropdownCreate: Metro.noop
@@ -16476,15 +16474,20 @@ $.noConflict = function() {
 
             if (element.hasClass("open")) {
                 element.removeClass("open");
-                setImmediate(function(){
+                setTimeout(function(){
                     that.open(true);
-                })
+                },0);
             }
         },
 
         _createStructure: function(){
             var element = this.element, o = this.options;
             var toggle;
+
+            if (o.dropUp) {
+                element.addClass("drop-up");
+            }
+
             toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
             this.displayOrigin = Utils.getStyleOne(element, "display");
@@ -16571,10 +16574,13 @@ $.noConflict = function() {
             }
 
             el[func](immediate ? 0 : options.duration, function(){
-                el.trigger("onClose", null, el);
-            });
+                dropdown._fireEvent("close");
+                dropdown._fireEvent("up");
 
-            this._fireEvent("up");
+                if (!options.dropUp && options.checkDropUp) {
+                    dropdown.element.removeClass("drop-up");
+                }
+            });
 
             this.isOpen = false;
         },
@@ -16590,10 +16596,19 @@ $.noConflict = function() {
             toggle.addClass('active-toggle').addClass("active-control");
 
             el[func](immediate ? 0 : options.duration, function(){
-                el.fire("onopen");
+
+                if (!options.dropUp && options.checkDropUp) {
+                    // dropdown.element.removeClass("drop-up");
+                    if (!Utils.inViewport(dropdown.element[0])) {
+                        dropdown.element.addClass("drop-up");
+                    }
+                }
+
+                dropdown._fireEvent("open");
+                dropdown._fireEvent("drop");
             });
 
-            this._fireEvent("drop");
+            // this._fireEvent("drop");
 
             this.isOpen = true;
         },
@@ -16614,7 +16629,7 @@ $.noConflict = function() {
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(){
         },
 
         destroy: function(){
@@ -23339,13 +23354,15 @@ $.noConflict = function() {
         placeholder: "",
         addEmptyValue: false,
         emptyValue: "",
-        duration: 100,
+        duration: 0,
         prepend: "",
         append: "",
-        filterPlaceholder: "",
+        filterPlaceholder: "Search...",
         filter: true,
         copyInlineStyles: false,
         dropHeight: 200,
+        checkDropUp: true,
+        dropUp: false,
 
         clsSelect: "",
         clsSelectInput: "",
@@ -23541,6 +23558,8 @@ $.noConflict = function() {
                 dropFilter: ".select",
                 duration: o.duration,
                 toggleElement: [container],
+                checkDropUp: o.checkDropUp,
+                dropUp: o.dropUp,
                 onDrop: function(){
                     var dropped, target;
                     dropdown_toggle.addClass("active-toggle");
@@ -23550,13 +23569,13 @@ $.noConflict = function() {
                         if (drop.is(drop_container)) {
                             return ;
                         }
-                        var dataDrop = drop.data('dropdown');
+                        var dataDrop = Metro.getPlugin(drop, 'dropdown');
                         if (dataDrop && dataDrop.close) {
                             dataDrop.close();
                         }
                     });
 
-                    filter_input.val("").trigger(Metro.events.keyup).focus();
+                    filter_input.val("").trigger(Metro.events.keyup);//.focus();
 
                     target = list.find("li.active").length > 0 ? $(list.find("li.active")[0]) : undefined;
                     if (target !== undefined) {

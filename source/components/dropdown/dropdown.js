@@ -1,4 +1,4 @@
-/* global Metro, setImmediate */
+/* global Metro */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -8,6 +8,8 @@
         toggleElement: null,
         noClose: false,
         duration: 50,
+        checkDropUp: false,
+        dropUp: false,
         onDrop: Metro.noop,
         onUp: Metro.noop,
         onDropdownCreate: Metro.noop
@@ -44,15 +46,20 @@
 
             if (element.hasClass("open")) {
                 element.removeClass("open");
-                setImmediate(function(){
+                setTimeout(function(){
                     that.open(true);
-                })
+                },0);
             }
         },
 
         _createStructure: function(){
             var element = this.element, o = this.options;
             var toggle;
+
+            if (o.dropUp) {
+                element.addClass("drop-up");
+            }
+
             toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
 
             this.displayOrigin = Utils.getStyleOne(element, "display");
@@ -139,10 +146,13 @@
             }
 
             el[func](immediate ? 0 : options.duration, function(){
-                el.trigger("onClose", null, el);
-            });
+                dropdown._fireEvent("close");
+                dropdown._fireEvent("up");
 
-            this._fireEvent("up");
+                if (!options.dropUp && options.checkDropUp) {
+                    dropdown.element.removeClass("drop-up");
+                }
+            });
 
             this.isOpen = false;
         },
@@ -158,10 +168,19 @@
             toggle.addClass('active-toggle').addClass("active-control");
 
             el[func](immediate ? 0 : options.duration, function(){
-                el.fire("onopen");
+
+                if (!options.dropUp && options.checkDropUp) {
+                    // dropdown.element.removeClass("drop-up");
+                    if (!Utils.inViewport(dropdown.element[0])) {
+                        dropdown.element.addClass("drop-up");
+                    }
+                }
+
+                dropdown._fireEvent("open");
+                dropdown._fireEvent("drop");
             });
 
-            this._fireEvent("drop");
+            // this._fireEvent("drop");
 
             this.isOpen = true;
         },
@@ -182,7 +201,7 @@
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(){
         },
 
         destroy: function(){

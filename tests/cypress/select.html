@@ -12,6 +12,8 @@
 <div class="container">
     <h1>Select test page</h1>
 
+    <div style="height: 800px"></div>
+
     <div class="example">
         <select data-role="select" id="select1">
             <optgroup label="Physical servers">
@@ -54,21 +56,31 @@
         </select>
     </div>
 
+    <div style="height: 800px"></div>
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
-    $("#select1").on("change", function () {
-        console.log("changed");
-    });
+    var sel = $("@select");
+    var Utils = Metro.utils;
 
-    $("#select1").on("drop", function () {
+    // sel.on("change", function () {
+    //     console.log("changed");
+    // });
+    //
+    sel.on("drop", function (e) {
         console.log("down");
+        // var dropContainer = $(e.detail.list).closest(".drop-container").removeClass("drop-up");
+        //
+        // if (!Utils.inViewport(dropContainer[0])) {
+        //     dropContainer.addClass("drop-up");
+        // }
     });
+    //
+    // sel.on("up", function () {
+    //     console.log("up");
+    // });
 
-    $("#select1").on("up", function () {
-        console.log("up");
-    });
 </script>
 </body>
 </html>
