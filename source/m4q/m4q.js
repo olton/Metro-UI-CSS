@@ -604,7 +604,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.8. Built at 20/08/2020 20:02:55";
+var m4qVersion = "v1.0.8. Built at 21/08/2020 14:35:46";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1597,14 +1597,11 @@ $.extend({
     },
 
     isSelector: function(selector){
-        if (typeof(selector) !== 'string') {
-            return false;
-        }
-        if (selector.indexOf("<") !== -1) {
+        if (typeof selector !== 'string') {
             return false;
         }
         try {
-            $(selector);
+            document.querySelector(selector);
         } catch(error) {
             return false;
         }
