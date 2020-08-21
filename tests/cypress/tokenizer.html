@@ -8,14 +8,18 @@
     <title>Test Tokenizer - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
         #example1 {
-            padding: 50px;
-            background: #3e372d;
             display: flex;
-            flex-flow: row nowrap;
-            align-items: center;
+            align-items: flex-start;
+            position: relative;
+            background: #3e372d;
+            padding: 50px;
             justify-content: center;
-            font-size: 40px;
-            font-weight: bold;
+            overflow: hidden;
+            font-size: 32px;
+        }
+        #example1 .char {
+            display: inline-block;
+            position: relative;
         }
         #example1 .te-odd {
             color: orange;
@@ -76,6 +80,7 @@
             background: #3e372d;
             padding: 50px;
             justify-content: center;
+            overflow: hidden;
         }
         #example3 .char {
             display: inline-block;
@@ -176,7 +181,7 @@
         <br>
         <h1 class="text-center">Tokenizer test page</h1>
         <br>
-        <div id="example1" data-role="tokenizer" data-cls-token="char" data-space-symbol="&nbsp;">Metro 4 is awesome!</div>
+        <div id="example1" data-cls-token="char" data-space-symbol="&nbsp;" data-on-token-create="drawToken"></div>
         <br>
         <br>
         <div id="example2" data-cls-token="char" data-role="tokenizer">
@@ -189,6 +194,7 @@
         </div>
         <br>
         <br>
+
         <div id="example4">
             Metro4 is Awesome!
         </div>
@@ -196,13 +202,55 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    function drawToken(token){
+        $(token).css({
+            top: -100
+        });
+        setTimeout(function(){
+            $.animate({
+                el: token,
+                draw: {
+                    top: 0
+                },
+                dur: 1000,
+                ease: "easeOutBounce"
+            })
+        }, $.random(300, 1000))
+    }
+
+    function a(){
+        setTimeout(function(){
+            $('#example1').tokenizer({
+                textToTokenize: "Build impressive web site with a Metro 4!"
+            });
+            b();
+        }, 5000)
+    }
+
+    function b(){
+        setTimeout(function(){
+            $('#example1').tokenizer({
+                textToTokenize: "Metro 4 is awesome!"
+            });
+            a();
+        }, 5000)
+    }
+
     $(function(){
+        $('#example1').tokenizer({
+            textToTokenize: "Metro 4 is awesome!",
+            onTokenizerCreate: function(){
+                a();
+            }
+        });
+
         $('#example4').tokenizer({
             splitter: ' ',
             clsToken: "word",
             tokenElement: "div"
         }).children().tokenizer({
-            clsToken: "char"
+            clsToken: "char",
+            append: "&nbsp;"
         });
     })
 </script>
