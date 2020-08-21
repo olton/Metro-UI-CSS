@@ -23,7 +23,7 @@
 + [x] Tokenizer: new component to create tokenized text
 + [x] Carousel: fix active slide `z-index`, issue #1605
 + [x] Dropdown: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `false`), issue #1604
-+ [x] Select: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `false`), issue #1604
++ [x] Select: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `true`), issue #1604
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
