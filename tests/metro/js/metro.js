@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/08/2020 14:48:14
+ * Built at 21/08/2020 17:01:10
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -3468,7 +3468,7 @@ Object.keys(eases).forEach(function(name) {
     };
 });
 
-var defaultProps = {
+var defaultAnimationProps = {
     id: null,
     el: null,
     draw: {},
@@ -3485,13 +3485,15 @@ var defaultProps = {
 function animate(args){
     return new Promise(function(resolve){
         var that = this, start;
-        var props = $.assign({}, defaultProps, args);
+        var props = $.assign({}, defaultAnimationProps, {dur: $.animation.duration, ease: $.animation.ease}, args);
         var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop, onFrame = props.onFrame, onDone = props.onDone, pause = props.pause, dir = props.dir, defer = props.defer;
         var map = {};
         var easeName = "linear", easeArgs = [], easeFn = Easing.linear, matchArgs;
         var direction = dir === "alternate" ? "normal" : dir;
         var replay = false;
         var animationID = id ? id : +(performance.now() * Math.pow(10, 14));
+
+        
 
         if (not(el)) {
             throw new Error("Unknown element!");
@@ -4506,7 +4508,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "21/08/2020 14:48:14",
+        compileTime: "21/08/2020 17:01:10",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
