@@ -202,19 +202,30 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $.animation.duration = 1000;
+    $.animation.ease = "easeOutBounce";
+
     function drawToken(token){
         $(token).css({
             top: -100
         });
+
         setTimeout(function(){
-            $.animate({
-                el: token,
-                draw: {
-                    top: 0
+            $.chain([
+                {
+                    el: token,
+                    draw: {
+                        top: 0
+                    }
                 },
-                dur: 1000,
-                ease: "easeOutBounce"
-            })
+                {
+                    el: token,
+                    draw: {
+                        top: 120
+                    },
+                    defer: 2000
+                }
+            ])
         }, $.random(300, 1000))
     }
 
