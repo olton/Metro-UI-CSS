@@ -24,12 +24,13 @@
 + [x] Carousel: fix active slide `z-index`, issue #1605
 + [x] Dropdown: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `false`), issue #1604
 + [x] Select: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `true`), issue #1604
++ [x] Table: fix using template, issue #1606
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
 + [x] Scrollbars: add styles with classes `.scrollbar-type-1`, `.scrollbar-type-2`, `.scrollbar-type-3`, `.scrollbar-type-4`
 + [x] NavView: fix pane close on mobile devices when inputs, inside a pane, receive a focus, issue #1580
-+ [x] NavView: add now caption for navview-menu for compacted mode dsplayed on the left of icon when user hovering item
++ [x] NavView: add displaying caption for `navview-menu` for compacted mode on the left of icon when user hovering item
 + [x] Grid: fix offset-*-0 are missing in the grid system, issue #1583
 + [x] Grid: add gaps with classes `gap-*`, where `*` is one of `0, 8, 16, 24, 32, 40` in pixels
 + [x] NavView: fix scrolling menu in compact mode, issue #1579

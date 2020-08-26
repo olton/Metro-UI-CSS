@@ -3494,8 +3494,6 @@ function animate(args){
         var replay = false;
         var animationID = id ? id : +(performance.now() * Math.pow(10, 14));
 
-        console.log(props);
-
         if (not(el)) {
             throw new Error("Unknown element!");
         }

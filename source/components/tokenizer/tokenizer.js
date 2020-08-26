@@ -11,8 +11,6 @@
         tokenElement: "span",
         useTokenSymbol: true,
         useTokenIndex: true,
-        prependText: "",
-        appendText: "",
         clsTokenizer: "",
         clsToken: "",
         clsTokenOdd: "",

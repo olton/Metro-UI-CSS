@@ -1461,7 +1461,7 @@
                         var td = $("<td>");
 
                         if (Utils.isValue(that.heads[cell_index].template)) {
-                            val = that.heads[cell_index].template.replace("%VAL%", val);
+                            val = that.heads[cell_index].template.replaceAll("%VAL%", val);
                         }
 
                         td.html(val);
