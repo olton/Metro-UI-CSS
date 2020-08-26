@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Tokenizer and Animation - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        body {
+            background: #3e372d;
+        }
+
+        #example1 {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            padding: 200px 0;
+            justify-content: center;
+            overflow: hidden;
+            font-size: 32px;
+            color: #ffffff;
+        }
+        #example1 .char {
+            display: inline-block;
+            position: relative;
+            margin: 0 1px;
+        }
+        #example1 .space {
+            margin: 0 4px;
+        }
+
+        .example1 .te-odd {
+            color: orange!important;
+        }
+        .example1 .te-even {
+            color: orangered!important;
+        }
+        .example1 .ts-4, #example1 .ts-e {
+            color: white!important;
+        }
+        .example1 .ts-o, .example1 .ts-j, .example1 .ts-J {
+            color: greenyellow!important;
+        }
+        .example1 .ts-s, .example1 .ts-w {
+            color: deepskyblue!important;
+        }
+        .example1 .ts-a, .example1 .ts-i {
+            color: #ffe34a!important;
+        }
+        .example1 .ts-M, .example1 .ts-m {
+            color: cyan!important;
+        }
+
+        #example3 {
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+            padding: 50px;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #example3 .char {
+            display: inline-block;
+            background: #ffffff;
+            color: #282828;
+            border-bottom: 4px coral solid;
+            font-size: 48px;
+            padding: 10px 8px 0;
+            text-align: center;
+            box-shadow: 2px 2px 4px #000;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin: 0 4px;
+            position: relative;
+            width: 64px;
+            height: 80px;
+            transform-origin: 50% 6px;
+        }
+        #example3 .char::before {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #39342e;
+            left: 50%;
+            top: 6px;
+            margin-left: -4px;
+        }
+        #example3 .char.te-odd {
+            margin-top: 3px;
+        }
+        #example3 .char.te-even {
+        }
+        #example3 .ts-M {
+            animation: skew 2s linear infinite;
+        }
+        #example3 .ts-e {
+            animation: skew-reverse 2.2s linear infinite;
+        }
+        #example3 .ts-t {
+            animation: skew 3s linear infinite;
+        }
+        #example3 .ts-r {
+            animation: skew-reverse 2.8s linear infinite;
+        }
+        #example3 .ts-o {
+            animation: skew-reverse 3.2s linear infinite;
+        }
+        #example3 .ts-4 {
+            animation: skew 1.9s linear infinite;
+        }
+        @keyframes skew {
+            0% {
+                transform: skew(-10deg, 10deg)
+            }
+            25% {
+                transform: skew(0deg, 0deg)
+            }
+            50% {
+                transform: skew(8deg, -8deg);
+            }
+            75% {
+                transform: skew(0deg, 0deg);
+            }
+            100% {
+                transform: skew(-10deg, 10deg)
+            }
+        }
+        @keyframes skew-reverse {
+            0% {
+                transform: skew(8deg, -8deg)
+            }
+            25% {
+                transform: skew(0deg, 0deg)
+            }
+            50% {
+                transform: skew(-10deg, 10deg);
+            }
+            75% {
+                transform: skew(0deg, 0deg);
+            }
+            100% {
+                transform: skew(8deg, -8deg)
+            }
+        }
+        #example4 .word:not(:nth-child(1)) {
+            margin-left: 4px;
+        }
+        #example4 .char:not(:nth-child(1)) {
+            margin-left: -4px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+    <div class="container">
+        <div id="example3" data-role="tokenizer" data-cls-token="char">Metro 4</div>
+        <div id="example1" data-cls-token="char" data-space-symbol="&nbsp;" data-on-token-create="drawToken"></div>
+        <div class="text-center">
+            <a class="button border-radius-20 warning pl-20 pr-20" href="https://metroui.org.ua/">Get Metro 4</a>
+        </div>
+    </div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    var n = 0;
+    var phrases = [
+        "Metro 4 is awesome component library",
+        "Built on HTML, CSS, JavaScript",
+        "Metro 4 contains:",
+        "Enhanced base styles",
+        "Over 100 pre-build components",
+        "JavaScript tools and routines",
+        "Build-in animation function",
+        "AJAX routines",
+        "Metro 4 is awesome",
+        "Build impressive web with a Metro 4!"
+    ];
+
+    $.animation.duration = 1000;
+    $.animation.ease = "easeOutBounce";
+
+    function drawToken(token){
+        $(token).css({
+            top: -200,
+            opacity: 0
+        });
+
+        setTimeout(function(){
+            $.chain([
+                {
+                    el: token,
+                    draw: {
+                        top: 0,
+                        opacity: 1
+                    }
+                },
+                {
+                    el: token,
+                    draw: {
+                        top: 320,
+                        opacity: 0
+                    },
+                    defer: 2000
+                }
+            ])
+        }, $.random(200, 1500))
+    }
+
+    function line(n, timeout){
+        var text;
+        if (n === phrases.length) {
+            n = 0;
+        }
+        text = phrases[n];
+        setTimeout(function(){
+            $('#example1').removeClass("example1").tokenizer({
+                textToTokenize: text,
+                clsTokenizer: n === 0 || n === 8 ? "example1" : "",
+                onTokenize: function(){
+                    n++;
+                    line(n);
+                }
+            });
+        }, timeout || 5000)
+    }
+
+    $(function(){
+       line(n, 1);
+    })
+</script>
+</body>
+</html>
