@@ -311,6 +311,7 @@
                 element.val(o.emptyValue);
                 if (element[0].multiple) {
                     list.find("li").removeClass("d-none");
+                    input.clear();
                 }
                 that._setPlaceholder();
                 e.preventDefault();
