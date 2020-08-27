@@ -25,6 +25,7 @@
 + [x] Dropdown: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `false`), issue #1604
 + [x] Select: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `true`), issue #1604
 + [x] Table: fix using template, issue #1606
++ [x] Select: fix clear button work, issue #1610
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
