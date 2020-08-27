@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/08/2020 13:53:40
+ * Built at 27/08/2020 15:06:29
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -603,7 +603,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.8. Built at 21/08/2020 14:35:46";
+var m4qVersion = "v1.0.8. Built at 27/08/2020 15:05:50";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2287,6 +2287,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
+            
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -4272,6 +4273,16 @@ $.init = function(sel, ctx){
         return this;
     }
 
+    if (sel === "window") sel = window;
+    if (sel === "document") sel = document;
+    if (sel === "body") sel = document.body;
+    if (sel === "html") sel = document.documentElement;
+    if (sel === "doctype") sel = document.doctype;
+    if (sel && (sel.nodeType || sel.self === window)) {
+        this.push(sel);
+        return this;
+    }
+
     if (isArrayLike(sel)) {
         $.each(sel, function(){
             $(this).each(function(){
@@ -4282,27 +4293,6 @@ $.init = function(sel, ctx){
     }
 
     if (typeof sel !== "string" && (sel.self && sel.self !== window)) {
-        return this;
-    }
-
-    if (sel === "document") {
-        sel = document;
-    }
-
-    if (sel === "body") {
-        sel = document.body;
-    }
-
-    if (sel === "html") {
-        sel = document.documentElement;
-    }
-
-    if (sel === "doctype") {
-        sel = document.doctype;
-    }
-
-    if (sel && (sel.nodeType || sel.self === window)) {
-        this.push(sel);
         return this;
     }
 
@@ -4506,7 +4496,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "27/08/2020 13:53:40",
+        compileTime: "27/08/2020 15:06:29",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
