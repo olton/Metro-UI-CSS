@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 29/08/2020 20:53:31
+ * Built at 29/08/2020 22:03:59
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4496,7 +4496,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "29/08/2020 20:53:31",
+        compileTime: "29/08/2020 22:03:59",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9278,7 +9278,6 @@ $.noConflict = function() {
 
     $(function(){
         Adblock.options = $.extend({}, AdblockDefaultConfig);
-        
         $(window).on("metro-initiated", function(){
             Adblock.bite();
         });
@@ -11581,9 +11580,12 @@ $.noConflict = function() {
                         that.overlay.appendTo($('body'));
                     }
                     cal.addClass("open");
-                    if (Utils.isOutsider(cal) === false) {
+                    if (!Utils.inViewport(cal[0])) {
                         cal.addClass("open-up");
                     }
+                    // if (Utils.isOutsider(cal) === false) {
+                    //     cal.addClass("open-up");
+                    // }
 
                     that._fireEvent("calendar-show", {
                         calendar: cal

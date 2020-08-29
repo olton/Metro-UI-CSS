@@ -110,7 +110,6 @@
 
     $(function(){
         Adblock.options = $.extend({}, AdblockDefaultConfig);
-        console.log(Adblock.options);
         $(window).on("metro-initiated", function(){
             Adblock.bite();
         });
