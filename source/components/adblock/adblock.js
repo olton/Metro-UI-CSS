@@ -7,6 +7,8 @@
         checkInterval: 1000,
         fireOnce: true,
         checkStop: 10,
+        localhost: false,
+        localhostPattern: null,
         onAlert: Metro.noop,
         onFishingStart: Metro.noop,
         onFishingDone: Metro.noop
@@ -61,6 +63,11 @@
                     a.remove();
                 };
 
+                if (!o.localhost && Utils.isLocalhost(o.localhostPattern)) {
+                    done();
+                    return ;
+                }
+
                 if (   !a.length
                     || !b.length
                     || a.css("display").indexOf('none') > -1
@@ -103,6 +110,7 @@
 
     $(function(){
         Adblock.options = $.extend({}, AdblockDefaultConfig);
+        console.log(Adblock.options);
         $(window).on("metro-initiated", function(){
             Adblock.bite();
         });

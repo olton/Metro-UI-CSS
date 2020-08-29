@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/08/2020 15:06:29
+ * Built at 29/08/2020 20:53:31
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4496,7 +4496,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "27/08/2020 15:06:29",
+        compileTime: "29/08/2020 20:53:31",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9175,6 +9175,8 @@ $.noConflict = function() {
         checkInterval: 1000,
         fireOnce: true,
         checkStop: 10,
+        localhost: false,
+        localhostPattern: null,
         onAlert: Metro.noop,
         onFishingStart: Metro.noop,
         onFishingDone: Metro.noop
@@ -9229,6 +9231,11 @@ $.noConflict = function() {
                     a.remove();
                 };
 
+                if (!o.localhost && Utils.isLocalhost(o.localhostPattern)) {
+                    done();
+                    return ;
+                }
+
                 if (   !a.length
                     || !b.length
                     || a.css("display").indexOf('none') > -1
@@ -9271,6 +9278,7 @@ $.noConflict = function() {
 
     $(function(){
         Adblock.options = $.extend({}, AdblockDefaultConfig);
+        
         $(window).on("metro-initiated", function(){
             Adblock.bite();
         });
@@ -28186,7 +28194,7 @@ $.noConflict = function() {
                         var td = $("<td>");
 
                         if (Utils.isValue(that.heads[cell_index].template)) {
-                            val = that.heads[cell_index].template.replaceAll("%VAL%", val);
+                            val = that.heads[cell_index].template.replace(/%VAL%/g, val);
                         }
 
                         td.html(val);
