@@ -26,6 +26,8 @@
 + [x] Select: add attributes `data-drop-up=true|false` (default `false`), `data-check-drop-up=true|false` (default: `true`), issue #1604
 + [x] Table: fix using template, issue #1606
 + [x] Select: fix clear button work, issue #1610
++ [x] Input: remove metro style from input without role `input`. To add metro style to input without role `input`, use class `metro-input`.
++ [x] Textarea: remove metro style from input without role `input`. To add metro style to input without role `input`, use class `metro-input`.
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

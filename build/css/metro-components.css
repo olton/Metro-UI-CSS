@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/08/2020 15:06:29
+ * Built at 29/08/2020 20:53:31
  * Licensed under MIT
  */
 .accordion {
@@ -4727,8 +4727,8 @@ aside::after {
           order: 3;
   text-align: right;
 }
-.file[dir=rtl] button,
-.file.rtl button {
+.file[dir=rtl] .button,
+.file.rtl .button {
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
@@ -7287,6 +7287,7 @@ a.info-button {
   -ms-flex-preferred-size: 0;
       flex-basis: 0;
   height: 34px;
+  padding: 0 0.75rem;
 }
 .input input:focus {
   -webkit-box-shadow: none;
@@ -15062,7 +15063,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .textarea,
 textarea {
   height: auto;
-  padding: 0.5rem 0.75rem;
 }
 textarea {
   line-height: 1.2;
@@ -15092,6 +15092,13 @@ textarea {
   border: 1px solid red;
 }
 .textarea textarea {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  display: block;
+  outline: none;
+  padding: 0.75rem;
+  width: 100%;
   min-height: 4rem;
   overflow-y: hidden;
   resize: none;
