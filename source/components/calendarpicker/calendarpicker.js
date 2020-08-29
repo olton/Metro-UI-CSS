@@ -292,9 +292,12 @@
                         that.overlay.appendTo($('body'));
                     }
                     cal.addClass("open");
-                    if (Utils.isOutsider(cal) === false) {
+                    if (!Utils.inViewport(cal[0])) {
                         cal.addClass("open-up");
                     }
+                    // if (Utils.isOutsider(cal) === false) {
+                    //     cal.addClass("open-up");
+                    // }
 
                     that._fireEvent("calendar-show", {
                         calendar: cal
