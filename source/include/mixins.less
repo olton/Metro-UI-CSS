@@ -180,13 +180,12 @@
     overflow: hidden;
     max-height: 0;
     transition: @transition-collapse;
-    position: relative;
 }
 
-.expand() {
-    max-height: 1000px !important;
+.expand(@h: 1000px) {
+    max-height: @h!important;
     transition: @transition-collapse !important;
-    transition-duration: 1s !important;
+    transition-duration: .5s !important;
     overflow: visible!important;
 }
 

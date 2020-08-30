@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 29/08/2020 22:03:59
+ * Built at 30/08/2020 10:12:31
  * Licensed under MIT
  */
 .button.primary,
@@ -2338,20 +2338,7 @@ code.light.outline:hover,
   content: " ";
   background-color: #f8f8f8;
 }
-input[type=text].primary,
-input[type=password].primary,
-input[type=tel].primary,
-input[type=datetime-local].primary,
-input[type=email].primary,
-input[type=file].primary,
-input[type=month].primary,
-input[type=number].primary,
-input[type=search].primary,
-input[type=time].primary,
-input[type=url].primary,
-input[type=week].primary,
-select.primary,
-textarea.primary,
+.metro-input.primary,
 .file.primary,
 .input.primary,
 .select.primary,
@@ -2361,20 +2348,7 @@ textarea.primary,
 .spinner.primary {
   border-color: #0366d6;
 }
-input[type=text].primary:focus,
-input[type=password].primary:focus,
-input[type=tel].primary:focus,
-input[type=datetime-local].primary:focus,
-input[type=email].primary:focus,
-input[type=file].primary:focus,
-input[type=month].primary:focus,
-input[type=number].primary:focus,
-input[type=search].primary:focus,
-input[type=time].primary:focus,
-input[type=url].primary:focus,
-input[type=week].primary:focus,
-select.primary:focus,
-textarea.primary:focus,
+.metro-input.primary:focus,
 .file.primary:focus,
 .input.primary:focus,
 .select.primary:focus,
@@ -2382,20 +2356,7 @@ textarea.primary:focus,
 .keypad.primary:focus,
 .tag-input.primary:focus,
 .spinner.primary:focus,
-input[type=text].primary.focused,
-input[type=password].primary.focused,
-input[type=tel].primary.focused,
-input[type=datetime-local].primary.focused,
-input[type=email].primary.focused,
-input[type=file].primary.focused,
-input[type=month].primary.focused,
-input[type=number].primary.focused,
-input[type=search].primary.focused,
-input[type=time].primary.focused,
-input[type=url].primary.focused,
-input[type=week].primary.focused,
-select.primary.focused,
-textarea.primary.focused,
+.metro-input.primary.focused,
 .file.primary.focused,
 .input.primary.focused,
 .select.primary.focused,
@@ -2406,20 +2367,7 @@ textarea.primary.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.45);
           box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.45);
 }
-input[type=text].secondary,
-input[type=password].secondary,
-input[type=tel].secondary,
-input[type=datetime-local].secondary,
-input[type=email].secondary,
-input[type=file].secondary,
-input[type=month].secondary,
-input[type=number].secondary,
-input[type=search].secondary,
-input[type=time].secondary,
-input[type=url].secondary,
-input[type=week].secondary,
-select.secondary,
-textarea.secondary,
+.metro-input.secondary,
 .file.secondary,
 .input.secondary,
 .select.secondary,
@@ -2429,20 +2377,7 @@ textarea.secondary,
 .spinner.secondary {
   border-color: #607d8b;
 }
-input[type=text].secondary:focus,
-input[type=password].secondary:focus,
-input[type=tel].secondary:focus,
-input[type=datetime-local].secondary:focus,
-input[type=email].secondary:focus,
-input[type=file].secondary:focus,
-input[type=month].secondary:focus,
-input[type=number].secondary:focus,
-input[type=search].secondary:focus,
-input[type=time].secondary:focus,
-input[type=url].secondary:focus,
-input[type=week].secondary:focus,
-select.secondary:focus,
-textarea.secondary:focus,
+.metro-input.secondary:focus,
 .file.secondary:focus,
 .input.secondary:focus,
 .select.secondary:focus,
@@ -2450,20 +2385,7 @@ textarea.secondary:focus,
 .keypad.secondary:focus,
 .tag-input.secondary:focus,
 .spinner.secondary:focus,
-input[type=text].secondary.focused,
-input[type=password].secondary.focused,
-input[type=tel].secondary.focused,
-input[type=datetime-local].secondary.focused,
-input[type=email].secondary.focused,
-input[type=file].secondary.focused,
-input[type=month].secondary.focused,
-input[type=number].secondary.focused,
-input[type=search].secondary.focused,
-input[type=time].secondary.focused,
-input[type=url].secondary.focused,
-input[type=week].secondary.focused,
-select.secondary.focused,
-textarea.secondary.focused,
+.metro-input.secondary.focused,
 .file.secondary.focused,
 .input.secondary.focused,
 .select.secondary.focused,
@@ -2474,20 +2396,7 @@ textarea.secondary.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
 }
-input[type=text].success,
-input[type=password].success,
-input[type=tel].success,
-input[type=datetime-local].success,
-input[type=email].success,
-input[type=file].success,
-input[type=month].success,
-input[type=number].success,
-input[type=search].success,
-input[type=time].success,
-input[type=url].success,
-input[type=week].success,
-select.success,
-textarea.success,
+.metro-input.success,
 .file.success,
 .input.success,
 .select.success,
@@ -2497,20 +2406,7 @@ textarea.success,
 .spinner.success {
   border-color: #60a917;
 }
-input[type=text].success:focus,
-input[type=password].success:focus,
-input[type=tel].success:focus,
-input[type=datetime-local].success:focus,
-input[type=email].success:focus,
-input[type=file].success:focus,
-input[type=month].success:focus,
-input[type=number].success:focus,
-input[type=search].success:focus,
-input[type=time].success:focus,
-input[type=url].success:focus,
-input[type=week].success:focus,
-select.success:focus,
-textarea.success:focus,
+.metro-input.success:focus,
 .file.success:focus,
 .input.success:focus,
 .select.success:focus,
@@ -2518,20 +2414,7 @@ textarea.success:focus,
 .keypad.success:focus,
 .tag-input.success:focus,
 .spinner.success:focus,
-input[type=text].success.focused,
-input[type=password].success.focused,
-input[type=tel].success.focused,
-input[type=datetime-local].success.focused,
-input[type=email].success.focused,
-input[type=file].success.focused,
-input[type=month].success.focused,
-input[type=number].success.focused,
-input[type=search].success.focused,
-input[type=time].success.focused,
-input[type=url].success.focused,
-input[type=week].success.focused,
-select.success.focused,
-textarea.success.focused,
+.metro-input.success.focused,
 .file.success.focused,
 .input.success.focused,
 .select.success.focused,
@@ -2542,20 +2425,7 @@ textarea.success.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
           box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
 }
-input[type=text].alert,
-input[type=password].alert,
-input[type=tel].alert,
-input[type=datetime-local].alert,
-input[type=email].alert,
-input[type=file].alert,
-input[type=month].alert,
-input[type=number].alert,
-input[type=search].alert,
-input[type=time].alert,
-input[type=url].alert,
-input[type=week].alert,
-select.alert,
-textarea.alert,
+.metro-input.alert,
 .file.alert,
 .input.alert,
 .select.alert,
@@ -2565,20 +2435,7 @@ textarea.alert,
 .spinner.alert {
   border-color: #CE352C;
 }
-input[type=text].alert:focus,
-input[type=password].alert:focus,
-input[type=tel].alert:focus,
-input[type=datetime-local].alert:focus,
-input[type=email].alert:focus,
-input[type=file].alert:focus,
-input[type=month].alert:focus,
-input[type=number].alert:focus,
-input[type=search].alert:focus,
-input[type=time].alert:focus,
-input[type=url].alert:focus,
-input[type=week].alert:focus,
-select.alert:focus,
-textarea.alert:focus,
+.metro-input.alert:focus,
 .file.alert:focus,
 .input.alert:focus,
 .select.alert:focus,
@@ -2586,20 +2443,7 @@ textarea.alert:focus,
 .keypad.alert:focus,
 .tag-input.alert:focus,
 .spinner.alert:focus,
-input[type=text].alert.focused,
-input[type=password].alert.focused,
-input[type=tel].alert.focused,
-input[type=datetime-local].alert.focused,
-input[type=email].alert.focused,
-input[type=file].alert.focused,
-input[type=month].alert.focused,
-input[type=number].alert.focused,
-input[type=search].alert.focused,
-input[type=time].alert.focused,
-input[type=url].alert.focused,
-input[type=week].alert.focused,
-select.alert.focused,
-textarea.alert.focused,
+.metro-input.alert.focused,
 .file.alert.focused,
 .input.alert.focused,
 .select.alert.focused,
@@ -2610,20 +2454,7 @@ textarea.alert.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
           box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
 }
-input[type=text].warning,
-input[type=password].warning,
-input[type=tel].warning,
-input[type=datetime-local].warning,
-input[type=email].warning,
-input[type=file].warning,
-input[type=month].warning,
-input[type=number].warning,
-input[type=search].warning,
-input[type=time].warning,
-input[type=url].warning,
-input[type=week].warning,
-select.warning,
-textarea.warning,
+.metro-input.warning,
 .file.warning,
 .input.warning,
 .select.warning,
@@ -2633,20 +2464,7 @@ textarea.warning,
 .spinner.warning {
   border-color: #ff9447;
 }
-input[type=text].warning:focus,
-input[type=password].warning:focus,
-input[type=tel].warning:focus,
-input[type=datetime-local].warning:focus,
-input[type=email].warning:focus,
-input[type=file].warning:focus,
-input[type=month].warning:focus,
-input[type=number].warning:focus,
-input[type=search].warning:focus,
-input[type=time].warning:focus,
-input[type=url].warning:focus,
-input[type=week].warning:focus,
-select.warning:focus,
-textarea.warning:focus,
+.metro-input.warning:focus,
 .file.warning:focus,
 .input.warning:focus,
 .select.warning:focus,
@@ -2654,20 +2472,7 @@ textarea.warning:focus,
 .keypad.warning:focus,
 .tag-input.warning:focus,
 .spinner.warning:focus,
-input[type=text].warning.focused,
-input[type=password].warning.focused,
-input[type=tel].warning.focused,
-input[type=datetime-local].warning.focused,
-input[type=email].warning.focused,
-input[type=file].warning.focused,
-input[type=month].warning.focused,
-input[type=number].warning.focused,
-input[type=search].warning.focused,
-input[type=time].warning.focused,
-input[type=url].warning.focused,
-input[type=week].warning.focused,
-select.warning.focused,
-textarea.warning.focused,
+.metro-input.warning.focused,
 .file.warning.focused,
 .input.warning.focused,
 .select.warning.focused,
@@ -2678,20 +2483,7 @@ textarea.warning.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
 }
-input[type=text].yellow,
-input[type=password].yellow,
-input[type=tel].yellow,
-input[type=datetime-local].yellow,
-input[type=email].yellow,
-input[type=file].yellow,
-input[type=month].yellow,
-input[type=number].yellow,
-input[type=search].yellow,
-input[type=time].yellow,
-input[type=url].yellow,
-input[type=week].yellow,
-select.yellow,
-textarea.yellow,
+.metro-input.yellow,
 .file.yellow,
 .input.yellow,
 .select.yellow,
@@ -2701,20 +2493,7 @@ textarea.yellow,
 .spinner.yellow {
   border-color: #ffe484;
 }
-input[type=text].yellow:focus,
-input[type=password].yellow:focus,
-input[type=tel].yellow:focus,
-input[type=datetime-local].yellow:focus,
-input[type=email].yellow:focus,
-input[type=file].yellow:focus,
-input[type=month].yellow:focus,
-input[type=number].yellow:focus,
-input[type=search].yellow:focus,
-input[type=time].yellow:focus,
-input[type=url].yellow:focus,
-input[type=week].yellow:focus,
-select.yellow:focus,
-textarea.yellow:focus,
+.metro-input.yellow:focus,
 .file.yellow:focus,
 .input.yellow:focus,
 .select.yellow:focus,
@@ -2722,20 +2501,7 @@ textarea.yellow:focus,
 .keypad.yellow:focus,
 .tag-input.yellow:focus,
 .spinner.yellow:focus,
-input[type=text].yellow.focused,
-input[type=password].yellow.focused,
-input[type=tel].yellow.focused,
-input[type=datetime-local].yellow.focused,
-input[type=email].yellow.focused,
-input[type=file].yellow.focused,
-input[type=month].yellow.focused,
-input[type=number].yellow.focused,
-input[type=search].yellow.focused,
-input[type=time].yellow.focused,
-input[type=url].yellow.focused,
-input[type=week].yellow.focused,
-select.yellow.focused,
-textarea.yellow.focused,
+.metro-input.yellow.focused,
 .file.yellow.focused,
 .input.yellow.focused,
 .select.yellow.focused,
@@ -2746,20 +2512,7 @@ textarea.yellow.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
           box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
 }
-input[type=text].info,
-input[type=password].info,
-input[type=tel].info,
-input[type=datetime-local].info,
-input[type=email].info,
-input[type=file].info,
-input[type=month].info,
-input[type=number].info,
-input[type=search].info,
-input[type=time].info,
-input[type=url].info,
-input[type=week].info,
-select.info,
-textarea.info,
+.metro-input.info,
 .file.info,
 .input.info,
 .select.info,
@@ -2769,20 +2522,7 @@ textarea.info,
 .spinner.info {
   border-color: #5ebdec;
 }
-input[type=text].info:focus,
-input[type=password].info:focus,
-input[type=tel].info:focus,
-input[type=datetime-local].info:focus,
-input[type=email].info:focus,
-input[type=file].info:focus,
-input[type=month].info:focus,
-input[type=number].info:focus,
-input[type=search].info:focus,
-input[type=time].info:focus,
-input[type=url].info:focus,
-input[type=week].info:focus,
-select.info:focus,
-textarea.info:focus,
+.metro-input.info:focus,
 .file.info:focus,
 .input.info:focus,
 .select.info:focus,
@@ -2790,20 +2530,7 @@ textarea.info:focus,
 .keypad.info:focus,
 .tag-input.info:focus,
 .spinner.info:focus,
-input[type=text].info.focused,
-input[type=password].info.focused,
-input[type=tel].info.focused,
-input[type=datetime-local].info.focused,
-input[type=email].info.focused,
-input[type=file].info.focused,
-input[type=month].info.focused,
-input[type=number].info.focused,
-input[type=search].info.focused,
-input[type=time].info.focused,
-input[type=url].info.focused,
-input[type=week].info.focused,
-select.info.focused,
-textarea.info.focused,
+.metro-input.info.focused,
 .file.info.focused,
 .input.info.focused,
 .select.info.focused,
@@ -2814,20 +2541,7 @@ textarea.info.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
           box-shadow: 0 0 0 3px rgba(94, 189, 236, 0.45);
 }
-input[type=text].dark,
-input[type=password].dark,
-input[type=tel].dark,
-input[type=datetime-local].dark,
-input[type=email].dark,
-input[type=file].dark,
-input[type=month].dark,
-input[type=number].dark,
-input[type=search].dark,
-input[type=time].dark,
-input[type=url].dark,
-input[type=week].dark,
-select.dark,
-textarea.dark,
+.metro-input.dark,
 .file.dark,
 .input.dark,
 .select.dark,
@@ -2837,20 +2551,7 @@ textarea.dark,
 .spinner.dark {
   border-color: #505050;
 }
-input[type=text].dark:focus,
-input[type=password].dark:focus,
-input[type=tel].dark:focus,
-input[type=datetime-local].dark:focus,
-input[type=email].dark:focus,
-input[type=file].dark:focus,
-input[type=month].dark:focus,
-input[type=number].dark:focus,
-input[type=search].dark:focus,
-input[type=time].dark:focus,
-input[type=url].dark:focus,
-input[type=week].dark:focus,
-select.dark:focus,
-textarea.dark:focus,
+.metro-input.dark:focus,
 .file.dark:focus,
 .input.dark:focus,
 .select.dark:focus,
@@ -2858,20 +2559,7 @@ textarea.dark:focus,
 .keypad.dark:focus,
 .tag-input.dark:focus,
 .spinner.dark:focus,
-input[type=text].dark.focused,
-input[type=password].dark.focused,
-input[type=tel].dark.focused,
-input[type=datetime-local].dark.focused,
-input[type=email].dark.focused,
-input[type=file].dark.focused,
-input[type=month].dark.focused,
-input[type=number].dark.focused,
-input[type=search].dark.focused,
-input[type=time].dark.focused,
-input[type=url].dark.focused,
-input[type=week].dark.focused,
-select.dark.focused,
-textarea.dark.focused,
+.metro-input.dark.focused,
 .file.dark.focused,
 .input.dark.focused,
 .select.dark.focused,
@@ -2882,20 +2570,7 @@ textarea.dark.focused,
   -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
           box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
 }
-input[type=text].light,
-input[type=password].light,
-input[type=tel].light,
-input[type=datetime-local].light,
-input[type=email].light,
-input[type=file].light,
-input[type=month].light,
-input[type=number].light,
-input[type=search].light,
-input[type=time].light,
-input[type=url].light,
-input[type=week].light,
-select.light,
-textarea.light,
+.metro-input.light,
 .file.light,
 .input.light,
 .select.light,
@@ -2905,20 +2580,7 @@ textarea.light,
 .spinner.light {
   border-color: #f8f8f8;
 }
-input[type=text].light:focus,
-input[type=password].light:focus,
-input[type=tel].light:focus,
-input[type=datetime-local].light:focus,
-input[type=email].light:focus,
-input[type=file].light:focus,
-input[type=month].light:focus,
-input[type=number].light:focus,
-input[type=search].light:focus,
-input[type=time].light:focus,
-input[type=url].light:focus,
-input[type=week].light:focus,
-select.light:focus,
-textarea.light:focus,
+.metro-input.light:focus,
 .file.light:focus,
 .input.light:focus,
 .select.light:focus,
@@ -2926,20 +2588,7 @@ textarea.light:focus,
 .keypad.light:focus,
 .tag-input.light:focus,
 .spinner.light:focus,
-input[type=text].light.focused,
-input[type=password].light.focused,
-input[type=tel].light.focused,
-input[type=datetime-local].light.focused,
-input[type=email].light.focused,
-input[type=file].light.focused,
-input[type=month].light.focused,
-input[type=number].light.focused,
-input[type=search].light.focused,
-input[type=time].light.focused,
-input[type=url].light.focused,
-input[type=week].light.focused,
-select.light.focused,
-textarea.light.focused,
+.metro-input.light.focused,
 .file.light.focused,
 .input.light.focused,
 .select.light.focused,
@@ -20854,161 +20503,10 @@ pre code {
   -webkit-transition: max-height 0.3s ease !important;
   -o-transition: max-height 0.3s ease !important;
   transition: max-height 0.3s ease !important;
-  -webkit-transition-duration: 1s !important;
-       -o-transition-duration: 1s !important;
-          transition-duration: 1s !important;
+  -webkit-transition-duration: 0.5s !important;
+       -o-transition-duration: 0.5s !important;
+          transition-duration: 0.5s !important;
   overflow: visible!important;
-}
-.v-center {
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
-}
-.h-center {
-  left: 50%;
-  -webkit-transform: translateX(-50%);
-      -ms-transform: translateX(-50%);
-          transform: translateX(-50%);
-}
-.neb::before {
-  display: block;
-  position: absolute;
-  content: "";
-  width: 1rem;
-  height: 1rem;
-  background-color: inherit;
-  border: 1px solid transparent;
-  border-right-color: inherit;
-  border-bottom-color: inherit;
-}
-.neb.neb-s::before {
-  top: 100%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-      -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
-          transform: translateX(-50%) translateY(-50%) rotate(45deg);
-}
-.neb.neb-sw::before {
-  top: 100%;
-  left: 0.625rem;
-  -webkit-transform: translateY(-50%) rotate(45deg);
-      -ms-transform: translateY(-50%) rotate(45deg);
-          transform: translateY(-50%) rotate(45deg);
-}
-.neb.neb-se::before {
-  top: 100%;
-  right: 0.625rem;
-  -webkit-transform: translateY(-50%) rotate(45deg);
-      -ms-transform: translateY(-50%) rotate(45deg);
-          transform: translateY(-50%) rotate(45deg);
-}
-.neb.neb-n::before {
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(-135deg);
-      -ms-transform: translateX(-50%) translateY(-50%) rotate(-135deg);
-          transform: translateX(-50%) translateY(-50%) rotate(-135deg);
-}
-.neb.neb-nw::before {
-  top: 0;
-  left: 0.625rem;
-  -webkit-transform: translateY(-50%) rotate(-135deg);
-      -ms-transform: translateY(-50%) rotate(-135deg);
-          transform: translateY(-50%) rotate(-135deg);
-}
-.neb.neb-ne::before {
-  top: 0;
-  right: 0.625rem;
-  -webkit-transform: translateY(-50%) rotate(-135deg);
-      -ms-transform: translateY(-50%) rotate(-135deg);
-          transform: translateY(-50%) rotate(-135deg);
-}
-.neb.neb-en::before {
-  top: 0.625rem;
-  right: 0;
-  -webkit-transform: translateX(50%) rotate(-45deg);
-      -ms-transform: translateX(50%) rotate(-45deg);
-          transform: translateX(50%) rotate(-45deg);
-}
-.neb.neb-e::before {
-  top: 50%;
-  right: 0;
-  -webkit-transform: translateX(50%) translateY(-50%) rotate(-45deg);
-      -ms-transform: translateX(50%) translateY(-50%) rotate(-45deg);
-          transform: translateX(50%) translateY(-50%) rotate(-45deg);
-}
-.neb.neb-es::before {
-  bottom: 0.625rem;
-  right: 0;
-  -webkit-transform: translateX(50%) rotate(-45deg);
-      -ms-transform: translateX(50%) rotate(-45deg);
-          transform: translateX(50%) rotate(-45deg);
-}
-.neb.neb-wn::before {
-  top: 0.625rem;
-  left: 0;
-  -webkit-transform: translateX(-50%) rotate(135deg);
-      -ms-transform: translateX(-50%) rotate(135deg);
-          transform: translateX(-50%) rotate(135deg);
-}
-.neb.neb-w::before {
-  top: 50%;
-  left: 0;
-  -webkit-transform: translateX(-50%) translateY(-50%) rotate(135deg);
-      -ms-transform: translateX(-50%) translateY(-50%) rotate(135deg);
-          transform: translateX(-50%) translateY(-50%) rotate(135deg);
-}
-.neb.neb-ws::before {
-  bottom: 0.625rem;
-  left: 0;
-  -webkit-transform: translateX(-50%) rotate(135deg);
-      -ms-transform: translateX(-50%) rotate(135deg);
-          transform: translateX(-50%) rotate(135deg);
-}
-.neb2::before {
-  display: block;
-  content: "";
-  width: 0;
-  height: 0;
-  border-style: solid;
-  position: absolute;
-}
-.neb2.neb-s::before {
-  border-width: 24px 24px 0 24px;
-  border-color: #ffffff transparent transparent transparent;
-  top: 100%;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-}
-.neb2.neb-n::before {
-  border-width: 0 24px 24px 24px;
-  border-color: transparent transparent #ffffff transparent;
-  top: 0;
-  left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
-}
-.neb2.neb-e::before {
-  border-width: 24px 0 24px 24px;
-  border-color: transparent transparent transparent #ffffff;
-  top: 50%;
-  right: 0;
-  -webkit-transform: translateX(50%) translateY(-50%);
-      -ms-transform: translateX(50%) translateY(-50%);
-          transform: translateX(50%) translateY(-50%);
-}
-.neb2.neb-w::before {
-  border-width: 24px 24px 24px 0;
-  border-color: transparent #ffffff transparent transparent;
-  top: 50%;
-  left: 0;
-  -webkit-transform: translateX(-50%) translateY(-50%);
-      -ms-transform: translateX(-50%) translateY(-50%);
-          transform: translateX(-50%) translateY(-50%);
 }
 .selected {
   -webkit-box-shadow: 0 0 0 4px #5ebdec !important;
@@ -21085,7 +20583,6 @@ pre code {
     white-space: nowrap !important;
   }
   .collapse-fs {
-    position: relative;
     overflow: hidden;
     max-height: 0;
     -webkit-transition: max-height 0.3s ease;
@@ -21097,9 +20594,9 @@ pre code {
     -webkit-transition: max-height 0.3s ease !important;
     -o-transition: max-height 0.3s ease !important;
     transition: max-height 0.3s ease !important;
-    -webkit-transition-duration: 1s !important;
-         -o-transition-duration: 1s !important;
-            transition-duration: 1s !important;
+    -webkit-transition-duration: 0.5s !important;
+         -o-transition-duration: 0.5s !important;
+            transition-duration: 0.5s !important;
     overflow: visible!important;
   }
 }
@@ -21135,7 +20632,6 @@ pre code {
     white-space: nowrap !important;
   }
   .collapse-sm {
-    position: relative;
     overflow: hidden;
     max-height: 0;
     -webkit-transition: max-height 0.3s ease;
@@ -21147,9 +20643,9 @@ pre code {
     -webkit-transition: max-height 0.3s ease !important;
     -o-transition: max-height 0.3s ease !important;
     transition: max-height 0.3s ease !important;
-    -webkit-transition-duration: 1s !important;
-         -o-transition-duration: 1s !important;
-            transition-duration: 1s !important;
+    -webkit-transition-duration: 0.5s !important;
+         -o-transition-duration: 0.5s !important;
+            transition-duration: 0.5s !important;
     overflow: visible!important;
   }
 }
@@ -21185,7 +20681,6 @@ pre code {
     white-space: nowrap !important;
   }
   .collapse-md {
-    position: relative;
     overflow: hidden;
     max-height: 0;
     -webkit-transition: max-height 0.3s ease;
@@ -21197,9 +20692,9 @@ pre code {
     -webkit-transition: max-height 0.3s ease !important;
     -o-transition: max-height 0.3s ease !important;
     transition: max-height 0.3s ease !important;
-    -webkit-transition-duration: 1s !important;
-         -o-transition-duration: 1s !important;
-            transition-duration: 1s !important;
+    -webkit-transition-duration: 0.5s !important;
+         -o-transition-duration: 0.5s !important;
+            transition-duration: 0.5s !important;
     overflow: visible!important;
   }
 }
@@ -21235,7 +20730,6 @@ pre code {
     white-space: nowrap !important;
   }
   .collapse-lg {
-    position: relative;
     overflow: hidden;
     max-height: 0;
     -webkit-transition: max-height 0.3s ease;
@@ -21247,9 +20741,9 @@ pre code {
     -webkit-transition: max-height 0.3s ease !important;
     -o-transition: max-height 0.3s ease !important;
     transition: max-height 0.3s ease !important;
-    -webkit-transition-duration: 1s !important;
-         -o-transition-duration: 1s !important;
-            transition-duration: 1s !important;
+    -webkit-transition-duration: 0.5s !important;
+         -o-transition-duration: 0.5s !important;
+            transition-duration: 0.5s !important;
     overflow: visible!important;
   }
 }
@@ -21285,7 +20779,6 @@ pre code {
     white-space: nowrap !important;
   }
   .collapse-xl {
-    position: relative;
     overflow: hidden;
     max-height: 0;
     -webkit-transition: max-height 0.3s ease;
@@ -21297,9 +20790,9 @@ pre code {
     -webkit-transition: max-height 0.3s ease !important;
     -o-transition: max-height 0.3s ease !important;
     transition: max-height 0.3s ease !important;
-    -webkit-transition-duration: 1s !important;
-         -o-transition-duration: 1s !important;
-            transition-duration: 1s !important;
+    -webkit-transition-duration: 0.5s !important;
+         -o-transition-duration: 0.5s !important;
+            transition-duration: 0.5s !important;
     overflow: visible!important;
   }
 }
@@ -21335,7 +20828,6 @@ pre code {
     white-space: nowrap !important;
   }
   .collapse-xxl {
-    position: relative;
     overflow: hidden;
     max-height: 0;
     -webkit-transition: max-height 0.3s ease;
@@ -21347,9 +20839,9 @@ pre code {
     -webkit-transition: max-height 0.3s ease !important;
     -o-transition: max-height 0.3s ease !important;
     transition: max-height 0.3s ease !important;
-    -webkit-transition-duration: 1s !important;
-         -o-transition-duration: 1s !important;
-            transition-duration: 1s !important;
+    -webkit-transition-duration: 0.5s !important;
+         -o-transition-duration: 0.5s !important;
+            transition-duration: 0.5s !important;
     overflow: visible!important;
   }
 }

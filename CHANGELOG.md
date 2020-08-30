@@ -28,6 +28,7 @@
 + [x] Select: fix clear button work, issue #1610
 + [x] Input: remove metro style from input without role `input`. To add metro style to input without role `input`, use class `metro-input`.
 + [x] Textarea: remove metro style from input without role `input`. To add metro style to input without role `input`, use class `metro-input`.
++ [x] Utils Css: remove classes `.neb`, `.neb2`, `.h-center`, `.v-center`
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
