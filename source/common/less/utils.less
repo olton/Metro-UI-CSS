@@ -40,34 +40,19 @@
 .no-appearance {appearance: none !important;}
 
 .collapse {
-    overflow: hidden;
-    max-height: 0;
-    transition: @transition-collapse;
+    .collapse();
 }
 
 .expand {
     .expand();
 }
 
-.v-center {
-    top: 50%;
-    transform: translateY(-50%);
-}
-.h-center {
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.neb {
-    .neb();
-}
-
-.neb2 {
-    .neb2(24px);
-}
-
 .selected {
-    box-shadow: 0 0 0 4px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
+    box-shadow: 0 0 0 4px rgba(
+            red(@selectedElementBorder),
+            green(@selectedElementBorder),
+            blue(@selectedElementBorder),
+            1)!important;
 
     &::after {
         position: absolute;
@@ -107,25 +92,20 @@
     user-select: none;
 }
 
-.generate-utils-media-options(@mediaBreakpointListMobileLength);
-.generate-utils-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
+each(@mediaBreakpointListMobile, {
+    @media screen and (min-width: @@value) {
+        .overflow-@{value} {overflow: auto !important;}
+        .no-overflow-@{value} {overflow: hidden !important;}
+        .scroll-@{value} {overflow: scroll !important;}
+        .scroll-x-@{value} {overflow-x: auto !important;}
+        .scroll-y-@{value} {overflow-y: auto !important;}
+        .no-scroll-@{value} {overflow: hidden !important;}
+        .no-scroll-x-@{value} {overflow-x: hidden !important;}
+        .no-scroll-y-@{value}{overflow-y: hidden !important;}
+        .wrap-@{value} {white-space: normal !important;}
+        .no-wrap-@{value} {white-space: nowrap !important;}
 
-    @media screen and (min-width: @@m) {
-        .overflow-@{m} {overflow: auto !important;}
-        .no-overflow-@{m} {overflow: hidden !important;}
-        .scroll-@{m} {overflow: scroll !important;}
-        .scroll-x-@{m} {overflow-x: auto !important;}
-        .scroll-y-@{m} {overflow-y: auto !important;}
-        .no-scroll-@{m} {overflow: hidden !important;}
-        .no-scroll-x-@{m} {overflow-x: hidden !important;}
-        .no-scroll-y-@{m}{overflow-y: hidden !important;}
-        .wrap-@{m} {white-space: normal !important;}
-        .no-wrap-@{m} {white-space: nowrap !important;}
-
-        .collapse-@{m} {.collapse();}
-        .expand-@{m} {.expand();}
+        .collapse-@{value} {.collapse();}
+        .expand-@{value} {.expand();}
     }
-
-    .generate-utils-media-options(@name, @i + 1);
-}
+})
