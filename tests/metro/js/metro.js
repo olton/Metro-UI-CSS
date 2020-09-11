@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/08/2020 10:12:31
+ * Built at 11/09/2020 13:14:43
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4496,7 +4496,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "30/08/2020 10:12:31",
+        compileTime: "11/09/2020 13:14:43",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18406,6 +18406,7 @@ $.noConflict = function() {
         clsCustomButton: "",
         clsSearchButton: "",
 
+        onAutocompleteSelect: Metro.noop,
         onHistoryChange: Metro.noop,
         onHistoryUp: Metro.noop,
         onHistoryDown: Metro.noop,
@@ -18729,11 +18730,15 @@ $.noConflict = function() {
             });
 
             container.on(Metro.events.click, ".autocomplete-list .item", function(){
-                element.val($(this).attr("data-autocomplete-value"));
+                var val = $(this).attr("data-autocomplete-value");
+                element.val(val);
                 autocompleteList.css({
                     display: "none"
                 });
                 element.trigger("change");
+                that._fireEvent("autocomplete-select", {
+                    value: val
+                });
             });
         },
 
@@ -32866,13 +32871,12 @@ $.noConflict = function() {
                     result.val += this_result ? 0 : 1;
                 }
             } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
-                if (input.attr('name') === undefined) {
+                if (typeof input.attr('name') === undefined) {
                     this_result = true;
+                } else {
+                    var radio_selector = "input[name=" + input.attr('name') + "]:checked";
+                    this_result = $(radio_selector).length > 0;
                 }
-
-                var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
-                this_result = $(radio_selector).length > 0;
-
                 if (result !== undefined) {
                     result.val += this_result ? 0 : 1;
                 }

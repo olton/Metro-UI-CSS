@@ -16,10 +16,19 @@
         <input type="text" data-role="input">
     </div>
 
+    <br>
+
+    <div>
+        <input id="autocomplete" type="text" data-role="input" data-autocomplete="Ukraine, USA, Canada, Marokko, Singapur">
+    </div>
+
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $("#autocomplete").on("autocomplete-select", function(e){
+        console.log(e.detail.value);
+    })
 </script>
 </body>
 </html>

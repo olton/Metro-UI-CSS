@@ -38,6 +38,7 @@
         clsCustomButton: "",
         clsSearchButton: "",
 
+        onAutocompleteSelect: Metro.noop,
         onHistoryChange: Metro.noop,
         onHistoryUp: Metro.noop,
         onHistoryDown: Metro.noop,
@@ -361,11 +362,15 @@
             });
 
             container.on(Metro.events.click, ".autocomplete-list .item", function(){
-                element.val($(this).attr("data-autocomplete-value"));
+                var val = $(this).attr("data-autocomplete-value");
+                element.val(val);
                 autocompleteList.css({
                     display: "none"
                 });
                 element.trigger("change");
+                that._fireEvent("autocomplete-select", {
+                    value: val
+                });
             });
         },
 
