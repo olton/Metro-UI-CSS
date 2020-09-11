@@ -529,3 +529,9 @@
     -ms-overflow-style: -ms-autohiding-scrollbar;
     overflow: -moz-scrollbars-none;
 }
+
+.ellipsis(@overflow: ellipsis) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: @overflow;
+}
