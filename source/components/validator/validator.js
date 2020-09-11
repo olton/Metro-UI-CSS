@@ -205,13 +205,12 @@
                     result.val += this_result ? 0 : 1;
                 }
             } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
-                if (input.attr('name') === undefined) {
+                if (typeof input.attr('name') === undefined) {
                     this_result = true;
+                } else {
+                    var radio_selector = "input[name=" + input.attr('name') + "]:checked";
+                    this_result = $(radio_selector).length > 0;
                 }
-
-                var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
-                this_result = $(radio_selector).length > 0;
-
                 if (result !== undefined) {
                     result.val += this_result ? 0 : 1;
                 }

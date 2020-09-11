@@ -25,6 +25,7 @@
                data-show-skip="true"
                data-pagination-wrapper="#pagination"
                data-skip-wrapper="#skip"
+               data-check="true"
         >
         </table>
         <div class="row">
@@ -35,17 +36,26 @@
                 <div id="skip" class="d-flex"></div>
             </div>
         </div>
+
+        <div>
+            <button class="button" onclick="getStoredKeys()">Get stored keys</button>
+        </div>
     </div>
 
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
-    $(function () {
-        $(".table").on("click", "tbody td", function(){
-            alert(this.innerText)
-        })
-    })
+    function getStoredKeys(){
+        var keys = Metro.getPlugin("table", "table").getStoredKeys();
+        alert(keys.join("\n"));
+    }
+
+    // $(function () {
+    //     $(".table").on("click", "tbody td", function(){
+    //         alert(this.innerText)
+    //     })
+    // })
 </script>
 </body>
 </html>

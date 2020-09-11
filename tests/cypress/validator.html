@@ -17,12 +17,28 @@
         <input type="text" data-validate="required" id="input1">
         <input type="text" data-validate="required" id="input2" value="123">
     </div>
+
     <br>
     <div class="example">
         <h4>In form</h4>
         <form data-role="validator">
             <input type="text" data-validate="required">
             <input type="text" data-validate="required" value="123">
+            <br>
+            <button class="button">Submit</button>
+        </form>
+    </div>
+
+    <br>
+    <div class="example">
+        <h4>Validate radio with name as array</h4>
+        <form data-role="validator">
+            <div class="form-group">
+                <input type="radio" name="radio" data-role="radio" data-caption="Radio1" data-validate="required">
+                <input type="radio" name="radio" data-role="radio" data-caption="Radio1" data-validate="required">
+                <input type="radio" name="radio" data-role="radio" data-caption="Radio1" data-validate="required">
+                <span class="invalid_feedback">Please select on of...</span>
+            </div>
             <br>
             <button class="button">Submit</button>
         </form>
