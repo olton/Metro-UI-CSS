@@ -24,10 +24,13 @@ module.exports = function(grunt) {
         'clean:build',
         'eslint',
         'file-creator',
-        'less',
-        'postcss',
-        'concat'
-    ];
+        'less'];
+
+    if (!develop) {
+        tasks.push("postcss");
+    }
+
+    tasks.push("concat");
 
     if (!develop) {
         tasks.push('removelogging');
@@ -48,6 +51,33 @@ module.exports = function(grunt) {
 
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
+
+    var createLessFile = function(scope){
+        return Array.isArray(scope) ?
+            function(fs, fd, done){
+                var _ = grunt.util._;
+                _.each(scope, function(file) {
+                    fs.writeSync(fd, '@import "' + file + '";\n');
+                });
+                done();
+            }
+            :
+            function(fs, fd, done){
+                var glob = grunt.file.glob;
+                var _ = grunt.util._;
+                glob('source/'+scope+'/**/*.less', function(err, files){
+                    var components = [];
+                    _.each(files, function(file){
+                        components.push(file);
+                    });
+                    // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
+                    _.each(components, function(file) {
+                        fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
+                    });
+                    done();
+                })
+            }
+    }
 
     grunt.initConfig({
         docsDir: 'G:\\Projects\\Metro4-Docs\\public_html\\metro',
@@ -76,102 +106,25 @@ module.exports = function(grunt) {
 
         "file-creator": {
             "components-less": {
-                "source/metro-components.less": function(fs, fd, done){
-                    var glob = grunt.file.glob;
-                    var _ = grunt.util._;
-                    glob('source/components/**/*.less', function(err, files){
-                        var components = [];
-                        _.each(files, function(file){
-                            components.push(file);
-                        });
-                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
-                        _.each(components, function(file) {
-                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
-                        });
-                        done();
-                    })
-                }
+                "source/metro-components.less": createLessFile("components")
             },
             "colors-less": {
-                "source/metro-colors.less": function(fs, fd, done){
-                    var glob = grunt.file.glob;
-                    var _ = grunt.util._;
-                    glob('source/colors/*.less', function(err, files){
-                        var components = [];
-                        _.each(files, function(file){
-                            components.push(file);
-                        });
-                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
-                        _.each(components, function(file) {
-                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
-                        });
-                        done();
-                    })
-                }
+                "source/metro-colors.less": createLessFile("colors")
             },
             "animations-less": {
-                "source/metro-animations.less": function(fs, fd, done){
-                    var glob = grunt.file.glob;
-                    var _ = grunt.util._;
-                    glob('source/animations/**/*.less', function(err, files){
-                        var components = [];
-                        _.each(files, function(file){
-                            components.push(file);
-                        });
-                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
-                        _.each(components, function(file) {
-                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
-                        });
-                        done();
-                    })
-                }
+                "source/metro-animations.less": createLessFile("animations")
             },
             "common-less": {
-                "source/metro-common.less": function(fs, fd, done){
-                    var glob = grunt.file.glob;
-                    var _ = grunt.util._;
-                    glob('source/common/less/*.less', function(err, files){
-                        var components = [];
-                        _.each(files, function(file){
-                            components.push(file);
-                        });
-                        // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
-                        _.each(components, function(file) {
-                            fs.writeSync(fd, '@import "' + file.replace('source/', '').replace('.less', '') + '";\n');
-                        });
-                        done();
-                    })
-                }
+                "source/metro-common.less": createLessFile("common")
             },
             "icons-less": {
-                "source/metro-icons.less": function(fs, fd, done){
-                    var components = ['icons/mif-base', 'icons/mif-icons'];
-                    var _ = grunt.util._;
-                    _.each(components, function(file) {
-                        fs.writeSync(fd, '@import "' + file + '";\n');
-                    });
-                    done();
-                }
+                "source/metro-icons.less": createLessFile(['icons/mif-base', 'icons/mif-icons'])
             },
             "reset-less": {
-                "source/metro-reset.less": function(fs, fd, done){
-                    var components = ['common/less/reset'];
-                    var _ = grunt.util._;
-                    _.each(components, function(file) {
-                        fs.writeSync(fd, '@import "' + file + '";\n');
-                    });
-                    done();
-                }
+                "source/metro-reset.less": createLessFile(['common/less/reset'])
             },
             "metro-less": {
-                "source/metro.less": function(fs, fd, done){
-                    var components = ['metro-reset', 'metro-common', 'metro-components'];
-                    var _ = grunt.util._;
-                    _.each(components, function(file) {
-                        fs.writeSync(fd, '@import "' + file + '";\n');
-                    });
-                    done();
-                }
+                "source/metro.less": createLessFile(['metro-reset', 'metro-common', 'metro-components'])
             }
         },
 
@@ -254,14 +207,7 @@ module.exports = function(grunt) {
             src: {
                 expand: true,
                 cwd: "source/",
-                src: develop
-                    ? [
-                        "metro.less",
-                        "metro-colors.less",
-                        "metro-animations.less",
-                        "metro-icons.less"
-                    ]
-                    :[
+                src: [
                     "metro.less",
                     "metro-reset.less",
                     "metro-common.less",

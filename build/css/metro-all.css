@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/09/2020 13:14:43
+ * Built at 11/09/2020 20:43:50
  * Licensed under MIT
  */
 *,
@@ -6933,9 +6933,6 @@ input[type=button],
 input[type=submit],
 input[type=reset] {
   width: auto;
-}
-label {
-  margin-bottom: 0.5rem;
 }
 .file .prepend,
 .input .prepend,
@@ -20866,7 +20863,7 @@ pre code {
 .accordion > .frame > .heading {
   display: block;
   position: relative;
-  padding: 0.5rem 1rem;
+  padding: 8px 16px;
   background-color: #f8f8f8;
   cursor: pointer;
   white-space: nowrap;
@@ -20878,7 +20875,7 @@ pre code {
   display: block;
 }
 .accordion.marker-on .heading {
-  padding-left: 32px;
+  padding-left: 40px;
 }
 .accordion.marker-on .heading::before {
   line-height: 1;
@@ -20888,8 +20885,8 @@ pre code {
   left: 0;
   top: 0;
   font-size: 32px;
-  width: 40px;
-  height: 40px;
+  width: 34px;
+  height: 34px;
   text-align: center;
   -webkit-transform: rotate(0);
       -ms-transform: rotate(0);

@@ -19,12 +19,10 @@
         & > .heading {
             display: block;
             position: relative;
-            padding: .5rem 1rem;
+            padding: 8px 16px;
             background-color: @light;
             cursor: pointer;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
+            .ellipsis();
         }
 
         & > .content {
@@ -35,7 +33,7 @@
 
 .accordion.marker-on {
     .heading {
-        padding-left: 32px;
+        padding-left: 40px;
         &::before {
             line-height: 1;
             display: block;
@@ -44,8 +42,8 @@
             left: 0;
             top: 0;
             font-size: 32px;
-            width: 40px;
-            height: 40px;
+            width: 34px;
+            height: 34px;
             text-align: center;
             transform: rotate(0);
             transition: transform @transition-speed;
