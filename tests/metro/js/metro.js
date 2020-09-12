@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/09/2020 16:06:12
+ * Built at 12/09/2020 17:45:00
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,7 +296,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2287,7 +2287,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            console.log(this.length);
+            
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -2666,7 +2666,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4501,7 +4501,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/09/2020 16:06:12",
+        compileTime: "12/09/2020 17:45:00",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4768,7 +4768,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //console.log(mutation);
+                        //
                     }
                 });
             };
@@ -15665,6 +15665,7 @@ $.noConflict = function() {
 
         _createSlider: function(){
             var element = this.element, o = this.options;
+            var slider_wrapper = $("<div>").addClass("slider-wrapper");
             var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
             var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
             var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
@@ -15680,6 +15681,9 @@ $.noConflict = function() {
 
             slider.insertBefore(element);
             element.appendTo(slider);
+            slider_wrapper.insertBefore(slider);
+            slider.appendTo(slider_wrapper);
+
             backside.appendTo(slider);
             complete.appendTo(slider);
             markerMin.appendTo(slider);
@@ -15694,9 +15698,9 @@ $.noConflict = function() {
             }
 
             if (o.showMinMax === true) {
-                var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-                $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {
@@ -24387,9 +24391,9 @@ $.noConflict = function() {
             hint.appendTo(marker);
 
             if (o.showMinMax === true) {
-                var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-                $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {
@@ -30349,7 +30353,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                console.log(o.effect.camelCase());
+                
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
