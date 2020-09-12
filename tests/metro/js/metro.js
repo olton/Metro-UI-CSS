@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/09/2020 12:20:51
+ * Built at 12/09/2020 16:32:03
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,7 +296,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2287,7 +2287,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            
+            console.log(this.length);
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -2666,7 +2666,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4496,7 +4496,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/09/2020 12:20:51",
+        compileTime: "12/09/2020 16:32:03",
         buildNumber: "750",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4763,7 +4763,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -30329,7 +30329,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                
+                console.log(o.effect.camelCase());
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
