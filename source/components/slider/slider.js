@@ -124,9 +124,9 @@
             hint.appendTo(marker);
 
             if (o.showMinMax === true) {
-                var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-                $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {

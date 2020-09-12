@@ -13,6 +13,11 @@
     var meta_cloak = $.meta('metro4:cloak').attr("content");
     var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content");
     var meta_global_common = $.meta('metro4:global_common').attr("content");
+    var meta_blur_image = $.meta('metro4:blur_image').attr("content");
+
+    if (window.METRO_BLUR_IMAGE === undefined) {
+        window.METRO_BLUR_IMAGE = meta_blur_image !== undefined ? JSON.parse(meta_global_common) : false;
+    }
 
     if (window.METRO_GLOBAL_COMMON === undefined) {
         window.METRO_GLOBAL_COMMON = meta_global_common !== undefined ? JSON.parse(meta_global_common) : false;

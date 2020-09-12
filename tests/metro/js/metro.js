@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/09/2020 16:32:03
+ * Built at 12/09/2020 17:51:35
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,7 +296,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // console.log("Promise polyfill v1.2.0");
+    // 
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2287,7 +2287,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            console.log(this.length);
+            
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -2666,7 +2666,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -4395,6 +4395,11 @@ $.noConflict = function() {
     var meta_cloak = $.meta('metro4:cloak').attr("content");
     var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content");
     var meta_global_common = $.meta('metro4:global_common').attr("content");
+    var meta_blur_image = $.meta('metro4:blur_image').attr("content");
+
+    if (window.METRO_BLUR_IMAGE === undefined) {
+        window.METRO_BLUR_IMAGE = meta_blur_image !== undefined ? JSON.parse(meta_global_common) : false;
+    }
 
     if (window.METRO_GLOBAL_COMMON === undefined) {
         window.METRO_GLOBAL_COMMON = meta_global_common !== undefined ? JSON.parse(meta_global_common) : false;
@@ -4496,8 +4501,8 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/09/2020 16:32:03",
-        buildNumber: "750",
+        compileTime: "12/09/2020 17:51:35",
+        buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
@@ -4763,7 +4768,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //console.log(mutation);
+                        //
                     }
                 });
             };
@@ -4777,6 +4782,10 @@ $.noConflict = function() {
             var html = $("html");
             var that = this;
 
+            if (window.METRO_BLUR_IMAGE) {
+                html.addClass("use-blur-image");
+            }
+
             if (window.METRO_SHOW_ABOUT) Metro.info(true);
 
             if (isTouch === true) {
@@ -4786,6 +4795,8 @@ $.noConflict = function() {
             }
 
             Metro.sheet = this.utils.newCssSheet();
+
+            this.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
 
             window.METRO_MEDIA = [];
             $.each(Metro.media_queries, function(key, query){
@@ -15654,6 +15665,7 @@ $.noConflict = function() {
 
         _createSlider: function(){
             var element = this.element, o = this.options;
+            var slider_wrapper = $("<div>").addClass("slider-wrapper");
             var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
             var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
             var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
@@ -15669,6 +15681,9 @@ $.noConflict = function() {
 
             slider.insertBefore(element);
             element.appendTo(slider);
+            slider_wrapper.insertBefore(slider);
+            slider.appendTo(slider_wrapper);
+
             backside.appendTo(slider);
             complete.appendTo(slider);
             markerMin.appendTo(slider);
@@ -15683,9 +15698,9 @@ $.noConflict = function() {
             }
 
             if (o.showMinMax === true) {
-                var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-                $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {
@@ -24376,9 +24391,9 @@ $.noConflict = function() {
             hint.appendTo(marker);
 
             if (o.showMinMax === true) {
-                var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-                $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {
@@ -29970,6 +29985,7 @@ $.noConflict = function() {
         clearButton: true,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         autoSize: true,
+        maxHeight: 0,
         clsPrepend: "",
         clsAppend: "",
         clsComponent: "",
@@ -30058,7 +30074,6 @@ $.noConflict = function() {
             fakeTextarea.val(element.val());
 
             if (o.autoSize === true) {
-
                 container.addClass("autosize no-scroll-vertical");
 
                 setTimeout(function(){
@@ -30105,14 +30120,23 @@ $.noConflict = function() {
         },
 
         resize: function(){
-            var element = this.element,
+            var element = this.element, o = this.options,
                 textarea = element.closest(".textarea"),
-                fakeTextarea = textarea.find(".fake-textarea");
+                fakeTextarea = textarea.find(".fake-textarea"),
+                currentHeight = fakeTextarea[0].scrollHeight;
+
+            if (o.maxHeight && currentHeight >= o.maxHeight) {
+                textarea.removeClass("no-scroll-vertical");
+                return ;
+            }
+
+            if (o.maxHeight && currentHeight < o.maxHeight) {
+                textarea.addClass("no-scroll-vertical");
+            }
 
             fakeTextarea[0].style.cssText = 'height:auto;';
             fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
             element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
-
         },
 
         clear: function(){
@@ -30329,7 +30353,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                console.log(o.effect.camelCase());
+                
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }

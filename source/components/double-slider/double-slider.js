@@ -83,6 +83,7 @@
 
         _createSlider: function(){
             var element = this.element, o = this.options;
+            var slider_wrapper = $("<div>").addClass("slider-wrapper");
             var slider = $("<div>").addClass("slider").addClass(o.clsSlider).addClass(this.elem.className);
             var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
             var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
@@ -98,6 +99,9 @@
 
             slider.insertBefore(element);
             element.appendTo(slider);
+            slider_wrapper.insertBefore(slider);
+            slider.appendTo(slider_wrapper);
+
             backside.appendTo(slider);
             complete.appendTo(slider);
             markerMin.appendTo(slider);
@@ -112,9 +116,9 @@
             }
 
             if (o.showMinMax === true) {
-                var min_max_wrapper = $("<div>").addClass("slider-min-max clear").addClass(o.clsMinMax);
-                $("<span>").addClass("place-left").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("place-right").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {
