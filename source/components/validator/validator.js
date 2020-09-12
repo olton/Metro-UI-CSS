@@ -183,6 +183,7 @@
             var funcs = input.data('validate') !== undefined ? String(input.data('validate')).split(" ").map(function(s){return s.trim();}) : [];
             var errors = [];
             var hasForm = input.closest('form').length > 0;
+            var attr_name, radio_checked;
 
             if (funcs.length === 0) {
                 return true;
@@ -205,11 +206,15 @@
                     result.val += this_result ? 0 : 1;
                 }
             } else if (input.attr('type') && input.attr('type').toLowerCase() === "radio") {
-                if (typeof input.attr('name') === undefined) {
+                attr_name = input.attr('name');
+                if (typeof attr_name  === undefined) {
                     this_result = true;
                 } else {
-                    var radio_selector = "input[name=" + input.attr('name') + "]:checked";
-                    this_result = $(radio_selector).length > 0;
+                    /*
+                    * Fix with escaped name by nlared https://github.com/nlared
+                    * */
+                    radio_checked = $("input[name=" + attr_name.replace("[", "\\\[").replace("]", "\\\]") + "]:checked"); // eslint-disable-line
+                    this_result = radio_checked.length > 0;
                 }
                 if (result !== undefined) {
                     result.val += this_result ? 0 : 1;
