@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/09/2020 12:20:51
+ * Built at 12/09/2020 16:06:12
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,7 +296,7 @@ function hasProp(obj, prop){
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2287,7 +2287,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            
+            console.log(this.length);
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -2666,7 +2666,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4395,6 +4395,11 @@ $.noConflict = function() {
     var meta_cloak = $.meta('metro4:cloak').attr("content");
     var meta_cloak_duration = $.meta('metro4:cloak_duration').attr("content");
     var meta_global_common = $.meta('metro4:global_common').attr("content");
+    var meta_blur_image = $.meta('metro4:blur_image').attr("content");
+
+    if (window.METRO_BLUR_IMAGE === undefined) {
+        window.METRO_BLUR_IMAGE = meta_blur_image !== undefined ? JSON.parse(meta_global_common) : false;
+    }
 
     if (window.METRO_GLOBAL_COMMON === undefined) {
         window.METRO_GLOBAL_COMMON = meta_global_common !== undefined ? JSON.parse(meta_global_common) : false;
@@ -4496,8 +4501,8 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/09/2020 12:20:51",
-        buildNumber: "750",
+        compileTime: "12/09/2020 16:06:12",
+        buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
@@ -4763,7 +4768,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -4777,6 +4782,10 @@ $.noConflict = function() {
             var html = $("html");
             var that = this;
 
+            if (window.METRO_BLUR_IMAGE) {
+                html.addClass("use-blur-image");
+            }
+
             if (window.METRO_SHOW_ABOUT) Metro.info(true);
 
             if (isTouch === true) {
@@ -4786,6 +4795,8 @@ $.noConflict = function() {
             }
 
             Metro.sheet = this.utils.newCssSheet();
+
+            this.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
 
             window.METRO_MEDIA = [];
             $.each(Metro.media_queries, function(key, query){
@@ -29970,6 +29981,7 @@ $.noConflict = function() {
         clearButton: true,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         autoSize: true,
+        maxHeight: 0,
         clsPrepend: "",
         clsAppend: "",
         clsComponent: "",
@@ -30058,7 +30070,6 @@ $.noConflict = function() {
             fakeTextarea.val(element.val());
 
             if (o.autoSize === true) {
-
                 container.addClass("autosize no-scroll-vertical");
 
                 setTimeout(function(){
@@ -30105,14 +30116,23 @@ $.noConflict = function() {
         },
 
         resize: function(){
-            var element = this.element,
+            var element = this.element, o = this.options,
                 textarea = element.closest(".textarea"),
-                fakeTextarea = textarea.find(".fake-textarea");
+                fakeTextarea = textarea.find(".fake-textarea"),
+                currentHeight = fakeTextarea[0].scrollHeight;
+
+            if (o.maxHeight && currentHeight >= o.maxHeight) {
+                textarea.removeClass("no-scroll-vertical");
+                return ;
+            }
+
+            if (o.maxHeight && currentHeight < o.maxHeight) {
+                textarea.addClass("no-scroll-vertical");
+            }
 
             fakeTextarea[0].style.cssText = 'height:auto;';
             fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
             element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
-
         },
 
         clear: function(){
@@ -30329,7 +30349,7 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                
+                console.log(o.effect.camelCase());
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }

@@ -24,13 +24,10 @@ module.exports = function(grunt) {
         'clean:build',
         'eslint',
         'file-creator',
-        'less'];
-
-    if (!develop) {
-        tasks.push("postcss");
-    }
-
-    tasks.push("concat");
+        'less',
+        'postcss',
+        'concat'
+    ];
 
     if (!develop) {
         tasks.push('removelogging');
@@ -52,7 +49,7 @@ module.exports = function(grunt) {
     require('time-grunt')(grunt);
     require('load-grunt-tasks')(grunt);
 
-    var createLessFile = function(scope){
+    var createLessFile = function(scope, exclude){
         return Array.isArray(scope) ?
             function(fs, fd, done){
                 var _ = grunt.util._;
@@ -68,6 +65,9 @@ module.exports = function(grunt) {
                 glob('source/'+scope+'/**/*.less', function(err, files){
                     var components = [];
                     _.each(files, function(file){
+                        if (Array.isArray(exclude) && exclude.indexOf(file) > -1) {
+                            return;
+                        }
                         components.push(file);
                     });
                     // fs.writeSync(fd, '// this file is auto-generated.  DO NOT MODIFY\n');
@@ -100,8 +100,7 @@ module.exports = function(grunt) {
         eslint: {
             target: ['source/**/*.js'],
             rules: {
-                "no-unused-vars": 1,
-                "no-useless-escape": 1
+                "no-unused-vars": 1
             }
         },
 
@@ -116,7 +115,7 @@ module.exports = function(grunt) {
                 "source/metro-animations.less": createLessFile("animations")
             },
             "common-less": {
-                "source/metro-common.less": createLessFile("common")
+                "source/metro-common.less": createLessFile("common", ["source/common/less/reset.less"])
             },
             "icons-less": {
                 "source/metro-icons.less": createLessFile(['icons/mif-base', 'icons/mif-icons'])
@@ -283,16 +282,8 @@ module.exports = function(grunt) {
                 options: {
                     patterns: [
                         {
-                            match: 'build',
-                            replacement: "<%= pkg.build %>"
-                        },
-                        {
                             match: 'version',
                             replacement: "<%= pkg.version %>"
-                        },
-                        {
-                            match: 'status',
-                            replacement: "<%= pkg.version_suffix %>"
                         },
                         {
                             match: 'compile',

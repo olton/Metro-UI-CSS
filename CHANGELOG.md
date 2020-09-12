@@ -31,6 +31,8 @@
 + [x] Utils Css: remove classes `.neb`, `.neb2`, `.h-center`, `.v-center`
 + [x] Input: add event `onAutocompleteSelect`. You can define this event with an attribute `data-on-autocomplete-select`. The event receives a one argument - selected value. issue #1615.
 + [x] Validator: fix validating radio buttons with name as indexed array, issue #1620
++ [x] Textarea: add attribute `data-max-height=0..n`, now you can set max height for textarea component.
++ [x] Components: now, you can use components without common styles from `metro-common.css`, `metro-reset.css`, issue #1609
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

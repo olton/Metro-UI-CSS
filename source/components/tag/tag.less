@@ -1,6 +1,8 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+@taginput-item-size: 26px;
+
 .tag {
     display: inline-flex;
     justify-content: space-between;
@@ -27,7 +29,7 @@
         position: relative;
         width: @taginput-item-size;
         height: 100%;
-        line-height: @taginput-item-size - 4;
+        line-height: @taginput-item-size;
         text-align: center;
         cursor: pointer;
         background-color: @lightGray;
@@ -63,7 +65,7 @@
     .remover {
         width: @input-lx - 15;
         height: @input-lx - 15;
-        line-height: @input-lx - 20;
+        line-height: @input-lx - 15;
         font-size: 1.6rem;
     }
 }
