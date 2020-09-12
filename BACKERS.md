@@ -34,7 +34,7 @@ If you'd like to join them, please consider:
 <h2 align="center">Sponsors</h2>
 <div align="center">
 
-<p><a href="https://www.patreon.com/user/creators?u=27819336"><span style="forn-size: 24px">Steve</span></a></p>
+<p><a href="https://www.patreon.com/user/creators?u=27819336"><span style="font-size: 24px">Steve</span></a></p>
  
 </div>
 
@@ -44,28 +44,11 @@ If you'd like to join them, please consider:
 
 <h2 align="center">Backers via Patreon</h2>
 
- - [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
- - [ProJee](https://www.patreon.com/user/creators?u=33581561)
-
-
-<hr>
-
-#### Over the years, the project was supported:
- 
-- [Open Builds](https://openbuilds.com/)
-- [Infinity Technology](http://www.infinitytechsystems.com/)
-- [Triple Beta](https://www.triplebeta.nl/)
-- [Riku](https://www.patreon.com/user/creators?u=8976699)
-- [Jonathan](https://www.patreon.com/user/creators?u=10019621)
-- [Hebert Alves](https://www.patreon.com/user/creators?u=10134199)
-- [Mike](https://www.patreon.com/user/creators?u=2603858)
-- [Arnaud Dagnelies](https://www.patreon.com/user/creators?u=13947239)
-- [Walter Sassano](https://www.patreon.com/user/creators?u=15332698)
-- [Chaoswriter96](https://github.com/Chaoswriter96)
-- [chongzia](https://www.patreon.com/user/creators?u=10094916)
-- [TorakikiSan](https://github.com/TorakikiSan)
-- [Walter Sassano](https://www.patreon.com/user/creators?u=15332698)
-- [Interactivity](https://interactivity.com.ua)
-- [Matthew Bezuidenhout](https://www.patreon.com/user/creators?u=20614229)
-- [Marcel Wehrstedt](https://www.patreon.com/user/creators?u=16353488)
+- [Jeffery Tang](https://www.patreon.com/user/creators?u=40829202)
 - [ProJee](https://www.patreon.com/user/creators?u=33581561)
+- [Abdelaziz Maaded](https://www.patreon.com/user/creators?u=35477827)
+- [Enrique Flores](https://www.patreon.com/user/creators?u=28475416)
+- [Alejandro Marin](https://www.patreon.com/user/creators?u=39975997)
+- [Евгений Кутузов](https://www.patreon.com/user/creators?u=40165393)
+
+
