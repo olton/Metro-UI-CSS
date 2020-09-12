@@ -30,6 +30,7 @@
 + [x] Textarea: remove metro style from input without role `input`. To add metro style to input without role `input`, use class `metro-input`.
 + [x] Utils Css: remove classes `.neb`, `.neb2`, `.h-center`, `.v-center`
 + [x] Input: add event `onAutocompleteSelect`. You can define this event with an attribute `data-on-autocomplete-select`. The event receives a one argument - selected value. issue #1615.
++ [x] Validator: fix validating radio buttons with name as indexed array, issue #1620
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

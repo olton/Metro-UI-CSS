@@ -100,7 +100,8 @@ module.exports = function(grunt) {
         eslint: {
             target: ['source/**/*.js'],
             rules: {
-                "no-unused-vars": 1
+                "no-unused-vars": 1,
+                "no-useless-escape": 1
             }
         },
 
