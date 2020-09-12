@@ -208,9 +208,15 @@
                 if (input.attr('name') === undefined) {
                     this_result = true;
                 }
-
-                var radio_selector = 'input[name=' + input.attr('name') + ']:checked';
+	            var nametoescape =input.attr('name');
+				nametoescape=nametoescape.replace('[','\\\[').replace(']','\\\]');
+				
+                var radio_selector = 'input[name=' +nametoescape + ']:checked';
                 this_result = $(radio_selector).length > 0;
+				
+				if (this_result === false) {
+                    errors.push('required');
+                }
 
                 if (result !== undefined) {
                     result.val += this_result ? 0 : 1;
