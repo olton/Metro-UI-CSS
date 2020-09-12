@@ -137,6 +137,10 @@ figure {
     }
 }
 
+.use-blur-image img:not([alt]) {
+    filter: blur(8px);
+}
+
 // IE 10, 11
 @media screen and (-ms-high-contrast: active), screen and (-ms-high-contrast: none) {
     .img-fluid {

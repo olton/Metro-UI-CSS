@@ -309,6 +309,10 @@
             var html = $("html");
             var that = this;
 
+            if (window.METRO_BLUR_IMAGE) {
+                html.addClass("use-blur-image");
+            }
+
             if (window.METRO_SHOW_ABOUT) Metro.info(true);
 
             if (isTouch === true) {
@@ -318,6 +322,8 @@
             }
 
             Metro.sheet = this.utils.newCssSheet();
+
+            this.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
 
             window.METRO_MEDIA = [];
             $.each(Metro.media_queries, function(key, query){
