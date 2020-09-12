@@ -13,6 +13,7 @@
         clearButton: true,
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         autoSize: true,
+        maxHeight: 0,
         clsPrepend: "",
         clsAppend: "",
         clsComponent: "",
@@ -101,7 +102,6 @@
             fakeTextarea.val(element.val());
 
             if (o.autoSize === true) {
-
                 container.addClass("autosize no-scroll-vertical");
 
                 setTimeout(function(){
@@ -148,14 +148,23 @@
         },
 
         resize: function(){
-            var element = this.element,
+            var element = this.element, o = this.options,
                 textarea = element.closest(".textarea"),
-                fakeTextarea = textarea.find(".fake-textarea");
+                fakeTextarea = textarea.find(".fake-textarea"),
+                currentHeight = fakeTextarea[0].scrollHeight;
+
+            if (o.maxHeight && currentHeight >= o.maxHeight) {
+                textarea.removeClass("no-scroll-vertical");
+                return ;
+            }
+
+            if (o.maxHeight && currentHeight < o.maxHeight) {
+                textarea.addClass("no-scroll-vertical");
+            }
 
             fakeTextarea[0].style.cssText = 'height:auto;';
             fakeTextarea[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
             element[0].style.cssText = 'height:' + fakeTextarea[0].scrollHeight + 'px';
-
         },
 
         clear: function(){
