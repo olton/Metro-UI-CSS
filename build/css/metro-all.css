@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/09/2020 16:06:12
+ * Built at 12/09/2020 17:45:00
  * Licensed under MIT
  */
 *,
@@ -22930,6 +22930,7 @@ input[type=reset]:active {
   padding: 5px 10px;
   width: 100%;
   background-color: #e4e4e4;
+  position: relative;
 }
 .chat .message .message-item .message-text::before {
   position: absolute;
@@ -31142,6 +31143,9 @@ input.input-small:-ms-input-placeholder {
   display: block;
   position: relative;
 }
+.ribbon-menu div {
+  position: relative;
+}
 .ribbon-menu .tabs-holder {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -33711,6 +33715,30 @@ input.input-small:-ms-input-placeholder {
 .slider.disabled .marker {
   display: none;
 }
+.slider-min-max {
+  display: block;
+  position: relative;
+}
+.slider-min-max::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.slider-min-max::after {
+  display: block;
+  clear: both;
+  content: "";
+}
+.slider-min-max .slider-text-min,
+.slider-min-max .slider-text-max {
+  display: block;
+}
+.slider-min-max .slider-text-min {
+  float: left;
+}
+.slider-min-max .slider-text-max {
+  float: right;
+}
 .social-box {
   display: block;
   position: relative;
@@ -34008,6 +34036,7 @@ input.input-small:-ms-input-placeholder {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  position: relative;
 }
 .splitter.vertical {
   -webkit-box-orient: vertical;
@@ -34025,6 +34054,7 @@ input.input-small:-ms-input-placeholder {
   background-color: #f8f8f8;
   cursor: col-resize;
   z-index: 1;
+  position: relative;
 }
 .splitter > .gutter.active {
   background-color: #bebebe;
