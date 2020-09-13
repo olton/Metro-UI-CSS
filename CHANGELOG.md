@@ -33,6 +33,7 @@
 + [x] Validator: fix validating radio buttons with name as indexed array, issue #1620
 + [x] Textarea: add attribute `data-max-height=0..n`, now you can set max height for textarea component.
 + [x] Components: now, you can use components without common styles from `metro-common.css`, `metro-reset.css`, issue #1609
++ [x] Window: disable a window maximized/minimized action when attribute `data-btn-max=false` and user use double-click on then window caption, issue #1625
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

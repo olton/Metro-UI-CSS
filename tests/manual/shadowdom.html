@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test ShadowDOM - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <div id="app"></div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+        var shadow = document.querySelector("#app").attachShadow({mode: 'open'});
+        var nav = $("\
+            <nav id='rm' part='rm'>\
+               <ul class='tabs-holder'>\
+                    <li class='static'><a href='#'>Static</a></li>\
+                    <li><a href='#'>One</a></li>\
+                    <li><a href='#'>Two</a></li>\
+                    <li class='disabled'><a href='#'>Disabled</a></li>\
+                    <li><a href='#'>Three</a></li>\
+                </ul>\
+            </nav>\
+        ");
+
+        $(shadow).append( $("<link href='../metro/css/metro-all.css' rel='stylesheet'>") );
+        $(shadow).append(nav);
+        nav.ribbonmenu();
+    });
+</script>
+</body>
+</html>
