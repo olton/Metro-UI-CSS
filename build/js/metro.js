@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/09/2020 17:51:35
+ * Built at 13/09/2020 19:02:48
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4501,7 +4501,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "12/09/2020 17:51:35",
+        compileTime: "13/09/2020 19:02:48",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -34736,11 +34736,15 @@ $.noConflict = function() {
         },
 
         maximized: function(e){
-            var win = this.win;
+            var win = this.win, o = this.options;
             var target = $(e.currentTarget);
-            win.removeClass("minimized");
-            win.toggleClass("maximized");
-            if (target.hasClass("window-caption")) {
+
+            if (o.btnMax) {
+                win.removeClass("minimized");
+                win.toggleClass("maximized");
+            }
+
+            if (target.hasClass && target.hasClass("window-caption")) {
 
                 this._fireEvent("caption-dbl-click", {
                     win: win[0]
@@ -34756,9 +34760,12 @@ $.noConflict = function() {
         },
 
         minimized: function(){
-            var win = this.win;
-            win.removeClass("maximized");
-            win.toggleClass("minimized");
+            var win = this.win, o = this.options;
+
+            if (o.btnMin) {
+                win.removeClass("maximized");
+                win.toggleClass("minimized");
+            }
 
             this._fireEvent("min-click", {
                 win: win[0]
