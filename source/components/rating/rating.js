@@ -5,6 +5,7 @@
     var Colors = Metro.colors;
     var RatingDefaultConfig = {
         ratingDeferred: 0,
+        label: "",
         static: false,
         title: null,
         value: 0,
@@ -19,6 +20,7 @@
         clsTitle: "",
         clsStars: "",
         clsResult: "",
+        clsLabel: "",
         onStarClick: Metro.noop,
         onRatingCreate: Metro.noop
     };
@@ -145,6 +147,16 @@
             if (o.copyInlineStyles === true) {
                 for (i = 0; i < element[0].style.length; i++) {
                     rating.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(rating);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
                 }
             }
 

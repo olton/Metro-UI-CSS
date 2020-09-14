@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var SelectDefaultConfig = {
+        label: "",
         size: "normal",
         selectDeferred: 0,
         clearButton: false,
@@ -32,6 +33,7 @@
         clsDropContainer: "",
         clsSelectedItem: "",
         clsSelectedItemRemover: "",
+        clsLabel: "",
 
         onChange: Metro.noop,
         onUp: Metro.noop,
@@ -279,6 +281,16 @@
 
             if (element.attr('dir') === 'rtl' ) {
                 container.addClass("rtl").attr("dir", "rtl");
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (element.is(':disabled')) {

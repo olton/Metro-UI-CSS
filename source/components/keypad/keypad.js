@@ -4,6 +4,7 @@
     var Utils = Metro.utils;
     var KeypadDefaultConfig = {
         keypadDeferred: 0,
+        label: "",
         keySize: 48,
         keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
         copyInlineStyles: false,
@@ -25,6 +26,7 @@
         clsServiceKey: "",
         clsBackspace: "",
         clsClear: "",
+        clsLabel: "",
 
         onChange: Metro.noop,
         onClear: Metro.noop,
@@ -121,6 +123,16 @@
 
             element.on(Metro.events.blur, function(){keypad.removeClass("focused");});
             element.on(Metro.events.focus, function(){keypad.addClass("focused");});
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(keypad);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             if (o.disabled === true || element.is(":disabled")) {
                 this.disable();

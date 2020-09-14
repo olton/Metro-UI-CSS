@@ -3,6 +3,7 @@
     'use strict';
     var FileDefaultConfig = {
         fileDeferred: 0,
+        label: "",
         mode: "input",
         buttonTitle: "Choose file(s)",
         filesTitle: "file(s) selected",
@@ -13,6 +14,7 @@
         clsPrepend: "",
         clsButton: "",
         clsCaption: "",
+        clsLabel: "",
         copyInlineStyles: false,
         onSelect: Metro.noop,
         onFileCreate: Metro.noop
@@ -87,6 +89,16 @@
             if (o.copyInlineStyles === true) {
                 for (var i = 0, l = element[0].style.length; i < l; i++) {
                     container.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
                 }
             }
 
