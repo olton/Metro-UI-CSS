@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/09/2020 11:31:02
+ * Built at 14/09/2020 13:07:48
  * Licensed under MIT
  */
 *,
@@ -27992,6 +27992,13 @@ input:-webkit-autofill:active {
 input.rtl,
 input[dir=rtl] {
   direction: rtl;
+}
+.label-for-input {
+  display: block;
+  position: relative;
+}
+.label-for-input.rtl {
+  text-align: right;
 }
 .input-material {
   position: relative;

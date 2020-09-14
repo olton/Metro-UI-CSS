@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/09/2020 11:31:02
+ * Built at 14/09/2020 13:07:48
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4501,7 +4501,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "14/09/2020 11:31:02",
+        compileTime: "14/09/2020 13:07:48",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18397,6 +18397,7 @@ $.noConflict = function() {
         inputDeferred: 0,
 
         // mask: null,
+        label: "",
 
         autocomplete: null,
         autocompleteDivider: ",",
@@ -18584,6 +18585,16 @@ $.noConflict = function() {
                     maxHeight: o.autocompleteListHeight,
                     display: "none"
                 }).appendTo(container);
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (element.is(":disabled")) {
