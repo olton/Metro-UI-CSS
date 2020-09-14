@@ -36,6 +36,7 @@
 + [x] Window: disable a window maximized/minimized action when attribute `data-btn-max=false` and user use double-click on then window caption, issue #1625
 + [x] Input: add style prop `min-width=0`, issue #1626
 + [x] Component: fix method `_runtime()` for updating attribute `data-role`.
++ [x] Input: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

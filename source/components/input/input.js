@@ -6,6 +6,7 @@
         inputDeferred: 0,
 
         // mask: null,
+        label: "",
 
         autocomplete: null,
         autocompleteDivider: ",",
@@ -193,6 +194,16 @@
                     maxHeight: o.autocompleteListHeight,
                     display: "none"
                 }).appendTo(container);
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (element.is(":disabled")) {
