@@ -577,9 +577,17 @@
 
                 _runtime: function(){
                     var element = this.element, mc;
+                    var roles = (element.attr("data-role") || "").toArray(",").map(function(v){
+                        return normalizeComponentName(v);
+                    });
+
                     if (!element.attr('data-role-'+this.name)) {
                         element.attr("data-role-"+this.name, true);
-                        element.attr("data-role", this.name);
+                        if (roles.indexOf(this.name) === -1) {
+                            roles.push(this.name);
+                            element.attr("data-role", roles.join(","));
+                        }
+
                         mc = element.data('metroComponent');
                         if (mc === undefined) {
                             mc = [this.name];

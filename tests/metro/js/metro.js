@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/09/2020 19:33:51
+ * Built at 14/09/2020 11:31:02
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4501,7 +4501,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "13/09/2020 19:33:51",
+        compileTime: "14/09/2020 11:31:02",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5050,9 +5050,17 @@ $.noConflict = function() {
 
                 _runtime: function(){
                     var element = this.element, mc;
+                    var roles = (element.attr("data-role") || "").toArray(",").map(function(v){
+                        return normalizeComponentName(v);
+                    });
+
                     if (!element.attr('data-role-'+this.name)) {
                         element.attr("data-role-"+this.name, true);
-                        element.attr("data-role", this.name);
+                        if (roles.indexOf(this.name) === -1) {
+                            roles.push(this.name);
+                            element.attr("data-role", roles.join(","));
+                        }
+
                         mc = element.data('metroComponent');
                         if (mc === undefined) {
                             mc = [this.name];
