@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var TextareaDefaultConfig = {
+        label: "",
         textareaDeferred: 0,
         charsCounter: null,
         charsCounterTemplate: "$1",
@@ -18,6 +19,7 @@
         clsAppend: "",
         clsComponent: "",
         clsTextarea: "",
+        clsLabel: "",
         onChange: Metro.noop,
         onTextareaCreate: Metro.noop
     };
@@ -92,6 +94,16 @@
 
             container.addClass(o.clsComponent);
             element.addClass(o.clsTextarea);
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             if (element.is(':disabled')) {
                 this.disable();

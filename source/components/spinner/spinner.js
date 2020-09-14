@@ -4,6 +4,7 @@
     var Utils = Metro.utils;
     var SpinnerDefaultConfig = {
         spinnerDeferred: 0,
+        label: "",
         step: 1,
         plusIcon: "<span class='default-icon-plus'></span>",
         minusIcon: "<span class='default-icon-minus'></span>",
@@ -19,6 +20,7 @@
         clsSpinnerButton: "",
         clsSpinnerButtonPlus: "",
         clsSpinnerButtonMinus: "",
+        clsLabel: "",
         onBeforeChange: Metro.noop_true,
         onChange: Metro.noop,
         onPlusClick: Metro.noop,
@@ -81,6 +83,16 @@
 
             if (o.hideCursor === true) {
                 spinner.addClass("hide-cursor");
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(spinner);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (o.disabled === true || element.is(":disabled")) {

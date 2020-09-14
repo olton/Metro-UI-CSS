@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/09/2020 13:07:48
+ * Built at 14/09/2020 14:21:59
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4501,7 +4501,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "14/09/2020 13:07:48",
+        compileTime: "14/09/2020 14:21:59",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -16672,6 +16672,7 @@ $.noConflict = function() {
     'use strict';
     var FileDefaultConfig = {
         fileDeferred: 0,
+        label: "",
         mode: "input",
         buttonTitle: "Choose file(s)",
         filesTitle: "file(s) selected",
@@ -16682,6 +16683,7 @@ $.noConflict = function() {
         clsPrepend: "",
         clsButton: "",
         clsCaption: "",
+        clsLabel: "",
         copyInlineStyles: false,
         onSelect: Metro.noop,
         onFileCreate: Metro.noop
@@ -16756,6 +16758,16 @@ $.noConflict = function() {
             if (o.copyInlineStyles === true) {
                 for (var i = 0, l = element[0].style.length; i < l; i++) {
                     container.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
                 }
             }
 
@@ -18429,6 +18441,7 @@ $.noConflict = function() {
         clsRevealButton: "",
         clsCustomButton: "",
         clsSearchButton: "",
+        clsLabel: "",
 
         onAutocompleteSelect: Metro.noop,
         onHistoryChange: Metro.noop,
@@ -18588,7 +18601,7 @@ $.noConflict = function() {
             }
 
             if (o.label) {
-                var label = $("<label>").addClass("label-for-input").html(o.label).insertBefore(container);
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
                 if (element.attr("id")) {
                     label.attr("for", element.attr("id"));
                 }
@@ -18880,6 +18893,7 @@ $.noConflict = function() {
     var Utils = Metro.utils;
     var KeypadDefaultConfig = {
         keypadDeferred: 0,
+        label: "",
         keySize: 48,
         keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
         copyInlineStyles: false,
@@ -18901,6 +18915,7 @@ $.noConflict = function() {
         clsServiceKey: "",
         clsBackspace: "",
         clsClear: "",
+        clsLabel: "",
 
         onChange: Metro.noop,
         onClear: Metro.noop,
@@ -18997,6 +19012,16 @@ $.noConflict = function() {
 
             element.on(Metro.events.blur, function(){keypad.removeClass("focused");});
             element.on(Metro.events.focus, function(){keypad.addClass("focused");});
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(keypad);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             if (o.disabled === true || element.is(":disabled")) {
                 this.disable();
@@ -22565,6 +22590,7 @@ $.noConflict = function() {
     var Colors = Metro.colors;
     var RatingDefaultConfig = {
         ratingDeferred: 0,
+        label: "",
         static: false,
         title: null,
         value: 0,
@@ -22579,6 +22605,7 @@ $.noConflict = function() {
         clsTitle: "",
         clsStars: "",
         clsResult: "",
+        clsLabel: "",
         onStarClick: Metro.noop,
         onRatingCreate: Metro.noop
     };
@@ -22705,6 +22732,16 @@ $.noConflict = function() {
             if (o.copyInlineStyles === true) {
                 for (i = 0; i < element[0].style.length; i++) {
                     rating.css(element[0].style[i], element.css(element[0].style[i]));
+                }
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(rating);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
                 }
             }
 
@@ -23382,6 +23419,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var SelectDefaultConfig = {
+        label: "",
         size: "normal",
         selectDeferred: 0,
         clearButton: false,
@@ -23411,6 +23449,7 @@ $.noConflict = function() {
         clsDropContainer: "",
         clsSelectedItem: "",
         clsSelectedItemRemover: "",
+        clsLabel: "",
 
         onChange: Metro.noop,
         onUp: Metro.noop,
@@ -23658,6 +23697,16 @@ $.noConflict = function() {
 
             if (element.attr('dir') === 'rtl' ) {
                 container.addClass("rtl").attr("dir", "rtl");
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (element.is(':disabled')) {
@@ -25095,6 +25144,7 @@ $.noConflict = function() {
     var Utils = Metro.utils;
     var SpinnerDefaultConfig = {
         spinnerDeferred: 0,
+        label: "",
         step: 1,
         plusIcon: "<span class='default-icon-plus'></span>",
         minusIcon: "<span class='default-icon-minus'></span>",
@@ -25110,6 +25160,7 @@ $.noConflict = function() {
         clsSpinnerButton: "",
         clsSpinnerButtonPlus: "",
         clsSpinnerButtonMinus: "",
+        clsLabel: "",
         onBeforeChange: Metro.noop_true,
         onChange: Metro.noop,
         onPlusClick: Metro.noop,
@@ -25172,6 +25223,16 @@ $.noConflict = function() {
 
             if (o.hideCursor === true) {
                 spinner.addClass("hide-cursor");
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(spinner);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (o.disabled === true || element.is(":disabled")) {
@@ -29484,6 +29545,7 @@ $.noConflict = function() {
     var Colors = Metro.colors;
     var Utils = Metro.utils;
     var TagInputDefaultConfig = {
+        label: "",
         size: "normal",
         taginputDeferred: 0,
         static: false,
@@ -29502,6 +29564,8 @@ $.noConflict = function() {
         clsTag: "",
         clsTagTitle: "",
         clsTagRemover: "",
+        clsLabel: "",
+
         onBeforeTagAdd: Metro.noop_true,
         onTagAdd: Metro.noop,
         onBeforeTagRemove: Metro.noop_true,
@@ -29576,6 +29640,16 @@ $.noConflict = function() {
                 $.each(values.toArray(o.tagSeparator), function(){
                     that._addTag(this);
                 })
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (element.is(":disabled")) {
@@ -29994,6 +30068,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var TextareaDefaultConfig = {
+        label: "",
         textareaDeferred: 0,
         charsCounter: null,
         charsCounterTemplate: "$1",
@@ -30009,6 +30084,7 @@ $.noConflict = function() {
         clsAppend: "",
         clsComponent: "",
         clsTextarea: "",
+        clsLabel: "",
         onChange: Metro.noop,
         onTextareaCreate: Metro.noop
     };
@@ -30083,6 +30159,16 @@ $.noConflict = function() {
 
             container.addClass(o.clsComponent);
             element.addClass(o.clsTextarea);
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             if (element.is(':disabled')) {
                 this.disable();

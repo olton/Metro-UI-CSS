@@ -4,6 +4,7 @@
     var Colors = Metro.colors;
     var Utils = Metro.utils;
     var TagInputDefaultConfig = {
+        label: "",
         size: "normal",
         taginputDeferred: 0,
         static: false,
@@ -22,6 +23,8 @@
         clsTag: "",
         clsTagTitle: "",
         clsTagRemover: "",
+        clsLabel: "",
+
         onBeforeTagAdd: Metro.noop_true,
         onTagAdd: Metro.noop,
         onBeforeTagRemove: Metro.noop_true,
@@ -96,6 +99,16 @@
                 $.each(values.toArray(o.tagSeparator), function(){
                     that._addTag(this);
                 })
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
             }
 
             if (element.is(":disabled")) {

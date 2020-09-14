@@ -38,6 +38,7 @@
         clsRevealButton: "",
         clsCustomButton: "",
         clsSearchButton: "",
+        clsLabel: "",
 
         onAutocompleteSelect: Metro.noop,
         onHistoryChange: Metro.noop,
@@ -197,7 +198,7 @@
             }
 
             if (o.label) {
-                var label = $("<label>").addClass("label-for-input").html(o.label).insertBefore(container);
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
                 if (element.attr("id")) {
                     label.attr("for", element.attr("id"));
                 }
