@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/09/2020 14:21:59
+ * Built at 15/09/2020 13:42:51
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4501,7 +4501,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "14/09/2020 14:21:59",
+        compileTime: "15/09/2020 13:42:51",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11310,6 +11310,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
+        label: "",
         value:'',
         calendarpickerDeferred: 0,
         nullValue: true,
@@ -11362,6 +11363,7 @@ $.noConflict = function() {
         clsSelected: "",
         clsExcluded: "",
         clsPrepend: "",
+        clsLabel: "",
 
         onDayClick: Metro.noop,
         onCalendarPickerCreate: Metro.noop,
@@ -11543,6 +11545,16 @@ $.noConflict = function() {
                 if (Utils.media("(max-width: "+o.dialogPoint+"px)")) {
                     container.addClass("dialog-mode");
                     this.calendar.addClass("dialog-mode");
+                }
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
                 }
             }
 
@@ -14573,6 +14585,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var DatePickerDefaultConfig = {
+        label: "",
         datepickerDeferred: 0,
         gmt: 0,
         format: "%Y-%m-%d",
@@ -14592,6 +14605,7 @@ $.noConflict = function() {
         clsMonth: "",
         clsDay: "",
         clsYear: "",
+        clsLabel: "",
         okButtonIcon: "<span class='default-icon-check'></span>",
         cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
@@ -14676,20 +14690,22 @@ $.noConflict = function() {
             var picker, month, day, year, i, j;
             var dateWrapper, selectWrapper, selectBlock, actionBlock;
 
-            var prev = element.prev();
-            var parent = element.parent();
             var id = Utils.elementId("datepicker");
 
             picker = $("<div>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
 
-            if (prev.length === 0) {
-                parent.prepend(picker);
-            } else {
-                picker.insertAfter(prev);
-            }
-
+            picker.insertBefore(element);
             element.appendTo(picker);
 
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(picker);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             dateWrapper = $("<div>").addClass("date-wrapper").appendTo(picker);
 
@@ -30556,6 +30572,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var TimePickerDefaultConfig = {
+        label: "",
         timepickerDeferred: 0,
         hoursStep: 1,
         minutesStep: 1,
@@ -30574,6 +30591,7 @@ $.noConflict = function() {
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
+        clsLabel: "",
         okButtonIcon: "<span class='default-icon-check'></span>",
         cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
@@ -30675,20 +30693,22 @@ $.noConflict = function() {
             var picker, hours, minutes, seconds, i;
             var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
-            var prev = element.prev();
-            var parent = element.parent();
             var id = Utils.elementId("time-picker");
 
             picker = $("<div>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
 
-            if (prev.length === 0) {
-                parent.prepend(picker);
-            } else {
-                picker.insertAfter(prev);
-            }
-
+            picker.insertBefore(element);
             element.attr("readonly", true).appendTo(picker);
 
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(picker);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
 
