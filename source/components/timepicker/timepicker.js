@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var TimePickerDefaultConfig = {
+        label: "",
         timepickerDeferred: 0,
         hoursStep: 1,
         minutesStep: 1,
@@ -21,6 +22,7 @@
         clsHours: "",
         clsMinutes: "",
         clsSeconds: "",
+        clsLabel: "",
         okButtonIcon: "<span class='default-icon-check'></span>",
         cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
@@ -122,20 +124,22 @@
             var picker, hours, minutes, seconds, i;
             var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
-            var prev = element.prev();
-            var parent = element.parent();
             var id = Utils.elementId("time-picker");
 
             picker = $("<div>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
 
-            if (prev.length === 0) {
-                parent.prepend(picker);
-            } else {
-                picker.insertAfter(prev);
-            }
-
+            picker.insertBefore(element);
             element.attr("readonly", true).appendTo(picker);
 
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(picker);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
 

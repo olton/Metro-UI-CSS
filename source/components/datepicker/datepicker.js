@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var DatePickerDefaultConfig = {
+        label: "",
         datepickerDeferred: 0,
         gmt: 0,
         format: "%Y-%m-%d",
@@ -22,6 +23,7 @@
         clsMonth: "",
         clsDay: "",
         clsYear: "",
+        clsLabel: "",
         okButtonIcon: "<span class='default-icon-check'></span>",
         cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
@@ -106,20 +108,22 @@
             var picker, month, day, year, i, j;
             var dateWrapper, selectWrapper, selectBlock, actionBlock;
 
-            var prev = element.prev();
-            var parent = element.parent();
             var id = Utils.elementId("datepicker");
 
             picker = $("<div>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
 
-            if (prev.length === 0) {
-                parent.prepend(picker);
-            } else {
-                picker.insertAfter(prev);
-            }
-
+            picker.insertBefore(element);
             element.appendTo(picker);
 
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(picker);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
+                }
+            }
 
             dateWrapper = $("<div>").addClass("date-wrapper").appendTo(picker);
 

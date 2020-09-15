@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
+        label: "",
         value:'',
         calendarpickerDeferred: 0,
         nullValue: true,
@@ -55,6 +56,7 @@
         clsSelected: "",
         clsExcluded: "",
         clsPrepend: "",
+        clsLabel: "",
 
         onDayClick: Metro.noop,
         onCalendarPickerCreate: Metro.noop,
@@ -236,6 +238,16 @@
                 if (Utils.media("(max-width: "+o.dialogPoint+"px)")) {
                     container.addClass("dialog-mode");
                     this.calendar.addClass("dialog-mode");
+                }
+            }
+
+            if (o.label) {
+                var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
+                if (element.attr("id")) {
+                    label.attr("for", element.attr("id"));
+                }
+                if (element.attr("dir") === "rtl") {
+                    label.addClass("rtl");
                 }
             }
 
