@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test InputMask - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+    <div class="container">
+        <h1>InputMask test page</h1>
+        <div class="example">
+            <input type="text"
+                   data-role="input, input-mask"
+                   data-mask="+38 (___) ___-____"
+                   data-mask-editable-start="5"
+                   data-mask-pattern="\d"
+                   value="+38 (123) 456-7890"
+                   data-label="Phone number:"
+            >
+            <input type="text"
+                   data-role="input, input-mask"
+                   data-mask="__/__/____"
+                   data-mask-pattern="\d"
+                   value=""
+                   data-label="Date:"
+            >
+            <input type="text"
+                   data-role="input, input-mask"
+                   data-mask="__:__"
+                   data-mask-pattern="\d"
+                   value=""
+                   data-label="Time:"
+            >
+            <input type="text"
+                   data-role="input, input-mask"
+                   data-mask="**** **** **** ****"
+                   data-mask-placeholder="*"
+                   data-mask-pattern="\d"
+                   data-label="Credit card:"
+            >
+            <input type="text"
+                   data-role="input, input-mask"
+                   data-mask="____-_AB_-_CD_-____"
+                   data-mask-pattern="\w"
+                   data-label="Custom:"
+                   data-on-char="changeChar"
+            >
+            <input type="text"
+                   data-role="input, input-mask"
+                   data-mask="____-_AB_-_CD_-____"
+                   data-label="Custom:"
+            >
+        </div>
+    </div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function changeChar(char) {
+        if (char.toLowerCase() === "x") {
+            return "Y";
+        } else {
+            return 'Z';
+        }
+    }
+</script>
+</body>
+</html>
