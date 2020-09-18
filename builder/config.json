@@ -536,6 +536,10 @@
             "name": "Input common",
             "less": ["input-common"]
         },
+        "input-mask": {
+            "name": "Input mask",
+            "js": ["input-mask"]
+        },
         "input": {
             "name": "Input",
             "js": ["input"],

@@ -40,6 +40,7 @@
 + [x] Calendar picker: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
 + [x] Time picker: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
 + [x] Date picker: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
++ [x] Input mask: add new component. Currently, only for desktop browsers.
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

@@ -604,7 +604,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.8. Built at 27/08/2020 15:05:50";
+var m4qVersion = "v1.0.8. Built at 18/09/2020 13:46:29";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1542,6 +1542,9 @@ $.fn.extend({
 /* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp */
 
 $.extend({
+
+    device: (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())),
+
     uniqueId: function (prefix) {
         var d = new Date().getTime();
         if (not(prefix)) {
