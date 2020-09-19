@@ -4,6 +4,7 @@
 + [x] M4Q Constructor: add short-tag for selecting by `data-role` with `$('@rolename')` 
 + [x] M4Q Visibility: fix method `hide` for detecting initial `display` value
 + [x] M4Q Init: improve init method
++ [x] M4Q: add property `$.device`, **true** for mobile a device.
 
 #### Metro 4
 + [x] Components: switch to `Component._fireEvent(...)` method for firing component events `data-on-*` 
@@ -41,6 +42,7 @@
 + [x] Time picker: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
 + [x] Date picker: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
 + [x] Input mask: add new component. Currently, only for desktop browsers.
++ [x] Icons: new icons `external`, `new-tab`
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
