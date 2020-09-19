@@ -43,6 +43,7 @@
 + [x] Date picker: add attribute `data-label`. If this attribute defined, `label` element for input will be created automatically.
 + [x] Input mask: add new component. Currently, only for desktop browsers.
 + [x] Icons: new icons `external`, `new-tab`
++ [x] Countdown: fix draw function, issue #1632
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576

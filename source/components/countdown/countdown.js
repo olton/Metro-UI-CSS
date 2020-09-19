@@ -194,6 +194,7 @@
             }
 
             d = Math.floor(left / dm);
+
             left -= d * dm;
             if (this.current.d !== d) {
                 this.current.d = d;
@@ -283,7 +284,7 @@
             var digits, digits_length, digit_value, digit_current, digit;
             var len, i, duration = 900;
 
-            var slideDigit = function(digit){
+            var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
 
                 digit.siblings("-old-digit").remove();
@@ -307,7 +308,7 @@
                     });
 
                 digit_copy
-                    .html(digit_value)
+                    .html(value)
                     .animate({
                         draw: {
                             top: 0,
@@ -318,7 +319,7 @@
                     });
             };
 
-            var fadeDigit = function(digit){
+            var fadeDigit = function(digit, value){
                 var digit_copy;
                 digit.siblings("-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
@@ -340,7 +341,7 @@
                     });
 
                 digit_copy
-                    .html(digit_value)
+                    .html(value)
                     .animate({
                         draw: {
                             opacity: 1
@@ -350,7 +351,7 @@
                     });
             };
 
-            var zoomDigit = function(digit){
+            var zoomDigit = function(digit, value) {
                 var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
                 digit.siblings("-old-digit").remove();
@@ -377,7 +378,7 @@
                     });
 
                 digit_copy
-                    .html(digit_value)
+                    .html(value)
                     .animate({
                         draw: {
                             top: 0,
@@ -405,18 +406,18 @@
                 digit_value = Math.floor( parseInt(value) / Math.pow(10, i) ) % 10;
                 digit_current = parseInt(digit.text());
 
+                digits_length--;
+
                 if (digit_current === digit_value) {
                     continue;
                 }
 
                 switch ((""+o.animate).toLowerCase()) {
-                    case "slide": slideDigit(digit); break;
-                    case "fade": fadeDigit(digit); break;
-                    case "zoom": zoomDigit(digit); break;
+                    case "slide": slideDigit(digit, digit_value); break;
+                    case "fade": fadeDigit(digit, digit_value); break;
+                    case "zoom": zoomDigit(digit, digit_value); break;
                     default: digit.html(digit_value);
                 }
-
-                digits_length--;
             }
         },
 
