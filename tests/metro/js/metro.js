@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/09/2020 20:22:42
+ * Built at 20/09/2020 13:21:29
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "19/09/2020 20:22:42",
+        compileTime: "20/09/2020 13:21:29",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8336,6 +8336,19 @@ $.noConflict = function() {
 
         getScheme: function(){
             return this.createScheme.apply(this, arguments)
+        },
+
+        mix: function(color1, color2){
+            var c1 = this.toRGBA(color1);
+            var c2 = this.toRGBA(color2);
+            var result = new RGBA();
+
+            result.r = Math.round((c1.r + c2.r) / 2);
+            result.g = Math.round((c1.g + c2.g) / 2);
+            result.b = Math.round((c1.b + c2.b) / 2);
+            result.a = Math.round((c1.a + c2.a) / 2);
+
+            return result;
         }
     };
 
@@ -8353,6 +8366,7 @@ $.noConflict = function() {
                 color = "#000000";
             }
             this._value = color;
+            this._type = Colors.colorType(this._value);
         },
 
         _setOptions: function(options){
@@ -8381,6 +8395,7 @@ $.noConflict = function() {
                 return;
             }
             this._value = Colors.toRGB(this._value);
+            this._type = Types.RGB;
             return this;
         },
 
@@ -8399,6 +8414,7 @@ $.noConflict = function() {
             } else {
                 this._value = Colors.toRGBA(this._value, alpha);
             }
+            this._type = Types.RGBA;
             return this;
         },
 
@@ -8415,6 +8431,7 @@ $.noConflict = function() {
                 return;
             }
             this._value = Colors.toHEX(this._value);
+            this._type = Types.HEX;
             return this;
         },
 
@@ -8427,6 +8444,7 @@ $.noConflict = function() {
                 return;
             }
             this._value = Colors.toHSV(this._value);
+            this._type = Types.HSV;
             return this;
         },
 
@@ -8439,6 +8457,7 @@ $.noConflict = function() {
                 return;
             }
             this._value = Colors.toHSL(this._value);
+            this._type = Types.HSL;
             return this;
         },
 
@@ -8457,6 +8476,7 @@ $.noConflict = function() {
             } else {
                 this._value = Colors.toHSLA(this._value, alpha);
             }
+            this._type = Types.HSLA;
             return this;
         },
 
@@ -8473,6 +8493,7 @@ $.noConflict = function() {
                 return;
             }
             this._value = Colors.toCMYK(this._value);
+            this._type = Types.CMYK;
             return this;
         },
 
@@ -8485,6 +8506,7 @@ $.noConflict = function() {
                 return;
             }
             this._value = Colors.websafe(this._value);
+            this._type = Colors.colorType(this._value);
             return this;
         },
 
@@ -8531,7 +8553,7 @@ $.noConflict = function() {
         },
 
         grayscale: function() {
-            if (!this._value || this.type === Types.UNKNOWN) {
+            if (!this._value || this.type() === Types.UNKNOWN) {
                 return;
             }
             this._value = Colors.grayscale(
@@ -8557,6 +8579,12 @@ $.noConflict = function() {
 
         equal: function(color) {
             return Colors.equal(this._value, color);
+        },
+
+        mix: function(color){
+            var mixedColor = Colors.mix(this._value, color);
+            this._value = Colors['to'+this._type.toUpperCase()](mixedColor);
+            return this;
         }
     }
 
