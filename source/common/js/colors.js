@@ -1110,6 +1110,19 @@
 
         getScheme: function(){
             return this.createScheme.apply(this, arguments)
+        },
+
+        mix: function(color1, color2){
+            var c1 = this.toRGBA(color1);
+            var c2 = this.toRGBA(color2);
+            var result = new RGBA();
+
+            result.r = Math.round((c1.r + c2.r) / 2);
+            result.g = Math.round((c1.g + c2.g) / 2);
+            result.b = Math.round((c1.b + c2.b) / 2);
+            result.a = Math.round((c1.a + c2.a) / 2);
+
+            return result;
         }
     };
 
@@ -1127,6 +1140,7 @@
                 color = "#000000";
             }
             this._value = color;
+            this._type = Colors.colorType(this._value);
         },
 
         _setOptions: function(options){
@@ -1155,6 +1169,7 @@
                 return;
             }
             this._value = Colors.toRGB(this._value);
+            this._type = Types.RGB;
             return this;
         },
 
@@ -1173,6 +1188,7 @@
             } else {
                 this._value = Colors.toRGBA(this._value, alpha);
             }
+            this._type = Types.RGBA;
             return this;
         },
 
@@ -1189,6 +1205,7 @@
                 return;
             }
             this._value = Colors.toHEX(this._value);
+            this._type = Types.HEX;
             return this;
         },
 
@@ -1201,6 +1218,7 @@
                 return;
             }
             this._value = Colors.toHSV(this._value);
+            this._type = Types.HSV;
             return this;
         },
 
@@ -1213,6 +1231,7 @@
                 return;
             }
             this._value = Colors.toHSL(this._value);
+            this._type = Types.HSL;
             return this;
         },
 
@@ -1231,6 +1250,7 @@
             } else {
                 this._value = Colors.toHSLA(this._value, alpha);
             }
+            this._type = Types.HSLA;
             return this;
         },
 
@@ -1247,6 +1267,7 @@
                 return;
             }
             this._value = Colors.toCMYK(this._value);
+            this._type = Types.CMYK;
             return this;
         },
 
@@ -1259,6 +1280,7 @@
                 return;
             }
             this._value = Colors.websafe(this._value);
+            this._type = Colors.colorType(this._value);
             return this;
         },
 
@@ -1305,7 +1327,7 @@
         },
 
         grayscale: function() {
-            if (!this._value || this.type === Types.UNKNOWN) {
+            if (!this._value || this.type() === Types.UNKNOWN) {
                 return;
             }
             this._value = Colors.grayscale(
@@ -1331,6 +1353,12 @@
 
         equal: function(color) {
             return Colors.equal(this._value, color);
+        },
+
+        mix: function(color){
+            var mixedColor = Colors.mix(this._value, color);
+            this._value = Colors['to'+this._type.toUpperCase()](mixedColor);
+            return this;
         }
     }
 
