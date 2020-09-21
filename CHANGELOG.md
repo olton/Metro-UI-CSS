@@ -44,6 +44,8 @@
 + [x] Input mask: add new component. Currently, only for desktop browsers.
 + [x] Icons: new icons `external`, `new-tab`
 + [x] Countdown: fix draw function, issue #1632
++ [x] Color: add `ColorPrimitive` with color primitive objects
++ [x] Color: fix color type constructor for creating colors from string
 + [x] Color: add method `mix(...)`: `ColorType.mix(color)` and `Colors.mix(color1, color2)`. This method allows you to mix colors. 
 
 ### 4.3.10

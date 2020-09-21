@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/09/2020 13:21:29
+ * Built at 21/09/2020 11:46:31
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "20/09/2020 13:21:29",
+        compileTime: "21/09/2020 11:46:31",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7516,6 +7516,7 @@ $.noConflict = function() {
         },
 
         expandHexColor: function(hex){
+            
             if (typeof hex !== "string") {
                 throw new Error("Value is not a string!");
             }
@@ -7558,29 +7559,29 @@ $.noConflict = function() {
                 .replace(/[^\d.,]/g, "")
                 .split(",")
                 .map(function(v) {
-                    return _color.includes("hs") ? parseFloat(v) : parseInt(v);
+                    return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
                 });
 
             if (_color[0] === "#") {
                 return this.expandHexColor(_color);
             }
 
-            if (_color.includes("rgba")) {
+            if (_color.indexOf("rgba") > -1) {
                 return new RGBA(a[0], a[1], a[2], a[3]);
             }
-            if (_color.includes("rgb")) {
+            if (_color.indexOf("rgb") > -1) {
                 return new RGB(a[0], a[1], a[2]);
             }
-            if (_color.includes("cmyk")) {
+            if (_color.indexOf("cmyk") > -1) {
                 return new CMYK(a[0], a[1], a[2], a[3]);
             }
-            if (_color.includes("hsv")) {
+            if (_color.indexOf("hsv") > -1) {
                 return new HSV(a[0], a[1], a[2]);
             }
-            if (_color.includes("hsla")) {
+            if (_color.indexOf("hsla") > -1) {
                 return new HSLA(a[0], a[1], a[2], a[3]);
             }
-            if (_color.includes("hsl")) {
+            if (_color.indexOf("hsl") > -1) {
                 return new HSL(a[0], a[1], a[2]);
             }
             return _color;
@@ -8338,17 +8339,18 @@ $.noConflict = function() {
             return this.createScheme.apply(this, arguments)
         },
 
-        mix: function(color1, color2){
+        mix: function(color1, color2, returnAs){
             var c1 = this.toRGBA(color1);
             var c2 = this.toRGBA(color2);
             var result = new RGBA();
+            var to = (""+returnAs).toLowerCase() || "hex";
 
             result.r = Math.round((c1.r + c2.r) / 2);
             result.g = Math.round((c1.g + c2.g) / 2);
             result.b = Math.round((c1.b + c2.b) / 2);
             result.a = Math.round((c1.a + c2.a) / 2);
 
-            return result;
+            return this["to"+to.toUpperCase()](result);
         }
     };
 
@@ -8359,13 +8361,18 @@ $.noConflict = function() {
 
     ColorType.prototype = {
         _setValue: function(color){
+            var _color;
+
             if (typeof color === "string") {
-                color = Colors.expandHexColor(Colors.parse(color));
+                _color = Colors.parse(color);
+                _color = typeof _color === "string" ? Colors.expandHexColor(_color) : _color;
             }
-            if (!Colors.isColor(color)) {
-                color = "#000000";
+
+            if (!Colors.isColor(_color)) {
+                _color = "#000000";
             }
-            this._value = color;
+
+            this._value = _color;
             this._type = Colors.colorType(this._value);
         },
 
@@ -8582,14 +8589,22 @@ $.noConflict = function() {
         },
 
         mix: function(color){
-            var mixedColor = Colors.mix(this._value, color);
-            this._value = Colors['to'+this._type.toUpperCase()](mixedColor);
+            var mixedColor = Colors.mix(this._value, color, this._type);
+            this._value = mixedColor;
             return this;
         }
     }
 
     Metro.colors = Colors.init();
     window.Color = Metro.Color = ColorType;
+    window.ColorPrimitive = Metro.colorPrimitive = {
+        RGB: RGB,
+        RGBA: RGBA,
+        HSV: HSV,
+        HSL: HSL,
+        HSLA: HSLA,
+        CMYK: CMYK
+    };
 
     if (window.METRO_GLOBAL_COMMON === true) {
         window.Colors = Metro.colors;
