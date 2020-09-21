@@ -1139,7 +1139,8 @@
 
             if (typeof color === "string") {
                 _color = Colors.parse(color);
-                _color = typeof _color === "string" ? Colors.expandHexColor(_color) : _color;
+            } else {
+                _color = color;
             }
 
             if (!Colors.isColor(_color)) {
@@ -1181,7 +1182,7 @@
         },
 
         rgb: function(){
-            return this._value ? Colors.toRGB(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toRGB(this._value)) : undefined;
         },
 
         toRGBA: function(alpha) {
@@ -1217,7 +1218,7 @@
         },
 
         hex: function() {
-            return this._value ? Colors.toHEX(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toHEX(this._value)) : undefined;
         },
 
         toHSV: function() {
@@ -1230,7 +1231,7 @@
         },
 
         hsv: function() {
-            return this._value ? Colors.toHSV(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toHSV(this._value)) : undefined;
         },
 
         toHSL: function() {
