@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/09/2020 11:46:31
+ * Built at 21/09/2020 12:28:25
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "21/09/2020 11:46:31",
+        compileTime: "21/09/2020 12:28:25",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8365,7 +8365,8 @@ $.noConflict = function() {
 
             if (typeof color === "string") {
                 _color = Colors.parse(color);
-                _color = typeof _color === "string" ? Colors.expandHexColor(_color) : _color;
+            } else {
+                _color = color;
             }
 
             if (!Colors.isColor(_color)) {
@@ -8407,7 +8408,7 @@ $.noConflict = function() {
         },
 
         rgb: function(){
-            return this._value ? Colors.toRGB(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toRGB(this._value)) : undefined;
         },
 
         toRGBA: function(alpha) {
@@ -8443,7 +8444,7 @@ $.noConflict = function() {
         },
 
         hex: function() {
-            return this._value ? Colors.toHEX(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toHEX(this._value)) : undefined;
         },
 
         toHSV: function() {
@@ -8456,7 +8457,7 @@ $.noConflict = function() {
         },
 
         hsv: function() {
-            return this._value ? Colors.toHSV(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toHSV(this._value)) : undefined;
         },
 
         toHSL: function() {
