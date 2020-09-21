@@ -290,7 +290,6 @@
         },
 
         expandHexColor: function(hex){
-            console.log(hex);
             if (typeof hex !== "string") {
                 throw new Error("Value is not a string!");
             }
@@ -1201,11 +1200,7 @@
         },
 
         rgba: function(alpha) {
-            return this._value
-                ? Colors.isRGBA(this._value)
-                    ? this._value
-                    : Colors.toRGBA(this._value, alpha)
-                : undefined;
+            return this._value ? new ColorType(Colors.toRGBA(this._value, alpha)) : undefined;
         },
 
         toHEX: function() {
@@ -1244,7 +1239,7 @@
         },
 
         hsl: function() {
-            return this._value ? Colors.toHSL(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toHSL(this._value)) : undefined;
         },
 
         toHSLA: function(alpha) {
@@ -1263,11 +1258,7 @@
         },
 
         hsla: function(alpha) {
-            return this._value
-                ? Colors.isHSLA(this._value)
-                    ? this._value
-                    : Colors.toHSLA(this._value, alpha)
-                : undefined;
+            return this._value ? new ColorType(Colors.toHSLA(this._value, alpha)) : undefined;
         },
 
         toCMYK: function() {
@@ -1280,7 +1271,7 @@
         },
 
         cmyk: function() {
-            return this._value ? Colors.toCMYK(this._value) : undefined;
+            return this._value ? new ColorType(Colors.toCMYK(this._value)) : undefined;
         },
 
         toWebsafe: function() {
@@ -1293,11 +1284,11 @@
         },
 
         websafe: function() {
-            return this._value ? Colors.websafe(this._value) : undefined;
+            return this._value ? new ColorType(Colors.websafe(this._value)) : undefined;
         },
 
         toString: function() {
-            return this._value ? Colors.colorToString(this._value) : undefined;
+            return this._value ? Colors.colorToString(this._value) : "undefined";
         },
 
         darken: function(amount) {
@@ -1338,10 +1329,7 @@
             if (!this._value || this.type() === Types.UNKNOWN) {
                 return;
             }
-            this._value = Colors.grayscale(
-                this._value,
-                ("" + this.type).toLowerCase()
-            );
+            this._value = Colors.grayscale(this._value, this.type());
             return this;
         },
 
@@ -1364,8 +1352,7 @@
         },
 
         mix: function(color){
-            var mixedColor = Colors.mix(this._value, color, this._type);
-            this._value = mixedColor;
+            this._value = Colors.mix(this._value, color, this._type);
             return this;
         }
     }

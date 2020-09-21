@@ -58,12 +58,16 @@
         // console.log(color4.mix("#ffffff").rgb());
         // $(".box.mixed").css("background", color4.mix("#ffffff").rgb());
 
-        var myRGBColor = new Color("#ff00cc").toRGB();
-        var myHSVColor = myRGBColor.hsv();
+        // var myRGBColor = new Color("#ff00cc").toRGB();
+        // var myHSVColor = myRGBColor.hsv();
+        //
+        // console.log(myRGBColor.type(), myRGBColor.toString()); // rgb, hsv(312,1,1)
+        // console.log(myHSVColor.type(), myHSVColor.toString()); // hsv, hsv(312,1,1)
+        // console.log(myHSVColor ); // hsv, hsv(312,1,1)
 
-        console.log(myRGBColor.type(), myRGBColor.toString()); // rgb, hsv(312,1,1)
-        console.log(myHSVColor.type(), myHSVColor.toString()); // hsv, hsv(312,1,1)
-        console.log(myHSVColor ); // hsv, hsv(312,1,1)
+        var myColor = new Color("#ff00cc");
+        myColor.grayscale();
+        console.log(myColor.toString()); // #454545
 
     })
 </script>
