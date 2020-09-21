@@ -34,12 +34,17 @@
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
     $(function(){
-        // var c = new Color("#ff00cc");
+        // var rgb = new ColorPrimitive.RGB(0, 0, 0);
+        // console.log(rgb.toString());
+
+        var c = new Color("#ff00cc");
+        var c2 = new Color("rgba(128, 116, 114, .5)");
         // var cm = Metro.colors;
         // console.log(c);
         // console.log(c.rgb()+"");
         // console.log(cm.getScheme("#ff00cc", 'mono', 'hex'));
-        //
+        // console.log(c2.hex());
+
         // var color1 = "#ffffff";
         // var color2 = "#000000";
         // var color3;
@@ -49,9 +54,10 @@
         //
         // $(".box.mixed").css("background", color3.toString());
 
-        var color4 = new Color("#000000");
-        console.log(color4.mix("#ffffff").rgb());
-        $(".box.mixed").css("background", color4.mix("#ffffff").rgb());
+        // var color4 = new Color("#00cc00");
+        // console.log(color4.mix("#ffffff").rgb());
+        // $(".box.mixed").css("background", color4.mix("#ffffff").rgb());
+
     })
 </script>
 </body>
