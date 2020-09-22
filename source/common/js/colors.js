@@ -792,12 +792,14 @@
         },
 
         darken: function(color, amount){
-            amount = typeof amount !== "undefined" ? amount : 10;
+            amount = amount || 10;
             return this.lighten(color, -1 * Math.abs(amount));
         },
 
         lighten: function(color, amount){
             var type, res, alpha, ring;
+
+            amount = amount || 10;
 
             var calc = function (_color, _amount) {
                 var r, g, b;
@@ -821,8 +823,6 @@
 
                 return "#" + (g | (b << 8) | (r << 16)).toString(16);
             };
-
-            if (isNaN(amount)) amount = 10;
 
             ring = amount > 0;
 
@@ -1291,22 +1291,22 @@
             return this._value ? Colors.colorToString(this._value) : "undefined";
         },
 
-        darken: function(amount) {
-            amount = amount || 10;
-            if (!this._value) {
-                return;
-            }
+        toDarken: function(amount) {
             this._value = Colors.darken(this._value, amount);
             return this;
         },
 
-        lighten: function(amount) {
-            amount = amount || 10;
-            if (!this._value) {
-                return;
-            }
+        darken: function(amount){
+            return new ColorType(Colors.darken(this._value, amount));
+        },
+
+        toLighten: function(amount) {
             this._value = Colors.lighten(this._value, amount);
             return this;
+        },
+
+        lighten: function(amount){
+            return new ColorType(Colors.lighten(this._value, amount))
         },
 
         isDark: function() {
@@ -1317,20 +1317,22 @@
             return this._value ? Colors.isLight(this._value) : undefined;
         },
 
-        hueShift: function(angle) {
-            if (!this._value) {
-                return;
-            }
+        toHueShift: function(angle) {
             this._value = Colors.hueShift(this._value, angle);
             return this;
         },
 
-        grayscale: function() {
-            if (!this._value || this.type() === Types.UNKNOWN) {
-                return;
-            }
-            this._value = Colors.grayscale(this._value, this.type());
+        hueShift: function (angle) {
+            return new ColorType(Colors.hueShift(this._value, angle));
+        },
+
+        toGrayscale: function() {
+            this._value = Colors.grayscale(this._value, this._type);
             return this;
+        },
+
+        grayscale: function(){
+            return new ColorType(Colors.grayscale(this._value, this._type));
         },
 
         type: function() {
@@ -1351,9 +1353,13 @@
             return Colors.equal(this._value, color);
         },
 
-        mix: function(color){
+        toMix: function(color){
             this._value = Colors.mix(this._value, color, this._type);
             return this;
+        },
+
+        mix: function(color){
+            return new ColorType(Colors.mix(this._value, color, this._type));
         }
     }
 
