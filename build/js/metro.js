@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/09/2020 10:58:58
+ * Built at 22/09/2020 11:24:46
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "22/09/2020 10:58:58",
+        compileTime: "22/09/2020 11:24:46",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8066,16 +8066,24 @@ $.noConflict = function() {
             return this.toColor(res, type, alpha);
         },
 
-        hueShift: function(color, angle){
+        hueShift: function(color, hue, saturation, value){
             var hsv = this.toHSV(color);
             var type = this.colorType(color).toLowerCase();
             var h = hsv.h;
             var alpha;
 
-            h += angle;
+            h += hue;
             while (h >= 360.0) h -= 360.0;
             while (h < 0.0) h += 360.0;
             hsv.h = h;
+
+            if (typeof saturation !== "undefined") {
+                hsv.s += saturation;
+            }
+
+            if (typeof value !== "undefined") {
+                hsv.v += value;
+            }
 
             if (type === Types.RGBA || type === Types.HSLA) {
                 alpha = color.a;
@@ -8543,13 +8551,13 @@ $.noConflict = function() {
             return this._value ? Colors.isLight(this._value) : undefined;
         },
 
-        toHueShift: function(angle) {
-            this._value = Colors.hueShift(this._value, angle);
+        toHueShift: function(hue, saturation, value) {
+            this._value = Colors.hueShift(this._value, hue, saturation, value);
             return this;
         },
 
-        hueShift: function (angle) {
-            return new ColorType(Colors.hueShift(this._value, angle));
+        hueShift: function (hue, saturation, value) {
+            return new ColorType(Colors.hueShift(this._value, hue, saturation, value));
         },
 
         toGrayscale: function() {
