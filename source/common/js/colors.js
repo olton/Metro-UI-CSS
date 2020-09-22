@@ -840,16 +840,24 @@
             return this.toColor(res, type, alpha);
         },
 
-        hueShift: function(color, angle){
+        hueShift: function(color, hue, saturation, value){
             var hsv = this.toHSV(color);
             var type = this.colorType(color).toLowerCase();
             var h = hsv.h;
             var alpha;
 
-            h += angle;
+            h += hue;
             while (h >= 360.0) h -= 360.0;
             while (h < 0.0) h += 360.0;
             hsv.h = h;
+
+            if (typeof saturation !== "undefined") {
+                hsv.s += saturation;
+            }
+
+            if (typeof value !== "undefined") {
+                hsv.v += value;
+            }
 
             if (type === Types.RGBA || type === Types.HSLA) {
                 alpha = color.a;
@@ -1317,13 +1325,13 @@
             return this._value ? Colors.isLight(this._value) : undefined;
         },
 
-        toHueShift: function(angle) {
-            this._value = Colors.hueShift(this._value, angle);
+        toHueShift: function(hue, saturation, value) {
+            this._value = Colors.hueShift(this._value, hue, saturation, value);
             return this;
         },
 
-        hueShift: function (angle) {
-            return new ColorType(Colors.hueShift(this._value, angle));
+        hueShift: function (hue, saturation, value) {
+            return new ColorType(Colors.hueShift(this._value, hue, saturation, value));
         },
 
         toGrayscale: function() {
