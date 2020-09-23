@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/09/2020 11:24:46
+ * Built at 23/09/2020 12:06:37
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "22/09/2020 11:24:46",
+        compileTime: "23/09/2020 12:06:37",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7259,6 +7259,16 @@ $.noConflict = function() {
         alpha: 1
     };
 
+    // function HEX(r, g, b) {
+    //     this.r = r || "00";
+    //     this.g = g || "00";
+    //     this.b = b || "00";
+    // }
+    //
+    // HEX.prototype.toString = function(){
+    //     return "#" + [this.r, this.g, this.b].join("");
+    // }
+
     function RGB(r, g, b){
         this.r = r || 0;
         this.g = g || 0;
@@ -7273,7 +7283,7 @@ $.noConflict = function() {
         this.r = r || 0;
         this.g = g || 0;
         this.b = b || 0;
-        this.a = a || 1;
+        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
     }
 
     RGBA.prototype.toString = function(){
@@ -7304,7 +7314,7 @@ $.noConflict = function() {
         this.h = h || 0;
         this.s = s || 0;
         this.l = l || 0;
-        this.a = a || 1;
+        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
     }
 
     HSLA.prototype.toString = function(){
@@ -8071,19 +8081,22 @@ $.noConflict = function() {
             var type = this.colorType(color).toLowerCase();
             var h = hsv.h;
             var alpha;
+            var _h = hue || 0;
+            var _s = saturation || 0;
+            var _v = value || 0;
 
-            h += hue;
+            h += _h;
             while (h >= 360.0) h -= 360.0;
             while (h < 0.0) h += 360.0;
             hsv.h = h;
 
-            if (typeof saturation !== "undefined") {
-                hsv.s += saturation;
-            }
+            hsv.s += _s;
+            if (hsv.s > 1) {hsv.s = 1;}
+            if (hsv.s < 0) {hsv.s = 0;}
 
-            if (typeof value !== "undefined") {
-                hsv.v += value;
-            }
+            hsv.v += _v;
+            if (hsv.v > 1) {hsv.v = 1;}
+            if (hsv.v < 0) {hsv.v = 0;}
 
             if (type === Types.RGBA || type === Types.HSLA) {
                 alpha = color.a;
@@ -8361,12 +8374,12 @@ $.noConflict = function() {
         }
     };
 
-    var ColorType = function(color, options){
+    var Color = function(color, options){
         this._setValue(color);
         this._setOptions(options);
     }
 
-    ColorType.prototype = {
+    Color.prototype = {
         _setValue: function(color){
             var _color;
 
@@ -8405,23 +8418,57 @@ $.noConflict = function() {
             return this._value;
         },
 
-        toRGB: function() {
-            if (!this._value) {
-                return;
+        channel: function(ch, val){
+            var currentType = this._type.toUpperCase();
+
+            if (["red", "green", "blue"].indexOf(ch) > -1) {
+                this.toRGB();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
             }
+            if (ch === "alpha" && this._value.a) {
+                this._value.a = val;
+            }
+            if (["hue", "saturation", "value"].indexOf(ch) > -1) {
+                this.toHSV();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+            if (["lightness"].indexOf(ch) > -1) {
+                this.toHSL();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+            if (["cyan", "magenta", "yellow", "black"].indexOf(ch) > -1) {
+                this.toCMYK();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+
+            return this;
+        },
+
+        channels: function(obj){
+            var that = this;
+
+            $.each(obj, function(key, val){
+                that.channel(key, val);
+            });
+
+            return this;
+        },
+
+        toRGB: function() {
             this._value = Colors.toRGB(this._value);
             this._type = Types.RGB;
             return this;
         },
 
         rgb: function(){
-            return this._value ? new ColorType(Colors.toRGB(this._value)) : undefined;
+            return this._value ? new Color(Colors.toRGB(this._value)) : undefined;
         },
 
         toRGBA: function(alpha) {
-            if (!this._value) {
-                return;
-            }
             if (Colors.isRGBA(this._value)) {
                 if (alpha) {
                     this._value = Colors.toRGBA(this._value, alpha);
@@ -8434,52 +8481,40 @@ $.noConflict = function() {
         },
 
         rgba: function(alpha) {
-            return this._value ? new ColorType(Colors.toRGBA(this._value, alpha)) : undefined;
+            return this._value ? new Color(Colors.toRGBA(this._value, alpha)) : undefined;
         },
 
         toHEX: function() {
-            if (!this._value) {
-                return;
-            }
             this._value = Colors.toHEX(this._value);
             this._type = Types.HEX;
             return this;
         },
 
         hex: function() {
-            return this._value ? new ColorType(Colors.toHEX(this._value)) : undefined;
+            return this._value ? new Color(Colors.toHEX(this._value)) : undefined;
         },
 
         toHSV: function() {
-            if (!this._value) {
-                return;
-            }
             this._value = Colors.toHSV(this._value);
             this._type = Types.HSV;
             return this;
         },
 
         hsv: function() {
-            return this._value ? new ColorType(Colors.toHSV(this._value)) : undefined;
+            return this._value ? new Color(Colors.toHSV(this._value)) : undefined;
         },
 
         toHSL: function() {
-            if (!this._value) {
-                return;
-            }
             this._value = Colors.toHSL(this._value);
             this._type = Types.HSL;
             return this;
         },
 
         hsl: function() {
-            return this._value ? new ColorType(Colors.toHSL(this._value)) : undefined;
+            return this._value ? new Color(Colors.toHSL(this._value)) : undefined;
         },
 
         toHSLA: function(alpha) {
-            if (!this._value) {
-                return;
-            }
             if (Colors.isHSLA(this._value)) {
                 if (alpha) {
                     this._value = Colors.toHSLA(this._value, alpha);
@@ -8492,33 +8527,27 @@ $.noConflict = function() {
         },
 
         hsla: function(alpha) {
-            return this._value ? new ColorType(Colors.toHSLA(this._value, alpha)) : undefined;
+            return this._value ? new Color(Colors.toHSLA(this._value, alpha)) : undefined;
         },
 
         toCMYK: function() {
-            if (!this._value) {
-                return;
-            }
             this._value = Colors.toCMYK(this._value);
             this._type = Types.CMYK;
             return this;
         },
 
         cmyk: function() {
-            return this._value ? new ColorType(Colors.toCMYK(this._value)) : undefined;
+            return this._value ? new Color(Colors.toCMYK(this._value)) : undefined;
         },
 
         toWebsafe: function() {
-            if (!this._value) {
-                return;
-            }
             this._value = Colors.websafe(this._value);
             this._type = Colors.colorType(this._value);
             return this;
         },
 
         websafe: function() {
-            return this._value ? new ColorType(Colors.websafe(this._value)) : undefined;
+            return this._value ? new Color(Colors.websafe(this._value)) : undefined;
         },
 
         toString: function() {
@@ -8531,7 +8560,7 @@ $.noConflict = function() {
         },
 
         darken: function(amount){
-            return new ColorType(Colors.darken(this._value, amount));
+            return new Color(Colors.darken(this._value, amount));
         },
 
         toLighten: function(amount) {
@@ -8540,7 +8569,7 @@ $.noConflict = function() {
         },
 
         lighten: function(amount){
-            return new ColorType(Colors.lighten(this._value, amount))
+            return new Color(Colors.lighten(this._value, amount))
         },
 
         isDark: function() {
@@ -8557,7 +8586,7 @@ $.noConflict = function() {
         },
 
         hueShift: function (hue, saturation, value) {
-            return new ColorType(Colors.hueShift(this._value, hue, saturation, value));
+            return new Color(Colors.hueShift(this._value, hue, saturation, value));
         },
 
         toGrayscale: function() {
@@ -8566,7 +8595,7 @@ $.noConflict = function() {
         },
 
         grayscale: function(){
-            return new ColorType(Colors.grayscale(this._value, this._type));
+            return new Color(Colors.grayscale(this._value, this._type));
         },
 
         type: function() {
@@ -8593,12 +8622,12 @@ $.noConflict = function() {
         },
 
         mix: function(color){
-            return new ColorType(Colors.mix(this._value, color, this._type));
+            return new Color(Colors.mix(this._value, color, this._type));
         }
     }
 
     Metro.colors = Colors.init();
-    window.Color = Metro.Color = ColorType;
+    window.Color = Metro.Color = Color;
     window.ColorPrimitive = Metro.colorPrimitive = {
         RGB: RGB,
         RGBA: RGBA,

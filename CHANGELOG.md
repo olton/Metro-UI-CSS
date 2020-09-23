@@ -47,6 +47,7 @@
 + [x] Color: add `ColorPrimitive` with color primitive objects
 + [x] Color: fix color type constructor for creating colors from string
 + [x] Color: add method `mix(...)`: `ColorType.mix(color)` and `Colors.mix(color1, color2)`. This method allows you to mix colors. 
++ [x] Color: add methods `channel(channelName, val)`, `channels(obj)`. This method change specified color channel. Color must be a required format.
 
 ### 4.3.10
 + [x] Input: add API method `setAutocompleteList(array|string)`, issue #1576
