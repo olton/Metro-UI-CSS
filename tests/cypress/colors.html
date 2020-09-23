@@ -65,10 +65,10 @@
         // console.log(myHSVColor.type(), myHSVColor.toString()); // hsv, hsv(312,1,1)
         // console.log(myHSVColor ); // hsv, hsv(312,1,1)
 
-        var myColor = new Color("#ff00cc");
-        myColor.toHueShift(90);
-        console.log(myColor.toString()); // #ffb300
-
+        var myColor = new Color("#ff00cc").toRGBA();
+        console.log(myColor.toString());
+        myColor.channel("alpha", .5);
+        console.log(myColor.toString());
     })
 </script>
 </body>
