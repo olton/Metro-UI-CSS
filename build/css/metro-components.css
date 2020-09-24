@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/09/2020 18:57:12
+ * Built at 24/09/2020 19:01:12
  * Licensed under MIT
  */
 .accordion {
@@ -4152,6 +4152,10 @@ aside::after {
   -webkit-box-flex: 2!important;
       -ms-flex-positive: 2!important;
           flex-grow: 2!important;
+}
+.date-picker.disabled {
+  pointer-events: none!important;
+  color: #e4e4e4 !important;
 }
 [class*=default-icon] {
   display: block;
