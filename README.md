@@ -57,8 +57,8 @@ An **MIT** licensed version is available for an annual subscription [here](https
 > Patreon Patrons get access to dedicated email support 
 
 ### Donation on Patreon
-![Donations on Patreon](https://img.shields.io/badge/Patrons-4-green.svg)
-![Donations on Patreon](https://img.shields.io/badge/Donation-$100-red.svg)
+![Donations on Patreon](https://img.shields.io/badge/Patrons-8-green.svg)
+![Donations on Patreon](https://img.shields.io/badge/Donation-$140-red.svg)
 
 ### Community
 
