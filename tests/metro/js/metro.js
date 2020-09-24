@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/09/2020 12:06:37
+ * Built at 24/09/2020 18:57:12
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "23/09/2020 12:06:37",
+        compileTime: "24/09/2020 18:57:12",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -14842,6 +14842,10 @@ $.noConflict = function() {
                 }
             }
 
+            if (element.prop("disabled")) {
+                picker.addClass("disabled");
+            }
+
             this.picker = picker;
         },
 
@@ -15093,27 +15097,34 @@ $.noConflict = function() {
             this._set();
         },
 
-        changeAttribute: function(attributeName){
-            var that = this;
 
-            function changeValue() {
-                that.val(that.element.attr("data-value"));
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
             }
+        },
 
-            function changeLocale() {
-                that.i18n(that.element.attr("data-locale"));
-            }
-
-            function changeFormat() {
-                that.options.format = that.element.attr("data-format");
-                // that.element.val(that.value.format(that.options.format, that.options.locale)).trigger("change");
-                that._set();
-            }
-
+        changeAttribute: function(attributeName, newValue){
             switch (attributeName) {
-                case "data-value": changeValue(); break;
-                case "data-locale": changeLocale(); break;
-                case "data-format": changeFormat(); break;
+                case "disabled": this.toggleState(); break;
+                case "data-value": this.val(newValue); break;
+                case "data-locale": this.i18n(newValue); break;
+                case "data-format":
+                    this.options.format = newValue;
+                    this._set();
+                    break;
             }
         },
 

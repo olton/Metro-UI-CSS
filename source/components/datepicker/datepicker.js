@@ -182,6 +182,10 @@
                 }
             }
 
+            if (element.prop("disabled")) {
+                picker.addClass("disabled");
+            }
+
             this.picker = picker;
         },
 
@@ -433,27 +437,34 @@
             this._set();
         },
 
-        changeAttribute: function(attributeName){
-            var that = this;
 
-            function changeValue() {
-                that.val(that.element.attr("data-value"));
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
+
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
+
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
             }
+        },
 
-            function changeLocale() {
-                that.i18n(that.element.attr("data-locale"));
-            }
-
-            function changeFormat() {
-                that.options.format = that.element.attr("data-format");
-                // that.element.val(that.value.format(that.options.format, that.options.locale)).trigger("change");
-                that._set();
-            }
-
+        changeAttribute: function(attributeName, newValue){
             switch (attributeName) {
-                case "data-value": changeValue(); break;
-                case "data-locale": changeLocale(); break;
-                case "data-format": changeFormat(); break;
+                case "disabled": this.toggleState(); break;
+                case "data-value": this.val(newValue); break;
+                case "data-locale": this.i18n(newValue); break;
+                case "data-format":
+                    this.options.format = newValue;
+                    this._set();
+                    break;
             }
         },
 

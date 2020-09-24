@@ -51,9 +51,10 @@ It's an independent project with its ongoing development made possible entirely 
 [![dual license](https://github.com/xscode-resources/promotion-materials/blob/master/assets/Dual-license-badge.gif?raw=true)](https://xscode.com/olton/Metro-UI-CSS)
 
 As of **version 4.4.0**, this project is licensed under the **GPLv3** license.
-An **MIT** licensed version is available for an annual subscription [here](https://xscode.com/olton/Metro-UI-CSS) and for **Patrons** on [Patreon](https://www.patreon.com/metroui?fan_landing=true).
-In addition to the permissive license, paying users will receive **ongoing priority support** for any issue that might arise by my personal email **serhii@pimenov.com.ua**.
-> Subscribers and Patrons will get access to my special Metro 4 repo with MIT license.
+An **MIT** licensed version is available for an annual subscription [here](https://xscode.com/olton/Metro-UI-CSS) and for a Patreon Patrons.
+
+> Subscribers will get access to special Metro 4 repo with MIT license.
+> Patreon Patrons get access to dedicated email support 
 
 ### Donation on Patreon
 ![Donations on Patreon](https://img.shields.io/badge/Patrons-4-green.svg)
