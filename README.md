@@ -55,7 +55,7 @@ An **MIT** licensed version is available for an annual subscription [here](https
 
 > Subscribers will get access to special Metro 4 repo with MIT license.
 
->> Patreon Patrons get access to dedicated email support 
+> Patreon Patrons get access to dedicated email support 
 
 ### Donation on Patreon
 ![Donations on Patreon](https://img.shields.io/badge/Patrons-8-green.svg)
