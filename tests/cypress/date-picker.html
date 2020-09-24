@@ -15,6 +15,10 @@
     <div>
         <input data-role="date-picker" data-locale="uk-UA">
         <input data-role="date-picker" data-locale="uk-UA" data-label="Select date">
+        <br>
+        <input data-role="date-picker" disabled data-label="Select date" id="p3">
+        <button class="button" onclick="$('#p3').prop('disabled', false)">Enable picker</button>
+        <button class="button" onclick="$('#p3').prop('disabled', true)">Disable picker</button>
     </div>
 
 </div>
