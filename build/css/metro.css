@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/09/2020 19:01:12
+ * Built at 25/09/2020 12:09:55
  * Licensed under MIT
  */
 *,
@@ -38339,6 +38339,10 @@ textarea {
   bottom: 0;
   -webkit-transform: translate3d(-50%, 0, 0);
           transform: translate3d(-50%, 0, 0);
+}
+.time-picker.disabled {
+  pointer-events: none!important;
+  color: #e4e4e4 !important;
 }
 .toast {
   position: fixed;

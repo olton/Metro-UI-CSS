@@ -49,6 +49,7 @@
 + [x] Color: added method `mix(...)`: `ColorType.mix(color)` and `Colors.mix(color1, color2)`. This method allows you to mix colors. 
 + [x] Color: added methods `channel(channelName, val)`, `channels(obj)`. This method change specified color channel. Color must be a required format.
 + [x] Date picker: added methods `enable()`, `disable())`, `toggleState()`, added observing for prop `disabled`, issue #1633
++ [x] Time picker: added methods `enable()`, `disable())`, `toggleState()`, added observing for prop `disabled`, issue #1633
 
 ### 4.3.10
 + [x] Input: added API method `setAutocompleteList(array|string)`, issue #1576

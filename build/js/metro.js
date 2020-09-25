@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/09/2020 19:01:12
+ * Built at 25/09/2020 12:09:55
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "24/09/2020 19:01:12",
+        compileTime: "25/09/2020 12:09:55",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -31073,6 +31073,10 @@ $.noConflict = function() {
                 picker.addClass("show-labels");
             }
 
+            if (element.prop("disabled")) {
+                picker.addClass("disabled");
+            }
+
             this.picker = picker;
         },
 
@@ -31327,15 +31331,32 @@ $.noConflict = function() {
             this._set();
         },
 
-        changeAttribute: function(attributeName){
-            var that = this, element = this.element;
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
 
-            var changeValueAttribute = function(){
-                that.val(element.attr("data-value"));
-            };
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
 
-            if (attributeName === "data-value") {
-                changeValueAttribute();
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
+
+        changeAttribute: function(attr, newValue){
+            switch (attr) {
+                case "data-value":
+                    this.val(newValue);
+                    break;
+                case "disabled":
+                    this.toggleState();
+                    break;
             }
         },
 

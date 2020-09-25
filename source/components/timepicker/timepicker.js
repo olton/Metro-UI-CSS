@@ -199,6 +199,10 @@
                 picker.addClass("show-labels");
             }
 
+            if (element.prop("disabled")) {
+                picker.addClass("disabled");
+            }
+
             this.picker = picker;
         },
 
@@ -453,15 +457,32 @@
             this._set();
         },
 
-        changeAttribute: function(attributeName){
-            var that = this, element = this.element;
+        disable: function(){
+            this.element.data("disabled", true);
+            this.element.parent().addClass("disabled");
+        },
 
-            var changeValueAttribute = function(){
-                that.val(element.attr("data-value"));
-            };
+        enable: function(){
+            this.element.data("disabled", false);
+            this.element.parent().removeClass("disabled");
+        },
 
-            if (attributeName === "data-value") {
-                changeValueAttribute();
+        toggleState: function(){
+            if (this.elem.disabled) {
+                this.disable();
+            } else {
+                this.enable();
+            }
+        },
+
+        changeAttribute: function(attr, newValue){
+            switch (attr) {
+                case "data-value":
+                    this.val(newValue);
+                    break;
+                case "disabled":
+                    this.toggleState();
+                    break;
             }
         },
 
