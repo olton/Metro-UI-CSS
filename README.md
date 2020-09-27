@@ -47,7 +47,9 @@ It's an independent project with its ongoing development made possible entirely 
 
 ----
 
-## License and Premium Features
+## Current version 4.4.0
+
+### License and Premium Features
 [![dual license](https://github.com/xscode-resources/promotion-materials/blob/master/assets/Dual-license-badge.gif?raw=true)](https://xscode.com/olton/Metro-UI-CSS)
 
 As of **version 4.4.0**, this project licensed under the **GPLv3** license.
