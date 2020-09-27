@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/09/2020 13:57:57
+ * Built at 27/09/2020 19:44:50
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.0",
-        compileTime: "27/09/2020 13:57:57",
+        compileTime: "27/09/2020 19:44:50",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18403,6 +18403,7 @@ $.noConflict = function() {
     Metro.Component('input-mask', {
         init: function( options, elem ) {
             if ($.device) {
+                if (elem.setAttribute) elem.setAttribute("placeholder", options.mask);
                 console.warn("The component input-mask can't be initialized, because you run it on a mobile device!");
                 return ;
             }
@@ -18493,11 +18494,6 @@ $.noConflict = function() {
             element.on("focus click", function(){
                 checkEditablePosition(this.selectionStart);
                 setPosition(findNextEditablePosition(this.selectionStart));
-                element.parent().addClass("invalid");
-            }, {ns: id});
-
-            element.on("blur", function(){
-                element.parent().removeClass("invalid");
             }, {ns: id});
 
             element.on("keydown", function(e){
@@ -18584,7 +18580,6 @@ $.noConflict = function() {
             element.off("change", {ns: id});
             element.off("focus", {ns: id});
             element.off("click", {ns: id});
-            element.off("blur", {ns: id});
             element.off("keydown", {ns: id});
             element.off("keyup", {ns: id});
 
