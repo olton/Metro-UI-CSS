@@ -24,6 +24,7 @@
     Metro.Component('input-mask', {
         init: function( options, elem ) {
             if ($.device) {
+                if (elem.setAttribute) elem.setAttribute("placeholder", options.mask);
                 console.warn("The component input-mask can't be initialized, because you run it on a mobile device!");
                 return ;
             }
@@ -114,11 +115,6 @@
             element.on("focus click", function(){
                 checkEditablePosition(this.selectionStart);
                 setPosition(findNextEditablePosition(this.selectionStart));
-                element.parent().addClass("invalid");
-            }, {ns: id});
-
-            element.on("blur", function(){
-                element.parent().removeClass("invalid");
             }, {ns: id});
 
             element.on("keydown", function(e){
@@ -205,7 +201,6 @@
             element.off("change", {ns: id});
             element.off("focus", {ns: id});
             element.off("click", {ns: id});
-            element.off("blur", {ns: id});
             element.off("keydown", {ns: id});
             element.off("keyup", {ns: id});
 
