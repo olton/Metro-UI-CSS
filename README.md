@@ -50,7 +50,7 @@ It's an independent project with its ongoing development made possible entirely 
 ## License and Premium Features
 [![dual license](https://github.com/xscode-resources/promotion-materials/blob/master/assets/Dual-license-badge.gif?raw=true)](https://xscode.com/olton/Metro-UI-CSS)
 
-As of **version 4.4.0**, this project is licensed under the **GPLv3** license.
+As of **version 4.4.0**, this project licensed under the **GPLv3** license.
 An **MIT** licensed version is available for an annual subscription [here](https://xscode.com/olton/Metro-UI-CSS) and for a Patreon Patrons.
 
 > Subscribers will get access to special Metro 4 repo with MIT license.
