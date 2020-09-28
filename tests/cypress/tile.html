@@ -13,6 +13,11 @@
     <h1>Tiles test page</h1>
 
     <div class="example">
+        <div data-role="tile" onclick="tileClick()"></div>
+        <div id="counter">0</div>
+    </div>
+
+    <div class="example">
         <div data-role="tile" data-size="wide" data-effect="image-set">
             <img src="../images/1.jpg">
             <img src="../images/2.jpg">
@@ -112,6 +117,10 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    function tileClick(){
+        var current = parseInt($("#counter").text());
+        $("#counter").text(++current);
+    }
 </script>
 </body>
 </html>

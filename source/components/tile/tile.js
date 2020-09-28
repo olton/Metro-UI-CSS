@@ -15,7 +15,7 @@
         effectDuration: 500,
         target: null,
         canTransform: true,
-        onClick: Metro.noop,
+        onTileClick: Metro.noop,
         onTileCreate: Metro.noop
     };
 
@@ -156,19 +156,9 @@
 
                 next = that.slides[that.currentSlide];
 
-                console.log(o.effect.camelCase());
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
-
-                // if (o.effect === "slide-up") Metro.animations.slideUp($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "slide-down") Metro.animations.slideDown($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "slide-left") Metro.animations.slideLeft($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "slide-right") Metro.animations.slideRight($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "fade") Metro.animations.fade($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "zoom") Metro.animations.zoom($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "swirl") Metro.animations.swirl($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "switch") Metro.animations.swirl($(current), $(next), {duration: o.effectDuration});
 
             }, o.effectInterval);
         },
@@ -220,7 +210,7 @@
                         }, 100);
                     }
 
-                    that._fireEvent("click", {
+                    that._fireEvent("tile-click", {
                         side: side
                     });
                 }

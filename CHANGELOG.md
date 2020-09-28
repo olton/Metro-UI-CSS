@@ -1,3 +1,9 @@
+### 4.4.1
+#### M4Q
+
+#### Metro 4
++ [x] Tile: fixed double firing click event. Component internal event `onClick` renamed to `onTileClick` (attribute `data-on-click` => `data-on-tile-click`), issue #1636  
+
 ### 4.4.0
 #### M4Q
 + [x] M4Q: updated to 1.0.8 
