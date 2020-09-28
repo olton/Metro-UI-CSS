@@ -47,7 +47,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 ----
 
-## Current version 4.4.0
+## Current version 4.4.1
 
 ### License and Premium Features
 [![dual license](https://github.com/xscode-resources/promotion-materials/blob/master/assets/Dual-license-badge.gif?raw=true)](https://xscode.com/olton/Metro-UI-CSS)

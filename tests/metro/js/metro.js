@@ -1,8 +1,8 @@
 /*
- * Metro 4 Components Library v4.4.0  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/09/2020 19:46:11
- * Licensed under MIT
+ * Built at 28/09/2020 13:59:00
+ * Licensed under GPL3
  */
 (function (global, undefined) {
 
@@ -4503,8 +4503,8 @@ $.noConflict = function() {
 
     var Metro = {
 
-        version: "4.4.0",
-        compileTime: "27/09/2020 19:46:11",
+        version: "4.4.1",
+        compileTime: "28/09/2020 13:59:00",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -30633,7 +30633,7 @@ $.noConflict = function() {
         effectDuration: 500,
         target: null,
         canTransform: true,
-        onClick: Metro.noop,
+        onTileClick: Metro.noop,
         onTileCreate: Metro.noop
     };
 
@@ -30774,19 +30774,9 @@ $.noConflict = function() {
 
                 next = that.slides[that.currentSlide];
 
-                
                 if (effects.includes(o.effect)) {
                     Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
                 }
-
-                // if (o.effect === "slide-up") Metro.animations.slideUp($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "slide-down") Metro.animations.slideDown($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "slide-left") Metro.animations.slideLeft($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "slide-right") Metro.animations.slideRight($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "fade") Metro.animations.fade($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "zoom") Metro.animations.zoom($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "swirl") Metro.animations.swirl($(current), $(next), {duration: o.effectDuration});
-                // if (o.effect === "switch") Metro.animations.swirl($(current), $(next), {duration: o.effectDuration});
 
             }, o.effectInterval);
         },
@@ -30838,7 +30828,7 @@ $.noConflict = function() {
                         }, 100);
                     }
 
-                    that._fireEvent("click", {
+                    that._fireEvent("tile-click", {
                         side: side
                     });
                 }
