@@ -448,8 +448,7 @@
             "js": ["file"],
             "less": ["file"],
             "dependencies": {
-                "common-css": ["inputs"],
-                "components": ["button"]
+                "components": ["input-common","button"]
             }
         },
         "form": {
@@ -831,6 +830,10 @@
             "js": ["toast"],
             "less": ["toast"]
         },
+        "tokenizer": {
+            "name": "Tokenizer",
+            "js": ["tokenizer"]
+        },
         "toolbar": {
             "name": "Toolbar",
             "js": ["toolbar"],
@@ -885,8 +888,7 @@
             "js": ["wizard"],
             "less": ["wizard"],
             "dependencies": {
-                "components": ["button"],
-                "common-css": ["default-icons"]
+                "components": ["default-icons","button"]
             }
         }
     },
