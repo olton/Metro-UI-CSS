@@ -1,10 +1,10 @@
 /* global Metro */
-(function(Metro, $) {
-   'use strict';
-   var Utils = Metro.utils;
-   var Export = {
+(function (Metro, $) {
+    'use strict';
+    var Utils = Metro.utils;
+    var Export = {
 
-        init: function(){
+        init: function () {
             return this;
         },
 
@@ -14,12 +14,12 @@
             includeHeader: true
         },
 
-        setup: function(options){
+        setup: function (options) {
             this.options = $.extend({}, this.options, options);
             return this;
         },
 
-        base64: function(data){
+        base64: function (data) {
             return window.btoa(unescape(encodeURIComponent(data)));
         },
 
@@ -50,12 +50,12 @@
             });
         },
 
-        tableToCSV: function(table, filename, options){
-            var o = this.options;
+        tableToCSV: function (table, filename, options) {
+            var o;
             var body, head, data = "";
             var i, j, row, cell;
 
-            o = $.extend({}, o, options);
+            o = $.extend({}, this.options, options);
 
             table = $(table)[0];
 
@@ -63,9 +63,9 @@
 
                 head = table.querySelectorAll("thead")[0];
 
-                for(i = 0; i < head.rows.length; i++) {
+                for (i = 0; i < head.rows.length; i++) {
                     row = head.rows[i];
-                    for(j = 0; j < row.cells.length; j++){
+                    for (j = 0; j < row.cells.length; j++) {
                         cell = row.cells[j];
                         data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                     }
@@ -75,9 +75,9 @@
 
             body = table.querySelectorAll("tbody")[0];
 
-            for(i = 0; i < body.rows.length; i++) {
+            for (i = 0; i < body.rows.length; i++) {
                 row = body.rows[i];
-                for(j = 0; j < row.cells.length; j++){
+                for (j = 0; j < row.cells.length; j++) {
                     cell = row.cells[j];
                     data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                 }
@@ -107,6 +107,31 @@
             window.URL.revokeObjectURL(url);
             document.body.removeChild(anchor);
             return true;
+        },
+
+        arrayToCsv: function(array, filename, options){
+            var o, data = "", i, row;
+
+            o = $.extend({}, this.options, options);
+
+            for (i = 0; i < array.length; i++) {
+                row = array[i];
+
+                if (typeof row !== "object") {
+                    data += row + o.csvNewLine;
+                } else {
+                    $.each(row, function(key, val){
+                        data += (key ? o.csvDelimiter : '') + val.toString();
+                    });
+                    data += o.csvNewLine;
+                }
+            }
+
+            if (Utils.isValue(filename)) {
+                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
+            }
+
+            return data;
         }
     };
 

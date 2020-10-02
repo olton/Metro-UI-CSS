@@ -54,8 +54,13 @@
         </select>
     </div>
 
+    <br>
+    <br>
     <div class="example">
-        <select data-role="select" data-label="Select item:" data-cls-label="mt-4"></select>
+        <div class="d-flex flex-row no-wrap flex-align-start">
+            <select id="select3" data-role="select" data-prepend="Select item:"></select>
+            <button class="button" onclick="fillSelect()">Fill select</button>
+        </div>
     </div>
 </div>
 
@@ -64,18 +69,33 @@
     var sel = $("@select");
     var Utils = Metro.utils;
 
+    function fillSelect(){
+        var select = Metro.getPlugin("#select3", "select");
+        var options = {
+            "&nbsp;" : "&nbsp;",
+            "0": "NEW DIPSWITCH",
+            "T": "Time",
+            "L": "Lives",
+            "H": "Health",
+            "C": "Coins",
+        };
+        console.log(options);
+        select.data(options);
+        select.val("");
+    }
+
     // sel.on("change", function () {
     //     console.log("changed");
     // });
     //
-    sel.on("drop", function (e) {
-        console.log("down");
-        // var dropContainer = $(e.detail.list).closest(".drop-container").removeClass("drop-up");
-        //
-        // if (!Utils.inViewport(dropContainer[0])) {
-        //     dropContainer.addClass("drop-up");
-        // }
-    });
+    // sel.on("drop", function (e) {
+    //     console.log("down");
+    //     // var dropContainer = $(e.detail.list).closest(".drop-container").removeClass("drop-up");
+    //     //
+    //     // if (!Utils.inViewport(dropContainer[0])) {
+    //     //     dropContainer.addClass("drop-up");
+    //     // }
+    // });
     //
     // sel.on("up", function () {
     //     console.log("up");

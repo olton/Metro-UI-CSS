@@ -558,7 +558,6 @@
             var option_group, _selected;
             var _delimiter = delimiter || ",";
 
-
             if (typeof selected === "string") {
                 _selected = selected.toArray(_delimiter).map(function(v){
                     return +v;

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 28/09/2020 14:05:04
+ * Built at 02/10/2020 19:22:48
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4504,7 +4504,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "28/09/2020 14:05:04",
+        compileTime: "02/10/2020 19:22:48",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8643,12 +8643,12 @@ $.noConflict = function() {
 
 }(Metro, m4q));
 
-(function(Metro, $) {
-   'use strict';
-   var Utils = Metro.utils;
-   var Export = {
+(function (Metro, $) {
+    'use strict';
+    var Utils = Metro.utils;
+    var Export = {
 
-        init: function(){
+        init: function () {
             return this;
         },
 
@@ -8658,12 +8658,12 @@ $.noConflict = function() {
             includeHeader: true
         },
 
-        setup: function(options){
+        setup: function (options) {
             this.options = $.extend({}, this.options, options);
             return this;
         },
 
-        base64: function(data){
+        base64: function (data) {
             return window.btoa(unescape(encodeURIComponent(data)));
         },
 
@@ -8694,12 +8694,12 @@ $.noConflict = function() {
             });
         },
 
-        tableToCSV: function(table, filename, options){
-            var o = this.options;
+        tableToCSV: function (table, filename, options) {
+            var o;
             var body, head, data = "";
             var i, j, row, cell;
 
-            o = $.extend({}, o, options);
+            o = $.extend({}, this.options, options);
 
             table = $(table)[0];
 
@@ -8707,9 +8707,9 @@ $.noConflict = function() {
 
                 head = table.querySelectorAll("thead")[0];
 
-                for(i = 0; i < head.rows.length; i++) {
+                for (i = 0; i < head.rows.length; i++) {
                     row = head.rows[i];
-                    for(j = 0; j < row.cells.length; j++){
+                    for (j = 0; j < row.cells.length; j++) {
                         cell = row.cells[j];
                         data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                     }
@@ -8719,9 +8719,9 @@ $.noConflict = function() {
 
             body = table.querySelectorAll("tbody")[0];
 
-            for(i = 0; i < body.rows.length; i++) {
+            for (i = 0; i < body.rows.length; i++) {
                 row = body.rows[i];
-                for(j = 0; j < row.cells.length; j++){
+                for (j = 0; j < row.cells.length; j++) {
                     cell = row.cells[j];
                     data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
                 }
@@ -8751,6 +8751,31 @@ $.noConflict = function() {
             window.URL.revokeObjectURL(url);
             document.body.removeChild(anchor);
             return true;
+        },
+
+        arrayToCsv: function(array, filename, options){
+            var o, data = "", i, row;
+
+            o = $.extend({}, this.options, options);
+
+            for (i = 0; i < array.length; i++) {
+                row = array[i];
+
+                if (typeof row !== "object") {
+                    data += row + o.csvNewLine;
+                } else {
+                    $.each(row, function(key, val){
+                        data += (key ? o.csvDelimiter : '') + val.toString();
+                    });
+                    data += o.csvNewLine;
+                }
+            }
+
+            if (Utils.isValue(filename)) {
+                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
+            }
+
+            return data;
         }
     };
 
@@ -24289,7 +24314,6 @@ $.noConflict = function() {
             var element = this.element;
             var option_group, _selected;
             var _delimiter = delimiter || ",";
-
 
             if (typeof selected === "string") {
                 _selected = selected.toArray(_delimiter).map(function(v){
