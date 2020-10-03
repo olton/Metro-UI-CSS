@@ -7,6 +7,7 @@
 #### Metro 4
 + [x] Tile: fixed double firing click event. Component internal event `onClick` renamed to `onTileClick` (attribute `data-on-click` => `data-on-tile-click`), issue #1636
 + [x] Export: added method `arrayToCSV(array, filename, options)`.  
++ [x] Utils: removed function `isLocalhost`, if you need, use `$.localhost` or `$.isLocalhost([host])`.
 
 ### 4.4.0
 #### M4Q

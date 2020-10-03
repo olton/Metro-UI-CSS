@@ -805,18 +805,6 @@
             }
         },
 
-        isLocalhost: function(pattern){
-            pattern = pattern || ".local";
-            return (
-                location.hostname === "localhost" ||
-                location.hostname === "127.0.0.1" ||
-                location.hostname === "[::1]" ||
-                location.hostname === "" ||
-                window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/ ) ||
-                location.hostname.indexOf(pattern) !== -1
-            );
-        },
-
         decCount: function(v){
             return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
         },
