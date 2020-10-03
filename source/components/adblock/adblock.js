@@ -8,7 +8,6 @@
         fireOnce: true,
         checkStop: 10,
         localhost: false,
-        localhostPattern: null,
         onAlert: Metro.noop,
         onFishingStart: Metro.noop,
         onFishingDone: Metro.noop
@@ -63,7 +62,7 @@
                     a.remove();
                 };
 
-                if (!o.localhost && Utils.isLocalhost(o.localhostPattern)) {
+                if (!o.localhost && $.localhost) {
                     done();
                     return ;
                 }
