@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/10/2020 19:22:48
+ * Built at 03/10/2020 11:06:43
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -14,7 +14,7 @@
 // Source: src/func.js
 
 /* global dataSet */
-/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName */
+/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
 
 var numProps = ['opacity', 'zIndex'];
 
@@ -140,6 +140,18 @@ function strip(name, what) {
 function hasProp(obj, prop){
     return Object.prototype.hasOwnProperty.call(obj, prop);
 }
+
+function isLocalhost(host){
+    var hostname = host || window.location.hostname;
+    return (
+        hostname === "localhost" ||
+        hostname === "127.0.0.1" ||
+        hostname === "[::1]" ||
+        hostname === "" ||
+        hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/) !== null
+    );
+}
+
 
 // Source: src/setimmediate.js
 
@@ -603,7 +615,7 @@ function hasProp(obj, prop){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.8. Built at 18/09/2020 13:46:29";
+var m4qVersion = "v1.0.9. Built at 03/10/2020 10:37:19";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1538,11 +1550,13 @@ $.fn.extend({
 
 // Source: src/utils.js
 
-/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp */
+/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost */
 
 $.extend({
 
     device: (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())),
+    localhost: isLocalhost(),
+    isLocalhost: isLocalhost,
 
     uniqueId: function (prefix) {
         var d = new Date().getTime();
@@ -1614,18 +1628,18 @@ $.extend({
         return $(s).remove();
     },
 
-    camelCase: function(string){return camelCase(string);},
-    dashedName: function(str){return dashedName(str);},
-    isPlainObject: function(obj){return isPlainObject(obj);},
-    isEmptyObject: function(obj){return isEmptyObject(obj);},
-    isArrayLike: function(obj){return isArrayLike(obj);},
-    acceptData: function(owner){return acceptData(owner);},
-    not: function(val){return not(val);},
-    parseUnit: function(str, out){return parseUnit(str, out);},
-    getUnit: function(str, und){return getUnit(str, und);},
-    unit: function(str, out){return parseUnit(str, out);},
-    isVisible: function(elem) {return isVisible(elem);},
-    isHidden: function(elem) {return isHidden(elem);},
+    camelCase: camelCase,
+    dashedName: dashedName,
+    isPlainObject: isPlainObject,
+    isEmptyObject: isEmptyObject,
+    isArrayLike: isArrayLike,
+    acceptData: acceptData,
+    not: not,
+    parseUnit: parseUnit,
+    getUnit: getUnit,
+    unit: parseUnit,
+    isVisible: isVisible,
+    isHidden: isHidden,
     matches: function(el, s) {return matches.call(el, s);},
     random: function(from, to) {
         if (arguments.length === 1 && isArrayLike(from)) {
@@ -1633,9 +1647,9 @@ $.extend({
         }
         return Math.floor(Math.random()*(to-from+1)+from);
     },
-    strip: function(val, what){return strip(val, what);},
-    normName: function(val){return normName(val);},
-    hasProp: function(obj, prop){return hasProp(obj, prop);},
+    strip: strip,
+    normName: normName,
+    hasProp: hasProp,
 
     serializeToArray: function(form){
         var _form = $(form)[0];
@@ -4504,7 +4518,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "02/10/2020 19:22:48",
+        compileTime: "03/10/2020 11:06:43",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
