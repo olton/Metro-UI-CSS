@@ -1,4 +1,4 @@
-/* global jQuery, Metro, METRO_THROWS METRO_MEDIA */
+/* global jQuery, Metro */
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
@@ -69,22 +69,12 @@
             return (!isNaN(n) && +n % 1 !== 0) || /^\d*\.\d+$/.test(n);
         },
 
-        isTouchDevice: function() {
-            return (('ontouchstart' in window)
-                || (navigator.MaxTouchPoints > 0)
-                || (navigator.msMaxTouchPoints > 0));
-        },
-
         isFunc: function(f){
             return this.isType(f, 'function');
         },
 
         isObject: function(o){
             return this.isType(o, 'object');
-        },
-
-        isArray: function(a){
-            return Array.isArray(a);
         },
 
         isType: function(o, t){
@@ -104,7 +94,7 @@
                 return o;
             }
 
-            if ((""+t).toLowerCase() === 'array' && this.isArray(o)) {
+            if ((""+t).toLowerCase() === 'array' && Array.isArray(o)) {
                 return o;
             }
 
@@ -250,7 +240,7 @@
                 result = func.apply(context, args);
             } catch (err) {
                 result = null;
-                if (METRO_THROWS === true) {
+                if (window.METRO_THROWS === true) {
                     throw err;
                 }
             }
@@ -700,15 +690,15 @@
         },
 
         mediaModes: function(){
-            return METRO_MEDIA;
+            return window.METRO_MEDIA;
         },
 
         mediaExist: function(media){
-            return METRO_MEDIA.indexOf(media) > -1;
+            return window.METRO_MEDIA.indexOf(media) > -1;
         },
 
         inMedia: function(media){
-            return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
+            return window.METRO_MEDIA.indexOf(media) > -1 && window.METRO_MEDIA.indexOf(media) === window.METRO_MEDIA.length - 1;
         },
 
         isValue: function(val){

@@ -3,11 +3,14 @@
 + [x] M4Q: updated to 1.0.9
 + [x] M4Q: added function `$.isLocalhost([hostname])`, **true** if host is localhost.
 + [x] M4Q: added property `$.localhost`, **true** if current location is localhost.
++ [x] M4Q: added property `$.touchable`, **true** if device detected as touchable.
 
 #### Metro 4
 + [x] Tile: fixed double firing click event. Component internal event `onClick` renamed to `onTileClick` (attribute `data-on-click` => `data-on-tile-click`), issue #1636
 + [x] Export: added method `arrayToCSV(array, filename, options)`.  
 + [x] Utils: removed function `isLocalhost`, if you need, use `$.localhost` or `$.isLocalhost([host])`.
++ [x] Utils: removed function `isArray`.
++ [x] Utils: removed function `isTouchDevice`. if you need, use `$.touchable`.
 
 ### 4.4.0
 #### M4Q
