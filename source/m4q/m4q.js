@@ -15,7 +15,7 @@
 // Source: src/func.js
 
 /* global dataSet */
-/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
+/* exported isTouch, isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
 
 var numProps = ['opacity', 'zIndex'];
 
@@ -153,6 +153,11 @@ function isLocalhost(host){
     );
 }
 
+function isTouch() {
+    return (('ontouchstart' in window)
+        || (navigator.maxTouchPoints > 0)
+        || (navigator.msMaxTouchPoints > 0));
+}
 
 // Source: src/setimmediate.js
 
@@ -616,7 +621,7 @@ function isLocalhost(host){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.9. Built at 03/10/2020 10:37:19";
+var m4qVersion = "v1.0.9. Built at 05/10/2020 12:54:17";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1551,13 +1556,14 @@ $.fn.extend({
 
 // Source: src/utils.js
 
-/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost */
+/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost, isTouch */
 
 $.extend({
 
     device: (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())),
     localhost: isLocalhost(),
     isLocalhost: isLocalhost,
+    touchable: isTouch(),
 
     uniqueId: function (prefix) {
         var d = new Date().getTime();

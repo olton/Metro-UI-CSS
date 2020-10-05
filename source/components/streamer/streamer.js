@@ -108,7 +108,7 @@
                 this.build();
             }
 
-            if (o.chromeNotice === true && Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
+            if (o.chromeNotice === true && Utils.detectChrome() === true && $.touchable === false) {
                 $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
             }
         },
@@ -544,7 +544,7 @@
                 that._fireScroll();
             });
 
-            if (Utils.isTouchDevice() === true) {
+            if ($.touchable === true) {
                 element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(){
                     var stream = $(this);
                     stream.toggleClass("focused");

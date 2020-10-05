@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 03/10/2020 11:17:04
+ * Built at 05/10/2020 13:03:16
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -14,7 +14,7 @@
 // Source: src/func.js
 
 /* global dataSet */
-/* exported isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
+/* exported isTouch, isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
 
 var numProps = ['opacity', 'zIndex'];
 
@@ -152,6 +152,11 @@ function isLocalhost(host){
     );
 }
 
+function isTouch() {
+    return (('ontouchstart' in window)
+        || (navigator.maxTouchPoints > 0)
+        || (navigator.msMaxTouchPoints > 0));
+}
 
 // Source: src/setimmediate.js
 
@@ -615,7 +620,7 @@ function isLocalhost(host){
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.9. Built at 03/10/2020 10:37:19";
+var m4qVersion = "v1.0.9. Built at 05/10/2020 12:54:17";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1550,13 +1555,14 @@ $.fn.extend({
 
 // Source: src/utils.js
 
-/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost */
+/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost, isTouch */
 
 $.extend({
 
     device: (/android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i.test(navigator.userAgent.toLowerCase())),
     localhost: isLocalhost(),
     isLocalhost: isLocalhost,
+    touchable: isTouch(),
 
     uniqueId: function (prefix) {
         var d = new Date().getTime();
@@ -4518,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "03/10/2020 11:17:04",
+        compileTime: "05/10/2020 13:03:16",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6121,22 +6127,12 @@ $.noConflict = function() {
             return (!isNaN(n) && +n % 1 !== 0) || /^\d*\.\d+$/.test(n);
         },
 
-        isTouchDevice: function() {
-            return (('ontouchstart' in window)
-                || (navigator.MaxTouchPoints > 0)
-                || (navigator.msMaxTouchPoints > 0));
-        },
-
         isFunc: function(f){
             return this.isType(f, 'function');
         },
 
         isObject: function(o){
             return this.isType(o, 'object');
-        },
-
-        isArray: function(a){
-            return Array.isArray(a);
         },
 
         isType: function(o, t){
@@ -6156,7 +6152,7 @@ $.noConflict = function() {
                 return o;
             }
 
-            if ((""+t).toLowerCase() === 'array' && this.isArray(o)) {
+            if ((""+t).toLowerCase() === 'array' && Array.isArray(o)) {
                 return o;
             }
 
@@ -6302,7 +6298,7 @@ $.noConflict = function() {
                 result = func.apply(context, args);
             } catch (err) {
                 result = null;
-                if (METRO_THROWS === true) {
+                if (window.METRO_THROWS === true) {
                     throw err;
                 }
             }
@@ -6752,15 +6748,15 @@ $.noConflict = function() {
         },
 
         mediaModes: function(){
-            return METRO_MEDIA;
+            return window.METRO_MEDIA;
         },
 
         mediaExist: function(media){
-            return METRO_MEDIA.indexOf(media) > -1;
+            return window.METRO_MEDIA.indexOf(media) > -1;
         },
 
         inMedia: function(media){
-            return METRO_MEDIA.indexOf(media) > -1 && METRO_MEDIA.indexOf(media) === METRO_MEDIA.length - 1;
+            return window.METRO_MEDIA.indexOf(media) > -1 && window.METRO_MEDIA.indexOf(media) === window.METRO_MEDIA.length - 1;
         },
 
         isValue: function(val){
@@ -26361,7 +26357,7 @@ $.noConflict = function() {
                 this.build();
             }
 
-            if (o.chromeNotice === true && Utils.detectChrome() === true && Utils.isTouchDevice() === false) {
+            if (o.chromeNotice === true && Utils.detectChrome() === true && $.touchable === false) {
                 $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
             }
         },
@@ -26797,7 +26793,7 @@ $.noConflict = function() {
                 that._fireScroll();
             });
 
-            if (Utils.isTouchDevice() === true) {
+            if ($.touchable === true) {
                 element.off(Metro.events.click, ".stream").on(Metro.events.click, ".stream", function(){
                     var stream = $(this);
                     stream.toggleClass("focused");
