@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/10/2020 13:03:16
+ * Built at 06/10/2020 11:44:41
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "05/10/2020 13:03:16",
+        compileTime: "06/10/2020 11:44:41",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -30183,19 +30183,49 @@ $.noConflict = function() {
         },
 
         val: function(v){
-            var that = this, o = this.options;
+            var that = this, element = this.element, o = this.options;
+            var container = element.closest(".tag-input");
+            var newValues = [];
 
             if (!Utils.isValue(v)) {
                 return this.tags();
             }
 
             this.values = [];
+            container.find(".tag").remove();
 
-            if (Utils.isValue(v)) {
-                $.each((""+v).toArray(o.tagSeparator), function(){
-                    that._addTag(this);
-                })
+            if (typeof v === "string") {
+                newValues = (""+v).toArray(o.tagSeparator);
+            } else {
+                if (Array.isArray(v)) {
+                    newValues = v;
+                }
             }
+
+            $.each(newValues, function(){
+                that._addTag(this);
+            });
+
+            return this;
+        },
+
+        append: function(v){
+            var that = this, o = this.options;
+            var newValues = this.values;
+
+            if (typeof v === "string") {
+                newValues = (""+v).toArray(o.tagSeparator);
+            } else {
+                if (Array.isArray(v)) {
+                    newValues = v;
+                }
+            }
+
+            $.each(newValues, function(){
+                that._addTag(this);
+            });
+
+            return this;
         },
 
         clear: function(){
@@ -30207,6 +30237,8 @@ $.noConflict = function() {
             element.val("").trigger("change");
 
             container.find(".tag").remove();
+
+            return this;
         },
 
         disable: function(){

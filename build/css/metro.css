@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/10/2020 13:03:16
+ * Built at 06/10/2020 11:44:41
  * Licensed under GPL3
  */
 *,
@@ -36479,7 +36479,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: relative;
   width: 26px;
   height: 100%;
-  line-height: 26px;
+  line-height: 22px;
   text-align: center;
   cursor: pointer;
   background-color: #e4e4e4;
@@ -36512,7 +36512,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tag.large .remover {
   width: 35px;
   height: 35px;
-  line-height: 35px;
+  line-height: 33px;
   font-size: 1.6rem;
 }
 .tag.static {

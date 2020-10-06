@@ -305,19 +305,49 @@
         },
 
         val: function(v){
-            var that = this, o = this.options;
+            var that = this, element = this.element, o = this.options;
+            var container = element.closest(".tag-input");
+            var newValues = [];
 
             if (!Utils.isValue(v)) {
                 return this.tags();
             }
 
             this.values = [];
+            container.find(".tag").remove();
 
-            if (Utils.isValue(v)) {
-                $.each((""+v).toArray(o.tagSeparator), function(){
-                    that._addTag(this);
-                })
+            if (typeof v === "string") {
+                newValues = (""+v).toArray(o.tagSeparator);
+            } else {
+                if (Array.isArray(v)) {
+                    newValues = v;
+                }
             }
+
+            $.each(newValues, function(){
+                that._addTag(this);
+            });
+
+            return this;
+        },
+
+        append: function(v){
+            var that = this, o = this.options;
+            var newValues = this.values;
+
+            if (typeof v === "string") {
+                newValues = (""+v).toArray(o.tagSeparator);
+            } else {
+                if (Array.isArray(v)) {
+                    newValues = v;
+                }
+            }
+
+            $.each(newValues, function(){
+                that._addTag(this);
+            });
+
+            return this;
         },
 
         clear: function(){
@@ -329,6 +359,8 @@
             element.val("").trigger("change");
 
             container.find(".tag").remove();
+
+            return this;
         },
 
         disable: function(){
