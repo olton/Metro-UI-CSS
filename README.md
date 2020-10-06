@@ -6,7 +6,7 @@
 
 <p align="center">
   <a href="https://metroui.org.ua/">
-    <img src="https://metroui.org.ua/res/images/metro4-hero.png" alt="">
+    <img src="https://metroui.org.ua/images/metro-xscode-logo.jpg" alt="">
   </a>
 
   <h3 align="center">Metro 4 Components Library</h3>
@@ -66,8 +66,8 @@ An **MIT** licensed version is available for an annual subscription [here](https
 > <br>Patreon Patrons get access to dedicated email support.
 
 ### Donation on Patreon
-![Donations on Patreon](https://img.shields.io/badge/Patrons-8-green.svg)
-![Donations on Patreon](https://img.shields.io/badge/Donation-$140-red.svg)
+![Donations on Patreon](https://img.shields.io/badge/Patrons-6-green.svg)
+![Donations on Patreon](https://img.shields.io/badge/Donation-$120-red.svg)
 
 ### Community
 
