@@ -130,10 +130,10 @@
         },
 
         _addOptionGroup: function(item, parent, input, multiple){
-            var that = this;
+            var that = this, o = this.options;
             var group = $(item);
 
-            $("<li>").html(item.label).addClass("group-title").appendTo(parent);
+            $("<li>").html(item.label).addClass("group-title").addClass(o.clsOptionGroup).appendTo(parent);
 
             $.each(group.children(), function(){
                 that._addOption(this, parent, input, multiple);

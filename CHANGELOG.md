@@ -13,6 +13,7 @@
 + [x] Utils: removed function `isTouchDevice`. if you need, use `$.touchable`.
 + [x] Tag input: improve method `val()`. Now you can use for new value(s) `array` or `simple value`.
 + [x] Tag input: added method `append(val)`. For append tag(s) to existing value.
++ [x] Select: fixed using attribute `data-cls-option-group`, issue #1640 
 
 ### 4.4.0
 #### M4Q
