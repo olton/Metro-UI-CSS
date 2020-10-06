@@ -1,4 +1,10 @@
 <p align="center">
+
+[![Foo](https://xscode.com/assets/promo-banner.svg)](https://xscode.com/olton/Metro-UI-CSS)
+
+</p>
+
+<p align="center">
   <a href="https://metroui.org.ua/">
     <img src="https://metroui.org.ua/res/images/metro4-hero.png" alt="">
   </a>
