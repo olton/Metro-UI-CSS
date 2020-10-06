@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/10/2020 11:44:41
+ * Built at 06/10/2020 11:49:27
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "06/10/2020 11:44:41",
+        compileTime: "06/10/2020 11:49:27",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -23884,10 +23884,10 @@ $.noConflict = function() {
         },
 
         _addOptionGroup: function(item, parent, input, multiple){
-            var that = this;
+            var that = this, o = this.options;
             var group = $(item);
 
-            $("<li>").html(item.label).addClass("group-title").appendTo(parent);
+            $("<li>").html(item.label).addClass("group-title").addClass(o.clsOptionGroup).appendTo(parent);
 
             $.each(group.children(), function(){
                 that._addOption(this, parent, input, multiple);
