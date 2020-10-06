@@ -1,4 +1,4 @@
-<p align="center">
+<p align="center" style="background: #010023;">
     <a href="https://xscode.com/olton/Metro-UI-CSS">
         <img src="https://xscode.com/assets/promo-banner.svg" alt="XS:CODE">
     </a>
