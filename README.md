@@ -1,7 +1,7 @@
 <p align="center">
-
-[![Foo](https://xscode.com/assets/promo-banner.svg)](https://xscode.com/olton/Metro-UI-CSS)
-
+    <a href="https://xscode.com/olton/Metro-UI-CSS">
+        <img src="https://xscode.com/assets/promo-banner.svg" alt="XS:CODE">
+    </a>
 </p>
 
 <p align="center">
