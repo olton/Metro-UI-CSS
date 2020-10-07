@@ -9,7 +9,7 @@ I am using xs:code to offer paid access to a permissive licensed version of the 
 In order to accept your contribution to this GPL licensed version, and to be able to use the contribution on the MIT licensed version as well, 
 I ask that you sign this CLA (Contributor license agreement) and send it to serhii@pimenov.com.com.
 
-Download the CLA [here](CLA.docx) or [here](https://pimenov.com.ua/files/CLA.docx) 
+Download the CLA [here](CLA.docx) or [here](https://pimenov.com.ua/files/CLA.docx) or you can sign [CLA here](https://xscode.com/olton/Metro-UI-CSS/cla).
 
 Without signing the CLA, I will not be able to accept your contribution.
 
@@ -30,8 +30,7 @@ The `master` branch is basically just a snapshot of the latest stable release. *
 To create pull request:
 - Each pull request should close `one problem`.
 - Check that you are using the latest version of the library.
-- Create pull request to the `latest develop branch` (greatest number).
-- The patch must contains only files in source folders: `less` and `js`.
-- The patch to `docs` must contains only `html` files in the `docs` folder.
+- Create pull request to the `latest develop branch` (a greatest number).
+- The patch must contains a files in source folders: `source` only.
 - Add patch keyword to your pull request title: `fix bug`, `update feature`, `add feature`.
 - If you are resolving a special issue, add `(fix #xxxx[,#xxx])` (#xxxx is the issue id) in your PR title.
