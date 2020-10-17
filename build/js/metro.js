@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/10/2020 11:27:39
+ * Built at 17/10/2020 12:14:08
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "17/10/2020 11:27:39",
+        compileTime: "17/10/2020 12:14:08",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17032,6 +17032,87 @@ $.noConflict = function() {
             element.off(Metro.events.change);
             parent.off(Metro.events.click, "button");
             return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    'use strict';
+
+    var GradientBoxDefaultConfig = {
+        gradientMode: "linear", // linear, radial
+        gradientType: "",
+        gradientPosition: "",
+        gradientSize: "",
+        gradientColors: "",
+        onGradientBoxCreate: Metro.noop
+    };
+
+    Metro.gradientBoxSetup = function (options) {
+        GradientBoxDefaultConfig = $.extend({}, GradientBoxDefaultConfig, options);
+    };
+
+    if (typeof window["metroGradientBoxSetup"] !== undefined) {
+        Metro.gradientBoxSetup(window["metroGradientBoxSetup"]);
+    }
+
+    Metro.Component('gradient-box', {
+        init: function( options, elem ) {
+            this._super(elem, options, GradientBoxDefaultConfig, {
+                // define instance vars here
+                colors: []
+            });
+            return this;
+        },
+
+        _create: function(){
+            var o = this.options;
+
+            this.colors = o.gradientColors !== "" ? o.gradientColors.toArray(",") : ["#fff", "#000"];
+
+            
+
+            this._createStructure();
+
+            this._fireEvent('gradient-box-create');
+        },
+
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var gradientFunc, gradientRule, gradientOptions = [];
+
+            gradientFunc = o.gradientMode.toLowerCase() + "-gradient";
+
+            if (o.gradientType !== "") {
+                gradientOptions.push(o.gradientType);
+            }
+
+            if (o.gradientSize !== "") {
+                gradientOptions.push(o.gradientSize);
+            }
+
+            if (gradientFunc === "linear-gradient" && o.gradientPosition === "") {
+                o.gradientPosition = "to bottom";
+            }
+            if (o.gradientPosition !== "") {
+                gradientOptions.push(o.gradientPosition);
+            }
+
+            gradientRule = gradientFunc + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
+
+            
+
+            element.addClass("gradient-box");
+            element.css({
+                background: gradientRule
+            });
+        },
+
+        // changeAttribute: function(attr, newValue){
+        // },
+
+        destroy: function(){
+            this.element.remove();
         }
     });
 }(Metro, m4q));

@@ -503,6 +503,10 @@
             "name": "Image button",
             "less": ["image-button"]
         },
+        "image-box": {
+            "name": "Image box",
+            "js": ["image-box"]
+        },
         "image-compare": {
             "name": "Image compare",
             "js": ["image-compare"],
