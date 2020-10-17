@@ -1,7 +1,7 @@
 {
     "setup": {
-        "release": "4.4.0",
-        "next": "4.4.1"
+        "release": "4.4.1",
+        "next": "4.4.2"
     },
 
     "parts": {
@@ -645,7 +645,7 @@
                 "common-js": ["colors"]
             }
         },
-        "resizeable": {
+        "resizable": {
             "name": "Resizable",
             "js": ["resizable"],
             "less": ["resizable"]

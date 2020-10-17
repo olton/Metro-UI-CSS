@@ -87,6 +87,12 @@
             this.dir = this.options.direction;
 
             element.addClass("carousel").addClass(o.clsCarousel);
+
+            element.css({
+                maxWidth: o.width
+            });
+
+
             if (o.controlsOutside === true) {
                 element.addClass("controls-outside");
             }
