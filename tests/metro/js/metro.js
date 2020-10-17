@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/10/2020 11:49:27
+ * Built at 17/10/2020 11:02:06
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "06/10/2020 11:49:27",
+        compileTime: "17/10/2020 11:02:06",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11989,6 +11989,12 @@ $.noConflict = function() {
             this.dir = this.options.direction;
 
             element.addClass("carousel").addClass(o.clsCarousel);
+
+            element.css({
+                maxWidth: o.width
+            });
+
+
             if (o.controlsOutside === true) {
                 element.addClass("controls-outside");
             }
