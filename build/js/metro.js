@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/10/2020 12:14:08
+ * Built at 17/10/2020 13:59:28
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "17/10/2020 12:14:08",
+        compileTime: "17/10/2020 13:59:28",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17060,7 +17060,12 @@ $.noConflict = function() {
         init: function( options, elem ) {
             this._super(elem, options, GradientBoxDefaultConfig, {
                 // define instance vars here
-                colors: []
+                colors: [],
+                type: "",
+                size: "",
+                position: "",
+                mode: "linear",
+                func: "linear-gradient"
             });
             return this;
         },
@@ -17069,47 +17074,62 @@ $.noConflict = function() {
             var o = this.options;
 
             this.colors = o.gradientColors !== "" ? o.gradientColors.toArray(",") : ["#fff", "#000"];
+            this.mode = o.gradientMode.toLowerCase();
+            this.type = o.gradientType.toLowerCase();
+            this.size = o.gradientSize.toLowerCase();
+            this.func = this.mode + "-gradient";
 
-            
+            if (this.mode === "linear" && o.gradientPosition === "") {
+                this.position = "to bottom";
+            } else {
+                this.position = o.gradientPosition.toLowerCase();
+            }
 
             this._createStructure();
-
+            this._setGradient();
             this._fireEvent('gradient-box-create');
         },
 
         _createStructure: function(){
+            this.element.addClass("gradient-box");
+        },
+
+        _setGradient: function (){
             var element = this.element, o = this.options;
             var gradientFunc, gradientRule, gradientOptions = [];
 
             gradientFunc = o.gradientMode.toLowerCase() + "-gradient";
 
-            if (o.gradientType !== "") {
-                gradientOptions.push(o.gradientType);
+            if (this.type) {
+                gradientOptions.push(this.type);
             }
 
-            if (o.gradientSize !== "") {
-                gradientOptions.push(o.gradientSize);
+            if (this.size) {
+                gradientOptions.push(this.size);
             }
 
-            if (gradientFunc === "linear-gradient" && o.gradientPosition === "") {
-                o.gradientPosition = "to bottom";
-            }
-            if (o.gradientPosition !== "") {
-                gradientOptions.push(o.gradientPosition);
+            if (this.position) {
+                gradientOptions.push(this.position);
             }
 
             gradientRule = gradientFunc + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
 
-            
-
-            element.addClass("gradient-box");
             element.css({
                 background: gradientRule
             });
         },
 
-        // changeAttribute: function(attr, newValue){
-        // },
+        changeAttribute: function(attr, newValue){
+            switch (attr) {
+                case "data-gradient-mode": this.func = newValue.toLowerCase() + "-gradient"; break;
+                case "data-gradient-colors": this.colors = newValue ? newValue.toArray(",") : ["#fff", "#000"]; break;
+                case "data-gradient-type": this.type = newValue.toLowerCase(); break;
+                case "data-gradient-size": this.size = newValue.toLowerCase(); break;
+                case "data-gradient-position": this.position = newValue.toLowerCase(); break;
+            }
+
+            this._setGradient();
+        },
 
         destroy: function(){
             this.element.remove();
