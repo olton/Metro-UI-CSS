@@ -6,7 +6,18 @@
     <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
 
     <title>Test Carousel - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .slide {
+            display: flex!important;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .image-box {
+            width: 640px;
+            height: 480px;
+        }
+    </style>
 </head>
 <body class="m4-cloak">
 <div class="container">
@@ -21,16 +32,16 @@
             <input type="radio" name="r1" data-role="radio" value="zoom" data-caption="zoom">
             <input type="radio" name="r1" data-role="radio" value="swirl" data-caption="swirl" checked>
         </div>
-        <div data-role="carousel" data-effect="swirl" data-duration="1000" id="carousel" data-auto-start="true" data-width="640">
-            <div class="slide" data-cover="../images/1.jpg">
-                <button class="button" onclick="alert('Button was clicked!')">Button</button>
+        <div data-role="carousel" data-effect="swirl" data-duration="1000" id="carousel" data-auto-start="true">
+            <div class="slide">
+                <div data-role="image-box" data-image="../images/1.jpg"></div>
             </div>
-            <div class="slide" data-cover="../images/2.jpg"></div>
-            <div class="slide" data-cover="../images/3.jpg"></div>
-            <div class="slide" data-cover="../images/4.jpg"></div>
-            <div class="slide" data-cover="../images/5.jpg"></div>
-            <div class="slide" data-cover="../images/6.jpg"></div>
-            <div class="slide" data-cover="../images/7.jpg"></div>
+            <div class="slide">
+                <div data-role="image-box" data-image="../images/2.jpg"></div>
+            </div>
+            <div class="slide">
+                <div data-role="image-box" data-image="../images/3.jpg"></div>
+            </div>
         </div>
     </div>
 
