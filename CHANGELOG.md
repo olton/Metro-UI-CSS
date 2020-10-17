@@ -16,6 +16,7 @@
 + [x] Select: fixed using attribute `data-cls-option-group`, issue #1640 
 + [x] Carousel: fixed usage attribute `data-width`, now this attribute applied to `max-width` css property, issue #1647 
 + [x] ImageBox: add new component for issue #1647 
++ [x] GradientBox: add new component for issue #1645 
 
 ### 4.4.0
 #### M4Q
