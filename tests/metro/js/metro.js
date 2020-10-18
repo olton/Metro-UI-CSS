@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/10/2020 13:45:17
+ * Built at 18/10/2020 13:57:14
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "18/10/2020 13:45:17",
+        compileTime: "18/10/2020 13:57:14",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17120,6 +17120,10 @@ $.noConflict = function() {
         },
 
         changeAttribute: function(attr, newValue){
+            if (attr.indexOf("data-gradient-") === -1) {
+                return ;
+            }
+
             switch (attr) {
                 case "data-gradient-mode": this.func = newValue.toLowerCase() + "-gradient"; break;
                 case "data-gradient-colors": this.colors = newValue ? newValue.toArray(",") : ["#fff", "#000"]; break;
