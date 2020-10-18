@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/10/2020 20:12:20
+ * Built at 19/10/2020 00:06:18
  * Licensed under GPL3
  */
 *,
@@ -21032,7 +21032,12 @@ pre code {
 }
 .button,
 .flat-button {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -21044,7 +21049,6 @@ pre code {
   border: 1px solid transparent;
   padding: 0 0.75rem;
   font-size: 0.875rem;
-  line-height: 34px;
   height: 36px;
   -webkit-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
@@ -21202,10 +21206,30 @@ a.flat-button:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
+.button.shadowed {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
+.button.shadowed:hover {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
+}
+.button.shadowed:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transform: translate(1px, 1px);
+      -ms-transform: translate(1px, 1px);
+          transform: translate(1px, 1px);
+}
 input[type=button],
 input[type=submit],
 input[type=reset] {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -21217,7 +21241,6 @@ input[type=reset] {
   border: 1px solid transparent;
   padding: 0 0.75rem;
   font-size: 0.875rem;
-  line-height: 34px;
   height: 36px;
   -webkit-transition: all 0.15s ease-in-out;
   -o-transition: all 0.15s ease-in-out;
@@ -21962,6 +21985,27 @@ input[type=submit]:active,
 input[type=reset]:active {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+input[type=button].shadowed,
+input[type=submit].shadowed,
+input[type=reset].shadowed {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+}
+input[type=button].shadowed:hover,
+input[type=submit].shadowed:hover,
+input[type=reset].shadowed:hover {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
+}
+input[type=button].shadowed:active,
+input[type=submit].shadowed:active,
+input[type=reset].shadowed:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transform: translate(1px, 1px);
+      -ms-transform: translate(1px, 1px);
+          transform: translate(1px, 1px);
 }
 .calendar {
   display: block;
