@@ -17,7 +17,6 @@
     padding: 0 .5rem 0 0;
     align-items: center;
     height: 36px;
-    line-height: 30px;
     font-weight: 400;
 
     &:hover {
@@ -29,8 +28,8 @@
     }
 
     .icon {
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
         line-height: 34px;
         font-size: 1rem;
         background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .55);
@@ -83,5 +82,18 @@
         background: transparent none;
         border-width: 1px;
         border-color: @borderColor;
+    }
+}
+
+.image-button.shadowed {
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4)!important;
+
+    &:hover {
+        box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.8)!important;
+    }
+
+    &:active {
+        box-shadow: none;
+        transform: translate(1px, 1px)!important;
     }
 }
