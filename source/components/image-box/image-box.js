@@ -53,9 +53,11 @@
 
         changeAttribute: function(attr, newValue){
             var element = this.element;
-            var attrName = "background"+attr.replace("^data-", "").capitalize();
+            var attrName = attr.replace("data-", "");
 
-            element.css(attrName, newValue);
+            if (["image", "size", "repeat", "color", "attachment", "origin"].indexOf(attrName) > -1) {
+                element.css("background-"+attrName, attrName === "image" ? "url("+newValue+")" : newValue);
+            }
         },
 
         destroy: function(){
