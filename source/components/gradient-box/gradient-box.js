@@ -83,6 +83,10 @@
         },
 
         changeAttribute: function(attr, newValue){
+            if (attr.indexOf("data-gradient-") === -1) {
+                return ;
+            }
+
             switch (attr) {
                 case "data-gradient-mode": this.func = newValue.toLowerCase() + "-gradient"; break;
                 case "data-gradient-colors": this.colors = newValue ? newValue.toArray(",") : ["#fff", "#000"]; break;
