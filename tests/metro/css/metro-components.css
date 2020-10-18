@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 00:37:22
+ * Built at 19/10/2020 00:41:32
  * Licensed under GPL3
  */
 .accordion {
@@ -6986,11 +6986,11 @@ fieldset.disabled,
           box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
 }
 .image-button.shadowed:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  -webkit-transform: translate(1px, 1px) !important;
-      -ms-transform: translate(1px, 1px) !important;
-          transform: translate(1px, 1px) !important;
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+  -webkit-transform: translate(1px, 1px);
+      -ms-transform: translate(1px, 1px);
+          transform: translate(1px, 1px);
 }
 .image-compare {
   position: relative;
