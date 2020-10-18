@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/10/2020 13:17:57
+ * Built at 18/10/2020 13:45:17
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "18/10/2020 13:17:57",
+        compileTime: "18/10/2020 13:45:17",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17709,9 +17709,11 @@ $.noConflict = function() {
 
         changeAttribute: function(attr, newValue){
             var element = this.element;
-            var attrName = "background"+attr.replace("^data-", "").capitalize();
+            var attrName = attr.replace("data-", "");
 
-            element.css(attrName, newValue);
+            if (["image", "size", "repeat", "color", "attachment", "origin"].indexOf(attrName) > -1) {
+                element.css("background-"+attrName, attrName === "image" ? "url("+newValue+")" : newValue);
+            }
         },
 
         destroy: function(){
