@@ -621,7 +621,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.9. Built at 05/10/2020 12:54:17";
+var m4qVersion = "v1.0.9. Built at 18/10/2020 16:32:39";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2836,6 +2836,19 @@ var normalizeElements = function(s){
 };
 
 $.fn.extend({
+
+    appendText: function(text){
+        return this.each(function(elIndex, el){
+            el.innerHTML += text;
+        });
+    },
+
+    prependText: function(text){
+        return this.each(function(elIndex, el){
+            el.innerHTML = text + el.innerHTML;
+        });
+    },
+
     append: function(elements){
         var _elements = normalizeElements(elements);
 
