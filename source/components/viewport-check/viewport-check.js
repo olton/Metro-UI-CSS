@@ -52,10 +52,14 @@
                     }
                 }
 
-                if (that.inViewport) {
-                    that._fireEvent("viewport");
-                }
+                that._fireEvent("viewport", {
+                    state: that.inViewport
+                });
             }, {ns: that.id});
+        },
+
+        inViewport: function(){
+            return this.inViewport;
         },
 
         destroy: function(){
