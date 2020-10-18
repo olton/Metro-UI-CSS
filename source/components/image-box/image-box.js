@@ -47,7 +47,9 @@
             var image = new Image();
             var portrait;
 
-            element.attr("data-original", o.image);
+            if (!element.attr("data-original"))
+                element.attr("data-original", o.image);
+
             element.css({
                 backgroundImage: "url("+o.image+")",
                 backgroundSize: o.size,
