@@ -35,9 +35,19 @@
         },
 
         _createStructure: function(){
-            var element = this.element, o = this.options;
+            var element = this.element;
 
             element.addClass("image-box");
+
+            this._drawImage();
+        },
+
+        _drawImage: function(){
+            var element = this.element, o = this.options;
+            var image = new Image();
+            var portrait;
+
+            element.attr("data-original", o.image);
             element.css({
                 backgroundImage: "url("+o.image+")",
                 backgroundSize: o.size,
@@ -46,17 +56,22 @@
                 backgroundAttachment: o.attachment,
                 backgroundOrigin: o.origin
             });
-        },
 
-        _createEvents: function(){
+            image.src = o.image;
+            image.onload = function(){
+                portrait = this.height >= this.width;
+                element
+                    .removeClass("image-box__portrait image-box__landscape")
+                    .addClass("image-box__" + (portrait ? "portrait" : "landscape"));
+            }
         },
 
         changeAttribute: function(attr, newValue){
-            var element = this.element;
             var attrName = attr.replace("data-", "");
 
             if (["image", "size", "repeat", "color", "attachment", "origin"].indexOf(attrName) > -1) {
-                element.css("background-"+attrName, attrName === "image" ? "url("+newValue+")" : newValue);
+                this.options[attrName] = newValue;
+                this._drawImage();
             }
         },
 
