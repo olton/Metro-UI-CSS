@@ -2,9 +2,9 @@
 @import (once) "../../include/mixins";
 
 .shortcut {
-    width: 6rem;
-    height: 6rem;
-    padding: .5rem;
+    width: 84px;
+    height: 84px;
+    padding: 8px;
     display: inline-flex;
     flex-direction: column;
     font-size: .9rem;
@@ -29,16 +29,16 @@
     .icon {
         display: block;
         vertical-align: middle;
-        width: 1.7rem;
-        height: 1.7rem;
-        font-size: 1.7rem;
-        margin-top: 1rem;
+        width: 28px;
+        height: 28px;
+        font-size: 28px;
+        margin-top: 16px;
         order: 1;
     }
 
     .caption {
         color: inherit;
-        height: 1.2rem;
+        height: 20px;
         order: 2;
     }
 
@@ -58,10 +58,10 @@
 
     &.no-caption {
         .icon {
-            width: 2rem;
-            height: 2rem;
-            font-size: 2rem;
-            margin-top: 1.5rem;
+            width: 32px;
+            height: 32px;
+            font-size: 32px;
+            margin-top: 24px;
         }
     }
 
@@ -94,5 +94,18 @@
 
     &:active {
         box-shadow: none;
+    }
+}
+
+.shortcut.shadowed {
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4)!important;
+
+    &:hover {
+        box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.8)!important;
+    }
+
+    &:active {
+        box-shadow: none!important;
+        transform: translate(1px, 1px);
     }
 }

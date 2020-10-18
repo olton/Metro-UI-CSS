@@ -2,7 +2,7 @@
 @import (once) "../../include/mixins";
 
 .command-button, .image-button {
-    padding: .5rem;
+    padding: .5rem .75rem;
     display: inline-flex;
     font-size: 1.5rem;
     transition: @transition-short;
@@ -78,5 +78,18 @@
 
     &.disabled, &:disabled {
         opacity: .65;
+    }
+}
+
+.command-button.shadowed {
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4)!important;
+
+    &:hover {
+        box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.8)!important;
+    }
+
+    &:active {
+        box-shadow: none!important;
+        transform: translate(1px, 1px);
     }
 }

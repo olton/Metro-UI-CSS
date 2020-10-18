@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 00:06:18
+ * Built at 19/10/2020 00:32:00
  * Licensed under GPL3
  */
 .accordion {
@@ -1554,16 +1554,16 @@ a.flat-button:focus {
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
 .button.shadowed {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
 }
 .button.shadowed:hover {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
 }
 .button.shadowed:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
   -webkit-transform: translate(1px, 1px);
       -ms-transform: translate(1px, 1px);
           transform: translate(1px, 1px);
@@ -1788,27 +1788,6 @@ input[type=submit]:active,
 input[type=reset]:active {
   -webkit-box-shadow: none;
           box-shadow: none;
-}
-input[type=button].shadowed,
-input[type=submit].shadowed,
-input[type=reset].shadowed {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4);
-}
-input[type=button].shadowed:hover,
-input[type=submit].shadowed:hover,
-input[type=reset].shadowed:hover {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8);
-}
-input[type=button].shadowed:active,
-input[type=submit].shadowed:active,
-input[type=reset].shadowed:active {
-  -webkit-box-shadow: none;
-          box-shadow: none;
-  -webkit-transform: translate(1px, 1px);
-      -ms-transform: translate(1px, 1px);
-          transform: translate(1px, 1px);
 }
 .calendar {
   display: block;
@@ -3212,7 +3191,7 @@ input[type=reset].shadowed:active {
 }
 .command-button,
 .image-button {
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -3315,6 +3294,21 @@ input[type=reset].shadowed:active {
 .command-button:disabled,
 .image-button:disabled {
   opacity: 0.65;
+}
+.command-button.shadowed {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+}
+.command-button.shadowed:hover {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+}
+.command-button.shadowed:active {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+  -webkit-transform: translate(1px, 1px);
+      -ms-transform: translate(1px, 1px);
+          transform: translate(1px, 1px);
 }
 .container,
 .container2,
@@ -6910,7 +6904,6 @@ fieldset.disabled,
       -ms-flex-align: center;
           align-items: center;
   height: 36px;
-  line-height: 30px;
   font-weight: 400;
 }
 .image-button:hover {
@@ -6923,8 +6916,8 @@ fieldset.disabled,
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
 }
 .image-button .icon {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   line-height: 34px;
   font-size: 1rem;
   background-color: rgba(69, 90, 100, 0.55);
@@ -6983,6 +6976,21 @@ fieldset.disabled,
   background: transparent none;
   border-width: 1px;
   border-color: #dfdfdf;
+}
+.image-button.shadowed {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+}
+.image-button.shadowed:hover {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+}
+.image-button.shadowed:active {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  -webkit-transform: translate(1px, 1px) !important;
+      -ms-transform: translate(1px, 1px) !important;
+          transform: translate(1px, 1px) !important;
 }
 .image-compare {
   position: relative;
@@ -12412,9 +12420,9 @@ input.input-small:-ms-input-placeholder {
   background-color: #e9e9e9;
 }
 .shortcut {
-  width: 6rem;
-  height: 6rem;
-  padding: 0.5rem;
+  width: 84px;
+  height: 84px;
+  padding: 8px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -12453,17 +12461,17 @@ input.input-small:-ms-input-placeholder {
 .shortcut .icon {
   display: block;
   vertical-align: middle;
-  width: 1.7rem;
-  height: 1.7rem;
-  font-size: 1.7rem;
-  margin-top: 1rem;
+  width: 28px;
+  height: 28px;
+  font-size: 28px;
+  margin-top: 16px;
   -webkit-box-ordinal-group: 2;
       -ms-flex-order: 1;
           order: 1;
 }
 .shortcut .caption {
   color: inherit;
-  height: 1.2rem;
+  height: 20px;
   -webkit-box-ordinal-group: 3;
       -ms-flex-order: 2;
           order: 2;
@@ -12483,10 +12491,10 @@ input.input-small:-ms-input-placeholder {
   background-color: inherit;
 }
 .shortcut.no-caption .icon {
-  width: 2rem;
-  height: 2rem;
-  font-size: 2rem;
-  margin-top: 1.5rem;
+  width: 32px;
+  height: 32px;
+  font-size: 32px;
+  margin-top: 24px;
 }
 .shortcut:hover {
   background-color: rgba(29, 29, 29, 0.1);
@@ -12518,6 +12526,21 @@ input.input-small:-ms-input-placeholder {
 .shortcut:active {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+.shortcut.shadowed {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+}
+.shortcut.shadowed:hover {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+}
+.shortcut.shadowed:active {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+  -webkit-transform: translate(1px, 1px);
+      -ms-transform: translate(1px, 1px);
+          transform: translate(1px, 1px);
 }
 .sidebar {
   display: block;
