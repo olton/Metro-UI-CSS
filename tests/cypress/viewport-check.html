@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test ViewportCheck - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container" style="height: 3000px;">
+    <h1>ViewportCheck test page</h1>
+
+    <div class="box bg-red" style="top: 1000px" data-role="viewport-check" data-on-viewport="onViewport" data-on-viewport-enter="onViewportEnter" data-on-viewport-leave="onViewportLeave">
+        ...
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function onViewport(){
+        console.log("Event onViewport");
+    }
+    function onViewportEnter(){
+        console.log("Event onViewportEnter");
+    }
+    function onViewportLeave(){
+        console.log("Event onViewportLeave");
+    }
+</script>
+</body>
+</html>

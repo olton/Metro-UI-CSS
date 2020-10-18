@@ -462,6 +462,10 @@
                 "common-js": ["md5"]
             }
         },
+        "gradient-box": {
+            "name": "Gradient box",
+            "js": ["gradient-box"]
+        },
         "grid": {
             "name": "Grid system",
             "less": ["grid"]
@@ -874,6 +878,10 @@
             "dependencies": {
                 "components": ["media-player", "button", "slider"]
             }
+        },
+        "viewport-check": {
+            "name": "Viewport checker",
+            "js": ["viewport-check"]
         },
         "wheelpicker": {
             "name": "Wheel picker",
