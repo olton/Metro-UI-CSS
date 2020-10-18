@@ -58,7 +58,7 @@
             }, {ns: that.id});
         },
 
-        inViewport: function(){
+        state: function(){
             return this.inViewport;
         },
 
