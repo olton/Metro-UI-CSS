@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/10/2020 13:08:19
+ * Built at 18/10/2020 13:17:57
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4524,7 +4524,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "18/10/2020 13:08:19",
+        compileTime: "18/10/2020 13:17:57",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17132,7 +17132,7 @@ $.noConflict = function() {
         },
 
         destroy: function(){
-            this.element.remove();
+            return this.element;
         }
     });
 }(Metro, m4q));
@@ -17715,7 +17715,7 @@ $.noConflict = function() {
         },
 
         destroy: function(){
-            this.element.remove();
+            return this.element;
         }
     });
 }(Metro, m4q));
@@ -35019,7 +35019,8 @@ $.noConflict = function() {
         init: function( options, elem ) {
             this._super(elem, options, ViewportCheckDefaultConfig, {
                 // define instance vars here
-                inViewport: false
+                inViewport: false,
+                id: Utils.elementId("viewport-check")
             });
             return this;
         },
@@ -35051,11 +35052,13 @@ $.noConflict = function() {
                 if (that.inViewport) {
                     that._fireEvent("viewport");
                 }
-            });
+            }, {ns: that.id});
         },
 
         destroy: function(){
-            this.element.remove();
+            $(window).off(Metro.events.scroll, {ns: this.id});
+
+            return this.element;
         }
     });
 }(Metro, m4q));

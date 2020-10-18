@@ -22,7 +22,8 @@
         init: function( options, elem ) {
             this._super(elem, options, ViewportCheckDefaultConfig, {
                 // define instance vars here
-                inViewport: false
+                inViewport: false,
+                id: Utils.elementId("viewport-check")
             });
             return this;
         },
@@ -54,11 +55,13 @@
                 if (that.inViewport) {
                     that._fireEvent("viewport");
                 }
-            });
+            }, {ns: that.id});
         },
 
         destroy: function(){
-            this.element.remove();
+            $(window).off(Metro.events.scroll, {ns: this.id});
+
+            return this.element;
         }
     });
 }(Metro, m4q));
