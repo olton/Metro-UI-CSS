@@ -621,7 +621,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.9. Built at 18/10/2020 16:32:39";
+var m4qVersion = "v1.0.9. Built at 19/10/2020 18:36:03";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
