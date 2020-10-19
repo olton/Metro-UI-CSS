@@ -18,10 +18,8 @@
 + [x] ImageBox: added new component for issue #1647 
 + [x] GradientBox: added new component for issue #1645 
 + [x] ViewportCheck: added new component for check if element in viewport 
-+ [x] Button: added class `shadowed`
-+ [x] Command button: added class `shadowed`
-+ [x] Image button: added class `shadowed`
-+ [x] Shortcut: added class `shadowed`
++ [x] Shadows: added class `shadowed`, class defined in `shadow.less`, issue #1643 
++ [x] Select: added attributes `data-show-group-name="true|false"` (default - **false**), `data-short-tag="true|false"` (default - **true**), issue #1642 
 
 ### 4.4.0
 #### M4Q

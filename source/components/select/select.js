@@ -21,6 +21,8 @@
         dropHeight: 200,
         checkDropUp: true,
         dropUp: false,
+        showGroupName: false,
+        shortTag: true,
 
         clsSelect: "",
         clsSelectInput: "",
@@ -83,7 +85,7 @@
         _addTag: function(val, data){
             var element = this.element, o = this.options;
             var tag, tagSize, container = element.closest(".select");
-            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
+            tag = $("<div>").addClass("tag").addClass(o.shortTag ? "short-tag" : "").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
             $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
 
             if (container.hasClass("input-large")) {
@@ -97,7 +99,7 @@
             return tag;
         },
 
-        _addOption: function(item, parent, input, multiple){
+        _addOption: function(item, parent, input, multiple, group){
             var option = $(item);
             var l, a;
             var element = this.element, o = this.options;
@@ -108,11 +110,18 @@
 
             l.addClass(item.className);
 
+            l.data("group", group);
+
             if (option.is(":disabled")) {
                 l.addClass("disabled");
             }
 
             if (option.is(":selected")) {
+
+                if (o.showGroupName && group) {
+                    html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                }
+
                 if (multiple) {
                     l.addClass("d-none");
                     input.append(this._addTag(html, l));
@@ -136,7 +145,7 @@
             $("<li>").html(item.label).addClass("group-title").addClass(o.clsOptionGroup).appendTo(parent);
 
             $.each(group.children(), function(){
-                that._addOption(this, parent, input, multiple);
+                that._addOption(this, parent, input, multiple, item.label);
             })
         },
 
@@ -155,7 +164,7 @@
 
             $.each(element.children(), function(){
                 if (this.tagName === "OPTION") {
-                    that._addOption(this, list, input, multiple);
+                    that._addOption(this, list, input, multiple, null);
                 } else if (this.tagName === "OPTGROUP") {
                     that._addOptionGroup(this, list, input, multiple);
                 }
@@ -352,10 +361,15 @@
                 }
                 var leaf = $(this);
                 var val = leaf.data('value');
+                var group = leaf.data('group');
                 var html = leaf.children('a').html();
                 var selected;
                 var option = leaf.data("option");
                 var options = element.find("option");
+
+                if (o.showGroupName && group) {
+                    html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                }
 
                 if (element[0].multiple) {
                     leaf.addClass("d-none");
