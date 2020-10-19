@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 00:41:32
+ * Built at 19/10/2020 11:56:32
  * Licensed under GPL3
  */
 .accordion {
@@ -1552,21 +1552,6 @@ a.button:focus,
 a.flat-button:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
-}
-.button.shadowed {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-}
-.button.shadowed:hover {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-}
-.button.shadowed:active {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
-  -webkit-transform: translate(1px, 1px);
-      -ms-transform: translate(1px, 1px);
-          transform: translate(1px, 1px);
 }
 input[type=button],
 input[type=submit],
@@ -3294,21 +3279,6 @@ input[type=reset]:active {
 .command-button:disabled,
 .image-button:disabled {
   opacity: 0.65;
-}
-.command-button.shadowed {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-}
-.command-button.shadowed:hover {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-}
-.command-button.shadowed:active {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
-  -webkit-transform: translate(1px, 1px);
-      -ms-transform: translate(1px, 1px);
-          transform: translate(1px, 1px);
 }
 .container,
 .container2,
@@ -6976,21 +6946,6 @@ fieldset.disabled,
   background: transparent none;
   border-width: 1px;
   border-color: #dfdfdf;
-}
-.image-button.shadowed {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-}
-.image-button.shadowed:hover {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-}
-.image-button.shadowed:active {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
-  -webkit-transform: translate(1px, 1px);
-      -ms-transform: translate(1px, 1px);
-          transform: translate(1px, 1px);
 }
 .image-compare {
   position: relative;
@@ -12526,21 +12481,6 @@ input.input-small:-ms-input-placeholder {
 .shortcut:active {
   -webkit-box-shadow: none;
           box-shadow: none;
-}
-.shortcut.shadowed {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-}
-.shortcut.shadowed:hover {
-  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-}
-.shortcut.shadowed:active {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
-  -webkit-transform: translate(1px, 1px);
-      -ms-transform: translate(1px, 1px);
-          transform: translate(1px, 1px);
 }
 .sidebar {
   display: block;

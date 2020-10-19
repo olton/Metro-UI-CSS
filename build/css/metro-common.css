@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 00:41:32
+ * Built at 19/10/2020 11:56:32
  * Licensed under GPL3
  */
 .button.primary,
@@ -7652,6 +7652,22 @@ ol.latin-lower {
 .shadow-5 {
   -webkit-box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2);
           box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2);
+}
+.shadowed {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
+}
+.shadowed:hover,
+.shadowed:focus {
+  -webkit-box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+          box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
+}
+.shadowed:active {
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+  -webkit-transform: translate(1px, 1px);
+      -ms-transform: translate(1px, 1px);
+          transform: translate(1px, 1px);
 }
 .w-auto {
   width: auto!important;

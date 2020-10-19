@@ -30,3 +30,15 @@
 .shadow-4 {.shadow(4);}
 .shadow-5 {.shadow(5);}
 
+.shadowed {
+    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4)!important;
+
+    &:hover, &:focus {
+        box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.8)!important;
+    }
+
+    &:active {
+        box-shadow: none!important;
+        transform: translate(1px, 1px);
+    }
+}
