@@ -17,7 +17,7 @@
 Metro 4 is an MIT-licensed open source project. 
 It's an independent project with its ongoing development made possible entirely thanks to the support by these
 <br>
-<a href="https://github.com/olton/Metro-UI-CSS/blob/master/BACKERS.md"><strong>awesome Backers</strong></a>.
+<a href="https://metroui.org.ua/support.html#backers"><strong>awesome Backers</strong></a>.
 </p>
 <p align="center">
 <a href="https://www.patreon.com/metroui">
@@ -47,11 +47,9 @@ It's an independent project with its ongoing development made possible entirely 
 
 ----
 
-## Current version 4.4.1
-
 ### License and Premium Features
 This project licensed under the **MIT** license. 
-In addition, **SUPPORT PACK** is available for an annual subscription on [XS:CODE](https://xscode.com/olton/Metro-UI-CSS) and for a Patreon Patrons.
+In addition, **SUPPORT PACK** is available for an annual subscription on [XS:CODE](https://xscode.com/olton/Metro-UI-CSS) and for a [Patreon Patrons](https://www.patreon.com/metroui).
 
 **SUPPORT PACK** includes an **Extra time for priority support** by email and other options.
 
