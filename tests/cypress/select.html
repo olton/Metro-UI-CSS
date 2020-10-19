@@ -13,7 +13,24 @@
     <h1>Select test page</h1>
 
     <div class="example">
-        <select data-role="select" id="select1">
+        <select data-role="select" data-show-group-name="true">
+            <optgroup label="Microsoft">
+                <option value="microsoft-usa">USA</option>
+                <option value="microsoft-usa-alabama">Alabama</option>
+                <option value="microsoft-usa-alaska">Alaska</option>
+            </optgroup>
+
+            <optgroup label="Apple">
+                <option value="apple-usa">USA</option>
+                <option value="apple-usa-alabama">Alabama</option>
+                <option value="apple-usa-alaska">Alaska</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <br>
+    <div class="example">
+        <select data-role="select" id="select1" data-show-group-name="true">
             <optgroup label="Physical servers">
                 <option value="dedicated_corei3_hp">Core i3 (hp)</option>
                 <option value="dedicated_pentium_hp">Pentium (hp)</option>
@@ -35,7 +52,7 @@
     <br>
 
     <div class="example">
-        <select data-role="select" multiple id="select2" data-clear-button="true" data-cls-option-group="text-bold fg-orange">
+        <select data-role="select" multiple id="select2" data-clear-button="true" data-cls-option-group="text-bold fg-orange" data-show-group-name="true" data-short-tag="false">
             <optgroup label="Physical servers">
                 <option value="dedicated_corei3_hp">Core i3 (hp)</option>
                 <option value="dedicated_pentium_hp">Pentium (hp)</option>
@@ -72,12 +89,11 @@
     function fillSelect(){
         var select = Metro.getPlugin("#select3", "select");
         var options = {
-            "&nbsp;" : "&nbsp;",
             "0": "NEW DIPSWITCH",
             "T": "Time",
             "L": "Lives",
             "H": "Health",
-            "C": "Coins",
+            "C": "Coins"
         };
         console.log(options);
         select.data(options);

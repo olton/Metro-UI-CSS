@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 11:56:32
+ * Built at 19/10/2020 13:12:28
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.1",
-        compileTime: "19/10/2020 11:56:32",
+        compileTime: "19/10/2020 13:12:28",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -23983,6 +23983,8 @@ $.noConflict = function() {
         dropHeight: 200,
         checkDropUp: true,
         dropUp: false,
+        showGroupName: false,
+        shortTag: true,
 
         clsSelect: "",
         clsSelectInput: "",
@@ -24045,7 +24047,7 @@ $.noConflict = function() {
         _addTag: function(val, data){
             var element = this.element, o = this.options;
             var tag, tagSize, container = element.closest(".select");
-            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
+            tag = $("<div>").addClass("tag").addClass(o.shortTag ? "short-tag" : "").addClass(o.clsSelectedItem).html("<span class='title'>"+val+"</span>").data("option", data);
             $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
 
             if (container.hasClass("input-large")) {
@@ -24059,7 +24061,7 @@ $.noConflict = function() {
             return tag;
         },
 
-        _addOption: function(item, parent, input, multiple){
+        _addOption: function(item, parent, input, multiple, group){
             var option = $(item);
             var l, a;
             var element = this.element, o = this.options;
@@ -24070,11 +24072,18 @@ $.noConflict = function() {
 
             l.addClass(item.className);
 
+            l.data("group", group);
+
             if (option.is(":disabled")) {
                 l.addClass("disabled");
             }
 
             if (option.is(":selected")) {
+
+                if (o.showGroupName && group) {
+                    html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                }
+
                 if (multiple) {
                     l.addClass("d-none");
                     input.append(this._addTag(html, l));
@@ -24098,7 +24107,7 @@ $.noConflict = function() {
             $("<li>").html(item.label).addClass("group-title").addClass(o.clsOptionGroup).appendTo(parent);
 
             $.each(group.children(), function(){
-                that._addOption(this, parent, input, multiple);
+                that._addOption(this, parent, input, multiple, item.label);
             })
         },
 
@@ -24117,7 +24126,7 @@ $.noConflict = function() {
 
             $.each(element.children(), function(){
                 if (this.tagName === "OPTION") {
-                    that._addOption(this, list, input, multiple);
+                    that._addOption(this, list, input, multiple, null);
                 } else if (this.tagName === "OPTGROUP") {
                     that._addOptionGroup(this, list, input, multiple);
                 }
@@ -24314,10 +24323,15 @@ $.noConflict = function() {
                 }
                 var leaf = $(this);
                 var val = leaf.data('value');
+                var group = leaf.data('group');
                 var html = leaf.children('a').html();
                 var selected;
                 var option = leaf.data("option");
                 var options = element.find("option");
+
+                if (o.showGroupName && group) {
+                    html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                }
 
                 if (element[0].multiple) {
                     leaf.addClass("d-none");

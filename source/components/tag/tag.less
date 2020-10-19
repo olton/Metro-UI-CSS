@@ -18,7 +18,6 @@
     .title {
         display: block;
         position: relative;
-        max-width: 120px;
         font-size: 14px;
         .text-ellipsis();
         margin: 0 8px;
@@ -34,6 +33,12 @@
         cursor: pointer;
         background-color: @lightGray;
         font-size: 1.2rem;
+    }
+
+    &.short-tag {
+        .title {
+            max-width: 120px;
+        }
     }
 }
 

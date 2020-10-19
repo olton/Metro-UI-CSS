@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 11:56:32
+ * Built at 19/10/2020 13:12:28
  * Licensed under GPL3
  */
 .accordion {
@@ -12320,6 +12320,10 @@ input.input-small:-ms-input-placeholder {
   margin-left: 0.9rem;
   left: 0;
 }
+.select .selected-item__group-name {
+  font-size: 0.75rem;
+  color: gray;
+}
 .select2-container .selection .select2-selection--single {
   height: 36px;
   border: 1px #d9d9d9 solid;
@@ -16240,7 +16244,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tag .title {
   display: block;
   position: relative;
-  max-width: 120px;
   font-size: 14px;
   overflow: hidden;
   white-space: nowrap;
@@ -16258,6 +16261,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   cursor: pointer;
   background-color: #e4e4e4;
   font-size: 1.2rem;
+}
+.tag.short-tag .title {
+  max-width: 120px;
 }
 .tag.small {
   margin: 2px 2px;
