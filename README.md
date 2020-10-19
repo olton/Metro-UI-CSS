@@ -1,9 +1,3 @@
-<p align="center" style="background: #010023;">
-    <a href="https://xscode.com/olton/Metro-UI-CSS">
-        <img src="https://xscode.com/assets/promo-banner.svg" alt="XS:CODE">
-    </a>
-</p>
-
 <p align="center">
   <a href="https://metroui.org.ua/">
     <img src="https://metroui.org.ua/images/metro-xscode-logo.jpg" alt="">
@@ -47,7 +41,6 @@ It's an independent project with its ongoing development made possible entirely 
 ![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
 [![xscode](https://img.shields.io/badge/Available%20on-xs%3Acode-blue?style=?style=plastic&logo=appveyor&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRF////////VXz1bAAAAAJ0Uk5T/wDltzBKAAAAlUlEQVR42uzXSwqAMAwE0Mn9L+3Ggtgkk35QwcnSJo9S+yGwM9DCooCbgn4YrJ4CIPUcQF7/XSBbx2TEz4sAZ2q1RAECBAiYBlCtvwN+KiYAlG7UDGj59MViT9hOwEqAhYCtAsUZvL6I6W8c2wcbd+LIWSCHSTeSAAECngN4xxIDSK9f4B9t377Wd7H5Nt7/Xz8eAgwAvesLRjYYPuUAAAAASUVORK5CYII=)](https://xscode.com/olton/Metro-UI-CSS)
-![License: GPLv3](https://img.shields.io/badge/License-GPLv3-blue.svg?style=flat)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
@@ -57,13 +50,10 @@ It's an independent project with its ongoing development made possible entirely 
 ## Current version 4.4.1
 
 ### License and Premium Features
-[![dual license](https://github.com/xscode-resources/promotion-materials/blob/master/assets/Dual-license-badge.gif?raw=true)](https://xscode.com/olton/Metro-UI-CSS)
+This project licensed under the **MIT** license. 
+In addition, **SUPPORT PACK** is available for an annual subscription on [XS:CODE](https://xscode.com/olton/Metro-UI-CSS) and for a Patreon Patrons.
 
-As of **version 4.4.0**, this project licensed under the **GPLv3** license.
-An **MIT** licensed version is available for an annual subscription [here](https://xscode.com/olton/Metro-UI-CSS) and for a Patreon Patrons.
-
-> Subscribers will get access to special Metro 4 repo with MIT license.
-> <br>Patreon Patrons get access to dedicated email support.
+**SUPPORT PACK** includes an **Extra time for priority support** by email and other options.
 
 ### Donation on Patreon
 ![Donations on Patreon](https://img.shields.io/badge/Patrons-6-green.svg)
