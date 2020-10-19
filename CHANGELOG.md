@@ -1,9 +1,10 @@
 ### 4.4.1
 #### M4Q
 + [x] M4Q: updated to 1.0.9
-+ [x] M4Q: added function `$.isLocalhost([hostname])`, **true** if host is localhost.
-+ [x] M4Q: added property `$.localhost`, **true** if current location is localhost.
-+ [x] M4Q: added property `$.touchable`, **true** if device detected as touchable.
++ [x] M4Q Core: added function `$.isLocalhost([hostname])`, **true** if host is localhost.
++ [x] M4Q Core: added property `$.localhost`, **true** if current location is localhost.
++ [x] M4Q Core: added property `$.touchable`, **true** if device detected as touchable.
++ [x] M4Q Manipulation: added methods `appendText(...any_text...)`, `prependText(...any_text...)`.
 
 #### Metro 4
 + [x] Tile: fixed double firing click event. Component internal event `onClick` renamed to `onTileClick` (attribute `data-on-click` => `data-on-tile-click`), issue #1636

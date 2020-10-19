@@ -55,5 +55,5 @@ bower_components
 node_modules
 
 # others
-LICENSE
-LICENSE*
+#LICENSE
+#LICENSE*
