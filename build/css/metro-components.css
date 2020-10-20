@@ -1,7 +1,7 @@
 /*
- * Metro 4 Components Library v4.4.1  (https://metroui.org.ua)
+ * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/10/2020 19:22:22
+ * Built at 20/10/2020 11:23:32
  * Licensed under GPL3
  */
 .accordion {
@@ -1481,6 +1481,9 @@
   height: 2.25rem;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 .button.square.mini,
 .button.cycle.mini {
@@ -1552,6 +1555,9 @@ a.button:focus,
 a.flat-button:focus {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
           box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+}
+.button * + * {
+  margin-left: 0.5rem;
 }
 input[type=button],
 input[type=submit],
@@ -1692,6 +1698,9 @@ input[type=reset].cycle {
   height: 2.25rem;
   padding-left: 0 !important;
   padding-right: 0 !important;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 input[type=button].square.mini,
 input[type=submit].square.mini,
@@ -1773,6 +1782,11 @@ input[type=submit]:active,
 input[type=reset]:active {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+input[type=button] * + *,
+input[type=submit] * + *,
+input[type=reset] * + * {
+  margin-left: 0.5rem;
 }
 .calendar {
   display: block;
@@ -13737,7 +13751,9 @@ input.input-small:-ms-input-placeholder {
   height: 14px;
 }
 .split-button {
-  display: inline-block;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
       -ms-flex-flow: row nowrap;
@@ -13758,20 +13774,7 @@ input.input-small:-ms-input-placeholder {
           order: 2;
   margin-left: 4px;
 }
-.split-button .dropdown {
-  position: static;
-}
-.split-button .drop-object {
-  left: 0;
-}
-.split-button > .split-button {
-  margin-left: 4px;
-  -webkit-box-ordinal-group: 3;
-      -ms-flex-order: 2;
-          order: 2;
-}
 .split-button .split {
-  margin-left: -2px;
   padding: 0 0.75rem;
   text-align: center;
   vertical-align: middle ;
@@ -13813,6 +13816,14 @@ input.input-small:-ms-input-placeholder {
 .split-button .split:active {
   -webkit-box-shadow: none;
           box-shadow: none;
+}
+.split-button [data-role*=dropdown],
+.split-button .drop-object {
+  left: 0;
+  top: 100%;
+}
+.split-button.no-gap .split {
+  margin-left: -2px;
 }
 .splitter {
   display: -webkit-box;

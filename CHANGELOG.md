@@ -1,6 +1,8 @@
 ### 4.4.2
 #### M4Q
 #### Metro 4
++ [x] Button: fixed content position for `square` and `cycle` button types, issue #1648.
++ [x] Split-button: improve the layout.
 
 ### 4.4.1
 #### M4Q
