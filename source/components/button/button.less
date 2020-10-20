@@ -108,6 +108,7 @@
         .px2rem(height, 36px);
         padding-left: 0 !important;
         padding-right: 0 !important;
+        justify-content: center;
 
         &.mini {
             .px2rem(width, 22.38px);
@@ -187,6 +188,12 @@ a {
         &:active, &.focus, &:focus {
             .focus-show(@lightGray);
         }
+    }
+}
+
+.button {
+    * + * {
+        margin-left: .5rem;
     }
 }
 
