@@ -48,6 +48,16 @@
                 this.position = o.gradientPosition.toLowerCase();
             }
 
+            if (this.mode === "radial") {
+                if (this.position && this.position.indexOf("at ") === -1) {
+                    this.position = "at " + this.position;
+                }
+            } else {
+                if (isNaN(parseInt(this.position)) && this.position.indexOf("to ") === -1) {
+                    this.position = "to " + this.position;
+                }
+            }
+
             this._createStructure();
             this._setGradient();
             this._fireEvent('gradient-box-create');
