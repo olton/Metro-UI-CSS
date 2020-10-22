@@ -53,7 +53,7 @@
             element.css({
                 backgroundImage: "url("+o.image+")",
                 backgroundSize: o.size,
-                backgroundRepeat: o.repeat,
+                backgroundRepeat: o.repeat ? "repeat" : "no-repeat",
                 backgroundColor: o.color,
                 backgroundAttachment: o.attachment,
                 backgroundOrigin: o.origin
