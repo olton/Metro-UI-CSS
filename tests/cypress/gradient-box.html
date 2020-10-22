@@ -12,6 +12,10 @@
             height: 100px;
         }
 
+        .square {
+            width: 100px;
+        }
+
         .ball {
             border-radius: 50%;
         }
@@ -36,10 +40,20 @@
 <!--    <div class="d-flex">-->
 <!--        <button class="button border-none fg-white" data-role="gradient-box" data-gradient-position="45deg" data-gradient-colors="red, yellow">Button</button>-->
 <!--    </div>-->
+
+    <div class="example d-flex">
+        <div class="box square" data-role="gradient-box" data-gradient-position="45deg"></div>
+        <div class="box square" data-role="gradient-box" data-gradient-position="left"></div>
+        <div class="box square" data-role="gradient-box" data-gradient-position="bottom right"></div>
+        <div class="box square" data-role="gradient-box" data-gradient-type="radial" data-gradient-position="40px 45px" style="border-radius: 50%"></div>
+    </div>
+
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    console.log(isNaN("10deg"));
+    console.log(isNaN("10"));
 </script>
 </body>
 </html>

@@ -5,6 +5,7 @@
 + [x] Split-button: improved the layout, added subclass `no-gap` for `split-button`.
 + [x] GradientBox: improve gradient position definition, now you can define position without `at` and `to` articles. 
 + [x] Select: fixed minor bug for showing group name, when value sets with method `val(...)`, issue #1652
++ [x] GradientBox: refactoring.
 
 ### 4.4.1
 #### M4Q

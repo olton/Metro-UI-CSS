@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/10/2020 12:05:48
+ * Built at 22/10/2020 13:26:04
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "22/10/2020 12:05:48",
+        compileTime: "22/10/2020 13:26:04",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17097,19 +17097,20 @@ $.noConflict = function() {
             this.func = (this.repeat ? "repeating-" : "") + this.type + "-gradient";
 
 
-            if (this.type === "linear" && o.gradientPosition === "") {
-                this.position = "to bottom";
-            } else {
-                this.position = o.gradientPosition.toLowerCase();
-            }
+            if (this.type === "linear") {
+                if ( !o.gradientPosition ) {
+                    this.position = "to bottom";
+                } else {
+                    this.position = isNaN(o.gradientPosition) === false ? o.gradientPosition + "deg" : o.gradientPosition;
 
-            if (this.type === "radial") {
-                if (this.position && this.position.indexOf("at ") === -1) {
-                    this.position = "at " + this.position;
+                    if (this.position.indexOf("deg") === -1 && this.position.indexOf("to ") === -1) {
+                        this.position = "to " + this.position;
+                    }
                 }
             } else {
-                if (isNaN(parseInt(this.position)) && this.position.indexOf("to ") === -1) {
-                    this.position = "to " + this.position;
+                this.position = o.gradientPosition.toLowerCase();
+                if (this.position && this.position.indexOf("at ") === -1) {
+                    this.position = "at " + this.position;
                 }
             }
 
@@ -17130,7 +17131,7 @@ $.noConflict = function() {
                 gradientOptions.push(this.shape);
             }
 
-            if (this.size) {
+            if (this.type === "radial" && this.size) {
                 gradientOptions.push(this.size);
             }
 
