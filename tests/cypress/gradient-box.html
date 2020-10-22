@@ -8,7 +8,7 @@
     <title>Test GradientBox - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
         .box {
-            width: 100px;
+            width: 200px;
             height: 100px;
         }
 
@@ -22,17 +22,20 @@
     <h1>GradientBox test page</h1>
 
     <div class="d-flex">
-        <div class="box" data-role="gradient-box"></div>
-        <div class="box" data-role="gradient-box" data-gradient-position="left"></div>
-        <div class="box" data-role="gradient-box" data-gradient-colors="red, yellow"></div>
-        <div class="box" data-role="gradient-box" data-gradient-mode="radial"></div>
-        <div class="box ball" data-role="gradient-box" data-gradient-mode="radial" data-gradient-position="at 40px 45px" data-gradient-colors="#55ddff, #0076a5"></div>
-        <div class="box ball" data-role="gradient-box" data-gradient-mode="radial" data-gradient-position="40px 45px" data-gradient-colors="#55ddff, #0076a5"></div>
+<!--        <div class="box" data-role="gradient-box"></div>-->
+<!--        <div class="box" data-role="gradient-box" data-gradient-position="left"></div>-->
+<!--        <div class="box" data-role="gradient-box" data-gradient-colors="red, yellow"></div>-->
+<!--        <div class="box" data-role="gradient-box" data-gradient-type="radial"></div>-->
+        <div class="box" data-role="gradient-box" data-gradient-type="radial" data-gradient-shape="circle"></div>
+        <div class="box" data-role="gradient-box" data-gradient-type="radial" data-gradient-shape="circle" data-gradient-repeat="true" data-gradient-colors="#e66465, #9198e5 20%"></div>
+        <div class="box" data-role="gradient-box" data-gradient-type="radial"></div>
+<!--        <div class="box ball" data-role="gradient-box" data-gradient-type="radial" data-gradient-position="at 40px 45px" data-gradient-colors="#55ddff, #0076a5"></div>-->
+<!--        <div class="box ball" data-role="gradient-box" data-gradient-type="radial" data-gradient-position="40px 45px" data-gradient-colors="#55ddff, #0076a5"></div>-->
     </div>
-    <br>
-    <div class="d-flex">
-        <button class="button border-none fg-white" data-role="gradient-box" data-gradient-position="45deg" data-gradient-colors="red, yellow">Button</button>
-    </div>
+<!--    <br>-->
+<!--    <div class="d-flex">-->
+<!--        <button class="button border-none fg-white" data-role="gradient-box" data-gradient-position="45deg" data-gradient-colors="red, yellow">Button</button>-->
+<!--    </div>-->
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
