@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/10/2020 13:26:04
+ * Built at 22/10/2020 16:04:44
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "22/10/2020 13:26:04",
+        compileTime: "22/10/2020 16:04:44",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17058,7 +17058,7 @@ $.noConflict = function() {
         gradientShape: "",
         gradientPosition: "",
         gradientSize: "",
-        gradientColors: "",
+        gradientColors: "#000, #fff",
         gradientRepeat: false,
         onGradientBoxCreate: Metro.noop
     };
@@ -17089,7 +17089,7 @@ $.noConflict = function() {
         _create: function(){
             var o = this.options;
 
-            this.colors = o.gradientColors !== "" ? o.gradientColors.toArray(",") : ["#fff", "#000"];
+            this.colors = o.gradientColors.toArray(",");
             this.type = o.gradientType.toLowerCase();
             this.shape = o.gradientShape.toLowerCase();
             this.size = o.gradientSize.toLowerCase();

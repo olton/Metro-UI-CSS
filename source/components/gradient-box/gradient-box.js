@@ -8,7 +8,7 @@
         gradientShape: "",
         gradientPosition: "",
         gradientSize: "",
-        gradientColors: "",
+        gradientColors: "#000, #fff",
         gradientRepeat: false,
         onGradientBoxCreate: Metro.noop
     };
@@ -39,7 +39,7 @@
         _create: function(){
             var o = this.options;
 
-            this.colors = o.gradientColors !== "" ? o.gradientColors.toArray(",") : ["#fff", "#000"];
+            this.colors = o.gradientColors.toArray(",");
             this.type = o.gradientType.toLowerCase();
             this.shape = o.gradientShape.toLowerCase();
             this.size = o.gradientSize.toLowerCase();
