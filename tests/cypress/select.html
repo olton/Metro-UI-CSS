@@ -79,6 +79,46 @@
             <button class="button" onclick="fillSelect()">Fill select</button>
         </div>
     </div>
+
+    <br>
+    <br>
+    <div class="example">
+        <div>
+            <BUTTON id="SET_2"
+                    class="button rounded bg-grayBlue bg-darkGrayBlue-hover text-bold fg-white"
+                    data-id="2">Ball & Paddle</BUTTON>
+            <BUTTON id="SET_6"
+                    class="button rounded bg-grayBlue bg-darkGrayBlue-hover text-bold fg-white"
+                    data-id="6">Board Game</BUTTON>
+        </div>
+        <SELECT id="CATEGORIES" name="categories"
+                class="input-small text-bold"
+                data-role="select"
+                data-show-group-name="true"
+                data-cls-option-group="text-bold bg-white fg-grayBlue"
+                data-label="Categories"
+                data-cls-label="text-bold fg-grayBlue"
+                size="1">
+            <OPTION value="">&nbsp;</OPTION>
+            <OPTGROUP label="Arcade">
+                <OPTION value="1">Pinball</OPTION>
+            </OPTGROUP>
+            <OPTGROUP label="Ball & Paddle">
+                <OPTION value="2">Breakout</OPTION>
+                <OPTION value="3">Jump and Touch</OPTION>
+                <OPTION value="4">Misc.</OPTION>
+                <OPTION value="5">Pong</OPTION>
+            </OPTGROUP>
+            <OPTGROUP label="Board Game">
+                <OPTION value="6">Backgammon</OPTION>
+                <OPTION value="7">Bridge Machine</OPTION>
+                <OPTION value="8">Cards</OPTION>
+                <OPTION value="9">Checker Machine</OPTION>
+                <OPTION value="10">Chess Machine</OPTION>
+                <OPTION value="11">Dame Machine</OPTION>
+            </OPTGROUP>
+        </SELECT>
+    </div>
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
@@ -117,6 +157,15 @@
     //     console.log("up");
     // });
 
+    $(document).on("click", "[id^='SET_']", function(e) {
+        e.preventDefault();
+
+        var tID=$(this).attr("data-id");
+
+        Metro.getPlugin("#CATEGORIES", "select").val(tID);
+        $("#CATEGORIES").focus();
+
+    });
 </script>
 </body>
 </html>

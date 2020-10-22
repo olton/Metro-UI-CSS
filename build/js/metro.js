@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 21/10/2020 12:18:33
+ * Built at 22/10/2020 12:05:48
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "21/10/2020 12:18:33",
+        compileTime: "22/10/2020 12:05:48",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17052,12 +17052,14 @@ $.noConflict = function() {
 (function(Metro, $) {
     'use strict';
 
+    var Utils = Metro.utils;
     var GradientBoxDefaultConfig = {
-        gradientMode: "linear", // linear, radial
-        gradientType: "",
+        gradientType: "linear", // linear, radial
+        gradientShape: "",
         gradientPosition: "",
         gradientSize: "",
         gradientColors: "",
+        gradientRepeat: false,
         onGradientBoxCreate: Metro.noop
     };
 
@@ -17074,11 +17076,12 @@ $.noConflict = function() {
             this._super(elem, options, GradientBoxDefaultConfig, {
                 // define instance vars here
                 colors: [],
-                type: "",
+                shape: "",
                 size: "",
                 position: "",
-                mode: "linear",
-                func: "linear-gradient"
+                type: "linear",
+                func: "linear-gradient",
+                repeat: false
             });
             return this;
         },
@@ -17087,18 +17090,20 @@ $.noConflict = function() {
             var o = this.options;
 
             this.colors = o.gradientColors !== "" ? o.gradientColors.toArray(",") : ["#fff", "#000"];
-            this.mode = o.gradientMode.toLowerCase();
             this.type = o.gradientType.toLowerCase();
+            this.shape = o.gradientShape.toLowerCase();
             this.size = o.gradientSize.toLowerCase();
-            this.func = this.mode + "-gradient";
+            this.repeat = o.gradientRepeat;
+            this.func = (this.repeat ? "repeating-" : "") + this.type + "-gradient";
 
-            if (this.mode === "linear" && o.gradientPosition === "") {
+
+            if (this.type === "linear" && o.gradientPosition === "") {
                 this.position = "to bottom";
             } else {
                 this.position = o.gradientPosition.toLowerCase();
             }
 
-            if (this.mode === "radial") {
+            if (this.type === "radial") {
                 if (this.position && this.position.indexOf("at ") === -1) {
                     this.position = "at " + this.position;
                 }
@@ -17118,13 +17123,11 @@ $.noConflict = function() {
         },
 
         _setGradient: function (){
-            var element = this.element, o = this.options;
-            var gradientFunc, gradientRule, gradientOptions = [];
+            var element = this.element;
+            var gradientRule, gradientOptions = [];
 
-            gradientFunc = o.gradientMode.toLowerCase() + "-gradient";
-
-            if (this.type) {
-                gradientOptions.push(this.type);
+            if (this.type === "radial" && this.shape) {
+                gradientOptions.push(this.shape);
             }
 
             if (this.size) {
@@ -17135,7 +17138,7 @@ $.noConflict = function() {
                 gradientOptions.push(this.position);
             }
 
-            gradientRule = gradientFunc + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
+            gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
 
             element.css({
                 background: gradientRule
@@ -17148,11 +17151,12 @@ $.noConflict = function() {
             }
 
             switch (attr) {
-                case "data-gradient-mode": this.func = newValue.toLowerCase() + "-gradient"; break;
+                case "data-gradient-type": this.type = newValue; this.func = newValue.toLowerCase() + "-gradient"; break;
                 case "data-gradient-colors": this.colors = newValue ? newValue.toArray(",") : ["#fff", "#000"]; break;
-                case "data-gradient-type": this.type = newValue.toLowerCase(); break;
+                case "data-gradient-shape": this.shape = newValue.toLowerCase(); break;
                 case "data-gradient-size": this.size = newValue.toLowerCase(); break;
                 case "data-gradient-position": this.position = newValue.toLowerCase(); break;
+                case "data-gradient-repeat": this.repeat = Utils.bool(newValue); break;
             }
 
             this._setGradient();
@@ -24478,14 +24482,14 @@ $.noConflict = function() {
         },
 
         val: function(val){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var input = element.siblings(".select-input");
             var options = element.find("option");
             var list_items = this.list.find("li");
             var result = [];
             var multiple = element.attr("multiple") !== undefined;
             var option;
-            var i, html, list_item, option_value, tag, selected;
+            var i, html, list_item, option_value, selected, group;
 
             if (Utils.isNull(val)) {
                 $.each(options, function(){
@@ -24497,7 +24501,7 @@ $.noConflict = function() {
             $.each(options, function(){
                 this.selected = false;
             });
-            list_items.removeClass("active");
+            list_items.removeClass("active").removeClass(o.clsOptionActive);
             input.html('');
 
             if (Array.isArray(val) === false) {
@@ -24516,15 +24520,23 @@ $.noConflict = function() {
 
                 for(i = 0; i < list_items.length; i++) {
                     list_item = $(list_items[i]);
+                    group = list_item.data("group");
                     option_value = list_item.attr("data-value");
                     if (""+option_value === ""+this) {
+
+                        if (o.showGroupName && group) {
+                            html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                        }
+
                         if (multiple) {
                             list_item.addClass("d-none");
-                            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                            tag.data("option", list_item);
-                            $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+                            input.append(that._addTag(html, list_item));
+
+                            // tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                            // tag.data("option", list_item);
+                            // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
                         } else {
-                            list_item.addClass("active");
+                            list_item.addClass("active").addClass(o.clsOptionActive);
                             input.html(html);
                         }
                         break;
@@ -24537,6 +24549,10 @@ $.noConflict = function() {
             this._fireEvent("change", {
                 selected: selected
             });
+        },
+
+        options: function(op, selected, delimiter){
+            return this.data(op, selected, delimiter);
         },
 
         data: function(op, selected, delimiter){

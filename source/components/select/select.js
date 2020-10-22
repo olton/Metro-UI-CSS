@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro*/
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -506,14 +506,14 @@
         },
 
         val: function(val){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var input = element.siblings(".select-input");
             var options = element.find("option");
             var list_items = this.list.find("li");
             var result = [];
             var multiple = element.attr("multiple") !== undefined;
             var option;
-            var i, html, list_item, option_value, tag, selected;
+            var i, html, list_item, option_value, selected, group;
 
             if (Utils.isNull(val)) {
                 $.each(options, function(){
@@ -525,7 +525,7 @@
             $.each(options, function(){
                 this.selected = false;
             });
-            list_items.removeClass("active");
+            list_items.removeClass("active").removeClass(o.clsOptionActive);
             input.html('');
 
             if (Array.isArray(val) === false) {
@@ -544,15 +544,23 @@
 
                 for(i = 0; i < list_items.length; i++) {
                     list_item = $(list_items[i]);
+                    group = list_item.data("group");
                     option_value = list_item.attr("data-value");
                     if (""+option_value === ""+this) {
+
+                        if (o.showGroupName && group) {
+                            html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                        }
+
                         if (multiple) {
                             list_item.addClass("d-none");
-                            tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
-                            tag.data("option", list_item);
-                            $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
+                            input.append(that._addTag(html, list_item));
+
+                            // tag = $("<div>").addClass("tag").addClass(o.clsSelectedItem).html("<span class='title'>"+html+"</span>").appendTo(input);
+                            // tag.data("option", list_item);
+                            // $("<span>").addClass("remover").addClass(o.clsSelectedItemRemover).html("&times;").appendTo(tag);
                         } else {
-                            list_item.addClass("active");
+                            list_item.addClass("active").addClass(o.clsOptionActive);
                             input.html(html);
                         }
                         break;
@@ -565,6 +573,10 @@
             this._fireEvent("change", {
                 selected: selected
             });
+        },
+
+        options: function(op, selected, delimiter){
+            return this.data(op, selected, delimiter);
         },
 
         data: function(op, selected, delimiter){
