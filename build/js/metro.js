@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/10/2020 21:32:45
+ * Built at 23/10/2020 11:38:53
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "22/10/2020 21:32:45",
+        compileTime: "23/10/2020 11:38:53",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -35231,6 +35231,7 @@ $.noConflict = function() {
             var that = this, element = this.element, o = this.options;
             var win, overlay;
             var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
+            var _content;
 
             if (o.modal === true) {
                 o.btnMax = false;
@@ -35252,7 +35253,12 @@ $.noConflict = function() {
                     o.content = Utils.exec(o.content);
                 }
 
-                element.append(o.content);
+                _content = $(o.content);
+                if (_content.length === 0) {
+                    element.appendText(o.content);
+                } else {
+                    element.append(_content);
+                }
                 o.content = element;
             }
 
@@ -35358,7 +35364,6 @@ $.noConflict = function() {
             title.appendTo(caption);
 
             if (!Utils.isNull(o.content)) {
-
                 if (Utils.isQ(o.content)) {
                     o.content.appendTo(content);
                 } else {
@@ -35941,15 +35946,14 @@ $.noConflict = function() {
             Metro.getPlugin(el, "window").height(height);
         },
 
-        create: function(options){
+        create: function(options, parent){
             var w;
 
-            w = $("<div>").appendTo($("body"));
+            w = $("<div>").appendTo(parent ? $(parent) : $("body"));
 
-            var w_options = $.extend({}, {
-            }, (options !== undefined ? options : {}));
-
-            w_options._runtime = true;
+            var w_options = $.extend({
+                _runtime: true
+            }, (options ? options : {}));
 
             return Metro.makePlugin(w, "window", w_options);
         }
