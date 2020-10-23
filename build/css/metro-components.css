@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/10/2020 11:38:53
+ * Built at 23/10/2020 12:08:47
  * Licensed under GPL3
  */
 .accordion {
@@ -1385,6 +1385,9 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -1481,9 +1484,6 @@
   height: 2.25rem;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 .button.square.mini,
 .button.cycle.mini {
@@ -1568,6 +1568,9 @@ input[type=reset] {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   font-weight: 400;
   text-align: center;
   white-space: nowrap;
@@ -1698,9 +1701,6 @@ input[type=reset].cycle {
   height: 2.25rem;
   padding-left: 0 !important;
   padding-right: 0 !important;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
 }
 input[type=button].square.mini,
 input[type=submit].square.mini,
