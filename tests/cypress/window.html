@@ -14,9 +14,9 @@
 <button class="button" onclick="createWindow()">Create window</button>
 <button class="button" onclick="getPosition()">Get position</button>
 
-<div id="win1" data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart" data-custom-buttons="customButtons">
-    This is a simple window
-</div>
+<!--<div id="win1" data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart" data-custom-buttons="customButtons">-->
+<!--    This is a simple window-->
+<!--</div>-->
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
@@ -49,7 +49,7 @@
             icon        : "<span class='mif-file-empty'></spam>",
             onCaptionDblClick : function(){  } ,
             btnClose    : true,
-            content     : "<div>Hello World</div>"
+            content     : "<div class='text-bold'>Hello World</div>"
         });
     }
 

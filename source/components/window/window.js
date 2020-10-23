@@ -86,6 +86,7 @@
             var that = this, element = this.element, o = this.options;
             var win, overlay;
             var parent = o.dragArea === "parent" ? element.parent() : $(o.dragArea);
+            var _content;
 
             if (o.modal === true) {
                 o.btnMax = false;
@@ -107,7 +108,12 @@
                     o.content = Utils.exec(o.content);
                 }
 
-                element.append(o.content);
+                _content = $(o.content);
+                if (_content.length === 0) {
+                    element.appendText(o.content);
+                } else {
+                    element.append(_content);
+                }
                 o.content = element;
             }
 
@@ -213,7 +219,6 @@
             title.appendTo(caption);
 
             if (!Utils.isNull(o.content)) {
-
                 if (Utils.isQ(o.content)) {
                     o.content.appendTo(content);
                 } else {
@@ -796,15 +801,14 @@
             Metro.getPlugin(el, "window").height(height);
         },
 
-        create: function(options){
+        create: function(options, parent){
             var w;
 
-            w = $("<div>").appendTo($("body"));
+            w = $("<div>").appendTo(parent ? $(parent) : $("body"));
 
-            var w_options = $.extend({}, {
-            }, (options !== undefined ? options : {}));
-
-            w_options._runtime = true;
+            var w_options = $.extend({
+                _runtime: true
+            }, (options ? options : {}));
 
             return Metro.makePlugin(w, "window", w_options);
         }

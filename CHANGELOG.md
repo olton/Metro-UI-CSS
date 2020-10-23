@@ -7,6 +7,7 @@
 + [x] Select: fixed minor bug for showing group name, when value sets with method `val(...)`, issue #1652
 + [x] GradientBox: refactoring.
 + [x] ImageBox: fixed work of attribute `data-repeat`.
++ [x] Window: improve work with window content, now no require content wrapping into the block when defining content property.
 
 ### 4.4.1
 #### M4Q
