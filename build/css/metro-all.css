@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 25/10/2020 12:13:49
+ * Built at 25/10/2020 21:17:42
  * Licensed under GPL3
  */
 *,
@@ -22000,6 +22000,86 @@ input[type=button] * + *,
 input[type=submit] * + *,
 input[type=reset] * + * {
   margin-left: 0.5rem;
+}
+input[type=button] .load-marker,
+input[type=submit] .load-marker,
+input[type=reset] .load-marker {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+input[type=button] .load-caption,
+input[type=submit] .load-caption,
+input[type=reset] .load-caption {
+  margin-left: -16px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+input[type=button].loading .load-marker,
+input[type=submit].loading .load-marker,
+input[type=reset].loading .load-marker {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  -webkit-animation: spin-loader 1.5s linear infinite;
+          animation: spin-loader 1.5s linear infinite;
+}
+input[type=button].loading .load-caption,
+input[type=submit].loading .load-caption,
+input[type=reset].loading .load-caption {
+  margin-left: 0.5rem;
+}
+.button .load-marker {
+  -webkit-transform: scale(0);
+      -ms-transform: scale(0);
+          transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.button .load-caption {
+  margin-left: -16px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+.button.loading .load-marker {
+  -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+          transform: scale(1);
+  opacity: 1;
+  -webkit-animation: spin-loader 1.5s linear infinite;
+          animation: spin-loader 1.5s linear infinite;
+}
+.button.loading .load-caption {
+  margin-left: 0.5rem;
+}
+@-webkit-keyframes spin-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+@keyframes spin-loader {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
 }
 .calendar {
   display: block;

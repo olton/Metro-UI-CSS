@@ -8,6 +8,7 @@
 + [x] ImageBox: fixed work of attribute `data-repeat`.
 + [x] Window: improve work with window content, now no require `content` wrapping into the `block` when defining `content` property.
 + [x] ImagePlaceholder: new component to create image placeholders.
++ [x] Button: added button with loading state.
 
 ### 4.4.1
 #### M4Q

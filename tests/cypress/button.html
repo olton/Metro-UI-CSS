@@ -134,6 +134,19 @@
                 <span class="mif-rocket icon"></span>
             </button>
         </div>
+
+        <div class="example">
+            <button class="button" onclick="
+                var btn = $(this);
+                btn.toggleClass('loading');
+                setTimeout(function(){
+                    btn.toggleClass('loading');
+                }, 2000);
+            ">
+                <span class="load-marker mif-loop2"></span>
+                <span class="load-caption">Download...</span>
+            </button>
+        </div>
     </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
