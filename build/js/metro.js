@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 25/10/2020 12:03:50
+ * Built at 25/10/2020 12:13:49
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "25/10/2020 12:03:50",
+        compileTime: "25/10/2020 12:13:49",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18328,8 +18328,9 @@ $.noConflict = function() {
     'use strict';
 
     var ImagePlaceholderDefaultConfig = {
-        width: 100,
-        height: 100,
+        size: "100x100",
+        width: null,
+        height: null,
         color: "#f8f8f8",
         textColor: "#292929",
         font: "12px sans-serif",
@@ -18350,6 +18351,8 @@ $.noConflict = function() {
         init: function( options, elem ) {
             this._super(elem, options, ImagePlaceholderDefaultConfig, {
                 // define instance vars here
+                width: 0,
+                height: 0
             });
             return this;
         },
@@ -18362,7 +18365,12 @@ $.noConflict = function() {
         },
 
         _createStructure: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
+            var size = o.size.toArray("x");
+
+            this.width = o.width ? o.width : size[0];
+            this.height = o.height ? o.height : size[1];
+
             element.attr("src", this._createPlaceholder());
         },
 
@@ -18374,24 +18382,26 @@ $.noConflict = function() {
             var canvas = document.createElement("canvas"),
                 context = canvas.getContext("2d");
 
-            canvas.width = parseInt(o.width);
-            canvas.height = parseInt(o.height);
+            var width = this.width, height = this.height;
+
+            canvas.width = parseInt(width);
+            canvas.height = parseInt(height);
 
             // background
-            context.clearRect(0, 0, o.width, o.height);
+            context.clearRect(0, 0, width, height);
             context.fillStyle = o.color;
-            context.fillRect(0, 0, o.width, o.height);
+            context.fillRect(0, 0, width, height);
 
             // text
             context.fillStyle = o.textColor;
             context.font = o.font;
 
-            context.translate(o.width / 2, o.height / 2);
+            context.translate(width / 2, height / 2);
             context.textAlign = 'center';
             context.textBaseline = 'middle';
 
             if (o.showText)
-                context.fillText(o.text ? o.text : o.width + " \u00d7 " + o.height, 0, 0);
+                context.fillText(o.text ? o.text : width + " \u00d7 " + height, 0, 0);
 
             return canvas.toDataURL();
         },
