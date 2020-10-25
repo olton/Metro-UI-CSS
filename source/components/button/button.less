@@ -200,3 +200,34 @@ a {
 input[type=button], input[type=submit], input[type=reset] {
     .button;
 }
+
+.button {
+    .load-marker {
+        transform: scale(0);
+        opacity: 0;
+        transition: @transition-base;
+    }
+    .load-caption {
+        margin-left: -16px;
+        transition: @transition-base;
+    }
+    &.loading {
+        .load-marker {
+            transform: scale(1);
+            opacity: 1;
+            .animate( spin-loader 1.5s linear infinite);
+        }
+        .load-caption {
+            margin-left: .5rem;
+        }
+    }
+}
+
+@keyframes spin-loader {
+    0% {
+        .rotate(0deg);
+    }
+    100% {
+        .rotate(359deg);
+    }
+}
