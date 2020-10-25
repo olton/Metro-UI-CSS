@@ -3,12 +3,11 @@
 #### Metro 4
 + [x] Button: fixed content position, issue #1648.
 + [x] Split-button: improved the layout, added subclass `no-gap` for `split-button`.
-+ [x] GradientBox: improve gradient position definition, now you can define position without `at` and `to` articles. 
 + [x] Select: fixed minor bug for showing group name, when value sets with method `val(...)`, issue #1652
 + [x] GradientBox: refactoring.
 + [x] ImageBox: fixed work of attribute `data-repeat`.
-+ [x] Window: improve work with window content, now no require content wrapping into the block when defining content property.
-+ [x] ImagePlaceholder: new component to create image placeholder.
++ [x] Window: improve work with window content, now no require `content` wrapping into the `block` when defining `content` property.
++ [x] ImagePlaceholder: new component to create image placeholders.
 
 ### 4.4.1
 #### M4Q
