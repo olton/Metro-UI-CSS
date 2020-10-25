@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/10/2020 12:08:47
+ * Built at 25/10/2020 11:13:16
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -313,7 +313,7 @@ function isTouch() {
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2310,7 +2310,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            
+            console.log(this.length);
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -2689,7 +2689,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "23/10/2020 12:08:47",
+        compileTime: "25/10/2020 11:13:16",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4804,7 +4804,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -18320,6 +18320,87 @@ $.noConflict = function() {
             element.off(Metro.events.move);
             element.off(Metro.events.leave);
             return element;
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    'use strict';
+
+    var ImagePlaceholderDefaultConfig = {
+        width: 100,
+        height: 100,
+        color: "#00aba9",
+        textColor: "#ffffff",
+        font: "12px sans-serif",
+        text: "",
+        showText: true,
+        onImagePlaceholderCreate: Metro.noop
+    };
+
+    Metro.imagePlaceholderSetup = function (options) {
+        ImagePlaceholderDefaultConfig = $.extend({}, ImagePlaceholderDefaultConfig, options);
+    };
+
+    if (typeof window["metroImagePlaceholderSetup"] !== undefined) {
+        Metro.imagePlaceholderSetup(window["metroImagePlaceholderSetup"]);
+    }
+
+    Metro.Component('image-placeholder', {
+        init: function( options, elem ) {
+            this._super(elem, options, ImagePlaceholderDefaultConfig, {
+                // define instance vars here
+            });
+            return this;
+        },
+
+        _create: function(){
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent('image-placeholder-create');
+        },
+
+        _createStructure: function(){
+            var element = this.element;
+            element.attr("src", this._createPlaceholder());
+        },
+
+        _createEvents: function(){
+        },
+
+        _createPlaceholder: function(){
+            var o = this.options;
+            var canvas = document.createElement("canvas"),
+                context = canvas.getContext("2d");
+
+            canvas.width = parseInt(o.width);
+            canvas.height = parseInt(o.height);
+
+            // background
+            context.clearRect(0, 0, o.width, o.height);
+            context.fillStyle = o.color;
+            context.fillRect(0, 0, o.width, o.height);
+
+            // text
+            context.fillStyle = o.textColor;
+            context.font = o.font;
+
+            context.translate(o.width / 2, o.height / 2);
+            context.textAlign = 'center';
+            context.textBaseline = 'middle';
+
+            if (o.showText)
+                context.fillText(o.text ? o.text : o.width + " \u00d7 " + o.height, 0, 0);
+
+            return canvas.toDataURL();
+        },
+
+        // changeAttribute: function(attr, newValue){
+        // },
+
+        destroy: function(){
+            this.element.remove();
         }
     });
 }(Metro, m4q));
