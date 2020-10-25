@@ -5,8 +5,8 @@
     var ImagePlaceholderDefaultConfig = {
         width: 100,
         height: 100,
-        color: "#00aba9",
-        textColor: "#ffffff",
+        color: "#f8f8f8",
+        textColor: "#292929",
         font: "12px sans-serif",
         text: "",
         showText: true,
