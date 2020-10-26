@@ -93,7 +93,7 @@
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
-            return Colors.color(val, Colors.PALETTES.STANDARD) !== false;
+            return Colors.color(val, Colors.PALETTES.STANDARD) !== false || Colors.isColor(Colors.parse(val));
         },
         pattern: function(val, pat){
             if (!Utils.isValue(val)) return false;
