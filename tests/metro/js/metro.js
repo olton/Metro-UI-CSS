@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 25/10/2020 21:17:42
+ * Built at 26/10/2020 20:31:45
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "25/10/2020 21:17:42",
+        compileTime: "26/10/2020 20:31:45",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7573,7 +7573,7 @@ $.noConflict = function() {
         },
 
         parse: function(color){
-            var _color = color.toLowerCase();
+            var _color = color.toLowerCase().trim();
 
             var a = _color
                 .replace(/[^\d.,]/g, "")
@@ -7586,25 +7586,25 @@ $.noConflict = function() {
                 return this.expandHexColor(_color);
             }
 
-            if (_color.indexOf("rgba") > -1) {
+            if (_color.indexOf("rgba") === 0 && a.length === 4) {
                 return new RGBA(a[0], a[1], a[2], a[3]);
             }
-            if (_color.indexOf("rgb") > -1) {
+            if (_color.indexOf("rgb") === 0 && a.length === 3) {
                 return new RGB(a[0], a[1], a[2]);
             }
-            if (_color.indexOf("cmyk") > -1) {
+            if (_color.indexOf("cmyk") === 0 && a.length === 4) {
                 return new CMYK(a[0], a[1], a[2], a[3]);
             }
-            if (_color.indexOf("hsv") > -1) {
+            if (_color.indexOf("hsv") === 0 && a.length === 3) {
                 return new HSV(a[0], a[1], a[2]);
             }
-            if (_color.indexOf("hsla") > -1) {
+            if (_color.indexOf("hsla") === 0 && a.length === 4) {
                 return new HSLA(a[0], a[1], a[2], a[3]);
             }
-            if (_color.indexOf("hsl") > -1) {
+            if (_color.indexOf("hsl")  === 0 && a.length === 3) {
                 return new HSL(a[0], a[1], a[2]);
             }
-            return _color;
+            return undefined;
         },
 
         createColor: function(colorType, from){
@@ -33612,7 +33612,7 @@ $.noConflict = function() {
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
-            return Colors.color(val, Colors.PALETTES.STANDARD) !== false;
+            return Colors.color(val, Colors.PALETTES.STANDARD) !== false || Colors.isColor(Colors.parse(val));
         },
         pattern: function(val, pat){
             if (!Utils.isValue(val)) return false;

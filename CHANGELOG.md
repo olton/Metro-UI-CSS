@@ -9,6 +9,8 @@
 + [x] Window: improve work with window content, now no require `content` wrapping into the `block` when defining `content` property.
 + [x] ImagePlaceholder: new component to create image placeholders.
 + [x] Button: added a button with loading state.
++ [x] Color: improved method `parse()`.
++ [x] Validator: improved validating function `color`, now you can use any color string format: rgb, hex, ...
 
 ### 4.4.1
 #### M4Q

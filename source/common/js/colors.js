@@ -336,7 +336,7 @@
         },
 
         parse: function(color){
-            var _color = color.toLowerCase();
+            var _color = color.toLowerCase().trim();
 
             var a = _color
                 .replace(/[^\d.,]/g, "")
@@ -349,25 +349,25 @@
                 return this.expandHexColor(_color);
             }
 
-            if (_color.indexOf("rgba") > -1) {
+            if (_color.indexOf("rgba") === 0 && a.length === 4) {
                 return new RGBA(a[0], a[1], a[2], a[3]);
             }
-            if (_color.indexOf("rgb") > -1) {
+            if (_color.indexOf("rgb") === 0 && a.length === 3) {
                 return new RGB(a[0], a[1], a[2]);
             }
-            if (_color.indexOf("cmyk") > -1) {
+            if (_color.indexOf("cmyk") === 0 && a.length === 4) {
                 return new CMYK(a[0], a[1], a[2], a[3]);
             }
-            if (_color.indexOf("hsv") > -1) {
+            if (_color.indexOf("hsv") === 0 && a.length === 3) {
                 return new HSV(a[0], a[1], a[2]);
             }
-            if (_color.indexOf("hsla") > -1) {
+            if (_color.indexOf("hsla") === 0 && a.length === 4) {
                 return new HSLA(a[0], a[1], a[2], a[3]);
             }
-            if (_color.indexOf("hsl") > -1) {
+            if (_color.indexOf("hsl")  === 0 && a.length === 3) {
                 return new HSL(a[0], a[1], a[2]);
             }
-            return _color;
+            return undefined;
         },
 
         createColor: function(colorType, from){
