@@ -2,7 +2,7 @@
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var Colors = Metro.colors;
+    // var Colors = Metro.colors;
     var TabsDefaultConfig = {
         tabsDeferred: 0,
         expand: false,
@@ -79,7 +79,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(container, "background-color"))) === true) {
+                if (Metro.colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(container, "background-color"))) === true) {
                     hamburger.addClass("dark");
                 }
             }
