@@ -1,7 +1,7 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    var Colors = Metro.colors;
+    //var Colors = Metro.colors;
     var Utils = Metro.utils;
     var AppBarDefaultConfig = {
         appbarDeferred: 0,
@@ -56,7 +56,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(element, "background-color"))) === true) {
+                if (Metro.colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(element, "background-color"))) === true) {
                     hamburger.addClass("dark");
                 }
             }

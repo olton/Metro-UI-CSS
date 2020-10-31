@@ -141,7 +141,7 @@ module.exports = function(grunt) {
                     'source/core/metro.js',
                     'source/i18n/*.js',
                     'source/extensions/*.js',
-                    'source/common/js/utilities.js',
+                    'source/common/js/*.js',
                     'source/components/**/*.js'
                 ],
                 dest: 'build/js/metro.js'
