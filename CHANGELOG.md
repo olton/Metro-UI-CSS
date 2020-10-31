@@ -13,6 +13,7 @@
 + [x] Validator: improved validating function `color`, now you can use any color string format: rgb, hex, ...
 + [x] Default icons: optimized styles 
 + [x] Media players: optimized default icons 
++ [x] Activity: added two new activity `bars`, `atom`
 
 ### 4.4.1
 #### M4Q
