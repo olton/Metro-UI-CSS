@@ -383,34 +383,6 @@
     },
 
     "common-js": {
-        "animations":{
-            "name": "Animations",
-            "js": ["animations"],
-            "repo": "olton/Metro-UI-CSS",
-            "branch": "master",
-            "path": "source/common/js/"
-        },
-        "colors":{
-            "name": "Color module",
-            "js": ["colors"],
-            "repo": "olton/Metro-UI-CSS",
-            "branch": "master",
-            "path": "source/common/js/"
-        },
-        "md5":{
-            "name": "MD5",
-            "js": ["md5"],
-            "repo": "olton/Metro-UI-CSS",
-            "branch": "master",
-            "path": "source/common/js/"
-        },
-        "export":{
-            "name": "Data export",
-            "js": ["export"],
-            "repo": "olton/Metro-UI-CSS",
-            "branch": "master",
-            "path": "source/common/js/"
-        }
     },
 
     "components": {
@@ -447,13 +419,19 @@
             "branch": "master",
             "path": "source/components/adblock/"
         },
+        "animations":{
+            "name": "Animations",
+            "js": ["animations"],
+            "repo": "olton/Metro-UI-CSS",
+            "branch": "master",
+            "path": "source/components/animations/"
+        },
         "app-bar": {
             "name": "App Bar",
             "js": ["app-bar"],
             "less": ["app-bar"],
             "dependencies": {
-                "components": ["hamburger"],
-                "common-js": ["colors"]
+                "components": ["hamburger", "colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -470,7 +448,7 @@
             "name": "Audio player",
             "js": ["audio-player"],
             "dependencies": {
-                "components": ["slider", "media-player"]
+                "components": ["slider", "media-player", "default-icons"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -525,7 +503,7 @@
             "js": ["calendar"],
             "less": ["calendar"],
             "dependencies": {
-                "components": ["button"]
+                "components": ["button","default-icons"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -554,8 +532,7 @@
             "js": ["carousel"],
             "less": ["carousel"],
             "dependencies": {
-                "common-js": ["animations"],
-                "components": ["button"]
+                "components": ["button","animations"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -608,6 +585,13 @@
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/collapse/"
+        },
+        "colors":{
+            "name": "Color routines",
+            "js": ["colors"],
+            "repo": "olton/Metro-UI-CSS",
+            "branch": "master",
+            "path": "source/components/colors/"
         },
         "command-button": {
             "name": "Command button",
@@ -766,12 +750,19 @@
             "branch": "master",
             "path": "source/components/expand-button/"
         },
+        "export":{
+            "name": "Data export",
+            "js": ["export"],
+            "repo": "olton/Metro-UI-CSS",
+            "branch": "master",
+            "path": "source/components/export/"
+        },
         "file": {
             "name": "File input",
             "js": ["file"],
             "less": ["file"],
             "dependencies": {
-                "components": ["input-common","button"]
+                "components": ["input-common","button","default-icons"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -788,7 +779,7 @@
             "name": "Gravatar",
             "js": ["gravatar"],
             "dependencies": {
-                "common-js": ["md5"]
+                "components": ["md5"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -983,6 +974,9 @@
             "name": "Lightbox",
             "js": ["lightbox"],
             "less": ["lightbox"],
+            "dependencies": {
+                "components": ["default-icons"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/lightbox/"
@@ -1009,13 +1003,26 @@
             "name": "Master",
             "js": ["master"],
             "less": ["master"],
+            "dependencies": {
+                "components": ["default-icons"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/master/"
         },
+        "md5":{
+            "name": "MD5 Hash",
+            "js": ["md5"],
+            "repo": "olton/Metro-UI-CSS",
+            "branch": "master",
+            "path": "source/components/md5/"
+        },
         "media-player": {
             "name": "Media player",
             "less": ["media-player"],
+            "dependencies": {
+                "components": ["default-icons"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/media-player/"
@@ -1097,7 +1104,7 @@
             "js": ["rating"],
             "less": ["rating"],
             "dependencies": {
-                "common-js": ["colors"]
+                "components": ["colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1139,7 +1146,7 @@
             "js": ["select"],
             "less": ["select"],
             "dependencies": {
-                "components": ["input-common","input", "checkbox", "dropdown", "tag"]
+                "components": ["input-common","input", "checkbox", "dropdown", "tag", "default-icons"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1226,7 +1233,7 @@
             "js": ["spinner"],
             "less": ["spinner"],
             "dependencies": {
-                "components": ["input-common","button"]
+                "components": ["input-common","button","default-icons"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1293,8 +1300,7 @@
             "js": ["table"],
             "less": ["table"],
             "dependencies": {
-                "components": ["activity", "checkbox", "radio", "select", "button"],
-                "common-js": ["export"]
+                "components": ["activity", "checkbox", "radio", "select", "button","export"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1305,8 +1311,7 @@
             "js": ["tabs"],
             "less": ["tabs"],
             "dependencies": {
-                "components": ["hamburger"],
-                "common-js": ["colors"]
+                "components": ["hamburger", "colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1332,8 +1337,7 @@
             "js": ["tag-input"],
             "less": ["tag-input"],
             "dependencies": {
-                "components": ["input-common","tag", "button"],
-                "common-js": ["colors"]
+                "components": ["input-common","tag", "button","default-icons", "colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1362,7 +1366,7 @@
             "js": ["tile"],
             "less": ["tile"],
             "dependencies": {
-                "common-js": ["animations"]
+                "components": ["animations"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -1428,7 +1432,7 @@
             "name": "Validator",
             "js": ["validator"],
             "dependencies": {
-                "common-js": ["colors"]
+                "components": ["colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",

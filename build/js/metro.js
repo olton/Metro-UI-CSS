@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 31/10/2020 15:00:20
+ * Built at 31/10/2020 15:57:18
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "31/10/2020 15:00:20",
+        compileTime: "31/10/2020 15:57:18",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6886,2124 +6886,6 @@ $.noConflict = function() {
     }
 }(Metro, m4q));
 
-(function(Metro, $) {
-    'use strict';
-    var AnimationDefaultConfig = {
-        duration: METRO_ANIMATION_DURATION,
-        ease: "linear"
-    }
-
-    Metro.animations = {
-
-        switchIn: function(el){
-            $(el)
-                .hide()
-                .css({
-                    left: 0,
-                    top: 0
-                })
-                .show();
-        },
-
-        switchOut: function(el){
-            $(el).hide();
-        },
-
-        switch: function(current, next){
-            this.switchOut(current);
-            this.switchIn(next);
-        },
-
-        slideUpIn: function(el, o){
-            var op, $el = $(el);
-            var h = $el.parent().outerHeight(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    top: h,
-                    left: 0,
-                    zIndex: 2
-                })
-                .animate({
-                    draw: {
-                        top: 0,
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideUpOut: function(el, o){
-            var op, $el = $(el);
-            var h = $el.parent().outerHeight(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    zIndex: 1
-                })
-                .animate({
-                    draw: {
-                        top: -h,
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideUp: function(current, next, o){
-            this.slideUpOut(current, o);
-            this.slideUpIn(next, o);
-        },
-
-        slideDownIn: function(el, o){
-            var op, $el = $(el);
-            var h = $el.parent().outerHeight(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    left: 0,
-                    top: -h,
-                    zIndex: 2
-                })
-                .animate({
-                    draw: {
-                        top: 0,
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideDownOut: function(el, o){
-            var op, $el = $(el);
-            var h = $el.parent().outerHeight(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    zIndex: 1
-                })
-                .animate({
-                    draw: {
-                        top: h,
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideDown: function(current, next, o){
-            this.slideDownOut(current, o);
-            this.slideDownIn(next, o);
-        },
-
-        slideLeftIn: function(el, o){
-            var op, $el = $(el);
-            var w = $el.parent().outerWidth(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    left: w,
-                    zIndex: 2
-                })
-                .animate({
-                    draw: {
-                        left: 0,
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideLeftOut: function(el, o){
-            var op, $el = $(el);
-            var w = $el.parent().outerWidth(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    zIndex: 1
-                })
-                .animate({
-                    draw: {
-                        left: -w,
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideLeft: function(current, next, o){
-            this.slideLeftOut(current, o);
-            this.slideLeftIn(next, o);
-        },
-
-        slideRightIn: function(el, o){
-            var op, $el = $(el);
-            var w = $el.parent().outerWidth(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    left: -w,
-                    zIndex: 2
-                })
-                .animate({
-                    draw: {
-                        left: 0,
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideRightOut: function(el, o){
-            var op, $el = $(el);
-            var w = $el.parent().outerWidth(true);
-
-            op = $.extend({}, AnimationDefaultConfig, o);
-
-            $el
-                .css({
-                    zIndex: 1
-                })
-                .animate({
-                    draw: {
-                        left:  w,
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        slideRight: function(current, next, o){
-            this.slideRightOut(current, o);
-            this.slideRightIn(next, o);
-        },
-
-        fadeIn: function(el, o){
-            var op = $.extend({}, AnimationDefaultConfig, o);
-            var $el = $(el);
-
-            $el
-                .css({
-                    top: 0,
-                    left: 0,
-                    opacity: 0
-                })
-                .animate({
-                    draw: {
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        fadeOut: function(el, o){
-            var op = $.extend({}, AnimationDefaultConfig, o);
-            var $el = $(el);
-
-            $el
-                .animate({
-                    draw: {
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        fade: function(current, next, o){
-            this.fadeOut(current, o);
-            this.fadeIn(next, o);
-        },
-
-        zoomIn: function(el, o){
-            var op = $.extend({}, AnimationDefaultConfig, o);
-            var $el = $(el);
-
-            $el
-                .css({
-                    top: 0,
-                    left: 0,
-                    opacity: 0,
-                    transform: "scale(3)",
-                    zIndex: 2
-                })
-                .animate({
-                    draw: {
-                        scale: 1,
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        zoomOut: function(el, o){
-            var op = $.extend({}, AnimationDefaultConfig, o);
-            var $el = $(el);
-
-            $el
-                .css({
-                    zIndex: 1
-                })
-                .animate({
-                    draw: {
-                        scale: 3,
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        zoom: function(current, next, o){
-            this.zoomOut(current, o);
-            this.zoomIn(next, o);
-        },
-
-        swirlIn: function(el, o){
-            var op = $.extend({}, AnimationDefaultConfig, o);
-            var $el = $(el);
-
-            $el
-                .css({
-                    top: 0,
-                    left: 0,
-                    opacity: 0,
-                    transform: "scale(3) rotate(180deg)",
-                    zIndex: 2
-                })
-                .animate({
-                    draw: {
-                        scale: 1,
-                        rotate: 0,
-                        opacity: 1
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        swirlOut: function(el, o){
-            var op = $.extend({}, AnimationDefaultConfig, o);
-            var $el = $(el);
-
-            $el
-                .css({
-                    zIndex: 1
-                })
-                .animate({
-                    draw: {
-                        scale: 3,
-                        rotate: "180deg",
-                        opacity: 0
-                    },
-                    dur: op.duration,
-                    ease: op.ease
-                });
-        },
-
-        swirl: function(current, next, o){
-            this.swirlOut(current, o);
-            this.swirlIn(next, o);
-        }
-    };
-
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.Animations = Metro.animations;
-    }
-}(Metro, m4q));
-
-(function(Metro, $) {
-    'use strict';
-    var Types = {
-        HEX: "hex",
-        HEXA: "hexa",
-        RGB: "rgb",
-        RGBA: "rgba",
-        HSV: "hsv",
-        HSL: "hsl",
-        HSLA: "hsla",
-        CMYK: "cmyk",
-        UNKNOWN: "unknown"
-    };
-
-    Metro.colorsSetup = function (options) {
-        ColorsDefaultConfig = $.extend({}, ColorsDefaultConfig, options);
-    };
-
-    if (typeof window["metroColorsSetup"] !== undefined) {
-        Metro.colorsSetup(window["metroColorsSetup"]);
-    }
-
-    var ColorsDefaultConfig = {
-        angle: 30,
-        algorithm: 1,
-        step: 0.1,
-        distance: 5,
-        tint1: 0.8,
-        tint2: 0.4,
-        shade1: 0.6,
-        shade2: 0.3,
-        alpha: 1
-    };
-
-    // function HEX(r, g, b) {
-    //     this.r = r || "00";
-    //     this.g = g || "00";
-    //     this.b = b || "00";
-    // }
-    //
-    // HEX.prototype.toString = function(){
-    //     return "#" + [this.r, this.g, this.b].join("");
-    // }
-
-    function RGB(r, g, b){
-        this.r = r || 0;
-        this.g = g || 0;
-        this.b = b || 0;
-    }
-
-    RGB.prototype.toString = function(){
-        return "rgb(" + [this.r, this.g, this.b].join(",") + ")";
-    }
-
-    function RGBA(r, g, b, a){
-        this.r = r || 0;
-        this.g = g || 0;
-        this.b = b || 0;
-        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
-    }
-
-    RGBA.prototype.toString = function(){
-        return "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")";
-    }
-
-    function HSV(h, s, v){
-        this.h = h || 0;
-        this.s = s || 0;
-        this.v = v || 0;
-    }
-
-    HSV.prototype.toString = function(){
-        return "hsv(" + [this.h, this.s, this.v].join(",") + ")";
-    }
-
-    function HSL(h, s, l){
-        this.h = h || 0;
-        this.s = s || 0;
-        this.l = l || 0;
-    }
-
-    HSL.prototype.toString = function(){
-        return "hsl(" + [this.h, this.s, this.l].join(",") + ")";
-    }
-
-    function HSLA(h, s, l, a){
-        this.h = h || 0;
-        this.s = s || 0;
-        this.l = l || 0;
-        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
-    }
-
-    HSLA.prototype.toString = function(){
-        return "hsla(" + [this.h, this.s, this.l, this.a].join(",") + ")";
-    }
-
-    function CMYK(c, m, y, k){
-        this.c = c || 0;
-        this.m = m || 0;
-        this.y = y || 0;
-        this.k = k || 0;
-    }
-
-    CMYK.prototype.toString = function(){
-        return "cmyk(" + [this.c, this.m, this.y, this.k].join(",") + ")";
-    }
-
-    var Colors = {
-
-        PALETTES: {
-            ALL: "all",
-            METRO: "metro",
-            STANDARD: "standard"
-        },
-
-        metro: {
-            lime: '#a4c400',
-            green: '#60a917',
-            emerald: '#008a00',
-            blue: '#00AFF0',
-            teal: '#00aba9',
-            cyan: '#1ba1e2',
-            cobalt: '#0050ef',
-            indigo: '#6a00ff',
-            violet: '#aa00ff',
-            pink: '#dc4fad',
-            magenta: '#d80073',
-            crimson: '#a20025',
-            red: '#CE352C',
-            orange: '#fa6800',
-            amber: '#f0a30a',
-            yellow: '#fff000',
-            brown: '#825a2c',
-            olive: '#6d8764',
-            steel: '#647687',
-            mauve: '#76608a',
-            taupe: '#87794e'
-        },
-
-        standard: {
-            aliceBlue: "#f0f8ff",
-            antiqueWhite: "#faebd7",
-            aqua: "#00ffff",
-            aquamarine: "#7fffd4",
-            azure: "#f0ffff",
-            beige: "#f5f5dc",
-            bisque: "#ffe4c4",
-            black: "#000000",
-            blanchedAlmond: "#ffebcd",
-            blue: "#0000ff",
-            blueViolet: "#8a2be2",
-            brown: "#a52a2a",
-            burlyWood: "#deb887",
-            cadetBlue: "#5f9ea0",
-            chartreuse: "#7fff00",
-            chocolate: "#d2691e",
-            coral: "#ff7f50",
-            cornflowerBlue: "#6495ed",
-            cornsilk: "#fff8dc",
-            crimson: "#dc143c",
-            cyan: "#00ffff",
-            darkBlue: "#00008b",
-            darkCyan: "#008b8b",
-            darkGoldenRod: "#b8860b",
-            darkGray: "#a9a9a9",
-            darkGreen: "#006400",
-            darkKhaki: "#bdb76b",
-            darkMagenta: "#8b008b",
-            darkOliveGreen: "#556b2f",
-            darkOrange: "#ff8c00",
-            darkOrchid: "#9932cc",
-            darkRed: "#8b0000",
-            darkSalmon: "#e9967a",
-            darkSeaGreen: "#8fbc8f",
-            darkSlateBlue: "#483d8b",
-            darkSlateGray: "#2f4f4f",
-            darkTurquoise: "#00ced1",
-            darkViolet: "#9400d3",
-            deepPink: "#ff1493",
-            deepSkyBlue: "#00bfff",
-            dimGray: "#696969",
-            dodgerBlue: "#1e90ff",
-            fireBrick: "#b22222",
-            floralWhite: "#fffaf0",
-            forestGreen: "#228b22",
-            fuchsia: "#ff00ff",
-            gainsboro: "#DCDCDC",
-            ghostWhite: "#F8F8FF",
-            gold: "#ffd700",
-            goldenRod: "#daa520",
-            gray: "#808080",
-            green: "#008000",
-            greenYellow: "#adff2f",
-            honeyDew: "#f0fff0",
-            hotPink: "#ff69b4",
-            indianRed: "#cd5c5c",
-            indigo: "#4b0082",
-            ivory: "#fffff0",
-            khaki: "#f0e68c",
-            lavender: "#e6e6fa",
-            lavenderBlush: "#fff0f5",
-            lawnGreen: "#7cfc00",
-            lemonChiffon: "#fffacd",
-            lightBlue: "#add8e6",
-            lightCoral: "#f08080",
-            lightCyan: "#e0ffff",
-            lightGoldenRodYellow: "#fafad2",
-            lightGray: "#d3d3d3",
-            lightGreen: "#90ee90",
-            lightPink: "#ffb6c1",
-            lightSalmon: "#ffa07a",
-            lightSeaGreen: "#20b2aa",
-            lightSkyBlue: "#87cefa",
-            lightSlateGray: "#778899",
-            lightSteelBlue: "#b0c4de",
-            lightYellow: "#ffffe0",
-            lime: "#00ff00",
-            limeGreen: "#32dc32",
-            linen: "#faf0e6",
-            magenta: "#ff00ff",
-            maroon: "#800000",
-            mediumAquaMarine: "#66cdaa",
-            mediumBlue: "#0000cd",
-            mediumOrchid: "#ba55d3",
-            mediumPurple: "#9370db",
-            mediumSeaGreen: "#3cb371",
-            mediumSlateBlue: "#7b68ee",
-            mediumSpringGreen: "#00fa9a",
-            mediumTurquoise: "#48d1cc",
-            mediumVioletRed: "#c71585",
-            midnightBlue: "#191970",
-            mintCream: "#f5fffa",
-            mistyRose: "#ffe4e1",
-            moccasin: "#ffe4b5",
-            navajoWhite: "#ffdead",
-            navy: "#000080",
-            oldLace: "#fdd5e6",
-            olive: "#808000",
-            oliveDrab: "#6b8e23",
-            orange: "#ffa500",
-            orangeRed: "#ff4500",
-            orchid: "#da70d6",
-            paleGoldenRod: "#eee8aa",
-            paleGreen: "#98fb98",
-            paleTurquoise: "#afeeee",
-            paleVioletRed: "#db7093",
-            papayaWhip: "#ffefd5",
-            peachPuff: "#ffdab9",
-            peru: "#cd853f",
-            pink: "#ffc0cb",
-            plum: "#dda0dd",
-            powderBlue: "#b0e0e6",
-            purple: "#800080",
-            rebeccaPurple: "#663399",
-            red: "#ff0000",
-            rosyBrown: "#bc8f8f",
-            royalBlue: "#4169e1",
-            saddleBrown: "#8b4513",
-            salmon: "#fa8072",
-            sandyBrown: "#f4a460",
-            seaGreen: "#2e8b57",
-            seaShell: "#fff5ee",
-            sienna: "#a0522d",
-            silver: "#c0c0c0",
-            slyBlue: "#87ceeb",
-            slateBlue: "#6a5acd",
-            slateGray: "#708090",
-            snow: "#fffafa",
-            springGreen: "#00ff7f",
-            steelBlue: "#4682b4",
-            tan: "#d2b48c",
-            teal: "#008080",
-            thistle: "#d8bfd8",
-            tomato: "#ff6347",
-            turquoise: "#40e0d0",
-            violet: "#ee82ee",
-            wheat: "#f5deb3",
-            white: "#ffffff",
-            whiteSmoke: "#f5f5f5",
-            yellow: "#ffff00",
-            yellowGreen: "#9acd32"
-        },
-
-        all: {},
-
-        init: function(){
-            this.all = $.extend( {}, this.standard, this.metro );
-            return this;
-        },
-
-        color: function(name, palette){
-            palette = palette || this.PALETTES.ALL;
-            return this[palette][name] !== undefined ? this[palette][name] : false;
-        },
-
-        palette: function(palette){
-            palette = palette || this.PALETTES.ALL;
-            return Object.keys(this[palette]);
-        },
-
-        expandHexColor: function(hex){
-            if (typeof hex !== "string") {
-                throw new Error("Value is not a string!");
-            }
-            if (hex[0] === "#" && hex.length === 4) {
-                var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
-                return (
-                    "#" +
-                    hex.replace(shorthandRegex, function(m, r, g, b) {
-                        return r + r + g + g + b + b;
-                    })
-                );
-            }
-            return hex[0] === "#" ? hex : "#" + hex;
-        },
-
-        colors: function(palette){
-            palette = palette || this.PALETTES.ALL;
-            return Object.values(this[palette]);
-        },
-
-        random: function(colorType, alpha){
-            colorType = colorType || Types.HEX;
-            alpha = typeof alpha !== "undefined" ? alpha : 1;
-
-            var hex, r, g, b;
-
-            r = $.random(0, 255);
-            g = $.random(0, 255);
-            b = $.random(0, 255);
-
-            hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
-
-            return colorType === "hex" ? hex : this.toColor(hex, colorType, alpha);
-        },
-
-        parse: function(color){
-            var _color = color.toLowerCase().trim();
-
-            var a = _color
-                .replace(/[^\d.,]/g, "")
-                .split(",")
-                .map(function(v) {
-                    return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
-                });
-
-            if (_color[0] === "#") {
-                return this.expandHexColor(_color);
-            }
-
-            if (_color.indexOf("rgba") === 0 && a.length === 4) {
-                return new RGBA(a[0], a[1], a[2], a[3]);
-            }
-            if (_color.indexOf("rgb") === 0 && a.length === 3) {
-                return new RGB(a[0], a[1], a[2]);
-            }
-            if (_color.indexOf("cmyk") === 0 && a.length === 4) {
-                return new CMYK(a[0], a[1], a[2], a[3]);
-            }
-            if (_color.indexOf("hsv") === 0 && a.length === 3) {
-                return new HSV(a[0], a[1], a[2]);
-            }
-            if (_color.indexOf("hsla") === 0 && a.length === 4) {
-                return new HSLA(a[0], a[1], a[2], a[3]);
-            }
-            if (_color.indexOf("hsl")  === 0 && a.length === 3) {
-                return new HSL(a[0], a[1], a[2]);
-            }
-            return undefined;
-        },
-
-        createColor: function(colorType, from){
-            colorType = colorType || "hex";
-            from = from || "#000000";
-
-            var baseColor;
-
-            if (typeof from === "string") {
-                baseColor = this.parse(from);
-            }
-
-            if (!this.isColor(baseColor)) {
-                baseColor = "#000000";
-            }
-
-            return this.toColor(baseColor, colorType.toLowerCase());
-        },
-
-        isDark: function(color){
-            if (!this.isColor(color)) return;
-            var rgb = this.toRGB(color);
-            var YIQ = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
-            return YIQ < 128;
-        },
-
-        isLight: function(color){
-            return !this.isDark(color);
-        },
-
-        isHSV: function(color){
-            return color instanceof HSV;
-        },
-
-        isHSL: function(color){
-            return color instanceof HSL;
-        },
-
-        isHSLA: function(color){
-            return color instanceof HSLA;
-        },
-
-        isRGB: function(color){
-            return color instanceof RGB;
-        },
-
-        isRGBA: function(color){
-            return color instanceof RGBA;
-        },
-
-        isCMYK: function(color){
-            return color instanceof CMYK;
-        },
-
-        isHEX: function(color){
-            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
-        },
-
-        isColor: function(color){
-            return !color
-                ? false
-                : this.isHEX(color) ||
-                  this.isRGB(color) ||
-                  this.isRGBA(color) ||
-                  this.isHSV(color) ||
-                  this.isHSL(color) ||
-                  this.isHSLA(color) ||
-                  this.isCMYK(color);
-        },
-
-        check: function(color, type){
-            if (!this["is"+type.toUpperCase()](color)) {
-                throw new Error("Value is not a " + type + " color type!");
-            }
-        },
-
-        colorType: function(color){
-            if (this.isHEX(color)) return Types.HEX;
-            if (this.isRGB(color)) return Types.RGB;
-            if (this.isRGBA(color)) return Types.RGBA;
-            if (this.isHSV(color)) return Types.HSV;
-            if (this.isHSL(color)) return Types.HSL;
-            if (this.isHSLA(color)) return Types.HSLA;
-            if (this.isCMYK(color)) return Types.CMYK;
-
-            return Types.UNKNOWN;
-        },
-
-        equal: function(color1, color2){
-            if (!this.isColor(color1) || !this.isColor(color2)) {
-                return false;
-            }
-
-            return this.toHEX(color1) === this.toHEX(color2);
-        },
-
-        colorToString: function(color){
-            return color.toString();
-        },
-
-        hex2rgb: function(color){
-            if (typeof color !== "string") {
-                throw new Error("Value is not a string!")
-            }
-            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
-                this.expandHexColor(color)
-            );
-            var rgb = [
-                parseInt(result[1], 16),
-                parseInt(result[2], 16),
-                parseInt(result[3], 16)
-            ];
-            return result ? new RGB(rgb[0], rgb[1], rgb[2]) : null;
-        },
-
-        rgb2hex: function(color){
-            this.check(color, "rgb");
-            return (
-                "#" +
-                ((1 << 24) + (color.r << 16) + (color.g << 8) + color.b).toString(16).slice(1)
-            );
-        },
-
-        rgb2hsv: function(color){
-            this.check(color, "rgb");
-            var hsv = new HSV();
-            var h, s, v;
-            var r = color.r / 255,
-                g = color.g / 255,
-                b = color.b / 255;
-
-            var max = Math.max(r, g, b);
-            var min = Math.min(r, g, b);
-            var delta = max - min;
-
-            v = max;
-
-            if (max === 0) {
-                s = 0;
-            } else {
-                s = 1 - min / max;
-            }
-
-            if (max === min) {
-                h = 0;
-            } else if (max === r && g >= b) {
-                h = 60 * ((g - b) / delta);
-            } else if (max === r && g < b) {
-                h = 60 * ((g - b) / delta) + 360;
-            } else if (max === g) {
-                h = 60 * ((b - r) / delta) + 120;
-            } else if (max === b) {
-                h = 60 * ((r - g) / delta) + 240;
-            } else {
-                h = 0;
-            }
-
-            hsv.h = h;
-            hsv.s = s;
-            hsv.v = v;
-
-            return hsv;
-        },
-
-        hsv2rgb: function(color){
-            this.check(color, "hsv");
-            var r, g, b;
-            var h = color.h,
-                s = color.s * 100,
-                v = color.v * 100;
-            var Hi = Math.floor(h / 60);
-            var Vmin = ((100 - s) * v) / 100;
-            var alpha = (v - Vmin) * ((h % 60) / 60);
-            var Vinc = Vmin + alpha;
-            var Vdec = v - alpha;
-
-            switch (Hi) {
-                case 0:
-                    r = v;
-                    g = Vinc;
-                    b = Vmin;
-                    break;
-                case 1:
-                    r = Vdec;
-                    g = v;
-                    b = Vmin;
-                    break;
-                case 2:
-                    r = Vmin;
-                    g = v;
-                    b = Vinc;
-                    break;
-                case 3:
-                    r = Vmin;
-                    g = Vdec;
-                    b = v;
-                    break;
-                case 4:
-                    r = Vinc;
-                    g = Vmin;
-                    b = v;
-                    break;
-                case 5:
-                    r = v;
-                    g = Vmin;
-                    b = Vdec;
-                    break;
-            }
-
-            return new RGB(
-                Math.round((r * 255) / 100),
-                Math.round((g * 255) / 100),
-                Math.round((b * 255) / 100)
-            );
-        },
-
-        hsv2hex: function(color){
-            this.check(color, "hsv");
-            return this.rgb2hex(this.hsv2rgb(color));
-        },
-
-        hex2hsv: function(color){
-            this.check(color, "hex");
-            return this.rgb2hsv(this.hex2rgb(color));
-        },
-
-        rgb2cmyk: function(color){
-            this.check(color, "rgb");
-            var cmyk = new CMYK();
-
-            var r = color.r / 255;
-            var g = color.g / 255;
-            var b = color.b / 255;
-
-            cmyk.k = Math.min(1 - r, 1 - g, 1 - b);
-
-            cmyk.c = 1 - cmyk.k === 0 ? 0 : (1 - r - cmyk.k) / (1 - cmyk.k);
-            cmyk.m = 1 - cmyk.k === 0 ? 0 : (1 - g - cmyk.k) / (1 - cmyk.k);
-            cmyk.y = 1 - cmyk.k === 0 ? 0 : (1 - b - cmyk.k) / (1 - cmyk.k);
-
-            cmyk.c = Math.round(cmyk.c * 100);
-            cmyk.m = Math.round(cmyk.m * 100);
-            cmyk.y = Math.round(cmyk.y * 100);
-            cmyk.k = Math.round(cmyk.k * 100);
-
-            return cmyk;
-        },
-
-        cmyk2rgb: function(color){
-            this.check(color, "cmyk");
-            var r = Math.floor(255 * (1 - color.c / 100) * (1 - color.k / 100));
-            var g = Math.ceil(255 * (1 - color.m / 100) * (1 - color.k / 100));
-            var b = Math.ceil(255 * (1 - color.y / 100) * (1 - color.k / 100));
-
-            return new RGB(r, g, b);
-        },
-
-        hsv2hsl: function(color){
-            this.check(color, "hsv");
-            var h, s, l, d;
-            h = color.h;
-            l = (2 - color.s) * color.v;
-            s = color.s * color.v;
-            if (l === 0) {
-                s = 0;
-            } else {
-                d = l <= 1 ? l : 2 - l;
-                if (d === 0) {
-                    s = 0;
-                } else {
-                    s /= d;
-                }
-            }
-            l /= 2;
-            return new HSL(h, s, l);
-        },
-
-        hsl2hsv: function(color){
-            this.check(color, "hsl");
-            var h, s, v, l;
-            h = color.h;
-            l = color.l * 2;
-            s = color.s * (l <= 1 ? l : 2 - l);
-
-            v = (l + s) / 2;
-
-            if (l + s === 0) {
-                s = 0;
-            } else {
-                s = (2 * s) / (l + s);
-            }
-
-            return new HSV(h, s, v);
-        },
-
-        rgb2websafe: function(color){
-            this.check(color, "rgb");
-            return new RGB(
-                Math.round(color.r / 51) * 51,
-                Math.round(color.g / 51) * 51,
-                Math.round(color.b / 51) * 51
-            );
-        },
-
-        rgba2websafe: function(color){
-            this.check(color, "rgba");
-            var rgbWebSafe = this.rgb2websafe(color);
-            return new RGBA(rgbWebSafe.r, rgbWebSafe.g, rgbWebSafe.b, color.a);
-        },
-
-        hex2websafe: function(color){
-            this.check(color, "hex");
-            return this.rgb2hex(this.rgb2websafe(this.hex2rgb(color)));
-        },
-
-        hsv2websafe: function(color){
-            this.check(color, "hsv");
-            return this.rgb2hsv(this.rgb2websafe(this.toRGB(color)));
-        },
-
-        hsl2websafe: function(color){
-           this.check(color, "hsl");
-            return this.hsv2hsl(this.rgb2hsv(this.rgb2websafe(this.toRGB(color))));
-        },
-
-        cmyk2websafe: function(color){
-            this.check(color, "cmyk");
-            return this.rgb2cmyk(this.rgb2websafe(this.cmyk2rgb(color)));
-        },
-
-        websafe: function(color){
-            if (this.isHEX(color)) return this.hex2websafe(color);
-            if (this.isRGB(color)) return this.rgb2websafe(color);
-            if (this.isRGBA(color)) return this.rgba2websafe(color);
-            if (this.isHSV(color)) return this.hsv2websafe(color);
-            if (this.isHSL(color)) return this.hsl2websafe(color);
-            if (this.isCMYK(color)) return this.cmyk2websafe(color);
-
-            return color;
-        },
-
-        toColor: function(color, type, alpha){
-            var result;
-            switch (type.toLowerCase()) {
-                case "hex":
-                    result = this.toHEX(color);
-                    break;
-                case "rgb":
-                    result = this.toRGB(color);
-                    break;
-                case "rgba":
-                    result = this.toRGBA(color, alpha);
-                    break;
-                case "hsl":
-                    result = this.toHSL(color);
-                    break;
-                case "hsla":
-                    result = this.toHSLA(color, alpha);
-                    break;
-                case "hsv":
-                    result = this.toHSV(color);
-                    break;
-                case "cmyk":
-                    result = this.toCMYK(color);
-                    break;
-                default:
-                    result = color;
-            }
-            return result;
-        },
-
-        toHEX: function(color){
-            return typeof color === "string"
-                ? this.expandHexColor(color)
-                : this.rgb2hex(this.toRGB(color));
-        },
-
-        toRGB: function(color){
-            if (this.isRGB(color)) return color;
-            if (this.isRGBA(color)) return new RGB(color.r, color.g, color.b);
-            if (this.isHSV(color)) return this.hsv2rgb(color);
-            if (this.isHSL(color)) return this.hsv2rgb(this.hsl2hsv(color));
-            if (this.isHSLA(color)) return this.hsv2rgb(this.hsl2hsv(color));
-            if (this.isHEX(color)) return this.hex2rgb(color);
-            if (this.isCMYK(color)) return this.cmyk2rgb(color);
-
-            throw new Error("Unknown color format!");
-        },
-
-        toRGBA: function(color, alpha){
-            if (this.isRGBA(color)) {
-                if (alpha) {
-                    color.a = alpha;
-                }
-                return color;
-            }
-            var rgb = this.toRGB(color);
-            return new RGBA(rgb.r, rgb.g, rgb.b, alpha);
-        },
-
-        toHSV: function(color){
-            return this.rgb2hsv(this.toRGB(color));
-        },
-
-        toHSL: function(color){
-            return this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
-        },
-
-        toHSLA: function(color, alpha){
-            if (this.isHSLA(color)) {
-                if (alpha) {
-                    color.a = alpha;
-                }
-                return color;
-            }
-            var hsla = this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
-            hsla.a = alpha;
-            return new HSLA(hsla.h, hsla.s, hsla.l, hsla.a);
-        },
-
-        toCMYK: function(color){
-            return this.rgb2cmyk(this.toRGB(color));
-        },
-
-        grayscale: function(color){
-            var rgb = this.toRGB(color);
-            var type = this.colorType(color).toLowerCase();
-            var gray = Math.round(rgb.r * 0.2125 + rgb.g * 0.7154 + rgb.b * 0.0721);
-            var mono = new RGB(gray, gray, gray);
-
-            return this.toColor(mono, type);
-        },
-
-        darken: function(color, amount){
-            amount = amount || 10;
-            return this.lighten(color, -1 * Math.abs(amount));
-        },
-
-        lighten: function(color, amount){
-            var type, res, alpha, ring;
-
-            amount = amount || 10;
-
-            var calc = function (_color, _amount) {
-                var r, g, b;
-                var col = _color.slice(1);
-
-                var num = parseInt(col, 16);
-                r = (num >> 16) + _amount;
-
-                if (r > 255) r = 255;
-                else if (r < 0) r = 0;
-
-                b = ((num >> 8) & 0x00ff) + _amount;
-
-                if (b > 255) b = 255;
-                else if (b < 0) b = 0;
-
-                g = (num & 0x0000ff) + _amount;
-
-                if (g > 255) g = 255;
-                else if (g < 0) g = 0;
-
-                return "#" + (g | (b << 8) | (r << 16)).toString(16);
-            };
-
-            ring = amount > 0;
-
-            type = this.colorType(color).toLowerCase();
-
-            if (type === Types.RGBA || type === Types.HSLA) {
-                alpha = color.a;
-            }
-
-            do {
-                res = calc(this.toHEX(color), amount);
-                ring ? amount-- : amount++;
-            } while (res.length < 7);
-
-            return this.toColor(res, type, alpha);
-        },
-
-        hueShift: function(color, hue, saturation, value){
-            var hsv = this.toHSV(color);
-            var type = this.colorType(color).toLowerCase();
-            var h = hsv.h;
-            var alpha;
-            var _h = hue || 0;
-            var _s = saturation || 0;
-            var _v = value || 0;
-
-            h += _h;
-            while (h >= 360.0) h -= 360.0;
-            while (h < 0.0) h += 360.0;
-            hsv.h = h;
-
-            hsv.s += _s;
-            if (hsv.s > 1) {hsv.s = 1;}
-            if (hsv.s < 0) {hsv.s = 0;}
-
-            hsv.v += _v;
-            if (hsv.v > 1) {hsv.v = 1;}
-            if (hsv.v < 0) {hsv.v = 0;}
-
-            if (type === Types.RGBA || type === Types.HSLA) {
-                alpha = color.a;
-            }
-
-            return this.toColor(hsv, type, alpha);
-        },
-
-        createScheme: function(color, name, format, options){
-            var opt = $.extend({}, ColorsDefaultConfig, options);
-            var i, scheme = [], hsv, rgb, h, s, v;
-            var self = this;
-
-            hsv = this.toHSV(color);
-            h = hsv.h;
-            s = hsv.s;
-            v = hsv.v;
-
-            if (this.isHSV(hsv) === false) {
-                console.warn("The value is a not supported color format!");
-                return false;
-            }
-
-            function convert(source, format) {
-                var result;
-                switch (format) {
-                    case "hex":
-                        result = source.map(function (v) {
-                            return self.toHEX(v);
-                        });
-                        break;
-                    case "rgb":
-                        result = source.map(function (v) {
-                            return self.toRGB(v);
-                        });
-                        break;
-                    case "rgba":
-                        result = source.map(function (v) {
-                            return self.toRGBA(v, opt.alpha);
-                        });
-                        break;
-                    case "hsl":
-                        result = source.map(function (v) {
-                            return self.toHSL(v);
-                        });
-                        break;
-                    case "hsla":
-                        result = source.map(function (v) {
-                            return self.toHSLA(v, opt.alpha);
-                        });
-                        break;
-                    case "cmyk":
-                        result = source.map(function (v) {
-                            return self.toCMYK(v);
-                        });
-                        break;
-                    default:
-                        result = source;
-                }
-
-                return result;
-            }
-
-            function clamp(num, min, max) {
-                return Math.max(min, Math.min(num, max));
-            }
-
-            function toRange(a, b, c) {
-                return a < b ? b : a > c ? c : a;
-            }
-
-            function shift(h, s) {
-                h += s;
-                while (h >= 360.0) h -= 360.0;
-                while (h < 0.0) h += 360.0;
-                return h;
-            }
-
-            switch (name) {
-                case "monochromatic":
-                case "mono":
-                    if (opt.algorithm === 1) {
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(
-                            Math.round(rgb.r + (255 - rgb.r) * opt.tint1),
-                            0,
-                            255
-                        );
-                        rgb.g = toRange(
-                            Math.round(rgb.g + (255 - rgb.g) * opt.tint1),
-                            0,
-                            255
-                        );
-                        rgb.b = toRange(
-                            Math.round(rgb.b + (255 - rgb.b) * opt.tint1),
-                            0,
-                            255
-                        );
-                        scheme.push(this.rgb2hsv(rgb));
-
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(
-                            Math.round(rgb.r + (255 - rgb.r) * opt.tint2),
-                            0,
-                            255
-                        );
-                        rgb.g = toRange(
-                            Math.round(rgb.g + (255 - rgb.g) * opt.tint2),
-                            0,
-                            255
-                        );
-                        rgb.b = toRange(
-                            Math.round(rgb.b + (255 - rgb.b) * opt.tint2),
-                            0,
-                            255
-                        );
-                        scheme.push(this.rgb2hsv(rgb));
-
-                        scheme.push(hsv);
-
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(Math.round(rgb.r * opt.shade1), 0, 255);
-                        rgb.g = toRange(Math.round(rgb.g * opt.shade1), 0, 255);
-                        rgb.b = toRange(Math.round(rgb.b * opt.shade1), 0, 255);
-                        scheme.push(this.rgb2hsv(rgb));
-
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(Math.round(rgb.r * opt.shade2), 0, 255);
-                        rgb.g = toRange(Math.round(rgb.g * opt.shade2), 0, 255);
-                        rgb.b = toRange(Math.round(rgb.b * opt.shade2), 0, 255);
-                        scheme.push(this.rgb2hsv(rgb));
-
-                    } else if (opt.algorithm === 2) {
-
-                        scheme.push(hsv);
-                        for (i = 1; i <= opt.distance; i++) {
-                            v = clamp(v - opt.step, 0, 1);
-                            s = clamp(s - opt.step, 0, 1);
-                            scheme.push(new HSV(h, s, v));
-                        }
-
-                    } else if (opt.algorithm === 3) {
-
-                        scheme.push(hsv);
-                        for (i = 1; i <= opt.distance; i++) {
-                            v = clamp(v - opt.step, 0, 1);
-                            scheme.push(new HSV(h, s, v));
-                        }
-
-                    } else {
-
-                        v = clamp(hsv.v + opt.step * 2, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                        v = clamp(hsv.v + opt.step, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                        scheme.push(hsv);
-                        s = hsv.s;
-                        v = hsv.v;
-
-                        v = clamp(hsv.v - opt.step, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                        v = clamp(hsv.v - opt.step * 2, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                    }
-                    break;
-
-                case "complementary":
-                case "complement":
-                case "comp":
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-                    break;
-
-                case "double-complementary":
-                case "double-complement":
-                case "double":
-                    scheme.push(hsv);
-
-                    h = shift(h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(h, opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    break;
-
-                case "analogous":
-                case "analog":
-                    h = shift(h, opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 0.0 - opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    break;
-
-                case "triadic":
-                case "triad":
-                    scheme.push(hsv);
-                    for (i = 1; i < 3; i++) {
-                        h = shift(h, 120.0);
-                        scheme.push(new HSV(h, s, v));
-                    }
-                    break;
-
-                case "tetradic":
-                case "tetra":
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(hsv.h, -1 * opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    break;
-
-                case "square":
-                    scheme.push(hsv);
-                    for (i = 1; i < 4; i++) {
-                        h = shift(h, 90.0);
-                        scheme.push(new HSV(h, s, v));
-                    }
-                    break;
-
-                case "split-complementary":
-                case "split-complement":
-                case "split":
-                    h = shift(h, 180.0 - opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 180.0 + opt.angle);
-                    scheme.push(new HSV(h, s, v));
-                    break;
-
-                default:
-                    console.warn("Unknown scheme name");
-            }
-
-            return convert(scheme, format);
-        },
-
-        getScheme: function(){
-            return this.createScheme.apply(this, arguments)
-        },
-
-        mix: function(color1, color2, returnAs){
-            var c1 = this.toRGBA(color1);
-            var c2 = this.toRGBA(color2);
-            var result = new RGBA();
-            var to = (""+returnAs).toLowerCase() || "hex";
-
-            result.r = Math.round((c1.r + c2.r) / 2);
-            result.g = Math.round((c1.g + c2.g) / 2);
-            result.b = Math.round((c1.b + c2.b) / 2);
-            result.a = Math.round((c1.a + c2.a) / 2);
-
-            return this["to"+to.toUpperCase()](result);
-        }
-    };
-
-    var Color = function(color, options){
-        this._setValue(color);
-        this._setOptions(options);
-    }
-
-    Color.prototype = {
-        _setValue: function(color){
-            var _color;
-
-            if (typeof color === "string") {
-                _color = Colors.parse(color);
-            } else {
-                _color = color;
-            }
-
-            if (!Colors.isColor(_color)) {
-                _color = "#000000";
-            }
-
-            this._value = _color;
-            this._type = Colors.colorType(this._value);
-        },
-
-        _setOptions: function(options){
-            options = typeof options === "object" ? options : {};
-            this._options = $.extend({}, ColorsDefaultConfig, options);
-        },
-
-        getOptions: function(){
-            return this._options;
-        },
-
-        setOptions: function(options){
-            this._setOptions(options);
-        },
-
-        setValue: function(color){
-            this._setValue(color);
-        },
-
-        getValue: function(){
-            return this._value;
-        },
-
-        channel: function(ch, val){
-            var currentType = this._type.toUpperCase();
-
-            if (["red", "green", "blue"].indexOf(ch) > -1) {
-                this.toRGB();
-                this._value[ch[0]] = val;
-                this["to"+currentType]();
-            }
-            if (ch === "alpha" && this._value.a) {
-                this._value.a = val;
-            }
-            if (["hue", "saturation", "value"].indexOf(ch) > -1) {
-                this.toHSV();
-                this._value[ch[0]] = val;
-                this["to"+currentType]();
-            }
-            if (["lightness"].indexOf(ch) > -1) {
-                this.toHSL();
-                this._value[ch[0]] = val;
-                this["to"+currentType]();
-            }
-            if (["cyan", "magenta", "yellow", "black"].indexOf(ch) > -1) {
-                this.toCMYK();
-                this._value[ch[0]] = val;
-                this["to"+currentType]();
-            }
-
-            return this;
-        },
-
-        channels: function(obj){
-            var that = this;
-
-            $.each(obj, function(key, val){
-                that.channel(key, val);
-            });
-
-            return this;
-        },
-
-        toRGB: function() {
-            this._value = Colors.toRGB(this._value);
-            this._type = Types.RGB;
-            return this;
-        },
-
-        rgb: function(){
-            return this._value ? new Color(Colors.toRGB(this._value)) : undefined;
-        },
-
-        toRGBA: function(alpha) {
-            if (Colors.isRGBA(this._value)) {
-                if (alpha) {
-                    this._value = Colors.toRGBA(this._value, alpha);
-                }
-            } else {
-                this._value = Colors.toRGBA(this._value, alpha);
-            }
-            this._type = Types.RGBA;
-            return this;
-        },
-
-        rgba: function(alpha) {
-            return this._value ? new Color(Colors.toRGBA(this._value, alpha)) : undefined;
-        },
-
-        toHEX: function() {
-            this._value = Colors.toHEX(this._value);
-            this._type = Types.HEX;
-            return this;
-        },
-
-        hex: function() {
-            return this._value ? new Color(Colors.toHEX(this._value)) : undefined;
-        },
-
-        toHSV: function() {
-            this._value = Colors.toHSV(this._value);
-            this._type = Types.HSV;
-            return this;
-        },
-
-        hsv: function() {
-            return this._value ? new Color(Colors.toHSV(this._value)) : undefined;
-        },
-
-        toHSL: function() {
-            this._value = Colors.toHSL(this._value);
-            this._type = Types.HSL;
-            return this;
-        },
-
-        hsl: function() {
-            return this._value ? new Color(Colors.toHSL(this._value)) : undefined;
-        },
-
-        toHSLA: function(alpha) {
-            if (Colors.isHSLA(this._value)) {
-                if (alpha) {
-                    this._value = Colors.toHSLA(this._value, alpha);
-                }
-            } else {
-                this._value = Colors.toHSLA(this._value, alpha);
-            }
-            this._type = Types.HSLA;
-            return this;
-        },
-
-        hsla: function(alpha) {
-            return this._value ? new Color(Colors.toHSLA(this._value, alpha)) : undefined;
-        },
-
-        toCMYK: function() {
-            this._value = Colors.toCMYK(this._value);
-            this._type = Types.CMYK;
-            return this;
-        },
-
-        cmyk: function() {
-            return this._value ? new Color(Colors.toCMYK(this._value)) : undefined;
-        },
-
-        toWebsafe: function() {
-            this._value = Colors.websafe(this._value);
-            this._type = Colors.colorType(this._value);
-            return this;
-        },
-
-        websafe: function() {
-            return this._value ? new Color(Colors.websafe(this._value)) : undefined;
-        },
-
-        toString: function() {
-            return this._value ? Colors.colorToString(this._value) : "undefined";
-        },
-
-        toDarken: function(amount) {
-            this._value = Colors.darken(this._value, amount);
-            return this;
-        },
-
-        darken: function(amount){
-            return new Color(Colors.darken(this._value, amount));
-        },
-
-        toLighten: function(amount) {
-            this._value = Colors.lighten(this._value, amount);
-            return this;
-        },
-
-        lighten: function(amount){
-            return new Color(Colors.lighten(this._value, amount))
-        },
-
-        isDark: function() {
-            return this._value ? Colors.isDark(this._value) : undefined;
-        },
-
-        isLight: function() {
-            return this._value ? Colors.isLight(this._value) : undefined;
-        },
-
-        toHueShift: function(hue, saturation, value) {
-            this._value = Colors.hueShift(this._value, hue, saturation, value);
-            return this;
-        },
-
-        hueShift: function (hue, saturation, value) {
-            return new Color(Colors.hueShift(this._value, hue, saturation, value));
-        },
-
-        toGrayscale: function() {
-            this._value = Colors.grayscale(this._value, this._type);
-            return this;
-        },
-
-        grayscale: function(){
-            return new Color(Colors.grayscale(this._value, this._type));
-        },
-
-        type: function() {
-            return Colors.colorType(this._value);
-        },
-
-        createScheme: function(name, format, options) {
-            return this._value
-                ? Colors.createScheme(this._value, name, format, options)
-                : undefined;
-        },
-
-        getScheme: function(){
-            return this.createScheme.apply(this, arguments);
-        },
-
-        equal: function(color) {
-            return Colors.equal(this._value, color);
-        },
-
-        toMix: function(color){
-            this._value = Colors.mix(this._value, color, this._type);
-            return this;
-        },
-
-        mix: function(color){
-            return new Color(Colors.mix(this._value, color, this._type));
-        }
-    }
-
-    Metro.colors = Colors.init();
-    window.Color = Metro.Color = Color;
-    window.ColorPrimitive = Metro.colorPrimitive = {
-        RGB: RGB,
-        RGBA: RGBA,
-        HSV: HSV,
-        HSL: HSL,
-        HSLA: HSLA,
-        CMYK: CMYK
-    };
-
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.Colors = Metro.colors;
-    }
-
-}(Metro, m4q));
-
-(function (Metro, $) {
-    'use strict';
-    var Utils = Metro.utils;
-    var Export = {
-
-        init: function () {
-            return this;
-        },
-
-        options: {
-            csvDelimiter: "\t",
-            csvNewLine: "\r\n",
-            includeHeader: true
-        },
-
-        setup: function (options) {
-            this.options = $.extend({}, this.options, options);
-            return this;
-        },
-
-        base64: function (data) {
-            return window.btoa(unescape(encodeURIComponent(data)));
-        },
-
-        b64toBlob: function (b64Data, contentType, sliceSize) {
-            contentType = contentType || '';
-            sliceSize = sliceSize || 512;
-
-            var byteCharacters = window.atob(b64Data);
-            var byteArrays = [];
-
-            var offset;
-            for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-                var slice = byteCharacters.slice(offset, offset + sliceSize);
-
-                var byteNumbers = new Array(slice.length);
-                var i;
-                for (i = 0; i < slice.length; i = i + 1) {
-                    byteNumbers[i] = slice.charCodeAt(i);
-                }
-
-                var byteArray = new window.Uint8Array(byteNumbers);
-
-                byteArrays.push(byteArray);
-            }
-
-            return new Blob(byteArrays, {
-                type: contentType
-            });
-        },
-
-        tableToCSV: function (table, filename, options) {
-            var o;
-            var body, head, data = "";
-            var i, j, row, cell;
-
-            o = $.extend({}, this.options, options);
-
-            table = $(table)[0];
-
-            if (Utils.bool(o.includeHeader)) {
-
-                head = table.querySelectorAll("thead")[0];
-
-                for (i = 0; i < head.rows.length; i++) {
-                    row = head.rows[i];
-                    for (j = 0; j < row.cells.length; j++) {
-                        cell = row.cells[j];
-                        data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
-                    }
-                    data += o.csvNewLine;
-                }
-            }
-
-            body = table.querySelectorAll("tbody")[0];
-
-            for (i = 0; i < body.rows.length; i++) {
-                row = body.rows[i];
-                for (j = 0; j < row.cells.length; j++) {
-                    cell = row.cells[j];
-                    data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
-                }
-                data += o.csvNewLine;
-            }
-
-            if (Utils.isValue(filename)) {
-                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
-            }
-
-            return data;
-        },
-
-        createDownload: function (data, contentType, filename) {
-            var blob, anchor, url;
-
-            anchor = document.createElement('a');
-            anchor.style.display = "none";
-            document.body.appendChild(anchor);
-
-            blob = this.b64toBlob(data, contentType);
-
-            url = window.URL.createObjectURL(blob);
-            anchor.href = url;
-            anchor.download = filename || Utils.elementId("download");
-            anchor.click();
-            window.URL.revokeObjectURL(url);
-            document.body.removeChild(anchor);
-            return true;
-        },
-
-        arrayToCsv: function(array, filename, options){
-            var o, data = "", i, row;
-
-            o = $.extend({}, this.options, options);
-
-            for (i = 0; i < array.length; i++) {
-                row = array[i];
-
-                if (typeof row !== "object") {
-                    data += row + o.csvNewLine;
-                } else {
-                    $.each(row, function(key, val){
-                        data += (key ? o.csvDelimiter : '') + val.toString();
-                    });
-                    data += o.csvNewLine;
-                }
-            }
-
-            if (Utils.isValue(filename)) {
-                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
-            }
-
-            return data;
-        }
-    };
-
-    Metro.export = Export.init();
-
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.Export = Metro.export;
-    }
-}(Metro, m4q));
-
-(function(Metro) {
-    'use strict';
-    Metro.md5 = function (string) {
-        function RotateLeft(lValue, iShiftBits) {
-            return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
-        }
-
-        function AddUnsigned(lX,lY) {
-            var lX4,lY4,lX8,lY8,lResult;
-            lX8 = (lX & 0x80000000);
-            lY8 = (lY & 0x80000000);
-            lX4 = (lX & 0x40000000);
-            lY4 = (lY & 0x40000000);
-            lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
-            if (lX4 & lY4) {
-                return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
-            }
-            if (lX4 | lY4) {
-                if (lResult & 0x40000000) {
-                    return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
-                } else {
-                    return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
-                }
-            } else {
-                return (lResult ^ lX8 ^ lY8);
-            }
-        }
-
-        function F(x,y,z) { return (x & y) | ((~x) & z); }
-        function G(x,y,z) { return (x & z) | (y & (~z)); }
-        function H(x,y,z) { return (x ^ y ^ z); }
-        function I(x,y,z) { return (y ^ (x | (~z))); }
-
-        function FF(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        }
-
-        function GG(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        }
-
-        function HH(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        }
-
-        function II(a,b,c,d,x,s,ac) {
-            a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
-            return AddUnsigned(RotateLeft(a, s), b);
-        }
-
-        function ConvertToWordArray(string) {
-            var lWordCount;
-            var lMessageLength = string.length;
-            var lNumberOfWords_temp1=lMessageLength + 8;
-            var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
-            var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
-            var lWordArray=Array(lNumberOfWords-1);
-            var lBytePosition = 0;
-            var lByteCount = 0;
-            while ( lByteCount < lMessageLength ) {
-                lWordCount = (lByteCount-(lByteCount % 4))/4;
-                lBytePosition = (lByteCount % 4)*8;
-                lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount)<<lBytePosition));
-                lByteCount++;
-            }
-            lWordCount = (lByteCount-(lByteCount % 4))/4;
-            lBytePosition = (lByteCount % 4)*8;
-            lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
-            lWordArray[lNumberOfWords-2] = lMessageLength<<3;
-            lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
-            return lWordArray;
-        }
-
-        function WordToHex(lValue) {
-            var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
-            for (lCount = 0;lCount<=3;lCount++) {
-                lByte = (lValue>>>(lCount*8)) & 255;
-                WordToHexValue_temp = "0" + lByte.toString(16);
-                WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
-            }
-            return WordToHexValue;
-        }
-
-        function Utf8Encode(string) {
-            string = string.replace(/\r\n/g,"\n");
-            var utftext = "";
-
-            for (var n = 0; n < string.length; n++) {
-
-                var c = string.charCodeAt(n);
-
-                if (c < 128) {
-                    utftext += String.fromCharCode(c);
-                }
-                else if((c > 127) && (c < 2048)) {
-                    utftext += String.fromCharCode((c >> 6) | 192);
-                    utftext += String.fromCharCode((c & 63) | 128);
-                }
-                else {
-                    utftext += String.fromCharCode((c >> 12) | 224);
-                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);
-                    utftext += String.fromCharCode((c & 63) | 128);
-                }
-
-            }
-
-            return utftext;
-        }
-
-        var x=[];
-        var k,AA,BB,CC,DD,a,b,c,d;
-        var S11=7, S12=12, S13=17, S14=22;
-        var S21=5, S22=9 , S23=14, S24=20;
-        var S31=4, S32=11, S33=16, S34=23;
-        var S41=6, S42=10, S43=15, S44=21;
-
-        string = Utf8Encode(string);
-
-        x = ConvertToWordArray(string);
-
-        a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
-
-        for (k=0;k<x.length;k+=16) {
-            AA=a; BB=b; CC=c; DD=d;
-            a=FF(a,b,c,d,x[k], S11,0xD76AA478);
-            d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
-            c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
-            b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
-            a=FF(a,b,c,d,x[k+4], S11,0xF57C0FAF);
-            d=FF(d,a,b,c,x[k+5], S12,0x4787C62A);
-            c=FF(c,d,a,b,x[k+6], S13,0xA8304613);
-            b=FF(b,c,d,a,x[k+7], S14,0xFD469501);
-            a=FF(a,b,c,d,x[k+8], S11,0x698098D8);
-            d=FF(d,a,b,c,x[k+9], S12,0x8B44F7AF);
-            c=FF(c,d,a,b,x[k+10],S13,0xFFFF5BB1);
-            b=FF(b,c,d,a,x[k+11],S14,0x895CD7BE);
-            a=FF(a,b,c,d,x[k+12],S11,0x6B901122);
-            d=FF(d,a,b,c,x[k+13],S12,0xFD987193);
-            c=FF(c,d,a,b,x[k+14],S13,0xA679438E);
-            b=FF(b,c,d,a,x[k+15],S14,0x49B40821);
-            a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
-            d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
-            c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
-            b=GG(b,c,d,a,x[k], S24,0xE9B6C7AA);
-            a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
-            d=GG(d,a,b,c,x[k+10],S22,0x2441453);
-            c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
-            b=GG(b,c,d,a,x[k+4], S24,0xE7D3FBC8);
-            a=GG(a,b,c,d,x[k+9], S21,0x21E1CDE6);
-            d=GG(d,a,b,c,x[k+14],S22,0xC33707D6);
-            c=GG(c,d,a,b,x[k+3], S23,0xF4D50D87);
-            b=GG(b,c,d,a,x[k+8], S24,0x455A14ED);
-            a=GG(a,b,c,d,x[k+13],S21,0xA9E3E905);
-            d=GG(d,a,b,c,x[k+2], S22,0xFCEFA3F8);
-            c=GG(c,d,a,b,x[k+7], S23,0x676F02D9);
-            b=GG(b,c,d,a,x[k+12],S24,0x8D2A4C8A);
-            a=HH(a,b,c,d,x[k+5], S31,0xFFFA3942);
-            d=HH(d,a,b,c,x[k+8], S32,0x8771F681);
-            c=HH(c,d,a,b,x[k+11],S33,0x6D9D6122);
-            b=HH(b,c,d,a,x[k+14],S34,0xFDE5380C);
-            a=HH(a,b,c,d,x[k+1], S31,0xA4BEEA44);
-            d=HH(d,a,b,c,x[k+4], S32,0x4BDECFA9);
-            c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
-            b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
-            a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
-            d=HH(d,a,b,c,x[k], S32,0xEAA127FA);
-            c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
-            b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
-            a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
-            d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
-            c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
-            b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
-            a=II(a,b,c,d,x[k], S41,0xF4292244);
-            d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
-            c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
-            b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
-            a=II(a,b,c,d,x[k+12],S41,0x655B59C3);
-            d=II(d,a,b,c,x[k+3], S42,0x8F0CCC92);
-            c=II(c,d,a,b,x[k+10],S43,0xFFEFF47D);
-            b=II(b,c,d,a,x[k+1], S44,0x85845DD1);
-            a=II(a,b,c,d,x[k+8], S41,0x6FA87E4F);
-            d=II(d,a,b,c,x[k+15],S42,0xFE2CE6E0);
-            c=II(c,d,a,b,x[k+6], S43,0xA3014314);
-            b=II(b,c,d,a,x[k+13],S44,0x4E0811A1);
-            a=II(a,b,c,d,x[k+4], S41,0xF7537E82);
-            d=II(d,a,b,c,x[k+11],S42,0xBD3AF235);
-            c=II(c,d,a,b,x[k+2], S43,0x2AD7D2BB);
-            b=II(b,c,d,a,x[k+9], S44,0xEB86D391);
-            a=AddUnsigned(a,AA);
-            b=AddUnsigned(b,BB);
-            c=AddUnsigned(c,CC);
-            d=AddUnsigned(d,DD);
-        }
-
-        var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
-
-        return temp.toLowerCase();
-    };
-
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.md5 = Metro.md5;
-    }
-}(Metro, m4q));
-
 (function(Metro, $){
     'use strict';
     var Utils = Metro.utils;
@@ -9413,6 +7295,356 @@ $.noConflict = function() {
             Adblock.bite();
         });
     });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    'use strict';
+    var AnimationDefaultConfig = {
+        duration: METRO_ANIMATION_DURATION,
+        ease: "linear"
+    }
+
+    Metro.animations = {
+
+        switchIn: function(el){
+            $(el)
+                .hide()
+                .css({
+                    left: 0,
+                    top: 0
+                })
+                .show();
+        },
+
+        switchOut: function(el){
+            $(el).hide();
+        },
+
+        switch: function(current, next){
+            this.switchOut(current);
+            this.switchIn(next);
+        },
+
+        slideUpIn: function(el, o){
+            var op, $el = $(el);
+            var h = $el.parent().outerHeight(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    top: h,
+                    left: 0,
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        top: 0,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideUpOut: function(el, o){
+            var op, $el = $(el);
+            var h = $el.parent().outerHeight(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        top: -h,
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideUp: function(current, next, o){
+            this.slideUpOut(current, o);
+            this.slideUpIn(next, o);
+        },
+
+        slideDownIn: function(el, o){
+            var op, $el = $(el);
+            var h = $el.parent().outerHeight(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    left: 0,
+                    top: -h,
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        top: 0,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideDownOut: function(el, o){
+            var op, $el = $(el);
+            var h = $el.parent().outerHeight(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        top: h,
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideDown: function(current, next, o){
+            this.slideDownOut(current, o);
+            this.slideDownIn(next, o);
+        },
+
+        slideLeftIn: function(el, o){
+            var op, $el = $(el);
+            var w = $el.parent().outerWidth(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    left: w,
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        left: 0,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideLeftOut: function(el, o){
+            var op, $el = $(el);
+            var w = $el.parent().outerWidth(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        left: -w,
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideLeft: function(current, next, o){
+            this.slideLeftOut(current, o);
+            this.slideLeftIn(next, o);
+        },
+
+        slideRightIn: function(el, o){
+            var op, $el = $(el);
+            var w = $el.parent().outerWidth(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    left: -w,
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        left: 0,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideRightOut: function(el, o){
+            var op, $el = $(el);
+            var w = $el.parent().outerWidth(true);
+
+            op = $.extend({}, AnimationDefaultConfig, o);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        left:  w,
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        slideRight: function(current, next, o){
+            this.slideRightOut(current, o);
+            this.slideRightIn(next, o);
+        },
+
+        fadeIn: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    top: 0,
+                    left: 0,
+                    opacity: 0
+                })
+                .animate({
+                    draw: {
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        fadeOut: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .animate({
+                    draw: {
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        fade: function(current, next, o){
+            this.fadeOut(current, o);
+            this.fadeIn(next, o);
+        },
+
+        zoomIn: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    top: 0,
+                    left: 0,
+                    opacity: 0,
+                    transform: "scale(3)",
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        scale: 1,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        zoomOut: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        scale: 3,
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        zoom: function(current, next, o){
+            this.zoomOut(current, o);
+            this.zoomIn(next, o);
+        },
+
+        swirlIn: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    top: 0,
+                    left: 0,
+                    opacity: 0,
+                    transform: "scale(3) rotate(180deg)",
+                    zIndex: 2
+                })
+                .animate({
+                    draw: {
+                        scale: 1,
+                        rotate: 0,
+                        opacity: 1
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        swirlOut: function(el, o){
+            var op = $.extend({}, AnimationDefaultConfig, o);
+            var $el = $(el);
+
+            $el
+                .css({
+                    zIndex: 1
+                })
+                .animate({
+                    draw: {
+                        scale: 3,
+                        rotate: "180deg",
+                        opacity: 0
+                    },
+                    dur: op.duration,
+                    ease: op.ease
+                });
+        },
+
+        swirl: function(current, next, o){
+            this.swirlOut(current, o);
+            this.swirlIn(next, o);
+        }
+    };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Animations = Metro.animations;
+    }
 }(Metro, m4q));
 
 (function(Metro, $) {
@@ -13357,6 +11589,1424 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+    var Types = {
+        HEX: "hex",
+        HEXA: "hexa",
+        RGB: "rgb",
+        RGBA: "rgba",
+        HSV: "hsv",
+        HSL: "hsl",
+        HSLA: "hsla",
+        CMYK: "cmyk",
+        UNKNOWN: "unknown"
+    };
+
+    Metro.colorsSetup = function (options) {
+        ColorsDefaultConfig = $.extend({}, ColorsDefaultConfig, options);
+    };
+
+    if (typeof window["metroColorsSetup"] !== undefined) {
+        Metro.colorsSetup(window["metroColorsSetup"]);
+    }
+
+    var ColorsDefaultConfig = {
+        angle: 30,
+        algorithm: 1,
+        step: 0.1,
+        distance: 5,
+        tint1: 0.8,
+        tint2: 0.4,
+        shade1: 0.6,
+        shade2: 0.3,
+        alpha: 1
+    };
+
+    // function HEX(r, g, b) {
+    //     this.r = r || "00";
+    //     this.g = g || "00";
+    //     this.b = b || "00";
+    // }
+    //
+    // HEX.prototype.toString = function(){
+    //     return "#" + [this.r, this.g, this.b].join("");
+    // }
+
+    function RGB(r, g, b){
+        this.r = r || 0;
+        this.g = g || 0;
+        this.b = b || 0;
+    }
+
+    RGB.prototype.toString = function(){
+        return "rgb(" + [this.r, this.g, this.b].join(",") + ")";
+    }
+
+    function RGBA(r, g, b, a){
+        this.r = r || 0;
+        this.g = g || 0;
+        this.b = b || 0;
+        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
+    }
+
+    RGBA.prototype.toString = function(){
+        return "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")";
+    }
+
+    function HSV(h, s, v){
+        this.h = h || 0;
+        this.s = s || 0;
+        this.v = v || 0;
+    }
+
+    HSV.prototype.toString = function(){
+        return "hsv(" + [this.h, this.s, this.v].join(",") + ")";
+    }
+
+    function HSL(h, s, l){
+        this.h = h || 0;
+        this.s = s || 0;
+        this.l = l || 0;
+    }
+
+    HSL.prototype.toString = function(){
+        return "hsl(" + [this.h, this.s, this.l].join(",") + ")";
+    }
+
+    function HSLA(h, s, l, a){
+        this.h = h || 0;
+        this.s = s || 0;
+        this.l = l || 0;
+        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
+    }
+
+    HSLA.prototype.toString = function(){
+        return "hsla(" + [this.h, this.s, this.l, this.a].join(",") + ")";
+    }
+
+    function CMYK(c, m, y, k){
+        this.c = c || 0;
+        this.m = m || 0;
+        this.y = y || 0;
+        this.k = k || 0;
+    }
+
+    CMYK.prototype.toString = function(){
+        return "cmyk(" + [this.c, this.m, this.y, this.k].join(",") + ")";
+    }
+
+    var Colors = {
+
+        PALETTES: {
+            ALL: "all",
+            METRO: "metro",
+            STANDARD: "standard"
+        },
+
+        metro: {
+            lime: '#a4c400',
+            green: '#60a917',
+            emerald: '#008a00',
+            blue: '#00AFF0',
+            teal: '#00aba9',
+            cyan: '#1ba1e2',
+            cobalt: '#0050ef',
+            indigo: '#6a00ff',
+            violet: '#aa00ff',
+            pink: '#dc4fad',
+            magenta: '#d80073',
+            crimson: '#a20025',
+            red: '#CE352C',
+            orange: '#fa6800',
+            amber: '#f0a30a',
+            yellow: '#fff000',
+            brown: '#825a2c',
+            olive: '#6d8764',
+            steel: '#647687',
+            mauve: '#76608a',
+            taupe: '#87794e'
+        },
+
+        standard: {
+            aliceBlue: "#f0f8ff",
+            antiqueWhite: "#faebd7",
+            aqua: "#00ffff",
+            aquamarine: "#7fffd4",
+            azure: "#f0ffff",
+            beige: "#f5f5dc",
+            bisque: "#ffe4c4",
+            black: "#000000",
+            blanchedAlmond: "#ffebcd",
+            blue: "#0000ff",
+            blueViolet: "#8a2be2",
+            brown: "#a52a2a",
+            burlyWood: "#deb887",
+            cadetBlue: "#5f9ea0",
+            chartreuse: "#7fff00",
+            chocolate: "#d2691e",
+            coral: "#ff7f50",
+            cornflowerBlue: "#6495ed",
+            cornsilk: "#fff8dc",
+            crimson: "#dc143c",
+            cyan: "#00ffff",
+            darkBlue: "#00008b",
+            darkCyan: "#008b8b",
+            darkGoldenRod: "#b8860b",
+            darkGray: "#a9a9a9",
+            darkGreen: "#006400",
+            darkKhaki: "#bdb76b",
+            darkMagenta: "#8b008b",
+            darkOliveGreen: "#556b2f",
+            darkOrange: "#ff8c00",
+            darkOrchid: "#9932cc",
+            darkRed: "#8b0000",
+            darkSalmon: "#e9967a",
+            darkSeaGreen: "#8fbc8f",
+            darkSlateBlue: "#483d8b",
+            darkSlateGray: "#2f4f4f",
+            darkTurquoise: "#00ced1",
+            darkViolet: "#9400d3",
+            deepPink: "#ff1493",
+            deepSkyBlue: "#00bfff",
+            dimGray: "#696969",
+            dodgerBlue: "#1e90ff",
+            fireBrick: "#b22222",
+            floralWhite: "#fffaf0",
+            forestGreen: "#228b22",
+            fuchsia: "#ff00ff",
+            gainsboro: "#DCDCDC",
+            ghostWhite: "#F8F8FF",
+            gold: "#ffd700",
+            goldenRod: "#daa520",
+            gray: "#808080",
+            green: "#008000",
+            greenYellow: "#adff2f",
+            honeyDew: "#f0fff0",
+            hotPink: "#ff69b4",
+            indianRed: "#cd5c5c",
+            indigo: "#4b0082",
+            ivory: "#fffff0",
+            khaki: "#f0e68c",
+            lavender: "#e6e6fa",
+            lavenderBlush: "#fff0f5",
+            lawnGreen: "#7cfc00",
+            lemonChiffon: "#fffacd",
+            lightBlue: "#add8e6",
+            lightCoral: "#f08080",
+            lightCyan: "#e0ffff",
+            lightGoldenRodYellow: "#fafad2",
+            lightGray: "#d3d3d3",
+            lightGreen: "#90ee90",
+            lightPink: "#ffb6c1",
+            lightSalmon: "#ffa07a",
+            lightSeaGreen: "#20b2aa",
+            lightSkyBlue: "#87cefa",
+            lightSlateGray: "#778899",
+            lightSteelBlue: "#b0c4de",
+            lightYellow: "#ffffe0",
+            lime: "#00ff00",
+            limeGreen: "#32dc32",
+            linen: "#faf0e6",
+            magenta: "#ff00ff",
+            maroon: "#800000",
+            mediumAquaMarine: "#66cdaa",
+            mediumBlue: "#0000cd",
+            mediumOrchid: "#ba55d3",
+            mediumPurple: "#9370db",
+            mediumSeaGreen: "#3cb371",
+            mediumSlateBlue: "#7b68ee",
+            mediumSpringGreen: "#00fa9a",
+            mediumTurquoise: "#48d1cc",
+            mediumVioletRed: "#c71585",
+            midnightBlue: "#191970",
+            mintCream: "#f5fffa",
+            mistyRose: "#ffe4e1",
+            moccasin: "#ffe4b5",
+            navajoWhite: "#ffdead",
+            navy: "#000080",
+            oldLace: "#fdd5e6",
+            olive: "#808000",
+            oliveDrab: "#6b8e23",
+            orange: "#ffa500",
+            orangeRed: "#ff4500",
+            orchid: "#da70d6",
+            paleGoldenRod: "#eee8aa",
+            paleGreen: "#98fb98",
+            paleTurquoise: "#afeeee",
+            paleVioletRed: "#db7093",
+            papayaWhip: "#ffefd5",
+            peachPuff: "#ffdab9",
+            peru: "#cd853f",
+            pink: "#ffc0cb",
+            plum: "#dda0dd",
+            powderBlue: "#b0e0e6",
+            purple: "#800080",
+            rebeccaPurple: "#663399",
+            red: "#ff0000",
+            rosyBrown: "#bc8f8f",
+            royalBlue: "#4169e1",
+            saddleBrown: "#8b4513",
+            salmon: "#fa8072",
+            sandyBrown: "#f4a460",
+            seaGreen: "#2e8b57",
+            seaShell: "#fff5ee",
+            sienna: "#a0522d",
+            silver: "#c0c0c0",
+            slyBlue: "#87ceeb",
+            slateBlue: "#6a5acd",
+            slateGray: "#708090",
+            snow: "#fffafa",
+            springGreen: "#00ff7f",
+            steelBlue: "#4682b4",
+            tan: "#d2b48c",
+            teal: "#008080",
+            thistle: "#d8bfd8",
+            tomato: "#ff6347",
+            turquoise: "#40e0d0",
+            violet: "#ee82ee",
+            wheat: "#f5deb3",
+            white: "#ffffff",
+            whiteSmoke: "#f5f5f5",
+            yellow: "#ffff00",
+            yellowGreen: "#9acd32"
+        },
+
+        all: {},
+
+        init: function(){
+            this.all = $.extend( {}, this.standard, this.metro );
+            return this;
+        },
+
+        color: function(name, palette){
+            palette = palette || this.PALETTES.ALL;
+            return this[palette][name] !== undefined ? this[palette][name] : false;
+        },
+
+        palette: function(palette){
+            palette = palette || this.PALETTES.ALL;
+            return Object.keys(this[palette]);
+        },
+
+        expandHexColor: function(hex){
+            if (typeof hex !== "string") {
+                throw new Error("Value is not a string!");
+            }
+            if (hex[0] === "#" && hex.length === 4) {
+                var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+                return (
+                    "#" +
+                    hex.replace(shorthandRegex, function(m, r, g, b) {
+                        return r + r + g + g + b + b;
+                    })
+                );
+            }
+            return hex[0] === "#" ? hex : "#" + hex;
+        },
+
+        colors: function(palette){
+            palette = palette || this.PALETTES.ALL;
+            return Object.values(this[palette]);
+        },
+
+        random: function(colorType, alpha){
+            colorType = colorType || Types.HEX;
+            alpha = typeof alpha !== "undefined" ? alpha : 1;
+
+            var hex, r, g, b;
+
+            r = $.random(0, 255);
+            g = $.random(0, 255);
+            b = $.random(0, 255);
+
+            hex = "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+
+            return colorType === "hex" ? hex : this.toColor(hex, colorType, alpha);
+        },
+
+        parse: function(color){
+            var _color = color.toLowerCase().trim();
+
+            var a = _color
+                .replace(/[^\d.,]/g, "")
+                .split(",")
+                .map(function(v) {
+                    return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
+                });
+
+            if (_color[0] === "#") {
+                return this.expandHexColor(_color);
+            }
+
+            if (_color.indexOf("rgba") === 0 && a.length === 4) {
+                return new RGBA(a[0], a[1], a[2], a[3]);
+            }
+            if (_color.indexOf("rgb") === 0 && a.length === 3) {
+                return new RGB(a[0], a[1], a[2]);
+            }
+            if (_color.indexOf("cmyk") === 0 && a.length === 4) {
+                return new CMYK(a[0], a[1], a[2], a[3]);
+            }
+            if (_color.indexOf("hsv") === 0 && a.length === 3) {
+                return new HSV(a[0], a[1], a[2]);
+            }
+            if (_color.indexOf("hsla") === 0 && a.length === 4) {
+                return new HSLA(a[0], a[1], a[2], a[3]);
+            }
+            if (_color.indexOf("hsl")  === 0 && a.length === 3) {
+                return new HSL(a[0], a[1], a[2]);
+            }
+            return undefined;
+        },
+
+        createColor: function(colorType, from){
+            colorType = colorType || "hex";
+            from = from || "#000000";
+
+            var baseColor;
+
+            if (typeof from === "string") {
+                baseColor = this.parse(from);
+            }
+
+            if (!this.isColor(baseColor)) {
+                baseColor = "#000000";
+            }
+
+            return this.toColor(baseColor, colorType.toLowerCase());
+        },
+
+        isDark: function(color){
+            if (!this.isColor(color)) return;
+            var rgb = this.toRGB(color);
+            var YIQ = (rgb.r * 299 + rgb.g * 587 + rgb.b * 114) / 1000;
+            return YIQ < 128;
+        },
+
+        isLight: function(color){
+            return !this.isDark(color);
+        },
+
+        isHSV: function(color){
+            return color instanceof HSV;
+        },
+
+        isHSL: function(color){
+            return color instanceof HSL;
+        },
+
+        isHSLA: function(color){
+            return color instanceof HSLA;
+        },
+
+        isRGB: function(color){
+            return color instanceof RGB;
+        },
+
+        isRGBA: function(color){
+            return color instanceof RGBA;
+        },
+
+        isCMYK: function(color){
+            return color instanceof CMYK;
+        },
+
+        isHEX: function(color){
+            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
+        },
+
+        isColor: function(color){
+            return !color
+                ? false
+                : this.isHEX(color) ||
+                  this.isRGB(color) ||
+                  this.isRGBA(color) ||
+                  this.isHSV(color) ||
+                  this.isHSL(color) ||
+                  this.isHSLA(color) ||
+                  this.isCMYK(color);
+        },
+
+        check: function(color, type){
+            if (!this["is"+type.toUpperCase()](color)) {
+                throw new Error("Value is not a " + type + " color type!");
+            }
+        },
+
+        colorType: function(color){
+            if (this.isHEX(color)) return Types.HEX;
+            if (this.isRGB(color)) return Types.RGB;
+            if (this.isRGBA(color)) return Types.RGBA;
+            if (this.isHSV(color)) return Types.HSV;
+            if (this.isHSL(color)) return Types.HSL;
+            if (this.isHSLA(color)) return Types.HSLA;
+            if (this.isCMYK(color)) return Types.CMYK;
+
+            return Types.UNKNOWN;
+        },
+
+        equal: function(color1, color2){
+            if (!this.isColor(color1) || !this.isColor(color2)) {
+                return false;
+            }
+
+            return this.toHEX(color1) === this.toHEX(color2);
+        },
+
+        colorToString: function(color){
+            return color.toString();
+        },
+
+        hex2rgb: function(color){
+            if (typeof color !== "string") {
+                throw new Error("Value is not a string!")
+            }
+            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(
+                this.expandHexColor(color)
+            );
+            var rgb = [
+                parseInt(result[1], 16),
+                parseInt(result[2], 16),
+                parseInt(result[3], 16)
+            ];
+            return result ? new RGB(rgb[0], rgb[1], rgb[2]) : null;
+        },
+
+        rgb2hex: function(color){
+            this.check(color, "rgb");
+            return (
+                "#" +
+                ((1 << 24) + (color.r << 16) + (color.g << 8) + color.b).toString(16).slice(1)
+            );
+        },
+
+        rgb2hsv: function(color){
+            this.check(color, "rgb");
+            var hsv = new HSV();
+            var h, s, v;
+            var r = color.r / 255,
+                g = color.g / 255,
+                b = color.b / 255;
+
+            var max = Math.max(r, g, b);
+            var min = Math.min(r, g, b);
+            var delta = max - min;
+
+            v = max;
+
+            if (max === 0) {
+                s = 0;
+            } else {
+                s = 1 - min / max;
+            }
+
+            if (max === min) {
+                h = 0;
+            } else if (max === r && g >= b) {
+                h = 60 * ((g - b) / delta);
+            } else if (max === r && g < b) {
+                h = 60 * ((g - b) / delta) + 360;
+            } else if (max === g) {
+                h = 60 * ((b - r) / delta) + 120;
+            } else if (max === b) {
+                h = 60 * ((r - g) / delta) + 240;
+            } else {
+                h = 0;
+            }
+
+            hsv.h = h;
+            hsv.s = s;
+            hsv.v = v;
+
+            return hsv;
+        },
+
+        hsv2rgb: function(color){
+            this.check(color, "hsv");
+            var r, g, b;
+            var h = color.h,
+                s = color.s * 100,
+                v = color.v * 100;
+            var Hi = Math.floor(h / 60);
+            var Vmin = ((100 - s) * v) / 100;
+            var alpha = (v - Vmin) * ((h % 60) / 60);
+            var Vinc = Vmin + alpha;
+            var Vdec = v - alpha;
+
+            switch (Hi) {
+                case 0:
+                    r = v;
+                    g = Vinc;
+                    b = Vmin;
+                    break;
+                case 1:
+                    r = Vdec;
+                    g = v;
+                    b = Vmin;
+                    break;
+                case 2:
+                    r = Vmin;
+                    g = v;
+                    b = Vinc;
+                    break;
+                case 3:
+                    r = Vmin;
+                    g = Vdec;
+                    b = v;
+                    break;
+                case 4:
+                    r = Vinc;
+                    g = Vmin;
+                    b = v;
+                    break;
+                case 5:
+                    r = v;
+                    g = Vmin;
+                    b = Vdec;
+                    break;
+            }
+
+            return new RGB(
+                Math.round((r * 255) / 100),
+                Math.round((g * 255) / 100),
+                Math.round((b * 255) / 100)
+            );
+        },
+
+        hsv2hex: function(color){
+            this.check(color, "hsv");
+            return this.rgb2hex(this.hsv2rgb(color));
+        },
+
+        hex2hsv: function(color){
+            this.check(color, "hex");
+            return this.rgb2hsv(this.hex2rgb(color));
+        },
+
+        rgb2cmyk: function(color){
+            this.check(color, "rgb");
+            var cmyk = new CMYK();
+
+            var r = color.r / 255;
+            var g = color.g / 255;
+            var b = color.b / 255;
+
+            cmyk.k = Math.min(1 - r, 1 - g, 1 - b);
+
+            cmyk.c = 1 - cmyk.k === 0 ? 0 : (1 - r - cmyk.k) / (1 - cmyk.k);
+            cmyk.m = 1 - cmyk.k === 0 ? 0 : (1 - g - cmyk.k) / (1 - cmyk.k);
+            cmyk.y = 1 - cmyk.k === 0 ? 0 : (1 - b - cmyk.k) / (1 - cmyk.k);
+
+            cmyk.c = Math.round(cmyk.c * 100);
+            cmyk.m = Math.round(cmyk.m * 100);
+            cmyk.y = Math.round(cmyk.y * 100);
+            cmyk.k = Math.round(cmyk.k * 100);
+
+            return cmyk;
+        },
+
+        cmyk2rgb: function(color){
+            this.check(color, "cmyk");
+            var r = Math.floor(255 * (1 - color.c / 100) * (1 - color.k / 100));
+            var g = Math.ceil(255 * (1 - color.m / 100) * (1 - color.k / 100));
+            var b = Math.ceil(255 * (1 - color.y / 100) * (1 - color.k / 100));
+
+            return new RGB(r, g, b);
+        },
+
+        hsv2hsl: function(color){
+            this.check(color, "hsv");
+            var h, s, l, d;
+            h = color.h;
+            l = (2 - color.s) * color.v;
+            s = color.s * color.v;
+            if (l === 0) {
+                s = 0;
+            } else {
+                d = l <= 1 ? l : 2 - l;
+                if (d === 0) {
+                    s = 0;
+                } else {
+                    s /= d;
+                }
+            }
+            l /= 2;
+            return new HSL(h, s, l);
+        },
+
+        hsl2hsv: function(color){
+            this.check(color, "hsl");
+            var h, s, v, l;
+            h = color.h;
+            l = color.l * 2;
+            s = color.s * (l <= 1 ? l : 2 - l);
+
+            v = (l + s) / 2;
+
+            if (l + s === 0) {
+                s = 0;
+            } else {
+                s = (2 * s) / (l + s);
+            }
+
+            return new HSV(h, s, v);
+        },
+
+        rgb2websafe: function(color){
+            this.check(color, "rgb");
+            return new RGB(
+                Math.round(color.r / 51) * 51,
+                Math.round(color.g / 51) * 51,
+                Math.round(color.b / 51) * 51
+            );
+        },
+
+        rgba2websafe: function(color){
+            this.check(color, "rgba");
+            var rgbWebSafe = this.rgb2websafe(color);
+            return new RGBA(rgbWebSafe.r, rgbWebSafe.g, rgbWebSafe.b, color.a);
+        },
+
+        hex2websafe: function(color){
+            this.check(color, "hex");
+            return this.rgb2hex(this.rgb2websafe(this.hex2rgb(color)));
+        },
+
+        hsv2websafe: function(color){
+            this.check(color, "hsv");
+            return this.rgb2hsv(this.rgb2websafe(this.toRGB(color)));
+        },
+
+        hsl2websafe: function(color){
+           this.check(color, "hsl");
+            return this.hsv2hsl(this.rgb2hsv(this.rgb2websafe(this.toRGB(color))));
+        },
+
+        cmyk2websafe: function(color){
+            this.check(color, "cmyk");
+            return this.rgb2cmyk(this.rgb2websafe(this.cmyk2rgb(color)));
+        },
+
+        websafe: function(color){
+            if (this.isHEX(color)) return this.hex2websafe(color);
+            if (this.isRGB(color)) return this.rgb2websafe(color);
+            if (this.isRGBA(color)) return this.rgba2websafe(color);
+            if (this.isHSV(color)) return this.hsv2websafe(color);
+            if (this.isHSL(color)) return this.hsl2websafe(color);
+            if (this.isCMYK(color)) return this.cmyk2websafe(color);
+
+            return color;
+        },
+
+        toColor: function(color, type, alpha){
+            var result;
+            switch (type.toLowerCase()) {
+                case "hex":
+                    result = this.toHEX(color);
+                    break;
+                case "rgb":
+                    result = this.toRGB(color);
+                    break;
+                case "rgba":
+                    result = this.toRGBA(color, alpha);
+                    break;
+                case "hsl":
+                    result = this.toHSL(color);
+                    break;
+                case "hsla":
+                    result = this.toHSLA(color, alpha);
+                    break;
+                case "hsv":
+                    result = this.toHSV(color);
+                    break;
+                case "cmyk":
+                    result = this.toCMYK(color);
+                    break;
+                default:
+                    result = color;
+            }
+            return result;
+        },
+
+        toHEX: function(color){
+            return typeof color === "string"
+                ? this.expandHexColor(color)
+                : this.rgb2hex(this.toRGB(color));
+        },
+
+        toRGB: function(color){
+            if (this.isRGB(color)) return color;
+            if (this.isRGBA(color)) return new RGB(color.r, color.g, color.b);
+            if (this.isHSV(color)) return this.hsv2rgb(color);
+            if (this.isHSL(color)) return this.hsv2rgb(this.hsl2hsv(color));
+            if (this.isHSLA(color)) return this.hsv2rgb(this.hsl2hsv(color));
+            if (this.isHEX(color)) return this.hex2rgb(color);
+            if (this.isCMYK(color)) return this.cmyk2rgb(color);
+
+            throw new Error("Unknown color format!");
+        },
+
+        toRGBA: function(color, alpha){
+            if (this.isRGBA(color)) {
+                if (alpha) {
+                    color.a = alpha;
+                }
+                return color;
+            }
+            var rgb = this.toRGB(color);
+            return new RGBA(rgb.r, rgb.g, rgb.b, alpha);
+        },
+
+        toHSV: function(color){
+            return this.rgb2hsv(this.toRGB(color));
+        },
+
+        toHSL: function(color){
+            return this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
+        },
+
+        toHSLA: function(color, alpha){
+            if (this.isHSLA(color)) {
+                if (alpha) {
+                    color.a = alpha;
+                }
+                return color;
+            }
+            var hsla = this.hsv2hsl(this.rgb2hsv(this.toRGB(color)));
+            hsla.a = alpha;
+            return new HSLA(hsla.h, hsla.s, hsla.l, hsla.a);
+        },
+
+        toCMYK: function(color){
+            return this.rgb2cmyk(this.toRGB(color));
+        },
+
+        grayscale: function(color){
+            var rgb = this.toRGB(color);
+            var type = this.colorType(color).toLowerCase();
+            var gray = Math.round(rgb.r * 0.2125 + rgb.g * 0.7154 + rgb.b * 0.0721);
+            var mono = new RGB(gray, gray, gray);
+
+            return this.toColor(mono, type);
+        },
+
+        darken: function(color, amount){
+            amount = amount || 10;
+            return this.lighten(color, -1 * Math.abs(amount));
+        },
+
+        lighten: function(color, amount){
+            var type, res, alpha, ring;
+
+            amount = amount || 10;
+
+            var calc = function (_color, _amount) {
+                var r, g, b;
+                var col = _color.slice(1);
+
+                var num = parseInt(col, 16);
+                r = (num >> 16) + _amount;
+
+                if (r > 255) r = 255;
+                else if (r < 0) r = 0;
+
+                b = ((num >> 8) & 0x00ff) + _amount;
+
+                if (b > 255) b = 255;
+                else if (b < 0) b = 0;
+
+                g = (num & 0x0000ff) + _amount;
+
+                if (g > 255) g = 255;
+                else if (g < 0) g = 0;
+
+                return "#" + (g | (b << 8) | (r << 16)).toString(16);
+            };
+
+            ring = amount > 0;
+
+            type = this.colorType(color).toLowerCase();
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                alpha = color.a;
+            }
+
+            do {
+                res = calc(this.toHEX(color), amount);
+                ring ? amount-- : amount++;
+            } while (res.length < 7);
+
+            return this.toColor(res, type, alpha);
+        },
+
+        hueShift: function(color, hue, saturation, value){
+            var hsv = this.toHSV(color);
+            var type = this.colorType(color).toLowerCase();
+            var h = hsv.h;
+            var alpha;
+            var _h = hue || 0;
+            var _s = saturation || 0;
+            var _v = value || 0;
+
+            h += _h;
+            while (h >= 360.0) h -= 360.0;
+            while (h < 0.0) h += 360.0;
+            hsv.h = h;
+
+            hsv.s += _s;
+            if (hsv.s > 1) {hsv.s = 1;}
+            if (hsv.s < 0) {hsv.s = 0;}
+
+            hsv.v += _v;
+            if (hsv.v > 1) {hsv.v = 1;}
+            if (hsv.v < 0) {hsv.v = 0;}
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                alpha = color.a;
+            }
+
+            return this.toColor(hsv, type, alpha);
+        },
+
+        createScheme: function(color, name, format, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var i, scheme = [], hsv, rgb, h, s, v;
+            var self = this;
+
+            hsv = this.toHSV(color);
+            h = hsv.h;
+            s = hsv.s;
+            v = hsv.v;
+
+            if (this.isHSV(hsv) === false) {
+                console.warn("The value is a not supported color format!");
+                return false;
+            }
+
+            function convert(source, format) {
+                var result;
+                switch (format) {
+                    case "hex":
+                        result = source.map(function (v) {
+                            return self.toHEX(v);
+                        });
+                        break;
+                    case "rgb":
+                        result = source.map(function (v) {
+                            return self.toRGB(v);
+                        });
+                        break;
+                    case "rgba":
+                        result = source.map(function (v) {
+                            return self.toRGBA(v, opt.alpha);
+                        });
+                        break;
+                    case "hsl":
+                        result = source.map(function (v) {
+                            return self.toHSL(v);
+                        });
+                        break;
+                    case "hsla":
+                        result = source.map(function (v) {
+                            return self.toHSLA(v, opt.alpha);
+                        });
+                        break;
+                    case "cmyk":
+                        result = source.map(function (v) {
+                            return self.toCMYK(v);
+                        });
+                        break;
+                    default:
+                        result = source;
+                }
+
+                return result;
+            }
+
+            function clamp(num, min, max) {
+                return Math.max(min, Math.min(num, max));
+            }
+
+            function toRange(a, b, c) {
+                return a < b ? b : a > c ? c : a;
+            }
+
+            function shift(h, s) {
+                h += s;
+                while (h >= 360.0) h -= 360.0;
+                while (h < 0.0) h += 360.0;
+                return h;
+            }
+
+            switch (name) {
+                case "monochromatic":
+                case "mono":
+                    if (opt.algorithm === 1) {
+                        rgb = this.hsv2rgb(hsv);
+                        rgb.r = toRange(
+                            Math.round(rgb.r + (255 - rgb.r) * opt.tint1),
+                            0,
+                            255
+                        );
+                        rgb.g = toRange(
+                            Math.round(rgb.g + (255 - rgb.g) * opt.tint1),
+                            0,
+                            255
+                        );
+                        rgb.b = toRange(
+                            Math.round(rgb.b + (255 - rgb.b) * opt.tint1),
+                            0,
+                            255
+                        );
+                        scheme.push(this.rgb2hsv(rgb));
+
+                        rgb = this.hsv2rgb(hsv);
+                        rgb.r = toRange(
+                            Math.round(rgb.r + (255 - rgb.r) * opt.tint2),
+                            0,
+                            255
+                        );
+                        rgb.g = toRange(
+                            Math.round(rgb.g + (255 - rgb.g) * opt.tint2),
+                            0,
+                            255
+                        );
+                        rgb.b = toRange(
+                            Math.round(rgb.b + (255 - rgb.b) * opt.tint2),
+                            0,
+                            255
+                        );
+                        scheme.push(this.rgb2hsv(rgb));
+
+                        scheme.push(hsv);
+
+                        rgb = this.hsv2rgb(hsv);
+                        rgb.r = toRange(Math.round(rgb.r * opt.shade1), 0, 255);
+                        rgb.g = toRange(Math.round(rgb.g * opt.shade1), 0, 255);
+                        rgb.b = toRange(Math.round(rgb.b * opt.shade1), 0, 255);
+                        scheme.push(this.rgb2hsv(rgb));
+
+                        rgb = this.hsv2rgb(hsv);
+                        rgb.r = toRange(Math.round(rgb.r * opt.shade2), 0, 255);
+                        rgb.g = toRange(Math.round(rgb.g * opt.shade2), 0, 255);
+                        rgb.b = toRange(Math.round(rgb.b * opt.shade2), 0, 255);
+                        scheme.push(this.rgb2hsv(rgb));
+
+                    } else if (opt.algorithm === 2) {
+
+                        scheme.push(hsv);
+                        for (i = 1; i <= opt.distance; i++) {
+                            v = clamp(v - opt.step, 0, 1);
+                            s = clamp(s - opt.step, 0, 1);
+                            scheme.push(new HSV(h, s, v));
+                        }
+
+                    } else if (opt.algorithm === 3) {
+
+                        scheme.push(hsv);
+                        for (i = 1; i <= opt.distance; i++) {
+                            v = clamp(v - opt.step, 0, 1);
+                            scheme.push(new HSV(h, s, v));
+                        }
+
+                    } else {
+
+                        v = clamp(hsv.v + opt.step * 2, 0, 1);
+                        scheme.push(new HSV(h, s, v));
+
+                        v = clamp(hsv.v + opt.step, 0, 1);
+                        scheme.push(new HSV(h, s, v));
+
+                        scheme.push(hsv);
+                        s = hsv.s;
+                        v = hsv.v;
+
+                        v = clamp(hsv.v - opt.step, 0, 1);
+                        scheme.push(new HSV(h, s, v));
+
+                        v = clamp(hsv.v - opt.step * 2, 0, 1);
+                        scheme.push(new HSV(h, s, v));
+
+                    }
+                    break;
+
+                case "complementary":
+                case "complement":
+                case "comp":
+                    scheme.push(hsv);
+
+                    h = shift(hsv.h, 180.0);
+                    scheme.push(new HSV(h, s, v));
+                    break;
+
+                case "double-complementary":
+                case "double-complement":
+                case "double":
+                    scheme.push(hsv);
+
+                    h = shift(h, 180.0);
+                    scheme.push(new HSV(h, s, v));
+
+                    h = shift(h, opt.angle);
+                    scheme.push(new HSV(h, s, v));
+
+                    h = shift(h, 180.0);
+                    scheme.push(new HSV(h, s, v));
+
+                    break;
+
+                case "analogous":
+                case "analog":
+                    h = shift(h, opt.angle);
+                    scheme.push(new HSV(h, s, v));
+
+                    scheme.push(hsv);
+
+                    h = shift(hsv.h, 0.0 - opt.angle);
+                    scheme.push(new HSV(h, s, v));
+
+                    break;
+
+                case "triadic":
+                case "triad":
+                    scheme.push(hsv);
+                    for (i = 1; i < 3; i++) {
+                        h = shift(h, 120.0);
+                        scheme.push(new HSV(h, s, v));
+                    }
+                    break;
+
+                case "tetradic":
+                case "tetra":
+                    scheme.push(hsv);
+
+                    h = shift(hsv.h, 180.0);
+                    scheme.push(new HSV(h, s, v));
+
+                    h = shift(hsv.h, -1 * opt.angle);
+                    scheme.push(new HSV(h, s, v));
+
+                    h = shift(h, 180.0);
+                    scheme.push(new HSV(h, s, v));
+
+                    break;
+
+                case "square":
+                    scheme.push(hsv);
+                    for (i = 1; i < 4; i++) {
+                        h = shift(h, 90.0);
+                        scheme.push(new HSV(h, s, v));
+                    }
+                    break;
+
+                case "split-complementary":
+                case "split-complement":
+                case "split":
+                    h = shift(h, 180.0 - opt.angle);
+                    scheme.push(new HSV(h, s, v));
+
+                    scheme.push(hsv);
+
+                    h = shift(hsv.h, 180.0 + opt.angle);
+                    scheme.push(new HSV(h, s, v));
+                    break;
+
+                default:
+                    console.warn("Unknown scheme name");
+            }
+
+            return convert(scheme, format);
+        },
+
+        getScheme: function(){
+            return this.createScheme.apply(this, arguments)
+        },
+
+        mix: function(color1, color2, returnAs){
+            var c1 = this.toRGBA(color1);
+            var c2 = this.toRGBA(color2);
+            var result = new RGBA();
+            var to = (""+returnAs).toLowerCase() || "hex";
+
+            result.r = Math.round((c1.r + c2.r) / 2);
+            result.g = Math.round((c1.g + c2.g) / 2);
+            result.b = Math.round((c1.b + c2.b) / 2);
+            result.a = Math.round((c1.a + c2.a) / 2);
+
+            return this["to"+to.toUpperCase()](result);
+        }
+    };
+
+    var Color = function(color, options){
+        this._setValue(color);
+        this._setOptions(options);
+    }
+
+    Color.prototype = {
+        _setValue: function(color){
+            var _color;
+
+            if (typeof color === "string") {
+                _color = Colors.parse(color);
+            } else {
+                _color = color;
+            }
+
+            if (!Colors.isColor(_color)) {
+                _color = "#000000";
+            }
+
+            this._value = _color;
+            this._type = Colors.colorType(this._value);
+        },
+
+        _setOptions: function(options){
+            options = typeof options === "object" ? options : {};
+            this._options = $.extend({}, ColorsDefaultConfig, options);
+        },
+
+        getOptions: function(){
+            return this._options;
+        },
+
+        setOptions: function(options){
+            this._setOptions(options);
+        },
+
+        setValue: function(color){
+            this._setValue(color);
+        },
+
+        getValue: function(){
+            return this._value;
+        },
+
+        channel: function(ch, val){
+            var currentType = this._type.toUpperCase();
+
+            if (["red", "green", "blue"].indexOf(ch) > -1) {
+                this.toRGB();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+            if (ch === "alpha" && this._value.a) {
+                this._value.a = val;
+            }
+            if (["hue", "saturation", "value"].indexOf(ch) > -1) {
+                this.toHSV();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+            if (["lightness"].indexOf(ch) > -1) {
+                this.toHSL();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+            if (["cyan", "magenta", "yellow", "black"].indexOf(ch) > -1) {
+                this.toCMYK();
+                this._value[ch[0]] = val;
+                this["to"+currentType]();
+            }
+
+            return this;
+        },
+
+        channels: function(obj){
+            var that = this;
+
+            $.each(obj, function(key, val){
+                that.channel(key, val);
+            });
+
+            return this;
+        },
+
+        toRGB: function() {
+            this._value = Colors.toRGB(this._value);
+            this._type = Types.RGB;
+            return this;
+        },
+
+        rgb: function(){
+            return this._value ? new Color(Colors.toRGB(this._value)) : undefined;
+        },
+
+        toRGBA: function(alpha) {
+            if (Colors.isRGBA(this._value)) {
+                if (alpha) {
+                    this._value = Colors.toRGBA(this._value, alpha);
+                }
+            } else {
+                this._value = Colors.toRGBA(this._value, alpha);
+            }
+            this._type = Types.RGBA;
+            return this;
+        },
+
+        rgba: function(alpha) {
+            return this._value ? new Color(Colors.toRGBA(this._value, alpha)) : undefined;
+        },
+
+        toHEX: function() {
+            this._value = Colors.toHEX(this._value);
+            this._type = Types.HEX;
+            return this;
+        },
+
+        hex: function() {
+            return this._value ? new Color(Colors.toHEX(this._value)) : undefined;
+        },
+
+        toHSV: function() {
+            this._value = Colors.toHSV(this._value);
+            this._type = Types.HSV;
+            return this;
+        },
+
+        hsv: function() {
+            return this._value ? new Color(Colors.toHSV(this._value)) : undefined;
+        },
+
+        toHSL: function() {
+            this._value = Colors.toHSL(this._value);
+            this._type = Types.HSL;
+            return this;
+        },
+
+        hsl: function() {
+            return this._value ? new Color(Colors.toHSL(this._value)) : undefined;
+        },
+
+        toHSLA: function(alpha) {
+            if (Colors.isHSLA(this._value)) {
+                if (alpha) {
+                    this._value = Colors.toHSLA(this._value, alpha);
+                }
+            } else {
+                this._value = Colors.toHSLA(this._value, alpha);
+            }
+            this._type = Types.HSLA;
+            return this;
+        },
+
+        hsla: function(alpha) {
+            return this._value ? new Color(Colors.toHSLA(this._value, alpha)) : undefined;
+        },
+
+        toCMYK: function() {
+            this._value = Colors.toCMYK(this._value);
+            this._type = Types.CMYK;
+            return this;
+        },
+
+        cmyk: function() {
+            return this._value ? new Color(Colors.toCMYK(this._value)) : undefined;
+        },
+
+        toWebsafe: function() {
+            this._value = Colors.websafe(this._value);
+            this._type = Colors.colorType(this._value);
+            return this;
+        },
+
+        websafe: function() {
+            return this._value ? new Color(Colors.websafe(this._value)) : undefined;
+        },
+
+        toString: function() {
+            return this._value ? Colors.colorToString(this._value) : "undefined";
+        },
+
+        toDarken: function(amount) {
+            this._value = Colors.darken(this._value, amount);
+            return this;
+        },
+
+        darken: function(amount){
+            return new Color(Colors.darken(this._value, amount));
+        },
+
+        toLighten: function(amount) {
+            this._value = Colors.lighten(this._value, amount);
+            return this;
+        },
+
+        lighten: function(amount){
+            return new Color(Colors.lighten(this._value, amount))
+        },
+
+        isDark: function() {
+            return this._value ? Colors.isDark(this._value) : undefined;
+        },
+
+        isLight: function() {
+            return this._value ? Colors.isLight(this._value) : undefined;
+        },
+
+        toHueShift: function(hue, saturation, value) {
+            this._value = Colors.hueShift(this._value, hue, saturation, value);
+            return this;
+        },
+
+        hueShift: function (hue, saturation, value) {
+            return new Color(Colors.hueShift(this._value, hue, saturation, value));
+        },
+
+        toGrayscale: function() {
+            this._value = Colors.grayscale(this._value, this._type);
+            return this;
+        },
+
+        grayscale: function(){
+            return new Color(Colors.grayscale(this._value, this._type));
+        },
+
+        type: function() {
+            return Colors.colorType(this._value);
+        },
+
+        createScheme: function(name, format, options) {
+            return this._value
+                ? Colors.createScheme(this._value, name, format, options)
+                : undefined;
+        },
+
+        getScheme: function(){
+            return this.createScheme.apply(this, arguments);
+        },
+
+        equal: function(color) {
+            return Colors.equal(this._value, color);
+        },
+
+        toMix: function(color){
+            this._value = Colors.mix(this._value, color, this._type);
+            return this;
+        },
+
+        mix: function(color){
+            return new Color(Colors.mix(this._value, color, this._type));
+        }
+    }
+
+    Metro.colors = Colors.init();
+    window.Color = Metro.Color = Color;
+    window.ColorPrimitive = Metro.colorPrimitive = {
+        RGB: RGB,
+        RGBA: RGBA,
+        HSV: HSV,
+        HSL: HSL,
+        HSLA: HSLA,
+        CMYK: CMYK
+    };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Colors = Metro.colors;
+    }
+
+}(Metro, m4q));
+
+(function(Metro, $) {
+    'use strict';
     var Utils = Metro.utils;
     var cookieDisclaimerDefaults = {
         name: 'cookies_accepted',
@@ -16812,6 +16462,149 @@ $.noConflict = function() {
             }
         });
     });
+}(Metro, m4q));
+
+(function (Metro, $) {
+    'use strict';
+    var Utils = Metro.utils;
+    var Export = {
+
+        init: function () {
+            return this;
+        },
+
+        options: {
+            csvDelimiter: "\t",
+            csvNewLine: "\r\n",
+            includeHeader: true
+        },
+
+        setup: function (options) {
+            this.options = $.extend({}, this.options, options);
+            return this;
+        },
+
+        base64: function (data) {
+            return window.btoa(unescape(encodeURIComponent(data)));
+        },
+
+        b64toBlob: function (b64Data, contentType, sliceSize) {
+            contentType = contentType || '';
+            sliceSize = sliceSize || 512;
+
+            var byteCharacters = window.atob(b64Data);
+            var byteArrays = [];
+
+            var offset;
+            for (offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+                var slice = byteCharacters.slice(offset, offset + sliceSize);
+
+                var byteNumbers = new Array(slice.length);
+                var i;
+                for (i = 0; i < slice.length; i = i + 1) {
+                    byteNumbers[i] = slice.charCodeAt(i);
+                }
+
+                var byteArray = new window.Uint8Array(byteNumbers);
+
+                byteArrays.push(byteArray);
+            }
+
+            return new Blob(byteArrays, {
+                type: contentType
+            });
+        },
+
+        tableToCSV: function (table, filename, options) {
+            var o;
+            var body, head, data = "";
+            var i, j, row, cell;
+
+            o = $.extend({}, this.options, options);
+
+            table = $(table)[0];
+
+            if (Utils.bool(o.includeHeader)) {
+
+                head = table.querySelectorAll("thead")[0];
+
+                for (i = 0; i < head.rows.length; i++) {
+                    row = head.rows[i];
+                    for (j = 0; j < row.cells.length; j++) {
+                        cell = row.cells[j];
+                        data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+                    }
+                    data += o.csvNewLine;
+                }
+            }
+
+            body = table.querySelectorAll("tbody")[0];
+
+            for (i = 0; i < body.rows.length; i++) {
+                row = body.rows[i];
+                for (j = 0; j < row.cells.length; j++) {
+                    cell = row.cells[j];
+                    data += (j ? o.csvDelimiter : '') + cell.textContent.trim();
+                }
+                data += o.csvNewLine;
+            }
+
+            if (Utils.isValue(filename)) {
+                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
+            }
+
+            return data;
+        },
+
+        createDownload: function (data, contentType, filename) {
+            var blob, anchor, url;
+
+            anchor = document.createElement('a');
+            anchor.style.display = "none";
+            document.body.appendChild(anchor);
+
+            blob = this.b64toBlob(data, contentType);
+
+            url = window.URL.createObjectURL(blob);
+            anchor.href = url;
+            anchor.download = filename || Utils.elementId("download");
+            anchor.click();
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(anchor);
+            return true;
+        },
+
+        arrayToCsv: function(array, filename, options){
+            var o, data = "", i, row;
+
+            o = $.extend({}, this.options, options);
+
+            for (i = 0; i < array.length; i++) {
+                row = array[i];
+
+                if (typeof row !== "object") {
+                    data += row + o.csvNewLine;
+                } else {
+                    $.each(row, function(key, val){
+                        data += (key ? o.csvDelimiter : '') + val.toString();
+                    });
+                    data += o.csvNewLine;
+                }
+            }
+
+            if (Utils.isValue(filename)) {
+                return this.createDownload(this.base64("\uFEFF" + data), 'application/csv', filename);
+            }
+
+            return data;
+        }
+    };
+
+    Metro.export = Export.init();
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.Export = Metro.export;
+    }
 }(Metro, m4q));
 
 (function(Metro, $) {
@@ -21840,6 +21633,213 @@ $.noConflict = function() {
             return element;
         }
     });
+}(Metro, m4q));
+
+(function(Metro) {
+    'use strict';
+    Metro.md5 = function (string) {
+        function RotateLeft(lValue, iShiftBits) {
+            return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
+        }
+
+        function AddUnsigned(lX,lY) {
+            var lX4,lY4,lX8,lY8,lResult;
+            lX8 = (lX & 0x80000000);
+            lY8 = (lY & 0x80000000);
+            lX4 = (lX & 0x40000000);
+            lY4 = (lY & 0x40000000);
+            lResult = (lX & 0x3FFFFFFF)+(lY & 0x3FFFFFFF);
+            if (lX4 & lY4) {
+                return (lResult ^ 0x80000000 ^ lX8 ^ lY8);
+            }
+            if (lX4 | lY4) {
+                if (lResult & 0x40000000) {
+                    return (lResult ^ 0xC0000000 ^ lX8 ^ lY8);
+                } else {
+                    return (lResult ^ 0x40000000 ^ lX8 ^ lY8);
+                }
+            } else {
+                return (lResult ^ lX8 ^ lY8);
+            }
+        }
+
+        function F(x,y,z) { return (x & y) | ((~x) & z); }
+        function G(x,y,z) { return (x & z) | (y & (~z)); }
+        function H(x,y,z) { return (x ^ y ^ z); }
+        function I(x,y,z) { return (y ^ (x | (~z))); }
+
+        function FF(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
+
+        function GG(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
+
+        function HH(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
+
+        function II(a,b,c,d,x,s,ac) {
+            a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
+            return AddUnsigned(RotateLeft(a, s), b);
+        }
+
+        function ConvertToWordArray(string) {
+            var lWordCount;
+            var lMessageLength = string.length;
+            var lNumberOfWords_temp1=lMessageLength + 8;
+            var lNumberOfWords_temp2=(lNumberOfWords_temp1-(lNumberOfWords_temp1 % 64))/64;
+            var lNumberOfWords = (lNumberOfWords_temp2+1)*16;
+            var lWordArray=Array(lNumberOfWords-1);
+            var lBytePosition = 0;
+            var lByteCount = 0;
+            while ( lByteCount < lMessageLength ) {
+                lWordCount = (lByteCount-(lByteCount % 4))/4;
+                lBytePosition = (lByteCount % 4)*8;
+                lWordArray[lWordCount] = (lWordArray[lWordCount] | (string.charCodeAt(lByteCount)<<lBytePosition));
+                lByteCount++;
+            }
+            lWordCount = (lByteCount-(lByteCount % 4))/4;
+            lBytePosition = (lByteCount % 4)*8;
+            lWordArray[lWordCount] = lWordArray[lWordCount] | (0x80<<lBytePosition);
+            lWordArray[lNumberOfWords-2] = lMessageLength<<3;
+            lWordArray[lNumberOfWords-1] = lMessageLength>>>29;
+            return lWordArray;
+        }
+
+        function WordToHex(lValue) {
+            var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
+            for (lCount = 0;lCount<=3;lCount++) {
+                lByte = (lValue>>>(lCount*8)) & 255;
+                WordToHexValue_temp = "0" + lByte.toString(16);
+                WordToHexValue = WordToHexValue + WordToHexValue_temp.substr(WordToHexValue_temp.length-2,2);
+            }
+            return WordToHexValue;
+        }
+
+        function Utf8Encode(string) {
+            string = string.replace(/\r\n/g,"\n");
+            var utftext = "";
+
+            for (var n = 0; n < string.length; n++) {
+
+                var c = string.charCodeAt(n);
+
+                if (c < 128) {
+                    utftext += String.fromCharCode(c);
+                }
+                else if((c > 127) && (c < 2048)) {
+                    utftext += String.fromCharCode((c >> 6) | 192);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
+                else {
+                    utftext += String.fromCharCode((c >> 12) | 224);
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);
+                    utftext += String.fromCharCode((c & 63) | 128);
+                }
+
+            }
+
+            return utftext;
+        }
+
+        var x=[];
+        var k,AA,BB,CC,DD,a,b,c,d;
+        var S11=7, S12=12, S13=17, S14=22;
+        var S21=5, S22=9 , S23=14, S24=20;
+        var S31=4, S32=11, S33=16, S34=23;
+        var S41=6, S42=10, S43=15, S44=21;
+
+        string = Utf8Encode(string);
+
+        x = ConvertToWordArray(string);
+
+        a = 0x67452301; b = 0xEFCDAB89; c = 0x98BADCFE; d = 0x10325476;
+
+        for (k=0;k<x.length;k+=16) {
+            AA=a; BB=b; CC=c; DD=d;
+            a=FF(a,b,c,d,x[k], S11,0xD76AA478);
+            d=FF(d,a,b,c,x[k+1], S12,0xE8C7B756);
+            c=FF(c,d,a,b,x[k+2], S13,0x242070DB);
+            b=FF(b,c,d,a,x[k+3], S14,0xC1BDCEEE);
+            a=FF(a,b,c,d,x[k+4], S11,0xF57C0FAF);
+            d=FF(d,a,b,c,x[k+5], S12,0x4787C62A);
+            c=FF(c,d,a,b,x[k+6], S13,0xA8304613);
+            b=FF(b,c,d,a,x[k+7], S14,0xFD469501);
+            a=FF(a,b,c,d,x[k+8], S11,0x698098D8);
+            d=FF(d,a,b,c,x[k+9], S12,0x8B44F7AF);
+            c=FF(c,d,a,b,x[k+10],S13,0xFFFF5BB1);
+            b=FF(b,c,d,a,x[k+11],S14,0x895CD7BE);
+            a=FF(a,b,c,d,x[k+12],S11,0x6B901122);
+            d=FF(d,a,b,c,x[k+13],S12,0xFD987193);
+            c=FF(c,d,a,b,x[k+14],S13,0xA679438E);
+            b=FF(b,c,d,a,x[k+15],S14,0x49B40821);
+            a=GG(a,b,c,d,x[k+1], S21,0xF61E2562);
+            d=GG(d,a,b,c,x[k+6], S22,0xC040B340);
+            c=GG(c,d,a,b,x[k+11],S23,0x265E5A51);
+            b=GG(b,c,d,a,x[k], S24,0xE9B6C7AA);
+            a=GG(a,b,c,d,x[k+5], S21,0xD62F105D);
+            d=GG(d,a,b,c,x[k+10],S22,0x2441453);
+            c=GG(c,d,a,b,x[k+15],S23,0xD8A1E681);
+            b=GG(b,c,d,a,x[k+4], S24,0xE7D3FBC8);
+            a=GG(a,b,c,d,x[k+9], S21,0x21E1CDE6);
+            d=GG(d,a,b,c,x[k+14],S22,0xC33707D6);
+            c=GG(c,d,a,b,x[k+3], S23,0xF4D50D87);
+            b=GG(b,c,d,a,x[k+8], S24,0x455A14ED);
+            a=GG(a,b,c,d,x[k+13],S21,0xA9E3E905);
+            d=GG(d,a,b,c,x[k+2], S22,0xFCEFA3F8);
+            c=GG(c,d,a,b,x[k+7], S23,0x676F02D9);
+            b=GG(b,c,d,a,x[k+12],S24,0x8D2A4C8A);
+            a=HH(a,b,c,d,x[k+5], S31,0xFFFA3942);
+            d=HH(d,a,b,c,x[k+8], S32,0x8771F681);
+            c=HH(c,d,a,b,x[k+11],S33,0x6D9D6122);
+            b=HH(b,c,d,a,x[k+14],S34,0xFDE5380C);
+            a=HH(a,b,c,d,x[k+1], S31,0xA4BEEA44);
+            d=HH(d,a,b,c,x[k+4], S32,0x4BDECFA9);
+            c=HH(c,d,a,b,x[k+7], S33,0xF6BB4B60);
+            b=HH(b,c,d,a,x[k+10],S34,0xBEBFBC70);
+            a=HH(a,b,c,d,x[k+13],S31,0x289B7EC6);
+            d=HH(d,a,b,c,x[k], S32,0xEAA127FA);
+            c=HH(c,d,a,b,x[k+3], S33,0xD4EF3085);
+            b=HH(b,c,d,a,x[k+6], S34,0x4881D05);
+            a=HH(a,b,c,d,x[k+9], S31,0xD9D4D039);
+            d=HH(d,a,b,c,x[k+12],S32,0xE6DB99E5);
+            c=HH(c,d,a,b,x[k+15],S33,0x1FA27CF8);
+            b=HH(b,c,d,a,x[k+2], S34,0xC4AC5665);
+            a=II(a,b,c,d,x[k], S41,0xF4292244);
+            d=II(d,a,b,c,x[k+7], S42,0x432AFF97);
+            c=II(c,d,a,b,x[k+14],S43,0xAB9423A7);
+            b=II(b,c,d,a,x[k+5], S44,0xFC93A039);
+            a=II(a,b,c,d,x[k+12],S41,0x655B59C3);
+            d=II(d,a,b,c,x[k+3], S42,0x8F0CCC92);
+            c=II(c,d,a,b,x[k+10],S43,0xFFEFF47D);
+            b=II(b,c,d,a,x[k+1], S44,0x85845DD1);
+            a=II(a,b,c,d,x[k+8], S41,0x6FA87E4F);
+            d=II(d,a,b,c,x[k+15],S42,0xFE2CE6E0);
+            c=II(c,d,a,b,x[k+6], S43,0xA3014314);
+            b=II(b,c,d,a,x[k+13],S44,0x4E0811A1);
+            a=II(a,b,c,d,x[k+4], S41,0xF7537E82);
+            d=II(d,a,b,c,x[k+11],S42,0xBD3AF235);
+            c=II(c,d,a,b,x[k+2], S43,0x2AD7D2BB);
+            b=II(b,c,d,a,x[k+9], S44,0xEB86D391);
+            a=AddUnsigned(a,AA);
+            b=AddUnsigned(b,BB);
+            c=AddUnsigned(c,CC);
+            d=AddUnsigned(d,DD);
+        }
+
+        var temp = WordToHex(a)+WordToHex(b)+WordToHex(c)+WordToHex(d);
+
+        return temp.toLowerCase();
+    };
+
+    if (window.METRO_GLOBAL_COMMON === true) {
+        window.md5 = Metro.md5;
+    }
 }(Metro, m4q));
 
 (function(Metro, $) {
