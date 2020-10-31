@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 31/10/2020 16:28:04
+ * Built at 31/10/2020 19:20:24
  * Licensed under GPL3
  */
 *,
@@ -20415,6 +20415,116 @@ pre code {
   width: 32px;
   height: 32px;
 }
+.activity-atom {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  -webkit-perspective: 800px;
+          perspective: 800px;
+}
+.activity-atom span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.activity-atom span:nth-child(1) {
+  left: 0;
+  top: 0;
+  -webkit-animation: rotate-one 1s linear infinite;
+          animation: rotate-one 1s linear infinite;
+  border-bottom: 3px solid;
+  border-bottom-color: #ffffff;
+}
+.activity-atom span:nth-child(2) {
+  right: 0;
+  top: 0;
+  -webkit-animation: rotate-two 1s linear infinite;
+          animation: rotate-two 1s linear infinite;
+  border-right: 3px solid;
+  border-right-color: #ffffff;
+}
+.activity-atom span:nth-child(3) {
+  right: 0;
+  bottom: 0;
+  -webkit-animation: rotate-three 1s linear infinite;
+          animation: rotate-three 1s linear infinite;
+  border-top: 3px solid;
+  border-top-color: #ffffff;
+}
+.activity-atom.dark-style span:nth-child(1) {
+  border-bottom-color: #1d1d1d;
+}
+.activity-atom.dark-style span:nth-child(2) {
+  border-right-color: #1d1d1d;
+}
+.activity-atom.dark-style span:nth-child(3) {
+  border-top-color: #1d1d1d;
+}
+.activity-atom.color-style span:nth-child(1) {
+  border-bottom-color: #1ba1e2;
+}
+.activity-atom.color-style span:nth-child(2) {
+  border-right-color: #CE352C;
+}
+.activity-atom.color-style span:nth-child(3) {
+  border-top-color: #fff000;
+}
+.activity-bars {
+  width: 60px;
+  height: 50px;
+}
+.activity-bars span {
+  height: 100%;
+  width: 8px;
+  display: inline-block;
+  float: left;
+  margin-left: 2px;
+  -webkit-animation: bars 0.8s infinite ease-in-out;
+          animation: bars 0.8s infinite ease-in-out;
+  background-color: white;
+}
+.activity-bars span:nth-child(2) {
+  -webkit-animation-delay: -0.7s;
+          animation-delay: -0.7s;
+}
+.activity-bars span:nth-child(3) {
+  -webkit-animation-delay: -0.6s;
+          animation-delay: -0.6s;
+}
+.activity-bars span:nth-child(4) {
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+.activity-bars span:nth-child(5) {
+  -webkit-animation-delay: -0.4s;
+          animation-delay: -0.4s;
+}
+.activity-bars span:nth-child(6) {
+  -webkit-animation-delay: -0.3s;
+          animation-delay: -0.3s;
+}
+.activity-bars.dark-style span {
+  background-color: #1d1d1d;
+}
+.activity-bars.color-style span:nth-child(1) {
+  background-color: #aa00ff;
+}
+.activity-bars.color-style span:nth-child(2) {
+  background-color: #1ba1e2;
+}
+.activity-bars.color-style span:nth-child(3) {
+  background-color: #60a917;
+}
+.activity-bars.color-style span:nth-child(4) {
+  background-color: #fff000;
+}
+.activity-bars.color-style span:nth-child(5) {
+  background-color: #fa6800;
+}
+.activity-bars.color-style span:nth-child(6) {
+  background-color: #dc4fad;
+}
 @-webkit-keyframes rotate {
   100% {
     -webkit-transform: rotate(360deg);
@@ -20485,6 +20595,90 @@ pre code {
   80%,
   90% {
     stroke: #fff000;
+  }
+}
+@-webkit-keyframes rotate-one {
+  0% {
+    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate-one {
+  0% {
+    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+            transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+@-webkit-keyframes rotate-two {
+  0% {
+    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate-two {
+  0% {
+    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+            transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+@-webkit-keyframes rotate-three {
+  0% {
+    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+@keyframes rotate-three {
+  0% {
+    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+            transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
+@-webkit-keyframes bars {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.05);
+            transform: scaleY(0.05);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
+  }
+}
+@keyframes bars {
+  0%,
+  40%,
+  100% {
+    -webkit-transform: scaleY(0.05);
+            transform: scaleY(0.05);
+  }
+  20% {
+    -webkit-transform: scaleY(1);
+            transform: scaleY(1);
   }
 }
 .app-bar {

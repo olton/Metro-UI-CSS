@@ -1,7 +1,7 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
+
     var GravatarDefaultConfig = {
         gravatarDeferred: 0,
         email: "",
@@ -49,7 +49,7 @@
             }
 
             size = size || 80;
-            def = Utils.encodeURI(def) || '404';
+            def = Metro.utils.encodeURI(def) || '404';
 
             return "//www.gravatar.com/avatar/" + Metro.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
         },

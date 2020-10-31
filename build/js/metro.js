@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 31/10/2020 16:28:04
+ * Built at 31/10/2020 19:20:24
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "31/10/2020 16:28:04",
+        compileTime: "31/10/2020 19:20:24",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7134,11 +7134,25 @@ $.noConflict = function() {
                 $('<svg class="circular"><circle class="path" cx="'+o.size/2+'" cy="'+o.size/2+'" r="'+o.radius+'" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>').appendTo(element);
             }
 
+            function _atom(){
+                for(i = 0; i < 3 ; i++) {
+                    $("<span/>").addClass('electron').appendTo(element);
+                }
+            }
+
+            function _bars(){
+                for(i = 0; i < 6 ; i++) {
+                    $("<span/>").addClass('bar').appendTo(element);
+                }
+            }
+
             switch (o.type) {
                 case 'metro': _metro(); break;
                 case 'square': _square(); break;
                 case 'cycle': _cycle(); break;
                 case 'simple': _simple(); break;
+                case 'atom': _atom(); break;
+                case 'bars': _bars(); break;
                 default: _ring();
             }
 
@@ -7649,7 +7663,7 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
-    //var Colors = Metro.colors;
+
     var Utils = Metro.utils;
     var AppBarDefaultConfig = {
         appbarDeferred: 0,
@@ -16964,7 +16978,7 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
+
     var GravatarDefaultConfig = {
         gravatarDeferred: 0,
         email: "",
@@ -17012,7 +17026,7 @@ $.noConflict = function() {
             }
 
             size = size || 80;
-            def = Utils.encodeURI(def) || '404';
+            def = Metro.utils.encodeURI(def) || '404';
 
             return "//www.gravatar.com/avatar/" + Metro.md5((email.toLowerCase()).trim()) + '?size=' + size + '&d=' + def;
         },
@@ -27513,8 +27527,8 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+
     var Utils = Metro.utils;
-    var Export = Metro.export;
     var TableDefaultConfig = {
         tableDeferred: 0,
         emptyTableTitle: "Nothing to show",
@@ -29576,6 +29590,7 @@ $.noConflict = function() {
         },
 
         export: function(to, mode, filename, options){
+            var Export = Metro.export;
             var that = this, o = this.options;
             var table = document.createElement("table");
             var head = $("<thead>").appendTo(table);
@@ -29943,8 +29958,8 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+
     var Utils = Metro.utils;
-    // var Colors = Metro.colors;
     var TabsDefaultConfig = {
         tabsDeferred: 0,
         expand: false,
@@ -30219,7 +30234,7 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
-    //var Colors = Metro.colors;
+
     var Utils = Metro.utils;
     var TagInputDefaultConfig = {
         label: "",
@@ -33520,8 +33535,8 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
+
     var Utils = Metro.utils;
-    //var Colors = Metro.colors;
     var ValidatorFuncs = {
         required: function(val){
             if (Array.isArray(val)) {

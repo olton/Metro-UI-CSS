@@ -1,7 +1,7 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
-    //var Colors = Metro.colors;
+
     var Utils = Metro.utils;
     var AppBarDefaultConfig = {
         appbarDeferred: 0,
