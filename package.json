@@ -32,7 +32,7 @@
   "scripts": {
     "build": "npm install && grunt",
     "cy:test": "cypress open",
-    "cy:run": "cypress run --quiet",
+    "cy:run": "cypress run",
     "start": "http-server ./tests -c-1 -s",
     "test": "start-server-and-test start http://localhost:8080 cy:run"
   },
