@@ -11,6 +11,8 @@
 + [x] Button: added a button with loading state.
 + [x] Color: improved method `parse()`.
 + [x] Validator: improved validating function `color`, now you can use any color string format: rgb, hex, ...
++ [x] Default icons: optimized styles 
++ [x] Media players: optimized default icons 
 
 ### 4.4.1
 #### M4Q
