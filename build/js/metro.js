@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 31/10/2020 16:19:03
+ * Built at 31/10/2020 16:28:04
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "31/10/2020 16:19:03",
+        compileTime: "31/10/2020 16:28:04",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29944,7 +29944,7 @@ $.noConflict = function() {
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var Colors = Metro.colors;
+    // var Colors = Metro.colors;
     var TabsDefaultConfig = {
         tabsDeferred: 0,
         expand: false,
@@ -30021,7 +30021,7 @@ $.noConflict = function() {
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(container, "background-color"))) === true) {
+                if (Metro.colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(container, "background-color"))) === true) {
                     hamburger.addClass("dark");
                 }
             }
@@ -30219,7 +30219,7 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
-    var Colors = Metro.colors;
+    //var Colors = Metro.colors;
     var Utils = Metro.utils;
     var TagInputDefaultConfig = {
         label: "",
@@ -30460,11 +30460,11 @@ $.noConflict = function() {
             remover.appendTo(tag);
 
             if (o.randomColor === true) {
-                var colors = Colors.colors(Colors.PALETTES.ALL), bg, fg, bg_r;
+                var colors = Metro.colors.colors(Metro.colors.PALETTES.ALL), bg, fg, bg_r;
 
                 bg = colors[$.random(0, colors.length - 1)];
-                bg_r = Colors.darken(bg, 15);
-                fg = Colors.isDark(bg) ? "#ffffff" : "#000000";
+                bg_r = Metro.colors.darken(bg, 15);
+                fg = Metro.colors.isDark(bg) ? "#ffffff" : "#000000";
 
                 tag.css({
                     backgroundColor: bg,
@@ -33521,7 +33521,7 @@ $.noConflict = function() {
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var Colors = Metro.colors;
+    //var Colors = Metro.colors;
     var ValidatorFuncs = {
         required: function(val){
             if (Array.isArray(val)) {
@@ -33612,7 +33612,7 @@ $.noConflict = function() {
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
-            return Colors.color(val, Colors.PALETTES.STANDARD) !== false || Colors.isColor(Colors.parse(val));
+            return Metro.colors.color(val, Metro.colors.PALETTES.STANDARD) !== false || Metro.colors.isColor(Metro.colors.parse(val));
         },
         pattern: function(val, pat){
             if (!Utils.isValue(val)) return false;

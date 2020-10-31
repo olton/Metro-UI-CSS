@@ -2,7 +2,7 @@
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var Colors = Metro.colors;
+    //var Colors = Metro.colors;
     var ValidatorFuncs = {
         required: function(val){
             if (Array.isArray(val)) {
@@ -93,7 +93,7 @@
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
-            return Colors.color(val, Colors.PALETTES.STANDARD) !== false || Colors.isColor(Colors.parse(val));
+            return Metro.colors.color(val, Metro.colors.PALETTES.STANDARD) !== false || Metro.colors.isColor(Metro.colors.parse(val));
         },
         pattern: function(val, pat){
             if (!Utils.isValue(val)) return false;
