@@ -60,11 +60,25 @@
                 $('<svg class="circular"><circle class="path" cx="'+o.size/2+'" cy="'+o.size/2+'" r="'+o.radius+'" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg>').appendTo(element);
             }
 
+            function _atom(){
+                for(i = 0; i < 3 ; i++) {
+                    $("<span/>").addClass('electron').appendTo(element);
+                }
+            }
+
+            function _bars(){
+                for(i = 0; i < 6 ; i++) {
+                    $("<span/>").addClass('bar').appendTo(element);
+                }
+            }
+
             switch (o.type) {
                 case 'metro': _metro(); break;
                 case 'square': _square(); break;
                 case 'cycle': _cycle(); break;
                 case 'simple': _simple(); break;
+                case 'atom': _atom(); break;
+                case 'bars': _bars(); break;
                 default: _ring();
             }
 
