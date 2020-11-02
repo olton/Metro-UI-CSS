@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/11/2020 14:32:28
+ * Built at 02/11/2020 15:45:00
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "02/11/2020 14:32:28",
+        compileTime: "02/11/2020 15:45:00",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6246,6 +6246,10 @@ $.noConflict = function() {
             return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
         },
 
+        elementId: function(prefix){
+            return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
+        },
+
         secondsToTime: function(secs) {
             var hours = Math.floor(secs / (60 * 60));
 
@@ -6260,24 +6264,6 @@ $.noConflict = function() {
                 "m": minutes,
                 "s": seconds
             };
-        },
-
-        hex2rgba: function(hex, alpha){
-            var c;
-            alpha = isNaN(alpha) ? 1 : alpha;
-            if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-                c= hex.substring(1).split('');
-                if(c.length=== 3){
-                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c= '0x'+c.join('');
-                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
-            }
-            throw new Error('Hex2rgba error. Bad Hex value');
-        },
-
-        elementId: function(prefix){
-            return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
         },
 
         secondsToFormattedString: function(time){
@@ -6600,73 +6586,6 @@ $.noConflict = function() {
 
         getStyleOne: function(el, property){
             return this.getStyle(el).getPropertyValue(property);
-        },
-
-        getTransformMatrix: function(el, returnArray){
-            var computedMatrix = this.getStyleOne(el, "transform");
-            var a = computedMatrix
-                .replace("matrix(", '')
-                .slice(0, -1)
-                .split(',');
-            return returnArray !== true ? {
-                a: a[0],
-                b: a[1],
-                c: a[2],
-                d: a[3],
-                tx: a[4],
-                ty: a[5]
-            } : a;
-        },
-
-        computedRgbToHex: function(rgb){
-            var a = rgb.replace(/[^\d,]/g, '').split(',');
-            var result = "#", i;
-
-            for(i = 0; i < 3; i++) {
-                var h = parseInt(a[i]).toString(16);
-                result += h.length === 1 ? "0" + h : h;
-            }
-
-            return result;
-        },
-
-        computedRgbToRgba: function(rgb, alpha){
-            var a = rgb.replace(/[^\d,]/g, '').split(',');
-            if (alpha === undefined) {
-                alpha = 1;
-            }
-            a.push(alpha);
-            return "rgba("+a.join(",")+")";
-        },
-
-        computedRgbToArray: function(rgb){
-            return rgb.replace(/[^\d,]/g, '').split(',');
-        },
-
-        hexColorToArray: function(hex){
-            var c;
-            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-                c= hex.substring(1).split('');
-                if(c.length === 3){
-                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c= '0x'+c.join('');
-                return [(c>>16)&255, (c>>8)&255, c&255];
-            }
-            return [0,0,0];
-        },
-
-        hexColorToRgbA: function(hex, alpha){
-            var c;
-            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-                c= hex.substring(1).split('');
-                if(c.length === 3){
-                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c= '0x'+c.join('');
-                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255, alpha ? alpha : 1].join(',')+')';
-            }
-            return 'rgba(0,0,0,1)';
         },
 
         getInlineStyles: function(element){
@@ -7718,7 +7637,7 @@ $.noConflict = function() {
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Metro.colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(element, "background-color"))) === true) {
+                if (Metro.colors.isLight(Utils.getStyleOne(element, "background-color")) === true) {
                     hamburger.addClass("dark");
                 }
             }
@@ -10016,7 +9935,7 @@ $.noConflict = function() {
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                    background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
 
@@ -10763,7 +10682,7 @@ $.noConflict = function() {
             this.origin.background = element.css("background-color");
 
             element.css({
-                backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), o.opacity)
+                backgroundColor: Metro.colors.toRGBA(Utils.getStyleOne(element, "background-color"), o.opacity)
             });
         },
 
@@ -10811,7 +10730,7 @@ $.noConflict = function() {
             }
             o.opacity = opacity;
             element.css({
-                backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), opacity)
+                backgroundColor: Metro.colors.toRGBA(Utils.getStyleOne(element, "background-color"), opacity)
             });
         },
 
@@ -11947,6 +11866,14 @@ $.noConflict = function() {
                     return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
                 });
 
+            if (this.metro[_color]) {
+                return this.expandHexColor(this.metro[_color]);
+            }
+
+            if (this.standard[_color]) {
+                return this.expandHexColor(this.standard[_color]);
+            }
+
             if (_color[0] === "#") {
                 return this.expandHexColor(_color);
             }
@@ -12343,13 +12270,21 @@ $.noConflict = function() {
             return result;
         },
 
-        toHEX: function(color){
+        toHEX: function(val){
+            var color = typeof val === "string" ? this.parse(val) : val;
+
+            if (!color) {
+                throw new Error("Unknown color format!");
+            }
+
             return typeof color === "string"
-                ? this.expandHexColor(color)
+                ? color
                 : this.rgb2hex(this.toRGB(color));
         },
 
-        toRGB: function(color){
+        toRGB: function(val){
+            var color = typeof val === "string" ? this.parse(val) : val;
+
             if (this.isRGB(color)) return color;
             if (this.isRGBA(color)) return new RGB(color.r, color.g, color.b);
             if (this.isHSV(color)) return this.hsv2rgb(color);
@@ -12410,8 +12345,9 @@ $.noConflict = function() {
             return this.lighten(color, -1 * Math.abs(amount));
         },
 
-        lighten: function(color, amount){
+        lighten: function(val, amount){
             var type, res, alpha, ring;
+            var color = typeof val === "string" ? this.parse(val) : val;
 
             amount = amount || 10;
 
@@ -12737,7 +12673,9 @@ $.noConflict = function() {
             return this.createScheme.apply(this, arguments)
         },
 
-        mix: function(color1, color2, returnAs){
+        mix: function(val1, val2, returnAs){
+            var color1 = typeof val1 === "string" ? this.parse(val1) : val1;
+            var color2 = typeof val2 === "string" ? this.parse(val2) : val2;
             var c1 = this.toRGBA(color1);
             var c2 = this.toRGBA(color2);
             var result = new RGBA();
@@ -14154,8 +14092,8 @@ $.noConflict = function() {
                 return ;
             }
 
-            rule1 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, 1);
-            rule2 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, o.attenuation);
+            rule1 = "0 0 10px " + Metro.colors.toRGBA(o.flashColor, 1);
+            rule2 = "0 0 10px " + Metro.colors.toRGBA(o.flashColor, o.attenuation);
 
             for(i = 0; i < 3; i++) {
                 rules1.push(rule1);
@@ -15029,7 +14967,7 @@ $.noConflict = function() {
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                    background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
 
@@ -18285,7 +18223,7 @@ $.noConflict = function() {
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                    background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
 
@@ -23973,6 +23911,7 @@ $.noConflict = function() {
         var el = $(target);
         var rect = Utils.rect(el[0]);
         var x, y;
+        var Colors = Metro.colors;
 
         if (el.length === 0) {
             return ;
@@ -24017,7 +23956,7 @@ $.noConflict = function() {
         }
 
         ripple.css({
-            background: Utils.hex2rgba(color, alpha),
+            background: Colors.toRGBA(color, alpha),
             width: size,
             height: size,
             top: y + 'px',
@@ -26810,8 +26749,8 @@ $.noConflict = function() {
                     $("<div>").addClass("stream-secondary").html(stream_item.secondary).appendTo(stream);
                     $(stream_item.icon).addClass("stream-icon").appendTo(stream);
 
-                    var bg = Utils.computedRgbToHex(Utils.getStyleOne(stream, "background-color"));
-                    var fg = Utils.computedRgbToHex(Utils.getStyleOne(stream, "color"));
+                    var bg = Metro.colors.toHEX(Utils.getStyleOne(stream, "background-color"));
+                    var fg = Metro.colors.toHEX(Utils.getStyleOne(stream, "color"));
 
                     var stream_events = $("<div>").addClass("stream-events")
                         .data("background-color", bg)
@@ -30025,7 +29964,7 @@ $.noConflict = function() {
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Metro.colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(container, "background-color"))) === true) {
+                if (Metro.colors.isLight(Utils.getStyleOne(container, "background-color")) === true) {
                     hamburger.addClass("dark");
                 }
             }
@@ -35613,7 +35552,7 @@ $.noConflict = function() {
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                    background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
 

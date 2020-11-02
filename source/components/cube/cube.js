@@ -248,8 +248,8 @@
                 return ;
             }
 
-            rule1 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, 1);
-            rule2 = "0 0 10px " + Utils.hexColorToRgbA(o.flashColor, o.attenuation);
+            rule1 = "0 0 10px " + Metro.colors.toRGBA(o.flashColor, 1);
+            rule2 = "0 0 10px " + Metro.colors.toRGBA(o.flashColor, o.attenuation);
 
             for(i = 0; i < 3; i++) {
                 rules1.push(rule1);

@@ -351,7 +351,7 @@
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Utils.hex2rgba(o.overlayColor, o.overlayAlpha)
+                    background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
 

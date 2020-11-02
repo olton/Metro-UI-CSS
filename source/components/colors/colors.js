@@ -345,6 +345,14 @@
                     return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
                 });
 
+            if (this.metro[_color]) {
+                return this.expandHexColor(this.metro[_color]);
+            }
+
+            if (this.standard[_color]) {
+                return this.expandHexColor(this.standard[_color]);
+            }
+
             if (_color[0] === "#") {
                 return this.expandHexColor(_color);
             }
@@ -741,13 +749,21 @@
             return result;
         },
 
-        toHEX: function(color){
+        toHEX: function(val){
+            var color = typeof val === "string" ? this.parse(val) : val;
+
+            if (!color) {
+                throw new Error("Unknown color format!");
+            }
+
             return typeof color === "string"
-                ? this.expandHexColor(color)
+                ? color
                 : this.rgb2hex(this.toRGB(color));
         },
 
-        toRGB: function(color){
+        toRGB: function(val){
+            var color = typeof val === "string" ? this.parse(val) : val;
+
             if (this.isRGB(color)) return color;
             if (this.isRGBA(color)) return new RGB(color.r, color.g, color.b);
             if (this.isHSV(color)) return this.hsv2rgb(color);
@@ -808,8 +824,9 @@
             return this.lighten(color, -1 * Math.abs(amount));
         },
 
-        lighten: function(color, amount){
+        lighten: function(val, amount){
             var type, res, alpha, ring;
+            var color = typeof val === "string" ? this.parse(val) : val;
 
             amount = amount || 10;
 
@@ -1135,7 +1152,9 @@
             return this.createScheme.apply(this, arguments)
         },
 
-        mix: function(color1, color2, returnAs){
+        mix: function(val1, val2, returnAs){
+            var color1 = typeof val1 === "string" ? this.parse(val1) : val1;
+            var color2 = typeof val2 === "string" ? this.parse(val2) : val2;
             var c1 = this.toRGBA(color1);
             var c2 = this.toRGBA(color2);
             var result = new RGBA();
