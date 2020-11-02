@@ -15,6 +15,7 @@
 + [x] Media players: optimized default icons. 
 + [x] Activity: added two new activity `bars`, `atom`.
 + [x] Tabs material: fixed tabs position.
++ [x] Utils: removed functions: `hex2rgba()`, `getTransformMatrix()`, `computedRgbToHex()`, `computedRgbToRgba()`, `computedRgbToArray()`, `hexColorToArray()`, `hexColorToRgbA()`
 
 ### 4.4.1
 #### M4Q

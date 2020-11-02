@@ -175,6 +175,10 @@
             return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
         },
 
+        elementId: function(prefix){
+            return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
+        },
+
         secondsToTime: function(secs) {
             var hours = Math.floor(secs / (60 * 60));
 
@@ -189,24 +193,6 @@
                 "m": minutes,
                 "s": seconds
             };
-        },
-
-        hex2rgba: function(hex, alpha){
-            var c;
-            alpha = isNaN(alpha) ? 1 : alpha;
-            if(/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-                c= hex.substring(1).split('');
-                if(c.length=== 3){
-                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c= '0x'+c.join('');
-                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255].join(',')+','+alpha+')';
-            }
-            throw new Error('Hex2rgba error. Bad Hex value');
-        },
-
-        elementId: function(prefix){
-            return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
         },
 
         secondsToFormattedString: function(time){
@@ -529,73 +515,6 @@
 
         getStyleOne: function(el, property){
             return this.getStyle(el).getPropertyValue(property);
-        },
-
-        getTransformMatrix: function(el, returnArray){
-            var computedMatrix = this.getStyleOne(el, "transform");
-            var a = computedMatrix
-                .replace("matrix(", '')
-                .slice(0, -1)
-                .split(',');
-            return returnArray !== true ? {
-                a: a[0],
-                b: a[1],
-                c: a[2],
-                d: a[3],
-                tx: a[4],
-                ty: a[5]
-            } : a;
-        },
-
-        computedRgbToHex: function(rgb){
-            var a = rgb.replace(/[^\d,]/g, '').split(',');
-            var result = "#", i;
-
-            for(i = 0; i < 3; i++) {
-                var h = parseInt(a[i]).toString(16);
-                result += h.length === 1 ? "0" + h : h;
-            }
-
-            return result;
-        },
-
-        computedRgbToRgba: function(rgb, alpha){
-            var a = rgb.replace(/[^\d,]/g, '').split(',');
-            if (alpha === undefined) {
-                alpha = 1;
-            }
-            a.push(alpha);
-            return "rgba("+a.join(",")+")";
-        },
-
-        computedRgbToArray: function(rgb){
-            return rgb.replace(/[^\d,]/g, '').split(',');
-        },
-
-        hexColorToArray: function(hex){
-            var c;
-            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-                c= hex.substring(1).split('');
-                if(c.length === 3){
-                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c= '0x'+c.join('');
-                return [(c>>16)&255, (c>>8)&255, c&255];
-            }
-            return [0,0,0];
-        },
-
-        hexColorToRgbA: function(hex, alpha){
-            var c;
-            if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)){
-                c= hex.substring(1).split('');
-                if(c.length === 3){
-                    c= [c[0], c[0], c[1], c[1], c[2], c[2]];
-                }
-                c= '0x'+c.join('');
-                return 'rgba('+[(c>>16)&255, (c>>8)&255, c&255, alpha ? alpha : 1].join(',')+')';
-            }
-            return 'rgba(0,0,0,1)';
         },
 
         getInlineStyles: function(element){

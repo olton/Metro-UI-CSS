@@ -22,6 +22,7 @@
         var el = $(target);
         var rect = Utils.rect(el[0]);
         var x, y;
+        var Colors = Metro.colors;
 
         if (el.length === 0) {
             return ;
@@ -66,7 +67,7 @@
         }
 
         ripple.css({
-            background: Utils.hex2rgba(color, alpha),
+            background: Colors.toRGBA(color, alpha),
             width: size,
             height: size,
             top: y + 'px',

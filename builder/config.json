@@ -511,7 +511,7 @@
             "js": ["calendarpicker"],
             "less": ["calendarpicker"],
             "dependencies": {
-                "components": ["calendar"]
+                "components": ["calendar", "colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -539,6 +539,9 @@
             "name": "Charms",
             "js": ["charms"],
             "less": ["charms"],
+            "dependencies": {
+                "components": ["colors"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/charms/"
@@ -641,6 +644,9 @@
             "name": "Cube",
             "js": ["cube"],
             "less": ["cube"],
+            "dependencies": {
+                "components": ["colors"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/cube/"
@@ -682,7 +688,7 @@
             "js": ["dialog"],
             "less": ["dialog"],
             "dependencies": {
-                "components": ["button"]
+                "components": ["button", "colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
@@ -902,6 +908,9 @@
             "name": "Info box",
             "js": ["info-box"],
             "less": ["info-box"],
+            "dependencies": {
+                "components": ["colors"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/info-box/"
@@ -1134,6 +1143,9 @@
             "name": "Ripple",
             "js": ["ripple"],
             "less": ["ripple"],
+            "dependencies": {
+                "components": ["colors"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/ripple/"
@@ -1270,6 +1282,9 @@
             "name": "Streamer",
             "js": ["streamer"],
             "less": ["streamer"],
+            "dependencies": {
+                "components": ["colors"]
+            },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",
             "path": "source/components/streamer/"
@@ -1472,7 +1487,7 @@
             "js": ["window"],
             "less": ["window"],
             "dependencies": {
-                "components": ["draggable", "resizeable", "button"]
+                "components": ["draggable", "resizeable", "button", "colors"]
             },
             "repo": "olton/Metro-UI-CSS",
             "branch": "master",

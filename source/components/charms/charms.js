@@ -54,7 +54,7 @@
             this.origin.background = element.css("background-color");
 
             element.css({
-                backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), o.opacity)
+                backgroundColor: Metro.colors.toRGBA(Utils.getStyleOne(element, "background-color"), o.opacity)
             });
         },
 
@@ -102,7 +102,7 @@
             }
             o.opacity = opacity;
             element.css({
-                backgroundColor: Utils.computedRgbToRgba(Utils.getStyleOne(element, "background-color"), opacity)
+                backgroundColor: Metro.colors.toRGBA(Utils.getStyleOne(element, "background-color"), opacity)
             });
         },
 

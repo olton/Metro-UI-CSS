@@ -56,7 +56,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Metro.colors.isLight(Utils.computedRgbToHex(Utils.getStyleOne(element, "background-color"))) === true) {
+                if (Metro.colors.isLight(Utils.getStyleOne(element, "background-color")) === true) {
                     hamburger.addClass("dark");
                 }
             }
