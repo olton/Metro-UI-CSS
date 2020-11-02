@@ -51,19 +51,6 @@
             });
         },
 
-        // _applyColor: function(to, color, option){
-        //
-        //     to = $(to);
-        //
-        //     if (typeof color === "string" && color) {
-        //         if (Metro.colors.isColor(color)) {
-        //             to.css(option, color);
-        //         } else {
-        //             to.addClass(color);
-        //         }
-        //     }
-        // },
-
         _createStructure: function(){
             var element = this.element, o = this.options;
             var tabs = element.find("li"), active_tab = element.find("li.active");
