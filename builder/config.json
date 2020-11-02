@@ -24,7 +24,7 @@
             },
             {
                 "name": "Reset CSS",
-                "less": "reset",
+                "less": ["reset"],
                 "repo": "olton/Metro-UI-CSS",
                 "branch": "master",
                 "path": "source/common/less/"
@@ -33,21 +33,21 @@
         "before_js": [
             {
                 "name": "Metro query",
-                "js": "m4q",
+                "js": ["m4q"],
                 "repo": "olton/Metro-UI-CSS",
                 "branch": "master",
                 "path": "source/m4q/"
             },
             {
                 "name": "Metro globals",
-                "js": "global",
+                "js": ["global"],
                 "repo": "olton/Metro-UI-CSS",
                 "branch": "master",
                 "path": "source/core/"
             },
             {
                 "name": "Metro Initiator",
-                "js": "metro",
+                "js": ["metro"],
                 "repo": "olton/Metro-UI-CSS",
                 "branch": "master",
                 "path": "source/core/"
@@ -61,7 +61,7 @@
             },
             {
                 "name": "Utils JS",
-                "js": "utilities",
+                "js": ["utilities"],
                 "repo": "olton/Metro-UI-CSS",
                 "branch": "master",
                 "path": "source/common/js/"
@@ -380,9 +380,6 @@
             "branch": "master",
             "path": "source/i18n/"
         }
-    },
-
-    "common-js": {
     },
 
     "components": {

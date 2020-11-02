@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Tabs - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .emulator {
+            padding: 0;
+            background: #fff;
+            overflow: hidden;
+            border: 1px solid #eee;
+            position: relative;
+        }
+        .emulator.galaxy-s5 {
+            height: 640px;
+            width: 360px;
+        }
+        .emulator.galaxy-s5.landscape {
+            height: 360px;
+            width: 640px;
+        }
+        .emulator.ipad {
+            height: 1024px;
+            width: 768px;
+        }
+        .emulator.ipad.landscape {
+            height: 768px;
+            width: 1024px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Tabs test page</h1>
+
+    <div class="example">
+        <div class="emulator galaxy-s5 bg-light" style="height: 200px">
+            <div class="head-bar pos-absolute bg-purple">
+                <button class="expand-button"><span></span></button>
+                <span class="app-title">Metro 4</span>
+            </div>
+            <ul data-role="materialtabs" data-app-bar="true">
+                <li><a href="#games">Games</a></li>
+                <li><a href="#applications">Applications</a></li>
+                <li class="active"><a href="#music">Music</a></li>
+                <li><a href="#films">Films</a></li>
+                <li><a href="#press">Press</a></li>
+                <li><a href="#books">Books</a></li>
+            </ul>
+            <div style="margin-top: 112px">
+                <div id="games">Games</div>
+                <div id="applications">Applications</div>
+                <div id="music">Music</div>
+                <div id="films">Films</div>
+                <div id="press">Press</div>
+                <div id="books">Books</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="example">
+        <div class="emulator galaxy-s5 bg-light" style="height: 200px">
+            <div class="head-bar pos-absolute bg-darkRed fg-white">
+                <button class="expand-button light"><span></span></button>
+                <span class="app-title">Metro 4</span>
+            </div>
+            <ul data-role="materialtabs"
+                data-fixed-tabs="true"
+                data-app-bar="true"
+                data-deep="true"
+                data-cls-tab="bg-red fg-white text-light"
+                data-cls-tab-active="text-bold fg-yellow"
+                data-cls-marker="bg-orange"
+            >
+                <li><a href="#">Music</a></li>
+                <li><a href="#">Films</a></li>
+                <li><a href="#">Books</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

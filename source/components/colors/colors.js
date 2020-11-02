@@ -426,7 +426,9 @@
             return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
         },
 
-        isColor: function(color){
+        isColor: function(val){
+            var color = typeof val === "string" ? this.parse(val) : val;
+
             return !color
                 ? false
                 : this.isHEX(color) ||

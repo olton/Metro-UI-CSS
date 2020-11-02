@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 31/10/2020 19:33:30
+ * Built at 02/11/2020 14:30:07
  * Licensed under GPL3
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "31/10/2020 19:33:30",
+        compileTime: "02/11/2020 14:30:07",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12028,7 +12028,9 @@ $.noConflict = function() {
             return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color);
         },
 
-        isColor: function(color){
+        isColor: function(val){
+            var color = typeof val === "string" ? this.parse(val) : val;
+
             return !color
                 ? false
                 : this.isHEX(color) ||
@@ -29793,18 +29795,18 @@ $.noConflict = function() {
             });
         },
 
-        _applyColor: function(to, color, option){
-
-            to = $(to);
-
-            if (Utils.isValue(color)) {
-                if (Utils.isColor(color)) {
-                    to.css(option, color);
-                } else {
-                    to.addClass(color);
-                }
-            }
-        },
+        // _applyColor: function(to, color, option){
+        //
+        //     to = $(to);
+        //
+        //     if (typeof color === "string" && color) {
+        //         if (Metro.colors.isColor(color)) {
+        //             to.css(option, color);
+        //         } else {
+        //             to.addClass(color);
+        //         }
+        //     }
+        // },
 
         _createStructure: function(){
             var element = this.element, o = this.options;
