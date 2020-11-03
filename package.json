@@ -27,7 +27,7 @@
     "type": "git",
     "url": "https://github.com/olton/Metro-UI-CSS.git"
   },
-  "license": "GPL3",
+  "license": "MIT",
   "main": "build/js/metro.js",
   "scripts": {
     "build": "npm install && grunt",
