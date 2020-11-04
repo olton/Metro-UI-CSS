@@ -16,7 +16,10 @@
                     "days": "ДНИ",
                     "hours": "ЧАСЫ",
                     "minutes": "МИН",
-                    "seconds": "СЕК"
+                    "seconds": "СЕК",
+                    "month": "МЕС",
+                    "day": "ДЕНЬ",
+                    "year": "ГОД"
                 }
             },
             "buttons": {
