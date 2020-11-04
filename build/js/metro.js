@@ -1,8 +1,8 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/11/2020 15:45:00
- * Licensed under GPL3
+ * Built at 04/11/2020 12:37:04
+ * Licensed under MIT
  */
 (function (global, undefined) {
 
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "02/11/2020 15:45:00",
+        compileTime: "04/11/2020 12:37:04",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5558,7 +5558,10 @@ $.noConflict = function() {
                     "days": "ДНИ",
                     "hours": "ЧАСЫ",
                     "minutes": "МИН",
-                    "seconds": "СЕК"
+                    "seconds": "СЕК",
+                    "month": "МЕС",
+                    "day": "ДЕНЬ",
+                    "year": "ГОД"
                 }
             },
             "buttons": {
@@ -5574,6 +5577,47 @@ $.noConflict = function() {
                 "random": "Случайно",
                 "save": "Сохранить",
                 "reset": "Сброс"
+            }
+        }
+    });
+}(Metro, m4q));
+
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'tr-TR': {
+            "calendar": {
+                "months": [
+                    "Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık",
+                    "Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"
+                ],
+                "days": [
+                    "Pazar", "Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi",
+                    "Pa", "Pz", "Sa", "Ça", "Pe", "Cu", "Ct",
+                    "Paz", "Pzt", "Sal", "Çar", "Per", "Cum", "Cmt"
+                ],
+                "time": {
+                    "days": "GÜN",
+                    "hours": "SAAT",
+                    "minutes": "DAK",
+                    "seconds": "SAN",
+                    "month": "AY",
+                    "day": "GÜN",
+                    "year": "YIL"
+                }
+            },
+            "buttons": {
+                "ok": "Tamam",
+                "cancel": "Vazgeç",
+                "done": "Bitti",
+                "today": "Bugün",
+                "now": "Şimdi",
+                "clear": "Temizle",
+                "help": "Yardım",
+                "yes": "Evet",
+                "no": "Hayır",
+                "random": "Rasgele",
+                "save": "Kurtarmak",
+                "reset": "Sıfırla"
             }
         }
     });
@@ -5637,7 +5681,10 @@ $.noConflict = function() {
                     "days": "ДНІ",
                     "hours": "ГОД",
                     "minutes": "ХВИЛ",
-                    "seconds": "СЕК"
+                    "seconds": "СЕК",
+                    "month": "МІС",
+                    "day": "ДЕНЬ",
+                    "year": "РІК"
                 }
             },
             "buttons": {
