@@ -17,6 +17,7 @@
 + [x] Tabs material: fixed tabs position.
 + [x] Utils: removed functions: `hex2rgba()`, `getTransformMatrix()`, `computedRgbToHex()`, `computedRgbToRgba()`, `computedRgbToArray()`, `hexColorToArray()`, `hexColorToRgbA()`
 + [x] i18n: added `tr-TR` turkish locale.
++ [x] Third party plugins: removed support for `select2`, `datatables`
 
 ### 4.4.1
 #### M4Q
