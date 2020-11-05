@@ -10,6 +10,8 @@
         duration: 100,
         onMenuOpen: Metro.noop,
         onMenuClose: Metro.noop,
+        onBeforeMenuOpen: Metro.noop,
+        onBeforeMenuClose: Metro.noop,
         onMenuCollapse: Metro.noop,
         onMenuExpand: Metro.noop,
         onAppBarCreate: Metro.noop
@@ -45,7 +47,7 @@
 
         _createStructure: function () {
             var element = this.element, o = this.options;
-            var hamburger, menu;
+            var hamburger, menu, elementColor = Utils.getStyleOne(element, "background-color");
 
             element.addClass("app-bar");
 
@@ -56,7 +58,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Metro.colors.isLight(Utils.getStyleOne(element, "background-color")) === true) {
+                if (elementColor === "rgba(0, 0, 0, 0)" || Metro.colors.isLight(elementColor) === true) {
                     hamburger.addClass("dark");
                 }
             }
@@ -134,32 +136,40 @@
         },
 
         close: function () {
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var menu = element.find(".app-bar-menu");
             var hamburger = element.find(".hamburger");
+
+            that._fireEvent("before-menu-close", {
+                menu: menu[0]
+            });
 
             menu.slideUp(o.duration, function () {
                 menu.addClass("collapsed").removeClass("opened");
                 hamburger.removeClass("active");
-            });
 
-            this._fireEvent("menu-close", {
-                menu: menu[0]
+                that._fireEvent("menu-close", {
+                    menu: menu[0]
+                });
             });
         },
 
         open: function () {
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var menu = element.find(".app-bar-menu");
             var hamburger = element.find(".hamburger");
+
+            that._fireEvent("before-menu-open", {
+                menu: menu[0]
+            });
 
             menu.slideDown(o.duration, function () {
                 menu.removeClass("collapsed").addClass("opened");
                 hamburger.addClass("active");
-            });
 
-            this._fireEvent("menu-open", {
-                menu: menu[0]
+                that._fireEvent("menu-open", {
+                    menu: menu[0]
+                });
             });
         },
 
