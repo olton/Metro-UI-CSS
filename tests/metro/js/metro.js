@@ -6277,10 +6277,6 @@ $.noConflict = function() {
             return !!window.MSInputMethodContext && !!document["documentMode"];
         },
 
-        embedObject: function(val){
-            return "<div class='embed-container'>" + $(val)[0].outerHTML + "</div>";
-        },
-
         embedUrl: function(val){
             if (val.indexOf("youtu.be") !== -1) {
                 val = "https://www.youtube.com/embed/" + val.split("/").pop();
@@ -6829,16 +6825,6 @@ $.noConflict = function() {
 
         decCount: function(v){
             return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
-        },
-
-        randomColor: function(){
-            var r, g, b;
-
-            r = $.random(0, 255);
-            g = $.random(0, 255);
-            b = $.random(0, 255);
-
-            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
         }
     };
 
@@ -31121,7 +31107,7 @@ $.noConflict = function() {
 
                 $.setInterval(function(){
                     var temp = that.images.slice();
-                    var bg = Utils.randomColor();
+                    var bg = Metro.colors.random();
 
                     element.css("background-color", bg);
 

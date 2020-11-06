@@ -24,6 +24,8 @@
 + [x] Dropdown: added classes `.drop-down-left`, `.drop-down-right`, `.drop-up-left`, `.drop-up-right`. 
 + [x] Position: split position into `position`, `position-ext`, `z-index`.
 + [x] Utilities: removed function `isColor(...)`, if need, use `Metro.colors.isColor()`.
++ [x] Utilities: removed function `embedObject(...)`, if need, use `$(...).wrap()`.
++ [x] Utilities: removed function `randomColor(...)`, if need, use `Metro.colors.random()`.
 
 ### 4.4.1
 #### M4Q
