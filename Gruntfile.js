@@ -111,9 +111,6 @@ module.exports = function(grunt) {
             "colors-less": {
                 "source/metro-colors.less": createLessFile("colors")
             },
-            "animations-less": {
-                "source/metro-animations.less": createLessFile("animations")
-            },
             "common-less": {
                 "source/metro-common.less": createLessFile("common", ["source/common/less/reset.less"])
             },
@@ -157,7 +154,6 @@ module.exports = function(grunt) {
                 },
                 src: [
                     'build/css/metro.css',
-                    'build/css/metro-animations.css',
                     'build/css/metro-colors.css',
                     'build/css/metro-icons.css'
                 ],
@@ -209,7 +205,6 @@ module.exports = function(grunt) {
                     "metro-common.less",
                     "metro-components.less",
                     "metro-colors.less",
-                    "metro-animations.less",
                     "metro-icons.less"
                 ],
                 ext: ".css",
@@ -228,9 +223,7 @@ module.exports = function(grunt) {
             options: {
                 map: false,
                 processors: [
-                    require('autoprefixer')({
-                        overrideBrowserslist: ['last 3 versions']
-                    })
+                    require('autoprefixer')()
                 ]
             },
             dist: {
