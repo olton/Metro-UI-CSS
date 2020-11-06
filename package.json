@@ -37,7 +37,9 @@
     "test": "start-server-and-test start http://localhost:8080 cy:run"
   },
   "browserslist": [
-    "last 3 versions"
+    "last 2 versions",
+    "not ie <= 10",
+    "not ie_mob <= 10"
   ],
   "devDependencies": {
     "autoprefixer": "^9.8.4",
