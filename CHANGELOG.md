@@ -23,6 +23,7 @@
 + [x] Datepicker: added attributes `data-cls-button`, `data-cls-ok-button`, `data-cls-cancel-button` to modify picker buttons style, issue #1659. 
 + [x] TreeView: fixed `ul` default position to initial, issue #1660
 + [x] Dropdown: added classes `.drop-down-left`, `.drop-down-right`, `.drop-up-left`, `.drop-up-right`. 
++ [x] Position: split position into `position`, `position-ext`, `z-index`.
 
 ### 4.4.1
 #### M4Q
