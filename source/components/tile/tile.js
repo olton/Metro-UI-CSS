@@ -125,7 +125,7 @@
 
                 $.setInterval(function(){
                     var temp = that.images.slice();
-                    var bg = Utils.randomColor();
+                    var bg = Metro.colors.random();
 
                     element.css("background-color", bg);
 
