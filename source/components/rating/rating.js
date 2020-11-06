@@ -2,7 +2,6 @@
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var Colors = Metro.colors;
     var RatingDefaultConfig = {
         ratingDeferred: 0,
         label: "",
@@ -71,18 +70,6 @@
             this.originValue = o.value;
             this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
 
-            if (o.starColor !== null) {
-                if (!Utils.isColor(o.starColor)) {
-                    o.starColor = Colors.color(o.starColor);
-                }
-            }
-
-            if (o.staredColor !== null) {
-                if (!Utils.isColor(o.staredColor)) {
-                    o.staredColor = Colors.color(o.staredColor);
-                }
-            }
-
             this._createRating();
             this._createEvents();
 
@@ -120,10 +107,10 @@
 
             result.html(o.message);
 
-            if (o.starColor !== null) {
+            if (o.starColor !== null && Metro.colors.isColor(o.starColor)) {
                 Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
             }
-            if (o.staredColor !== null) {
+            if (o.staredColor !== null && Metro.colors.isColor(o.staredColor)) {
                 Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
                 Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
             }

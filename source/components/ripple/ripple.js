@@ -103,7 +103,7 @@
 
             function changeColor(){
                 var color = element.attr("data-ripple-color");
-                if (!Utils.isColor(color)) {
+                if (!Metro.colors.isColor(color)) {
                     return;
                 }
                 o.rippleColor = color;

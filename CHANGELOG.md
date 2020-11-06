@@ -1,5 +1,4 @@
 ### 4.4.2
-#### M4Q
 #### Metro 4
 + [x] Button: fixed content position, issue #1648.
 + [x] Split-button: improved the layout, added subclass `no-gap` for `split-button`.
@@ -24,6 +23,7 @@
 + [x] TreeView: fixed `ul` default position to initial, issue #1660
 + [x] Dropdown: added classes `.drop-down-left`, `.drop-down-right`, `.drop-up-left`, `.drop-up-right`. 
 + [x] Position: split position into `position`, `position-ext`, `z-index`.
++ [x] Utilities: removed function `isColor(...)`, if need, use `Metro.colors.isColor()`.
 
 ### 4.4.1
 #### M4Q
