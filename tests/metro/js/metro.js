@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/11/2020 19:56:59
+ * Built at 06/11/2020 19:50:20
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -313,7 +313,7 @@ function isTouch() {
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2310,7 +2310,7 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            
+            console.log(this.length);
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){
@@ -2689,7 +2689,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "06/11/2020 19:56:59",
+        compileTime: "06/11/2020 19:50:20",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4804,7 +4804,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -6135,11 +6135,6 @@ $.noConflict = function() {
         isTag: function(val){
             /* eslint-disable-next-line */
             return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
-        },
-
-        isColor: function (val) {
-            /* eslint-disable-next-line */
-            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
         },
 
         isEmbedObject: function(val){
@@ -14071,7 +14066,7 @@ $.noConflict = function() {
 
             var cells  = element.find(".cube-cell");
             if (o.color !== null) {
-                if (Utils.isColor(o.color)) {
+                if (Metro.colors.isColor(o.color)) {
                     cells.css({
                         backgroundColor: o.color,
                         borderColor: o.color
@@ -23253,7 +23248,6 @@ $.noConflict = function() {
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var Colors = Metro.colors;
     var RatingDefaultConfig = {
         ratingDeferred: 0,
         label: "",
@@ -23322,18 +23316,6 @@ $.noConflict = function() {
             this.originValue = o.value;
             this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
 
-            if (o.starColor !== null) {
-                if (!Utils.isColor(o.starColor)) {
-                    o.starColor = Colors.color(o.starColor);
-                }
-            }
-
-            if (o.staredColor !== null) {
-                if (!Utils.isColor(o.staredColor)) {
-                    o.staredColor = Colors.color(o.staredColor);
-                }
-            }
-
             this._createRating();
             this._createEvents();
 
@@ -23371,10 +23353,10 @@ $.noConflict = function() {
 
             result.html(o.message);
 
-            if (o.starColor !== null) {
+            if (o.starColor !== null && Metro.colors.isColor(o.starColor)) {
                 Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
             }
-            if (o.staredColor !== null) {
+            if (o.staredColor !== null && Metro.colors.isColor(o.staredColor)) {
                 Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
                 Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
             }
@@ -24052,7 +24034,7 @@ $.noConflict = function() {
 
             function changeColor(){
                 var color = element.attr("data-ripple-color");
-                if (!Utils.isColor(color)) {
+                if (!Metro.colors.isColor(color)) {
                     return;
                 }
                 o.rippleColor = color;

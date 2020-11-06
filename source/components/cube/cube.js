@@ -170,7 +170,7 @@
 
             var cells  = element.find(".cube-cell");
             if (o.color !== null) {
-                if (Utils.isColor(o.color)) {
+                if (Metro.colors.isColor(o.color)) {
                     cells.css({
                         backgroundColor: o.color,
                         borderColor: o.color

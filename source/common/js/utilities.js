@@ -19,11 +19,6 @@
             return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
         },
 
-        isColor: function (val) {
-            /* eslint-disable-next-line */
-            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
-        },
-
         isEmbedObject: function(val){
             var embed = ["iframe", "object", "embed", "video"];
             var result = false;

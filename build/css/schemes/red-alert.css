@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/11/2020 19:56:59
+ * Built at 06/11/2020 20:35:35
  * Licensed under MIT
  */
 .bg-scheme {
@@ -98,8 +98,7 @@ textarea.focused,
 .input.focused,
 .textarea.focused,
 .select.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
-          box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
+  box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
 }
 .input,
 .select,
@@ -126,8 +125,7 @@ textarea.focused,
 .select textarea,
 .textarea textarea,
 .file textarea {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
+  box-shadow: none!important;
   border-color: transparent;
 }
 .file .button {
@@ -147,7 +145,6 @@ textarea.focused,
 .checkbox input[type=checkbox]:checked ~ .check {
   border-color: #AF0015;
   background-color: #AF0015;
-  -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
 }
 .checkbox input[type=checkbox]:checked ~ .check::before {
@@ -228,8 +225,7 @@ textarea.focused,
 .command-button:focus,
 .shortcut:focus,
 .tool-button:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
-          box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
+  box-shadow: 0 0 0 3px rgba(175, 0, 21, 0.45);
 }
 .button:hover,
 .command-button:hover,
@@ -303,8 +299,7 @@ textarea.focused,
   background-color: #ffffff !important;
   color: #AF0015;
   border: 1px solid #AF0015;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 .d-menu .dropdown-toggle::before,
 .v-menu .dropdown-toggle::before {
@@ -338,8 +333,7 @@ textarea.focused,
 .t-menu {
   background-color: #AF0015;
   color: #ffffff;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 .t-menu li a {
   border-color: rgba(255, 255, 255, 0.25) !important;
@@ -369,8 +363,7 @@ textarea.focused,
 }
 [class*=app-bar-expand] .app-bar-menu li .d-menu,
 [class*=app-bar-expand] .app-bar-container .d-menu {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
+  box-shadow: none!important;
   border: 1px solid #AF0015 !important;
   background-color: #ffffff !important;
   color: #AF0015 !important;
@@ -391,8 +384,7 @@ textarea.focused,
   background-color: #AF0015;
 }
 .calendar .day.selected {
-  -webkit-box-shadow: 0 0 0 1px #af0015 !important;
-          box-shadow: 0 0 0 1px #af0015 !important;
+  box-shadow: 0 0 0 1px #af0015 !important;
 }
 .calendar .day.selected::after {
   border-top-color: #AF0015;
@@ -677,8 +669,7 @@ textarea.focused,
   border-color: #ff1632;
 }
 .streamer .stream-event.selected {
-  -webkit-box-shadow: 0 0 0 1px #af0015 !important;
-          box-shadow: 0 0 0 1px #af0015 !important;
+  box-shadow: 0 0 0 1px #af0015 !important;
 }
 .streamer .stream-event.selected::before {
   border-color: #000000 !important;
@@ -939,8 +930,7 @@ textarea.focused,
   border-color: rgba(175, 0, 21, 0.25);
 }
 .ribbon-menu .ribbon-dropdown {
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
 }
 .ribbon-menu .ribbon-dropdown li:hover {
   border-color: rgba(175, 0, 21, 0.25);
