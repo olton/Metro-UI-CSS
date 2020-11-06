@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 05/11/2020 16:19:38
+ * Built at 06/11/2020 11:27:03
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4537,7 +4537,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.2",
-        compileTime: "05/11/2020 16:19:38",
+        compileTime: "06/11/2020 11:27:03",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -31275,6 +31275,9 @@ $.noConflict = function() {
         clsMinutes: "",
         clsSeconds: "",
         clsLabel: "",
+        clsButton: "",
+        clsOkButton: "",
+        clsCancelButton: "",
         okButtonIcon: "<span class='default-icon-check'></span>",
         cancelButtonIcon: "<span class='default-icon-cross'></span>",
         onSet: Metro.noop,
@@ -31436,8 +31439,8 @@ $.noConflict = function() {
             selectBlock.height((o.distance * 2 + 1) * 40);
 
             actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-            $("<button>").attr("type", "button").addClass("button action-ok").html(o.okButtonIcon).appendTo(actionBlock);
-            $("<button>").attr("type", "button").addClass("button action-cancel").html(o.cancelButtonIcon).appendTo(actionBlock);
+            $("<button>").attr("type", "button").addClass("button action-ok").addClass(o.clsButton).addClass(o.clsOkButton).html(o.okButtonIcon).appendTo(actionBlock);
+            $("<button>").attr("type", "button").addClass("button action-cancel").addClass(o.clsButton).addClass(o.clsCancelButton).html(o.cancelButtonIcon).appendTo(actionBlock);
 
 
             element[0].className = '';

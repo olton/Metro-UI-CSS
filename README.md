@@ -55,7 +55,7 @@ In addition, **SUPPORT PACK** is available for an annual subscription on [XS:COD
 
 ### Donation on Patreon
 ![Donations on Patreon](https://img.shields.io/badge/Patrons-7-green.svg)
-![Donations on Patreon](https://img.shields.io/badge/Donation-$130-red.svg)
+![Donations on Patreon](https://img.shields.io/badge/Donation-$140-red.svg)
 
 ### Community
 
