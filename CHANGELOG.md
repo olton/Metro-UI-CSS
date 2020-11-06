@@ -20,6 +20,7 @@
 + [x] Third party plugins: removed support for `select2`, `datatables`
 + [x] AppBar: added event `onBeforeMenuOpen`, `onBeforeMenuClose`, fixed firing events `onMenuOpen`, `onMenuClose`.
 + [x] Timepicker: added attributes `data-cls-button`, `data-cls-ok-button`, `data-cls-cancel-button` to modify picker buttons style, issue #1659. 
++ [x] Datepicker: added attributes `data-cls-button`, `data-cls-ok-button`, `data-cls-cancel-button` to modify picker buttons style, issue #1659. 
 
 ### 4.4.1
 #### M4Q
