@@ -33,7 +33,7 @@
         },
 
         isVideoUrl: function(val){
-            return /youtu\.be|youtube|vimeo/gi.test(val);
+            return /youtu\.be|youtube|twitch|vimeo/gi.test(val);
         },
 
         isDate: function(val, format){
