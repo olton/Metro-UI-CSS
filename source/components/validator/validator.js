@@ -213,7 +213,7 @@
                     /*
                     * Fix with escaped name by nlared https://github.com/nlared
                     * */
-                    radio_checked = $("input[name=" + attr_name.replace("[", "\\\[").replace("]", "\\\]") + "]:checked"); // eslint-disable-line
+                    radio_checked = $("input[name=" + attr_name.replaceAll("[", "\\\[").replaceAll("]", "\\\]") + "]:checked"); // eslint-disable-line
                     this_result = radio_checked.length > 0;
                 }
                 if (result !== undefined) {
