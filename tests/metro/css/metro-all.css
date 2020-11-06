@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.2  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 06/11/2020 14:47:39
+ * Built at 06/11/2020 19:30:24
  * Licensed under MIT
  */
 *,
@@ -7889,33 +7889,6 @@ ol.latin-lower {
 .global-dialog {
   z-index: 2001 !important;
 }
-.fixed-top,
-.fixed-bottom {
-  position: fixed;
-  left: 0;
-  right: 0;
-  width: 100%;
-}
-.fixed-top {
-  top: 0;
-  bottom: auto;
-}
-.fixed-bottom {
-  top: auto;
-  bottom: 0;
-}
-.pos-relative {
-  position: relative!important;
-}
-.pos-absolute {
-  position: absolute!important;
-}
-.pos-static {
-  position: static!important;
-}
-.pos-fixed {
-  position: fixed!important;
-}
 .put-n {
   right: auto!important;
   bottom: auto!important;
@@ -8095,88 +8068,7 @@ ol.latin-lower {
       -ms-transform: translateX(-50%) translateY(-50%);
           transform: translateX(-50%) translateY(-50%);
 }
-.z-absolute {
-  z-index: 500 !important;
-}
-.z-dropdown {
-  z-index: 1000 !important;
-}
-.z-sticky {
-  z-index: 1020 !important;
-}
-.z-fixed {
-  z-index: 1030 !important;
-}
-.z-modal-backdrop {
-  z-index: 1040 !important;
-}
-.z-modal {
-  z-index: 1050 !important;
-}
-.z-popover {
-  z-index: 1060 !important;
-}
-.z-tooltip {
-  z-index: 1070 !important;
-}
-.z-top {
-  z-index: 1080 !important;
-}
-.z-notify {
-  z-index: 1085 !important;
-}
-.z-charms {
-  z-index: 1090 !important;
-}
-.z-overlay {
-  z-index: 2000 !important;
-}
-.z-fullscreen {
-  z-index: 2147483647 !important;
-}
-.z-1 {
-  z-index: 1!important;
-}
-.z-2 {
-  z-index: 2!important;
-}
-.z-3 {
-  z-index: 3!important;
-}
-.z-4 {
-  z-index: 4!important;
-}
-.z-5 {
-  z-index: 5!important;
-}
-.z-6 {
-  z-index: 6!important;
-}
-.z-7 {
-  z-index: 7!important;
-}
-.z-8 {
-  z-index: 8!important;
-}
-.z-9 {
-  z-index: 9!important;
-}
-.z-10 {
-  z-index: 10!important;
-}
 @media screen and (min-width: 0) {
-  .pos-relative-fs {
-    position: relative!important;
-  }
-  .pos-absolute-fs {
-    position: absolute!important;
-  }
-  .pos-static-fs {
-    position: static!important;
-  }
-  .pos-fixed-fs {
-    position: fixed!important;
-  }
   .put-left-fs {
     left: 0!important;
     right: auto!important;
@@ -8289,18 +8181,6 @@ ol.latin-lower {
   }
 }
 @media screen and (min-width: 576px) {
-  .pos-relative-sm {
-    position: relative!important;
-  }
-  .pos-absolute-sm {
-    position: absolute!important;
-  }
-  .pos-static-sm {
-    position: static!important;
-  }
-  .pos-fixed-sm {
-    position: fixed!important;
-  }
   .put-left-sm {
     left: 0!important;
     right: auto!important;
@@ -8413,18 +8293,6 @@ ol.latin-lower {
   }
 }
 @media screen and (min-width: 768px) {
-  .pos-relative-md {
-    position: relative!important;
-  }
-  .pos-absolute-md {
-    position: absolute!important;
-  }
-  .pos-static-md {
-    position: static!important;
-  }
-  .pos-fixed-md {
-    position: fixed!important;
-  }
   .put-left-md {
     left: 0!important;
     right: auto!important;
@@ -8537,18 +8405,6 @@ ol.latin-lower {
   }
 }
 @media screen and (min-width: 992px) {
-  .pos-relative-lg {
-    position: relative!important;
-  }
-  .pos-absolute-lg {
-    position: absolute!important;
-  }
-  .pos-static-lg {
-    position: static!important;
-  }
-  .pos-fixed-lg {
-    position: fixed!important;
-  }
   .put-left-lg {
     left: 0!important;
     right: auto!important;
@@ -8661,18 +8517,6 @@ ol.latin-lower {
   }
 }
 @media screen and (min-width: 1200px) {
-  .pos-relative-xl {
-    position: relative!important;
-  }
-  .pos-absolute-xl {
-    position: absolute!important;
-  }
-  .pos-static-xl {
-    position: static!important;
-  }
-  .pos-fixed-xl {
-    position: fixed!important;
-  }
   .put-left-xl {
     left: 0!important;
     right: auto!important;
@@ -8785,18 +8629,6 @@ ol.latin-lower {
   }
 }
 @media screen and (min-width: 1452px) {
-  .pos-relative-xxl {
-    position: relative!important;
-  }
-  .pos-absolute-xxl {
-    position: absolute!important;
-  }
-  .pos-static-xxl {
-    position: static!important;
-  }
-  .pos-fixed-xxl {
-    position: fixed!important;
-  }
   .put-left-xxl {
     left: 0!important;
     right: auto!important;
@@ -8906,6 +8738,117 @@ ol.latin-lower {
     left: auto!important;
     top: 100%!important;
     right: 0!important;
+  }
+}
+.fixed-top,
+.fixed-bottom {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.fixed-top {
+  top: 0;
+  bottom: auto;
+}
+.fixed-bottom {
+  top: auto;
+  bottom: 0;
+}
+.pos-relative {
+  position: relative!important;
+}
+.pos-absolute {
+  position: absolute!important;
+}
+.pos-static {
+  position: static!important;
+}
+.pos-fixed {
+  position: fixed!important;
+}
+@media screen and (min-width: 0) {
+  .pos-relative-fs {
+    position: relative!important;
+  }
+  .pos-absolute-fs {
+    position: absolute!important;
+  }
+  .pos-static-fs {
+    position: static!important;
+  }
+  .pos-fixed-fs {
+    position: fixed!important;
+  }
+}
+@media screen and (min-width: 576px) {
+  .pos-relative-sm {
+    position: relative!important;
+  }
+  .pos-absolute-sm {
+    position: absolute!important;
+  }
+  .pos-static-sm {
+    position: static!important;
+  }
+  .pos-fixed-sm {
+    position: fixed!important;
+  }
+}
+@media screen and (min-width: 768px) {
+  .pos-relative-md {
+    position: relative!important;
+  }
+  .pos-absolute-md {
+    position: absolute!important;
+  }
+  .pos-static-md {
+    position: static!important;
+  }
+  .pos-fixed-md {
+    position: fixed!important;
+  }
+}
+@media screen and (min-width: 992px) {
+  .pos-relative-lg {
+    position: relative!important;
+  }
+  .pos-absolute-lg {
+    position: absolute!important;
+  }
+  .pos-static-lg {
+    position: static!important;
+  }
+  .pos-fixed-lg {
+    position: fixed!important;
+  }
+}
+@media screen and (min-width: 1200px) {
+  .pos-relative-xl {
+    position: relative!important;
+  }
+  .pos-absolute-xl {
+    position: absolute!important;
+  }
+  .pos-static-xl {
+    position: static!important;
+  }
+  .pos-fixed-xl {
+    position: fixed!important;
+  }
+}
+@media screen and (min-width: 1452px) {
+  .pos-relative-xxl {
+    position: relative!important;
+  }
+  .pos-absolute-xxl {
+    position: absolute!important;
+  }
+  .pos-static-xxl {
+    position: static!important;
+  }
+  .pos-fixed-xxl {
+    position: fixed!important;
   }
 }
 @media print {
@@ -20804,6 +20747,75 @@ pre code {
     overflow: visible!important;
   }
 }
+.z-absolute {
+  z-index: 500 !important;
+}
+.z-dropdown {
+  z-index: 1000 !important;
+}
+.z-sticky {
+  z-index: 1020 !important;
+}
+.z-fixed {
+  z-index: 1030 !important;
+}
+.z-modal-backdrop {
+  z-index: 1040 !important;
+}
+.z-modal {
+  z-index: 1050 !important;
+}
+.z-popover {
+  z-index: 1060 !important;
+}
+.z-tooltip {
+  z-index: 1070 !important;
+}
+.z-top {
+  z-index: 1080 !important;
+}
+.z-notify {
+  z-index: 1085 !important;
+}
+.z-charms {
+  z-index: 1090 !important;
+}
+.z-overlay {
+  z-index: 2000 !important;
+}
+.z-fullscreen {
+  z-index: 2147483647 !important;
+}
+.z-1 {
+  z-index: 1!important;
+}
+.z-2 {
+  z-index: 2!important;
+}
+.z-3 {
+  z-index: 3!important;
+}
+.z-4 {
+  z-index: 4!important;
+}
+.z-5 {
+  z-index: 5!important;
+}
+.z-6 {
+  z-index: 6!important;
+}
+.z-7 {
+  z-index: 7!important;
+}
+.z-8 {
+  z-index: 8!important;
+}
+.z-9 {
+  z-index: 9!important;
+}
+.z-10 {
+  z-index: 10!important;
+}
 .accordion {
   list-style: none inside;
   margin: 0;
@@ -26160,7 +26172,7 @@ aside::after {
 .drop-up-right {
   top: auto!important;
   bottom: 100%!important;
-  right: 0;
+  right: 0!important;
 }
 .drop-down {
   top: 100%!important;
@@ -26169,12 +26181,12 @@ aside::after {
 .drop-down-left {
   top: 100%!important;
   bottom: auto!important;
-  left: 0;
+  left: 0!important;
 }
 .drop-down-right {
   top: 100%!important;
   bottom: auto!important;
-  right: 0;
+  right: 0!important;
 }
 .expand-button {
   width: 36px;

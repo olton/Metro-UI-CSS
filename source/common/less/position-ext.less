@@ -1,0 +1,275 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.put-n {
+    right: auto!important;
+    bottom: auto!important;
+    left: 50%!important;
+    top: 0!important;
+    .translateX(-50%);
+    .translateY(-100%);
+}
+
+.put-nw {
+    right: auto!important;
+    bottom: auto!important;
+    left: 0!important;
+    top: 0!important;
+    .translateY(-100%);
+}
+
+.put-ne {
+    left: auto!important;
+    bottom: auto!important;
+    top: 0!important;
+    right: 0!important;
+    .translateY(-100%);
+}
+
+.put-wn {
+    bottom: auto!important;
+    right: auto!important;
+    top: 0!important;
+    left: 0!important;
+    .translateX(-100%);
+}
+
+.put-w {
+    bottom: auto!important;
+    right: auto!important;
+    top: 50%!important;
+    left: 0!important;
+    .translateX(-100%);
+    .translateY(-50%);
+}
+
+.put-ws {
+    top: auto!important;
+    right: auto!important;
+    bottom: 0!important;
+    left: 0!important;
+    .translateX(-100%);
+}
+
+.put-en {
+    bottom: auto!important;
+    left: auto!important;
+    top: 0!important;
+    right: 0!important;
+    .translateX(100%);
+}
+
+.put-e {
+    bottom: auto!important;
+    left: auto!important;
+    top: 50%!important;
+    right: 0!important;
+    .translateX(100%);
+    .translateY(-50%);
+}
+
+.put-es {
+    top: auto!important;
+    left: auto!important;
+    bottom: 0!important;
+    right: 0!important;
+    .translateX(100%);
+}
+
+.put-s {
+    bottom: auto!important;
+    right: auto!important;
+    top: 100%!important;
+    left: 0!important;
+}
+
+.put-sw {
+    bottom: auto!important;
+    right: auto!important;
+    top: 100%!important;
+    left: 50%!important;
+    .translateX(-50%);
+}
+
+.put-se {
+    bottom: auto!important;
+    left: auto!important;
+    top: 100%!important;
+    right: 0!important;
+}
+
+.put-left {left: 0!important; right: auto!important;}
+.put-right {left: auto!important; right: 0!important;}
+
+.pos-top-left {
+    top: 0!important;
+    left: 0!important;
+    right: auto!important;
+    bottom: auto!important;
+}
+
+.pos-top-center {
+    top: 0!important;
+    left: 50%!important;
+    right: auto!important;
+    bottom: auto!important;
+    .translateX(-50%);
+}
+
+.pos-top-right {
+    right: 0!important;
+    top: 0!important;
+    left: auto!important;
+    bottom: auto!important;
+}
+
+.pos-bottom-left {
+    top: auto!important;
+    right: auto!important;
+    left: 0!important;
+    bottom: 0!important;
+}
+
+.pos-bottom-center {
+    top: auto!important;
+    left: 50%!important;
+    bottom: 0!important;
+    right: auto!important;
+    .translateX(-50%);
+}
+
+.pos-bottom-right {
+    bottom: 0!important;
+    right: 0!important;
+    top: auto!important;
+    left: auto!important;
+}
+
+.pos-left-center {
+    left: 0!important;
+    top: 50%!important;
+    bottom: auto!important;
+    right: auto!important;
+    .translateY(-50%);
+}
+
+.pos-right-center {
+    right: 0;
+    top: 50%;
+    bottom: auto;
+    left: auto;
+    .translateY(-50%);
+}
+
+.pos-center {
+    top: 50%!important;
+    left: 50%!important;
+    bottom: auto!important;
+    right: auto!important;
+    .translateX(-50%);
+    .translateY(-50%);
+}
+
+each(@mediaBreakpointListMobile, {
+    @media screen and (min-width: @@value) {
+        .put-left-@{value} {left: 0!important; right: auto!important;}
+        .put-right-@{value} {left: auto!important; right: 0!important;}
+
+        .put-n-@{value} {
+            right: auto!important;
+            bottom: auto!important;
+            left: 50%!important;
+            top: 0!important;
+            .translateX(-50%);
+            .translateY(-100%);
+        }
+
+        .put-nw-@{value} {
+            right: auto!important;
+            bottom: auto!important;
+            left: 0!important;
+            top: 0!important;
+            .translateY(-100%);
+        }
+
+        .put-ne-@{value} {
+            left: auto!important;
+            bottom: auto!important;
+            top: 0!important;
+            right: 0!important;
+            .translateY(-100%);
+        }
+
+        .put-wn-@{value} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 0!important;
+            left: 0!important;
+            .translateX(-100%);
+        }
+
+        .put-w-@{value} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 50%!important;
+            left: 0!important;
+            .translateX(-100%);
+            .translateY(-50%);
+        }
+
+        .put-ws-@{value} {
+            top: auto!important;
+            right: auto!important;
+            bottom: 0!important;
+            left: 0!important;
+            .translateX(-100%);
+        }
+
+        .put-en-@{value} {
+            bottom: auto!important;
+            left: auto!important;
+            top: 0!important;
+            right: 0!important;
+            .translateX(100%);
+        }
+
+        .put-e-@{value} {
+            bottom: auto!important;
+            left: auto!important;
+            top: 50%!important;
+            right: 0!important;
+            .translateX(100%);
+            .translateY(-50%);
+        }
+
+        .put-es-@{value} {
+            top: auto!important;
+            left: auto!important;
+            bottom: 0!important;
+            right: 0!important;
+            .translateX(100%);
+        }
+
+        .put-s-@{value} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 100%!important;
+            left: 0!important;
+        }
+
+        .put-sw-@{value} {
+            bottom: auto!important;
+            right: auto!important;
+            top: 100%!important;
+            left: 50%!important;
+            .translateX(-50%);
+        }
+
+        .put-se-@{value} {
+            bottom: auto!important;
+            left: auto!important;
+            top: 100%!important;
+            right: 0!important;
+        }
+    }
+})
