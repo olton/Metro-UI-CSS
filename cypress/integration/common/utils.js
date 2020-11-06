@@ -54,38 +54,6 @@ describe("Test Metro 4 Utils functions", function(){
         });
     });
 
-    describe("Utils.isColor", ()=>{
-
-        it("isColor must return true for #ffffff", ()=>{
-            assert.equal(Utils.isColor("#ffffff"), true);
-        });
-        it("isColor must return true for #000000", ()=>{
-            assert.equal(Utils.isColor("#000000"), true);
-        });
-        it("isColor must return true for #fff", ()=>{
-            assert.equal(Utils.isColor("#fff"), true);
-        });
-        it("isColor must return true for #000", ()=>{
-            assert.equal(Utils.isColor("#000"), true);
-        });
-        it("isColor must return false for #f", ()=>{
-            assert.equal(Utils.isColor("#f"), false);
-        });
-        it("isColor must return false for #ffff", ()=>{
-            assert.equal(Utils.isColor("#ffff"), false);
-        });
-        it("isColor must return false for #fffffff", ()=>{
-            assert.equal(Utils.isColor("#fffffff"), false);
-        });
-        it("isColor must return false for ffffff", ()=>{
-            assert.equal(Utils.isColor("ffffff"), false);
-        });
-        it("isColor must return false for #kkk", ()=>{
-            assert.equal(Utils.isColor("#kkk"), false);
-        });
-
-    });
-
     describe('Utils.isType', () => {
         it("isType for '123' and string return '123'", ()=>{
             assert.equal(Utils.isType("123", "string"), '123');
