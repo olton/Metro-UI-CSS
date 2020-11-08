@@ -76,7 +76,7 @@
             if (elem.tagName === 'TD' || elem.tagName === 'TH') {
                 var wrp = $("<div/>").css("display", "inline-block").html(element.html());
                 element.html(wrp);
-                element = wrp;
+                this.element = wrp;
             }
 
             this.setPosition();
