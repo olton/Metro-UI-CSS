@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/11/2020 22:27:57
+ * Built at 09/11/2020 11:50:07
  * Licensed under MIT
  */
 *,
@@ -29926,12 +29926,12 @@ input.input-small:-ms-input-placeholder {
   -webkit-box-align: center;
           align-items: center;
   position: relative;
-  line-height: 48px;
+  line-height: 40px;
   text-decoration: none;
   color: inherit;
   white-space: nowrap;
   border: 2px solid transparent;
-  height: 48px;
+  height: 40px;
 }
 .navview .navview-menu li a:hover {
   text-decoration: none;
@@ -30513,7 +30513,6 @@ input.input-small:-ms-input-placeholder {
   display: block!important;
   position: absolute;
   left: calc(100% + 0px);
-  top: 0;
   background-color: inherit;
   padding: 0 16px;
 }

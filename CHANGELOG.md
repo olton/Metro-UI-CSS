@@ -1,4 +1,5 @@
 ### 4.4.3
++ [x] NavView: fixed `navview-pane` item `height`, issue #1661
 
 ### 4.4.2
 #### Metro 4
