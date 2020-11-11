@@ -326,7 +326,8 @@
 
             if (target && target.length) {
                 target.css({
-                    backgroundColor: hex
+                    backgroundColor: hex,
+                    color: Metro.colors.isLight(hex) ? "#000" : "#fff"
                 });
             }
 
