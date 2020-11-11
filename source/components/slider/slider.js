@@ -161,6 +161,7 @@
                 }
 
                 $(document).on(Metro.events.moveAll, function(e){
+                    if (e.cancelable) e.preventDefault();
                     that._move(e);
 
                     that._fireEvent("move", {
