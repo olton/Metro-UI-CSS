@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/11/2020 21:21:35
+ * Built at 12/11/2020 00:57:04
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "11/11/2020 21:21:35",
+        compileTime: "12/11/2020 00:57:04",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11634,7 +11634,7 @@ $.noConflict = function() {
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var colorBox, row, swatches, map, value, inputs, radios, userColors, userColorsActions;
+            var colorBox, row, swatches, map, value, inputs, radios, userColors, userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor;
 
             element.addClass("color-selector").addClass(o.clsSelector);
 
@@ -11657,12 +11657,12 @@ $.noConflict = function() {
             colorBox.append( row = $("<div>").addClass("row") );
 
             row.append( map = $("<div>").addClass("color-map") );
-            map.append( $("<button>").attr("type", "button").addClass("cursor color-cursor") )
-            map.append( $("<canvas>").addClass("color-canvas") )
+            map.append( shadeCursor = $("<button>").attr("type", "button").addClass("cursor color-cursor") )
+            map.append( shadeCanvas = $("<canvas>").addClass("color-canvas") )
 
             row.append( map = $("<div>").addClass("hue-map") );
-            map.append( $("<button>").attr("type", "button").addClass("cursor hue-cursor") )
-            map.append( $("<canvas>").addClass("hue-canvas") )
+            map.append( hueCursor = $("<button>").attr("type", "button").addClass("cursor hue-cursor") )
+            map.append( hueCanvas = $("<canvas>").addClass("hue-canvas") )
 
             colorBox.append( row = $("<div>").addClass("row") );
 
@@ -11736,10 +11736,10 @@ $.noConflict = function() {
 
             this._fillUserColors();
 
-            this.hueCanvas = element.find(".hue-canvas");
-            this.hueCursor = element.find(".hue-cursor");
-            this.shadeCanvas = element.find(".color-canvas");
-            this.shadeCursor = element.find(".color-cursor");
+            this.hueCanvas = hueCanvas;
+            this.hueCursor = hueCursor;
+            this.shadeCanvas = shadeCanvas;
+            this.shadeCursor = shadeCursor;
 
             this._createShadeCanvas();
             this._createHueCanvas();
@@ -11794,16 +11794,17 @@ $.noConflict = function() {
         },
 
         _getHueColor: function(pageY){
-            var canvas = this.hueCanvas[0];
-            var rect = canvas.getBoundingClientRect();
+            var canvas = this.hueCanvas;
+            var offset = canvas.offset();
+            var height = canvas.height();
             var y, percent, color, hue;
 
-            y = pageY - rect.top;
+            y = pageY - offset.top;
 
-            if ( y > rect.height ) y = rect.height;
+            if ( y > height ) y = height;
             if ( y < 0 ) y = 0;
 
-            percent = y / rect.height;
+            percent = y / height;
             hue = 360 - (360 * percent);
             if (hue === 360) hue = 0;
             color = "hsl("+ hue +", 100%, 50%)";
@@ -11816,17 +11817,20 @@ $.noConflict = function() {
         },
 
         _getShadeColor: function(pageX, pageY){
-            var colorRect = this.shadeCanvas[0].getBoundingClientRect();
-            var x = pageX - colorRect.left;
-            var y = pageY - colorRect.top;
+            var canvas = this.shadeCanvas;
+            var offset = canvas.offset();
+            var width = canvas.width();
+            var height = canvas.height();
+            var x = pageX - offset.left;
+            var y = pageY - offset.top;
 
-            if(x > colorRect.width) x = colorRect.width;
+            if(x > width) x = width;
             if(x < 0) x = 0;
-            if(y > colorRect.height) y = colorRect.height;
+            if(y > height) y = height;
             if(y < 0) y = .1;
 
-            var xRatio = x / colorRect.width * 100;
-            var yRatio = y / colorRect.height * 100;
+            var xRatio = x / width * 100;
+            var yRatio = y / height * 100;
             var hsvValue = 1 - (yRatio / 100);
             var hsvSaturation = xRatio / 100;
             var lightness = (hsvValue / 2) * (2 - hsvSaturation);
@@ -11934,12 +11938,52 @@ $.noConflict = function() {
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
-            var hueCanvas = this.hueCanvas;
-            var shadeCanvas = this.shadeCanvas;
-            var radios = element.find("input[type=radio]");
-            var addButton = element.find(".user-colors-actions .add-button");
+            var hueMap = element.find(".hue-map");
+            var shadeMap = element.find(".color-map");
 
-            addButton.on("click", function(){
+            hueMap.on(Metro.events.startAll, function(e){
+
+                that._getHueColor(Utils.pageXY(e).y);
+                that.hueCursor.addClass("dragging");
+
+                $(document).on(Metro.events.moveAll, function(e){
+                    e.preventDefault();
+                    that._getHueColor(Utils.pageXY(e).y);
+                }, {ns: that.id, passive: false});
+
+                $(document).on(Metro.events.stopAll, function(){
+                    that.hueCursor.removeClass("dragging");
+                    $(document).off(Metro.events.moveAll, {ns: that.id});
+                    $(document).off(Metro.events.stopAll, {ns: that.id});
+                }, {ns: that.id});
+
+            });
+
+            shadeMap.on(Metro.events.startAll, function(e){
+
+                that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
+                that.shadeCursor.addClass("dragging");
+
+                $(document).on(Metro.events.moveAll, function(e){
+                    e.preventDefault();
+                    that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
+                }, {ns: that.id, passive: false});
+
+                $(document).on(Metro.events.stopAll, function(){
+                    that.shadeCursor.removeClass("dragging");
+                    $(document).off(Metro.events.moveAll, {ns: that.id});
+                    $(document).off(Metro.events.stopAll, {ns: that.id});
+                }, {ns: that.id})
+
+            });
+
+            element.on("click", ".swatch", function(e){
+                that._colorToPos($(this).attr("data-color"));
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            element.on("click", ".add-button", function(e){
                 var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness));
                 if (that.userColors.indexOf(color) !== -1) {
                     return ;
@@ -11954,48 +11998,14 @@ $.noConflict = function() {
                             backgroundColor: color
                         })
                 )
+                e.preventDefault();
+                e.stopPropagation();
             });
 
-            radios.on("click", function(){
+            element.on("click", "input[type=radio]", function(e){
                 o.returnValueType = $(this).val();
+                e.stopPropagation();
             });
-
-            hueCanvas.on(Metro.events.startAll, function(e){
-                if (e.cancelable) e.preventDefault();
-                that._getHueColor(Utils.pageXY(e).y);
-                that.hueCursor.addClass("dragging");
-
-                $(window).on(Metro.events.moveAll, function(e){
-                    if (e.cancelable) e.preventDefault();
-                    that._getHueColor(Utils.pageXY(e).y);
-                }, {ns: that.id, passive: false});
-
-                $(window).on(Metro.events.stopAll, function(){
-                    that.hueCursor.removeClass("dragging");
-                    $(window).off(Metro.events.moveAll, {ns: that.id});
-                })
-            }, {passive: false});
-
-            shadeCanvas.on(Metro.events.startAll, function(e){
-                if (e.cancelable) e.preventDefault();
-                that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
-                that.shadeCursor.addClass("dragging");
-
-                $(window).on(Metro.events.moveAll, function(e){
-                    if (e.cancelable) e.preventDefault();
-                    that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
-                }, {ns: that.id, passive: false});
-
-                $(window).on(Metro.events.stopAll, function(){
-                    that.shadeCursor.removeClass("dragging");
-                    $(window).off(Metro.events.moveAll, {ns: that.id});
-                })
-            }, {passive: false});
-
-            element.on("click", ".swatch", function(e){
-                that._colorToPos($(this).attr("data-color"));
-                if (e.cancelable) e.preventDefault();
-            })
         },
 
         val: function(v){
@@ -12047,8 +12057,6 @@ $.noConflict = function() {
 
         _fillUserColors: function(){
             var colors = this.element.find(".user-colors").clear();
-
-            
 
             $.each(this.userColors, function(){
                 var color = this;
