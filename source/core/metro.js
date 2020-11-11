@@ -525,6 +525,10 @@
             return Metro.$()($(el)[0]);
         },
 
+        get$elements: function(el){
+            return Metro.$()($(el));
+        },
+
         getPlugin: function(el, name){
             var _name = normalizeComponentName(name);
             var $el = Metro.get$el(el);
@@ -533,7 +537,7 @@
 
         makePlugin: function(el, name, options){
             var _name = normalizeComponentName(name);
-            var $el = Metro.get$el(el);
+            var $el = Metro.get$elements(el);
             return $el.length && typeof $el[_name] === "function" ? $el[_name](options) : undefined;
         },
 

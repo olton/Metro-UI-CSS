@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 09/11/2020 11:50:07
+ * Built at 11/11/2020 15:10:57
  * Licensed under MIT
  */
 .accordion {
@@ -3293,6 +3293,151 @@ input[type=reset].loading .load-caption {
 }
 .chip + .chip {
   margin-left: 8px;
+}
+.color-selector {
+  width: 306px;
+  background-color: #ffffff;
+}
+.color-selector .color-box {
+  display: block;
+  border: 1px solid #dfdfdf;
+  padding: 10px;
+}
+.color-selector .row {
+  margin: 10px 0 0;
+  display: block;
+}
+.color-selector .row:nth-child(1) {
+  margin-top: 0;
+}
+.color-selector .default-swatches {
+  display: block;
+  width: 100%;
+}
+.color-selector .default-swatches .swatch {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: #ccc;
+  border-radius: 0;
+  margin-left: 4px;
+  margin-bottom: 4px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid #dfdfdf;
+  cursor: pointer;
+}
+.color-selector .default-swatches .swatch:nth-child(8n+1) {
+  margin-left: 0;
+}
+.color-selector .cursor {
+  border-radius: 100%;
+  background: #ccc;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  border: 2px solid #fff;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+.color-selector .cursor.dragging {
+  -webkit-transition: none;
+  transition: none;
+}
+.color-selector .color-map {
+  position: relative;
+  width: 212px;
+  height: 200px;
+  overflow: hidden;
+}
+.color-selector .color-map .color-cursor {
+  width: 30px;
+  height: 30px;
+  margin-left: -15px;
+  margin-top: -15px;
+  top: 0;
+  left: 0;
+}
+.color-selector .color-map canvas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #ccc;
+}
+.color-selector .hue-map {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  right: 25px;
+  width: 10px;
+}
+.color-selector .hue-map .hue-cursor {
+  top: 0;
+  left: 50%;
+  height: 20px;
+  width: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  pointer-events: none;
+}
+.color-selector .hue-map canvas {
+  border-radius: 8px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #ccc;
+}
+.color-selector .color-value-hex,
+.color-selector .color-value-rgb,
+.color-selector .color-value-hsl,
+.color-selector .color-value-hsv,
+.color-selector .color-value-cmyk {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+          align-items: center;
+}
+.color-selector .color-value-hex input,
+.color-selector .color-value-rgb input,
+.color-selector .color-value-hsl input,
+.color-selector .color-value-hsv input,
+.color-selector .color-value-cmyk input {
+  flex-shrink: 1;
+  min-width: 0;
+  font-size: 11px!important;
+  font-weight: bold;
+  text-align: center;
+}
+.color-selector .color-value-hex .prepend,
+.color-selector .color-value-rgb .prepend,
+.color-selector .color-value-hsl .prepend,
+.color-selector .color-value-hsv .prepend,
+.color-selector .color-value-cmyk .prepend {
+  font-size: 11px!important;
+  border-right: 1px solid #dfdfdf;
+  width: 30px!important;
+  text-align: center;
+  padding: 0 4px!important;
+}
+.color-selector .color-value-hex .radio,
+.color-selector .color-value-rgb .radio,
+.color-selector .color-value-hsl .radio,
+.color-selector .color-value-hsv .radio,
+.color-selector .color-value-cmyk .radio {
+  height: 28px!important;
 }
 .command-button,
 .image-button {
