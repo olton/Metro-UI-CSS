@@ -2311,7 +2311,6 @@ $.fn.extend({
 
     scrollTop: function(val){
         if (not(val)) {
-            console.log(this.length);
             return this.length === 0 ? undefined : this[0] === window ? pageYOffset : this[0].scrollTop;
         }
         return this.each(function(){

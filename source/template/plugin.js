@@ -41,7 +41,7 @@
 
         },
 
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attr, newValue){
         },
 
         destroy: function(){

@@ -1,5 +1,7 @@
 ### 4.4.3
 + [x] NavView: fixed `navview-pane` item `height` and hover state, issue #1661
++ [x] Color selector: added new component
++ [x] Metro: improved function `makePlugin(...)`, now you can use it for set of elements.
 
 ### 4.4.2
 #### Metro 4
