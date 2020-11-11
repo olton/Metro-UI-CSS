@@ -341,40 +341,40 @@
             });
 
             hueCanvas.on(Metro.events.startAll, function(e){
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
                 that._getHueColor(Utils.pageXY(e).y);
                 that.hueCursor.addClass("dragging");
 
                 $(window).on(Metro.events.moveAll, function(e){
-                    e.preventDefault();
+                    if (e.cancelable) e.preventDefault();
                     that._getHueColor(Utils.pageXY(e).y);
-                }, {ns: that.id, passive: true});
+                }, {ns: that.id, passive: false});
 
                 $(window).on(Metro.events.stopAll, function(){
                     that.hueCursor.removeClass("dragging");
                     $(window).off(Metro.events.moveAll, {ns: that.id});
                 })
-            });
+            }, {passive: false});
 
             shadeCanvas.on(Metro.events.startAll, function(e){
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
                 that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
                 that.shadeCursor.addClass("dragging");
 
                 $(window).on(Metro.events.moveAll, function(e){
-                    e.preventDefault();
+                    if (e.cancelable) e.preventDefault();
                     that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
-                }, {ns: that.id, passive: true});
+                }, {ns: that.id, passive: false});
 
                 $(window).on(Metro.events.stopAll, function(){
                     that.shadeCursor.removeClass("dragging");
                     $(window).off(Metro.events.moveAll, {ns: that.id});
                 })
-            });
+            }, {passive: false});
 
             element.on("click", ".swatch", function(e){
                 that._colorToPos($(this).attr("data-color"));
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
             })
         },
 

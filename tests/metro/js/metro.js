@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/11/2020 17:37:07
+ * Built at 11/11/2020 17:46:28
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "11/11/2020 17:37:07",
+        compileTime: "11/11/2020 17:46:28",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11903,40 +11903,40 @@ $.noConflict = function() {
             });
 
             hueCanvas.on(Metro.events.startAll, function(e){
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
                 that._getHueColor(Utils.pageXY(e).y);
                 that.hueCursor.addClass("dragging");
 
                 $(window).on(Metro.events.moveAll, function(e){
-                    e.preventDefault();
+                    if (e.cancelable) e.preventDefault();
                     that._getHueColor(Utils.pageXY(e).y);
-                }, {ns: that.id, passive: true});
+                }, {ns: that.id, passive: false});
 
                 $(window).on(Metro.events.stopAll, function(){
                     that.hueCursor.removeClass("dragging");
                     $(window).off(Metro.events.moveAll, {ns: that.id});
                 })
-            });
+            }, {passive: false});
 
             shadeCanvas.on(Metro.events.startAll, function(e){
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
                 that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
                 that.shadeCursor.addClass("dragging");
 
                 $(window).on(Metro.events.moveAll, function(e){
-                    e.preventDefault();
+                    if (e.cancelable) e.preventDefault();
                     that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
-                }, {ns: that.id, passive: true});
+                }, {ns: that.id, passive: false});
 
                 $(window).on(Metro.events.stopAll, function(){
                     that.shadeCursor.removeClass("dragging");
                     $(window).off(Metro.events.moveAll, {ns: that.id});
                 })
-            });
+            }, {passive: false});
 
             element.on("click", ".swatch", function(e){
                 that._colorToPos($(this).attr("data-color"));
-                e.preventDefault();
+                if (e.cancelable) e.preventDefault();
             })
         },
 
@@ -25584,6 +25584,7 @@ $.noConflict = function() {
                 }
 
                 $(document).on(Metro.events.moveAll, function(e){
+                    if (e.cancelable) e.preventDefault();
                     that._move(e);
 
                     that._fireEvent("move", {
