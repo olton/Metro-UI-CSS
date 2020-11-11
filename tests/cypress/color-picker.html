@@ -6,7 +6,17 @@
     <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
 
     <title>Test ColorSelector - Metro 4 :: Popular HTML, CSS and JS library</title>
-
+    <style>
+        .target {
+            height: 100px;
+            width: 306px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid gray;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body class="m4-cloak h-vh-100">
 <div class="container mt-2">
@@ -17,15 +27,22 @@
             <button class="button" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').val('#aa00ff')">Set to Violet</button>
             <button class="button" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').val())">Get color</button>
         </div>
-        <div class="d-flex">
-            <div id="color-selector-1" data-role="color-selector"></div>
-            <div id="color-selector-2"
-                 data-role="color-selector"
-                 data-cls-selector="bg-dark ml-2"
-                 data-cls-value="bg-dark fg-white"
-                 data-cls-label="bg-dark fg-white bd-darkGrayBlue"
-                 data-cls-input="bd-darkGrayBlue"
-                 ></div>
+        <div class="row">
+            <div class="cell-md-6">
+                <div id="color-selector-1" data-role="color-selector" data-target="#target-1"></div>
+                <div id="target-1" class="target">Target 1</div>
+            </div>
+            <div class="cell-md-6">
+                <div id="color-selector-2"
+                     data-role="color-selector"
+                     data-cls-selector="bg-dark"
+                     data-cls-value="bg-dark fg-white"
+                     data-cls-label="bg-dark fg-white bd-darkGrayBlue"
+                     data-cls-input="bd-darkGrayBlue"
+                     data-target="#target-2"
+                ></div>
+                <div id="target-2" class="target">Target 2</div>
+            </div>
         </div>
     </div>
 </div>

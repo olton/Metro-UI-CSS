@@ -9,6 +9,7 @@
         returnValueType: "hex",
         returnAsString: true,
         showValues: "hex, rgb, hsl, hsv, cmyk",
+        target: null,
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
@@ -290,12 +291,13 @@
         },
 
         _setColorValues: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
             var hsl = Metro.colors.toHSL(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness));
             var rgb = Metro.colors.toRGB(hsl);
             var hsv = Metro.colors.toHSV(hsl);
             var cmyk = Metro.colors.toCMYK(hsl);
             var hex = Metro.colors.toHEX(hsl);
+            var target = $(o.target);
 
             this.hsl = hsl;
             this.hsv = hsv;
@@ -321,6 +323,12 @@
             element.find(".color-value-cmyk .color-value-m input").val(cmyk.m.toFixed(0));
             element.find(".color-value-cmyk .color-value-y input").val(cmyk.y.toFixed(0));
             element.find(".color-value-cmyk .color-value-k input").val(cmyk.k.toFixed(0));
+
+            if (target && target.length) {
+                target.css({
+                    backgroundColor: hex
+                });
+            }
 
             this._fireEvent("color", {
                 hue: this.hue,
