@@ -336,7 +336,6 @@
 
             radios.on("click", function(){
                 o.returnValueType = $(this).val();
-                console.log(that.val());
             });
 
             hueCanvas.on("mousedown", function(e){
