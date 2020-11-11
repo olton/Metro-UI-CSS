@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/11/2020 21:17:56
+ * Built at 11/11/2020 21:21:35
  * Licensed under MIT
  */
 .accordion {
@@ -3315,6 +3315,7 @@ input[type=reset].loading .load-caption {
   padding: 4px 10px;
   text-align: center;
   font-size: 11px;
+  color: #1d1d1d;
 }
 .color-selector .default-swatches,
 .color-selector .user-colors,
