@@ -25,11 +25,17 @@
         }
     }
 
-    .default-swatches {
-        display: block;
-        width: 100%;
+    .user-colors-title {
+        padding: 4px 10px;
+        text-align: center;
+        font-size: 11px;
+    }
 
-        .swatch {
+    .default-swatches, .user-colors, .user-colors-actions  {
+        display: block;
+        width: auto;
+
+        .swatch, .user-swatch {
             display: inline-block;
             width: 32px;
             height: 32px;
@@ -44,6 +50,28 @@
             &:nth-child(8n+1) {
                 margin-left: 0;
             }
+        }
+
+        .user-swatch {
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .user-colors {
+        padding: 4px;
+    }
+
+    .user-colors-actions {
+        margin-top: 8px;
+        text-align: center;
+
+        .user-swatch {
+            margin: 0;
+        }
+
+        .button {
+            padding: 0 20px;
         }
     }
 
