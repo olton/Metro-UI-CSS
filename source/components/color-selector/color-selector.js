@@ -6,16 +6,25 @@
     var Utils = Metro.utils;
     var ColorSelectorDefaultConfig = {
         defaultSwatches: "#FFFFFF,#000000,#FFFB0D,#0532FF,#FF9300,#00F91A,#FF2700,#686868,#EE5464,#D27AEE,#5BA8C4,#E64AA9,#1ba1e2,#6a00ff,#bebebe,#f8f8f8",
+        userColors: "",
         returnValueType: "hex",
         returnAsString: true,
         showValues: "hex, rgb, hsl, hsv, cmyk",
+        showUserColors: true,
         target: null,
+        addUserColorTitle: "ADD TO SWATCHES",
+        clearUserColorTitle: "",
+        userColorsTitle: "USER COLORS",
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
         clsValue: "",
         clsLabel: "",
         clsInput: "",
+        clsUserColorButton: "",
+        clsUserColors: "",
+        clsUserColorsTitle: "",
+        clsUserColor: "",
         onColor: Metro.noop,
         onMyObjectCreate: Metro.noop
     };
@@ -35,6 +44,7 @@
                 id: Utils.elementId("color-selector"),
                 defaultSwatches: [],
                 showValues: [],
+                userColors: [],
                 hue: 0,
                 saturation: 0,
                 lightness: 1,
@@ -61,7 +71,7 @@
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var colorBox, row, swatches, map, value, inputs, radios;
+            var colorBox, row, swatches, map, value, inputs, radios, userColors, userColorsActions;
 
             element.addClass("color-selector").addClass(o.clsSelector);
 
@@ -122,6 +132,17 @@
             value.append( $("<input type='text' data-prepend='Y:' readonly>").addClass("input-small color-value-y") );
             value.append( $("<input type='text' data-prepend='K:' readonly>").addClass("input-small color-value-k") );
 
+            colorBox.append( row = $("<div>").addClass("row user-colors-container") );
+            row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle) );
+            row.append( userColors = $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
+            row.append( userColorsActions = $("<div>").addClass("user-colors-actions") );
+            userColorsActions.append(
+                $("<button>")
+                    .addClass("button add-button")
+                    .addClass(o.clsUserColorButton)
+                    .html("<span class='user-swatch'></span><span>"+o.addUserColorTitle+"</span>")
+            );
+
             inputs = colorBox.find("input[type=text]");
             Metro.makePlugin(inputs, 'input', {
                 clearButton: false,
@@ -145,6 +166,10 @@
             $.each(["hex", "rgb", "hsv", "hsl", "cmyk"], function(){
                 if (that.showValues.indexOf(this) === -1) element.find(".color-value-"+this).hide();
             });
+
+            if (!o.showUserColors) {
+                element.find(".user-colors-container").hide();
+            }
 
             this.hueCanvas = element.find(".hue-canvas");
             this.hueCursor = element.find(".hue-cursor");
@@ -331,6 +356,10 @@
                 });
             }
 
+            element.find(".user-colors-actions .user-swatch").css({
+                backgroundColor: hex
+            });
+
             this._fireEvent("color", {
                 hue: this.hue,
                 saturation: this.saturation,
@@ -344,6 +373,24 @@
             var hueCanvas = this.hueCanvas;
             var shadeCanvas = this.shadeCanvas;
             var radios = element.find("input[type=radio]");
+            var addButton = element.find(".user-colors-actions .add-button");
+
+            addButton.on("click", function(){
+                var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness));
+                if (that.userColors.indexOf(color) !== -1) {
+                    return ;
+                }
+                that.userColors.push(color);
+                element.find(".user-colors").append(
+                    $("<button>")
+                        .attr("data-color", color)
+                        .attr("type", "button")
+                        .addClass("swatch user-swatch")
+                        .css({
+                            backgroundColor: color
+                        })
+                )
+            });
 
             radios.on("click", function(){
                 o.returnValueType = $(this).val();
@@ -411,6 +458,40 @@
             }
 
             this._colorToPos(Metro.colors.toHEX(v));
+        },
+
+        user: function(v){
+            var element = this.element;
+            var colors;
+
+            if (!Utils.isValue(v)) {
+                return this.userColors;
+            }
+
+            if (!Array.isArray(v) && typeof v !== "string") {
+                return ;
+            }
+
+            if (typeof v === "string") {
+                this.userColors = v.toArray(",");
+            } else {
+                this.userColors = v;
+            }
+
+            colors = element.find(".user-colors").clear();
+
+            $.each(this.userColors, function(){
+                var color = this;
+                colors.append(
+                    $("<button>")
+                        .attr("data-color", color)
+                        .attr("type", "button")
+                        .addClass("swatch user-swatch")
+                        .css({
+                            backgroundColor: color
+                        })
+                )
+            });
         },
 
         changeAttribute: function(attr, newValue){

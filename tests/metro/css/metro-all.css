@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/11/2020 19:06:28
+ * Built at 11/11/2020 21:11:56
  * Licensed under MIT
  */
 *,
@@ -24092,11 +24092,23 @@ input[type=reset].loading .load-caption {
 .color-selector .row:nth-child(1) {
   margin-top: 0;
 }
-.color-selector .default-swatches {
-  display: block;
-  width: 100%;
+.color-selector .user-colors-title {
+  padding: 4px 10px;
+  text-align: center;
+  font-size: 11px;
 }
-.color-selector .default-swatches .swatch {
+.color-selector .default-swatches,
+.color-selector .user-colors,
+.color-selector .user-colors-actions {
+  display: block;
+  width: auto;
+}
+.color-selector .default-swatches .swatch,
+.color-selector .user-colors .swatch,
+.color-selector .user-colors-actions .swatch,
+.color-selector .default-swatches .user-swatch,
+.color-selector .user-colors .user-swatch,
+.color-selector .user-colors-actions .user-swatch {
   display: inline-block;
   width: 32px;
   height: 32px;
@@ -24109,8 +24121,32 @@ input[type=reset].loading .load-caption {
   border: 1px solid #dfdfdf;
   cursor: pointer;
 }
-.color-selector .default-swatches .swatch:nth-child(8n+1) {
+.color-selector .default-swatches .swatch:nth-child(8n+1),
+.color-selector .user-colors .swatch:nth-child(8n+1),
+.color-selector .user-colors-actions .swatch:nth-child(8n+1),
+.color-selector .default-swatches .user-swatch:nth-child(8n+1),
+.color-selector .user-colors .user-swatch:nth-child(8n+1),
+.color-selector .user-colors-actions .user-swatch:nth-child(8n+1) {
   margin-left: 0;
+}
+.color-selector .default-swatches .user-swatch,
+.color-selector .user-colors .user-swatch,
+.color-selector .user-colors-actions .user-swatch {
+  width: 24px;
+  height: 24px;
+}
+.color-selector .user-colors {
+  padding: 4px;
+}
+.color-selector .user-colors-actions {
+  margin-top: 8px;
+  text-align: center;
+}
+.color-selector .user-colors-actions .user-swatch {
+  margin: 0;
+}
+.color-selector .user-colors-actions .button {
+  padding: 0 20px;
 }
 .color-selector .cursor {
   border-radius: 100%;

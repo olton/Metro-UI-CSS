@@ -23,25 +23,30 @@
     <h1>ColorSelector test page</h1>
 
     <div class="example">
-        <div class="mb-2">
-            <button class="button" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').val('#aa00ff')">Set to Violet</button>
-            <button class="button" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').val())">Get color</button>
-        </div>
         <div class="row">
             <div class="cell-md-6">
+                <div class="mb-2">
+                    <button class="button" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').val('#aa00ff')">Set to Violet</button>
+                    <button class="button" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').val())">Get color</button>
+                </div>
                 <div id="color-selector-1" data-role="color-selector" data-target="#target-1"></div>
                 <div id="target-1" class="target">Target 1</div>
             </div>
             <div class="cell-md-6">
+                <div class="mb-2">
+                    <button class="button" onclick="Metro.getPlugin('#color-selector-2', 'color-selector').user('#aa00ff, #ff00ff')">Set user colors</button>
+                    <button class="button" onclick="alert(Metro.getPlugin('#color-selector-2', 'color-selector').user().join(','))">Get user colors</button>
+                </div>
                 <div id="color-selector-2"
                      data-role="color-selector"
                      data-cls-selector="bg-dark"
                      data-cls-value="bg-dark fg-white"
                      data-cls-label="bg-dark fg-white bd-darkGrayBlue"
                      data-cls-input="bd-darkGrayBlue"
-                     data-target="#target-2"
+                     data-cls-user-colors-title="fg-white"
+                     data-cls-user-color-button="secondary"
+                     data-target="body"
                 ></div>
-                <div id="target-2" class="target">Target 2</div>
             </div>
         </div>
     </div>
