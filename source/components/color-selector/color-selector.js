@@ -6,7 +6,7 @@
     var Utils = Metro.utils;
     var ColorSelectorDefaultConfig = {
         defaultSwatches: "#FFFFFF,#000000,#FFFB0D,#0532FF,#FF9300,#00F91A,#FF2700,#686868,#EE5464,#D27AEE,#5BA8C4,#E64AA9,#1ba1e2,#6a00ff,#bebebe,#f8f8f8",
-        userColors: "",
+        userColors: null,
         returnValueType: "hex",
         returnAsString: true,
         showValues: "hex, rgb, hsl, hsv, cmyk",
@@ -60,8 +60,9 @@
         _create: function(){
             var that = this, element = this.element, o = this.options;
 
-            this.defaultSwatches = o.defaultSwatches.toArray(",");
-            this.showValues = o.showValues.toArray(",");
+            if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",");
+            if (Utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
+            if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",");
 
             this._createStructure();
             this._createEvents();
@@ -170,6 +171,8 @@
             if (!o.showUserColors) {
                 element.find(".user-colors-container").hide();
             }
+
+            this._fillUserColors();
 
             this.hueCanvas = element.find(".hue-canvas");
             this.hueCursor = element.find(".hue-cursor");
@@ -478,7 +481,13 @@
                 this.userColors = v;
             }
 
-            colors = element.find(".user-colors").clear();
+            this._fillUserColors();
+        },
+
+        _fillUserColors: function(){
+            var colors = this.element.find(".user-colors").clear();
+
+            console.log(this.userColors);
 
             $.each(this.userColors, function(){
                 var color = this;
