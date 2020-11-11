@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/11/2020 17:48:51
+ * Built at 11/11/2020 18:38:22
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "11/11/2020 17:48:51",
+        compileTime: "11/11/2020 18:38:22",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11571,6 +11571,7 @@ $.noConflict = function() {
         returnValueType: "hex",
         returnAsString: true,
         showValues: "hex, rgb, hsl, hsv, cmyk",
+        target: null,
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
@@ -11852,12 +11853,13 @@ $.noConflict = function() {
         },
 
         _setColorValues: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
             var hsl = Metro.colors.toHSL(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness));
             var rgb = Metro.colors.toRGB(hsl);
             var hsv = Metro.colors.toHSV(hsl);
             var cmyk = Metro.colors.toCMYK(hsl);
             var hex = Metro.colors.toHEX(hsl);
+            var target = $(o.target);
 
             this.hsl = hsl;
             this.hsv = hsv;
@@ -11883,6 +11885,12 @@ $.noConflict = function() {
             element.find(".color-value-cmyk .color-value-m input").val(cmyk.m.toFixed(0));
             element.find(".color-value-cmyk .color-value-y input").val(cmyk.y.toFixed(0));
             element.find(".color-value-cmyk .color-value-k input").val(cmyk.k.toFixed(0));
+
+            if (target && target.length) {
+                target.css({
+                    backgroundColor: hex
+                });
+            }
 
             this._fireEvent("color", {
                 hue: this.hue,
@@ -12057,8 +12065,12 @@ $.noConflict = function() {
         this.v = v || 0;
     }
 
-    HSV.prototype.toString = function(){
+    HSV.prototype.toString2 = function(){
         return "hsv(" + [this.h, this.s, this.v].join(",") + ")";
+    }
+
+    HSV.prototype.toString = function(){
+        return "hsv(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.v*100)+"%"].join(",") + ")";
     }
 
     function HSL(h, s, l){
@@ -12067,8 +12079,12 @@ $.noConflict = function() {
         this.l = l || 0;
     }
 
-    HSL.prototype.toString = function(){
+    HSL.prototype.toString2 = function(){
         return "hsl(" + [this.h, this.s, this.l].join(",") + ")";
+    }
+
+    HSL.prototype.toString = function(){
+        return "hsl(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.l*100)+"%"].join(",") + ")";
     }
 
     function HSLA(h, s, l, a){
@@ -12326,9 +12342,12 @@ $.noConflict = function() {
             var _color = color.toLowerCase().trim();
 
             var a = _color
-                .replace(/[^\d.,]/g, "")
+                .replace(/[^%\d.,]/g, "")
                 .split(",")
                 .map(function(v) {
+                    if (v.indexOf('%') > -1) {
+                        v = ""+parseInt(v)/100;
+                    }
                     return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
                 });
 

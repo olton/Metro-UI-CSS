@@ -65,10 +65,20 @@
         // console.log(myHSVColor.type(), myHSVColor.toString()); // hsv, hsv(312,1,1)
         // console.log(myHSVColor ); // hsv, hsv(312,1,1)
 
-        var myColor = new Color("#ff00cc").toRGBA();
-        console.log(myColor.toString());
-        myColor.channel("alpha", .5);
-        console.log(myColor.toString());
+        // var myColor = new Color("#ff00cc").toRGBA();
+        // console.log(myColor.toString());
+        // myColor.channel("alpha", .5);
+        // console.log(myColor.toString());
+
+        var c = Metro.colors;
+        var colorHex = "#ff00ff";
+        var colorHsl = "hsl(300, 1, .5)";
+        var colorHsl2 = "hsl(300, 100%, 50%)";
+
+        console.log(c.toHSL(colorHex));
+        console.log(c.toHEX(colorHsl));
+        console.log(c.toHEX(colorHsl2));
+        // console.log("Must be #ff00ff", c.toHEX(colorHsl));
     })
 </script>
 </body>

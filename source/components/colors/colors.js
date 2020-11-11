@@ -70,8 +70,12 @@
         this.v = v || 0;
     }
 
-    HSV.prototype.toString = function(){
+    HSV.prototype.toString2 = function(){
         return "hsv(" + [this.h, this.s, this.v].join(",") + ")";
+    }
+
+    HSV.prototype.toString = function(){
+        return "hsv(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.v*100)+"%"].join(",") + ")";
     }
 
     function HSL(h, s, l){
@@ -80,8 +84,12 @@
         this.l = l || 0;
     }
 
-    HSL.prototype.toString = function(){
+    HSL.prototype.toString2 = function(){
         return "hsl(" + [this.h, this.s, this.l].join(",") + ")";
+    }
+
+    HSL.prototype.toString = function(){
+        return "hsl(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.l*100)+"%"].join(",") + ")";
     }
 
     function HSLA(h, s, l, a){
@@ -339,9 +347,12 @@
             var _color = color.toLowerCase().trim();
 
             var a = _color
-                .replace(/[^\d.,]/g, "")
+                .replace(/[^%\d.,]/g, "")
                 .split(",")
                 .map(function(v) {
+                    if (v.indexOf('%') > -1) {
+                        v = ""+parseInt(v)/100;
+                    }
                     return v.indexOf(".") > -1 ? parseFloat(v) : parseInt(v);
                 });
 
