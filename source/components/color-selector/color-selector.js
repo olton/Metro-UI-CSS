@@ -129,7 +129,9 @@
             });
             inputs.addClass(o.clsValue);
 
-            radios = colorBox.find("input[type=radio]");
+            radios = colorBox.find("input[type=radio]").each(function(){
+                $(this).attr("name", that.id + "-returnType");
+            });
             radios.each(function(){
                 if ($(this).val() === o.returnValueType) {
                     this.checked = true;
