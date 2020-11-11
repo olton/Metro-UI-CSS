@@ -340,35 +340,35 @@
                 o.returnValueType = $(this).val();
             });
 
-            hueCanvas.on("mousedown", function(e){
+            hueCanvas.on(Metro.events.startAll, function(e){
                 e.preventDefault();
-                that._getHueColor(e.pageY);
+                that._getHueColor(Utils.pageXY(e).y);
                 that.hueCursor.addClass("dragging");
 
-                $(window).on("mousemove", function(e){
+                $(window).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
-                    that._getHueColor(e.pageY);
-                }, {ns: that.id});
+                    that._getHueColor(Utils.pageXY(e).y);
+                }, {ns: that.id, passive: true});
 
-                $(window).on("mouseup", function(){
+                $(window).on(Metro.events.stopAll, function(){
                     that.hueCursor.removeClass("dragging");
-                    $(window).off("mousemove", {ns: that.id});
+                    $(window).off(Metro.events.moveAll, {ns: that.id});
                 })
             });
 
-            shadeCanvas.on("mousedown", function(e){
+            shadeCanvas.on(Metro.events.startAll, function(e){
                 e.preventDefault();
-                that._getShadeColor(e.pageX, e.pageY);
+                that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
                 that.shadeCursor.addClass("dragging");
 
-                $(window).on("mousemove", function(e){
+                $(window).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
-                    that._getShadeColor(e.pageX, e.pageY);
-                }, {ns: that.id});
+                    that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
+                }, {ns: that.id, passive: true});
 
-                $(window).on("mouseup", function(){
+                $(window).on(Metro.events.stopAll, function(){
                     that.shadeCursor.removeClass("dragging");
-                    $(window).off("mousemove", {ns: that.id});
+                    $(window).off(Metro.events.moveAll, {ns: that.id});
                 })
             });
 
