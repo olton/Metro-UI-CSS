@@ -66,9 +66,9 @@
         _create: function(){
             var that = this, element = this.element, o = this.options;
 
-            if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",");
+            if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",").map(function (el){return el.toUpperCase();});
             if (Utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
-            if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",");
+            if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",").map(function (el){return el.toUpperCase();});
             if (Utils.isValue(o.showAsString)) this.showAsString = o.showAsString.toArray(",");
 
             this._createStructure();
@@ -582,11 +582,14 @@
             });
 
             element.on("click", ".add-button", function(e){
-                var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness));
-                if (that.userColors.indexOf(color) !== -1) {
+                var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
+
+                if (that.userColors.indexOf(color) > -1) {
                     return ;
                 }
+
                 that.userColors.push(color);
+
                 element.find(".user-colors").append(
                     $("<button>")
                         .attr("data-color", color)
@@ -595,7 +598,8 @@
                         .css({
                             backgroundColor: color
                         })
-                )
+                );
+
                 e.preventDefault();
                 e.stopPropagation();
             });
@@ -648,9 +652,9 @@
             }
 
             if (typeof v === "string") {
-                this.userColors = v.toArray(",");
+                this.userColors = v.toArray(",").map(function (el){return el.toUpperCase();});
             } else {
-                this.userColors = v;
+                this.userColors = v.map(function (el){return el.toUpperCase();});
             }
 
             this._fillUserColors();
