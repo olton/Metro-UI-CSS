@@ -50,7 +50,7 @@
     }
 
     RGB.prototype.toString = function(){
-        return "rgb(" + [this.r, this.g, this.b].join(",") + ")";
+        return "rgb(" + [this.r, this.g, this.b].join(", ") + ")";
     }
 
     function RGBA(r, g, b, a){
@@ -61,7 +61,7 @@
     }
 
     RGBA.prototype.toString = function(){
-        return "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")";
+        return "rgba(" + [this.r, this.g, this.b, this.a.toFixed(1)].join(", ") + ")";
     }
 
     function HSV(h, s, v){
@@ -71,11 +71,11 @@
     }
 
     HSV.prototype.toString2 = function(){
-        return "hsv(" + [this.h, this.s, this.v].join(",") + ")";
+        return "hsv(" + [this.h, this.s, this.v].join(", ") + ")";
     }
 
     HSV.prototype.toString = function(){
-        return "hsv(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.v*100)+"%"].join(",") + ")";
+        return "hsv(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.v*100)+"%"].join(", ") + ")";
     }
 
     function HSL(h, s, l){
@@ -85,11 +85,11 @@
     }
 
     HSL.prototype.toString2 = function(){
-        return "hsl(" + [this.h, this.s, this.l].join(",") + ")";
+        return "hsl(" + [this.h, this.s, this.l].join(", ") + ")";
     }
 
     HSL.prototype.toString = function(){
-        return "hsl(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.l*100)+"%"].join(",") + ")";
+        return "hsl(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.l*100)+"%"].join(", ") + ")";
     }
 
     function HSLA(h, s, l, a){
@@ -99,8 +99,12 @@
         this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
     }
 
+    HSLA.prototype.toString2 = function(){
+        return "hsla(" + [this.h, this.s, this.l, this.a].join(", ") + ")";
+    }
+
     HSLA.prototype.toString = function(){
-        return "hsla(" + [this.h, this.s, this.l, this.a].join(",") + ")";
+        return "hsla(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.l*100)+"%", this.a.toFixed(1)].join(", ") + ")";
     }
 
     function CMYK(c, m, y, k){
@@ -111,7 +115,7 @@
     }
 
     CMYK.prototype.toString = function(){
-        return "cmyk(" + [this.c, this.m, this.y, this.k].join(",") + ")";
+        return "cmyk(" + [this.c, this.m, this.y, this.k].join(", ") + ")";
     }
 
     var Colors = {

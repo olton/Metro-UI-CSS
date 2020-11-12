@@ -19,36 +19,22 @@
     </style>
 </head>
 <body class="m4-cloak h-vh-100">
-<div class="container mt-2">
-    <h1>ColorSelector test page</h1>
 
-    <div class="example">
-        <div class="row">
-            <div class="cell-md-6">
-                <div class="mb-2">
-                    <button class="button" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').val('#aa00ff')">Set to Violet</button>
-                    <button class="button" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').val())">Get color</button>
-                </div>
-                <div id="color-selector-1" data-role="color-selector"></div>
-            </div>
-            <div class="cell-md-6">
-                <div class="mb-2">
-                    <button class="button" onclick="Metro.getPlugin('#color-selector-2', 'color-selector').user('#aa00ff, #ff00ff')">Set user colors</button>
-                    <button class="button" onclick="alert(Metro.getPlugin('#color-selector-2', 'color-selector').user().join(','))">Get user colors</button>
-                </div>
-                <div id="color-selector-2"
-                     data-role="color-selector"
-                     data-cls-selector="bg-dark"
-                     data-cls-value="bg-dark fg-white"
-                     data-cls-label="bg-dark fg-white bd-darkGrayBlue"
-                     data-cls-input="bd-darkGrayBlue"
-                     data-cls-user-colors-title="fg-white"
-                     data-cls-user-color-button="secondary"
-                     data-target="body"
-                ></div>
-            </div>
-        </div>
+<div class="container h-100 d-flex flex-column flex-justify-start flex-align-center">
+
+    <div class="mt-10 mb-10">
+        <button class="button" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').val('#aa00ff')">Set to Violet</button>
+        <button class="button" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').val())">Get color</button>
+        <button class="button" onclick="Metro.getPlugin('#color-selector-1', 'color-selector').user('#aa00ff, #ff00ff')">Set user colors</button>
+        <button class="button" onclick="alert(Metro.getPlugin('#color-selector-1', 'color-selector').user().join(','))">Get user colors</button>
     </div>
+
+    <div id="color-selector-1"
+         data-role="color-selector"
+         data-user-colors="#FFFFFF,#000000,#FFFB0D,#0532FF,#FF9300,#00F91A,#FF2700,#686868,#EE5464,#D27AEE,#5BA8C4,#E64AA9,#1ba1e2,#6a00ff,#bebebe,#f8f8f8"
+         data-show-as-string="rgb, cmyk, hsl, hsv"
+         class="win-shadow"></div>
+
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>

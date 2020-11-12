@@ -93,7 +93,7 @@
     <br>
 
     <div class="example">
-        <ul data-role="treeview">
+        <ul data-role="treeview" id="tv1">
             <li>
                 <input type="checkbox" data-role="checkbox" data-caption="Play video" title="">
                 <ul>
@@ -120,6 +120,13 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $(function(){
+        var elements = $("#tv1").find("input[type=checkbox]").filter(function(el){
+            return el.checked;
+        });
+
+        console.log(elements);
+    })
 </script>
 </body>
 </html>

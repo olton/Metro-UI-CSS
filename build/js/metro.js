@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/11/2020 00:57:04
+ * Built at 12/11/2020 16:25:47
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "12/11/2020 00:57:04",
+        compileTime: "12/11/2020 16:25:47",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11572,11 +11572,13 @@ $.noConflict = function() {
         returnValueType: "hex",
         returnAsString: true,
         showValues: "hex, rgb, hsl, hsv, cmyk",
+        showAsString: null,
         showUserColors: true,
         target: null,
         addUserColorTitle: "ADD TO SWATCHES",
         clearUserColorTitle: "",
         userColorsTitle: "USER COLORS",
+        hslMode: "percent",
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
@@ -11607,6 +11609,7 @@ $.noConflict = function() {
                 defaultSwatches: [],
                 showValues: [],
                 userColors: [],
+                showAsString: [],
                 hue: 0,
                 saturation: 0,
                 lightness: 1,
@@ -11625,6 +11628,7 @@ $.noConflict = function() {
             if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",");
             if (Utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
             if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",");
+            if (Utils.isValue(o.showAsString)) this.showAsString = o.showAsString.toArray(",");
 
             this._createStructure();
             this._createEvents();
@@ -11634,7 +11638,9 @@ $.noConflict = function() {
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var colorBox, row, swatches, map, value, inputs, radios, userColors, userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor;
+            var colorBox, row, swatches, map, value, inputs, radios, userColors,
+                userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor,
+                colorBlock;
 
             element.addClass("color-selector").addClass(o.clsSelector);
 
@@ -11668,32 +11674,69 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-hex") );
             value.append( $("<input type='radio' name='returnType' value='hex' checked>").addClass("check-color-value-hex") );
-            value.append( $("<input type='text' data-prepend='HEX:' readonly>").addClass("input-small color-value-x") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
+            colorBlock.append( $("<input type='text' data-prepend='HEX:' readonly>").addClass("input-small value-hex") );
 
             row.append( value = $("<div>").addClass("color-value-rgb") );
             value.append( $("<input type='radio' name='returnType' value='rgb'>").addClass("check-color-value-rgb") );
-            value.append( $("<input type='text' data-prepend='R:' readonly>").addClass("input-small color-value-r") );
-            value.append( $("<input type='text' data-prepend='G:' readonly>").addClass("input-small color-value-g") );
-            value.append( $("<input type='text' data-prepend='B:' readonly>").addClass("input-small color-value-b") );
+            value.append( colorBlock = $("<div>").addClass("color-block") );
+            colorBlock.append( $("<input type='text' data-prepend='R:' readonly>").addClass("input-small value-r") );
+            colorBlock.append( $("<input type='text' data-prepend='G:' readonly>").addClass("input-small value-g") );
+            colorBlock.append( $("<input type='text' data-prepend='B:' readonly>").addClass("input-small value-b") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
+            colorBlock.append( $("<input type='text' data-prepend='RGB:' readonly>").addClass("input-small value-rgb") );
+
+            if (this.showAsString.indexOf("rgb") > -1) {
+                value.find(".value-r,.value-g,.value-b").parent().hide();
+            } else {
+                value.find(".value-rgb").parent().hide();
+            }
 
             row.append( value = $("<div>").addClass("color-value-hsl") );
             value.append( $("<input type='radio' name='returnType' value='hsl'>").addClass("check-color-value-hsv") );
-            value.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small color-value-h") );
-            value.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small color-value-s") );
-            value.append( $("<input type='text' data-prepend='L:' readonly>").addClass("input-small color-value-l") );
+            value.append( colorBlock = $("<div>").addClass("color-block") );
+            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='L:' readonly>").addClass("input-small value-l") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
+            colorBlock.append( $("<input type='text' data-prepend='HSL:' readonly>").addClass("input-small value-hsl") );
+
+            if (this.showAsString.indexOf("hsl") > -1) {
+                value.find(".value-h,.value-s,.value-l").parent().hide();
+            } else {
+                value.find(".value-hsl").parent().hide();
+            }
 
             row.append( value = $("<div>").addClass("color-value-hsv") );
             value.append( $("<input type='radio' name='returnType' value='hsv'>").addClass("check-color-value-hsl") );
-            value.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small color-value-h") );
-            value.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small color-value-s") );
-            value.append( $("<input type='text' data-prepend='V:' readonly>").addClass("input-small color-value-v") );
+            value.append( colorBlock = $("<div>").addClass("color-block") );
+            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='V:' readonly>").addClass("input-small value-v") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
+            colorBlock.append( $("<input type='text' data-prepend='HSV:' readonly>").addClass("input-small value-hsv") );
+
+            if (this.showAsString.indexOf("hsv") > -1) {
+                value.find(".value-h,.value-s,.value-v").parent().hide();
+            } else {
+                value.find(".value-hsv").parent().hide();
+            }
 
             row.append( value = $("<div>").addClass("color-value-cmyk") );
             value.append( $("<input type='radio' name='returnType' value='cmyk'>").addClass("check-color-value-cmyk") );
-            value.append( $("<input type='text' data-prepend='C:' readonly>").addClass("input-small color-value-c") );
-            value.append( $("<input type='text' data-prepend='M:' readonly>").addClass("input-small color-value-m") );
-            value.append( $("<input type='text' data-prepend='Y:' readonly>").addClass("input-small color-value-y") );
-            value.append( $("<input type='text' data-prepend='K:' readonly>").addClass("input-small color-value-k") );
+            value.append( colorBlock = $("<div>").addClass("color-block") );
+            colorBlock.append( $("<input type='text' data-prepend='C:' readonly>").addClass("input-small value-c") );
+            colorBlock.append( $("<input type='text' data-prepend='M:' readonly>").addClass("input-small value-m") );
+            colorBlock.append( $("<input type='text' data-prepend='Y:' readonly>").addClass("input-small value-y") );
+            colorBlock.append( $("<input type='text' data-prepend='K:' readonly>").addClass("input-small value-k") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
+            colorBlock.append( $("<input type='text' data-prepend='CMYK:' readonly>").addClass("input-small value-cmyk") );
+
+            if (this.showAsString.indexOf("cmyk") > -1) {
+                value.find(".value-s,.value-m,.value-y,.value-k").parent().hide();
+            } else {
+                value.find(".value-cmyk").parent().hide();
+            }
 
             colorBox.append( row = $("<div>").addClass("row user-colors-container") );
             row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle) );
@@ -11892,6 +11935,7 @@ $.noConflict = function() {
             var cmyk = Metro.colors.toCMYK(hsl);
             var hex = Metro.colors.toHEX(hsl);
             var target = $(o.target);
+            var percent = o.hslMode === "percent";
 
             this.hsl = hsl;
             this.hsv = hsv;
@@ -11899,24 +11943,28 @@ $.noConflict = function() {
             this.hex = hex;
             this.cmyk = cmyk;
 
-            element.find(".color-value-hex .color-value-x input").val(hex);
+            element.find(".color-value-hex .value-hex input").val(hex);
 
-            element.find(".color-value-rgb .color-value-r input").val(rgb.r);
-            element.find(".color-value-rgb .color-value-g input").val(rgb.g);
-            element.find(".color-value-rgb .color-value-b input").val(rgb.b);
+            element.find(".color-value-rgb .value-r input").val(rgb.r);
+            element.find(".color-value-rgb .value-g input").val(rgb.g);
+            element.find(".color-value-rgb .value-b input").val(rgb.b);
+            element.find(".color-value-rgb .value-rgb input").val(rgb.toString());
 
-            element.find(".color-value-hsl .color-value-h input").val(hsl.h.toFixed(0));
-            element.find(".color-value-hsl .color-value-s input").val(hsl.s.toFixed(4));
-            element.find(".color-value-hsl .color-value-l input").val(hsl.l.toFixed(4));
+            element.find(".color-value-hsl .value-h input").val(hsl.h.toFixed(0));
+            element.find(".color-value-hsl .value-s input").val(percent ? Math.round(hsl.s*100)+"%" : hsl.s.toFixed(4));
+            element.find(".color-value-hsl .value-l input").val(percent ? Math.round(hsl.l*100)+"%" : hsl.l.toFixed(4));
+            element.find(".color-value-hsl .value-hsl input").val(hsl.toString());
 
-            element.find(".color-value-hsv .color-value-h input").val(hsv.h.toFixed(0));
-            element.find(".color-value-hsv .color-value-s input").val(hsv.s.toFixed(4));
-            element.find(".color-value-hsv .color-value-v input").val(hsv.v.toFixed(4));
+            element.find(".color-value-hsv .value-h input").val(hsv.h.toFixed(0));
+            element.find(".color-value-hsv .value-s input").val(percent ? Math.round(hsv.s*100)+"%" : hsv.s.toFixed(4));
+            element.find(".color-value-hsv .value-v input").val(percent ? Math.round(hsv.v*100)+"%" : hsv.v.toFixed(4));
+            element.find(".color-value-hsv .value-hsv input").val(hsv.toString());
 
-            element.find(".color-value-cmyk .color-value-c input").val(cmyk.c.toFixed(0));
-            element.find(".color-value-cmyk .color-value-m input").val(cmyk.m.toFixed(0));
-            element.find(".color-value-cmyk .color-value-y input").val(cmyk.y.toFixed(0));
-            element.find(".color-value-cmyk .color-value-k input").val(cmyk.k.toFixed(0));
+            element.find(".color-value-cmyk .value-c input").val(cmyk.c.toFixed(0));
+            element.find(".color-value-cmyk .value-m input").val(cmyk.m.toFixed(0));
+            element.find(".color-value-cmyk .value-y input").val(cmyk.y.toFixed(0));
+            element.find(".color-value-cmyk .value-k input").val(cmyk.k.toFixed(0));
+            element.find(".color-value-cmyk .value-cmyk input").val(cmyk.toString());
 
             if (target && target.length) {
                 target.css({
@@ -12143,7 +12191,7 @@ $.noConflict = function() {
     }
 
     RGB.prototype.toString = function(){
-        return "rgb(" + [this.r, this.g, this.b].join(",") + ")";
+        return "rgb(" + [this.r, this.g, this.b].join(", ") + ")";
     }
 
     function RGBA(r, g, b, a){
@@ -12154,7 +12202,7 @@ $.noConflict = function() {
     }
 
     RGBA.prototype.toString = function(){
-        return "rgba(" + [this.r, this.g, this.b, this.a].join(",") + ")";
+        return "rgba(" + [this.r, this.g, this.b, this.a.toFixed(1)].join(", ") + ")";
     }
 
     function HSV(h, s, v){
@@ -12164,11 +12212,11 @@ $.noConflict = function() {
     }
 
     HSV.prototype.toString2 = function(){
-        return "hsv(" + [this.h, this.s, this.v].join(",") + ")";
+        return "hsv(" + [this.h, this.s, this.v].join(", ") + ")";
     }
 
     HSV.prototype.toString = function(){
-        return "hsv(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.v*100)+"%"].join(",") + ")";
+        return "hsv(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.v*100)+"%"].join(", ") + ")";
     }
 
     function HSL(h, s, l){
@@ -12178,11 +12226,11 @@ $.noConflict = function() {
     }
 
     HSL.prototype.toString2 = function(){
-        return "hsl(" + [this.h, this.s, this.l].join(",") + ")";
+        return "hsl(" + [this.h, this.s, this.l].join(", ") + ")";
     }
 
     HSL.prototype.toString = function(){
-        return "hsl(" + [this.h, Math.round(this.s*100)+"%", Math.round(this.l*100)+"%"].join(",") + ")";
+        return "hsl(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.l*100)+"%"].join(", ") + ")";
     }
 
     function HSLA(h, s, l, a){
@@ -12192,8 +12240,12 @@ $.noConflict = function() {
         this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
     }
 
+    HSLA.prototype.toString2 = function(){
+        return "hsla(" + [this.h, this.s, this.l, this.a].join(", ") + ")";
+    }
+
     HSLA.prototype.toString = function(){
-        return "hsla(" + [this.h, this.s, this.l, this.a].join(",") + ")";
+        return "hsla(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.l*100)+"%", this.a.toFixed(1)].join(", ") + ")";
     }
 
     function CMYK(c, m, y, k){
@@ -12204,7 +12256,7 @@ $.noConflict = function() {
     }
 
     CMYK.prototype.toString = function(){
-        return "cmyk(" + [this.c, this.m, this.y, this.k].join(",") + ")";
+        return "cmyk(" + [this.c, this.m, this.y, this.k].join(", ") + ")";
     }
 
     var Colors = {
