@@ -61,7 +61,7 @@
     }
 
     RGBA.prototype.toString = function(){
-        return "rgba(" + [this.r, this.g, this.b, this.a.toFixed(1)].join(", ") + ")";
+        return "rgba(" + [this.r, this.g, this.b, parseFloat(this.a).toFixed(2)].join(", ") + ")";
     }
 
     function HSV(h, s, v){
@@ -104,7 +104,7 @@
     }
 
     HSLA.prototype.toString = function(){
-        return "hsla(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.l*100)+"%", this.a.toFixed(1)].join(", ") + ")";
+        return "hsla(" + [Math.round(this.h), Math.round(this.s*100)+"%", Math.round(this.l*100)+"%", parseFloat(this.a).toFixed(2)].join(", ") + ")";
     }
 
     function CMYK(c, m, y, k){

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/11/2020 16:25:47
+ * Built at 12/11/2020 17:56:13
  * Licensed under MIT
  */
 *,
@@ -24198,7 +24198,7 @@ input[type=reset].loading .load-caption {
   position: absolute;
   top: 5px;
   bottom: 5px;
-  right: 25px;
+  right: 40px;
   width: 10px;
 }
 .color-selector .hue-map .hue-cursor {
@@ -24213,9 +24213,30 @@ input[type=reset].loading .load-caption {
 .color-selector .hue-map canvas {
   border-radius: 8px;
 }
+.color-selector .alpha-map {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  right: 10px;
+  width: 10px;
+}
+.color-selector .alpha-map .alpha-cursor {
+  top: 0;
+  left: 50%;
+  height: 20px;
+  width: 20px;
+  margin-top: -10px;
+  margin-left: -10px;
+  pointer-events: none;
+}
+.color-selector .alpha-map canvas {
+  border-radius: 8px;
+}
 .color-selector .color-value-hex,
 .color-selector .color-value-rgb,
+.color-selector .color-value-rgba,
 .color-selector .color-value-hsl,
+.color-selector .color-value-hsla,
 .color-selector .color-value-hsv,
 .color-selector .color-value-cmyk {
   display: -webkit-box;
@@ -24228,7 +24249,9 @@ input[type=reset].loading .load-caption {
 }
 .color-selector .color-value-hex input,
 .color-selector .color-value-rgb input,
+.color-selector .color-value-rgba input,
 .color-selector .color-value-hsl input,
+.color-selector .color-value-hsla input,
 .color-selector .color-value-hsv input,
 .color-selector .color-value-cmyk input {
   flex-shrink: 1;
@@ -24239,21 +24262,26 @@ input[type=reset].loading .load-caption {
 }
 .color-selector .color-value-hex .prepend,
 .color-selector .color-value-rgb .prepend,
+.color-selector .color-value-rgba .prepend,
 .color-selector .color-value-hsl .prepend,
+.color-selector .color-value-hsla .prepend,
 .color-selector .color-value-hsv .prepend,
 .color-selector .color-value-cmyk .prepend {
   font-size: 11px!important;
   border-right: 1px solid #dfdfdf;
-  width: 30px!important;
+  width: 26px!important;
   text-align: center;
   padding: 0 4px!important;
 }
 .color-selector .color-value-hex .radio,
 .color-selector .color-value-rgb .radio,
+.color-selector .color-value-rgba .radio,
 .color-selector .color-value-hsl .radio,
+.color-selector .color-value-hsla .radio,
 .color-selector .color-value-hsv .radio,
 .color-selector .color-value-cmyk .radio {
   height: 28px!important;
+  width: 28px!important;
 }
 .color-selector .color-block {
   width: 100%;

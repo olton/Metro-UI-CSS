@@ -126,7 +126,7 @@
         position: absolute;
         top: 5px;
         bottom: 5px;
-        right: 25px;
+        right: 40px;
         width: 10px;
 
         .hue-cursor {
@@ -144,9 +144,33 @@
         }
     }
 
+    .alpha-map {
+        position: absolute;
+        top: 5px;
+        bottom: 5px;
+        right: 10px;
+        width: 10px;
+
+        .alpha-cursor {
+            top: 0;
+            left: 50%;
+            height: 20px;
+            width: 20px;
+            margin-top: -10px;
+            margin-left: -10px;
+            pointer-events: none;
+        }
+
+        canvas {
+            border-radius: 8px;
+        }
+    }
+
     .color-value-hex,
     .color-value-rgb,
+    .color-value-rgba,
     .color-value-hsl,
+    .color-value-hsla,
     .color-value-hsv,
     .color-value-cmyk {
         display: flex;
@@ -168,13 +192,14 @@
         .prepend {
             font-size: 11px!important;
             border-right: 1px solid @borderColor;
-            width: 30px!important;
+            width: 26px!important;
             text-align: center;
             padding: 0 4px!important;
         }
 
         .radio {
             height: 28px!important;
+            width: 28px!important;
         }
     }
 

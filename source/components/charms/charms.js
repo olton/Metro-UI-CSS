@@ -101,6 +101,7 @@
                 return ;
             }
             o.opacity = opacity;
+
             element.css({
                 backgroundColor: Metro.colors.toRGBA(Utils.getStyleOne(element, "background-color"), opacity)
             });
