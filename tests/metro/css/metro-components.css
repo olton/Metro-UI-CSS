@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/11/2020 00:57:04
+ * Built at 12/11/2020 16:25:47
  * Licensed under MIT
  */
 .accordion {
@@ -3341,12 +3341,12 @@ input[type=reset].loading .load-caption {
   border: 1px solid #dfdfdf;
   cursor: pointer;
 }
-.color-selector .default-swatches .swatch:nth-child(8n+1),
-.color-selector .user-colors .swatch:nth-child(8n+1),
-.color-selector .user-colors-actions .swatch:nth-child(8n+1),
-.color-selector .default-swatches .user-swatch:nth-child(8n+1),
-.color-selector .user-colors .user-swatch:nth-child(8n+1),
-.color-selector .user-colors-actions .user-swatch:nth-child(8n+1) {
+.color-selector .default-swatches .swatch:not(.user-swatch):nth-child(8n+1),
+.color-selector .user-colors .swatch:not(.user-swatch):nth-child(8n+1),
+.color-selector .user-colors-actions .swatch:not(.user-swatch):nth-child(8n+1),
+.color-selector .default-swatches .user-swatch:not(.user-swatch):nth-child(8n+1),
+.color-selector .user-colors .user-swatch:not(.user-swatch):nth-child(8n+1),
+.color-selector .user-colors-actions .user-swatch:not(.user-swatch):nth-child(8n+1) {
   margin-left: 0;
 }
 .color-selector .default-swatches .user-swatch,
@@ -3354,6 +3354,11 @@ input[type=reset].loading .load-caption {
 .color-selector .user-colors-actions .user-swatch {
   width: 24px;
   height: 24px;
+}
+.color-selector .default-swatches .user-swatch:nth-child(10n+1),
+.color-selector .user-colors .user-swatch:nth-child(10n+1),
+.color-selector .user-colors-actions .user-swatch:nth-child(10n+1) {
+  margin-left: 0;
 }
 .color-selector .user-colors {
   padding: 4px;
@@ -3468,6 +3473,17 @@ input[type=reset].loading .load-caption {
 .color-selector .color-value-hsv .radio,
 .color-selector .color-value-cmyk .radio {
   height: 28px!important;
+}
+.color-selector .color-block {
+  width: 100%;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row nowrap;
+}
+.color-selector .color-block.as-string .prepend {
+  width: 40px!important;
 }
 .command-button,
 .image-button {

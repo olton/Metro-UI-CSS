@@ -48,7 +48,7 @@
             border: 1px solid @borderColor;
             cursor: pointer;
 
-            &:nth-child(8n+1) {
+            &:not(.user-swatch):nth-child(8n+1) {
                 margin-left: 0;
             }
         }
@@ -56,6 +56,10 @@
         .user-swatch {
             width: 24px;
             height: 24px;
+
+            &:nth-child(10n+1) {
+                margin-left: 0;
+            }
         }
     }
 
@@ -171,6 +175,18 @@
 
         .radio {
             height: 28px!important;
+        }
+    }
+
+    .color-block {
+        width: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+    }
+
+    .color-block.as-string {
+        .prepend {
+            width: 40px!important;
         }
     }
 }
