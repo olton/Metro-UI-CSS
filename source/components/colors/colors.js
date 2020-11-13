@@ -30,7 +30,9 @@
         tint2: 0.4,
         shade1: 0.6,
         shade2: 0.3,
-        alpha: 1
+        alpha: 1,
+        results: 6,
+        slices: 30
     };
 
     // function HEX(r, g, b) {
@@ -42,6 +44,25 @@
     // HEX.prototype.toString = function(){
     //     return "#" + [this.r, this.g, this.b].join("");
     // }
+
+    // function dec2hex(d){
+    //     return Math.round(parseFloat(d) * 255).toString(16);
+    // }
+    //
+    // function hex2dec(h){
+    //     return (parseInt(h, 16) / 255);
+    // }
+
+    function shift(h, angle){
+        h += angle;
+        while (h >= 360.0) h -= 360.0;
+        while (h < 0.0) h += 360.0;
+        return h;
+    }
+
+    function clamp(val){
+        return Math.min(1, Math.max(0, val));
+    }
 
     function RGB(r, g, b){
         this.r = r || 0;
@@ -464,7 +485,16 @@
         },
 
         check: function(color, type){
-            if (!this["is"+type.toUpperCase()](color)) {
+            var that = this, checkFor = typeof type === "string" ? [type] : type;
+            var result = false;
+
+            $.each(checkFor, function(){
+                if (that["is"+this.toUpperCase()](color)) {
+                    result = true;
+                }
+            });
+
+            if (!result) {
                 throw new Error("Value is not a " + type + " color type!");
             }
         },
@@ -671,7 +701,7 @@
         },
 
         hsl2hsv: function(color){
-            this.check(color, "hsl");
+            this.check(color, ["hsl", "hsla"]);
             var h, s, v, l;
             h = color.h;
             l = color.l * 2;
@@ -826,49 +856,20 @@
         },
 
         grayscale: function(color){
-            var rgb = this.toRGB(color);
-            var type = this.colorType(color).toLowerCase();
-            var gray = Math.round(rgb.r * 0.2125 + rgb.g * 0.7154 + rgb.b * 0.0721);
-            var mono = new RGB(gray, gray, gray);
-
-            return this.toColor(mono, type);
+            return this.desaturate(color, 100);
         },
 
-        darken: function(color, amount){
-            amount = amount || 10;
-            return this.lighten(color, -1 * Math.abs(amount));
-        },
+        lighten: function(color, amount){
+            var hsl, type, alpha;
 
-        lighten: function(val, amount){
-            var type, res, alpha, ring;
-            var color = typeof val === "string" ? this.parse(val) : val;
+            if (!this.isColor(color)) {
+                throw new Error(color + " is not a valid color value!");
+            }
 
-            amount = amount || 10;
-
-            var calc = function (_color, _amount) {
-                var r, g, b;
-                var col = _color.slice(1);
-
-                var num = parseInt(col, 16);
-                r = (num >> 16) + _amount;
-
-                if (r > 255) r = 255;
-                else if (r < 0) r = 0;
-
-                b = ((num >> 8) & 0x00ff) + _amount;
-
-                if (b > 255) b = 255;
-                else if (b < 0) b = 0;
-
-                g = (num & 0x0000ff) + _amount;
-
-                if (g > 255) g = 255;
-                else if (g < 0) g = 0;
-
-                return "#" + (g | (b << 8) | (r << 16)).toString(16);
-            };
-
-            ring = amount > 0;
+            amount = (amount === 0) ? 0 : (amount || 10);
+            hsl = this.toHSL(color);
+            hsl.l += amount / 100;
+            hsl.l = clamp(hsl.l);
 
             type = this.colorType(color).toLowerCase();
 
@@ -876,12 +877,92 @@
                 alpha = color.a;
             }
 
-            do {
-                res = calc(this.toHEX(color), amount);
-                ring ? amount-- : amount++;
-            } while (res.length < 7);
+            return this.toColor(hsl, type, alpha);
+        },
 
-            return this.toColor(res, type, alpha);
+        darken: function(color, amount){
+            return this.lighten(color, -amount);
+        },
+
+        spin: function(color, amount){
+            var hsl, type, alpha, hue;
+
+            if (!this.isColor(color)) {
+                throw new Error(color + " is not a valid color value!");
+            }
+
+            hsl = this.toHSL(color);
+            hue = (hsl.h + amount) % 360;
+            hsl.h = hue < 0 ? 360 + hue : hue;
+
+            type = this.colorType(color).toLowerCase();
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                alpha = color.a;
+            }
+
+            return this.toColor(hsl, type, alpha);
+        },
+
+        brighten: function(color, amount){
+            var rgb, type, alpha;
+
+            if (!this.isColor(color)) {
+                throw new Error(color + " is not a valid color value!");
+            }
+
+            rgb = this.toRGB(color);
+            rgb.r = Math.max(0, Math.min(255, rgb.r - Math.round(255 * - (amount / 100))));
+            rgb.g = Math.max(0, Math.min(255, rgb.g - Math.round(255 * - (amount / 100))));
+            rgb.b = Math.max(0, Math.min(255, rgb.b - Math.round(255 * - (amount / 100))));
+
+            type = this.colorType(color).toLowerCase();
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                alpha = color.a;
+            }
+
+            return this.toColor(rgb, type, alpha);
+        },
+
+        saturate: function(color, amount){
+            var hsl, type, alpha;
+
+            if (!this.isColor(color)) {
+                throw new Error(color + " is not a valid color value!");
+            }
+
+            hsl = this.toHSL(color);
+            hsl.s += amount / 100;
+            hsl.s = clamp(hsl.s);
+
+            type = this.colorType(color).toLowerCase();
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                alpha = color.a;
+            }
+
+            return this.toColor(hsl, type, alpha);
+        },
+
+        desaturate: function(color, amount){
+            var hsl, type, alpha;
+
+            if (!this.isColor(color)) {
+                throw new Error(color + " is not a valid color value!");
+            }
+
+            hsl = this.toHSL(color);
+            hsl.s -= amount / 100;
+            hsl.s = clamp(hsl.s);
+
+            type = this.colorType(color).toLowerCase();
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                alpha = color.a;
+            }
+
+            return this.toColor(hsl, type, alpha);
         },
 
         hueShift: function(color, hue, saturation, value){
@@ -913,261 +994,245 @@
             return this.toColor(hsv, type, alpha);
         },
 
-        createScheme: function(color, name, format, options){
-            var opt = $.extend({}, ColorsDefaultConfig, options);
-            var i, scheme = [], hsv, rgb, h, s, v;
+        shade: function(color, amount){
+            if (!this.isColor(color)) {
+                throw new Error(color + " is not a valid color value!");
+            }
+
+            amount /= 100;
+
+            var type = this.colorType(color).toLowerCase();
+            var rgb = this.toRGB(color);
+            var t = amount < 0 ? 0 : 255;
+            var p = amount < 0 ? amount * -1 : amount;
+            var r, g, b, a;
+
+            r = (Math.round((t - rgb.r) * p) + rgb.r);
+            g = (Math.round((t - rgb.g) * p) + rgb.g);
+            b = (Math.round((t - rgb.b) * p) + rgb.b);
+
+            if (type === Types.RGBA || type === Types.HSLA) {
+                a = color.a;
+            }
+
+            return this.toColor(new RGB(r, g, b), type, a);
+        },
+
+        mix: function(color1, color2, amount){
+
+            amount = (amount === 0) ? 0 : (amount || 50);
+
+            var rgb = new RGB(0,0,0);
+            var rgb1 = this.toRGB(color1);
+            var rgb2 = this.toRGB(color2);
+
+            var p = amount / 100;
+
+            rgb.r = Math.round(((rgb2.r - rgb1.r) * p) + rgb1.r);
+            rgb.g = Math.round(((rgb2.g - rgb1.g) * p) + rgb1.g);
+            rgb.b = Math.round(((rgb2.b - rgb1.b) * p) + rgb1.b);
+
+            return this.toHEX(rgb);
+        },
+
+        multiply: function(color1, color2){
+            var rgb1 = this.toRGB(color1);
+            var rgb2 = this.toRGB(color2);
+            var rgb = new RGB();
+
+            rgb1.b = Math.floor(rgb1.b * rgb2.b / 255);
+            rgb1.g = Math.floor(rgb1.g * rgb2.g / 255);
+            rgb1.r = Math.floor(rgb1.r * rgb2.r / 255);
+
+            return this.toHEX(rgb);
+        },
+
+        materialPalette: function(color, baseDark){
+            var baseLight = "#ffffff";
+
+            baseDark = baseDark || this.multiply(color, color);
+
+            var hslA400 = this.toHSL(color);
+            hslA400.h = shift(hslA400.h, -30);
+
+            return {
+                "50": this.mix(baseLight, color, 10),
+                "100": this.mix(baseLight, color, 30),
+                "200": this.mix(baseLight, color, 50),
+                "300": this.mix(baseLight, color, 70),
+                "400": this.mix(baseLight, color, 85),
+                "500": this.mix(baseLight, color, 100),
+                "600": this.mix(baseDark, color, 92),
+                "700": this.mix(baseDark, color, 83),
+                "800": this.mix(baseDark, color, 74),
+                "900": this.mix(baseDark, color, 65),
+
+                "A100": this.lighten(this.saturate(this.mix(baseDark, color, 15), 80), 65),
+                "A200": this.lighten(this.saturate(this.mix(baseDark, color, 15), 80), 55),
+
+                "A400": this.lighten(this.saturate(this.mix(baseLight, color, 100), 55), 10),
+                "A700": this.lighten(this.saturate(this.mix(baseDark, color, 83), 65), 10)
+            };
+        },
+
+        monochromatic: function(color, results, returnAs){
+            returnAs = returnAs || 'hex';
+            results = results || 6;
+            var hsv = this.toHSV(color);
+            var h = hsv.h,
+                s = hsv.s,
+                v = hsv.v;
+            var result = [];
+            var mod = 1 / results;
             var self = this;
 
-            hsv = this.toHSV(color);
-            h = hsv.h;
-            s = hsv.s;
-            v = hsv.v;
-
-            if (this.isHSV(hsv) === false) {
-                console.warn("The value is a not supported color format!");
-                return false;
+            while (results--) {
+                result.push(new HSV(h, s, v));
+                v = (v + mod) % 1;
             }
 
-            function convert(source, format) {
-                var result;
-                switch (format) {
-                    case "hex":
-                        result = source.map(function (v) {
-                            return self.toHEX(v);
-                        });
-                        break;
-                    case "rgb":
-                        result = source.map(function (v) {
-                            return self.toRGB(v);
-                        });
-                        break;
-                    case "rgba":
-                        result = source.map(function (v) {
-                            return self.toRGBA(v, opt.alpha);
-                        });
-                        break;
-                    case "hsl":
-                        result = source.map(function (v) {
-                            return self.toHSL(v);
-                        });
-                        break;
-                    case "hsla":
-                        result = source.map(function (v) {
-                            return self.toHSLA(v, opt.alpha);
-                        });
-                        break;
-                    case "cmyk":
-                        result = source.map(function (v) {
-                            return self.toCMYK(v);
-                        });
-                        break;
-                    default:
-                        result = source;
-                }
-
-                return result;
-            }
-
-            function clamp(num, min, max) {
-                return Math.max(min, Math.min(num, max));
-            }
-
-            function toRange(a, b, c) {
-                return a < b ? b : a > c ? c : a;
-            }
-
-            function shift(h, s) {
-                h += s;
-                while (h >= 360.0) h -= 360.0;
-                while (h < 0.0) h += 360.0;
-                return h;
-            }
-
-            switch (name) {
-                case "monochromatic":
-                case "mono":
-                    if (opt.algorithm === 1) {
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(
-                            Math.round(rgb.r + (255 - rgb.r) * opt.tint1),
-                            0,
-                            255
-                        );
-                        rgb.g = toRange(
-                            Math.round(rgb.g + (255 - rgb.g) * opt.tint1),
-                            0,
-                            255
-                        );
-                        rgb.b = toRange(
-                            Math.round(rgb.b + (255 - rgb.b) * opt.tint1),
-                            0,
-                            255
-                        );
-                        scheme.push(this.rgb2hsv(rgb));
-
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(
-                            Math.round(rgb.r + (255 - rgb.r) * opt.tint2),
-                            0,
-                            255
-                        );
-                        rgb.g = toRange(
-                            Math.round(rgb.g + (255 - rgb.g) * opt.tint2),
-                            0,
-                            255
-                        );
-                        rgb.b = toRange(
-                            Math.round(rgb.b + (255 - rgb.b) * opt.tint2),
-                            0,
-                            255
-                        );
-                        scheme.push(this.rgb2hsv(rgb));
-
-                        scheme.push(hsv);
-
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(Math.round(rgb.r * opt.shade1), 0, 255);
-                        rgb.g = toRange(Math.round(rgb.g * opt.shade1), 0, 255);
-                        rgb.b = toRange(Math.round(rgb.b * opt.shade1), 0, 255);
-                        scheme.push(this.rgb2hsv(rgb));
-
-                        rgb = this.hsv2rgb(hsv);
-                        rgb.r = toRange(Math.round(rgb.r * opt.shade2), 0, 255);
-                        rgb.g = toRange(Math.round(rgb.g * opt.shade2), 0, 255);
-                        rgb.b = toRange(Math.round(rgb.b * opt.shade2), 0, 255);
-                        scheme.push(this.rgb2hsv(rgb));
-
-                    } else if (opt.algorithm === 2) {
-
-                        scheme.push(hsv);
-                        for (i = 1; i <= opt.distance; i++) {
-                            v = clamp(v - opt.step, 0, 1);
-                            s = clamp(s - opt.step, 0, 1);
-                            scheme.push(new HSV(h, s, v));
-                        }
-
-                    } else if (opt.algorithm === 3) {
-
-                        scheme.push(hsv);
-                        for (i = 1; i <= opt.distance; i++) {
-                            v = clamp(v - opt.step, 0, 1);
-                            scheme.push(new HSV(h, s, v));
-                        }
-
-                    } else {
-
-                        v = clamp(hsv.v + opt.step * 2, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                        v = clamp(hsv.v + opt.step, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                        scheme.push(hsv);
-                        s = hsv.s;
-                        v = hsv.v;
-
-                        v = clamp(hsv.v - opt.step, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                        v = clamp(hsv.v - opt.step * 2, 0, 1);
-                        scheme.push(new HSV(h, s, v));
-
-                    }
-                    break;
-
-                case "complementary":
-                case "complement":
-                case "comp":
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-                    break;
-
-                case "double-complementary":
-                case "double-complement":
-                case "double":
-                    scheme.push(hsv);
-
-                    h = shift(h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(h, opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    break;
-
-                case "analogous":
-                case "analog":
-                    h = shift(h, opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 0.0 - opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    break;
-
-                case "triadic":
-                case "triad":
-                    scheme.push(hsv);
-                    for (i = 1; i < 3; i++) {
-                        h = shift(h, 120.0);
-                        scheme.push(new HSV(h, s, v));
-                    }
-                    break;
-
-                case "tetradic":
-                case "tetra":
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(hsv.h, -1 * opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    h = shift(h, 180.0);
-                    scheme.push(new HSV(h, s, v));
-
-                    break;
-
-                case "square":
-                    scheme.push(hsv);
-                    for (i = 1; i < 4; i++) {
-                        h = shift(h, 90.0);
-                        scheme.push(new HSV(h, s, v));
-                    }
-                    break;
-
-                case "split-complementary":
-                case "split-complement":
-                case "split":
-                    h = shift(h, 180.0 - opt.angle);
-                    scheme.push(new HSV(h, s, v));
-
-                    scheme.push(hsv);
-
-                    h = shift(hsv.h, 180.0 + opt.angle);
-                    scheme.push(new HSV(h, s, v));
-                    break;
-
-                default:
-                    console.warn("Unknown scheme name");
-            }
-
-            return convert(scheme, format);
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
         },
 
-        getScheme: function(){
-            return this.createScheme.apply(this, arguments)
+        complementary: function(color, returnAs){
+            var hsl = this.toHSL(color);
+            var result;
+            var self = this;
+
+            returnAs = returnAs || 'hex';
+
+            result = [
+                hsl,
+                new HSL(shift(hsl.h, 180), hsl.s, hsl.l)
+            ];
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
         },
 
-        mix: function(val1, val2, returnAs){
+        splitComplementary: function(color, angle, returnAs){
+            var hsl = this.toHSL(color);
+            var h = hsl.h;
+            var result, self = this;
+
+            returnAs = returnAs || 'hex';
+            angle = angle === 0 ? 0 : (angle || 30);
+
+            result = [
+                hsl,
+                new HSL(shift(h, 180 - angle), hsl.s, hsl.l ),
+                new HSL(shift(h, 180 + angle), hsl.s, hsl.l )
+            ];
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
+        },
+
+        doubleComplementary: function(color, angle, returnAs){
+            returnAs = returnAs || 'hex';
+            angle = angle === 0 ? 0 : (angle || 30);
+            var hsl = this.toHSL(color);
+            var h = hsl.h;
+            var result, self = this;
+
+            result = [
+                hsl,
+                new HSL(shift(h, 180), hsl.s, hsl.l ),
+                new HSL(shift(h, angle), hsl.s, hsl.l ),
+                new HSL(shift(h, 180 + angle), hsl.s, hsl.l )
+            ];
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
+        },
+
+        square: function(color, returnAs){
+            returnAs = returnAs || 'hex';
+            var result = [], i;
+            var hsl = this.toHSL(color);
+            var h = hsl.h , self = this;
+
+            result.push(hsl);
+
+            for (i = 1; i < 4; i++) {
+                h = shift(h, 90.0);
+                result.push(new HSL(h, hsl.s, hsl.l));
+            }
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
+        },
+
+        tetradic: function(color, angle, returnAs){
+            returnAs = returnAs || 'hex';
+            angle = angle || 30;
+            var result;
+            var hsl = this.toHSL(color);
+            var h = hsl.h;
+            var self = this;
+
+            result = [
+                hsl,
+                new HSL(shift(h, 180), hsl.s, hsl.l),
+                new HSL(shift(h, 180 - angle), hsl.s, hsl.l),
+                new HSL(shift(h, -angle), hsl.s, hsl.l)
+            ];
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
+        },
+
+        triadic: function(color, returnAs){
+            returnAs = returnAs || 'hex';
+            var result;
+            var hsl = this.toHSL(color);
+            var h = hsl.h;
+            var self = this;
+
+            result = [
+                hsl,
+                new HSL(shift(h,120), hsl.s, hsl.l),
+                new HSL(shift(h,240), hsl.s, hsl.l)
+            ];
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
+        },
+
+        analogous: function(color, angle, returnAs){
+            returnAs = returnAs || 'hex';
+            angle = angle || 30;
+
+            var hsl = this.toHSL(color);
+            var result, self = this;
+
+            result = [
+                hsl,
+                new HSL(shift(hsl.h, -angle), hsl.s, hsl.l),
+                new HSL(shift(hsl.h, +angle), hsl.s, hsl.l)
+            ];
+
+            return result.map(function(el){
+                return self["to"+returnAs.toUpperCase()](el);
+            });
+        },
+
+        // createScheme: function(color, name, format, options){
+        // },
+        //
+        // getScheme: function(){
+        //     return this.createScheme.apply(this, arguments)
+        // },
+
+        add: function(val1, val2, returnAs){
             var color1 = typeof val1 === "string" ? this.parse(val1) : val1;
             var color2 = typeof val2 === "string" ? this.parse(val2) : val2;
             var c1 = this.toRGBA(color1);
@@ -1426,13 +1491,13 @@
             return Colors.equal(this._value, color);
         },
 
-        toMix: function(color){
-            this._value = Colors.mix(this._value, color, this._type);
+        toAdd: function(color){
+            this._value = Colors.add(this._value, color, this._type);
             return this;
         },
 
-        mix: function(color){
-            return new Color(Colors.mix(this._value, color, this._type));
+        add: function(color){
+            return new Color(Colors.add(this._value, color, this._type));
         }
     }
 
