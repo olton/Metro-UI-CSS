@@ -3,20 +3,25 @@
 (function(Metro, $) {
     'use strict';
 
+    var supportedColorTypes = "hex, rgb, rgba, hsl, hsla, hsv, cmyk";
     var Utils = Metro.utils;
     var ColorSelectorDefaultConfig = {
         defaultSwatches: "#FFFFFF,#000000,#FFFB0D,#0532FF,#FF9300,#00F91A,#FF2700,#686868,#EE5464,#D27AEE,#5BA8C4,#E64AA9,#1ba1e2,#6a00ff,#bebebe,#f8f8f8",
         userColors: null,
         returnValueType: "hex",
         returnAsString: true,
-        showValues: "hex, rgb, rgba, hsl, hsla, hsv, cmyk",
+        showValues: supportedColorTypes,
         showAsString: null,
         showUserColors: true,
         target: null,
+        controller: null,
         addUserColorTitle: "ADD TO SWATCHES",
         clearUserColorTitle: "",
         userColorsTitle: "USER COLORS",
         hslMode: "percent",
+        showAlphaChannel: true,
+        inputThreshold: 300,
+        initColor: null,
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
@@ -51,6 +56,7 @@
                 hue: 0,
                 saturation: 0,
                 lightness: 1,
+                alpha: 1,
                 hsl: null,
                 hsla: null,
                 hsv: null,
@@ -58,7 +64,7 @@
                 rgba: null,
                 cmyk: null,
                 hex: null,
-                alpha: 1
+                inputInterval: null
             });
             return this;
         },
@@ -115,7 +121,7 @@
             map.append( alphaCursor = $("<button>").attr("type", "button").addClass("cursor alpha-cursor") )
             map.append( alphaCanvas = $("<canvas>").addClass("alpha-canvas") )
 
-            colorBox.append( row = $("<div>").addClass("row") );
+            colorBox.append( row = $("<div>").addClass("row color-values-block") );
 
             row.append( value = $("<div>").addClass("color-value-hex") );
             value.append( $("<input type='radio' name='returnType' value='hex' checked>").addClass("check-color-value-hex") );
@@ -246,12 +252,19 @@
                 style: 2
             });
 
-            $.each(["hex", "rgb", "hsv", "hsl", "cmyk"], function(){
+            $.each(supportedColorTypes.toArray(","), function(){
                 if (that.showValues.indexOf(this) === -1) element.find(".color-value-"+this).hide();
             });
 
             if (!o.showUserColors) {
                 element.find(".user-colors-container").hide();
+            }
+
+            if (!o.showAlphaChannel) {
+                element.addClass("no-alpha-channel");
+                $.each(["rgba", "hsla"], function(){
+                    element.find(".color-value-"+this).hide();
+                });
             }
 
             this._fillUserColors();
@@ -268,6 +281,10 @@
             this._createAlphaCanvas();
             this._setColorValues();
             this._updateCursorsColor();
+
+            if (o.initColor && Metro.colors.isColor(o.initColor)) {
+                this._colorToPos(o.initColor);
+            }
         },
 
         _createShadeCanvas: function(color){
@@ -278,6 +295,7 @@
 
             if(!color) color = '#f00';
 
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = color;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
@@ -306,6 +324,7 @@
             hueGradient.addColorStop(0.67, "hsl(118.8, 100%, 50%)");
             hueGradient.addColorStop(0.83, "hsl(61.2,100%,50%)");
             hueGradient.addColorStop(1.00, "hsl(360,100%,50%)");
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = hueGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         },
@@ -314,9 +333,11 @@
             var canvas = this.alphaCanvas[0];
             var ctx = canvas.getContext('2d');
             var alphaGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            var startColor = new Metro.colorPrimitive.HSLA(this.hue, 1, .5, 1).toString(), endColor = "rgba(0,0,0,0)";
 
-            alphaGradient.addColorStop(0.00, "#000000");
-            alphaGradient.addColorStop(1.00, "#f8f8f8");
+            alphaGradient.addColorStop(0.00, startColor);
+            alphaGradient.addColorStop(1.00, endColor);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.fillStyle = alphaGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
         },
@@ -351,6 +372,7 @@
             this.hue = hue;
 
             this._createShadeCanvas(color);
+            this._createAlphaCanvas();
             this._updateHueCursor(y);
             this._updateCursorsColor();
             this._setColorValues();
@@ -371,6 +393,7 @@
             this.alpha = percent.toFixed(2);
 
             this._updateAlphaCursor(y);
+            this._updateCursorsColor();
             this._setColorValues();
         },
 
@@ -413,6 +436,7 @@
         _updateCursorsColor: function(){
             this.shadeCursor.css({backgroundColor: Metro.colors.toHEX(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness))});
             this.hueCursor.css({backgroundColor: Metro.colors.toHEX(new Metro.colorPrimitive.HSL(this.hue, 1, .5))});
+            this.alphaCursor.css({backgroundColor: Metro.colors.toRGBA(new Metro.colorPrimitive.HSL(this.hue, 1, .5), this.alpha).toString()});
         },
 
         _updateColorCursor: function(x, y){
@@ -439,6 +463,7 @@
             this._updateColorCursor(x, y);
             this._updateCursorsColor();
             this._createShadeCanvas("hsl("+ this.hue +", 100%, 50%)");
+            this._createAlphaCanvas();
             this._setColorValues();
         },
 
@@ -452,6 +477,7 @@
             var cmyk = Metro.colors.toCMYK(hsl);
             var hex = Metro.colors.toHEX(hsl);
             var target = $(o.target);
+            var controller = $(o.controller);
             var percent = o.hslMode === "percent";
 
             this.hsl = hsl;
@@ -497,15 +523,19 @@
             element.find(".color-value-cmyk .value-k input").val(cmyk.k.toFixed(0));
             element.find(".color-value-cmyk .value-cmyk input").val(cmyk.toString());
 
+            element.find(".user-colors-actions .user-swatch").css({
+                backgroundColor: hex
+            });
+
             if (target && target.length) {
                 target.css({
                     backgroundColor: hex
                 });
             }
 
-            element.find(".user-colors-actions .user-swatch").css({
-                backgroundColor: hex
-            });
+            if (controller && controller.length) {
+                controller.val(this.val());
+            }
 
             this._fireEvent("color", {
                 hue: this.hue,
@@ -515,11 +545,30 @@
             });
         },
 
+        _clearInputInterval: function(){
+            clearInterval(this.inputInterval);
+            this.inputInterval = false;
+        },
+
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
             var hueMap = element.find(".hue-map");
             var alphaMap = element.find(".alpha-map");
             var shadeMap = element.find(".color-map");
+            var controller = $(o.controller);
+
+            if (controller && controller.length) {
+                controller.on(Metro.events.inputchange, function(e){
+                    that._clearInputInterval();
+                    if (!that.inputInterval) that.inputInterval = setTimeout(function(){
+                        var val = controller.val();
+                        if (val && Metro.colors.isColor(val)) {
+                            that.val(val);
+                        }
+                        that._clearInputInterval();
+                    }, o.inputThreshold);
+                });
+            }
 
             alphaMap.on(Metro.events.startAll, function(e){
 
@@ -675,6 +724,18 @@
                         })
                 )
             });
+        },
+
+        createMaterialPalette: function(color){
+            if (arguments.length === 0) {
+                color = this.val();
+            }
+
+            if (!Metro.colors.isColor(color)) {
+                throw new Error("The initial value is not a color value");
+            }
+
+            return Metro.colors.materialPalette(Metro.colors.toHEX(color))
         },
 
         changeAttribute: function(attr, newValue){

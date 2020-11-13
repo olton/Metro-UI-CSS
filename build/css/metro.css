@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 12/11/2020 23:30:47
+ * Built at 13/11/2020 20:55:54
  * Licensed under MIT
  */
 *,
@@ -24165,6 +24165,8 @@ input[type=reset].loading .load-caption {
   border: 2px solid #fff;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
+          box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
 }
 .color-selector .cursor.dragging {
   -webkit-transition: none;
@@ -24231,6 +24233,13 @@ input[type=reset].loading .load-caption {
 }
 .color-selector .alpha-map canvas {
   border-radius: 8px;
+  background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") center center;
+}
+.color-selector.no-alpha-channel .hue-map {
+  right: 25px;
+}
+.color-selector.no-alpha-channel .alpha-map {
+  display: none!important;
 }
 .color-selector .color-value-hex,
 .color-selector .color-value-rgb,

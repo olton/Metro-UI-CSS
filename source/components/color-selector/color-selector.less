@@ -89,6 +89,7 @@
         z-index: 2;
         border: 2px solid #fff;
         transition: all .2s ease;
+        box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
 
         &.dragging {
             transition: none;
@@ -163,6 +164,16 @@
 
         canvas {
             border-radius: 8px;
+            background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") center center;
+        }
+    }
+
+    &.no-alpha-channel {
+        .hue-map {
+            right: 25px;
+        }
+        .alpha-map {
+            display: none!important;
         }
     }
 
@@ -183,10 +194,6 @@
             font-size: 11px!important;
             font-weight: bold;
             text-align: center;
-
-            &:not(:nth-child(1)) {
-                //margin-left: 4px;
-            }
         }
 
         .prepend {
