@@ -125,17 +125,17 @@
 
             row.append( value = $("<div>").addClass("color-value-hex") );
             value.append( $("<input type='radio' name='returnType' value='hex' checked>").addClass("check-color-value-hex") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HEX:' readonly>").addClass("input-small value-hex") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hex") );
+            colorBlock.append( $("<input type='text' data-prepend='HEX:'>").addClass("input-small value-hex") );
 
             row.append( value = $("<div>").addClass("color-value-rgb") );
             value.append( $("<input type='radio' name='returnType' value='rgb'>").addClass("check-color-value-rgb") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='R:' readonly>").addClass("input-small value-r") );
-            colorBlock.append( $("<input type='text' data-prepend='G:' readonly>").addClass("input-small value-g") );
-            colorBlock.append( $("<input type='text' data-prepend='B:' readonly>").addClass("input-small value-b") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='RGB:' readonly>").addClass("input-small value-rgb") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-rgb") );
+            colorBlock.append( $("<input type='text' data-prepend='R:'>").addClass("input-small value-r") );
+            colorBlock.append( $("<input type='text' data-prepend='G:'>").addClass("input-small value-g") );
+            colorBlock.append( $("<input type='text' data-prepend='B:'>").addClass("input-small value-b") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-rgb") );
+            colorBlock.append( $("<input type='text' data-prepend='RGB:'>").addClass("input-small value-rgb") );
 
             if (this.showAsString.indexOf("rgb") > -1) {
                 value.find(".value-r,.value-g,.value-b").parent().hide();
@@ -145,13 +145,13 @@
 
             row.append( value = $("<div>").addClass("color-value-rgba") );
             value.append( $("<input type='radio' name='returnType' value='rgba'>").addClass("check-color-value-rgba") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='R:' readonly>").addClass("input-small value-r") );
-            colorBlock.append( $("<input type='text' data-prepend='G:' readonly>").addClass("input-small value-g") );
-            colorBlock.append( $("<input type='text' data-prepend='B:' readonly>").addClass("input-small value-b") );
-            colorBlock.append( $("<input type='text' data-prepend='A:' readonly>").addClass("input-small value-a") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='RGBA:' readonly>").addClass("input-small value-rgba") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-rgba") );
+            colorBlock.append( $("<input type='text' data-prepend='R:'>").addClass("input-small value-r") );
+            colorBlock.append( $("<input type='text' data-prepend='G:'>").addClass("input-small value-g") );
+            colorBlock.append( $("<input type='text' data-prepend='B:'>").addClass("input-small value-b") );
+            colorBlock.append( $("<input type='text' data-prepend='A:'>").addClass("input-small value-a") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-rgba") );
+            colorBlock.append( $("<input type='text' data-prepend='RGBA:'>").addClass("input-small value-rgba") );
 
             if (this.showAsString.indexOf("rgba") > -1) {
                 value.find(".value-r,.value-g,.value-b,.value-a").parent().hide();
@@ -161,12 +161,12 @@
 
             row.append( value = $("<div>").addClass("color-value-hsl") );
             value.append( $("<input type='radio' name='returnType' value='hsl'>").addClass("check-color-value-hsl") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
-            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
-            colorBlock.append( $("<input type='text' data-prepend='L:' readonly>").addClass("input-small value-l") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HSL:' readonly>").addClass("input-small value-hsl") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-hsl") );
+            colorBlock.append( $("<input type='text' data-prepend='H:'>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:'>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='L:'>").addClass("input-small value-l") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hsl") );
+            colorBlock.append( $("<input type='text' data-prepend='HSL:'>").addClass("input-small value-hsl") );
 
             if (this.showAsString.indexOf("hsl") > -1) {
                 value.find(".value-h,.value-s,.value-l").parent().hide();
@@ -176,13 +176,13 @@
 
             row.append( value = $("<div>").addClass("color-value-hsla") );
             value.append( $("<input type='radio' name='returnType' value='hsla'>").addClass("check-color-value-hsla") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
-            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
-            colorBlock.append( $("<input type='text' data-prepend='L:' readonly>").addClass("input-small value-l") );
-            colorBlock.append( $("<input type='text' data-prepend='A:' readonly>").addClass("input-small value-a") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HSLA:' readonly>").addClass("input-small value-hsla") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-hsla") );
+            colorBlock.append( $("<input type='text' data-prepend='H:'>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:'>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='L:'>").addClass("input-small value-l") );
+            colorBlock.append( $("<input type='text' data-prepend='A:'>").addClass("input-small value-a") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hsla") );
+            colorBlock.append( $("<input type='text' data-prepend='HSLA:'>").addClass("input-small value-hsla") );
 
             if (this.showAsString.indexOf("hsla") > -1) {
                 value.find(".value-h,.value-s,.value-l,.value-a").parent().hide();
@@ -192,12 +192,12 @@
 
             row.append( value = $("<div>").addClass("color-value-hsv") );
             value.append( $("<input type='radio' name='returnType' value='hsv'>").addClass("check-color-value-hsl") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
-            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
-            colorBlock.append( $("<input type='text' data-prepend='V:' readonly>").addClass("input-small value-v") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HSV:' readonly>").addClass("input-small value-hsv") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-hsv") );
+            colorBlock.append( $("<input type='text' data-prepend='H:'>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:'>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='V:'>").addClass("input-small value-v") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hsv") );
+            colorBlock.append( $("<input type='text' data-prepend='HSV:'>").addClass("input-small value-hsv") );
 
             if (this.showAsString.indexOf("hsv") > -1) {
                 value.find(".value-h,.value-s,.value-v").parent().hide();
@@ -207,13 +207,13 @@
 
             row.append( value = $("<div>").addClass("color-value-cmyk") );
             value.append( $("<input type='radio' name='returnType' value='cmyk'>").addClass("check-color-value-cmyk") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='C:' readonly>").addClass("input-small value-c") );
-            colorBlock.append( $("<input type='text' data-prepend='M:' readonly>").addClass("input-small value-m") );
-            colorBlock.append( $("<input type='text' data-prepend='Y:' readonly>").addClass("input-small value-y") );
-            colorBlock.append( $("<input type='text' data-prepend='K:' readonly>").addClass("input-small value-k") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='CMYK:' readonly>").addClass("input-small value-cmyk") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-cmyk") );
+            colorBlock.append( $("<input type='text' data-prepend='C:'>").addClass("input-small value-c") );
+            colorBlock.append( $("<input type='text' data-prepend='M:'>").addClass("input-small value-m") );
+            colorBlock.append( $("<input type='text' data-prepend='Y:'>").addClass("input-small value-y") );
+            colorBlock.append( $("<input type='text' data-prepend='K:'>").addClass("input-small value-k") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-cmyk") );
+            colorBlock.append( $("<input type='text' data-prepend='CMYK:'>").addClass("input-small value-cmyk") );
 
             if (this.showAsString.indexOf("cmyk") > -1) {
                 value.find(".value-s,.value-m,.value-y,.value-k").parent().hide();
@@ -556,6 +556,50 @@
             var alphaMap = element.find(".alpha-map");
             var shadeMap = element.find(".color-map");
             var controller = $(o.controller);
+            var colorValues = element.find(".color-values-block input[type=text]");
+
+            colorValues.on(Metro.events.inputchange, function(){
+                var input = $(this);
+
+                that._clearInputInterval();
+
+                if (!that.inputInterval) that.inputInterval = setTimeout(function(){
+                    var colorGroup = input.closest(".color-block");
+                    var colorType;
+                    var color, parts;
+
+                    if (colorGroup.hasClass("color-hex")) {
+                        colorType = "hex";
+                    } else if (colorGroup.hasClass("color-rgb")) {
+                        colorType = "rgb";
+                    } else if (colorGroup.hasClass("color-rgba")) {
+                        colorType = "rgba";
+                    } else if (colorGroup.hasClass("color-hsl")) {
+                        colorType = "hsl";
+                    } else if (colorGroup.hasClass("color-hsla")) {
+                        colorType = "hsla";
+                    } else if (colorGroup.hasClass("color-hsv")) {
+                        colorType = "hsv";
+                    } else if (colorGroup.hasClass("color-cmyk")) {
+                        colorType = "cmyk";
+                    }
+
+                    if (colorGroup.hasClass("as-string")) {
+                        color = input.val();
+                    } else {
+                        parts = [];
+                        $.each(colorGroup.find("input"), function(){
+                            parts.push(this.value);
+                        });
+                        color = colorType + "(" +parts.join(", ")+ ")";
+                    }
+                    if (color && Metro.colors.isColor(color)) {
+                        that.val(color);
+                    }
+
+                    that._clearInputInterval();
+                }, o.inputThreshold);
+            });
 
             if (controller && controller.length) {
                 controller.on(Metro.events.inputchange, function(e){
@@ -724,18 +768,6 @@
                         })
                 )
             });
-        },
-
-        createMaterialPalette: function(color){
-            if (arguments.length === 0) {
-                color = this.val();
-            }
-
-            if (!Metro.colors.isColor(color)) {
-                throw new Error("The initial value is not a color value");
-            }
-
-            return Metro.colors.materialPalette(Metro.colors.toHEX(color))
         },
 
         changeAttribute: function(attr, newValue){

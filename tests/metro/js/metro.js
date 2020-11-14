@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 13/11/2020 20:55:54
+ * Built at 14/11/2020 09:58:10
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "13/11/2020 20:55:54",
+        compileTime: "14/11/2020 09:58:10",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11688,17 +11688,17 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-hex") );
             value.append( $("<input type='radio' name='returnType' value='hex' checked>").addClass("check-color-value-hex") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HEX:' readonly>").addClass("input-small value-hex") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hex") );
+            colorBlock.append( $("<input type='text' data-prepend='HEX:'>").addClass("input-small value-hex") );
 
             row.append( value = $("<div>").addClass("color-value-rgb") );
             value.append( $("<input type='radio' name='returnType' value='rgb'>").addClass("check-color-value-rgb") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='R:' readonly>").addClass("input-small value-r") );
-            colorBlock.append( $("<input type='text' data-prepend='G:' readonly>").addClass("input-small value-g") );
-            colorBlock.append( $("<input type='text' data-prepend='B:' readonly>").addClass("input-small value-b") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='RGB:' readonly>").addClass("input-small value-rgb") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-rgb") );
+            colorBlock.append( $("<input type='text' data-prepend='R:'>").addClass("input-small value-r") );
+            colorBlock.append( $("<input type='text' data-prepend='G:'>").addClass("input-small value-g") );
+            colorBlock.append( $("<input type='text' data-prepend='B:'>").addClass("input-small value-b") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-rgb") );
+            colorBlock.append( $("<input type='text' data-prepend='RGB:'>").addClass("input-small value-rgb") );
 
             if (this.showAsString.indexOf("rgb") > -1) {
                 value.find(".value-r,.value-g,.value-b").parent().hide();
@@ -11708,13 +11708,13 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-rgba") );
             value.append( $("<input type='radio' name='returnType' value='rgba'>").addClass("check-color-value-rgba") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='R:' readonly>").addClass("input-small value-r") );
-            colorBlock.append( $("<input type='text' data-prepend='G:' readonly>").addClass("input-small value-g") );
-            colorBlock.append( $("<input type='text' data-prepend='B:' readonly>").addClass("input-small value-b") );
-            colorBlock.append( $("<input type='text' data-prepend='A:' readonly>").addClass("input-small value-a") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='RGBA:' readonly>").addClass("input-small value-rgba") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-rgba") );
+            colorBlock.append( $("<input type='text' data-prepend='R:'>").addClass("input-small value-r") );
+            colorBlock.append( $("<input type='text' data-prepend='G:'>").addClass("input-small value-g") );
+            colorBlock.append( $("<input type='text' data-prepend='B:'>").addClass("input-small value-b") );
+            colorBlock.append( $("<input type='text' data-prepend='A:'>").addClass("input-small value-a") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-rgba") );
+            colorBlock.append( $("<input type='text' data-prepend='RGBA:'>").addClass("input-small value-rgba") );
 
             if (this.showAsString.indexOf("rgba") > -1) {
                 value.find(".value-r,.value-g,.value-b,.value-a").parent().hide();
@@ -11724,12 +11724,12 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-hsl") );
             value.append( $("<input type='radio' name='returnType' value='hsl'>").addClass("check-color-value-hsl") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
-            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
-            colorBlock.append( $("<input type='text' data-prepend='L:' readonly>").addClass("input-small value-l") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HSL:' readonly>").addClass("input-small value-hsl") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-hsl") );
+            colorBlock.append( $("<input type='text' data-prepend='H:'>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:'>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='L:'>").addClass("input-small value-l") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hsl") );
+            colorBlock.append( $("<input type='text' data-prepend='HSL:'>").addClass("input-small value-hsl") );
 
             if (this.showAsString.indexOf("hsl") > -1) {
                 value.find(".value-h,.value-s,.value-l").parent().hide();
@@ -11739,13 +11739,13 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-hsla") );
             value.append( $("<input type='radio' name='returnType' value='hsla'>").addClass("check-color-value-hsla") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
-            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
-            colorBlock.append( $("<input type='text' data-prepend='L:' readonly>").addClass("input-small value-l") );
-            colorBlock.append( $("<input type='text' data-prepend='A:' readonly>").addClass("input-small value-a") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HSLA:' readonly>").addClass("input-small value-hsla") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-hsla") );
+            colorBlock.append( $("<input type='text' data-prepend='H:'>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:'>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='L:'>").addClass("input-small value-l") );
+            colorBlock.append( $("<input type='text' data-prepend='A:'>").addClass("input-small value-a") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hsla") );
+            colorBlock.append( $("<input type='text' data-prepend='HSLA:'>").addClass("input-small value-hsla") );
 
             if (this.showAsString.indexOf("hsla") > -1) {
                 value.find(".value-h,.value-s,.value-l,.value-a").parent().hide();
@@ -11755,12 +11755,12 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-hsv") );
             value.append( $("<input type='radio' name='returnType' value='hsv'>").addClass("check-color-value-hsl") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='H:' readonly>").addClass("input-small value-h") );
-            colorBlock.append( $("<input type='text' data-prepend='S:' readonly>").addClass("input-small value-s") );
-            colorBlock.append( $("<input type='text' data-prepend='V:' readonly>").addClass("input-small value-v") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='HSV:' readonly>").addClass("input-small value-hsv") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-hsv") );
+            colorBlock.append( $("<input type='text' data-prepend='H:'>").addClass("input-small value-h") );
+            colorBlock.append( $("<input type='text' data-prepend='S:'>").addClass("input-small value-s") );
+            colorBlock.append( $("<input type='text' data-prepend='V:'>").addClass("input-small value-v") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-hsv") );
+            colorBlock.append( $("<input type='text' data-prepend='HSV:'>").addClass("input-small value-hsv") );
 
             if (this.showAsString.indexOf("hsv") > -1) {
                 value.find(".value-h,.value-s,.value-v").parent().hide();
@@ -11770,13 +11770,13 @@ $.noConflict = function() {
 
             row.append( value = $("<div>").addClass("color-value-cmyk") );
             value.append( $("<input type='radio' name='returnType' value='cmyk'>").addClass("check-color-value-cmyk") );
-            value.append( colorBlock = $("<div>").addClass("color-block") );
-            colorBlock.append( $("<input type='text' data-prepend='C:' readonly>").addClass("input-small value-c") );
-            colorBlock.append( $("<input type='text' data-prepend='M:' readonly>").addClass("input-small value-m") );
-            colorBlock.append( $("<input type='text' data-prepend='Y:' readonly>").addClass("input-small value-y") );
-            colorBlock.append( $("<input type='text' data-prepend='K:' readonly>").addClass("input-small value-k") );
-            value.append( colorBlock = $("<div>").addClass("color-block as-string") );
-            colorBlock.append( $("<input type='text' data-prepend='CMYK:' readonly>").addClass("input-small value-cmyk") );
+            value.append( colorBlock = $("<div>").addClass("color-block color-cmyk") );
+            colorBlock.append( $("<input type='text' data-prepend='C:'>").addClass("input-small value-c") );
+            colorBlock.append( $("<input type='text' data-prepend='M:'>").addClass("input-small value-m") );
+            colorBlock.append( $("<input type='text' data-prepend='Y:'>").addClass("input-small value-y") );
+            colorBlock.append( $("<input type='text' data-prepend='K:'>").addClass("input-small value-k") );
+            value.append( colorBlock = $("<div>").addClass("color-block as-string color-cmyk") );
+            colorBlock.append( $("<input type='text' data-prepend='CMYK:'>").addClass("input-small value-cmyk") );
 
             if (this.showAsString.indexOf("cmyk") > -1) {
                 value.find(".value-s,.value-m,.value-y,.value-k").parent().hide();
@@ -12119,6 +12119,50 @@ $.noConflict = function() {
             var alphaMap = element.find(".alpha-map");
             var shadeMap = element.find(".color-map");
             var controller = $(o.controller);
+            var colorValues = element.find(".color-values-block input[type=text]");
+
+            colorValues.on(Metro.events.inputchange, function(){
+                var input = $(this);
+
+                that._clearInputInterval();
+
+                if (!that.inputInterval) that.inputInterval = setTimeout(function(){
+                    var colorGroup = input.closest(".color-block");
+                    var colorType;
+                    var color, parts;
+
+                    if (colorGroup.hasClass("color-hex")) {
+                        colorType = "hex";
+                    } else if (colorGroup.hasClass("color-rgb")) {
+                        colorType = "rgb";
+                    } else if (colorGroup.hasClass("color-rgba")) {
+                        colorType = "rgba";
+                    } else if (colorGroup.hasClass("color-hsl")) {
+                        colorType = "hsl";
+                    } else if (colorGroup.hasClass("color-hsla")) {
+                        colorType = "hsla";
+                    } else if (colorGroup.hasClass("color-hsv")) {
+                        colorType = "hsv";
+                    } else if (colorGroup.hasClass("color-cmyk")) {
+                        colorType = "cmyk";
+                    }
+
+                    if (colorGroup.hasClass("as-string")) {
+                        color = input.val();
+                    } else {
+                        parts = [];
+                        $.each(colorGroup.find("input"), function(){
+                            parts.push(this.value);
+                        });
+                        color = colorType + "(" +parts.join(", ")+ ")";
+                    }
+                    if (color && Metro.colors.isColor(color)) {
+                        that.val(color);
+                    }
+
+                    that._clearInputInterval();
+                }, o.inputThreshold);
+            });
 
             if (controller && controller.length) {
                 controller.on(Metro.events.inputchange, function(e){
@@ -12289,18 +12333,6 @@ $.noConflict = function() {
             });
         },
 
-        createMaterialPalette: function(color){
-            if (arguments.length === 0) {
-                color = this.val();
-            }
-
-            if (!Metro.colors.isColor(color)) {
-                throw new Error("The initial value is not a color value");
-            }
-
-            return Metro.colors.materialPalette(Metro.colors.toHEX(color))
-        },
-
         changeAttribute: function(attr, newValue){
             var o = this.options;
 
@@ -12345,16 +12377,10 @@ $.noConflict = function() {
 
     var ColorsDefaultConfig = {
         angle: 30,
-        algorithm: 1,
-        step: 0.1,
-        distance: 5,
-        tint1: 0.8,
-        tint2: 0.4,
-        shade1: 0.6,
-        shade2: 0.3,
-        alpha: 1,
+        resultType: 'hex',
         results: 6,
-        slices: 30
+        baseLight: "#ffffff",
+        baseDark: "self"
     };
 
     // function HEX(r, g, b) {
@@ -13369,13 +13395,10 @@ $.noConflict = function() {
             return this.toHEX(rgb);
         },
 
-        materialPalette: function(color, baseDark){
-            var baseLight = "#ffffff";
-
-            baseDark = baseDark || this.multiply(color, color);
-
-            var hslA400 = this.toHSL(color);
-            hslA400.h = shift(hslA400.h, -30);
+        materialPalette: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var baseLight = opt.baseLight;
+            var baseDark = opt.baseDark === "self" || !opt.baseDark ? this.multiply(color, color) : opt.baseDark;
 
             return {
                 "50": this.mix(baseLight, color, 10),
@@ -13391,15 +13414,15 @@ $.noConflict = function() {
 
                 "A100": this.lighten(this.saturate(this.mix(baseDark, color, 15), 80), 65),
                 "A200": this.lighten(this.saturate(this.mix(baseDark, color, 15), 80), 55),
-
                 "A400": this.lighten(this.saturate(this.mix(baseLight, color, 100), 55), 10),
                 "A700": this.lighten(this.saturate(this.mix(baseDark, color, 83), 65), 10)
             };
         },
 
-        monochromatic: function(color, results, returnAs){
-            returnAs = returnAs || 'hex';
-            results = results || 6;
+        monochromatic: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var results = opt.results;
             var hsv = this.toHSV(color);
             var h = hsv.h,
                 s = hsv.s,
@@ -13418,12 +13441,13 @@ $.noConflict = function() {
             });
         },
 
-        complementary: function(color, returnAs){
+        complementary: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
             var hsl = this.toHSL(color);
             var result;
             var self = this;
 
-            returnAs = returnAs || 'hex';
+            var returnAs = opt.resultType;
 
             result = [
                 hsl,
@@ -13435,13 +13459,14 @@ $.noConflict = function() {
             });
         },
 
-        splitComplementary: function(color, angle, returnAs){
+        splitComplementary: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
             var hsl = this.toHSL(color);
             var h = hsl.h;
             var result, self = this;
 
-            returnAs = returnAs || 'hex';
-            angle = angle === 0 ? 0 : (angle || 30);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
 
             result = [
                 hsl,
@@ -13454,9 +13479,10 @@ $.noConflict = function() {
             });
         },
 
-        doubleComplementary: function(color, angle, returnAs){
-            returnAs = returnAs || 'hex';
-            angle = angle === 0 ? 0 : (angle || 30);
+        doubleComplementary: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
             var hsl = this.toHSL(color);
             var h = hsl.h;
             var result, self = this;
@@ -13473,8 +13499,9 @@ $.noConflict = function() {
             });
         },
 
-        square: function(color, returnAs){
-            returnAs = returnAs || 'hex';
+        square: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
             var result = [], i;
             var hsl = this.toHSL(color);
             var h = hsl.h , self = this;
@@ -13491,9 +13518,10 @@ $.noConflict = function() {
             });
         },
 
-        tetradic: function(color, angle, returnAs){
-            returnAs = returnAs || 'hex';
-            angle = angle || 30;
+        tetradic: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
             var result;
             var hsl = this.toHSL(color);
             var h = hsl.h;
@@ -13511,8 +13539,9 @@ $.noConflict = function() {
             });
         },
 
-        triadic: function(color, returnAs){
-            returnAs = returnAs || 'hex';
+        triadic: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
             var result;
             var hsl = this.toHSL(color);
             var h = hsl.h;
@@ -13529,9 +13558,10 @@ $.noConflict = function() {
             });
         },
 
-        analogous: function(color, angle, returnAs){
-            returnAs = returnAs || 'hex';
-            angle = angle || 30;
+        analogous: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
 
             var hsl = this.toHSL(color);
             var result, self = this;
@@ -13547,12 +13577,40 @@ $.noConflict = function() {
             });
         },
 
-        // createScheme: function(color, name, format, options){
-        // },
-        //
-        // getScheme: function(){
-        //     return this.createScheme.apply(this, arguments)
-        // },
+        createScheme: function(color, name, options){
+            switch (name.toLowerCase()) {
+                case "analogous":
+                case "analog": return this.analogous(color, options);
+
+                case "triadic":
+                case "triad": return this.triadic(color, options);
+
+                case "tetradic":
+                case "tetra": return this.tetradic(color, options);
+
+                case "monochromatic":
+                case "mono": return this.monochromatic(color, options);
+
+                case "complementary":
+                case "complement":
+                case "comp": return this.complementary(color, options);
+
+                case "double-complementary":
+                case "double-complement":
+                case "double": return this.doubleComplementary(color, options);
+
+                case "split-complementary":
+                case "split-complement":
+                case "split": return this.splitComplementary(color, options);
+
+                case "square": return this.square(color, options);
+                case "material": return this.materialPalette(color, options);
+            }
+        },
+
+        getScheme: function(){
+            return this.createScheme.apply(this, arguments)
+        },
 
         add: function(val1, val2, returnAs){
             var color1 = typeof val1 === "string" ? this.parse(val1) : val1;

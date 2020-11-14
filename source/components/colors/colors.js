@@ -23,16 +23,10 @@
 
     var ColorsDefaultConfig = {
         angle: 30,
-        algorithm: 1,
-        step: 0.1,
-        distance: 5,
-        tint1: 0.8,
-        tint2: 0.4,
-        shade1: 0.6,
-        shade2: 0.3,
-        alpha: 1,
+        resultType: 'hex',
         results: 6,
-        slices: 30
+        baseLight: "#ffffff",
+        baseDark: "self"
     };
 
     // function HEX(r, g, b) {
@@ -1047,13 +1041,10 @@
             return this.toHEX(rgb);
         },
 
-        materialPalette: function(color, baseDark){
-            var baseLight = "#ffffff";
-
-            baseDark = baseDark || this.multiply(color, color);
-
-            var hslA400 = this.toHSL(color);
-            hslA400.h = shift(hslA400.h, -30);
+        materialPalette: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var baseLight = opt.baseLight;
+            var baseDark = opt.baseDark === "self" || !opt.baseDark ? this.multiply(color, color) : opt.baseDark;
 
             return {
                 "50": this.mix(baseLight, color, 10),
@@ -1069,15 +1060,15 @@
 
                 "A100": this.lighten(this.saturate(this.mix(baseDark, color, 15), 80), 65),
                 "A200": this.lighten(this.saturate(this.mix(baseDark, color, 15), 80), 55),
-
                 "A400": this.lighten(this.saturate(this.mix(baseLight, color, 100), 55), 10),
                 "A700": this.lighten(this.saturate(this.mix(baseDark, color, 83), 65), 10)
             };
         },
 
-        monochromatic: function(color, results, returnAs){
-            returnAs = returnAs || 'hex';
-            results = results || 6;
+        monochromatic: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var results = opt.results;
             var hsv = this.toHSV(color);
             var h = hsv.h,
                 s = hsv.s,
@@ -1096,12 +1087,13 @@
             });
         },
 
-        complementary: function(color, returnAs){
+        complementary: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
             var hsl = this.toHSL(color);
             var result;
             var self = this;
 
-            returnAs = returnAs || 'hex';
+            var returnAs = opt.resultType;
 
             result = [
                 hsl,
@@ -1113,13 +1105,14 @@
             });
         },
 
-        splitComplementary: function(color, angle, returnAs){
+        splitComplementary: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
             var hsl = this.toHSL(color);
             var h = hsl.h;
             var result, self = this;
 
-            returnAs = returnAs || 'hex';
-            angle = angle === 0 ? 0 : (angle || 30);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
 
             result = [
                 hsl,
@@ -1132,9 +1125,10 @@
             });
         },
 
-        doubleComplementary: function(color, angle, returnAs){
-            returnAs = returnAs || 'hex';
-            angle = angle === 0 ? 0 : (angle || 30);
+        doubleComplementary: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
             var hsl = this.toHSL(color);
             var h = hsl.h;
             var result, self = this;
@@ -1151,8 +1145,9 @@
             });
         },
 
-        square: function(color, returnAs){
-            returnAs = returnAs || 'hex';
+        square: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
             var result = [], i;
             var hsl = this.toHSL(color);
             var h = hsl.h , self = this;
@@ -1169,9 +1164,10 @@
             });
         },
 
-        tetradic: function(color, angle, returnAs){
-            returnAs = returnAs || 'hex';
-            angle = angle || 30;
+        tetradic: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
             var result;
             var hsl = this.toHSL(color);
             var h = hsl.h;
@@ -1189,8 +1185,9 @@
             });
         },
 
-        triadic: function(color, returnAs){
-            returnAs = returnAs || 'hex';
+        triadic: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
             var result;
             var hsl = this.toHSL(color);
             var h = hsl.h;
@@ -1207,9 +1204,10 @@
             });
         },
 
-        analogous: function(color, angle, returnAs){
-            returnAs = returnAs || 'hex';
-            angle = angle || 30;
+        analogous: function(color, options){
+            var opt = $.extend({}, ColorsDefaultConfig, options);
+            var returnAs = opt.resultType;
+            var angle = opt.angle;
 
             var hsl = this.toHSL(color);
             var result, self = this;
@@ -1225,12 +1223,40 @@
             });
         },
 
-        // createScheme: function(color, name, format, options){
-        // },
-        //
-        // getScheme: function(){
-        //     return this.createScheme.apply(this, arguments)
-        // },
+        createScheme: function(color, name, options){
+            switch (name.toLowerCase()) {
+                case "analogous":
+                case "analog": return this.analogous(color, options);
+
+                case "triadic":
+                case "triad": return this.triadic(color, options);
+
+                case "tetradic":
+                case "tetra": return this.tetradic(color, options);
+
+                case "monochromatic":
+                case "mono": return this.monochromatic(color, options);
+
+                case "complementary":
+                case "complement":
+                case "comp": return this.complementary(color, options);
+
+                case "double-complementary":
+                case "double-complement":
+                case "double": return this.doubleComplementary(color, options);
+
+                case "split-complementary":
+                case "split-complement":
+                case "split": return this.splitComplementary(color, options);
+
+                case "square": return this.square(color, options);
+                case "material": return this.materialPalette(color, options);
+            }
+        },
+
+        getScheme: function(){
+            return this.createScheme.apply(this, arguments)
+        },
 
         add: function(val1, val2, returnAs){
             var color1 = typeof val1 === "string" ? this.parse(val1) : val1;
