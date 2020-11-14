@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/11/2020 09:58:10
+ * Built at 14/11/2020 10:02:27
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "14/11/2020 09:58:10",
+        compileTime: "14/11/2020 10:02:27",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11585,6 +11585,7 @@ $.noConflict = function() {
         showAlphaChannel: true,
         inputThreshold: 300,
         initColor: null,
+        readonlyInput: false,
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
@@ -11802,6 +11803,10 @@ $.noConflict = function() {
                 clsComponent: o.clsInput
             });
             inputs.addClass(o.clsValue);
+
+            if (o.readonlyInput) {
+                inputs.attr("readonly", true);
+            }
 
             radios = colorBox.find("input[type=radio]").each(function(){
                 $(this).attr("name", that.id + "-returnType");

@@ -22,6 +22,7 @@
         showAlphaChannel: true,
         inputThreshold: 300,
         initColor: null,
+        readonlyInput: false,
         clsSelector: "",
         clsSwatches: "",
         clsSwatch: "",
@@ -239,6 +240,10 @@
                 clsComponent: o.clsInput
             });
             inputs.addClass(o.clsValue);
+
+            if (o.readonlyInput) {
+                inputs.attr("readonly", true);
+            }
 
             radios = colorBox.find("input[type=radio]").each(function(){
                 $(this).attr("name", that.id + "-returnType");
