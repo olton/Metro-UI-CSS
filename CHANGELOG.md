@@ -4,6 +4,8 @@
 + [x] Metro: improved function `makePlugin(...)`, now you can use it for set of elements.
 + [x] Slider: fixed work vertical slider for touchable devices
 + [x] Colors: improve work with hsl, hsv
++ [x] Spinner: fixed input not a number value, value more or less than defined in options.
+
 
 ### 4.4.2
 #### Metro 4

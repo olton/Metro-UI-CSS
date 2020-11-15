@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/11/2020 10:02:27
+ * Built at 15/11/2020 18:35:33
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4536,7 +4536,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "14/11/2020 10:02:27",
+        compileTime: "15/11/2020 18:35:33",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -26813,6 +26813,7 @@ $.noConflict = function() {
             var that = this, element = this.element, o = this.options;
             var spinner = element.closest(".spinner");
             var spinner_buttons = spinner.find(".spinner-button");
+            var value;
 
             var spinnerButtonClick = function(plus, threshold){
                 var curr = element.val();
@@ -26883,6 +26884,23 @@ $.noConflict = function() {
                 if (e.keyCode === Metro.keyCode.UP_ARROW || e.keyCode === Metro.keyCode.DOWN_ARROW) {
                     that.repeat_timer = true;
                     spinnerButtonClick(e.keyCode === Metro.keyCode.UP_ARROW, o.repeatThreshold);
+                } else {
+                    var key = e.key;
+                    if (key === "Backspace" || key === "Delete" || key === "ArrowLeft" || key === "ArrowRight" ) {
+                        //
+                    } else
+                    if (isNaN(key) || parseInt(key) < 0 && parseInt(key) > 9) {
+                        e.preventDefault();
+                    }
+
+                    value = parseInt(this.value);
+                }
+            });
+
+            element.on(Metro.events.keyup, function(){
+                var val = parseInt(this.value);
+                if ((o.minValue && val < o.minValue) || (o.maxValue && val > o.maxValue)) {
+                    this.value = value;
                 }
             });
 
