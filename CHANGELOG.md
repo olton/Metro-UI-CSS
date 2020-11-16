@@ -10,7 +10,6 @@
 + [x] Colors: improve work with hsl, hsv
 + [x] Spinner: fixed input not a number value, value more or less than defined in options.
 
-
 ### 4.4.2
 #### Metro 4
 + [x] Button: fixed content position, issue #1648.
