@@ -1,4 +1,8 @@
 ### 4.4.3
+#### M4Q
++ [x] Attributes: fixed method `attr` when user defining one argument
+
+#### Metro 4
 + [x] NavView: fixed `navview-pane` item `height` and hover state, issue #1661
 + [x] Color selector: added new component
 + [x] Metro: improved function `makePlugin(...)`, now you can use it for set of elements.
