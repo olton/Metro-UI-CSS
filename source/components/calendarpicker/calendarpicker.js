@@ -3,6 +3,18 @@
     'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
+        showTime: false,
+        initialTime: null,
+        initialHours: null,
+        initialMinutes: null,
+        clsCalendarTime: "",
+        clsTime: "",
+        clsTimeHours: "",
+        clsTimeMinutes: "",
+        clsTimeButton: "",
+        clsTimeButtonPlus: "",
+        clsTimeButtonMinus: "",
+
         label: "",
         value:'',
         calendarpickerDeferred: 0,
@@ -82,7 +94,8 @@
                 value_date: null,
                 calendar: null,
                 overlay: null,
-                id: Utils.elementId("calendar-picker")
+                id: Utils.elementId("calendar-picker"),
+                time: [new Date().getHours(), new Date().getMinutes()]
             });
 
             return this;
@@ -103,31 +116,88 @@
             var container = $("<div>").addClass("input " + element[0].className + " calendar-picker");
             var buttons = $("<div>").addClass("button-group");
             var calendarButton, clearButton, cal = $("<div>").addClass("drop-shadow");
-            var curr;
+            var curr, _curr, initTime, initHours, initMinutes, elementValue, h, m;
             var body = $("body");
 
             element.attr("type", "text");
             element.attr("autocomplete", "off");
             element.attr("readonly", true);
 
+            if (Utils.isValue(o.initialTime)) {
+                this.time = o.initialTime.trim().split(":");
+            }
+
+            if (Utils.isValue(o.initialHours)) {
+                this.time[0] = parseInt(o.initialHours);
+            }
+
+            if (Utils.isValue(o.initialHours)) {
+                this.time[1] = parseInt(o.initialMinutes);
+            }
+
             curr = (""+o.value).trim() !== '' ? o.value : element.val().trim();
 
             if (!Utils.isValue(curr)) {
-                if (o.useNow) this.value = new Date();
+                if (o.useNow) {
+                    this.value = new Date();
+                    this.time = [this.value.getHours(), this.value.getMinutes()];
+                }
             } else {
-                this.value = !Utils.isValue(o.inputFormat) ? new Date(curr) : curr.toDate(o.inputFormat, o.locale);
+                _curr = curr.split(" ");
+                this.value = !Utils.isValue(o.inputFormat) ? new Date(_curr[0]) : _curr[0].toDate(o.inputFormat, o.locale);
+                if (_curr[1]) {
+                    this.time = _curr[1].trim().split(":");
+                }
             }
 
             if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
 
-            element.val(!Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale));
+            elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
+
+            if (o.showTime && this.time && elementValue) {
+                h = this.time[0];
+                m = this.time[1];
+                h = h < 10 ? "0" + h : h;
+                m = m < 10 ? "0" + m : m;
+                elementValue += " " + h + ":" + m;
+            }
+
+            element.val(elementValue);
 
             container.insertBefore(element);
             element.appendTo(container);
             buttons.appendTo(container);
             cal.appendTo(o.dialogMode ? body : container);
 
+            if (this.time && this.time.length) {
+                initHours = this.time[0];
+                if (typeof this.time[1] !== "undefined")
+                    initMinutes = this.time[1];
+            }
+
+            initTime = o.initialTime;
+
+            if (o.initialHours) {
+                initHours = o.initialHours;
+            }
+
+            if (o.initialHours) {
+                initMinutes = o.initialMinutes;
+            }
+
             Metro.makePlugin(cal, "calendar", {
+                showTime: o.showTime,
+                initialTime: initTime,
+                initialHours: initHours,
+                initialMinutes: initMinutes,
+                clsCalendarTime: o.clsCalendarTime,
+                clsTime: o.clsTime,
+                clsTimeHours: o.clsTimeHours,
+                clsTimeMinutes: o.clsTimeMinutes,
+                clsTimeButton: o.clsTimeButton,
+                clsTimeButtonPlus: o.clsTimeButtonPlus,
+                clsTimeButtonMinus: o.clsTimeButtonMinus,
+
                 wide: o.calendarWide,
                 widePoint: o.calendarWidePoint,
 
@@ -162,25 +232,41 @@
                 showHeader: o.showHeader,
                 showFooter: false,
                 showWeekNumber: o.showWeekNumber,
-                onDayClick: function(sel, day, el){
+                onDayClick: function(sel, day, time, el){
                     var date = new Date(sel[0]);
+                    var elementValue, h, m;
+
                     date.setHours(0,0,0,0);
 
                     that._removeOverlay();
 
                     that.value = date;
-                    element.val(date.format(o.format, o.locale));
+                    that.time = time;
+                    h = time[0];
+                    m = time[1];
+
+                    elementValue = date.format(o.format, o.locale);
+
+                    if (o.showTime) {
+                        h = h < 10 ? "0" + h : h;
+                        m = m < 10 ? "0" + m : m;
+                        elementValue += " " + h + ":" + m;
+                    }
+
+                    element.val(elementValue);
                     element.trigger("change");
                     cal.removeClass("open open-up");
                     cal.hide();
 
                     that._fireEvent("change", {
-                        val: that.value
+                        val: that.value,
+                        time: that.time
                     });
 
                     that._fireEvent("day-click", {
                         sel: sel,
                         day: day,
+                        time: time,
                         el: el
                     });
                 },
@@ -423,36 +509,47 @@
             }
         },
 
-        changeAttribute: function(attributeName){
-            var that = this, element = this.element;
+        getTime: function(asString){
+            var h, m;
+
+            asString = asString || false;
+
+            h = this.time[0] < 10 ? "0"+this.time[0] : this.time[0];
+            m = this.time[1] < 10 ? "0"+this.time[1] : this.time[1];
+
+            return asString ? h +":"+ m : this.time;
+        },
+
+        changeAttribute: function(attributeName, newValue){
+            var that = this;
             var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
             var changeAttrLocale = function(){
-                that.i18n(element.attr("data-locale"));
+                that.i18n(newValue);
             };
 
             var changeAttrSpecial = function(){
-                cal.setSpecial(element.attr("data-special"));
+                cal.setSpecial(newValue);
             };
 
             var changeAttrExclude = function(){
-                cal.setExclude(element.attr("data-exclude"));
+                cal.setExclude(newValue);
             };
 
             var changeAttrMinDate = function(){
-                cal.setMinDate(element.attr("data-min-date"));
+                cal.setMinDate(newValue);
             };
 
             var changeAttrMaxDate = function(){
-                cal.setMaxDate(element.attr("data-max-date"));
+                cal.setMaxDate(newValue);
             };
 
             var changeAttrValue = function(){
-                that.val(element.attr("value"));
+                that.val(newValue);
             };
 
             var changeDataValue = function(){
-                that.val(element.attr("data-value"))
+                that.val(newValue)
             };
 
             switch (attributeName) {
