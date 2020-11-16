@@ -1,5 +1,5 @@
 /*
- * m4q v1.0.9, (https://github.com/olton/m4q.git)
+ * m4q v1.0.10, (https://github.com/olton/m4q.git)
  * Copyright 2018 - 2020 by Sergey Pimenov
  * Helper for DOM manipulation, animation, and ajax routines.
  * Licensed under MIT
@@ -621,7 +621,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.9. Built at 19/10/2020 18:36:03";
+var m4qVersion = "v1.0.10. Built at 16/11/2020 14:32:55";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2677,7 +2677,7 @@ $.fn.extend({
             return attributes;
         }
 
-        if (typeof name === 'string' && val === undefined) {
+        if (arguments.length === 1) {
             return this.length && this[0].nodeType === 1 && this[0].hasAttribute(name) ? this[0].getAttribute(name) : undefined;
         }
 
@@ -2803,11 +2803,12 @@ $.extend({
             if (hasProp(item, where)) {
                 return;
             }
+
             Object.defineProperty(item, where, {
                 configurable: true,
                 enumerable: true,
                 writable: true,
-                value: function prepend() {
+                value: function () {
                     var argArr = Array.prototype.slice.call(arguments),
                         docFrag = document.createDocumentFragment();
 
@@ -2828,6 +2829,7 @@ $.extend({
 
 var normalizeElements = function(s){
     var result;
+
     if (typeof s === "string") result = $.isSelector(s) ? $(s) : $.parseHTML(s);
     else if (s instanceof HTMLElement) result = [s];
     else if (isArrayLike(s)) result = s;
