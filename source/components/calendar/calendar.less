@@ -317,6 +317,62 @@
     }
 }
 
+.calendar {
+    .calendar-time {
+        display: block;
+        padding: 5px 10px 10px;
+        border-top: 1px solid @borderColor;
+        background: @light;
+
+        .calendar-time__inner {
+            display: flex;
+            flex-flow: row nowrap;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .calendar-time__inner {
+            .button {
+                &.spinner-button-minus {
+                    border-left: 1px solid @borderColor;
+                    border-right: 1px solid @borderColor;
+                }
+            }
+
+            input {
+                text-align: center;
+            }
+
+            .minutes {
+                margin-left: 2px
+            }
+        }
+
+        .calendar-time__inner-row {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .calendar-time__inner-cell {
+            display: block;
+            width: 50%;
+        }
+    }
+
+    &.compact {
+        .calendar-time__inner-cell {
+            display: block;
+            width: 50%;
+
+            span {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
 .wide-calendar(){
     flex-flow: row nowrap;
     width: 560px;
