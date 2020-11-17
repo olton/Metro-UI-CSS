@@ -49,7 +49,7 @@
         padding: .5rem 0;
         width: 100%;
 
-        .prev-month, .prev-year, .next-month, .next-year {
+        .prev-month, .prev-year, .next-month, .next-year, .next-year-group, .prev-year-group {
             padding: .5rem 0;
             cursor: pointer;
             text-align: center;
@@ -71,7 +71,6 @@
     .week-days, .days {
         display: flex;
         flex-flow: row nowrap;
-        border-top: 1px solid @borderColor;
         border-bottom: 1px solid @borderColor;
         justify-content: space-between;
         padding: 0;
@@ -156,6 +155,16 @@
     .excluded {
         background-color: @light;
     }
+
+    .days {
+        .day {
+            border: 1px solid @transparent;
+
+            &:hover {
+                border-color: @borderColor;
+            }
+        }
+    }
 }
 
 .calendar {
@@ -172,83 +181,6 @@
         .week-days .week-number
         {
             border-right: none;
-        }
-    }
-}
-
-.calendar-months, .calendar-years {
-    height: 100%;
-    display: block;
-    position: absolute;
-    top: 0;
-    background-color: @light;
-    color: @dark;
-    float: left;
-    width: 120px;
-    overflow: hidden;
-    transition: @transition-base;
-    z-index: @zindex-absolute;
-}
-
-.calendar-years > .years-list, .calendar-months > .months-list {
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto!important;
-
-    li.active {
-        background-color: @cyan;
-        color: @white;
-    }
-}
-
-.calendar-months {
-    left: 0;
-    transform: translateX(-100%);
-    width: 160px;
-
-    &.open {
-        transition: @transition-base;
-        transform: translateX(0);
-        .shadow-right();
-    }
-
-    .months-list {
-        list-style: none inside;
-        padding: 0;
-        margin: 10px 0;
-
-        li {
-            padding: 4px 16px;
-            cursor: pointer;
-            &:hover {
-                background-color: @hoverBackground;
-            }
-        }
-    }
-}
-
-.calendar-years {
-    left: 100%;
-
-    &.open {
-        transition: @transition-base;
-        transform: translateX(-100%);
-        .shadow-left();
-    }
-
-    .years-list {
-        list-style: none inside;
-        padding: 0;
-        margin: 10px 0;
-        text-align: center;
-
-        li {
-            padding: 4px 16px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: @hoverBackground;
-            }
         }
     }
 }
@@ -311,9 +243,6 @@
         .day + .day {
             margin-left: 1px;
         }
-        .months-list, .years-list {
-            font-size: .85rem;
-        }
     }
 }
 
@@ -369,6 +298,41 @@
             span {
                 font-size: 12px;
             }
+        }
+    }
+}
+
+.calendar {
+    .calendar-content {
+        .calendar-content__months,
+        .calendar-content__years
+        {
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .calendar-content__months,
+        .calendar-content__years
+        {
+            .month, .year {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                flex-basis: 25%;
+                border: 1px solid @transparent;
+                height: 64px;
+                font-size: 14px;
+                cursor: pointer;
+
+                &:hover {
+                    border-color: @borderColor;
+                }
+            }
+        }
+
+        .calendar-toolbar {
+            border-bottom: 1px solid @borderColor;
         }
     }
 }

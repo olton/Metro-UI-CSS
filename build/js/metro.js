@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/11/2020 00:03:23
+ * Built at 17/11/2020 14:44:43
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -313,7 +313,7 @@ function isTouch() {
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2688,7 +2688,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "17/11/2020 00:03:23",
+        compileTime: "17/11/2020 14:44:43",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4805,7 +4805,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -8785,7 +8785,10 @@ $.noConflict = function() {
                 maxYear: null,
                 offset: null,
                 id: Utils.elementId("calendar"),
-                time: [new Date().getHours(), new Date().getMinutes()]
+                time: [new Date().getHours(), new Date().getMinutes()],
+                content: "days",
+                yearDistance: 11,
+                yearGroupStart: now.getFullYear()
             });
 
             return this;
@@ -8922,15 +8925,13 @@ $.noConflict = function() {
                 }
             }, {ns: this.id});
 
-            element.on(Metro.events.click, function(){
-                var months = element.find(".calendar-months");
-                var years = element.find(".calendar-years");
-                if (months.hasClass("open")) {
-                    months.removeClass("open");
+            element.on(Metro.events.click, ".prev-year-group, .next-year-group", function(){
+                if ($(this).hasClass("prev-year-group")) {
+                    that.yearGroupStart -= that.yearDistance;
+                } else {
+                    that.yearGroupStart += that.yearDistance;
                 }
-                if (years.hasClass("open")) {
-                    years.removeClass("open");
-                }
+                that._drawContent();
             });
 
             element.on(Metro.events.click, ".prev-month, .next-month, .prev-year, .next-year", function(){
@@ -8992,6 +8993,7 @@ $.noConflict = function() {
             element.on(Metro.events.click, ".button.clear", function(){
                 that.selected = [];
                 that.time = [new Date().getHours(), new Date().getMinutes()];
+                that.yearGroupStart = new Date().getFullYear();
                 that._drawContent();
                 that._fireEvent("clear");
             });
@@ -9132,32 +9134,17 @@ $.noConflict = function() {
             });
 
             element.on(Metro.events.click, ".curr-month", function(e){
-                var target;
-                var list = element.find(".months-list");
-
-                list.find(".active").removeClass("active");
-                list.scrollTop(0);
-                element.find(".calendar-months").addClass("open");
-
-                target = list.find(".js-month-"+that.current.month).addClass("active");
-
-                setTimeout(function(){
-                    list.animate({
-                        draw: {
-                            scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
-                        },
-                        dur: 200
-                    })
-                }, 300);
+                that.content = "months";
+                that._drawContent();
 
                 e.preventDefault();
                 e.stopPropagation();
             });
 
-            element.on(Metro.events.click, ".calendar-months li", function(e){
-                that.current.month = $(this).index();
+            element.on(Metro.events.click, ".month", function(e){
+                that.current.month = parseInt($(this).attr("data-month"));
+                that.content = "days";
                 that._drawContent();
-                element.find(".calendar-months").removeClass("open");
 
                 that._fireEvent("month-change", {
                     current: that.current
@@ -9168,32 +9155,21 @@ $.noConflict = function() {
             });
 
             element.on(Metro.events.click, ".curr-year", function(e){
-                var target;
-                var list = element.find(".years-list");
-
-                list.find(".active").removeClass("active");
-                list.scrollTop(0);
-                element.find(".calendar-years").addClass("open");
-
-                target = list.find(".js-year-"+that.current.year).addClass("active");
-
-                setTimeout(function(){
-                    list.animate({
-                        draw: {
-                            scrollTop: target.position().top - ( (list.height() - target.height() )/ 2)
-                        },
-                        dur: 200
-                    })
-                }, 300);
+                if (that.content === "years") {
+                    return ;
+                }
+                that.content = "years";
+                that._drawContent();
 
                 e.preventDefault();
                 e.stopPropagation();
             });
 
-            element.on(Metro.events.click, ".calendar-years li", function(e){
-                that.current.year = $(this).text();
+            element.on(Metro.events.click, ".year", function(e){
+                that.current.year = parseInt($(this).attr("data-year"));
+                that.yearGroupStart = that.current.year;
+                that.content = "months";
                 that._drawContent();
-                element.find(".calendar-years").removeClass("open");
 
                 that._fireEvent("year-change", {
                     current: that.current
@@ -9249,28 +9225,52 @@ $.noConflict = function() {
             }
         },
 
-        _drawMonths: function(){
-            var element = this.element, o = this.options;
-            var months = $("<div>").addClass("calendar-months").addClass(o.clsCalendarMonths).appendTo(element);
-            var list = $("<ul>").addClass("months-list").appendTo(months);
-            var calendar_locale = this.locale['calendar'];
-            var i;
-            for(i = 0; i < 12; i++) {
-                $("<li>").addClass("js-month-"+i).html(calendar_locale['months'][i]).appendTo(list);
+        _drawTime: function(){
+            var that = this, element = this.element, o = this.options;
+            var calendarContent = element.find(".calendar-content");
+            var time = $("<div>").addClass("calendar-time").addClass(o.clsCalendarTime).appendTo(calendarContent);
+            var inner, hours, minutes, row;
+            var h = this.time[0];
+            var m = this.time[1];
+            var locale = this.locale['calendar']['time'];
+
+            var onChange = function(val){
+                if ($(this).attr("data-time-part") === "hours") {
+                    that.time[0] = parseInt(val);
+                } else {
+                    that.time[1] = parseInt(val);
+                }
+            }
+
+            time.append( inner = $("<div>").addClass("calendar-time__inner") );
+
+            inner.append( row = $("<div>").addClass("calendar-time__inner-row") );
+            row.append( $("<div>").addClass("calendar-time__inner-cell").append( $("<span>").html(o.labelTimeHours || locale['hours']) ));
+            row.append( $("<div>").addClass("calendar-time__inner-cell").append( $("<span>").html(o.labelTimeMinutes || locale['minutes']) ));
+
+            time.append( inner = $("<div>").addClass("calendar-time__inner spinners").addClass(o.clsTime) );
+            inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
+            inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
+
+            if (h < 10) h = "0"+h;
+            if (m < 10) m = "0"+m;
+
+            hours.val(h);
+            minutes.val(m);
+
+            inner.find("input[type=text]").spinner({
+                onChange: onChange,
+                clsSpinnerButton: o.clsTimeButton,
+                clsSpinnerButtonPlus: o.clsTimeButtonPlus,
+                clsSpinnerButtonMinus: o.clsTimeButtonMinus
+            });
+
+            if (o.showTime === false) {
+                time.hide();
             }
         },
 
-        _drawYears: function(){
-            var element = this.element, o = this.options;
-            var years = $("<div>").addClass("calendar-years").addClass(o.clsCalendarYears).appendTo(element);
-            var list = $("<ul>").addClass("years-list").appendTo(years);
-            var i;
-            for(i = this.minYear; i <= this.maxYear; i++) {
-                $("<li>").addClass("js-year-"+i).html(i).appendTo(list);
-            }
-        },
-
-        _drawContent: function(){
+        _drawContentDays: function(){
             var element = this.element, o = this.options;
             var content = element.find(".calendar-content"), toolbar;
             var calendar_locale = this.locale['calendar'];
@@ -9281,7 +9281,7 @@ $.noConflict = function() {
             var year, month;
 
             if (content.length === 0) {
-                content = $("<div>").addClass("calendar-content calendar-days").addClass(o.clsCalendarContent).appendTo(element);
+                content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
             }
 
             content.html("");
@@ -9462,48 +9462,84 @@ $.noConflict = function() {
             this._drawTime();
         },
 
-        _drawTime: function(){
-            var that = this, element = this.element, o = this.options;
-            var calendarContent = element.find(".calendar-content");
-            var time = $("<div>").addClass("calendar-time").addClass(o.clsCalendarTime).appendTo(calendarContent);
-            var inner, hours, minutes, row;
-            var h = this.time[0];
-            var m = this.time[1];
-            var locale = this.locale['calendar']['time'];
+        _drawContentMonths: function(){
+            var element = this.element, o = this.options;
+            var content = element.find(".calendar-content");
+            var locale = this.locale['calendar']['months'];
+            var toolbar, months;
 
-            var onChange = function(val){
-                if ($(this).attr("data-time-part") === "hours") {
-                    that.time[0] = parseInt(val);
-                } else {
-                    that.time[1] = parseInt(val);
-                }
+            if (content.length === 0) {
+                content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
             }
 
-            time.append( inner = $("<div>").addClass("calendar-time__inner") );
+            content.clear();
 
-            inner.append( row = $("<div>").addClass("calendar-time__inner-row") );
-            row.append( $("<div>").addClass("calendar-time__inner-cell").append( $("<span>").html(o.labelTimeHours || locale['hours']) ));
-            row.append( $("<div>").addClass("calendar-time__inner-cell").append( $("<span>").html(o.labelTimeMinutes || locale['minutes']) ));
+            toolbar = $("<div>").addClass("calendar-toolbar").appendTo(content);
 
-            time.append( inner = $("<div>").addClass("calendar-time__inner spinners").addClass(o.clsTime) );
-            inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
-            inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
+            /**
+             * Calendar toolbar
+             */
 
-            if (h < 10) h = "0"+h;
-            if (m < 10) m = "0"+m;
+            $("<span>").addClass("prev-year").html(o.prevYearIcon).appendTo(toolbar);
+            $("<span>").addClass("curr-year").html(this.current.year).appendTo(toolbar);
+            $("<span>").addClass("next-year").html(o.nextYearIcon).appendTo(toolbar);
 
-            hours.val(h);
-            minutes.val(m);
+            content.append( months = $("<div>").addClass("calendar-content__months") );
 
-            inner.find("input[type=text]").spinner({
-                onChange: onChange,
-                clsSpinnerButton: o.clsTimeButton,
-                clsSpinnerButtonPlus: o.clsTimeButtonPlus,
-                clsSpinnerButtonMinus: o.clsTimeButtonMinus
-            });
+            for(var i = 12; i < 24; i++) {
+                months.append(
+                    $("<div>")
+                        .attr("data-month", i - 12)
+                        .addClass("month")
+                        .addClass(i - 12 === this.current.month ? "today" : "")
+                        .html(locale[i])
+                );
+            }
+        },
 
-            if (o.showTime === false) {
-                time.hide();
+        _drawContentYears: function(){
+            var element = this.element, o = this.options;
+            var content = element.find(".calendar-content");
+            var toolbar, years, year;
+
+            if (content.length === 0) {
+                content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
+            }
+
+            content.clear();
+
+            toolbar = $("<div>").addClass("calendar-toolbar").appendTo(content);
+
+            /**
+             * Calendar toolbar
+             */
+
+            $("<span>").addClass("prev-year-grout").html(o.prevYearIcon).appendTo(toolbar);
+            $("<span>").addClass("curr-year").html(this.yearGroupStart + " - " + (this.yearGroupStart + this.yearDistance)).appendTo(toolbar);
+            $("<span>").addClass("next-year-group").html(o.nextYearIcon).appendTo(toolbar);
+
+            content.append( years = $("<div>").addClass("calendar-content__years") );
+
+            for(var i = this.yearGroupStart; i <= this.yearGroupStart + this.yearDistance; i++) {
+                years.append(
+                    year = $("<div>")
+                        .attr("data-year", i)
+                        .addClass("year")
+                        .addClass(i === this.current.year ? "today" : "")
+                        .html(i)
+                );
+
+                if (i < o.minYear || i > o.maxYear) {
+                    year.addClass("disabled");
+                }
+            }
+        },
+
+        _drawContent: function(){
+            switch (this.content) {
+                case "years": this._drawContentYears(); break;
+                case "months": this._drawContentMonths(); break;
+                default: this._drawContentDays();
             }
         },
 
@@ -9514,8 +9550,6 @@ $.noConflict = function() {
                 that._drawHeader();
                 that._drawContent();
                 that._drawFooter();
-                that._drawMonths();
-                that._drawYears();
             }, 0);
         },
 
@@ -9564,6 +9598,8 @@ $.noConflict = function() {
                 day: this.today.getDate()
             };
             this.time = [new Date().getHours(), new Date().getMinutes()];
+            this.yearGroupStart = new Date().getFullYear();
+            this.content = "days";
             this._drawHeader();
             this._drawContent();
         },
