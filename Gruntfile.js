@@ -300,7 +300,8 @@ module.exports = function(grunt) {
                 files: watch_files,
                 tasks: tasks,
                 options: {
-                    spawn: false
+                    spawn: false,
+                    reload: true
                 }
             }
         }
