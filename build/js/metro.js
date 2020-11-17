@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/11/2020 14:48:41
+ * Built at 17/11/2020 14:50:23
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "17/11/2020 14:48:41",
+        compileTime: "17/11/2020 14:50:23",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8675,6 +8675,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
+        startContent: "days",
         showTime: false,
         initialTime: null,
         initialHours: null,
@@ -8797,6 +8798,7 @@ $.noConflict = function() {
         _create: function(){
             var element = this.element, o = this.options;
 
+            this.content = o.startContent;
             this.minYear = this.current.year - this.options.yearsBefore;
             this.maxYear = this.current.year + this.options.yearsAfter;
             this.offset = (new Date()).getTimezoneOffset() / 60 + 1;

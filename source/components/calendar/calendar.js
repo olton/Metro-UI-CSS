@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
+        startContent: "days",
         showTime: false,
         initialTime: null,
         initialHours: null,
@@ -125,6 +126,7 @@
         _create: function(){
             var element = this.element, o = this.options;
 
+            this.content = o.startContent;
             this.minYear = this.current.year - this.options.yearsBefore;
             this.maxYear = this.current.year + this.options.yearsAfter;
             this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
