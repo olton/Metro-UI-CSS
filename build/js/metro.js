@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/11/2020 14:47:14
+ * Built at 17/11/2020 14:48:41
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "17/11/2020 14:47:14",
+        compileTime: "17/11/2020 14:48:41",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9514,7 +9514,7 @@ $.noConflict = function() {
              * Calendar toolbar
              */
 
-            $("<span>").addClass("prev-year-grout").html(o.prevYearIcon).appendTo(toolbar);
+            $("<span>").addClass("prev-year-group").html(o.prevYearIcon).appendTo(toolbar);
             $("<span>").addClass("curr-year").html(this.yearGroupStart + " - " + (this.yearGroupStart + this.yearDistance)).appendTo(toolbar);
             $("<span>").addClass("next-year-group").html(o.nextYearIcon).appendTo(toolbar);
 

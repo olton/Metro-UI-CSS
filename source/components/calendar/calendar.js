@@ -842,7 +842,7 @@
              * Calendar toolbar
              */
 
-            $("<span>").addClass("prev-year-grout").html(o.prevYearIcon).appendTo(toolbar);
+            $("<span>").addClass("prev-year-group").html(o.prevYearIcon).appendTo(toolbar);
             $("<span>").addClass("curr-year").html(this.yearGroupStart + " - " + (this.yearGroupStart + this.yearDistance)).appendTo(toolbar);
             $("<span>").addClass("next-year-group").html(o.nextYearIcon).appendTo(toolbar);
 
