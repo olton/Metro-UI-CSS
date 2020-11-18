@@ -10,6 +10,7 @@
         overlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
+        overlayClickClose: false,
         autoHide: 0,
         removeOnClose: false,
         closeButton: true,
@@ -149,8 +150,16 @@
         open: function(){
             var that = this, element = this.element, o = this.options;
 
-            if (o.overlay === true) {
+            // if (o.overlay === true) {
+            //     this.overlay.appendTo($("body"));
+            // }
+            if (o.overlay === true && $(".overlay").length === 0) {
                 this.overlay.appendTo($("body"));
+                if (o.overlayClickClose === true) {
+                    this.overlay.on(Metro.events.click, function(){
+                        that.close();
+                    });
+                }
             }
 
             this._setPosition();
