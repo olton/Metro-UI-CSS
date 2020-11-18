@@ -13,7 +13,7 @@
     <h1>Keypad test page</h1>
 
     <div>
-        <input type="text" data-role="keypad">
+        <input type="text" data-role="keypad" id="kp1">
         <input type="text" data-role="keypad" data-label="Enter secret key:">
     </div>
 
@@ -25,11 +25,17 @@
 
 </div>
 
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
     function addKeypad(){
         $("#wrapper").append("<input id='aaa' value='113232' type='text' data-role='keypad'>");
     }
+
+    $(function(){
+        $("#kp1").val(1000);
+        // Metro.getPlugin("#kp1", 'keypad').val(1000);
+    })
 </script>
 </body>
 </html>
