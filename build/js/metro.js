@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 17/11/2020 14:50:23
+ * Built at 18/11/2020 12:07:06
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "17/11/2020 14:50:23",
+        compileTime: "18/11/2020 12:07:06",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -20465,7 +20465,7 @@ $.noConflict = function() {
 
 (function(Metro, $) {
     'use strict';
-    var Utils = Metro.utils;
+    //var Utils = Metro.utils;
     var KeypadDefaultConfig = {
         keypadDeferred: 0,
         label: "",
@@ -20718,8 +20718,11 @@ $.noConflict = function() {
                     }
                 }
 
-                element.trigger('change');
-                Utils.exec(o.onChange, [that.value], element[0]);
+                that._fireEvent('change', {
+                    val: that.val
+                })
+                // element.trigger('change');
+                // Utils.exec(o.onChange, [that.value], element[0]);
 
                 e.preventDefault();
                 e.stopPropagation();
@@ -20738,6 +20741,11 @@ $.noConflict = function() {
 
                 e.preventDefault();
                 e.stopPropagation();
+            });
+
+            element.on(Metro.events.inputchange, function(){
+                if (that.value !== this.value)
+                    that.value = this.value;
             });
 
             if (o.target !== null) {
@@ -20778,13 +20786,21 @@ $.noConflict = function() {
         },
 
         val: function(v){
+            var element = this.element;
 
             if (typeof v === "undefined") {
                 return this.value;
             }
 
-            this.value = v;
-            this.element[0].tagName === "INPUT" ? this.element.val(v) : this.element.text(v);
+            this.value = ""+v;
+
+            if (element[0].tagName === "INPUT") {
+                element.val(v);
+                // set cursor to end position
+            } else {
+                element.text(v)
+            }
+
             return this;
         },
 
