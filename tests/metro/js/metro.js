@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/11/2020 12:16:30
+ * Built at 18/11/2020 12:38:01
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "18/11/2020 12:16:30",
+        compileTime: "18/11/2020 12:38:01",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19349,6 +19349,7 @@ $.noConflict = function() {
         overlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
+        overlayClickClose: false,
         autoHide: 0,
         removeOnClose: false,
         closeButton: true,
@@ -19488,8 +19489,16 @@ $.noConflict = function() {
         open: function(){
             var that = this, element = this.element, o = this.options;
 
-            if (o.overlay === true) {
+            // if (o.overlay === true) {
+            //     this.overlay.appendTo($("body"));
+            // }
+            if (o.overlay === true && $(".overlay").length === 0) {
                 this.overlay.appendTo($("body"));
+                if (o.overlayClickClose === true) {
+                    this.overlay.on(Metro.events.click, function(){
+                        that.close();
+                    });
+                }
             }
 
             this._setPosition();
