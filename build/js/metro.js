@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/11/2020 12:38:01
+ * Built at 18/11/2020 12:52:17
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "18/11/2020 12:38:01",
+        compileTime: "18/11/2020 12:52:17",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5219,6 +5219,17 @@ $.noConflict = function() {
                 "random": "随机",
                 "save": "保存",
                 "reset": "重啟"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5260,6 +5271,17 @@ $.noConflict = function() {
                 "random": "Tilfældig",
                 "save": "Gem",
                 "reset": "Nulstil"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5298,6 +5320,17 @@ $.noConflict = function() {
                 "random": "Zufällig",
                 "save": "Speichern",
                 "reset": "Zurücksetzen"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5339,6 +5372,17 @@ $.noConflict = function() {
                 "random": "Random",
                 "save": "Save",
                 "reset": "Reset"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5380,6 +5424,17 @@ $.noConflict = function() {
                 "random": "Aleatorio",
                 "save": "Salvar",
                 "reset": "Reiniciar"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5421,6 +5476,17 @@ $.noConflict = function() {
                 "random": "Aléatoire",
                 "save": "Sauvegarder",
                 "reset": "Réinitialiser"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5459,6 +5525,17 @@ $.noConflict = function() {
                 "random": "Véletlen",
                 "save": "Mentés",
                 "reset": "Visszaállítás"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5500,6 +5577,17 @@ $.noConflict = function() {
                 "random": "Random",
                 "save": "Salvare",
                 "reset": "Reset"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5541,6 +5629,17 @@ $.noConflict = function() {
                 "random": "Aleatório",
                 "save": "Salvar",
                 "reset": "Restaurar"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5582,6 +5681,17 @@ $.noConflict = function() {
                 "random": "Случайно",
                 "save": "Сохранить",
                 "reset": "Сброс"
+            },
+            "table": {
+                "rowsCount": "Показать записей:",
+                "search": "Поиск:",
+                "info": "Показаны $1 с $2 по $3 записей",
+                "prev": "Предыдущие",
+                "next": "Следующие",
+                "all": "Все",
+                "inspector": "Инспектор",
+                "skip": "Перейти на страницу",
+                "empty": "Нет записей"
             }
         }
     });
@@ -5623,6 +5733,17 @@ $.noConflict = function() {
                 "random": "Rasgele",
                 "save": "Kurtarmak",
                 "reset": "Sıfırla"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5664,6 +5785,17 @@ $.noConflict = function() {
                 "random": "隨機",
                 "save": "保存",
                 "reset": "重啟"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
@@ -5705,6 +5837,17 @@ $.noConflict = function() {
                 "random": "Випадково",
                 "save": "Зберегти",
                 "reset": "Скинути"
+            },
+            "table": {
+                "rowsCount": "Показати записів:",
+                "search": "Пошук:",
+                "info": "Показано $1 з $2 по $3 записів",
+                "prev": "Попередні",
+                "next": "Наступні",
+                "all": "Усі",
+                "inspector": "Інспектор",
+                "skip": "Перейти до сторінки",
+                "empty": "Нема записів"
             }
         }
     });
@@ -28674,7 +28817,6 @@ $.noConflict = function() {
     var Utils = Metro.utils;
     var TableDefaultConfig = {
         tableDeferred: 0,
-        emptyTableTitle: "Nothing to show",
         templateBeginToken: "<%",
         templateEndToken: "%>",
         paginationDistance: 5,
@@ -28731,9 +28873,10 @@ $.noConflict = function() {
         paginationNextTitle: "Next",
         allRecordsTitle: "All",
         inspectorTitle: "Inspector",
-        tableSkipTitle: "Go to page",
+        tableSkipTitle: "Goto page",
+        emptyTableTitle: "Nothing to show",
 
-        activityType: "cycle",
+        activityType: "atom",
         activityStyle: "color",
         activityTimeout: 100,
 

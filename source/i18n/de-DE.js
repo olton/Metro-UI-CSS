@@ -32,6 +32,17 @@
                 "random": "Zufällig",
                 "save": "Speichern",
                 "reset": "Zurücksetzen"
+            },
+            "table": {
+                "rowsCount": "Show entries:",
+                "search": "Search:",
+                "info": "Showing $1 to $2 of $3 entries",
+                "prev": "Prev",
+                "next": "Next",
+                "all": "All",
+                "inspector": "Inspector",
+                "skip": "Goto page",
+                "empty": "Nothing to show"
             }
         }
     });
