@@ -5,7 +5,6 @@
     var Utils = Metro.utils;
     var TableDefaultConfig = {
         tableDeferred: 0,
-        emptyTableTitle: "Nothing to show",
         templateBeginToken: "<%",
         templateEndToken: "%>",
         paginationDistance: 5,
@@ -62,9 +61,10 @@
         paginationNextTitle: "Next",
         allRecordsTitle: "All",
         inspectorTitle: "Inspector",
-        tableSkipTitle: "Go to page",
+        tableSkipTitle: "Goto page",
+        emptyTableTitle: "Nothing to show",
 
-        activityType: "cycle",
+        activityType: "atom",
         activityStyle: "color",
         activityTimeout: 100,
 
