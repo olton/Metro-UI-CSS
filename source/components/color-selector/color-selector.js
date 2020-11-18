@@ -1,5 +1,4 @@
 /* global Metro */
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -16,7 +15,6 @@
         target: null,
         controller: null,
         addUserColorTitle: "ADD TO SWATCHES",
-        clearUserColorTitle: "",
         userColorsTitle: "USER COLORS",
         hslMode: "percent",
         showAlphaChannel: true,
@@ -34,7 +32,7 @@
         clsUserColorsTitle: "",
         clsUserColor: "",
         onColor: Metro.noop,
-        onMyObjectCreate: Metro.noop
+        onColorSelectorCreate: Metro.noop
     };
 
     Metro.colorSelectorSetup = function (options) {
@@ -71,7 +69,7 @@
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
+            var o = this.options;
 
             if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",").map(function (el){return el.toUpperCase();});
             if (Utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
@@ -86,7 +84,7 @@
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var colorBox, row, swatches, map, value, inputs, radios, userColors,
+            var colorBox, row, swatches, map, value, inputs, radios,
                 userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor,
                 colorBlock, alphaCanvas, alphaCursor;
 
@@ -224,7 +222,7 @@
 
             colorBox.append( row = $("<div>").addClass("row user-colors-container") );
             row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle) );
-            row.append( userColors = $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
+            row.append( $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
             row.append( userColorsActions = $("<div>").addClass("user-colors-actions") );
             userColorsActions.append(
                 $("<button>")
@@ -607,7 +605,7 @@
             });
 
             if (controller && controller.length) {
-                controller.on(Metro.events.inputchange, function(e){
+                controller.on(Metro.events.inputchange, function(){
                     that._clearInputInterval();
                     if (!that.inputInterval) that.inputInterval = setTimeout(function(){
                         var val = controller.val();
@@ -792,4 +790,3 @@
         }
     });
 }(Metro, m4q));
-/* eslint-enable */

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/11/2020 13:05:55
+ * Built at 18/11/2020 20:40:40
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "18/11/2020 13:05:55",
+        compileTime: "18/11/2020 20:40:40",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11934,7 +11934,6 @@ $.noConflict = function() {
     });
 }(Metro, m4q));
 
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -11951,7 +11950,6 @@ $.noConflict = function() {
         target: null,
         controller: null,
         addUserColorTitle: "ADD TO SWATCHES",
-        clearUserColorTitle: "",
         userColorsTitle: "USER COLORS",
         hslMode: "percent",
         showAlphaChannel: true,
@@ -11969,7 +11967,7 @@ $.noConflict = function() {
         clsUserColorsTitle: "",
         clsUserColor: "",
         onColor: Metro.noop,
-        onMyObjectCreate: Metro.noop
+        onColorSelectorCreate: Metro.noop
     };
 
     Metro.colorSelectorSetup = function (options) {
@@ -12006,7 +12004,7 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
+            var o = this.options;
 
             if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",").map(function (el){return el.toUpperCase();});
             if (Utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
@@ -12021,7 +12019,7 @@ $.noConflict = function() {
 
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
-            var colorBox, row, swatches, map, value, inputs, radios, userColors,
+            var colorBox, row, swatches, map, value, inputs, radios,
                 userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor,
                 colorBlock, alphaCanvas, alphaCursor;
 
@@ -12159,7 +12157,7 @@ $.noConflict = function() {
 
             colorBox.append( row = $("<div>").addClass("row user-colors-container") );
             row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle) );
-            row.append( userColors = $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
+            row.append( $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
             row.append( userColorsActions = $("<div>").addClass("user-colors-actions") );
             userColorsActions.append(
                 $("<button>")
@@ -12542,7 +12540,7 @@ $.noConflict = function() {
             });
 
             if (controller && controller.length) {
-                controller.on(Metro.events.inputchange, function(e){
+                controller.on(Metro.events.inputchange, function(){
                     that._clearInputInterval();
                     if (!that.inputInterval) that.inputInterval = setTimeout(function(){
                         var val = controller.val();
@@ -12727,7 +12725,6 @@ $.noConflict = function() {
         }
     });
 }(Metro, m4q));
-/* eslint-enable */
 
 
 (function(Metro, $) {
