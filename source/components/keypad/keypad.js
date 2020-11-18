@@ -279,11 +279,6 @@
                 e.stopPropagation();
             });
 
-            element.on(Metro.events.inputchange, function(){
-                if (that.value !== this.value)
-                    that.value = this.value;
-            });
-
             if (o.target !== null) {
                 element.on(Metro.events.change, function(){
                     var t = $(o.target);
