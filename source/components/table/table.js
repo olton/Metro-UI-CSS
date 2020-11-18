@@ -54,15 +54,15 @@
         decimalSeparator: ".",
         thousandSeparator: ",",
 
-        tableRowsCountTitle: "Show entries:",
-        tableSearchTitle: "Search:",
-        tableInfoTitle: "Showing $1 to $2 of $3 entries",
-        paginationPrevTitle: "Prev",
-        paginationNextTitle: "Next",
-        allRecordsTitle: "All",
-        inspectorTitle: "Inspector",
-        tableSkipTitle: "Goto page",
-        emptyTableTitle: "Nothing to show",
+        tableRowsCountTitle: null,
+        tableSearchTitle: null,
+        tableInfoTitle: null,
+        paginationPrevTitle: null,
+        paginationNextTitle: null,
+        allRecordsTitle: null,
+        inspectorTitle: null,
+        tableSkipTitle: null,
+        emptyTableTitle: null,
 
         activityType: "atom",
         activityStyle: "color",
@@ -485,7 +485,7 @@
             inspector = $("<div data-role='draggable' data-drag-element='.table-inspector-header' data-drag-area='body'>").addClass("table-inspector");
             inspector.attr("for", this.element.attr("id"));
 
-            $("<div class='table-inspector-header'>"+o.inspectorTitle+"</div>").appendTo(inspector);
+            $("<div class='table-inspector-header'>"+(o.inspectorTitle || this.locale.table["inspector"])+"</div>").appendTo(inspector);
 
             table_wrap = $("<div>").addClass("table-wrap").appendTo(inspector);
 
@@ -771,7 +771,7 @@
 
             search_input = $("<input>").attr("type", "text").appendTo(search_block);
             Metro.makePlugin(search_input, "input", {
-                prepend: o.tableSearchTitle
+                prepend: o.tableSearchTitle || that.locale.table["search"]
             });
 
             if (o.showSearch !== true) {
@@ -784,14 +784,14 @@
             rows_select = $("<select>").appendTo(rows_block);
             $.each(o.rowsSteps.toArray(), function () {
                 var val = parseInt(this);
-                var option = $("<option>").attr("value", val).text(val === -1 ? o.allRecordsTitle : val).appendTo(rows_select);
+                var option = $("<option>").attr("value", val).text(val === -1 ? (o.allRecordsTitle || that.locale.table["all"]) : val).appendTo(rows_select);
                 if (val === parseInt(o.rows)) {
                     option.attr("selected", "selected");
                 }
             });
             Metro.makePlugin(rows_select, "select",{
                 filter: false,
-                prepend: o.tableRowsCountTitle,
+                prepend: o.tableRowsCountTitle || that.locale.table["rowsCount"],
                 onChange: function (val) {
                     val = parseInt(val);
                     if (val === parseInt(o.rows)) {
@@ -835,7 +835,7 @@
             skip.addClass(o.clsTableSkip);
 
             $("<input type='text'>").addClass("input table-skip-input").addClass(o.clsTableSkipInput).appendTo(skip);
-            $("<button>").addClass("button table-skip-button").addClass(o.clsTableSkipButton).html(o.tableSkipTitle).appendTo(skip);
+            $("<button>").addClass("button table-skip-button").addClass(o.clsTableSkipButton).html(o.tableSkipTitle || this.locale.table["skip"]).appendTo(skip);
 
             if (o.showSkip !== true) {
                 skip.hide();
@@ -1300,7 +1300,7 @@
                 start = stop = length = 0;
             }
 
-            text = o.tableInfoTitle;
+            text = o.tableInfoTitle || this.locale.table["info"];
             text = text.replace("$1", start);
             text = text.replace("$2", stop);
             text = text.replace("$3", length);
@@ -1317,8 +1317,8 @@
                 current: this.currentPage,
                 target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination"),
                 claPagination: o.clsPagination,
-                prevTitle: o.paginationPrevTitle,
-                nextTitle: o.paginationNextTitle,
+                prevTitle: o.paginationPrevTitle || this.locale.table["prev"],
+                nextTitle: o.paginationNextTitle || this.locale.table["next"],
                 distance: o.paginationShortMode === true ? o.paginationDistance : 0
             });
         },
@@ -1533,7 +1533,7 @@
                     j++;
                 }
                 tr = $("<tr>").addClass(o.clsBodyRow).appendTo(body);
-                td = $("<td>").attr("colspan", j).addClass("text-center").html($("<span>").addClass(o.clsEmptyTableTitle).html(o.emptyTableTitle));
+                td = $("<td>").attr("colspan", j).addClass("text-center").html($("<span>").addClass(o.clsEmptyTableTitle).html(o.emptyTableTitle || that.locale.table["empty"]));
                 td.appendTo(tr);
             }
 
