@@ -11,6 +11,7 @@
 + [x] Spinner: fixed input not a number value, value more or less than defined in options.
 + [x] Keypad: fixed internal value type mismatch.
 + [x] InfoBox: added attribute `data-overlay-click-close=true|false`, default `false`, issue #1668
++ [x] Table: added localization from i18n files, issue #1671
 
 ### 4.4.2
 #### Metro 4
