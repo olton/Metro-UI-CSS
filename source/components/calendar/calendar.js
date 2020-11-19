@@ -77,6 +77,9 @@
         onWeekNumberClick: Metro.noop,
         onMonthChange: Metro.noop,
         onYearChange: Metro.noop,
+        onTimeChange: Metro.noop,
+        onHoursChange: Metro.noop,
+        onMinutesChange: Metro.noop,
         onCalendarCreate: Metro.noop
     };
 
@@ -137,11 +140,11 @@
                 this.time = o.initialTime.split(":");
             }
 
-            if (Utils.isValue(o.initialHours) && Utils.between(o.initialHours, 0, 23)) {
+            if (Utils.isValue(o.initialHours) && Utils.between(o.initialHours, 0, 23, true)) {
                 this.time[0] = parseInt(o.initialHours);
             }
 
-            if (Utils.isValue(o.initialMinutes) && Utils.between(o.initialMinutes, 0, 59)) {
+            if (Utils.isValue(o.initialMinutes) && Utils.between(o.initialMinutes, 0, 59, true)) {
                 this.time[1] = parseInt(o.initialMinutes);
             }
 
@@ -560,16 +563,29 @@
             var calendarContent = element.find(".calendar-content");
             var time = $("<div>").addClass("calendar-time").addClass(o.clsCalendarTime).appendTo(calendarContent);
             var inner, hours, minutes, row;
-            var h = this.time[0];
-            var m = this.time[1];
+            var h = ""+this.time[0];
+            var m = ""+this.time[1];
             var locale = this.locale['calendar']['time'];
 
             var onChange = function(val){
+                var value = parseInt(val);
                 if ($(this).attr("data-time-part") === "hours") {
-                    that.time[0] = parseInt(val);
+                    that.time[0] = value;
+                    that._fireEvent("hours-change", {
+                        time: that.time,
+                        hours: value
+                    });
                 } else {
-                    that.time[1] = parseInt(val);
+                    that.time[1] = value;
+                    that._fireEvent("minutes-change", {
+                        time: that.time,
+                        minutes: value
+                    });
                 }
+
+                that._fireEvent("time-change", {
+                    time: that.time
+                });
             }
 
             time.append( inner = $("<div>").addClass("calendar-time__inner") );
@@ -582,8 +598,8 @@
             inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
             inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
 
-            if (h < 10) h = "0"+h;
-            if (m < 10) m = "0"+m;
+            if (h.length < 2) h = "0"+h;
+            if (m.length < 2) m = "0"+m;
 
             hours.val(h);
             minutes.val(m);
@@ -888,8 +904,8 @@
 
             asString = asString || false;
 
-            h = this.time[0] < 10 ? "0"+this.time[0] : this.time[0];
-            m = this.time[1] < 10 ? "0"+this.time[1] : this.time[1];
+            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
+            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
 
             return asString ? h +":"+ m : this.time;
         },

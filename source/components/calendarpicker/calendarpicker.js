@@ -75,6 +75,7 @@
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
         onChange: Metro.noop,
+        onPickerChange: Metro.noop,
         onMonthChange: Metro.noop,
         onYearChange: Metro.noop
     };
@@ -155,10 +156,10 @@
             elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = this.time[0];
-                m = this.time[1];
-                h = h < 10 ? "0" + h : h;
-                m = m < 10 ? "0" + m : m;
+                h = ""+this.time[0];
+                m = ""+this.time[1];
+                h = h.length < 2 ? "0" + h : h;
+                m = m.length < 2 ? "0" + m : m;
                 elementValue += " " + h + ":" + m;
             }
 
@@ -242,14 +243,14 @@
 
                     that.value = date;
                     that.time = time;
-                    h = time[0];
-                    m = time[1];
+                    h = ""+time[0];
+                    m = ""+time[1];
 
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = h < 10 ? "0" + h : h;
-                        m = m < 10 ? "0" + m : m;
+                        h = h.length < 2 ? "0" + h : h;
+                        m = m.length < 2 ? "0" + m : m;
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -268,6 +269,42 @@
                         day: day,
                         time: time,
                         el: el
+                    });
+
+                    that._fireEvent("picker-change", {
+                        val: that.value,
+                        time: that.time
+                    });
+                },
+                onTimeChange: function(time){
+                    var elementValue, h, m;
+
+                    that.time = time;
+
+                    h = ""+time[0];
+                    m = ""+time[1];
+
+                    if (!that.value) {
+                        that.value = new Date();
+                    }
+                    elementValue = that.value.format(o.format, o.locale);
+
+                    if (o.showTime) {
+                        h = h.length < 2 ? "0" + h : h;
+                        m = m.length < 2 ? "0" + m : m;
+                        elementValue += " " + h + ":" + m;
+                    }
+
+                    element.val(elementValue);
+
+                    that._fireEvent("change", {
+                        val: that.value,
+                        time: that.time
+                    });
+
+                    that._fireEvent("picker-change", {
+                        val: that.value,
+                        time: that.time
                     });
                 },
                 onMonthChange: o.onMonthChange,
@@ -475,10 +512,10 @@
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = this.time[0];
-                m = this.time[1];
-                h = h < 10 ? "0" + h : h;
-                m = m < 10 ? "0" + m : m;
+                h = ""+this.time[0];
+                m = ""+this.time[1];
+                h = h.length < 2 ? "0" + h : h;
+                m = m.length < 2 ? "0" + m : m;
                 elementValue += " " + h + ":" + m;
             }
 
@@ -536,8 +573,8 @@
 
             asString = asString || false;
 
-            h = this.time[0] < 10 ? "0"+this.time[0] : this.time[0];
-            m = this.time[1] < 10 ? "0"+this.time[1] : this.time[1];
+            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
+            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
 
             return asString ? h +":"+ m : this.time;
         },
@@ -546,43 +583,15 @@
             var that = this;
             var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
-            var changeAttrLocale = function(){
-                that.i18n(newValue);
-            };
-
-            var changeAttrSpecial = function(){
-                cal.setSpecial(newValue);
-            };
-
-            var changeAttrExclude = function(){
-                cal.setExclude(newValue);
-            };
-
-            var changeAttrMinDate = function(){
-                cal.setMinDate(newValue);
-            };
-
-            var changeAttrMaxDate = function(){
-                cal.setMaxDate(newValue);
-            };
-
-            var changeAttrValue = function(){
-                that.val(newValue);
-            };
-
-            var changeDataValue = function(){
-                that.val(newValue)
-            };
-
             switch (attributeName) {
-                case "value": changeAttrValue(); break;
+                case "value": that.val(newValue); break;
                 case 'disabled': this.toggleState(); break;
-                case 'data-locale': changeAttrLocale(); break;
-                case 'data-special': changeAttrSpecial(); break;
-                case 'data-exclude': changeAttrExclude(); break;
-                case 'data-min-date': changeAttrMinDate(); break;
-                case 'data-max-date': changeAttrMaxDate(); break;
-                case 'data-value': changeDataValue(); break;
+                case 'data-locale': that.i18n(newValue); break;
+                case 'data-special': cal.setSpecial(newValue); break;
+                case 'data-exclude': cal.setExclude(newValue); break;
+                case 'data-min-date': cal.setMinDate(newValue); break;
+                case 'data-max-date': cal.setMaxDate(newValue); break;
+                case 'data-value': that.val(newValue); break;
             }
         },
 
