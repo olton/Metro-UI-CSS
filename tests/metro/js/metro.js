@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 19/11/2020 14:05:51
+ * Built at 19/11/2020 20:45:38
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "19/11/2020 14:05:51",
+        compileTime: "19/11/2020 20:45:38",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8892,6 +8892,9 @@ $.noConflict = function() {
         onWeekNumberClick: Metro.noop,
         onMonthChange: Metro.noop,
         onYearChange: Metro.noop,
+        onTimeChange: Metro.noop,
+        onHoursChange: Metro.noop,
+        onMinutesChange: Metro.noop,
         onCalendarCreate: Metro.noop
     };
 
@@ -8952,11 +8955,11 @@ $.noConflict = function() {
                 this.time = o.initialTime.split(":");
             }
 
-            if (Utils.isValue(o.initialHours) && Utils.between(o.initialHours, 0, 23)) {
+            if (Utils.isValue(o.initialHours) && Utils.between(o.initialHours, 0, 23, true)) {
                 this.time[0] = parseInt(o.initialHours);
             }
 
-            if (Utils.isValue(o.initialMinutes) && Utils.between(o.initialMinutes, 0, 59)) {
+            if (Utils.isValue(o.initialMinutes) && Utils.between(o.initialMinutes, 0, 59, true)) {
                 this.time[1] = parseInt(o.initialMinutes);
             }
 
@@ -9375,16 +9378,29 @@ $.noConflict = function() {
             var calendarContent = element.find(".calendar-content");
             var time = $("<div>").addClass("calendar-time").addClass(o.clsCalendarTime).appendTo(calendarContent);
             var inner, hours, minutes, row;
-            var h = this.time[0];
-            var m = this.time[1];
+            var h = ""+this.time[0];
+            var m = ""+this.time[1];
             var locale = this.locale['calendar']['time'];
 
             var onChange = function(val){
+                var value = parseInt(val);
                 if ($(this).attr("data-time-part") === "hours") {
-                    that.time[0] = parseInt(val);
+                    that.time[0] = value;
+                    that._fireEvent("hours-change", {
+                        time: that.time,
+                        hours: value
+                    });
                 } else {
-                    that.time[1] = parseInt(val);
+                    that.time[1] = value;
+                    that._fireEvent("minutes-change", {
+                        time: that.time,
+                        minutes: value
+                    });
                 }
+
+                that._fireEvent("time-change", {
+                    time: that.time
+                });
             }
 
             time.append( inner = $("<div>").addClass("calendar-time__inner") );
@@ -9397,8 +9413,8 @@ $.noConflict = function() {
             inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
             inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
 
-            if (h < 10) h = "0"+h;
-            if (m < 10) m = "0"+m;
+            if (h.length < 2) h = "0"+h;
+            if (m.length < 2) m = "0"+m;
 
             hours.val(h);
             minutes.val(m);
@@ -9703,8 +9719,8 @@ $.noConflict = function() {
 
             asString = asString || false;
 
-            h = this.time[0] < 10 ? "0"+this.time[0] : this.time[0];
-            m = this.time[1] < 10 ? "0"+this.time[1] : this.time[1];
+            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
+            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
 
             return asString ? h +":"+ m : this.time;
         },
@@ -9984,6 +10000,7 @@ $.noConflict = function() {
         onCalendarShow: Metro.noop,
         onCalendarHide: Metro.noop,
         onChange: Metro.noop,
+        onPickerChange: Metro.noop,
         onMonthChange: Metro.noop,
         onYearChange: Metro.noop
     };
@@ -10064,10 +10081,10 @@ $.noConflict = function() {
             elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = this.time[0];
-                m = this.time[1];
-                h = h < 10 ? "0" + h : h;
-                m = m < 10 ? "0" + m : m;
+                h = ""+this.time[0];
+                m = ""+this.time[1];
+                h = h.length < 2 ? "0" + h : h;
+                m = m.length < 2 ? "0" + m : m;
                 elementValue += " " + h + ":" + m;
             }
 
@@ -10151,14 +10168,14 @@ $.noConflict = function() {
 
                     that.value = date;
                     that.time = time;
-                    h = time[0];
-                    m = time[1];
+                    h = ""+time[0];
+                    m = ""+time[1];
 
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = h < 10 ? "0" + h : h;
-                        m = m < 10 ? "0" + m : m;
+                        h = h.length < 2 ? "0" + h : h;
+                        m = m.length < 2 ? "0" + m : m;
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -10177,6 +10194,42 @@ $.noConflict = function() {
                         day: day,
                         time: time,
                         el: el
+                    });
+
+                    that._fireEvent("picker-change", {
+                        val: that.value,
+                        time: that.time
+                    });
+                },
+                onTimeChange: function(time){
+                    var elementValue, h, m;
+
+                    that.time = time;
+
+                    h = ""+time[0];
+                    m = ""+time[1];
+
+                    if (!that.value) {
+                        that.value = new Date();
+                    }
+                    elementValue = that.value.format(o.format, o.locale);
+
+                    if (o.showTime) {
+                        h = h.length < 2 ? "0" + h : h;
+                        m = m.length < 2 ? "0" + m : m;
+                        elementValue += " " + h + ":" + m;
+                    }
+
+                    element.val(elementValue);
+
+                    that._fireEvent("change", {
+                        val: that.value,
+                        time: that.time
+                    });
+
+                    that._fireEvent("picker-change", {
+                        val: that.value,
+                        time: that.time
                     });
                 },
                 onMonthChange: o.onMonthChange,
@@ -10384,10 +10437,10 @@ $.noConflict = function() {
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = this.time[0];
-                m = this.time[1];
-                h = h < 10 ? "0" + h : h;
-                m = m < 10 ? "0" + m : m;
+                h = ""+this.time[0];
+                m = ""+this.time[1];
+                h = h.length < 2 ? "0" + h : h;
+                m = m.length < 2 ? "0" + m : m;
                 elementValue += " " + h + ":" + m;
             }
 
@@ -10445,8 +10498,8 @@ $.noConflict = function() {
 
             asString = asString || false;
 
-            h = this.time[0] < 10 ? "0"+this.time[0] : this.time[0];
-            m = this.time[1] < 10 ? "0"+this.time[1] : this.time[1];
+            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
+            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
 
             return asString ? h +":"+ m : this.time;
         },
@@ -10455,43 +10508,15 @@ $.noConflict = function() {
             var that = this;
             var cal = Metro.getPlugin(this.calendar[0], "calendar");
 
-            var changeAttrLocale = function(){
-                that.i18n(newValue);
-            };
-
-            var changeAttrSpecial = function(){
-                cal.setSpecial(newValue);
-            };
-
-            var changeAttrExclude = function(){
-                cal.setExclude(newValue);
-            };
-
-            var changeAttrMinDate = function(){
-                cal.setMinDate(newValue);
-            };
-
-            var changeAttrMaxDate = function(){
-                cal.setMaxDate(newValue);
-            };
-
-            var changeAttrValue = function(){
-                that.val(newValue);
-            };
-
-            var changeDataValue = function(){
-                that.val(newValue)
-            };
-
             switch (attributeName) {
-                case "value": changeAttrValue(); break;
+                case "value": that.val(newValue); break;
                 case 'disabled': this.toggleState(); break;
-                case 'data-locale': changeAttrLocale(); break;
-                case 'data-special': changeAttrSpecial(); break;
-                case 'data-exclude': changeAttrExclude(); break;
-                case 'data-min-date': changeAttrMinDate(); break;
-                case 'data-max-date': changeAttrMaxDate(); break;
-                case 'data-value': changeDataValue(); break;
+                case 'data-locale': that.i18n(newValue); break;
+                case 'data-special': cal.setSpecial(newValue); break;
+                case 'data-exclude': cal.setExclude(newValue); break;
+                case 'data-min-date': cal.setMinDate(newValue); break;
+                case 'data-max-date': cal.setMaxDate(newValue); break;
+                case 'data-value': that.val(newValue); break;
             }
         },
 
