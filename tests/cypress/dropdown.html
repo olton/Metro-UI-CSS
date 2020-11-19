@@ -14,14 +14,14 @@
 
     <div class="example">
         <button class="button" id="dropdown_toggle_1">Drop block 1</button>
-        <div class="bg-red fg-white" data-role="dropdown" data-toggle-element="#dropdown_toggle_1">
+        <div id="block1" class="bg-red fg-white" data-toggle-element="#dropdown_toggle_1">
             <p class="p-10 text-center">In Metro 4 you can transform any element to dropdown.</p>
         </div>
     </div>
 
     <div class="example">
         <button class="button" id="dropdown_toggle_2">Drop block 2</button>
-        <div class="bg-green fg-white" data-role="dropdown" data-toggle-element="#dropdown_toggle_2">
+        <div id="block2" class="bg-green fg-white" data-toggle-element="#dropdown_toggle_2">
             <p class="p-10 text-center">In Metro 4 you can transform any element to dropdown.</p>
         </div>
     </div>
@@ -30,6 +30,10 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $(function(){
+        $("#block1").dropdown();
+        $("#block2").dropdown();
+    })
 </script>
 </body>
 </html>

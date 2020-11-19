@@ -84,8 +84,8 @@
                 if (element.css('display') !== 'none' && !element.hasClass('keep-open')) {
                     that._close(element);
                 } else {
-                    $('[data-role=dropdown]').each(function(i, el){
-                        if (!element.parents('[data-role=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') !== 'none') {
+                    $('[data-role*=dropdown]').each(function(i, el){
+                        if (!element.parents('[data-role*=dropdown]').is(el) && !$(el).hasClass('keep-open') && $(el).css('display') !== 'none') {
                             if (!Utils.isValue(o.dropFilter)) {
                                 that._close(el);
                             } else {
