@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 18/11/2020 20:40:40
+ * Built at 19/11/2020 14:05:51
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "18/11/2020 20:40:40",
+        compileTime: "19/11/2020 14:05:51",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9709,6 +9709,15 @@ $.noConflict = function() {
             return asString ? h +":"+ m : this.time;
         },
 
+        setTime: function(time){
+            if (Array.isArray(time)) {
+                this.time = time;
+            } else {
+                this.time = time.split(":");
+            }
+            this._drawCalendar();
+        },
+
         getPreset: function(){
             return this.preset;
         },
@@ -10350,18 +10359,40 @@ $.noConflict = function() {
 
         val: function(v){
             var element = this.element, o = this.options;
+            var elementValue, h, m;
 
-            if (Utils.isNull(v)) {
-                return this.value;
+            if (Utils.isNull(v) || arguments.length === 0)  {
+                return {
+                    date: this.value,
+                    time: this.time
+                };
             }
 
-            if (Utils.isDate(v, o.inputFormat) === true) {
-                Metro.getPlugin(this.calendar[0],"calendar").clearSelected();
-                this.value = typeof v === 'string' ? o.inputFormat ? v.toDate(o.inputFormat, o.locale) : new Date(v) : v;
-                if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
-                element.val(this.value.format(o.format, o.locale));
-                element.trigger("change");
+            if (!Utils.isDate(v, o.format) && !Utils.isDateObject(v)) {
+                throw new Error(v + " is a not valid date value");
             }
+
+            var _curr = v.split(" ");
+            this.value = Utils.isValue(o.inputFormat) === false ? new Date(_curr[0]) : _curr[0].toDate(o.inputFormat, o.locale);
+            if (_curr[1]) {
+                this.time = _curr[1].trim().split(":");
+            }
+
+            this.value.setHours(0,0,0,0);
+            this.calendar.data('calendar').setTime(this.time);
+
+            elementValue = this.value.format(o.format);
+
+            if (o.showTime && this.time && elementValue) {
+                h = this.time[0];
+                m = this.time[1];
+                h = h < 10 ? "0" + h : h;
+                m = m < 10 ? "0" + m : m;
+                elementValue += " " + h + ":" + m;
+            }
+
+            element.val(elementValue);
+            element.trigger("change");
         },
 
         disable: function(){

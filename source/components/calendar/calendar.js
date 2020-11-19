@@ -894,6 +894,15 @@
             return asString ? h +":"+ m : this.time;
         },
 
+        setTime: function(time){
+            if (Array.isArray(time)) {
+                this.time = time;
+            } else {
+                this.time = time.split(":");
+            }
+            this._drawCalendar();
+        },
+
         getPreset: function(){
             return this.preset;
         },
