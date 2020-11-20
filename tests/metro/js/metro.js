@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/11/2020 01:12:35
+ * Built at 20/11/2020 11:53:49
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "20/11/2020 01:12:35",
+        compileTime: "20/11/2020 11:53:49",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29502,13 +29502,16 @@ $.noConflict = function() {
 
         _createTableHeader: function(){
             var element = this.element, o = this.options;
-            var head = $("<thead>").html('');
+            var head = element.find("thead");
             var tr, th, tds = [], j, cells;
             var view = o.staticView ? this._createView() : this.view;
 
-            element.find("thead").remove();
+            if (head.length === 0) {
+                head = $("<thead>");
+                element.prepend(head);
+            }
 
-            head.addClass(o.clsHead);
+            head.clear().addClass(o.clsHead);
 
             if (this.heads.length === 0) {
                 return head;
@@ -29574,28 +29577,38 @@ $.noConflict = function() {
             for (j = 0; j < cells.length; j++){
                 tds[j].appendTo(tr);
             }
-
-            element.prepend(head);
         },
 
         _createTableBody: function(){
             var body, head, element = this.element;
 
             head  = element.find("thead");
-            element.find("tbody").remove();
-            body = $("<tbody>").addClass(this.options.clsBody);
-            body.insertAfter(head);
+            body  = element.find("tbody");
+
+            if (body.length === 0) {
+                body = $("<tbody>").addClass(this.options.clsBody);
+                if (head.length !== 0) {
+                    body.insertAfter(head);
+                } else {
+                    element.append(body);
+                }
+            }
+
+            body.clear();
         },
 
         _createTableFooter: function(){
             var element = this.element, o = this.options;
-            var foot = $("<tfoot>").addClass(o.clsFooter);
+            var foot = element.find("tfoot");
             var tr, th;
 
-            element.find("tfoot").remove();
+            if (foot.length === 0) {
+                foot = $("<tfoot>").appendTo(element);
+            }
+
+            foot.clear().addClass(o.clsFooter);
 
             if (this.foots.length === 0) {
-                element.append(foot);
                 return;
             }
 
@@ -29622,8 +29635,6 @@ $.noConflict = function() {
 
                 th.appendTo(tr);
             });
-
-            element.append(foot);
         },
 
         _createTopBlock: function (){
@@ -29724,7 +29735,7 @@ $.noConflict = function() {
             if (w_paging.length > 0) {this.wrapperPagination = w_paging;}
             if (w_skip.length > 0) {this.wrapperSkip = w_skip;}
 
-            element.html("").addClass(o.clsTable);
+            element.addClass(o.clsTable);
 
             this._createTableHeader();
             this._createTableBody();
