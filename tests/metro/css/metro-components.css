@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/11/2020 16:02:14
+ * Built at 20/11/2020 17:23:11
  * Licensed under MIT
  */
 .accordion {
@@ -2362,6 +2362,20 @@ input[type=reset].loading .load-caption {
 .calendar-wide.compact .calendar-content {
   margin: 0 96px 0 120px;
   width: 234px;
+}
+.calendar .day,
+.calendar .month,
+.calendar .year {
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: -webkit-transform 0.3s ease;
+  transition: -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+}
+.calendar .to-animate {
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 .calendar-picker {
   position: relative;
