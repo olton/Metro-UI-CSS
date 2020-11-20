@@ -46,6 +46,10 @@
                 "inspector": "Інспектор",
                 "skip": "Перейти до сторінки",
                 "empty": "Нема записів"
+            },
+            "colorSelector": {
+                addUserColorButton: "ДОДАТИ В ЗРАЗКИ",
+                userColorsTitle: "КОЛІРИ КОРИСТУВАЧА"
             }
         }
     });
