@@ -621,7 +621,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 16/11/2020 14:32:55";
+var m4qVersion = "v1.0.10. Built at 20/11/2020 16:00:02";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -957,7 +957,10 @@ $.fn.extend({
         } else {
             this.each(function () {
                 var el = this;
-                if (typeof el.querySelectorAll !== "undefined") res = res.concat([].slice.call(el.querySelectorAll(s)));
+                if (typeof el.querySelectorAll === "undefined") {
+                    return ;
+                }
+                res = res.concat([].slice.call(el.querySelectorAll(s)));
             });
             result = $.merge($(), res);
         }
@@ -2677,7 +2680,7 @@ $.fn.extend({
             return attributes;
         }
 
-        if (arguments.length === 1) {
+        if (arguments.length === 1 && typeof name === "string") {
             return this.length && this[0].nodeType === 1 && this[0].hasAttribute(name) ? this[0].getAttribute(name) : undefined;
         }
 
