@@ -46,6 +46,10 @@
                 "inspector": "Инспектор",
                 "skip": "Перейти на страницу",
                 "empty": "Нет записей"
+            },
+            "colorSelector": {
+                addUserColorButton: "ДОБАВИТЬ В ОБРАЗЦЫ",
+                userColorsTitle: "ЦВЕТА ПОЛЬЗОВАТЕЛЯ"
             }
         }
     });

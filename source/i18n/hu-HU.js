@@ -43,6 +43,10 @@
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });

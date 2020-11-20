@@ -14,8 +14,9 @@
         showUserColors: true,
         target: null,
         controller: null,
-        addUserColorTitle: "ADD TO SWATCHES",
-        userColorsTitle: "USER COLORS",
+        locale: "en-US",
+        addUserColorTitle: null,
+        userColorsTitle: null,
         hslMode: "percent",
         showAlphaChannel: true,
         inputThreshold: 300,
@@ -63,7 +64,8 @@
                 rgba: null,
                 cmyk: null,
                 hex: null,
-                inputInterval: null
+                inputInterval: null,
+                locale: null
             });
             return this;
         },
@@ -76,6 +78,8 @@
             if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",").map(function (el){return el.toUpperCase();});
             if (Utils.isValue(o.showAsString)) this.showAsString = o.showAsString.toArray(",");
 
+            this.locale = Metro.locales[o.locale]['colorSelector'];
+
             this._createStructure();
             this._createEvents();
 
@@ -83,7 +87,7 @@
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options, locale = this.locale;
             var colorBox, row, swatches, map, value, inputs, radios,
                 userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor,
                 colorBlock, alphaCanvas, alphaCursor;
@@ -221,14 +225,14 @@
             }
 
             colorBox.append( row = $("<div>").addClass("row user-colors-container") );
-            row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle) );
+            row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle || locale['userColorsTitle']) );
             row.append( $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
             row.append( userColorsActions = $("<div>").addClass("user-colors-actions") );
             userColorsActions.append(
                 $("<button>")
                     .addClass("button add-button")
                     .addClass(o.clsUserColorButton)
-                    .html("<span class='user-swatch'></span><span>"+o.addUserColorTitle+"</span>")
+                    .html("<span class='user-swatch'></span><span>"+(o.addUserColorTitle || locale['addUserColorButton'])+"</span>")
             );
 
             inputs = colorBox.find("input[type=text]");

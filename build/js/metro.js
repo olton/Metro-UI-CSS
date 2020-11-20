@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/11/2020 17:23:11
+ * Built at 20/11/2020 18:47:19
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "20/11/2020 17:23:11",
+        compileTime: "20/11/2020 18:47:19",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5233,6 +5233,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5285,6 +5289,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5334,6 +5342,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5386,6 +5398,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5438,6 +5454,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5490,6 +5510,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5539,6 +5563,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5591,6 +5619,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5643,6 +5675,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5695,6 +5731,10 @@ $.noConflict = function() {
                 "inspector": "Инспектор",
                 "skip": "Перейти на страницу",
                 "empty": "Нет записей"
+            },
+            "colorSelector": {
+                addUserColorButton: "ДОБАВИТЬ В ОБРАЗЦЫ",
+                userColorsTitle: "ЦВЕТА ПОЛЬЗОВАТЕЛЯ"
             }
         }
     });
@@ -5747,6 +5787,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5799,6 +5843,10 @@ $.noConflict = function() {
                 "inspector": "Inspector",
                 "skip": "Goto page",
                 "empty": "Nothing to show"
+            },
+            "colorSelector": {
+                addUserColorButton: "ADD TO SWATCHES",
+                userColorsTitle: "USER COLORS"
             }
         }
     });
@@ -5851,6 +5899,10 @@ $.noConflict = function() {
                 "inspector": "Інспектор",
                 "skip": "Перейти до сторінки",
                 "empty": "Нема записів"
+            },
+            "colorSelector": {
+                addUserColorButton: "ДОДАТИ В ЗРАЗКИ",
+                userColorsTitle: "КОЛІРИ КОРИСТУВАЧА"
             }
         }
     });
@@ -12052,8 +12104,9 @@ $.noConflict = function() {
         showUserColors: true,
         target: null,
         controller: null,
-        addUserColorTitle: "ADD TO SWATCHES",
-        userColorsTitle: "USER COLORS",
+        locale: "en-US",
+        addUserColorTitle: null,
+        userColorsTitle: null,
         hslMode: "percent",
         showAlphaChannel: true,
         inputThreshold: 300,
@@ -12101,7 +12154,8 @@ $.noConflict = function() {
                 rgba: null,
                 cmyk: null,
                 hex: null,
-                inputInterval: null
+                inputInterval: null,
+                locale: null
             });
             return this;
         },
@@ -12114,6 +12168,8 @@ $.noConflict = function() {
             if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",").map(function (el){return el.toUpperCase();});
             if (Utils.isValue(o.showAsString)) this.showAsString = o.showAsString.toArray(",");
 
+            this.locale = Metro.locales[o.locale]['colorSelector'];
+
             this._createStructure();
             this._createEvents();
 
@@ -12121,7 +12177,7 @@ $.noConflict = function() {
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options, locale = this.locale;
             var colorBox, row, swatches, map, value, inputs, radios,
                 userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor,
                 colorBlock, alphaCanvas, alphaCursor;
@@ -12259,14 +12315,14 @@ $.noConflict = function() {
             }
 
             colorBox.append( row = $("<div>").addClass("row user-colors-container") );
-            row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle) );
+            row.append( $("<div>").addClass("user-colors-title").addClass(o.clsUserColorsTitle).html(o.userColorsTitle || locale['userColorsTitle']) );
             row.append( $("<div>").addClass("user-colors").addClass(o.clsUserColors) );
             row.append( userColorsActions = $("<div>").addClass("user-colors-actions") );
             userColorsActions.append(
                 $("<button>")
                     .addClass("button add-button")
                     .addClass(o.clsUserColorButton)
-                    .html("<span class='user-swatch'></span><span>"+o.addUserColorTitle+"</span>")
+                    .html("<span class='user-swatch'></span><span>"+(o.addUserColorTitle || locale['addUserColorButton'])+"</span>")
             );
 
             inputs = colorBox.find("input[type=text]");
