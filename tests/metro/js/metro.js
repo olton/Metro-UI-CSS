@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/11/2020 15:04:09
+ * Built at 20/11/2020 16:02:14
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -620,7 +620,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 16/11/2020 14:32:55";
+var m4qVersion = "v1.0.10. Built at 20/11/2020 16:00:02";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -956,7 +956,10 @@ $.fn.extend({
         } else {
             this.each(function () {
                 var el = this;
-                if (typeof el.querySelectorAll !== "undefined") res = res.concat([].slice.call(el.querySelectorAll(s)));
+                if (typeof el.querySelectorAll === "undefined") {
+                    return ;
+                }
+                res = res.concat([].slice.call(el.querySelectorAll(s)));
             });
             result = $.merge($(), res);
         }
@@ -2676,7 +2679,7 @@ $.fn.extend({
             return attributes;
         }
 
-        if (arguments.length === 1) {
+        if (arguments.length === 1 && typeof name === "string") {
             return this.length && this[0].nodeType === 1 && this[0].hasAttribute(name) ? this[0].getAttribute(name) : undefined;
         }
 
@@ -4538,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "20/11/2020 15:04:09",
+        compileTime: "20/11/2020 16:02:14",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
