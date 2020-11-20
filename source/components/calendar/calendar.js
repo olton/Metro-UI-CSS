@@ -18,6 +18,9 @@
         labelTimeHours: null,
         labelTimeMinutes: null,
 
+        animationContent: true,
+        animationSpeed: 10,
+
         calendarDeferred: 0,
         dayBorder: false,
         excludeDay: null,
@@ -690,6 +693,10 @@
                 var v = prev_month_days - first_day + i + 1;
                 d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
 
+                if (o.animationContent) {
+                    d.addClass("to-animate");
+                }
+
                 s = new Date(year, month, v);
                 s.setHours(0,0,0,0);
 
@@ -717,6 +724,10 @@
             while(first.getMonth() === this.current.month) {
 
                 d = $("<div>").addClass(day_class).html(first.getDate()).appendTo(days_row);
+
+                if (o.animationContent) {
+                    d.addClass("to-animate");
+                }
 
                 d.data('day', first.getTime());
 
@@ -785,6 +796,11 @@
 
             if (first_day > 0) for(i = 0; i < 7 - first_day; i++) {
                 d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
+
+                if (o.animationContent) {
+                    d.addClass("to-animate");
+                }
+
                 s = new Date(year, month, i + 1);
                 s.setHours(0,0,0,0);
                 d.data('day', s.getTime());
@@ -806,13 +822,14 @@
             }
 
             this._drawTime();
+            this._animateContent(".days .day");
         },
 
         _drawContentMonths: function(){
             var element = this.element, o = this.options;
             var content = element.find(".calendar-content");
             var locale = this.locale['calendar']['months'];
-            var toolbar, months;
+            var toolbar, months, month;
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
@@ -834,13 +851,20 @@
 
             for(var i = 12; i < 24; i++) {
                 months.append(
-                    $("<div>")
+                    month = $("<div>")
                         .attr("data-month", i - 12)
                         .addClass("month")
                         .addClass(i - 12 === this.current.month ? "today" : "")
                         .html(locale[i])
                 );
+
+                if (o.animationContent) {
+                    month.addClass("to-animate");
+                }
+
             }
+
+            this._animateContent(".calendar-content__months .month");
         },
 
         _drawContentYears: function(){
@@ -875,10 +899,16 @@
                         .html(i)
                 );
 
+                if (o.animationContent) {
+                    year.addClass("to-animate");
+                }
+
                 if (i < o.minYear || i > o.maxYear) {
                     year.addClass("disabled");
                 }
             }
+
+            this._animateContent(".calendar-content__years .year");
         },
 
         _drawContent: function(){
@@ -897,6 +927,20 @@
                 that._drawContent();
                 that._drawFooter();
             }, 0);
+        },
+
+        _animateContent: function(target, cls){
+            var element = this.element, o = this.options;
+            var content = element.find(".calendar-content");
+
+            cls = cls || "to-animate";
+
+            content.find(target).each(function(k){
+                var day = $(this);
+                setTimeout(function(){
+                    day.removeClass(cls);
+                }, o.animationSpeed * k);
+            });
         },
 
         getTime: function(asString){

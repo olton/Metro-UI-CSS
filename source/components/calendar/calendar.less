@@ -403,3 +403,14 @@
 .calendar-wide {
     .wide-calendar();
 }
+
+.calendar {
+    .day, .month, .year {
+        transform: scale(1);
+        transition: @transition-transform;
+    }
+
+    .to-animate {
+        transform: scale(0);
+    }
+}
