@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/11/2020 11:53:49
+ * Built at 20/11/2020 15:04:09
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4538,7 +4538,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "20/11/2020 11:53:49",
+        compileTime: "20/11/2020 15:04:09",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -32658,7 +32658,8 @@ $.noConflict = function() {
                     hours: null,
                     minutes: null,
                     seconds: null
-                }
+                },
+                id: Utils.elementId("time-picker")
             });
 
             return this;
@@ -32731,9 +32732,7 @@ $.noConflict = function() {
             var picker, hours, minutes, seconds, i;
             var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
-            var id = Utils.elementId("time-picker");
-
-            picker = $("<div>").attr("id", id).addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
+            picker = $("<div>").addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
 
             picker.insertBefore(element);
             element.attr("readonly", true).appendTo(picker);
@@ -32831,12 +32830,12 @@ $.noConflict = function() {
                     target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
 
                     pageY = Utils.pageXY(e).y;
-                }, {ns: picker.attr("id")});
+                }, {ns: that.id});
 
                 $(document).on(Metro.events.stop, function(){
-                    $(document).off(Metro.events.move, {ns: picker.attr("id")});
-                    $(document).off(Metro.events.stop, {ns: picker.attr("id")});
-                }, {ns: picker.attr("id")});
+                    $(document).off(Metro.events.move, {ns: that.id});
+                    $(document).off(Metro.events.stop, {ns: that.id});
+                }, {ns: that.id});
             });
 
             picker.on(Metro.events.click, function(e){
@@ -32872,31 +32871,44 @@ $.noConflict = function() {
                 var part = this, list = picker.find(".sel-"+part);
 
                 list.on("scroll", function(){
-                    if (that.isOpen) {
-                        if (that.listTimer[part]) {
-                            clearTimeout(that.listTimer[part]);
-                            that.listTimer[part] = null;
+                    if (!that.isOpen) {
+                        return ;
+                    }
+
+                    if (that.listTimer[part]) {
+                        clearTimeout(that.listTimer[part]);
+                        that.listTimer[part] = null;
+                    }
+
+                    if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
+
+                        var target, targetElement, scrollTop;
+
+                        that.listTimer[part] = null;
+
+                        target = Math.round((Math.ceil(list.scrollTop()) / 40));
+
+                        if (part === "hours" && o.hoursStep) {
+                            target *= parseInt(o.hoursStep);
+                        }
+                        if (part === "minutes" && o.minutesStep) {
+                            target *= parseInt(o.minutesStep);
+                        }
+                        if (part === "seconds" && o.secondsStep) {
+                            target *= parseInt(o.secondsStep);
                         }
 
-                        if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
+                        targetElement = list.find(".js-" + part + "-" + target);
+                        scrollTop = targetElement.position().top - (o.distance * 40);
 
-                            var target, targetElement, scrollTop;
+                        list.find(".active").removeClass("active");
 
-                            that.listTimer[part] = null;
+                        list[0].scrollTop = scrollTop;
+                        targetElement.addClass("active");
+                        Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
 
-                            target = Math.round((Math.ceil(list.scrollTop()) / 40));
+                    }, scrollLatency);
 
-                            targetElement = list.find(".js-" + part + "-" + target);
-                            scrollTop = targetElement.position().top - (o.distance * 40);
-
-                            list.find(".active").removeClass("active");
-
-                            list[0].scrollTop = scrollTop;
-                            targetElement.addClass("active");
-                            Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
-
-                        }, scrollLatency);
-                    }
                 })
             });
         },
