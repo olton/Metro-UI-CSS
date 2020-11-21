@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 20/11/2020 18:47:19
+ * Built at 21/11/2020 22:16:00
  * Licensed under MIT
  */
 .accordion {
@@ -12047,6 +12047,9 @@ input.input-small:-ms-input-placeholder {
   width: 0.325rem;
   height: 0.325rem;
   margin-left: -0.9rem;
+}
+.select.input-small .button-group .button {
+  padding: 0;
 }
 .select[dir=rtl],
 .select.rtl {
