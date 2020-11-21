@@ -13,7 +13,24 @@
     <h1>Select test page</h1>
 
     <div class="example">
-        <select data-role="select" data-show-group-name="true">
+        <select data-role="select" data-show-group-name="true" data-clear-button="true">
+            <optgroup label="Microsoft">
+                <option value="microsoft-usa">USA</option>
+                <option value="microsoft-usa-alabama">Alabama</option>
+                <option value="microsoft-usa-alaska">Alaska</option>
+            </optgroup>
+
+            <optgroup label="Apple">
+                <option value="apple-usa">USA</option>
+                <option value="apple-usa-alabama">Alabama</option>
+                <option value="apple-usa-alaska">Alaska</option>
+            </optgroup>
+        </select>
+    </div>
+
+    <br>
+    <div class="example">
+        <select data-role="select" data-show-group-name="true" data-clear-button="true" class="input-large">
             <optgroup label="Microsoft">
                 <option value="microsoft-usa">USA</option>
                 <option value="microsoft-usa-alabama">Alabama</option>
@@ -98,6 +115,7 @@
                 data-cls-option-group="text-bold bg-white fg-grayBlue"
                 data-label="Categories"
                 data-cls-label="text-bold fg-grayBlue"
+                data-clear-button="true"
                 size="1">
             <OPTION value="">&nbsp;</OPTION>
             <OPTGROUP label="Arcade">
