@@ -13,7 +13,7 @@
 + [x] InfoBox: added attribute `data-overlay-click-close=true|false`, default `false`, issue #1668
 + [x] Table: added localization from i18n files, issue #1671
 + [x] Dropdown: fixed closing others when open current
-+ [x] Timepicker: fixed error when `step` is equals to `0`, issue #1676
++ [x] Timepicker: fixed error when `step` is not equals to `0`, issue #1676
 
 ### 4.4.2
 #### Metro 4
