@@ -1,4 +1,3 @@
-/* global Metro */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -11,7 +10,11 @@
         autocomplete: null,
         autocompleteDivider: ",",
         autocompleteListHeight: 200,
-
+		autocompleteUrl: "",
+		autocompleteUrlMethod: "GET",
+		autocompleteUrlJsonField: "",
+		autocompleteUrlQuery: true,
+		
         history: false,
         historyPreset: "",
         historyDivider: "|",
@@ -64,7 +67,8 @@
             this._super(elem, options, InputDefaultConfig, {
                 history: [],
                 historyIndex: -1,
-                autocomplete: []
+                autocomplete: [],
+				autocompleteUrlData: null
             });
 
             return this;
@@ -191,11 +195,14 @@
                 } else {
                     this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
                 }
-                $("<div>").addClass("autocomplete-list").css({
+                
+            }
+			if (!Utils.isNull(o.autocomplete) || o.autocompleteUrl!="") {
+				$("<div>").addClass("autocomplete-list").css({
                     maxHeight: o.autocompleteListHeight,
                     display: "none"
                 }).appendTo(container);
-            }
+			}
 
             if (o.label) {
                 var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(container);
@@ -345,33 +352,61 @@
                 var val = this.value.toLowerCase();
                 var items;
 
-                if (autocompleteList.length === 0) {
+                if (autocompleteList.length === 0 && o.autocompleteUrl=="") {
                     return;
                 }
 
                 autocompleteList.html("");
+				if (!Utils.isNull(that.autocompleteUrlData))
+				{
+					draw(that.autocompleteUrlData);
+				}
+				else
+				{
+					$.ajax({
+						url: o.autocompleteUrl,
+						method: o.autcompleteUrlMethod,
+						data: {
+							q: val
+						}}).then(
+							function(data){
+								if (!o.autocompleteUrlQuery)
+									that.autocompleteUrlData = JSON.parse(data);
+								draw(JSON.parse(data));
+							},
+							function(xhr){
+								draw(new Array());
+							}
+						)
+				}
+				
+				function draw(data){
+					if (o.autocompleteUrlJsonField!="")
+						data = data.map(function(value,index) { return value[o.autocompleteUrlJsonField]; });
+					if (!Utils.isNull(that.autocomplete))
+						data = that.autocomplete.concat(data);
+					
+					items = data.filter(function(item){
+						return item.toLowerCase().indexOf(val) > -1;
+					});
+					autocompleteList.css({
+						display: items.length > 0 ? "block" : "none"
+					});
 
-                items = that.autocomplete.filter(function(item){
-                    return item.toLowerCase().indexOf(val) > -1;
-                });
+					$.each(items, function(i, v){
+						var index = v.toLowerCase().indexOf(val);
+						var item = $("<div>").addClass("item").attr("data-autocomplete-value", v);
+						var html;
 
-                autocompleteList.css({
-                    display: items.length > 0 ? "block" : "none"
-                });
-
-                $.each(items, function(i, v){
-                    var index = v.toLowerCase().indexOf(val);
-                    var item = $("<div>").addClass("item").attr("data-autocomplete-value", v);
-                    var html;
-
-                    if (index === 0) {
-                        html = "<strong>"+v.substr(0, val.length)+"</strong>"+v.substr(val.length);
-                    } else {
-                        html = v.substr(0, index) + "<strong>"+v.substr(index, val.length)+"</strong>"+v.substr(index + val.length);
-                    }
-                    item.html(html).appendTo(autocompleteList);
-                })
-            });
+						if (index === 0) {
+							html = "<strong>"+v.substr(0, val.length)+"</strong>"+v.substr(val.length);
+						} else {
+							html = v.substr(0, index) + "<strong>"+v.substr(index, val.length)+"</strong>"+v.substr(index + val.length);
+						}
+						item.html(html).appendTo(autocompleteList);
+					})
+				}
+			});
 
             container.on(Metro.events.click, ".autocomplete-list .item", function(){
                 var val = $(this).attr("data-autocomplete-value");
@@ -385,7 +420,8 @@
                 });
             });
         },
-
+		
+	
         getHistory: function(){
             return this.history;
         },
