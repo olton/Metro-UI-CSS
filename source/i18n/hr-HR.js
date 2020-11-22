@@ -45,6 +45,10 @@
                 "inspector": "Inspektor",
                 "skip": "Idi na stranicu",
                 "empty": "Prazno"
+            },
+            "colorSelector": {
+                addUserColorButton: "Dodaj uzorcima",
+                userColorsTitle: "Korisničke boje"
             }
         }
     });
