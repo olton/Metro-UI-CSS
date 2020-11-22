@@ -36,6 +36,7 @@
         clsSelectedItem: "",
         clsSelectedItemRemover: "",
         clsLabel: "",
+        clsGroupName: "",
 
         onChange: Metro.noop,
         onUp: Metro.noop,
@@ -104,9 +105,15 @@
             var l, a;
             var element = this.element, o = this.options;
             var html = Utils.isValue(option.attr('data-template')) ? option.attr('data-template').replace("$1", item.text):item.text;
+            var displayValue = option.attr("data-display");
 
             l = $("<li>").addClass(o.clsOption).data("option", item).attr("data-text", item.text).attr('data-value', item.value ? item.value : "");
             a = $("<a>").html(html);
+
+            if (displayValue) {
+                l.attr("data-display", displayValue);
+                html = displayValue;
+            }
 
             l.addClass(item.className);
 
@@ -119,7 +126,7 @@
             if (option.is(":selected")) {
 
                 if (o.showGroupName && group) {
-                    html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                    html += "&nbsp;<span class='selected-item__group-name "+o.clsGroupName+"'>" + group + "</span>";
                 }
 
                 if (multiple) {
@@ -360,15 +367,16 @@
                     return ;
                 }
                 var leaf = $(this);
+                var displayValue = leaf.attr("data-display");
                 var val = leaf.data('value');
                 var group = leaf.data('group');
-                var html = leaf.children('a').html();
+                var html = displayValue ? displayValue : leaf.children('a').html();
                 var selected;
                 var option = leaf.data("option");
                 var options = element.find("option");
 
                 if (o.showGroupName && group) {
-                    html += "&nbsp;<span class='selected-item__group-name'>" + group + "</span>";
+                    html += "&nbsp;<span class='selected-item__group-name "+o.clsGroupName+"'>" + group + "</span>";
                 }
 
                 if (element[0].multiple) {

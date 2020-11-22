@@ -15,6 +15,8 @@
 + [x] Dropdown: fixed closing others when open current
 + [x] Timepicker: fixed error when `step` is not equals to `0`, issue #1676
 + [x] Select: fixed clear button icon position in `input-small` mode, issue #1675 
++ [x] Select: added attribute `data-cls-group-name` 
++ [x] Select: for option added attribute `data-display`, issue #1677 
 
 ### 4.4.2
 #### Metro 4

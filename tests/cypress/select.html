@@ -13,6 +13,16 @@
     <h1>Select test page</h1>
 
     <div class="example">
+        <select data-role="select" multiple>
+            <OPTION value = "arknoid2" data-display = "arknoid2"> Arkanoid - Revenge of DOH (World) </OPTION>
+            <OPTION value = "arkanoid" data-display = "arkanoid"> Arkanoid (World, older) </OPTION>
+            <OPTION value = "astrob" data-display = "astrob"> Astro Blaster (version 3) </OPTION>
+            <OPTION value = "bankp" data-display = "bankp"> Bank Panic </OPTION>
+        </select>
+    </div>
+
+    <br>
+    <div class="example">
         <select data-role="select" data-show-group-name="true" data-clear-button="true">
             <optgroup label="Microsoft">
                 <option value="microsoft-usa">USA</option>
@@ -69,7 +79,12 @@
     <br>
 
     <div class="example">
-        <select data-role="select" multiple id="select2" data-clear-button="true" data-cls-option-group="text-bold fg-orange" data-show-group-name="true" data-short-tag="false">
+        <select data-role="select" multiple id="select2"
+                data-clear-button="true"
+                data-cls-option-group="text-bold fg-orange"
+                data-show-group-name="true"
+                data-cls-group-name="fg-red"
+                data-short-tag="false">
             <optgroup label="Physical servers">
                 <option value="dedicated_corei3_hp">Core i3 (hp)</option>
                 <option value="dedicated_pentium_hp">Pentium (hp)</option>
