@@ -14,7 +14,6 @@
 		autocompleteUrlMethod: "GET",
 		autocompleteUrlJsonField: "",
 		autocompleteUrlQuery: true,
-		_autocompleteUrlData: null,
 		
         history: false,
         historyPreset: "",
@@ -68,7 +67,8 @@
             this._super(elem, options, InputDefaultConfig, {
                 history: [],
                 historyIndex: -1,
-                autocomplete: []
+                autocomplete: [],
+				autocompleteUrlData: null
             });
 
             return this;
@@ -359,9 +359,9 @@
 				{
 					draw(that.autocomplete);
 				}
-				else if (o._autocompleteUrlData!=null)
+				else if (o.autocompleteUrlData!=null)
 				{
-					draw(o._autocompleteUrlData);
+					draw(o.autocompleteUrlData);
 				}
 				else
 				{
@@ -374,7 +374,7 @@
 					})
                     .then(function(data){
 						if (!o.autocompleteUrlQuery)
-							o._autocompleteUrlData = JSON.parse(data);
+							o.autocompleteUrlData = JSON.parse(data);
 						draw(JSON.parse(data));
 					});
 				}
