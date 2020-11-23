@@ -2,9 +2,9 @@ Contributor Agreement
 
 By signing this Agreement, the undersigned party (“You”) understand,
 accept and agree to the following terms and conditions for your present
-and future Contributions submitted to Metro UI CSS (the “Original Code”).
-“Contribution” shall mean the code, documentation or any work of authorship,
-including any modifications or additions to an existing work that is
+and future Contributions submitted to Metro UI CSS (other projects by Serhii Pimenov)
+(the “Original Code”). “Contribution” shall mean the code, documentation or
+any work of authorship, including any modifications or additions to an existing work that is
 submitted by you in connection with the Original Code.
 
 Assignment.
