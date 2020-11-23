@@ -59,11 +59,13 @@ In addition, **SUPPORT PACK** is available for an annual subscription on [XS:COD
 
 ### Community
 
+[![Facebook](https://img.shields.io/badge/facebook-group-blue.svg?style=flat)](https://www.facebook.com/groups/metrouicss)
 [![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
-[![Join the chat at https://gitter.im/metro4/Lobby](https://badges.gitter.im/metro4/Lobby.svg)](https://gitter.im/metro4/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 ## Contributing
-All contributions are welcome. Learn more about how you can contribute to this project [here](CONTRIBUTING.md).
+All contributions are welcome. Learn more about how you can contribute to this project [here](CONTRIBUTING.md). 
+
+> Important! Before you create Pull Request, you must sign CLA! 
  
 ### Docs
 
