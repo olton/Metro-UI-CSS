@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 22/11/2020 12:51:16
+ * Built at 23/11/2020 14:09:40
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "22/11/2020 12:51:16",
+        compileTime: "23/11/2020 14:09:40",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5518,6 +5518,63 @@ $.noConflict = function() {
         }
     });
 }(Metro, m4q));
+
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'hr-HR': {
+            "calendar": {
+                "months": [
+                    "Siječanj", "Veljača", "Ožujak", "Travanj", "Svibanj", "Lipanj", "Srpanj", "Kolovoz", "Rujan", "Listopad", "Studeni", "Prosinac",
+                    "Sij", "Velj", "Ožu", "Tra", "Svi", "Lip", "Srp", "Kol", "Ruj", "Lis", "Stu", "Pro"
+                ],
+                "days": [
+                    "Nedjelja","Ponedjeljak","Utorak", "Srijeda", "Četvrtak", "Petak", "Subota",  
+                    "Ne","Po", "Ut", "Sr", "Če", "Pe", "Su", 
+                    "Ned", "Pon", "Uto", "Sri", "Čet", "Pet", "Sub" 
+                ],
+                "time": {
+                    "days": "DANI",
+                    "hours": "SATI",
+                    "minutes": "MINUTE",
+                    "seconds": "SEKUNDE",
+                    "month": "MJESEC",
+                    "day": "DAN",
+                    "year": "GODINA"
+                }
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Otkaži",
+                "done": "Gotovo",
+                "today": "Danas",
+                "now": "Sada",
+                "clear": "Izbriši",
+                "help": "Pomoć",
+                "yes": "Da",
+                "no": "Ne",
+                "random": "Nasumično",
+                "save": "Spremi",
+                "reset": "Reset"
+            },
+            "table": {
+                "rowsCount": "Broj redaka:",
+                "search": "Pretraga:",
+                "info": "Prikazujem $1 do $2 od $3",
+                "prev": "Nazad",
+                "next": "Naprijed",
+                "all": "Sve",
+                "inspector": "Inspektor",
+                "skip": "Idi na stranicu",
+                "empty": "Prazno"
+            },
+            "colorSelector": {
+                addUserColorButton: "Dodaj uzorcima",
+                userColorsTitle: "Korisničke boje"
+            }
+        }
+    });
+}(Metro, m4q));
+
 
 (function(Metro, $) {
     $.extend(Metro.locales, {
@@ -20291,10 +20348,12 @@ $.noConflict = function() {
     var InputDefaultConfig = {
         inputDeferred: 0,
 
-        // mask: null,
         label: "",
 
         autocomplete: null,
+        autocompleteUrl: null,
+        autocompleteUrlMethod: "GET",
+        autocompleteUrlKey: null,
         autocompleteDivider: ",",
         autocompleteListHeight: 200,
 
@@ -20468,8 +20527,14 @@ $.noConflict = function() {
                 });
             }
 
-            if (!Utils.isNull(o.autocomplete)) {
+            if (!Utils.isNull(o.autocomplete) || !Utils.isNull(o.autocompleteUrl)) {
+                $("<div>").addClass("autocomplete-list").css({
+                    maxHeight: o.autocompleteListHeight,
+                    display: "none"
+                }).appendTo(container);
+            }
 
+            if (Utils.isValue(o.autocomplete)) {
                 var autocomplete_obj = Utils.isObject(o.autocomplete);
 
                 if (autocomplete_obj !== false) {
@@ -20477,10 +20542,26 @@ $.noConflict = function() {
                 } else {
                     this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
                 }
-                $("<div>").addClass("autocomplete-list").css({
-                    maxHeight: o.autocompleteListHeight,
-                    display: "none"
-                }).appendTo(container);
+            }
+
+            if (Utils.isValue(o.autocompleteUrl)) {
+                $.ajax({
+                    url: o.autocompleteUrl,
+                    method: o.autocompleteUrlMethod
+                }).then(function(response){
+                    var newData = [];
+
+                    try {
+                        newData = JSON.parse(response);
+                        if (o.autocompleteUrlKey) {
+                            newData = newData[o.autocompleteUrlKey];
+                        }
+                    } catch (e) {
+                        newData = response.split("\n");
+                    }
+
+                    that.autocomplete = that.autocomplete.concat(newData);
+                });
             }
 
             if (o.label) {
@@ -20629,34 +20710,7 @@ $.noConflict = function() {
 
             element.on(Metro.events.input, function(){
                 var val = this.value.toLowerCase();
-                var items;
-
-                if (autocompleteList.length === 0) {
-                    return;
-                }
-
-                autocompleteList.html("");
-
-                items = that.autocomplete.filter(function(item){
-                    return item.toLowerCase().indexOf(val) > -1;
-                });
-
-                autocompleteList.css({
-                    display: items.length > 0 ? "block" : "none"
-                });
-
-                $.each(items, function(i, v){
-                    var index = v.toLowerCase().indexOf(val);
-                    var item = $("<div>").addClass("item").attr("data-autocomplete-value", v);
-                    var html;
-
-                    if (index === 0) {
-                        html = "<strong>"+v.substr(0, val.length)+"</strong>"+v.substr(val.length);
-                    } else {
-                        html = v.substr(0, index) + "<strong>"+v.substr(index, val.length)+"</strong>"+v.substr(index + val.length);
-                    }
-                    item.html(html).appendTo(autocompleteList);
-                })
+                that._drawAutocompleteList(val);
             });
 
             container.on(Metro.events.click, ".autocomplete-list .item", function(){
@@ -20669,6 +20723,45 @@ $.noConflict = function() {
                 that._fireEvent("autocomplete-select", {
                     value: val
                 });
+            });
+        },
+
+        _drawAutocompleteList: function(val){
+            var that = this, element = this.element;
+            var container = element.closest(".input");
+            var autocompleteList = container.find(".autocomplete-list");
+            var items;
+
+            if (autocompleteList.length === 0) {
+                return;
+            }
+
+            autocompleteList.html("");
+
+            items = this.autocomplete.filter(function(item){
+                return item.toLowerCase().indexOf(val) > -1;
+            });
+
+            autocompleteList.css({
+                display: items.length > 0 ? "block" : "none"
+            });
+
+            $.each(items, function(){
+                var v = this;
+                var index = v.toLowerCase().indexOf(val), content;
+                var item = $("<div>").addClass("item").attr("data-autocomplete-value", v);
+
+                if (index === 0) {
+                    content = "<strong>"+v.substr(0, val.length)+"</strong>"+v.substr(val.length);
+                } else {
+                    content = v.substr(0, index) + "<strong>"+v.substr(index, val.length)+"</strong>"+v.substr(index + val.length);
+                }
+
+                item.html(content).appendTo(autocompleteList);
+
+                that._fireEvent("draw-autocomplete-item", {
+                    item: item
+                })
             });
         },
 

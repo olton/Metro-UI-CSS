@@ -17,7 +17,7 @@
                     "hours": "SATI",
                     "minutes": "MINUTE",
                     "seconds": "SEKUNDE",
-		            "month": "MJESEC",
+                    "month": "MJESEC",
                     "day": "DAN",
                     "year": "GODINA"
                 }
