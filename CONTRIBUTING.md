@@ -6,6 +6,8 @@ Before create issue:
 - describe the problem in detail (use issue template).
 
 ## Pull Request Guidelines
+**Before create the pull request, you must sign the [CLA (Contributor License Agreement)](CLA.txt).**
+
 The `master` branch is basically just a snapshot of the latest stable release. **Do not submit PRs against the `master` branch.**
 
 To create pull request:
