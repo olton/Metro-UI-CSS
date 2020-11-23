@@ -19,6 +19,7 @@
 + [x] Select: for option added attribute `data-display`, issue #1677 
 + [x] Input: added support for getting autocomplete list items with ajax, issue #1682
 + [x] Locales: added `Croatian` locale, thanks to [dugi007](https://github.com/dugi007)
++ [x] Calendar: added showing events count in days, issue #1621
 
 ### 4.4.2
 #### Metro 4
