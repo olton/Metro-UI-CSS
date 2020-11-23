@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/11/2020 14:22:45
+ * Built at 23/11/2020 16:32:41
  * Licensed under MIT
  */
 .accordion {
@@ -2092,6 +2092,7 @@ input[type=reset].loading .load-caption {
 .calendar-content .day,
 .calendar-content .week-number {
   width: calc(100%/7);
+  height: 39px;
   text-align: center;
   cursor: pointer;
   font-size: 0.85rem;
@@ -2101,8 +2102,7 @@ input[type=reset].loading .load-caption {
       -ms-user-select: none;
           user-select: none;
   margin: 0;
-  height: 36px;
-  line-height: 36px;
+  line-height: 39px;
 }
 .calendar-content .day.and-week-number {
   width: calc(100% / 8);
@@ -2267,18 +2267,18 @@ input[type=reset].loading .load-caption {
 .calendar.compact .calendar-time__inner-cell span {
   font-size: 12px;
 }
-.calendar .calendar-content .calendar-content__months,
-.calendar .calendar-content .calendar-content__years {
+.calendar .calendar-content .months,
+.calendar .calendar-content .years {
   display: -webkit-box;
   display: flex;
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-flow: row wrap;
 }
-.calendar .calendar-content .calendar-content__months .month,
-.calendar .calendar-content .calendar-content__years .month,
-.calendar .calendar-content .calendar-content__months .year,
-.calendar .calendar-content .calendar-content__years .year {
+.calendar .calendar-content .months .month,
+.calendar .calendar-content .years .month,
+.calendar .calendar-content .months .year,
+.calendar .calendar-content .years .year {
   display: -webkit-box;
   display: flex;
   -webkit-box-align: center;
@@ -2287,15 +2287,14 @@ input[type=reset].loading .load-caption {
           justify-content: center;
   flex-shrink: 0;
   flex-basis: 25%;
-  border: 1px solid transparent;
   height: 64px;
   font-size: 14px;
   cursor: pointer;
 }
-.calendar .calendar-content .calendar-content__months .month:hover,
-.calendar .calendar-content .calendar-content__years .month:hover,
-.calendar .calendar-content .calendar-content__months .year:hover,
-.calendar .calendar-content .calendar-content__years .year:hover {
+.calendar .calendar-content .months .month:hover,
+.calendar .calendar-content .years .month:hover,
+.calendar .calendar-content .months .year:hover,
+.calendar .calendar-content .years .year:hover {
   border-color: #dfdfdf;
 }
 .calendar .calendar-content .calendar-toolbar {
@@ -2376,6 +2375,37 @@ input[type=reset].loading .load-caption {
 .calendar .to-animate {
   -webkit-transform: scale(0);
           transform: scale(0);
+}
+.calendar .days .day,
+.calendar .months .month,
+.calendar .years .year {
+  border: 1px solid #f8f8f8;
+}
+.calendar .badge {
+  font-size: 9px;
+  background: #CE352C;
+  color: #ffffff;
+  padding: 1px 3px;
+  border: none;
+  border-radius: 0;
+}
+.calendar .badge.top-left {
+  top: 0;
+  left: 0;
+  right: auto;
+  bottom: auto;
+}
+.calendar .badge.bottom-left {
+  top: auto;
+  left: 0;
+  right: auto;
+  bottom: 0;
+}
+.calendar .badge.bottom-right {
+  top: auto;
+  left: auto;
+  right: 0;
+  bottom: 0;
 }
 .calendar-picker {
   position: relative;

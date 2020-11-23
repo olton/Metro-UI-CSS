@@ -91,14 +91,15 @@
 
     .day, .week-number {
         width: ~"calc(100%/7)";
+        //width: 39px;
+        height: 39px;
         text-align: center;
         cursor: pointer;
         font-size: .85rem;
         position: relative;
         user-select: none;
         margin: 0;
-        height: 36px;
-        line-height: 36px;
+        line-height: 39px;
     }
 
     .day {
@@ -304,15 +305,15 @@
 
 .calendar {
     .calendar-content {
-        .calendar-content__months,
-        .calendar-content__years
+        .months,
+        .years
         {
             display: flex;
             flex-flow: row wrap;
         }
 
-        .calendar-content__months,
-        .calendar-content__years
+        .months,
+        .years
         {
             .month, .year {
                 display: flex;
@@ -320,7 +321,6 @@
                 justify-content: center;
                 flex-shrink: 0;
                 flex-basis: 25%;
-                border: 1px solid @transparent;
                 height: 64px;
                 font-size: 14px;
                 cursor: pointer;
@@ -412,5 +412,43 @@
 
     .to-animate {
         transform: scale(0);
+    }
+}
+
+.calendar {
+    .days .day, .months .month, .years .year {
+        border: 1px solid @light;
+    }
+}
+
+.calendar {
+    .badge {
+        font-size: 9px;
+        background: @red;
+        color: @white;
+        padding: 1px 3px;
+        border: none;
+        border-radius: 0;
+
+        &.top-left {
+            top: 0;
+            left: 0;
+            right: auto;
+            bottom: auto;
+        }
+
+        &.bottom-left {
+            top: auto;
+            left: 0;
+            right: auto;
+            bottom: 0;
+        }
+
+        &.bottom-right {
+            top: auto;
+            left: auto;
+            right: 0;
+            bottom: 0;
+        }
     }
 }

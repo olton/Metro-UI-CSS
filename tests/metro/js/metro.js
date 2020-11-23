@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/11/2020 14:22:45
+ * Built at 23/11/2020 16:32:41
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -313,7 +313,7 @@ function isTouch() {
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -2691,7 +2691,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "23/11/2020 14:22:45",
+        compileTime: "23/11/2020 16:32:41",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4808,7 +4808,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -8930,6 +8930,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
+        events: null,
         startContent: "days",
         showTime: false,
         initialTime: null,
@@ -8984,6 +8985,7 @@ $.noConflict = function() {
         clsTodayButton: "",
         clsClearButton: "",
         clsDoneButton: "",
+        clsEventCounter: "",
         isDialog: false,
         ripple: false,
         rippleColor: "#cccccc",
@@ -9002,7 +9004,9 @@ $.noConflict = function() {
         onClear: Metro.noop,
         onDone: Metro.noop,
         onDayClick: Metro.noop,
-        onDayDraw: Metro.noop,
+        onDrawDay: Metro.noop,
+        onDrawMonth: Metro.noop,
+        onDrawYear: Metro.noop,
         onWeekDayClick: Metro.noop,
         onWeekNumberClick: Metro.noop,
         onMonthChange: Metro.noop,
@@ -9040,6 +9044,7 @@ $.noConflict = function() {
                 exclude: [],
                 special: [],
                 excludeDay: [],
+                events: [],
                 min: null,
                 max: null,
                 locale: null,
@@ -9096,6 +9101,10 @@ $.noConflict = function() {
 
             if (Utils.isValue(o.special)) {
                 this._dates2array(o.special, 'special');
+            }
+
+            if (Utils.isValue(o.events)) {
+                this._dates2array(o.events, 'events');
             }
 
             if (o.buttons !== false) {
@@ -9554,7 +9563,7 @@ $.noConflict = function() {
             var first = new Date(this.current.year, this.current.month, 1);
             var first_day;
             var prev_month_days = (new Date(this.current.year, this.current.month, 0)).getDate();
-            var year, month;
+            var year, month, eventsCount;
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
@@ -9638,8 +9647,11 @@ $.noConflict = function() {
                         }
                     }
 
-                    this._fireEvent("day-draw", {
+                    this._fireEvent("draw-day", {
                         date: s,
+                        day: s.getDate(),
+                        month: s.getMonth(),
+                        year: s.getFullYear(),
                         cell: d[0]
                     });
                 }
@@ -9695,8 +9707,24 @@ $.noConflict = function() {
 
                 }
 
-                this._fireEvent("day-draw", {
+                if (this.events.length) {
+                    eventsCount = 0;
+                    $.each(this.events, function(){
+                        if (this === first.getTime()) {
+                            eventsCount++;
+                        }
+                    });
+
+                    if (eventsCount) {
+                        d.append( $("<div>").addClass("badge inside").addClass(o.clsEventCounter).html(eventsCount) );
+                    }
+                }
+
+                this._fireEvent("draw-day", {
                     date: first,
+                    day: first.getDate(),
+                    month: first.getMonth(),
+                    year: first.getFullYear(),
                     cell: d[0]
                 });
 
@@ -9740,8 +9768,11 @@ $.noConflict = function() {
                         }
                     }
 
-                    this._fireEvent("day-draw", {
+                    this._fireEvent("draw-day", {
                         date: s,
+                        day: s.getDate(),
+                        month: s.getMonth(),
+                        year: s.getFullYear(),
                         cell: d[0]
                     });
 
@@ -9774,7 +9805,7 @@ $.noConflict = function() {
             $("<span>").addClass("curr-year").html(this.current.year).appendTo(toolbar);
             $("<span>").addClass("next-year").html(o.nextYearIcon).appendTo(toolbar);
 
-            content.append( months = $("<div>").addClass("calendar-content__months") );
+            content.append( months = $("<div>").addClass("months") );
 
             for(var i = 12; i < 24; i++) {
                 months.append(
@@ -9789,9 +9820,14 @@ $.noConflict = function() {
                     month.addClass("to-animate");
                 }
 
+                this._fireEvent("draw-month", {
+                    month: i - 12,
+                    year: this.current.year,
+                    cell: month[0]
+                });
             }
 
-            this._animateContent(".calendar-content__months .month");
+            this._animateContent(".months .month");
         },
 
         _drawContentYears: function(){
@@ -9815,7 +9851,7 @@ $.noConflict = function() {
             $("<span>").addClass("curr-year").html(this.yearGroupStart + " - " + (this.yearGroupStart + this.yearDistance)).appendTo(toolbar);
             $("<span>").addClass("next-year-group").html(o.nextYearIcon).appendTo(toolbar);
 
-            content.append( years = $("<div>").addClass("calendar-content__years") );
+            content.append( years = $("<div>").addClass("years") );
 
             for(var i = this.yearGroupStart; i <= this.yearGroupStart + this.yearDistance; i++) {
                 years.append(
@@ -9833,9 +9869,14 @@ $.noConflict = function() {
                 if (i < o.minYear || i > o.maxYear) {
                     year.addClass("disabled");
                 }
+
+                this._fireEvent("draw-year", {
+                    year: i,
+                    cell: year[0]
+                });
             }
 
-            this._animateContent(".calendar-content__years .year");
+            this._animateContent(".years .year");
         },
 
         _drawContent: function(){
