@@ -18,6 +18,7 @@
 + [x] Select: added attribute `data-cls-group-name` 
 + [x] Select: for option added attribute `data-display`, issue #1677 
 + [x] Input: added support for getting autocomplete list items with ajax, issue #1682
++ [x] Locales: added `Croatian` locale, thanks to [dugi007](https://github.com/dugi007)
 
 ### 4.4.2
 #### Metro 4
