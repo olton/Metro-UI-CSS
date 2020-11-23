@@ -1,3 +1,4 @@
+/* global Metro */
 (function(Metro, $) {
     $.extend(Metro.locales, {
         'hr-HR': {
@@ -16,7 +17,7 @@
                     "hours": "SATI",
                     "minutes": "MINUTE",
                     "seconds": "SEKUNDE",
-		    "month": "MJESEC",
+		            "month": "MJESEC",
                     "day": "DAN",
                     "year": "GODINA"
                 }
