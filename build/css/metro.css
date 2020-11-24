@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/11/2020 17:03:12
+ * Built at 24/11/2020 12:27:35
  * Licensed under MIT
  */
 *,
@@ -36609,6 +36609,34 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .tag-input.static-mode .button,
 .tag-input.static-mode input {
   display: none!important;
+}
+.tag-input .autocomplete-list {
+  margin: 0;
+  padding: 0;
+  list-style: none inside;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  overflow-y: auto;
+  background-color: #ffffff;
+  height: auto;
+  border: 1px solid #dfdfdf;
+  z-index: 3;
+  display: block;
+}
+.tag-input .autocomplete-list .item {
+  display: block;
+  position: relative;
+  padding: 4px 8px;
+  cursor: pointer;
+}
+.tag-input .autocomplete-list .item:hover {
+  background-color: rgba(29, 29, 29, 0.1);
+}
+.tag-input .autocomplete-list .item + .item {
+  border-top: 1px solid #dfdfdf;
 }
 .tag {
   display: -webkit-inline-box;
