@@ -24,6 +24,7 @@
 + [x] Table: added showing inspector button with attributes `data-show-inspector-button=true|false`, `data-inspector-button-icon`.
 + [x] Table: set default value for `data-cell-wrapper` to **true**
 + [x] Table: improve table styles for `table-contaner`
++ [x] Table: fixed working with attribute `data-horizontal-scroll-stop`
 
 ### 4.4.2
 #### Metro 4
