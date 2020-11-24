@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 23/11/2020 17:03:12
+ * Built at 24/11/2020 12:27:35
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "23/11/2020 17:03:12",
+        compileTime: "24/11/2020 12:27:35",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -31819,6 +31819,14 @@ $.noConflict = function() {
 
     var Utils = Metro.utils;
     var TagInputDefaultConfig = {
+        autocomplete: null,
+        autocompleteUnique: true,
+        autocompleteUrl: null,
+        autocompleteUrlMethod: "GET",
+        autocompleteUrlKey: null,
+        autocompleteDivider: ",",
+        autocompleteListHeight: 200,
+
         label: "",
         size: "normal",
         taginputDeferred: 0,
@@ -31862,7 +31870,8 @@ $.noConflict = function() {
         init: function( options, elem ) {
             this._super(elem, options, TagInputDefaultConfig, {
                 values: [],
-                triggers: []
+                triggers: [],
+                autocomplete: []
             });
 
             return this;
@@ -31935,12 +31944,50 @@ $.noConflict = function() {
             if (o.static === true || element.attr("readonly") !== undefined) {
                 container.addClass("static-mode");
             }
+
+            if (!Utils.isNull(o.autocomplete) || !Utils.isNull(o.autocompleteUrl)) {
+                $("<div>").addClass("autocomplete-list").css({
+                    maxHeight: o.autocompleteListHeight,
+                    display: "none"
+                }).appendTo(container);
+            }
+
+            if (Utils.isValue(o.autocomplete)) {
+                var autocomplete_obj = Utils.isObject(o.autocomplete);
+
+                if (autocomplete_obj !== false) {
+                    this.autocomplete = autocomplete_obj;
+                } else {
+                    this.autocomplete = o.autocomplete.toArray(o.autocompleteDivider);
+                }
+            }
+
+            if (Utils.isValue(o.autocompleteUrl)) {
+                $.ajax({
+                    url: o.autocompleteUrl,
+                    method: o.autocompleteUrlMethod
+                }).then(function(response){
+                    var newData = [];
+
+                    try {
+                        newData = JSON.parse(response);
+                        if (o.autocompleteUrlKey) {
+                            newData = newData[o.autocompleteUrlKey];
+                        }
+                    } catch (e) {
+                        newData = response.split("\n");
+                    }
+
+                    that.autocomplete = that.autocomplete.concat(newData);
+                });
+            }
         },
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
             var container = element.closest(".tag-input");
             var input = container.find(".input-wrapper");
+            var autocompleteList = container.find(".autocomplete-list");
 
             input.on(Metro.events.focus, function(){
                 container.addClass("focused");
@@ -32009,6 +32056,71 @@ $.noConflict = function() {
                 that._fireEvent("clear", {
                     val: val
                 });
+            });
+
+            input.on(Metro.events.input, function(){
+                var val = this.value.toLowerCase();
+                that._drawAutocompleteList(val);
+            });
+
+            container.on(Metro.events.click, ".autocomplete-list .item", function(){
+                var val = $(this).attr("data-autocomplete-value");
+
+                input.val("");
+                that._addTag(val);
+                input.attr("size", 1);
+
+                autocompleteList.css({
+                    display: "none"
+                });
+                that._fireEvent("autocomplete-select", {
+                    value: val
+                });
+            });
+        },
+
+        _drawAutocompleteList: function(val){
+            var that = this, element = this.element, o = this.options;
+            var container = element.closest(".tag-input");
+            var input = container.find(".input-wrapper");
+            var autocompleteList = container.find(".autocomplete-list");
+            var items;
+
+            if (autocompleteList.length === 0) {
+                return;
+            }
+
+            autocompleteList.html("");
+
+            items = this.autocomplete.filter(function(item){
+                return item.toLowerCase().indexOf(val) > -1;
+            });
+
+            autocompleteList.css({
+                display: items.length > 0 ? "block" : "none",
+                left: input.position().left
+            });
+
+            $.each(items, function(){
+                if (o.autocompleteUnique && that.values.indexOf(this) !== -1) {
+                    return ;
+                }
+
+                var v = this;
+                var index = v.toLowerCase().indexOf(val), content;
+                var item = $("<div>").addClass("item").attr("data-autocomplete-value", v);
+
+                if (index === 0) {
+                    content = "<strong>"+v.substr(0, val.length)+"</strong>"+v.substr(val.length);
+                } else {
+                    content = v.substr(0, index) + "<strong>"+v.substr(index, val.length)+"</strong>"+v.substr(index + val.length);
+                }
+
+                item.html(content).appendTo(autocompleteList);
+
+                that._fireEvent("draw-autocomplete-item", {
+                    item: item
+                })
             });
         },
 
@@ -32210,6 +32322,15 @@ $.noConflict = function() {
                 container.addClass("static-mode");
             } else {
                 container.removeClass("static-mode");
+            }
+        },
+
+        setAutocompleteList: function(l){
+            var autocomplete_list = Utils.isObject(l);
+            if (autocomplete_list !== false) {
+                this.autocomplete = autocomplete_list;
+            } else if (typeof l === "string") {
+                this.autocomplete = l.toArray(this.options.autocompleteDivider);
             }
         },
 
