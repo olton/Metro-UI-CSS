@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/11/2020 22:19:17
+ * Built at 24/11/2020 22:49:28
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "24/11/2020 22:19:17",
+        compileTime: "24/11/2020 22:49:28",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29114,7 +29114,7 @@ $.noConflict = function() {
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
-        showInspectorButton: true,
+        showInspectorButton: false,
         inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
         templateBeginToken: "<%",

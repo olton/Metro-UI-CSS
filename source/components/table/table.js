@@ -4,7 +4,7 @@
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
-        showInspectorButton: true,
+        showInspectorButton: false,
         inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
         templateBeginToken: "<%",
