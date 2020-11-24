@@ -76,7 +76,7 @@
         paginationWrapper: null,
         skipWrapper: null,
 
-        cellWrapper: false,
+        cellWrapper: true,
 
         clsComponent: "",
         clsTableContainer: "",

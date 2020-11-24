@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/11/2020 22:49:28
+ * Built at 24/11/2020 23:06:59
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "24/11/2020 22:49:28",
+        compileTime: "24/11/2020 23:06:59",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29186,7 +29186,7 @@ $.noConflict = function() {
         paginationWrapper: null,
         skipWrapper: null,
 
-        cellWrapper: false,
+        cellWrapper: true,
 
         clsComponent: "",
         clsTableContainer: "",
