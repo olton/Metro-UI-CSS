@@ -13,18 +13,20 @@
     <h1>Table test page</h1>
 
     <div class="example">
-        <table class="table striped table-border mt-4"
+        <table class="table striped"
                data-role="table"
                data-rows="10"
                data-rows-steps="5, 10, 20"
                data-show-activity="false"
-               data-source="../data/table.json"
+               data-source="../data/table-wide.json"
                data-show-skip="true"
                data-pagination-wrapper="#pagination"
                data-skip-wrapper="#skip"
                data-check="true"
                data-locale="uk-UA"
                data-show-inspector-button="true"
+               data-horizontal-scroll="true"
+               data-cell-wrapper="true"
         >
             <thead id="head1"></thead>
             <tbody id="body1"></tbody>

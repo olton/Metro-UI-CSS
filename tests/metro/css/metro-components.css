@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/11/2020 22:49:28
+ * Built at 24/11/2020 23:06:59
  * Licensed under MIT
  */
 .accordion {
@@ -14733,8 +14733,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .table {
   width: 100%;
-  margin-bottom: 1rem;
-  margin-top: 1rem;
 }
 .table th,
 .table .th,
@@ -15367,6 +15365,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   .table-component .table-rows-block {
     width: 360px;
   }
+}
+.table-component .table-container {
+  border: 1px solid #dfdfdf;
+  margin: 10px 0;
 }
 .tabs-material-wrapper {
   overflow: hidden;
