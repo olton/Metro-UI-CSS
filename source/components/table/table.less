@@ -4,15 +4,6 @@
 .table-container {
     display: block;
     position: relative;
-
-    &.horizontal-scroll {
-        overflow: hidden;
-        overflow-x: auto;
-        .table {
-            width: auto;
-            min-width: 100%;
-        }
-    }
 }
 
 .table {display: table;}
@@ -466,5 +457,18 @@
     .table-container {
         border: 1px solid @borderColor;
         margin: 10px 0;
+        overflow: hidden;
+    }
+}
+
+.table-component {
+    .table-container {
+        &.horizontal-scroll {
+            overflow-x: auto;
+            .table {
+                width: auto;
+                min-width: 100%;
+            }
+        }
     }
 }
