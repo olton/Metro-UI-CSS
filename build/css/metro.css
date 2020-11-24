@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/11/2020 12:29:51
+ * Built at 24/11/2020 22:19:17
  * Licensed under MIT
  */
 *,
@@ -36141,6 +36141,44 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .table-skip input {
   width: 220px;
+}
+.table-component .table-top,
+.table-component .table-rows-block,
+.table-component .table-search-block {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row wrap;
+  -webkit-box-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+}
+.table-component .table-search-block {
+  flex-basis: 100%;
+  flex-shrink: 0;
+}
+.table-component .table-rows-block {
+  width: calc(100% - 46px);
+}
+.table-component .table-top > * {
+  margin-bottom: 4px;
+}
+@media screen and (min-width: 768px) {
+  .table-component .table-top {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+            flex-flow: row nowrap;
+  }
+  .table-component .table-top > * + * {
+    margin-left: 4px;
+  }
+  .table-component .table-search-block {
+    flex-shrink: 1;
+  }
+  .table-component .table-rows-block {
+    width: 360px;
+  }
 }
 .tabs-material-wrapper {
   overflow: hidden;

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/11/2020 12:29:51
+ * Built at 24/11/2020 22:19:17
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "24/11/2020 12:29:51",
+        compileTime: "24/11/2020 22:19:17",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29114,6 +29114,8 @@ $.noConflict = function() {
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
+        showInspectorButton: true,
+        inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
         templateBeginToken: "<%",
         templateEndToken: "%>",
@@ -29928,6 +29930,10 @@ $.noConflict = function() {
                 }
             });
 
+            if (o.showInspectorButton) {
+                $("<button>").addClass("button inspector-button").attr("type", "button").html(o.inspectorButtonIcon).insertAfter(rows_block);
+            }
+
             if (o.showRowsSteps !== true) {
                 rows_block.hide();
             }
@@ -30035,6 +30041,11 @@ $.noConflict = function() {
             var skip_input = o.skipWrapper ? $(o.skipWrapper).find('.table-skip-input') : component.find(".table-skip-input");
             var customSearch;
             var id = element.attr("id");
+            var inspectorButton = component.find(".inspector-button");
+
+            inspectorButton.on(Metro.events.click, function(){
+                that.toggleInspector();
+            });
 
             skip_button.on(Metro.events.click, function(){
                 var skipTo = parseInt(skip_input.val().trim());
