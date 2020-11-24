@@ -4,6 +4,8 @@
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
+        showInspectorButton: true,
+        inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
         templateBeginToken: "<%",
         templateEndToken: "%>",
@@ -818,6 +820,10 @@
                 }
             });
 
+            if (o.showInspectorButton) {
+                $("<button>").addClass("button inspector-button").attr("type", "button").html(o.inspectorButtonIcon).insertAfter(rows_block);
+            }
+
             if (o.showRowsSteps !== true) {
                 rows_block.hide();
             }
@@ -925,6 +931,11 @@
             var skip_input = o.skipWrapper ? $(o.skipWrapper).find('.table-skip-input') : component.find(".table-skip-input");
             var customSearch;
             var id = element.attr("id");
+            var inspectorButton = component.find(".inspector-button");
+
+            inspectorButton.on(Metro.events.click, function(){
+                that.toggleInspector();
+            });
 
             skip_button.on(Metro.events.click, function(){
                 var skipTo = parseInt(skip_input.val().trim());

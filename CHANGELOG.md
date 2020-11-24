@@ -21,6 +21,7 @@
 + [x] Locales: added `Croatian` locale, thanks to [dugi007](https://github.com/dugi007)
 + [x] Calendar: added showing events count in days, issue #1621
 + [x] Tag Input: added autocomplete feature, issue #1500
++ [x] Table: added showing inspector button with attributes `data-show-inspector-button=true|false`, `data-inspector-button-icon`.
 
 ### 4.4.2
 #### Metro 4
