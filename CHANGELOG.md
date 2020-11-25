@@ -25,6 +25,10 @@
 + [x] Table: set default value for `data-cell-wrapper` to **true**
 + [x] Table: improve table styles for `table-contaner`
 + [x] Table: fixed working with attribute `data-horizontal-scroll-stop`
++ [x] Metro: added method `pluginExists(name)` to check if specified plugin registered in registry
++ [x] Colors: fixed primitives `RGBA`, `HSLA` to create with specified **alpha**
++ [x] Color selector: fixed founding bugs
++ [x] Color picker: added new a component
 
 ### 4.4.2
 #### Metro 4

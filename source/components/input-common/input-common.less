@@ -7,7 +7,8 @@
 .textarea,
 .select,
 .tag-input,
-.spinner
+.spinner,
+.color-picker
 {
     position: relative;
     border: 1px @inputBorder solid;
@@ -125,7 +126,7 @@ input[type=button], input[type=submit], input[type=reset] {
     width: auto;
 }
 
-.file, .input, .select, .textarea, .tag-input, .spinner {
+.file, .input, .select, .textarea, .tag-input, .spinner, .color-picker {
     .prepend, .append {
         padding: .5rem .75rem;
         background-color: @light;
@@ -144,7 +145,7 @@ input[type=button], input[type=submit], input[type=reset] {
     opacity: 0;
 }
 
-.file, .input, .textarea, .select, .tag-input, .spinner, .tag-input, .rating {
+.file, .input, .textarea, .select, .tag-input, .spinner, .tag-input, .rating, .color-picker {
     &:disabled, &.disabled {
         input, textarea, select, .select-input, .caption, .stars li {
             background: transparent;
@@ -231,3 +232,8 @@ input.rtl, input[dir=rtl] {
 .label-for-input.rtl {
     text-align: right;
 }
+
+input[placeholder]          {text-overflow:ellipsis;}
+input::-moz-placeholder     {text-overflow:ellipsis;}
+input:-moz-placeholder      {text-overflow:ellipsis;}
+input:-ms-input-placeholder {text-overflow:ellipsis;}

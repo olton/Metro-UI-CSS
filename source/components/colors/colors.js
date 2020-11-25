@@ -72,7 +72,7 @@
         this.r = r || 0;
         this.g = g || 0;
         this.b = b || 0;
-        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
+        this.a = a === 0 ? 0 : a || 1;
     }
 
     RGBA.prototype.toString = function(){
@@ -111,7 +111,7 @@
         this.h = h || 0;
         this.s = s || 0;
         this.l = l || 0;
-        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
+        this.a = a === 0 ? 0 : a || 1;
     }
 
     HSLA.prototype.toString2 = function(){

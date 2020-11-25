@@ -1,0 +1,105 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+@pickerDefaultHeight: 34px;
+
+.color-picker {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0;
+
+    &:hover {
+        input {
+            border-color: transparent;
+        }
+    }
+
+    &.focused {
+        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    }
+
+    input {
+        border: none!important;
+        order: 1;
+        flex-grow: 1;
+        flex-shrink: 0;
+        flex-basis: 0;
+        height: @pickerDefaultHeight;
+        padding: 0 .75rem;
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        flex-wrap: nowrap;
+    }
+
+    .button {
+        background-color: transparent;
+        color: @dark;
+        height: @pickerDefaultHeight;
+        min-width: @pickerDefaultHeight;
+        &:focus, &:active {
+            box-shadow: none!important;
+        }
+        &:hover {
+            background-color: @light;
+            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+        }
+    }
+
+    .input-clear-button {
+        background-color: transparent;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+
+    &.disabled .button-group {
+        button {
+            background-color: @light;
+            color: darken(@light, 10%);
+        }
+    }
+
+    .color-example-box {
+        display: block;
+        height: @pickerDefaultHeight - 8;
+        width: @pickerDefaultHeight - 8;
+        background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") top left repeat;
+        margin: 4px;
+        border: 1px solid @borderColor;
+    }
+
+    .color-selector-box {
+        position: absolute;
+        top: 100%;
+        left: -1px;
+        display: none;
+    }
+
+    .prepend {order: 1;}
+    .color-example-box {order: 2;}
+    input {order: 3;}
+    .append {order: 5;}
+    .buttons {order: 4;}
+
+    input[placeholder]          {text-overflow:ellipsis;}
+    input::-moz-placeholder     {text-overflow:ellipsis;}
+    input:-moz-placeholder      {text-overflow:ellipsis;}
+    input:-ms-input-placeholder {text-overflow:ellipsis;}
+
+}
+
+.color-picker {
+    &.open {
+        .color-selector-box {
+            display: block!important;
+        }
+    }
+}

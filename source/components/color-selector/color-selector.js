@@ -290,7 +290,7 @@
             this._updateCursorsColor();
 
             if (o.initColor && Metro.colors.isColor(o.initColor)) {
-                this._colorToPos(o.initColor);
+                this._colorToPos(typeof o.initColor === "string" ? Metro.colors.parse(o.initColor) : o.initColor);
             }
         },
 
@@ -432,10 +432,10 @@
                 saturation = 0;
             }
 
-            this.lightness = (Math.round(lightness * 100) / 100).toFixed(1);
-            this.saturation = (Math.round(saturation * 100) / 100).toFixed(1);
+            this.lightness = lightness;
+            this.saturation = saturation;
 
-            this._updateColorCursor(x, y);
+            this._updateShadeCursor(x, y);
             this._updateCursorsColor();
             this._setColorValues();
         },
@@ -446,7 +446,7 @@
             this.alphaCursor.css({backgroundColor: Metro.colors.toRGBA(new Metro.colorPrimitive.HSL(this.hue, 1, .5), this.alpha).toString()});
         },
 
-        _updateColorCursor: function(x, y){
+        _updateShadeCursor: function(x, y){
             this.shadeCursor.css({
                 top: y,
                 left: x
@@ -456,18 +456,23 @@
         _colorToPos: function (color){
             var shadeCanvasRect = this.shadeCanvas[0].getBoundingClientRect();
             var hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
+            var alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
             var hsl = Metro.colors.toHSL(color);
+            var hsla = Metro.colors.toHSLA(color, color.a);
             var hsv = Metro.colors.toHSV(color);
             var x = shadeCanvasRect.width * hsv.s;
             var y = shadeCanvasRect.height * (1 - hsv.v);
             var hueY = hueCanvasRect.height - ((hsl.h / 360) * hueCanvasRect.height);
+            var alphaY = (1 - hsla.a) * alphaCanvasRect.height;
 
             this.hue = hsl.h;
             this.saturation = hsl.s;
             this.lightness = hsl.l;
+            this.alpha = hsla.a;
 
             this._updateHueCursor(hueY);
-            this._updateColorCursor(x, y);
+            this._updateShadeCursor(x, y);
+            this._updateAlphaCursor(alphaY);
             this._updateCursorsColor();
             this._createShadeCanvas("hsl("+ this.hue +", 100%, 50%)");
             this._createAlphaCanvas();
@@ -477,7 +482,7 @@
         _setColorValues: function(){
             var element = this.element, o = this.options;
             var hsl = Metro.colors.toHSL(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness));
-            var hsla = Metro.colors.toHSLA(hsl, this.alpha);
+            var hsla = Metro.colors.toHSLA(new Metro.colorPrimitive.HSLA(this.hue, this.saturation, this.lightness, this.alpha));
             var rgb = Metro.colors.toRGB(hsl);
             var rgba = Metro.colors.toRGBA(rgb, this.alpha);
             var hsv = Metro.colors.toHSV(hsl);
@@ -541,7 +546,7 @@
             }
 
             if (controller && controller.length) {
-                controller.val(this.val());
+                controller.val(this.val()).trigger("change");
             }
 
             this._fireEvent("color", {
@@ -636,7 +641,6 @@
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
-
             });
 
             hueMap.on(Metro.events.startAll, function(e){
@@ -654,7 +658,6 @@
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
-
             });
 
             shadeMap.on(Metro.events.startAll, function(e){
@@ -672,16 +675,13 @@
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id})
-
             });
 
-            element.on("click", ".swatch", function(e){
+            element.on("click", ".swatch", function(){
                 that._colorToPos($(this).attr("data-color"));
-                e.preventDefault();
-                e.stopPropagation();
             });
 
-            element.on("click", ".add-button", function(e){
+            element.on("click", ".add-button", function(){
                 var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
 
                 if (that.userColors.indexOf(color) > -1) {
@@ -699,14 +699,11 @@
                             backgroundColor: color
                         })
                 );
-
-                e.preventDefault();
-                e.stopPropagation();
             });
 
-            element.on("click", "input[type=radio]", function(e){
+            element.find("input[type=radio]").on("click", function(){
                 o.returnValueType = $(this).val();
-                e.stopPropagation();
+                that._setColorValues();
             });
         },
 
@@ -739,7 +736,11 @@
                 return o.returnAsString ? res.toString() : res;
             }
 
-            this._colorToPos(Metro.colors.toHEX(v));
+            if (!Metro.colors.isColor(v)) {
+                return ;
+            }
+
+            this._colorToPos(Metro.colors.parse(v));
         },
 
         user: function(v){
@@ -793,4 +794,6 @@
             this.element.remove();
         }
     });
+
+    Metro.defaults.ColorSelectorDefaultConfig = ColorSelectorDefaultConfig;
 }(Metro, m4q));
