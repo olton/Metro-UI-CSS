@@ -153,9 +153,14 @@
 
         _setColor: function(){
             var colorExample = this.colorExample;
+            var color = this.value;
+
+            if (this.value.indexOf("cmyk") !== -1 || this.value.indexOf("hsv") !== -1) {
+                color = Metro.colors.toHEX(this.value);
+            }
 
             colorExample.css({
-                backgroundColor: this.value
+                backgroundColor: color
             });
         },
 
