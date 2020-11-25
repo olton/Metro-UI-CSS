@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 25/11/2020 19:32:25
+ * Built at 25/11/2020 21:02:13
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "25/11/2020 19:32:25",
+        compileTime: "25/11/2020 21:02:13",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12199,6 +12199,7 @@ $.noConflict = function() {
 
     var Utils = Metro.utils;
     var ColorPickerDefaultConfig = {
+        duration: 100,
         prepend: "",
         append: "",
         clearButton: false,
@@ -12254,7 +12255,7 @@ $.noConflict = function() {
         },
 
         _createStructure: function(){
-            var element = this.element, o = this.options;
+            var that = this, element = this.element, o = this.options;
             var picker = element.wrap( $("<div>").addClass("color-picker").addClass(element[0].className) );
             var buttons, colorExample, colorSelector, colorSelectorBox;
 
@@ -12330,6 +12331,16 @@ $.noConflict = function() {
                 onColorSelectorCreate: o.onColorSelectorCreate
             });
 
+            Metro.makePlugin(colorSelectorBox, 'dropdown', {
+                dropFilter: ".color-picker",
+                duration: o.duration,
+                toggleElement: [picker],
+                checkDropUp: true,
+                onDrop: function(){
+                    Metro.getPlugin(colorSelector, 'color-selector').val(that.value);
+                }
+            });
+
             element[0].className = '';
 
             if (o.copyInlineStyles === true) {
@@ -12377,34 +12388,23 @@ $.noConflict = function() {
                 that._setColor();
             });
 
-            picker.on(Metro.events.click, "input, .color-picker-button", function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                that.toggle();
-            });
-
             colorSelectorBox.on(Metro.events.click, function(e){
                 e.stopPropagation();
             })
         },
 
-        toggle: function(){
-            if (this.isOpen) {
-                this.close();
-            } else {
-                this.open();
+        val: function(v){
+            if (arguments.length === 0 || !Utils.isValue(v)) {
+                return this.value;
             }
-        },
 
-        open: function(){
-            this.isOpen = true
-            this.picker.addClass("open");
-            Metro.getPlugin(this.colorSelector, 'color-selector').val(this.value);
-        },
+            if (!Metro.colors.isColor(v)) {
+                return ;
+            }
 
-        close: function(){
-            this.isOpen = false;
-            this.picker.removeClass("open");
+            this.value = v;
+            this.element.val(v).trigger("change");
+            this._setColor();
         },
 
         // changeAttribute: function(attr, newValue){
