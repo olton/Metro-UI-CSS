@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 24/11/2020 23:15:13
+ * Built at 25/11/2020 18:52:37
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,11 +4541,12 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "24/11/2020 23:15:13",
+        compileTime: "25/11/2020 18:52:37",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
+
 
         controlsPosition: {
             INSIDE: "inside",
@@ -4712,6 +4713,7 @@ $.noConflict = function() {
         animations: null,
         cookie: null,
         template: null,
+        defaults: {},
 
         about: function(){
             var content =
@@ -4955,6 +4957,11 @@ $.noConflict = function() {
             if (window.useJQuery) {
                 register(jQuery);
             }
+        },
+
+        pluginExists: function(name){
+            var $ = window.useJQuery ? jQuery : m4q;
+            return typeof $.fn[normalizeComponentName(name)] === "function";
         },
 
         destroyPlugin: function(element, name){
@@ -12190,6 +12197,229 @@ $.noConflict = function() {
 (function(Metro, $) {
     'use strict';
 
+    var Utils = Metro.utils;
+    var ColorPickerDefaultConfig = {
+        prepend: "",
+        append: "",
+        clearButton: false,
+        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        pickerButtonIcon: "<span class='default-icon-equalizer'></span>",
+        defaultValue: "rgba(0, 0, 0, 0)",
+        copyInlineStyles: false,
+        clsPickerButton: "",
+        clsClearButton: "",
+        onColorSelected: Metro.noop,
+        onColorPickerCreate: Metro.noop
+    };
+
+    Metro.colorPickerSetup = function (options) {
+        ColorPickerDefaultConfig = $.extend({}, ColorPickerDefaultConfig, options);
+    };
+
+    if (typeof window["metroColorPickerSetup"] !== undefined) {
+        Metro.colorPickerSetup(window["metroColorPickerSetup"]);
+    }
+
+    Metro.Component('color-picker', {
+        init: function( options, elem ) {
+            this._super(elem, options, $.extend({}, Metro.defaults.ColorSelectorDefaultConfig, {
+                showUserColors: false,
+                showValues: ""
+            }, ColorPickerDefaultConfig), {
+                value: null,
+                picker: null,
+                colorSelector: null,
+                colorSelectorBox: null,
+                colorExample: null,
+                inputInterval: null,
+                isOpen: false
+            });
+            return this;
+        },
+
+        _create: function(){
+            var element = this.element, o = this.options;
+            var current = element.val();
+
+            if (!Metro.pluginExists("color-selector")) {
+                throw new Error("Color selector component required!");
+            }
+
+            this.value = Metro.colors.isColor(current) ? current : Metro.colors.isColor(o.defaultValue) ? o.defaultValue : "rgba(0,0,0,0)";
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent('color-picker-create');
+        },
+
+        _createStructure: function(){
+            var element = this.element, o = this.options;
+            var picker = element.wrap( $("<div>").addClass("color-picker").addClass(element[0].className) );
+            var buttons, colorExample, colorSelector, colorSelectorBox;
+
+            colorExample = $("<div>").addClass("color-example-box").insertBefore(element);
+
+            buttons = $("<div>").addClass("buttons").appendTo(picker);
+
+            buttons.append(
+                $("<button>")
+                    .addClass("button color-picker-button")
+                    .addClass(o.clsPickerButton)
+                    .attr("tabindex", -1)
+                    .attr("type", "button")
+                    .html(o.pickerButtonIcon)
+            );
+
+            if (o.clearButton === true && !element[0].readOnly) {
+                buttons.append(
+                    $("<button>")
+                        .addClass("button input-clear-button")
+                        .addClass(o.clsClearButton)
+                        .attr("tabindex", -1)
+                        .attr("type", "button")
+                        .html(o.clearButtonIcon)
+                );
+            }
+
+            if (Utils.isValue(o.prepend)) {
+                picker.prepend($("<div>").addClass("prepend").addClass(o.clsPrepend).html(o.prepend));
+            }
+
+            if (Utils.isValue(o.append)) {
+                picker.append($("<div>").html(o.append).addClass("append").addClass(o.clsAppend));
+            }
+
+            colorSelectorBox = $("<div>").addClass("color-selector-box").appendTo(picker);
+            colorSelector = $("<div>").appendTo(colorSelectorBox);
+
+            this.picker = picker;
+            this.colorExample = colorExample;
+            this.colorSelector = colorSelector;
+            this.colorSelectorBox = colorSelectorBox;
+
+            Metro.makePlugin(colorSelector, 'color-selector', {
+                defaultSwatches: o.defaultSwatches,
+                userColors: o.userColors,
+                returnValueType: o.returnValueType,
+                returnAsString: o.returnAsString,
+                showValues: o.showValues,
+                showAsString: o.showAsString,
+                showUserColors: o.showUserColors,
+                target: o.target,
+                controller: element,
+                locale: o.locale,
+                addUserColorTitle: o.addUserColorTitle,
+                userColorsTitle: o.userColorsTitle,
+                hslMode: o.hslMode,
+                showAlphaChannel: o.showAlphaChannel,
+                inputThreshold: o.inputThreshold,
+                initColor: this.value,
+                readonlyInput: o.readonlyInput,
+                clsSelector: o.clsSelector,
+                clsSwatches: o.clsSwatches,
+                clsSwatch: o.clsSwatch,
+                clsValue: o.clsValue,
+                clsLabel: o.clsLabel,
+                clsInput: o.clsInput,
+                clsUserColorButton: o.clsUserColorButton,
+                clsUserColors: o.clsUserColors,
+                clsUserColorsTitle: o.clsUserColorsTitle,
+                clsUserColor: o.clsUserColor,
+                onColor: o.onColor,
+                onColorSelectorCreate: o.onColorSelectorCreate
+            });
+
+            element[0].className = '';
+
+            if (o.copyInlineStyles === true) {
+                $.each(Utils.getInlineStyles(element), function(key, value){
+                    picker.css(key, value);
+                });
+            }
+
+            this._setColor();
+        },
+
+        _clearInputInterval: function(){
+            clearInterval(this.inputInterval);
+            this.inputInterval = false;
+        },
+
+        _setColor: function(){
+            var colorExample = this.colorExample;
+
+            colorExample.css({
+                backgroundColor: this.value
+            });
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var picker = this.picker,
+                colorSelector = this.colorSelector,
+                colorSelectorBox = this.colorSelector;
+
+            picker.on(Metro.events.click, ".input-clear-button", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                element.val(o.defaultValue).trigger("change");
+                Metro.getPlugin(colorSelector, 'color-selector').val(o.defaultValue);
+            });
+
+            element.on(Metro.events.inputchange, function(){
+                that.value = this.value;
+                that._setColor();
+            });
+
+            picker.on(Metro.events.click, "input, .color-picker-button", function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                that.toggle();
+            });
+
+            colorSelectorBox.on(Metro.events.click, function(e){
+                e.stopPropagation();
+            })
+        },
+
+        toggle: function(){
+            if (this.isOpen) {
+                this.close();
+            } else {
+                this.open();
+            }
+        },
+
+        open: function(){
+            this.isOpen = true
+            this.picker.addClass("open");
+            Metro.getPlugin(this.colorSelector, 'color-selector').val(this.value);
+        },
+
+        close: function(){
+            this.isOpen = false;
+            this.picker.removeClass("open");
+        },
+
+        // changeAttribute: function(attr, newValue){
+        // },
+
+        destroy: function(){
+            this.element.remove();
+        }
+    });
+
+    $(document).on(Metro.events.click, function(){
+        $(".color-picker").removeClass("open");
+    });
+
+}(Metro, m4q));
+
+
+(function(Metro, $) {
+    'use strict';
+
     var supportedColorTypes = "hex, rgb, rgba, hsl, hsla, hsv, cmyk";
     var Utils = Metro.utils;
     var ColorSelectorDefaultConfig = {
@@ -12478,7 +12708,7 @@ $.noConflict = function() {
             this._updateCursorsColor();
 
             if (o.initColor && Metro.colors.isColor(o.initColor)) {
-                this._colorToPos(o.initColor);
+                this._colorToPos(typeof o.initColor === "string" ? Metro.colors.parse(o.initColor) : o.initColor);
             }
         },
 
@@ -12620,10 +12850,10 @@ $.noConflict = function() {
                 saturation = 0;
             }
 
-            this.lightness = (Math.round(lightness * 100) / 100).toFixed(1);
-            this.saturation = (Math.round(saturation * 100) / 100).toFixed(1);
+            this.lightness = lightness;
+            this.saturation = saturation;
 
-            this._updateColorCursor(x, y);
+            this._updateShadeCursor(x, y);
             this._updateCursorsColor();
             this._setColorValues();
         },
@@ -12634,7 +12864,7 @@ $.noConflict = function() {
             this.alphaCursor.css({backgroundColor: Metro.colors.toRGBA(new Metro.colorPrimitive.HSL(this.hue, 1, .5), this.alpha).toString()});
         },
 
-        _updateColorCursor: function(x, y){
+        _updateShadeCursor: function(x, y){
             this.shadeCursor.css({
                 top: y,
                 left: x
@@ -12644,18 +12874,23 @@ $.noConflict = function() {
         _colorToPos: function (color){
             var shadeCanvasRect = this.shadeCanvas[0].getBoundingClientRect();
             var hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
+            var alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
             var hsl = Metro.colors.toHSL(color);
+            var hsla = Metro.colors.toHSLA(color, color.a);
             var hsv = Metro.colors.toHSV(color);
             var x = shadeCanvasRect.width * hsv.s;
             var y = shadeCanvasRect.height * (1 - hsv.v);
             var hueY = hueCanvasRect.height - ((hsl.h / 360) * hueCanvasRect.height);
+            var alphaY = (1 - hsla.a) * alphaCanvasRect.height;
 
             this.hue = hsl.h;
             this.saturation = hsl.s;
             this.lightness = hsl.l;
+            this.alpha = hsla.a;
 
             this._updateHueCursor(hueY);
-            this._updateColorCursor(x, y);
+            this._updateShadeCursor(x, y);
+            this._updateAlphaCursor(alphaY);
             this._updateCursorsColor();
             this._createShadeCanvas("hsl("+ this.hue +", 100%, 50%)");
             this._createAlphaCanvas();
@@ -12665,7 +12900,7 @@ $.noConflict = function() {
         _setColorValues: function(){
             var element = this.element, o = this.options;
             var hsl = Metro.colors.toHSL(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness));
-            var hsla = Metro.colors.toHSLA(hsl, this.alpha);
+            var hsla = Metro.colors.toHSLA(new Metro.colorPrimitive.HSLA(this.hue, this.saturation, this.lightness, this.alpha));
             var rgb = Metro.colors.toRGB(hsl);
             var rgba = Metro.colors.toRGBA(rgb, this.alpha);
             var hsv = Metro.colors.toHSV(hsl);
@@ -12729,7 +12964,7 @@ $.noConflict = function() {
             }
 
             if (controller && controller.length) {
-                controller.val(this.val());
+                controller.val(this.val()).trigger("change");
             }
 
             this._fireEvent("color", {
@@ -12824,7 +13059,6 @@ $.noConflict = function() {
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
-
             });
 
             hueMap.on(Metro.events.startAll, function(e){
@@ -12842,7 +13076,6 @@ $.noConflict = function() {
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
-
             });
 
             shadeMap.on(Metro.events.startAll, function(e){
@@ -12860,16 +13093,13 @@ $.noConflict = function() {
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id})
-
             });
 
-            element.on("click", ".swatch", function(e){
+            element.on("click", ".swatch", function(){
                 that._colorToPos($(this).attr("data-color"));
-                e.preventDefault();
-                e.stopPropagation();
             });
 
-            element.on("click", ".add-button", function(e){
+            element.on("click", ".add-button", function(){
                 var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
 
                 if (that.userColors.indexOf(color) > -1) {
@@ -12887,14 +13117,11 @@ $.noConflict = function() {
                             backgroundColor: color
                         })
                 );
-
-                e.preventDefault();
-                e.stopPropagation();
             });
 
-            element.on("click", "input[type=radio]", function(e){
+            element.find("input[type=radio]").on("click", function(){
                 o.returnValueType = $(this).val();
-                e.stopPropagation();
+                that._setColorValues();
             });
         },
 
@@ -12927,7 +13154,11 @@ $.noConflict = function() {
                 return o.returnAsString ? res.toString() : res;
             }
 
-            this._colorToPos(Metro.colors.toHEX(v));
+            if (!Metro.colors.isColor(v)) {
+                return ;
+            }
+
+            this._colorToPos(Metro.colors.parse(v));
         },
 
         user: function(v){
@@ -12981,6 +13212,8 @@ $.noConflict = function() {
             this.element.remove();
         }
     });
+
+    Metro.defaults.ColorSelectorDefaultConfig = ColorSelectorDefaultConfig;
 }(Metro, m4q));
 
 
@@ -13057,7 +13290,7 @@ $.noConflict = function() {
         this.r = r || 0;
         this.g = g || 0;
         this.b = b || 0;
-        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
+        this.a = a === 0 ? 0 : a || 1;
     }
 
     RGBA.prototype.toString = function(){
@@ -13096,7 +13329,7 @@ $.noConflict = function() {
         this.h = h || 0;
         this.s = s || 0;
         this.l = l || 0;
-        this.a = typeof a !== "undefined" ? a ? a : 1 : 1;
+        this.a = a === 0 ? 0 : a || 1;
     }
 
     HSLA.prototype.toString2 = function(){

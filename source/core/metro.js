@@ -34,6 +34,7 @@
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
 
+
         controlsPosition: {
             INSIDE: "inside",
             OUTSIDE: "outside"
@@ -199,6 +200,7 @@
         animations: null,
         cookie: null,
         template: null,
+        defaults: {},
 
         about: function(){
             var content =
@@ -442,6 +444,11 @@
             if (window.useJQuery) {
                 register(jQuery);
             }
+        },
+
+        pluginExists: function(name){
+            var $ = window.useJQuery ? jQuery : m4q;
+            return typeof $.fn[normalizeComponentName(name)] === "function";
         },
 
         destroyPlugin: function(element, name){
