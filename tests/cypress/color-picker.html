@@ -12,8 +12,12 @@
 <div class="container h-100 d-flex flex-align-center flex-column">
     <h1 class="mt-20">Color picker</h1>
 
+    <div>
+        <button class="button" onclick="Metro.getPlugin('#cp', 'color-picker').val('#ff00ff');">Set value</button>
+    </div>
+
     <div style="width: 306px" class="mt-10">
-        <input type="text" value="rgba(255, 0, 255, 0.50)"
+        <input type="text" value="rgba(255, 0, 255, 0.50)" id="cp"
                data-role="color-picker"
                data-show-values="hex, rgb, hsl, hsv, rgba, hsla, cmyk"
                data-return-value-type="rgba"
