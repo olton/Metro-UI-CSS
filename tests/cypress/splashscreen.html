@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Splashscreen - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body>
+<div class="splashscreen">
+    <div class="activity-atom color-style">
+        <span class="electron"></span>
+        <span class="electron"></span>
+        <span class="electron"></span>
+    </div>
+    <p class="text-small">
+        Loading...
+    </p>
+</div>
+<div class="container">
+    <h1>Splashscreen test page</h1>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+        setTimeout(function(){
+            $(".splashscreen").hide()
+        }, 5000);
+    })
+</script>
+</body>
+</html>

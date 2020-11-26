@@ -22,3 +22,17 @@
 .global-dialog {
     z-index: @zindex-overlay + 1!important;
 }
+
+.splashscreen {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    z-index: @zindex-fullscreen;
+    background: @white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}

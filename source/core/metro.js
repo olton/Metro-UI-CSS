@@ -590,6 +590,8 @@
                     var element = this.element, mc;
                     var roles = (element.attr("data-role") || "").toArray(",").map(function(v){
                         return normalizeComponentName(v);
+                    }).filter(function(v){
+                        return v.trim() !== "";
                     });
 
                     if (!element.attr('data-role-'+this.name)) {
