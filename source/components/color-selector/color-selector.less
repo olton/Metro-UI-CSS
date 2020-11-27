@@ -187,6 +187,7 @@
         display: flex;
         flex-flow: row nowrap;
         align-items: center;
+        margin-top: -1px;
 
         input {
             flex-shrink: 1;
@@ -219,6 +220,16 @@
     .color-block.as-string {
         .prepend {
             width: 40px!important;
+        }
+    }
+
+    .color-values-block {
+        .radio {
+            left: -4px;
+        }
+
+        .input + .input {
+            border-left: none!important;
         }
     }
 }

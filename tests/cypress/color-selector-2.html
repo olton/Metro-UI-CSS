@@ -44,9 +44,9 @@
                      data-cls-input="bd-darkGrayBlue"
                      data-cls-user-colors-title="fg-white"
                      data-cls-user-color-button="secondary"
-                     data-target="body"
                      data-hsv-mode="double"
                      data-locale="uk-UA"
+                     data-on-select-color="selectColor"
                 ></div>
             </div>
         </div>
@@ -55,6 +55,11 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    function selectColor(color, primitive){
+        $("body").css({
+            background: primitive.rgba
+        })
+    }
 </script>
 </body>
 </html>

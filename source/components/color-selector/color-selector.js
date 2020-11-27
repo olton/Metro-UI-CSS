@@ -12,7 +12,6 @@
         showValues: supportedColorTypes,
         showAsString: null,
         showUserColors: true,
-        target: null,
         controller: null,
         locale: "en-US",
         addUserColorTitle: null,
@@ -32,7 +31,7 @@
         clsUserColors: "",
         clsUserColorsTitle: "",
         clsUserColor: "",
-        onColor: Metro.noop,
+        onSelectColor: Metro.noop,
         onColorSelectorCreate: Metro.noop
     };
 
@@ -488,7 +487,6 @@
             var hsv = Metro.colors.toHSV(hsl);
             var cmyk = Metro.colors.toCMYK(hsl);
             var hex = Metro.colors.toHEX(hsl);
-            var target = $(o.target);
             var controller = $(o.controller);
             var percent = o.hslMode === "percent";
 
@@ -539,21 +537,21 @@
                 backgroundColor: hex
             });
 
-            if (target && target.length) {
-                target.css({
-                    backgroundColor: hex
-                });
-            }
-
             if (controller && controller.length) {
                 controller.val(this.val()).trigger("change");
             }
 
-            this._fireEvent("color", {
-                hue: this.hue,
-                saturation: this.saturation,
-                lightness: this.lightness,
-                color: this.val()
+            this._fireEvent("select-color", {
+                color: this.val(),
+                primitive: {
+                    hsl: this.hsl,
+                    hsla: this.hsla,
+                    rgb: this.rgb,
+                    rgba: this.rgba,
+                    hsv: this.hsv,
+                    cmyk: this.cmyk,
+                    hex: this.hex
+                }
             });
         },
 
