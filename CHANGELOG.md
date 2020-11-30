@@ -33,6 +33,7 @@
 + [x] Calendar: improve visibility, fixed for using `Utils.lpad()`
 + [x] Calendar picker: fixed for using `Utils.lpad()`
 + [x] Metro: added method `Component._fireEvents(...)`
++ [x] Security alert: fixed from issue #1687
 
 ### 4.4.2
 #### Metro 4
