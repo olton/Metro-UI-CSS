@@ -148,9 +148,13 @@
     }
 
     .today {
-        background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .5);
+        background-color: rgba(red(@green), green(@green), blue(@green), .5);
         color: @white;
         font-weight: bold;
+    }
+
+    .coincidental {
+        box-shadow: inset 0 0 12px rgba(red(@gray), green(@gray), blue(@gray), .4);
     }
 
     .excluded {
@@ -205,7 +209,7 @@
 
 .calendar {
     &.compact {
-        width: 240px;
+        width: 220px;
 
         .calendar-content {
             width: 100%;
@@ -240,9 +244,6 @@
             width: 30px;
             margin: 0;
             font-size: 12px;
-        }
-        .day + .day {
-            margin-left: 1px;
         }
     }
 }
@@ -320,8 +321,8 @@
                 align-items: center;
                 justify-content: center;
                 flex-shrink: 0;
-                flex-basis: 25%;
-                height: 64px;
+                flex-basis: 33.33%;
+                height: 68px;
                 font-size: 14px;
                 cursor: pointer;
 
@@ -331,8 +332,20 @@
             }
         }
 
+        .months, .years {
+            padding: 1px;
+        }
+
         .calendar-toolbar {
             border-bottom: 1px solid @borderColor;
+        }
+    }
+
+    &.compact {
+        .months, .years {
+            .month, .year {
+                height: 52px;
+            }
         }
     }
 }

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/11/2020 00:39:23
+ * Built at 30/11/2020 13:25:05
  * Licensed under MIT
  */
 *,
@@ -22933,9 +22933,13 @@ input[type=reset].loading .load-caption {
   font-size: 0.75rem;
 }
 .calendar-content .today {
-  background-color: rgba(27, 161, 226, 0.5);
+  background-color: rgba(96, 169, 23, 0.5);
   color: #ffffff;
   font-weight: bold;
+}
+.calendar-content .coincidental {
+  -webkit-box-shadow: inset 0 0 12px rgba(190, 190, 190, 0.4);
+          box-shadow: inset 0 0 12px rgba(190, 190, 190, 0.4);
 }
 .calendar-content .excluded {
   background-color: #f8f8f8;
@@ -22978,7 +22982,7 @@ input[type=reset].loading .load-caption {
   padding: 0 8px;
 }
 .calendar.compact {
-  width: 240px;
+  width: 220px;
 }
 .calendar.compact .calendar-content {
   width: 100%;
@@ -23009,9 +23013,6 @@ input[type=reset].loading .load-caption {
   width: 30px;
   margin: 0;
   font-size: 12px;
-}
-.calendar.compact .day + .day {
-  margin-left: 1px;
 }
 .calendar .calendar-time {
   display: block;
@@ -23080,8 +23081,8 @@ input[type=reset].loading .load-caption {
   -webkit-box-pack: center;
           justify-content: center;
   flex-shrink: 0;
-  flex-basis: 25%;
-  height: 64px;
+  flex-basis: 33.33%;
+  height: 68px;
   font-size: 14px;
   cursor: pointer;
 }
@@ -23091,8 +23092,18 @@ input[type=reset].loading .load-caption {
 .calendar .calendar-content .years .year:hover {
   border-color: #dfdfdf;
 }
+.calendar .calendar-content .months,
+.calendar .calendar-content .years {
+  padding: 1px;
+}
 .calendar .calendar-content .calendar-toolbar {
   border-bottom: 1px solid #dfdfdf;
+}
+.calendar.compact .months .month,
+.calendar.compact .years .month,
+.calendar.compact .months .year,
+.calendar.compact .years .year {
+  height: 52px;
 }
 .calendar-wide {
   -webkit-box-orient: horizontal;

@@ -156,10 +156,8 @@
             elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = ""+this.time[0];
-                m = ""+this.time[1];
-                h = h.length < 2 ? "0" + h : h;
-                m = m.length < 2 ? "0" + m : m;
+                h = Utils.lpad(this.time[0], "0", 2);
+                m = Utils.lpad(this.time[1], "0", 2);
                 elementValue += " " + h + ":" + m;
             }
 
@@ -243,14 +241,12 @@
 
                     that.value = date;
                     that.time = time;
-                    h = ""+time[0];
-                    m = ""+time[1];
 
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = h.length < 2 ? "0" + h : h;
-                        m = m.length < 2 ? "0" + m : m;
+                        h = Utils.lpad(time[0], "0", 2);
+                        m = Utils.lpad(time[1], "0", 2);
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -281,17 +277,14 @@
 
                     that.time = time;
 
-                    h = ""+time[0];
-                    m = ""+time[1];
-
                     if (!that.value) {
                         that.value = new Date();
                     }
                     elementValue = that.value.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = h.length < 2 ? "0" + h : h;
-                        m = m.length < 2 ? "0" + m : m;
+                        h = Utils.lpad(time[0], "0", 2);
+                        m = Utils.lpad(time[1], "0", 2);
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -512,10 +505,8 @@
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = ""+this.time[0];
-                m = ""+this.time[1];
-                h = h.length < 2 ? "0" + h : h;
-                m = m.length < 2 ? "0" + m : m;
+                h = Utils.lpad(this.time[0], "0", 2);
+                m = Utils.lpad(this.time[1], "0", 2);
                 elementValue += " " + h + ":" + m;
             }
 
@@ -573,8 +564,8 @@
 
             asString = asString || false;
 
-            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
-            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
+            h = Utils.lpad(this.time[0], "0", 2);
+            m = Utils.lpad(this.time[1], "0", 2);
 
             return asString ? h +":"+ m : this.time;
         },
