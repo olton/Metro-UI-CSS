@@ -29,6 +29,10 @@
 + [x] Colors: fixed primitives `RGBA`, `HSLA` to create with specified **alpha**
 + [x] Color selector: fixed founding bugs
 + [x] Color picker: added new a component
++ [x] Utils: added `lpad()`, `rpad()` functions
++ [x] Calendar: improve visibility, fixed for using `Utils.lpad()`
++ [x] Calendar picker: fixed for using `Utils.lpad()`
++ [x] Metro: added method `Component._fireEvents(...)`
 
 ### 4.4.2
 #### Metro 4

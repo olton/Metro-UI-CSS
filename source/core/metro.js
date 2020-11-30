@@ -645,6 +645,34 @@
                     return Utils.exec(o["on"+event], _data, element[0]);
                 },
 
+                _fireEvents: function(events, data, log, noFire){
+                    var that = this, _events;
+
+                    if (arguments.length === 0) {
+                        return ;
+                    }
+
+                    if (arguments.length === 1) {
+
+                        $.each(events, function () {
+                            var ev = this;
+                            that._fireEvent(ev.name, ev.data, ev.log, ev.noFire);
+                        });
+
+                        return Utils.objectLength(events);
+                    }
+
+                    if (!Array.isArray(events) && typeof events !== "string") {
+                        return ;
+                    }
+
+                    _events = Array.isArray(events) ? events : events.toArray(",");
+
+                    $.each(_events, function(){
+                        that._fireEvent(this, data, log, noFire);
+                    });
+                },
+
                 getComponent: function(){
                     return this.component;
                 },

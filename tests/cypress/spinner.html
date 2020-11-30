@@ -21,6 +21,9 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    $("@spinner").on("arrow-up", function(e){
+        console.log("Arrow " + (e.detail.button === "plus" ? "up" : "down") + " pressed");
+    })
 </script>
 </body>
 </html>
