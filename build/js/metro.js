@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/11/2020 13:25:05
+ * Built at 30/11/2020 16:41:11
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "30/11/2020 13:25:05",
+        compileTime: "30/11/2020 16:41:11",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -5156,6 +5156,34 @@ $.noConflict = function() {
                         element.fire(event.toLowerCase(), data);
 
                     return Utils.exec(o["on"+event], _data, element[0]);
+                },
+
+                _fireEvents: function(events, data, log, noFire){
+                    var that = this, _events;
+
+                    if (arguments.length === 0) {
+                        return ;
+                    }
+
+                    if (arguments.length === 1) {
+
+                        $.each(events, function () {
+                            var ev = this;
+                            that._fireEvent(ev.name, ev.data, ev.log, ev.noFire);
+                        });
+
+                        return Utils.objectLength(events);
+                    }
+
+                    if (!Array.isArray(events) && typeof events !== "string") {
+                        return ;
+                    }
+
+                    _events = Array.isArray(events) ? events : events.toArray(",");
+
+                    $.each(_events, function(){
+                        that._fireEvent(this, data, log, noFire);
+                    });
                 },
 
                 getComponent: function(){
@@ -27787,10 +27815,10 @@ $.noConflict = function() {
             var value;
 
             var spinnerButtonClick = function(plus, threshold){
-                var curr = element.val();
-
-                var val = Number(element.val());
-                var step = Number(o.step);
+                var events = [plus ? "plus-click" : "minus-click", plus ? "arrow-up" : "arrow-down", "button-click", "arrow-click"];
+                var curr = +element.val();
+                var val = +element.val();
+                var step = +o.step;
 
                 if (plus) {
                     val += step;
@@ -27800,26 +27828,7 @@ $.noConflict = function() {
 
                 that._setValue(val.toFixed(o.fixed), true);
 
-                that._fireEvent(plus ? "plus-click" : "minus-click", {
-                    curr: curr,
-                    val: val,
-                    elementVal: element.val()
-                });
-
-                that._fireEvent(plus ? "arrow-up" : "arrow-down", {
-                    curr: curr,
-                    val: val,
-                    elementVal: element.val()
-                });
-
-                that._fireEvent("button-click", {
-                    curr: curr,
-                    val: val,
-                    elementVal: element.val(),
-                    button: plus ? "plus" : "minus"
-                });
-
-                that._fireEvent("arrow-click", {
+                that._fireEvents(events, {
                     curr: curr,
                     val: val,
                     elementVal: element.val(),
@@ -27836,25 +27845,34 @@ $.noConflict = function() {
             spinner.on(Metro.events.click, function(e){
                 $(".focused").removeClass("focused");
                 spinner.addClass("focused");
+
                 e.preventDefault();
                 e.stopPropagation();
             });
 
-            spinner_buttons.on(Metro.events.start, function(e){
+            spinner_buttons.on(Metro.events.startAll, function(e){
                 var plus = $(this).closest(".spinner-button").hasClass("spinner-button-plus");
-                e.preventDefault();
+
+                if (that.repeat_timer) return ;
+
                 that.repeat_timer = true;
                 spinnerButtonClick(plus, o.repeatThreshold);
+
+                e.preventDefault();
             });
 
-            spinner_buttons.on(Metro.events.stop, function(){
+            spinner_buttons.on(Metro.events.stopAll, function(){
                 that.repeat_timer = false;
             });
 
             element.on(Metro.events.keydown, function(e){
                 if (e.keyCode === Metro.keyCode.UP_ARROW || e.keyCode === Metro.keyCode.DOWN_ARROW) {
+
+                    if (that.repeat_timer) return ;
+
                     that.repeat_timer = true;
                     spinnerButtonClick(e.keyCode === Metro.keyCode.UP_ARROW, o.repeatThreshold);
+
                 } else {
                     var key = e.key;
                     if (key === "Backspace" || key === "Delete" || key === "ArrowLeft" || key === "ArrowRight" ) {
