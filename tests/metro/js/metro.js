@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/11/2020 00:39:23
+ * Built at 30/11/2020 13:25:05
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "30/11/2020 00:39:23",
+        compileTime: "30/11/2020 13:25:05",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8961,6 +8961,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
+        showCoincidentalDay: true,
         events: null,
         startContent: "days",
         showTime: false,
@@ -9568,8 +9569,8 @@ $.noConflict = function() {
             inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
             inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
 
-            if (h.length < 2) h = "0"+h;
-            if (m.length < 2) m = "0"+m;
+            h = Utils.lpad(h, "0", 2);
+            m = Utils.lpad(m, "0", 2);
 
             hours.val(h);
             minutes.val(m);
@@ -9592,9 +9593,17 @@ $.noConflict = function() {
             var calendar_locale = this.locale['calendar'];
             var i, j, d, s, counter = 0;
             var first = new Date(this.current.year, this.current.month, 1);
-            var first_day;
+            var first_day, first_time, today = {
+                year: this.today.getFullYear(),
+                month: this.today.getMonth(),
+                day: this.today.getDate(),
+                time: this.today.getTime()
+            };
             var prev_month_days = (new Date(this.current.year, this.current.month, 0)).getDate();
-            var year, month, eventsCount;
+            var year, month, eventsCount, totalDays = 0;
+            var min_time = this.min ? this.min.getTime() : null,
+                max_time = this.max ? this.max.getTime() : null,
+                show_time= this.show ? this.show.getTime() : null;
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
@@ -9656,10 +9665,11 @@ $.noConflict = function() {
                 $("<div>").addClass("week-number").html((new Date(year, month, prev_month_days - first_day + 1)).getWeek(o.weekStart)).appendTo(days_row);
             }
 
+            // Days for previous month
             for(i = 0; i < first_day; i++) {
                 var v = prev_month_days - first_day + i + 1;
                 d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
-
+                totalDays++;
                 if (o.animationContent) {
                     d.addClass("to-animate");
                 }
@@ -9690,38 +9700,47 @@ $.noConflict = function() {
                 counter++;
             }
 
+            // Days for current month
             first.setHours(0,0,0,0);
+
             while(first.getMonth() === this.current.month) {
+                first_time = first.getTime();
 
                 d = $("<div>").addClass(day_class).html(first.getDate()).appendTo(days_row);
+
+                totalDays++;
 
                 if (o.animationContent) {
                     d.addClass("to-animate");
                 }
 
-                d.data('day', first.getTime());
+                if (first.getDate() === today.day && first_time !== today.time && o.showCoincidentalDay) {
+                    d.addClass("coincidental");
+                }
 
-                if (this.show.getTime() === first.getTime()) {
+                d.data('day', first_time);
+
+                if (show_time && show_time === first_time) {
                     d.addClass("showed");
                 }
 
-                if (this.today.getTime() === first.getTime()) {
+                if (today.time === first_time) {
                     d.addClass("today").addClass(o.clsToday);
                 }
 
                 if (this.special.length === 0) {
 
-                    if (this.selected.indexOf(first.getTime()) !== -1) {
+                    if (this.selected.length && this.selected.indexOf(first_time) !== -1) {
                         d.addClass("selected").addClass(o.clsSelected);
                     }
-                    if (this.exclude.indexOf(first.getTime()) !== -1) {
+                    if (this.exclude.length && this.exclude.indexOf(first_time) !== -1) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
 
-                    if (this.min !== null && first.getTime() < this.min.getTime()) {
+                    if (min_time && first_time < min_time) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
-                    if (this.max !== null && first.getTime() > this.max.getTime()) {
+                    if (max_time && first_time > max_time) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
 
@@ -9732,7 +9751,7 @@ $.noConflict = function() {
                     }
                 } else {
 
-                    if (this.special.indexOf(first.getTime()) === -1) {
+                    if (this.special.length && this.special.indexOf(first_time) === -1) {
                         d.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
 
@@ -9741,7 +9760,7 @@ $.noConflict = function() {
                 if (this.events.length) {
                     eventsCount = 0;
                     $.each(this.events, function(){
-                        if (this === first.getTime()) {
+                        if (this === first_time) {
                             eventsCount++;
                         }
                     });
@@ -9770,7 +9789,8 @@ $.noConflict = function() {
                 first.setHours(0,0,0,0);
             }
 
-            first_day = o.weekStart === 0 ? first.getDay() : (first.getDay() === 0 ? 6 : first.getDay() - 1);
+            // Days for next month
+            //first_day = o.weekStart === 0 ? first.getDay() : (first.getDay() === 0 ? 6 : first.getDay() - 1);
 
             if (this.current.month + 1 > 11) {
                 month = 0;
@@ -9780,7 +9800,8 @@ $.noConflict = function() {
                 year = this.current.year;
             }
 
-            if (first_day > 0) for(i = 0; i < 7 - first_day; i++) {
+//            if (first_day > 0) for(i = 0; i < 7 - first_day; i++) {
+            for(i = 0; i < 42 - totalDays; i++) {
                 d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
 
                 if (o.animationContent) {
@@ -9808,6 +9829,15 @@ $.noConflict = function() {
                     });
 
                 }
+
+                counter++;
+                if (counter % 7 === 0) {
+                    days_row = $("<div>").addClass("days-row").appendTo(days);
+                    if (o.showWeekNumber === true) {
+                        $("<div>").addClass("week-number").html((new Date(first.getFullYear(), first.getMonth(), first.getDate() + 1)).getWeek(o.weekStart)).appendTo(days_row);
+                    }
+                }
+
             }
 
             this._drawTime();
@@ -9818,7 +9848,7 @@ $.noConflict = function() {
             var element = this.element, o = this.options;
             var content = element.find(".calendar-content");
             var locale = this.locale['calendar']['months'];
-            var toolbar, months, month;
+            var toolbar, months, month, yearToday = new Date().getFullYear(), monthToday = new Date().getMonth();
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
@@ -9843,7 +9873,7 @@ $.noConflict = function() {
                     month = $("<div>")
                         .attr("data-month", i - 12)
                         .addClass("month")
-                        .addClass(i - 12 === this.current.month ? "today" : "")
+                        .addClass(i - 12 === monthToday && this.current.year === yearToday ? "today" : "")
                         .html(locale[i])
                 );
 
@@ -10309,10 +10339,8 @@ $.noConflict = function() {
             elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = ""+this.time[0];
-                m = ""+this.time[1];
-                h = h.length < 2 ? "0" + h : h;
-                m = m.length < 2 ? "0" + m : m;
+                h = Utils.lpad(this.time[0], "0", 2);
+                m = Utils.lpad(this.time[1], "0", 2);
                 elementValue += " " + h + ":" + m;
             }
 
@@ -10396,14 +10424,12 @@ $.noConflict = function() {
 
                     that.value = date;
                     that.time = time;
-                    h = ""+time[0];
-                    m = ""+time[1];
 
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = h.length < 2 ? "0" + h : h;
-                        m = m.length < 2 ? "0" + m : m;
+                        h = Utils.lpad(time[0], "0", 2);
+                        m = Utils.lpad(time[1], "0", 2);
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -10434,17 +10460,14 @@ $.noConflict = function() {
 
                     that.time = time;
 
-                    h = ""+time[0];
-                    m = ""+time[1];
-
                     if (!that.value) {
                         that.value = new Date();
                     }
                     elementValue = that.value.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = h.length < 2 ? "0" + h : h;
-                        m = m.length < 2 ? "0" + m : m;
+                        h = Utils.lpad(time[0], "0", 2);
+                        m = Utils.lpad(time[1], "0", 2);
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -10665,10 +10688,8 @@ $.noConflict = function() {
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = ""+this.time[0];
-                m = ""+this.time[1];
-                h = h.length < 2 ? "0" + h : h;
-                m = m.length < 2 ? "0" + m : m;
+                h = Utils.lpad(this.time[0], "0", 2);
+                m = Utils.lpad(this.time[1], "0", 2);
                 elementValue += " " + h + ":" + m;
             }
 
@@ -10726,8 +10747,8 @@ $.noConflict = function() {
 
             asString = asString || false;
 
-            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
-            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
+            h = Utils.lpad(this.time[0], "0", 2);
+            m = Utils.lpad(this.time[1], "0", 2);
 
             return asString ? h +":"+ m : this.time;
         },
