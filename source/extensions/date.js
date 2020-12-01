@@ -1,10 +1,10 @@
-/* global Metro, Utils, METRO_WEEK_START */
+/* global Metro, METRO_WEEK_START */
 (function(Metro) {
     'use strict';
     Date.prototype.getWeek = function (dowOffset) {
         var nYear, nday, newYear, day, daynum, weeknum;
 
-        dowOffset = !Utils.isValue(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
+        dowOffset = typeof dowOffset === "undefined" || isNaN(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
         newYear = new Date(this.getFullYear(),0,1);
         day = newYear.getDay() - dowOffset;
         day = (day >= 0 ? day : day + 7);

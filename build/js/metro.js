@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 30/11/2020 19:58:43
+ * Built at 01/12/2020 15:02:20
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4541,7 +4541,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "30/11/2020 19:58:43",
+        compileTime: "01/12/2020 15:02:20",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6080,7 +6080,7 @@ $.noConflict = function() {
     Date.prototype.getWeek = function (dowOffset) {
         var nYear, nday, newYear, day, daynum, weeknum;
 
-        dowOffset = !Utils.isValue(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
+        dowOffset = typeof dowOffset === "undefined" || isNaN(dowOffset) ? METRO_WEEK_START : typeof dowOffset === 'number' ? parseInt(dowOffset) : 0;
         newYear = new Date(this.getFullYear(),0,1);
         day = newYear.getDay() - dowOffset;
         day = (day >= 0 ? day : day + 7);
