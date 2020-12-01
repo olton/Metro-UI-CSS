@@ -34,6 +34,7 @@
 + [x] Calendar picker: fixed for using `Utils.lpad()`
 + [x] Metro: added method `Component._fireEvents(...)`
 + [x] Security alert: fixed from issue #1687
++ [x] Date extension: fixed method `getWeek()`, used in calendar for showing week numbers.
 
 ### 4.4.2
 #### Metro 4
