@@ -35,6 +35,7 @@
 + [x] Metro: added method `Component._fireEvents(...)`
 + [x] Security alert: fixed from issue #1687
 + [x] Date extension: fixed method `getWeek()`, used in calendar for showing week numbers.
++ [x] Tag input: added closing autocomplete list on user click outside.
 
 ### 4.4.2
 #### Metro 4
