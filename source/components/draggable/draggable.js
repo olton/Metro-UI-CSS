@@ -152,10 +152,11 @@
                 }, {ns: that.id, passive: false});
 
                 $(document).on(Metro.events.stopAll, function(){
-                    element.css({
-                        cursor: that.backup.cursor,
-                        zIndex: that.backup.zIndex
-                    }).removeClass("draggable");
+                    // element.css({
+                    //     cursor: that.backup.cursor,
+                    //     zIndex: that.backup.zIndex
+                    // });
+                    element.removeClass("draggable");
 
                     if (that.drag) {
                         $(document).off(Metro.events.moveAll, {ns: that.id});
