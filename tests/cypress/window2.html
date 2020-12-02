@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Any - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .window {
+            z-index: 0;
+        }
+    </style>
+</head>
+<body class="h-vh-100">
+<div data-role="window" data-gragabble="true"><div class="p-20">Window 1</div></div>
+<div data-role="window" data-gragabble="true"><div class="p-20">Window 2</div></div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+        $(".window .window-caption").on(Metro.events.startAll, function(e){
+            $(".window").css("z-index", 0);
+            $(this).parent().css("z-index", 100);
+        })
+        // $(".window .window-caption").on(Metro.events.click, function(e){
+        //     $(".window").css("z-index", 0);
+        //     $(this).parent().css("z-index", 100);
+        // })
+    })
+</script>
+</body>
+</html>
