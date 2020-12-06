@@ -1,6 +1,7 @@
 ### 4.4.3
 #### M4Q
 + [x] Attributes: fixed method `attr` when user defining one argument
++ [x] Animation: added methods `stopAll()`, `pause(id)`, `pauseAll()`, `resume(id)`, `resumeAll()`
 
 #### Metro 4
 + [x] NavView: fixed `navview-pane` item `height` and hover state, issue #1661

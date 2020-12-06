@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 02/12/2020 19:14:02
+ * Built at 06/12/2020 19:07:59
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -313,7 +313,7 @@ function isTouch() {
         return;
     }
 
-    // 
+    // console.log("Promise polyfill v1.2.0");
 
     var PENDING = 'pending';
     var SEALED = 'sealed';
@@ -620,7 +620,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 20/11/2020 16:00:02";
+var m4qVersion = "v1.0.10. Built at 06/12/2020 19:06:36";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -2691,7 +2691,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -3103,7 +3103,7 @@ $.fn.extend({
 
 // Source: src/animation.js
 
-/* global $, not, camelCase, parseUnit, Promise, getUnit */
+/* global $, not, camelCase, parseUnit, Promise, getUnit, matches */
 
 $.extend({
     animation: {
@@ -3519,15 +3519,24 @@ var defaultAnimationProps = {
     pause: 0,
     dir: "normal",
     defer: 0,
+    onStart: function(){},
+    onStop: function(){},
+    onStopAll: function(){},
+    onPause: function(){},
+    onPauseAll: function(){},
+    onResume: function(){},
+    onResumeAll: function(){},
     onFrame: function(){},
     onDone: function(){}
 };
 
 function animate(args){
     return new Promise(function(resolve){
-        var that = this, start;
+        var that = this;
         var props = $.assign({}, defaultAnimationProps, {dur: $.animation.duration, ease: $.animation.ease}, args);
-        var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop, onFrame = props.onFrame, onDone = props.onDone, pause = props.pause, dir = props.dir, defer = props.defer;
+        var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop,
+            onStart = props.onStart, onFrame = props.onFrame, onDone = props.onDone,
+            pauseStart = props.pause, dir = props.dir, defer = props.defer;
         var map = {};
         var easeName = "linear", easeArgs = [], easeFn = Easing.linear, matchArgs;
         var direction = dir === "alternate" ? "normal" : dir;
@@ -3570,15 +3579,25 @@ function animate(args){
             id: null,
             stop: 0,
             pause: 0,
-            loop: 0
+            loop: 0,
+            t: -1,
+            started: 0,
+            paused: 0
         };
 
         var play = function() {
             if (typeof draw === "object") {
                 map = createAnimationMap(el, draw, direction);
             }
-            start = performance.now();
+
+            if (typeof onStart === "function") {
+                onStart.apply(el);
+            }
+
+            // start = performance.now();
             $.animation.elements[animationID].loop += 1;
+            $.animation.elements[animationID].started = performance.now();
+            $.animation.elements[animationID].duration = dur;
             $.animation.elements[animationID].id = requestAnimationFrame(animate);
         };
 
@@ -3596,38 +3615,46 @@ function animate(args){
         var animate = function(time) {
             var p, t;
             var stop = $.animation.elements[animationID].stop;
+            var pause = $.animation.elements[animationID].pause;
+            var start = $.animation.elements[animationID].started;
 
-            if ( stop > 0) {
-                if (stop === 2) {
-                    if (typeof draw === "function") {
-
-                        draw.bind(el)(1, 1);
-
-                    } else {
-
-                        applyProps(el, map, 1);
-
-                    }
-                }
-                done();
-                return;
+            if ($.animation.elements[animationID].paused) {
+                start = time - $.animation.elements[animationID].t * dur;
+                $.animation.elements[animationID].started = start;
             }
 
-            t = (time - start) / dur;
+            t = ((time - start) / dur).toFixed(4);
 
             if (t > 1) t = 1;
             if (t < 0) t = 0;
 
             p = easeFn.apply(null, easeArgs)(t);
 
+            $.animation.elements[animationID].t = t;
+            $.animation.elements[animationID].p = p;
+
+            if (pause) {
+                $.animation.elements[animationID].id = requestAnimationFrame(animate);
+                // $.animation.elements[animationID].started = performance.now();
+                return;
+            }
+
+            if ( stop > 0) {
+                if (stop === 2) {
+                    if (typeof draw === "function") {
+                        draw.bind(el)(1, 1);
+                    } else {
+                        applyProps(el, map, 1);
+                    }
+                }
+                done();
+                return;
+            }
+
             if (typeof draw === "function") {
-
                 draw.bind(el)(t, p);
-
             } else {
-
                 applyProps(el, map, p);
-
             }
 
             if (typeof onFrame === 'function') {
@@ -3647,12 +3674,12 @@ function animate(args){
                     if (typeof loop === "boolean") {
                         setTimeout(function () {
                             play();
-                        }, pause);
+                        }, pauseStart);
                     } else {
                         if (loop > $.animation.elements[animationID].loop) {
                             setTimeout(function () {
                                 play();
-                            }, pause);
+                            }, pauseStart);
                         } else {
                             done();
                         }
@@ -3678,13 +3705,112 @@ function animate(args){
     });
 }
 
-/* eslint-disable */
-function stop(id, done){
+// Stop animation
+function stopAnimation(id, done){
+    var an = $.animation.elements[id];
+
+    if (typeof an === "undefined") {
+        return ;
+    }
+
     if (not(done)) {
         done = true;
     }
-    $.animation.elements[id].stop = done === true ? 2 : 1;
+
+    an.stop = done === true ? 2 : 1;
+
+    if (typeof an.onStop === "function") {
+        an.onStop.apply(an.element);
+    }
 }
+
+function stopAnimationAll(done, filter){
+    $.each($.animation.elements, function(k, v){
+        if (filter) {
+            if (typeof filter === "string") {
+                if (matches.call(v.element, filter)) stopAnimation(k, done);
+            } else if (filter.length) {
+                $.each(filter, function(){
+                    if (v.element === this) stopAnimation(k, done);
+                });
+            } else if (filter instanceof Element) {
+                if (v.element === filter) stopAnimation(k, done);
+            }
+        } else {
+            stopAnimation(k, done);
+        }
+    });
+}
+// end of stop
+
+// Pause and resume animation
+function pauseAnimation(id){
+    var an = $.animation.elements[id];
+
+    if (typeof an === "undefined") {
+        return ;
+    }
+
+    an.pause = 1;
+    an.paused = performance.now();
+
+    if (typeof an.onPause === "function") {
+        an.onPause.apply(an.element);
+    }
+}
+
+function pauseAnimationAll(filter){
+    $.each($.animation.elements, function(k, v){
+        if (filter) {
+            if (typeof filter === "string") {
+                if (matches.call(v.element, filter)) pauseAnimation(k);
+            } else if (filter.length) {
+                $.each(filter, function(){
+                    if (v.element === this) pauseAnimation(k);
+                });
+            } else if (filter instanceof Element) {
+                if (v.element === filter) pauseAnimation(k);
+            }
+        } else {
+            pauseAnimation(k);
+        }
+    });
+}
+// end of pause
+
+function resumeAnimation(id){
+    var an = $.animation.elements[id];
+
+    if (typeof an === "undefined") {
+        return ;
+    }
+
+    an.pause = 0;
+    an.paused = 0;
+
+    if (typeof an.onResume === "function") {
+        an.onResume.apply(an.element);
+    }
+}
+
+function resumeAnimationAll(filter){
+    $.each($.animation.elements, function(k, v){
+        if (filter) {
+            if (typeof filter === "string") {
+                if (matches.call(v.element, filter)) resumeAnimation(k);
+            } else if (filter.length) {
+                $.each(filter, function(){
+                    if (v.element === this) resumeAnimation(k);
+                });
+            } else if (filter instanceof Element) {
+                if (v.element === filter) resumeAnimation(k);
+            }
+        } else {
+            resumeAnimation(k);
+        }
+    });
+}
+
 /* eslint-enable */
 
 function chain(arr, loop){
@@ -3749,8 +3875,13 @@ $.extend({
 
         return animate(args);
     },
-    stop: stop,
-    chain: chain
+    chain: chain,
+    stop: stopAnimation,
+    stopAll: stopAnimationAll,
+    resume: resumeAnimation,
+    resumeAll: resumeAnimationAll,
+    pause: pauseAnimation,
+    pauseAll: pauseAnimationAll
 });
 
 $.fn.extend({
@@ -3840,12 +3971,33 @@ $.fn.extend({
      * @returns {this}
      */
     stop: function(done){
-        var elements = $.animation.elements;
         return this.each(function(){
             var el = this;
-            $.each(elements, function(k, o){
+            $.each($.animation.elements, function(k, o){
                 if (o.element === el) {
-                    stop(k, done);
+                    stopAnimation(k, done);
+                }
+            });
+        });
+    },
+
+    pause: function(){
+        return this.each(function(){
+            var el = this;
+            $.each($.animation.elements, function(k, o){
+                if (o.element === el) {
+                    pauseAnimation(k);
+                }
+            });
+        });
+    },
+
+    resume: function(){
+        return this.each(function(){
+            var el = this;
+            $.each($.animation.elements, function(k, o){
+                if (o.element === el) {
+                    resumeAnimation(k);
                 }
             });
         });
@@ -4358,7 +4510,7 @@ $.init = function(sel, ctx){
             try {
                 [].push.apply(this, document.querySelectorAll(sel));
             } catch (e) {
-                console.error(sel + " is not a valid selector");
+                //console.error(sel + " is not a valid selector");
             }
         } else {
             $.merge(this, parsed);
@@ -4541,7 +4693,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "02/12/2020 19:14:02",
+        compileTime: "06/12/2020 19:07:59",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -4810,7 +4962,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -13460,136 +13612,136 @@ $.noConflict = function() {
         },
 
         standard: {
-            aliceBlue: "#f0f8ff",
-            antiqueWhite: "#faebd7",
+            aliceblue: "#f0f8ff",
+            antiquewhite: "#faebd7",
             aqua: "#00ffff",
             aquamarine: "#7fffd4",
             azure: "#f0ffff",
             beige: "#f5f5dc",
             bisque: "#ffe4c4",
             black: "#000000",
-            blanchedAlmond: "#ffebcd",
+            blanchedalmond: "#ffebcd",
             blue: "#0000ff",
-            blueViolet: "#8a2be2",
+            blueviolet: "#8a2be2",
             brown: "#a52a2a",
-            burlyWood: "#deb887",
-            cadetBlue: "#5f9ea0",
+            burlywood: "#deb887",
+            cadetblue: "#5f9ea0",
             chartreuse: "#7fff00",
             chocolate: "#d2691e",
             coral: "#ff7f50",
-            cornflowerBlue: "#6495ed",
+            cornflowerblue: "#6495ed",
             cornsilk: "#fff8dc",
             crimson: "#dc143c",
             cyan: "#00ffff",
-            darkBlue: "#00008b",
-            darkCyan: "#008b8b",
-            darkGoldenRod: "#b8860b",
-            darkGray: "#a9a9a9",
-            darkGreen: "#006400",
-            darkKhaki: "#bdb76b",
-            darkMagenta: "#8b008b",
-            darkOliveGreen: "#556b2f",
-            darkOrange: "#ff8c00",
-            darkOrchid: "#9932cc",
-            darkRed: "#8b0000",
-            darkSalmon: "#e9967a",
-            darkSeaGreen: "#8fbc8f",
-            darkSlateBlue: "#483d8b",
-            darkSlateGray: "#2f4f4f",
-            darkTurquoise: "#00ced1",
-            darkViolet: "#9400d3",
-            deepPink: "#ff1493",
-            deepSkyBlue: "#00bfff",
-            dimGray: "#696969",
-            dodgerBlue: "#1e90ff",
-            fireBrick: "#b22222",
-            floralWhite: "#fffaf0",
-            forestGreen: "#228b22",
+            darkblue: "#00008b",
+            darkcyan: "#008b8b",
+            darkgoldenrod: "#b8860b",
+            darkgray: "#a9a9a9",
+            darkgreen: "#006400",
+            darkkhaki: "#bdb76b",
+            darkmagenta: "#8b008b",
+            darkolivegreen: "#556b2f",
+            darkorange: "#ff8c00",
+            darkorchid: "#9932cc",
+            darkred: "#8b0000",
+            darksalmon: "#e9967a",
+            darkseagreen: "#8fbc8f",
+            darkslateblue: "#483d8b",
+            darkslategray: "#2f4f4f",
+            darkturquoise: "#00ced1",
+            darkviolet: "#9400d3",
+            deeppink: "#ff1493",
+            deepskyblue: "#00bfff",
+            dimgray: "#696969",
+            dodgerblue: "#1e90ff",
+            firebrick: "#b22222",
+            floralwhite: "#fffaf0",
+            forestgreen: "#228b22",
             fuchsia: "#ff00ff",
             gainsboro: "#DCDCDC",
-            ghostWhite: "#F8F8FF",
+            ghostwhite: "#F8F8FF",
             gold: "#ffd700",
-            goldenRod: "#daa520",
+            goldenrod: "#daa520",
             gray: "#808080",
             green: "#008000",
-            greenYellow: "#adff2f",
-            honeyDew: "#f0fff0",
-            hotPink: "#ff69b4",
-            indianRed: "#cd5c5c",
+            greenyellow: "#adff2f",
+            honeydew: "#f0fff0",
+            hotpink: "#ff69b4",
+            indianred: "#cd5c5c",
             indigo: "#4b0082",
             ivory: "#fffff0",
             khaki: "#f0e68c",
             lavender: "#e6e6fa",
-            lavenderBlush: "#fff0f5",
-            lawnGreen: "#7cfc00",
-            lemonChiffon: "#fffacd",
-            lightBlue: "#add8e6",
-            lightCoral: "#f08080",
-            lightCyan: "#e0ffff",
-            lightGoldenRodYellow: "#fafad2",
-            lightGray: "#d3d3d3",
-            lightGreen: "#90ee90",
-            lightPink: "#ffb6c1",
-            lightSalmon: "#ffa07a",
-            lightSeaGreen: "#20b2aa",
-            lightSkyBlue: "#87cefa",
-            lightSlateGray: "#778899",
-            lightSteelBlue: "#b0c4de",
-            lightYellow: "#ffffe0",
+            lavenderblush: "#fff0f5",
+            lawngreen: "#7cfc00",
+            lemonchiffon: "#fffacd",
+            lightblue: "#add8e6",
+            lightcoral: "#f08080",
+            lightcyan: "#e0ffff",
+            lightgoldenrodyellow: "#fafad2",
+            lightgray: "#d3d3d3",
+            lightgreen: "#90ee90",
+            lightpink: "#ffb6c1",
+            lightsalmon: "#ffa07a",
+            lightseagreen: "#20b2aa",
+            lightskyblue: "#87cefa",
+            lightslategray: "#778899",
+            lightsteelblue: "#b0c4de",
+            lightyellow: "#ffffe0",
             lime: "#00ff00",
-            limeGreen: "#32dc32",
+            limegreen: "#32dc32",
             linen: "#faf0e6",
             magenta: "#ff00ff",
             maroon: "#800000",
-            mediumAquaMarine: "#66cdaa",
-            mediumBlue: "#0000cd",
-            mediumOrchid: "#ba55d3",
-            mediumPurple: "#9370db",
-            mediumSeaGreen: "#3cb371",
-            mediumSlateBlue: "#7b68ee",
-            mediumSpringGreen: "#00fa9a",
-            mediumTurquoise: "#48d1cc",
-            mediumVioletRed: "#c71585",
-            midnightBlue: "#191970",
-            mintCream: "#f5fffa",
-            mistyRose: "#ffe4e1",
+            mediumaquamarine: "#66cdaa",
+            mediumblue: "#0000cd",
+            mediumorchid: "#ba55d3",
+            mediumpurple: "#9370db",
+            mediumseagreen: "#3cb371",
+            mediumslateblue: "#7b68ee",
+            mediumspringgreen: "#00fa9a",
+            mediumturquoise: "#48d1cc",
+            mediumvioletred: "#c71585",
+            midnightblue: "#191970",
+            mintcream: "#f5fffa",
+            mistyrose: "#ffe4e1",
             moccasin: "#ffe4b5",
-            navajoWhite: "#ffdead",
+            navajowhite: "#ffdead",
             navy: "#000080",
-            oldLace: "#fdd5e6",
+            oldlace: "#fdd5e6",
             olive: "#808000",
-            oliveDrab: "#6b8e23",
+            olivedrab: "#6b8e23",
             orange: "#ffa500",
-            orangeRed: "#ff4500",
+            orangered: "#ff4500",
             orchid: "#da70d6",
-            paleGoldenRod: "#eee8aa",
-            paleGreen: "#98fb98",
-            paleTurquoise: "#afeeee",
-            paleVioletRed: "#db7093",
-            papayaWhip: "#ffefd5",
-            peachPuff: "#ffdab9",
+            palegoldenrod: "#eee8aa",
+            palegreen: "#98fb98",
+            paleturquoise: "#afeeee",
+            palevioletred: "#db7093",
+            papayawhip: "#ffefd5",
+            peachpuff: "#ffdab9",
             peru: "#cd853f",
             pink: "#ffc0cb",
             plum: "#dda0dd",
-            powderBlue: "#b0e0e6",
+            powderblue: "#b0e0e6",
             purple: "#800080",
-            rebeccaPurple: "#663399",
+            rebeccapurple: "#663399",
             red: "#ff0000",
-            rosyBrown: "#bc8f8f",
-            royalBlue: "#4169e1",
-            saddleBrown: "#8b4513",
+            rosybrown: "#bc8f8f",
+            royalblue: "#4169e1",
+            saddlebrown: "#8b4513",
             salmon: "#fa8072",
-            sandyBrown: "#f4a460",
-            seaGreen: "#2e8b57",
-            seaShell: "#fff5ee",
+            sandybrown: "#f4a460",
+            seagreen: "#2e8b57",
+            seashell: "#fff5ee",
             sienna: "#a0522d",
             silver: "#c0c0c0",
-            slyBlue: "#87ceeb",
-            slateBlue: "#6a5acd",
-            slateGray: "#708090",
+            slyblue: "#87ceeb",
+            slateblue: "#6a5acd",
+            slategray: "#708090",
             snow: "#fffafa",
-            springGreen: "#00ff7f",
-            steelBlue: "#4682b4",
+            springgreen: "#00ff7f",
+            steelblue: "#4682b4",
             tan: "#d2b48c",
             teal: "#008080",
             thistle: "#d8bfd8",
@@ -13598,9 +13750,9 @@ $.noConflict = function() {
             violet: "#ee82ee",
             wheat: "#f5deb3",
             white: "#ffffff",
-            whiteSmoke: "#f5f5f5",
+            whitesmoke: "#f5f5f5",
             yellow: "#ffff00",
-            yellowGreen: "#9acd32"
+            yellowgreen: "#9acd32"
         },
 
         all: {},
@@ -23142,6 +23294,189 @@ $.noConflict = function() {
         }
     });
 }(Metro, m4q));
+
+/* eslint-disable */
+(function(Metro, $) {
+    'use strict';
+
+    var MarqueeDefaultConfig = {
+        items: null,
+        backgroundColor: "#fff",
+        color: "#000",
+        borderSize: 0,
+        borderColor: "transparent",
+        loop: true,
+        height: 100,
+        width: "auto",
+        speed: 3000,
+        direction: "left",
+        ease: "linear",
+        mode: "default", // default || accent
+
+        clsMarquee: "",
+        clsMarqueeItem: "",
+
+        onMarqueeStart: Metro.noop,
+        onMarqueeEnd: Metro.noop,
+        onMarqueeCreate: Metro.noop
+    };
+
+    Metro.marqueeSetup = function (options) {
+        MarqueeDefaultConfig = $.extend({}, MarqueeDefaultConfig, options);
+    };
+
+    if (typeof window["metroMarqueeSetup"] !== undefined) {
+        Metro.marqueeSetup(window["metroMarqueeSetup"]);
+    }
+
+    Metro.Component('marquee', {
+        init: function( options, elem ) {
+            this._super(elem, options, MarqueeDefaultConfig, {
+                // define instance vars here
+                items: [],
+                running: false,
+                current: -1
+            });
+            return this;
+        },
+
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent('marquee-create');
+        },
+
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+            var dir = o.direction.toLowerCase(), items, Utils = Metro.utils;
+
+            element.addClass("marquee").addClass(o.clsMarquee);
+
+            element.css({
+                height: o.height,
+                width: o.width,
+                backgroundColor: Metro.colors.isColor(o.backgroundColor) ? o.backgroundColor : MarqueeDefaultConfig.backgroundColor,
+                color: Metro.colors.isColor(o.color) ? o.color : MarqueeDefaultConfig.color,
+                borderStyle: "solid",
+                borderWidth: o.borderSize,
+                borderColor: Metro.colors.isColor(o.borderColor) ? o.borderColor : MarqueeDefaultConfig.borderColor
+            });
+
+            if (o.items) {
+                items = Utils.isObject(o.items);
+                if (items !== false) {
+                    $.each(items, function(){
+                        var el = $(this);
+
+                        if (el.length)
+                            el.appendTo(element);
+                        else
+                            element.append( $("<div>").html(this) );
+                    })
+                }
+            }
+
+            this.items = element.children("*").addClass("marquee__item").addClass(o.clsMarqueeItem).items();
+
+            if (dir === "left" || dir === "right") {
+                $(this.items).addClass("moveLeftRight");
+            } else {
+                $(this.items).addClass("moveUpDown");
+            }
+
+            if (this.items.length) {
+                this.current = 0;
+            }
+
+            if (this.items.length) this.start();
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+            element.on(Metro.events.enter, function(){
+                $.pauseAll(that.items);
+            })
+
+            element.on(Metro.events.leave, function(){
+                $.resumeAll(that.items);
+            })
+        },
+
+        start: function(){
+            var that = this, element = this.element, o = this.options;
+            var chain = [], dir = o.direction.toLowerCase(), mode = o.mode.toLowerCase();
+            var draw = {}, magic = 20;
+            var ease = o.ease.toArray(",");
+
+            if (mode === "default") {
+                $.each(this.items, function (i) {
+                    if (["left", "right"].indexOf(dir) > -1) {
+                        draw = {
+                            left: dir === "left" ? [element.width(), -$(this).width() - magic] : [-$(this).width() - magic, element.width()]
+                        }
+                    } else {
+                        draw = {
+                            top: dir === "up" ? [element.height(), -$(this).height() - magic] : [-$(this).height() - magic, element.height()]
+                        }
+                    }
+
+                    chain.push({
+                        el: this,
+                        draw: draw,
+                        dur: +$(this).attr("data-speed") || o.speed,
+                        ease: "linear",
+                        defer: i === 0 ? 1000 : 0
+                    });
+                });
+            } else {
+                $.each(this.items, function(i){
+                    var half;
+
+                    half = element.width() / 2 - $(this).width() / 2;
+
+                    chain.push({
+                        el: this,
+                        draw: {
+                            left: [element.width(), half]
+                        },
+                        dur: (+$(this).attr("data-speed") || o.speed) / 2,
+                        ease: ease[0] || "linear"
+                    });
+                    chain.push({
+                        el: this,
+                        draw: {
+                            left: [half, -$(this).width() - magic]
+                        },
+                        dur: (+$(this).attr("data-speed") || o.speed) / 2,
+                        ease: ease[1] ? ease[1] : ease[0] ? ease[0] : "linear",
+                        defer: 2000
+                    });
+                });
+            }
+
+            this.running = true;
+
+            $.chain(chain, o.loop);
+        },
+
+        stop: function(){
+            this.running = false;
+            $.stopAll(this.items);
+        },
+
+        changeAttribute: function(attr, newValue){
+        },
+
+        destroy: function(){
+            this.element.remove();
+        }
+    });
+}(Metro, m4q));
+/* eslint-enable */
 
 (function(Metro, $) {
     'use strict';
