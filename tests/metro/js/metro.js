@@ -23316,8 +23316,6 @@ $.noConflict = function() {
         clsMarquee: "",
         clsMarqueeItem: "",
 
-        onMarqueeStart: Metro.noop,
-        onMarqueeEnd: Metro.noop,
         onMarqueeCreate: Metro.noop
     };
 
@@ -23409,11 +23407,13 @@ $.noConflict = function() {
         start: function(){
             var that = this, element = this.element, o = this.options;
             var chain = [], dir = o.direction.toLowerCase(), mode = o.mode.toLowerCase();
-            var draw = {}, magic = 20;
+            var magic = 20;
             var ease = o.ease.toArray(",");
 
             if (mode === "default") {
                 $.each(this.items, function (i) {
+                    var draw;
+
                     if (["left", "right"].indexOf(dir) > -1) {
                         draw = {
                             left: dir === "left" ? [element.width(), -$(this).width() - magic] : [-$(this).width() - magic, element.width()]
@@ -23434,23 +23434,36 @@ $.noConflict = function() {
                 });
             } else {
                 $.each(this.items, function(i){
-                    var half;
+                    var half, draw1, draw2;
 
-                    half = element.width() / 2 - $(this).width() / 2;
+                    if (["left", "right"].indexOf(dir) > -1) {
+                        half = element.width() / 2 - $(this).width() / 2;
+                        draw1 = {
+                            left: dir === "left" ? [element.width(), half] : [-$(this).width() - magic, half]
+                        }
+                        draw2 = {
+                            left: dir === "left" ? [half, -$(this).width() - magic] : [half, element.width() + magic]
+                        }
+                    } else {
+                        half = element.height() / 2 - $(this).height() / 2;
+                        draw1 = {
+                            top: dir === "up" ? [element.height(), half] : [-$(this).height() - magic, half]
+                        }
+                        draw2 = {
+                            top: dir === "up" ? [half, -$(this).height() - magic] : [half, element.height() + magic]
+                        }
+                    }
 
                     chain.push({
                         el: this,
-                        draw: {
-                            left: [element.width(), half]
-                        },
+                        draw: draw1,
                         dur: (+$(this).attr("data-speed") || o.speed) / 2,
-                        ease: ease[0] || "linear"
+                        ease: ease[0] || "linear",
+                        defer: i === 0 ? 1000 : 0
                     });
                     chain.push({
                         el: this,
-                        draw: {
-                            left: [half, -$(this).width() - magic]
-                        },
+                        draw: draw2,
                         dur: (+$(this).attr("data-speed") || o.speed) / 2,
                         ease: ease[1] ? ease[1] : ease[0] ? ease[0] : "linear",
                         defer: 2000
