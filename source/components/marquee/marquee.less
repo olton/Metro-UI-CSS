@@ -1,0 +1,31 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.marquee {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  min-height: 100px;
+  background-color: @white;
+}
+
+.marquee {
+  .marquee__item {
+    display: block;
+    position: absolute;
+    white-space: nowrap;
+    color: inherit;
+
+    &.moveLeftRight {
+      top: 50%;
+      transform: translateY(-50%);
+      left: ~"calc(100% + 20px)";
+    }
+
+    &.moveUpDown {
+      left: 50%;
+      transform: translateX(-50%);
+      top: ~"calc(100% + 20px)";
+    }
+  }
+}

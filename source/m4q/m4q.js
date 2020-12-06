@@ -621,7 +621,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 20/11/2020 16:00:02";
+var m4qVersion = "v1.0.10. Built at 06/12/2020 19:06:36";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -3104,7 +3104,7 @@ $.fn.extend({
 
 // Source: src/animation.js
 
-/* global $, not, camelCase, parseUnit, Promise, getUnit */
+/* global $, not, camelCase, parseUnit, Promise, getUnit, matches */
 
 $.extend({
     animation: {
@@ -3520,15 +3520,24 @@ var defaultAnimationProps = {
     pause: 0,
     dir: "normal",
     defer: 0,
+    onStart: function(){},
+    onStop: function(){},
+    onStopAll: function(){},
+    onPause: function(){},
+    onPauseAll: function(){},
+    onResume: function(){},
+    onResumeAll: function(){},
     onFrame: function(){},
     onDone: function(){}
 };
 
 function animate(args){
     return new Promise(function(resolve){
-        var that = this, start;
+        var that = this;
         var props = $.assign({}, defaultAnimationProps, {dur: $.animation.duration, ease: $.animation.ease}, args);
-        var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop, onFrame = props.onFrame, onDone = props.onDone, pause = props.pause, dir = props.dir, defer = props.defer;
+        var id = props.id, el = props.el, draw = props.draw, dur = props.dur, ease = props.ease, loop = props.loop,
+            onStart = props.onStart, onFrame = props.onFrame, onDone = props.onDone,
+            pauseStart = props.pause, dir = props.dir, defer = props.defer;
         var map = {};
         var easeName = "linear", easeArgs = [], easeFn = Easing.linear, matchArgs;
         var direction = dir === "alternate" ? "normal" : dir;
@@ -3571,15 +3580,25 @@ function animate(args){
             id: null,
             stop: 0,
             pause: 0,
-            loop: 0
+            loop: 0,
+            t: -1,
+            started: 0,
+            paused: 0
         };
 
         var play = function() {
             if (typeof draw === "object") {
                 map = createAnimationMap(el, draw, direction);
             }
-            start = performance.now();
+
+            if (typeof onStart === "function") {
+                onStart.apply(el);
+            }
+
+            // start = performance.now();
             $.animation.elements[animationID].loop += 1;
+            $.animation.elements[animationID].started = performance.now();
+            $.animation.elements[animationID].duration = dur;
             $.animation.elements[animationID].id = requestAnimationFrame(animate);
         };
 
@@ -3597,38 +3616,46 @@ function animate(args){
         var animate = function(time) {
             var p, t;
             var stop = $.animation.elements[animationID].stop;
+            var pause = $.animation.elements[animationID].pause;
+            var start = $.animation.elements[animationID].started;
 
-            if ( stop > 0) {
-                if (stop === 2) {
-                    if (typeof draw === "function") {
-
-                        draw.bind(el)(1, 1);
-
-                    } else {
-
-                        applyProps(el, map, 1);
-
-                    }
-                }
-                done();
-                return;
+            if ($.animation.elements[animationID].paused) {
+                start = time - $.animation.elements[animationID].t * dur;
+                $.animation.elements[animationID].started = start;
             }
 
-            t = (time - start) / dur;
+            t = ((time - start) / dur).toFixed(4);
 
             if (t > 1) t = 1;
             if (t < 0) t = 0;
 
             p = easeFn.apply(null, easeArgs)(t);
 
+            $.animation.elements[animationID].t = t;
+            $.animation.elements[animationID].p = p;
+
+            if (pause) {
+                $.animation.elements[animationID].id = requestAnimationFrame(animate);
+                // $.animation.elements[animationID].started = performance.now();
+                return;
+            }
+
+            if ( stop > 0) {
+                if (stop === 2) {
+                    if (typeof draw === "function") {
+                        draw.bind(el)(1, 1);
+                    } else {
+                        applyProps(el, map, 1);
+                    }
+                }
+                done();
+                return;
+            }
+
             if (typeof draw === "function") {
-
                 draw.bind(el)(t, p);
-
             } else {
-
                 applyProps(el, map, p);
-
             }
 
             if (typeof onFrame === 'function') {
@@ -3648,12 +3675,12 @@ function animate(args){
                     if (typeof loop === "boolean") {
                         setTimeout(function () {
                             play();
-                        }, pause);
+                        }, pauseStart);
                     } else {
                         if (loop > $.animation.elements[animationID].loop) {
                             setTimeout(function () {
                                 play();
-                            }, pause);
+                            }, pauseStart);
                         } else {
                             done();
                         }
@@ -3679,13 +3706,112 @@ function animate(args){
     });
 }
 
-/* eslint-disable */
-function stop(id, done){
+// Stop animation
+function stopAnimation(id, done){
+    var an = $.animation.elements[id];
+
+    if (typeof an === "undefined") {
+        return ;
+    }
+
     if (not(done)) {
         done = true;
     }
-    $.animation.elements[id].stop = done === true ? 2 : 1;
+
+    an.stop = done === true ? 2 : 1;
+
+    if (typeof an.onStop === "function") {
+        an.onStop.apply(an.element);
+    }
 }
+
+function stopAnimationAll(done, filter){
+    $.each($.animation.elements, function(k, v){
+        if (filter) {
+            if (typeof filter === "string") {
+                if (matches.call(v.element, filter)) stopAnimation(k, done);
+            } else if (filter.length) {
+                $.each(filter, function(){
+                    if (v.element === this) stopAnimation(k, done);
+                });
+            } else if (filter instanceof Element) {
+                if (v.element === filter) stopAnimation(k, done);
+            }
+        } else {
+            stopAnimation(k, done);
+        }
+    });
+}
+// end of stop
+
+// Pause and resume animation
+function pauseAnimation(id){
+    var an = $.animation.elements[id];
+
+    if (typeof an === "undefined") {
+        return ;
+    }
+
+    an.pause = 1;
+    an.paused = performance.now();
+
+    if (typeof an.onPause === "function") {
+        an.onPause.apply(an.element);
+    }
+}
+
+function pauseAnimationAll(filter){
+    $.each($.animation.elements, function(k, v){
+        if (filter) {
+            if (typeof filter === "string") {
+                if (matches.call(v.element, filter)) pauseAnimation(k);
+            } else if (filter.length) {
+                $.each(filter, function(){
+                    if (v.element === this) pauseAnimation(k);
+                });
+            } else if (filter instanceof Element) {
+                if (v.element === filter) pauseAnimation(k);
+            }
+        } else {
+            pauseAnimation(k);
+        }
+    });
+}
+// end of pause
+
+function resumeAnimation(id){
+    var an = $.animation.elements[id];
+
+    if (typeof an === "undefined") {
+        return ;
+    }
+
+    an.pause = 0;
+    an.paused = 0;
+
+    if (typeof an.onResume === "function") {
+        an.onResume.apply(an.element);
+    }
+}
+
+function resumeAnimationAll(filter){
+    $.each($.animation.elements, function(k, v){
+        if (filter) {
+            if (typeof filter === "string") {
+                if (matches.call(v.element, filter)) resumeAnimation(k);
+            } else if (filter.length) {
+                $.each(filter, function(){
+                    if (v.element === this) resumeAnimation(k);
+                });
+            } else if (filter instanceof Element) {
+                if (v.element === filter) resumeAnimation(k);
+            }
+        } else {
+            resumeAnimation(k);
+        }
+    });
+}
+
 /* eslint-enable */
 
 function chain(arr, loop){
@@ -3750,8 +3876,13 @@ $.extend({
 
         return animate(args);
     },
-    stop: stop,
-    chain: chain
+    chain: chain,
+    stop: stopAnimation,
+    stopAll: stopAnimationAll,
+    resume: resumeAnimation,
+    resumeAll: resumeAnimationAll,
+    pause: pauseAnimation,
+    pauseAll: pauseAnimationAll
 });
 
 $.fn.extend({
@@ -3841,12 +3972,33 @@ $.fn.extend({
      * @returns {this}
      */
     stop: function(done){
-        var elements = $.animation.elements;
         return this.each(function(){
             var el = this;
-            $.each(elements, function(k, o){
+            $.each($.animation.elements, function(k, o){
                 if (o.element === el) {
-                    stop(k, done);
+                    stopAnimation(k, done);
+                }
+            });
+        });
+    },
+
+    pause: function(){
+        return this.each(function(){
+            var el = this;
+            $.each($.animation.elements, function(k, o){
+                if (o.element === el) {
+                    pauseAnimation(k);
+                }
+            });
+        });
+    },
+
+    resume: function(){
+        return this.each(function(){
+            var el = this;
+            $.each($.animation.elements, function(k, o){
+                if (o.element === el) {
+                    resumeAnimation(k);
                 }
             });
         });
@@ -4359,7 +4511,7 @@ $.init = function(sel, ctx){
             try {
                 [].push.apply(this, document.querySelectorAll(sel));
             } catch (e) {
-                console.error(sel + " is not a valid selector");
+                //console.error(sel + " is not a valid selector");
             }
         } else {
             $.merge(this, parsed);
