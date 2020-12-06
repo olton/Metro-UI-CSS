@@ -16,6 +16,7 @@
         direction: "left",
         ease: "linear",
         mode: "default", // default || accent
+        stopOnHover: true,
 
         clsMarquee: "",
         clsMarqueeItem: "",
@@ -100,11 +101,13 @@
             var that = this, element = this.element, o = this.options;
 
             element.on(Metro.events.enter, function(){
-                $.pauseAll(that.items);
+                if (o.stopOnHover)
+                    $.pauseAll(that.items);
             })
 
             element.on(Metro.events.leave, function(){
-                $.resumeAll(that.items);
+                if (o.stopOnHover)
+                    $.resumeAll(that.items);
             })
         },
 
