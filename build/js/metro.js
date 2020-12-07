@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/12/2020 12:41:51
+ * Built at 07/12/2020 14:32:19
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4693,7 +4693,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "07/12/2020 12:41:51",
+        compileTime: "07/12/2020 14:32:19",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -23306,13 +23306,14 @@ $.noConflict = function() {
         borderSize: 0,
         borderColor: "transparent",
         loop: true,
-        height: 100,
+        height: "auto",
         width: "auto",
-        speed: 3000,
+        speed: 10000,
         direction: "left",
         ease: "linear",
         mode: "default", // default || accent
         accentPause: 2000,
+        firstPause: 1000,
         stopOnHover: false,
 
         clsMarquee: "",
@@ -23444,7 +23445,7 @@ $.noConflict = function() {
                         draw: draw,
                         dur: +$(this).attr("data-speed") || o.speed,
                         ease: "linear",
-                        defer: i === 0 ? 1000 : 0
+                        defer: i === 0 ? +o.firstPause : 0
                     });
                 });
             } else {
@@ -23474,7 +23475,7 @@ $.noConflict = function() {
                         draw: draw1,
                         dur: (+$(this).attr("data-speed") || o.speed) / 2,
                         ease: ease[0] || "linear",
-                        defer: i === 0 ? 1000 : 0
+                        defer: i === 0 ? +o.firstPause : 0
                     });
                     chain.push({
                         el: this,

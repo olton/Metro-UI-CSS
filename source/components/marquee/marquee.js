@@ -10,13 +10,14 @@
         borderSize: 0,
         borderColor: "transparent",
         loop: true,
-        height: 100,
+        height: "auto",
         width: "auto",
-        speed: 3000,
+        speed: 10000,
         direction: "left",
         ease: "linear",
         mode: "default", // default || accent
         accentPause: 2000,
+        firstPause: 1000,
         stopOnHover: false,
 
         clsMarquee: "",
@@ -148,7 +149,7 @@
                         draw: draw,
                         dur: +$(this).attr("data-speed") || o.speed,
                         ease: "linear",
-                        defer: i === 0 ? 1000 : 0
+                        defer: i === 0 ? +o.firstPause : 0
                     });
                 });
             } else {
@@ -178,7 +179,7 @@
                         draw: draw1,
                         dur: (+$(this).attr("data-speed") || o.speed) / 2,
                         ease: ease[0] || "linear",
-                        defer: i === 0 ? 1000 : 0
+                        defer: i === 0 ? +o.firstPause : 0
                     });
                     chain.push({
                         el: this,
