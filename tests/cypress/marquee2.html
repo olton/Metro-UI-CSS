@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Marquee - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <script>
+        var arr = [
+            'Hi Mike Webster!',
+            'This is a alpha demo of Marquee',
+            'Marquee support different directions',
+            'You can define colors for marquee',
+            'Use accent mode to accenting'
+        ];
+    </script>
+</head>
+<body class="m4-cloak h-vh-100">
+<div class="container h-100 d-flex flex-justify-center flex-align-center flex-column">
+    <h1 class="text-center">Marquee use accent mode<br>and ease functions</h1>
+    <div class="w-100 mt-20"
+         data-role="marquee"
+         data-speed="3000"
+         data-accent-pause="3000"
+         data-direction="right"
+         data-height="auto"
+         data-mode="accent"
+         data-ease="easeOutExpo, easeInExpo"
+    >
+        <img src="../images/car.png" style="height: 100px;">
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(function(){
+    })
+</script>
+</body>
+</html>

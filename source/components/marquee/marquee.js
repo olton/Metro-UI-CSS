@@ -16,7 +16,8 @@
         direction: "left",
         ease: "linear",
         mode: "default", // default || accent
-        stopOnHover: true,
+        accentPause: 2000,
+        stopOnHover: false,
 
         clsMarquee: "",
         clsMarqueeItem: "",
@@ -55,6 +56,7 @@
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
             var dir = o.direction.toLowerCase(), items, Utils = Metro.utils;
+            var h;
 
             element.addClass("marquee").addClass(o.clsMarquee);
 
@@ -88,6 +90,16 @@
                 $(this.items).addClass("moveLeftRight");
             } else {
                 $(this.items).addClass("moveUpDown");
+            }
+
+            if (o.height === "auto") {
+                h = 0;
+                $(this.items).each(function(){
+                    if ( +$(this).outerHeight(true) > h) {
+                        h = +$(this).outerHeight(true);
+                    }
+                });
+                element.height(h);
             }
 
             if (this.items.length) {
@@ -173,7 +185,7 @@
                         draw: draw2,
                         dur: (+$(this).attr("data-speed") || o.speed) / 2,
                         ease: ease[1] ? ease[1] : ease[0] ? ease[0] : "linear",
-                        defer: 2000
+                        defer: +o.accentPause
                     });
                 });
             }
