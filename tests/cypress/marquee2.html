@@ -18,6 +18,9 @@
          data-height="auto"
          data-mode="accent"
          data-ease="easeOutExpo, easeInExpo"
+         data-on-marquee-item="item"
+         data-on-marquee-item-complete="itemComplete"
+         data-on-marquee-complete="complete"
     >
         <img src="../images/car.png" style="height: 100px;">
     </div>
@@ -25,8 +28,15 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
-    $(function(){
-    })
+    function item(){
+        console.log("item started");
+    }
+    function itemComplete(){
+        console.log("item complete");
+    }
+    function complete(){
+        console.log("complete");
+    }
 </script>
 </body>
 </html>

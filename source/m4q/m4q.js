@@ -621,7 +621,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 06/12/2020 19:06:36";
+var m4qVersion = "v1.0.10. Built at 08/12/2020 00:01:48";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -3814,8 +3814,20 @@ function resumeAnimationAll(filter){
 
 /* eslint-enable */
 
-function chain(arr, loop){
-    if (not(loop)) loop = false;
+var defaultChainOptions = {
+    loop: false,
+    onChainItem: null,
+    onChainItemComplete: null,
+    onChainComplete: null
+}
+
+function chain(arr, opt){
+    var o = $.extend({}, defaultChainOptions, opt);
+
+    if (typeof o.loop !== "boolean") {
+        o.loop--;
+    }
+
     if (!Array.isArray(arr)) {
         console.warn("Chain array is not defined!");
         return false;
@@ -3823,18 +3835,24 @@ function chain(arr, loop){
 
     var reducer = function(acc, item){
         return acc.then(function(){
-            return animate(item);
+            if (typeof o["onChainItem"] === "function") {
+                o["onChainItem"](item);
+            }
+            return animate(item).then(function(){
+                if (typeof o["onChainItemComplete"] === "function") {
+                    o["onChainItemComplete"](item);
+                }
+            });
         });
     };
 
     arr.reduce(reducer, Promise.resolve()).then(function(){
-        if (loop) {
-            if (typeof loop === "boolean") {
-                chain(arr, loop);
-            } else {
-                loop--;
-                chain(arr, loop);
-            }
+        if (typeof o["onChainComplete"] === "function") {
+            o["onChainComplete"]();
+        }
+
+        if (o.loop) {
+            chain(arr, o);
         }
     });
 }

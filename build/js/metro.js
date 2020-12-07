@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 07/12/2020 18:14:09
+ * Built at 08/12/2020 00:26:09
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -620,7 +620,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 06/12/2020 19:06:36";
+var m4qVersion = "v1.0.10. Built at 08/12/2020 00:01:48";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -3813,8 +3813,20 @@ function resumeAnimationAll(filter){
 
 /* eslint-enable */
 
-function chain(arr, loop){
-    if (not(loop)) loop = false;
+var defaultChainOptions = {
+    loop: false,
+    onChainItem: null,
+    onChainItemComplete: null,
+    onChainComplete: null
+}
+
+function chain(arr, opt){
+    var o = $.extend({}, defaultChainOptions, opt);
+
+    if (typeof o.loop !== "boolean") {
+        o.loop--;
+    }
+
     if (!Array.isArray(arr)) {
         console.warn("Chain array is not defined!");
         return false;
@@ -3822,18 +3834,24 @@ function chain(arr, loop){
 
     var reducer = function(acc, item){
         return acc.then(function(){
-            return animate(item);
+            if (typeof o["onChainItem"] === "function") {
+                o["onChainItem"](item);
+            }
+            return animate(item).then(function(){
+                if (typeof o["onChainItemComplete"] === "function") {
+                    o["onChainItemComplete"](item);
+                }
+            });
         });
     };
 
     arr.reduce(reducer, Promise.resolve()).then(function(){
-        if (loop) {
-            if (typeof loop === "boolean") {
-                chain(arr, loop);
-            } else {
-                loop--;
-                chain(arr, loop);
-            }
+        if (typeof o["onChainComplete"] === "function") {
+            o["onChainComplete"]();
+        }
+
+        if (o.loop) {
+            chain(arr, o);
         }
     });
 }
@@ -4693,7 +4711,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "07/12/2020 18:14:09",
+        compileTime: "08/12/2020 00:26:09",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -23319,6 +23337,9 @@ $.noConflict = function() {
         clsMarquee: "",
         clsMarqueeItem: "",
 
+        onMarqueeItem: Metro.noop,
+        onMarqueeItemComplete: Metro.noop,
+        onMarqueeComplete: Metro.noop,
         onMarqueeCreate: Metro.noop
     };
 
@@ -23351,7 +23372,7 @@ $.noConflict = function() {
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var dir = o.direction.toLowerCase(), items, Utils = Metro.utils;
             var h;
 
@@ -23421,10 +23442,11 @@ $.noConflict = function() {
         },
 
         start: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var chain = [], dir = o.direction.toLowerCase(), mode = o.mode.toLowerCase();
             var magic = 20;
             var ease = o.ease.toArray(",");
+            var Utils = Metro.utils;
 
             if (mode === "default") {
                 $.each(this.items, function (i) {
@@ -23491,7 +23513,12 @@ $.noConflict = function() {
 
             this.running = true;
 
-            $.chain(chain, o.loop);
+            $.chain(chain, {
+                loop: o.loop,
+                onChainItem: Metro.utils.isFunc(o.onMarqueeItem),
+                onChainItemComplete: Metro.utils.isFunc(o.onMarqueeItemComplete),
+                onChainComplete: Metro.utils.isFunc(o.onMarqueeComplete)
+            });
         },
 
         stop: function(){

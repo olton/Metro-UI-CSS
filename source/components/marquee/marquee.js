@@ -23,6 +23,9 @@
         clsMarquee: "",
         clsMarqueeItem: "",
 
+        onMarqueeItem: Metro.noop,
+        onMarqueeItemComplete: Metro.noop,
+        onMarqueeComplete: Metro.noop,
         onMarqueeCreate: Metro.noop
     };
 
@@ -55,7 +58,7 @@
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var dir = o.direction.toLowerCase(), items, Utils = Metro.utils;
             var h;
 
@@ -125,10 +128,11 @@
         },
 
         start: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var chain = [], dir = o.direction.toLowerCase(), mode = o.mode.toLowerCase();
             var magic = 20;
             var ease = o.ease.toArray(",");
+            var Utils = Metro.utils;
 
             if (mode === "default") {
                 $.each(this.items, function (i) {
@@ -195,7 +199,12 @@
 
             this.running = true;
 
-            $.chain(chain, o.loop);
+            $.chain(chain, {
+                loop: o.loop,
+                onChainItem: Metro.utils.isFunc(o.onMarqueeItem),
+                onChainItemComplete: Metro.utils.isFunc(o.onMarqueeItemComplete),
+                onChainComplete: Metro.utils.isFunc(o.onMarqueeComplete)
+            });
         },
 
         stop: function(){
