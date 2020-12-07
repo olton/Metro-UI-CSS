@@ -3,9 +3,6 @@ import '../../../build/js/metro';
 const locales = Metro.locales;
 
 describe("Metro 4 :: i18n", () => {
-    it('Test cn-ZH', ()=>{
-        assert.equal(locales['cn-ZH'].buttons.reset, "重啟");
-    });
     it('Test de-DE', ()=>{
         assert.equal(locales['de-DE'].buttons.reset, "Zurücksetzen");
     });
@@ -30,10 +27,13 @@ describe("Metro 4 :: i18n", () => {
     it('Test ru-RU', ()=>{
         assert.equal(locales['ru-RU'].buttons.reset, "Сброс");
     });
-    it('Test tw-ZH', ()=>{
-        assert.equal(locales['tw-ZH'].buttons.reset, "重啟");
-    });
     it('Test uk-UA', ()=>{
         assert.equal(locales['uk-UA'].buttons.reset, "Скинути");
+    });
+    it('Test zh-TW', ()=>{
+        assert.equal(locales['zh-TW'].buttons.reset, "重啟");
+    });
+    it('Test zh-CN', ()=>{
+        assert.equal(locales['zh-CN'].buttons.reset, "重啟");
     });
 });
