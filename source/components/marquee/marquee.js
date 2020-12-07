@@ -12,7 +12,7 @@
         loop: true,
         height: "auto",
         width: "auto",
-        speed: 10000,
+        duration: 10000,
         direction: "left",
         ease: "linear",
         mode: "default", // default || accent
@@ -133,6 +133,7 @@
             if (mode === "default") {
                 $.each(this.items, function (i) {
                     var draw;
+                    var dur = +$(this).attr("data-duration") || o.duration
 
                     if (["left", "right"].indexOf(dir) > -1) {
                         draw = {
@@ -147,7 +148,7 @@
                     chain.push({
                         el: this,
                         draw: draw,
-                        dur: +$(this).attr("data-speed") || o.speed,
+                        dur: dur,
                         ease: "linear",
                         defer: i === 0 ? +o.firstPause : 0
                     });
@@ -155,6 +156,7 @@
             } else {
                 $.each(this.items, function(i){
                     var half, draw1, draw2;
+                    var dur = (+$(this).attr("data-duration") || o.duration) / 2;
 
                     if (["left", "right"].indexOf(dir) > -1) {
                         half = element.width() / 2 - $(this).width() / 2;
@@ -177,14 +179,14 @@
                     chain.push({
                         el: this,
                         draw: draw1,
-                        dur: (+$(this).attr("data-speed") || o.speed) / 2,
+                        dur: dur,
                         ease: ease[0] || "linear",
                         defer: i === 0 ? +o.firstPause : 0
                     });
                     chain.push({
                         el: this,
                         draw: draw2,
-                        dur: (+$(this).attr("data-speed") || o.speed) / 2,
+                        dur: dur,
                         ease: ease[1] ? ease[1] : ease[0] ? ease[0] : "linear",
                         defer: +o.accentPause
                     });
