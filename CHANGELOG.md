@@ -39,6 +39,7 @@
 + [x] Tag input: added closing autocomplete list on user click outside.
 + [x] Window: fixed holds zIndex when draggable, issue #1689
 + [x] Marquee: added new component
++ [x] i18n: fixed a chinese locales name, issue #1691
 
 ### 4.4.2
 #### Metro 4
