@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/12/2020 00:26:09
+ * Built at 08/12/2020 19:55:08
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4711,7 +4711,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "08/12/2020 00:26:09",
+        compileTime: "08/12/2020 19:55:08",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -15203,7 +15203,7 @@ $.noConflict = function() {
         countdownDeferred: 0,
         stopOnBlur: true,
         animate: "none",
-        animationFunc: "linear",
+        ease: "linear",
         inputFormat: null,
         locale: METRO_LOCALE,
         days: 0,
@@ -15479,7 +15479,7 @@ $.noConflict = function() {
         draw: function(part, value){
             var element = this.element, o = this.options;
             var digits, digits_length, digit_value, digit_current, digit;
-            var len, i, duration = 900;
+            var len, i, duration = 600;
 
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
@@ -15498,7 +15498,7 @@ $.noConflict = function() {
                             opacity: 0
                         },
                         dur: duration,
-                        ease: o.animationFunc,
+                        ease: o.ease,
                         onDone: function(){
                             $(this).remove();
                         }
@@ -15512,7 +15512,7 @@ $.noConflict = function() {
                             opacity: 1
                         },
                         dur: duration,
-                        ease: o.animationFunc
+                        ease: o.ease
                     });
             };
 
@@ -15531,7 +15531,7 @@ $.noConflict = function() {
                             opacity: 0
                         },
                         dur: duration / 2,
-                        ease: o.animationFunc,
+                        ease: o.ease,
                         onDone: function(){
                             $(this).remove();
                         }
@@ -15544,7 +15544,7 @@ $.noConflict = function() {
                             opacity: 1
                         },
                         dur: duration,
-                        ease: o.animationFunc
+                        ease: o.ease
                     });
             };
 
@@ -15568,7 +15568,7 @@ $.noConflict = function() {
                             fontSize: 0
                         },
                         dur: duration,
-                        ease: o.animationFunc,
+                        ease: o.ease,
                         onDone: function(){
                             $(this).remove();
                         }
@@ -15583,7 +15583,7 @@ $.noConflict = function() {
                             fontSize: [0, fs]
                         },
                         dur: duration,
-                        ease: o.animationFunc
+                        ease: o.ease
                     });
             };
 
