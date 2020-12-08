@@ -40,6 +40,7 @@
 + [x] Window: fixed holds zIndex when draggable, issue #1689
 + [x] Marquee: added new component
 + [x] i18n: fixed a chinese locales name, issue #1691
++ [x] Countdown: changed prop name `data-animate-func` to `data-ease`
 
 ### 4.4.2
 #### Metro 4

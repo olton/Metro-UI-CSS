@@ -6,7 +6,7 @@
         countdownDeferred: 0,
         stopOnBlur: true,
         animate: "none",
-        animationFunc: "linear",
+        ease: "linear",
         inputFormat: null,
         locale: METRO_LOCALE,
         days: 0,
@@ -282,7 +282,7 @@
         draw: function(part, value){
             var element = this.element, o = this.options;
             var digits, digits_length, digit_value, digit_current, digit;
-            var len, i, duration = 900;
+            var len, i, duration = 600;
 
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
@@ -301,7 +301,7 @@
                             opacity: 0
                         },
                         dur: duration,
-                        ease: o.animationFunc,
+                        ease: o.ease,
                         onDone: function(){
                             $(this).remove();
                         }
@@ -315,7 +315,7 @@
                             opacity: 1
                         },
                         dur: duration,
-                        ease: o.animationFunc
+                        ease: o.ease
                     });
             };
 
@@ -334,7 +334,7 @@
                             opacity: 0
                         },
                         dur: duration / 2,
-                        ease: o.animationFunc,
+                        ease: o.ease,
                         onDone: function(){
                             $(this).remove();
                         }
@@ -347,7 +347,7 @@
                             opacity: 1
                         },
                         dur: duration,
-                        ease: o.animationFunc
+                        ease: o.ease
                     });
             };
 
@@ -371,7 +371,7 @@
                             fontSize: 0
                         },
                         dur: duration,
-                        ease: o.animationFunc,
+                        ease: o.ease,
                         onDone: function(){
                             $(this).remove();
                         }
@@ -386,7 +386,7 @@
                             fontSize: [0, fs]
                         },
                         dur: duration,
-                        ease: o.animationFunc
+                        ease: o.ease
                     });
             };
 
