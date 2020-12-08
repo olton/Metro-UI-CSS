@@ -7,6 +7,7 @@
         stopOnBlur: true,
         animate: "none",
         ease: "linear",
+        duration: 600,
         inputFormat: null,
         locale: METRO_LOCALE,
         days: 0,
@@ -54,7 +55,8 @@
                     d: 0, h: 0, m: 0, s: 0
                 },
                 inactiveTab: false,
-                id: Utils.elementId("countdown")
+                id: Utils.elementId("countdown"),
+                duration: 600
             });
 
             return this;
@@ -64,6 +66,8 @@
             var o = this.options;
 
             this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+            this.duration = (+o.duration <= 0 || +o.duration >= 1000) ? 600 : +o.duration;
 
             this._build();
             this._createEvents();
@@ -282,7 +286,7 @@
         draw: function(part, value){
             var element = this.element, o = this.options;
             var digits, digits_length, digit_value, digit_current, digit;
-            var len, i, duration = 600;
+            var len, i, duration = this.duration;
 
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
@@ -539,10 +543,11 @@
             this.i18n(locale);
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        changeAttribute: function(attr, newVal){
+            switch (attr) {
                 case "data-pause": this.togglePlay(); break;
-                case "data-locale": this.changeAttrLocale(); break;
+                case "data-locale": this.i18n(newVal); break;
+                case "data-duration": this.duration = +newVal <= 0 || +newVal >= 1000 ? 600 : +newVal; break;
             }
         },
 

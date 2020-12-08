@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/12/2020 19:55:08
+ * Built at 08/12/2020 20:30:44
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4711,7 +4711,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "08/12/2020 19:55:08",
+        compileTime: "08/12/2020 20:30:44",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -15204,6 +15204,7 @@ $.noConflict = function() {
         stopOnBlur: true,
         animate: "none",
         ease: "linear",
+        duration: 600,
         inputFormat: null,
         locale: METRO_LOCALE,
         days: 0,
@@ -15251,7 +15252,8 @@ $.noConflict = function() {
                     d: 0, h: 0, m: 0, s: 0
                 },
                 inactiveTab: false,
-                id: Utils.elementId("countdown")
+                id: Utils.elementId("countdown"),
+                duration: 600
             });
 
             return this;
@@ -15261,6 +15263,8 @@ $.noConflict = function() {
             var o = this.options;
 
             this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+            this.duration = (+o.duration <= 0 || +o.duration >= 1000) ? 600 : +o.duration;
 
             this._build();
             this._createEvents();
@@ -15479,7 +15483,7 @@ $.noConflict = function() {
         draw: function(part, value){
             var element = this.element, o = this.options;
             var digits, digits_length, digit_value, digit_current, digit;
-            var len, i, duration = 600;
+            var len, i, duration = this.duration;
 
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
@@ -15736,10 +15740,11 @@ $.noConflict = function() {
             this.i18n(locale);
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        changeAttribute: function(attr, newVal){
+            switch (attr) {
                 case "data-pause": this.togglePlay(); break;
-                case "data-locale": this.changeAttrLocale(); break;
+                case "data-locale": this.i18n(newVal); break;
+                case "data-duration": this.duration = +newVal <= 0 || +newVal >= 1000 ? 600 : +newVal; break;
             }
         },
 
