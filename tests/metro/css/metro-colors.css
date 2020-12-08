@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 08/12/2020 19:55:08
+ * Built at 08/12/2020 20:30:44
  * Licensed under MIT
  */
 .bg-transparent {
@@ -3977,238 +3977,700 @@
   color: #41545e !important;
 }
 .op-default {
-  background-color: rgba(27, 161, 226, 0.1) !important;
+  background-color: rgba(27, 161, 226, 0.5) !important;
 }
 .op-black {
-  background-color: rgba(0, 0, 0, 0.1) !important;
+  background-color: rgba(0, 0, 0, 0.5) !important;
+}
+.op-black-hi {
+  background-color: rgba(0, 0, 0, 0.2) !important;
+}
+.op-black-low {
+  background-color: rgba(0, 0, 0, 0.8) !important;
 }
 .op-white {
-  background-color: rgba(255, 255, 255, 0.1) !important;
+  background-color: rgba(255, 255, 255, 0.5) !important;
+}
+.op-white-hi {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+.op-white-low {
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 .op-dark {
-  background-color: rgba(29, 29, 29, 0.1) !important;
+  background-color: rgba(29, 29, 29, 0.5) !important;
+}
+.op-dark-hi {
+  background-color: rgba(29, 29, 29, 0.2) !important;
+}
+.op-dark-low {
+  background-color: rgba(29, 29, 29, 0.8) !important;
 }
 .op-light {
-  background-color: rgba(248, 248, 248, 0.1) !important;
+  background-color: rgba(248, 248, 248, 0.5) !important;
+}
+.op-light-hi {
+  background-color: rgba(248, 248, 248, 0.2) !important;
+}
+.op-light-low {
+  background-color: rgba(248, 248, 248, 0.8) !important;
 }
 .op-grayBlue {
-  background-color: rgba(96, 125, 139, 0.1) !important;
+  background-color: rgba(96, 125, 139, 0.5) !important;
+}
+.op-grayBlue-hi {
+  background-color: rgba(96, 125, 139, 0.2) !important;
+}
+.op-grayBlue-low {
+  background-color: rgba(96, 125, 139, 0.8) !important;
 }
 .op-grayWhite {
-  background-color: rgba(245, 245, 245, 0.1) !important;
+  background-color: rgba(245, 245, 245, 0.5) !important;
+}
+.op-grayWhite-hi {
+  background-color: rgba(245, 245, 245, 0.2) !important;
+}
+.op-grayWhite-low {
+  background-color: rgba(245, 245, 245, 0.8) !important;
 }
 .op-grayMouse {
-  background-color: rgba(69, 90, 100, 0.1) !important;
+  background-color: rgba(69, 90, 100, 0.5) !important;
+}
+.op-grayMouse-hi {
+  background-color: rgba(69, 90, 100, 0.2) !important;
+}
+.op-grayMouse-low {
+  background-color: rgba(69, 90, 100, 0.8) !important;
 }
 .op-brandColor1 {
-  background-color: rgba(42, 196, 244, 0.1) !important;
+  background-color: rgba(42, 196, 244, 0.5) !important;
+}
+.op-brandColor1-hi {
+  background-color: rgba(42, 196, 244, 0.2) !important;
+}
+.op-brandColor1-low {
+  background-color: rgba(42, 196, 244, 0.8) !important;
 }
 .op-brandColor2 {
-  background-color: rgba(0, 77, 111, 0.1) !important;
+  background-color: rgba(0, 77, 111, 0.5) !important;
+}
+.op-brandColor2-hi {
+  background-color: rgba(0, 77, 111, 0.2) !important;
+}
+.op-brandColor2-low {
+  background-color: rgba(0, 77, 111, 0.8) !important;
 }
 .op-lime {
-  background-color: rgba(164, 196, 0, 0.1) !important;
+  background-color: rgba(164, 196, 0, 0.5) !important;
+}
+.op-lime-hi {
+  background-color: rgba(164, 196, 0, 0.2) !important;
+}
+.op-lime-low {
+  background-color: rgba(164, 196, 0, 0.8) !important;
 }
 .op-green {
-  background-color: rgba(96, 169, 23, 0.1) !important;
+  background-color: rgba(96, 169, 23, 0.5) !important;
+}
+.op-green-hi {
+  background-color: rgba(96, 169, 23, 0.2) !important;
+}
+.op-green-low {
+  background-color: rgba(96, 169, 23, 0.8) !important;
 }
 .op-emerald {
-  background-color: rgba(0, 138, 0, 0.1) !important;
+  background-color: rgba(0, 138, 0, 0.5) !important;
+}
+.op-emerald-hi {
+  background-color: rgba(0, 138, 0, 0.2) !important;
+}
+.op-emerald-low {
+  background-color: rgba(0, 138, 0, 0.8) !important;
 }
 .op-blue {
-  background-color: rgba(0, 175, 240, 0.1) !important;
+  background-color: rgba(0, 175, 240, 0.5) !important;
+}
+.op-blue-hi {
+  background-color: rgba(0, 175, 240, 0.2) !important;
+}
+.op-blue-low {
+  background-color: rgba(0, 175, 240, 0.8) !important;
 }
 .op-teal {
-  background-color: rgba(0, 171, 169, 0.1) !important;
+  background-color: rgba(0, 171, 169, 0.5) !important;
+}
+.op-teal-hi {
+  background-color: rgba(0, 171, 169, 0.2) !important;
+}
+.op-teal-low {
+  background-color: rgba(0, 171, 169, 0.8) !important;
 }
 .op-cyan {
-  background-color: rgba(27, 161, 226, 0.1) !important;
+  background-color: rgba(27, 161, 226, 0.5) !important;
+}
+.op-cyan-hi {
+  background-color: rgba(27, 161, 226, 0.2) !important;
+}
+.op-cyan-low {
+  background-color: rgba(27, 161, 226, 0.8) !important;
 }
 .op-cobalt {
-  background-color: rgba(0, 80, 239, 0.1) !important;
+  background-color: rgba(0, 80, 239, 0.5) !important;
+}
+.op-cobalt-hi {
+  background-color: rgba(0, 80, 239, 0.2) !important;
+}
+.op-cobalt-low {
+  background-color: rgba(0, 80, 239, 0.8) !important;
 }
 .op-indigo {
-  background-color: rgba(106, 0, 255, 0.1) !important;
+  background-color: rgba(106, 0, 255, 0.5) !important;
+}
+.op-indigo-hi {
+  background-color: rgba(106, 0, 255, 0.2) !important;
+}
+.op-indigo-low {
+  background-color: rgba(106, 0, 255, 0.8) !important;
 }
 .op-violet {
-  background-color: rgba(170, 0, 255, 0.1) !important;
+  background-color: rgba(170, 0, 255, 0.5) !important;
+}
+.op-violet-hi {
+  background-color: rgba(170, 0, 255, 0.2) !important;
+}
+.op-violet-low {
+  background-color: rgba(170, 0, 255, 0.8) !important;
 }
 .op-pink {
-  background-color: rgba(220, 79, 173, 0.1) !important;
+  background-color: rgba(220, 79, 173, 0.5) !important;
+}
+.op-pink-hi {
+  background-color: rgba(220, 79, 173, 0.2) !important;
+}
+.op-pink-low {
+  background-color: rgba(220, 79, 173, 0.8) !important;
 }
 .op-magenta {
-  background-color: rgba(216, 0, 115, 0.1) !important;
+  background-color: rgba(216, 0, 115, 0.5) !important;
+}
+.op-magenta-hi {
+  background-color: rgba(216, 0, 115, 0.2) !important;
+}
+.op-magenta-low {
+  background-color: rgba(216, 0, 115, 0.8) !important;
 }
 .op-crimson {
-  background-color: rgba(162, 0, 37, 0.1) !important;
+  background-color: rgba(162, 0, 37, 0.5) !important;
+}
+.op-crimson-hi {
+  background-color: rgba(162, 0, 37, 0.2) !important;
+}
+.op-crimson-low {
+  background-color: rgba(162, 0, 37, 0.8) !important;
 }
 .op-red {
-  background-color: rgba(206, 53, 44, 0.1) !important;
+  background-color: rgba(206, 53, 44, 0.5) !important;
+}
+.op-red-hi {
+  background-color: rgba(206, 53, 44, 0.2) !important;
+}
+.op-red-low {
+  background-color: rgba(206, 53, 44, 0.8) !important;
 }
 .op-orange {
-  background-color: rgba(250, 104, 0, 0.1) !important;
+  background-color: rgba(250, 104, 0, 0.5) !important;
+}
+.op-orange-hi {
+  background-color: rgba(250, 104, 0, 0.2) !important;
+}
+.op-orange-low {
+  background-color: rgba(250, 104, 0, 0.8) !important;
 }
 .op-amber {
-  background-color: rgba(240, 163, 10, 0.1) !important;
+  background-color: rgba(240, 163, 10, 0.5) !important;
+}
+.op-amber-hi {
+  background-color: rgba(240, 163, 10, 0.2) !important;
+}
+.op-amber-low {
+  background-color: rgba(240, 163, 10, 0.8) !important;
 }
 .op-yellow {
-  background-color: rgba(255, 240, 0, 0.1) !important;
+  background-color: rgba(255, 240, 0, 0.5) !important;
+}
+.op-yellow-hi {
+  background-color: rgba(255, 240, 0, 0.2) !important;
+}
+.op-yellow-low {
+  background-color: rgba(255, 240, 0, 0.8) !important;
 }
 .op-brown {
-  background-color: rgba(130, 90, 44, 0.1) !important;
+  background-color: rgba(130, 90, 44, 0.5) !important;
+}
+.op-brown-hi {
+  background-color: rgba(130, 90, 44, 0.2) !important;
+}
+.op-brown-low {
+  background-color: rgba(130, 90, 44, 0.8) !important;
 }
 .op-olive {
-  background-color: rgba(109, 135, 100, 0.1) !important;
+  background-color: rgba(109, 135, 100, 0.5) !important;
+}
+.op-olive-hi {
+  background-color: rgba(109, 135, 100, 0.2) !important;
+}
+.op-olive-low {
+  background-color: rgba(109, 135, 100, 0.8) !important;
 }
 .op-steel {
-  background-color: rgba(100, 118, 135, 0.1) !important;
+  background-color: rgba(100, 118, 135, 0.5) !important;
+}
+.op-steel-hi {
+  background-color: rgba(100, 118, 135, 0.2) !important;
+}
+.op-steel-low {
+  background-color: rgba(100, 118, 135, 0.8) !important;
 }
 .op-mauve {
-  background-color: rgba(118, 96, 138, 0.1) !important;
+  background-color: rgba(118, 96, 138, 0.5) !important;
+}
+.op-mauve-hi {
+  background-color: rgba(118, 96, 138, 0.2) !important;
+}
+.op-mauve-low {
+  background-color: rgba(118, 96, 138, 0.8) !important;
 }
 .op-taupe {
-  background-color: rgba(135, 121, 78, 0.1) !important;
+  background-color: rgba(135, 121, 78, 0.5) !important;
+}
+.op-taupe-hi {
+  background-color: rgba(135, 121, 78, 0.2) !important;
+}
+.op-taupe-low {
+  background-color: rgba(135, 121, 78, 0.8) !important;
 }
 .op-gray {
-  background-color: rgba(190, 190, 190, 0.1) !important;
+  background-color: rgba(190, 190, 190, 0.5) !important;
+}
+.op-gray-hi {
+  background-color: rgba(190, 190, 190, 0.2) !important;
+}
+.op-gray-low {
+  background-color: rgba(190, 190, 190, 0.8) !important;
 }
 .op-lightLime {
-  background-color: rgba(216, 255, 18, 0.1) !important;
+  background-color: rgba(216, 255, 18, 0.5) !important;
+}
+.op-lightLime-hi {
+  background-color: rgba(216, 255, 18, 0.2) !important;
+}
+.op-lightLime-low {
+  background-color: rgba(216, 255, 18, 0.8) !important;
 }
 .op-lightGreen {
-  background-color: rgba(134, 226, 42, 0.1) !important;
+  background-color: rgba(134, 226, 42, 0.5) !important;
+}
+.op-lightGreen-hi {
+  background-color: rgba(134, 226, 42, 0.2) !important;
+}
+.op-lightGreen-low {
+  background-color: rgba(134, 226, 42, 0.8) !important;
 }
 .op-lightEmerald {
-  background-color: rgba(0, 214, 0, 0.1) !important;
+  background-color: rgba(0, 214, 0, 0.5) !important;
+}
+.op-lightEmerald-hi {
+  background-color: rgba(0, 214, 0, 0.2) !important;
+}
+.op-lightEmerald-low {
+  background-color: rgba(0, 214, 0, 0.8) !important;
 }
 .op-lightBlue {
-  background-color: rgba(62, 203, 255, 0.1) !important;
+  background-color: rgba(62, 203, 255, 0.5) !important;
+}
+.op-lightBlue-hi {
+  background-color: rgba(62, 203, 255, 0.2) !important;
+}
+.op-lightBlue-low {
+  background-color: rgba(62, 203, 255, 0.8) !important;
 }
 .op-lightTeal {
-  background-color: rgba(0, 247, 245, 0.1) !important;
+  background-color: rgba(0, 247, 245, 0.5) !important;
+}
+.op-lightTeal-hi {
+  background-color: rgba(0, 247, 245, 0.2) !important;
+}
+.op-lightTeal-low {
+  background-color: rgba(0, 247, 245, 0.8) !important;
 }
 .op-lightCyan {
-  background-color: rgba(94, 189, 236, 0.1) !important;
+  background-color: rgba(94, 189, 236, 0.5) !important;
+}
+.op-lightCyan-hi {
+  background-color: rgba(94, 189, 236, 0.2) !important;
+}
+.op-lightCyan-low {
+  background-color: rgba(94, 189, 236, 0.8) !important;
 }
 .op-lightCobalt {
-  background-color: rgba(61, 126, 255, 0.1) !important;
+  background-color: rgba(61, 126, 255, 0.5) !important;
+}
+.op-lightCobalt-hi {
+  background-color: rgba(61, 126, 255, 0.2) !important;
+}
+.op-lightCobalt-low {
+  background-color: rgba(61, 126, 255, 0.8) !important;
 }
 .op-lightIndigo {
-  background-color: rgba(151, 77, 255, 0.1) !important;
+  background-color: rgba(151, 77, 255, 0.5) !important;
+}
+.op-lightIndigo-hi {
+  background-color: rgba(151, 77, 255, 0.2) !important;
+}
+.op-lightIndigo-low {
+  background-color: rgba(151, 77, 255, 0.8) !important;
 }
 .op-lightViolet {
-  background-color: rgba(196, 77, 255, 0.1) !important;
+  background-color: rgba(196, 77, 255, 0.5) !important;
+}
+.op-lightViolet-hi {
+  background-color: rgba(196, 77, 255, 0.2) !important;
+}
+.op-lightViolet-low {
+  background-color: rgba(196, 77, 255, 0.8) !important;
 }
 .op-lightPink {
-  background-color: rgba(233, 143, 203, 0.1) !important;
+  background-color: rgba(233, 143, 203, 0.5) !important;
+}
+.op-lightPink-hi {
+  background-color: rgba(233, 143, 203, 0.2) !important;
+}
+.op-lightPink-low {
+  background-color: rgba(233, 143, 203, 0.8) !important;
 }
 .op-lightMagenta {
-  background-color: rgba(255, 37, 153, 0.1) !important;
+  background-color: rgba(255, 37, 153, 0.5) !important;
+}
+.op-lightMagenta-hi {
+  background-color: rgba(255, 37, 153, 0.2) !important;
+}
+.op-lightMagenta-low {
+  background-color: rgba(255, 37, 153, 0.8) !important;
 }
 .op-lightCrimson {
-  background-color: rgba(239, 0, 54, 0.1) !important;
+  background-color: rgba(239, 0, 54, 0.5) !important;
+}
+.op-lightCrimson-hi {
+  background-color: rgba(239, 0, 54, 0.2) !important;
+}
+.op-lightCrimson-low {
+  background-color: rgba(239, 0, 54, 0.8) !important;
 }
 .op-lightRed {
-  background-color: rgba(223, 110, 104, 0.1) !important;
+  background-color: rgba(223, 110, 104, 0.5) !important;
+}
+.op-lightRed-hi {
+  background-color: rgba(223, 110, 104, 0.2) !important;
+}
+.op-lightRed-low {
+  background-color: rgba(223, 110, 104, 0.8) !important;
 }
 .op-lightOrange {
-  background-color: rgba(255, 148, 71, 0.1) !important;
+  background-color: rgba(255, 148, 71, 0.5) !important;
+}
+.op-lightOrange-hi {
+  background-color: rgba(255, 148, 71, 0.2) !important;
+}
+.op-lightOrange-low {
+  background-color: rgba(255, 148, 71, 0.8) !important;
 }
 .op-lightAmber {
-  background-color: rgba(248, 191, 79, 0.1) !important;
+  background-color: rgba(248, 191, 79, 0.5) !important;
+}
+.op-lightAmber-hi {
+  background-color: rgba(248, 191, 79, 0.2) !important;
+}
+.op-lightAmber-low {
+  background-color: rgba(248, 191, 79, 0.8) !important;
 }
 .op-lightYellow {
-  background-color: rgba(255, 244, 77, 0.1) !important;
+  background-color: rgba(255, 244, 77, 0.5) !important;
+}
+.op-lightYellow-hi {
+  background-color: rgba(255, 244, 77, 0.2) !important;
+}
+.op-lightYellow-low {
+  background-color: rgba(255, 244, 77, 0.8) !important;
 }
 .op-lightBrown {
-  background-color: rgba(187, 130, 63, 0.1) !important;
+  background-color: rgba(187, 130, 63, 0.5) !important;
+}
+.op-lightBrown-hi {
+  background-color: rgba(187, 130, 63, 0.2) !important;
+}
+.op-lightBrown-low {
+  background-color: rgba(187, 130, 63, 0.8) !important;
 }
 .op-lightOlive {
-  background-color: rgba(149, 171, 141, 0.1) !important;
+  background-color: rgba(149, 171, 141, 0.5) !important;
+}
+.op-lightOlive-hi {
+  background-color: rgba(149, 171, 141, 0.2) !important;
+}
+.op-lightOlive-low {
+  background-color: rgba(149, 171, 141, 0.8) !important;
 }
 .op-lightSteel {
-  background-color: rgba(141, 156, 171, 0.1) !important;
+  background-color: rgba(141, 156, 171, 0.5) !important;
+}
+.op-lightSteel-hi {
+  background-color: rgba(141, 156, 171, 0.2) !important;
+}
+.op-lightSteel-low {
+  background-color: rgba(141, 156, 171, 0.8) !important;
 }
 .op-lightMauve {
-  background-color: rgba(156, 137, 173, 0.1) !important;
+  background-color: rgba(156, 137, 173, 0.5) !important;
+}
+.op-lightMauve-hi {
+  background-color: rgba(156, 137, 173, 0.2) !important;
+}
+.op-lightMauve-low {
+  background-color: rgba(156, 137, 173, 0.8) !important;
 }
 .op-lightTaupe {
-  background-color: rgba(174, 160, 115, 0.1) !important;
+  background-color: rgba(174, 160, 115, 0.5) !important;
+}
+.op-lightTaupe-hi {
+  background-color: rgba(174, 160, 115, 0.2) !important;
+}
+.op-lightTaupe-low {
+  background-color: rgba(174, 160, 115, 0.8) !important;
 }
 .op-lightGray {
-  background-color: rgba(228, 228, 228, 0.1) !important;
+  background-color: rgba(228, 228, 228, 0.5) !important;
+}
+.op-lightGray-hi {
+  background-color: rgba(228, 228, 228, 0.2) !important;
+}
+.op-lightGray-low {
+  background-color: rgba(228, 228, 228, 0.8) !important;
 }
 .op-lightGrayBlue {
-  background-color: rgba(138, 162, 174, 0.1) !important;
+  background-color: rgba(138, 162, 174, 0.5) !important;
+}
+.op-lightGrayBlue-hi {
+  background-color: rgba(138, 162, 174, 0.2) !important;
+}
+.op-lightGrayBlue-low {
+  background-color: rgba(138, 162, 174, 0.8) !important;
 }
 .op-darkLime {
-  background-color: rgba(100, 120, 0, 0.1) !important;
+  background-color: rgba(100, 120, 0, 0.5) !important;
+}
+.op-darkLime-hi {
+  background-color: rgba(100, 120, 0, 0.2) !important;
+}
+.op-darkLime-low {
+  background-color: rgba(100, 120, 0, 0.8) !important;
 }
 .op-darkGreen {
-  background-color: rgba(58, 102, 14, 0.1) !important;
+  background-color: rgba(58, 102, 14, 0.5) !important;
+}
+.op-darkGreen-hi {
+  background-color: rgba(58, 102, 14, 0.2) !important;
+}
+.op-darkGreen-low {
+  background-color: rgba(58, 102, 14, 0.8) !important;
 }
 .op-darkEmerald {
-  background-color: rgba(0, 61, 0, 0.1) !important;
+  background-color: rgba(0, 61, 0, 0.5) !important;
+}
+.op-darkEmerald-hi {
+  background-color: rgba(0, 61, 0, 0.2) !important;
+}
+.op-darkEmerald-low {
+  background-color: rgba(0, 61, 0, 0.8) !important;
 }
 .op-darkBlue {
-  background-color: rgba(0, 119, 163, 0.1) !important;
+  background-color: rgba(0, 119, 163, 0.5) !important;
+}
+.op-darkBlue-hi {
+  background-color: rgba(0, 119, 163, 0.2) !important;
+}
+.op-darkBlue-low {
+  background-color: rgba(0, 119, 163, 0.8) !important;
 }
 .op-darkTeal {
-  background-color: rgba(0, 94, 93, 0.1) !important;
+  background-color: rgba(0, 94, 93, 0.5) !important;
+}
+.op-darkTeal-hi {
+  background-color: rgba(0, 94, 93, 0.2) !important;
+}
+.op-darkTeal-low {
+  background-color: rgba(0, 94, 93, 0.8) !important;
 }
 .op-darkCyan {
-  background-color: rgba(19, 112, 158, 0.1) !important;
+  background-color: rgba(19, 112, 158, 0.5) !important;
+}
+.op-darkCyan-hi {
+  background-color: rgba(19, 112, 158, 0.2) !important;
+}
+.op-darkCyan-low {
+  background-color: rgba(19, 112, 158, 0.8) !important;
 }
 .op-darkCobalt {
-  background-color: rgba(0, 54, 163, 0.1) !important;
+  background-color: rgba(0, 54, 163, 0.5) !important;
+}
+.op-darkCobalt-hi {
+  background-color: rgba(0, 54, 163, 0.2) !important;
+}
+.op-darkCobalt-low {
+  background-color: rgba(0, 54, 163, 0.8) !important;
 }
 .op-darkIndigo {
-  background-color: rgba(74, 0, 179, 0.1) !important;
+  background-color: rgba(74, 0, 179, 0.5) !important;
+}
+.op-darkIndigo-hi {
+  background-color: rgba(74, 0, 179, 0.2) !important;
+}
+.op-darkIndigo-low {
+  background-color: rgba(74, 0, 179, 0.8) !important;
 }
 .op-darkViolet {
-  background-color: rgba(119, 0, 179, 0.1) !important;
+  background-color: rgba(119, 0, 179, 0.5) !important;
+}
+.op-darkViolet-hi {
+  background-color: rgba(119, 0, 179, 0.2) !important;
+}
+.op-darkViolet-low {
+  background-color: rgba(119, 0, 179, 0.8) !important;
 }
 .op-darkPink {
-  background-color: rgba(186, 37, 136, 0.1) !important;
+  background-color: rgba(186, 37, 136, 0.5) !important;
+}
+.op-darkPink-hi {
+  background-color: rgba(186, 37, 136, 0.2) !important;
+}
+.op-darkPink-low {
+  background-color: rgba(186, 37, 136, 0.8) !important;
 }
 .op-darkMagenta {
-  background-color: rgba(140, 0, 74, 0.1) !important;
+  background-color: rgba(140, 0, 74, 0.5) !important;
+}
+.op-darkMagenta-hi {
+  background-color: rgba(140, 0, 74, 0.2) !important;
+}
+.op-darkMagenta-low {
+  background-color: rgba(140, 0, 74, 0.8) !important;
 }
 .op-darkCrimson {
-  background-color: rgba(86, 0, 20, 0.1) !important;
+  background-color: rgba(86, 0, 20, 0.5) !important;
+}
+.op-darkCrimson-hi {
+  background-color: rgba(86, 0, 20, 0.2) !important;
+}
+.op-darkCrimson-low {
+  background-color: rgba(86, 0, 20, 0.8) !important;
 }
 .op-darkRed {
-  background-color: rgba(143, 37, 31, 0.1) !important;
+  background-color: rgba(143, 37, 31, 0.5) !important;
+}
+.op-darkRed-hi {
+  background-color: rgba(143, 37, 31, 0.2) !important;
+}
+.op-darkRed-low {
+  background-color: rgba(143, 37, 31, 0.8) !important;
 }
 .op-darkOrange {
-  background-color: rgba(174, 72, 0, 0.1) !important;
+  background-color: rgba(174, 72, 0, 0.5) !important;
+}
+.op-darkOrange-hi {
+  background-color: rgba(174, 72, 0, 0.2) !important;
+}
+.op-darkOrange-low {
+  background-color: rgba(174, 72, 0, 0.8) !important;
 }
 .op-darkAmber {
-  background-color: rgba(167, 113, 7, 0.1) !important;
+  background-color: rgba(167, 113, 7, 0.5) !important;
+}
+.op-darkAmber-hi {
+  background-color: rgba(167, 113, 7, 0.2) !important;
+}
+.op-darkAmber-low {
+  background-color: rgba(167, 113, 7, 0.8) !important;
 }
 .op-darkYellow {
-  background-color: rgba(179, 168, 0, 0.1) !important;
+  background-color: rgba(179, 168, 0, 0.5) !important;
+}
+.op-darkYellow-hi {
+  background-color: rgba(179, 168, 0, 0.2) !important;
+}
+.op-darkYellow-low {
+  background-color: rgba(179, 168, 0, 0.8) !important;
 }
 .op-darkBrown {
-  background-color: rgba(73, 50, 25, 0.1) !important;
+  background-color: rgba(73, 50, 25, 0.5) !important;
+}
+.op-darkBrown-hi {
+  background-color: rgba(73, 50, 25, 0.2) !important;
+}
+.op-darkBrown-low {
+  background-color: rgba(73, 50, 25, 0.8) !important;
 }
 .op-darkOlive {
-  background-color: rgba(74, 91, 67, 0.1) !important;
+  background-color: rgba(74, 91, 67, 0.5) !important;
+}
+.op-darkOlive-hi {
+  background-color: rgba(74, 91, 67, 0.2) !important;
+}
+.op-darkOlive-low {
+  background-color: rgba(74, 91, 67, 0.8) !important;
 }
 .op-darkSteel {
-  background-color: rgba(67, 80, 91, 0.1) !important;
+  background-color: rgba(67, 80, 91, 0.5) !important;
+}
+.op-darkSteel-hi {
+  background-color: rgba(67, 80, 91, 0.2) !important;
+}
+.op-darkSteel-low {
+  background-color: rgba(67, 80, 91, 0.8) !important;
 }
 .op-darkMauve {
-  background-color: rgba(79, 65, 93, 0.1) !important;
+  background-color: rgba(79, 65, 93, 0.5) !important;
+}
+.op-darkMauve-hi {
+  background-color: rgba(79, 65, 93, 0.2) !important;
+}
+.op-darkMauve-low {
+  background-color: rgba(79, 65, 93, 0.8) !important;
 }
 .op-darkTaupe {
-  background-color: rgba(87, 78, 50, 0.1) !important;
+  background-color: rgba(87, 78, 50, 0.5) !important;
+}
+.op-darkTaupe-hi {
+  background-color: rgba(87, 78, 50, 0.2) !important;
+}
+.op-darkTaupe-low {
+  background-color: rgba(87, 78, 50, 0.8) !important;
 }
 .op-darkGray {
-  background-color: rgba(152, 152, 152, 0.1) !important;
+  background-color: rgba(152, 152, 152, 0.5) !important;
+}
+.op-darkGray-hi {
+  background-color: rgba(152, 152, 152, 0.2) !important;
+}
+.op-darkGray-low {
+  background-color: rgba(152, 152, 152, 0.8) !important;
 }
 .op-darkGrayBlue {
-  background-color: rgba(65, 84, 94, 0.1) !important;
+  background-color: rgba(65, 84, 94, 0.5) !important;
+}
+.op-darkGrayBlue-hi {
+  background-color: rgba(65, 84, 94, 0.2) !important;
+}
+.op-darkGrayBlue-low {
+  background-color: rgba(65, 84, 94, 0.8) !important;
 }
 .ol-black {
   outline-color: #000000 !important;
