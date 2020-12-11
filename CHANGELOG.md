@@ -4,8 +4,10 @@
 + [x] Animation: added methods `stopAll()`, `pause(id)`, `pauseAll()`, `resume(id)`, `resumeAll()`
 
 #### Metro 4
-+ [x] NavView: fixed `navview-pane` item `height` and hover state, issue #1661
 + [x] Color selector: added new component
++ [x] Color picker: added new a component
++ [x] Marquee: added new component
++ [x] NavView: fixed `navview-pane` item `height` and hover state, issue #1661
 + [x] Metro: improved function `makePlugin(...)`, now you can use it for set of elements.
 + [x] Slider: fixed work vertical slider for touchable devices
 + [x] Colors: improve work with hsl, hsv
@@ -28,8 +30,6 @@
 + [x] Table: fixed working with attribute `data-horizontal-scroll-stop`
 + [x] Metro: added method `pluginExists(name)` to check if specified plugin registered in registry
 + [x] Colors: fixed primitives `RGBA`, `HSLA` to create with specified **alpha**
-+ [x] Color selector: fixed founding bugs
-+ [x] Color picker: added new a component
 + [x] Utils: added `lpad()`, `rpad()` functions
 + [x] Calendar: improve visibility, fixed for using `Utils.lpad()`
 + [x] Calendar picker: fixed for using `Utils.lpad()`
@@ -38,7 +38,6 @@
 + [x] Date extension: fixed method `getWeek()`, used in calendar for showing week numbers.
 + [x] Tag input: added closing autocomplete list on user click outside.
 + [x] Window: fixed holds zIndex when draggable, issue #1689
-+ [x] Marquee: added new component
 + [x] i18n: fixed a chinese locales name, issue #1691
 + [x] Countdown: changed prop name `data-animate-func` to `data-ease`
 + [x] Additional colors: for opacity added `op-*-hi`, `op-*-low` classes
