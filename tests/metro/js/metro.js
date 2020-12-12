@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 11/12/2020 18:39:45
+ * Built at 12/12/2020 13:55:47
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4711,7 +4711,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "11/12/2020 18:39:45",
+        compileTime: "12/12/2020 13:55:47",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -23318,7 +23318,6 @@ $.noConflict = function() {
     });
 }(Metro, m4q));
 
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -23368,8 +23367,6 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
-
             this._createStructure();
             this._createEvents();
 
@@ -23451,12 +23448,20 @@ $.noConflict = function() {
             var chain = [], dir = o.direction.toLowerCase(), mode = o.mode.toLowerCase();
             var magic = 20;
             var ease = o.ease.toArray(",");
-            var Utils = Metro.utils;
+            var dur = +o.duration;
 
             if (mode === "default") {
                 $.each(this.items, function (i) {
+                    var el = $(this);
                     var draw;
-                    var dur = +$(this).attr("data-duration") || o.duration
+
+                    if (el.attr("data-direction")) {
+                        dir = el.attr("data-direction").toLowerCase();
+                    }
+
+                    if (el.attr("data-duration")) {
+                        dur = +el.attr("data-duration");
+                    }
 
                     if (["left", "right"].indexOf(dir) > -1) {
                         draw = {
@@ -23478,8 +23483,21 @@ $.noConflict = function() {
                 });
             } else {
                 $.each(this.items, function(i){
+                    var el = $(this);
                     var half, draw1, draw2;
-                    var dur = (+$(this).attr("data-duration") || o.duration) / 2;
+                    dur = o.duration / 2;
+
+                    if (el.attr("data-direction")) {
+                        dir = el.attr("data-direction").toLowerCase();
+                    }
+
+                    if (el.attr("data-duration")) {
+                        dur = +el.attr("data-duration") / 2;
+                    }
+
+                    if (el.attr("data-ease")) {
+                        ease = el.attr("data-ease").toArray(",");
+                    }
 
                     if (["left", "right"].indexOf(dir) > -1) {
                         half = element.width() / 2 - $(this).width() / 2;
@@ -23531,7 +23549,7 @@ $.noConflict = function() {
             $.stopAll(this.items);
         },
 
-        changeAttribute: function(attr, newValue){
+        changeAttribute: function(){
         },
 
         destroy: function(){
@@ -23539,7 +23557,7 @@ $.noConflict = function() {
         }
     });
 }(Metro, m4q));
-/* eslint-enable */
+
 
 (function(Metro, $) {
     'use strict';

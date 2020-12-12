@@ -1,5 +1,4 @@
 /* global Metro */
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -49,8 +48,6 @@
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
-
             this._createStructure();
             this._createEvents();
 
@@ -132,12 +129,20 @@
             var chain = [], dir = o.direction.toLowerCase(), mode = o.mode.toLowerCase();
             var magic = 20;
             var ease = o.ease.toArray(",");
-            var Utils = Metro.utils;
+            var dur = +o.duration;
 
             if (mode === "default") {
                 $.each(this.items, function (i) {
+                    var el = $(this);
                     var draw;
-                    var dur = +$(this).attr("data-duration") || o.duration
+
+                    if (el.attr("data-direction")) {
+                        dir = el.attr("data-direction").toLowerCase();
+                    }
+
+                    if (el.attr("data-duration")) {
+                        dur = +el.attr("data-duration");
+                    }
 
                     if (["left", "right"].indexOf(dir) > -1) {
                         draw = {
@@ -159,8 +164,21 @@
                 });
             } else {
                 $.each(this.items, function(i){
+                    var el = $(this);
                     var half, draw1, draw2;
-                    var dur = (+$(this).attr("data-duration") || o.duration) / 2;
+                    dur = o.duration / 2;
+
+                    if (el.attr("data-direction")) {
+                        dir = el.attr("data-direction").toLowerCase();
+                    }
+
+                    if (el.attr("data-duration")) {
+                        dur = +el.attr("data-duration") / 2;
+                    }
+
+                    if (el.attr("data-ease")) {
+                        ease = el.attr("data-ease").toArray(",");
+                    }
 
                     if (["left", "right"].indexOf(dir) > -1) {
                         half = element.width() / 2 - $(this).width() / 2;
@@ -212,7 +230,7 @@
             $.stopAll(this.items);
         },
 
-        changeAttribute: function(attr, newValue){
+        changeAttribute: function(){
         },
 
         destroy: function(){
@@ -220,4 +238,3 @@
         }
     });
 }(Metro, m4q));
-/* eslint-enable */
