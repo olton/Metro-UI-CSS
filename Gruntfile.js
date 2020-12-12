@@ -301,7 +301,7 @@ module.exports = function(grunt) {
                 tasks: tasks,
                 options: {
                     spawn: false,
-                    reload: false
+                    reload: true
                 }
             }
         }
