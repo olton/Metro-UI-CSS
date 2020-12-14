@@ -7,6 +7,10 @@
         label: "",
         keySize: 48,
         keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
+        exceptKeys: "",
+        keySeparator: "",
+        trimSeparator: false,
+        keyDelimiter: ",",
         copyInlineStyles: false,
         target: null,
         keyLength: 0,
@@ -51,7 +55,8 @@
                 positions: ["top-left", "top", "top-right", "right", "bottom-right", "bottom", "bottom-left", "left"],
                 keypad: null,
                 keys: [],
-                keys_to_work: []
+                keys_to_work: [],
+                exceptKeys: []
             });
 
             return this;
@@ -60,8 +65,9 @@
         _create: function(){
             var element = this.element, o = this.options;
 
-            this.keys = o.keys.toArray(",");
+            this.keys = o.keys.toArray(o.keyDelimiter);
             this.keys_to_work = this.keys;
+            this.exceptKeys = o.exceptKeys.toArray(o.keyDelimiter);
 
             this._createKeypad();
             if (o.shuffle === true) {
@@ -206,14 +212,17 @@
 
             keys.on(Metro.events.click, ".key", function(e){
                 var key = $(this);
+                var keyValue = key.data("key");
+                var crop;
 
                 if (key.data('key') !== '&larr;' && key.data('key') !== '&times;') {
 
-                    if (o.keyLength > 0 && (String(that.value).length === o.keyLength)) {
+                    if (o.keyLength > 0 && (""+that.value).length === o.keyLength) {
                         return false;
                     }
 
-                    that.value = that.value + "" + key.data('key');
+                    if (that.exceptKeys.indexOf(keyValue) === -1)
+                        that.value = that.value + (that.value !== "" ? o.keySeparator : "") + keyValue;
 
                     if (o.shuffle === true) {
                         that.shuffle();
@@ -233,13 +242,11 @@
                 } else {
                     if (key.data('key') === '&times;') {
                         that.value = "";
-
                         that._fireEvent("clear");
-
                     }
                     if (key.data('key') === '&larr;') {
-                        that.value = (that.value.substring(0, that.value.length - 1));
-
+                        crop = o.keySeparator && that.value[that.value.length - 1] !== o.keySeparator ? 2 : 1;
+                        that.value = (that.value.substring(0, that.value.length - crop));
                         that._fireEvent("backspace", {
                             val: that.value
                         });
@@ -317,10 +324,10 @@
         },
 
         val: function(v){
-            var element = this.element;
+            var element = this.element, o = this.options;
 
             if (typeof v === "undefined") {
-                return this.value;
+                return o.trimSeparator ? this.value.replace(new RegExp(o.keySeparator, "g")) : this.value;
             }
 
             this.value = ""+v;

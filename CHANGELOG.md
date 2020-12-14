@@ -42,6 +42,7 @@
 + [x] Countdown: changed prop name `data-animate-func` to `data-ease`
 + [x] Additional colors: for opacity added `op-*-hi`, `op-*-low` classes
 + [x] Additional colors: default opacity changed to `0.5`
++ [x] Keypad: added attributes `data-except-keys`, `data-key-separator`, `data-key-delimiter`, `data-trim-separator`.
 
 ### 4.4.2
 #### Metro 4
