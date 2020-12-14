@@ -54,8 +54,8 @@ In addition, **SUPPORT PACK** is available for an annual subscription on [XS:COD
 **SUPPORT PACK** includes an **Extra time for priority support** by email and other options.
 
 ### Donation on Patreon
-![Donations on Patreon](https://img.shields.io/badge/Patrons-8-green.svg)
-![Donations on Patreon](https://img.shields.io/badge/Donation-$175-red.svg)
+![Donations on Patreon](https://img.shields.io/badge/Patrons-9-green.svg)
+![Donations on Patreon](https://img.shields.io/badge/Donation-$185-red.svg)
 
 ### Community
 
