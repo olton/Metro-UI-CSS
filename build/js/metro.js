@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
  * Copyright 2012-2020 Sergey Pimenov
- * Built at 14/12/2020 16:27:54
+ * Built at 21/12/2020 13:53:46
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4711,7 +4711,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "14/12/2020 16:27:54",
+        compileTime: "21/12/2020 13:53:46",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -30380,7 +30380,7 @@ $.noConflict = function() {
                     type: "data",
                     title: item.html(),
                     name: Utils.isValue(item.data("name")) ? item.data("name") : item.text().replace(" ", "_"),
-                    sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable') === true)),
+                    sortable: item.hasClass("sortable-column") || (Utils.isValue(item.data('sortable')) && JSON.parse(item.data('sortable')) === true),
                     sortDir: dir,
                     format: Utils.isValue(item.data("format")) ? item.data("format") : "string",
                     formatMask: Utils.isValue(item.data("format-mask")) ? item.data("format-mask") : null,

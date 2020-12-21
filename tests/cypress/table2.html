@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Table - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Table test page</h1>
+
+    <div class="example">
+        <table class="table table-border striped" id="elements_tbl"
+               data-role="table"
+               data-source="https://res.cloudinary.com/djle2rzyf/raw/upload/v1608546296/rolesmanagementData_eyncfj.json"
+               data-search-wrapper=".elements_search_wrapper"
+               data-info-wrapper=".elements_info"
+               data-pagination-wrapper=".elements_pagination_wrapper"
+               data-rows-wrapper=".elements_rows_wrapper"
+               data-table-search-title="جستجو:"
+               data-search-min-length="1"
+               data-search-fields
+               data-table-info-title=""
+               data-pagination-prev-title="قبلی"
+               data-pagination-next-title="بعدی"
+               data-rows="5"
+               data-rows-steps="5, 10"
+               data-table-rows-count-title="نمایش ردیف ها:"
+               data-all-records-title="همه"
+               data-inspector-title="تنظیم عرض ستون ها"
+               data-rownum="true"
+               data-rownum-title="ردیف"
+               data-filters
+               data-filters-operator="or"
+               data-view-save-mode="client"
+               data-horizontal-scroll="false"
+               data-cls='text-center'
+        >
+            <thead>
+            <tr>
+                <th class="sortable-column" data-sortable="true" data-sort-dir="asc">Name</th>
+                <th data-sortable="true">Office</th>
+                <th data-sortable="true" data-format="number">Age</th>
+                <th data-sortable="true" data-format="date">Start date</th>
+                <th data-sortable="true" data-show="false" data-format="money">Salary</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function getStoredKeys(){
+        var keys = Metro.getPlugin("table", "table").getStoredKeys();
+        alert(keys.join("\n"));
+    }
+
+    // $(function () {
+    //     $(".table").on("click", "tbody td", function(){
+    //         alert(this.innerText)
+    //     })
+    // })
+</script>
+</body>
+</html>
