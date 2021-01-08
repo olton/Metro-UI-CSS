@@ -31,9 +31,11 @@
             }
 
             if (this.options.template) {
-                $.get(this.options.template).then(function(response){
-                    that.create(response);
-                });
+                fetch(this.options.template)
+                    .then(Metro.fetch.text)
+                    .then(function(data){
+                        that.create(data)
+                    });
             } else if (this.options.templateSource) {
                 this.create($(this.options.templateSource));
             } else {

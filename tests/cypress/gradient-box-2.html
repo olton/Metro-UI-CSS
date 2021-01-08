@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css" rel="stylesheet">
+
+    <title>Test GradientBox - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak h-vh-100">
+<div class="box h-100 d-flex flex-align-center flex-justify-center flex-column"
+     data-role="gradient-box"
+     data-gradient-colors="#55ddff, #0076a5"
+     data-gradient-type="radial"
+     data-gradient-position="200px 200px"
+     data-gradient-shape="circle"
+    >
+    <h1 class="fg-white">GradientBox test page</h1>
+</div>
+
+<script src="../metro/js/metro.js"></script>
+<script>
+    $(".box").on("mousemove", function(e){
+        var pos = Metro.utils.getCursorPosition(this, e);
+        $(this).attr("data-gradient-position", pos.x + "px " + pos.y + "px " + "")
+        console.log(pos);
+    })
+</script>
+</body>
+</html>

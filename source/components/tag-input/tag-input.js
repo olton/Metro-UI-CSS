@@ -148,19 +148,20 @@
             }
 
             if (Utils.isValue(o.autocompleteUrl)) {
-                $.ajax({
-                    url: o.autocompleteUrl,
+                fetch(o.autocompleteUrl, {
                     method: o.autocompleteUrlMethod
                 }).then(function(response){
+                    return response.text()
+                }).then(function(data){
                     var newData = [];
 
                     try {
-                        newData = JSON.parse(response);
+                        newData = JSON.parse(data);
                         if (o.autocompleteUrlKey) {
                             newData = newData[o.autocompleteUrlKey];
                         }
                     } catch (e) {
-                        newData = response.split("\n");
+                        newData = data.split("\n");
                     }
 
                     that.autocomplete = that.autocomplete.concat(newData);

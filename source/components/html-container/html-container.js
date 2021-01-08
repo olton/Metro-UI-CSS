@@ -26,7 +26,7 @@
     Metro.Component('html-container', {
         init: function( options, elem ) {
             this._super(elem, options, HtmlContainerDefaultConfig, {
-                data: {},
+                data: null,
                 opt: {},
                 htmlSource: ''
             });
@@ -53,7 +53,7 @@
                 this.opt = Utils.isObject(o.requestOptions);
             }
 
-            o.method = o.method.toLowerCase();
+            o.method = o.method.toUpperCase();
 
             if (Utils.isValue(o.htmlSource)) {
                 this.htmlSource = o.htmlSource;
@@ -67,8 +67,17 @@
 
         _load: function(){
             var that = this, element = this.element, o = this.options;
+            var fetchData = {
+                method: o.method
+            };
 
-            $[o.method](this.htmlSource, this.data, this.opt).then(function(data){
+            if (this.data) fetchData['body'] = this.data;
+            if (this.opt) fetchData['headers'] = this.opt;
+
+            fetch(this.htmlSource, fetchData)
+            .then(Metro.fetch.status)
+            .then(Metro.fetch.text)
+            .then(function(data){
                 var _data = $(data);
 
                 if (_data.length === 0) {
@@ -89,9 +98,10 @@
                     requestData: that.data,
                     requestOptions: that.opt
                 });
-            }, function(xhr){
+            })
+            .catch(function(error){
                 that._fireEvent("html-load-fail", {
-                    xhr: xhr
+                    error: error
                 });
             });
         },
