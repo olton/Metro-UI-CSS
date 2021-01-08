@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.4.3  (https://metroui.org.ua)
- * Copyright 2012-2020 Sergey Pimenov
- * Built at 27/12/2020 15:34:21
+ * Copyright 2012-2021 Sergey Pimenov
+ * Built at 08/01/2021 22:16:43
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -296,331 +296,11 @@ function isTouch() {
 
 }(typeof self === "undefined" ? typeof global === "undefined" ? window : global : self));
 
-// Source: src/promise.js
-
-/* global setImmediate */
-
-/*
- * Promise polyfill
- * Version 1.2.0
- * Url: https://github.com/lahmatiy/es6-promise-polyfill
- * Copyright (c) 2014 Roman Dvornov
- * Licensed under MIT
- */
-(function (global) {
-
-    if (global.Promise) {
-        return;
-    }
-
-    // 
-
-    var PENDING = 'pending';
-    var SEALED = 'sealed';
-    var FULFILLED = 'fulfilled';
-    var REJECTED = 'rejected';
-    var NOOP = function(){};
-
-    function isArray(value) {
-        return Object.prototype.toString.call(value) === '[object Array]';
-    }
-
-    // async calls
-    var asyncSetTimer = typeof setImmediate !== 'undefined' ? setImmediate : setTimeout;
-    var asyncQueue = [];
-    var asyncTimer;
-
-    function asyncFlush(){
-        // run promise callbacks
-        for (var i = 0; i < asyncQueue.length; i++)
-            asyncQueue[i][0](asyncQueue[i][1]);
-
-        // reset async asyncQueue
-        asyncQueue = [];
-        asyncTimer = false;
-    }
-
-    function asyncCall(callback, arg){
-        asyncQueue.push([callback, arg]);
-
-        if (!asyncTimer)
-        {
-            asyncTimer = true;
-            asyncSetTimer(asyncFlush, 0);
-        }
-    }
-
-    function invokeResolver(resolver, promise) {
-        function resolvePromise(value) {
-            resolve(promise, value);
-        }
-
-        function rejectPromise(reason) {
-            reject(promise, reason);
-        }
-
-        try {
-            resolver(resolvePromise, rejectPromise);
-        } catch(e) {
-            rejectPromise(e);
-        }
-    }
-
-    function invokeCallback(subscriber){
-        var owner = subscriber.owner;
-        var settled = owner.state_;
-        var value = owner.data_;
-        var callback = subscriber[settled];
-        var promise = subscriber.then;
-
-        if (typeof callback === 'function')
-        {
-            settled = FULFILLED;
-            try {
-                value = callback(value);
-            } catch(e) {
-                reject(promise, e);
-            }
-        }
-
-        if (!handleThenable(promise, value))
-        {
-            if (settled === FULFILLED)
-                resolve(promise, value);
-
-            if (settled === REJECTED)
-                reject(promise, value);
-        }
-    }
-
-    function handleThenable(promise, value) {
-        var resolved;
-
-        try {
-            if (promise === value)
-                throw new TypeError('A promises callback cannot return that same promise.');
-
-            if (value && (typeof value === 'function' || typeof value === 'object'))
-            {
-                var then = value.then;  // then should be retrived only once
-
-                if (typeof then === 'function')
-                {
-                    then.call(value, function(val){
-                        if (!resolved)
-                        {
-                            resolved = true;
-
-                            if (value !== val)
-                                resolve(promise, val);
-                            else
-                                fulfill(promise, val);
-                        }
-                    }, function(reason){
-                        if (!resolved)
-                        {
-                            resolved = true;
-
-                            reject(promise, reason);
-                        }
-                    });
-
-                    return true;
-                }
-            }
-        } catch (e) {
-            if (!resolved)
-                reject(promise, e);
-
-            return true;
-        }
-
-        return false;
-    }
-
-    function resolve(promise, value){
-        if (promise === value || !handleThenable(promise, value))
-            fulfill(promise, value);
-    }
-
-    function fulfill(promise, value){
-        if (promise.state_ === PENDING)
-        {
-            promise.state_ = SEALED;
-            promise.data_ = value;
-
-            asyncCall(publishFulfillment, promise);
-        }
-    }
-
-    function reject(promise, reason){
-        if (promise.state_ === PENDING)
-        {
-            promise.state_ = SEALED;
-            promise.data_ = reason;
-
-            asyncCall(publishRejection, promise);
-        }
-    }
-
-    function publish(promise) {
-        var callbacks = promise.then_;
-        promise.then_ = undefined;
-
-        for (var i = 0; i < callbacks.length; i++) {
-            invokeCallback(callbacks[i]);
-        }
-    }
-
-    function publishFulfillment(promise){
-        promise.state_ = FULFILLED;
-        publish(promise);
-    }
-
-    function publishRejection(promise){
-        promise.state_ = REJECTED;
-        publish(promise);
-    }
-
-    /**
-     * @class
-     */
-    function Promise(resolver){
-        if (typeof resolver !== 'function')
-            throw new TypeError('Promise constructor takes a function argument');
-
-        if (!(this instanceof Promise))
-            throw new TypeError('Failed to construct \'Promise\': Please use the \'new\' operator, this object constructor cannot be called as a function.');
-
-        this.then_ = [];
-
-        invokeResolver(resolver, this);
-    }
-
-    Promise.prototype = {
-        constructor: Promise,
-
-        state_: PENDING,
-        then_: null,
-        data_: undefined,
-
-        then: function(onFulfillment, onRejection){
-            var subscriber = {
-                owner: this,
-                then: new this.constructor(NOOP),
-                fulfilled: onFulfillment,
-                rejected: onRejection
-            };
-
-            if (this.state_ === FULFILLED || this.state_ === REJECTED)
-            {
-                // already resolved, call callback async
-                asyncCall(invokeCallback, subscriber);
-            }
-            else
-            {
-                // subscribe
-                this.then_.push(subscriber);
-            }
-
-            return subscriber.then;
-        },
-
-        done: function(onFulfillment){
-            return this.then(onFulfillment, null);
-        },
-
-        always: function(onAlways){
-            return this.then(onAlways, onAlways);
-        },
-
-        'catch': function(onRejection) {
-            return this.then(null, onRejection);
-        }
-    };
-
-    Promise.all = function(promises){
-        var Class = this;
-
-        if (!isArray(promises))
-            throw new TypeError('You must pass an array to Promise.all().');
-
-        return new Class(function(resolve, reject){
-            var results = [];
-            var remaining = 0;
-
-            function resolver(index){
-                remaining++;
-                return function(value){
-                    results[index] = value;
-                    if (!--remaining)
-                        resolve(results);
-                };
-            }
-
-            for (var i = 0, promise; i < promises.length; i++)
-            {
-                promise = promises[i];
-
-                if (promise && typeof promise.then === 'function')
-                    promise.then(resolver(i), reject);
-                else
-                    results[i] = promise;
-            }
-
-            if (!remaining)
-                resolve(results);
-        });
-    };
-
-    Promise.race = function(promises){
-        var Class = this;
-
-        if (!isArray(promises))
-            throw new TypeError('You must pass an array to Promise.race().');
-
-        return new Class(function(resolve, reject) {
-            for (var i = 0, promise; i < promises.length; i++)
-            {
-                promise = promises[i];
-
-                if (promise && typeof promise.then === 'function')
-                    promise.then(resolve, reject);
-                else
-                    resolve(promise);
-            }
-        });
-    };
-
-    Promise.resolve = function(value){
-        var Class = this;
-
-        if (value && typeof value === 'object' && value.constructor === Class)
-            return value;
-
-        return new Class(function(resolve){
-            resolve(value);
-        });
-    };
-
-    Promise.reject = function(reason){
-        var Class = this;
-
-        return new Class(function(resolve, reject){
-            reject(reason);
-        });
-    };
-
-    if (typeof  global.Promise === "undefined") {
-        global.Promise = Promise;
-    }
-}(window));
-
 // Source: src/core.js
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 08/12/2020 00:01:48";
+var m4qVersion = "v1.0.10. Built at 08/01/2021 14:20:31";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1730,20 +1410,20 @@ $.fn.extend({
 
 /* global $, not, camelCase, str2arr, normName, matches, isEmptyObject, isPlainObject */
 
-(function () {
-    if ( typeof window.CustomEvent === "function" ) return false;
-
-    function CustomEvent ( event, params ) {
-        params = params || { bubbles: false, cancelable: false, detail: null };
-        var evt = document.createEvent( 'CustomEvent' );
-        evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
-        return evt;
-    }
-
-    CustomEvent.prototype = window.Event.prototype;
-
-    window.CustomEvent = CustomEvent;
-})();
+// (function () {
+//     if ( typeof window.CustomEvent === "function" ) return false;
+//
+//     function CustomEvent ( event, params ) {
+//         params = params || { bubbles: false, cancelable: false, detail: null };
+//         var evt = document.createEvent( 'CustomEvent' );
+//         evt.initCustomEvent( event, params.bubbles, params.cancelable, params.detail );
+//         return evt;
+//     }
+//
+//     CustomEvent.prototype = window.Event.prototype;
+//
+//     window.CustomEvent = CustomEvent;
+// })();
 
 var overriddenStop =  Event.prototype.stopPropagation;
 var overriddenPrevent =  Event.prototype.preventDefault;
@@ -2098,7 +1778,7 @@ $.fn.extend({
 // Source: src/ajax.js
 
 /* global $, Promise, not, isSimple, isPlainObject, isEmptyObject, camelCase */
-
+/* can be changed to fetch */
 $.ajax = function(p){
     return new Promise(function(resolve, reject){
         var xhr = new XMLHttpRequest(), data;
@@ -4711,8 +4391,8 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.4.3",
-        compileTime: "27/12/2020 15:34:21",
-        buildNumber: "754",
+        compileTime: "08/01/2021 22:16:43",
+        buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
@@ -5368,6 +5048,33 @@ $.noConflict = function() {
             Metro.plugin(name, component);
 
             return component;
+        },
+
+        fetch: {
+            status: function(response){
+                
+                return response.ok ? Promise.resolve(response) : Promise.reject(new Error(response.statusText));
+            },
+
+            json: function(response){
+                return response.json();
+            },
+
+            text: function(response){
+                return response.text();
+            },
+
+            form: function(response){
+                return response.formData();
+            },
+
+            blob: function(response){
+                return response.blob();
+            },
+
+            buffer: function(response){
+                return response.arrayBuffer();
+            }
         }
     };
 
@@ -15040,9 +14747,11 @@ $.noConflict = function() {
             }
 
             if (this.options.template) {
-                $.get(this.options.template).then(function(response){
-                    that.create(response);
-                });
+                fetch(this.options.template)
+                    .then(Metro.fetch.text)
+                    .then(function(data){
+                        that.create(data)
+                    });
             } else if (this.options.templateSource) {
                 this.create($(this.options.templateSource));
             } else {
@@ -18941,7 +18650,7 @@ $.noConflict = function() {
             }
 
             if (this.position) {
-                gradientOptions.push(this.position);
+                gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
             }
 
             gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
@@ -19368,7 +19077,7 @@ $.noConflict = function() {
     Metro.Component('html-container', {
         init: function( options, elem ) {
             this._super(elem, options, HtmlContainerDefaultConfig, {
-                data: {},
+                data: null,
                 opt: {},
                 htmlSource: ''
             });
@@ -19395,7 +19104,7 @@ $.noConflict = function() {
                 this.opt = Utils.isObject(o.requestOptions);
             }
 
-            o.method = o.method.toLowerCase();
+            o.method = o.method.toUpperCase();
 
             if (Utils.isValue(o.htmlSource)) {
                 this.htmlSource = o.htmlSource;
@@ -19409,8 +19118,17 @@ $.noConflict = function() {
 
         _load: function(){
             var that = this, element = this.element, o = this.options;
+            var fetchData = {
+                method: o.method
+            };
 
-            $[o.method](this.htmlSource, this.data, this.opt).then(function(data){
+            if (this.data) fetchData['body'] = this.data;
+            if (this.opt) fetchData['headers'] = this.opt;
+
+            fetch(this.htmlSource, fetchData)
+            .then(Metro.fetch.status)
+            .then(Metro.fetch.text)
+            .then(function(data){
                 var _data = $(data);
 
                 if (_data.length === 0) {
@@ -19431,9 +19149,10 @@ $.noConflict = function() {
                     requestData: that.data,
                     requestOptions: that.opt
                 });
-            }, function(xhr){
+            })
+            .catch(function(error){
                 that._fireEvent("html-load-fail", {
-                    xhr: xhr
+                    error: error
                 });
             });
         },
@@ -21071,19 +20790,20 @@ $.noConflict = function() {
             }
 
             if (Utils.isValue(o.autocompleteUrl)) {
-                $.ajax({
-                    url: o.autocompleteUrl,
+                fetch(o.autocompleteUrl, {
                     method: o.autocompleteUrlMethod
                 }).then(function(response){
+                    return response.text()
+                }).then(function(data){
                     var newData = [];
 
                     try {
-                        newData = JSON.parse(response);
+                        newData = JSON.parse(data);
                         if (o.autocompleteUrlKey) {
                             newData = newData[o.autocompleteUrlKey];
                         }
                     } catch (e) {
-                        newData = response.split("\n");
+                        newData = data.split("\n");
                     }
 
                     that.autocomplete = that.autocomplete.concat(newData);
@@ -32697,19 +32417,20 @@ $.noConflict = function() {
             }
 
             if (Utils.isValue(o.autocompleteUrl)) {
-                $.ajax({
-                    url: o.autocompleteUrl,
+                fetch(o.autocompleteUrl, {
                     method: o.autocompleteUrlMethod
                 }).then(function(response){
+                    return response.text()
+                }).then(function(data){
                     var newData = [];
 
                     try {
-                        newData = JSON.parse(response);
+                        newData = JSON.parse(data);
                         if (o.autocompleteUrlKey) {
                             newData = newData[o.autocompleteUrlKey];
                         }
                     } catch (e) {
-                        newData = response.split("\n");
+                        newData = data.split("\n");
                     }
 
                     that.autocomplete = that.autocomplete.concat(newData);

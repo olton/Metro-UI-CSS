@@ -1,3 +1,15 @@
+### 4.5.0
+#### M4Q
++ [x] Version: update to 1.1.0
++ [x] Polyfills: removed polyfills for Promise, CustomEvent (IE is dead)
+
+#### Metro 4
++ [ ] Ajax: switched from `$.ajax` (`$.json`, `$.post`, ...) to `fetch` (IE is dead)
++ [x] Tag input: switched from `$.ajax` to `fetch`
++ [x] Input: switched from `$.ajax` to `fetch`
++ [x] Html container: switched from `$.ajax` to `fetch`
++ [x] Cookie disclaimer: switched from `$.ajax` to `fetch`
+
 ### 4.4.3
 #### M4Q
 + [x] Attributes: fixed method `attr` when user defining one argument

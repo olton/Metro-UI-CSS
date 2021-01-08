@@ -1,4 +1,4 @@
-/* global jQuery, define */
+/* global jQuery, define, Promise */
 /* Metro 4 Core */
 (function( factory ) {
     if ( typeof define === 'function' && define.amd ) {
@@ -685,6 +685,33 @@
             Metro.plugin(name, component);
 
             return component;
+        },
+
+        fetch: {
+            status: function(response){
+                console.log(response);
+                return response.ok ? Promise.resolve(response) : Promise.reject(new Error(response.statusText));
+            },
+
+            json: function(response){
+                return response.json();
+            },
+
+            text: function(response){
+                return response.text();
+            },
+
+            form: function(response){
+                return response.formData();
+            },
+
+            blob: function(response){
+                return response.blob();
+            },
+
+            buffer: function(response){
+                return response.arrayBuffer();
+            }
         }
     };
 

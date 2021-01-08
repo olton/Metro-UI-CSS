@@ -86,7 +86,7 @@
             }
 
             if (this.position) {
-                gradientOptions.push(this.position);
+                gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
             }
 
             gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
