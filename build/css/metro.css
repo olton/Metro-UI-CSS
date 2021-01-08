@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 08/01/2021 22:19:43
+ * Built at 08/01/2021 22:21:06
  * Licensed under MIT
  */
 *,
@@ -19840,7 +19840,6 @@ pre code {
 .no-user-select {
   -webkit-user-select: none !important;
      -moz-user-select: none !important;
-      -ms-user-select: none !important;
           user-select: none !important;
 }
 .no-appearance {
@@ -19901,7 +19900,6 @@ pre code {
   pointer-events: none;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 @media screen and (min-width: 0) {
@@ -20398,7 +20396,6 @@ pre code {
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   font-size: 0.875rem;
@@ -21769,7 +21766,6 @@ pre code {
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0 0.75rem;
@@ -21948,7 +21944,6 @@ input[type=reset] {
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0 0.75rem;
@@ -22782,7 +22777,6 @@ input[type=reset].loading .load-caption {
   overflow: hidden;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   background-color: #ffffff;
 }
@@ -22800,7 +22794,6 @@ input[type=reset].loading .load-caption {
   color: #ffffff;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .calendar-header .header-year {
@@ -22893,7 +22886,6 @@ input[type=reset].loading .load-caption {
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   margin: 0;
   line-height: 39px;
@@ -23386,7 +23378,6 @@ input[type=reset].loading .load-caption {
   z-index: 501;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .carousel .carousel-switch-next,
@@ -23934,7 +23925,6 @@ input[type=reset].loading .load-caption {
   margin: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -24519,7 +24509,6 @@ input[type=reset].loading .load-caption {
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   outline: none;
@@ -25707,7 +25696,6 @@ aside::after {
   padding-right: 1.5rem !important;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .dropdown-toggle::before {
@@ -27533,7 +27521,6 @@ fieldset.disabled,
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0;
@@ -27842,7 +27829,6 @@ fieldset.disabled,
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   outline: none;
@@ -28119,7 +28105,6 @@ fieldset.disabled,
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0 0.75rem;
@@ -28970,10 +28955,6 @@ input:-ms-input-placeholder {
   top: 0;
   opacity: 1;
 }
-.input-material.permanent-label input:not(:-ms-input-placeholder) ~ .label {
-  top: 0;
-  opacity: 1;
-}
 .input-material.permanent-label input:not(:placeholder-shown) ~ .label {
   top: 0;
   opacity: 1;
@@ -29271,7 +29252,6 @@ input.input-small:-ms-input-placeholder {
   padding: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -29794,7 +29774,6 @@ input.input-small:-ms-input-placeholder {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .listview .node-group > .data {
@@ -29808,7 +29787,6 @@ input.input-small:-ms-input-placeholder {
   padding-right: 1.5rem !important;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .listview .node-group .node-toggle::before {
@@ -29923,7 +29901,6 @@ input.input-small:-ms-input-placeholder {
   text-align: center;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .master .controls .prev,
@@ -31078,7 +31055,6 @@ input.input-small:-ms-input-placeholder {
   padding: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .pagination .page-item {
@@ -31477,7 +31453,6 @@ input.input-small:-ms-input-placeholder {
   margin: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -33167,7 +33142,6 @@ input.input-small:-ms-input-placeholder {
   vertical-align: middle;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   position: relative;
@@ -34740,7 +34714,6 @@ input.input-small:-ms-input-placeholder {
   cursor: pointer;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
@@ -34890,7 +34863,6 @@ input.input-small:-ms-input-placeholder {
   overflow: hidden;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
 }
@@ -34970,7 +34942,6 @@ input.input-small:-ms-input-placeholder {
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .streamer .stream-event.selected {
@@ -35363,7 +35334,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   margin: 0;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -35500,7 +35470,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -37105,7 +37074,6 @@ textarea {
   overflow: hidden;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   max-width: none!important;
 }
@@ -38816,7 +38784,6 @@ textarea {
   color: #1d1d1d;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   -webkit-transition: all 0.15s ease-in-out;
@@ -39050,7 +39017,6 @@ a.tool-button {
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .treeview li {
@@ -39085,7 +39051,6 @@ a.tool-button {
   padding-right: 1.5rem !important;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .treeview li .node-toggle::before {
@@ -39685,7 +39650,6 @@ body.vegas-container > .vegas-slide {
   height: 38px;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .wheel-picker .select-wrapper {
@@ -39813,7 +39777,6 @@ body.vegas-container > .vegas-slide {
   color: #ffffff;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 .window-caption .title {
