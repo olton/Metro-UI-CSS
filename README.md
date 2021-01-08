@@ -82,9 +82,13 @@ If your current version of Metro 4 works for you, you can stay on it for as long
 If you want to make use of new features as they come in you should upgrade to a newer version.
 
 ### Browser Compatibility
-![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/src/archive/internet-explorer_9-11/internet-explorer_9-11_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
+![Chrome](https://raw.github.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | 
+![Firefox](https://raw.github.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | 
+![Edge](https://raw.github.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | 
+![Safari](https://raw.github.com/alrra/browser-logos/master/src/safari/safari_48x48.png) | 
+![Opera](https://raw.github.com/alrra/browser-logos/master/src/opera/opera_48x48.png)
 --- | --- | --- | --- | --- | --- |
-Latest 2 ✔ | Latest 2 ✔ | Latest 2 ✔ | EDGE 2 ✔ | Latest 2 ✔ | Latest 2 ✔ |
+Latest 2 ✔ | Latest 2 ✔ | Latest 2 ✔ | Latest 2 ✔ | Latest 2 ✔ |
 
 ### Old version
 Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olton/Metro-UI-CSS-3)     
