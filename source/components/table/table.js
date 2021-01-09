@@ -276,26 +276,51 @@
                     that._build(objSource);
                 } else {
                     this.activity.show(function () {
-                        $.json(o.source).then(function (data) {
-                            that.activity.hide();
-                            if (typeof data !== "object") {
-                                throw new Error("Data for table is not a object");
-                            }
+                        fetch(o.source)
+                            .then(Metro.fetch.status)
+                            .then(Metro.fetch.json)
+                            .then(function(data){
+                                that.activity.hide();
+                                if (typeof data !== "object") {
+                                    throw new Error("Data for table is not a object");
+                                }
 
-                            that._fireEvent("data-loaded", {
-                                source: o.source,
-                                data: data
+                                that._fireEvent("data-loaded", {
+                                    source: o.source,
+                                    data: data
+                                });
+
+                                that._build(data);
+                            })
+                            .catch(function(error){
+                                that.activity.hide();
+
+                                that._fireEvent("data-load-error", {
+                                    source: o.source,
+                                    error: error
+                                });
                             });
 
-                            that._build(data);
-                        }, function (xhr) {
-                            that.activity.hide();
-
-                            that._fireEvent("data-load-error", {
-                                source: o.source,
-                                xhr: xhr
-                            });
-                        });
+                        // $.json(o.source).then(function (data) {
+                        //     that.activity.hide();
+                        //     if (typeof data !== "object") {
+                        //         throw new Error("Data for table is not a object");
+                        //     }
+                        //
+                        //     that._fireEvent("data-loaded", {
+                        //         source: o.source,
+                        //         data: data
+                        //     });
+                        //
+                        //     that._build(data);
+                        // }, function (xhr) {
+                        //     that.activity.hide();
+                        //
+                        //     that._fireEvent("data-load-error", {
+                        //         source: o.source,
+                        //         xhr: xhr
+                        //     });
+                        // });
                     });
                 }
             } else {
@@ -359,20 +384,38 @@
 
             } else {
 
-                $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
-                .then(function(view){
-                    if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
-                        that.view = view;
-                        that._fireEvent("view-get", {
-                            source: "server",
-                            view: view
-                        });
-                    }
-                    that._final();
-                }, function(){
-                    that._final();
-                    console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
-                });
+                fetch(viewPath)
+                    .then(Metro.fetch.status)
+                    .then(Metro.fetch.json)
+                    .then(function(view){
+                        if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
+                            that.view = view;
+                            that._fireEvent("view-get", {
+                                source: "server",
+                                view: view
+                            });
+                        }
+                        that._final();
+                    })
+                    .catch(function(error){
+                        that._final();
+                        console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
+                    });
+
+                // $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
+                // .then(function(view){
+                //     if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
+                //         that.view = view;
+                //         that._fireEvent("view-get", {
+                //             source: "server",
+                //             view: view
+                //         });
+                //     }
+                //     that._final();
+                // }, function(){
+                //     that._final();
+                //     console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
+                // });
 
             }
         },
@@ -1281,9 +1324,17 @@
                     id : element.attr("id"),
                     view : view
                 };
-                $.post(viewPath, post_data)
-                    .then(function(data){
 
+                fetch(viewPath, {
+                    method: "POST"
+                    , body: JSON.stringify(post_data)
+                    , header: {
+                        "Content-type": "application/json;charset=utf-8"
+                    }
+                })
+                    .then(Metro.fetch.status)
+                    .then(Metro.fetch.text)
+                    .then(function(data){
                         that._fireEvent("view-save", {
                             target: "server",
                             path: o.viewSavePath,
@@ -1291,16 +1342,35 @@
                             post_data: post_data,
                             response: data
                         });
-
-                    }, function(xhr){
-
+                    })
+                    .catch(function(error){
                         that._fireEvent("data-save-error", {
                             source: o.viewSavePath,
-                            xhr: xhr,
+                            error: error,
                             post_data: post_data
                         });
-
                     });
+                //
+                // $.post(viewPath, post_data)
+                //     .then(function(data){
+                //
+                //         that._fireEvent("view-save", {
+                //             target: "server",
+                //             path: o.viewSavePath,
+                //             view: view,
+                //             post_data: post_data,
+                //             response: data
+                //         });
+                //
+                //     }, function(xhr){
+                //
+                //         that._fireEvent("data-save-error", {
+                //             source: o.viewSavePath,
+                //             xhr: xhr,
+                //             post_data: post_data
+                //         });
+                //
+                //     });
             }
         },
 
@@ -1853,34 +1923,66 @@
                 });
 
                 that.activity.show(function(){
-                    $.json(o.source).then(function(data){
-                        that.activity.hide();
-                        that.items = [];
-                        that.heads = [];
-                        that.foots = [];
+                    fetch(o.source)
+                        .then(Metro.fetch.status)
+                        .then(Metro.fetch.json)
+                        .then(function(data){
+                            that.activity.hide();
+                            that.items = [];
+                            that.heads = [];
+                            that.foots = [];
 
-                        that._fireEvent("data-loaded", {
-                            source: o.source,
-                            data: data
-                        });
+                            that._fireEvent("data-loaded", {
+                                source: o.source,
+                                data: data
+                            });
 
-                        if (Array.isArray(o.head)) {
-                            that.heads = o.head;
-                        }
+                            if (Array.isArray(o.head)) {
+                                that.heads = o.head;
+                            }
 
-                        if (Array.isArray(o.body)) {
-                            that.items = o.body;
-                        }
+                            if (Array.isArray(o.body)) {
+                                that.items = o.body;
+                            }
 
-                        that._createItemsFromJSON(data);
-                        that._rebuild(review);
-                    }, function(xhr){
-                        that.activity.hide();
-                        that._fireEvent("data-load-error", {
-                            source: o.source,
-                            xhr: xhr
-                        });
-                    });
+                            that._createItemsFromJSON(data);
+                            that._rebuild(review);
+                        })
+                        .catch(function(error){
+                            that.activity.hide();
+                            that._fireEvent("data-load-error", {
+                                source: o.source,
+                                error: error
+                            });
+                        })
+                    // $.json(o.source).then(function(data){
+                    //     that.activity.hide();
+                    //     that.items = [];
+                    //     that.heads = [];
+                    //     that.foots = [];
+                    //
+                    //     that._fireEvent("data-loaded", {
+                    //         source: o.source,
+                    //         data: data
+                    //     });
+                    //
+                    //     if (Array.isArray(o.head)) {
+                    //         that.heads = o.head;
+                    //     }
+                    //
+                    //     if (Array.isArray(o.body)) {
+                    //         that.items = o.body;
+                    //     }
+                    //
+                    //     that._createItemsFromJSON(data);
+                    //     that._rebuild(review);
+                    // }, function(xhr){
+                    //     that.activity.hide();
+                    //     that._fireEvent("data-load-error", {
+                    //         source: o.source,
+                    //         xhr: xhr
+                    //     });
+                    // });
                 });
 
             }
