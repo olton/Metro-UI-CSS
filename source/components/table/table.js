@@ -399,7 +399,7 @@
                     })
                     .catch(function(error){
                         that._final();
-                        console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
+                        console.warn("Warning! Error loading view for table " + element.attr('id') + ": " + error);
                     });
 
                 // $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
