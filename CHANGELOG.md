@@ -9,6 +9,7 @@
 + [x] Input: switched from `$.ajax` to `fetch`
 + [x] Html container: switched from `$.ajax` to `fetch`
 + [x] Cookie disclaimer: switched from `$.ajax` to `fetch`
++ [x] Table: `_create()`, `_buid()`, `_saveTableView()`, `loadData()` now use `fetch`, and send data to server as `json` 
 
 ### 4.4.3
 #### M4Q
