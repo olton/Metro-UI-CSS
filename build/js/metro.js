@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 09/01/2021 12:17:14
+ * Built at 09/01/2021 14:04:09
  * Licensed under MIT
  */
 (function (global, undefined) {
@@ -4391,7 +4391,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "09/01/2021 12:17:14",
+        compileTime: "09/01/2021 14:04:09",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -21856,18 +21856,35 @@ $.noConflict = function() {
                     source: o.source
                 });
 
-                $.json(o.source).then(function(data){
-                    that._fireEvent("data-loaded", {
-                        source: o.source,
-                        data: data
+                fetch(o.source)
+                    .then(Metro.fetch.status)
+                    .then(Metro.fetch.json)
+                    .then(function(data){
+                        that._fireEvent("data-loaded", {
+                            source: o.source,
+                            data: data
+                        });
+                        that._build(data);
+                    })
+                    .catch(function(error){
+                        that._fireEvent("data-load-error", {
+                            source: o.source,
+                            error: error
+                        });
                     });
-                    that._build(data);
-                }, function(xhr){
-                    that._fireEvent("data-load-error", {
-                        source: o.source,
-                        xhr: xhr
-                    });
-                });
+
+                // $.json(o.source).then(function(data){
+                //     that._fireEvent("data-loaded", {
+                //         source: o.source,
+                //         data: data
+                //     });
+                //     that._build(data);
+                // }, function(xhr){
+                //     that._fireEvent("data-load-error", {
+                //         source: o.source,
+                //         xhr: xhr
+                //     });
+                // });
             } else {
                 that._build();
             }
@@ -22405,51 +22422,98 @@ $.noConflict = function() {
                 source: o.source
             });
 
-            $.json(o.source).then(function(data){
-
-                that._fireEvent("data-loaded", {
-                    source: o.source,
-                    data: data
-                });
-
-                that._createItemsFromJSON(data);
-
-                element.html("");
-
-                if (Utils.isValue(o.filterString)) {
-                    that.filterString = o.filterString;
-                }
-
-                var filter_func;
-
-                if (Utils.isValue(o.filter)) {
-                    filter_func = Utils.isFunc(o.filter);
-                    if (filter_func === false) {
-                        filter_func = Utils.func(o.filter);
-                    }
-                    that.filterIndex = that.addFilter(filter_func);
-                }
-
-                if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
-                    $.each(o.filters.toArray(), function(){
-                        filter_func = Utils.isFunc(this);
-                        if (filter_func !== false) {
-                            that.filtersIndexes.push(that.addFilter(filter_func));
-                        }
+            fetch(o.source)
+                .then(Metro.fetch.status)
+                .then(Metro.fetch.json)
+                .then(function(data){
+                    that._fireEvent("data-loaded", {
+                        source: o.source,
+                        data: data
                     });
-                }
 
-                that.currentPage = 1;
+                    that._createItemsFromJSON(data);
 
-                that.sorting(o.sortClass, o.sortDir, true);
-            }, function(xhr){
+                    element.html("");
 
-                that._fireEvent("data-load-error", {
-                    source: o.source,
-                    xhr: xhr
+                    if (Utils.isValue(o.filterString)) {
+                        that.filterString = o.filterString;
+                    }
+
+                    var filter_func;
+
+                    if (Utils.isValue(o.filter)) {
+                        filter_func = Utils.isFunc(o.filter);
+                        if (filter_func === false) {
+                            filter_func = Utils.func(o.filter);
+                        }
+                        that.filterIndex = that.addFilter(filter_func);
+                    }
+
+                    if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                        $.each(o.filters.toArray(), function(){
+                            filter_func = Utils.isFunc(this);
+                            if (filter_func !== false) {
+                                that.filtersIndexes.push(that.addFilter(filter_func));
+                            }
+                        });
+                    }
+
+                    that.currentPage = 1;
+
+                    that.sorting(o.sortClass, o.sortDir, true);
+                })
+                .catch(function(error){
+                    that._fireEvent("data-load-error", {
+                        source: o.source,
+                        error: error
+                    });
                 });
 
-            });
+            // $.json(o.source).then(function(data){
+            //
+            //     that._fireEvent("data-loaded", {
+            //         source: o.source,
+            //         data: data
+            //     });
+            //
+            //     that._createItemsFromJSON(data);
+            //
+            //     element.html("");
+            //
+            //     if (Utils.isValue(o.filterString)) {
+            //         that.filterString = o.filterString;
+            //     }
+            //
+            //     var filter_func;
+            //
+            //     if (Utils.isValue(o.filter)) {
+            //         filter_func = Utils.isFunc(o.filter);
+            //         if (filter_func === false) {
+            //             filter_func = Utils.func(o.filter);
+            //         }
+            //         that.filterIndex = that.addFilter(filter_func);
+            //     }
+            //
+            //     if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+            //         $.each(o.filters.toArray(), function(){
+            //             filter_func = Utils.isFunc(this);
+            //             if (filter_func !== false) {
+            //                 that.filtersIndexes.push(that.addFilter(filter_func));
+            //             }
+            //         });
+            //     }
+            //
+            //     that.currentPage = 1;
+            //
+            //     that.sorting(o.sortClass, o.sortDir, true);
+            // }, function(xhr){
+            //
+            //     that._fireEvent("data-load-error", {
+            //         source: o.source,
+            //         xhr: xhr
+            //     });
+            //
+            // });
         },
 
         next: function(){
@@ -28695,7 +28759,7 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
 
             element.addClass("streamer");
 
@@ -28716,23 +28780,24 @@ $.noConflict = function() {
                     source: o.source
                 });
 
-                $.json(o.source).then(function(data){
-
-                    that._fireEvent("data-loaded", {
-                        source: o.source,
-                        data: data
-                    });
-
-                    that.data = data;
-                    that.build();
-                }, function(xhr){
-
-                    that._fireEvent("data-load-error", {
-                        source: o.source,
-                        xhr: xhr
-                    });
-
-                });
+                this._loadSource();
+                // $.json(o.source).then(function(data){
+                //
+                //     that._fireEvent("data-loaded", {
+                //         source: o.source,
+                //         data: data
+                //     });
+                //
+                //     that.data = data;
+                //     that.build();
+                // }, function(xhr){
+                //
+                //     that._fireEvent("data-load-error", {
+                //         source: o.source,
+                //         xhr: xhr
+                //     });
+                //
+                // });
             } else {
                 this.data = o.data;
                 this.build();
@@ -28741,6 +28806,29 @@ $.noConflict = function() {
             if (o.chromeNotice === true && Utils.detectChrome() === true && $.touchable === false) {
                 $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
             }
+        },
+
+        _loadSource: function(){
+            var that = this, o = this.options;
+
+            fetch(o.source)
+                .then(Metro.fetch.status)
+                .then(Metro.fetch.json)
+                .then(function(data){
+                    that._fireEvent("data-loaded", {
+                        source: o.source,
+                        data: data
+                    });
+
+                    that.data = data;
+                    that.build();
+                })
+                .catch(function (error) {
+                    that._fireEvent("data-load-error", {
+                        source: o.source,
+                        error: error
+                    });
+                });
         },
 
         build: function(){
@@ -29356,7 +29444,7 @@ $.noConflict = function() {
         },
 
         changeSource: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var new_source = element.attr("data-source");
 
             if (String(new_source).trim() === "") {
@@ -29369,22 +29457,24 @@ $.noConflict = function() {
                 source: o.source
             });
 
-            $.json(o.source).then(function(data){
+            this._loadSource();
 
-                that._fireEvent("data-loaded", {
-                    source: o.source,
-                    data: data
-                });
-
-                that.data = data;
-                that.build();
-            }, function(xhr){
-
-                that._fireEvent("data-load-error", {
-                    source: o.source,
-                    xhr: xhr
-                });
-            });
+            // $.json(o.source).then(function(data){
+            //
+            //     that._fireEvent("data-loaded", {
+            //         source: o.source,
+            //         data: data
+            //     });
+            //
+            //     that.data = data;
+            //     that.build();
+            // }, function(xhr){
+            //
+            //     that._fireEvent("data-load-error", {
+            //         source: o.source,
+            //         xhr: xhr
+            //     });
+            // });
 
             this._fireEvent("source-change");
         },
