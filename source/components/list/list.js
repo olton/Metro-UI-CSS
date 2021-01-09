@@ -111,18 +111,35 @@
                     source: o.source
                 });
 
-                $.json(o.source).then(function(data){
-                    that._fireEvent("data-loaded", {
-                        source: o.source,
-                        data: data
+                fetch(o.source)
+                    .then(Metro.fetch.status)
+                    .then(Metro.fetch.json)
+                    .then(function(data){
+                        that._fireEvent("data-loaded", {
+                            source: o.source,
+                            data: data
+                        });
+                        that._build(data);
+                    })
+                    .catch(function(error){
+                        that._fireEvent("data-load-error", {
+                            source: o.source,
+                            error: error
+                        });
                     });
-                    that._build(data);
-                }, function(xhr){
-                    that._fireEvent("data-load-error", {
-                        source: o.source,
-                        xhr: xhr
-                    });
-                });
+
+                // $.json(o.source).then(function(data){
+                //     that._fireEvent("data-loaded", {
+                //         source: o.source,
+                //         data: data
+                //     });
+                //     that._build(data);
+                // }, function(xhr){
+                //     that._fireEvent("data-load-error", {
+                //         source: o.source,
+                //         xhr: xhr
+                //     });
+                // });
             } else {
                 that._build();
             }
@@ -660,51 +677,98 @@
                 source: o.source
             });
 
-            $.json(o.source).then(function(data){
-
-                that._fireEvent("data-loaded", {
-                    source: o.source,
-                    data: data
-                });
-
-                that._createItemsFromJSON(data);
-
-                element.html("");
-
-                if (Utils.isValue(o.filterString)) {
-                    that.filterString = o.filterString;
-                }
-
-                var filter_func;
-
-                if (Utils.isValue(o.filter)) {
-                    filter_func = Utils.isFunc(o.filter);
-                    if (filter_func === false) {
-                        filter_func = Utils.func(o.filter);
-                    }
-                    that.filterIndex = that.addFilter(filter_func);
-                }
-
-                if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
-                    $.each(o.filters.toArray(), function(){
-                        filter_func = Utils.isFunc(this);
-                        if (filter_func !== false) {
-                            that.filtersIndexes.push(that.addFilter(filter_func));
-                        }
+            fetch(o.source)
+                .then(Metro.fetch.status)
+                .then(Metro.fetch.json)
+                .then(function(data){
+                    that._fireEvent("data-loaded", {
+                        source: o.source,
+                        data: data
                     });
-                }
 
-                that.currentPage = 1;
+                    that._createItemsFromJSON(data);
 
-                that.sorting(o.sortClass, o.sortDir, true);
-            }, function(xhr){
+                    element.html("");
 
-                that._fireEvent("data-load-error", {
-                    source: o.source,
-                    xhr: xhr
+                    if (Utils.isValue(o.filterString)) {
+                        that.filterString = o.filterString;
+                    }
+
+                    var filter_func;
+
+                    if (Utils.isValue(o.filter)) {
+                        filter_func = Utils.isFunc(o.filter);
+                        if (filter_func === false) {
+                            filter_func = Utils.func(o.filter);
+                        }
+                        that.filterIndex = that.addFilter(filter_func);
+                    }
+
+                    if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                        $.each(o.filters.toArray(), function(){
+                            filter_func = Utils.isFunc(this);
+                            if (filter_func !== false) {
+                                that.filtersIndexes.push(that.addFilter(filter_func));
+                            }
+                        });
+                    }
+
+                    that.currentPage = 1;
+
+                    that.sorting(o.sortClass, o.sortDir, true);
+                })
+                .catch(function(error){
+                    that._fireEvent("data-load-error", {
+                        source: o.source,
+                        error: error
+                    });
                 });
 
-            });
+            // $.json(o.source).then(function(data){
+            //
+            //     that._fireEvent("data-loaded", {
+            //         source: o.source,
+            //         data: data
+            //     });
+            //
+            //     that._createItemsFromJSON(data);
+            //
+            //     element.html("");
+            //
+            //     if (Utils.isValue(o.filterString)) {
+            //         that.filterString = o.filterString;
+            //     }
+            //
+            //     var filter_func;
+            //
+            //     if (Utils.isValue(o.filter)) {
+            //         filter_func = Utils.isFunc(o.filter);
+            //         if (filter_func === false) {
+            //             filter_func = Utils.func(o.filter);
+            //         }
+            //         that.filterIndex = that.addFilter(filter_func);
+            //     }
+            //
+            //     if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+            //         $.each(o.filters.toArray(), function(){
+            //             filter_func = Utils.isFunc(this);
+            //             if (filter_func !== false) {
+            //                 that.filtersIndexes.push(that.addFilter(filter_func));
+            //             }
+            //         });
+            //     }
+            //
+            //     that.currentPage = 1;
+            //
+            //     that.sorting(o.sortClass, o.sortDir, true);
+            // }, function(xhr){
+            //
+            //     that._fireEvent("data-load-error", {
+            //         source: o.source,
+            //         xhr: xhr
+            //     });
+            //
+            // });
         },
 
         next: function(){

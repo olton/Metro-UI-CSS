@@ -65,7 +65,7 @@
         },
 
         _create: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
 
             element.addClass("streamer");
 
@@ -86,23 +86,24 @@
                     source: o.source
                 });
 
-                $.json(o.source).then(function(data){
-
-                    that._fireEvent("data-loaded", {
-                        source: o.source,
-                        data: data
-                    });
-
-                    that.data = data;
-                    that.build();
-                }, function(xhr){
-
-                    that._fireEvent("data-load-error", {
-                        source: o.source,
-                        xhr: xhr
-                    });
-
-                });
+                this._loadSource();
+                // $.json(o.source).then(function(data){
+                //
+                //     that._fireEvent("data-loaded", {
+                //         source: o.source,
+                //         data: data
+                //     });
+                //
+                //     that.data = data;
+                //     that.build();
+                // }, function(xhr){
+                //
+                //     that._fireEvent("data-load-error", {
+                //         source: o.source,
+                //         xhr: xhr
+                //     });
+                //
+                // });
             } else {
                 this.data = o.data;
                 this.build();
@@ -111,6 +112,29 @@
             if (o.chromeNotice === true && Utils.detectChrome() === true && $.touchable === false) {
                 $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
             }
+        },
+
+        _loadSource: function(){
+            var that = this, o = this.options;
+
+            fetch(o.source)
+                .then(Metro.fetch.status)
+                .then(Metro.fetch.json)
+                .then(function(data){
+                    that._fireEvent("data-loaded", {
+                        source: o.source,
+                        data: data
+                    });
+
+                    that.data = data;
+                    that.build();
+                })
+                .catch(function (error) {
+                    that._fireEvent("data-load-error", {
+                        source: o.source,
+                        error: error
+                    });
+                });
         },
 
         build: function(){
@@ -726,7 +750,7 @@
         },
 
         changeSource: function(){
-            var that = this, element = this.element, o = this.options;
+            var element = this.element, o = this.options;
             var new_source = element.attr("data-source");
 
             if (String(new_source).trim() === "") {
@@ -739,22 +763,24 @@
                 source: o.source
             });
 
-            $.json(o.source).then(function(data){
+            this._loadSource();
 
-                that._fireEvent("data-loaded", {
-                    source: o.source,
-                    data: data
-                });
-
-                that.data = data;
-                that.build();
-            }, function(xhr){
-
-                that._fireEvent("data-load-error", {
-                    source: o.source,
-                    xhr: xhr
-                });
-            });
+            // $.json(o.source).then(function(data){
+            //
+            //     that._fireEvent("data-loaded", {
+            //         source: o.source,
+            //         data: data
+            //     });
+            //
+            //     that.data = data;
+            //     that.build();
+            // }, function(xhr){
+            //
+            //     that._fireEvent("data-load-error", {
+            //         source: o.source,
+            //         xhr: xhr
+            //     });
+            // });
 
             this._fireEvent("source-change");
         },
