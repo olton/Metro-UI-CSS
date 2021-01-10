@@ -873,7 +873,7 @@
                 }
 
                 counter++;
-                if (counter % 7 === 0) {
+                if (counter < 42 && counter % 7 === 0) {
                     days_row = $("<div>").addClass("days-row").appendTo(days);
                     if (o.showWeekNumber === true) {
                         $("<div>").addClass("week-number").html((new Date(first.getFullYear(), first.getMonth(), first.getDate() + 1)).getWeek(o.weekStart)).appendTo(days_row);
