@@ -696,7 +696,6 @@
                     $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
                 }
 
-                // Events
                 var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
 
                 cell.data('day', day);
@@ -784,7 +783,7 @@
             var element = this.element, o = this.options;
             var content = element.find(".calendar-content");
             var locale = this.locale['calendar']['months'];
-            var toolbar, months, month, yearToday = new Date().getFullYear(), monthToday = new Date().getMonth();
+            var toolbar, months, month, yearToday = datetime().year(), monthToday = datetime().month();
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
@@ -960,7 +959,7 @@
                 month: this.today.month(),
                 day: this.today.day()
             };
-            this.time = [new Date().getHours(), new Date().getMinutes()];
+            this.time = [datetime().hour(), datetime().minute()];
             this.yearGroupStart = datetime().year();
             this.content = "days";
             this._drawHeader();

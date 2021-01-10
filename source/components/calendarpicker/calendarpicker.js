@@ -97,7 +97,7 @@
 
             if (!Utils.isValue(curr)) {
                 if (o.useNow) {
-                    this.value = new Date();
+                    this.value = datetime();
                     this.time = [this.value.getHours(), this.value.getMinutes()];
                 }
             } else {

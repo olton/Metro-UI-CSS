@@ -13,6 +13,7 @@
 + [x] List: now use `fetch` for loading data 
 + [x] Calendar: fixed showing week numbers
 + [x] Calendar: rewrited with Datetime
++ [x] Calendar picker: rewrited with Datetime
 
 ### 4.4.3
 #### M4Q

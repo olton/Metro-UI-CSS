@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 23:11:44
+ * Built at 10/01/2021 23:19:03
  * Licensed under MIT
  */
 /*!
@@ -5775,7 +5775,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "10/01/2021 23:11:44",
+        compileTime: "10/01/2021 23:19:03",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -10957,7 +10957,6 @@ $.noConflict = function() {
                     $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
                 }
 
-                // Events
                 var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
 
                 cell.data('day', day);
@@ -11045,7 +11044,7 @@ $.noConflict = function() {
             var element = this.element, o = this.options;
             var content = element.find(".calendar-content");
             var locale = this.locale['calendar']['months'];
-            var toolbar, months, month, yearToday = new Date().getFullYear(), monthToday = new Date().getMonth();
+            var toolbar, months, month, yearToday = datetime().year(), monthToday = datetime().month();
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
@@ -11221,7 +11220,7 @@ $.noConflict = function() {
                 month: this.today.month(),
                 day: this.today.day()
             };
-            this.time = [new Date().getHours(), new Date().getMinutes()];
+            this.time = [datetime().hour(), datetime().minute()];
             this.yearGroupStart = datetime().year();
             this.content = "days";
             this._drawHeader();
@@ -11476,7 +11475,7 @@ $.noConflict = function() {
 
             if (!Utils.isValue(curr)) {
                 if (o.useNow) {
-                    this.value = new Date();
+                    this.value = datetime();
                     this.time = [this.value.getHours(), this.value.getMinutes()];
                 }
             } else {
