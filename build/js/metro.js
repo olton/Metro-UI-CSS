@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 16:27:55
+ * Built at 10/01/2021 20:18:59
  * Licensed under MIT
  */
 /*!
@@ -1376,8 +1376,6 @@
         }
 
         data = Metro.locales[locale]['calendar'];
-
-        
 
         return {
             months: data.months.filter( function(el, i){ return i < 12} ),
@@ -3757,7 +3755,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -5777,7 +5775,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "10/01/2021 16:27:55",
+        compileTime: "10/01/2021 20:18:59",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6046,7 +6044,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -6438,7 +6436,7 @@ $.noConflict = function() {
 
         fetch: {
             status: function(response){
-                
+                console.log(response);
                 return response.ok ? Promise.resolve(response) : Promise.reject(new Error(response.statusText));
             },
 
@@ -10273,13 +10271,6 @@ $.noConflict = function() {
         initialTime: null,
         initialHours: null,
         initialMinutes: null,
-        clsCalendarTime: "",
-        clsTime: "",
-        clsTimeHours: "",
-        clsTimeMinutes: "",
-        clsTimeButton: "",
-        clsTimeButtonPlus: "",
-        clsTimeButtonMinus: "",
         labelTimeHours: null,
         labelTimeMinutes: null,
 
@@ -10304,11 +10295,25 @@ $.noConflict = function() {
         buttons: 'cancel, today, clear, done',
         yearsBefore: 100,
         yearsAfter: 100,
-        headerFormat: "%A, %b %e",
+        headerFormat: "dddd, MMM DD",
         showHeader: true,
         showFooter: true,
-        showTimeField: true,
         showWeekNumber: false,
+
+        isDialog: false,
+        ripple: false,
+        rippleColor: "#cccccc",
+        exclude: null,
+        preset: null,
+        minDate: null,
+        maxDate: null,
+        weekDayClick: false,
+        weekNumberClick: false,
+        multiSelect: false,
+        special: null,
+        format: METRO_DATE_FORMAT,
+        inputFormat: null,
+
         clsCalendar: "",
         clsCalendarHeader: "",
         clsCalendarContent: "",
@@ -10323,19 +10328,17 @@ $.noConflict = function() {
         clsClearButton: "",
         clsDoneButton: "",
         clsEventCounter: "",
-        isDialog: false,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        preset: null,
-        minDate: null,
-        maxDate: null,
-        weekDayClick: false,
-        weekNumberClick: false,
-        multiSelect: false,
-        special: null,
-        format: METRO_DATE_FORMAT,
-        inputFormat: null,
+        clsWeekend: "",
+        clsCurrentWeek: "",
+        clsCalendarTime: "",
+        clsTime: "",
+        clsTimeHours: "",
+        clsTimeMinutes: "",
+        clsTimeButton: "",
+        clsTimeButtonPlus: "",
+        clsTimeButtonMinus: "",
+        clsSpecial: "",
+
         onCancel: Metro.noop,
         onToday: Metro.noop,
         onClear: Metro.noop,
@@ -10365,16 +10368,15 @@ $.noConflict = function() {
     Metro.Component('calendar', {
         init: function( options, elem ) {
 
-            var now = new Date();
-            now.setHours(0,0,0,0);
+            var now = datetime().align("day");
 
             this._super(elem, options, CalendarDefaultConfig, {
                 today: now,
                 show: now,
                 current: {
-                    year: now.getFullYear(),
-                    month: now.getMonth(),
-                    day: now.getDate()
+                    year: now.year(),
+                    month: now.month(),
+                    day: now.day()
                 },
                 preset: [],
                 selected: [],
@@ -10387,12 +10389,11 @@ $.noConflict = function() {
                 locale: null,
                 minYear: null,
                 maxYear: null,
-                offset: null,
                 id: Utils.elementId("calendar"),
-                time: [new Date().getHours(), new Date().getMinutes()],
+                time: [datetime().hour(), datetime().minute()],
                 content: "days",
                 yearDistance: 11,
-                yearGroupStart: now.getFullYear()
+                yearGroupStart: now.year()
             });
 
             return this;
@@ -10404,7 +10405,6 @@ $.noConflict = function() {
             this.content = o.startContent;
             this.minYear = this.current.year - this.options.yearsBefore;
             this.maxYear = this.current.year + this.options.yearsAfter;
-            this.offset = (new Date()).getTimezoneOffset() / 60 + 1;
 
             element.html("").addClass("calendar " + (o.compact === true ? "compact" : "")).addClass(o.clsCalendar);
 
@@ -10452,21 +10452,15 @@ $.noConflict = function() {
                 }
             }
 
-            if (o.minDate !== null && Utils.isDate(o.minDate, o.inputFormat)) {
-                this.min = Utils.isValue(o.inputFormat) ? o.minDate.toDate(o.inputFormat) : (new Date(o.minDate));
-            }
+            this.min = o.minDate ? (o.inputFormat ? Datetime.from(o.minDate, o.inputFormat) : datetime(o.minDate)).align("day") : null;
+            this.max = o.maxDate ? (o.inputFormat ? Datetime.from(o.maxDate, o.inputFormat) : datetime(o.maxDate)).align("day") : null;
 
-            if (o.maxDate !== null && Utils.isDate(o.maxDate, o.inputFormat)) {
-                this.max = Utils.isValue(o.inputFormat) ? o.maxDate.toDate(o.inputFormat) : (new Date(o.maxDate));
-            }
-
-            if (o.show !== null && Utils.isDate(o.show, o.inputFormat)) {
-                this.show = Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : (new Date(o.show));
-                this.show.setHours(0,0,0,0);
+            if (o.show) {
+                this.show = (!o.show ? datetime() : o.inputFormat ? Datetime.from(o.show, o.inputFormat) : datetime(o.show)).align("day");
                 this.current = {
-                    year: this.show.getFullYear(),
-                    month: this.show.getMonth(),
-                    day: this.show.getDate()
+                    year: this.show.year(),
+                    month: this.show.month(),
+                    day: this.show.day()
                 }
             }
 
@@ -10502,22 +10496,18 @@ $.noConflict = function() {
                 return ;
             }
 
-            dates = typeof val === 'string' ? val.toArray() : val;
+            dates = typeof val === 'string' ? val.toArray() : Array.isArray(val) ? val : [];
 
             $.each(dates, function(){
                 var _d;
 
-                if (!Utils.isDateObject(this)) {
-                    _d = Utils.isValue(o.inputFormat) ? this.toDate(o.inputFormat) : new Date(this);
-                    if (Utils.isDate(_d) === false) {
-                        return ;
-                    }
-                    _d.setHours(0,0,0,0);
-                } else {
-                    _d = this;
+                try {
+                    _d = (Utils.isValue(o.inputFormat) ? Datetime.from(this, o.inputFormat) : datetime(this)).align('day').format('YYYY-MM-DD');
+                } catch (e) {
+                    return;
                 }
 
-                that[category].push(_d.getTime());
+                that[category].push(_d);
             });
         },
 
@@ -10547,35 +10537,36 @@ $.noConflict = function() {
                 var new_date, el = $(this);
 
                 if (el.hasClass("prev-month")) {
-                    new_date = new Date(that.current.year, that.current.month - 1, 1);
-                    if (new_date.getFullYear() < that.minYear) {
+                    new_date = datetime(that.current.year, that.current.month - 1, 1);
+                    if (new_date.year() < that.minYear) {
                         return ;
                     }
                 }
                 if (el.hasClass("next-month")) {
-                    new_date = new Date(that.current.year, that.current.month + 1, 1);
-                    if (new_date.getFullYear() > that.maxYear) {
+                    new_date = datetime(that.current.year, that.current.month + 1, 1);
+                    if (new_date.year() > that.maxYear) {
                         return ;
                     }
                 }
                 if (el.hasClass("prev-year")) {
-                    new_date = new Date(that.current.year - 1, that.current.month, 1);
-                    if (new_date.getFullYear() < that.minYear) {
+                    new_date = datetime(that.current.year - 1, that.current.month, 1);
+                    if (new_date.year() < that.minYear) {
                         return ;
                     }
                 }
                 if (el.hasClass("next-year")) {
-                    new_date = new Date(that.current.year + 1, that.current.month, 1);
-                    if (new_date.getFullYear() > that.maxYear) {
+                    new_date = datetime(that.current.year + 1, that.current.month, 1);
+                    if (new_date.year() > that.maxYear) {
                         return ;
                     }
                 }
 
                 that.current = {
-                    year: new_date.getFullYear(),
-                    month: new_date.getMonth(),
-                    day: new_date.getDate()
+                    year: new_date.year(),
+                    month: new_date.month(),
+                    day: new_date.day()
                 };
+
                 setTimeout(function(){
                     that._drawContent();
                     if (el.hasClass("prev-month") || el.hasClass("next-month")) {
@@ -10600,9 +10591,11 @@ $.noConflict = function() {
             });
 
             element.on(Metro.events.click, ".button.clear", function(){
+                var date = datetime();
+
                 that.selected = [];
-                that.time = [new Date().getHours(), new Date().getMinutes()];
-                that.yearGroupStart = new Date().getFullYear();
+                that.time = [date.hour(), date.minute()];
+                that.yearGroupStart = date.year();
                 that._drawContent();
                 that._fireEvent("clear");
             });
@@ -10621,23 +10614,34 @@ $.noConflict = function() {
             });
 
             if (o.weekDayClick === true) {
-                element.on(Metro.events.click, ".week-days .day", function (e) {
-                    var day, index, days;
+                element.on(Metro.events.click, ".week-days .week-day", function (e) {
+                    var day, index, days, ii = [];
 
                     day = $(this);
                     index = day.index();
 
+                    for (var i = 0; i < 7; i++) {
+                        ii.push(index);
+                        index += o.showWeekNumber ? 8 : 7;
+                    }
+
                     if (o.multiSelect === true) {
-                        days = o.outside === true ? element.find(".days-row .day:nth-child(" + (index + 1) + ")") : element.find(".days-row .day:not(.outside):nth-child(" + (index + 1) + ")");
+                        days = element.find(".day").filter(function(el){
+                            var $el = $(el);
+                            return ii.indexOf($el.index()) > -1 && !$el.hasClass("outside disabled excluded");
+                        })
+
                         $.each(days, function () {
-                            var d = $(this);
-                            var dd = d.data('day');
+                            var $el = $(this);
+                            var day = $el.data('day');
 
-                            if (d.hasClass("disabled") || d.hasClass("excluded")) return;
-
-                            if (!that.selected.contains(dd))
-                                that.selected.push(dd);
-                            d.addClass("selected").addClass(o.clsSelected);
+                            if (that.selected.indexOf(day) === -1) {
+                                that.selected.push(day);
+                                $el.addClass("selected").addClass(o.clsSelected);
+                            } else {
+                                $el.removeClass("selected").removeClass(o.clsSelected);
+                                Utils.arrayDelete(that.selected, day);
+                            }
                         });
                     }
 
@@ -10652,30 +10656,38 @@ $.noConflict = function() {
             }
 
             if (o.weekNumberClick) {
-                element.on(Metro.events.click, ".days-row .week-number", function (e) {
-                    var weekNumElement, weekNumber, days;
+                element.on(Metro.events.click, ".week-number", function (e) {
+                    var $el, wn, index, days;
 
-                    weekNumElement = $(this);
-                    weekNumber = weekNumElement.text();
+                    $el = $(this);
+                    wn = $el.text();
+                    index = $el.index();
 
                     if (o.multiSelect === true) {
-                        days = $(this).siblings(".day");
+                        days = element.find(".day").filter(function(el){
+                            var $el = $(el);
+                            var elIndex = $el.index();
+                            return Utils.between(elIndex, index, index + 8, false) && !$el.hasClass("outside disabled excluded");
+                        })
+
                         $.each(days, function () {
-                            var d = $(this);
-                            var dd = d.data('day');
+                            var $el = $(this);
+                            var day = $el.data('day');
 
-                            if (d.hasClass("disabled") || d.hasClass("excluded")) return;
-
-                            if (!that.selected.contains(dd))
-                                that.selected.push(dd);
-                            d.addClass("selected").addClass(o.clsSelected);
+                            if (that.selected.indexOf(day) === -1) {
+                                that.selected.push(day);
+                                $el.addClass("selected").addClass(o.clsSelected);
+                            } else {
+                                $el.removeClass("selected").removeClass(o.clsSelected);
+                                Utils.arrayDelete(that.selected, day);
+                            }
                         });
                     }
 
                     that._fireEvent("week-number-click", {
                         selected: that.selected,
-                        num: weekNumber,
-                        numElement: weekNumElement
+                        num: wn,
+                        numElement: $el
                     });
 
                     e.preventDefault();
@@ -10683,7 +10695,7 @@ $.noConflict = function() {
                 });
             }
 
-            element.on(Metro.events.click, ".days-row .day", function(e){
+            element.on(Metro.events.click, ".day", function(e){
                 var day = $(this);
                 var index, date;
 
@@ -10691,11 +10703,11 @@ $.noConflict = function() {
                 index = that.selected.indexOf(date);
 
                 if (day.hasClass("outside")) {
-                    date = new Date(date);
+                    date = datetime(date);
                     that.current = {
-                        year: date.getFullYear(),
-                        month: date.getMonth(),
-                        day: date.getDate()
+                        year: date.year(),
+                        month: date.month(),
+                        day: date.day()
                     };
                     that._drawContent();
 
@@ -10710,16 +10722,16 @@ $.noConflict = function() {
 
                     if (o.pickerMode === true) {
                         that.selected = [date];
-                        that.today = new Date(date);
-                        that.current.year = that.today.getFullYear();
-                        that.current.month = that.today.getMonth();
-                        that.current.day = that.today.getDate();
+                        that.today = datetime(date);
+                        that.current.year = that.today.year();
+                        that.current.month = that.today.month();
+                        that.current.day = that.today.day();
                         that._drawHeader();
                         that._drawContent();
                     } else {
                         if (index === -1) {
                             if (o.multiSelect === false) {
-                                element.find(".days-row .day").removeClass("selected").removeClass(o.clsSelected);
+                                element.find(".day").removeClass("selected").removeClass(o.clsSelected);
                                 that.selected = [];
                             }
                             that.selected.push(date);
@@ -10799,7 +10811,7 @@ $.noConflict = function() {
 
             header.html("");
 
-            $("<div>").addClass("header-year").html(this.today.getFullYear()).appendTo(header);
+            $("<div>").addClass("header-year").html(this.today.year()).appendTo(header);
             $("<div>").addClass("header-day").html(this.today.format(o.headerFormat, o.locale)).appendTo(header);
 
             if (o.showHeader === false) {
@@ -10880,7 +10892,7 @@ $.noConflict = function() {
             hours.val(h);
             minutes.val(m);
 
-            inner.find("input[type=text]").spinner({
+            Metro.makePlugin(inner.find("input[type=text]"), "spinner", {
                 onChange: onChange,
                 clsSpinnerButton: o.clsTimeButton,
                 clsSpinnerButtonPlus: o.clsTimeButtonPlus,
@@ -10893,260 +10905,115 @@ $.noConflict = function() {
         },
 
         _drawContentDays: function(){
-            var element = this.element, o = this.options;
-            var content = element.find(".calendar-content"), toolbar;
-            var calendar_locale = this.locale['calendar'];
-            var i, j, d, s, counter = 0;
-            var first = new Date(this.current.year, this.current.month, 1);
-            var first_day, first_time, today = {
-                year: this.today.getFullYear(),
-                month: this.today.getMonth(),
-                day: this.today.getDate(),
-                time: this.today.getTime()
-            };
-            var prev_month_days = (new Date(this.current.year, this.current.month, 0)).getDate();
-            var year, month, eventsCount, totalDays = 0;
-            var min_time = this.min ? this.min.getTime() : null,
-                max_time = this.max ? this.max.getTime() : null,
-                show_time= this.show ? this.show.getTime() : null;
+            var that = this, element = this.element, o = this.options;
+            var content = element.find(".calendar-content"), toolbar, weekDays, calendarDays;
+            var calendar = datetime(this.current.year, this.current.month, this.current.day).useLocale(o.locale).calendar(o.weekStart);
+            var locale = Datetime.getLocale(o.locale);
+            var showDay = this.show.format("YYYY-MM-DD");
+            var now = datetime();
 
             if (content.length === 0) {
                 content = $("<div>").addClass("calendar-content").addClass(o.clsCalendarContent).appendTo(element);
             }
 
-            content.html("");
+            if (o.showWeekNumber) {
+                content.addClass("-week-numbers");
+            }
+
+            content.empty();
 
             toolbar = $("<div>").addClass("calendar-toolbar").appendTo(content);
 
-            /**
-             * Calendar toolbar
-             */
             $("<span>").addClass("prev-month").html(o.prevMonthIcon).appendTo(toolbar);
-            $("<span>").addClass("curr-month").html(calendar_locale['months'][this.current.month]).appendTo(toolbar);
+            $("<span>").addClass("curr-month").html(locale['months'][this.current.month]).appendTo(toolbar);
             $("<span>").addClass("next-month").html(o.nextMonthIcon).appendTo(toolbar);
 
             $("<span>").addClass("prev-year").html(o.prevYearIcon).appendTo(toolbar);
             $("<span>").addClass("curr-year").html(this.current.year).appendTo(toolbar);
             $("<span>").addClass("next-year").html(o.nextYearIcon).appendTo(toolbar);
 
-            /**
-             * Week days
-             */
-            var week_days = $("<div>").addClass("week-days").appendTo(content);
-            var day_class = "day";
-
-            if (o.showWeekNumber === true) {
-                $("<span>").addClass("week-number").html("#").appendTo(week_days);
-                day_class += " and-week-number";
+            weekDays = $("<div>").addClass("week-days").appendTo(content);
+            if (o.showWeekNumber) {
+                $("<span>").addClass("week-number").html("#").appendTo(weekDays);
             }
+            $.each(calendar['weekdays'], function(){
+                $("<span>").addClass("week-day").html(this).appendTo(weekDays);
+            });
 
-            for (i = 0; i < 7; i++) {
-                if (o.weekStart === 0) {
-                    j = i;
-                } else {
-                    j = i + 1;
-                    if (j === 7) j = 0;
-                }
-                $("<span>").addClass(day_class).html(calendar_locale["days"][j + 7]).appendTo(week_days);
-            }
+            calendarDays = $("<div>").addClass("days").appendTo(content);
 
-            /**
-             * Calendar days
-             */
-            var days = $("<div>").addClass("days").appendTo(content);
-            var days_row = $("<div>").addClass("days-row").appendTo(days);
+            $.each(calendar['days'], function(i){
+                var day = this;
+                var date = datetime(day).align('day');
 
-            first_day = o.weekStart === 0 ? first.getDay() : (first.getDay() === 0 ? 6 : first.getDay() - 1);
-
-            if (this.current.month - 1 < 0) {
-                month = 11;
-                year = this.current.year - 1;
-            } else {
-                month = this.current.month - 1;
-                year = this.current.year;
-            }
-
-            if (o.showWeekNumber === true) {
-                $("<div>").addClass("week-number").html((new Date(year, month, prev_month_days - first_day + 1)).getWeek(o.weekStart)).appendTo(days_row);
-            }
-
-            // Days for previous month
-            for(i = 0; i < first_day; i++) {
-                var v = prev_month_days - first_day + i + 1;
-                d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
-                totalDays++;
-                if (o.animationContent) {
-                    d.addClass("to-animate");
+                if (o.showWeekNumber && i % 7 === 0) {
+                    $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
                 }
 
-                s = new Date(year, month, v);
-                s.setHours(0,0,0,0);
+                var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
 
-                d.data('day', s.getTime());
+                cell.data('day', day);
 
-                if (o.outside === true) {
-                    d.html(v);
-
-                    if (this.excludeDay.length > 0) {
-                        if (this.excludeDay.indexOf(s.getDay()) > -1) {
-                            d.addClass("disabled excluded").addClass(o.clsExcluded);
-                        }
-                    }
-
-                    this._fireEvent("draw-day", {
-                        date: s,
-                        day: s.getDate(),
-                        month: s.getMonth(),
-                        year: s.getFullYear(),
-                        cell: d[0]
-                    });
+                if (day === showDay) {
+                    cell.addClass("showed");
                 }
 
-                counter++;
-            }
-
-            // Days for current month
-            first.setHours(0,0,0,0);
-
-            while(first.getMonth() === this.current.month) {
-                first_time = first.getTime();
-
-                d = $("<div>").addClass(day_class).html(first.getDate()).appendTo(days_row);
-
-                totalDays++;
-
-                if (o.animationContent) {
-                    d.addClass("to-animate");
+                if (date.month() !== that.current.month) {
+                    cell.addClass("outside");
                 }
 
-                if (first.getDate() === today.day && first_time !== today.time && o.showCoincidentalDay) {
-                    d.addClass("coincidental");
+                if (day === calendar['today']) {
+                    cell.addClass("today")
                 }
 
-                d.data('day', first_time);
-
-                if (show_time && show_time === first_time) {
-                    d.addClass("showed");
+                if (o.showCoincidentalDay && date.day() === now.day()) {
+                    cell.addClass("coincidental");
                 }
 
-                if (today.time === first_time) {
-                    d.addClass("today").addClass(o.clsToday);
-                }
-
-                if (this.special.length === 0) {
-
-                    if (this.selected.length && this.selected.indexOf(first_time) !== -1) {
-                        d.addClass("selected").addClass(o.clsSelected);
-                    }
-                    if (this.exclude.length && this.exclude.indexOf(first_time) !== -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-
-                    if (min_time && first_time < min_time) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-                    if (max_time && first_time > max_time) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
-                    }
-
-                    if (this.excludeDay.length > 0) {
-                        if (this.excludeDay.indexOf(first.getDay()) > -1) {
-                            d.addClass("disabled excluded").addClass(o.clsExcluded);
-                        }
+                if (that.special.length) {
+                    if (that.special.indexOf(day) === -1) {
+                        cell.addClass("disabled excluded").addClass(o.clsExcluded);
+                    } else {
+                        cell.addClass(o.clsSpecial);
                     }
                 } else {
-
-                    if (this.special.length && this.special.indexOf(first_time) === -1) {
-                        d.addClass("disabled excluded").addClass(o.clsExcluded);
+                    if (that.selected.indexOf(day) > -1) {
+                        cell.addClass("selected").addClass(o.clsSelected);
                     }
-
-                }
-
-                if (this.events.length) {
-                    eventsCount = 0;
-                    $.each(this.events, function(){
-                        if (this === first_time) {
-                            eventsCount++;
-                        }
-                    });
-
-                    if (eventsCount) {
-                        d.append( $("<div>").addClass("badge inside").addClass(o.clsEventCounter).html(eventsCount) );
+                    if (that.exclude.indexOf(day) > -1) {
+                        cell.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (that.min && date.older(that.min)) {
+                        cell.addClass("disabled excluded").addClass(o.clsExcluded);
+                    }
+                    if (that.max && date.younger(that.max)) {
+                        cell.addClass("disabled excluded").addClass(o.clsExcluded);
                     }
                 }
 
-                this._fireEvent("draw-day", {
-                    date: first,
-                    day: first.getDate(),
-                    month: first.getMonth(),
-                    year: first.getFullYear(),
-                    cell: d[0]
+                if (calendar['weekends'].indexOf(day) !== -1) {
+                    cell.addClass(o.clsWeekend);
+                }
+
+                if (calendar['week'].indexOf(day) !== -1) {
+                    cell.addClass(o.clsCurrentWeek);
+                }
+
+                if (o.animationContent) {
+                    cell.addClass("to-animate");
+                }
+
+                that._fireEvent("draw-day", {
+                    date: date.val(),
+                    day: date.day(),
+                    month: date.month(),
+                    year: date.year(),
+                    cell: cell[0]
                 });
-
-                counter++;
-                if (counter % 7 === 0) {
-                    days_row = $("<div>").addClass("days-row").appendTo(days);
-                    if (o.showWeekNumber === true) {
-                        $("<div>").addClass("week-number").html((new Date(first.getFullYear(), first.getMonth(), first.getDate() + 1)).getWeek(o.weekStart)).appendTo(days_row);
-                    }
-                }
-                first.setDate(first.getDate() + 1);
-                first.setHours(0,0,0,0);
-            }
-
-            // Days for next month
-            //first_day = o.weekStart === 0 ? first.getDay() : (first.getDay() === 0 ? 6 : first.getDay() - 1);
-
-            if (this.current.month + 1 > 11) {
-                month = 0;
-                year = this.current.year + 1;
-            } else {
-                month = this.current.month + 1;
-                year = this.current.year;
-            }
-
-//            if (first_day > 0) for(i = 0; i < 7 - first_day; i++) {
-            for(i = 0; i < 42 - totalDays; i++) {
-                d = $("<div>").addClass(day_class+" outside").appendTo(days_row);
-
-                if (o.animationContent) {
-                    d.addClass("to-animate");
-                }
-
-                s = new Date(year, month, i + 1);
-                s.setHours(0,0,0,0);
-                d.data('day', s.getTime());
-                if (o.outside === true) {
-                    d.html(i + 1);
-
-                    if (this.excludeDay.length > 0) {
-                        if (this.excludeDay.indexOf(s.getDay()) > -1) {
-                            d.addClass("disabled excluded").addClass(o.clsExcluded);
-                        }
-                    }
-
-                    this._fireEvent("draw-day", {
-                        date: s,
-                        day: s.getDate(),
-                        month: s.getMonth(),
-                        year: s.getFullYear(),
-                        cell: d[0]
-                    });
-
-                }
-
-                counter++;
-                if (counter < 42 && counter % 7 === 0) {
-                    days_row = $("<div>").addClass("days-row").appendTo(days);
-                    if (o.showWeekNumber === true) {
-                        $("<div>").addClass("week-number").html((new Date(first.getFullYear(), first.getMonth(), first.getDate() + 1)).getWeek(o.weekStart)).appendTo(days_row);
-                    }
-                }
-
-            }
+            });
 
             this._drawTime();
-            this._animateContent(".days .day");
+            this._animateContent(".day");
         },
 
         _drawContentMonths: function(){
@@ -11323,15 +11190,14 @@ $.noConflict = function() {
         },
 
         toDay: function(){
-            this.today = new Date();
-            this.today.setHours(0,0,0,0);
+            this.today = datetime().align("day");
             this.current = {
-                year: this.today.getFullYear(),
-                month: this.today.getMonth(),
-                day: this.today.getDate()
+                year: this.today.year(),
+                month: this.today.month(),
+                day: this.today.day()
             };
             this.time = [new Date().getHours(), new Date().getMinutes()];
-            this.yearGroupStart = new Date().getFullYear();
+            this.yearGroupStart = datetime().year();
             this.content = "days";
             this._drawHeader();
             this._drawContent();
@@ -11368,56 +11234,54 @@ $.noConflict = function() {
             this._drawContent();
         },
 
+        showDate: function(date){
+            return this.setShow(date);
+        },
+
         setShow: function(show){
             var element = this.element, o = this.options;
+            var attr = element.attr("data-show");
 
-            if (Utils.isNull(show) && Utils.isNull(element.attr("data-show"))) {
+            if (!show && !attr) {
                 return ;
             }
-            o.show = !Utils.isNull(show) ? show : element.attr("data-show");
 
-            this.show = Utils.isDateObject(show) ? show : Utils.isValue(o.inputFormat) ? o.show.toDate(o.inputFormat) : new Date(o.show);
-            this.show.setHours(0,0,0,0);
+            o.show = show ? show : attr;
+
+            this.show = (!o.show ? datetime() : o.inputFormat ? Datetime.from(o.show, o.inputFormat) : datetime(o.show)).align("day");
+
             this.current = {
-                year: this.show.getFullYear(),
-                month: this.show.getMonth(),
-                day: this.show.getDate()
-            };
+                year: this.show.year(),
+                month: this.show.month(),
+                day: this.show.day()
+            }
 
             this._drawContent();
         },
 
         setMinDate: function(date){
             var element = this.element, o = this.options;
+            var attr = element.attr("data-min-date");
 
-            o.minDate = Utils.isValue(date) ? date : element.attr("data-min-date");
-            if (Utils.isValue(o.minDate) && Utils.isDate(o.minDate, o.inputFormat)) {
-                this.min = Utils.isValue(o.inputFormat) ? o.minDate.toDate(o.inputFormat) : (new Date(o.minDate));
+            if (!date && !attr) {
+                return ;
             }
+
+            o.minDate = date ? date : attr;
+
+            this.min = o.minDate ? (o.inputFormat ? Datetime.from(o.minDate, o.inputFormat) : datetime(o.minDate)).align("day") : null;
 
             this._drawContent();
         },
 
         setMaxDate: function(date){
             var element = this.element, o = this.options;
+            var attr = element.attr("data-max-date");
 
-            o.maxDate = Utils.isValue(date) ? date : element.attr("data-max-date");
-            if (Utils.isValue(o.maxDate) && Utils.isDate(o.maxDate, o.inputFormat)) {
-                this.max = Utils.isValue(o.inputFormat) ? o.maxDate.toDate(o.inputFormat) : (new Date(o.maxDate));
-            }
+            o.maxDate = date ? date : attr;
 
-            this._drawContent();
-        },
+            this.max = o.maxDate ? (o.inputFormat ? Datetime.from(o.maxDate, o.inputFormat) : datetime(o.maxDate)).align("day") : null;
 
-        setToday: function(val){
-            var o = this.options;
-
-            if (!Utils.isValue(val)) {
-                val = new Date();
-            }
-            this.today = Utils.isDateObject(val) ? val : Utils.isValue(o.inputFormat) ? val.toDate(o.inputFormat) : new Date(val);
-            this.today.setHours(0,0,0,0);
-            this._drawHeader();
             this._drawContent();
         },
 

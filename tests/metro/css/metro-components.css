@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 16:27:55
+ * Built at 10/01/2021 20:18:59
  * Licensed under MIT
  */
 .accordion {
@@ -2056,50 +2056,49 @@ input[type=reset].loading .load-caption {
 }
 .calendar-content .week-days,
 .calendar-content .days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0;
+}
+.calendar-content.-week-numbers .week-days,
+.calendar-content.-week-numbers .days {
+  grid-template-columns: repeat(8, 1fr);
+}
+.calendar-content .week-day,
+.calendar-content .week-number,
+.calendar-content .day {
   display: -webkit-box;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-flow: row nowrap;
-  border-bottom: 1px solid #dfdfdf;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
-  padding: 0;
-  font-size: 0.75rem;
-}
-.calendar-content .days {
-  border: none;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-flow: column nowrap;
-}
-.calendar-content .days-row {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-flow: row nowrap;
-  -webkit-box-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+          justify-content: center;
   -webkit-box-align: center;
           align-items: center;
 }
-.calendar-content .day,
+.calendar-content .week-day,
 .calendar-content .week-number {
-  width: calc(100%/7);
+  font-weight: 700;
+  background-color: #f8f8f8;
+}
+.calendar-content .week-day {
+  border-bottom: 1px solid #dfdfdf;
+}
+.calendar-content .week-number {
+  border-right: 1px solid #dfdfdf;
+}
+.calendar-content .week-days .week-number {
+  border-right: none;
+}
+.calendar-content .day,
+.calendar-content .week-day,
+.calendar-content .week-number {
   height: 39px;
-  text-align: center;
   cursor: pointer;
-  font-size: 0.85rem;
+  font-size: 14px;
   position: relative;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   margin: 0;
-  line-height: 39px;
-}
-.calendar-content .day.and-week-number {
-  width: calc(100% / 8);
 }
 .calendar-content .day.selected {
   -webkit-box-shadow: inset 0 0 0 1px #5ebdec !important;
@@ -2118,19 +2117,9 @@ input[type=reset].loading .load-caption {
 .calendar-content .day.showed {
   font-weight: bold;
 }
-.calendar-content .week-days .day {
-  font-weight: 700;
-}
-.calendar-content .week-number {
-  width: calc(100% / 8);
-  background-color: #ffffff;
-  font-weight: 700;
-  font-size: 12px;
-  border-right: 1px solid #dfdfdf;
-}
 .calendar-content .outside {
   color: #bebebe;
-  font-size: 0.75rem;
+  font-size: 12px;
 }
 .calendar-content .today {
   background-color: rgba(96, 169, 23, 0.5);
@@ -2144,22 +2133,11 @@ input[type=reset].loading .load-caption {
 .calendar-content .excluded {
   background-color: #f8f8f8;
 }
-.calendar-content .days .day {
+.calendar-content .day {
   border: 1px solid transparent;
 }
-.calendar-content .days .day:hover {
+.calendar-content .day:hover {
   border-color: #dfdfdf;
-}
-.calendar.day-border .days-row:not(:nth-child(1)) {
-  border-top: 1px solid #dfdfdf;
-}
-.calendar.day-border .days-row .day:not(:nth-child(1)),
-.calendar.day-border .week-days .day:not(:nth-child(1)) {
-  border-left: 1px solid #dfdfdf;
-}
-.calendar.day-border .days-row .week-number,
-.calendar.day-border .week-days .week-number {
-  border-right: none;
 }
 .calendar-footer {
   padding: 0.5rem;
