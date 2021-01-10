@@ -7,12 +7,17 @@
 
     <title>Test Calendar - Metro 4 :: Popular HTML, CSS and JS library</title>
 
+    <style>
+        .calendar {
+            margin: 10px;
+        }
+    </style>
 </head>
 <body class="m4-cloak">
 <div class="container">
     <h1>Calendar test page</h1>
 
-    <div class="row">
+    <div class="row flex-align-start">
         <div data-role="calendar"
              data-animation-speed="20"
              data-animation-content="true"
@@ -67,6 +72,26 @@
              data-exclude="2021-1-20"
              data-show-time="true"
              data-show-ghost="true"
+             data-input-format="dd-mm-yyyy"
+             data-cls-event=""
+             data-events="
+                4-1-2021,
+                4-1-2021,
+                4-1-2021,
+                4-1-2021,
+                4-1-2021,
+                4-1-2021,
+                4-1-2021,
+                4-1-2021,
+                5-1-2021,
+                22-1-2021,
+                23-1-2021,
+                23-1-2021,
+                27-1-2021,
+                28-1-2021
+                28-1-2021
+                28-1-2021
+             "
         ></div>
     </div>
 </div>

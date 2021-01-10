@@ -1,75 +1,31 @@
-/* global Metro, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT */
+/* global Metro, Datetime, datetime, METRO_LOCALE, METRO_DATE_FORMAT */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
-        showTime: false,
-        initialTime: null,
-        initialHours: null,
-        initialMinutes: null,
-        clsCalendarTime: "",
-        clsTime: "",
-        clsTimeHours: "",
-        clsTimeMinutes: "",
-        clsTimeButton: "",
-        clsTimeButtonPlus: "",
-        clsTimeButtonMinus: "",
-
         label: "",
-        value:'',
+        value: '',
         calendarpickerDeferred: 0,
         nullValue: true,
         useNow: false,
-
         prepend: "",
-
-        calendarWide: false,
-        calendarWidePoint: null,
-
-
         dialogMode: false,
         dialogPoint: 640,
         dialogOverlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
-
         locale: METRO_LOCALE,
         size: "100%",
         format: METRO_DATE_FORMAT,
         inputFormat: null,
-        headerFormat: "%A, %b %e",
         clearButton: false,
         calendarButtonIcon: "<span class='default-icon-calendar'></span>",
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         copyInlineStyles: false,
         clsPicker: "",
         clsInput: "",
-
-        yearsBefore: 100,
-        yearsAfter: 100,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        minDate: null,
-        maxDate: null,
-        special: null,
-        showHeader: true,
-
-        showWeekNumber: false,
-
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
         clsPrepend: "",
         clsLabel: "",
-
         onDayClick: Metro.noop,
         onCalendarPickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
@@ -90,13 +46,14 @@
 
     Metro.Component('calendar-picker', {
         init: function( options, elem ) {
-            this._super(elem, options, CalendarPickerDefaultConfig, {
+            this._super(elem, options, $.extend({}, Metro.defaults.Calendar, {
+            }, CalendarPickerDefaultConfig), {
                 value: null,
                 value_date: null,
                 calendar: null,
                 overlay: null,
                 id: Utils.elementId("calendar-picker"),
-                time: [new Date().getHours(), new Date().getMinutes()]
+                time: [datetime().hour(), datetime().minute()]
             });
 
             return this;
@@ -145,15 +102,13 @@
                 }
             } else {
                 _curr = curr.split(" ");
-                this.value = !Utils.isValue(o.inputFormat) ? new Date(_curr[0]) : _curr[0].toDate(o.inputFormat, o.locale);
+                this.value = (!o.inputFormat ? datetime(_curr[0]) : Datetime.from(_curr[0], o.inputFormat, o.locale)).align("day");
                 if (_curr[1]) {
                     this.time = _curr[1].trim().split(":");
                 }
             }
 
-            if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
-
-            elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
+            elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
                 h = Utils.lpad(this.time[0], "0", 2);
@@ -197,8 +152,8 @@
                 clsTimeButtonPlus: o.clsTimeButtonPlus,
                 clsTimeButtonMinus: o.clsTimeButtonMinus,
 
-                wide: o.calendarWide,
-                widePoint: o.calendarWidePoint,
+                wide: o.wide,
+                widePoint: o.widePoint,
 
                 format: o.format,
                 inputFormat: o.inputFormat,
@@ -228,14 +183,14 @@
                 yearsBefore: o.yearsBefore,
                 yearsAfter: o.yearsAfter,
                 special: o.special,
-                showHeader: o.showHeader,
+                events: o.events,
+                showHeader: false,
                 showFooter: false,
+                multiSelect: false,
                 showWeekNumber: o.showWeekNumber,
                 onDayClick: function(sel, day, time, el){
-                    var date = new Date(sel[0]);
+                    var date = datetime(sel[0]).align("day");
                     var elementValue, h, m;
-
-                    date.setHours(0,0,0,0);
 
                     that._removeOverlay();
 
@@ -256,7 +211,7 @@
                     cal.hide();
 
                     that._fireEvent("change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
 
@@ -268,7 +223,7 @@
                     });
 
                     that._fireEvent("picker-change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
                 },
@@ -278,7 +233,7 @@
                     that.time = time;
 
                     if (!that.value) {
-                        that.value = new Date();
+                        that.value = datetime();
                     }
                     elementValue = that.value.format(o.format, o.locale);
 
@@ -291,12 +246,12 @@
                     element.val(elementValue);
 
                     that._fireEvent("change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
 
                     that._fireEvent("picker-change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
                 },
@@ -404,9 +359,9 @@
 
             container.on(Metro.events.click, "button, input", function(e){
 
-                var value = Utils.isValue(that.value) ? that.value : new Date();
+                var value = that.value ? that.value : datetime();
 
-                value.setHours(0,0,0,0);
+                value.align("day");
 
                 if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
 
@@ -444,7 +399,7 @@
             element.on(Metro.events.blur, function(){container.removeClass("focused");});
             element.on(Metro.events.focus, function(){container.addClass("focused");});
             element.on(Metro.events.change, function(){
-                Utils.exec(o.onChange, [that.value], element[0]);
+                Utils.exec(o.onChange, [that.value.val()], element[0]);
             });
 
             container.on(Metro.events.click, function(e){
@@ -474,29 +429,29 @@
             $('body').find('.overlay.for-calendar-picker').remove();
         },
 
-        val: function(v){
+        val: function(v, f){
             var element = this.element, o = this.options;
             var elementValue, h, m;
 
             if (Utils.isNull(v) || arguments.length === 0)  {
                 return {
-                    date: this.value,
+                    date: this.value.val(),
                     time: this.time
                 };
             }
 
-            if (!Utils.isDate(v, o.format) && !Utils.isDateObject(v)) {
-                throw new Error(v + " is a not valid date value");
+            if (f) {
+                o.inputFormat = f;
             }
 
             var _curr = v.split(" ");
-            this.value = Utils.isValue(o.inputFormat) === false ? new Date(_curr[0]) : _curr[0].toDate(o.inputFormat, o.locale);
+            this.value = !o.inputFormat ? datetime(_curr[0]) : Datetime.from(_curr[0], o.inputFormat, o.locale);
             if (_curr[1]) {
                 this.time = _curr[1].trim().split(":");
             }
 
-            this.value.setHours(0,0,0,0);
-            this.calendar.data('calendar').setTime(this.time);
+            this.value.align("day");
+            Metro.getPlugin(this.calendar, "calendar").setTime(this.time);
 
             elementValue = this.value.format(o.format);
 

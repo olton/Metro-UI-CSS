@@ -28,7 +28,7 @@
 
     Metro.Component('color-picker', {
         init: function( options, elem ) {
-            this._super(elem, options, $.extend({}, Metro.defaults.ColorSelectorDefaultConfig, {
+            this._super(elem, options, $.extend({}, Metro.defaults.ColorSelector, {
                 showUserColors: false,
                 showValues: ""
             }, ColorPickerDefaultConfig), {

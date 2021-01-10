@@ -53,10 +53,10 @@
         window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 0;
     }
     if (window.METRO_DATE_FORMAT === undefined) {
-        window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
+        window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "YYYY-MM-DD";
     }
     if (window.METRO_DATE_FORMAT_INPUT === undefined) {
-        window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "%Y-%m-%d";
+        window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "YYYY-MM-DD";
     }
     if (window.METRO_LOCALE === undefined) {
         window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
