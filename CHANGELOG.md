@@ -1,7 +1,8 @@
 ### 4.5.0
-+ [x] M4Q: Version updated to 1.1.0
++ [x] M4Q: version updated to 1.1.0
 + [x] M4Q: removed polyfills for Promise, CustomEvent (IE is dead)
-+ [x] Datetime: added new **global type** `Datetime`, and **factory** `datetime()`, version `1.0.1`
++ [x] Datetime: version `1.0.1`
++ [x] Datetime: new **global type** `Datetime`, and **factory** `datetime()`
 + [x] Ajax: switched from `$.ajax` (`$.json`, `$.post`, ...) to `fetch` (IE is dead)
 + [x] Tag input: switched from `$.ajax` to `fetch`
 + [x] Input: switched from `$.ajax` to `fetch`
