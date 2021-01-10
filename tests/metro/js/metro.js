@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 20:20:37
+ * Built at 10/01/2021 20:57:09
  * Licensed under MIT
  */
 /*!
@@ -5775,7 +5775,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "10/01/2021 20:20:37",
+        compileTime: "10/01/2021 20:57:09",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -10264,7 +10264,7 @@ $.noConflict = function() {
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
-        showCoincidentalDay: true,
+        showGhost: false,
         events: null,
         startContent: "days",
         showTime: false,
@@ -10966,7 +10966,7 @@ $.noConflict = function() {
                     cell.addClass("today")
                 }
 
-                if (o.showCoincidentalDay && date.day() === now.day()) {
+                if (o.showGhost && date.day() === now.day()) {
                     cell.addClass("coincidental");
                 }
 
@@ -11766,7 +11766,6 @@ $.noConflict = function() {
 
                     cal_plugin.setPreset([value]);
                     cal_plugin.setShow(value);
-                    cal_plugin.setToday(value);
 
                     if (container.hasClass("dialog-mode")) {
                         that.overlay.appendTo($('body'));
@@ -11775,9 +11774,6 @@ $.noConflict = function() {
                     if (!Utils.inViewport(cal[0])) {
                         cal.addClass("open-up");
                     }
-                    // if (Utils.isOutsider(cal) === false) {
-                    //     cal.addClass("open-up");
-                    // }
 
                     that._fireEvent("calendar-show", {
                         calendar: cal

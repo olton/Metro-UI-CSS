@@ -414,7 +414,6 @@
 
                     cal_plugin.setPreset([value]);
                     cal_plugin.setShow(value);
-                    cal_plugin.setToday(value);
 
                     if (container.hasClass("dialog-mode")) {
                         that.overlay.appendTo($('body'));
@@ -423,9 +422,6 @@
                     if (!Utils.inViewport(cal[0])) {
                         cal.addClass("open-up");
                     }
-                    // if (Utils.isOutsider(cal) === false) {
-                    //     cal.addClass("open-up");
-                    // }
 
                     that._fireEvent("calendar-show", {
                         calendar: cal

@@ -3,7 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
-        showCoincidentalDay: true,
+        showGhost: false,
         events: null,
         startContent: "days",
         showTime: false,
@@ -705,7 +705,7 @@
                     cell.addClass("today")
                 }
 
-                if (o.showCoincidentalDay && date.day() === now.day()) {
+                if (o.showGhost && date.day() === now.day()) {
                     cell.addClass("coincidental");
                 }
 
