@@ -20,7 +20,8 @@
                     "month": "MJESEC",
                     "day": "DAN",
                     "year": "GODINA"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "OK",

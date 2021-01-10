@@ -20,7 +20,8 @@
                     "month": "MON",
                     "day": "DAG",
                     "year": "ÅR"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "OK",

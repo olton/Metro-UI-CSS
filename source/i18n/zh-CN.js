@@ -20,7 +20,8 @@
                     "month": "月",
                     "day": "日",
                     "year": "年"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "确认",
