@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 20:57:09
+ * Built at 10/01/2021 23:10:50
  * Licensed under MIT
  */
 /*!
@@ -5709,10 +5709,10 @@ $.noConflict = function() {
         window.METRO_WEEK_START = meta_week_start !== undefined ? parseInt(meta_week_start) : 0;
     }
     if (window.METRO_DATE_FORMAT === undefined) {
-        window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "%Y-%m-%d";
+        window.METRO_DATE_FORMAT = meta_date_format !== undefined ? meta_date_format : "YYYY-MM-DD";
     }
     if (window.METRO_DATE_FORMAT_INPUT === undefined) {
-        window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "%Y-%m-%d";
+        window.METRO_DATE_FORMAT_INPUT = meta_date_format_input !== undefined ? meta_date_format_input : "YYYY-MM-DD";
     }
     if (window.METRO_LOCALE === undefined) {
         window.METRO_LOCALE = meta_locale !== undefined ? meta_locale : 'en-US';
@@ -5775,7 +5775,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "10/01/2021 20:57:09",
+        compileTime: "10/01/2021 23:10:50",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -10338,6 +10338,8 @@ $.noConflict = function() {
         clsTimeButtonPlus: "",
         clsTimeButtonMinus: "",
         clsSpecial: "",
+        clsEvents: "",
+        clsEvent: "",
 
         onCancel: Metro.noop,
         onToday: Metro.noop,
@@ -10663,6 +10665,10 @@ $.noConflict = function() {
                     wn = $el.text();
                     index = $el.index();
 
+                    if (wn === "#") {
+                        return ;
+                    }
+
                     if (o.multiSelect === true) {
                         days = element.find(".day").filter(function(el){
                             var $el = $(el);
@@ -10945,11 +10951,13 @@ $.noConflict = function() {
             $.each(calendar['days'], function(i){
                 var day = this;
                 var date = datetime(day).align('day');
+                var outsideDate = date.month() !== that.current.month;
 
                 if (o.showWeekNumber && i % 7 === 0) {
                     $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
                 }
 
+                // Events
                 var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
 
                 cell.data('day', day);
@@ -10958,8 +10966,11 @@ $.noConflict = function() {
                     cell.addClass("showed");
                 }
 
-                if (date.month() !== that.current.month) {
+                if (outsideDate) {
                     cell.addClass("outside");
+                    if (!o.outside) {
+                        cell.empty();
+                    }
                 }
 
                 if (day === calendar['today']) {
@@ -10997,6 +11008,20 @@ $.noConflict = function() {
 
                 if (calendar['week'].indexOf(day) !== -1) {
                     cell.addClass(o.clsCurrentWeek);
+                }
+
+                if (that.events.length) {
+                    var events = $("<div>").addClass("events").addClass(o.clsEvents).appendTo(cell);
+                    $.each(that.events, function(){
+                        if (this === day) {
+                            var event = $("<div>").addClass("event").addClass(o.clsEvent).appendTo(events);
+                            if (!o.clsEvent) {
+                                event.css({
+                                    backgroundColor: Metro.colors.random()
+                                })
+                            }
+                        }
+                    })
                 }
 
                 if (o.animationContent) {
@@ -11349,79 +11374,37 @@ $.noConflict = function() {
             $(this).removeClass("open");
         });
     });
+
+    Metro.defaults.Calendar = CalendarDefaultConfig;
 }(Metro, m4q));
 
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
     var CalendarPickerDefaultConfig = {
-        showTime: false,
-        initialTime: null,
-        initialHours: null,
-        initialMinutes: null,
-        clsCalendarTime: "",
-        clsTime: "",
-        clsTimeHours: "",
-        clsTimeMinutes: "",
-        clsTimeButton: "",
-        clsTimeButtonPlus: "",
-        clsTimeButtonMinus: "",
-
         label: "",
-        value:'',
+        value: '',
         calendarpickerDeferred: 0,
         nullValue: true,
         useNow: false,
-
         prepend: "",
-
-        calendarWide: false,
-        calendarWidePoint: null,
-
-
         dialogMode: false,
         dialogPoint: 640,
         dialogOverlay: true,
         overlayColor: '#000000',
         overlayAlpha: .5,
-
         locale: METRO_LOCALE,
         size: "100%",
         format: METRO_DATE_FORMAT,
         inputFormat: null,
-        headerFormat: "%A, %b %e",
         clearButton: false,
         calendarButtonIcon: "<span class='default-icon-calendar'></span>",
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         copyInlineStyles: false,
         clsPicker: "",
         clsInput: "",
-
-        yearsBefore: 100,
-        yearsAfter: 100,
-        weekStart: METRO_WEEK_START,
-        outside: true,
-        ripple: false,
-        rippleColor: "#cccccc",
-        exclude: null,
-        minDate: null,
-        maxDate: null,
-        special: null,
-        showHeader: true,
-
-        showWeekNumber: false,
-
-        clsCalendar: "",
-        clsCalendarHeader: "",
-        clsCalendarContent: "",
-        clsCalendarMonths: "",
-        clsCalendarYears: "",
-        clsToday: "",
-        clsSelected: "",
-        clsExcluded: "",
         clsPrepend: "",
         clsLabel: "",
-
         onDayClick: Metro.noop,
         onCalendarPickerCreate: Metro.noop,
         onCalendarShow: Metro.noop,
@@ -11442,13 +11425,14 @@ $.noConflict = function() {
 
     Metro.Component('calendar-picker', {
         init: function( options, elem ) {
-            this._super(elem, options, CalendarPickerDefaultConfig, {
+            this._super(elem, options, $.extend({}, Metro.defaults.Calendar, {
+            }, CalendarPickerDefaultConfig), {
                 value: null,
                 value_date: null,
                 calendar: null,
                 overlay: null,
                 id: Utils.elementId("calendar-picker"),
-                time: [new Date().getHours(), new Date().getMinutes()]
+                time: [datetime().hour(), datetime().minute()]
             });
 
             return this;
@@ -11497,15 +11481,13 @@ $.noConflict = function() {
                 }
             } else {
                 _curr = curr.split(" ");
-                this.value = !Utils.isValue(o.inputFormat) ? new Date(_curr[0]) : _curr[0].toDate(o.inputFormat, o.locale);
+                this.value = (!o.inputFormat ? datetime(_curr[0]) : Datetime.from(_curr[0], o.inputFormat, o.locale)).align("day");
                 if (_curr[1]) {
                     this.time = _curr[1].trim().split(":");
                 }
             }
 
-            if (Utils.isValue(this.value)) this.value.setHours(0,0,0,0);
-
-            elementValue = !Utils.isValue(curr) && o.nullValue === true ? "" : that.value.format(o.format, o.locale);
+            elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
                 h = Utils.lpad(this.time[0], "0", 2);
@@ -11549,8 +11531,8 @@ $.noConflict = function() {
                 clsTimeButtonPlus: o.clsTimeButtonPlus,
                 clsTimeButtonMinus: o.clsTimeButtonMinus,
 
-                wide: o.calendarWide,
-                widePoint: o.calendarWidePoint,
+                wide: o.wide,
+                widePoint: o.widePoint,
 
                 format: o.format,
                 inputFormat: o.inputFormat,
@@ -11580,14 +11562,14 @@ $.noConflict = function() {
                 yearsBefore: o.yearsBefore,
                 yearsAfter: o.yearsAfter,
                 special: o.special,
-                showHeader: o.showHeader,
+                events: o.events,
+                showHeader: false,
                 showFooter: false,
+                multiSelect: false,
                 showWeekNumber: o.showWeekNumber,
                 onDayClick: function(sel, day, time, el){
-                    var date = new Date(sel[0]);
+                    var date = datetime(sel[0]).align("day");
                     var elementValue, h, m;
-
-                    date.setHours(0,0,0,0);
 
                     that._removeOverlay();
 
@@ -11608,7 +11590,7 @@ $.noConflict = function() {
                     cal.hide();
 
                     that._fireEvent("change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
 
@@ -11620,7 +11602,7 @@ $.noConflict = function() {
                     });
 
                     that._fireEvent("picker-change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
                 },
@@ -11630,7 +11612,7 @@ $.noConflict = function() {
                     that.time = time;
 
                     if (!that.value) {
-                        that.value = new Date();
+                        that.value = datetime();
                     }
                     elementValue = that.value.format(o.format, o.locale);
 
@@ -11643,12 +11625,12 @@ $.noConflict = function() {
                     element.val(elementValue);
 
                     that._fireEvent("change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
 
                     that._fireEvent("picker-change", {
-                        val: that.value,
+                        val: that.value.val(),
                         time: that.time
                     });
                 },
@@ -11756,9 +11738,9 @@ $.noConflict = function() {
 
             container.on(Metro.events.click, "button, input", function(e){
 
-                var value = Utils.isValue(that.value) ? that.value : new Date();
+                var value = that.value ? that.value : datetime();
 
-                value.setHours(0,0,0,0);
+                value.align("day");
 
                 if (cal.hasClass("open") === false && cal.hasClass("open-up") === false) {
 
@@ -11796,7 +11778,7 @@ $.noConflict = function() {
             element.on(Metro.events.blur, function(){container.removeClass("focused");});
             element.on(Metro.events.focus, function(){container.addClass("focused");});
             element.on(Metro.events.change, function(){
-                Utils.exec(o.onChange, [that.value], element[0]);
+                Utils.exec(o.onChange, [that.value.val()], element[0]);
             });
 
             container.on(Metro.events.click, function(e){
@@ -11826,29 +11808,29 @@ $.noConflict = function() {
             $('body').find('.overlay.for-calendar-picker').remove();
         },
 
-        val: function(v){
+        val: function(v, f){
             var element = this.element, o = this.options;
             var elementValue, h, m;
 
             if (Utils.isNull(v) || arguments.length === 0)  {
                 return {
-                    date: this.value,
+                    date: this.value.val(),
                     time: this.time
                 };
             }
 
-            if (!Utils.isDate(v, o.format) && !Utils.isDateObject(v)) {
-                throw new Error(v + " is a not valid date value");
+            if (f) {
+                o.inputFormat = f;
             }
 
             var _curr = v.split(" ");
-            this.value = Utils.isValue(o.inputFormat) === false ? new Date(_curr[0]) : _curr[0].toDate(o.inputFormat, o.locale);
+            this.value = !o.inputFormat ? datetime(_curr[0]) : Datetime.from(_curr[0], o.inputFormat, o.locale);
             if (_curr[1]) {
                 this.time = _curr[1].trim().split(":");
             }
 
-            this.value.setHours(0,0,0,0);
-            this.calendar.data('calendar').setTime(this.time);
+            this.value.align("day");
+            Metro.getPlugin(this.calendar, "calendar").setTime(this.time);
 
             elementValue = this.value.format(o.format);
 
@@ -13433,7 +13415,7 @@ $.noConflict = function() {
 
     Metro.Component('color-picker', {
         init: function( options, elem ) {
-            this._super(elem, options, $.extend({}, Metro.defaults.ColorSelectorDefaultConfig, {
+            this._super(elem, options, $.extend({}, Metro.defaults.ColorSelector, {
                 showUserColors: false,
                 showValues: ""
             }, ColorPickerDefaultConfig), {
@@ -14426,7 +14408,7 @@ $.noConflict = function() {
         }
     });
 
-    Metro.defaults.ColorSelectorDefaultConfig = ColorSelectorDefaultConfig;
+    Metro.defaults.ColorSelector = ColorSelectorDefaultConfig;
 }(Metro, m4q));
 
 

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 20:57:09
+ * Built at 10/01/2021 23:10:50
  * Licensed under MIT
  */
 .accordion {
@@ -2389,6 +2389,24 @@ input[type=reset].loading .load-caption {
   left: auto;
   right: 0;
   bottom: 0;
+}
+.calendar .events {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row wrap;
+  height: auto;
+}
+.calendar .events .event {
+  width: 4px;
+  height: 4px;
+  background-color: red;
+  margin: 1px;
 }
 .calendar-picker {
   position: relative;

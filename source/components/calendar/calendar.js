@@ -77,6 +77,8 @@
         clsTimeButtonPlus: "",
         clsTimeButtonMinus: "",
         clsSpecial: "",
+        clsEvents: "",
+        clsEvent: "",
 
         onCancel: Metro.noop,
         onToday: Metro.noop,
@@ -402,6 +404,10 @@
                     wn = $el.text();
                     index = $el.index();
 
+                    if (wn === "#") {
+                        return ;
+                    }
+
                     if (o.multiSelect === true) {
                         days = element.find(".day").filter(function(el){
                             var $el = $(el);
@@ -684,11 +690,13 @@
             $.each(calendar['days'], function(i){
                 var day = this;
                 var date = datetime(day).align('day');
+                var outsideDate = date.month() !== that.current.month;
 
                 if (o.showWeekNumber && i % 7 === 0) {
                     $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
                 }
 
+                // Events
                 var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
 
                 cell.data('day', day);
@@ -697,8 +705,11 @@
                     cell.addClass("showed");
                 }
 
-                if (date.month() !== that.current.month) {
+                if (outsideDate) {
                     cell.addClass("outside");
+                    if (!o.outside) {
+                        cell.empty();
+                    }
                 }
 
                 if (day === calendar['today']) {
@@ -736,6 +747,20 @@
 
                 if (calendar['week'].indexOf(day) !== -1) {
                     cell.addClass(o.clsCurrentWeek);
+                }
+
+                if (that.events.length) {
+                    var events = $("<div>").addClass("events").addClass(o.clsEvents).appendTo(cell);
+                    $.each(that.events, function(){
+                        if (this === day) {
+                            var event = $("<div>").addClass("event").addClass(o.clsEvent).appendTo(events);
+                            if (!o.clsEvent) {
+                                event.css({
+                                    backgroundColor: Metro.colors.random()
+                                })
+                            }
+                        }
+                    })
                 }
 
                 if (o.animationContent) {
@@ -1088,4 +1113,6 @@
             $(this).removeClass("open");
         });
     });
+
+    Metro.defaults.Calendar = CalendarDefaultConfig;
 }(Metro, m4q));
