@@ -1,8 +1,7 @@
 ### 4.5.0
 + [x] M4Q: version updated to 1.1.0
 + [x] M4Q: removed polyfills for Promise, CustomEvent (IE is dead)
-+ [x] Datetime: version `1.0.1`
-+ [x] Datetime: new **global type** `Datetime`, and **factory** `datetime()`
++ [x] Datetime: version `1.0.1`, new **global type** `Datetime`, and **factory** `datetime()`
 + [x] Ajax: switched from `$.ajax` (`$.json`, `$.post`, ...) to `fetch` (IE is dead)
 + [x] Tag input: switched from `$.ajax` to `fetch`
 + [x] Input: switched from `$.ajax` to `fetch`
@@ -12,8 +11,8 @@
 + [x] Streamer: now use `fetch` for loading data 
 + [x] List: now use `fetch` for loading data 
 + [x] Calendar: fixed showing week numbers
-+ [x] Calendar: rewrited with Datetime
-+ [x] Calendar picker: rewrited with Datetime
++ [x] Calendar: rewritten with Datetime
++ [x] Calendar picker: rewritten with Datetime
 
 ### 4.4.3
 #### M4Q
