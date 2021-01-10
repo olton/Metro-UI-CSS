@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 23:10:50
+ * Built at 10/01/2021 23:11:44
  * Licensed under MIT
  */
 *,
@@ -23160,32 +23160,6 @@ input[type=reset].loading .load-caption {
 .calendar .months .month,
 .calendar .years .year {
   border: 1px solid #f8f8f8;
-}
-.calendar .badge {
-  font-size: 9px;
-  background: #CE352C;
-  color: #ffffff;
-  padding: 1px 3px;
-  border: none;
-  border-radius: 0;
-}
-.calendar .badge.top-left {
-  top: 0;
-  left: 0;
-  right: auto;
-  bottom: auto;
-}
-.calendar .badge.bottom-left {
-  top: auto;
-  left: 0;
-  right: auto;
-  bottom: 0;
-}
-.calendar .badge.bottom-right {
-  top: auto;
-  left: auto;
-  right: 0;
-  bottom: 0;
 }
 .calendar .events {
   position: absolute;
