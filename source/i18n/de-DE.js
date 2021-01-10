@@ -17,7 +17,8 @@
                     "hours": "STD",
                     "minutes": "MIN",
                     "seconds": "SEK"
-                }
+                },
+                "weekStart": 2
             },
             "buttons": {
                 "ok": "OK",

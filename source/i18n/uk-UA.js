@@ -20,7 +20,8 @@
                     "month": "МІС",
                     "day": "ДЕНЬ",
                     "year": "РІК"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "ОК",

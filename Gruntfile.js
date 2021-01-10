@@ -133,6 +133,8 @@ module.exports = function(grunt) {
                     separator: "\n\n"
                 },
                 src: [
+                    'source/datetime/datetime.plugins.js',
+                    'source/datetime/datetime.locales.js',
                     'source/m4q/m4q.js',
                     'source/core/global.js',
                     'source/core/metro.js',

@@ -17,7 +17,8 @@
                     "hours": "ÓRA",
                     "minutes": "PERC",
                     "seconds": "MP"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "OK",

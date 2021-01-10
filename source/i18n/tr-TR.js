@@ -20,7 +20,8 @@
                     "month": "AY",
                     "day": "GÜN",
                     "year": "YIL"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "Tamam",

@@ -20,7 +20,8 @@
                     "month": "MESE",
                     "day": "GIORNO",
                     "year": "ANNO"
-                }
+                },
+                "weekStart": 1
             },
             "buttons": {
                 "ok": "OK",

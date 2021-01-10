@@ -3,6 +3,9 @@
 + [x] Version: update to 1.1.0
 + [x] Polyfills: removed polyfills for Promise, CustomEvent (IE is dead)
 
+#### Datetime
++ [x] Version: 1.0.0
+
 #### Metro 4
 + [ ] Ajax: switched from `$.ajax` (`$.json`, `$.post`, ...) to `fetch` (IE is dead)
 + [x] Tag input: switched from `$.ajax` to `fetch`
