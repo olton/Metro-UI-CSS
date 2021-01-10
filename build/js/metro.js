@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 10/01/2021 15:50:54
+ * Built at 10/01/2021 16:25:29
  * Licensed under MIT
  */
 /*!
@@ -1377,7 +1377,7 @@
 
         data = Metro.locales[locale]['calendar'];
 
-        
+        console.log(data);
 
         return {
             months: data.months.filter( function(el, i){ return i < 12} ),
@@ -3757,7 +3757,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -5777,7 +5777,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "10/01/2021 15:50:54",
+        compileTime: "10/01/2021 16:25:29",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -6046,7 +6046,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -6438,7 +6438,7 @@ $.noConflict = function() {
 
         fetch: {
             status: function(response){
-                
+                console.log(response);
                 return response.ok ? Promise.resolve(response) : Promise.reject(new Error(response.statusText));
             },
 
@@ -11136,7 +11136,7 @@ $.noConflict = function() {
                 }
 
                 counter++;
-                if (counter % 7 === 0) {
+                if (counter < 42 && counter % 7 === 0) {
                     days_row = $("<div>").addClass("days-row").appendTo(days);
                     if (o.showWeekNumber === true) {
                         $("<div>").addClass("week-number").html((new Date(first.getFullYear(), first.getMonth(), first.getDate() + 1)).getWeek(o.weekStart)).appendTo(days_row);
