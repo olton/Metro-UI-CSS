@@ -18,8 +18,6 @@
 
         data = Metro.locales[locale]['calendar'];
 
-        console.log(data);
-
         return {
             months: data.months.filter( function(el, i){ return i < 12} ),
             monthsShort: data.months.filter( function(el, i){ return i > 11} ),
