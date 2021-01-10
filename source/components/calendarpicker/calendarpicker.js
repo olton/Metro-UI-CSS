@@ -98,7 +98,7 @@
             if (!Utils.isValue(curr)) {
                 if (o.useNow) {
                     this.value = datetime();
-                    this.time = [this.value.getHours(), this.value.getMinutes()];
+                    this.time = [this.value.hour(), this.value.minute()];
                 }
             } else {
                 _curr = curr.split(" ");
