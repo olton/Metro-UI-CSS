@@ -11,6 +11,7 @@
 + [x] Table: `_create()`, `_buid()`, `_saveTableView()`, `loadData()` now use `fetch`, and send data to server as `json` 
 + [x] Streamer: now use `fetch` for loading data 
 + [x] List: now use `fetch` for loading data 
++ [x] Calendar: fixed showing week numbers
 
 ### 4.4.3
 #### M4Q
