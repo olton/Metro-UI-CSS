@@ -1,8 +1,9 @@
-/* global Metro */
+/* global Metro, METRO_LOCALE, Datetime, datetime */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
     var ListDefaultConfig = {
+        locale: METRO_LOCALE,
         listDeferred: 0,
         templateBeginToken: "<%",
         templateEndToken: "%>",
@@ -568,7 +569,7 @@
                 }
 
                 switch (format) {
-                    case "date": data = Utils.isValue(formatMask) ? data.toDate(formatMask) : new Date(data); break;
+                    case "date": data = formatMask ? Datetime.from(data, formatMask, o.locale) : datetime(data); break;
                     case "number": data = Number(data); break;
                     case "int":
                     case "integer": data = parseInt(data); break;
