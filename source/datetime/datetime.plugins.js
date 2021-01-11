@@ -2,7 +2,7 @@
  * Datetime v1.0.0, (https://github.com/olton/DatetimeJS.git)
  * Copyright 2021 by Serhii Pimenov (https://pimenov.com.ua)
  * Datetime.js is a minimalist JavaScript library that parses, validates, manipulates, and displays dates and times for modern browsers with comfortable modern API.
- * Build at 10/01/2021 15:44:30
+ * Build at 11/01/2021 21:09:55
  * Licensed under MIT
  !*/
 (function(global) {
@@ -791,8 +791,8 @@
             format = format || Datetime.DEFAULT_FORMAT;
 
             matches = {
-                a: this.ampm(true),
-                A: this.ampm(false),
+                a: "["+this.ampm(true)+"]",
+                A: "["+this.ampm(false)+"]",
                 h: h12,
                 hh: lpad(h12, "0", 2)
             };
@@ -1126,6 +1126,7 @@
             var matches = {
                 Z: this.utcMode ? "Z" : this.timezone(),
                 ZZ: this.timezone().replace(":", ""),
+                ZZZ: "[GMT]"+this.timezone(),
                 z: this.timezoneName()
             }
             var result = format.replace(/(\[[^\]]+])|Z{1,3}|z/g, function(match, $1){

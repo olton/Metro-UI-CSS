@@ -2,6 +2,7 @@
 + [x] M4Q: version updated to 1.1.0
 + [x] M4Q: removed polyfills for Promise, CustomEvent (IE is dead)
 + [x] Datetime: version `1.0.1`, new **global type** `Datetime`, and **factory** `datetime()`
++ [x] Cake: version `1.0.0`, new **global type** `Cake`, and **factory** `cake()`
 + [x] Ajax: switched from `$.ajax` (`$.json`, `$.post`, ...) to `fetch` (IE is dead)
 + [x] Tag input: switched from `$.ajax` to `fetch`
 + [x] Input: switched from `$.ajax` to `fetch`
@@ -13,6 +14,10 @@
 + [x] Calendar: fixed showing week numbers
 + [x] Calendar: rewritten with Datetime
 + [x] Calendar picker: rewritten with Datetime
++ [x] Countdown: updated for using with Datetime
++ [x] Chat: updated for using with Datetime
++ [x] Chat: changed messages style
++ [x] Validator: updated method `date` for using with Datetime
 
 ### 4.4.3
 #### M4Q
