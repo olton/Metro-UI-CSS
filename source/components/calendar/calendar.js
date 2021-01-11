@@ -326,7 +326,7 @@
             element.on(Metro.events.click, ".button.today", function(){
                 that.toDay();
                 that._fireEvent("today", {
-                    today: that.today,
+                    today: that.today.val(),
                     time: that.time
                 });
             });
@@ -388,7 +388,7 @@
 
                     that._fireEvent("week-day-click", {
                         selected: that.selected,
-                        day: day
+                        day: day[0]
                     });
 
                     e.preventDefault();
@@ -432,7 +432,7 @@
                     that._fireEvent("week-number-click", {
                         selected: that.selected,
                         num: wn,
-                        numElement: $el
+                        numElement: $el[0]
                     });
 
                     e.preventDefault();
@@ -491,7 +491,7 @@
 
                 that._fireEvent("day-click", {
                     selected: that.selected,
-                    day: day,
+                    day: day[0],
                     time: that.time
                 });
 
