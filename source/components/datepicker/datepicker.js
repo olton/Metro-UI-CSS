@@ -1,4 +1,4 @@
-/* global Metro, METRO_LOCALE */
+/* global Metro, METRO_LOCALE, Datetime, datetime */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -6,7 +6,7 @@
         label: "",
         datepickerDeferred: 0,
         gmt: 0,
-        format: "%Y-%m-%d",
+        format: "YYYY-MM-DD",
         inputFormat: null,
         locale: METRO_LOCALE,
         value: null,
@@ -16,6 +16,7 @@
         year: true,
         minYear: null,
         maxYear: null,
+        defaultYearDistance: 100,
         scrollSpeed: 4,
         copyInlineStyles: false,
         clsPicker: "",
@@ -49,9 +50,8 @@
             this._super(elem, options, DatePickerDefaultConfig, {
                 picker: null,
                 isOpen: false,
-                value: new Date(),
+                value: datetime(),
                 locale: null,
-                offset: (new Date()).getTimezoneOffset() / 60 + 1,
                 listTimer: {
                     day: null,
                     month: null,
@@ -64,6 +64,7 @@
 
         _create: function(){
             var element = this.element, o = this.options;
+            var date = datetime();
 
             if (o.distance < 1) {
                 o.distance = 1;
@@ -74,13 +75,7 @@
             }
 
             if (Utils.isValue(o.value)) {
-                if (Utils.isValue(o.inputFormat)) {
-                    this.value = (""+o.value).toDate(o.inputFormat);
-                } else {
-                    if (Utils.isDate(o.value)) {
-                        this.value = new Date(o.value);
-                    }
-                }
+                this.value = o.inputFormat ? Datetime.from(o.value, o.inputFormat, o.locale) : datetime(o.value);
             }
 
             if (Metro.locales[o.locale] === undefined) {
@@ -90,11 +85,11 @@
             this.locale = Metro.locales[o.locale]['calendar'];
 
             if (o.minYear === null) {
-                o.minYear = (new Date()).getFullYear() - 100;
+                o.minYear = date.year() - o.defaultYearDistance;
             }
 
             if (o.maxYear === null) {
-                o.maxYear = (new Date()).getFullYear() + 100;
+                o.maxYear = date.year() + o.defaultYearDistance;
             }
 
             this._createStructure();
@@ -233,7 +228,7 @@
                 d = sd.length === 0 ? that.value.getDate() : sd.data("value");
                 y = sy.length === 0 ? that.value.getFullYear() : sy.data("value");
 
-                that.value = new Date(y, m, d);
+                that.value = datetime(y, m, d);
                 that._correct();
                 that._set();
 
@@ -281,19 +276,19 @@
         },
 
         _correct: function(){
-            var m = this.value.getMonth(),
-                d = this.value.getDate(),
-                y = this.value.getFullYear();
+            var m = this.value.month(),
+                d = this.value.day(),
+                y = this.value.year();
 
-            this.value = new Date(y, m, d);
+            this.value = datetime(y, m, d);
         },
 
         _set: function(){
             var element = this.element, o = this.options;
             var picker = this.picker;
-            var m = this.locale['months'][this.value.getMonth()],
-                d = this.value.getDate(),
-                y = this.value.getFullYear();
+            var m = this.locale['months'][this.value.month()],
+                d = this.value.day(),
+                y = this.value.year();
 
             if (o.month === true) {
                 picker.find(".month").html(m);
@@ -308,7 +303,7 @@
             element.val(this.value.format(o.format, o.locale)).trigger("change");
 
             this._fireEvent("set", {
-                value: this.value,
+                value: this.value.val(),
                 elementValue: element.val(),
                 picker: picker
             })
@@ -317,7 +312,7 @@
         open: function(){
             var o = this.options;
             var picker = this.picker;
-            var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
+            var m = this.value.month(), d = this.value.day() - 1, y = this.value.year();
             var m_list, d_list, y_list;
             var select_wrapper = picker.find(".select-wrapper");
             var select_wrapper_in_viewport, select_wrapper_rect;
@@ -374,7 +369,7 @@
             this.isOpen = true;
 
             this._fireEvent("open", {
-                value: this.value,
+                value: this.value.val(),
                 picker: picker
             })
 
@@ -386,7 +381,7 @@
             this.isOpen = false;
 
             this._fireEvent("close", {
-                value: this.value,
+                value: this.value.val(),
                 picker: picker
             });
         },
@@ -398,23 +393,18 @@
                 return this.element.val();
             }
 
-            if (Utils.isValue(o.inputFormat)) {
-                this.value = (""+value).toDate(o.inputFormat);
-            } else {
-                this.value = new Date(value);
-            }
+            this.value = o.inputFormat ? Datetime.from(value, o.inputFormat, o.locale) : datetime(value);
 
-            // this.value = (new Date(t)).addHours(this.offset);
             this._set();
         },
 
-        date: function(t){
+        date: function(t, f){
             if (t === undefined) {
-                return this.value;
+                return this.value.val();
             }
 
             try {
-                this.value = new Date(t.format("%Y-%m-%d"));
+                this.value = Datetime.from(t, f, this.options.locale);
                 this._set();
             } catch (e) {
                 return false;
@@ -459,8 +449,8 @@
             }
         },
 
-        changeAttribute: function(attributeName, newValue){
-            switch (attributeName) {
+        changeAttribute: function(attr, newValue){
+            switch (attr) {
                 case "disabled": this.toggleState(); break;
                 case "data-value": this.val(newValue); break;
                 case "data-locale": this.i18n(newValue); break;
