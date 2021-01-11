@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 11/01/2021 23:42:34
+ * Built at 11/01/2021 23:54:30
  * Licensed under MIT
  */
 /*!
@@ -6792,7 +6792,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "11/01/2021 23:42:34",
+        compileTime: "11/01/2021 23:54:30",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18338,7 +18338,7 @@ $.noConflict = function() {
         label: "",
         datepickerDeferred: 0,
         gmt: 0,
-        format: "%Y-%m-%d",
+        format: "YYYY-MM-DD",
         inputFormat: null,
         locale: METRO_LOCALE,
         value: null,
@@ -18348,6 +18348,7 @@ $.noConflict = function() {
         year: true,
         minYear: null,
         maxYear: null,
+        defaultYearDistance: 100,
         scrollSpeed: 4,
         copyInlineStyles: false,
         clsPicker: "",
@@ -18381,9 +18382,8 @@ $.noConflict = function() {
             this._super(elem, options, DatePickerDefaultConfig, {
                 picker: null,
                 isOpen: false,
-                value: new Date(),
+                value: datetime(),
                 locale: null,
-                offset: (new Date()).getTimezoneOffset() / 60 + 1,
                 listTimer: {
                     day: null,
                     month: null,
@@ -18396,6 +18396,7 @@ $.noConflict = function() {
 
         _create: function(){
             var element = this.element, o = this.options;
+            var date = datetime();
 
             if (o.distance < 1) {
                 o.distance = 1;
@@ -18406,13 +18407,7 @@ $.noConflict = function() {
             }
 
             if (Utils.isValue(o.value)) {
-                if (Utils.isValue(o.inputFormat)) {
-                    this.value = (""+o.value).toDate(o.inputFormat);
-                } else {
-                    if (Utils.isDate(o.value)) {
-                        this.value = new Date(o.value);
-                    }
-                }
+                this.value = o.inputFormat ? Datetime.from(o.value, o.inputFormat, o.locale) : datetime(o.value);
             }
 
             if (Metro.locales[o.locale] === undefined) {
@@ -18422,11 +18417,11 @@ $.noConflict = function() {
             this.locale = Metro.locales[o.locale]['calendar'];
 
             if (o.minYear === null) {
-                o.minYear = (new Date()).getFullYear() - 100;
+                o.minYear = date.year() - o.defaultYearDistance;
             }
 
             if (o.maxYear === null) {
-                o.maxYear = (new Date()).getFullYear() + 100;
+                o.maxYear = date.year() + o.defaultYearDistance;
             }
 
             this._createStructure();
@@ -18565,7 +18560,7 @@ $.noConflict = function() {
                 d = sd.length === 0 ? that.value.getDate() : sd.data("value");
                 y = sy.length === 0 ? that.value.getFullYear() : sy.data("value");
 
-                that.value = new Date(y, m, d);
+                that.value = datetime(y, m, d);
                 that._correct();
                 that._set();
 
@@ -18613,19 +18608,19 @@ $.noConflict = function() {
         },
 
         _correct: function(){
-            var m = this.value.getMonth(),
-                d = this.value.getDate(),
-                y = this.value.getFullYear();
+            var m = this.value.month(),
+                d = this.value.day(),
+                y = this.value.year();
 
-            this.value = new Date(y, m, d);
+            this.value = datetime(y, m, d);
         },
 
         _set: function(){
             var element = this.element, o = this.options;
             var picker = this.picker;
-            var m = this.locale['months'][this.value.getMonth()],
-                d = this.value.getDate(),
-                y = this.value.getFullYear();
+            var m = this.locale['months'][this.value.month()],
+                d = this.value.day(),
+                y = this.value.year();
 
             if (o.month === true) {
                 picker.find(".month").html(m);
@@ -18640,7 +18635,7 @@ $.noConflict = function() {
             element.val(this.value.format(o.format, o.locale)).trigger("change");
 
             this._fireEvent("set", {
-                value: this.value,
+                value: this.value.val(),
                 elementValue: element.val(),
                 picker: picker
             })
@@ -18649,7 +18644,7 @@ $.noConflict = function() {
         open: function(){
             var o = this.options;
             var picker = this.picker;
-            var m = this.value.getMonth(), d = this.value.getDate() - 1, y = this.value.getFullYear();
+            var m = this.value.month(), d = this.value.day() - 1, y = this.value.year();
             var m_list, d_list, y_list;
             var select_wrapper = picker.find(".select-wrapper");
             var select_wrapper_in_viewport, select_wrapper_rect;
@@ -18706,7 +18701,7 @@ $.noConflict = function() {
             this.isOpen = true;
 
             this._fireEvent("open", {
-                value: this.value,
+                value: this.value.val(),
                 picker: picker
             })
 
@@ -18718,7 +18713,7 @@ $.noConflict = function() {
             this.isOpen = false;
 
             this._fireEvent("close", {
-                value: this.value,
+                value: this.value.val(),
                 picker: picker
             });
         },
@@ -18730,23 +18725,18 @@ $.noConflict = function() {
                 return this.element.val();
             }
 
-            if (Utils.isValue(o.inputFormat)) {
-                this.value = (""+value).toDate(o.inputFormat);
-            } else {
-                this.value = new Date(value);
-            }
+            this.value = o.inputFormat ? Datetime.from(value, o.inputFormat, o.locale) : datetime(value);
 
-            // this.value = (new Date(t)).addHours(this.offset);
             this._set();
         },
 
-        date: function(t){
+        date: function(t, f){
             if (t === undefined) {
-                return this.value;
+                return this.value.val();
             }
 
             try {
-                this.value = new Date(t.format("%Y-%m-%d"));
+                this.value = Datetime.from(t, f, this.options.locale);
                 this._set();
             } catch (e) {
                 return false;
@@ -18791,8 +18781,8 @@ $.noConflict = function() {
             }
         },
 
-        changeAttribute: function(attributeName, newValue){
-            switch (attributeName) {
+        changeAttribute: function(attr, newValue){
+            switch (attr) {
                 case "disabled": this.toggleState(); break;
                 case "data-value": this.val(newValue); break;
                 case "data-locale": this.i18n(newValue); break;
