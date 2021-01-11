@@ -23,6 +23,7 @@
 + [x] Datepicker: updated for using with Datetime
 + [x] Utilities: updated for using with Datetime
 + [x] Extensions: removed extension for `Date`, use `Datetime`
++ [x] Extensions: removed extension for `Object` - `Object.create()`, `Object.values()` (IE is dead)
 
 ### 4.4.3
 #### M4Q
