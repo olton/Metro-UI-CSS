@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    if (typeof Array.shuffle !== "function") {
+    if (typeof Array.prototype.shuffle !== "function") {
         Array.prototype.shuffle = function () {
             var currentIndex = this.length, temporaryValue, randomIndex;
 
@@ -19,13 +19,13 @@
         };
     }
 
-    if (typeof Array.clone !== "function") {
+    if (typeof Array.prototype.clone !== "function") {
         Array.prototype.clone = function () {
             return this.slice(0);
         };
     }
 
-    if (typeof Array.unique !== "function") {
+    if (typeof Array.prototype.unique !== "function") {
         Array.prototype.unique = function () {
             var a = this.concat();
             for (var i = 0; i < a.length; ++i) {
@@ -39,34 +39,4 @@
         };
     }
 
-    if (typeof Array.from !== "function") {
-        Array.prototype.from = function(val) {
-            var i, a = [];
-
-            if (val.length === undefined && typeof val === "object") {
-                return Object.values(val);
-            }
-
-            if (val.length !== undefined) {
-                for(i = 0; i < val.length; i++) {
-                    a.push(val[i]);
-                }
-                return a;
-            }
-
-            throw new Error("Value can not be converted to array");
-        };
-    }
-
-    if (typeof Array.contains !== "function") {
-        Array.prototype.contains = function(val, from){
-            return this.indexOf(val, from) > -1;
-        }
-    }
-
-    if (typeof Array.includes !== "function") {
-        Array.prototype.includes = function(val, from){
-            return this.indexOf(val, from) > -1;
-        }
-    }
 }());

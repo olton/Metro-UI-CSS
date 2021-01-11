@@ -65,12 +65,12 @@
         _create: function(){
             this.triggers = (""+this.options.tagTrigger).toArray(",");
 
-            if (this.triggers.contains("Space") || this.triggers.contains("Spacebar")) {
+            if (this.triggers.includes("Space") || this.triggers.includes("Spacebar")) {
                 this.triggers.push(" ");
                 this.triggers.push("Spacebar");
             }
 
-            if (this.triggers.contains("Comma")) {
+            if (this.triggers.includes("Comma")) {
                 this.triggers.push(",");
             }
 
@@ -204,7 +204,7 @@
 
                 if (val === "") {return ;}
 
-                if (!that.triggers.contains(key)) {
+                if (!that.triggers.includes(key)) {
                     return ;
                 }
 
@@ -221,7 +221,7 @@
                 var val = input.val();
                 var key = e.key;
 
-                if (that.triggers.contains(key) && val[val.length - 1] === key) {
+                if (that.triggers.includes(key) && val[val.length - 1] === key) {
                     input.val(val.slice(0, -1));
                 }
             });

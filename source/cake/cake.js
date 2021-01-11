@@ -573,10 +573,6 @@
       return _s.substr(0, pos) + sbj + _s.substr(pos);
     }
 
-    function includes(s, search) {
-      return countSubstr(s, search) > 0;
-    }
-
     var reduce = Array.prototype.reduce;
     var reduceRight = Array.prototype.reduceRight;
     function trim(s, ws) {
@@ -599,7 +595,7 @@
 
       var match = true;
       return reduce.call(_s, function (trimmed, _char) {
-        if (match && includes(ws, _char)) {
+        if (match && ws.includes(_char)) {
           return trimmed;
         }
 
@@ -624,7 +620,7 @@
 
       var match = true;
       return reduceRight.call(_s, function (trimmed, _char2) {
-        if (match && includes(ws, _char2)) {
+        if (match && ws.includes(_char2)) {
           return trimmed;
         }
 
@@ -970,7 +966,6 @@
       lpad: lpad,
       rpad: rpad,
       insert: insert,
-      includes: includes,
       trim: trim,
       ltrim: ltrim,
       rtrim: rtrim,

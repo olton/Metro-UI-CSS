@@ -259,7 +259,7 @@
                                 .data("time", event_item.time)
                                 .data("target", event_item.target)
                                 .addClass("stream-event")
-                                .addClass("size-"+event_item.size+(["half", "one-third"].contains(event_item.size) ? "" : "x"))
+                                .addClass("size-"+event_item.size+(["half", "one-third"].includes(event_item.size) ? "" : "x"))
                                 .addClass(event_item.cls)
                                 .appendTo(stream_events);
 
@@ -358,7 +358,7 @@
                     if (data.global[global_item] !== undefined) {
                         $.each(data.global[global_item], function(){
                             var event_item = this;
-                            var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+(["half", "one-third"].contains(event_item.size) ? "" : "x"));
+                            var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+(["half", "one-third"].includes(event_item.size) ? "" : "x"));
                             var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
                             var event = $("<div>").addClass("stream-event").appendTo(events);
                             event

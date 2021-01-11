@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro, Cake */
 
 /**
  * Component Vegas based on Vegas by Jay Salvat (http://jaysalvat.com/)
@@ -99,18 +99,18 @@
         },
 
         _create: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
 
-            this.slides = Utils.isObject(this.options.slides) || [];
+            this.slides = Utils.isObject(o.slides) || [];
             this.total = this.slides.length;
             this.noshow = this.total < 2;
-            this.paused = !this.options.autoplay || this.noshow;
+            this.paused = !o.autoplay || this.noshow;
 
-            if (this.options.shuffle) {
+            if (o.shuffle) {
                 this.slides.shuffle();
             }
 
-            if (this.options.preload) {
+            if (o.preload) {
                 this._preload();
             }
 
@@ -567,9 +567,9 @@
             this._goto(this.slide);
         },
 
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attr){
             var element = this.element, o = this.options;
-            var propName = $.camelCase(attributeName.replace("data-", ""));
+            var propName = Cake.camelCase(attr.replace("data-", ""));
 
             if (propName === 'slides') {
                 o.slides = element.attr('data-slides');
@@ -579,7 +579,7 @@
                 this.paused = !this.options.autoplay || this.noshow;
             } else {
                 if (typeof VegasDefaultConfig[propName] !== 'undefined')
-                    o[propName] = JSON.parse(element.attr(attributeName));
+                    o[propName] = JSON.parse(element.attr(attr));
             }
         },
 

@@ -84,7 +84,7 @@
                 if (that.media.length !== window.METRO_MEDIA.length) {
                     if (that.media.length > window.METRO_MEDIA.length) {
                         point = that.media.filter(function(x){
-                            return !window.METRO_MEDIA.contains(x);
+                            return !window.METRO_MEDIA.includes(x);
                         });
 
                         that._fireEvent("media-point-leave", {
@@ -94,7 +94,7 @@
 
                     } else {
                         point = window.METRO_MEDIA.filter(function(x){
-                            return !that.media.contains(x);
+                            return !that.media.includes(x);
                         });
 
                         that._fireEvent("media-point-enter", {

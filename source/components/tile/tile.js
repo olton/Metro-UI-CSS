@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -157,7 +157,7 @@
                 next = that.slides[that.currentSlide];
 
                 if (effects.includes(o.effect)) {
-                    Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
+                    Metro.animations[Cake.camelCase(o.effect)]($(current), $(next), {duration: o.effectDuration});
                 }
 
             }, o.effectInterval);

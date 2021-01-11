@@ -67,15 +67,15 @@
             this._setSize();
 
             if (Utils.isValue(o.minSizes)) {
-                if (String(o.minSizes).contains(",")) {
+                if ((""+o.minSizes).includes(",")) {
                     children_sizes = o.minSizes.toArray();
                     for (i = 0; i < children_sizes.length; i++) {
                         $(children[i]).data("min-size", children_sizes[i]);
-                        children[i].style.setProperty('min-'+resizeProp, String(children_sizes[i]).contains("%") ? children_sizes[i] : String(children_sizes[i]).replace("px", "")+"px", 'important');
+                        children[i].style.setProperty('min-'+resizeProp, (""+children_sizes[i]).includes("%") ? children_sizes[i] : (""+children_sizes[i]).replace("px", "")+"px", 'important');
                     }
                 } else {
                     $.each(children, function(){
-                        this.style.setProperty('min-'+resizeProp, String(o.minSizes).contains("%") ? o.minSizes : String(o.minSizes).replace("px", "")+"px", 'important');
+                        this.style.setProperty('min-'+resizeProp, (""+o.minSizes).includes("%") ? o.minSizes : (""+o.minSizes).replace("px", "")+"px", 'important');
                     });
                 }
             }

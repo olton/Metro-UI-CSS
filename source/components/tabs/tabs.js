@@ -88,15 +88,15 @@
             element.addClass(o.clsTabsList);
             element.children("li").addClass(o.clsTabsListItem);
 
-            if (o.expand === true && !o.tabsPosition.contains("vertical")) {
+            if (o.expand === true && !o.tabsPosition.includes("vertical")) {
                 container.addClass("tabs-expand");
             } else {
-                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
+                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.includes("vertical")) {
                     container.addClass("tabs-expand");
                 }
             }
 
-            if (o.tabsPosition.contains("vertical")) {
+            if (o.tabsPosition.includes("vertical")) {
                 container.addClass("tabs-expand");
             }
 
@@ -108,14 +108,14 @@
 
             $(window).on(Metro.events.resize, function(){
 
-                if (o.tabsPosition.contains("vertical")) {
+                if (o.tabsPosition.includes("vertical")) {
                     return ;
                 }
 
-                if (o.expand === true && !o.tabsPosition.contains("vertical")) {
+                if (o.expand === true && !o.tabsPosition.includes("vertical")) {
                     container.addClass("tabs-expand");
                 } else {
-                    if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
+                    if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.includes("vertical")) {
                         if (!container.hasClass("tabs-expand")) container.addClass("tabs-expand");
                     } else {
                         if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
