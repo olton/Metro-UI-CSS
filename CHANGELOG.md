@@ -18,6 +18,8 @@
 + [x] Chat: updated for using with Datetime
 + [x] Chat: changed messages style
 + [x] Validator: updated method `date` for using with Datetime
++ [x] Table: updated for using with Datetime (change `toDate()` to `Datetime.from()`)
++ [x] List: updated for using with Datetime (change `toDate()` to `Datetime.from()`)
 
 ### 4.4.3
 #### M4Q

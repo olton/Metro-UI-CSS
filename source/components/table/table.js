@@ -1,4 +1,4 @@
-/* global Metro, setImmediate, METRO_LOCALE */
+/* global Metro, setImmediate, METRO_LOCALE, Datetime, datetime */
 (function(Metro, $) {
     'use strict';
 
@@ -1658,7 +1658,7 @@
                 }
 
                 switch (format) {
-                    case "date": result = Utils.isValue(formatMask) ? result.toDate(formatMask) : new Date(result); break;
+                    case "date": result = formatMask ? Datetime.from(result, formatMask, o.locale) : datetime(result); break;
                     case "number": result = Number(result); break;
                     case "int": result = parseInt(result); break;
                     case "float": result = parseFloat(result); break;
