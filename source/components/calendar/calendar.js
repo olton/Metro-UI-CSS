@@ -1,4 +1,4 @@
-/* global Metro, Datetime, datetime, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT */
+/* global Metro, Datetime, datetime, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -580,7 +580,7 @@
             footer.html("");
 
             $.each(o.buttons, function(){
-                var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+this.capitalize()+'Button']).html(buttons_locale[this]).appendTo(footer);
+                var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+Cake.capitalize(this)+'Button']).html(buttons_locale[this]).appendTo(footer);
                 if (this === 'cancel' || this === 'done') {
                     button.addClass("js-dialog-close");
                 }

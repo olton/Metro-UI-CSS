@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 12/01/2021 00:19:45
+ * Built at 12/01/2021 01:03:50
  * Licensed under MIT
  */
 /*!
@@ -1964,10 +1964,6 @@
       return _s.substr(0, pos) + sbj + _s.substr(pos);
     }
 
-    function includes(s, search) {
-      return countSubstr(s, search) > 0;
-    }
-
     var reduce = Array.prototype.reduce;
     var reduceRight = Array.prototype.reduceRight;
     function trim(s, ws) {
@@ -1990,7 +1986,7 @@
 
       var match = true;
       return reduce.call(_s, function (trimmed, _char) {
-        if (match && includes(ws, _char)) {
+        if (match && ws.includes(_char)) {
           return trimmed;
         }
 
@@ -2015,7 +2011,7 @@
 
       var match = true;
       return reduceRight.call(_s, function (trimmed, _char2) {
-        if (match && includes(ws, _char2)) {
+        if (match && ws.includes(_char2)) {
           return trimmed;
         }
 
@@ -2361,7 +2357,6 @@
       lpad: lpad,
       rpad: rpad,
       insert: insert,
-      includes: includes,
       trim: trim,
       ltrim: ltrim,
       rtrim: rtrim,
@@ -6792,7 +6787,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "12/01/2021 00:19:45",
+        compileTime: "12/01/2021 01:03:50",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7390,7 +7385,7 @@ $.noConflict = function() {
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data;
-                    var event = eventName.camelCase().capitalize();
+                    var event = Cake.capitalize(Cake.camelCase(eventName));
 
                     data = $.extend({}, data, {__this: element[0]});
 
@@ -7398,7 +7393,7 @@ $.noConflict = function() {
 
                     if (log) {
                         console.warn(log);
-                        console.warn("Event: " + "on"+eventName.camelCase().capitalize());
+                        console.warn("Event: " + "on"+event);
                         console.warn("Data: ", data);
                         console.warn("Element: ", element[0]);
                     }
@@ -8297,7 +8292,7 @@ $.noConflict = function() {
 (function() {
     'use strict';
 
-    if (typeof Array.shuffle !== "function") {
+    if (typeof Array.prototype.shuffle !== "function") {
         Array.prototype.shuffle = function () {
             var currentIndex = this.length, temporaryValue, randomIndex;
 
@@ -8315,13 +8310,13 @@ $.noConflict = function() {
         };
     }
 
-    if (typeof Array.clone !== "function") {
+    if (typeof Array.prototype.clone !== "function") {
         Array.prototype.clone = function () {
             return this.slice(0);
         };
     }
 
-    if (typeof Array.unique !== "function") {
+    if (typeof Array.prototype.unique !== "function") {
         Array.prototype.unique = function () {
             var a = this.concat();
             for (var i = 0; i < a.length; ++i) {
@@ -8335,36 +8330,6 @@ $.noConflict = function() {
         };
     }
 
-    if (typeof Array.from !== "function") {
-        Array.prototype.from = function(val) {
-            var i, a = [];
-
-            if (val.length === undefined && typeof val === "object") {
-                return Object.values(val);
-            }
-
-            if (val.length !== undefined) {
-                for(i = 0; i < val.length; i++) {
-                    a.push(val[i]);
-                }
-                return a;
-            }
-
-            throw new Error("Value can not be converted to array");
-        };
-    }
-
-    if (typeof Array.contains !== "function") {
-        Array.prototype.contains = function(val, from){
-            return this.indexOf(val, from) > -1;
-        }
-    }
-
-    if (typeof Array.includes !== "function") {
-        Array.prototype.includes = function(val, from){
-            return this.indexOf(val, from) > -1;
-        }
-    }
 }());
 
 (function() {
@@ -8386,148 +8351,10 @@ $.noConflict = function() {
     };
 }());
 
-(function(Metro, $) {
+(function() {
     'use strict';
 
-    String.prototype.camelCase = function(){
-        return $.camelCase(this);
-    };
-
-    String.prototype.dashedName = function(){
-        return $.dashedName(this);
-    };
-
-    String.prototype.shuffle = function(){
-        var _shuffle = function (a) {
-            var currentIndex = a.length, temporaryValue, randomIndex;
-
-            while (0 !== currentIndex) {
-
-                randomIndex = Math.floor(Math.random() * currentIndex);
-                currentIndex -= 1;
-
-                temporaryValue = a[currentIndex];
-                a[currentIndex] = a[randomIndex];
-                a[randomIndex] = temporaryValue;
-            }
-
-            return a;
-        };
-
-        return _shuffle(this.split("")).join("");
-    }
-
-    String.prototype.capitalize = function() {
-        return this.charAt(0).toUpperCase() + this.slice(1);
-    };
-
-    String.prototype.contains = function() {
-        return !!~String.prototype.indexOf.apply(this, arguments);
-    };
-
-    if (typeof String.includes !== "function") {
-        String.prototype.includes = function(){
-            return !!~String.prototype.indexOf.apply(this, arguments);
-        }
-    }
-
-    String.prototype.toDate = function(format, locale) {
-        var result;
-        var normalized, normalizedFormat, formatItems, dateItems, checkValue;
-        var monthIndex, dayIndex, yearIndex, hourIndex, minutesIndex, secondsIndex;
-        var year, month, day, hour, minute, second;
-        var parsedMonth;
-
-        locale = locale || "en-US";
-
-        var monthNameToNumber = function(month){
-            var d, months, index, i;
-            var Locales = Metro.locales;
-
-            if (typeof month === "undefined" || month === null) {
-                return -1;
-            }
-
-            month = month.substr(0, 3);
-
-            if (
-                locale !== undefined
-                && locale !== "en-US"
-                && Locales !== undefined
-                && Locales[locale] !== undefined
-                && Locales[locale]['calendar'] !== undefined
-                && Locales[locale]['calendar']['months'] !== undefined
-            ) {
-                months = Locales[locale]['calendar']['months'];
-                for(i = 12; i < months.length; i++) {
-                    if (months[i].toLowerCase() === month.toLowerCase()) {
-                        index = i - 12;
-                        break;
-                    }
-                }
-                month = Locales["en-US"]['calendar']['months'][index];
-            }
-
-            d = Date.parse(month + " 1, 1972");
-            if(!isNaN(d)){
-                return new Date(d).getMonth() + 1;
-            }
-            return -1;
-        };
-
-        if (format === undefined || format === null || format === "") {
-            return new Date(this);
-        }
-
-        /* eslint-disable-next-line */
-        normalized      = this.replace(/[\/,.:\s]/g, '-');
-        /* eslint-disable-next-line */
-        normalizedFormat= format.toLowerCase().replace(/[^a-zA-Z0-9%]/g, '-');
-        formatItems     = normalizedFormat.split('-');
-        dateItems       = normalized.split('-');
-        checkValue      = normalized.replace(/-/g,"");
-
-        if (checkValue.trim() === "") {
-            return "Invalid Date";
-        }
-
-        monthIndex  = formatItems.indexOf("mm") > -1 ? formatItems.indexOf("mm") : formatItems.indexOf("%m");
-        dayIndex    = formatItems.indexOf("dd") > -1 ? formatItems.indexOf("dd") : formatItems.indexOf("%d");
-        yearIndex   = formatItems.indexOf("yyyy") > -1 ? formatItems.indexOf("yyyy") : formatItems.indexOf("yy") > -1 ? formatItems.indexOf("yy") : formatItems.indexOf("%y");
-        hourIndex     = formatItems.indexOf("hh") > -1 ? formatItems.indexOf("hh") : formatItems.indexOf("%h");
-        minutesIndex  = formatItems.indexOf("ii") > -1 ? formatItems.indexOf("ii") : formatItems.indexOf("mi") > -1 ? formatItems.indexOf("mi") : formatItems.indexOf("%i");
-        secondsIndex  = formatItems.indexOf("ss") > -1 ? formatItems.indexOf("ss") : formatItems.indexOf("%s");
-
-        if (monthIndex > -1 && dateItems[monthIndex] !== "") {
-            if (isNaN(parseInt(dateItems[monthIndex]))) {
-                dateItems[monthIndex] = monthNameToNumber(dateItems[monthIndex]);
-                if (dateItems[monthIndex] === -1) {
-                    return "Invalid Date";
-                }
-            } else {
-                parsedMonth = parseInt(dateItems[monthIndex]);
-                if (parsedMonth < 1 || parsedMonth > 12) {
-                    return "Invalid Date";
-                }
-            }
-        } else {
-            return "Invalid Date";
-        }
-
-        year  = yearIndex >-1 && dateItems[yearIndex] !== "" ? dateItems[yearIndex] : null;
-        month = monthIndex >-1 && dateItems[monthIndex] !== "" ? dateItems[monthIndex] : null;
-        day   = dayIndex >-1 && dateItems[dayIndex] !== "" ? dateItems[dayIndex] : null;
-
-        hour    = hourIndex >-1 && dateItems[hourIndex] !== "" ? dateItems[hourIndex] : null;
-        minute  = minutesIndex>-1 && dateItems[minutesIndex] !== "" ? dateItems[minutesIndex] : null;
-        second  = secondsIndex>-1 && dateItems[secondsIndex] !== "" ? dateItems[secondsIndex] : null;
-
-        result = new Date(year,month-1,day,hour,minute,second);
-
-        return result;
-    };
-
-    String.prototype.toArray = function(delimiter, type, format){
+    String.prototype.toArray = function(delimiter, type, format, locale){
         var str = this;
         var a;
 
@@ -8545,14 +8372,14 @@ $.noConflict = function() {
                 case "integer": result = isNaN(s) ? s.trim() : parseInt(s); break;
                 case "number":
                 case "float": result = isNaN(s) ? s : parseFloat(s); break;
-                case "date": result = !format ? new Date(s) : s.toDate(format); break;
+                case "date": result = !format ? datetime(s) : Datetime.from(s, format, locale || 'en-US'); break;
                 default: result = s.trim();
             }
 
             return result;
         });
     };
-}(Metro, m4q));
+}());
 
 (function(Metro, $) {
     'use strict';
@@ -11705,7 +11532,7 @@ $.noConflict = function() {
             footer.html("");
 
             $.each(o.buttons, function(){
-                var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+this.capitalize()+'Button']).html(buttons_locale[this]).appendTo(footer);
+                var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+Cake.capitalize(this)+'Button']).html(buttons_locale[this]).appendTo(footer);
                 if (this === 'cancel' || this === 'done') {
                     button.addClass("js-dialog-close");
                 }
@@ -24441,7 +24268,7 @@ $.noConflict = function() {
                         deleteIndexes.push(i);
                     }
                 } else {
-                    if (item.textContent.contains(value)) {
+                    if (item.textContent.includes(value)) {
                         deleteIndexes.push(i);
                     }
                 }
@@ -27960,7 +27787,7 @@ $.noConflict = function() {
                 if (that.media.length !== window.METRO_MEDIA.length) {
                     if (that.media.length > window.METRO_MEDIA.length) {
                         point = that.media.filter(function(x){
-                            return !window.METRO_MEDIA.contains(x);
+                            return !window.METRO_MEDIA.includes(x);
                         });
 
                         that._fireEvent("media-point-leave", {
@@ -27970,7 +27797,7 @@ $.noConflict = function() {
 
                     } else {
                         point = window.METRO_MEDIA.filter(function(x){
-                            return !that.media.contains(x);
+                            return !that.media.includes(x);
                         });
 
                         that._fireEvent("media-point-enter", {
@@ -30375,15 +30202,15 @@ $.noConflict = function() {
             this._setSize();
 
             if (Utils.isValue(o.minSizes)) {
-                if (String(o.minSizes).contains(",")) {
+                if ((""+o.minSizes).includes(",")) {
                     children_sizes = o.minSizes.toArray();
                     for (i = 0; i < children_sizes.length; i++) {
                         $(children[i]).data("min-size", children_sizes[i]);
-                        children[i].style.setProperty('min-'+resizeProp, String(children_sizes[i]).contains("%") ? children_sizes[i] : String(children_sizes[i]).replace("px", "")+"px", 'important');
+                        children[i].style.setProperty('min-'+resizeProp, (""+children_sizes[i]).includes("%") ? children_sizes[i] : (""+children_sizes[i]).replace("px", "")+"px", 'important');
                     }
                 } else {
                     $.each(children, function(){
-                        this.style.setProperty('min-'+resizeProp, String(o.minSizes).contains("%") ? o.minSizes : String(o.minSizes).replace("px", "")+"px", 'important');
+                        this.style.setProperty('min-'+resizeProp, (""+o.minSizes).includes("%") ? o.minSizes : (""+o.minSizes).replace("px", "")+"px", 'important');
                     });
                 }
             }
@@ -31055,7 +30882,7 @@ $.noConflict = function() {
                                 .data("time", event_item.time)
                                 .data("target", event_item.target)
                                 .addClass("stream-event")
-                                .addClass("size-"+event_item.size+(["half", "one-third"].contains(event_item.size) ? "" : "x"))
+                                .addClass("size-"+event_item.size+(["half", "one-third"].includes(event_item.size) ? "" : "x"))
                                 .addClass(event_item.cls)
                                 .appendTo(stream_events);
 
@@ -31154,7 +30981,7 @@ $.noConflict = function() {
                     if (data.global[global_item] !== undefined) {
                         $.each(data.global[global_item], function(){
                             var event_item = this;
-                            var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+(["half", "one-third"].contains(event_item.size) ? "" : "x"));
+                            var group = $("<div>").addClass("event-group").addClass("size-"+event_item.size+(["half", "one-third"].includes(event_item.size) ? "" : "x"));
                             var events = $("<div>").addClass("stream-events global-stream").appendTo(group);
                             var event = $("<div>").addClass("stream-event").appendTo(events);
                             event
@@ -34375,15 +34202,15 @@ $.noConflict = function() {
             element.addClass(o.clsTabsList);
             element.children("li").addClass(o.clsTabsListItem);
 
-            if (o.expand === true && !o.tabsPosition.contains("vertical")) {
+            if (o.expand === true && !o.tabsPosition.includes("vertical")) {
                 container.addClass("tabs-expand");
             } else {
-                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
+                if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.includes("vertical")) {
                     container.addClass("tabs-expand");
                 }
             }
 
-            if (o.tabsPosition.contains("vertical")) {
+            if (o.tabsPosition.includes("vertical")) {
                 container.addClass("tabs-expand");
             }
 
@@ -34395,14 +34222,14 @@ $.noConflict = function() {
 
             $(window).on(Metro.events.resize, function(){
 
-                if (o.tabsPosition.contains("vertical")) {
+                if (o.tabsPosition.includes("vertical")) {
                     return ;
                 }
 
-                if (o.expand === true && !o.tabsPosition.contains("vertical")) {
+                if (o.expand === true && !o.tabsPosition.includes("vertical")) {
                     container.addClass("tabs-expand");
                 } else {
-                    if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.contains("vertical")) {
+                    if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint) && !o.tabsPosition.includes("vertical")) {
                         if (!container.hasClass("tabs-expand")) container.addClass("tabs-expand");
                     } else {
                         if (container.hasClass("tabs-expand")) container.removeClass("tabs-expand");
@@ -34628,12 +34455,12 @@ $.noConflict = function() {
         _create: function(){
             this.triggers = (""+this.options.tagTrigger).toArray(",");
 
-            if (this.triggers.contains("Space") || this.triggers.contains("Spacebar")) {
+            if (this.triggers.includes("Space") || this.triggers.includes("Spacebar")) {
                 this.triggers.push(" ");
                 this.triggers.push("Spacebar");
             }
 
-            if (this.triggers.contains("Comma")) {
+            if (this.triggers.includes("Comma")) {
                 this.triggers.push(",");
             }
 
@@ -34767,7 +34594,7 @@ $.noConflict = function() {
 
                 if (val === "") {return ;}
 
-                if (!that.triggers.contains(key)) {
+                if (!that.triggers.includes(key)) {
                     return ;
                 }
 
@@ -34784,7 +34611,7 @@ $.noConflict = function() {
                 var val = input.val();
                 var key = e.key;
 
-                if (that.triggers.contains(key) && val[val.length - 1] === key) {
+                if (that.triggers.includes(key) && val[val.length - 1] === key) {
                     input.val(val.slice(0, -1));
                 }
             });
@@ -35640,7 +35467,7 @@ $.noConflict = function() {
                 next = that.slides[that.currentSlide];
 
                 if (effects.includes(o.effect)) {
-                    Metro.animations[o.effect.camelCase()]($(current), $(next), {duration: o.effectDuration});
+                    Metro.animations[Cake.camelCase(o.effect)]($(current), $(next), {duration: o.effectDuration});
                 }
 
             }, o.effectInterval);
@@ -38558,18 +38385,18 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
 
-            this.slides = Utils.isObject(this.options.slides) || [];
+            this.slides = Utils.isObject(o.slides) || [];
             this.total = this.slides.length;
             this.noshow = this.total < 2;
-            this.paused = !this.options.autoplay || this.noshow;
+            this.paused = !o.autoplay || this.noshow;
 
-            if (this.options.shuffle) {
+            if (o.shuffle) {
                 this.slides.shuffle();
             }
 
-            if (this.options.preload) {
+            if (o.preload) {
                 this._preload();
             }
 
@@ -39026,9 +38853,9 @@ $.noConflict = function() {
             this._goto(this.slide);
         },
 
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attr){
             var element = this.element, o = this.options;
-            var propName = $.camelCase(attributeName.replace("data-", ""));
+            var propName = Cake.camelCase(attr.replace("data-", ""));
 
             if (propName === 'slides') {
                 o.slides = element.attr('data-slides');
@@ -39038,7 +38865,7 @@ $.noConflict = function() {
                 this.paused = !this.options.autoplay || this.noshow;
             } else {
                 if (typeof VegasDefaultConfig[propName] !== 'undefined')
-                    o[propName] = JSON.parse(element.attr(attributeName));
+                    o[propName] = JSON.parse(element.attr(attr));
             }
         },
 

@@ -1,4 +1,4 @@
-/* global jQuery, define, Promise */
+/* global jQuery, define, Promise, Cake */
 /* Metro 4 Core */
 (function( factory ) {
     if ( typeof define === 'function' && define.amd ) {
@@ -626,7 +626,7 @@
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data;
-                    var event = eventName.camelCase().capitalize();
+                    var event = Cake.capitalize(Cake.camelCase(eventName));
 
                     data = $.extend({}, data, {__this: element[0]});
 
@@ -634,7 +634,7 @@
 
                     if (log) {
                         console.warn(log);
-                        console.warn("Event: " + "on"+eventName.camelCase().capitalize());
+                        console.warn("Event: " + "on"+event);
                         console.warn("Data: ", data);
                         console.warn("Element: ", element[0]);
                     }

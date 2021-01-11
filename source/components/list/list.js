@@ -595,7 +595,7 @@
                         deleteIndexes.push(i);
                     }
                 } else {
-                    if (item.textContent.contains(value)) {
+                    if (item.textContent.includes(value)) {
                         deleteIndexes.push(i);
                     }
                 }

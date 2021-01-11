@@ -24,6 +24,7 @@
 + [x] Utilities: updated for using with Datetime
 + [x] Extensions: removed extension for `Date`, use `Datetime`
 + [x] Extensions: removed extension for `Object` - `Object.create()`, `Object.values()` (IE is dead)
++ [x] Extensions: removed methods from extension for `String`, `Array`
 
 ### 4.4.3
 #### M4Q
