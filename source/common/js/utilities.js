@@ -1,4 +1,4 @@
-/* global jQuery, Metro */
+/* global jQuery, Metro, Datetime, datetime */
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
@@ -36,20 +36,19 @@
             return /youtu\.be|youtube|twitch|vimeo/gi.test(val);
         },
 
-        isDate: function(val, format){
+        isDate: function(val, format, locale){
             var result;
 
             if (this.isDateObject(val)) {
                 return true;
             }
 
-            if (this.isValue(format)) {
-                result = String(val).toDate(format);
-            } else {
-                result = String(new Date(val));
+            try {
+                result = format ? Datetime.from(val, format, locale || "en-US") : datetime(val)
+                return Datetime.isDatetime(result);
+            } catch (e) {
+                return false;
             }
-
-            return result !== "Invalid Date";
         },
 
         isDateObject: function(v){
