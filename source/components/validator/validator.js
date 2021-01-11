@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro, Datetime, datetime */
 (function(Metro, $) {
     'use strict';
 
@@ -70,10 +70,15 @@
             return regexp.test(val);
         },
         date: function(val, format, locale){
-            if (Utils.isNull(format)) {
-                return String(new Date(val)).toLowerCase() !== "invalid date";
-            } else {
-                return String(val.toDate(format, locale)).toLowerCase() !== "invalid date";
+            try {
+                if (!format) {
+                    datetime(val);
+                } else {
+                    Datetime.from(val, format, locale);
+                }
+                return true;
+            } catch (e) {
+                return false;
             }
         },
         number: function(val){

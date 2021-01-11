@@ -1,4 +1,4 @@
-/* global Metro, METRO_LOCALE */
+/* global Metro, datetime, Datetime, METRO_LOCALE */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -77,10 +77,10 @@
             var o = this.options;
             var dm = 86400000, hm = 3600000, mm = 60000, sm = 1000;
 
-            this.breakpoint = (new Date()).getTime();
+            this.breakpoint = datetime().time();
 
-            if (Utils.isValue(o.date) && Utils.isDate(o.date, o.inputFormat)) {
-                this.breakpoint = Utils.isValue(o.inputFormat) ? (o.date.toDate(o.inputFormat)).getTime() : (new Date(o.date)).getTime();
+            if (o.date) {
+                this.breakpoint = (o.inputFormat ? Datetime.from(o.date, o.inputFormat) : datetime(o.date)).time();
             }
 
             if (parseInt(o.days) > 0) {
@@ -102,7 +102,7 @@
             var parts = ["days", "hours", "minutes", "seconds"];
             var dm = 24*60*60*1000;
             var delta_days;
-            var now = (new Date()).getTime();
+            var now = datetime().time();
             var digit;
 
             if (!element.attr("id")) {
@@ -177,7 +177,7 @@
         tick: function(){
             var element = this.element, o = this.options;
             var dm = 24*60*60, hm = 60*60, mm = 60, sm = 1;
-            var left, now = (new Date()).getTime();
+            var left, now = datetime().time();
             var d, h, m, s;
             var days = element.find(".days"),
                 hours = element.find(".hours"),
