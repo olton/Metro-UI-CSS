@@ -22,6 +22,7 @@
 + [x] List: updated for using with Datetime (change `toDate()` to `Datetime.from()`)
 + [x] Datepicker: updated for using with Datetime
 + [x] Utilities: updated for using with Datetime
++ [x] Extensions: removed extension for `Date`, use `Datetime`
 
 ### 4.4.3
 #### M4Q

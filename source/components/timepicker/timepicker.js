@@ -1,4 +1,4 @@
-/* global Metro, METRO_LOCALE */
+/* global Metro, METRO_LOCALE, datetime */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -79,7 +79,7 @@
             if (o.secondsStep > 59) {o.secondsStep = 59;}
 
             if (element.val() === "" && (!Utils.isValue(o.value))) {
-                o.value = (new Date()).format("%H:%M:%S");
+                o.value = datetime().format("HH:mm:ss");
             }
 
             this.value = (element.val() !== "" ? element.val() : ""+o.value).toArray(":");
@@ -459,12 +459,12 @@
 
         date: function(t){
             if (t === undefined || typeof t.getMonth !== 'function') {
-                var ret = new Date();
-                ret.setHours(this.value[0]);
-                ret.setMinutes(this.value[1]);
-                ret.setSeconds(this.value[2]);
-                ret.setMilliseconds(0);
-                return ret;
+                return datetime()
+                    .hour(this.value[0])
+                    .minute(this.value[1])
+                    .second(this.value[2])
+                    .ms(0)
+                    .val();
             }
 
             this.value = this._convert(t);
