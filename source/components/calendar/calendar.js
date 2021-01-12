@@ -631,8 +631,8 @@
             inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
             inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
 
-            h = Utils.lpad(h, "0", 2);
-            m = Utils.lpad(m, "0", 2);
+            h = Cake.lpad(h, 2, "0");
+            m = Cake.lpad(m, 2, "0");
 
             hours.val(h);
             minutes.val(m);
@@ -912,8 +912,8 @@
 
             asString = asString || false;
 
-            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
-            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
+            h = Cake.lpad(this.time[0], 2, "0");
+            m = Cake.lpad(this.time[1], 2, "0");
 
             return asString ? h +":"+ m : this.time;
         },

@@ -1,4 +1,4 @@
-/* global Metro, METRO_LOCALE, datetime */
+/* global Metro, METRO_LOCALE, datetime, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -162,7 +162,7 @@
                 hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
                 for (i = 0; i < 24; i = i + o.hoursStep) {
-                    $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
+                    $("<li>").addClass("js-hours-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(hours);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
             }
@@ -170,7 +170,7 @@
                 minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
                 for (i = 0; i < 60; i = i + o.minutesStep) {
-                    $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
+                    $("<li>").addClass("js-minutes-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(minutes);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             }
@@ -178,7 +178,7 @@
                 seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
                 for (i = 0; i < 60; i = i + o.secondsStep) {
-                    $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
+                    $("<li>").addClass("js-seconds-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(seconds);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             }
@@ -316,24 +316,15 @@
 
             if (o.hours === true) {
                 h = parseInt(this.value[0]);
-                if (h < 10) {
-                    h = "0"+h;
-                }
-                picker.find(".hours").html(h);
+                picker.find(".hours").html(Cake.lpad(h, 2, "0"));
             }
             if (o.minutes === true) {
                 m = parseInt(this.value[1]);
-                if (m < 10) {
-                    m = "0"+m;
-                }
-                picker.find(".minutes").html(m);
+                picker.find(".minutes").html(Cake.lpad(m, 2, "0"));
             }
             if (o.seconds === true) {
                 s = parseInt(this.value[2]);
-                if (s < 10) {
-                    s = "0"+s;
-                }
-                picker.find(".seconds").html(s);
+                picker.find(".seconds").html(Cake.lpad(s, 2, "0"));
             }
 
             element.val([h, m, s].join(":")).trigger("change");

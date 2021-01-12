@@ -64,35 +64,38 @@
              "
         ></div>
 
-        <div data-role="calendar"
-             data-multi-select="true"
-             data-week-day-click="true"
-             data-week-number-click="true"
-             data-show-week-number="true"
-             data-exclude="2021-1-20"
-             data-show-time="true"
-             data-show-ghost="true"
-             data-input-format="dd-mm-yyyy"
-             data-cls-event=""
-             data-events="
-                4-1-2021,
-                4-1-2021,
-                4-1-2021,
-                4-1-2021,
-                4-1-2021,
-                4-1-2021,
-                4-1-2021,
-                4-1-2021,
-                5-1-2021,
-                22-1-2021,
-                23-1-2021,
-                23-1-2021,
-                27-1-2021,
-                28-1-2021
-                28-1-2021
-                28-1-2021
-             "
-        ></div>
+        <div>
+            <div id="c4" data-role="calendar"
+                 data-multi-select="true"
+                 data-week-day-click="true"
+                 data-week-number-click="true"
+                 data-show-week-number="true"
+                 data-exclude="2021-1-20"
+                 data-show-time="true"
+                 data-show-ghost="true"
+                 data-input-format="dd-mm-yyyy"
+                 data-cls-event=""
+                 data-events="
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    5-1-2021,
+                    22-1-2021,
+                    23-1-2021,
+                    23-1-2021,
+                    27-1-2021,
+                    28-1-2021
+                    28-1-2021
+                    28-1-2021
+                 "
+            ></div>
+            <button class="button" onclick="alert(Metro.getPlugin('#c4', 'calendar').getTime(true))">Get time</button>
+        </div>
     </div>
 </div>
 

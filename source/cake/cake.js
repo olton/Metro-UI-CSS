@@ -201,6 +201,43 @@
       return _typeof(obj);
     }
 
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
+
+    function _defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    function _createClass(Constructor, protoProps, staticProps) {
+      if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) _defineProperties(Constructor, staticProps);
+      return Constructor;
+    }
+
+    function _defineProperty(obj, key, value) {
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      } else {
+        obj[key] = value;
+      }
+
+      return obj;
+    }
+
     function _toConsumableArray(arr) {
       return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
     }
@@ -930,6 +967,12 @@
       return sprintf.apply(null, [fmt].concat(argv || []));
     }
 
+    function includes(s, sub, pos) {
+      var _s = toStr(s);
+
+      return _s.includes(sub, pos);
+    }
+
     var functions = {
       camelCase: camelCase,
       capitalize: capitalize,
@@ -983,7 +1026,8 @@
       stripTags: stripTags,
       stripTagsAll: stripTagsAll,
       sprintf: sprintf,
-      vsprintf: vsprintf
+      vsprintf: vsprintf,
+      includes: includes
     };
 
     var __global = null;
@@ -1004,8 +1048,370 @@
       return __global;
     }
 
-    var Cake = Object.assign({}, functions);
+    var _Symbol$toPrimitive, _Symbol$toStringTag;
+    _Symbol$toPrimitive = Symbol.toPrimitive;
+    _Symbol$toStringTag = Symbol.toStringTag;
+
+    var Cake = /*#__PURE__*/function () {
+      function Cake() {
+        var s = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+
+        _classCallCheck(this, Cake);
+
+        _defineProperty(this, "_value", void 0);
+
+        this._value = "" + s;
+      }
+
+      _createClass(Cake, [{
+        key: _Symbol$toPrimitive,
+        value: function value(hint) {
+          if (hint === "number") {
+            return +this.value;
+          }
+
+          return this.value;
+        }
+      }, {
+        key: "toString",
+        value: function toString() {
+          return this.value;
+        }
+        /* escape */
+
+      }, {
+        key: "escapeHtml",
+        value: function escapeHtml() {
+          this.value = functions.escapeHtml(this.value);
+          return this;
+        }
+      }, {
+        key: "unescapeHtml",
+        value: function unescapeHtml() {
+          this.value = functions.unescapeHtml(this.value);
+          return this;
+        }
+        /* end of escape */
+
+      }, {
+        key: "camelCase",
+        value: function camelCase() {
+          this.value = functions.camelCase(this.value);
+          return this;
+        }
+      }, {
+        key: "capitalize",
+        value: function capitalize(strong) {
+          this.value = functions.capitalize(this.value, strong);
+          return this;
+        }
+      }, {
+        key: "chars",
+        value: function chars() {
+          return functions.chars(this.value);
+        }
+      }, {
+        key: "count",
+        value: function count() {
+          return functions.count(this.value);
+        }
+      }, {
+        key: "countChars",
+        value: function countChars(ignore) {
+          return functions.countChars(this.value, ignore);
+        }
+      }, {
+        key: "countUniqueChars",
+        value: function countUniqueChars(ignore) {
+          return functions.countUniqueChars(this.value, ignore);
+        }
+      }, {
+        key: "countSubstr",
+        value: function countSubstr(sub) {
+          return functions.countSubstr(this.value, sub);
+        }
+      }, {
+        key: "countWords",
+        value: function countWords(pattern, flags) {
+          return functions.countWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "countUniqueWords",
+        value: function countUniqueWords(pattern, flags) {
+          return functions.countUniqueWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "dashedName",
+        value: function dashedName() {
+          this.value = functions.dashedName(this.value);
+          return this;
+        }
+      }, {
+        key: "decapitalize",
+        value: function decapitalize() {
+          this.value = functions.decapitalize(this.value);
+          return this;
+        }
+      }, {
+        key: "kebab",
+        value: function kebab() {
+          this.value = functions.kebab(this.value);
+          return this;
+        }
+      }, {
+        key: "lower",
+        value: function lower() {
+          this.value = functions.lower(this.value);
+          return this;
+        }
+      }, {
+        key: "reverse",
+        value: function reverse() {
+          this.value = functions.reverse(this.value);
+          return this;
+        }
+      }, {
+        key: "shuffle",
+        value: function shuffle() {
+          this.value = functions.shuffle(this.value);
+          return this;
+        }
+      }, {
+        key: "snake",
+        value: function snake() {
+          this.value = functions.snake(this.value);
+          return this;
+        }
+      }, {
+        key: "swap",
+        value: function swap() {
+          this.value = functions.swap(this.value);
+          return this;
+        }
+      }, {
+        key: "title",
+        value: function title() {
+          this.value = functions.title(this.value);
+          return this;
+        }
+      }, {
+        key: "upper",
+        value: function upper() {
+          this.value = functions.upper(this.value);
+          return this;
+        }
+      }, {
+        key: "words",
+        value: function words(pattern, flags) {
+          return functions.words(this.value, pattern, flags);
+        }
+      }, {
+        key: "wrap",
+        value: function wrap(a, b) {
+          this.value = functions.wrap(this.value, a, b);
+          return this;
+        }
+      }, {
+        key: "wrapTag",
+        value: function wrapTag(t) {
+          this.value = functions.wrapTag(this.value, t);
+          return this;
+        }
+      }, {
+        key: "pad",
+        value: function pad(len, _pad) {
+          this.value = functions.pad(this.value, len, _pad);
+          return this;
+        }
+      }, {
+        key: "lpad",
+        value: function lpad(len, pad) {
+          this.value = functions.lpad(this.value, len, pad);
+          return this;
+        }
+      }, {
+        key: "rpad",
+        value: function rpad(len, pad) {
+          this.value = functions.rpad(this.value, len, pad);
+          return this;
+        }
+      }, {
+        key: "repeat",
+        value: function repeat(times) {
+          this.value = functions.repeat(this.value, times);
+          return this;
+        }
+      }, {
+        key: "prune",
+        value: function prune(len, end) {
+          this.value = functions.prune(this.value, len, end);
+          return this;
+        }
+      }, {
+        key: "slice",
+        value: function slice(parts) {
+          return functions.slice(this.value, parts);
+        }
+      }, {
+        key: "truncate",
+        value: function truncate(len, end) {
+          this.value = functions.truncate(this.value, len, end);
+          return this;
+        }
+      }, {
+        key: "last",
+        value: function last(len) {
+          this.value = functions.last(this.value, len);
+          return this;
+        }
+      }, {
+        key: "first",
+        value: function first(len) {
+          this.value = functions.first(this.value, len);
+          return this;
+        }
+      }, {
+        key: "substr",
+        value: function substr(start, len) {
+          this.value = functions.substr(this.value, start, len);
+          return this;
+        }
+      }, {
+        key: "unique",
+        value: function unique(ignore) {
+          return functions.unique(this.value, ignore);
+        }
+      }, {
+        key: "uniqueWords",
+        value: function uniqueWords(pattern, flags) {
+          return functions.uniqueWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "insert",
+        value: function insert(sbj, pos) {
+          this.value = functions.insert(this.value, sbj, pos);
+          return this;
+        }
+      }, {
+        key: "trim",
+        value: function trim(ws) {
+          this.value = functions.trim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "ltrim",
+        value: function ltrim(ws) {
+          this.value = functions.ltrim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "rtrim",
+        value: function rtrim(ws) {
+          this.value = functions.rtrim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "endsWith",
+        value: function endsWith(end, pos) {
+          return functions.endsWith(this.value, end, pos);
+        }
+      }, {
+        key: "startWith",
+        value: function startWith(start, pos) {
+          return functions.startWith(this.value, start, pos);
+        }
+      }, {
+        key: "isAlpha",
+        value: function isAlpha() {
+          return functions.isAlpha(this.value);
+        }
+      }, {
+        key: "isAlphaDigit",
+        value: function isAlphaDigit() {
+          return functions.isAlphaDigit(this.value);
+        }
+      }, {
+        key: "isDigit",
+        value: function isDigit() {
+          return functions.isDigit(this.value);
+        }
+      }, {
+        key: "isBlank",
+        value: function isBlank() {
+          return functions.isBlank(this.value);
+        }
+      }, {
+        key: "isEmpty",
+        value: function isEmpty() {
+          return functions.isEmpty(this.value);
+        }
+      }, {
+        key: "isLower",
+        value: function isLower() {
+          return functions.isLower(this.value);
+        }
+      }, {
+        key: "isUpper",
+        value: function isUpper() {
+          return functions.isUpper(this.value);
+        }
+      }, {
+        key: "stripTagsAll",
+        value: function stripTagsAll() {
+          this.value = functions.stripTagsAll(this.value);
+          return this;
+        }
+      }, {
+        key: "stripTags",
+        value: function stripTags(allowed) {
+          this.value = functions.stripTags(this.value, allowed);
+          return this;
+        }
+      }, {
+        key: "sprintf",
+        value: function sprintf(args) {
+          return functions.sprintf(this.value, args);
+        }
+      }, {
+        key: "vsprintf",
+        value: function vsprintf(args) {
+          return functions.vsprintf(this.value, args);
+        }
+      }, {
+        key: "includes",
+        value: function includes(sub, pos) {
+          return functions.includes(this.value, sub, pos);
+        }
+      }, {
+        key: _Symbol$toStringTag,
+        get: function get() {
+          return "Cake";
+        }
+      }, {
+        key: "value",
+        get: function get() {
+          return this._value;
+        },
+        set: function set(s) {
+          this._value = s;
+        }
+      }, {
+        key: "length",
+        get: function get() {
+          return this._value.length;
+        }
+      }]);
+
+      return Cake;
+    }();
+
+    var cake = function cake(s) {
+      return new Cake(s);
+    };
+
+    var Cake$1 = Object.assign({}, functions);
     var global$1 = getGlobalObject();
-    global$1.Cake = Cake;
+    global$1.Cake = Cake$1;
+    global$1.cake = cake;
 
 }());

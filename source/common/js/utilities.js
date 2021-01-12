@@ -1,4 +1,4 @@
-/* global jQuery, Metro, Datetime, datetime */
+/* global jQuery, Metro, Datetime, datetime, Cake */
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
@@ -191,11 +191,11 @@
             var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
             var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
-            if (hours   < 10) {hours   = "0"+hours;}
-            if (minutes < 10) {minutes = "0"+minutes;}
-            if (seconds < 10) {seconds = "0"+seconds;}
-
-            return [hours, minutes, seconds].join(":");
+            return [
+                Cake.lpad(hours, 2, "0"),
+                Cake.lpad(minutes, 2, "0"),
+                Cake.lpad(seconds, 2, "0")
+            ].join(":");
         },
 
         func: function(f){
@@ -706,28 +706,6 @@
 
         decCount: function(v){
             return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
-        },
-
-        /**
-         * Add symbols to string on the left side
-         * @param str Where
-         * @param pad what
-         * @param length to length
-         */
-        lpad: function(str, pad, length){
-            var _str = ""+str;
-            if (length && _str.length >= length) {
-                return _str;
-            }
-            return Array((length + 1) - _str.length).join(pad) + _str;
-        },
-
-        rpad: function(str, pad, length){
-            var _str = ""+str;
-            if (length && _str.length >= length) {
-                return _str;
-            }
-            return _str + Array((length + 1) - _str.length).join(pad);
         }
     };
 

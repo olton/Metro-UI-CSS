@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -272,7 +272,7 @@
 
                     if (item.attr && typeof item.attr === 'object') {
                         $.each(item.attr, function(k, v){
-                            customButton.attr($.dashedName(k), v);
+                            customButton.attr(Cake.dashedName(k), v);
                         });
                     }
 

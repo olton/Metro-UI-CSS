@@ -21,10 +21,12 @@
 + [x] Table: updated for using with Datetime (change `toDate()` to `Datetime.from()`)
 + [x] List: updated for using with Datetime (change `toDate()` to `Datetime.from()`)
 + [x] Datepicker: updated for using with Datetime
-+ [x] Utilities: updated for using with Datetime
++ [x] Utils: updated for using with Datetime
 + [x] Extensions: removed extension for `Date`, use `Datetime`
 + [x] Extensions: removed extension for `Object` - `Object.create()`, `Object.values()` (IE is dead)
 + [x] Extensions: removed methods from extension for `String`, `Array`
++ [x] Any: added using `Cake.lpad` where need
++ [x] Utils: removed functions `lpad`, `rpad`. If need, use `Cake.lpad`, `Cake.rpad`
 
 ### 4.4.3
 #### M4Q

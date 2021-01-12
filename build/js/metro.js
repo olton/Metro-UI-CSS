@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 12/01/2021 03:24:41
+ * Built at 12/01/2021 15:21:34
  * Licensed under MIT
  */
 /*!
@@ -1592,6 +1592,43 @@
       return _typeof(obj);
     }
 
+    function _classCallCheck(instance, Constructor) {
+      if (!(instance instanceof Constructor)) {
+        throw new TypeError("Cannot call a class as a function");
+      }
+    }
+
+    function _defineProperties(target, props) {
+      for (var i = 0; i < props.length; i++) {
+        var descriptor = props[i];
+        descriptor.enumerable = descriptor.enumerable || false;
+        descriptor.configurable = true;
+        if ("value" in descriptor) descriptor.writable = true;
+        Object.defineProperty(target, descriptor.key, descriptor);
+      }
+    }
+
+    function _createClass(Constructor, protoProps, staticProps) {
+      if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+      if (staticProps) _defineProperties(Constructor, staticProps);
+      return Constructor;
+    }
+
+    function _defineProperty(obj, key, value) {
+      if (key in obj) {
+        Object.defineProperty(obj, key, {
+          value: value,
+          enumerable: true,
+          configurable: true,
+          writable: true
+        });
+      } else {
+        obj[key] = value;
+      }
+
+      return obj;
+    }
+
     function _toConsumableArray(arr) {
       return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
     }
@@ -2321,6 +2358,12 @@
       return sprintf.apply(null, [fmt].concat(argv || []));
     }
 
+    function includes(s, sub, pos) {
+      var _s = toStr(s);
+
+      return _s.includes(sub, pos);
+    }
+
     var functions = {
       camelCase: camelCase,
       capitalize: capitalize,
@@ -2374,7 +2417,8 @@
       stripTags: stripTags,
       stripTagsAll: stripTagsAll,
       sprintf: sprintf,
-      vsprintf: vsprintf
+      vsprintf: vsprintf,
+      includes: includes
     };
 
     var __global = null;
@@ -2395,9 +2439,371 @@
       return __global;
     }
 
-    var Cake = Object.assign({}, functions);
+    var _Symbol$toPrimitive, _Symbol$toStringTag;
+    _Symbol$toPrimitive = Symbol.toPrimitive;
+    _Symbol$toStringTag = Symbol.toStringTag;
+
+    var Cake = /*#__PURE__*/function () {
+      function Cake() {
+        var s = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+
+        _classCallCheck(this, Cake);
+
+        _defineProperty(this, "_value", void 0);
+
+        this._value = "" + s;
+      }
+
+      _createClass(Cake, [{
+        key: _Symbol$toPrimitive,
+        value: function value(hint) {
+          if (hint === "number") {
+            return +this.value;
+          }
+
+          return this.value;
+        }
+      }, {
+        key: "toString",
+        value: function toString() {
+          return this.value;
+        }
+        /* escape */
+
+      }, {
+        key: "escapeHtml",
+        value: function escapeHtml() {
+          this.value = functions.escapeHtml(this.value);
+          return this;
+        }
+      }, {
+        key: "unescapeHtml",
+        value: function unescapeHtml() {
+          this.value = functions.unescapeHtml(this.value);
+          return this;
+        }
+        /* end of escape */
+
+      }, {
+        key: "camelCase",
+        value: function camelCase() {
+          this.value = functions.camelCase(this.value);
+          return this;
+        }
+      }, {
+        key: "capitalize",
+        value: function capitalize(strong) {
+          this.value = functions.capitalize(this.value, strong);
+          return this;
+        }
+      }, {
+        key: "chars",
+        value: function chars() {
+          return functions.chars(this.value);
+        }
+      }, {
+        key: "count",
+        value: function count() {
+          return functions.count(this.value);
+        }
+      }, {
+        key: "countChars",
+        value: function countChars(ignore) {
+          return functions.countChars(this.value, ignore);
+        }
+      }, {
+        key: "countUniqueChars",
+        value: function countUniqueChars(ignore) {
+          return functions.countUniqueChars(this.value, ignore);
+        }
+      }, {
+        key: "countSubstr",
+        value: function countSubstr(sub) {
+          return functions.countSubstr(this.value, sub);
+        }
+      }, {
+        key: "countWords",
+        value: function countWords(pattern, flags) {
+          return functions.countWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "countUniqueWords",
+        value: function countUniqueWords(pattern, flags) {
+          return functions.countUniqueWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "dashedName",
+        value: function dashedName() {
+          this.value = functions.dashedName(this.value);
+          return this;
+        }
+      }, {
+        key: "decapitalize",
+        value: function decapitalize() {
+          this.value = functions.decapitalize(this.value);
+          return this;
+        }
+      }, {
+        key: "kebab",
+        value: function kebab() {
+          this.value = functions.kebab(this.value);
+          return this;
+        }
+      }, {
+        key: "lower",
+        value: function lower() {
+          this.value = functions.lower(this.value);
+          return this;
+        }
+      }, {
+        key: "reverse",
+        value: function reverse() {
+          this.value = functions.reverse(this.value);
+          return this;
+        }
+      }, {
+        key: "shuffle",
+        value: function shuffle() {
+          this.value = functions.shuffle(this.value);
+          return this;
+        }
+      }, {
+        key: "snake",
+        value: function snake() {
+          this.value = functions.snake(this.value);
+          return this;
+        }
+      }, {
+        key: "swap",
+        value: function swap() {
+          this.value = functions.swap(this.value);
+          return this;
+        }
+      }, {
+        key: "title",
+        value: function title() {
+          this.value = functions.title(this.value);
+          return this;
+        }
+      }, {
+        key: "upper",
+        value: function upper() {
+          this.value = functions.upper(this.value);
+          return this;
+        }
+      }, {
+        key: "words",
+        value: function words(pattern, flags) {
+          return functions.words(this.value, pattern, flags);
+        }
+      }, {
+        key: "wrap",
+        value: function wrap(a, b) {
+          this.value = functions.wrap(this.value, a, b);
+          return this;
+        }
+      }, {
+        key: "wrapTag",
+        value: function wrapTag(t) {
+          this.value = functions.wrapTag(this.value, t);
+          return this;
+        }
+      }, {
+        key: "pad",
+        value: function pad(len, _pad) {
+          this.value = functions.pad(this.value, len, _pad);
+          return this;
+        }
+      }, {
+        key: "lpad",
+        value: function lpad(len, pad) {
+          this.value = functions.lpad(this.value, len, pad);
+          return this;
+        }
+      }, {
+        key: "rpad",
+        value: function rpad(len, pad) {
+          this.value = functions.rpad(this.value, len, pad);
+          return this;
+        }
+      }, {
+        key: "repeat",
+        value: function repeat(times) {
+          this.value = functions.repeat(this.value, times);
+          return this;
+        }
+      }, {
+        key: "prune",
+        value: function prune(len, end) {
+          this.value = functions.prune(this.value, len, end);
+          return this;
+        }
+      }, {
+        key: "slice",
+        value: function slice(parts) {
+          return functions.slice(this.value, parts);
+        }
+      }, {
+        key: "truncate",
+        value: function truncate(len, end) {
+          this.value = functions.truncate(this.value, len, end);
+          return this;
+        }
+      }, {
+        key: "last",
+        value: function last(len) {
+          this.value = functions.last(this.value, len);
+          return this;
+        }
+      }, {
+        key: "first",
+        value: function first(len) {
+          this.value = functions.first(this.value, len);
+          return this;
+        }
+      }, {
+        key: "substr",
+        value: function substr(start, len) {
+          this.value = functions.substr(this.value, start, len);
+          return this;
+        }
+      }, {
+        key: "unique",
+        value: function unique(ignore) {
+          return functions.unique(this.value, ignore);
+        }
+      }, {
+        key: "uniqueWords",
+        value: function uniqueWords(pattern, flags) {
+          return functions.uniqueWords(this.value, pattern, flags);
+        }
+      }, {
+        key: "insert",
+        value: function insert(sbj, pos) {
+          this.value = functions.insert(this.value, sbj, pos);
+          return this;
+        }
+      }, {
+        key: "trim",
+        value: function trim(ws) {
+          this.value = functions.trim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "ltrim",
+        value: function ltrim(ws) {
+          this.value = functions.ltrim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "rtrim",
+        value: function rtrim(ws) {
+          this.value = functions.rtrim(this.value, ws);
+          return this;
+        }
+      }, {
+        key: "endsWith",
+        value: function endsWith(end, pos) {
+          return functions.endsWith(this.value, end, pos);
+        }
+      }, {
+        key: "startWith",
+        value: function startWith(start, pos) {
+          return functions.startWith(this.value, start, pos);
+        }
+      }, {
+        key: "isAlpha",
+        value: function isAlpha() {
+          return functions.isAlpha(this.value);
+        }
+      }, {
+        key: "isAlphaDigit",
+        value: function isAlphaDigit() {
+          return functions.isAlphaDigit(this.value);
+        }
+      }, {
+        key: "isDigit",
+        value: function isDigit() {
+          return functions.isDigit(this.value);
+        }
+      }, {
+        key: "isBlank",
+        value: function isBlank() {
+          return functions.isBlank(this.value);
+        }
+      }, {
+        key: "isEmpty",
+        value: function isEmpty() {
+          return functions.isEmpty(this.value);
+        }
+      }, {
+        key: "isLower",
+        value: function isLower() {
+          return functions.isLower(this.value);
+        }
+      }, {
+        key: "isUpper",
+        value: function isUpper() {
+          return functions.isUpper(this.value);
+        }
+      }, {
+        key: "stripTagsAll",
+        value: function stripTagsAll() {
+          this.value = functions.stripTagsAll(this.value);
+          return this;
+        }
+      }, {
+        key: "stripTags",
+        value: function stripTags(allowed) {
+          this.value = functions.stripTags(this.value, allowed);
+          return this;
+        }
+      }, {
+        key: "sprintf",
+        value: function sprintf(args) {
+          return functions.sprintf(this.value, args);
+        }
+      }, {
+        key: "vsprintf",
+        value: function vsprintf(args) {
+          return functions.vsprintf(this.value, args);
+        }
+      }, {
+        key: "includes",
+        value: function includes(sub, pos) {
+          return functions.includes(this.value, sub, pos);
+        }
+      }, {
+        key: _Symbol$toStringTag,
+        get: function get() {
+          return "Cake";
+        }
+      }, {
+        key: "value",
+        get: function get() {
+          return this._value;
+        },
+        set: function set(s) {
+          this._value = s;
+        }
+      }, {
+        key: "length",
+        get: function get() {
+          return this._value.length;
+        }
+      }]);
+
+      return Cake;
+    }();
+
+    var cake = function cake(s) {
+      return new Cake(s);
+    };
+
+    var Cake$1 = Object.assign({}, functions);
     var global$1 = getGlobalObject();
-    global$1.Cake = Cake;
+    global$1.Cake = Cake$1;
+    global$1.cake = cake;
 
 }());
 
@@ -6789,7 +7195,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "12/01/2021 03:24:41",
+        compileTime: "12/01/2021 15:21:34",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7387,7 +7793,7 @@ $.noConflict = function() {
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data;
-                    var event = Cake.capitalize(Cake.camelCase(eventName));
+                    var event = ""+cake(eventName).camelCase().capitalize();
 
                     data = $.extend({}, data, {__this: element[0]});
 
@@ -7450,7 +7856,6 @@ $.noConflict = function() {
 
         fetch: {
             status: function(response){
-                
                 return response.ok ? Promise.resolve(response) : Promise.reject(new Error(response.statusText));
             },
 
@@ -7484,6 +7889,11 @@ $.noConflict = function() {
             }
         });
     });
+
+    Metro.Cake = Cake;
+    Metro.cake = cake;
+    Metro.Datetime = Datetime;
+    Metro.datetime = datetime;
 
     window.Metro = Metro;
 
@@ -8575,11 +8985,11 @@ $.noConflict = function() {
             var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
             var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
-            if (hours   < 10) {hours   = "0"+hours;}
-            if (minutes < 10) {minutes = "0"+minutes;}
-            if (seconds < 10) {seconds = "0"+seconds;}
-
-            return [hours, minutes, seconds].join(":");
+            return [
+                Cake.lpad(hours, 2, "0"),
+                Cake.lpad(minutes, 2, "0"),
+                Cake.lpad(seconds, 2, "0")
+            ].join(":");
         },
 
         func: function(f){
@@ -9090,28 +9500,6 @@ $.noConflict = function() {
 
         decCount: function(v){
             return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
-        },
-
-        /**
-         * Add symbols to string on the left side
-         * @param str Where
-         * @param pad what
-         * @param length to length
-         */
-        lpad: function(str, pad, length){
-            var _str = ""+str;
-            if (length && _str.length >= length) {
-                return _str;
-            }
-            return Array((length + 1) - _str.length).join(pad) + _str;
-        },
-
-        rpad: function(str, pad, length){
-            var _str = ""+str;
-            if (length && _str.length >= length) {
-                return _str;
-            }
-            return _str + Array((length + 1) - _str.length).join(pad);
         }
     };
 
@@ -11585,8 +11973,8 @@ $.noConflict = function() {
             inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
             inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
 
-            h = Utils.lpad(h, "0", 2);
-            m = Utils.lpad(m, "0", 2);
+            h = Cake.lpad(h, 2, "0");
+            m = Cake.lpad(m, 2, "0");
 
             hours.val(h);
             minutes.val(m);
@@ -11866,8 +12254,8 @@ $.noConflict = function() {
 
             asString = asString || false;
 
-            h = (""+this.time[0]).length < 2 ? "0"+this.time[0] : this.time[0];
-            m = (""+this.time[1]).length < 2 ? "0"+this.time[1] : this.time[1];
+            h = Cake.lpad(this.time[0], 2, "0");
+            m = Cake.lpad(this.time[1], 2, "0");
 
             return asString ? h +":"+ m : this.time;
         },
@@ -12182,8 +12570,8 @@ $.noConflict = function() {
             elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = Utils.lpad(this.time[0], "0", 2);
-                m = Utils.lpad(this.time[1], "0", 2);
+                h = Cake.lpad(this.time[0], 2, "0");
+                m = Cake.lpad(this.time[1], 2, "0");
                 elementValue += " " + h + ":" + m;
             }
 
@@ -12271,8 +12659,8 @@ $.noConflict = function() {
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = Utils.lpad(time[0], "0", 2);
-                        m = Utils.lpad(time[1], "0", 2);
+                        h = Cake.lpad(time[0], 2, "0");
+                        m = Cake.lpad(time[1], 2, "0");
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -12309,8 +12697,8 @@ $.noConflict = function() {
                     elementValue = that.value.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = Utils.lpad(time[0], "0", 2);
-                        m = Utils.lpad(time[1], "0", 2);
+                        h = Cake.lpad(time[0], 2, "0");
+                        m = Cake.lpad(time[1], 2, "0");
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -12527,8 +12915,8 @@ $.noConflict = function() {
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = Utils.lpad(this.time[0], "0", 2);
-                m = Utils.lpad(this.time[1], "0", 2);
+                h = Cake.lpad(this.time[0], 2, "0");
+                m = Cake.lpad(this.time[1], 2, "0");
                 elementValue += " " + h + ":" + m;
             }
 
@@ -12586,8 +12974,8 @@ $.noConflict = function() {
 
             asString = asString || false;
 
-            h = Utils.lpad(this.time[0], "0", 2);
-            m = Utils.lpad(this.time[1], "0", 2);
+            h = Cake.lpad(this.time[0], 2, "0");
+            m = Cake.lpad(this.time[1], 2, "0");
 
             return asString ? h +":"+ m : this.time;
         },
@@ -16827,7 +17215,7 @@ $.noConflict = function() {
 
             $.each(opt, function(key, val){
                 if (key !== 'secure' && val) {
-                    a.push($.dashedName(key) + "=" + val);
+                    a.push(Cake.dashedName(key) + "=" + val);
                 }
                 if (key === 'secure' && val === true) {
                     a.push( "secure" );
@@ -22668,7 +23056,7 @@ $.noConflict = function() {
 
                     if (item.attr && typeof item.attr === 'object') {
                         $.each(item.attr, function(k, v){
-                            customButton.attr($.dashedName(k), v);
+                            customButton.attr(Cake.dashedName(k), v);
                         });
                     }
 
@@ -26511,7 +26899,7 @@ $.noConflict = function() {
 
                 if (item.attr && typeof item.attr === 'object') {
                     $.each(item.attr, function(k, v){
-                        customButton.attr($.dashedName(k), v);
+                        customButton.attr(Cake.dashedName(k), v);
                     });
                 }
 
@@ -30712,23 +31100,6 @@ $.noConflict = function() {
                 });
 
                 this._loadSource();
-                // $.json(o.source).then(function(data){
-                //
-                //     that._fireEvent("data-loaded", {
-                //         source: o.source,
-                //         data: data
-                //     });
-                //
-                //     that.data = data;
-                //     that.build();
-                // }, function(xhr){
-                //
-                //     that._fireEvent("data-load-error", {
-                //         source: o.source,
-                //         xhr: xhr
-                //     });
-                //
-                // });
             } else {
                 this.data = o.data;
                 this.build();
@@ -30822,7 +31193,7 @@ $.noConflict = function() {
                 t = new Date(i * 1000);
                 h = t.getHours();
                 m = t.getMinutes();
-                v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
+                v = Cake.lpad(h, 2, "0")+":"+Cake.lpad(m, 2, "0");
 
                 li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
 
@@ -30830,7 +31201,7 @@ $.noConflict = function() {
                 fake_timeline = $("<ul>").addClass("streamer-fake-timeline").html("").appendTo(li);
                 for(j = 0; j < parseInt(data.timeline.step); j++) {
                     fm = m + j;
-                    v = (h < 10 ? "0"+h : h) + ":" + (fm < 10 ? "0"+fm : fm);
+                    v = Cake.lpad(h, 2, "0")+":"+Cake.lpad(fm, 2, "0");
                     fli = $("<li>").data("time", v).addClass("js-fake-time-point-" + v.replace(":", "-")).html("|").appendTo(fake_timeline);
                     fli.css({
                         width: fli_w
@@ -35715,7 +36086,7 @@ $.noConflict = function() {
                 hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
                 for (i = 0; i < 24; i = i + o.hoursStep) {
-                    $("<li>").addClass("js-hours-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(hours);
+                    $("<li>").addClass("js-hours-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(hours);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
             }
@@ -35723,7 +36094,7 @@ $.noConflict = function() {
                 minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
                 for (i = 0; i < 60; i = i + o.minutesStep) {
-                    $("<li>").addClass("js-minutes-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(minutes);
+                    $("<li>").addClass("js-minutes-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(minutes);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             }
@@ -35731,7 +36102,7 @@ $.noConflict = function() {
                 seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
                 for (i = 0; i < 60; i = i + o.secondsStep) {
-                    $("<li>").addClass("js-seconds-"+i).html(i < 10 ? "0"+i : i).data("value", i).appendTo(seconds);
+                    $("<li>").addClass("js-seconds-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(seconds);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             }
@@ -35869,24 +36240,15 @@ $.noConflict = function() {
 
             if (o.hours === true) {
                 h = parseInt(this.value[0]);
-                if (h < 10) {
-                    h = "0"+h;
-                }
-                picker.find(".hours").html(h);
+                picker.find(".hours").html(Cake.lpad(h, 2, "0"));
             }
             if (o.minutes === true) {
                 m = parseInt(this.value[1]);
-                if (m < 10) {
-                    m = "0"+m;
-                }
-                picker.find(".minutes").html(m);
+                picker.find(".minutes").html(Cake.lpad(m, 2, "0"));
             }
             if (o.seconds === true) {
                 s = parseInt(this.value[2]);
-                if (s < 10) {
-                    s = "0"+s;
-                }
-                picker.find(".seconds").html(s);
+                picker.find(".seconds").html(Cake.lpad(s, 2, "0"));
             }
 
             element.val([h, m, s].join(":")).trigger("change");
@@ -39830,7 +40192,7 @@ $.noConflict = function() {
 
                     if (item.attr && typeof item.attr === 'object') {
                         $.each(item.attr, function(k, v){
-                            customButton.attr($.dashedName(k), v);
+                            customButton.attr(Cake.dashedName(k), v);
                         });
                     }
 

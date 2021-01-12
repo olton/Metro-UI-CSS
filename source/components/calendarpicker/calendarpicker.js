@@ -1,4 +1,4 @@
-/* global Metro, Datetime, datetime, METRO_LOCALE, METRO_DATE_FORMAT */
+/* global Metro, Datetime, datetime, METRO_LOCALE, METRO_DATE_FORMAT, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -111,8 +111,8 @@
             elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = Utils.lpad(this.time[0], "0", 2);
-                m = Utils.lpad(this.time[1], "0", 2);
+                h = Cake.lpad(this.time[0], 2, "0");
+                m = Cake.lpad(this.time[1], 2, "0");
                 elementValue += " " + h + ":" + m;
             }
 
@@ -200,8 +200,8 @@
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = Utils.lpad(time[0], "0", 2);
-                        m = Utils.lpad(time[1], "0", 2);
+                        h = Cake.lpad(time[0], 2, "0");
+                        m = Cake.lpad(time[1], 2, "0");
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -238,8 +238,8 @@
                     elementValue = that.value.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = Utils.lpad(time[0], "0", 2);
-                        m = Utils.lpad(time[1], "0", 2);
+                        h = Cake.lpad(time[0], 2, "0");
+                        m = Cake.lpad(time[1], 2, "0");
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -456,8 +456,8 @@
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = Utils.lpad(this.time[0], "0", 2);
-                m = Utils.lpad(this.time[1], "0", 2);
+                h = Cake.lpad(this.time[0], 2, "0");
+                m = Cake.lpad(this.time[1], 2, "0");
                 elementValue += " " + h + ":" + m;
             }
 
@@ -515,8 +515,8 @@
 
             asString = asString || false;
 
-            h = Utils.lpad(this.time[0], "0", 2);
-            m = Utils.lpad(this.time[1], "0", 2);
+            h = Cake.lpad(this.time[0], 2, "0");
+            m = Cake.lpad(this.time[1], 2, "0");
 
             return asString ? h +":"+ m : this.time;
         },
