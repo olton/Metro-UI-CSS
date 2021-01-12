@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro, Cake */
 (function(Metro, $) {
     'use strict';
     var CookieDefaultConfig = {
@@ -64,7 +64,7 @@
 
             $.each(opt, function(key, val){
                 if (key !== 'secure' && val) {
-                    a.push($.dashedName(key) + "=" + val);
+                    a.push(Cake.dashedName(key) + "=" + val);
                 }
                 if (key === 'secure' && val === true) {
                     a.push( "secure" );

@@ -1,4 +1,4 @@
-/* global Metro, METRO_ANIMATION_DURATION */
+/* global Metro, METRO_ANIMATION_DURATION, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -87,23 +87,6 @@
                 });
 
                 this._loadSource();
-                // $.json(o.source).then(function(data){
-                //
-                //     that._fireEvent("data-loaded", {
-                //         source: o.source,
-                //         data: data
-                //     });
-                //
-                //     that.data = data;
-                //     that.build();
-                // }, function(xhr){
-                //
-                //     that._fireEvent("data-load-error", {
-                //         source: o.source,
-                //         xhr: xhr
-                //     });
-                //
-                // });
             } else {
                 this.data = o.data;
                 this.build();
@@ -197,7 +180,7 @@
                 t = new Date(i * 1000);
                 h = t.getHours();
                 m = t.getMinutes();
-                v = (h < 10 ? "0"+h : h) + ":" + (m < 10 ? "0"+m : m);
+                v = Cake.lpad(h, 2, "0")+":"+Cake.lpad(m, 2, "0");
 
                 li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
 
@@ -205,7 +188,7 @@
                 fake_timeline = $("<ul>").addClass("streamer-fake-timeline").html("").appendTo(li);
                 for(j = 0; j < parseInt(data.timeline.step); j++) {
                     fm = m + j;
-                    v = (h < 10 ? "0"+h : h) + ":" + (fm < 10 ? "0"+fm : fm);
+                    v = Cake.lpad(h, 2, "0")+":"+Cake.lpad(fm, 2, "0");
                     fli = $("<li>").data("time", v).addClass("js-fake-time-point-" + v.replace(":", "-")).html("|").appendTo(fake_timeline);
                     fli.css({
                         width: fli_w

@@ -1,4 +1,4 @@
-/* global jQuery, define, Promise, Cake */
+/* global jQuery, define, Promise, cake, Cake, Datetime, datetime */
 /* Metro 4 Core */
 (function( factory ) {
     if ( typeof define === 'function' && define.amd ) {
@@ -626,7 +626,7 @@
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data;
-                    var event = Cake.capitalize(Cake.camelCase(eventName));
+                    var event = ""+cake(eventName).camelCase().capitalize();
 
                     data = $.extend({}, data, {__this: element[0]});
 
@@ -689,7 +689,6 @@
 
         fetch: {
             status: function(response){
-                console.log(response);
                 return response.ok ? Promise.resolve(response) : Promise.reject(new Error(response.statusText));
             },
 
@@ -723,6 +722,11 @@
             }
         });
     });
+
+    Metro.Cake = Cake;
+    Metro.cake = cake;
+    Metro.Datetime = Datetime;
+    Metro.datetime = datetime;
 
     window.Metro = Metro;
 
