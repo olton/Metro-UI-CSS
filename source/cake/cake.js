@@ -134,10 +134,12 @@
       return nvl(toStr(s).match(regexp), []);
     }
 
-    function capitalize(s) {
+    function capitalize(s, strong) {
       var _s = toStr(s);
 
-      return _s.substr(0, 1).toUpperCase() + _s.substr(1).toLowerCase();
+      var last = _s.substr(1);
+
+      return _s.substr(0, 1).toUpperCase() + (strong ? last.toLowerCase() : last);
     }
 
     function camelCase(s) {

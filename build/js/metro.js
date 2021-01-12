@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 12/01/2021 01:03:50
+ * Built at 12/01/2021 03:24:41
  * Licensed under MIT
  */
 /*!
@@ -1525,10 +1525,12 @@
       return nvl(toStr(s).match(regexp), []);
     }
 
-    function capitalize(s) {
+    function capitalize(s, strong) {
       var _s = toStr(s);
 
-      return _s.substr(0, 1).toUpperCase() + _s.substr(1).toLowerCase();
+      var last = _s.substr(1);
+
+      return _s.substr(0, 1).toUpperCase() + (strong ? last.toLowerCase() : last);
     }
 
     function camelCase(s) {
@@ -6787,7 +6789,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "12/01/2021 01:03:50",
+        compileTime: "12/01/2021 03:24:41",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
