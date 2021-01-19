@@ -1,15 +1,9 @@
-/* global jQuery, define, Promise, cake, Cake, Datetime, datetime */
+/* global jQuery, Promise, cake, Cake, Datetime, datetime */
 /* Metro 4 Core */
-(function( factory ) {
-    if ( typeof define === 'function' && define.amd ) {
-        define('metro4', factory );
-    } else {
-        factory( );
-    }
-}(function( ) {
+(function() {
     'use strict';
 
-    var $ = m4q; // eslint-disable-line
+    var $ = m4q;
 
     if (typeof m4q === 'undefined') {
         throw new Error('Metro 4 requires m4q helper!');
@@ -737,5 +731,4 @@
     }
 
     return Metro;
-
-}));
+}());

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Select - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Select test page</h1>
+
+    <div class="example">
+        <form name="formCriterium" class="inline-form" style="padding: 20px;margin-top: 40px;background-color: #efefef;">
+            <input name="searchText" type="text" placeholder="Searchtext">
+            <input name="isRegex" type="checkbox" data-caption="Regular expression?" data-role="checkbox">
+            <select name="includeExclude" data-filter="false" data-caption="Soll erfüllt werden" data-role="select" data->
+                <option value="include" selected>is contained</option>
+                <option value="exclude" >is NOT contained</option>
+            </select>
+        </form>
+    </div>
+
+    <br>
+
+    <div class="example">
+        <form name="formCriterium" class="inline-form" style="padding: 20px;margin-top: 40px;background-color: #efefef;">
+            <input name="searchText" type="text" placeholder="Searchtext">
+            <input name="isRegex" type="checkbox" data-caption="Regular expression?" data-role="checkbox">
+            <select name="includeExclude" data-filter="false" data-caption="Soll erfüllt werden" data-role="select" data-drop-full-size="true">
+                <option value="include" selected>is contained</option>
+                <option value="exclude" >is NOT contained</option>
+            </select>
+        </form>
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+</script>
+</body>
+</html>

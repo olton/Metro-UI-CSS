@@ -26,7 +26,8 @@
 + [x] Extensions: removed extension for `Object` - `Object.create()`, `Object.values()` (IE is dead)
 + [x] Extensions: removed methods from extension for `String`, `Array`
 + [x] Any: added using `Cake.lpad` where need
-+ [x] Utils: removed functions `lpad`, `rpad`. If need, use `Cake.lpad`, `Cake.rpad`
++ [x] Utils: removed functions `lpad`, `rpad`. If you need these functions, use `Cake.lpad`, `Cake.rpad`
++ [x] Select: added attributes `data-drop-full-size=true|false` (default: false), `data-drop-width=int_value` to set drop container width
 
 ### 4.4.3
 #### M4Q

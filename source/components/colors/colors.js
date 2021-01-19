@@ -532,6 +532,7 @@
             return result ? new RGB(rgb[0], rgb[1], rgb[2]) : null;
         },
 
+        // TODO can be improved
         rgb2hex: function(color){
             this.check(color, "rgb");
             return (
