@@ -19,6 +19,8 @@
         filter: true,
         copyInlineStyles: false,
         dropHeight: 200,
+        dropWidth: null,
+        dropFullSize: false,
         checkDropUp: true,
         dropUp: false,
         showGroupName: false,
@@ -208,6 +210,17 @@
 
             input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
             drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
+
+            if (o.dropFullSize === false) {
+                if (o.dropWidth) {
+                    drop_container.css({
+                        width: +o.dropWidth
+                    })
+                }
+            } else {
+                container.addClass("drop-full-size")
+            }
+
             drop_container_input = $("<div>").appendTo(drop_container);
             list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
                 "max-height": o.dropHeight

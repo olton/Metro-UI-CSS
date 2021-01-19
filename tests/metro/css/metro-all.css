@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 12/01/2021 15:21:34
+ * Built at 19/01/2021 11:40:08
  * Licensed under MIT
  */
 *,
@@ -32789,6 +32789,11 @@ input.input-small:-ms-input-placeholder {
 .select .drop-container .input {
   margin: 4px 2px 6px;
   width: calc(100% - 4px);
+}
+.select.drop-full-size .drop-container {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
 }
 .select.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);

@@ -154,10 +154,6 @@
             return this.isJQuery(el) || this.isM4Q(el);
         },
 
-        isIE11: function(){
-            return !!window.MSInputMethodContext && !!document["documentMode"];
-        },
-
         embedUrl: function(val){
             if (val.indexOf("youtu.be") !== -1) {
                 val = "https://www.youtube.com/embed/" + val.split("/").pop();

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 12/01/2021 15:21:34
+ * Built at 19/01/2021 11:40:08
  * Licensed under MIT
  */
 /*!
@@ -7167,16 +7167,10 @@ $.noConflict = function() {
 }(m4q));
 
 /* Metro 4 Core */
-(function( factory ) {
-    if ( typeof define === 'function' && define.amd ) {
-        define('metro4', factory );
-    } else {
-        factory( );
-    }
-}(function( ) {
+(function() {
     'use strict';
 
-    var $ = m4q; // eslint-disable-line
+    var $ = m4q;
 
     if (typeof m4q === 'undefined') {
         throw new Error('Metro 4 requires m4q helper!');
@@ -7195,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "12/01/2021 15:21:34",
+        compileTime: "19/01/2021 11:40:08",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7904,8 +7898,7 @@ $.noConflict = function() {
     }
 
     return Metro;
-
-}));
+}());
 
 
 (function(Metro, $) {
@@ -8946,10 +8939,6 @@ $.noConflict = function() {
 
         isQ: function(el){
             return this.isJQuery(el) || this.isM4Q(el);
-        },
-
-        isIE11: function(){
-            return !!window.MSInputMethodContext && !!document["documentMode"];
         },
 
         embedUrl: function(val){
@@ -16031,6 +16020,7 @@ $.noConflict = function() {
             return result ? new RGB(rgb[0], rgb[1], rgb[2]) : null;
         },
 
+        // TODO can be improved
         rgb2hex: function(color){
             this.check(color, "rgb");
             return (
@@ -28494,6 +28484,8 @@ $.noConflict = function() {
         filter: true,
         copyInlineStyles: false,
         dropHeight: 200,
+        dropWidth: null,
+        dropFullSize: false,
         checkDropUp: true,
         dropUp: false,
         showGroupName: false,
@@ -28683,6 +28675,17 @@ $.noConflict = function() {
 
             input = $("<div>").addClass("select-input").addClass(o.clsSelectInput).attr("name", "__" + select_id + "__");
             drop_container = $("<div>").addClass("drop-container").addClass(o.clsDropContainer);
+
+            if (o.dropFullSize === false) {
+                if (o.dropWidth) {
+                    drop_container.css({
+                        width: +o.dropWidth
+                    })
+                }
+            } else {
+                container.addClass("drop-full-size")
+            }
+
             drop_container_input = $("<div>").appendTo(drop_container);
             list = $("<ul>").addClass("option-list").addClass(o.clsDropList).css({
                 "max-height": o.dropHeight
