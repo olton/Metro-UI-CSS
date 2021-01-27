@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test dialog - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Dialog test page</h1>
+    <button class="button" onclick="OpenDialog()">Load dialog</button>
+    <div  data-role="dialog"
+            data-overlay="true"
+            data-default-action="false"
+            data-close-button="true"
+            data-overlay-click-close="true"
+            id="IdDialog"
+            class="dialog"></div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function OpenDialog() {
+        var dialog = Metro.getPlugin('#IdDialog', 'dialog');
+        dialog.setTitle('My Dialog Title');
+        dialog.setContent('<form id="Form" data-role="validator" data-on-validate-form="AddForm()" action="javascript:"><div class="row mb-2"><div class="cell-md-6">     <input type="text" name="x" id="x" data-role="input" data-prepend="x:" value=""></div><div class="cell-md-2"><a class="button my-button-colors w-100" style="cursor: pointer; color: white;" onclick=""><span class="mif-user-plus"></span><span class="actionButton"> Select</span></a></div><div class="cell-md-4"><select data-role="select" id="y" name="y" data-prepend="y:"><option selected value="Initial">Initial</option><option value="Renewal">Renewal</option></select> </div></div><div class="row mb-2"><div class="cell-md-4">                <select data-role="select" id="z" name="z" data-prepend="z:"><option selected value="m">m</option></select></div><div class="cell-md-4"> <select data-role="select" id="a" name="a" data-prepend="a:"><option selected value="Job Requirement">Job Requirement</option></select></div><div class="cell-md-4"><input data-prepend="Date:" id="date" name="date" value="" data-role="calendarpicker" data-cls-calendar="compact" data-input-format="%d/%m/%y"></div></div><div class="row mb-2"><div class="cell-md-12"><textarea data-role="textarea" data-prepend="Text1:" name="Text1" id="Text1" autocomplete="off" value=""></textarea></div></div><div class="row mb-2"><div class="cell-md-12"><textarea data-role="textarea" data-prepend="Text2:" name="Text2" id="Text2" autocomplete="off" value=""></textarea></div></div><div class="row"><div class="row mt-2 mb-2"><div class="dialog-actions p-0 d-flex flex-justify-start"><div><button id="Save" class="button my-control-colors"><span class="mif-floppy-disk"> Save</span></button></div><div><span class="mif-spinner4 ani-spin"></span></div>       </div></div></div></form>');
+        dialog.open();
+    }
+</script>
+</body>
+</html>
