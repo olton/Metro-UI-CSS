@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<!--    <link href="https://cdn.metroui.org.ua/v4/css/metro-all.css" rel="stylesheet">-->
+    <title>Load Metro 4</title>
+
+</head>
+<body>
+<div class="container">
+    <h1>Load Metro 4</h1>
+
+    <button onclick="load()">Load metro</button>
+
+    <div class="example">
+        <div id="a1">
+            <div class="frame">
+                <div class="heading">Header 1</div>
+                <div class="content">
+                    <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                </div>
+            </div>
+            <div class="frame active">
+                <div class="heading">Header 2</div>
+                <div class="content">
+                    <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                </div>
+            </div>
+            <div class="frame">
+                <div class="heading">Header 3</div>
+                <div class="content">
+                    <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    async function load() {
+        const pathCss = 'https://cdn.metroui.org.ua/v4/css/metro-all.min.css';
+        const pathJs = 'https://cdn.metroui.org.ua/v4/js/metro.min.js';
+
+        const dataCss = await fetch(pathCss).then((r) => r.text())
+        const dataJs = await fetch(pathJs).then((r) => r.text())
+
+        const style = document.createElement("style")
+        style.textContent = dataCss
+        document.querySelector("head").appendChild(style)
+
+        new Function(dataJs)();
+        Metro.init();
+        Metro.toast.create("Metro 4 did loaded successful!", {
+            showTop: true,
+            clsToast: "alert"
+        });
+        $("#a1").accordion()
+    }
+</script>
+</body>
+</html>

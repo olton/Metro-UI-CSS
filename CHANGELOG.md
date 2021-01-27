@@ -1,4 +1,5 @@
 ### 4.5.0
++ [x] Important: IE is dead and no more supported!
 + [x] M4Q: version updated to 1.1.0
 + [x] M4Q: removed polyfills for Promise, CustomEvent (IE is dead)
 + [x] Datetime: version `1.0.1`, new **global type** `Datetime`, and **factory** `datetime()`
@@ -26,7 +27,7 @@
 + [x] Extensions: removed extension for `Object` - `Object.create()`, `Object.values()` (IE is dead)
 + [x] Extensions: removed methods from extension for `String`, `Array`
 + [x] Any: added using `Cake.lpad` where need
-+ [x] Utils: removed functions `lpad`, `rpad`. If you need these functions, use `Cake.lpad`, `Cake.rpad`
++ [x] Utils: removed functions `lpad`, `rpad`. If you need these functions, use `Cake.pad`, `Cake.lpad`, `Cake.rpad`
 + [x] Select: added attributes `data-drop-full-size=true|false` (default: false), `data-drop-width=int_value` to set drop container width
 
 ### 4.4.3
