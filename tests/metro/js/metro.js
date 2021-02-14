@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 14/02/2021 14:06:15
+ * Built at 14/02/2021 15:47:29
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "14/02/2021 14:06:15",
+        compileTime: "14/02/2021 15:47:29",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -21127,9 +21127,13 @@ $.noConflict = function() {
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
+            var over = false;
 
             element.on(Metro.events.enter, function(){
+                over = true;
                 setTimeout(function(){
+                    if (!over) return;
+
                     that.createHint();
                     if (+o.hintHide > 0) {
                         setTimeout(function(){
@@ -21140,6 +21144,7 @@ $.noConflict = function() {
             });
 
             element.on(Metro.events.leave, function(){
+                over = false;
                 that.removeHint();
             });
 
