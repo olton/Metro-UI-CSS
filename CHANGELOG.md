@@ -29,7 +29,7 @@
 + [x] Any: added using `Cake.lpad` where need
 + [x] Utils: removed functions `lpad`, `rpad`. If you need these functions, use `Cake.pad`, `Cake.lpad`, `Cake.rpad`
 + [x] Select: added attributes `data-drop-full-size=true|false` (default: false), `data-drop-width=int_value` to set drop container width
-+ [x] Hint: added attribute `hintDeffered` if value of this > 0, a hint will display with delay.
++ [x] Hint: added attribute `hintDeferred` if value of this > 0, a hint will display with delay.
 
 ### 4.4.3
 #### M4Q
