@@ -45,9 +45,13 @@
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
+            var over = false;
 
             element.on(Metro.events.enter, function(){
+                over = true;
                 setTimeout(function(){
+                    if (!over) return;
+
                     that.createHint();
                     if (+o.hintHide > 0) {
                         setTimeout(function(){
@@ -58,6 +62,7 @@
             });
 
             element.on(Metro.events.leave, function(){
+                over = false;
                 that.removeHint();
             });
 
