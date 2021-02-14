@@ -70,8 +70,8 @@
     "http-server": "0.12.3",
     "less": "^3.12.2",
     "load-grunt-tasks": "^5.1.0",
+    "npm-check-updates": "^9.2.4",
     "start-server-and-test": "^1.11.5",
-    "time-grunt": "^2.0.0",
-    "npm-check-updates": "^9.2.4"
+    "time-grunt": "^2.0.0"
   }
 }
