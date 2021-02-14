@@ -47,12 +47,14 @@
             var that = this, element = this.element, o = this.options;
 
             element.on(Metro.events.enter, function(){
-                that.createHint();
-                if (+o.hintHide > 0) {
-                    setTimeout(function(){
-                        that.removeHint();
-                    }, o.hintHide);
-                }
+                setTimeout(function(){
+                    that.createHint();
+                    if (+o.hintHide > 0) {
+                        setTimeout(function(){
+                            that.removeHint();
+                        }, o.hintHide);
+                    }
+                }, o.hintDeferred);
             });
 
             element.on(Metro.events.leave, function(){
