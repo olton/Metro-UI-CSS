@@ -4,7 +4,7 @@
     var ActivityDefaultConfig = {
         activityDeferred: 0,
         type: "ring",
-        style: "light",
+        style: "color",
         size: 64,
         radius: 20,
         onActivityCreate: Metro.noop

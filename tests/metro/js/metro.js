@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 22/02/2021 14:36:54
+ * Built at 22/02/2021 14:55:58
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "22/02/2021 14:36:54",
+        compileTime: "22/02/2021 14:55:58",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9687,7 +9687,7 @@ $.noConflict = function() {
     var ActivityDefaultConfig = {
         activityDeferred: 0,
         type: "ring",
-        style: "light",
+        style: "color",
         size: 64,
         radius: 20,
         onActivityCreate: Metro.noop

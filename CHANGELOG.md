@@ -31,6 +31,7 @@
 + [x] Select: added attributes `data-drop-full-size=true|false` (default: false), `data-drop-width=int_value` to set drop container width
 + [x] Hint: added attribute `hintDeferred` if value of this > 0, a hint will display with delay.
 + [x] ActionButton: fixed `vertical-align` for `multi-action` class
++ [x] Activity: change default style to `color`
 
 ### 4.4.3
 #### M4Q
