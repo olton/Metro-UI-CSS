@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 14/02/2021 15:47:29
+ * Built at 22/02/2021 14:36:54
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "14/02/2021 15:47:29",
+        compileTime: "22/02/2021 14:36:54",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8952,16 +8952,14 @@ $.noConflict = function() {
             return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
         },
 
-        secondsToTime: function(secs) {
-            var hours = Math.floor(secs / (60 * 60));
-
-            var divisor_for_minutes = secs % (60 * 60);
-            var minutes = Math.floor(divisor_for_minutes / 60);
-
-            var divisor_for_seconds = divisor_for_minutes % 60;
-            var seconds = Math.ceil(divisor_for_seconds);
+        secondsToTime: function(s) {
+            var days = Math.floor((s % 31536000) / 86400);
+            var hours = Math.floor(((s % 31536000) % 86400) / 3600);
+            var minutes = Math.floor((((s % 31536000) % 86400) % 3600) / 60);
+            var seconds = Math.round((((s % 31536000) % 86400) % 3600) % 60);
 
             return {
+                "d": days,
                 "h": hours,
                 "m": minutes,
                 "s": seconds
