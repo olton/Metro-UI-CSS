@@ -165,16 +165,14 @@
             return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
         },
 
-        secondsToTime: function(secs) {
-            var hours = Math.floor(secs / (60 * 60));
-
-            var divisor_for_minutes = secs % (60 * 60);
-            var minutes = Math.floor(divisor_for_minutes / 60);
-
-            var divisor_for_seconds = divisor_for_minutes % 60;
-            var seconds = Math.ceil(divisor_for_seconds);
+        secondsToTime: function(s) {
+            var days = Math.floor((s % 31536000) / 86400);
+            var hours = Math.floor(((s % 31536000) % 86400) / 3600);
+            var minutes = Math.floor((((s % 31536000) % 86400) % 3600) / 60);
+            var seconds = Math.round((((s % 31536000) % 86400) % 3600) % 60);
 
             return {
+                "d": days,
                 "h": hours,
                 "m": minutes,
                 "s": seconds
