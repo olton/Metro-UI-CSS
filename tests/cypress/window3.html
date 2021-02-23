@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Window - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+
+<h1>Window test page</h1>
+
+<div id="editWindow" data-role="window" data-draggable="true" data-width="800" data-height="375"
+     data-title="Individual Editor" data-resizable="true" data-place="top-center" data-hidden="true">
+        This content is dynamically filled from Db
+</div>
+
+<button onclick="Metro.window.show('#editWindow')" class="button success" data-role="popover"
+        data-popover-text="Edit Profile" data-popover-position="auto" data-hide-on-leave="true"><span
+        class="mif-pencil"></span> Edit
+</button>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+</body>
+</html>

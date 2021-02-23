@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 22/02/2021 14:55:58
+ * Built at 23/02/2021 19:05:17
  * Licensed under MIT
  */
 .accordion {
@@ -8275,6 +8275,79 @@ input.input-small:-ms-input-placeholder {
 }
 .input[dir=rtl] .append,
 .input.rtl .append {
+  -webkit-box-ordinal-group: 2;
+          order: 1;
+}
+.keylock {
+  display: -webkit-inline-box;
+  display: inline-flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  position: relative;
+  height: 36px;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row nowrap;
+  padding: 2px;
+  cursor: pointer;
+}
+.keylock input {
+  width: 1px;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+}
+.keylock .icon {
+  width: 34px;
+  height: 34px;
+  display: block;
+  position: relative;
+  -webkit-box-ordinal-group: 2;
+          order: 1;
+}
+.keylock .icon > * {
+  font-size: 32px;
+  vertical-align: middle;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.keylock .state-on {
+  display: none;
+}
+.keylock .state-off {
+  display: block;
+}
+.keylock input:checked ~ .icon .state-on,
+.keylock input:checked ~ .caption .state-on {
+  display: block;
+}
+.keylock input:checked ~ .icon .state-off,
+.keylock input:checked ~ .caption .state-off {
+  display: none;
+}
+.keylock .caption {
+  height: 34px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  margin: 0 6px;
+  -webkit-box-ordinal-group: 3;
+          order: 2;
+  white-space: nowrap;
+}
+.keylock.caption-left .icon {
+  -webkit-box-ordinal-group: 3;
+          order: 2;
+}
+.keylock.caption-left .caption {
   -webkit-box-ordinal-group: 2;
           order: 1;
 }
