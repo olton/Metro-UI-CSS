@@ -32,6 +32,7 @@
 + [x] Hint: added attribute `hintDeferred` if value of this > 0, a hint will display with delay.
 + [x] ActionButton: fixed `vertical-align` for `multi-action` class
 + [x] Activity: change default style to `color`
++ [x] Keylock: added new component
 
 ### 4.4.3
 #### M4Q
