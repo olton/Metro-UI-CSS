@@ -360,6 +360,7 @@
             container.on(Metro.events.click, "button, input", function(e){
 
                 var value = that.value ? that.value : datetime();
+                var presetValue = o.inputFormat ? value.format(o.inputFormat) : value.format("YYYY-MM-DD");
 
                 value.align("day");
 
@@ -367,12 +368,8 @@
 
                     $(".calendar-picker .calendar").removeClass("open open-up").hide();
 
-                    cal_plugin.setPreset([o.inputFormat ? value.format(o.inputFormat) : value.format("YYYY-MM-DD")]);
+                    cal_plugin.setPreset([presetValue]);
                     cal_plugin.setShow(value);
-
-                    console.log(value)
-                    console.log(value.format('YYYY-MM-DD'))
-                    console.log(cal_plugin.selected)
 
                     if (container.hasClass("dialog-mode")) {
                         that.overlay.appendTo($('body'));

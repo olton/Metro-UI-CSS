@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 02/03/2021 09:07:55
+ * Built at 02/03/2021 09:13:59
  * Licensed under MIT
  */
 /*!
@@ -5175,7 +5175,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // console.log(name, val);
+                // 
             }
         });
     },
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "02/03/2021 09:07:55",
+        compileTime: "02/03/2021 09:13:59",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7458,7 +7458,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //console.log(mutation);
+                        //
                     }
                 });
             };
@@ -12817,6 +12817,7 @@ $.noConflict = function() {
             container.on(Metro.events.click, "button, input", function(e){
 
                 var value = that.value ? that.value : datetime();
+                var presetValue = o.inputFormat ? value.format(o.inputFormat) : value.format("YYYY-MM-DD");
 
                 value.align("day");
 
@@ -12824,12 +12825,8 @@ $.noConflict = function() {
 
                     $(".calendar-picker .calendar").removeClass("open open-up").hide();
 
-                    cal_plugin.setPreset([o.inputFormat ? value.format(o.inputFormat) : value.format("YYYY-MM-DD")]);
+                    cal_plugin.setPreset([presetValue]);
                     cal_plugin.setShow(value);
-
-                    console.log(value)
-                    console.log(value.format('YYYY-MM-DD'))
-                    console.log(cal_plugin.selected)
 
                     if (container.hasClass("dialog-mode")) {
                         that.overlay.appendTo($('body'));
