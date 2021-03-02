@@ -33,6 +33,7 @@
 + [x] ActionButton: fixed `vertical-align` for `multi-action` class
 + [x] Activity: change default style to `color`
 + [x] Keylock: added new component
++ [x] Calendar: fixed bug issue #1732
 
 ### 4.4.3
 #### M4Q

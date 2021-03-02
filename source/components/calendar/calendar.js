@@ -240,10 +240,10 @@
             dates = typeof val === 'string' ? val.toArray() : Array.isArray(val) ? val : [];
 
             $.each(dates, function(){
-                var _d;
+                var _d, date = this;
 
                 try {
-                    _d = (Utils.isValue(o.inputFormat) ? Datetime.from(this, o.inputFormat) : datetime(this)).align('day').format('YYYY-MM-DD');
+                    _d = (o.inputFormat ? Datetime.from(date, o.inputFormat) : datetime(date)).align('day').format('YYYY-MM-DD');
                 } catch (e) {
                     return;
                 }
@@ -983,6 +983,7 @@
             }
 
             o.preset = !Utils.isNull(preset) ? preset : element.attr("data-preset");
+
             this._dates2array(o.preset, 'selected');
             this._drawContent();
         },
@@ -1011,7 +1012,17 @@
 
             o.show = show ? show : attr;
 
-            this.show = (!o.show ? datetime() : o.inputFormat ? Datetime.from(o.show, o.inputFormat) : datetime(o.show)).align("day");
+            if (!o.show) {
+                this.show = datetime();
+            } else {
+                if (typeof o.show === "string" && o.inputFormat) {
+                    this.show = Datetime.from(o.show, o.inputFormat);
+                } else {
+                    this.show = datetime(o.show);
+                }
+            }
+
+            this.show = this.show.align("day");
 
             this.current = {
                 year: this.show.year(),

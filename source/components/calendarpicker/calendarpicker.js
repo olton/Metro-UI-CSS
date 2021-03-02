@@ -367,8 +367,12 @@
 
                     $(".calendar-picker .calendar").removeClass("open open-up").hide();
 
-                    cal_plugin.setPreset([value]);
+                    cal_plugin.setPreset([o.inputFormat ? value.format(o.inputFormat) : value.format("YYYY-MM-DD")]);
                     cal_plugin.setShow(value);
+
+                    console.log(value)
+                    console.log(value.format('YYYY-MM-DD'))
+                    console.log(cal_plugin.selected)
 
                     if (container.hasClass("dialog-mode")) {
                         that.overlay.appendTo($('body'));
