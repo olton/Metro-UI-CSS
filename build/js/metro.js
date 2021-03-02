@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 23/02/2021 19:05:17
+ * Built at 02/03/2021 09:08:54
  * Licensed under MIT
  */
 /*!
@@ -7188,8 +7188,8 @@ $.noConflict = function() {
 
     var Metro = {
 
-        version: "4.5.0",
-        compileTime: "23/02/2021 19:05:17",
+        version: "4.5.0-dev 02/03/2021 09:09",
+        compileTime: "@@compile",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -11569,10 +11569,10 @@ $.noConflict = function() {
             dates = typeof val === 'string' ? val.toArray() : Array.isArray(val) ? val : [];
 
             $.each(dates, function(){
-                var _d;
+                var _d, date = this;
 
                 try {
-                    _d = (Utils.isValue(o.inputFormat) ? Datetime.from(this, o.inputFormat) : datetime(this)).align('day').format('YYYY-MM-DD');
+                    _d = (o.inputFormat ? Datetime.from(date, o.inputFormat) : datetime(date)).align('day').format('YYYY-MM-DD');
                 } catch (e) {
                     return;
                 }
@@ -12312,6 +12312,7 @@ $.noConflict = function() {
             }
 
             o.preset = !Utils.isNull(preset) ? preset : element.attr("data-preset");
+
             this._dates2array(o.preset, 'selected');
             this._drawContent();
         },
@@ -12340,7 +12341,17 @@ $.noConflict = function() {
 
             o.show = show ? show : attr;
 
-            this.show = (!o.show ? datetime() : o.inputFormat ? Datetime.from(o.show, o.inputFormat) : datetime(o.show)).align("day");
+            if (!o.show) {
+                this.show = datetime();
+            } else {
+                if (typeof o.show === "string" && o.inputFormat) {
+                    this.show = Datetime.from(o.show, o.inputFormat);
+                } else {
+                    this.show = datetime(o.show);
+                }
+            }
+
+            this.show = this.show.align("day");
 
             this.current = {
                 year: this.show.year(),
@@ -12813,11 +12824,10 @@ $.noConflict = function() {
 
                     $(".calendar-picker .calendar").removeClass("open open-up").hide();
 
-                    cal_plugin.setPreset([value]);
+                    cal_plugin.setPreset([o.inputFormat ? value.format(o.inputFormat) : value.format("YYYY-MM-DD")]);
                     cal_plugin.setShow(value);
 
-                    if (container.hasClass("dialog-mode")) {
-                        that.overlay.appendTo($('body'));
+                    
                     }
                     cal.addClass("open");
                     if (!Utils.inViewport(cal[0])) {
