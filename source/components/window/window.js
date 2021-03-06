@@ -406,14 +406,14 @@
 
         maximized: function(e){
             var win = this.win, o = this.options;
-            var target = $(e.currentTarget);
+            var target = $(e.target);
 
             if (o.btnMax) {
                 win.removeClass("minimized");
                 win.toggleClass("maximized");
             }
 
-            if (target.hasClass && target.hasClass("window-caption")) {
+            if (target.hasClass && target.hasClass("title")) {
 
                 this._fireEvent("caption-dbl-click", {
                     win: win[0]

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 02/03/2021 09:13:59
+ * Built at 06/03/2021 18:00:21
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "02/03/2021 09:13:59",
+        compileTime: "06/03/2021 18:00:21",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -40479,14 +40479,14 @@ $.noConflict = function() {
 
         maximized: function(e){
             var win = this.win, o = this.options;
-            var target = $(e.currentTarget);
+            var target = $(e.target);
 
             if (o.btnMax) {
                 win.removeClass("minimized");
                 win.toggleClass("maximized");
             }
 
-            if (target.hasClass && target.hasClass("window-caption")) {
+            if (target.hasClass && target.hasClass("title")) {
 
                 this._fireEvent("caption-dbl-click", {
                     win: win[0]

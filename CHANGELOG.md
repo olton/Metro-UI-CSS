@@ -34,6 +34,7 @@
 + [x] Activity: change default style to `color`
 + [x] Keylock: added new component
 + [x] Calendar: fixed bug issue #1732
++ [x] Window: fixed event `onMaxClick`, issue #1735
 
 ### 4.4.3
 #### M4Q
