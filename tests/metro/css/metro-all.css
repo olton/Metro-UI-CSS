@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 06/03/2021 18:00:21
+ * Built at 14/03/2021 18:52:12
  * Licensed under MIT
  */
 *,
@@ -47525,6 +47525,9 @@ body.vegas-container > .vegas-slide {
 .mif-10x {
   font-size: 5.5em;
 }
+.mif-sign-pen:before {
+  content: "\e9c9";
+}
 .mif-external:before {
   content: "\e9c6";
 }
@@ -48442,171 +48445,6 @@ body.vegas-container > .vegas-slide {
 }
 .mif-vimeo:before {
   content: "\e6b7";
-}
-.mif-shareable:before {
-  content: "\e6a5";
-}
-.mif-shop:before {
-  content: "\e6a6";
-}
-.mif-shopping-basket2:before {
-  content: "\e6a7";
-}
-.mif-thumbs-down:before {
-  content: "\e6a8";
-}
-.mif-thumbs-up:before {
-  content: "\e6a9";
-}
-.mif-traffic-cone:before {
-  content: "\e6aa";
-}
-.mif-water:before {
-  content: "\e6ab";
-}
-.mif-creative-cloud:before {
-  content: "\e6ac";
-}
-.mif-dropbox:before {
-  content: "\e6ad";
-}
-.mif-evernote:before {
-  content: "\e6ae";
-}
-.mif-paypal:before {
-  content: "\e6af";
-}
-.mif-swarm:before {
-  content: "\e6b0";
-}
-.mif-vk:before {
-  content: "\e6b1";
-}
-.mif-yelp:before {
-  content: "\e6b2";
-}
-.mif-dribbble:before {
-  content: "\e6b3";
-}
-.mif-lastfm:before {
-  content: "\e6b4";
-}
-.mif-pinterest:before {
-  content: "\e6b5";
-}
-.mif-stumbleupon:before {
-  content: "\e6b6";
-}
-.mif-vimeo:before {
-  content: "\e6b7";
-}
-.mif-new-tab:before {
-  content: "\ea7e";
-}
-.mif-whatsapp:before {
-  content: "\e90b";
-}
-.mif-copy:before {
-  content: "\e92c";
-}
-.mif-paste:before {
-  content: "\e92d";
-}
-.mif-cut:before {
-  content: "\ea5a";
-}
-.mif-earth2:before {
-  content: "\e6c1";
-}
-.mif-shit:before {
-  content: "\e6c2";
-}
-.mif-broadcast:before {
-  content: "\f048";
-}
-.mif-organization:before {
-  content: "\f037";
-}
-.mif-squirrel:before {
-  content: "\f0b2";
-}
-.mif-steps:before {
-  content: "\f0c7";
-}
-.mif-versions:before {
-  content: "\f064";
-}
-.mif-microscope:before {
-  content: "\f089";
-}
-.mif-library:before {
-  content: "\e921";
-}
-.mif-file-binary:before {
-  content: "\f094";
-}
-.mif-mail-read:before {
-  content: "\f03c";
-}
-.mif-quote:before {
-  content: "\f063";
-}
-.mif-sunrise:before {
-  content: "\e66c";
-}
-.mif-sun:before {
-  content: "\e66d";
-}
-.mif-moon:before {
-  content: "\e66e";
-}
-.mif-sun3:before {
-  content: "\e66f";
-}
-.mif-windy:before {
-  content: "\e670";
-}
-.mif-wind:before {
-  content: "\e671";
-}
-.mif-snowflake:before {
-  content: "\e672";
-}
-.mif-cloudy:before {
-  content: "\e673";
-}
-.mif-cloud2:before {
-  content: "\e674";
-}
-.mif-weather:before {
-  content: "\e675";
-}
-.mif-weather2:before {
-  content: "\e676";
-}
-.mif-weather3:before {
-  content: "\e677";
-}
-.mif-lines:before {
-  content: "\e678";
-}
-.mif-cloud3:before {
-  content: "\e679";
-}
-.mif-lightning:before {
-  content: "\e67a";
-}
-.mif-lightning2:before {
-  content: "\e67b";
-}
-.mif-rainy:before {
-  content: "\e67c";
-}
-.mif-rainy2:before {
-  content: "\e67d";
-}
-.mif-windy2:before {
-  content: "\e67e";
 }
 .mif-new-tab:before {
   content: "\ea7e";
