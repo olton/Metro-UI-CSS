@@ -32,6 +32,16 @@
                data-input-format="DD/MM/YYYY"
         >
     </div>
+
+    <br>
+    <br>
+    <div class="example" style="width: 300px;">
+        <input type="text" data-role="calendarpicker" value="1972/12/21" id="calendarpicker_val_test" data-format="DD MMMM YY" class="">
+        <br />
+        <button class="button" onclick="Metro.getPlugin('#calendarpicker_val_test', 'calendarpicker').val('1972/12/21')">Reset</button>
+        <button class="button" onclick="Metro.getPlugin('#calendarpicker_val_test', 'calendarpicker').val('2017/10/25')">Set 2017/10/25</button>
+        <button class="button" onclick="alert( Metro.getPlugin('#calendarpicker_val_test', 'calendarpicker').val())">Get date</button>
+    </div>
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
