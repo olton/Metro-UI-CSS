@@ -12,6 +12,7 @@
         moveLeftIcon: "<span>&lsaquo;</span>",
         moveLeftAllIcon: "<span>&laquo;</span>",
 
+        clsBox: "",
         clsMoveButton: "",
         clsMoveRightButton: "",
         clsMoveRightAllButton: "",
@@ -88,7 +89,7 @@
             var controls = $("<div>").addClass("controls").insertBefore(select2);
             var list1, list2;
 
-            element.addClass("double-select-box").css({
+            element.addClass("double-select-box").addClass(o.clsBox).css({
                 height: o.height
             });
 
