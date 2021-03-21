@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 14/03/2021 19:04:03
+ * Built at 21/03/2021 18:57:03
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "14/03/2021 19:04:03",
+        compileTime: "21/03/2021 18:57:03",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9367,12 +9367,7 @@ $.noConflict = function() {
         },
 
         addCssRule: function(sheet, selector, rules, index){
-            if("insertRule" in sheet) {
-                sheet.insertRule(selector + "{" + rules + "}", index);
-            }
-            else if("addRule" in sheet) {
-                sheet.addRule(selector, rules, index);
-            }
+            sheet.insertRule(selector + "{" + rules + "}", index);
         },
 
         media: function(query){
@@ -19422,6 +19417,197 @@ $.noConflict = function() {
         }
     });
 }(Metro, m4q));
+
+/* eslint-disable */
+(function(Metro, $) {
+    'use strict';
+
+    var DoubleSelectBoxDefaultConfig = {
+        height: "auto",
+        multiSelect: false,
+
+        moveRightIcon: "<span>&rsaquo;</span>",
+        moveRightAllIcon: "<span>&raquo;</span>",
+        moveLeftIcon: "<span>&lsaquo;</span>",
+        moveLeftAllIcon: "<span>&laquo;</span>",
+
+        clsMoveButton: "",
+        clsMoveRightButton: "",
+        clsMoveRightAllButton: "",
+        clsMoveLeftButton: "",
+        clsMoveLeftAllButton: "",
+
+        onDoubleSelectBoxCreate: Metro.noop
+    };
+
+    Metro.doubleSelectBoxSetup = function (options) {
+        DoubleSelectBoxDefaultConfig = $.extend({}, DoubleSelectBoxDefaultConfig, options);
+    };
+
+    if (typeof window["metroDoubleSelectBoxSetup"] !== undefined) {
+        Metro.doubleSelectBoxSetup(window["metroDoubleSelectBoxSetup"]);
+    }
+
+    Metro.Component('double-select-box', {
+        init: function( options, elem ) {
+            this._super(elem, options, DoubleSelectBoxDefaultConfig, {
+                // define instance vars here
+                select1: null,
+                select2: null,
+                list1: null,
+                list2: null
+            });
+            return this;
+        },
+
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
+
+            if (element.children("select").length !== 2) {
+                throw new Error("Component DoubleSelectBox required two select elements!")
+            }
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent('double-select-box-create');
+        },
+
+        _drawList: function(){
+            var that = this;
+
+            this.list1.clear();
+            this.select1.find("option").each(function(i, option){
+                that.list1.append(
+                    $("<li>").html($(option).html()).attr("data-value", option.value).data("option", option)
+                )
+            });
+
+            this.list2.clear();
+            this.select2.find("option").each(function(i, option){
+                that.list2.append(
+                    $("<li>").html($(option).html()).attr("data-value", option.value).data("option", option)
+                )
+            });
+        },
+
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+            var selects = element.children("select");
+            var select1 = selects.eq(0);
+            var select2 = selects.eq(1);
+            var controls = $("<div>").addClass("controls").insertBefore(select2);
+            var list1, list2;
+
+            element.addClass("double-select-box").css({
+                height: o.height
+            });
+
+            selects.prop("multiple", true);
+
+            controls.append(
+                $([
+                    $("<button>").attr("type", "button").addClass("button --move-right").addClass(o.clsMoveButton).addClass(o.clsMoveRightButton).html(o.moveRightIcon),
+                    $("<button>").attr("type", "button").addClass("button --move-right-all").addClass(o.clsMoveButton).addClass(o.clsMoveRightAllButton).html(o.moveRightAllIcon),
+                    $("<button>").attr("type", "button").addClass("button --move-left-all").addClass(o.clsMoveButton).addClass(o.clsMoveLeftAllButton).html(o.moveLeftAllIcon),
+                    $("<button>").attr("type", "button").addClass("button --move-left").addClass(o.clsMoveButton).addClass(o.clsMoveLeftButton).html(o.moveLeftIcon),
+                ])
+            )
+
+            list1 = $("<ul>").addClass("--list1").insertBefore(select1);
+            list2 = $("<ul>").addClass("--list2").insertBefore(select2);
+
+
+            this.select1 = select1;
+            this.select2 = select2;
+            this.list1 = list1;
+            this.list2 = list2;
+
+            this._drawList();
+        },
+
+        _moveItems: function(items, targets){
+            $.each(items, function(){
+                var $item = $(this);
+                var option = $item.data('option');
+
+                $(option).appendTo(targets[0]);
+                $item.removeClass("active").appendTo(targets[1]);
+            })
+        },
+
+        _move: function(dir, scope){
+            var that = this;
+
+            if (scope === 'selected') {
+                if (dir === 'ltr') { // left to right
+                    that._moveItems(this.list1.find("li.active"), [that.select2, that.list2]);
+                } else {
+                    that._moveItems(this.list2.find("li.active"), [that.select1, that.list1]);
+                }
+            } else {
+                if (dir === 'ltr') { // left to right
+                    that._moveItems(this.list1.find("li"), [that.select2, that.list2]);
+                } else {
+                    that._moveItems(this.list2.find("li"), [that.select1, that.list1]);
+                }
+            }
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+            var items = element.find("li");
+
+            items.on("click", function(){
+                var $el = $(this);
+
+                if (o.multiSelect === false) {
+                    that.list1.find("li").removeClass("active");
+                    that.list2.find("li").removeClass("active");
+                }
+
+                $el.addClass("active");
+            });
+
+            items.on("dblclick", function(){
+                var $el = $(this);
+                var dir = $el.parent().hasClass("--list1") ? 'ltr' : 'rtl';
+                var scope = 'selected';
+
+                that.list1.find("li").removeClass("active");
+                that.list2.find("li").removeClass("active");
+
+                $el.addClass("active");
+
+                that._move(dir, scope);
+            });
+
+            element.on("click", "button", function(){
+                var btn = $(this)
+                if (btn.hasClass("--move-right")) {
+                    that._move('ltr', 'selected');
+                } else if (btn.hasClass("--move-right-all")) {
+                    that._move('ltr', 'all');
+                } else if (btn.hasClass("--move-left")) {
+                    that._move('rtl', 'selected');
+                } else if (btn.hasClass("--move-left-all")) {
+                    that._move('rtl', 'all');
+                } else {
+                    throw new Error("Pressed unregistered button!")
+                }
+            });
+        },
+
+        changeAttribute: function(attr, newValue){
+        },
+
+        destroy: function(){
+            this.element.remove();
+        }
+    });
+}(Metro, m4q));
+/* eslint-enable */
+
 
 (function(Metro, $) {
     'use strict';

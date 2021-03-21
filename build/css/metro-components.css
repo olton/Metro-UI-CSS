@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 14/03/2021 19:04:03
+ * Built at 21/03/2021 18:57:03
  * Licensed under MIT
  */
 .accordion {
@@ -4663,6 +4663,59 @@ aside::after {
 .donut > svg {
   width: 100%;
   height: 100%;
+}
+.double-select-box {
+  display: -webkit-box;
+  display: flex;
+}
+.double-select-box select {
+  display: none;
+}
+.double-select-box .controls {
+  padding: 0 10px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+}
+.double-select-box .controls button {
+  flex-basis: 100%;
+  margin: 1px 0;
+  font-size: 1.4em;
+  display: -webkit-box;
+  display: flex;
+  width: 100%;
+}
+.double-select-box ul {
+  display: block;
+  position: relative;
+  border: 1px solid #dfdfdf;
+  -webkit-box-flex: 1;
+          flex: 1 1 100%;
+  margin: 0;
+  overflow-y: auto;
+}
+.double-select-box ul li {
+  display: block;
+  position: relative;
+  cursor: default;
+  padding: 4px 10px;
+  font-size: 12px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.double-select-box ul li.active {
+  background-color: #0CA9F2 !important;
+  color: #ffffff !important;
+}
+.double-select-box ul li:hover {
+  background-color: rgba(29, 29, 29, 0.1);
 }
 .dragged-item {
   opacity: 0.3;
