@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 21/03/2021 18:57:03
+ * Built at 21/03/2021 19:10:14
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "21/03/2021 18:57:03",
+        compileTime: "21/03/2021 19:10:14",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19478,15 +19478,21 @@ $.noConflict = function() {
 
             this.list1.clear();
             this.select1.find("option").each(function(i, option){
+                var $op = $(option);
+                var html = $op.attr("data-template") ? $op.attr("data-template").replace(/\$1/g, $op.text()) : $op.text();
+
                 that.list1.append(
-                    $("<li>").html($(option).html()).attr("data-value", option.value).data("option", option)
+                    $("<li>").html(html).attr("data-value", option.value).data("option", option)
                 )
             });
 
             this.list2.clear();
             this.select2.find("option").each(function(i, option){
+                var $op = $(option);
+                var html = $op.attr("data-template") ? $op.attr("data-template").replace(/\$1/g, $op.text()) : $op.text();
+
                 that.list2.append(
-                    $("<li>").html($(option).html()).attr("data-value", option.value).data("option", option)
+                    $("<li>").html(html).attr("data-value", option.value).data("option", option)
                 )
             });
         },
