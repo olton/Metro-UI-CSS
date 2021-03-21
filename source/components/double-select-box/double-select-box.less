@@ -1,0 +1,58 @@
+@import (once) "../../include/vars";
+@import (once) "../../include/mixins";
+
+.double-select-box {
+    display: flex;
+}
+
+.double-select-box {
+    select {
+        display: none;
+    }
+
+    .controls {
+        padding: 0 10px;
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .controls {
+        button {
+            flex-basis: 100%;
+            margin: 1px 0;
+            font-size: 1.4em;
+            display: flex;
+            width: 100%;
+        }
+    }
+
+    ul {
+        display: block;
+        position: relative;
+        border: 1px solid @borderColor;
+        flex: 1 1 100%;
+        margin: 0;
+        overflow-y: auto;
+
+        li {
+            display: block;
+            position: relative;
+            cursor: default;
+            padding: 4px 10px;
+            font-size: 12px;
+            user-select: none;
+
+            &.active {
+                background-color: #0CA9F2!important;
+                color: #ffffff!important;
+            }
+
+            &:hover {
+                background-color: @hoverBackground;
+            }
+        }
+    }
+}
+
