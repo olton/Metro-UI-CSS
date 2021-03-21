@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 21/03/2021 19:19:21
+ * Built at 21/03/2021 19:25:39
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "21/03/2021 19:19:21",
+        compileTime: "21/03/2021 19:25:39",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19436,6 +19436,8 @@ $.noConflict = function() {
         clsMoveRightAllButton: "",
         clsMoveLeftButton: "",
         clsMoveLeftAllButton: "",
+        clsListLeft: "",
+        clsListRight: "",
 
         onDoubleSelectBoxCreate: Metro.noop
     };
@@ -19520,8 +19522,8 @@ $.noConflict = function() {
                 ])
             )
 
-            list1 = $("<ul>").addClass("--list1").insertBefore(select1);
-            list2 = $("<ul>").addClass("--list2").insertBefore(select2);
+            list1 = $("<ul>").addClass("--list1").addClass(o.clsListLeft).insertBefore(select1);
+            list2 = $("<ul>").addClass("--list2").addClass(o.clsListRight).insertBefore(select2);
 
 
             this.select1 = select1;
