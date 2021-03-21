@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 21/03/2021 19:25:39
+ * Built at 21/03/2021 19:26:54
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "21/03/2021 19:25:39",
+        compileTime: "21/03/2021 19:26:54",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19431,6 +19431,7 @@ $.noConflict = function() {
         moveLeftIcon: "<span>&lsaquo;</span>",
         moveLeftAllIcon: "<span>&laquo;</span>",
 
+        clsBox: "",
         clsMoveButton: "",
         clsMoveRightButton: "",
         clsMoveRightAllButton: "",
@@ -19507,7 +19508,7 @@ $.noConflict = function() {
             var controls = $("<div>").addClass("controls").insertBefore(select2);
             var list1, list2;
 
-            element.addClass("double-select-box").css({
+            element.addClass("double-select-box").addClass(o.clsBox).css({
                 height: o.height
             });
 
