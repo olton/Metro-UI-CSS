@@ -17,6 +17,8 @@
         clsMoveRightAllButton: "",
         clsMoveLeftButton: "",
         clsMoveLeftAllButton: "",
+        clsListLeft: "",
+        clsListRight: "",
 
         onDoubleSelectBoxCreate: Metro.noop
     };
@@ -101,8 +103,8 @@
                 ])
             )
 
-            list1 = $("<ul>").addClass("--list1").insertBefore(select1);
-            list2 = $("<ul>").addClass("--list2").insertBefore(select2);
+            list1 = $("<ul>").addClass("--list1").addClass(o.clsListLeft).insertBefore(select1);
+            list2 = $("<ul>").addClass("--list2").addClass(o.clsListRight).insertBefore(select2);
 
 
             this.select1 = select1;
