@@ -1,5 +1,5 @@
 /*
- * m4q v1.0.10, (https://github.com/olton/m4q.git)
+ * m4q v1.1.0, (https://github.com/olton/m4q.git)
  * Copyright 2018 - 2021 by Sergey Pimenov
  * Helper for DOM manipulation, animation, and ajax routines.
  * Licensed under MIT
@@ -17,7 +17,7 @@
 /* global dataSet */
 /* exported isTouch, isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
 
-var numProps = ['opacity', 'zIndex'];
+var numProps = ['opacity', 'zIndex', "order", "zoom"];
 
 function isSimple(v){
     return typeof v === "string" || typeof v === "boolean" || typeof v === "number";
@@ -301,7 +301,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 08/01/2021 14:20:31";
+var m4qVersion = "v1.1.0. Built at 26/03/2021 14:35:42";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches

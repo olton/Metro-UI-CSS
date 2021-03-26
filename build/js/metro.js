@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 21/03/2021 19:26:54
+ * Built at 26/03/2021 14:39:24
  * Licensed under MIT
  */
 /*!
@@ -2820,7 +2820,7 @@
 /* global dataSet */
 /* exported isTouch, isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
 
-var numProps = ['opacity', 'zIndex'];
+var numProps = ['opacity', 'zIndex', "order", "zoom"];
 
 function isSimple(v){
     return typeof v === "string" || typeof v === "boolean" || typeof v === "number";
@@ -3104,7 +3104,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.0.10. Built at 08/01/2021 14:20:31";
+var m4qVersion = "v1.1.0. Built at 26/03/2021 14:35:42";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "21/03/2021 19:26:54",
+        compileTime: "26/03/2021 14:39:24",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9153,10 +9153,6 @@ $.noConflict = function() {
             return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
         },
 
-        encodeURI: function(str){
-            return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
-        },
-
         pageHeight: function(){
             var body = document.body,
                 html = document.documentElement;
@@ -9296,6 +9292,10 @@ $.noConflict = function() {
             }
 
             return styles;
+        },
+
+        encodeURI: function(str){
+            return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
         },
 
         updateURIParameter: function(uri, key, value) {
