@@ -366,10 +366,6 @@
             return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
         },
 
-        encodeURI: function(str){
-            return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
-        },
-
         pageHeight: function(){
             var body = document.body,
                 html = document.documentElement;
@@ -509,6 +505,10 @@
             }
 
             return styles;
+        },
+
+        encodeURI: function(str){
+            return encodeURI(str).replace(/%5B/g, '[').replace(/%5D/g, ']');
         },
 
         updateURIParameter: function(uri, key, value) {
