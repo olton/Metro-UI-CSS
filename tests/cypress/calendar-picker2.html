@@ -30,6 +30,9 @@
             <BUTTON id="SET_DATE" class="button square small rounded bg-green">
                 <SPAN class="icon mif-calendar fg-white"></SPAN>
             </BUTTON>
+            <BUTTON id="CLEAR_DATE" class="button square small rounded bg-green">
+                <SPAN class="icon mif-calendar fg-white"></SPAN>
+            </BUTTON>
         </DIV>
 
     </DIV>
@@ -43,6 +46,12 @@
             e.preventDefault();
 
             Metro.getPlugin("#LAST_UPDATE", 'calendar-picker').val("01/02/2021");
+        });
+
+        $(document).on("click", "#CLEAR_DATE", function(e) {
+            e.preventDefault();
+
+            Metro.getPlugin("#LAST_UPDATE", 'calendar-picker').val("");
         });
 
     });

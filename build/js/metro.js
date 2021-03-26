@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 26/03/2021 14:39:24
+ * Built at 26/03/2021 14:55:35
  * Licensed under MIT
  */
 /*!
@@ -7189,7 +7189,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "26/03/2021 14:39:24",
+        compileTime: "26/03/2021 14:55:35",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12882,15 +12882,25 @@ $.noConflict = function() {
             $('body').find('.overlay.for-calendar-picker').remove();
         },
 
+        clear: function(){
+            this.value = datetime();
+            this.time = [datetime().hour(), datetime().minute()];
+            this.element.val("")
+        },
+
         val: function(v, f){
             var element = this.element, o = this.options;
             var elementValue, h, m;
 
-            if (Utils.isNull(v) || arguments.length === 0)  {
+            if (arguments.length === 0 || Utils.isNull(v))  {
                 return {
                     date: this.value.val(),
                     time: this.time
                 };
+            }
+
+            if (v === "") {
+                return this.clear();
             }
 
             if (f) {
