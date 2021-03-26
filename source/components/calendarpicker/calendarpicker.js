@@ -430,15 +430,25 @@
             $('body').find('.overlay.for-calendar-picker').remove();
         },
 
+        clear: function(){
+            this.value = datetime();
+            this.time = [datetime().hour(), datetime().minute()];
+            this.element.val("")
+        },
+
         val: function(v, f){
             var element = this.element, o = this.options;
             var elementValue, h, m;
 
-            if (Utils.isNull(v) || arguments.length === 0)  {
+            if (arguments.length === 0 || Utils.isNull(v))  {
                 return {
                     date: this.value.val(),
                     time: this.time
                 };
+            }
+
+            if (v === "") {
+                return this.clear();
             }
 
             if (f) {
