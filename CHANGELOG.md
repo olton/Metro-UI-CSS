@@ -39,6 +39,7 @@
 + [x] M4Q: fixed setting css number props `order`, `zoom` with method `css()`
 + [x] CalendarPicker: added API method `clear()`
 + [x] CalendarPicker: fixed API method `val()`, if you set argument as empty string `val("")`, you clear calendar picker value
++ [x] M4Q Ajax: fixed method `$.get` for url with `?`, issue #1745
 
 ### 4.4.3
 #### M4Q
