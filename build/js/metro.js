@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 26/03/2021 14:55:35
+ * Built at 27/03/2021 21:48:44
  * Licensed under MIT
  */
 /*!
@@ -3104,7 +3104,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.1.0. Built at 26/03/2021 14:35:42";
+var m4qVersion = "v1.1.0. Built at 27/03/2021 21:47:36";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -4590,6 +4590,8 @@ $.ajax = function(p){
         var headers = [];
         var async = not(p.async) ? true : p.async;
         var url = p.url;
+        var urlWithParams = url.indexOf("?") > -1;
+        var joinParamsSymbol = urlWithParams ? "&" : "?";
 
         var exec = function(fn, params){
             if (typeof fn === "function") {
@@ -4647,7 +4649,7 @@ $.ajax = function(p){
         }
 
         if (isGet(method)) {
-            url += (typeof data === "string" ? "?"+data : isEmptyObject(data) ? "" : "?"+JSON.stringify(data));
+            url += (typeof data === "string" ? joinParamsSymbol + data : isEmptyObject(data) ? "" : joinParamsSymbol + JSON.stringify(data));
         }
 
         xhr.open(method, url, async, p.user, p.password);
@@ -5175,7 +5177,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -7189,7 +7191,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "26/03/2021 14:55:35",
+        compileTime: "27/03/2021 21:48:44",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7458,7 +7460,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -28818,6 +28820,59 @@ $.noConflict = function() {
 
     Metro.ripple = getRipple;
 }(Metro, m4q));
+
+/* eslint-disable */
+(function(Metro, $) {
+    'use strict';
+
+    var SearcherDefaultConfig = {
+        onSearcherCreate: Metro.noop
+    };
+
+    Metro.searcherSetup = function (options) {
+        SearcherDefaultConfig = $.extend({}, SearcherDefaultConfig, options);
+    };
+
+    if (typeof window["metroSearcherSetup"] !== undefined) {
+        Metro.searcherSetup(window["metroSearcherSetup"]);
+    }
+
+    Metro.Component('searcher', {
+        init: function( options, elem ) {
+            this._super(elem, options, SearcherDefaultConfig, {
+                // define instance vars here
+            });
+            return this;
+        },
+
+        _create: function(){
+            var that = this, element = this.element, o = this.options;
+
+            this._createStructure();
+            this._createEvents();
+
+            this._fireEvent('searcher-create');
+        },
+
+        _createStructure: function(){
+            var that = this, element = this.element, o = this.options;
+
+        },
+
+        _createEvents: function(){
+            var that = this, element = this.element, o = this.options;
+
+        },
+
+        changeAttribute: function(attr, newValue){
+        },
+
+        destroy: function(){
+            this.element.remove();
+        }
+    });
+}(Metro, m4q));
+/* eslint-enable */
 
 (function(Metro, $) {
     'use strict';
