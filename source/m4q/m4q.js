@@ -301,7 +301,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.1.0. Built at 26/03/2021 14:35:42";
+var m4qVersion = "v1.1.0. Built at 27/03/2021 21:47:36";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1787,6 +1787,8 @@ $.ajax = function(p){
         var headers = [];
         var async = not(p.async) ? true : p.async;
         var url = p.url;
+        var urlWithParams = url.indexOf("?") > -1;
+        var joinParamsSymbol = urlWithParams ? "&" : "?";
 
         var exec = function(fn, params){
             if (typeof fn === "function") {
@@ -1844,7 +1846,7 @@ $.ajax = function(p){
         }
 
         if (isGet(method)) {
-            url += (typeof data === "string" ? "?"+data : isEmptyObject(data) ? "" : "?"+JSON.stringify(data));
+            url += (typeof data === "string" ? joinParamsSymbol + data : isEmptyObject(data) ? "" : joinParamsSymbol + JSON.stringify(data));
         }
 
         xhr.open(method, url, async, p.user, p.password);
