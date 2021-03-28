@@ -11,7 +11,8 @@
         paginationShortMode: true,
         thousandSeparator: ",",
         decimalSeparator: ",",
-        sortTarget: "li",
+        itemTag: "li",
+        defaultTemplate: "<div><%this.value%></div>",
         sortClass: null,
         sortDir: "asc",
         sortInitial: true,
@@ -129,18 +130,6 @@
                         });
                     });
 
-                // $.json(o.source).then(function(data){
-                //     that._fireEvent("data-loaded", {
-                //         source: o.source,
-                //         data: data
-                //     });
-                //     that._build(data);
-                // }, function(xhr){
-                //     that._fireEvent("data-load-error", {
-                //         source: o.source,
-                //         xhr: xhr
-                //     });
-                // });
             } else {
                 that._build();
             }
@@ -164,7 +153,7 @@
 
             this.items = [];
 
-            $.each(element.children(o.sortTarget), function(){
+            $.each(element.children(o.itemTag), function(){
                 that.items.push(this);
             });
         },
@@ -185,13 +174,15 @@
             if (Utils.isValue(source.data)) {
                 $.each(source.data, function(){
                     var item, row = this;
-                    var li = document.createElement("li");
+                    var li = document.createElement(o.itemTag);
+                    var tpl = that.itemTemplate;
 
-                    if (!Utils.isValue(that.itemTemplate)) {
-                        return ;
+                    if (!Utils.isValue(tpl)) {
+                        tpl = o.defaultTemplate;
+                        if (typeof row.value === "undefined") return ;
                     }
 
-                    item = Metro.template(that.itemTemplate, row, {
+                    item = Metro.template(tpl, row, {
                         beginToken: o.templateBeginToken,
                         endToken: o.templateEndToken
                     });
@@ -223,17 +214,13 @@
             rows_select = $("<select>").appendTo(rows_block);
             $.each(o.itemsSteps.toArray(), function () {
                 var option = $("<option>").attr("value", this === "all" ? -1 : this).text(this === "all" ? o.itemsAllTitle : this).appendTo(rows_select);
-                if (parseInt(this) === parseInt(o.items)) {
-                    option.attr("selected", "selected");
-                }
+                if (+this === +o.items) option.attr("selected", "selected");
             });
             rows_select.select({
                 filter: false,
                 prepend: o.listItemsCountTitle,
                 onChange: function (val) {
-                    if (parseInt(val) === parseInt(o.items)) {
-                        return;
-                    }
+                    if (+val === +o.items) return;
                     o.items = parseInt(val);
                     that.currentPage = 1;
                     that._draw();
@@ -517,7 +504,7 @@
 
             items = this._filter();
 
-            element.children(o.sortTarget).remove();
+            element.children(o.itemTag).remove();
 
             for (i = start; i <= stop; i++) {
                 if (Utils.isValue(items[i])) {
@@ -725,51 +712,6 @@
                     });
                 });
 
-            // $.json(o.source).then(function(data){
-            //
-            //     that._fireEvent("data-loaded", {
-            //         source: o.source,
-            //         data: data
-            //     });
-            //
-            //     that._createItemsFromJSON(data);
-            //
-            //     element.html("");
-            //
-            //     if (Utils.isValue(o.filterString)) {
-            //         that.filterString = o.filterString;
-            //     }
-            //
-            //     var filter_func;
-            //
-            //     if (Utils.isValue(o.filter)) {
-            //         filter_func = Utils.isFunc(o.filter);
-            //         if (filter_func === false) {
-            //             filter_func = Utils.func(o.filter);
-            //         }
-            //         that.filterIndex = that.addFilter(filter_func);
-            //     }
-            //
-            //     if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
-            //         $.each(o.filters.toArray(), function(){
-            //             filter_func = Utils.isFunc(this);
-            //             if (filter_func !== false) {
-            //                 that.filtersIndexes.push(that.addFilter(filter_func));
-            //             }
-            //         });
-            //     }
-            //
-            //     that.currentPage = 1;
-            //
-            //     that.sorting(o.sortClass, o.sortDir, true);
-            // }, function(xhr){
-            //
-            //     that._fireEvent("data-load-error", {
-            //         source: o.source,
-            //         xhr: xhr
-            //     });
-            //
-            // });
         },
 
         next: function(){
