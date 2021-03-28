@@ -12,7 +12,7 @@
         thousandSeparator: ",",
         decimalSeparator: ",",
         itemTag: "li",
-        defaultTemplate: "<div><%this.value%></div>",
+        defaultTemplateTag: "div",
         sortClass: null,
         sortDir: "asc",
         sortInitial: true,
@@ -52,6 +52,7 @@
         clsListInfo: "",
         clsListPagination: "",
         clsPagination: "",
+        clsTemplateTag: "",
         onDraw: Metro.noop,
         onDrawItem: Metro.noop,
         onSortStart: Metro.noop,
@@ -154,6 +155,7 @@
             this.items = [];
 
             $.each(element.children(o.itemTag), function(){
+                $(this).children("*").addClass(o.clsTemplateTag);
                 that.items.push(this);
             });
         },
@@ -173,21 +175,23 @@
 
             if (Utils.isValue(source.data)) {
                 $.each(source.data, function(){
-                    var item, row = this;
+                    var item = '', row = this;
                     var li = document.createElement(o.itemTag);
                     var tpl = that.itemTemplate;
 
                     if (!Utils.isValue(tpl)) {
-                        tpl = o.defaultTemplate;
-                        if (typeof row.value === "undefined") return ;
+                        for (var i in row) {
+                            item += "<"+o.defaultTemplateTag+">"+row[i]+"</"+o.defaultTemplateTag+">";
+                        }
+                    } else {
+                        item = Metro.template(tpl, row, {
+                            beginToken: o.templateBeginToken,
+                            endToken: o.templateEndToken
+                        });
                     }
 
-                    item = Metro.template(tpl, row, {
-                        beginToken: o.templateBeginToken,
-                        endToken: o.templateEndToken
-                    });
-
                     li.innerHTML = item;
+                    $(li).children("*").addClass(o.clsTemplateTag);
                     that.items.push(li);
                 });
             }
