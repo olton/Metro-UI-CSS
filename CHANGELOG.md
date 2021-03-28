@@ -40,7 +40,9 @@
 + [x] CalendarPicker: added API method `clear()`
 + [x] CalendarPicker: fixed API method `val()`, if you set argument as empty string `val("")`, you clear calendar picker value
 + [x] M4Q Ajax: fixed method `$.get` for url with `?`, issue #1745
-+ [x] List: updated for using with different tags. For example: now you can use list with `div.grid role=list > div.row > div.cell` structure.
++ [x] List: updated for using with different tags. For example: now you can use list with `div.grid role=list > div.row > div.cell` structure
++ [x] List: added attribute `data-cls-template-tag` to set class(es) for item children
++ [x] List: added attribute `data-default-template-tag` to set wrapper element for item children, when template is not defined
 
 ### 4.4.3
 #### M4Q

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 28/03/2021 12:59:15
+ * Built at 28/03/2021 15:04:23
  * Licensed under MIT
  */
 /*!
@@ -7191,7 +7191,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "28/03/2021 12:59:15",
+        compileTime: "28/03/2021 15:04:23",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -24422,7 +24422,7 @@ $.noConflict = function() {
         thousandSeparator: ",",
         decimalSeparator: ",",
         itemTag: "li",
-        defaultTemplate: "<div><%this.value%></div>",
+        defaultTemplateTag: "div",
         sortClass: null,
         sortDir: "asc",
         sortInitial: true,
@@ -24462,6 +24462,7 @@ $.noConflict = function() {
         clsListInfo: "",
         clsListPagination: "",
         clsPagination: "",
+        clsTemplateTag: "",
         onDraw: Metro.noop,
         onDrawItem: Metro.noop,
         onSortStart: Metro.noop,
@@ -24564,6 +24565,7 @@ $.noConflict = function() {
             this.items = [];
 
             $.each(element.children(o.itemTag), function(){
+                $(this).children("*").addClass(o.clsTemplateTag);
                 that.items.push(this);
             });
         },
@@ -24583,21 +24585,23 @@ $.noConflict = function() {
 
             if (Utils.isValue(source.data)) {
                 $.each(source.data, function(){
-                    var item, row = this;
+                    var item = '', row = this;
                     var li = document.createElement(o.itemTag);
                     var tpl = that.itemTemplate;
 
                     if (!Utils.isValue(tpl)) {
-                        tpl = o.defaultTemplate;
-                        if (typeof row.value === "undefined") return ;
+                        for (var i in row) {
+                            item += "<"+o.defaultTemplateTag+">"+row[i]+"</"+o.defaultTemplateTag+">";
+                        }
+                    } else {
+                        item = Metro.template(tpl, row, {
+                            beginToken: o.templateBeginToken,
+                            endToken: o.templateEndToken
+                        });
                     }
 
-                    item = Metro.template(tpl, row, {
-                        beginToken: o.templateBeginToken,
-                        endToken: o.templateEndToken
-                    });
-
                     li.innerHTML = item;
+                    $(li).children("*").addClass(o.clsTemplateTag);
                     that.items.push(li);
                 });
             }
