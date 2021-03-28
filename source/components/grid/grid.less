@@ -70,7 +70,7 @@ each(range(0, 12), .(@k) {
             margin-left: 0!important;
             margin-right: 0!important;
 
-            .cell, .stub, .col {
+            & > .cell, & > .stub, & > .col, & > [class*=cell-], & > [class*=col-] {
                 padding: 0!important;
             }
         }
@@ -87,7 +87,7 @@ each(range(0, 12), .(@k) {
         margin-right: 0!important;
         margin-top: 0!important;
 
-        .cell, .stub, .col, [class*=cell-], [class*=col-] {
+        & > .cell, & > .stub, & > .col, & > [class*=cell-], & > [class*=col-] {
             padding: 0!important;
         }
     }
