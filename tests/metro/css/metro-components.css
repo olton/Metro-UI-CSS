@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 28/03/2021 15:04:23
+ * Built at 28/03/2021 19:26:58
  * Licensed under MIT
  */
 .accordion {
@@ -5444,9 +5444,11 @@ fieldset.disabled,
   margin-left: 0!important;
   margin-right: 0!important;
 }
-.grid.no-gap .row .cell,
-.grid.no-gap .row .stub,
-.grid.no-gap .row .col {
+.grid.no-gap .row > .cell,
+.grid.no-gap .row > .stub,
+.grid.no-gap .row > .col,
+.grid.no-gap .row > [class*=cell-],
+.grid.no-gap .row > [class*=col-] {
   padding: 0!important;
 }
 .grid.no-gap .row + .row {
@@ -5457,11 +5459,11 @@ fieldset.disabled,
   margin-right: 0!important;
   margin-top: 0!important;
 }
-.row.no-gap .cell,
-.row.no-gap .stub,
-.row.no-gap .col,
-.row.no-gap [class*=cell-],
-.row.no-gap [class*=col-] {
+.row.no-gap > .cell,
+.row.no-gap > .stub,
+.row.no-gap > .col,
+.row.no-gap > [class*=cell-],
+.row.no-gap > [class*=col-] {
   padding: 0!important;
 }
 @media screen and (min-width: 0) {
