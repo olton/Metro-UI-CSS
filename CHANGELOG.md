@@ -43,6 +43,7 @@
 + [x] List: updated for using with different tags. For example: now you can use list with `div.grid role=list > div.row > div.cell` structure
 + [x] List: added attribute `data-cls-template-tag` to set class(es) for item children
 + [x] List: added attribute `data-default-template-tag` to set wrapper element for item children, when template is not defined
++ [x] List: improved work with an attribute `data-cls-template-tag`. Now you can set many classes separated with comma to applying to elements with linked index
 + [x] Grid: fixed `no-gap` class, now `padding` cancels for `.grid.no-gap .row > .cell*` and `.row.no-gap > .cell*` 
 
 ### 4.4.3

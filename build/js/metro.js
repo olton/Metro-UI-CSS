@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 28/03/2021 19:27:57
+ * Built at 30/03/2021 12:48:24
  * Licensed under MIT
  */
 /*!
@@ -7191,7 +7191,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "28/03/2021 19:27:57",
+        compileTime: "30/03/2021 12:48:24",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -24561,17 +24561,29 @@ $.noConflict = function() {
 
         _createItemsFromHTML: function(){
             var that = this, element = this.element, o = this.options;
+            var clsTemplateTag = (""+o.clsTemplateTag).toArray(",")
 
             this.items = [];
 
             $.each(element.children(o.itemTag), function(){
-                $(this).children("*").addClass(o.clsTemplateTag);
+                var tagChildren = $(this).children("*");
+
+                if (clsTemplateTag.length) {
+                    if (clsTemplateTag.length === 1) {
+                        tagChildren.addClass(clsTemplateTag[0]);
+                    } else {
+                        tagChildren.each(function (i, child) {
+                            $(child).addClass(clsTemplateTag[i] ? clsTemplateTag[i] : clsTemplateTag[clsTemplateTag.length - 1]);
+                        })
+                    }
+                }
                 that.items.push(this);
             });
         },
 
         _createItemsFromJSON: function(source){
             var that = this, o = this.options;
+            var clsTemplateTag = (""+o.clsTemplateTag).toArray(",")
 
             this.items = [];
 
@@ -24588,6 +24600,7 @@ $.noConflict = function() {
                     var item = '', row = this;
                     var li = document.createElement(o.itemTag);
                     var tpl = that.itemTemplate;
+                    var tagChildren;
 
                     if (!Utils.isValue(tpl)) {
                         for (var i in row) {
@@ -24601,7 +24614,18 @@ $.noConflict = function() {
                     }
 
                     li.innerHTML = item;
-                    $(li).children("*").addClass(o.clsTemplateTag);
+                    tagChildren = $(li).children("*");
+
+                    if (clsTemplateTag.length) {
+                        if (clsTemplateTag.length === 1) {
+                            tagChildren.addClass(clsTemplateTag[0]);
+                        } else {
+                            tagChildren.each(function (i, child) {
+                                $(child).addClass(clsTemplateTag[i] ? clsTemplateTag[i] : clsTemplateTag[clsTemplateTag.length - 1]);
+                            })
+                        }
+                    }
+
                     that.items.push(li);
                 });
             }
