@@ -151,17 +151,29 @@
 
         _createItemsFromHTML: function(){
             var that = this, element = this.element, o = this.options;
+            var clsTemplateTag = (""+o.clsTemplateTag).toArray(",")
 
             this.items = [];
 
             $.each(element.children(o.itemTag), function(){
-                $(this).children("*").addClass(o.clsTemplateTag);
+                var tagChildren = $(this).children("*");
+
+                if (clsTemplateTag.length) {
+                    if (clsTemplateTag.length === 1) {
+                        tagChildren.addClass(clsTemplateTag[0]);
+                    } else {
+                        tagChildren.each(function (i, child) {
+                            $(child).addClass(clsTemplateTag[i] ? clsTemplateTag[i] : clsTemplateTag[clsTemplateTag.length - 1]);
+                        })
+                    }
+                }
                 that.items.push(this);
             });
         },
 
         _createItemsFromJSON: function(source){
             var that = this, o = this.options;
+            var clsTemplateTag = (""+o.clsTemplateTag).toArray(",")
 
             this.items = [];
 
@@ -178,6 +190,7 @@
                     var item = '', row = this;
                     var li = document.createElement(o.itemTag);
                     var tpl = that.itemTemplate;
+                    var tagChildren;
 
                     if (!Utils.isValue(tpl)) {
                         for (var i in row) {
@@ -191,7 +204,18 @@
                     }
 
                     li.innerHTML = item;
-                    $(li).children("*").addClass(o.clsTemplateTag);
+                    tagChildren = $(li).children("*");
+
+                    if (clsTemplateTag.length) {
+                        if (clsTemplateTag.length === 1) {
+                            tagChildren.addClass(clsTemplateTag[0]);
+                        } else {
+                            tagChildren.each(function (i, child) {
+                                $(child).addClass(clsTemplateTag[i] ? clsTemplateTag[i] : clsTemplateTag[clsTemplateTag.length - 1]);
+                            })
+                        }
+                    }
+
                     that.items.push(li);
                 });
             }
