@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 30/03/2021 12:48:24
+ * Built at 08/04/2021 15:18:38
  * Licensed under MIT
  */
 /*!
@@ -7191,7 +7191,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "30/03/2021 12:48:24",
+        compileTime: "08/04/2021 15:18:38",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8857,7 +8857,7 @@ $.noConflict = function() {
         },
 
         isObject: function(o){
-            return this.isType(o, 'object');
+            return typeof o === "object" && !Array.isArray(o);
         },
 
         isType: function(o, t){
@@ -32628,27 +32628,6 @@ $.noConflict = function() {
                                     error: error
                                 });
                             });
-
-                        // $.json(o.source).then(function (data) {
-                        //     that.activity.hide();
-                        //     if (typeof data !== "object") {
-                        //         throw new Error("Data for table is not a object");
-                        //     }
-                        //
-                        //     that._fireEvent("data-loaded", {
-                        //         source: o.source,
-                        //         data: data
-                        //     });
-                        //
-                        //     that._build(data);
-                        // }, function (xhr) {
-                        //     that.activity.hide();
-                        //
-                        //     that._fireEvent("data-load-error", {
-                        //         source: o.source,
-                        //         xhr: xhr
-                        //     });
-                        // });
                     });
                 }
             } else {
@@ -32729,22 +32708,6 @@ $.noConflict = function() {
                         that._final();
                         console.warn("Warning! Error loading view for table " + element.attr('id') + ": " + error);
                     });
-
-                // $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
-                // .then(function(view){
-                //     if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
-                //         that.view = view;
-                //         that._fireEvent("view-get", {
-                //             source: "server",
-                //             view: view
-                //         });
-                //     }
-                //     that._final();
-                // }, function(){
-                //     that._final();
-                //     console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
-                // });
-
             }
         },
 

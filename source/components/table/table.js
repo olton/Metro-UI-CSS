@@ -300,27 +300,6 @@
                                     error: error
                                 });
                             });
-
-                        // $.json(o.source).then(function (data) {
-                        //     that.activity.hide();
-                        //     if (typeof data !== "object") {
-                        //         throw new Error("Data for table is not a object");
-                        //     }
-                        //
-                        //     that._fireEvent("data-loaded", {
-                        //         source: o.source,
-                        //         data: data
-                        //     });
-                        //
-                        //     that._build(data);
-                        // }, function (xhr) {
-                        //     that.activity.hide();
-                        //
-                        //     that._fireEvent("data-load-error", {
-                        //         source: o.source,
-                        //         xhr: xhr
-                        //     });
-                        // });
                     });
                 }
             } else {
@@ -401,22 +380,6 @@
                         that._final();
                         console.warn("Warning! Error loading view for table " + element.attr('id') + ": " + error);
                     });
-
-                // $.json(viewPath, (viewPath !== o.viewSavePath ? null : {id: id}))
-                // .then(function(view){
-                //     if (Utils.isValue(view) && Utils.objectLength(view) === Utils.objectLength(that.view)) {
-                //         that.view = view;
-                //         that._fireEvent("view-get", {
-                //             source: "server",
-                //             view: view
-                //         });
-                //     }
-                //     that._final();
-                // }, function(){
-                //     that._final();
-                //     console.warn("Warning! Error loading view for table " + element.attr('id') + " ");
-                // });
-
             }
         },
 
