@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Any - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .example {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .example > * {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<h1 class="text-center">Select Example</h1>
+<div class="example">
+    <select id="select" data-role="select"></select>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $(document).ready(function() {
+
+        var json = '{"K001": "Vendor1","K002": "Vendor.2","K003": "Vendor 3 GmbH","K004": "Vendor 4 GmbH & Co. KG"}';
+
+        var select = Metro.getPlugin('#select', 'select');
+
+        console.log(JSON.parse(json))
+
+        select.data(JSON.parse(json));
+    });
+</script>
+</body>
+</html>
