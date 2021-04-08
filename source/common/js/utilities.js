@@ -68,6 +68,10 @@
         },
 
         isObject: function(o){
+            return this.isType(o, 'object');
+        },
+
+        isObject2: function(o){
             return typeof o === "object" && !Array.isArray(o);
         },
 

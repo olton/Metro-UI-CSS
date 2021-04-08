@@ -623,7 +623,7 @@
                 element.html(op);
             } else if (Utils.isObject(op)) {
                 $.each(op, function(key, val){
-                    if (Utils.isObject(val)) {
+                    if (Utils.isObject2(val)) {
                         option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
                         $.each(val, function(key2, val2){
                             var op = $("<option>").attr("value", key2).text(val2).appendTo(option_group);
