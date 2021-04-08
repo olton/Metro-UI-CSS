@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 08/04/2021 15:18:38
+ * Built at 08/04/2021 16:25:25
  * Licensed under MIT
  */
 /*!
@@ -7191,7 +7191,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "08/04/2021 15:18:38",
+        compileTime: "08/04/2021 16:25:25",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8857,6 +8857,10 @@ $.noConflict = function() {
         },
 
         isObject: function(o){
+            return this.isType(o, 'object');
+        },
+
+        isObject2: function(o){
             return typeof o === "object" && !Array.isArray(o);
         },
 
@@ -29468,7 +29472,7 @@ $.noConflict = function() {
                 element.html(op);
             } else if (Utils.isObject(op)) {
                 $.each(op, function(key, val){
-                    if (Utils.isObject(val)) {
+                    if (Utils.isObject2(val)) {
                         option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
                         $.each(val, function(key2, val2){
                             var op = $("<option>").attr("value", key2).text(val2).appendTo(option_group);
