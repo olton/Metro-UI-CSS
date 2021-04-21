@@ -33,23 +33,23 @@
                 "yes": "是",
                 "no": "否",
                 "random": "隨機",
-                "save": "保存",
-                "reset": "重啟"
+                "save": "儲存",
+                "reset": "重設"
             },
             "table": {
-                "rowsCount": "Show entries:",
-                "search": "Search:",
-                "info": "Showing $1 to $2 of $3 entries",
-                "prev": "Prev",
-                "next": "Next",
-                "all": "All",
-                "inspector": "Inspector",
-                "skip": "Goto page",
-                "empty": "Nothing to show"
+                "rowsCount": "顯示筆數",
+                "search": "搜尋",
+                "info": "顯示第 $1 至 $2 筆，共 $3 筆資料",
+                "prev": "上一頁",
+                "next": "下一頁",
+                "all": "全部",
+                "inspector": "設定表格欄位",
+                "skip": "跳轉至",
+                "empty": "目前沒有資料可以顯示"
             },
             "colorSelector": {
-                addUserColorButton: "ADD TO SWATCHES",
-                userColorsTitle: "USER COLORS"
+                addUserColorButton: "加入自訂顏色",
+                userColorsTitle: "選擇的顏色"
             }
         }
     });
