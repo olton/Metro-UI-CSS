@@ -37,15 +37,15 @@
                 "reset": "重啟"
             },
             "table": {
-                "rowsCount": "Show entries:",
-                "search": "Search:",
-                "info": "Showing $1 to $2 of $3 entries",
-                "prev": "Prev",
-                "next": "Next",
-                "all": "All",
-                "inspector": "Inspector",
-                "skip": "Goto page",
-                "empty": "Nothing to show"
+                "rowsCount": "显示结果",
+                "search": "搜索:",
+                "info": "显示第 $1 至 $2 项结果，共 $3 项",
+                "prev": "上页",
+                "next": "下页",
+                "all": "全部",
+                "inspector": "显示隐藏列",
+                "skip": "跳页",
+                "empty": "表中数据为空"
             },
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
