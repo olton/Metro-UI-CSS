@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Switch - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Switch test page</h1>
+
+    <div class="mb-10">
+        <button class="button">en-US</button>
+        <button class="button">uk-UA</button>
+        <button class="button">ru-RU</button>
+    </div>
+    <div>
+        <input type="checkbox" data-role="switch" data-on="on" data-off="off">
+        <input type="checkbox" data-role="switch" data-text-on="yes" data-text-off="no">
+        <input type="checkbox" data-role="switch" checked data-locale="uk-UA">
+        <input type="checkbox" data-role="switch" id="switch1">
+    </div>
+</div>
+
+<script>
+    window.metroSwitchSetup = {
+        showOnOff: true
+    }
+</script>
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    $("button").on("click", function(){
+        Metro.getPlugin("#switch1", "switch").i18n($(this).text())
+    })
+</script>
+</body>
+</html>

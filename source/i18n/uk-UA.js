@@ -51,6 +51,10 @@
             "colorSelector": {
                 addUserColorButton: "ДОДАТИ В ЗРАЗКИ",
                 userColorsTitle: "КОЛІРИ КОРИСТУВАЧА"
+            },
+            "switch": {
+                on: "увм",
+                off: "вім"
             }
         }
     });

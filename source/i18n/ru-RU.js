@@ -51,6 +51,10 @@
             "colorSelector": {
                 addUserColorButton: "ДОБАВИТЬ В ОБРАЗЦЫ",
                 userColorsTitle: "ЦВЕТА ПОЛЬЗОВАТЕЛЯ"
+            },
+            "switch": {
+                on: "вкл",
+                off: "выкл"
             }
         }
     });
