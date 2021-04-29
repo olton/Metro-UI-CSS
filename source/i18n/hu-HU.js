@@ -48,6 +48,10 @@
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });

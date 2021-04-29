@@ -46,6 +46,9 @@
 + [x] List: improved work with an attribute `data-cls-template-tag`. Now you can set many classes separated with comma to applying to elements with linked index
 + [x] Grid: fixed `no-gap` class, now `padding` cancels for `.grid.no-gap .row > .cell*` and `.row.no-gap > .cell*`
 + [x] Utils: fixed function `Utils.isObject()`, issue #1755
++ [x] Switch: To show on-off label you must set attribute `data-show-on-off='true'` and use attributes: `data-on`, `data-text-on`, `data-off`, `data-text-off` or `i18n` configs with attribute `data-locale`
++ [x] Switch: added `i18n` support with props `locale.switch.on`, `locale.switch.off`
++ [x] Switch: added changing on-off text in runtime with API method `i18n(locale_name)`, issue #1761
 
 ### 4.4.3
 #### M4Q

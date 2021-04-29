@@ -1,4 +1,4 @@
-/* global Metro */
+/* global Metro, METRO_LOCALE, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -11,6 +11,10 @@
         clsSwitch: "",
         clsCheck: "",
         clsCaption: "",
+        textOn: "",
+        textOff: "",
+        locale: METRO_LOCALE,
+        showOnOff: false,
         onSwitchCreate: Metro.noop
     };
 
@@ -24,7 +28,9 @@
 
     Metro.Component('switch', {
         init: function( options, elem ) {
-            this._super(elem, options, SwitchDefaultConfig);
+            this._super(elem, options, SwitchDefaultConfig, {
+                locale: null
+            });
 
             return this;
         },
@@ -50,9 +56,6 @@
             check.appendTo(container);
             caption.appendTo(container);
 
-            if (element.attr("data-on")) check.attr("data-on", element.attr("data-on"));
-            if (element.attr("data-off")) check.attr("data-off", element.attr("data-off"));
-
             if (o.transition === true) {
                 container.addClass("transition-on");
             }
@@ -73,6 +76,7 @@
                 this.enable();
             }
 
+            this.i18n(o.locale);
             this._fireEvent("switch-create");
         },
 
@@ -106,9 +110,42 @@
             return this;
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        changeLocale: function(where, val){
+            var element = this.element, o = this.options;
+            var check = element.siblings(".check");
+
+            o["text"+Cake.capitalize(where)] = val
+
+            check.attr("data-"+where, val);
+        },
+
+        i18n: function(locale){
+            var element = this.element, o = this.options;
+            var check = element.siblings(".check");
+            var on, off;
+
+            o.locale = locale;
+            this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+            if (o.showOnOff) {
+                on = element.attr("data-on") || o.textOn || this.locale.switch.on;
+                off = element.attr("data-off") || o.textOff || this.locale.switch.off;
+
+                check.attr("data-on", on);
+                check.attr("data-off", off);
+            } else {
+                check.removeAttr("data-on");
+                check.removeAttr("data-off");
+            }
+        },
+
+        changeAttribute: function(attr, newVal){
+            switch (attr) {
                 case 'disabled': this.toggleState(); break;
+                case 'data-on':
+                case 'data-text-on': this.changeLocale('on', newVal); break;
+                case 'data-off':
+                case 'data-text-off': this.changeLocale('off', newVal); break;
             }
         },
 

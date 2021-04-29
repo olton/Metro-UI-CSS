@@ -51,6 +51,10 @@
             "colorSelector": {
                 addUserColorButton: "Dodaj uzorcima",
                 userColorsTitle: "Korisničke boje"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });

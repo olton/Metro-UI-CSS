@@ -1313,27 +1313,6 @@
                             post_data: post_data
                         });
                     });
-                //
-                // $.post(viewPath, post_data)
-                //     .then(function(data){
-                //
-                //         that._fireEvent("view-save", {
-                //             target: "server",
-                //             path: o.viewSavePath,
-                //             view: view,
-                //             post_data: post_data,
-                //             response: data
-                //         });
-                //
-                //     }, function(xhr){
-                //
-                //         that._fireEvent("data-save-error", {
-                //             source: o.viewSavePath,
-                //             xhr: xhr,
-                //             post_data: post_data
-                //         });
-                //
-                //     });
             }
         },
 
@@ -1622,7 +1601,7 @@
 
                 switch (format) {
                     case "date": result = formatMask ? Datetime.from(result, formatMask, o.locale) : datetime(result); break;
-                    case "number": result = Number(result); break;
+                    case "number": result = +result; break;
                     case "int": result = parseInt(result); break;
                     case "float": result = parseFloat(result); break;
                     case "money": result = Utils.parseMoney(result); break;
@@ -1918,34 +1897,6 @@
                                 error: error
                             });
                         })
-                    // $.json(o.source).then(function(data){
-                    //     that.activity.hide();
-                    //     that.items = [];
-                    //     that.heads = [];
-                    //     that.foots = [];
-                    //
-                    //     that._fireEvent("data-loaded", {
-                    //         source: o.source,
-                    //         data: data
-                    //     });
-                    //
-                    //     if (Array.isArray(o.head)) {
-                    //         that.heads = o.head;
-                    //     }
-                    //
-                    //     if (Array.isArray(o.body)) {
-                    //         that.items = o.body;
-                    //     }
-                    //
-                    //     that._createItemsFromJSON(data);
-                    //     that._rebuild(review);
-                    // }, function(xhr){
-                    //     that.activity.hide();
-                    //     that._fireEvent("data-load-error", {
-                    //         source: o.source,
-                    //         xhr: xhr
-                    //     });
-                    // });
                 });
 
             }

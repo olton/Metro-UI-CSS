@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 08/04/2021 16:25:25
+ * Built at 29/04/2021 19:41:08
  * Licensed under MIT
  */
 /*!
@@ -7191,7 +7191,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "08/04/2021 16:25:25",
+        compileTime: "29/04/2021 19:41:08",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7955,6 +7955,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8009,6 +8013,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8066,6 +8074,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8123,6 +8135,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8180,6 +8196,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8237,6 +8257,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "Dodaj uzorcima",
                 userColorsTitle: "Korisničke boje"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8292,6 +8316,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8349,6 +8377,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8406,6 +8438,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8463,6 +8499,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ДОБАВИТЬ В ОБРАЗЦЫ",
                 userColorsTitle: "ЦВЕТА ПОЛЬЗОВАТЕЛЯ"
+            },
+            "switch": {
+                on: "вкл",
+                off: "выкл"
             }
         }
     });
@@ -8520,6 +8560,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8577,6 +8621,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ДОДАТИ В ЗРАЗКИ",
                 userColorsTitle: "КОЛІРИ КОРИСТУВАЧА"
+            },
+            "switch": {
+                on: "увм",
+                off: "вім"
             }
         }
     });
@@ -8634,6 +8682,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -8691,6 +8743,10 @@ $.noConflict = function() {
             "colorSelector": {
                 addUserColorButton: "ADD TO SWATCHES",
                 userColorsTitle: "USER COLORS"
+            },
+            "switch": {
+                on: "on",
+                off: "off"
             }
         }
     });
@@ -32224,6 +32280,10 @@ $.noConflict = function() {
         clsSwitch: "",
         clsCheck: "",
         clsCaption: "",
+        textOn: "",
+        textOff: "",
+        locale: METRO_LOCALE,
+        showOnOff: false,
         onSwitchCreate: Metro.noop
     };
 
@@ -32237,7 +32297,9 @@ $.noConflict = function() {
 
     Metro.Component('switch', {
         init: function( options, elem ) {
-            this._super(elem, options, SwitchDefaultConfig);
+            this._super(elem, options, SwitchDefaultConfig, {
+                locale: null
+            });
 
             return this;
         },
@@ -32263,9 +32325,6 @@ $.noConflict = function() {
             check.appendTo(container);
             caption.appendTo(container);
 
-            if (element.attr("data-on")) check.attr("data-on", element.attr("data-on"));
-            if (element.attr("data-off")) check.attr("data-off", element.attr("data-off"));
-
             if (o.transition === true) {
                 container.addClass("transition-on");
             }
@@ -32286,6 +32345,7 @@ $.noConflict = function() {
                 this.enable();
             }
 
+            this.i18n(o.locale);
             this._fireEvent("switch-create");
         },
 
@@ -32319,9 +32379,42 @@ $.noConflict = function() {
             return this;
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        changeLocale: function(where, val){
+            var element = this.element, o = this.options;
+            var check = element.siblings(".check");
+
+            o["text"+Cake.capitalize(where)] = val
+
+            check.attr("data-"+where, val);
+        },
+
+        i18n: function(locale){
+            var element = this.element, o = this.options;
+            var check = element.siblings(".check");
+            var on, off;
+
+            o.locale = locale;
+            this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
+
+            if (o.showOnOff) {
+                on = element.attr("data-on") || o.textOn || this.locale.switch.on;
+                off = element.attr("data-off") || o.textOff || this.locale.switch.off;
+
+                check.attr("data-on", on);
+                check.attr("data-off", off);
+            } else {
+                check.removeAttr("data-on");
+                check.removeAttr("data-off");
+            }
+        },
+
+        changeAttribute: function(attr, newVal){
+            switch (attr) {
                 case 'disabled': this.toggleState(); break;
+                case 'data-on':
+                case 'data-text-on': this.changeLocale('on', newVal); break;
+                case 'data-off':
+                case 'data-text-off': this.changeLocale('off', newVal); break;
             }
         },
 
@@ -33645,27 +33738,6 @@ $.noConflict = function() {
                             post_data: post_data
                         });
                     });
-                //
-                // $.post(viewPath, post_data)
-                //     .then(function(data){
-                //
-                //         that._fireEvent("view-save", {
-                //             target: "server",
-                //             path: o.viewSavePath,
-                //             view: view,
-                //             post_data: post_data,
-                //             response: data
-                //         });
-                //
-                //     }, function(xhr){
-                //
-                //         that._fireEvent("data-save-error", {
-                //             source: o.viewSavePath,
-                //             xhr: xhr,
-                //             post_data: post_data
-                //         });
-                //
-                //     });
             }
         },
 
@@ -33954,7 +34026,7 @@ $.noConflict = function() {
 
                 switch (format) {
                     case "date": result = formatMask ? Datetime.from(result, formatMask, o.locale) : datetime(result); break;
-                    case "number": result = Number(result); break;
+                    case "number": result = +result; break;
                     case "int": result = parseInt(result); break;
                     case "float": result = parseFloat(result); break;
                     case "money": result = Utils.parseMoney(result); break;
@@ -34250,34 +34322,6 @@ $.noConflict = function() {
                                 error: error
                             });
                         })
-                    // $.json(o.source).then(function(data){
-                    //     that.activity.hide();
-                    //     that.items = [];
-                    //     that.heads = [];
-                    //     that.foots = [];
-                    //
-                    //     that._fireEvent("data-loaded", {
-                    //         source: o.source,
-                    //         data: data
-                    //     });
-                    //
-                    //     if (Array.isArray(o.head)) {
-                    //         that.heads = o.head;
-                    //     }
-                    //
-                    //     if (Array.isArray(o.body)) {
-                    //         that.items = o.body;
-                    //     }
-                    //
-                    //     that._createItemsFromJSON(data);
-                    //     that._rebuild(review);
-                    // }, function(xhr){
-                    //     that.activity.hide();
-                    //     that._fireEvent("data-load-error", {
-                    //         source: o.source,
-                    //         xhr: xhr
-                    //     });
-                    // });
                 });
 
             }
