@@ -15,7 +15,7 @@
 // Source: src/func.js
 
 /* global dataSet */
-/* exported isTouch, isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
+/* exported isDark, isTouch, isSimple, isHidden, isPlainObject, isEmptyObject, isArrayLike, str2arr, parseUnit, getUnit, setStyleProp, acceptData, dataAttr, normName, strip, dashedName, isLocalhost */
 
 var numProps = ['opacity', 'zIndex', "order", "zoom"];
 
@@ -157,6 +157,11 @@ function isTouch() {
     return (('ontouchstart' in window)
         || (navigator.maxTouchPoints > 0)
         || (navigator.msMaxTouchPoints > 0));
+}
+
+function isDark(){
+    var prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)")
+    return prefersDarkScheme.matches
 }
 
 // Source: src/setimmediate.js
@@ -301,7 +306,7 @@ function isTouch() {
 
 /* global hasProp */
 
-var m4qVersion = "v1.1.0. Built at 27/03/2021 21:47:36";
+var m4qVersion = "v1.1.0. Built at 05/05/2021 22:47:56";
 
 /* eslint-disable-next-line */
 var matches = Element.prototype.matches
@@ -1239,7 +1244,7 @@ $.fn.extend({
 
 // Source: src/utils.js
 
-/* global $, not, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost, isTouch */
+/* global $, not, isDark, camelCase, dashedName, isPlainObject, isEmptyObject, isArrayLike, acceptData, parseUnit, getUnit, isVisible, isHidden, matches, strip, normName, hasProp, isLocalhost, isTouch */
 
 $.extend({
 
@@ -1247,6 +1252,7 @@ $.extend({
     localhost: isLocalhost(),
     isLocalhost: isLocalhost,
     touchable: isTouch(),
+    dark: isDark(),
 
     uniqueId: function (prefix) {
         var d = new Date().getTime();

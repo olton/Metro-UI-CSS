@@ -49,6 +49,7 @@
 + [x] Switch: To show on-off label you must set attribute `data-show-on-off='true'` and use attributes: `data-on`, `data-text-on`, `data-off`, `data-text-off` or `i18n` configs with attribute `data-locale`
 + [x] Switch: added `i18n` support with props `locale.switch.on`, `locale.switch.off`
 + [x] Switch: added changing on-off text in runtime with API method `i18n(locale_name)`, issue #1761
++ [x] M4Q: added property `$.dark`
 
 ### 4.4.3
 #### M4Q
