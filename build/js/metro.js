@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 05/05/2021 22:49:23
+ * Built at 06/05/2021 13:18:11
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "05/05/2021 22:49:23",
+        compileTime: "06/05/2021 13:18:11",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9571,6 +9571,13 @@ $.noConflict = function() {
         activeFrameClass: "",
         activeHeadingClass: "",
         activeContentClass: "",
+        clsFrame: "",
+        clsHeading: "",
+        clsContent: "",
+        clsAccordion: "",
+        clsActiveFrame: "",
+        clsActiveFrameHeading: "",
+        clsActiveFrameContent: "",
         onFrameOpen: Metro.noop,
         onFrameBeforeOpen: Metro.noop_true,
         onFrameClose: Metro.noop,
@@ -9609,7 +9616,19 @@ $.noConflict = function() {
             var active = element.children(".frame.active");
             var frame_to_open;
 
-            element.addClass("accordion");
+            element
+                .addClass("accordion")
+                .addClass(o.clsAccordion)
+            ;
+
+            frames
+                .addClass(o.clsFrame)
+                .each(function(){
+                    var $el = $(this);
+                    $el.children(".heading").addClass(o.clsHeading);
+                    $el.children(".content").addClass(o.clsContent);
+                })
+            ;
 
             if (o.showMarker === true) {
                 element.addClass("marker-on");
@@ -9675,9 +9694,9 @@ $.noConflict = function() {
                 this._closeAll(frame[0]);
             }
 
-            frame.addClass("active " + o.activeFrameClass);
-            frame.children(".heading").addClass(o.activeHeadingClass);
-            frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
+            frame.addClass("active " + o.activeFrameClass).addClass(o.clsActiveFrame);
+            frame.children(".heading").addClass(o.activeHeadingClass).addClass(o.clsActiveFrameHeading);
+            frame.children(".content").addClass(o.activeContentClass).addClass(o.clsActiveFrameContent).slideDown(o.duration);
 
             this._fireEvent("frameOpen", {
                 frame: frame[0]
@@ -9696,9 +9715,9 @@ $.noConflict = function() {
                 return ;
             }
 
-            frame.removeClass("active " + o.activeFrameClass);
-            frame.children(".heading").removeClass(o.activeHeadingClass);
-            frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
+            frame.removeClass("active " + o.activeFrameClass).removeClass(o.clsActiveFrame);
+            frame.children(".heading").removeClass(o.activeHeadingClass).removeClass(o.clsActiveFrameHeading);
+            frame.children(".content").removeClass(o.activeContentClass).removeClass(o.clsActiveFrameContent).slideUp(o.duration);
 
             this._fireEvent("frameClose", {
                 frame: frame[0]
@@ -9733,8 +9752,13 @@ $.noConflict = function() {
             });
         },
 
+        open: function(i){
+            var frame = this.element.children(".frame").eq(i);
+            this._openFrame(frame);
+        },
+
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attr, newVal){
         },
 
         destroy: function(){
