@@ -12,6 +12,13 @@
         activeFrameClass: "",
         activeHeadingClass: "",
         activeContentClass: "",
+        clsFrame: "",
+        clsHeading: "",
+        clsContent: "",
+        clsAccordion: "",
+        clsActiveFrame: "",
+        clsActiveFrameHeading: "",
+        clsActiveFrameContent: "",
         onFrameOpen: Metro.noop,
         onFrameBeforeOpen: Metro.noop_true,
         onFrameClose: Metro.noop,
@@ -50,7 +57,19 @@
             var active = element.children(".frame.active");
             var frame_to_open;
 
-            element.addClass("accordion");
+            element
+                .addClass("accordion")
+                .addClass(o.clsAccordion)
+            ;
+
+            frames
+                .addClass(o.clsFrame)
+                .each(function(){
+                    var $el = $(this);
+                    $el.children(".heading").addClass(o.clsHeading);
+                    $el.children(".content").addClass(o.clsContent);
+                })
+            ;
 
             if (o.showMarker === true) {
                 element.addClass("marker-on");
@@ -116,9 +135,9 @@
                 this._closeAll(frame[0]);
             }
 
-            frame.addClass("active " + o.activeFrameClass);
-            frame.children(".heading").addClass(o.activeHeadingClass);
-            frame.children(".content").addClass(o.activeContentClass).slideDown(o.duration);
+            frame.addClass("active " + o.activeFrameClass).addClass(o.clsActiveFrame);
+            frame.children(".heading").addClass(o.activeHeadingClass).addClass(o.clsActiveFrameHeading);
+            frame.children(".content").addClass(o.activeContentClass).addClass(o.clsActiveFrameContent).slideDown(o.duration);
 
             this._fireEvent("frameOpen", {
                 frame: frame[0]
@@ -137,9 +156,9 @@
                 return ;
             }
 
-            frame.removeClass("active " + o.activeFrameClass);
-            frame.children(".heading").removeClass(o.activeHeadingClass);
-            frame.children(".content").removeClass(o.activeContentClass).slideUp(o.duration);
+            frame.removeClass("active " + o.activeFrameClass).removeClass(o.clsActiveFrame);
+            frame.children(".heading").removeClass(o.activeHeadingClass).removeClass(o.clsActiveFrameHeading);
+            frame.children(".content").removeClass(o.activeContentClass).removeClass(o.clsActiveFrameContent).slideUp(o.duration);
 
             this._fireEvent("frameClose", {
                 frame: frame[0]
@@ -174,8 +193,13 @@
             });
         },
 
+        open: function(i){
+            var frame = this.element.children(".frame").eq(i);
+            this._openFrame(frame);
+        },
+
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
+        changeAttribute: function(attr, newVal){
         },
 
         destroy: function(){
