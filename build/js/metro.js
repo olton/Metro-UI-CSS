@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 06/05/2021 13:18:11
+ * Built at 17/05/2021 11:49:08
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "06/05/2021 13:18:11",
+        compileTime: "17/05/2021 11:49:08",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -32459,6 +32459,7 @@ $.noConflict = function() {
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
+        selectCurrentSlice: false,
         showInspectorButton: false,
         inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
@@ -32638,6 +32639,7 @@ $.noConflict = function() {
                 items: [],
                 foots: [],
                 filteredItems: [],
+                currentSlice: [],
                 index: {}
             });
 
@@ -33504,9 +33506,10 @@ $.noConflict = function() {
                 var store_key = o.checkStoreKey.replace("$1", id);
                 var data = [];
                 var storage = Metro.storage;
+                var items = o.selectCurrentSlice === true ? that.currentSlice : that.filteredItems;
 
                 if (status) {
-                    $.each(that.filteredItems, function(){
+                    $.each(items, function(){
                         if (data.indexOf(this[o.checkColIndex]) !== -1) return ;
                         data.push(""+this[o.checkColIndex]);
                     });
@@ -33514,7 +33517,7 @@ $.noConflict = function() {
                     data = [];
                 }
 
-                storage.setItem(store_key, data);
+                
 
                 that._draw();
 
@@ -33885,7 +33888,7 @@ $.noConflict = function() {
             var i, j, tr, td, check, cells, tds, is_even_row;
             var start = parseInt(o.rows) === -1 ? 0 : o.rows * (this.currentPage - 1),
                 stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
-            var items;
+            var items, checkedItems = [];
             var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr('id')));
 
             var view = o.staticView ? this.viewDefault : this.view;
@@ -33898,6 +33901,9 @@ $.noConflict = function() {
             }
 
             items = this._filter();
+
+            this.currentSlice = items.slice(start, stop + 1);
+            checkedItems = [];
 
             if (items.length > 0) {
                 for (i = start; i <= stop; i++) {
@@ -33927,6 +33933,7 @@ $.noConflict = function() {
 
                     if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
                         check.prop("checked", true);
+                        checkedItems.push(cells)
                     }
 
                     check.addClass("table-service-check");
@@ -33940,6 +33947,7 @@ $.noConflict = function() {
                         td.addClass(that.service[1].clsColumn);
                     }
                     td.appendTo(tr);
+                    // End of check
 
                     for (j = 0; j < cells.length; j++){
                         tds[j] = null;
@@ -34010,6 +34018,7 @@ $.noConflict = function() {
                     });
                 }
 
+                $(this.component).find(".table-service-check-all input").prop("checked", checkedItems.length);
             } else {
                 j = 0;
                 $.each(view, function(){

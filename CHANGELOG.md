@@ -51,7 +51,8 @@
 + [x] Switch: added changing on-off text in runtime with API method `i18n(locale_name)`, issue #1761
 + [x] M4Q: added property `$.dark`
 + [x] Accordion: added API method `open(index)`
-+ [x] Accordion: added attributes `data-cls-accordion`, `data-cls-frame`, `data-cls-heading`, `data-cls-content`, `data-cls-active-frame`, `data-cls-active-frame-heading`, `data-cls-active-frame-content` 
++ [x] Accordion: added attributes `data-cls-accordion`, `data-cls-frame`, `data-cls-heading`, `data-cls-content`, `data-cls-active-frame`, `data-cls-active-frame-heading`, `data-cls-active-frame-content`
++ [x] Table: added attribute `data-use-current-slice`. If this attribute has a value **true**, click on select-all checkbox will only apply to the current (visible) data slice, issue #1778 
 
 ### 4.4.3
 #### M4Q
