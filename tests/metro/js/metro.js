@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 17/05/2021 11:49:08
+ * Built at 17/05/2021 12:24:52
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "17/05/2021 11:49:08",
+        compileTime: "17/05/2021 12:24:52",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -9164,7 +9164,8 @@ $.noConflict = function() {
         },
 
         arrayDelete: function(arr, val){
-            if (arr.indexOf(val) > -1) arr.splice(arr.indexOf(val), 1);
+            var i = arr.indexOf(val);
+            if (i > -1) arr.splice(i, 1);
         },
 
         arrayDeleteByKey: function(arr, key){
@@ -32459,7 +32460,7 @@ $.noConflict = function() {
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
-        selectCurrentSlice: false,
+        useCurrentSlice: false,
         showInspectorButton: false,
         inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
@@ -33502,28 +33503,47 @@ $.noConflict = function() {
             });
 
             element.on(Metro.events.click, ".table-service-check-all input", function(){
-                var status = $(this).is(":checked");
+                var checked = $(this).is(":checked");
                 var store_key = o.checkStoreKey.replace("$1", id);
-                var data = [];
                 var storage = Metro.storage;
-                var items = o.selectCurrentSlice === true ? that.currentSlice : that.filteredItems;
+                var data, stored_keys;
 
-                if (status) {
-                    $.each(items, function(){
-                        if (data.indexOf(this[o.checkColIndex]) !== -1) return ;
-                        data.push(""+this[o.checkColIndex]);
-                    });
+                if (o.useCurrentSlice === true) {
+                    stored_keys = storage.getItem(store_key, []);
+
+                    if (checked) {
+                        $.each(that.currentSlice, function(){
+                            if (stored_keys.indexOf(""+this[o.checkColIndex]) === -1) {
+                                stored_keys.push(""+this[o.checkColIndex])
+                            }
+                        });
+                    } else {
+                        $.each(that.currentSlice, function(){
+                            var key = ""+this[o.checkColIndex];
+                            if (stored_keys.indexOf(key) !== -1) {
+                                Metro.utils.arrayDelete(stored_keys, key)
+                            }
+                        });
+                    }
+                    data = stored_keys
                 } else {
-                    data = [];
+                    if (checked) {
+                        $.each(that.filteredItems, function () {
+                            if (data.indexOf(this[o.checkColIndex]) !== -1) return;
+                            data.push("" + this[o.checkColIndex]);
+                        });
+                    } else {
+                        data = [];
+                    }
                 }
 
-                
+                storage.setItem(store_key, data);
 
                 that._draw();
 
                 that._fireEvent("check-click-all", {
                     check: this,
-                    status: status,
+                    status: checked,
                     data: data
                 });
             });

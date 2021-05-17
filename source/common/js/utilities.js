@@ -313,7 +313,8 @@
         },
 
         arrayDelete: function(arr, val){
-            if (arr.indexOf(val) > -1) arr.splice(arr.indexOf(val), 1);
+            var i = arr.indexOf(val);
+            if (i > -1) arr.splice(i, 1);
         },
 
         arrayDeleteByKey: function(arr, key){
