@@ -4,7 +4,7 @@
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
-        selectCurrentSlice: false,
+        useCurrentSlice: false,
         showInspectorButton: false,
         inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
@@ -1047,22 +1047,39 @@
             });
 
             element.on(Metro.events.click, ".table-service-check-all input", function(){
-                var status = $(this).is(":checked");
+                var checked = $(this).is(":checked");
                 var store_key = o.checkStoreKey.replace("$1", id);
-                var data = [];
                 var storage = Metro.storage;
-                var items = o.selectCurrentSlice === true ? that.currentSlice : that.filteredItems;
+                var data, stored_keys;
 
-                if (status) {
-                    $.each(items, function(){
-                        if (data.indexOf(this[o.checkColIndex]) !== -1) return ;
-                        data.push(""+this[o.checkColIndex]);
-                    });
+                if (o.useCurrentSlice === true) {
+                    stored_keys = storage.getItem(store_key, []);
+
+                    if (checked) {
+                        $.each(that.currentSlice, function(){
+                            if (stored_keys.indexOf(""+this[o.checkColIndex]) === -1) {
+                                stored_keys.push(""+this[o.checkColIndex])
+                            }
+                        });
+                    } else {
+                        $.each(that.currentSlice, function(){
+                            var key = ""+this[o.checkColIndex];
+                            if (stored_keys.indexOf(key) !== -1) {
+                                Metro.utils.arrayDelete(stored_keys, key)
+                            }
+                        });
+                    }
+                    data = stored_keys
                 } else {
-                    data = [];
+                    if (checked) {
+                        $.each(that.filteredItems, function () {
+                            if (data.indexOf(this[o.checkColIndex]) !== -1) return;
+                            data.push("" + this[o.checkColIndex]);
+                        });
+                    } else {
+                        data = [];
+                    }
                 }
-
-                console.log(data)
 
                 storage.setItem(store_key, data);
 
@@ -1070,7 +1087,7 @@
 
                 that._fireEvent("check-click-all", {
                     check: this,
-                    status: status,
+                    status: checked,
                     data: data
                 });
             });
