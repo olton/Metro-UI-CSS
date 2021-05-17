@@ -4,6 +4,7 @@
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
+        selectCurrentSlice: false,
         showInspectorButton: false,
         inspectorButtonIcon: "<span class='default-icon-equalizer'>",
         tableDeferred: 0,
@@ -183,6 +184,7 @@
                 items: [],
                 foots: [],
                 filteredItems: [],
+                currentSlice: [],
                 index: {}
             });
 
@@ -1049,15 +1051,18 @@
                 var store_key = o.checkStoreKey.replace("$1", id);
                 var data = [];
                 var storage = Metro.storage;
+                var items = o.selectCurrentSlice === true ? that.currentSlice : that.filteredItems;
 
                 if (status) {
-                    $.each(that.filteredItems, function(){
+                    $.each(items, function(){
                         if (data.indexOf(this[o.checkColIndex]) !== -1) return ;
                         data.push(""+this[o.checkColIndex]);
                     });
                 } else {
                     data = [];
                 }
+
+                console.log(data)
 
                 storage.setItem(store_key, data);
 
@@ -1430,7 +1435,7 @@
             var i, j, tr, td, check, cells, tds, is_even_row;
             var start = parseInt(o.rows) === -1 ? 0 : o.rows * (this.currentPage - 1),
                 stop = parseInt(o.rows) === -1 ? this.items.length - 1 : start + o.rows - 1;
-            var items;
+            var items, checkedItems = [];
             var stored_keys = Metro.storage.getItem(o.checkStoreKey.replace("$1", element.attr('id')));
 
             var view = o.staticView ? this.viewDefault : this.view;
@@ -1443,6 +1448,9 @@
             }
 
             items = this._filter();
+
+            this.currentSlice = items.slice(start, stop + 1);
+            checkedItems = [];
 
             if (items.length > 0) {
                 for (i = start; i <= stop; i++) {
@@ -1472,6 +1480,7 @@
 
                     if (Utils.isValue(stored_keys) && Array.isArray(stored_keys) && stored_keys.indexOf(""+items[i][o.checkColIndex]) > -1) {
                         check.prop("checked", true);
+                        checkedItems.push(cells)
                     }
 
                     check.addClass("table-service-check");
@@ -1485,6 +1494,7 @@
                         td.addClass(that.service[1].clsColumn);
                     }
                     td.appendTo(tr);
+                    // End of check
 
                     for (j = 0; j < cells.length; j++){
                         tds[j] = null;
@@ -1555,6 +1565,7 @@
                     });
                 }
 
+                $(this.component).find(".table-service-check-all input").prop("checked", checkedItems.length);
             } else {
                 j = 0;
                 $.each(view, function(){
