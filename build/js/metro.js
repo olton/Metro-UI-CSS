@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 17/05/2021 12:24:52
+ * Built at 05/06/2021 11:18:47
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "17/05/2021 12:24:52",
+        compileTime: "05/06/2021 11:18:47",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29630,6 +29630,7 @@ $.noConflict = function() {
         duration: METRO_ANIMATION_DURATION,
         static: null,
         menuItemClick: true,
+        closeOutside: true,
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onToggle: Metro.noop,
@@ -29755,6 +29756,12 @@ $.noConflict = function() {
             element.on(Metro.events.click, function(e){
                 e.stopPropagation();
             });
+
+            $(document).on(Metro.events.click, function(){
+                if (o.closeOutside === true) {
+                    if (that.isOpen()) that.close()
+                }
+            })
         },
 
         _checkStatic: function(){

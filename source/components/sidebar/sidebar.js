@@ -14,6 +14,7 @@
         duration: METRO_ANIMATION_DURATION,
         static: null,
         menuItemClick: true,
+        closeOutside: true,
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onToggle: Metro.noop,
@@ -139,6 +140,12 @@
             element.on(Metro.events.click, function(e){
                 e.stopPropagation();
             });
+
+            $(document).on(Metro.events.click, function(){
+                if (o.closeOutside === true) {
+                    if (that.isOpen()) that.close()
+                }
+            })
         },
 
         _checkStatic: function(){
