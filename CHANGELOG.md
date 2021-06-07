@@ -54,6 +54,7 @@
 + [x] Accordion: added attributes `data-cls-accordion`, `data-cls-frame`, `data-cls-heading`, `data-cls-content`, `data-cls-active-frame`, `data-cls-active-frame-heading`, `data-cls-active-frame-content`
 + [x] Table: added attribute `data-use-current-slice`. If this attribute has a value **true**, click on select-all checkbox will only apply to the current (visible) data slice, issue #1778
 + [x] Sidebar: added attribute `data-close-outside="true|false"` to close sidebar by a click outside the sidebar, issue #1777
++ [x] Marquee: added method `setItems([...])`
 
 ### 4.4.3
 #### M4Q
