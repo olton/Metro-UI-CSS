@@ -1,4 +1,4 @@
-/* global jQuery, Promise, cake, Cake, Datetime, datetime */
+/* global jQuery, Promise */
 /* Metro 4 Core */
 (function() {
     'use strict';
@@ -620,7 +620,7 @@
                 _fireEvent: function(eventName, data, log, noFire){
                     var element = this.element, o = this.options;
                     var _data;
-                    var event = ""+cake(eventName).camelCase().capitalize();
+                    var event = $.camelCase(eventName).capitalize();
 
                     data = $.extend({}, data, {__this: element[0]});
 
@@ -716,11 +716,6 @@
             }
         });
     });
-
-    Metro.Cake = Cake;
-    Metro.cake = cake;
-    Metro.Datetime = Datetime;
-    Metro.datetime = datetime;
 
     window.Metro = Metro;
 

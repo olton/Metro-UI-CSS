@@ -56,8 +56,6 @@
 
         _createStructure: function(){
             var element = this.element, o = this.options;
-            var dir = o.direction.toLowerCase(), items, Utils = Metro.utils;
-            var h;
 
             element.addClass("marquee").addClass(o.clsMarquee);
 
@@ -71,18 +69,32 @@
                 borderColor: Metro.colors.isColor(o.borderColor) ? o.borderColor : MarqueeDefaultConfig.borderColor
             });
 
-            if (o.items) {
-                items = Utils.isObject(o.items);
-                if (items !== false) {
-                    $.each(items, function(){
-                        var el = $(this);
+            this.setItems(o.items);
 
-                        if (el.length)
-                            el.appendTo(element);
-                        else
-                            element.append( $("<div>").html(this) );
-                    })
-                }
+            if (this.items.length) {
+                this.current = 0;
+            }
+
+            if (this.items.length) this.start();
+        },
+
+        setItems: function(items){
+            var element = this.element, o = this.options;
+            var dir = o.direction.toLowerCase(), h;
+
+            if (!Array.isArray(items)) items = []
+
+            element.clear()
+
+            if (items !== false) {
+                $.each(items, function(){
+                    var el = $(this);
+
+                    if (el.length)
+                        el.appendTo(element);
+                    else
+                        element.append( $("<div>").html(this) );
+                })
             }
 
             this.items = element.children("*").addClass("marquee__item").addClass(o.clsMarqueeItem).items();
@@ -102,12 +114,6 @@
                 });
                 element.height(h);
             }
-
-            if (this.items.length) {
-                this.current = 0;
-            }
-
-            if (this.items.length) this.start();
         },
 
         _createEvents: function(){

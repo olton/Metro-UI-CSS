@@ -28,4 +28,9 @@
             return result;
         });
     };
+
+    String.prototype.capitalize = function(){
+        var str = this;
+        return str.substr(0, 1).toUpperCase() + str.substr(1)
+    }
 }());
