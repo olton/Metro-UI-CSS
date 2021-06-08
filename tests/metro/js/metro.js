@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 07/06/2021 16:09:35
+ * Built at 08/06/2021 12:46:30
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "07/06/2021 16:09:35",
+        compileTime: "08/06/2021 12:46:30",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -25915,13 +25915,15 @@ $.noConflict = function() {
             if (this.items.length) this.start();
         },
 
-        setItems: function(items){
+        setItems: function(items, replace){
             var element = this.element, o = this.options;
             var dir = o.direction.toLowerCase(), h;
 
-            if (!Array.isArray(items)) items = []
+            items = Metro.utils.isObject(items);
 
-            element.clear()
+            if (items && replace) {
+                element.clear();
+            }
 
             if (items !== false) {
                 $.each(items, function(){
@@ -25951,6 +25953,48 @@ $.noConflict = function() {
                 });
                 element.height(h);
             }
+            return this
+        },
+
+
+        setItem: function(index, value){
+            var target = $(this.items[index]), h, o = this.options, element = this.element;
+
+            if (!target.length) {
+                return;
+            }
+
+            target.html(value)
+
+            if (o.height === "auto") {
+                h = 0;
+                $(this.items).each(function(){
+                    if ( +$(this).outerHeight(true) > h) {
+                        h = +$(this).outerHeight(true);
+                    }
+                });
+                element.height(h);
+            }
+            return this
+        },
+
+        addItem: function(item, index){
+            var element = this.element;
+            var ins, $item = $(item), trg;
+
+            ins = $item.length ? $item : $("<div>").html(item);
+
+            if (Metro.utils.isNull(index)) {
+                element.append(ins);
+            } else {
+                trg = this.items[index]
+                if (trg) {
+                    ins.insertBefore(trg);
+                } else {
+                    element.append(ins);
+                }
+            }
+            return this
         },
 
         _createEvents: function(){
@@ -26066,11 +26110,13 @@ $.noConflict = function() {
                 onChainItemComplete: Metro.utils.isFunc(o.onMarqueeItemComplete),
                 onChainComplete: Metro.utils.isFunc(o.onMarqueeComplete)
             });
+            return this
         },
 
         stop: function(){
             this.running = false;
             $.stopAll(this.items);
+            return this
         },
 
         changeAttribute: function(){
