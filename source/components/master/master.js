@@ -251,9 +251,8 @@
                 this._enableControl("prev", true);
             }
 
-            this.isAnimate = true;
-
             setTimeout(function(){
+                that.isAnimate = true;
                 pages.animate({
                     draw: {
                         height: next.outerHeight(true) + 2
