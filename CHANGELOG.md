@@ -1,4 +1,5 @@
 ### 4.5.0
++ [x] Select: fixed clear button work, issue #1716
 + [x] Master: fixed for quick switching panes, issue #1787
 + [x] Important: IE is dead and no more supported!
 + [x] M4Q: version updated to 1.1.0
