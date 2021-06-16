@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Table - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Table test page</h1>
+    <div data-role="master">
+        <div class="page">
+            <div class="example">
+                <table id="table1" class="table striped"
+                       data-role="table"
+                       data-rows="10"
+                       data-rows-steps="5, 10, 20"
+                       data-show-activity="false"
+                       data-source="../data/table.json"
+                       data-show-skip="true"
+                       data-pagination-wrapper="#pagination"
+                       data-skip-wrapper="#skip"
+                       data-check="true"
+                       data-check-style="2"
+                       data-use-current-slice="true"
+                       data-locale="uk-UA"
+                       data-show-inspector-button="true"
+                       data-horizontal-scroll="true"
+                       data-horizontal-scroll-stop="xxl"
+                       data-cell-wrapper="true"
+                >
+                    <thead id="head1"></thead>
+                    <tbody id="body1"></tbody>
+                </table>
+                <div class="row">
+                    <div class="cell-md-8">
+                        <div id="pagination"></div>
+                    </div>
+                    <div class="cell-md-4">
+                        <div id="skip" class="d-flex"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <button class="button" onclick="getStoredKeys()">Get stored keys</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="page">2</div>
+    </div>
+
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function getStoredKeys(){
+        var keys = Metro.getPlugin("table", "table").getStoredKeys();
+        alert(keys.join("\n"));
+    }
+
+    // $(function () {
+    //     $(".table").on("click", "tbody td", function(){
+    //         alert(this.innerText)
+    //     })
+    // })
+</script>
+</body>
+</html>
