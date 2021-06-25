@@ -648,7 +648,7 @@
 
         addOption: function(val, title, selected){
             var element = this.element;
-            var option = $("<option>").attr("value", val).text(title)
+            var option = $("<option>").attr("value", val).text(title ? title : val)
 
             element.append(option)
 
@@ -664,18 +664,22 @@
         addOptions: function(values){
             var that = this;
 
-            if (!values || !Metro.utils.isObject(values) || !Array.isArray(values)) {
+            if (!values) {
                 return this;
             }
 
-            if (!Array.isArray(values)) {
-                $.each(values, function(key, val){
-                    this.addOption(key, val);
-                })
-            } else {
+            if (Array.isArray(values)) {
                 $.each(values, function(){
                     var o = this;
-                    that.addOption(o.val, o.title, o.selected)
+                    if (Metro.utils.isObject2(o)) {
+                        that.addOption(o.val, o.title, o.selected)
+                    } else {
+                        that.addOption(o)
+                    }
+                })
+            } else if (Metro.utils.isObject2(values)) {
+                $.each(values, function(key, val){
+                    that.addOption(key, val);
                 })
             }
 
