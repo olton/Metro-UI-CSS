@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 16/06/2021 14:12:35
+ * Built at 25/06/2021 11:36:27
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "16/06/2021 14:12:35",
+        compileTime: "25/06/2021 11:36:27",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29629,6 +29629,40 @@ $.noConflict = function() {
             }
 
             this._createOptions();
+
+            return this;
+        },
+
+        addOption: function(val, title, selected){
+            var element = this.element;
+            var option = $("<option>").attr("value", val).text(title)
+
+            element.append(option)
+
+            if (selected) {
+                option.prop("selected", true)
+            }
+
+            this._createOptions();
+
+            return this;
+        },
+
+        removeOption: function(val){
+            var element = this.element;
+            var options = element.find("option")
+
+            options.each(function(){
+                var $el = $(this)
+
+                if ($el.attr("value") == val) {
+                    $el.remove()
+                }
+            })
+
+            this._createOptions();
+
+            return this;
         },
 
         changeAttribute: function(attributeName){

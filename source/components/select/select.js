@@ -642,6 +642,40 @@
             }
 
             this._createOptions();
+
+            return this;
+        },
+
+        addOption: function(val, title, selected){
+            var element = this.element;
+            var option = $("<option>").attr("value", val).text(title)
+
+            element.append(option)
+
+            if (selected) {
+                option.prop("selected", true)
+            }
+
+            this._createOptions();
+
+            return this;
+        },
+
+        removeOption: function(val){
+            var element = this.element;
+            var options = element.find("option")
+
+            options.each(function(){
+                var $el = $(this)
+
+                if ($el.attr("value") == val) {
+                    $el.remove()
+                }
+            })
+
+            this._createOptions();
+
+            return this;
         },
 
         changeAttribute: function(attributeName){
