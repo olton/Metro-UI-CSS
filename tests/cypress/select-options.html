@@ -23,6 +23,7 @@
 <div class="text-center">
     <button class="button" onclick="addOption()">Add option</button>
     <button class="button" onclick="addOption(5)">Add option</button>
+    <button class="button" onclick="addOptions()">Add options</button>
     <button class="button" onclick="removeOption(5)">Del option</button>
 </div>
 <div class="example">
@@ -47,6 +48,31 @@
         var select = Metro.getPlugin('#select', 'select');
 
         select.addOption(val, val)
+    }
+
+    function addOptions(){
+        var val = [1, 2, 3, 4, 5];
+        var val2 = {
+            11: 11,
+            12: 12
+        };
+        var val3 = [
+            {
+                val: 100,
+                title: 100,
+                selected: false
+            },
+            {
+                val: 200,
+                title: 200,
+                selected: true
+            }
+        ];
+        var select = Metro.getPlugin('#select', 'select');
+
+        select.addOptions(val)
+        select.addOptions(val2)
+        select.addOptions(val3)
     }
 
     function removeOption(v){

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 25/06/2021 11:49:47
+ * Built at 25/06/2021 12:04:20
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "25/06/2021 11:49:47",
+        compileTime: "25/06/2021 12:04:20",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29635,7 +29635,7 @@ $.noConflict = function() {
 
         addOption: function(val, title, selected){
             var element = this.element;
-            var option = $("<option>").attr("value", val).text(title)
+            var option = $("<option>").attr("value", val).text(title ? title : val)
 
             element.append(option)
 
@@ -29651,18 +29651,22 @@ $.noConflict = function() {
         addOptions: function(values){
             var that = this;
 
-            if (!values || !Metro.utils.isObject(values) || !Array.isArray(values)) {
+            if (!values) {
                 return this;
             }
 
-            if (!Array.isArray(values)) {
-                $.each(values, function(key, val){
-                    this.addOption(key, val);
-                })
-            } else {
+            if (Array.isArray(values)) {
                 $.each(values, function(){
                     var o = this;
-                    that.addOption(o.val, o.title, o.selected)
+                    if (Metro.utils.isObject2(o)) {
+                        that.addOption(o.val, o.title, o.selected)
+                    } else {
+                        that.addOption(o)
+                    }
+                })
+            } else if (Metro.utils.isObject2(values)) {
+                $.each(values, function(key, val){
+                    that.addOption(key, val);
                 })
             }
 
