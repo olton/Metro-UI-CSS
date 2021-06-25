@@ -661,6 +661,27 @@
             return this;
         },
 
+        addOptions: function(values){
+            var that = this;
+
+            if (!values || !Metro.utils.isObject(values) || !Array.isArray(values)) {
+                return this;
+            }
+
+            if (!Array.isArray(values)) {
+                $.each(values, function(key, val){
+                    this.addOption(key, val);
+                })
+            } else {
+                $.each(values, function(){
+                    var o = this;
+                    that.addOption(o.val, o.title, o.selected)
+                })
+            }
+
+            return this;
+        },
+
         removeOption: function(val){
             var element = this.element;
             var options = element.find("option")
@@ -669,6 +690,28 @@
                 var $el = $(this)
 
                 if ($el.attr("value") == val) {
+                    $el.remove()
+                }
+            })
+
+            this._createOptions();
+
+            return this;
+        },
+
+        removeOptions: function(values){
+            var element = this.element;
+            var options = element.find("option")
+
+            if (!values || !Array.isArray(values)) {
+                return this;
+            }
+
+            options.each(function(){
+                var $el = $(this);
+                var val = $el.attr("value");
+
+                if (value.indexOf(val) > -1) {
                     $el.remove()
                 }
             })

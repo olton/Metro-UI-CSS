@@ -1,4 +1,5 @@
 ### 4.5.0
++ [x] Select: added API methods `addOptions(values = [] || {})`, `removeOptions(values = [])`
 + [x] Select: added API methods `addOption(val, title, selected)`, `removeOption(val)`
 + [x] Select: fixed clear button work, issue #1716
 + [x] Master: fixed for quick switching panes, issue #1787
