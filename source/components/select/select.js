@@ -711,7 +711,7 @@
                 var $el = $(this);
                 var val = $el.attr("value");
 
-                if (value.indexOf(val) > -1) {
+                if (values.indexOf(val) > -1) {
                     $el.remove()
                 }
             })
