@@ -124,15 +124,18 @@
                 },
                 dur: o.animate
             })
-            title.animate({
-                draw: {
-                    innerHTML: title_value
-                },
-                dur: o.animate,
-                onFrame: function(){
-                    this.innerHTML = Metro.utils.exec(o.onDrawValue, [this.innerHTML + o.cap]);
-                }
-            });
+
+            title.html(Metro.utils.exec(o.onDrawValue, [title_value + o.cap]));
+
+            // title.animate({
+            //     draw: {
+            //         innerHTML: title_value
+            //     },
+            //     dur: o.animate,
+            //     onFrame: function(){
+            //         this.innerHTML = Metro.utils.exec(o.onDrawValue, [this.innerHTML + o.cap]);
+            //     }
+            // });
         },
 
         val: function(v){
