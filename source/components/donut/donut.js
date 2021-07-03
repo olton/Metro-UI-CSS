@@ -5,7 +5,6 @@
     var DonutDefaultConfig = {
         donutDeferred: 0,
         size: 100,
-        radius: 50,
         hole: .8,
         value: 0,
         background: "#ffffff",
@@ -19,6 +18,7 @@
         showValue: false,
         animate: 0,
         onChange: Metro.noop,
+        onDrawValue: function(v){return v},
         onDonutCreate: Metro.noop
     };
 
@@ -42,28 +42,12 @@
 
         _create: function(){
             var element = this.element, o = this.options;
-            var html = "";
-            var r = o.radius  * (1 - (1 - o.hole) / 2);
-            var width = o.radius * (1 - o.hole);
-            var transform = 'rotate(-90 ' + o.radius + ',' + o.radius + ')';
-            var fontSize = r * o.hole * 0.6;
 
             element.addClass("donut");
 
-            element.css({
-                width: o.size,
-                height: o.size,
-                background: o.background
-            });
-
-            html += "<svg>";
-            html += "   <circle class='donut-back' r='"+(r)+"px' cx='"+(o.radius)+"px' cy='"+(o.radius)+"px' transform='"+(transform)+"' fill='none' stroke='"+(o.stroke)+"' stroke-width='"+(width)+"'/>";
-            html += "   <circle class='donut-fill' r='"+(r)+"px' cx='"+(o.radius)+"px' cy='"+(o.radius)+"px' transform='"+(transform)+"' fill='none' stroke='"+(o.fill)+"' stroke-width='"+(width)+"'/>";
-            if (o.showText === true) html += "   <text   class='donut-title' x='"+(o.radius)+"px' y='"+(o.radius)+"px' dy='"+(fontSize/3)+"px' text-anchor='middle' fill='"+(o.color !== "" ? o.color: o.fill)+"' font-size='"+(fontSize)+"px'>0"+(o.cap)+"</text>";
-            html += "</svg>";
-
-            element.html(html);
-
+            this._setElementSize();
+            this._draw();
+            this._addEvents();
             this.val(o.value);
 
             this._fireEvent("donut-create", {
@@ -71,12 +55,57 @@
             });
         },
 
+        _setElementSize: function(){
+            var element = this.element, o = this.options;
+            var width = o.size;
+
+            element.css({
+                width: width,
+                background: o.background
+            });
+
+            element.css({
+                height: element.width()
+            });
+        },
+
+        _draw: function(){
+            var element = this.element, o = this.options;
+            var html = "";
+            var radius = element.width() / 2
+            var r = radius  * (1 - (1 - o.hole) / 2);
+            var width = radius * (1 - o.hole);
+            var transform = 'rotate(-90 ' + radius + ',' + radius + ')';
+            var fontSize = r * o.hole * 0.6;
+
+            html += "<svg>";
+            html += "   <circle class='donut-back' r='"+(r)+"px' cx='"+(radius)+"px' cy='"+(radius)+"px' transform='"+(transform)+"' fill='none' stroke='"+(o.stroke)+"' stroke-width='"+(width)+"'/>";
+            html += "   <circle class='donut-fill' r='"+(r)+"px' cx='"+(radius)+"px' cy='"+(radius)+"px' transform='"+(transform)+"' fill='none' stroke='"+(o.fill)+"' stroke-width='"+(width)+"'/>";
+
+            if (o.showText === true)
+                html += "   <text class='donut-title' x='"+(radius)+"px' y='"+(radius)+"px' dy='"+(fontSize/3)+"px' text-anchor='middle' fill='"+(o.color !== "" ? o.color: o.fill)+"' font-size='"+(fontSize)+"px'></text>";
+
+            html += "</svg>";
+
+            element.html(html);
+        },
+
+        _addEvents: function(){
+            var that = this;
+
+            $(window).on("resize", function(){
+                that._setElementSize();
+                that._draw();
+            })
+        },
+
         _setValue: function(v){
             var element = this.element, o = this.options;
 
             var fill = element.find(".donut-fill");
             var title = element.find(".donut-title");
-            var r = o.radius  * (1 - (1 - o.hole) / 2);
+            var radius = element.width() / 2
+            var r = radius  * (1 - (1 - o.hole) / 2);
             var circumference = Math.round(2 * Math.PI * r);
             var title_value = (o.showValue ? v : Utils.percent(o.total, v, true))/*  + (o.cap)*/;
             var fill_value = Math.round(((+v * circumference) / o.total));// + ' ' + circumference;
@@ -101,7 +130,7 @@
                 },
                 dur: o.animate,
                 onFrame: function(){
-                    this.innerHTML += o.cap;
+                    this.innerHTML = Metro.utils.exec(o.onDrawValue, [this.innerHTML + o.cap]);
                 }
             });
         },
