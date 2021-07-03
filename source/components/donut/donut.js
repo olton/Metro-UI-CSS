@@ -11,7 +11,7 @@
         color: "",
         stroke: "#d1d8e7",
         fill: "#49649f",
-        fontSize: 24,
+        fontSize: 0,
         total: 100,
         cap: "%",
         showText: true,
@@ -76,7 +76,7 @@
             var r = radius  * (1 - (1 - o.hole) / 2);
             var width = radius * (1 - o.hole);
             var transform = 'rotate(-90 ' + radius + ',' + radius + ')';
-            var fontSize = r * o.hole * 0.6;
+            var fontSize = o.fontSize === 0 ? r * o.hole * 0.6 : o.fontSize;
 
             html += "<svg>";
             html += "   <circle class='donut-back' r='"+(r)+"px' cx='"+(radius)+"px' cy='"+(radius)+"px' transform='"+(transform)+"' fill='none' stroke='"+(o.stroke)+"' stroke-width='"+(width)+"'/>";

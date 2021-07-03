@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 03/07/2021 10:30:56
+ * Built at 03/07/2021 11:45:53
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "03/07/2021 10:30:56",
+        compileTime: "03/07/2021 11:45:53",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19390,7 +19390,7 @@ $.noConflict = function() {
         color: "",
         stroke: "#d1d8e7",
         fill: "#49649f",
-        fontSize: 24,
+        fontSize: 0,
         total: 100,
         cap: "%",
         showText: true,
@@ -19455,7 +19455,7 @@ $.noConflict = function() {
             var r = radius  * (1 - (1 - o.hole) / 2);
             var width = radius * (1 - o.hole);
             var transform = 'rotate(-90 ' + radius + ',' + radius + ')';
-            var fontSize = r * o.hole * 0.6;
+            var fontSize = o.fontSize === 0 ? r * o.hole * 0.6 : o.fontSize;
 
             html += "<svg>";
             html += "   <circle class='donut-back' r='"+(r)+"px' cx='"+(radius)+"px' cy='"+(radius)+"px' transform='"+(transform)+"' fill='none' stroke='"+(o.stroke)+"' stroke-width='"+(width)+"'/>";
