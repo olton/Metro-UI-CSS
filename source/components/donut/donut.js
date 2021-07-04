@@ -159,13 +159,32 @@
             });
         },
 
+        setColor: function(obj){
+            var validKeys = ["background, fill, stroke, color"]
+
+            $.each(obj, function(key, val){
+                if (validKeys.indexOf(key) !== -1) {
+                    this.options[key] = val
+                }
+            })
+
+            this._draw();
+            this.val(this.value);
+
+            return this;
+        },
+
         changeValue: function(){
             this.val(this.element.attr("data-value"));
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        changeAttribute: function(attr, val){
+            switch (attr) {
                 case "data-value": this.changeValue(); break;
+                case "data-background": this.setColor({"background": val}); break;
+                case "data-fill": this.setColor({"fill": val}); break;
+                case "data-stroke": this.setColor({"stroke": val}); break;
+                case "data-color": this.setColor({"color": val}); break;
             }
         },
 
