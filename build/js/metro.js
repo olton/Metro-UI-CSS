@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 04/07/2021 21:05:09
+ * Built at 04/07/2021 21:11:56
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "04/07/2021 21:05:09",
+        compileTime: "04/07/2021 21:11:56",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19538,13 +19538,32 @@ $.noConflict = function() {
             });
         },
 
+        setColor: function(obj){
+            var validKeys = ["background, fill, stroke, color"]
+
+            $.each(obj, function(key, val){
+                if (validKeys.indexOf(key) !== -1) {
+                    this.options[key] = val
+                }
+            })
+
+            this._draw();
+            this.val(this.value);
+
+            return this;
+        },
+
         changeValue: function(){
             this.val(this.element.attr("data-value"));
         },
 
-        changeAttribute: function(attributeName){
-            switch (attributeName) {
+        changeAttribute: function(attr, val){
+            switch (attr) {
                 case "data-value": this.changeValue(); break;
+                case "data-background": this.setColor({"background": val}); break;
+                case "data-fill": this.setColor({"fill": val}); break;
+                case "data-stroke": this.setColor({"stroke": val}); break;
+                case "data-color": this.setColor({"color": val}); break;
             }
         },
 
