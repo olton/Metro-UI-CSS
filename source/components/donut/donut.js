@@ -96,6 +96,7 @@
             $(window).on("resize", function(){
                 that._setElementSize();
                 that._draw();
+                that.val(that.value);
             })
         },
 
