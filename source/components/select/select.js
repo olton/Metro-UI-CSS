@@ -608,11 +608,11 @@
 
             if (typeof selected === "string") {
                 _selected = selected.toArray(_delimiter).map(function(v){
-                    return +v;
+                    return isNaN(v) ? v : +v;
                 });
             } else if (Array.isArray(selected)) {
                 _selected = selected.slice().map(function(v){
-                    return +v;
+                    return isNaN(v) ? v : +v;
                 });
             } else {
                 _selected = [];
@@ -622,7 +622,7 @@
 
             if (typeof op === 'string') {
                 element.html(op);
-            } else if (Utils.isObject(op)) {
+            } else if (Utils.isObject2(op)) {
                 $.each(op, function(key, val){
                     if (Utils.isObject2(val)) {
                         option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
@@ -634,7 +634,7 @@
                         });
                     } else {
                         var op = $("<option>").attr("value", key).text(val).appendTo(element);
-                        if (_selected.indexOf(+key) > -1) {
+                        if (_selected.indexOf(key) > -1) {
                             op.prop("selected", true);
                         }
                     }
