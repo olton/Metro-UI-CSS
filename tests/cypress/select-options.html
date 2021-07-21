@@ -25,6 +25,7 @@
     <button class="button" onclick="addOption(5)">Add option</button>
     <button class="button" onclick="addOptions()">Add options</button>
     <button class="button" onclick="removeOption(5)">Del option</button>
+    <button class="button" onclick="addOptions2()">Add option</button>
 </div>
 <div class="example">
     <select id="select" data-role="select"></select>
@@ -32,16 +33,27 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
-    $(document).ready(function() {
+    // $(document).ready(function() {
+    //
+    //     var json = '{"K001": "Vendor1","K002": "Vendor.2","K003": "Vendor 3 GmbH","K004": "Vendor 4 GmbH & Co. KG"}';
+    //
+    //     var select = Metro.getPlugin('#select', 'select');
+    //
+    //     console.log(JSON.parse(json))
+    //
+    //     select.data(JSON.parse(json));
+    // });
 
-        var json = '{"K001": "Vendor1","K002": "Vendor.2","K003": "Vendor 3 GmbH","K004": "Vendor 4 GmbH & Co. KG"}';
-
+    function addOptions2(){
+        var tArray = {
+            "K001": "Vendor1",
+            "K002": "Vendor.2",
+            "K003": "Vendor 3 GmbH",
+            "K004": "Vendor 4 GmbH & Co. KG"
+        }
         var select = Metro.getPlugin('#select', 'select');
-
-        console.log(JSON.parse(json))
-
-        select.data(JSON.parse(json));
-    });
+        select.data(tArray, 'K002');
+    }
 
     function addOption(v){
         var val = v ? v : $.random(1, 100);

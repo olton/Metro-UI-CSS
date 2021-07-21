@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 12/07/2021 19:32:57
+ * Built at 21/07/2021 10:00:02
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "12/07/2021 19:32:57",
+        compileTime: "21/07/2021 10:00:02",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -29647,11 +29647,11 @@ $.noConflict = function() {
 
             if (typeof selected === "string") {
                 _selected = selected.toArray(_delimiter).map(function(v){
-                    return +v;
+                    return isNaN(v) ? v : +v;
                 });
             } else if (Array.isArray(selected)) {
                 _selected = selected.slice().map(function(v){
-                    return +v;
+                    return isNaN(v) ? v : +v;
                 });
             } else {
                 _selected = [];
@@ -29661,7 +29661,7 @@ $.noConflict = function() {
 
             if (typeof op === 'string') {
                 element.html(op);
-            } else if (Utils.isObject(op)) {
+            } else if (Utils.isObject2(op)) {
                 $.each(op, function(key, val){
                     if (Utils.isObject2(val)) {
                         option_group = $("<optgroup label=''>").attr("label", key).appendTo(element);
@@ -29673,7 +29673,7 @@ $.noConflict = function() {
                         });
                     } else {
                         var op = $("<option>").attr("value", key).text(val).appendTo(element);
-                        if (_selected.indexOf(+key) > -1) {
+                        if (_selected.indexOf(key) > -1) {
                             op.prop("selected", true);
                         }
                     }
