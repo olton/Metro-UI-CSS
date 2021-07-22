@@ -53,6 +53,8 @@
                 $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className)
             );
 
+            this.component = container;
+
             check.appendTo(container);
             caption.appendTo(container);
 
@@ -81,17 +83,17 @@
         },
 
         disable: function(){
-            this.element.data("disabled", true);
-            this.element.parent().addClass("disabled");
+            this.element.prop("disabled", true);
         },
 
         enable: function(){
-            this.element.data("disabled", false);
-            this.element.parent().removeClass("disabled");
+            this.element.prop("disabled", false);
         },
 
         toggleState: function(){
-            if (this.elem.disabled) {
+            var element = this.element;
+
+            if (!element.is(":disabled")) {
                 this.disable();
             } else {
                 this.enable();
@@ -100,6 +102,8 @@
 
         toggle: function(v){
             var element = this.element;
+
+            if (element.is(":disabled")) return this;
 
             if (!Utils.isValue(v)) {
                 element.prop("checked", !Utils.bool(element.prop("checked")));
@@ -141,7 +145,6 @@
 
         changeAttribute: function(attr, newVal){
             switch (attr) {
-                case 'disabled': this.toggleState(); break;
                 case 'data-on':
                 case 'data-text-on': this.changeLocale('on', newVal); break;
                 case 'data-off':
