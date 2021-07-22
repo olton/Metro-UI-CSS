@@ -1,4 +1,5 @@
 ### 4.5.0
++ [x] Switch: fixed method `toggleState()`, issue #1799
 + [x] Select: fixed API method `data()` for selecting option when defined, issue #1755
 + [x] Select: added API methods `addOptions(values = [] || {})`, `removeOptions(values = [])`
 + [x] Select: added API methods `addOption(val, title, selected)`, `removeOption(val)`

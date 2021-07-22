@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Switch - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        body, .area {
+            height: 100vh;
+        }
+
+        .area {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-flow: column;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="area">
+    <div>
+        <button class="button" onclick="Metro.getPlugin('#check1', 'switch').toggleState()">Toggle state</button>
+        <button class="button" onclick="Metro.getPlugin('#check1', 'switch').toggle()">Toggle switch</button>
+        <button class="button" onclick="$('#check1').prop('disabled', true)">Switch off</button>
+        <button class="button" onclick="$('#check1').prop('disabled', false)">Switch on</button>
+    </div>
+
+    <input type="checkbox" data-role="switch" id="check1">
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 21/07/2021 10:00:02
+ * Built at 22/07/2021 10:46:52
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "21/07/2021 10:00:02",
+        compileTime: "22/07/2021 10:46:52",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -32545,6 +32545,8 @@ $.noConflict = function() {
                 $("<label>").addClass((o.material === true ? " switch-material " : " switch ") + element[0].className)
             );
 
+            this.component = container;
+
             check.appendTo(container);
             caption.appendTo(container);
 
@@ -32573,17 +32575,17 @@ $.noConflict = function() {
         },
 
         disable: function(){
-            this.element.data("disabled", true);
-            this.element.parent().addClass("disabled");
+            this.element.prop("disabled", true);
         },
 
         enable: function(){
-            this.element.data("disabled", false);
-            this.element.parent().removeClass("disabled");
+            this.element.prop("disabled", false);
         },
 
         toggleState: function(){
-            if (this.elem.disabled) {
+            var element = this.element;
+
+            if (!element.is(":disabled")) {
                 this.disable();
             } else {
                 this.enable();
@@ -32592,6 +32594,8 @@ $.noConflict = function() {
 
         toggle: function(v){
             var element = this.element;
+
+            if (element.is(":disabled")) return this;
 
             if (!Utils.isValue(v)) {
                 element.prop("checked", !Utils.bool(element.prop("checked")));
@@ -32633,7 +32637,6 @@ $.noConflict = function() {
 
         changeAttribute: function(attr, newVal){
             switch (attr) {
-                case 'disabled': this.toggleState(); break;
                 case 'data-on':
                 case 'data-text-on': this.changeLocale('on', newVal); break;
                 case 'data-off':
