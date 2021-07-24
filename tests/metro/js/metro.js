@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 22/07/2021 10:46:52
+ * Built at 24/07/2021 08:30:49
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "22/07/2021 10:46:52",
+        compileTime: "24/07/2021 08:30:49",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7705,6 +7705,7 @@ $.noConflict = function() {
             return Metro.$()($(el));
         },
 
+        // TODO add if name is not defined, return one or array of plugins
         getPlugin: function(el, name){
             var _name = normalizeComponentName(name);
             var $el = Metro.get$el(el);
@@ -29079,6 +29080,7 @@ $.noConflict = function() {
         clsLabel: "",
         clsGroupName: "",
 
+        onClear: Metro.noop,
         onChange: Metro.noop,
         onUp: Metro.noop,
         onDrop: Metro.noop,
@@ -29395,8 +29397,14 @@ $.noConflict = function() {
 
                 input.clear();
                 that._setPlaceholder();
+
                 e.preventDefault();
                 e.stopPropagation();
+
+                that._fireEvent("clear");
+                that._fireEvent("change", {
+                    selected: that.getSelected()
+                });
             });
 
             element.on(Metro.events.change, function(){

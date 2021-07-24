@@ -1,4 +1,5 @@
 ### 4.5.0
++ [x] Select: added event `data-on-clear`, fixed firing event `data-on-change` when user click on the `clear` button, issue #1802
 + [x] Switch: fixed method `toggleState()`, issue #1799
 + [x] Select: fixed API method `data()` for selecting option when defined, issue #1755
 + [x] Select: added API methods `addOptions(values = [] || {})`, `removeOptions(values = [])`
