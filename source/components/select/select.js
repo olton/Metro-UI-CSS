@@ -40,6 +40,7 @@
         clsLabel: "",
         clsGroupName: "",
 
+        onClear: Metro.noop,
         onChange: Metro.noop,
         onUp: Metro.noop,
         onDrop: Metro.noop,
@@ -356,8 +357,14 @@
 
                 input.clear();
                 that._setPlaceholder();
+
                 e.preventDefault();
                 e.stopPropagation();
+
+                that._fireEvent("clear");
+                that._fireEvent("change", {
+                    selected: that.getSelected()
+                });
             });
 
             element.on(Metro.events.change, function(){

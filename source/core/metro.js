@@ -530,6 +530,7 @@
             return Metro.$()($(el));
         },
 
+        // TODO add if name is not defined, return one or array of plugins
         getPlugin: function(el, name){
             var _name = normalizeComponentName(name);
             var $el = Metro.get$el(el);
