@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var MaterialTabsDefaultConfig = {
+        wheelStep: 20,
         materialtabsDeferred: 0,
         deep: false,
         fixedTabs: false,
@@ -115,6 +116,20 @@
                 });
 
             });
+
+            element.on(Metro.events.mousewheel, function(e){
+                if (e.deltaY === undefined) {
+                    return ;
+                }
+
+                var scroll, scrollable = $(this);
+                var dir = e.deltaY > 0 ? -1 : 1;
+                var step = o.wheelStep;
+
+
+                scroll = scrollable.scrollLeft() - ( dir * step);
+                scrollable.scrollLeft(scroll);
+            })
         },
 
         openTab: function(tab, tab_next){
