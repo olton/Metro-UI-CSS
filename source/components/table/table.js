@@ -128,6 +128,7 @@
         onDataLoad: Metro.noop,
         onDataLoadError: Metro.noop,
         onDataLoaded: Metro.noop,
+        onDataLoadEnd: Metro.noop,
         onDataSaveError: Metro.noop,
         onFilterRowAccepted: Metro.noop,
         onFilterRowDeclined: Metro.noop,
@@ -322,7 +323,7 @@
             var that = this, element = this.element, o = this.options;
             var view, id = element.attr("id"), viewPath;
 
-            o.rows = parseInt(o.rows);
+            o.rows = +o.rows;
 
             this.items = [];
             this.heads = [];
@@ -1917,6 +1918,12 @@
 
                             that._createItemsFromJSON(data);
                             that._rebuild(review);
+                            that._resetInspector();
+
+                            that._fireEvent("data-load-end", {
+                                source: o.source,
+                                data: data
+                            });
                         })
                         .catch(function(error){
                             that.activity.hide();

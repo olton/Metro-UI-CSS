@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../metro/css/metro-all.css?ver=@@b-version" rel="stylesheet">
+
+    <title>Test Table - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1 class="text-center">Metro 4 Table component</h1>
+    <h3 class="text-center">Methods</h3>
+
+    <div class="text-center">
+        <button class="button" onclick="afterLoad()">Load data</button>
+        <button class="button" onclick="$('#t1').data('table').prev()">Prev</button>
+        <button class="button" onclick="$('#t1').data('table').next()">Next</button>
+        <button class="button" onclick="$('#t1').data('table').last()">Last</button>
+        <button class="button" onclick="$('#t1').data('table').first()">First</button>
+        <button class="button" onclick="$('#t1').data('table').page(25)">Page 25</button>
+    </div>
+
+    <table id="t1" class="table striped table-border mt-4"
+           data-role="table"
+           data-cls-component="mt-10"
+           data-rows="10"
+           data-pagination="true"
+           data-show-all-pages="false"
+    ></table>
+    <div>
+        <button class="button alert" onclick="$('#t1').data('table').toggleInspector()">Open Inspector</button>
+    </div>
+</div>
+
+<script src="../metro/js/metro.js?ver=@@b-version"></script>
+<script>
+    function afterLoad(){
+        var nsp ={}
+        nsp.theTable = Metro.getPlugin("#t1","table")
+        nsp.theTable.loadData("../data/table.json")
+    }
+</script>
+</body>
+</html>

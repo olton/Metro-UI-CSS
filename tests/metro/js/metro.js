@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 30/07/2021 08:51:58
+ * Built at 31/07/2021 08:10:39
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "30/07/2021 08:51:58",
+        compileTime: "31/07/2021 08:10:39",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -32787,6 +32787,7 @@ $.noConflict = function() {
         onDataLoad: Metro.noop,
         onDataLoadError: Metro.noop,
         onDataLoaded: Metro.noop,
+        onDataLoadEnd: Metro.noop,
         onDataSaveError: Metro.noop,
         onFilterRowAccepted: Metro.noop,
         onFilterRowDeclined: Metro.noop,
@@ -32981,7 +32982,7 @@ $.noConflict = function() {
             var that = this, element = this.element, o = this.options;
             var view, id = element.attr("id"), viewPath;
 
-            o.rows = parseInt(o.rows);
+            o.rows = +o.rows;
 
             this.items = [];
             this.heads = [];
@@ -34576,6 +34577,12 @@ $.noConflict = function() {
 
                             that._createItemsFromJSON(data);
                             that._rebuild(review);
+                            that._resetInspector();
+
+                            that._fireEvent("data-load-end", {
+                                source: o.source,
+                                data: data
+                            });
                         })
                         .catch(function(error){
                             that.activity.hide();
