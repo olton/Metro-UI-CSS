@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 31/07/2021 08:10:39
+ * Built at 31/07/2021 08:18:24
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "31/07/2021 08:10:39",
+        compileTime: "31/07/2021 08:18:24",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -35042,12 +35042,13 @@ $.noConflict = function() {
                 var tab_next = tab.index() > active_tab.index();
                 var target = tab.children("a").attr("href");
 
+                e.preventDefault();
+
                 if (Utils.isValue(target) && target[0] === "#") {
                     if (tab.hasClass("active")) return;
                     if (tab.hasClass("disabled")) return;
                     if (Utils.exec(o.onBeforeTabOpen, [tab, target, tab_next], this) === false) return;
                     that.openTab(tab, tab_next);
-                    e.preventDefault();
                 }
             });
 
