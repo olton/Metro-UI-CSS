@@ -1,4 +1,5 @@
 ### 4.5.0
++ [x] Table: fixed create `Instpector` when table data loaded with method `loadData()`, issue #1796 
 + [x] Tabs Material: added mouse wheel support for scrolling tabs, issue #1795
 + [x] Select: added event `data-on-clear`, fixed firing event `data-on-change` when user click on the `clear` button, issue #1802
 + [x] Switch: fixed method `toggleState()`, issue #1799
