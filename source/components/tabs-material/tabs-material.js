@@ -94,12 +94,13 @@
                 var tab_next = tab.index() > active_tab.index();
                 var target = tab.children("a").attr("href");
 
+                e.preventDefault();
+
                 if (Utils.isValue(target) && target[0] === "#") {
                     if (tab.hasClass("active")) return;
                     if (tab.hasClass("disabled")) return;
                     if (Utils.exec(o.onBeforeTabOpen, [tab, target, tab_next], this) === false) return;
                     that.openTab(tab, tab_next);
-                    e.preventDefault();
                 }
             });
 
