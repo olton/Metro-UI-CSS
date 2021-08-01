@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 01/08/2021 18:39:05
+ * Built at 01/08/2021 18:53:43
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "01/08/2021 18:39:05",
+        compileTime: "01/08/2021 18:53:43",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
