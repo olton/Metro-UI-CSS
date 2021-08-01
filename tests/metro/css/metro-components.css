@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 01/08/2021 18:39:05
+ * Built at 01/08/2021 18:53:43
  * Licensed under MIT
  */
 .accordion {
@@ -152,7 +152,6 @@
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   font-size: 0.875rem;
@@ -1518,7 +1517,6 @@
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0 0.75rem;
@@ -1696,7 +1694,6 @@ input[type=reset] {
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0 0.75rem;
@@ -1985,7 +1982,6 @@ input[type=reset].loading .load-caption {
   border: 1px solid #dfdfdf;
   overflow: hidden;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   background-color: #ffffff;
 }
@@ -2002,7 +1998,6 @@ input[type=reset].loading .load-caption {
   background-color: #004d6f;
   color: #ffffff;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .calendar-header .header-year {
@@ -2097,7 +2092,6 @@ input[type=reset].loading .load-caption {
   font-size: 14px;
   position: relative;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   margin: 0;
 }
@@ -2551,7 +2545,6 @@ input[type=reset].loading .load-caption {
   display: block;
   z-index: 501;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .carousel .carousel-switch-next,
@@ -2992,7 +2985,6 @@ input[type=reset].loading .load-caption {
   position: relative;
   margin: 0;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -3576,7 +3568,6 @@ input[type=reset].loading .load-caption {
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   outline: none;
@@ -4707,7 +4698,6 @@ aside::after {
   padding: 4px 10px;
   font-size: 16px;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .double-select-box ul li.active {
@@ -4805,7 +4795,6 @@ aside::after {
   cursor: pointer;
   padding-right: 1.5rem !important;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .dropdown-toggle::before {
@@ -6627,7 +6616,6 @@ fieldset.disabled,
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0;
@@ -6935,7 +6923,6 @@ fieldset.disabled,
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   outline: none;
@@ -7206,7 +7193,6 @@ fieldset.disabled,
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   padding: 0 0.75rem;
@@ -8053,10 +8039,6 @@ input:-ms-input-placeholder {
   -webkit-transition: linear all 0.3s;
   transition: linear all 0.3s;
 }
-.input-material.permanent-label input:not(:-moz-placeholder-shown) ~ .label {
-  top: 0;
-  opacity: 1;
-}
 .input-material.permanent-label input:not(:placeholder-shown) ~ .label {
   top: 0;
   opacity: 1;
@@ -8426,7 +8408,6 @@ input.input-small:-ms-input-placeholder {
   border: none;
   padding: 0;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -8948,7 +8929,6 @@ input.input-small:-ms-input-placeholder {
   flex-shrink: 0;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .listview .node-group > .data {
@@ -8961,7 +8941,6 @@ input.input-small:-ms-input-placeholder {
   cursor: pointer;
   padding-right: 1.5rem !important;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .listview .node-group .node-toggle::before {
@@ -9075,7 +9054,6 @@ input.input-small:-ms-input-placeholder {
   line-height: 40px;
   text-align: center;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .master .controls .prev,
@@ -10229,7 +10207,6 @@ input.input-small:-ms-input-placeholder {
   margin: 0 -0.25rem 1rem -0.25rem;
   padding: 0;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .pagination .page-item {
@@ -10627,7 +10604,6 @@ input.input-small:-ms-input-placeholder {
   position: relative;
   margin: 0;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -12321,7 +12297,6 @@ input.input-small:-ms-input-placeholder {
   white-space: nowrap;
   vertical-align: middle;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   position: relative;
@@ -13883,7 +13858,6 @@ input.input-small:-ms-input-placeholder {
   border: 2px solid #ffffff;
   cursor: pointer;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   -webkit-transition: width 0.3s ease;
   transition: width 0.3s ease;
@@ -14032,7 +14006,6 @@ input.input-small:-ms-input-placeholder {
   color: #1d1d1d;
   overflow: hidden;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   cursor: pointer;
 }
@@ -14111,7 +14084,6 @@ input.input-small:-ms-input-placeholder {
 .streamer .stream-event {
   position: relative;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .streamer .stream-event.selected {
@@ -14503,7 +14475,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: relative;
   margin: 0;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -14639,7 +14610,6 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
           align-items: center;
   position: relative;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   cursor: pointer;
   height: 36px;
@@ -16243,7 +16213,6 @@ textarea {
   position: relative;
   overflow: hidden;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   max-width: none!important;
 }
@@ -17948,7 +17917,6 @@ textarea {
   background-color: #ebebeb;
   color: #1d1d1d;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
   border: 1px solid transparent;
   -webkit-transition: all 0.15s ease-in-out;
@@ -18181,7 +18149,6 @@ a.tool-button {
   display: block;
   position: relative;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .treeview li {
@@ -18215,7 +18182,6 @@ a.tool-button {
   cursor: pointer;
   padding-right: 1.5rem !important;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .treeview li .node-toggle::before {
@@ -18814,7 +18780,6 @@ body.vegas-container > .vegas-slide {
   color: #1d1d1d;
   height: 38px;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .wheel-picker .select-wrapper {
@@ -18941,7 +18906,6 @@ body.vegas-container > .vegas-slide {
   background-color: #3c6478;
   color: #ffffff;
   -webkit-user-select: none;
-     -moz-user-select: none;
           user-select: none;
 }
 .window-caption .title {
