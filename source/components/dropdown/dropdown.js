@@ -157,6 +157,7 @@
             this.isOpen = false;
         },
 
+        // TODO Add control: if no space for drop-down and no space for drop-up, element will must drop-down
         _open: function(el, immediate){
             el = $(el);
 
@@ -173,6 +174,10 @@
                     // dropdown.element.removeClass("drop-up");
                     if (!Utils.inViewport(dropdown.element[0])) {
                         dropdown.element.addClass("drop-up");
+
+                        if (!Utils.inViewport(dropdown.element[0])) {
+                            dropdown.element.removeClass("drop-up");
+                        }
                     }
                 }
 
