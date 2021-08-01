@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.0  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 31/07/2021 08:18:24
+ * Built at 01/08/2021 18:39:05
  * Licensed under MIT
  */
 /*!
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.0",
-        compileTime: "31/07/2021 08:18:24",
+        compileTime: "01/08/2021 18:39:05",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -20791,6 +20791,7 @@ $.noConflict = function() {
             this.isOpen = false;
         },
 
+        // TODO Add control: if no space for drop-down and no space for drop-up, element will must drop-down
         _open: function(el, immediate){
             el = $(el);
 
@@ -20807,6 +20808,10 @@ $.noConflict = function() {
                     // dropdown.element.removeClass("drop-up");
                     if (!Utils.inViewport(dropdown.element[0])) {
                         dropdown.element.addClass("drop-up");
+
+                        if (!Utils.inViewport(dropdown.element[0])) {
+                            dropdown.element.removeClass("drop-up");
+                        }
                     }
                 }
 
