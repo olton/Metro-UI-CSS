@@ -1,3 +1,5 @@
+### 4.5.1
+
 ### 4.5.0
 + [x] Tabs Material: fixed jump to the anchors, issue #1794
 + [x] Table: fixed create `Instpector` when table data loaded with method `loadData()`, issue #1796 
