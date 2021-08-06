@@ -35,23 +35,23 @@
                 "reset": "Zurücksetzen"
             },
             "table": {
-                "rowsCount": "Show entries:",
-                "search": "Search:",
-                "info": "Showing $1 to $2 of $3 entries",
-                "prev": "Prev",
-                "next": "Next",
-                "all": "All",
-                "inspector": "Inspector",
-                "skip": "Goto page",
-                "empty": "Nothing to show"
+                "rowsCount": "Einträge anzeigen:",
+                "search": "Suche:",
+                "info": "Eintrag $1 bis $2 von $3",
+                "prev": "Zurück",
+                "next": "Nächste",
+                "all": "Alle",
+                "inspector": "Filter",
+                "skip": "Gehe zu Seite",
+                "empty": "Keine Einträge..."
             },
             "colorSelector": {
-                addUserColorButton: "ADD TO SWATCHES",
-                userColorsTitle: "USER COLORS"
+                addUserColorButton: "ZU DEN FARBFELDERN HINZUFÜGEN",
+                userColorsTitle: "BENUTZERDEFINIERTE FARBEN"
             },
             "switch": {
-                on: "on",
-                off: "off"
+                on: "an",
+                off: "aus"
             }
         }
     });
