@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.1  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 02/08/2021 09:19:26
+ * Built at 25/08/2021 16:09:56
  * Licensed under MIT
  */
 /*!
@@ -5183,7 +5183,7 @@ $.fn.extend({
                 });
             } else {
                 el.setAttribute(name, val);
-                // 
+                // console.log(name, val);
             }
         });
     },
@@ -7197,7 +7197,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.1",
-        compileTime: "02/08/2021 09:19:26",
+        compileTime: "25/08/2021 16:09:56",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -7466,7 +7466,7 @@ $.noConflict = function() {
                         }
 
                     } else  {
-                        //
+                        //console.log(mutation);
                     }
                 });
             };
@@ -19507,16 +19507,6 @@ $.noConflict = function() {
             })
 
             title.html(Metro.utils.exec(o.onDrawValue, [title_value + o.cap]));
-
-            // title.animate({
-            //     draw: {
-            //         innerHTML: title_value
-            //     },
-            //     dur: o.animate,
-            //     onFrame: function(){
-            //         this.innerHTML = Metro.utils.exec(o.onDrawValue, [this.innerHTML + o.cap]);
-            //     }
-            // });
         },
 
         val: function(v){
@@ -19540,11 +19530,12 @@ $.noConflict = function() {
         },
 
         setColor: function(obj){
-            var validKeys = ["background, fill, stroke, color"]
+            var validKeys = ["background", "fill", "stroke", "color"]
+            var that = this
 
             $.each(obj, function(key, val){
                 if (validKeys.indexOf(key) !== -1) {
-                    this.options[key] = val
+                    that.options[key] = val
                 }
             })
 

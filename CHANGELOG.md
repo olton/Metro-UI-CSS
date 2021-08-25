@@ -1,4 +1,5 @@
 ### 4.5.1
++ [x] Donut: fixed method `setColor({...})`
 
 ### 4.5.0
 + [x] Tabs Material: fixed jump to the anchors, issue #1794
@@ -21,7 +22,7 @@
 + [x] Input: switched from `$.ajax` to `fetch`
 + [x] Html container: switched from `$.ajax` to `fetch`
 + [x] Cookie disclaimer: switched from `$.ajax` to `fetch`
-+ [x] Table: `_create()`, `_buid()`, `_saveTableView()`, `loadData()` now use `fetch`, and send data to server as `json` 
++ [x] Table: `_create()`, `_build()`, `_saveTableView()`, `loadData()` now use `fetch`, and send data to server as `json` 
 + [x] Streamer: now use `fetch` for loading data 
 + [x] List: now use `fetch` for loading data 
 + [x] Calendar: fixed showing week numbers
