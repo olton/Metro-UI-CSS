@@ -127,16 +127,6 @@
             })
 
             title.html(Metro.utils.exec(o.onDrawValue, [title_value + o.cap]));
-
-            // title.animate({
-            //     draw: {
-            //         innerHTML: title_value
-            //     },
-            //     dur: o.animate,
-            //     onFrame: function(){
-            //         this.innerHTML = Metro.utils.exec(o.onDrawValue, [this.innerHTML + o.cap]);
-            //     }
-            // });
         },
 
         val: function(v){
@@ -160,11 +150,12 @@
         },
 
         setColor: function(obj){
-            var validKeys = ["background, fill, stroke, color"]
+            var validKeys = ["background", "fill", "stroke", "color"]
+            var that = this
 
             $.each(obj, function(key, val){
                 if (validKeys.indexOf(key) !== -1) {
-                    this.options[key] = val
+                    that.options[key] = val
                 }
             })
 

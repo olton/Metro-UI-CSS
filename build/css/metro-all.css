@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.1  (https://metroui.org.ua)
  * Copyright 2012-2021 Sergey Pimenov
- * Built at 02/08/2021 09:19:26
+ * Built at 25/08/2021 16:09:56
  * Licensed under MIT
  */
 *,
@@ -19843,7 +19843,6 @@ pre code {
 }
 .no-appearance {
   -webkit-appearance: none !important;
-     -moz-appearance: none !important;
           appearance: none !important;
 }
 .collapse {
@@ -21902,7 +21901,6 @@ pre code {
 a.button,
 a.flat-button {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
   color: #1d1d1d;
   -webkit-box-shadow: none;
@@ -28116,7 +28114,6 @@ a.info-button {
 .spinner input,
 .color-picker input {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
   display: block;
   outline: none;
@@ -32895,7 +32892,6 @@ input.input-small:-ms-input-placeholder {
 }
 .select.drop-full-size .drop-container {
   width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
 }
 .select.focused {
@@ -36941,7 +36937,6 @@ textarea {
 }
 .textarea textarea {
   -webkit-appearance: none;
-     -moz-appearance: none;
           appearance: none;
   display: block;
   outline: none;
