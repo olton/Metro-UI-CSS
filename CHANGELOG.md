@@ -1,5 +1,6 @@
 ### 4.5.1
 + [x] Donut: fixed method `setColor({...})`
++ [x] Checkbox Three State: added new component with role `checkbox-three-state`
 
 ### 4.5.0
 + [x] Tabs Material: fixed jump to the anchors, issue #1794

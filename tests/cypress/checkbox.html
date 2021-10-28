@@ -40,6 +40,28 @@
         </div>
     </div>
 
+    <h3>Three state</h3>
+    <div>
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checkbox">
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checkbox" checked>
+    </div>
+    <div>
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checked" data-state="checked">
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Unchecked" data-state="unchecked">
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Indeterminate" data-state="indeterminate">
+    </div>
+    <br>
+    <div>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').uncheck()">Uncheck</button>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').check()">Check</button>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').indeterminate()">Indeterminate</button>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').toggle()">Toggle</button>
+        <button class="button" onclick="alert(Metro.getPlugin('#chk2', 'checkbox-three-state').getCheckState(true))">Get state</button>
+    </div>
+    <div>
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checked" id="chk2">
+    </div>
+
 </div>
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
