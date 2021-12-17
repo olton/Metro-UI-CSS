@@ -106,7 +106,7 @@ each(@mediaBreakpointListMobile, .(@m) {
             max-width: 50%;
         }
 
-        .cell-@{m}-one-third, .col-@{m}-one-third {
+        .cell-@{m}-one-third, .col-@{m}-one-third, .cell-@{m}-third, .col-@{m}-third {
             flex: 0 0 33.3333333%;
             max-width: 33.3333333%;
         }
@@ -116,9 +116,24 @@ each(@mediaBreakpointListMobile, .(@m) {
             max-width: 66.6666666%;
         }
 
-        .cell-@{m}-quarter, .col-@{m}-quarter {
-            flex: 0 0 25%;
-            max-width: 25%;
+        .cell-@{m}-fifth, .col-@{m}-fifth, .cell-@{m}-one-fifth, .col-@{m}-one-fifth {
+            flex: 0 0 20%;
+            max-width: 20%;
+        }
+
+        .cell-@{m}-two-fifth, .col-@{m}-two-fifth {
+            flex: 0 0 40%;
+            max-width: 40%;
+        }
+
+        .cell-@{m}-three-fifth, .col-@{m}-three-fifth {
+            flex: 0 0 60%;
+            max-width: 60%;
+        }
+
+        .cell-@{m}-four-fifth, .col-@{m}-four-fifth {
+            flex: 0 0 80%;
+            max-width: 80%;
         }
 
         .cell-@{m}, .col-@{m} {
