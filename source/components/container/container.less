@@ -1,13 +1,13 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
-.container, .container2, .container-fluid, section, header, footer, aside {
+.container, .container-fluid, section, header, footer, aside {
     margin: 0 auto;
     position: relative;
     .clear();
 }
 
-.container, .container2 {
+.container {
     width: 100%;
     padding-right: 12px;
     padding-left: 12px;
@@ -26,33 +26,30 @@ section {
 
 @media (min-width: 576px) {
     .container {
-        max-width: 540px;
-    }
-    .container2 {
-        max-width: 90%;
+        max-width: 98%;
     }
 }
 
 @media (min-width: 768px) {
     .container {
-        max-width: 720px;
+        max-width: 95%;
     }
 }
 
 @media (min-width: 992px) {
-    .container, .container2 {
+    .container {
         max-width: 960px;
     }
 }
 
 @media (min-width: 1200px) {
-    .container, .container2 {
+    .container {
         max-width: 1140px;
     }
 }
 
 @media (min-width: 1452px) {
-    .container, .container2 {
+    .container {
         max-width: 1360px;
     }
 }
