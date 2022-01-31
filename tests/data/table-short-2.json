@@ -1,0 +1,90 @@
+{
+  "header": [
+    {
+      "name": "id",
+      "title": "ID",
+      "size": 50,
+      "sortable": true,
+      "sortDir": "asc",
+      "format": "number"
+    },
+    {
+      "name": "name",
+      "title": "Name",
+      "sortable": true
+    },
+    {
+      "name": "start",
+      "title": "Start",
+      "sortable": true,
+      "size": 150,
+      "format": "date",
+      "formatMask": "dd-mm-yyyy"
+    },
+    {
+      "name": "age",
+      "title": "Age",
+      "sortable": true,
+      "size": 80
+    },
+    {
+      "name": "salary",
+      "title": "Salary",
+      "sortable": true,
+      "size": 150,
+      "format": "money",
+      "show": true
+    }
+  ],
+  "data": [
+    [
+      1,
+      "Aidan",
+      "31-12-2017",
+      63,
+      "$7,843"
+    ],
+    [
+      2,
+      "Ferris",
+      "13-06-2018",
+      28,
+      "$8,877"
+    ],
+    [
+      3,
+      "Joseph",
+      "06-02-2018",
+      43,
+      "$5,645"
+    ],
+    [
+      4,
+      "Troy",
+      "11-03-2019",
+      26,
+      "$5,405"
+    ],
+    [
+      5,
+      "Kennedy",
+      "11-02-2018",
+      60,
+      "$5,780"
+    ],
+    [
+      6,
+      "Cullen",
+      "23-09-2017",
+      62,
+      "$5,482"
+    ],
+    [
+      7,
+      "Eric",
+      "04-01-2019",
+      53,
+      "$6,490"
+    ]
+  ]
+}

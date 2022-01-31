@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     tasks = [
         'clear',
         'clean:build',
-        'eslint',
+        // 'eslint',
         'file-creator',
         'less',
         'postcss',

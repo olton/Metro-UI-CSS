@@ -535,6 +535,8 @@
                 var item = $(this);
                 var dir, head_item, item_class;
 
+                if (item.hasClass('rownum-cell') || item.hasClass('check-cell')) return
+
                 if (Utils.isValue(item.data('sort-dir'))) {
                     dir = item.data('sort-dir');
                 } else {
@@ -665,14 +667,16 @@
 
             tr = $("<tr>").addClass(o.clsHeadRow).appendTo(head);
 
+
             $.each(this.service, function(){
                 var item = this, classes = [];
-                th = $("<th>").appendTo(tr);
+                var th = $("<th>");
                 if (Utils.isValue(item.title)) {th.html(item.title);}
                 if (Utils.isValue(item.size)) {th.css({width: item.size});}
                 if (Utils.isValue(item.cls)) {classes.push(item.cls);}
                 classes.push(o.clsHeadCell);
                 th.addClass(classes.join(" "));
+                tr.append(th)
             });
 
             cells = this.heads;
@@ -685,7 +689,7 @@
                 var item = this;
                 var classes = [];
 
-                th = $("<th>");
+                var th = $("<th>");
                 th.data("index", cell_index);
 
                 if (Utils.isValue(item.title)) {th.html(item.title);}
