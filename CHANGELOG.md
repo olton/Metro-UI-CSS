@@ -4,6 +4,7 @@
 + [x] Media: added sizes `xxxl: 1600px`, `xxxxl: 1800px`, `xxxxxl: 2000px`
 + [x] Grid: added cells `cell-xxxl-*`, `cell-xxxxl-*`, `cell-xxxxxl-*`, `cell-*-fifth` (20%), `cell-*-one-fifth` (20%), `cell-*-two-fifth` (40%), `cell-*-three-fifth` (60%), `cell-*-four-fifth` (80%)
 + [x] Table: fixed creating head from html
++ [x] Table: added placeholder for search input with `table-search-placeholder` attribute
 
 ### 4.5.0
 + [x] Tabs Material: fixed jump to the anchors, issue #1794
