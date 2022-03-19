@@ -1,4 +1,4 @@
-/* global Metro */
+ /* global Metro */
 (function(Metro, $) {
     'use strict';
     Metro.pagination = function(c){

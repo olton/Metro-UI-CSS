@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.1  (https://metroui.org.ua)
  * Copyright 2012-2022 Sergey Pimenov
- * Built at 04/02/2022 13:10:52
+ * Built at 19/03/2022 16:44:14
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.1",
-        compileTime: "04/02/2022 13:10:52",
+        compileTime: "19/03/2022 16:44:14",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -18099,7 +18099,11 @@ $.noConflict = function() {
             clearInterval(this.tickInterval);
 
             element.find(".part").removeClass(o.clsZero);
-            element.find(".digit").html("0");
+
+            var digit = element.find(".digit").clear();
+
+            digit.append($("<span class='digit-placeholder'>").html("0"));
+            digit.append($("<span class='digit-value'>").html("0"));
 
             this._setBreakpoint();
 
@@ -18109,6 +18113,25 @@ $.noConflict = function() {
 
             this.blinkInterval = setInterval(function(){that.blink();}, 500);
             this.tickInterval = setInterval(function(){that.tick();}, 1000);
+        },
+
+        resetWith: function(val){
+            var that = this, element = this.element, o = this.options;
+
+            if (typeof val === "string") {
+                element.attr("data-date", val)
+                o.date = val
+            } else if (typeof val === 'object') {
+                var keys = ["days", "hours", "minutes", "seconds"]
+                $.each(keys, function(i, v){
+                    if (Metro.utils.isValue(val[v])) {
+                        element.attr("data-"+v, val[v])
+                        o[v] = val[v]
+                    }
+                })
+            }
+
+            this.reset()
         },
 
         togglePlay: function(){
@@ -34818,23 +34841,27 @@ $.noConflict = function() {
         },
 
         setData: function(/*obj*/ data){
-            var o = this.options;
+            var that = this, o = this.options;
 
-            this.items = [];
-            this.heads = [];
-            this.foots = [];
+            this.activity.show(function() {
+                that.items = [];
+                that.heads = [];
+                that.foots = [];
 
-            if (Array.isArray(o.head)) {
-                this.heads = o.head;
-            }
+                if (Array.isArray(o.head)) {
+                    that.heads = o.head;
+                }
 
-            if (Array.isArray(o.body)) {
-                this.items = o.body;
-            }
+                if (Array.isArray(o.body)) {
+                    that.items = o.body;
+                }
 
-            this._createItemsFromJSON(data);
+                that._createItemsFromJSON(data);
 
-            this._rebuild(true);
+                that._rebuild(true);
+
+                that.activity.hide();
+            })
 
             return this;
         },
@@ -35489,6 +35516,8 @@ $.noConflict = function() {
         clsTabsListItemActive: "",
 
         onTab: Metro.noop,
+        onTabOpen: Metro.noop,
+        onTabClose: Metro.noop,
         onBeforeTab: Metro.noop_true,
         onTabsCreate: Metro.noop
     };
@@ -35613,6 +35642,11 @@ $.noConflict = function() {
                 var href = link.attr("href").trim();
                 var tab = link.parent("li");
 
+                that._fireEvent("tab", {
+                    tab: tab[0],
+                    target: tab.children("a").attr("href")
+                });
+
                 if (tab.hasClass("active")) {
                     e.preventDefault();
                 }
@@ -35652,7 +35686,7 @@ $.noConflict = function() {
             var element = this.element, o = this.options;
             var tabs = element.find("li");
             var expandTitle = element.siblings(".expand-title");
-
+            var activeTab = element.find("li.active");
 
             if (tabs.length === 0) {
                 return;
@@ -35690,9 +35724,16 @@ $.noConflict = function() {
 
             tab.addClass(o.clsTabsListItemActive);
 
-            this._fireEvent("tab", {
-                tab: tab[0]
+            this._fireEvent("tab-open", {
+                tab: tab[0],
+                target: tab.children("a").attr("href")
             });
+
+            if (!activeTab.is(tab))
+                this._fireEvent("tab-close", {
+                    tab: activeTab[0],
+                    target: activeTab.children("a").attr("href")
+                });
         },
 
         next: function(){

@@ -16,6 +16,8 @@
         clsTabsListItemActive: "",
 
         onTab: Metro.noop,
+        onTabOpen: Metro.noop,
+        onTabClose: Metro.noop,
         onBeforeTab: Metro.noop_true,
         onTabsCreate: Metro.noop
     };
@@ -140,6 +142,11 @@
                 var href = link.attr("href").trim();
                 var tab = link.parent("li");
 
+                that._fireEvent("tab", {
+                    tab: tab[0],
+                    target: tab.children("a").attr("href")
+                });
+
                 if (tab.hasClass("active")) {
                     e.preventDefault();
                 }
@@ -179,7 +186,7 @@
             var element = this.element, o = this.options;
             var tabs = element.find("li");
             var expandTitle = element.siblings(".expand-title");
-
+            var activeTab = element.find("li.active");
 
             if (tabs.length === 0) {
                 return;
@@ -217,9 +224,16 @@
 
             tab.addClass(o.clsTabsListItemActive);
 
-            this._fireEvent("tab", {
-                tab: tab[0]
+            this._fireEvent("tab-open", {
+                tab: tab[0],
+                target: tab.children("a").attr("href")
             });
+
+            if (!activeTab.is(tab))
+                this._fireEvent("tab-close", {
+                    tab: activeTab[0],
+                    target: activeTab.children("a").attr("href")
+                });
         },
 
         next: function(){

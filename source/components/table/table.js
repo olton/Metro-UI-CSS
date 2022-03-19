@@ -1873,23 +1873,27 @@
         },
 
         setData: function(/*obj*/ data){
-            var o = this.options;
+            var that = this, o = this.options;
 
-            this.items = [];
-            this.heads = [];
-            this.foots = [];
+            this.activity.show(function() {
+                that.items = [];
+                that.heads = [];
+                that.foots = [];
 
-            if (Array.isArray(o.head)) {
-                this.heads = o.head;
-            }
+                if (Array.isArray(o.head)) {
+                    that.heads = o.head;
+                }
 
-            if (Array.isArray(o.body)) {
-                this.items = o.body;
-            }
+                if (Array.isArray(o.body)) {
+                    that.items = o.body;
+                }
 
-            this._createItemsFromJSON(data);
+                that._createItemsFromJSON(data);
 
-            this._rebuild(true);
+                that._rebuild(true);
+
+                that.activity.hide();
+            })
 
             return this;
         },
