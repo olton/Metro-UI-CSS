@@ -253,16 +253,17 @@
 
             tab.addClass(o.clsTabsListItemActive);
 
-            this._fireEvent("tab-open", {
-                tab: tab[0],
-                target: tab.children("a").attr("href")
-            });
+            if (!activeTab.is(tab)) {
+                this._fireEvent("tab-open", {
+                    tab: tab[0],
+                    target: tab.children("a").attr("href")
+                });
 
-            if (!activeTab.is(tab))
                 this._fireEvent("tab-close", {
                     tab: activeTab[0],
                     target: activeTab.children("a").attr("href")
                 });
+            }
         },
 
         next: function(){
