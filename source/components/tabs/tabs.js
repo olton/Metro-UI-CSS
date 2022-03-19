@@ -285,6 +285,13 @@
             }
         },
 
+        openByTarget: function(target){
+            var tab = this._findTabByTarget(target);
+            if (tab) {
+                this._open($(tab));
+            }
+        },
+
         open: function(tab){
             var element = this.element;
             var tabs = element.find("li");

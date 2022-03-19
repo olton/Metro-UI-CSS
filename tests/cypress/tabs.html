@@ -13,7 +13,13 @@
     <h1>Tabs test page</h1>
 
     <div class="example">
+        <div class="text-center p-10">
+            <button class="button" onclick="openTabByTarget('#home')">Home</button>
+            <button class="button" onclick="openTabByTarget('#profile')">Profile</button>
+            <button class="button" onclick="openTabByTarget('#links')">Links</button>
+        </div>
         <ul
+                id="tabs"
                 data-role="tabs"
                 data-expand="true"
                 data-cls-tabs-list-item-active="fg-orange"
@@ -37,6 +43,9 @@
 
 <script src="../metro/js/metro.js?ver=@@b-version"></script>
 <script>
+    function openTabByTarget(target){
+        Metro.getPlugin('#tabs', 'tabs').openByTarget(target)
+    }
 </script>
 </body>
 </html>
