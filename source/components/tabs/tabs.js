@@ -168,6 +168,30 @@
                     e.preventDefault();
                 }
             });
+
+            $(window).on("hashchange", function(e){
+                var hash, tab;
+
+                if (o.updateUri) {
+                    hash = window.location.hash;
+                    tab = that._findTabByTarget(hash)
+                    that._open($(tab))
+                }
+            });
+        },
+
+        _findTabByTarget: function(target){
+            var element = this.element;
+            var tabs = element.find("li")
+            var tab = undefined
+
+            tabs.each(function(i, el){
+                if (!tab && $(el).children("a").attr("href") === target) {
+                    tab = el
+                }
+            })
+
+            return tab
         },
 
         _collectTargets: function(){
