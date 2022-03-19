@@ -476,7 +476,11 @@
             clearInterval(this.tickInterval);
 
             element.find(".part").removeClass(o.clsZero);
-            element.find(".digit").html("0");
+
+            var digit = element.find(".digit").clear();
+
+            digit.append($("<span class='digit-placeholder'>").html("0"));
+            digit.append($("<span class='digit-value'>").html("0"));
 
             this._setBreakpoint();
 
@@ -486,6 +490,25 @@
 
             this.blinkInterval = setInterval(function(){that.blink();}, 500);
             this.tickInterval = setInterval(function(){that.tick();}, 1000);
+        },
+
+        resetWith: function(val){
+            var that = this, element = this.element, o = this.options;
+
+            if (typeof val === "string") {
+                element.attr("data-date", val)
+                o.date = val
+            } else if (typeof val === 'object') {
+                var keys = ["days", "hours", "minutes", "seconds"]
+                $.each(keys, function(i, v){
+                    if (Metro.utils.isValue(val[v])) {
+                        element.attr("data-"+v, val[v])
+                        o[v] = val[v]
+                    }
+                })
+            }
+
+            this.reset()
         },
 
         togglePlay: function(){

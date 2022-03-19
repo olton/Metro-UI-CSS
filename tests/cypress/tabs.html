@@ -13,10 +13,17 @@
     <h1>Tabs test page</h1>
 
     <div class="example">
-        <ul data-role="tabs" data-expand="true" data-cls-tabs-list-item-active="fg-orange">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#profile">Profile</a></li>
-            <li><a href="#links">Links</a></li>
+        <ul
+                data-role="tabs"
+                data-expand="true"
+                data-cls-tabs-list-item-active="fg-orange"
+                data-on-tab="console.log('tab', arguments)"
+                data-on-tab-close="console.log('close', arguments)"
+                data-on-tab-open="console.log('open', arguments)"
+        >
+            <li id="1"><a href="#home">Home</a></li>
+            <li id="2"><a href="#profile">Profile</a></li>
+            <li id="3"><a href="#links">Links</a></li>
         </ul>
         <div class="tabs-targets">
             <div id="home">Home</div>
