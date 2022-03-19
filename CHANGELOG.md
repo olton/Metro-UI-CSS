@@ -9,6 +9,7 @@
 + [x] Countdown: added method `resetWith(str|obj)`
 + [x] Tabs: added events `onTabOpen`, `onTabClose`
 + [x] Tabs: to events `onTab`, `onTabOpen`, `onTabClose` added second argument `target`. Value for it child `a.href` value
++ [x] Tabs: added attribute `data-update-uri="true|false"` (default `false`). If true url hash will update with tab target value
 
 ### 4.5.0
 + [x] Tabs Material: fixed jump to the anchors, issue #1794

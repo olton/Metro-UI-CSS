@@ -9,6 +9,7 @@
         expandPoint: null,
         tabsPosition: "top",
         tabsType: "default",
+        updateUri: false,
 
         clsTabs: "",
         clsTabsList: "",
@@ -41,11 +42,12 @@
         },
 
         _create: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
             var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
             this._createStructure();
             this._createEvents();
+
             this._open(tab);
 
             this._fireEvent("tabs-create", {
@@ -217,6 +219,9 @@
             });
 
             if (target !== "#" && target[0] === "#") {
+                if (o.updateUri) {
+                    window.location.hash = target
+                }
                 $(target).show();
             }
 

@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.1  (https://metroui.org.ua)
  * Copyright 2012-2022 Sergey Pimenov
- * Built at 19/03/2022 16:49:01
+ * Built at 19/03/2022 17:15:25
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.1",
-        compileTime: "19/03/2022 16:49:01",
+        compileTime: "19/03/2022 17:15:25",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -35509,6 +35509,7 @@ $.noConflict = function() {
         expandPoint: null,
         tabsPosition: "top",
         tabsType: "default",
+        updateUri: false,
 
         clsTabs: "",
         clsTabsList: "",
@@ -35541,11 +35542,12 @@ $.noConflict = function() {
         },
 
         _create: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
             var tab = element.find(".active").length > 0 ? $(element.find(".active")[0]) : undefined;
 
             this._createStructure();
             this._createEvents();
+
             this._open(tab);
 
             this._fireEvent("tabs-create", {
@@ -35717,6 +35719,9 @@ $.noConflict = function() {
             });
 
             if (target !== "#" && target[0] === "#") {
+                if (o.updateUri) {
+                    window.location.hash = target
+                }
                 $(target).show();
             }
 
