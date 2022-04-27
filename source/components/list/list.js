@@ -680,8 +680,47 @@
             this._draw();
         },
 
-        loadData: function(source){
+        setData: function(data){
             var that = this, element = this.element, o = this.options;
+
+            if (Utils.isValue(data) !== true) {
+                return ;
+            }
+
+            that._createItemsFromJSON(data);
+
+            element.html("");
+
+            if (Utils.isValue(o.filterString)) {
+                that.filterString = o.filterString;
+            }
+
+            var filter_func;
+
+            if (Utils.isValue(o.filter)) {
+                filter_func = Utils.isFunc(o.filter);
+                if (filter_func === false) {
+                    filter_func = Utils.func(o.filter);
+                }
+                that.filterIndex = that.addFilter(filter_func);
+            }
+
+            if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                $.each(o.filters.toArray(), function(){
+                    filter_func = Utils.isFunc(this);
+                    if (filter_func !== false) {
+                        that.filtersIndexes.push(that.addFilter(filter_func));
+                    }
+                });
+            }
+
+            that.currentPage = 1;
+
+            that.sorting(o.sortClass, o.sortDir, true);
+        },
+
+        loadData: function(source){
+            var that = this, o = this.options;
 
             if (Utils.isValue(source) !== true) {
                 return ;
@@ -701,37 +740,7 @@
                         source: o.source,
                         data: data
                     });
-
-                    that._createItemsFromJSON(data);
-
-                    element.html("");
-
-                    if (Utils.isValue(o.filterString)) {
-                        that.filterString = o.filterString;
-                    }
-
-                    var filter_func;
-
-                    if (Utils.isValue(o.filter)) {
-                        filter_func = Utils.isFunc(o.filter);
-                        if (filter_func === false) {
-                            filter_func = Utils.func(o.filter);
-                        }
-                        that.filterIndex = that.addFilter(filter_func);
-                    }
-
-                    if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
-                        $.each(o.filters.toArray(), function(){
-                            filter_func = Utils.isFunc(this);
-                            if (filter_func !== false) {
-                                that.filtersIndexes.push(that.addFilter(filter_func));
-                            }
-                        });
-                    }
-
-                    that.currentPage = 1;
-
-                    that.sorting(o.sortClass, o.sortDir, true);
+                    that.setData(data)
                 })
                 .catch(function(error){
                     that._fireEvent("data-load-error", {
