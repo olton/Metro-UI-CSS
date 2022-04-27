@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.1  (https://metroui.org.ua)
  * Copyright 2012-2022 Sergey Pimenov
- * Built at 19/03/2022 17:52:51
+ * Built at 27/04/2022 11:27:09
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.1",
-        compileTime: "19/03/2022 17:52:51",
+        compileTime: "27/04/2022 11:27:09",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -25543,8 +25543,47 @@ $.noConflict = function() {
             this._draw();
         },
 
-        loadData: function(source){
+        setData: function(data){
             var that = this, element = this.element, o = this.options;
+
+            if (Utils.isValue(data) !== true) {
+                return ;
+            }
+
+            that._createItemsFromJSON(data);
+
+            element.html("");
+
+            if (Utils.isValue(o.filterString)) {
+                that.filterString = o.filterString;
+            }
+
+            var filter_func;
+
+            if (Utils.isValue(o.filter)) {
+                filter_func = Utils.isFunc(o.filter);
+                if (filter_func === false) {
+                    filter_func = Utils.func(o.filter);
+                }
+                that.filterIndex = that.addFilter(filter_func);
+            }
+
+            if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
+                $.each(o.filters.toArray(), function(){
+                    filter_func = Utils.isFunc(this);
+                    if (filter_func !== false) {
+                        that.filtersIndexes.push(that.addFilter(filter_func));
+                    }
+                });
+            }
+
+            that.currentPage = 1;
+
+            that.sorting(o.sortClass, o.sortDir, true);
+        },
+
+        loadData: function(source){
+            var that = this, o = this.options;
 
             if (Utils.isValue(source) !== true) {
                 return ;
@@ -25564,37 +25603,7 @@ $.noConflict = function() {
                         source: o.source,
                         data: data
                     });
-
-                    that._createItemsFromJSON(data);
-
-                    element.html("");
-
-                    if (Utils.isValue(o.filterString)) {
-                        that.filterString = o.filterString;
-                    }
-
-                    var filter_func;
-
-                    if (Utils.isValue(o.filter)) {
-                        filter_func = Utils.isFunc(o.filter);
-                        if (filter_func === false) {
-                            filter_func = Utils.func(o.filter);
-                        }
-                        that.filterIndex = that.addFilter(filter_func);
-                    }
-
-                    if (Utils.isValue(o.filters) && typeof o.filters === 'string') {
-                        $.each(o.filters.toArray(), function(){
-                            filter_func = Utils.isFunc(this);
-                            if (filter_func !== false) {
-                                that.filtersIndexes.push(that.addFilter(filter_func));
-                            }
-                        });
-                    }
-
-                    that.currentPage = 1;
-
-                    that.sorting(o.sortClass, o.sortDir, true);
+                    that.setData(data)
                 })
                 .catch(function(error){
                     that._fireEvent("data-load-error", {

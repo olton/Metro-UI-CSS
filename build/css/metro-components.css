@@ -1,7 +1,7 @@
 /*
  * Metro 4 Components Library v4.5.1  (https://metroui.org.ua)
  * Copyright 2012-2022 Sergey Pimenov
- * Built at 19/03/2022 17:52:51
+ * Built at 27/04/2022 11:27:09
  * Licensed under MIT
  */
 .accordion {
@@ -12624,6 +12624,7 @@ input.input-small:-ms-input-placeholder {
 }
 .scrollbar-type-1 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 .scrollbar-type-1 ::-webkit-scrollbar-track {
   background-color: #e8e8e8;
@@ -12633,6 +12634,7 @@ input.input-small:-ms-input-placeholder {
 }
 .scrollbar-type-2 ::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 .scrollbar-type-2 ::-webkit-scrollbar-track {
   border-radius: 6px;
@@ -12644,6 +12646,7 @@ input.input-small:-ms-input-placeholder {
 }
 .scrollbar-type-3 ::-webkit-scrollbar {
   width: 10px;
+  height: 10px;
 }
 .scrollbar-type-3 ::-webkit-scrollbar-track {
   background-color: #e8e8e8;
@@ -12653,6 +12656,7 @@ input.input-small:-ms-input-placeholder {
 }
 .scrollbar-type-4 ::-webkit-scrollbar {
   width: 12px;
+  heigth: 12px;
 }
 .scrollbar-type-4 ::-webkit-scrollbar-track {
   border-radius: 10px;
