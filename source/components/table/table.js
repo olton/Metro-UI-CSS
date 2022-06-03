@@ -1373,7 +1373,7 @@
                 rows: o.rows,
                 current: this.currentPage,
                 target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination"),
-                claPagination: o.clsPagination,
+                clsPagination: o.clsPagination,
                 prevTitle: o.paginationPrevTitle || this.locale.table["prev"],
                 nextTitle: o.paginationNextTitle || this.locale.table["next"],
                 distance: o.paginationShortMode === true ? o.paginationDistance : 0
