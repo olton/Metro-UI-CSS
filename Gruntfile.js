@@ -84,7 +84,7 @@ module.exports = function(grunt) {
         pkg: grunt.file.readJSON('package.json'),
 
         copyright: '/*\n' +
-        ' * Metro 4 Components Library v<%= pkg.version %> <%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
+        ' * Metro UI Components Library v<%= pkg.version %> <%= pkg.version_suffix %> (<%= pkg.homepage %>)\n' +
         ' * Copyright 2012-<%= grunt.template.today("yyyy") %> <%= pkg.author %>\n' +
         ' * Built at '+timestamp+'\n' +
         ' * Licensed under <%= pkg.license %>\n' +
@@ -226,7 +226,7 @@ module.exports = function(grunt) {
             options: {
                 map: false,
                 processors: [
-                    require('autoprefixer')()
+                    require('autoprefixer')
                 ]
             },
             dist: {
