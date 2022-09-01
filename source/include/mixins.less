@@ -46,7 +46,7 @@
         @current_value: extract(@size, @i);
 
         & when not(@current_value = 0) {
-                @{attr}+_: unit( @current_value / 16, rem );
+                @{attr}+_: unit( (@current_value / 16), rem );
         }
 
         & when (@current_value = 0) {
