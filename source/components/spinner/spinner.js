@@ -231,10 +231,6 @@
             var o = this.options;
             var val = Utils.isValue(o.defaultValue) ? Number(o.defaultValue) : 0;
             this._setValue(val.toFixed(o.fixed), true);
-
-            this._fireEvent("change", {
-                val: val
-            });
         },
 
         disable: function(){
