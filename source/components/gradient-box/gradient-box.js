@@ -46,7 +46,6 @@
             this.repeat = o.gradientRepeat;
             this.func = (this.repeat ? "repeating-" : "") + this.type + "-gradient";
 
-
             if (this.type === "linear") {
                 if ( !o.gradientPosition ) {
                     this.position = "to bottom";
@@ -86,7 +85,7 @@
             }
 
             if (this.position) {
-                gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
+                //gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
             }
 
             gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";

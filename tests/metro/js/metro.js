@@ -335,6 +335,9 @@
             var names = Datetime.getLocale(locale || this.locale);
             var year = this.year(), year2 = this.year2(), month = this.month(), day = this.day(), weekDay = this.weekDay();
             var hour = this.hour(), minute = this.minute(), second = this.second(), ms = this.ms();
+
+            console.log("---", locale)
+
             var matches = {
                 YY: year2,
                 YYYY: year,
@@ -12696,7 +12699,9 @@ $.noConflict = function() {
                 }
             }
 
+            console.log(`${o.format}`)
             elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
+            console.log(elementValue)
 
             if (o.showTime && this.time && elementValue) {
                 h = Cake.lpad(this.time[0], 2, "0");
@@ -21588,7 +21593,6 @@ $.noConflict = function() {
             this.repeat = o.gradientRepeat;
             this.func = (this.repeat ? "repeating-" : "") + this.type + "-gradient";
 
-
             if (this.type === "linear") {
                 if ( !o.gradientPosition ) {
                     this.position = "to bottom";
@@ -21628,11 +21632,12 @@ $.noConflict = function() {
             }
 
             if (this.position) {
-                gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
+                //gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
             }
 
             gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
 
+            console.log(this.position)
             element.css({
                 background: gradientRule
             });
