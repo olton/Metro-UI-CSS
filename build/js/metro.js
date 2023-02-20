@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.1  (https://metroui.org.ua)
- * Copyright 2012-2022 Sergey Pimenov
- * Built at 01/09/2022 18:29:28
+ * Copyright 2012-2023 Sergey Pimenov
+ * Built at 20/02/2023 21:31:50
  * Licensed under MIT
  */
 /*!
@@ -7239,8 +7239,8 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.1",
-        compileTime: "01/09/2022 18:29:28",
-        buildNumber: "758",
+        compileTime: "20/02/2023 21:31:50",
+        buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
@@ -21588,7 +21588,6 @@ $.noConflict = function() {
             this.repeat = o.gradientRepeat;
             this.func = (this.repeat ? "repeating-" : "") + this.type + "-gradient";
 
-
             if (this.type === "linear") {
                 if ( !o.gradientPosition ) {
                     this.position = "to bottom";
@@ -21628,7 +21627,7 @@ $.noConflict = function() {
             }
 
             if (this.position) {
-                gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
+                //gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
             }
 
             gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
