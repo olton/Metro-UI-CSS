@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.1  (https://metroui.org.ua)
- * Copyright 2012-2022 Sergey Pimenov
- * Built at 01/09/2022 18:29:28
+ * Copyright 2012-2023 Sergey Pimenov
+ * Built at 20/02/2023 21:31:50
  * Licensed under MIT
  */
 /*!
@@ -335,9 +335,6 @@
             var names = Datetime.getLocale(locale || this.locale);
             var year = this.year(), year2 = this.year2(), month = this.month(), day = this.day(), weekDay = this.weekDay();
             var hour = this.hour(), minute = this.minute(), second = this.second(), ms = this.ms();
-
-            console.log("---", locale)
-
             var matches = {
                 YY: year2,
                 YYYY: year,
@@ -7242,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.1",
-        compileTime: "01/09/2022 18:29:28",
+        compileTime: "20/02/2023 21:31:50",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -12699,9 +12696,7 @@ $.noConflict = function() {
                 }
             }
 
-            console.log(`${o.format}`)
             elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
-            console.log(elementValue)
 
             if (o.showTime && this.time && elementValue) {
                 h = Cake.lpad(this.time[0], 2, "0");
@@ -21637,7 +21632,6 @@ $.noConflict = function() {
 
             gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
 
-            console.log(this.position)
             element.css({
                 background: gradientRule
             });
