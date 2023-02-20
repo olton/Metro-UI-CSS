@@ -1,7 +1,7 @@
 /*
- * Metro UI Components Library v4.5.1  (https://metroui.org.ua)
+ * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 20/02/2023 21:31:50
+ * Built at 20/02/2023 21:32:43
  * Licensed under MIT
  */
 /*!
@@ -7238,8 +7238,8 @@ $.noConflict = function() {
 
     var Metro = {
 
-        version: "4.5.1",
-        compileTime: "20/02/2023 21:31:50",
+        version: "4.5.2",
+        compileTime: "20/02/2023 21:32:43",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
