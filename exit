@@ -1,0 +1,239 @@
+[33mcommit f219bb60864dd67286d8607456b81f79eadd1198[m[33m ([m[1;36mHEAD -> [m[1;32mankit[m[33m)[m
+Author: Ankit Rautela <ankit.rautela@nineleaps.com>
+Date:   Mon Feb 27 10:34:21 2023 +0530
+
+    branch created
+
+[33mcommit 7429a952c76a3a9b3db69852c81ffcbd9ebeabb9[m[33m ([m[1;32mmaster[m[33m)[m
+Author: Ankit Rautela <ankit.rautela@nineleaps.com>
+Date:   Mon Feb 27 10:28:41 2023 +0530
+
+    ankk
+
+[33mcommit 3512dd74212ef4a651dc2064345ab8fc88c43fc9[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: olton <serhii@pimenov.com.ua>
+Date:   Thu Sep 1 18:29:35 2022 +0300
+
+    new cdn
+
+[33mcommit 952039424ab44be06983f7f28f698b557dbb81bb[m
+Author: Serhii Pimenov <serhii@pimenov.com.ua>
+Date:   Thu Jun 23 09:21:21 2022 +0300
+
+    release 4.5.1
+
+[33mcommit 732317183d1260ce5c186c5ea1ea012949d7545c[m
+Author: Serhii Pimenov <serhii@pimenov.com.ua>
+Date:   Thu Jun 23 09:19:57 2022 +0300
+
+    release 4.5.1
+
+[33mcommit 94cb11e565ae7e4d12cd7f0ca757a27cd185f84a[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Wed Apr 27 11:27:32 2022 +0300
+
+    fixed ccustom h-scroll height
+
+[33mcommit 974a1f6a3ccf1d7d8820af61c5b38f45b0281cb5[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 17:53:15 2022 +0200
+
+    Tabs: added method openByTarget()
+
+[33mcommit 3eef0604bbbe6923ba2362267686c89b09ac1ebf[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 17:46:25 2022 +0200
+
+    Tabs: added method openByTarget()
+
+[33mcommit 3cd71c0ee82888e6d6c1e7660a76620f64e54dc2[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 17:41:02 2022 +0200
+
+    Tabs: added method openTabByTarget()
+
+[33mcommit 3636a0df97bb1014dd21e9d1148fe4837283036f[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 17:28:24 2022 +0200
+
+    Tabs: added attribute data-update-uri
+
+[33mcommit 5deccc047928436e1fc251cf81d5d51c4918d66f[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 17:15:52 2022 +0200
+
+    Tabs: added attribute data-update-uri
+
+[33mcommit ddde7bc743c1fb9da21aa0f31c3c0645468230ef[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 16:49:26 2022 +0200
+
+    Tabs: added events `onTabOpen`, `onTabClose`, to events `onTab`, `onTabOpen`, `onTabClose` added second argument `target`. Value for it child `a.href` value
+
+[33mcommit 07256ec1fdafcaf351999135f91fe0375241875a[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Mar 19 16:48:28 2022 +0200
+
+    Tabs: added events `onTabOpen`, `onTabClose`, to events `onTab`, `onTabOpen`, `onTabClose` added second argument `target`. Value for it child `a.href` value
+
+[33mcommit 9a27c30d40de5f952cfc4b37ff173a30aa490c20[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Fri Feb 4 13:11:21 2022 +0200
+
+    Table: fixed creating head from html
+
+[33mcommit 4792076f947379d70d1f9829e49be3c0441037f3[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Jan 31 22:52:51 2022 +0200
+
+    Table: fixed creating head from html
+
+[33mcommit 9d77a90398dc130f5c0a7d95e46acdd094aad7c3[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Fri Dec 17 14:14:09 2021 +0200
+
+    Media: added sizes `xxxl: 1600px`, `xxxxl: 1800px`, `xxxxxl: 2000px`, Grid: added cells `cell-xxxl-*`, `cell-xxxxl-*`, `cell-xxxxxl-*`, `cell-*-fifth` (20%), `cell-*-one-fifth` (20%), `cell-*-two-fifth` (40%), `cell-*-three-fifth` (60%), `cell-*-four-fifth` (80%)
+
+[33mcommit f731a35548296d8008a04db3c5471ddafd4c69ab[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Thu Oct 28 15:44:18 2021 +0300
+
+    added component checkbox with three state
+
+[33mcommit c8ea54387b280072b9dc6028e0ed7930b9ce03bb[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Thu Oct 28 15:42:41 2021 +0300
+
+    Checkbox Three State: added new component with role `checkbox-three-state`
+
+[33mcommit 84b72a16f540276e1d504a33dbd1ed80074b21f6[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Thu Oct 28 14:33:15 2021 +0300
+
+    ...
+
+[33mcommit b63831f7aee98d7e46a59cac0f582f41fce68a97[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Wed Aug 25 16:12:02 2021 +0300
+
+    Donut: fixed method `setColor({...})`
+
+[33mcommit 35eeb975cc145975e60cfc23979cbc4422adae3f[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Wed Aug 25 16:11:06 2021 +0300
+
+    Donut: fixed method `setColor({...})`
+
+[33mcommit 1e1d4f3a3f5e860e8a8e470a84fb8958dc2b8133[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Aug 2 09:19:51 2021 +0300
+
+    init 4.5.1
+
+[33mcommit fb2c4491b50b806bbfc8f1c5d9b028a3a195522a[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Aug 2 09:18:59 2021 +0300
+
+    init 4.5.1
+
+[33mcommit 2b8a8147213d357f4d7d066a3c7a0ec33e82348d[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sun Aug 1 18:54:11 2021 +0300
+
+    release 4.5.0
+
+[33mcommit e84bd16c8ce5cd16532a8839cc6f690489eeda89[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sun Aug 1 18:52:40 2021 +0300
+
+    release 4.5.0
+
+[33mcommit 97e959f8ce24367f74be3d4a3230485bca17144c[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sun Aug 1 18:39:32 2021 +0300
+
+    release 4.5.0
+
+[33mcommit 7a668d0cfc84d76aba53cfeabf6228481e980ad2[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Jul 31 08:18:48 2021 +0300
+
+    Tabs Material: fixed jump to the anchors, issue #1794
+
+[33mcommit 82d72745e67247839630b1c299713ba2404d28eb[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Jul 31 08:11:14 2021 +0300
+
+    Table: fixed create `Instpector` when table data loaded with method `loadData()`, issue #1796
+
+[33mcommit 8f58d2d563e1438158c6a54bafc07e4b289e5e62[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Fri Jul 30 08:52:30 2021 +0300
+
+    Tabs Material: added mouse wheel support for scrolling tabs, issue #1795
+
+[33mcommit 18ec18c0d54ba26135d2a4d27a3b0fa14bc2965e[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Jul 24 08:31:13 2021 +0300
+
+    Select: added event `data-on-clear`, fixed firing event `data-on-change` when user click on the `clear` button, issue #1802
+
+[33mcommit 843e978f8b0e29c4bb83e6c3bc481d0ce6564704[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Thu Jul 22 10:47:17 2021 +0300
+
+    Switch: fixed method `toggleState()`, issue #1799
+
+[33mcommit 4794b64ba447fd98b645ede56c6127e1750a1fc7[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Wed Jul 21 10:00:24 2021 +0300
+
+    Select: fixed API method `data()` for selecting option when defined, issue #1755
+
+[33mcommit c1f8c07bfba8902ee5d62364d3a8fe1bf9fb511f[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Jul 12 19:33:23 2021 +0300
+
+    added icons: discord, telegram, cpu, memory-card, network, lan, net-server, computer, hdd
+
+[33mcommit 500c19813a32f7a6bc56c7babee2eb183ce0572b[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Jul 12 19:23:30 2021 +0300
+
+    added icons: discord, telegram, cpu, memory-card, network, lan, net-server, computer, hdd
+
+[33mcommit 7733cd097fa82b68d8a2c4a263fd4c25c567562a[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Jul 12 19:22:17 2021 +0300
+
+    added icons: discord, telegram, cpu, memory-card, network, lan, net-server, computer, hdd
+
+[33mcommit 679bb5d0f99bba9f7c9371c7b49c3004c41a7f3f[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Jul 12 18:46:11 2021 +0300
+
+    added icons: discord, telegram, cpu, ram
+
+[33mcommit 94fb556e78f2a44137ad0c85929fd985710d4de9[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Mon Jul 12 18:44:50 2021 +0300
+
+    added icons: discord, telegram, cpu, ram
+
+[33mcommit f22cdc4c9f84ca974e90b9e463719333e59a818a[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sun Jul 4 21:12:27 2021 +0300
+
+    donut: added setColor() method and observing color props
+
+[33mcommit 6ba92506b5be79d79e7db5e29a148b9d39acad3a[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sun Jul 4 21:05:34 2021 +0300
+
+    donut: fixed reset value when resize
+
+[33mcommit 3561ec3a5c37022d976d66b7d4cd26a054b85155[m
+Author: Sergey Pimenov <sergey@pimenov.com.ua>
+Date:   Sat Jul 3 11:46:16 2021 +0300
+
+    donut: fixed font si
