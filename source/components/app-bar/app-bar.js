@@ -49,6 +49,9 @@
             var element = this.element, o = this.options;
             var hamburger, menu, elementColor = Utils.getStyleOne(element, "background-color");
 
+            var container = element.find('.container');
+            if(container) element = container;
+            
             element.addClass("app-bar");
 
             hamburger = element.find(".hamburger");
