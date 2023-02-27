@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 20/02/2023 21:32:43
+ * Built at 27/02/2023 15:45:25
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.2",
-        compileTime: "20/02/2023 21:32:43",
+        compileTime: "27/02/2023 15:45:25",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8713,23 +8713,23 @@ $.noConflict = function() {
                 "reset": "重啟"
             },
             "table": {
-                "rowsCount": "Show entries:",
-                "search": "Search:",
-                "info": "Showing $1 to $2 of $3 entries",
-                "prev": "Prev",
-                "next": "Next",
-                "all": "All",
-                "inspector": "Inspector",
-                "skip": "Goto page",
-                "empty": "Nothing to show"
+                "rowsCount": "显示实体:",
+                "search": "搜索:",
+                "info": "显示 $1 到 $2 的 $3 条目",
+                "prev": "上一页",
+                "next": "下一页",
+                "all": "全部",
+                "inspector": "查看",
+                "skip": "转到页面",
+                "empty": "没有数据"
             },
             "colorSelector": {
-                addUserColorButton: "ADD TO SWATCHES",
-                userColorsTitle: "USER COLORS"
+                addUserColorButton: "添加到颜色板",
+                userColorsTitle: "用户颜色"
             },
             "switch": {
-                on: "on",
-                off: "off"
+                on: "是",
+                off: "否"
             }
         }
     });
