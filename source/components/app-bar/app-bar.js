@@ -95,6 +95,9 @@
             var menu = element.find(".app-bar-menu");
             var hamburger = element.find(".hamburger");
 
+            var container = element.find('.container');
+            if(container) element = container;
+
             element.on(Metro.events.click, ".hamburger", function () {
                 if (menu.length === 0) return;
                 var collapsed = menu.hasClass("collapsed");
