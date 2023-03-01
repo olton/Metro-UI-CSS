@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 27/02/2023 15:45:25
+ * Built at 01/03/2023 12:14:00
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.2",
-        compileTime: "27/02/2023 15:45:25",
+        compileTime: "01/03/2023 12:14:00",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -39653,7 +39653,7 @@ $.noConflict = function() {
 
         _reset: function(){
             ValidatorFuncs.reset(this.element);
-            if (this._onsubmit !==  null) Utils.exec(this._onsubmit, null, this.element[0]);
+            if (this._onreset !==  null) Utils.exec(this._onreset, null, this.element[0]);
         },
 
         _submit: function(){

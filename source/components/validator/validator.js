@@ -384,7 +384,7 @@
 
         _reset: function(){
             ValidatorFuncs.reset(this.element);
-            if (this._onsubmit !==  null) Utils.exec(this._onsubmit, null, this.element[0]);
+            if (this._onreset !==  null) Utils.exec(this._onreset, null, this.element[0]);
         },
 
         _submit: function(){
