@@ -291,7 +291,7 @@
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
 
-                digit.siblings("-old-digit").remove();
+                digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
                 digit_copy.css({
                     top: -1 * height + 'px'
@@ -325,7 +325,7 @@
 
             var fadeDigit = function(digit, value){
                 var digit_copy;
-                digit.siblings("-old-digit").remove();
+                digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
                 digit_copy.css({
                     opacity: 0
@@ -358,7 +358,7 @@
             var zoomDigit = function(digit, value) {
                 var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
-                digit.siblings("-old-digit").remove();
+                digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
                 digit_copy.css({
                     top: 0,
@@ -402,7 +402,7 @@
 
             len = value.length;
 
-            digits = element.find("."+part+" .digit:not(-old-digit)");
+            digits = element.find("."+part+" .digit:not(.-old-digit)");
             digits_length = digits.length;
 
             for(i = 0; i < len; i++){
