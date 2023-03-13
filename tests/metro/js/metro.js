@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 01/03/2023 12:14:00
+ * Built at 13/03/2023 17:40:18
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.2",
-        compileTime: "01/03/2023 12:14:00",
+        compileTime: "13/03/2023 17:40:18",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -17914,7 +17914,7 @@ $.noConflict = function() {
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
 
-                digit.siblings("-old-digit").remove();
+                digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
                 digit_copy.css({
                     top: -1 * height + 'px'
@@ -17948,7 +17948,7 @@ $.noConflict = function() {
 
             var fadeDigit = function(digit, value){
                 var digit_copy;
-                digit.siblings("-old-digit").remove();
+                digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
                 digit_copy.css({
                     opacity: 0
@@ -17981,7 +17981,7 @@ $.noConflict = function() {
             var zoomDigit = function(digit, value) {
                 var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
 
-                digit.siblings("-old-digit").remove();
+                digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
                 digit_copy.css({
                     top: 0,
@@ -18025,7 +18025,7 @@ $.noConflict = function() {
 
             len = value.length;
 
-            digits = element.find("."+part+" .digit:not(-old-digit)");
+            digits = element.find("."+part+" .digit:not(.-old-digit)");
             digits_length = digits.length;
 
             for(i = 0; i < len; i++){
