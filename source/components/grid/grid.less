@@ -10,20 +10,20 @@
 .row {
     display: flex;
     flex-wrap: wrap;
-    margin-left: -@gridGapSize / 2;
-    margin-right: -@gridGapSize / 2;
+    margin-left: -(@gridGapSize / 2);
+    margin-right: -(@gridGapSize / 2);
 }
 
 .cell, .col {
     flex: 1 0 0;
     max-width: 100%;
-    padding: @gridGapSize / 2;
+    padding: (@gridGapSize / 2);
 }
 
 [class*=cell-], [class*=col-]{
     position: relative;
     display: block;
-    padding: @gridGapSize / 2;
+    padding: (@gridGapSize / 2);
     width: 100%;
     min-height: 1px;
 }

@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 13/03/2023 17:40:18
+ * Built at 11/05/2023 19:13:52
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.2",
-        compileTime: "13/03/2023 17:40:18",
+        compileTime: "11/05/2023 19:13:52",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -8429,6 +8429,68 @@ $.noConflict = function() {
         }
     });
 }(Metro, m4q));
+
+(function(Metro, $) {
+    $.extend(Metro.locales, {
+        'pl-PL': {
+            "calendar": {
+                "months": [
+                    "Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień",
+                    "Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"
+                ],
+                "days": [
+                    "Niedziela", "Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota",
+                    "NDZ", "PN", "WT", "ŚR", "CZW", "PT", "SB",
+                    "Niedz", "Pon", "Wt", "Śr", "Czw", "Pt", "Sob"
+                ],
+                "time": {
+                    "days": "DNI",
+                    "hours": "GODZINY",
+                    "minutes": "MINUTY",
+                    "seconds": "SEKUNDY",
+                    "month": "MIESIĄC",
+                    "day": "DZIEŃ",
+                    "year": "ROK"
+                },
+                "weekStart": 1
+            },
+            "buttons": {
+                "ok": "OK",
+                "cancel": "Anuluj",
+                "done": "Gotowe",
+                "today": "Dziś",
+                "now": "Teraz",
+                "clear": "Wyczyść",
+                "help": "Pomoc",
+                "yes": "Tak",
+                "no": "Nie",
+                "random": "Losowy",
+                "save": "Zapisz",
+                "reset": "Resetowanie"
+            },
+            "table": {
+                "rowsCount": "Pokaż wpisy:",
+                "search": "Wyszukaj:",
+                "info": "Wyświetlanie wpisów od $1 do $2 z łącznie $3",
+                "prev": "Poprzedni",
+                "next": "Następny",
+                "all": "Wszystkie",
+                "inspector": "Inspektor",
+                "skip": "Idź do strony",
+                "empty": "Nic do wyświetlenia"
+            },
+            "colorSelector": {
+                addUserColorButton: "DODAJ DO PRÓBEK",
+                userColorsTitle: "KOLOR UŻYTKOWNIKA"
+            },
+            "switch": {
+                on: "Włącz",
+                off: "Wyłącz"
+            }
+        }
+    });
+}(Metro, m4q));
+
 
 (function(Metro, $) {
     $.extend(Metro.locales, {
@@ -21929,7 +21991,8 @@ $.noConflict = function() {
             104: "8", 105: "9", 106: "*", 107: "+", 109: "-", 110: ".", 111 : "/",
             112: "f1", 113: "f2", 114: "f3", 115: "f4", 116: "f5", 117: "f6", 118: "f7", 119: "f8",
             120: "f9", 121: "f10", 122: "f11", 123: "f12", 144: "numlock", 145: "scroll", 188: ",", 190: ".",
-            191: "/", 224: "meta" },
+            191: "/", 224: "meta"
+        },
 
         shiftNums: {
             "~":"`", "!":"1", "@":"2", "#":"3", "$":"4", "%":"5", "^":"6", "&":"7",
