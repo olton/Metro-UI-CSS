@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 11/05/2023 19:13:52
+ * Built at 12/05/2023 17:09:22
  * Licensed under MIT
  */
 *,
@@ -46197,6 +46197,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .table-skip input {
   width: 220px;
+}
+.table-skip-input {
+  padding: 0 0.75rem;
 }
 .table-component .table-top,
 .table-component .table-rows-block,
