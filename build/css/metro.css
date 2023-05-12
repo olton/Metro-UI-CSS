@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 12/05/2023 17:09:22
+ * Built at 12/05/2023 19:02:43
  * Licensed under MIT
  */
 *,
@@ -41826,7 +41826,7 @@ input.input-small:-ms-input-placeholder {
 }
 .scrollbar-type-4 ::-webkit-scrollbar {
   width: 12px;
-  heigth: 12px;
+  height: 12px;
 }
 .scrollbar-type-4 ::-webkit-scrollbar-track {
   border-radius: 10px;
