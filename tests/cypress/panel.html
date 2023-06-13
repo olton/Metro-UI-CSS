@@ -12,7 +12,12 @@
 <div class="container h-vh-100">
     <h1>Panel test page</h1>
 
-    <div data-role="panel"
+    <div>
+        <button class="button" onclick="Metro.getPlugin('#panel1', 'panel').open()">Open</button>
+        <button class="button" onclick="Metro.getPlugin('#panel1', 'panel').close()">Close</button>
+    </div>
+
+    <div data-role="panel" id="panel1"
          data-title-caption="Panel title"
          data-title-icon="<span class='mif-apps'></span>"
          data-width="240"
