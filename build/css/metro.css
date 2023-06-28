@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 01/06/2023 11:21:51
+ * Built at 28/06/2023 13:10:40
  * Licensed under MIT
  */
 *,
@@ -41360,7 +41360,7 @@ input.input-small:-ms-input-placeholder {
   border-right: none;
 }
 .ribbon-menu .content-holder .section {
-  display: none;
+  display: block;
   padding: 4px 4px;
   border-bottom: 1px solid #dadbdc;
   -webkit-box-pack: start;
@@ -41369,6 +41369,9 @@ input.input-small:-ms-input-placeholder {
 .ribbon-menu .content-holder .section.active {
   display: -webkit-box;
   display: flex;
+}
+.ribbon-menu .content-holder .section.non-active {
+  display: none;
 }
 .ribbon-menu .content-holder .group {
   padding: 0 4px 24px;
@@ -41466,6 +41469,7 @@ input.input-small:-ms-input-placeholder {
   -webkit-box-align: center;
           align-items: center;
   padding: 0 4px;
+  flex-wrap: nowrap;
 }
 .ribbon-icon-button .caption,
 .ribbon-icon-button .icon {
@@ -41473,6 +41477,7 @@ input.input-small:-ms-input-placeholder {
 }
 .ribbon-icon-button .caption {
   font-size: 12px;
+  white-space: nowrap;
 }
 .ribbon-icon-button .icon {
   display: -webkit-box;
@@ -50297,7 +50302,12 @@ body.vegas-container > .vegas-slide {
   height: 34px;
   text-align: center;
   flex-shrink: 0;
-  display: block;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
   position: relative;
   color: inherit;
 }

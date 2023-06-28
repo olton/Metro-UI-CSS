@@ -77,13 +77,17 @@
         border-right: none;
 
         .section {
-            display: none;
+            display: block;
             padding: 4px 4px;
             border-bottom: 1px solid @ribbonMenuBorder;
             justify-content: flex-start;
 
             &.active {
                 display: flex;
+            }
+
+            &.non-active {
+                display: none;
             }
         }
 
@@ -191,6 +195,7 @@
     flex-flow: row nowrap;
     align-items: center;
     padding: 0 4px;
+    flex-wrap: nowrap;
 
     .caption, .icon {
         display: block;
@@ -198,6 +203,7 @@
 
     .caption {
         font-size: 12px;
+        white-space: nowrap;
     }
 
     .icon {
