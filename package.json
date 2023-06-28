@@ -47,7 +47,7 @@
     "autoprefixer": "^9.8.6",
     "cypress": "^10.4.0",
     "eslint": "^8.21.0",
-    "grunt": "^1.5.3",
+    "grunt": "^1.6.1",
     "grunt-build-number": "^1.0.0",
     "grunt-bump": "^0.8.0",
     "grunt-clear": "^0.2.1",

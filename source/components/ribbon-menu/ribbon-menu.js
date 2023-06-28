@@ -41,23 +41,14 @@
 
             element.addClass("ribbon-menu");
 
-            var tabs = element.find(".tabs-holder li:not(.static)");
-            var active_tab = element.find(".tabs-holder li.active");
-            if (active_tab.length > 0) {
-                this.open($(active_tab[0]));
-            } else {
-                if (tabs.length > 0) {
-                    this.open($(tabs[0]));
-                }
-            }
 
             var fluentGroups = element.find(".ribbon-toggle-group");
+
             $.each(fluentGroups, function(){
                 var g = $(this);
                 g.buttongroup({
                     clsActive: "active"
                 });
-
                 var gw = 0;
                 var btns = g.find(".ribbon-icon-button");
                 $.each(btns, function(){
@@ -65,9 +56,21 @@
                     var w = b.outerWidth(true);
                     if (w > gw) gw = w;
                 });
-
                 g.css("width", gw * Math.ceil(btns.length / 3) + 4);
             });
+
+            element.find(".section").addClass("non-active")
+
+            var tabs = element.find(".tabs-holder li:not(.static)");
+            var active_tab = element.find(".tabs-holder li.active");
+
+            if (active_tab.length > 0) {
+                this.open($(active_tab[0]));
+            } else {
+                if (tabs.length > 0) {
+                    this.open($(tabs[0]));
+                }
+            }
         },
 
         _createEvents: function(){
@@ -102,11 +105,15 @@
             var target = $tab.children("a").attr("href");
             var target_section = target !== "#" ? element.find(target) : null;
 
+            sections.addClass("non-active")
             tabs.removeClass("active");
             $tab.addClass("active");
 
             sections.removeClass("active");
-            if (target_section) target_section.addClass("active");
+
+            if (target_section) {
+                target_section.addClass("active").removeClass("non-active");
+            }
 
             this._fireEvent("tab", {
                 tab: $tab[0]
