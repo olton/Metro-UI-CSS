@@ -224,9 +224,9 @@
                     sd = picker.find(".sel-day li.active"),
                     sy = picker.find(".sel-year li.active");
 
-                m = sm.length === 0 ? that.value.getMonth() : sm.data("value");
-                d = sd.length === 0 ? that.value.getDate() : sd.data("value");
-                y = sy.length === 0 ? that.value.getFullYear() : sy.data("value");
+                m = sm.length === 0 ? that.value.value.getMonth() : sm.data("value");
+                d = sd.length === 0 ? that.value.value.getDate() : sd.data("value");
+                y = sy.length === 0 ? that.value.value.getFullYear() : sy.data("value");
 
                 that.value = datetime(y, m, d);
                 that._correct();

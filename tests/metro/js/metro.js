@@ -1,7 +1,7 @@
 /*
  * Metro UI Components Library v4.5.2  (https://metroui.org.ua)
  * Copyright 2012-2023 Sergey Pimenov
- * Built at 28/06/2023 13:13:47
+ * Built at 01/08/2023 20:48:01
  * Licensed under MIT
  */
 /*!
@@ -7239,7 +7239,7 @@ $.noConflict = function() {
     var Metro = {
 
         version: "4.5.2",
-        compileTime: "28/06/2023 13:13:47",
+        compileTime: "01/08/2023 20:48:01",
         buildNumber: "@@build",
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -19094,9 +19094,9 @@ $.noConflict = function() {
                     sd = picker.find(".sel-day li.active"),
                     sy = picker.find(".sel-year li.active");
 
-                m = sm.length === 0 ? that.value.getMonth() : sm.data("value");
-                d = sd.length === 0 ? that.value.getDate() : sd.data("value");
-                y = sy.length === 0 ? that.value.getFullYear() : sy.data("value");
+                m = sm.length === 0 ? that.value.value.getMonth() : sm.data("value");
+                d = sd.length === 0 ? that.value.value.getDate() : sd.data("value");
+                y = sy.length === 0 ? that.value.value.getFullYear() : sy.data("value");
 
                 that.value = datetime(y, m, d);
                 that._correct();
