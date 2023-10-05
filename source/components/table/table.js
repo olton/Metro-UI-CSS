@@ -1072,7 +1072,8 @@
                 var checked = $(this).is(":checked");
                 var store_key = o.checkStoreKey.replace("$1", id);
                 var storage = Metro.storage;
-                var data, stored_keys;
+                var data = [];
+		var stored_keys;
 
                 if (o.useCurrentSlice === true) {
                     stored_keys = storage.getItem(store_key, []);
