@@ -1,0 +1,1 @@
+xcopy build\* g:\Projects\Metro4\metro4-dist /E /R /Y

@@ -1,0 +1,1 @@
+git tag -am %1 %2 && git push --tags
