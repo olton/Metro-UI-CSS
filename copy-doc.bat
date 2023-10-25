@@ -1,0 +1,1 @@
+xcopy build\* g:\Projects\Metro4-Docs\public_html\metro /E /R /Y
