@@ -13,7 +13,7 @@ The `master` branch is basically just a snapshot of the latest stable release. *
 To create pull request:
 - Each pull request should close `one problem`.
 - Check that you are using the latest version of the library.
-- Create pull request to the `latest develop branch` (a greatest number).
+- Create pull request to the `latest develop branch` (a `dev` branch).
 - The patch must contains files in `source` folder only.
 - Add patch keyword to your pull request title: `fix bug`, `update feature`, `add feature`.
 - If you are resolving a special issue, add `(fix #xxxx[,#xxx])` (#xxxx is the issue id) in your PR title.
