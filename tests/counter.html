@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Counter - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container h-vh-100">
+    <h1>Counter test page</h1>
+
+    <div>
+        <button class="button" onclick="start()">Start</button>
+    </div>
+
+    <div>
+<!--        <div data-role="counter" data-value="5000" data-from="1000"></div>-->
+    </div>
+
+    <div style="font-size: 72px;" class="fg-red text-bold" data-role="counter" id="counter" data-start-on-viewport="true" data-prefix="$">0</div>
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+    function start() {
+        Metro.utils.github("olton/Metro-UI-CSS", function(data){
+            $("#counter").attr("data-value", data.stargazers_count);
+        });
+    }
+
+    $("#counter").on("start", function(){
+        console.log("event start");
+    })
+    $("#counter").on("attr-change", function(e){
+        Metro.getPlugin(this, "counter").startInViewport();
+    })
+    $("#counter").on("create", function(e){
+        console.log(e.detail);
+    })
+    $(document).on("component-create", function(e){
+        console.log(e.detail);
+    })
+</script>
+</body>
+</html>

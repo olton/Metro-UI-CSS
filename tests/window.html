@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Window - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+
+<h1>Window test page</h1>
+
+<button class="button" onclick="createWindow()">Create window</button>
+<button class="button" onclick="getPosition()">Get position</button>
+
+<!--<div id="win1" data-role="window" class="p-2" data-on-drag-start="dragStart" data-on-resize-start="resizeStart" data-custom-buttons="customButtons">-->
+<!--    This is a simple window-->
+<!--</div>-->
+
+<script src="../build/metro.js"></script>
+<script>
+    var customButtonHandler = function(btn){
+        console.log($(btn).attr("data-custom-id"));
+        console.log($(btn).attr("data-special-attr"));
+    }
+
+    var customButtons = [
+        {
+            html: "<span class='mif-cog'></span>",
+            onclick: customButtonHandler,
+            cls: "alert",
+            attr: {
+                "data-custom-id": "myID_1",
+                dataSpecialAttr: "additional attribute"
+            }
+        }
+    ];
+
+    function createWindow() {
+        Metro.window.create({
+            cls         : "p-0",
+            title       : "AGREGAR INFORMACION",
+            clsCaption  : 'bg-orange',
+            btnMin      : true,
+            shadow      : true,
+            resizable   : true,
+            btnMax      : false,
+            icon        : "<span class='mif-file-empty'></spam>",
+            onCaptionDblClick : function(){  } ,
+            btnClose    : true,
+            content     : "<div class='text-bold'>Hello World</div>"
+        });
+    }
+
+    function resizeStart(){
+        console.log(arguments);
+    }
+
+    function dragStart(pos, context) {
+        console.log(pos, context);
+    }
+
+    function getPosition(){
+        var pos = Metro.getPlugin("#win1", "window").win.pos();
+        console.log(pos);
+    }
+
+    $(function(){
+        createWindow();
+    })
+
+</script>
+</body>
+</html>

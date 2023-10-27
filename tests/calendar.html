@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Calendar - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .calendar {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Calendar test page</h1>
+
+    <div class="row flex-align-start">
+        <div data-role="calendar"
+             data-animation-speed="20"
+             data-animation-content="true"
+             data-locale="en-UA"
+             data-week-start="0"
+             data-min-date="2021-1-14"
+             data-max-date="2021-2-14"
+        ></div>
+
+        <div data-role="calendar"
+             data-animation-speed="20"
+             data-animation-content="true"
+             data-locale="uk-UA"
+             data-week-start="1"
+             data-cls-weekend="fg-red"
+             data-cls-current-week="enlarge text-bold"
+             data-special="1972-12-21"
+             data-show="1972-12-21"
+             data-cls-special="enlarge fg-white bg-pink"
+        ></div>
+
+        <div data-role="calendar"
+             data-animation-speed="20"
+             data-animation-content="true"
+             data-locale="ru-RU"
+             data-week-start="1"
+             data-show-week-number="true"
+             data-input-format="dd-mm-yyyy"
+             data-exclude="
+                10-1-2021,
+                11-1-2021,
+                12-1-2021,
+                13-1-2021,
+                14-1-2021,
+                15-1-2021
+             "
+             data-preset="
+                4-1-2021,
+                5-1-2021,
+                22-1-2021,
+                23-1-2021,
+                27-1-2021,
+                28-1-2021
+             "
+        ></div>
+
+        <div>
+            <div id="c4" data-role="calendar"
+                 data-multi-select="true"
+                 data-week-day-click="true"
+                 data-week-number-click="true"
+                 data-show-week-number="true"
+                 data-exclude="2021-1-20"
+                 data-show-time="true"
+                 data-show-ghost="true"
+                 data-input-format="dd-mm-yyyy"
+                 data-cls-event=""
+                 data-events="
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    4-1-2021,
+                    5-1-2021,
+                    22-1-2021,
+                    23-1-2021,
+                    23-1-2021,
+                    27-1-2021,
+                    28-1-2021
+                    28-1-2021
+                    28-1-2021
+                 "
+            ></div>
+            <button class="button" onclick="alert(Metro.getPlugin('#c4', 'calendar').getTime(true))">Get time</button>
+        </div>
+    </div>
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+</script>
+</body>
+</html>

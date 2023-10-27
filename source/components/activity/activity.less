@@ -25,9 +25,9 @@
                 &:after {
                     position: absolute;
                     content: '';
-                    width: @activityRingSize / 8;
-                    height: @activityRingSize / 8;
-                    border-radius: @activityRingSize / 8;
+                    width: (@activityRingSize / 8);
+                    height: (@activityRingSize / 8);
+                    border-radius: (@activityRingSize / 8);
                     background: @activityColor;
                 }
             }
@@ -35,28 +35,28 @@
             &:nth-child(2) {
                 .rotate(@activityRingRotate);
                 & > .circle {
-                    animation-delay: @activityRingTime / @activityRingTimeMute;
+                    animation-delay: (@activityRingTime / @activityRingTimeMute);
                 }
             }
 
             &:nth-child(3) {
                 .rotate(@activityRingRotate*2);
                 & > .circle {
-                    animation-delay: @activityRingTime / @activityRingTimeMute*2;
+                    animation-delay: (@activityRingTime / @activityRingTimeMute*2);
                 }
             }
 
             &:nth-child(4) {
                 .rotate(@activityRingRotate*3);
                 & > .circle {
-                    animation-delay: @activityRingTime / @activityRingTimeMute*3;
+                    animation-delay: (@activityRingTime / @activityRingTimeMute*3);
                 }
             }
 
             &:nth-child(5) {
                 .rotate(@activityRingRotate*4);
                 & > .circle {
-                    animation-delay: @activityRingTime / @activityRingTimeMute*4;
+                    animation-delay: (@activityRingTime / @activityRingTimeMute*4);
                 }
             }
         }
@@ -541,5 +541,47 @@
     }
     20% {
         transform: scaleY(1.0);
+    }
+}
+
+@keyframes ani-drop {
+    0% {
+        transform: translateY(-50px);
+    }
+    25% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes ani-drop2 {
+    0% {
+        transform: translateY(-50px);
+    }
+    50% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+@keyframes ani-drop3 {
+    0% {
+        transform: translateY(-50px);
+    }
+    75% {
+        transform: translate(0);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+.dialog {
+    &.no-shadow {
+        box-shadow: none!important;
     }
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Input - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Input test page</h1>
+
+    <div>
+<!--        <input type="text" data-role="input">-->
+    </div>
+
+    <br>
+
+    <div>
+<!--        <input id="autocomplete" type="text" data-role="input" data-autocomplete="Ukraine, USA, Canada, Marokko, Singapur">-->
+        <input type="text" data-role="input" data-autocomplete-url="../data/autocomplete.json">
+<!--        <input type="text" data-role="input" data-autocomplete-url="../data/autocomplete.txt">-->
+<!--        <input type="text" data-role="input" data-autocomplete-url="../data/autocomplete-key.json" data-autocomplete-url-key="countries" data-label="Autocomplete json">-->
+    </div>
+
+    <br>
+
+    <div>
+<!--        <input type="text" data-role="input" data-label="Your name" id="user_name">-->
+<!--        <input type="text" data-role="input" data-label="اسمك" id="user_name_rtl" dir="rtl">-->
+    </div>
+
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+    $("#autocomplete").on("autocomplete-select", function(e){
+        console.log(e.detail.value);
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Checkbox - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Checkbox test page</h1>
+
+    <div>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled checked>
+    </div>
+
+    <div>
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" data-style="2">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" checked data-style="2">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled data-style="2">
+        <input type="checkbox" data-role="checkbox" data-caption="Checkbox" disabled checked data-style="2">
+    </div>
+
+    <br>
+    <div>
+        <div>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(-1)">Indeterminate</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(1)">Checked</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle(0)">UnChecked</button>
+            <button class="button" onclick="Metro.getPlugin('#chk1', 'checkbox').toggle()">Toggle</button>
+        </div>
+        <br>
+        <div>
+            <input type="checkbox" data-role="checkbox" id="chk1" data-caption="Remote controlled">
+        </div>
+    </div>
+
+    <h3>Three state</h3>
+    <div>
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checkbox">
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checkbox" checked>
+    </div>
+    <div>
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checked" data-state="checked">
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Unchecked" data-state="unchecked">
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Indeterminate" data-state="indeterminate">
+    </div>
+    <br>
+    <div>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').uncheck()">Uncheck</button>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').check()">Check</button>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').indeterminate()">Indeterminate</button>
+        <button class="button" onclick="Metro.getPlugin('#chk2', 'checkbox-three-state').toggle()">Toggle</button>
+        <button class="button" onclick="alert(Metro.getPlugin('#chk2', 'checkbox-three-state').getCheckState(true))">Get state</button>
+    </div>
+    <div>
+        <input type="checkbox" data-role="checkbox-three-state" data-caption="Checked" id="chk2">
+    </div>
+
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+</script>
+</body>
+</html>
