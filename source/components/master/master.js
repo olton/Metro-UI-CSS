@@ -256,7 +256,10 @@
                 pages.animate({
                     draw: {
                         height: next.outerHeight(true) + 2
-                    }
+                    },
+					onDone: function(){ 
+						finish();
+					}
                 });
             },0);
 
