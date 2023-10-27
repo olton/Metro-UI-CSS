@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Countdown - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1 class="text-center">Countdown test page</h1>
+
+    <div class="example">
+        <div class="row">
+            <div data-role="countdown" data-hours="90" style="font-size: 48px;"></div>
+            <div class="cell-md-4">
+                <div data-role="countdown" data-hours="90" data-animate="slide" style="font-size: 32px;"></div>
+            </div>
+            <div class="cell-md-4">
+                <div data-role="countdown" data-hours="90" data-animate="fade" style="font-size: 32px;"></div>
+            </div>
+            <div class="cell-md-4">
+                <div data-role="countdown" data-hours="90" data-animate="zoom" style="font-size: 32px;" data-locale="ru-RU"></div>
+            </div>
+        </div>
+
+        <hr>
+        <div>
+            <div data-role="countdown" data-date="12/18/2021" class="countdownItems"></div>
+            <div data-role="countdown" data-date="12/19/2021" class="countdownItems"></div>
+            <div data-role="countdown" data-date="12/20/2021" class="countdownItems"></div>
+            <div data-role="countdown" data-date="12/21/2021" class="countdownItems"></div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+    // var date = "11-18-2020"
+    // console.log((new Date("11-18-2020")).getTime());
+    // console.log((new Date("11-19-2020")).getTime());
+    // console.log((new Date("11-20-2020")).getTime());
+    // console.log((new Date("11-21-2020")).getTime());
+</script>
+</body>
+</html>

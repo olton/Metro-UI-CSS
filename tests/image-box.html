@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test ImageBox - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .image-box__landscape {
+            width: 640px;
+            height: 480px;
+        }
+
+        .image-box__portrait {
+            width: 480px;
+            height: 640px;
+        }
+
+        .button {
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1 class="text-center mt-10">ImageBox example</h1>
+
+    <div class="d-flex flex-justify-center">
+        <div data-role="image-box" data-image="//metroui.org.ua/res/images/1.jpg"></div>
+    </div>
+
+    <br>
+
+    <div class="d-flex flex-justify-center">
+        <button class="button" onclick="setImage(1)">
+            Set image 1
+        </button>
+        <button class="button" onclick="setImage(2)">
+            Set image 2
+        </button>
+        <button class="button" onclick="setImage(3)">
+            Set image 3
+        </button>
+        <button class="button" onclick="setImage('kuning')">
+            Set image 4
+        </button>
+    </div>
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+    function setImage(n){
+        var ib = $("@image-box");
+        var im = "//metroui.org.ua/res/images/"+n+".jpg";
+
+        ib.attr("data-image", im);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Spinner - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>Spinner test page</h1>
+
+    <div class="example">
+        <input type="text" data-role="spinner">
+        <input type="text" data-role="spinner" data-label="Set value">
+    </div>
+
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+    $("@spinner").on("arrow-up", function(e){
+        console.log("Arrow " + (e.detail.button === "plus" ? "up" : "down") + " pressed");
+    })
+</script>
+</body>
+</html>

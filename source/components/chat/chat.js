@@ -90,10 +90,12 @@
             messageInput = $("<div>").addClass("message-input").appendTo(element);
             input = $("<input type='text'>");
             input.appendTo(messageInput);
-            input.input({
-                customButtons: customButtons,
-                clsInput: o.clsInput
-            });
+            setTimeout(() => {
+                Metro.makePlugin(input[0], 'input', {
+                    customButtons: customButtons,
+                    clsInput: o.clsInput
+                })
+            })
 
             if (o.welcome) {
                 this.add({
