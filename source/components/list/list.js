@@ -229,9 +229,9 @@
             search_block = Utils.isValue(this.wrapperSearch) ? this.wrapperSearch : $("<div>").addClass("list-search-block").addClass(o.clsSearch).appendTo(top_block);
 
             search_input = $("<input>").attr("type", "text").appendTo(search_block);
-            search_input.input({
+            Metro.makePlugin(search_input, 'input', {
                 prepend: o.listSearchTitle
-            });
+            })
 
             if (o.showSearch !== true) {
                 search_block.hide();

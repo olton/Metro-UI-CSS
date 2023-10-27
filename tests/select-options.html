@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test Any - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .example {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .example > * {
+            max-width: 400px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<h1 class="text-center">Select Example</h1>
+<div class="text-center">
+    <button class="button" onclick="addOption()">Add option</button>
+    <button class="button" onclick="addOption(5)">Add option</button>
+    <button class="button" onclick="addOptions()">Add options</button>
+    <button class="button" onclick="removeOption(5)">Del option</button>
+    <button class="button" onclick="addOptions2()">Add option</button>
+</div>
+<div class="example">
+    <select id="select" data-role="select"></select>
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+    // $(document).ready(function() {
+    //
+    //     var json = '{"K001": "Vendor1","K002": "Vendor.2","K003": "Vendor 3 GmbH","K004": "Vendor 4 GmbH & Co. KG"}';
+    //
+    //     var select = Metro.getPlugin('#select', 'select');
+    //
+    //     console.log(JSON.parse(json))
+    //
+    //     select.data(JSON.parse(json));
+    // });
+
+    function addOptions2(){
+        var tArray = {
+            "K001": "Vendor1",
+            "K002": "Vendor.2",
+            "K003": "Vendor 3 GmbH",
+            "K004": "Vendor 4 GmbH & Co. KG"
+        }
+        var select = Metro.getPlugin('#select', 'select');
+        select.data(tArray, 'K002');
+    }
+
+    function addOption(v){
+        var val = v ? v : $.random(1, 100);
+        var select = Metro.getPlugin('#select', 'select');
+
+        select.addOption(val, val)
+    }
+
+    function addOptions(){
+        var val = [1, 2, 3, 4, 5];
+        var val2 = {
+            11: 11,
+            12: 12
+        };
+        var val3 = [
+            {
+                val: 100,
+                title: 100,
+                selected: false
+            },
+            {
+                val: 200,
+                title: 200,
+                selected: true
+            }
+        ];
+        var select = Metro.getPlugin('#select', 'select');
+
+        select.addOptions(val)
+        select.addOptions(val2)
+        select.addOptions(val3)
+    }
+
+    function removeOption(v){
+        var select = Metro.getPlugin('#select', 'select');
+
+        select.removeOption(v)
+    }
+</script>
+</body>
+</html>

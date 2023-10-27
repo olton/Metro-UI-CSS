@@ -1,5 +1,8 @@
-/* global jQuery, Promise */
-/* Metro 4 Core */
+/*!
+ * Metro UI Components Library  (https://metroui.org.ua)
+ * Copyright 2012-2023 Serhii Pimenov
+ * Licensed under MIT
+ !*/
 (function() {
     'use strict';
 
@@ -21,9 +24,9 @@
 
     var Metro = {
 
-        version: "@@version",
-        compileTime: "@@compile",
-        buildNumber: "@@build",
+        version: __buildVersion,
+        compileTime: __buildTime,
+        buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
         sheet: null,
