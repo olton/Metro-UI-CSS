@@ -1,1 +1,0 @@
-npm install && grunt && grunt --gruntfile Build_dev.js && commit %1 && grunt --gruntfile CDN_dev.js

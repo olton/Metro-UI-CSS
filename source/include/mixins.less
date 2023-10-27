@@ -114,7 +114,7 @@
         @current_value: extract(@size, @i);
 
         & when not(@current_value = 0) {
-                @{attr}+_: unit( round(@current_value * 1.333333 / 16), rem );
+                @{attr}+_: unit( round(@current_value * (1.333333 / 16)), rem );
         }
 
         & when (@current_value = 0) {

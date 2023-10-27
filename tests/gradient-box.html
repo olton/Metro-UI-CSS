@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Test GradientBox - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .box {
+            width: 200px;
+            height: 100px;
+        }
+
+        .square {
+            width: 100px;
+        }
+
+        .ball {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>GradientBox test page</h1>
+
+    <div class="d-flex">
+        <div class="box" data-role="gradient-box"></div>
+        <div class="box" data-role="gradient-box" data-gradient-position="left"></div>
+        <div class="box" data-role="gradient-box" data-gradient-colors="red, yellow"></div>
+        <div class="box" data-role="gradient-box" data-gradient-type="radial"></div>
+        <div class="box" data-role="gradient-box" data-gradient-type="radial" data-gradient-shape="circle"></div>
+        <div class="box" data-role="gradient-box" data-gradient-type="radial" data-gradient-shape="circle" data-gradient-repeat="true" data-gradient-colors="#e66465, #9198e5 20%"></div>
+        <div class="box" data-role="gradient-box" data-gradient-type="radial"></div>
+        <div class="box ball" data-role="gradient-box" data-gradient-type="radial" data-gradient-position="at 40px 45px" data-gradient-colors="#55ddff, #0076a5"></div>
+        <div class="box ball" data-role="gradient-box" data-gradient-type="radial" data-gradient-position="40px 45px" data-gradient-colors="#55ddff, #0076a5"></div>
+    </div>
+    <br>
+    <div class="d-flex">
+        <button class="button border-none fg-white" data-role="gradient-box" data-gradient-position="45deg" data-gradient-colors="red, yellow">Button</button>
+    </div>
+
+    <div class="example d-flex">
+        <div class="box square" data-role="gradient-box" data-gradient-position="45deg"></div>
+        <div class="box square" data-role="gradient-box" data-gradient-position="left"></div>
+        <div class="box square" data-role="gradient-box" data-gradient-position="bottom right"></div>
+        <div class="box square" data-role="gradient-box" data-gradient-type="radial" data-gradient-position="40px 45px" style="border-radius: 50%"></div>
+    </div>
+
+</div>
+
+<script src="../build/metro.js"></script>
+</body>
+</html>
