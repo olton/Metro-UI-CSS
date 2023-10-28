@@ -31,11 +31,8 @@ export default [
             progress({
                 clearLine: true,
             }),
-            banner2(()=>banner),
             replace({
                 preventAssignment: true,
-                __buildVersion: JSON.stringify('4.5.2'),
-                __buildTime: JSON.stringify(new Date),
             }),
             postcss({
                 extract: true,
@@ -60,6 +57,7 @@ export default [
             file: './build/metro.js',
             format: 'iife',
             sourcemap,
+            banner,
             plugins: [
                 terser()
             ]

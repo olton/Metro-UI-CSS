@@ -35,7 +35,9 @@
     "build": "npm run clear && npm install && rollup --config",
     "watch": "npm run clear && npm install && rollup --config -w",
     "cy:test": "cypress open",
-    "cy:run": "cypress run"
+    "cy:run": "cypress run",
+    "deploy": "node deploy.cjs",
+    "deploy:dev": "node deploy-dev.cjs"
   },
   "browserslist": [
     "last 2 versions",
