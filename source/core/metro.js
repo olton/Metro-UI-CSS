@@ -24,8 +24,7 @@
 
     var Metro = {
 
-        version: __buildVersion,
-        compileTime: __buildTime,
+        version: "4.5.3",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -203,7 +202,7 @@
             var content =
                 "<h3>About</h3>" +
                 "<hr>" +
-                "<div><b>Metro 4</b> - v" + Metro.version +". "+ Metro.showCompileTime() + "</div>" +
+                "<div><b>Metro UI</b> - v" + Metro.version +". "+ Metro.showCompileTime() + "</div>" +
                 "<div><b>M4Q</b> - " + m4q.version + "</div>";
             Metro.infobox.create(content)
         },
@@ -214,7 +213,7 @@
         },
 
         showCompileTime: function(){
-            return "Built at: " + Metro.compileTime;
+            return ""
         },
 
         aboutDlg: function(){
@@ -230,7 +229,7 @@
         },
 
         compile: function(){
-            return Metro.compileTime;
+            return ""
         },
 
         observe: function(){
