@@ -287,6 +287,7 @@
             var element = this.element, o = this.options;
             var digits, digits_length, digit_value, digit_current, digit;
             var len, i, duration = this.duration;
+            var fontSize = this.fontSize;
 
             var slideDigit = function(digit, value){
                 var digit_copy, height = digit.height();
@@ -350,13 +351,13 @@
                         draw: {
                             opacity: 1
                         },
-                        dur: duration,
+                        dur: duration / 2,
                         ease: o.ease
                     });
             };
 
             var zoomDigit = function(digit, value) {
-                var digit_copy, height = digit.height(), fs = parseInt(digit.style("font-size"));
+                var digit_copy, height = digit.height(), fs = fontSize// parseInt(digit.style("font-size"));
 
                 digit.siblings(".-old-digit").remove();
                 digit_copy = digit.clone().appendTo(digit.parent());
@@ -456,12 +457,14 @@
         },
 
         pause: function(){
+            console.log("pause")
             clearInterval(this.blinkInterval);
             clearInterval(this.tickInterval);
             this.element.data("paused", true);
         },
 
         resume: function(){
+            console.log("resume")
             var that = this;
 
             this.element.data("paused", false);
