@@ -405,6 +405,7 @@
 
             digits = element.find("."+part+" .digit:not(.-old-digit)");
             digits_length = digits.length;
+            element.find(".-old-digit").remove()
 
             for(i = 0; i < len; i++){
                 digit = digits.eq(digits_length - 1).find(".digit-value");
