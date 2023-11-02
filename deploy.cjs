@@ -1,5 +1,5 @@
 const FtpDeploy = require("ftp-deploy");
-const ftpDeploy = new FtpDeploy();
+const ftp = new FtpDeploy();
 const auth = require("./ftpauth.json")
 const pkg = require("./package.json")
 
@@ -31,13 +31,14 @@ const configCurrent = {
     sftp: false,
 };
 
-ftpDeploy
-    .deploy(configVer)
-    .then((res) => console.log("finished:", res))
-    .catch((err) => console.log(err));
+const run = async () => {
+    let result
 
-ftpDeploy
-    .deploy(configCurrent)
-    .then((res) => console.log("finished:", res))
-    .catch((err) => console.log(err));
+    result = await ftp.deploy(configVer)
+    console.log(result)
+    result = await ftp.deploy(configCurrent)
+    console.log(result)
+}
+
+run()
 
