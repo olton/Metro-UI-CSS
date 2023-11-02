@@ -238,11 +238,14 @@
         updMessage: function(msg){
             var element = this.element;
             var message = element.find(".messages").find("#"+msg.id);
+            let o = this.options;
 
             if (message.length === 0) return this;
 
-            message.find(".message-text").html(msg.text);
-            message.find(".message-time").html(msg.time);
+            let messageDate = o.inputTimeFormat ? Datetime.from(msg.time, o.inputTimeFormat, o.locale) : datetime(msg.time);
+
+            message.find(".message-text-inner").html(msg.text);
+            message.find(".message-time").html(messageDate.format(o.timeFormat));
 
             return this;
         },
