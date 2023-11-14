@@ -48,7 +48,7 @@
             this._createStructure();
             this._createEvents();
 
-            this._open(tab, true);
+            this._open(tab);
 
             this._fireEvent("tabs-create", {
                 element: element
@@ -208,7 +208,7 @@
             });
         },
 
-        _open: function(tab, initial = false){
+        _open: function(tab){
             var element = this.element, o = this.options;
             var tabs = element.find("li");
             var expandTitle = element.siblings(".expand-title");
@@ -243,7 +243,7 @@
             });
 
             if (target !== "#" && target[0] === "#") {
-                if (o.updateUri && !initial) {
+                if (o.updateUri) {
                     window.location.hash = target
                 }
                 $(target).show();
