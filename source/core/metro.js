@@ -174,7 +174,7 @@ onmessage = function (event) {\
 
     var Metro = {
 
-        version: "4.5.3",
+        version: "4.5.6",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,

@@ -1,7 +1,7 @@
 {
-  "author": "Sergey Pimenov",
+  "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "metro4",
-  "version": "4.5.5",
+  "version": "4.5.6",
   "build": "800",
   "version_suffix": "",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
@@ -62,5 +62,8 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "shx": "^0.3.4"
+  },
+  "dependencies": {
+    "rollup-plugin-no-emit": "^1.1.1"
   }
 }
