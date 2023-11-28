@@ -31,14 +31,12 @@ It's an independent project with its ongoing development made possible entirely 
 
 ----
 
-[![Build Status](https://travis-ci.org/olton/Metro-UI-CSS.svg?branch=master)](https://travis-ci.org/olton/Metro-UI-CSS)
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
-[![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/css/metro-all.min.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/css/metro-all.min.css)
-[![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/js/metro.min.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/js/metro.min.js)
-[![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/mif/metro.woff?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/tree/master/build/mif)
+[![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/metro.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/metro.css)
+[![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/metro.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/metro.js)
+[![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/icons.css?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/icons.css)
 ![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?color=darkLime)
 [![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
-![Nuget](https://img.shields.io/nuget/v/Metro4.svg?color=darklime)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)
 ![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
@@ -54,8 +52,7 @@ In addition, **SUPPORT PACK** is available for an annual subscription on [https:
 
 ### Community
 
-[![Facebook](https://img.shields.io/badge/facebook-group-blue.svg?style=flat)](https://www.facebook.com/groups/metrouicss)
-[![Join the chat at https://discord.gg/NydRab3](https://img.shields.io/badge/chat-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/NydRab3)
+[![Join the chat at https://discord.gg/QYszPjRP](https://img.shields.io/badge/community-on%20discord-brightgreen.svg?style=flat)](https://discord.gg/QYszPjRP)
 
 ## Contributing
 All contributions are welcome. Learn more about how you can contribute to this project [here](CONTRIBUTING.md). 
