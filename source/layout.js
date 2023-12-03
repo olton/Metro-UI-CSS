@@ -1,2 +1,2 @@
-import "./components/container"
-import "./components/grid"
+import "./components/container/index.js"
+import "./components/grid/index.js"
