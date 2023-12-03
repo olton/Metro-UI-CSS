@@ -90,11 +90,6 @@ export default [
                     return 'icons.js' === fileName
                 }
             }),
-            // copy({
-            //     targets: [
-            //         {src: './icons/*', dest: './build'},
-            //     ]
-            // }),
         ],
         output: {
             file: './build/icons.js',

@@ -1,0 +1,1 @@
+import "./skill-box.less"

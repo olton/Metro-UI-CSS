@@ -1,0 +1,1 @@
+import "./icon-box.less"

@@ -1,0 +1,1 @@
+import "./resizer.js"

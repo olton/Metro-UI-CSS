@@ -1,0 +1,1 @@
+import "./flip-card.less"

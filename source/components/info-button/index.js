@@ -1,0 +1,1 @@
+import "./info-button.less"
