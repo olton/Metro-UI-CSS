@@ -1,3 +1,4 @@
+import * as VarsCss from "./less/vars.less"
 import * as AccentColorsCss from "./less/accent-colors.less"
 import * as AnimateElementCss from "./less/animate-element.less"
 import * as BorderCss from "./less/border.less"
@@ -22,6 +23,7 @@ import * as UtilsCss from "./less/utils.less"
 import * as ZIndexCss from "./less/z-index.less"
 
 export {
+    VarsCss,
     AccentColorsCss,
     AnimateElementCss,
     BorderCss,
