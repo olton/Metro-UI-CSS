@@ -689,7 +689,7 @@
 
             $.each(calendar['days'], function(i){
                 var day = this;
-                var date = datetime(day).align('day');
+                var date = datetime(day).addMinute(new Date().getTimezoneOffset()).align('day');
                 var outsideDate = date.month() !== that.current.month;
 
                 if (o.showWeekNumber && i % 7 === 0) {
@@ -698,7 +698,7 @@
 
                 var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
 
-                cell.data('day', day);
+                cell.attr('data-day', day)
 
                 if (day === showDay) {
                     cell.addClass("showed");

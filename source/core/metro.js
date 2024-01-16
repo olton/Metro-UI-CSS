@@ -174,7 +174,7 @@ onmessage = function (event) {\
 
     var Metro = {
 
-        version: "4.5.8",
+        version: "4.5.11",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -352,13 +352,13 @@ onmessage = function (event) {\
             var content =
                 "<h3>About</h3>" +
                 "<hr>" +
-                "<div><b>Metro UI</b> - v" + Metro.version +". "+ Metro.showCompileTime() + "</div>" +
+                "<div><b>Metro UI</b> - v" + Metro.version + "</div>" +
                 "<div><b>M4Q</b> - " + m4q.version + "</div>";
             Metro.infobox.create(content)
         },
 
         info: function(){
-            console.info("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+            console.info("Metro 4 - v" + Metro.version);
             console.info("m4q - " + m4q.version);
         },
 
@@ -367,7 +367,7 @@ onmessage = function (event) {\
         },
 
         aboutDlg: function(){
-            alert("Metro 4 - v" + Metro.version +". "+ Metro.showCompileTime());
+            alert("Metro 4 - v" + Metro.version);
         },
 
         ver: function(){
