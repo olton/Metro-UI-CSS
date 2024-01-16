@@ -60,9 +60,10 @@
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
-    "shx": "^0.3.4"
+    "shx": "^0.3.4",
+    "rollup-plugin-no-emit": "^1.1.1"
   },
   "dependencies": {
-    "rollup-plugin-no-emit": "^1.1.1"
+    "@olton/datetime": "^3.0.2"
   }
 }

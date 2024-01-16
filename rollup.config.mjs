@@ -93,6 +93,10 @@ export default [
         output: {
             dir: './build',
             banner,
+        },
+        onwarn: message => {
+            if (/Generated an empty chunk/.test(message)) return
+            console.log(message)
         }
     },
     {
