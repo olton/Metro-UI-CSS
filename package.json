@@ -51,19 +51,20 @@
     "@rollup/plugin-replace": "^5.0.5",
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.16",
-    "cypress": "^13.6.0",
+    "cypress": "^13.6.2",
     "ftp-deploy": "^2.4.5",
     "less": "^4.2.0",
-    "postcss": "^8.4.31",
-    "rollup": "^4.6.0",
+    "postcss": "^8.4.33",
+    "rollup": "^4.9.5",
     "rollup-plugin-banner2": "^1.2.2",
     "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-no-emit": "^1.1.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
-    "shx": "^0.3.4",
-    "rollup-plugin-no-emit": "^1.1.1"
+    "shx": "^0.3.4"
   },
   "dependencies": {
-    "@olton/datetime": "^3.0.2"
+    "@olton/datetime": "^3.0.2",
+    "@olton/string": "^0.4.4"
   }
 }

@@ -166,7 +166,7 @@
             message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
             item = $("<div>").addClass("message-item").appendTo(message);
             avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
-            text = $("<div>").addClass("message-text").append($("<div>").addClass("message-text-inner").html(Cake.escapeHtml(msg.text))).appendTo(item);
+            text = $("<div>").addClass("message-text").append($("<div>").addClass("message-text-inner").html(Str.escapeHtml(msg.text))).appendTo(item);
             time = $("<div>").addClass("message-time").addClass(o.clsTime).text(messageDate.format(o.timeFormat)).appendTo(text);
             sender = $("<div>").addClass("message-sender").addClass(o.clsName).text(msg.name).appendTo(text);
 

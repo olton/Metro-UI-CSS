@@ -180,7 +180,7 @@
                 t = new Date(i * 1000);
                 h = t.getHours();
                 m = t.getMinutes();
-                v = Cake.lpad(h, 2, "0")+":"+Cake.lpad(m, 2, "0");
+                v = Str.lpad(h, "0", 2)+":"+Str.lpad(m, "0", 2);
 
                 li = $("<li>").data("time", v).addClass("js-time-point-" + v.replace(":", "-")).html("<em>"+v+"</em>").appendTo(timeline);
 
@@ -188,7 +188,7 @@
                 fake_timeline = $("<ul>").addClass("streamer-fake-timeline").html("").appendTo(li);
                 for(j = 0; j < parseInt(data.timeline.step); j++) {
                     fm = m + j;
-                    v = Cake.lpad(h, 2, "0")+":"+Cake.lpad(fm, 2, "0");
+                    v = Str.lpad(h, "0", 2)+":"+Str.lpad(fm, "0", 2);
                     fli = $("<li>").data("time", v).addClass("js-fake-time-point-" + v.replace(":", "-")).html("|").appendTo(fake_timeline);
                     fli.css({
                         width: fli_w

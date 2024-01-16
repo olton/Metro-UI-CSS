@@ -150,7 +150,7 @@
 
                     if (item.attr && typeof item.attr === 'object') {
                         $.each(item.attr, function(k, v){
-                            customButton.attr(Cake.dashedName(k), v);
+                            customButton.attr(Str.dashedName(k), v);
                         });
                     }
 

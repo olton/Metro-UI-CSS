@@ -162,7 +162,7 @@
                 hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
                 for (i = 0; i < 24; i = i + o.hoursStep) {
-                    $("<li>").addClass("js-hours-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(hours);
+                    $("<li>").addClass("js-hours-"+i).html(Str.lpad(i, "0", 2)).data("value", i).appendTo(hours);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
             }
@@ -170,7 +170,7 @@
                 minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
                 for (i = 0; i < 60; i = i + o.minutesStep) {
-                    $("<li>").addClass("js-minutes-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(minutes);
+                    $("<li>").addClass("js-minutes-"+i).html(Str.lpad(i, "0", 2)).data("value", i).appendTo(minutes);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             }
@@ -178,7 +178,7 @@
                 seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
                 for (i = 0; i < 60; i = i + o.secondsStep) {
-                    $("<li>").addClass("js-seconds-"+i).html(Cake.lpad(i, 2, "0")).data("value", i).appendTo(seconds);
+                    $("<li>").addClass("js-seconds-"+i).html(Str.lpad(i, "0", 2)).data("value", i).appendTo(seconds);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             }
@@ -316,15 +316,15 @@
 
             if (o.hours === true) {
                 h = parseInt(this.value[0]);
-                picker.find(".hours").html(Cake.lpad(h, 2, "0"));
+                picker.find(".hours").html(Str.lpad(h, "0", 2));
             }
             if (o.minutes === true) {
                 m = parseInt(this.value[1]);
-                picker.find(".minutes").html(Cake.lpad(m, 2, "0"));
+                picker.find(".minutes").html(Str.lpad(m, "0", 2));
             }
             if (o.seconds === true) {
                 s = parseInt(this.value[2]);
-                picker.find(".seconds").html(Cake.lpad(s, 2, "0"));
+                picker.find(".seconds").html(Str.lpad(s, "0", 2));
             }
 
             element.val([h, m, s].join(":")).trigger("change");

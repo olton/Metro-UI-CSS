@@ -580,7 +580,7 @@
             footer.html("");
 
             $.each(o.buttons, function(){
-                var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+Cake.capitalize(this)+'Button']).html(buttons_locale[this]).appendTo(footer);
+                var button = $("<button>").attr("type", "button").addClass("button " + this + " " + o['cls'+Str.capitalize(this)+'Button']).html(buttons_locale[this]).appendTo(footer);
                 if (this === 'cancel' || this === 'done') {
                     button.addClass("js-dialog-close");
                 }
@@ -631,8 +631,8 @@
             inner.append( hours = $("<input type='text' data-cls-spinner-input='"+o.clsTimeHours+"' data-time-part='hours' data-buttons-position='right' data-min-value='0' data-max-value='23'>").addClass("hours").addClass(o.compact ? "input-small" : "input-normal") );
             inner.append( minutes = $("<input type='text' data-cls-spinner-input='"+o.clsTimeMinutes+"' data-time-part='minutes' data-buttons-position='right' data-min-value='0' data-max-value='59'>").addClass("minutes").addClass(o.compact ? "input-small" : "input-normal") );
 
-            h = Cake.lpad(h, 2, "0");
-            m = Cake.lpad(m, 2, "0");
+            h = Str.lpad(h, "0", 2);
+            m = Str.lpad(m, "0", 2);
 
             hours.val(h);
             minutes.val(m);
@@ -912,8 +912,8 @@
 
             asString = asString || false;
 
-            h = Cake.lpad(this.time[0], 2, "0");
-            m = Cake.lpad(this.time[1], 2, "0");
+            h = Str.lpad(this.time[0], "0", 2);
+            m = Str.lpad(this.time[1], "0", 2);
 
             return asString ? h +":"+ m : this.time;
         },

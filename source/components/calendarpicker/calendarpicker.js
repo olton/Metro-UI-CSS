@@ -111,8 +111,8 @@
             elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
 
             if (o.showTime && this.time && elementValue) {
-                h = Cake.lpad(this.time[0], 2, "0");
-                m = Cake.lpad(this.time[1], 2, "0");
+                h = Str.lpad(this.time[0], "0", 2);
+                m = Str.lpad(this.time[1], "0", 2);
                 elementValue += " " + h + ":" + m;
             }
 
@@ -200,8 +200,8 @@
                     elementValue = date.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = Cake.lpad(time[0], 2, "0");
-                        m = Cake.lpad(time[1], 2, "0");
+                        h = Str.lpad(time[0], "0", 2);
+                        m = Str.lpad(time[1], "0", 2);
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -238,8 +238,8 @@
                     elementValue = that.value.format(o.format, o.locale);
 
                     if (o.showTime) {
-                        h = Cake.lpad(time[0], 2, "0");
-                        m = Cake.lpad(time[1], 2, "0");
+                        h = Str.lpad(time[0], "0", 2);
+                        m = Str.lpad(time[1], "0", 2);
                         elementValue += " " + h + ":" + m;
                     }
 
@@ -467,8 +467,8 @@
             elementValue = this.value.format(o.format);
 
             if (o.showTime && this.time && elementValue) {
-                h = Cake.lpad(this.time[0], 2, "0");
-                m = Cake.lpad(this.time[1], 2, "0");
+                h = Str.lpad(this.time[0], "0", 2);
+                m = Str.lpad(this.time[1], "0", 2);
                 elementValue += " " + h + ":" + m;
             }
 
@@ -526,8 +526,8 @@
 
             asString = asString || false;
 
-            h = Cake.lpad(this.time[0], 2, "0");
-            m = Cake.lpad(this.time[1], 2, "0");
+            h = Str.lpad(this.time[0], "0", 2);
+            m = Str.lpad(this.time[1], "0", 2);
 
             return asString ? h +":"+ m : this.time;
         },

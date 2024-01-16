@@ -190,9 +190,9 @@
             var seconds = sec_num - (hours * 3600) - (minutes * 60);
 
             return [
-                Cake.lpad(hours, 2, "0"),
-                Cake.lpad(minutes, 2, "0"),
-                Cake.lpad(seconds, 2, "0")
+                Str.lpad(hours, "0", 2),
+                Str.lpad(minutes, "0", 2),
+                Str.lpad(seconds, "0", 2)
             ].join(":");
         },
 

@@ -1,6 +1,6 @@
 import "./reset/index.js"
 import "./datetime/index.js"
-import "./cake/index.js"
+import "./string/index.js"
 import "./m4q/index.js"
 import "./core/index.js"
 import "./i18n/en-US.js"

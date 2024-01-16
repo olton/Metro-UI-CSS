@@ -118,7 +118,7 @@
             var element = this.element, o = this.options;
             var check = element.siblings(".check");
 
-            o["text"+Cake.capitalize(where)] = val
+            o["text"+Str.capitalize(where)] = val
 
             check.attr("data-"+where, val);
         },

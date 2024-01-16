@@ -64,7 +64,7 @@
 
             $.each(opt, function(key, val){
                 if (key !== 'secure' && val) {
-                    a.push(Cake.dashedName(key) + "=" + val);
+                    a.push(Str.dashedName(key) + "=" + val);
                 }
                 if (key === 'secure' && val === true) {
                     a.push( "secure" );

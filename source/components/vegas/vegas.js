@@ -569,7 +569,7 @@
 
         changeAttribute: function(attr){
             var element = this.element, o = this.options;
-            var propName = Cake.camelCase(attr.replace("data-", ""));
+            var propName = Str.camelCase(attr.replace("data-", ""));
 
             if (propName === 'slides') {
                 o.slides = element.attr('data-slides');
