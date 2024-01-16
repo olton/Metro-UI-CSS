@@ -1,17 +1,14 @@
 import {nodeResolve} from '@rollup/plugin-node-resolve'
-import commonjs from '@rollup/plugin-commonjs'
-import copy from 'rollup-plugin-copy'
 import terser from '@rollup/plugin-terser'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from "autoprefixer"
 import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress';
 import noEmit from 'rollup-plugin-no-emit'
+import multi from '@rollup/plugin-multi-entry'
 
-
-const
-    dev = (process.env.NODE_ENV !== 'production'),
-    sourcemap = dev
+const production = !(process.env.ROLLUP_WATCH),
+    sourcemap = !production
 
 const banner = `
 /*!
@@ -23,7 +20,7 @@ const banner = `
 
 export default [
     {
-        input: './source/index.js',
+        input: './source/default.js',
         watch: {
             include: 'source/**',
             clearScreen: false
@@ -47,7 +44,6 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            commonjs(),
         ],
         output: {
             file: './build/metro.js',
@@ -55,7 +51,10 @@ export default [
             sourcemap,
             banner,
             plugins: [
-                terser()
+                terser({
+                    keep_classnames: true,
+                    keep_fnames: true,
+                })
             ]
         }
     },
@@ -84,7 +83,7 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            commonjs(),
+            // commonjs(),
             noEmit({
                 match(fileName, output) {
                     return 'icons.js' === fileName
@@ -92,10 +91,49 @@ export default [
             }),
         ],
         output: {
-            file: './build/icons.js',
-            format: 'iife',
-            sourcemap: false,
+            dir: './build',
             banner,
+        }
+    },
+    {
+        input: ['./source/default.js', './source/icons.js'],
+        watch: {
+            include: 'source/**',
+            clearScreen: false
+        },
+        plugins: [
+            progress({
+                clearLine: true,
+            }),
+            multi(),
+            replace({
+                preventAssignment: true,
+            }),
+            postcss({
+                extract: false,
+                minimize: true,
+                use: ['less'],
+                sourceMap: false,
+                plugins: [
+                    autoprefixer(),
+                ]
+            }),
+            nodeResolve({
+                browser: true
+            }),
+            // commonjs(),
+        ],
+        output: {
+            file: './build/metro.all.js',
+            format: 'iife',
+            sourcemap: sourcemap,
+            banner,
+            plugins: [
+                terser({
+                    keep_classnames: true,
+                    keep_fnames: true,
+                })
+            ]
         }
     },
 ];
