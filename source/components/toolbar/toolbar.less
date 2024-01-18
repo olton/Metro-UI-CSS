@@ -2,12 +2,11 @@
 @import (once) "../../include/mixins";
 
 .tool-button {
-    width: 2rem;
-    height: 2rem;
-    line-height: 2rem;
-    vertical-align: middle;
-    display: inline-block;
-    text-align: center;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: darken(@light, 5%);
     color: @dark;
     user-select: none;
@@ -64,7 +63,7 @@ a.tool-button {
 .toolbar {
     display: inline-flex;
     position: relative;
-    padding: 0 0 0 .5725rem;
+    padding: 0;
     top: 2px;
     flex-flow: row nowrap;
     margin-left: 4px;
@@ -78,12 +77,30 @@ a.tool-button {
     &::before {
         position: absolute;
         content: "";
-        width: .325rem;
-        height: 100%;
+        width: 4px;
+        height: 32px;
         top: 0;
         left: 0;
         background-color: rgba(red(@grayMouse), green(@grayMouse), blue(@grayMouse), .20);
-        cursor: move;
+        cursor: default;
+        display: none;
+    }
+
+    &::after {
+        content: attr(data-caption);
+        position: absolute;
+        left: 2px;
+        bottom: 100%;
+        font-size: 8px;
+        text-transform: uppercase;
+    }
+
+    &.movable {
+        padding-left: .5725rem;
+        &::before {
+            display: block;
+            cursor: move;
+        }
     }
 
     &.vertical {
@@ -95,7 +112,14 @@ a.tool-button {
 
         &::before {
             width: 32px;
-            height: .325rem;
+            height: 4px;
+        }
+
+        // TODO Need test this
+        &::after {
+            transform: rotate(-90deg);
+            right: 100%;
+            top: auto;
         }
 
         .tool-button {
