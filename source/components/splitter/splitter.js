@@ -12,6 +12,7 @@
         children: "*",
         gutterClick: "expand", // TODO expand or collapse
         saveState: false,
+        noResize: false,
         onResizeStart: Metro.noop,
         onResizeStop: Metro.noop,
         onResizeSplit: Metro.noop,
@@ -60,6 +61,10 @@
                 element.addClass("vertical");
             }
 
+            if (o.noResize === true) {
+                element.addClass("static-size")
+            }
+
             for (i = 0; i < children.length - 1; i++) {
                 $("<div>").addClass("gutter").css(resizeProp, o.gutterSize).insertAfter($(children[i]));
             }
@@ -99,8 +104,12 @@
             } else {
                 children_sizes = o.splitSizes.toArray();
                 for(i = 0; i < children_sizes.length; i++) {
+                    var s = children_sizes[i]
+                    if (!isNaN(s)) {
+                        s += "%"
+                    }
                     $(children[i]).css({
-                        flexBasis: "calc("+children_sizes[i]+"% - "+(gutters.length * o.gutterSize)+"px)"
+                        flexBasis: "calc("+s+" - "+(gutters.length * o.gutterSize)+"px)"
                     });
                 }
             }
@@ -111,6 +120,10 @@
             var gutters = element.children(".gutter");
 
             gutters.on(Metro.events.startAll, function(e){
+                if (o.noResize === true) {
+                    return false
+                }
+
                 var w = o.splitMode === "horizontal" ? element.width() : element.height();
                 var gutter = $(this);
                 var prev_block = gutter.prev(".split-block");

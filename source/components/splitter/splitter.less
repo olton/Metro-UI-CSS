@@ -55,6 +55,15 @@
             }
         }
     }
+
+    &.static-size {
+        & > .gutter {
+            cursor: default;
+        }
+        & > .gutter::before {
+            display: none;
+        }
+    }
 }
 
 .splitter {
