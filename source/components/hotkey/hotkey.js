@@ -48,7 +48,7 @@
         getModifier: function(e){
             var m = [];
             if (e.altKey) {m.push("alt");}
-            if (e.ctrlKey) {m.push("ctrl");}
+            if (e.ctrlKey || e.metaKey) {m.push("ctrl");}
             if (e.shiftKey) {m.push("shift");}
             return m;
         }
@@ -100,7 +100,6 @@
         key = Hotkey.getKey(e);
 
         if (Utils.keyInObject(Metro.hotkeys, key)) {
-
             el = $(Metro.hotkeys[key][0]);
             fn = Metro.hotkeys[key][1];
             href = (""+el.attr("href")).trim();
@@ -117,7 +116,7 @@
                 if (el.is("a") && href && href.length > 0 && href.trim() !== "#") {
                     window.location.href = href;
                 } else {
-                    el.click();
+                    el[0].click();
                 }
             }
         }
