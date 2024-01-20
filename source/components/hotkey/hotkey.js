@@ -56,7 +56,9 @@
 
     function bindKey(key, fn){
         return this.each(function(){
-            $(this).on(Metro.events.keyup+".hotkey-method-"+key, function(e){
+            $(this).on(Metro.events.keydown+".hotkey-method-"+key, function(e){
+                if (e.repeat) return
+
                 var _key = Hotkey.getKey(e);
                 var el = $(this);
                 var href = ""+el.attr("href");
@@ -83,7 +85,7 @@
     }
 
     // TODO keyup or keydown ?
-    $(document).on(Metro.events.keyup + ".hotkey-data", function(e){
+    $(document).on(Metro.events.keydown + ".hotkey-data", function(e){
         var el, fn, key, href;
 
         if (
@@ -101,6 +103,10 @@
             el = $(Metro.hotkeys[key][0]);
             fn = Metro.hotkeys[key][1];
             href = (""+el.attr("href")).trim();
+
+            if (e.repeat && !el.attr("data-repeat")) {
+                return
+            }
 
             if (fn) {
                 Utils.exec(fn);
