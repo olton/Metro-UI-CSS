@@ -88,6 +88,8 @@
     $(document).on(Metro.events.keydown + ".hotkey-data", function(e){
         var el, fn, key, href;
 
+        e.preventDefault()
+
         if (
             (METRO_HOTKEYS_FILTER_INPUT_ACCEPTING_ELEMENTS && /textarea|input|select/i.test(e.target.nodeName)) ||
             (METRO_HOTKEYS_FILTER_CONTENT_EDITABLE && $(e.target).attr('contenteditable')) ||

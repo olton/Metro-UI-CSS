@@ -1,7 +1,7 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "metro4",
-  "version": "4.5.12-rc3",
+  "version": "4.5.12-rc4",
   "version_suffix": "rc",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [

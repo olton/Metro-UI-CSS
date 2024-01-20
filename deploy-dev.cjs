@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const FtpDeploy = require("ftp-deploy");
 const ftpDeploy = new FtpDeploy();
 const auth = require("./ftpauth.json")
