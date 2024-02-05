@@ -7,6 +7,7 @@
     flex-direction: row;
     justify-content: space-between;
     position: relative;
+    user-select: none;
 
     &.vertical {
         flex-direction: column;
@@ -38,13 +39,7 @@
             height: 24px;
             margin-top: -12px;
 
-            background: repeating-linear-gradient(
-                    45deg,
-                    #ffffff,
-                    #a6a6a6 4px,
-                    #ffffff 4px,
-                    #a6a6a6 8px
-            );
+            background: @gray;
         }
     }
 
@@ -79,5 +74,49 @@
         flex-grow: 1;
         flex-basis: 0;
         overflow: hidden;
+    }
+}
+
+.splitter {
+    &.gutter-style-ribbed {
+        .gutter {
+            &::before {
+                background: repeating-linear-gradient(
+                        45deg,
+                        #ffffff,
+                        #a6a6a6 4px,
+                        #ffffff 4px,
+                        #a6a6a6 8px
+                );
+            }
+        }
+    }
+
+    &.gutter-style-dashed {
+        .gutter {
+            &::before {
+                background: repeating-linear-gradient(
+                        0deg,
+                        #ffffff,
+                        #a6a6a6 4px,
+                        #ffffff 4px,
+                        #a6a6a6 8px
+                );
+            }
+        }
+
+        &.vertical {
+            .gutter {
+                &::before {
+                    background: repeating-linear-gradient(
+                            90deg,
+                            #ffffff,
+                            #a6a6a6 4px,
+                            #ffffff 4px,
+                            #a6a6a6 8px
+                    );
+                }
+            }
+        }
     }
 }
