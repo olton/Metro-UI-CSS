@@ -119,4 +119,24 @@
             }
         }
     }
+
+    --gutter-dot-size: 2px;
+    --gutter-bg-size: 8px;
+    --gutter-bg-position: ~"calc(var(--gutter-bg-size) / 2)";
+    --gutter-dot-color: #ffffff;
+    --gutter-dot-color-second: @gray;
+
+    &.gutter-style-dotted {
+        & > .gutter {
+            &::before {
+                background-image: radial-gradient(
+                        circle at center,
+                        var(--gutter-dot-color) var(--gutter-dot-size),
+                        var(--gutter-dot-color-second) 0
+                ), radial-gradient(circle at center, var(--gutter-dot-color) var(--gutter-dot-size), var(--gutter-dot-color-second) 0);
+                background-size: var(--gutter-bg-size) var(--gutter-bg-size);
+                background-position: 0 0, var(--gutter-bg-position) var(--gutter-bg-position);
+            }
+        }
+    }
 }
