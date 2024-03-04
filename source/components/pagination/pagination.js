@@ -3,36 +3,41 @@
     'use strict';
     Metro.pagination = function(c){
         var defConf = {
-            length: 0,
-            rows: 0,
+            length: 0, //total rows
+            rows: 0, // page size
             current: 0,
             target: "body",
             clsPagination: "",
             prevTitle: "Prev",
             nextTitle: "Next",
-            distance: 5
+            distance: 5,
+            islandSize: 3,
+            shortTrack: 10,
         }, conf;
-        var pagination;
-        var pagination_wrapper;
+
         var i, prev, next;
-        var shortDistance;
 
         conf = $.extend( {}, defConf, c);
 
-        shortDistance = parseInt(conf.distance);
-        pagination_wrapper = $(conf.target);
-        pagination_wrapper.html("");
-        pagination = $("<ul>").addClass("pagination").addClass(conf.clsPagination).appendTo(pagination_wrapper);
+        var distance = parseInt(conf.distance);
+        var shortTrack = parseInt(conf.shortTrack);
+        var islandSize = parseInt(conf.islandSize)
+        var totalRows = parseInt(conf.length)
+        var pageSize = parseInt(conf.rows)
+        var totalPages = Math.ceil(totalRows/pageSize)
+        var current = parseInt(conf.current)
+        var pagination_wrapper = $(conf.target); pagination_wrapper.html("");
+        var pagination = $("<ul>").addClass("pagination").addClass(conf.clsPagination).appendTo(pagination_wrapper);
 
-        if (conf.length === 0) {
+        if (totalRows === 0) {
             return ;
         }
 
-        if (conf.rows === -1) {
+        if (pageSize === -1) {
             return ;
         }
 
-        conf.pages = Math.ceil(conf.length / conf.rows);
+        console.log(current, totalPages, distance)
 
         var add_item = function(item_title, item_type, data){
             var li, a;
@@ -48,54 +53,60 @@
         prev = add_item(conf.prevTitle, "service prev-page", "prev");
         pagination.append(prev);
 
-        pagination.append(add_item(1, conf.current === 1 ? "active" : "", 1));
+        pagination.append(add_item(1, current === 1 ? "active" : "", 1));
 
-        if (shortDistance === 0 || conf.pages <= 7) {
-            for (i = 2; i < conf.pages; i++) {
-                pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+        if (distance === 0 || totalPages <= shortTrack) {
+            for (i = 2; i < totalPages; i++) {
+                pagination.append(add_item(i, i === current ? "active" : "", i));
             }
         } else {
-            if (conf.current < shortDistance) {
-                for (i = 2; i <= shortDistance; i++) {
-                    pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+            if (current < distance) {
+                for (i = 2; i <= distance; i++) {
+                    pagination.append(add_item(i, i === current ? "active" : "", i));
                 }
 
-                if (conf.pages > shortDistance) {
+                if (totalPages > distance) {
                     pagination.append(add_item("...", "no-link", null));
                 }
-            } else if (conf.current <= conf.pages && conf.current > conf.pages - shortDistance + 1) {
-                if (conf.pages > shortDistance) {
+            } else if (current <= totalPages && current > totalPages - distance + 1) {
+                if (totalPages > distance) {
                     pagination.append(add_item("...", "no-link", null));
                 }
 
-                for (i = conf.pages - shortDistance + 1; i < conf.pages; i++) {
-                    pagination.append(add_item(i, i === conf.current ? "active" : "", i));
+                for (i = totalPages - distance + 1; i < totalPages; i++) {
+                    pagination.append(add_item(i, i === current ? "active" : "", i));
                 }
             } else {
                 pagination.append(add_item("...", "no-link", null));
 
-                pagination.append(add_item(conf.current - 1, "", conf.current - 1));
-                pagination.append(add_item(conf.current, "active", conf.current));
-                pagination.append(add_item(conf.current + 1, "", conf.current + 1));
+                for(let i = islandSize; i > 0; i--) {
+                    pagination.append(add_item(current - i, "", current - i))
+                }
+
+                pagination.append(add_item(current, "active", current));
+
+                for(let i = 1; i <= islandSize; i++) {
+                    pagination.append(add_item(current + i, "", current + i))
+                }
 
                 pagination.append(add_item("...", "no-link", null));
             }
         }
 
-        if (conf.pages > 1 || conf.current < conf.pages) pagination.append(add_item(conf.pages, conf.current === conf.pages ? "active" : "", conf.pages));
+        if (totalPages > 1 || current < totalPages) pagination.append(add_item(totalPages, current === totalPages ? "active" : "", totalPages));
 
         next = add_item(conf.nextTitle, "service next-page", "next");
         pagination.append(next);
 
-        if (conf.current === 1) {
+        if (current === 1) {
             prev.addClass("disabled");
         }
 
-        if (conf.current === conf.pages) {
+        if (current === totalPages) {
             next.addClass("disabled");
         }
 
-        if (conf.length === 0) {
+        if (totalRows === 0) {
             pagination.addClass("disabled");
             pagination.children().addClass("disabled");
         }

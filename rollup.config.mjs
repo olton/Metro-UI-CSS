@@ -13,7 +13,7 @@ const production = !(process.env.ROLLUP_WATCH),
 const banner = `
 /*!
  * Metro UI Components Library  (https://metroui.org.ua)
- * Copyright 2012-2023 Serhii Pimenov
+ * Copyright 2012-${new Date().getFullYear()} by Serhii Pimenov
  * Licensed under MIT
  !*/
 `
