@@ -18,12 +18,13 @@
         refControl: false,
         onAppendButtonClick: Metro.noop,
         onTabCreate: Metro.noop_arg,
-        onTabAppend: Metro.noop,
         onTabActivate: Metro.noop,
         onTabDeactivate: Metro.noop,
         onTabBeforeClose: Metro.noop_true,
         onTabClose: Metro.noop,
         onTabRename: Metro.noop,
+        onTabPropChange: Metro.noop,
+        onTabOrganized: Metro.noop,
     }
 
     Metro.pageControlSetup = function (options) {
@@ -76,13 +77,12 @@
                     data: $el.attr("data-data"),
                     ref: $el.attr("data-ref"),
                 })
-                if (active) {
+                if (active && !activeTabExists) {
                     activeTabExists = true
                     tab.addClass("active")
                     that._fireEvent('tab-activate', {tab: tab[0]}, that)
                 }
                 element.append(tab)
-                that._fireEvent('tab-append', {tab: tab[0]}, that)
                 $el.remove()
             })
 
@@ -413,6 +413,8 @@
             } else {
                 this.invisibleTabsHolderToggle.hide()
             }
+
+            this._fireEvent('tab-organized', null, this)
         },
 
         addTab: function({caption, icon, image, canClose = true, hasMenu = true, data, ref}, insert = "before"){
@@ -475,7 +477,6 @@
             switch (prop) {
                 case 'caption': {
                     $tab.find(".page-control__tab__caption").text(val);
-                    this._fireEvent('tab-rename', {tab, name: val}, this)
                     break;
                 }
                 case 'icon': {
@@ -495,6 +496,7 @@
                     break;
                 }
             }
+            this._fireEvent('tab-prop-change', {tab}, this)
             this.organizeTabs()
         },
 
