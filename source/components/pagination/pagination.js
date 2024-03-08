@@ -37,8 +37,6 @@
             return ;
         }
 
-        console.log(current, totalPages, distance)
-
         var add_item = function(item_title, item_type, data){
             var li, a;
 

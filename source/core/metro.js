@@ -634,6 +634,7 @@ onmessage = function (event) {\
         noop: function(){},
         noop_true: function(){return true;},
         noop_false: function(){return false;},
+        noop_arg: function(a){return a;},
 
         requestFullScreen: function(element){
             if (element["mozRequestFullScreen"]) {
@@ -770,7 +771,7 @@ onmessage = function (event) {\
                     }
                 },
 
-                _fireEvent: function(eventName, data, log, noFire){
+                _fireEvent: function(eventName, data, log, noFire, context = null){
                     var element = this.element, o = this.options;
                     var _data;
                     var event = $.camelCase(eventName).capitalize();
@@ -789,10 +790,10 @@ onmessage = function (event) {\
                     if (noFire !== true)
                         element.fire(event.toLowerCase(), data);
 
-                    return Utils.exec(o["on"+event], _data, element[0]);
+                    return Utils.exec(o["on"+event], _data, context ? context : element[0]);
                 },
 
-                _fireEvents: function(events, data, log, noFire){
+                _fireEvents: function(events, data, log, noFire, context){
                     var that = this, _events;
 
                     if (arguments.length === 0) {
@@ -803,7 +804,7 @@ onmessage = function (event) {\
 
                         $.each(events, function () {
                             var ev = this;
-                            that._fireEvent(ev.name, ev.data, ev.log, ev.noFire);
+                            that._fireEvent(ev.name, ev.data, ev.log, ev.noFire, context);
                         });
 
                         return Utils.objectLength(events);
@@ -816,7 +817,7 @@ onmessage = function (event) {\
                     _events = Array.isArray(events) ? events : events.toArray(",");
 
                     $.each(_events, function(){
-                        that._fireEvent(this, data, log, noFire);
+                        that._fireEvent(this, data, log, noFire, context);
                     });
                 },
 

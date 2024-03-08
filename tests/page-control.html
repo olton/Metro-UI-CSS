@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+    <link href="../build/icons.css" rel="stylesheet">
+
+    <title>Test Tabs - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1>PageControl Demo</h1>
+
+    <div class="example mt-10">
+        <ul data-role="page-control" id="pc1"
+            data-append-button="true"
+            data-tabs-actions="tabActions"
+            data-ref-control="true"
+        >
+            <li data-ref="#report1" data-icon="mif-document-file-sql">Report 1</li>
+            <li data-ref="#report2" data-icon="mif-document-file-sql">Report 2</li>
+            <li data-ref="#report3" data-icon="mif-document-file-sql">Report 3</li>
+        </ul>
+
+        <div class="content-holder">
+            <div id="report1">
+                Report 1
+            </div>
+            <div id="report2">
+                Report 2
+            </div>
+            <div id="report3">
+                Report 3
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../build/metro.js"></script>
+<script>
+function tabActions(){
+    return [
+        {
+            title: "User Action",
+            icon: "mif-user",
+            onclick: () => alert(1)
+        }
+    ]
+}
+
+function changeContentWindow(tab){
+    const $tab = $(tab)
+    const ref = $tab.data("ref")
+    $(".content-holder > div").hide()
+    $(`.content-holder > div${ref}`).show()
+}
+
+function closeContentWindow(tab){
+    const $tab = $(tab)
+    const ref = $tab.data("ref")
+    $(`.content-holder > div${ref}`).remove()
+}
+</script>
+</body>
+</html>

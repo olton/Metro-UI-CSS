@@ -32,7 +32,7 @@
   "scripts": {
     "clear": "shx rm -rf build/*",
     "build": "npm run clear && npm install && rollup --config",
-    "watch": "rollup --config -w",
+    "watch": "rollup --config rollup.dev.mjs -w",
     "dev": "npm run watch",
     "cy:test": "cypress open",
     "cy:run": "cypress run",
