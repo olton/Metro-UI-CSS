@@ -41,10 +41,23 @@
     border-top: 1px solid @winFlatBorderColor;
     padding: 8px 16px;
     order: 3;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
 
     & > * {
         margin: 0 4px;
         min-width: 64px;
+    }
+
+    &.text-left {
+        justify-content: flex-start;
+    }
+    &.text-center {
+        justify-content: center;
+    }
+    &.text-right {
+        justify-content: flex-end;
     }
 }
 

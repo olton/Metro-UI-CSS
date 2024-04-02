@@ -42,6 +42,12 @@ each(range(0, 40, 8), {
     }
 })
 
+each(range(1, 10), {
+    .gap-size-@{value} {
+        gap: unit(@value * 8, px)!important;
+    }
+})
+
 .cell-auto, .col-auto {
     flex: 0 0 auto;
     width: auto;
@@ -66,9 +72,12 @@ each(range(0, 12), .(@k) {
 
 .grid {
     &.no-gap {
+        gap: 0;
+
         .row {
             margin-left: 0!important;
             margin-right: 0!important;
+            gap: 0;
 
             & > .cell, & > .stub, & > .col, & > [class*=cell-], & > [class*=col-] {
                 padding: 0!important;

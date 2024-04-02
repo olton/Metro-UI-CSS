@@ -7,8 +7,11 @@
         compact: "md",
         expand: "lg",
         toggle: null,
+        animate: true,
         activeState: false,
         onMenuItemClick: Metro.noop,
+        onPaneClose: Metro.noop,
+        onPaneOpen: Metro.noop,
         onNavviewCreate: Metro.noop
     };
 
@@ -107,6 +110,10 @@
             this.content = content.length > 0 ? content : null;
             this.paneToggle = toggle.length > 0 ? toggle : null;
 
+            if (o.animate) {
+                element.addClass("animate-panes")
+            }
+
             this._recalc();
         },
 
@@ -193,7 +200,7 @@
         },
 
         _togglePaneMode: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
             var pane = this.pane;
             var pane_compact = pane.width() < 280;
 
@@ -205,6 +212,11 @@
                 element.toggleClass("compacted");
             }
 
+            if (element.hasClass("compacted")) {
+                Metro.utils.exec(o.onPaneClose, null, this)
+            } else {
+                Metro.utils.exec(o.onPaneOpen, null, this)
+            }
         },
 
         pullClick: function(el){

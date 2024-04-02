@@ -92,6 +92,12 @@
                 }
             });
 
+            if (data.attributes && Utils.isObject(data.attributes)) {
+                for(let key in data.attributes) {
+                    node.attr(`data-${key}`, data.attributes[key])
+                }
+            }
+
             return node;
         },
 

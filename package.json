@@ -37,7 +37,8 @@
     "cy:test": "cypress open",
     "cy:run": "cypress run",
     "deploy": "node deploy.cjs",
-    "deploy:dev": "node deploy-dev.cjs"
+    "deploy:dev": "node deploy-dev.cjs",
+    "pub": "npm publish --access public"
   },
   "browserslist": [
     "last 2 versions",

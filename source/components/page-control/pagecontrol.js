@@ -11,7 +11,7 @@
         defaultNewCanClose: true,
         defaultNewTabIcon: '',
         defaultNewTabImage: '',
-        defaultNewTabInsertPosition: 'before', // before, after
+        defaultNewTabPosition: 'before', // before, after
         appendActions: null,
         tabsActions: null,
         tabActions: null,
@@ -80,7 +80,7 @@
                 if (active && !activeTabExists) {
                     activeTabExists = true
                     tab.addClass("active")
-                    that._fireEvent('tab-activate', {tab: tab[0]}, that)
+                    that._fireEvent('tab-activate', {tab: tab[0]})
                 }
                 element.append(tab)
                 $el.remove()
@@ -89,7 +89,7 @@
             if (!activeTabExists) {
                 var tab = this.element.children(".page-control__tab").first()
                 tab.addClass("active")
-                this._fireEvent('tab-activate', {tab: tab[0]}, this)
+                this._fireEvent('tab-activate', {tab: tab[0]})
             }
 
             if (o.refControl) {
@@ -218,14 +218,12 @@
                     data: null,
                 })
 
-                element[(o.defaultNewTabInsertPosition === 'before' ? 'prepend' : 'append')](tab)
-
-                that._fireEvent('tab-append', {tab}, that)
+                that._fireEvent('tab-append', {tab})
 
                 that.activateTab(tab)
                 that.organizeTabs()
 
-                that._fireEvent('append-button-click', {tab}, this)
+                that._fireEvent('append-button-click', {tab})
             })
 
             $(window).on("resize", (e)=>{
@@ -304,7 +302,13 @@
             tab.data("data", data)
             tab.data("ref", ref)
 
-            this._fireEvent('tab-create', {tab: tab[0]}, this)
+            this._fireEvent('tab-create', {tab: tab[0]})
+
+            if (o.activateNewTab) {
+                this.activateTab(tab[0])
+            }
+
+            element[(o.defaultNewTabPosition === 'before' ? 'prepend' : 'append')](tab)
 
             return tab[0]
         },
@@ -338,13 +342,13 @@
                     this.activateTab(prev[0])
                 } else if (next.length) {
                     this.activateTab(next[0])
-                } else if (parent.hasClass("page-control__invisible_tabs_holder") && parent.children(".page-control__tab").length === 1) {
+                } else if ($tab.parent().hasClass("page-control__invisible_tabs_holder") && parent.children(".page-control__tab").length === 1) {
                     if (element.children(".page-control__tab").length) {
                         this.activateTab(element.children(".page-control__tab").last()[0])
                     }
                 }
             }
-            this._fireEvent('tab-close', {tab}, this)
+            this._fireEvent('tab-close', {tab})
             if (this.options.refControl) {
                 $($tab.data("ref")).remove()
             }
@@ -359,7 +363,7 @@
             element.find(".page-control__tab").each((index, el)=>{
                 var t = $(el)
                 if (t.hasClass("active")) {
-                    this._fireEvent('tab-deactivate', {tab: el}, this)
+                    this._fireEvent('tab-deactivate', {tab: el})
                     t.removeClass("active")
                 }
             })
@@ -370,7 +374,7 @@
                 this._updateRefs()
             }
 
-            this._fireEvent('tab-activate', {tab}, this)
+            this._fireEvent('tab-activate', {tab})
 
             if ($(tab).parent().hasClass("page-control__invisible_tabs_holder")) {
                 element.prepend(tab)
@@ -414,7 +418,7 @@
                 this.invisibleTabsHolderToggle.hide()
             }
 
-            this._fireEvent('tab-organized', null, this)
+            this._fireEvent('tab-organized', null)
         },
 
         addTab: function({caption, icon, image, canClose = true, hasMenu = true, data, ref}, insert = "before"){
@@ -496,7 +500,7 @@
                     break;
                 }
             }
-            this._fireEvent('tab-prop-change', {tab}, this)
+            this._fireEvent('tab-prop-change', {tab})
             this.organizeTabs()
         },
 

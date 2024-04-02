@@ -58,8 +58,18 @@
             return icon;
         },
 
-        _createCaption: function(data){
-            return $("<span>").addClass("caption").html(data);
+        _createCaption: function(data, style){
+            const caption = $("<span>").addClass("caption").html(data);
+
+            if (style) {
+                if ( Utils.isObject(style) ) {
+                    caption.css(style)
+                } else if (typeof style === "string") {
+                    caption[0].style.cssText = style
+                }
+            }
+
+            return caption
         },
 
 
@@ -74,7 +84,7 @@
             node = $("<li>");
 
             if (data.caption !== undefined) {
-                node.prepend(this._createCaption(data.caption));
+                node.prepend(this._createCaption(data.caption, data.style));
             }
 
             if (data.icon !== undefined) {
@@ -83,6 +93,12 @@
 
             if (data.html !== undefined) {
                 node.append(data.html);
+            }
+
+            if (data.attributes && Utils.isObject(data.attributes)) {
+                for(let key in data.attributes) {
+                    node.attr(`data-${key}`, data.attributes[key])
+                }
             }
 
             return node;
@@ -96,16 +112,17 @@
 
             $.each(nodes, function(){
                 var node = $(this);
-                var caption, icon;
+                var caption, icon, style;
 
                 caption = node.data("caption");
                 icon = node.data("icon");
+                style = node.data("style")
 
                 if (caption !== undefined) {
                     if (node.children("ul").length > 0 && o.showChildCount === true) {
                         caption += " ("+node.children("ul").children("li").length+")"
                     }
-                    node.prepend(that._createCaption(caption));
+                    node.prepend(that._createCaption(caption, style));
                 }
 
                 if (icon !== undefined) {

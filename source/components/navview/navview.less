@@ -26,9 +26,14 @@
 
     .navview-pane, .navview-content {
         display: block;
-        transition: all .1s linear;
         min-height: 100%;
         height: 100%;
+    }
+
+    &.animate-panes {
+        .navview-pane, .navview-content {
+            transition: all .1s linear;
+        }
     }
 
     .navview-pane {

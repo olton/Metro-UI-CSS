@@ -7,12 +7,36 @@
 
     <title>Test Grid - Metro 4 :: Popular HTML, CSS and JS library</title>
 
+    <style>
+        [class*=cell-] {
+            border: 1px solid red;
+        }
+    </style>
 </head>
 <body class="m4-cloak">
 <div class="container">
     <h1>Grid test page</h1>
 
-    <div class="grid  no-gap">
+    <div class="grid">
+        <div class="row">
+            <div class="cell-md-3">1</div>
+            <div class="cell-md-3">2</div>
+            <div class="cell-md-3">3</div>
+            <div class="cell-md-3">4</div>
+            <div class="cell-md-3">5</div>
+            <div class="cell-md-3">6</div>
+            <div class="cell-md-3">7</div>
+            <div class="cell-md-3">8</div>
+            <div class="cell-md-6">9</div>
+            <div class="cell-md-6">10</div>
+            <div class="cell-md-4">10</div>
+            <div class="cell-md-4">10</div>
+            <div class="cell-md-4">10</div>
+        </div>
+    </div>
+
+
+    <div class="grid">
         <div class="row border">
             <div class="cell-md-4 border"><div class="border p-4">1</div></div>
             <div class="cell-md-4 border"><div class="border">2</div></div>

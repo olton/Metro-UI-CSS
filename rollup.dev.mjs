@@ -51,10 +51,6 @@ export default [
             sourcemap,
             banner,
             plugins: [
-                terser({
-                    keep_classnames: true,
-                    keep_fnames: true,
-                })
             ]
         }
     },
