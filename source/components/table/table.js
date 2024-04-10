@@ -1073,7 +1073,7 @@
                 var store_key = o.checkStoreKey.replace("$1", id);
                 var storage = Metro.storage;
                 var data = [];
-		var stored_keys;
+                var stored_keys;
 
                 if (o.useCurrentSlice === true) {
                     stored_keys = storage.getItem(store_key, []);

@@ -24,7 +24,7 @@
         SplitterDefaultConfig = $.extend({}, SplitterDefaultConfig, options);
     };
 
-    if (typeof window["metroSplitterSetup"] !== undefined) {
+    if (typeof window["metroSplitterSetup"] !== "undefined") {
         Metro.splitterSetup(window["metroSplitterSetup"]);
     }
 

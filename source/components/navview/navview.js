@@ -11,7 +11,9 @@
         activeState: false,
         onMenuItemClick: Metro.noop,
         onPaneClose: Metro.noop,
+        onBeforePaneClose: Metro.noop,
         onPaneOpen: Metro.noop,
+        onBeforePaneOpen: Metro.noop,
         onNavviewCreate: Metro.noop
     };
 
@@ -154,11 +156,9 @@
             });
 
             element.on(Metro.events.click, ".navview-menu li > a", function(){
-
                 that._fireEvent("menu-item-click", {
                     item: this
                 });
-
             });
 
             if (this.paneToggle !== null) {
