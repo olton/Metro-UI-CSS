@@ -98,6 +98,26 @@
                 }
             }
 
+            if (data.class) {
+                node.addClass(data.class)
+            }
+
+            if (data.badge) {
+                node.append(
+                    $("<span>").addClass("badge").html(data.badge)
+                )
+            }
+
+            if (data.badges) {
+                const badges = $("<div>").addClass("badges").appendTo(node);
+                data.badges.map(b => {
+                    if (!b) return;
+                    badges.append(
+                        $(b)
+                    )
+                })
+            }
+
             return node;
         },
 
@@ -142,6 +162,10 @@
                         $("<div>").addClass("node-data item-data-"+key).addClass(node.data(key)).html(node.data(key)).appendTo(node);
                     }
                 });
+
+                if (node.data("class") !== undefined) {
+                    node.addClass(node.data("class"))
+                }
             });
 
             this.toggleSelectable();
@@ -161,6 +185,13 @@
 
             element.on(Metro.events.click, ".node", function(){
                 var node = $(this);
+                var href = $(this).attr("href");
+
+                if (href) {
+                    window.location.href = href;
+                    return;
+                }
+
                 element.find(".node").removeClass("current");
                 node.toggleClass("current");
                 if (o.selectCurrent === true) {

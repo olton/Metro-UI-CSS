@@ -325,12 +325,12 @@
                 overflow-y: initial!important;
             }
 
+            .badges, .data-box {
+                display: none!important;
+            }
         }
         .navview-content {
             margin-left: @navviewPaneWidthCompact!important;
-        }
-        .badges, .data-box {
-            display: none!important;
         }
     }
 }
@@ -358,12 +358,12 @@
             overflow-y: initial;
         }
 
+        .badges, .data-box {
+            display: none;
+        }
     }
     .navview-content {
         margin-left: @navviewPaneWidthCompact;
-    }
-    .badges, .data-box {
-        display: none;
     }
 }
 
@@ -389,15 +389,16 @@
         .navview-menu-container {
             overflow-y: auto;
         }
+
+        .badges {
+            display: flex;
+        }
+        .data-box {
+            display: block;
+        }
     }
     .navview-content {
         margin-left: @navviewPaneWidth;
-    }
-    .badges {
-        display: flex;
-    }
-    .data-box {
-        display: block;
     }
 }
 

@@ -700,6 +700,27 @@
 
         decCount: function(v){
             return v % 1 === 0 ? 0 : v.toString().split(".")[1].length;
+        },
+
+        classNames: function(){
+            const args = Array.prototype.slice.call(arguments, 0);
+            const classes = []
+            for (let a of args) {
+                if (!a) continue;
+                classes.push(Metro.utils.isObject(a) ? Object.values(a)[0] : a);
+            }
+            return classes.join(' ');
+        },
+
+        join: function(){
+            const values = Array.prototype.slice.call(arguments, 0);
+            const sep = values.pop()
+            const classes = []
+            for (let a of values) {
+                if (!a) continue;
+                classes.push(Metro.utils.isObject(a) ? Object.values(a)[0] : a);
+            }
+            return classes.join(sep);
         }
     };
 
