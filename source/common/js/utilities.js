@@ -2,6 +2,8 @@
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
+        nothing: function(){},
+
         isVisible: function(element){
             var el = $(element)[0];
             return this.getStyleOne(el, "display") !== "none"
@@ -707,7 +709,17 @@
             const classes = []
             for (let a of args) {
                 if (!a) continue;
-                classes.push(Metro.utils.isObject(a) ? Object.values(a)[0] : a);
+                if (typeof a === "string") {
+                    classes.push(a)
+                } else if (Metro.utils.isObject(a)) {
+                    for(let k in a) {
+                        if (a[k]) {
+                            classes.push(k)
+                        }
+                    }
+                } else {
+                    Metro.utils.nothing()
+                }
             }
             return classes.join(' ');
         },
