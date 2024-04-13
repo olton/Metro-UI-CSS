@@ -335,11 +335,18 @@
 
 .listview {
     .node {
-        .badge {
+        border-radius: 10px;
+        overflow: hidden;
+        .badge, .badges {
             position: absolute;
-            top: 5px;
-            right: 5px;
+            top: 4px;
+            right: -4px;
             border: 1px solid @borderColor;
+            font-size: 12px;
+        }
+
+        .badges {
+            border-color: transparent;
         }
     }
 }
