@@ -3,6 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var SelectDefaultConfig = {
+        id: "",
         label: "",
         size: "normal",
         selectDeferred: 0,
@@ -184,7 +185,7 @@
         _createSelect: function(){
             var that = this, element = this.element, o = this.options;
 
-            var container = $("<label>").addClass("select " + element[0].className).addClass(o.clsSelect);
+            var container = $("<label>");
             var multiple = element[0].multiple;
             var select_id = Utils.elementId("select");
             var buttons = $("<div>").addClass("button-group");
@@ -194,8 +195,13 @@
 
             this.placeholder = $("<span>").addClass("placeholder").html(o.placeholder);
 
-            container.attr("id", select_id).attr("for", checkboxID);
-            container.addClass("input-" + o.size);
+            container.attr("id", o.id ? o.id : select_id).attr("for", checkboxID);
+            container[0].className = Metro.utils.classNames(
+                element[0].className,
+                "input-" + o.size,
+                "select",
+                o.clsSelect
+            )
 
             dropdown_toggle = $("<span>").addClass("dropdown-toggle");
             dropdown_toggle.appendTo(container);
