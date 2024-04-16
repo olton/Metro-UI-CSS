@@ -83,15 +83,15 @@
 
             node = $("<li>");
 
-            if (data.caption !== undefined) {
+            if (data.caption) {
                 node.prepend(this._createCaption(data.caption, data.style));
             }
 
-            if (data.icon !== undefined) {
+            if (data.icon) {
                 node.prepend(this._createIcon(data.icon));
             }
 
-            if (data.html !== undefined) {
+            if (data.html) {
                 node.append(data.html);
             }
 
@@ -99,6 +99,20 @@
                 for(let key in data.attributes) {
                     node.attr(`data-${key}`, data.attributes[key])
                 }
+            }
+
+            if (data.badge) {
+                node.append(
+                    $("<span>").addClass("badge").html(data.badge)
+                )
+            }
+
+            if (data.badges) {
+                $.each(data.badges, function(_, item) {
+                    node.append(
+                        $("<span>").addClass("badge").html(item)
+                    )
+                })
             }
 
             return node;
