@@ -612,7 +612,7 @@
 
     /* global hasProp */
 
-    var m4qVersion = "v1.2.0";
+    var m4qVersion = "v1.2.1";
 
     /* eslint-disable-next-line */
     var matches = Element.prototype.matches
