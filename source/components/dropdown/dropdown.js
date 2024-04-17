@@ -78,8 +78,9 @@
             var toggle = this._toggle, parent = element.parent();
 
             toggle.on(Metro.events.click, function(e){
-                parent.siblings(parent[0].tagName).removeClass("active-container");
                 $(".active-container").removeClass("active-container");
+
+                // parent.siblings(parent[0].tagName).removeClass("active-container");
 
                 if (element.css('display') !== 'none' && !element.hasClass('keep-open')) {
                     that._close(element);
@@ -169,7 +170,7 @@
             toggle.addClass('active-toggle').addClass("active-control");
 
             el[func](immediate ? 0 : options.duration, function(){
-
+                console.log(func)
                 if (!options.dropUp && options.checkDropUp) {
                     // dropdown.element.removeClass("drop-up");
                     if (!Utils.inViewport(dropdown.element[0])) {
