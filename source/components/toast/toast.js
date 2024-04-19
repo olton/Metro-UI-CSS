@@ -35,7 +35,7 @@
 
             toast = $("<div>").addClass("toast").html(message).appendTo($("body"));
             width = toast.outerWidth();
-            toast.hide();
+            // toast.hide();
 
             timeout = timeout || o.timeout;
             callback = callback || o.callback;
@@ -59,6 +59,7 @@
                 .addClass(o.clsToast)
                 .addClass(cls)
                 .fadeIn(METRO_ANIMATION_DURATION, function(){
+                    console.log("ku")
                     setTimeout(function(){
                         Toast.remove(toast, callback);
                     }, timeout);
@@ -66,8 +67,7 @@
         },
 
         remove: function(toast, cb){
-            if (!toast) return ;
-
+            if (!toast.length) return ;
             toast.fadeOut(METRO_ANIMATION_DURATION, function(){
                 toast.remove();
                 Utils.exec(cb, null, toast[0]);

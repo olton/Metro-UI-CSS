@@ -612,7 +612,7 @@
 
     /* global hasProp */
 
-    var m4qVersion = "v1.2.1";
+    var m4qVersion = "v1.2.2";
 
     /* eslint-disable-next-line */
     var matches = Element.prototype.matches
@@ -4163,10 +4163,6 @@
                 var $el = $(el);
                 var visible = !(!isVisible(el) || (isVisible(el) && +($el.style('opacity')) === 0));
 
-                if (visible) {
-                    return this;
-                }
-
                 if (not(dur) && not(easing) && not(cb)) {
                     cb = null;
                     dur = $.animation.duration;
@@ -4182,6 +4178,13 @@
 
                 if ($.fx.off) {
                     dur = 0;
+                }
+
+                if (visible) {
+                    if (typeof cb === 'function') {
+                        $.proxy(cb, this)();
+                    }
+                    return this;
                 }
 
                 var originDisplay = $el.origin("display", undefined, 'block');
@@ -4210,8 +4213,6 @@
                 var el = this;
                 var $el = $(el);
 
-                if ( !isVisible(el) ) return ;
-
                 if (not(dur) && not(easing) && not(cb)) {
                     cb = null;
                     dur = $.animation.duration;
@@ -4226,6 +4227,13 @@
                 }
 
                 $el.origin("display", $el.style('display'));
+
+                if ( !isVisible(el) ) {
+                    if (typeof cb === 'function') {
+                        $.proxy(cb, this)();
+                    }
+                    return this;
+                }
 
                 return $.animate({
                     el: el,
