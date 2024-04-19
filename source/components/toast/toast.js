@@ -59,7 +59,6 @@
                 .addClass(o.clsToast)
                 .addClass(cls)
                 .fadeIn(METRO_ANIMATION_DURATION, function(){
-                    console.log("ku")
                     setTimeout(function(){
                         Toast.remove(toast, callback);
                     }, timeout);

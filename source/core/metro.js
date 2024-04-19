@@ -137,7 +137,7 @@ onmessage = function (event) {\
                         try {
                             callback = new Function (callback);
                         } catch (error) {
-                            console.log (logPrefix + 'Error parsing callback code string: ', error);
+                            console.error (logPrefix + 'Error parsing callback code string: ', error);
                         }
                     }
                     if (typeof (callback) === 'function') {
@@ -145,14 +145,14 @@ onmessage = function (event) {\
                     }
                 };
                 worker.onerror = function (event) {
-                    console.log (event);
+                    console.error (event);
                 };
             } catch (error) {
-                console.log (logPrefix + 'Initialisation failed');
+                console.error (logPrefix + 'Initialisation failed');
                 console.error (error);
             }
         } else {
-            console.log (logPrefix + 'Initialisation failed - HTML5 Web Worker is not supported');
+            console.error (logPrefix + 'Initialisation failed - HTML5 Web Worker is not supported');
         }
     }) ('HackTimerWorker.js');
 
