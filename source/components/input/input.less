@@ -250,3 +250,22 @@ input.input-small:-ms-input-placeholder {font-size: .8rem;}
         flex-flow: row-reverse nowrap;
     }
 }
+
+.input {
+    .badge {
+        position: absolute;
+        font-size: 9px;
+        font-weight: 100;
+        text-transform: uppercase;
+        background-color: #0a87c1;
+        color: #ffffff;
+        border-radius: 6px;
+        padding: 2px 4px;
+        top: 50%;
+        right: 10px;
+        transform: translateY(-50%);
+    }
+    &:hover .badge {
+        display: none;
+    }
+}

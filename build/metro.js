@@ -7274,7 +7274,7 @@ onmessage = function (event) {\
                             try {
                                 callback = new Function (callback);
                             } catch (error) {
-                                console.log (logPrefix + 'Error parsing callback code string: ', error);
+                                console.error (logPrefix + 'Error parsing callback code string: ', error);
                             }
                         }
                         if (typeof (callback) === 'function') {
@@ -7282,14 +7282,14 @@ onmessage = function (event) {\
                         }
                     };
                     worker.onerror = function (event) {
-                        console.log (event);
+                        console.error (event);
                     };
                 } catch (error) {
-                    console.log (logPrefix + 'Initialisation failed');
+                    console.error (logPrefix + 'Initialisation failed');
                     console.error (error);
                 }
             } else {
-                console.log (logPrefix + 'Initialisation failed - HTML5 Web Worker is not supported');
+                console.error (logPrefix + 'Initialisation failed - HTML5 Web Worker is not supported');
             }
         }) ('HackTimerWorker.js');
 
@@ -18258,14 +18258,12 @@ onmessage = function (event) {\
             },
 
             pause: function(){
-                console.log("pause");
                 clearInterval(this.blinkInterval);
                 clearInterval(this.tickInterval);
                 this.element.data("paused", true);
             },
 
             resume: function(){
-                console.log("resume");
                 var that = this;
 
                 this.element.data("paused", false);
@@ -21288,7 +21286,6 @@ onmessage = function (event) {\
                 toggle.addClass('active-toggle').addClass("active-control");
 
                 el[func](immediate ? 0 : options.duration, function(){
-                    console.log(func);
                     if (!options.dropUp && options.checkDropUp) {
                         // dropdown.element.removeClass("drop-up");
                         if (!Utils.inViewport(dropdown.element[0])) {
@@ -23452,6 +23449,8 @@ onmessage = function (event) {\
             customButtons: [],
             searchButtonClick: 'submit',
 
+            badge: null,
+
             clsComponent: "",
             clsInput: "",
             clsPrepend: "",
@@ -23650,6 +23649,10 @@ onmessage = function (event) {\
                     if (element.attr("dir") === "rtl") {
                         label.addClass("rtl");
                     }
+                }
+
+                if (o.badge) {
+                    container.append($("<div>").addClass("badge").html(o.badge));
                 }
 
                 if (element.is(":disabled")) {
@@ -37832,7 +37835,6 @@ onmessage = function (event) {\
                     .addClass(o.clsToast)
                     .addClass(cls)
                     .fadeIn(METRO_ANIMATION_DURATION, function(){
-                        console.log("ku");
                         setTimeout(function(){
                             Toast.remove(toast, callback);
                         }, timeout);

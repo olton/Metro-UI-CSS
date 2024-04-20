@@ -32,6 +32,8 @@
         customButtons: [],
         searchButtonClick: 'submit',
 
+        badge: null,
+
         clsComponent: "",
         clsInput: "",
         clsPrepend: "",
@@ -230,6 +232,10 @@
                 if (element.attr("dir") === "rtl") {
                     label.addClass("rtl");
                 }
+            }
+
+            if (o.badge) {
+                container.append($("<div>").addClass("badge").html(o.badge))
             }
 
             if (element.is(":disabled")) {
