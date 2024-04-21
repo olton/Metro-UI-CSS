@@ -62,7 +62,8 @@
         init: function( options, elem ) {
             this._super(elem, options, SelectDefaultConfig, {
                 list: null,
-                placeholder: null
+                placeholder: null,
+                observer: null,
             });
 
             return this;
@@ -335,6 +336,21 @@
                 this.enable();
             }
 
+            this.observer = new MutationObserver(this._updateSelect.bind(this))
+            this.observer.observe(element[0], {
+                childList: true,
+                subtree: true
+            });
+        },
+
+        _updateSelect: function(mutation){
+            for (let record of mutation) {
+                if (record.type === 'childList') {
+                    if (record.addedNodes.length || record.removedNodes.length) {
+                        this._createOptions()
+                    }
+                }
+            }
         },
 
         _createEvents: function(){
