@@ -170,7 +170,6 @@
             toggle.addClass('active-toggle').addClass("active-control");
 
             el[func](immediate ? 0 : options.duration, function(){
-                console.log(func)
                 if (!options.dropUp && options.checkDropUp) {
                     // dropdown.element.removeClass("drop-up");
                     if (!Utils.inViewport(dropdown.element[0])) {

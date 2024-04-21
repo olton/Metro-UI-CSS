@@ -458,14 +458,12 @@
         },
 
         pause: function(){
-            console.log("pause")
             clearInterval(this.blinkInterval);
             clearInterval(this.tickInterval);
             this.element.data("paused", true);
         },
 
         resume: function(){
-            console.log("resume")
             var that = this;
 
             this.element.data("paused", false);
