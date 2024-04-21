@@ -190,6 +190,12 @@
         const select = $("#select3_1")
         select.append($("<option>").attr("value", "value_1").text(`value_1`))
         select.append($("<option>").attr("value", "value_2").attr("selected", "selected").text(`value_2`))
+
+        const select1 = document.querySelector("#select3_1")
+        const option = document.createElement("option")
+        option.value = "value_3"
+        option.innerText = "value3"
+        select1.appendChild(option)
     }
 
     // sel.on("change", function () {
