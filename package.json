@@ -1,6 +1,6 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
-  "name": "metro4",
+  "name": "metroui",
   "version": "5.0.0-rc0",
   "version_suffix": "rc",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
