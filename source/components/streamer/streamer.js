@@ -524,19 +524,21 @@
                     .off(Metro.events.mousewheel)
                     .on(Metro.events.mousewheel, function(e) {
 
-                    if (e.deltaY === undefined) {
-                        return ;
-                    }
+                        if (e.deltaY === undefined) {
+                            return ;
+                        }
 
-                    var scroll, scrollable = $(this);
-                    var dir = e.deltaY > 0 ? -1 : 1;
-                    var step = o.wheelStep;
+                        var scroll, scrollable = $(this);
+                        var dir = e.deltaY > 0 ? -1 : 1;
+                        var step = o.wheelStep;
 
 
-                    scroll = scrollable.scrollLeft() - ( dir * step);
-                    scrollable.scrollLeft(scroll);
+                        scroll = scrollable.scrollLeft() - ( dir * step);
+                        scrollable.scrollLeft(scroll);
 
-                });
+                    }, {
+                        passive: true
+                    });
 
                 element.find(".events-area").off("mouseenter").on("mouseenter", function() {
                     disableScroll();

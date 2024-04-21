@@ -130,6 +130,8 @@
 
                 scroll = scrollable.scrollLeft() - ( dir * step);
                 scrollable.scrollLeft(scroll);
+            }, {
+                passive: true
             })
         },
 

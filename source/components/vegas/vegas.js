@@ -5,7 +5,7 @@
  * Original code https://github.com/jaysalvat/vegas
  * MIT License, Copyright 2018 Jay Salvat
  *
- * Adaptation for Metro 4 by Serhii Pimenov,
+ * Adaptation for Metro UI by Serhii Pimenov,
  * Copyright 2020 Serhii Pimenov
  */
 
