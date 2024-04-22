@@ -87,6 +87,7 @@
 
             if (!activeTabExists) {
                 var tab = this.element.children(".page-control__tab").first()
+                console.log(tab)
                 tab.addClass("active")
                 this._fireEvent('tab-activate', {tab: tab[0]})
             }
@@ -266,6 +267,8 @@
                             <li class="divider"></li>
                             <li><a data-action="close">Close</a></li>
                             <li><a data-action="close-other">Close Other Tabs</a></li>
+                            <li><a data-action="close-left">Close Tabs Left</a></li>
+                            <li><a data-action="close-right">Close Tabs Right</a></li>
                             <li><a data-action="close-all">Close All Tabs</a></li>
                             <li><a data-action="close-inactive">Close Inactive Tabs</a></li>
                         </ul>
@@ -302,10 +305,6 @@
             tab.data("ref", ref)
 
             this._fireEvent('tab-create', {tab: tab[0]})
-
-            if (o.activateNewTab) {
-                this.activateTab(tab[0])
-            }
 
             element[(o.defaultNewTabPosition === 'before' ? 'prepend' : 'append')](tab)
 
@@ -368,6 +367,7 @@
             })
 
             $(tab).addClass("active")
+            console.log("kuku")
 
             if (o.refControl) {
                 this._updateRefs()
@@ -421,7 +421,14 @@
         },
 
         addTab: function({caption, icon, image, canClose = true, hasMenu = true, data, ref}, insert = "before"){
+            var o = this.options
+
             var newTab = this.createTab({caption, icon, image, canClose, hasMenu, data, ref})
+
+            if (o.activateNewTab) {
+                this.activateTab(newTab)
+            }
+
             this.element[(insert === "before" ? "prepend" : "append")](newTab)
             this.organizeTabs()
             return newTab
