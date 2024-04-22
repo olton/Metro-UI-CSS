@@ -1,4 +1,3 @@
-/* global Metro */
 (function(Metro, $) {
     'use strict';
 
