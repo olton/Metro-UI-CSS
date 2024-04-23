@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "@olton/datetime": "^3.0.3",
+    "@olton/hooks": "^0.1.0",
     "@olton/string": "^0.4.4",
     "m4q": "^2.0.0-rc4"
   }

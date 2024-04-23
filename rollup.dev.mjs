@@ -1,11 +1,8 @@
 import {nodeResolve} from '@rollup/plugin-node-resolve'
-import terser from '@rollup/plugin-terser'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from "autoprefixer"
 import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress';
-import noEmit from 'rollup-plugin-no-emit'
-import multi from '@rollup/plugin-multi-entry'
 import fs from "fs";
 import pkg from "./package.json" assert {type: "json"}
 
