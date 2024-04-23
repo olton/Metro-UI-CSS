@@ -87,7 +87,6 @@
 
             if (!activeTabExists) {
                 var tab = this.element.children(".page-control__tab").first()
-                console.log(tab)
                 tab.addClass("active")
                 this._fireEvent('tab-activate', {tab: tab[0]})
             }
@@ -186,6 +185,14 @@
                     }
                     case 'close-inactive': {
                         that.closeInactiveTabs();
+                        break;
+                    }
+                    case 'close-left': {
+                        that.closeTabsOnTheLeft(tab);
+                        break;
+                    }
+                    case 'close-right': {
+                        that.closeTabsOnTheRight(tab);
                         break;
                     }
                     case 'rename': {
@@ -332,7 +339,7 @@
             e.stopPropagation()
         },
 
-        closeTab: function(tab){
+        closeTab: function(tab, reorg = true){
             var $tab = $(tab)
             if ($tab.hasClass("active")) {
                 const prev = $tab.prev(".page-control__tab"), next = $tab.next(".page-control__tab")
@@ -351,7 +358,7 @@
                 $($tab.data("ref")).remove()
             }
             $tab.remove()
-            this.organizeTabs()
+            if (reorg) this.organizeTabs()
             return this
         },
 
@@ -367,7 +374,6 @@
             })
 
             $(tab).addClass("active")
-            console.log("kuku")
 
             if (o.refControl) {
                 this._updateRefs()
@@ -461,24 +467,47 @@
 
         closeAll: function(){
             this.component.find(".page-control__tab").each((index, tab) => {
-                this.closeTab(tab)
+                this.closeTab(tab, false)
             })
+            this.organizeTabs()
             return this
         },
 
         closeInactiveTabs: function(){
             this.component.find(".page-control__tab").each((index, tab) => {
-                if (!$(tab).hasClass("active")) this.closeTab(tab)
+                if (!$(tab).hasClass("active")) this.closeTab(tab, false)
             })
+            this.organizeTabs()
             return this
         },
 
         closeOtherTabs: function(tab){
             let _tab = typeof tab === "number" ? this.getTabByIndex(tab) : $(tab)
             this.component.find(".page-control__tab").each((index, tab) => {
-                if (_tab[0] !== tab) this.closeTab(tab)
+                if (_tab[0] !== tab) this.closeTab(tab, false)
             })
             this.activateTab(tab)
+            this.organizeTabs()
+            return this
+        },
+
+        closeTabsOnTheLeft: function(tab){
+            const tabs = this.component.find(".page-control__tab")
+            const tabIndex = tabs.indexOf($(tab))
+            this.component.find(".page-control__tab").each((index, _tab) => {
+                if (index < tabIndex) this.closeTab(_tab, false)
+            })
+            this.organizeTabs()
+            return this
+        },
+
+        closeTabsOnTheRight: function(tab){
+            const tabs = this.component.find(".page-control__tab")
+            const tabIndex = tabs.indexOf($(tab))
+            this.component.find(".page-control__tab").each((index, _tab) => {
+                if (index > tabIndex) this.closeTab(_tab, false)
+            })
+            this.organizeTabs()
             return this
         },
 
