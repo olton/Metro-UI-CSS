@@ -415,33 +415,75 @@
         },
 
         collapseNode(node){
+            const element = this.element, o = this.options;
             node = $(node)
             node.removeClass("expanded");
-            this._fireEvent("node-collapsed", {
+            node.data("collapsed", true)
+            node.children("ul")["slideUp"](o.duration);
+            this._fireEvent("collapse-node", {
                 node: node[0]
             });
         },
 
         expandNode(node){
+            const element = this.element, o = this.options;
             node = $(node)
             if (!node.hasClass("tree-node")) {
                 return
             }
             node.addClass("expanded");
-            this._fireEvent("node-expanded", {
+            node.data("collapsed", false)
+            node.children("ul")["slideDown"](o.duration);
+            this._fireEvent("expand-node", {
                 node: node[0]
             });
         },
 
         collapseAll(){
-            const element = this.element;
-            element.find(".expanded").removeClass("expanded")
+            const element = this.element, o = this.options;
+            element.find(".expanded").each((_, el)=>{
+                const node = $(el);
+                let func;
+                const toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+                node.toggleClass("expanded");
+                node.data("collapsed", toBeExpanded);
+                func = toBeExpanded === true ? "slideUp" : "slideDown";
+                if (!toBeExpanded) {
+                    this._fireEvent("expand-node", {
+                        node: node[0]
+                    });
+                } else {
+                    this._fireEvent("collapse-node", {
+                        node: node[0]
+                    });
+                }
+                node.children("ul")[func](o.duration);
+            })
             this._fireEvent("collapse-all");
         },
 
         expandAll(){
-            const element = this.element;
-            element.find(".tree-node").addClass("expanded")
+            const element = this.element, o = this.options;
+            element.find(".tree-node:not(.expanded)").each((_, el)=>{
+                const node = $(el);
+                let func;
+                const toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+                node.toggleClass("expanded");
+                node.data("collapsed", toBeExpanded);
+                func = toBeExpanded === true ? "slideUp" : "slideDown";
+                if (!toBeExpanded) {
+                    this._fireEvent("expand-node", {
+                        node: node[0]
+                    });
+                } else {
+                    this._fireEvent("collapse-node", {
+                        node: node[0]
+                    });
+                }
+                node.children("ul")[func](o.duration);
+            })
             this._fireEvent("expand-all");
         },
 
