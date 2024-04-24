@@ -414,6 +414,37 @@
             });
         },
 
+        collapseNode(node){
+            node = $(node)
+            node.removeClass("expanded");
+            this._fireEvent("node-collapsed", {
+                node: node[0]
+            });
+        },
+
+        expandNode(node){
+            node = $(node)
+            if (!node.hasClass("tree-node")) {
+                return
+            }
+            node.addClass("expanded");
+            this._fireEvent("node-expanded", {
+                node: node[0]
+            });
+        },
+
+        collapseAll(){
+            const element = this.element;
+            element.find(".expanded").removeClass("expanded")
+            this._fireEvent("collapse-all");
+        },
+
+        expandAll(){
+            const element = this.element;
+            element.find(".tree-node").addClass("expanded")
+            this._fireEvent("expand-all");
+        },
+
         changeAttribute: function(){
         },
 
