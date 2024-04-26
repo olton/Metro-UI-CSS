@@ -1,7 +1,7 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "@olton/metroui",
-  "version": "5.0.0-rc6",
+  "version": "5.0.0-rc7",
   "version_suffix": "rc",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [
@@ -70,6 +70,6 @@
     "@olton/datetime": "^3.0.3",
     "@olton/hooks": "^0.1.0",
     "@olton/string": "^0.4.4",
-    "m4q": "^2.0.0-rc6"
+    "m4q": "^2.0.0-rc7"
   }
 }
