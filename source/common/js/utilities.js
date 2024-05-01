@@ -733,6 +733,12 @@
                 classes.push(Metro.utils.isObject(a) ? Object.values(a)[0] : a);
             }
             return classes.join(sep);
+        },
+
+        copy2clipboard: function(v, cb){
+            navigator.clipboard.writeText(v).then(function(){
+                Metro.utils.exec(cb, [v])
+            })
         }
     };
 

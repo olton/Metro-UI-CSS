@@ -115,6 +115,30 @@
                 })
             }
 
+            if (data.actions) {
+                const actionsHolder = $("<div class='dropdown-button'>").addClass("actions-holder");
+                const actionsListTrigger = $("<span class='actions-list-trigger'>").text("⋮").appendTo(actionsHolder)
+                const actionsList = $("<ul data-role='dropdown' class='d-menu context actions-list'>").appendTo(actionsHolder)
+                node.append(actionsHolder)
+                for(let a of data.actions) {
+                    if (a.type && a.type === "divider") {
+                        $("<li>").addClass("divider").appendTo(actionsList)
+                    } else {
+                        const icon = a.icon ? $(a.icon).addClass("icon").outerHTML() : ""
+                        const li = $(`<li><a href="#">${icon} ${a.caption}</a></li>`).appendTo(actionsList)
+                        if (a.cls) {
+                            li.addClass(a.cls)
+                        }
+                        li.find("a").on("click", function () {
+                            Metro.utils.exec(a.onclick, [li[0]], this)
+                        })
+                    }
+                }
+                actionsList.on(Metro.events.leave, (e) => {
+                    Metro.getPlugin(actionsList, "dropdown").close()
+                })
+            }
+
             return node;
         },
 
@@ -335,6 +359,8 @@
                     node.addClass("expanded");
                 }
             }
+
+            node.addClass("tree-node")
 
             new_node = this._createNode(data);
 

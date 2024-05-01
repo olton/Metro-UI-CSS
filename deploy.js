@@ -1,7 +1,12 @@
-const FtpDeploy = require("ftp-deploy");
+import FtpDeploy from "ftp-deploy"
+import auth from "./ftpauth.json" assert {type: "json"}
+import pkg from "./package.json" assert {type: "json"}
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+
 const ftp = new FtpDeploy();
-const auth = require("./ftpauth.json")
-const pkg = require("./package.json")
 
 const configVer = {
     user: auth.keycdn.username,

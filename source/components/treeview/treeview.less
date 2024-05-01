@@ -24,7 +24,7 @@
             width: 16px;
             height: 16px;
             font-size: 16px;
-            left: 0;
+            //left: 0;
             top: 3px;
             line-height: 16px;
 
@@ -54,10 +54,10 @@
 
         .node-toggle {
             position: absolute;
-            left: 0;
+            left: -24px;
             top: 0;
-            .translateX(-100%);
             .square(24, px);
+            z-index: 0;
 
             &::before {
                 .rotate(-135deg);
@@ -78,11 +78,16 @@
     }
 
     ul {
-        margin: 0 0 0 1rem;
+        margin: 0;
         padding: 0;
         list-style: none inside;
         display: block;
         font-weight: normal;
+
+        .node-toggle {
+            left: -8px;
+        }
+
     }
 
     .select .d-menu {
@@ -119,5 +124,53 @@
         right: auto;
         transform: none;
         margin-left: 4px;
+    }
+
+    ul:not(.actions-list) li {
+        padding-left: 1rem;
+
+        .icon {
+            left: 1rem;
+        }
+    }
+}
+
+.treeview {
+    li:not(.tree-node) {
+        & > .actions-holder {
+            z-index: 2;
+            position: absolute;
+            top: 1px;
+            left: -4px;
+            display: none;
+            height: 26px;
+            width: 26px;
+
+            .actions-list-trigger {
+                background-color: transparent;
+                width: 20px;
+                height: 20px;
+                cursor: pointer;
+                font-size: 14px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            & > ul {
+                margin: 0;
+                z-index: 3;
+
+                li {
+                    padding-left: 0;
+                }
+            }
+        }
+
+        &:hover {
+            & > .actions-holder {
+                display: block;
+            }
+        }
     }
 }

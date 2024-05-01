@@ -1,7 +1,7 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "@olton/metroui",
-  "version": "5.0.0-rc7",
+  "version": "5.0.0-rc8",
   "version_suffix": "rc",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [
@@ -58,10 +58,10 @@
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
     "postcss": "^8.4.38",
-    "rollup": "^4.16.4",
+    "rollup": "^4.17.2",
     "rollup-plugin-banner2": "^1.2.3",
     "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-no-emit": "^1.1.1",
+    "rollup-plugin-no-emit": "^1.2.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "shx": "^0.3.4"
