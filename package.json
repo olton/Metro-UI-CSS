@@ -55,6 +55,7 @@
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
     "cypress": "^13.8.1",
+    "esbuild": "0.20.2",
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
     "postcss": "^8.4.38",
