@@ -1,0 +1,33 @@
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
+
+.fixed-top, .fixed-bottom {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.fixed-top {
+    top: 0;
+    bottom: auto;
+}
+
+.fixed-bottom {
+    top: auto;
+    bottom: 0;
+}
+
+.pos-relative {position: relative!important;}
+.pos-absolute {position: absolute!important;}
+.pos-static {position: static!important;}
+.pos-fixed {position: fixed!important;}
+
+each(@mediaBreakpointListMobile, {
+    @media screen and (min-width: @@value) {
+        .pos-relative-@{value} {position: relative!important;}
+        .pos-absolute-@{value} {position: absolute!important;}
+        .pos-static-@{value} {position: static!important;}
+        .pos-fixed-@{value} {position: fixed!important;}
+    }
+})

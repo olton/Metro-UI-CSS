@@ -1,0 +1,759 @@
+{
+    "required": {
+        "reset": {
+            "name": "Reset CSS",
+            "path": "source/reset"
+        }
+    },
+
+    "routines": {
+        "datetime": {
+            "name": "Datetime",
+            "path": "source/datetime"
+        },
+        "string": {
+            "name": "String",
+            "path": "source/string"
+        },
+        "m4q": {
+            "name": "m4q",
+            "path": "source/m4q"
+        },
+        "hooks": {
+            "name": "Hooks",
+            "path": "source/hooks"
+        },
+        "colors": {
+            "name": "ColorJS",
+            "path": "source/color"
+        },
+        "animation": {
+            "name": "Animation",
+            "path": "source/animation"
+        },
+        "html": {
+            "name": "HtmlJS",
+            "path": "source/html"
+        }
+    },
+
+    "common": {
+        "js-ext": {
+            "name": "JS Extensions",
+            "path": "source/extensions"
+        },
+        "core": {
+            "name": "Core JS",
+            "path": "source/core"
+        },
+        "i18n": {
+            "name": "i18n",
+            "path": "source/i18n"
+        },
+        "common-css": {
+            "name": "Common CSS",
+            "path": "source/common-css"
+        },
+        "common-js": {
+            "name": "Common JS",
+            "path": "source/common-js"
+        }
+    },
+
+    "additional": {
+        "icons": {
+            "name": "Metro Icons Font",
+            "path": "source/icons"
+        }
+    },
+
+    "components": {
+        "accordion": {
+            "name": "Accordion",
+            "path": "source/components/accordion/"
+        },
+        "action-button": {
+            "name": "Action button",
+            "path": "source/components/action-button/"
+        },
+        "activity": {
+            "name": "Activities",
+            "dependencies": {
+                "components": ["dialog"]
+            },
+            "path": "source/components/activity/"
+        },
+        "adblock": {
+            "name": "Adblock hunter",
+            "path": "source/components/adblock/"
+        },
+        "animations":{
+            "name": "Animations",
+            "path": "source/components/animations/"
+        },
+        "app-bar": {
+            "name": "App Bar",
+            "dependencies": {
+                "components": ["hamburger"],
+                "routines": ["color"]
+            },
+            "path": "source/components/app-bar/"
+        },
+        "audio-button": {
+            "name": "Audio button",
+            "path": "source/components/audio-button/"
+        },
+        "audio-player": {
+            "name": "Audio player",
+            "dependencies": {
+                "components": ["slider", "media-player", "default-icons"]
+            },
+            "path": "source/components/audio-player/"
+        },
+        "badges": {
+            "name": "Badges",
+            "path": "source/components/badges/"
+        },
+        "bottom-nav": {
+            "name": "Bottom nav",
+            "path": "source/components/bottom-nav/"
+        },
+        "bottom-sheet": {
+            "name": "Bottom sheet",
+            "path": "source/components/bottom-sheet/"
+        },
+        "breadcrumbs": {
+            "name": "Breadcrumbs",
+            "path": "source/components/breadcrumbs/"
+        },
+        "button": {
+            "name": "Button",
+            "path": "source/components/button/"
+        },
+        "button-group": {
+            "name": "Button-group",
+            "path": "source/components/button-group/"
+        },
+        "calendar": {
+            "name": "Calendar",
+            "dependencies": {
+                "components": ["button","default-icons","spinner"]
+            },
+            "path": "source/components/calendar/"
+        },
+        "calendarpicker": {
+            "name": "Calendar picker",
+            "dependencies": {
+                "components": ["calendar"],
+                "routines": ["color"]
+            },
+            "path": "source/components/calendarpicker/"
+        },
+        "cards": {
+            "name": "Cards",
+            "path": "source/components/cards/"
+        },
+        "carousel": {
+            "name": "Carousel",
+            "dependencies": {
+                "components": ["button","animations"]
+            },
+            "path": "source/components/carousel/"
+        },
+        "charms": {
+            "name": "Charms",
+            "dependencies": {
+                "routines": ["color"]
+            },
+            "path": "source/components/charms/"
+        },
+        "chat": {
+            "name": "Chat",
+            "dependencies": {
+                "components": ["input", "button"]
+            },
+            "path": "source/components/chat/"
+        },
+        "checkbox": {
+            "name": "Checkbox",
+            "path": "source/components/checkbox/"
+        },
+        "chips": {
+            "name": "Chips",
+            "path": "source/components/chips/"
+        },
+        "clock": {
+            "name": "Clock",
+            "path": "source/components/clock/"
+        },
+        "collapse": {
+            "name": "Collapse",
+            "path": "source/components/collapse/"
+        },
+        "colors":{
+            "name": "Color routines",
+            "path": "source/components/colors/"
+        },
+        "color-selector":{
+            "name": "Color selector",
+            "dependencies": {
+                "routines": ["color"],
+                "components": ["input", "radio", "button"]
+            },
+            "path": "source/components/color-selector/"
+        },
+        "color-picker":{
+            "name": "Color picker",
+            "dependencies": {
+                "routines": ["color"],
+                "components": ["input", "radio", "button", "color-selector"]
+            },
+            "path": "source/components/color-picker/"
+        },
+        "command-button": {
+            "name": "Command button",
+            "path": "source/components/command-button/"
+        },
+        "container": {
+            "name": "Container",
+            "path": "source/components/container/"
+        },
+        "cookie": {
+            "name": "Cookie manager",
+            "path": "source/components/cookie/"
+        },
+        "cookie-disclaimer": {
+            "name": "Cookie disclaimer",
+            "dependencies": {
+                "components": ["cookie"]
+            },
+            "path": "source/components/cookie-disclaimer/"
+        },
+        "countdown": {
+            "name": "Countdown",
+            "path": "source/components/countdown/"
+        },
+        "counter": {
+            "name": "Counter",
+            "path": "source/components/counter/"
+        },
+        "cube": {
+            "name": "Cube",
+            "dependencies": {
+                "routines": ["color"]
+            },
+            "path": "source/components/cube/"
+        },
+        "d-menu": {
+            "name": "D-menu",
+            "path": "source/components/d-menu/"
+        },
+        "datepicker": {
+            "name": "Date picker",
+            "dependencies": {
+                "components": ["wheelpicker"]
+            },
+            "path": "source/components/datepicker/"
+        },
+        "default-icons": {
+            "name": "Default icons",
+            "path": "source/components/default-icons/"
+        },
+        "dialog": {
+            "name": "Dialog",
+            "dependencies": {
+                "components": ["button", "colors"]
+            },
+            "path": "source/components/dialog/"
+        },
+        "donut": {
+            "name": "Donut",
+            "path": "source/components/donut/"
+        },
+        "double-slider": {
+            "name": "Double slider",
+            "dependencies": {
+                "components": ["slider"]
+            },
+            "path": "source/components/double-slider/"
+        },
+        "drag-items": {
+            "name": "Drag items",
+            "path": "source/components/drag-items/"
+        },
+        "draggable": {
+            "name": "Draggable",
+            "path": "source/components/draggable/"
+        },
+        "dropdown": {
+            "name": "Dropdown",
+            "path": "source/components/dropdown/"
+        },
+        "dropdown-button": {
+            "name": "Dropdown button",
+            "dependencies": {
+                "components": ["button", "dropdown"]
+            },
+            "path": "source/components/dropdown-button/"
+        },
+        "expand-button": {
+            "name": "Expand button",
+            "path": "source/components/expand-button/"
+        },
+        "export":{
+            "name": "Data export",
+            "path": "source/components/export/"
+        },
+        "file": {
+            "name": "File input",
+            "dependencies": {
+                "components": ["input-common","button","default-icons"]
+            },
+            "path": "source/components/file/"
+        },
+        "form": {
+            "name": "Form",
+            "path": "source/components/form/"
+        },
+        "flip-card": {
+            "name": "Flip card",
+            "path": "source/components/flip-card/"
+        },
+        "gravatar": {
+            "name": "Gravatar",
+            "dependencies": {
+                "components": ["md5"]
+            },
+            "path": "source/components/gravatar/"
+        },
+        "gradient-box": {
+            "name": "Gradient box",
+            "path": "source/components/gradient-box/"
+        },
+        "grid": {
+            "name": "Grid system",
+            "path": "source/components/grid/"
+        },
+        "h-menu": {
+            "name": "H-menu",
+            "path": "source/components/h-menu/"
+        },
+        "hamburger": {
+            "name": "Hamburger",
+            "path": "source/components/hamburger/"
+        },
+        "head-bar": {
+            "name": "Head bar",
+            "path": "source/components/head-bar/"
+        },
+        "hero": {
+            "name": "Hero",
+            "path": "source/components/hero/"
+        },
+        "hint": {
+            "name": "Hint",
+            "path": "source/components/hint/"
+        },
+        "hotkey": {
+            "name": "Hotkey",
+            "path": "source/components/hotkey/"
+        },
+        "html-container": {
+            "name": "HTML container",
+            "path": "source/components/html-container/"
+        },
+        "icon-box": {
+            "name": "Icon box",
+            "path": "source/components/icon-box/"
+        },
+        "image-button": {
+            "name": "Image button",
+            "path": "source/components/image-button/"
+        },
+        "image-box": {
+            "name": "Image box",
+            "path": "source/components/image-box/"
+        },
+        "image-compare": {
+            "name": "Image compare",
+            "path": "source/components/image-compare/"
+        },
+        "image-grid": {
+            "name": "Image grid",
+            "path": "source/components/image-grid/"
+        },
+        "image-magnifier": {
+            "name": "Image magnifier",
+            "path": "source/components/image-magnifier/"
+        },
+        "image-placeholder": {
+            "name": "Image placeholder",
+            "path": "source/components/image-placeholder/"
+        },
+        "info-box": {
+            "name": "Info box",
+            "dependencies": {
+                "components": ["colors"]
+            },
+            "path": "source/components/info-box/"
+        },
+        "info-button": {
+            "name": "Info button",
+            "path": "source/components/info-button/"
+        },
+        "info-panel": {
+            "name": "Info panel",
+            "path": "source/components/info-panel/"
+        },
+        "input-common": {
+            "name": "Input common",
+            "path": "source/components/input-common/"
+        },
+        "input-mask": {
+            "name": "Input mask",
+            "path": "source/components/input-mask/"
+        },
+        "input": {
+            "name": "Input",
+            "dependencies": {
+                "components": ["input-common","button"]
+            },
+            "path": "source/components/input/"
+        },
+        "input-material": {
+            "name": "Input material",
+            "dependencies": {
+                "components": ["input-common"]
+            },
+            "path": "source/components/input-material/"
+        },
+        "keypad": {
+            "name": "Keypad",
+            "dependencies": {
+                "components": ["input-common"]
+            },
+            "path": "source/components/keypad/"
+        },
+        "lightbox": {
+            "name": "Lightbox",
+            "dependencies": {
+                "components": ["default-icons"]
+            },
+            "path": "source/components/lightbox/"
+        },
+        "list": {
+            "name": "List",
+            "path": "source/components/list/"
+        },
+        "listview": {
+            "name": "ListView",
+            "dependencies": {
+                "components": ["checkbox"]
+            },
+            "path": "source/components/listview/"
+        },
+        "marquee": {
+            "name": "Marquee",
+            "path": "source/components/marquee/"
+        },
+        "master": {
+            "name": "Master",
+            "dependencies": {
+                "components": ["default-icons"]
+            },
+            "path": "source/components/master/"
+        },
+        "md5":{
+            "name": "MD5 Hash",
+            "path": "source/components/md5/"
+        },
+        "media-player": {
+            "name": "Media player",
+            "dependencies": {
+                "components": ["default-icons"]
+            },
+            "path": "source/components/media-player/"
+        },
+        "more-info-box": {
+            "name": "More info box",
+            "path": "source/components/more-info-box/"
+        },
+        "navview": {
+            "name": "Navigation view",
+            "dependencies": {
+                "components": ["input", "button", "hamburger"]
+            },
+            "path": "source/components/navview/"
+        },
+        "notify": {
+            "name": "Notify system",
+            "path": "source/components/notify/"
+        },
+        "pagination": {
+            "name": "Pagination",
+            "path": "source/components/pagination/"
+        },
+        "panel": {
+            "name": "Panel",
+            "dependencies": {
+                "components": ["button", "draggable", "collapse"]
+            },
+            "path": "source/components/panel/"
+        },
+        "popover": {
+            "name": "Popover",
+            "path": "source/components/popover/"
+        },
+        "post-card": {
+            "name": "Post card",
+            "path": "source/components/post-card/"
+        },
+        "progress": {
+            "name": "Progress Bar",
+            "path": "source/components/progress/"
+        },
+        "radio": {
+            "name": "Radio button",
+            "dependencies": {
+                "components": ["input-common"]
+            },
+            "path": "source/components/radio/"
+        },
+        "rating": {
+            "name": "Rating",
+            "dependencies": {
+                "components": ["colors"]
+            },
+            "path": "source/components/rating/"
+        },
+        "resizable": {
+            "name": "Resizable obj",
+            "path": "source/components/resizable/"
+        },
+        "resizer": {
+            "name": "Resizer (controller)",
+            "path": "source/components/resizer/"
+        },
+        "ribbon-menu": {
+            "name": "Ribbon menu",
+            "path": "source/components/ribbon-menu/"
+        },
+        "ripple": {
+            "name": "Ripple effect",
+            "dependencies": {
+                "components": ["colors"]
+            },
+            "path": "source/components/ripple/"
+        },
+        "select": {
+            "name": "Select",
+            "dependencies": {
+                "components": ["input-common","input", "dropdown", "tag", "default-icons"]
+            },
+            "path": "source/components/select/"
+        },
+        "shortcut": {
+            "name": "Shortcut",
+            "path": "source/components/shortcut/"
+        },
+        "sidebar": {
+            "name": "Sidebar",
+            "dependencies": {
+                "components": ["input", "hamburger"]
+            },
+            "path": "source/components/sidebar/"
+        },
+        "sidenav-counter": {
+            "name": "Sidenav counter",
+            "path": "source/components/sidenav-counter/"
+        },
+        "sidenav-m3": {
+            "name": "Sidenav M3",
+            "path": "source/components/sidenav-m3/"
+        },
+        "sidenav-simple": {
+            "name": "Sidenav simple",
+            "path": "source/components/sidenav-simple/"
+        },
+        "skill-box": {
+            "name": "Skill Box",
+            "path": "source/components/skill-box/"
+        },
+        "slider": {
+            "name": "Slider",
+            "path": "source/components/slider/"
+        },
+        "social-box": {
+            "name": "Social Box",
+            "path": "source/components/social-box/"
+        },
+        "sorter": {
+            "name": "Sorting elements",
+            "path": "source/components/sorter/"
+        },
+        "spinner": {
+            "name": "Spinner",
+            "dependencies": {
+                "components": ["input-common","button","default-icons"]
+            },
+            "path": "source/components/spinner/"
+        },
+        "split-button": {
+            "name": "Split button",
+            "path": "source/components/split-button/"
+        },
+        "splitter": {
+            "name": "Splitter",
+            "path": "source/components/splitter/"
+        },
+        "stepper": {
+            "name": "Stepper",
+            "path": "source/components/stepper/"
+        },
+        "storage": {
+            "name": "Storage",
+            "path": "source/components/storage/"
+        },
+        "streamer": {
+            "name": "Streamer",
+            "dependencies": {
+                "routines": ["color"]
+            },
+            "repo": "olton/Metro-UI-CSS",
+            "path": "source/components/streamer/"
+        },
+        "switch": {
+            "name": "Switch",
+            "dependencies": {
+                "components": ["input-common"]
+            },
+            "path": "source/components/switch/"
+        },
+        "t-menu": {
+            "name": "T-menu",
+            "path": "source/components/t-menu/"
+        },
+        "table": {
+            "name": "Table",
+            "dependencies": {
+                "components": ["activity", "checkbox", "radio", "select", "button","export"]
+            },
+            "path": "source/components/table/"
+        },
+        "tabs": {
+            "name": "Tabs",
+            "dependencies": {
+                "components": ["hamburger"]
+            },
+            "path": "source/components/tabs/"
+        },
+        "tabs-material": {
+            "name": "Tabs material",
+            "path": "source/components/tabs-material/"
+        },
+        "tag": {
+            "name": "Tag",
+            "path": "source/components/tag/"
+        },
+        "tag-input": {
+            "name": "Tag input",
+            "dependencies": {
+                "components": ["input-common","tag", "button","default-icons"],
+                "routines": ["color"]
+            },
+            "path": "source/components/tag-input/"
+        },
+        "template":{
+            "name": "Template system",
+            "path": "source/components/template/"
+        },
+        "textarea": {
+            "name": "Textarea",
+            "dependencies": {
+                "components": ["input-common","button"]
+            },
+            "path": "source/components/textarea/"
+        },
+        "tile": {
+            "name": "Tiles",
+            "dependencies": {
+                "components": ["animations", "colors"],
+                "routines": ["color"]
+            },
+            "path": "source/components/tile/"
+        },
+        "timepicker": {
+            "name": "Time picker",
+            "dependencies": {
+                "components": ["wheelpicker"]
+            },
+            "path": "source/components/timepicker/"
+        },
+        "toast": {
+            "name": "Toasts",
+            "path": "source/components/toast/"
+        },
+        "tokenizer": {
+            "name": "Tokenizer",
+            "path": "source/components/tockenizer/"
+        },
+        "toolbar": {
+            "name": "Toolbar",
+            "path": "source/components/toolbar/"
+        },
+        "top-bar": {
+            "name": "Top bar",
+            "path": "source/components/top-bar/"
+        },
+        "touch": {
+            "name": "Touch events",
+            "path": "source/components/touch/"
+        },
+        "treeview": {
+            "name": "TreeView",
+            "path": "source/components/treeview/"
+        },
+        "validator": {
+            "name": "Validator",
+            "dependencies": {
+                "routines": ["color"]
+            },
+            "path": "source/components/validator/"
+        },
+        "vegas": {
+            "name": "Vegas",
+            "path": "source/components/vagas/"
+        },
+        "video-player": {
+            "name": "Video player",
+            "dependencies": {
+                "components": ["media-player", "button", "slider"]
+            },
+            "path": "source/components/video-player/"
+        },
+        "viewport-check": {
+            "name": "Viewport checker",
+            "path": "source/components/viewport-check/",
+            "deprecated": true
+        },
+        "wheelpicker": {
+            "name": "Wheel picker",
+            "path": "source/components/wheelpicker/"
+        },
+        "window": {
+            "name": "Window",
+            "dependencies": {
+                "components": ["draggable", "resizeable", "button", "colors"],
+                "routines": ["color"]
+            },
+            "path": "source/components/window/"
+        },
+        "wizard": {
+            "name": "Wizard",
+            "dependencies": {
+                "components": ["default-icons","button"]
+            },
+            "path": "source/components/wizard/"
+        }
+    }
+}

@@ -68,8 +68,11 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
+    "@olton/animation": "^0.2.0",
+    "@olton/color": "^0.3.0",
     "@olton/datetime": "^3.0.3",
     "@olton/hooks": "^0.1.0",
+    "@olton/html": "^0.7.0",
     "@olton/string": "^0.4.4",
     "m4q": "^2.0.0-rc7"
   }
