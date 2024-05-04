@@ -139,6 +139,12 @@
                 })
             }
 
+            if (data.type === 'node') {
+                node.addClass("tree-node")
+                node.append($("<span>").addClass("node-toggle"))
+                node.append( $("<ul>") )
+            }
+
             return node;
         },
 
