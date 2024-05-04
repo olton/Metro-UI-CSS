@@ -288,8 +288,8 @@
             this._setColorValues();
             this._updateCursorsColor();
 
-            if (o.initColor && Metro.colors.isColor(o.initColor)) {
-                this._colorToPos(typeof o.initColor === "string" ? Metro.colors.parse(o.initColor) : o.initColor);
+            if (o.initColor && Color.Routines.isColor(o.initColor)) {
+                this._colorToPos(typeof o.initColor === "string" ? Color.Routines.parse(o.initColor) : o.initColor);
             }
         },
 
@@ -339,7 +339,8 @@
             var canvas = this.alphaCanvas[0];
             var ctx = canvas.getContext('2d');
             var alphaGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            var startColor = new Metro.colorPrimitive.HSLA(this.hue, 1, .5, 1).toString(), endColor = "rgba(0,0,0,0)";
+            var startColor = new Color.Primitives.HSLA(this.hue, 1, .5, 1).toString(),
+                endColor = "rgba(0,0,0,0)";
 
             alphaGradient.addColorStop(0.00, startColor);
             alphaGradient.addColorStop(1.00, endColor);
@@ -396,6 +397,7 @@
             if ( y < 0 ) y = 0;
 
             percent = 1 - y / height;
+
             this.alpha = percent.toFixed(2);
 
             this._updateAlphaCursor(y);
@@ -440,9 +442,9 @@
         },
 
         _updateCursorsColor: function(){
-            this.shadeCursor.css({backgroundColor: Metro.colors.toHEX(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness))});
-            this.hueCursor.css({backgroundColor: Metro.colors.toHEX(new Metro.colorPrimitive.HSL(this.hue, 1, .5))});
-            this.alphaCursor.css({backgroundColor: Metro.colors.toRGBA(new Metro.colorPrimitive.HSL(this.hue, 1, .5), this.alpha).toString()});
+            this.shadeCursor.css({backgroundColor: Color.Routines.toHEX(new Color.Primitives.HSL(this.hue, this.saturation, this.lightness))});
+            this.hueCursor.css({backgroundColor: Color.Routines.toHEX(new Color.Primitives.HSL(this.hue, 1, .5))});
+            this.alphaCursor.css({backgroundColor: Color.Routines.toRGBA(new Color.Primitives.HSL(this.hue, 1, .5), this.alpha).toString()});
         },
 
         _updateShadeCursor: function(x, y){
@@ -456,9 +458,9 @@
             var shadeCanvasRect = this.shadeCanvas[0].getBoundingClientRect();
             var hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
             var alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
-            var hsl = Metro.colors.toHSL(color);
-            var hsla = Metro.colors.toHSLA(color, color.a);
-            var hsv = Metro.colors.toHSV(color);
+            var hsl = Color.Routines.toHSL(color);
+            var hsla = Color.Routines.toHSLA(color, color.a);
+            var hsv = Color.Routines.toHSV(color);
             var x = shadeCanvasRect.width * hsv.s;
             var y = shadeCanvasRect.height * (1 - hsv.v);
             var hueY = hueCanvasRect.height - ((hsl.h / 360) * hueCanvasRect.height);
@@ -480,13 +482,13 @@
 
         _setColorValues: function(){
             var element = this.element, o = this.options;
-            var hsl = Metro.colors.toHSL(new Metro.colorPrimitive.HSL(this.hue, this.saturation, this.lightness));
-            var hsla = Metro.colors.toHSLA(new Metro.colorPrimitive.HSLA(this.hue, this.saturation, this.lightness, this.alpha));
-            var rgb = Metro.colors.toRGB(hsl);
-            var rgba = Metro.colors.toRGBA(rgb, this.alpha);
-            var hsv = Metro.colors.toHSV(hsl);
-            var cmyk = Metro.colors.toCMYK(hsl);
-            var hex = Metro.colors.toHEX(hsl);
+            var hsl = Color.Routines.toHSL(new Color.Primitives.HSL(this.hue, this.saturation, this.lightness));
+            var hsla = Color.Routines.toHSLA(new Color.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha));
+            var rgb = Color.Routines.toRGB(hsl);
+            var rgba = Color.Routines.toRGBA(rgb, this.alpha);
+            var hsv = Color.Routines.toHSV(hsl);
+            var cmyk = Color.Routines.toCMYK(hsl);
+            var hex = Color.Routines.toHEX(hsl);
             var controller = $(o.controller);
             var percent = o.hslMode === "percent";
 
@@ -537,12 +539,14 @@
                 backgroundColor: hex
             });
 
+            const value = this.val()
+
             if (controller && controller.length) {
-                controller.val(this.val()).trigger("change");
+                controller.val(value).trigger("change");
             }
 
             this._fireEvent("select-color", {
-                color: this.val(),
+                color: value,
                 primitive: {
                     hsl: this.hsl,
                     hsla: this.hsla,
@@ -603,7 +607,7 @@
                         });
                         color = colorType + "(" +parts.join(", ")+ ")";
                     }
-                    if (color && Metro.colors.isColor(color)) {
+                    if (color && Color.Routines.isColor(color)) {
                         that.val(color);
                     }
 
@@ -616,7 +620,7 @@
                     that._clearInputInterval();
                     if (!that.inputInterval) that.inputInterval = setTimeout(function(){
                         var val = controller.val();
-                        if (val && Metro.colors.isColor(val)) {
+                        if (val && Color.Routines.isColor(val)) {
                             that.val(val);
                         }
                         that._clearInputInterval();
@@ -639,7 +643,7 @@
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
-            });
+            }, {passive: true});
 
             hueMap.on(Metro.events.startAll, function(e){
 
@@ -656,7 +660,7 @@
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
-            });
+            }, {passive: true});
 
             shadeMap.on(Metro.events.startAll, function(e){
 
@@ -673,14 +677,14 @@
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id})
-            });
+            }, {passive: true});
 
             element.on("click", ".swatch", function(){
                 that._colorToPos($(this).attr("data-color"));
             });
 
             element.on("click", ".add-button", function(){
-                var color = Metro.colors.toHEX(new Metro.colorPrimitive.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
+                var color = Color.Routines.toHEX(new Color.Primitives.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
 
                 if (that.userColors.indexOf(color) > -1) {
                     return ;
@@ -708,7 +712,9 @@
         val: function(v){
             var o = this.options;
 
-            if (!Utils.isValue(v) || !Metro.colors.isColor(v)) {
+            console.log(v)
+
+            if (!v) {
                 var res;
                 switch (o.returnValueType.toLowerCase()) {
                     case "rgb":
@@ -731,14 +737,11 @@
                         break;
                     default: res = this.hex;
                 }
+                console.log("res", res)
                 return o.returnAsString ? res.toString() : res;
             }
 
-            if (!Metro.colors.isColor(v)) {
-                return ;
-            }
-
-            this._colorToPos(Metro.colors.parse(v));
+            // this._colorToPos(Color.Routines.parse(v));
         },
 
         user: function(v){

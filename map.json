@@ -137,11 +137,12 @@
         "calendar": {
             "name": "Calendar",
             "dependencies": {
-                "components": ["button","default-icons","spinner"]
+                "components": ["button","default-icons","spinner"],
+                "routines": ["color"]
             },
             "path": "source/components/calendar/"
         },
-        "calendarpicker": {
+        "calendar-picker": {
             "name": "Calendar picker",
             "dependencies": {
                 "components": ["calendar"],
@@ -262,7 +263,8 @@
         "dialog": {
             "name": "Dialog",
             "dependencies": {
-                "components": ["button", "colors"]
+                "components": ["button", "colors"],
+                "routines": ["color"]
             },
             "path": "source/components/dialog/"
         },
@@ -393,7 +395,8 @@
         "info-box": {
             "name": "Info box",
             "dependencies": {
-                "components": ["colors"]
+                "components": ["colors"],
+                "routines": ["color"]
             },
             "path": "source/components/info-box/"
         },
@@ -454,7 +457,10 @@
         },
         "marquee": {
             "name": "Marquee",
-            "path": "source/components/marquee/"
+            "path": "source/components/marquee/",
+            "dependencies": {
+                "routines": ["color"]
+            }
         },
         "master": {
             "name": "Master",
@@ -522,7 +528,7 @@
         "rating": {
             "name": "Rating",
             "dependencies": {
-                "components": ["colors"]
+                "routines": ["color"]
             },
             "path": "source/components/rating/"
         },
@@ -541,7 +547,7 @@
         "ripple": {
             "name": "Ripple effect",
             "dependencies": {
-                "components": ["colors"]
+                "routines": ["color"]
             },
             "path": "source/components/ripple/"
         },
@@ -643,7 +649,8 @@
         "tabs": {
             "name": "Tabs",
             "dependencies": {
-                "components": ["hamburger"]
+                "components": ["hamburger"],
+                "routines": ["color"]
             },
             "path": "source/components/tabs/"
         },

@@ -62,11 +62,11 @@
             element.css({
                 height: o.height,
                 width: o.width,
-                backgroundColor: Metro.colors.isColor(o.backgroundColor) ? o.backgroundColor : MarqueeDefaultConfig.backgroundColor,
-                color: Metro.colors.isColor(o.color) ? o.color : MarqueeDefaultConfig.color,
+                backgroundColor: Color.Routines.isColor(o.backgroundColor) ? o.backgroundColor : MarqueeDefaultConfig.backgroundColor,
+                color: Color.Routines.isColor(o.color) ? o.color : MarqueeDefaultConfig.color,
                 borderStyle: "solid",
                 borderWidth: o.borderSize,
-                borderColor: Metro.colors.isColor(o.borderColor) ? o.borderColor : MarqueeDefaultConfig.borderColor
+                borderColor: Color.Routines.isColor(o.borderColor) ? o.borderColor : MarqueeDefaultConfig.borderColor
             });
 
             this.setItems(o.items);

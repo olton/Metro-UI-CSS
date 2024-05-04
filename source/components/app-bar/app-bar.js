@@ -50,7 +50,7 @@
             var hamburger, menu, elementColor = Utils.getStyleOne(element, "background-color");
 
             element.addClass("app-bar");
-
+            console.log(elementColor)
             hamburger = element.find(".hamburger");
             if (hamburger.length === 0) {
                 hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down");
@@ -58,7 +58,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (elementColor === "rgba(0, 0, 0, 0)" || Metro.colors.isLight(elementColor) === true) {
+                if (elementColor === "rgba(0, 0, 0, 0)" || Color.Routines.isLight(elementColor) === true) {
                     hamburger.addClass("dark");
                 }
             }

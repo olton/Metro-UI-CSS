@@ -212,8 +212,8 @@
                     $("<div>").addClass("stream-secondary").html(stream_item.secondary).appendTo(stream);
                     $(stream_item.icon).addClass("stream-icon").appendTo(stream);
 
-                    var bg = Metro.colors.toHEX(Utils.getStyleOne(stream, "background-color"));
-                    var fg = Metro.colors.toHEX(Utils.getStyleOne(stream, "color"));
+                    var bg = Color.Routines.toHEX(Utils.getStyleOne(stream, "background-color"));
+                    var fg = Color.Routines.toHEX(Utils.getStyleOne(stream, "color"));
 
                     var stream_events = $("<div>").addClass("stream-events")
                         .data("background-color", bg)

@@ -53,7 +53,7 @@
 
         _createTile: function(){
             function switchImage(el, img_src, i){
-                $.setTimeout(function(){
+                setTimeout(function(){
                     el.fadeOut(500, function(){
                         el.css("background-image", "url(" + img_src + ")");
                         el.fadeIn();
@@ -123,9 +123,9 @@
 
                 var a = [0, 1, 4, 3, 2];
 
-                $.setInterval(function(){
+                setInterval(function(){
                     var temp = that.images.slice();
-                    var bg = Metro.colors.random();
+                    var bg = Color.Routines.randomColor();
 
                     element.css("background-color", bg);
 
@@ -144,7 +144,7 @@
         _runEffects: function(){
             var that = this, o = this.options;
 
-            if (this.effectInterval === false) this.effectInterval = $.setInterval(function(){
+            if (this.effectInterval === false) this.effectInterval = setInterval(function(){
                 var current, next;
 
                 current = $(that.slides[that.currentSlide]);

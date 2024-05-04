@@ -69,7 +69,7 @@
   },
   "dependencies": {
     "@olton/animation": "^0.2.0",
-    "@olton/color": "^0.3.0",
+    "@olton/color": "^1.0.0-rc1",
     "@olton/datetime": "^3.0.3",
     "@olton/hooks": "^0.1.0",
     "@olton/html": "^0.7.0",

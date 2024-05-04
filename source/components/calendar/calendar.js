@@ -755,7 +755,7 @@
                             var event = $("<div>").addClass("event").addClass(o.clsEvent).appendTo(events);
                             if (!o.clsEvent) {
                                 event.css({
-                                    backgroundColor: Metro.colors.random()
+                                    backgroundColor: Color.Routines.randomColor()
                                 })
                             }
                         }

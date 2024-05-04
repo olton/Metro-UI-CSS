@@ -355,11 +355,11 @@
             remover.appendTo(tag);
 
             if (o.randomColor === true) {
-                var colors = Metro.colors.colors(Metro.colors.PALETTES.ALL), bg, fg, bg_r;
+                var colors = Color.Routines.colors(Color.Routines.PALETTES.ALL), bg, fg, bg_r;
 
                 bg = colors[$.random(0, colors.length - 1)];
-                bg_r = Metro.colors.darken(bg, 15);
-                fg = Metro.colors.isDark(bg) ? "#ffffff" : "#000000";
+                bg_r = Color.Routines.darken(bg, 15);
+                fg = Color.Routines.isDark(bg) ? "#ffffff" : "#000000";
 
                 tag.css({
                     backgroundColor: bg,

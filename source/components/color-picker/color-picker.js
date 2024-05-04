@@ -51,7 +51,7 @@
                 throw new Error("Color selector component required!");
             }
 
-            this.value = Metro.colors.isColor(current) ? current : Metro.colors.isColor(o.defaultValue) ? o.defaultValue : "rgba(0,0,0,0)";
+            this.value = Color.Routines.isColor(current) ? current : Color.Routines.isColor(o.defaultValue) ? o.defaultValue : "rgba(0,0,0,0)";
 
             this._createStructure();
             this._createEvents();
@@ -167,7 +167,7 @@
             var color = this.value;
 
             if (this.value.indexOf("cmyk") !== -1 || this.value.indexOf("hsv") !== -1) {
-                color = Metro.colors.toHEX(this.value);
+                color = Color.Routines.toHEX(this.value);
             }
 
             colorExample.css({
@@ -203,7 +203,7 @@
                 return this.value;
             }
 
-            if (!Metro.colors.isColor(v)) {
+            if (!Color.Routines.isColor(v)) {
                 return ;
             }
 

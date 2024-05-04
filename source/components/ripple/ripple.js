@@ -22,7 +22,7 @@
         var el = $(target);
         var rect = Utils.rect(el[0]);
         var x, y;
-        var Colors = Metro.colors;
+        var Colors = Color.Routines;
 
         if (el.length === 0) {
             return ;
@@ -103,7 +103,7 @@
 
             function changeColor(){
                 var color = element.attr("data-ripple-color");
-                if (!Metro.colors.isColor(color)) {
+                if (!Color.Routines.isColor(color)) {
                     return;
                 }
                 o.rippleColor = color;

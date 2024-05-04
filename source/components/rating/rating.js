@@ -107,10 +107,10 @@
 
             result.html(o.message);
 
-            if (o.starColor !== null && Metro.colors.isColor(o.starColor)) {
+            if (o.starColor !== null && Color.Routines.isColor(o.starColor)) {
                 Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
             }
-            if (o.staredColor !== null && Metro.colors.isColor(o.staredColor)) {
+            if (o.staredColor !== null && Color.Routines.isColor(o.staredColor)) {
                 Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
                 Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
             }
