@@ -482,8 +482,8 @@
 
         _setColorValues: function(){
             var element = this.element, o = this.options;
-            var hsl = Color.Routines.toHSL(new Color.Primitives.HSL(this.hue, this.saturation, this.lightness));
-            var hsla = Color.Routines.toHSLA(new Color.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha));
+            var hsl = new Color.Primitives.HSL(this.hue, this.saturation, this.lightness)
+            var hsla = new Color.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha)
             var rgb = Color.Routines.toRGB(hsl);
             var rgba = Color.Routines.toRGBA(rgb, this.alpha);
             var hsv = Color.Routines.toHSV(hsl);
@@ -539,7 +539,7 @@
                 backgroundColor: hex
             });
 
-            const value = this.val()
+            const value = this.getVal()
 
             if (controller && controller.length) {
                 controller.val(value).trigger("change");
@@ -630,6 +630,10 @@
 
             alphaMap.on(Metro.events.startAll, function(e){
 
+                if (["hsla", "rgba"].includes(o.returnValueType) === false) {
+                    return
+                }
+
                 that._getAlphaValue(Utils.pageXY(e).y);
                 that.alphaCursor.addClass("dragging");
 
@@ -709,39 +713,37 @@
             });
         },
 
-        val: function(v){
-            var o = this.options;
-
-            console.log(v)
-
-            if (!v) {
-                var res;
-                switch (o.returnValueType.toLowerCase()) {
-                    case "rgb":
-                        res = this.rgb;
-                        break;
-                    case "rgba":
-                        res = this.rgba;
-                        break;
-                    case "hsl":
-                        res = this.hsl;
-                        break;
-                    case "hsla":
-                        res = this.hsla;
-                        break;
-                    case "hsv":
-                        res = this.hsv;
-                        break;
-                    case "cmyk":
-                        res = this.cmyk;
-                        break;
-                    default: res = this.hex;
-                }
-                console.log("res", res)
-                return o.returnAsString ? res.toString() : res;
+        getVal: function(){
+            var o = this.options, res;
+            switch (o.returnValueType.toLowerCase()) {
+                case "rgb":
+                    res = this.rgb;
+                    break;
+                case "rgba":
+                    res = this.rgba;
+                    break;
+                case "hsl":
+                    res = this.hsl;
+                    break;
+                case "hsla":
+                    res = this.hsla;
+                    break;
+                case "hsv":
+                    res = this.hsv;
+                    break;
+                case "cmyk":
+                    res = this.cmyk;
+                    break;
+                default: res = this.hex;
             }
+            return o.returnAsString ? res.toString() : res;
+        },
 
-            // this._colorToPos(Color.Routines.parse(v));
+        val: function(v){
+            if (typeof v === "undefined") {
+                return this.getVal()
+            }
+            this._colorToPos(Color.Routines.parse(v));
         },
 
         user: function(v){

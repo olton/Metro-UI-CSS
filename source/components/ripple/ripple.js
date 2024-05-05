@@ -22,7 +22,6 @@
         var el = $(target);
         var rect = Utils.rect(el[0]);
         var x, y;
-        var Colors = Color.Routines;
 
         if (el.length === 0) {
             return ;
@@ -67,7 +66,7 @@
         }
 
         ripple.css({
-            background: Colors.toRGBA(color, alpha),
+            background: Color.Routines.toRGBA(Color.Routines.parse(color), alpha),
             width: size,
             height: size,
             top: y + 'px',

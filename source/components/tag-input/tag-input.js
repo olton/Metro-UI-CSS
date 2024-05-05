@@ -355,7 +355,7 @@
             remover.appendTo(tag);
 
             if (o.randomColor === true) {
-                var colors = Color.Routines.colors(Color.Routines.PALETTES.ALL), bg, fg, bg_r;
+                var colors = Object.values(Object.assign({}, Color.StandardColors, Color.MetroColors)), bg, fg, bg_r;
 
                 bg = colors[$.random(0, colors.length - 1)];
                 bg_r = Color.Routines.darken(bg, 15);

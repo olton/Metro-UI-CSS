@@ -248,8 +248,8 @@
                 return ;
             }
 
-            rule1 = "0 0 10px " + Color.Routines.toRGBA(o.flashColor, 1);
-            rule2 = "0 0 10px " + Color.Routines.toRGBA(o.flashColor, o.attenuation);
+            rule1 = "0 0 10px " + Color.Routines.toRGBA(Color.Routines.parse(o.flashColor), 1);
+            rule2 = "0 0 10px " + Color.Routines.toRGBA(Color.Routines.parse(o.flashColor), o.attenuation);
 
             for(i = 0; i < 3; i++) {
                 rules1.push(rule1);

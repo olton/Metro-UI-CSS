@@ -153,7 +153,7 @@
                 spinnerButtonClick(plus, o.repeatThreshold);
 
                 e.preventDefault();
-            });
+            }, {passive: true});
 
             spinner_buttons.on(Metro.events.stopAll, function(){
                 that.repeat_timer = false;
