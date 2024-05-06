@@ -52,14 +52,16 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            esbuild({
-                loaders: {
-                    '.less': 'text',
-                    '.json': 'json',
-                    '.css': 'css',
-                    '.js': 'js',
-                }
-            })
+            // esbuild({
+            //     sourceMap: false,
+            //     minify: true,
+            //     loaders: {
+            //         '.less': 'text',
+            //         '.json': 'json',
+            //         '.css': 'css',
+            //         '.js': 'js',
+            //     }
+            // })
         ],
         output: {
             file: './build/metro.js',
@@ -140,14 +142,16 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            esbuild({
-                loaders: {
-                    '.less': 'text',
-                    '.json': 'json',
-                    '.css': 'css',
-                    '.js': 'js',
-                }
-            })
+            // esbuild({
+            //     sourceMap: false,
+            //     minify: true,
+            //     loaders: {
+            //         '.less': 'text',
+            //         '.json': 'json',
+            //         '.css': 'css',
+            //         '.js': 'js',
+            //     }
+            // })
         ],
         output: {
             file: './build/metro.all.js',

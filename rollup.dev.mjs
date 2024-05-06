@@ -48,14 +48,14 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            esbuild({
-                loaders: {
-                    '.less': 'text',
-                    '.json': 'json',
-                    '.css': 'css',
-                    '.js': 'js',
-                }
-            })
+            // esbuild({
+            //     loaders: {
+            //         '.less': 'text',
+            //         '.json': 'json',
+            //         '.css': 'css',
+            //         '.js': 'js',
+            //     }
+            // })
         ],
         output: {
             file: './build/metro.js',
