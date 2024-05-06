@@ -30,7 +30,7 @@ It's an independent project with its ongoing development made possible entirely 
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
 ![Package Version](https://img.shields.io/github/package-json/v/olton/Metro-UI-CSS)
 ![GitHub Release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS)
-![npm version](https://img.shields.io/npm/v/metro4)
+![NPM Version](https://img.shields.io/npm/v/%40olton%2Fmetroui)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
 ![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?color=7852a9)
 
