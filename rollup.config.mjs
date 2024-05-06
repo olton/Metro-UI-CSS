@@ -8,6 +8,7 @@ import noEmit from 'rollup-plugin-no-emit'
 import multi from '@rollup/plugin-multi-entry'
 import pkg from './package.json' assert {type: "json"}
 import fs from "fs";
+import esbuild from "rollup-plugin-esbuild";
 
 const production = !(process.env.ROLLUP_WATCH),
     sourcemap = !production
@@ -51,6 +52,14 @@ export default [
             nodeResolve({
                 browser: true
             }),
+            esbuild({
+                loaders: {
+                    '.less': 'text',
+                    '.json': 'json',
+                    '.css': 'css',
+                    '.js': 'js',
+                }
+            })
         ],
         output: {
             file: './build/metro.js',
@@ -90,7 +99,6 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            // commonjs(),
             noEmit({
                 match(fileName, output) {
                     return 'icons.js' === fileName
@@ -132,7 +140,14 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            // commonjs(),
+            esbuild({
+                loaders: {
+                    '.less': 'text',
+                    '.json': 'json',
+                    '.css': 'css',
+                    '.js': 'js',
+                }
+            })
         ],
         output: {
             file: './build/metro.all.js',

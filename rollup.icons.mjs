@@ -1,18 +1,20 @@
 import {nodeResolve} from '@rollup/plugin-node-resolve'
+import terser from '@rollup/plugin-terser'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from "autoprefixer"
 import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress';
+import noEmit from 'rollup-plugin-no-emit'
+import multi from '@rollup/plugin-multi-entry'
+import pkg from './package.json' assert {type: "json"}
 import fs from "fs";
-import pkg from "./package.json" assert {type: "json"}
-import esbuild from 'rollup-plugin-esbuild'
 
-const production = process.env.NODE_ENV === "production",
+const production = !(process.env.ROLLUP_WATCH),
     sourcemap = !production
 
 const banner = `
 /*!
- * Metro UI Components Library  (https://metroui.org.ua)
+ * Metro UI v${pkg.version} Components Library  (https://metroui.org.ua)
  * Copyright 2012-${new Date().getFullYear()} by Serhii Pimenov
  * Licensed under MIT
  !*/
@@ -25,8 +27,9 @@ fs.writeFileSync(`source/core/metro.js`, txt, { encoding: 'utf8', flag: 'w+' })
 
 export default [
     {
-        input: './source/default.js',
+        input: './source/icons.js',
         watch: {
+            include: 'source/**',
             clearScreen: false
         },
         plugins: [
@@ -48,22 +51,20 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            esbuild({
-                loaders: {
-                    '.less': 'text',
-                    '.json': 'json',
-                    '.css': 'css',
-                    '.js': 'js',
+            // commonjs(),
+            noEmit({
+                match(fileName, output) {
+                    return 'icons.js' === fileName
                 }
-            })
+            }),
         ],
         output: {
-            file: './build/metro.js',
-            format: 'iife',
-            sourcemap,
+            dir: './build',
             banner,
-            plugins: [
-            ]
+        },
+        onwarn: message => {
+            if (/Generated an empty chunk/.test(message)) return
+            console.log(message)
         }
     },
 ];
