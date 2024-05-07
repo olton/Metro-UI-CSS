@@ -120,11 +120,10 @@
     }
 
     .app-bar-menu {
-        .d-menu, .v-menu {
+        .v-menu {
             box-shadow: none;
             position: relative;
             width: 100%;
-            background-color: @light;
         }
     }
 
@@ -137,13 +136,6 @@
     }
 
     .app-bar-container {
-        .d-menu {
-            background-color: @light;
-            position: absolute;
-            width: auto;
-            .default-shadow();
-        }
-
         .v-menu {
             position: absolute;
             float: left;
@@ -222,12 +214,6 @@
         .d-menu {
             position: absolute;
             width: auto;
-            .default-shadow();
-
-            li, a {
-                height: 38px;
-                line-height: 38px;
-            }
         }
 
         .v-menu {

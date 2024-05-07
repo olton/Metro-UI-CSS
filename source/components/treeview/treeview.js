@@ -118,14 +118,15 @@
             if (data.actions) {
                 const actionsHolder = $("<div class='dropdown-button'>").addClass("actions-holder");
                 const actionsListTrigger = $("<span class='actions-list-trigger'>").text("⋮").appendTo(actionsHolder)
-                const actionsList = $("<ul data-role='dropdown' class='d-menu context actions-list'>").appendTo(actionsHolder)
+                const actionsList = $("<ul data-role='dropdown' class='d-menu actions-list'>").appendTo(actionsHolder)
                 node.append(actionsHolder)
                 for(let a of data.actions) {
                     if (a.type && a.type === "divider") {
                         $("<li>").addClass("divider").appendTo(actionsList)
                     } else {
                         const icon = a.icon ? $(a.icon).addClass("icon").outerHTML() : ""
-                        const li = $(`<li><a href="#">${icon} ${a.caption}</a></li>`).appendTo(actionsList)
+                        const caption = `<span class="caption">${a.caption}</span>`
+                        const li = $(`<li><a href="#">${icon} ${caption}</a></li>`).appendTo(actionsList)
                         if (a.cls) {
                             li.addClass(a.cls)
                         }
@@ -135,7 +136,7 @@
                     }
                 }
                 actionsList.on(Metro.events.leave, (e) => {
-                    Metro.getPlugin(actionsList, "dropdown").close()
+                    // Metro.getPlugin(actionsList, "dropdown").close()
                 })
             }
 

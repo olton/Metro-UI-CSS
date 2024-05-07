@@ -50,7 +50,7 @@
             var hamburger, menu, elementColor = Utils.getStyleOne(element, "background-color");
 
             element.addClass("app-bar");
-            console.log(elementColor)
+            // console.log(elementColor)
             hamburger = element.find(".hamburger");
             if (hamburger.length === 0) {
                 hamburger = $("<button>").attr("type", "button").addClass("hamburger menu-down");
