@@ -12,7 +12,7 @@ const config = {
     password: auth.keycdn.password,
     host: auth.keycdn.host,
     port: auth.keycdn.port,
-    localRoot: __dirname + "/build",
+    localRoot: __dirname + "/lib",
     remoteRoot: `/dev/`,
     include: ["*.*"],
     exclude: [],
