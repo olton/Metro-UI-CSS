@@ -3,13 +3,21 @@
 
 @ordersCount: 24;
 
-.generate-order(@ordersCount);
-.generate-order(@j) when (@j > 0){
-    .order-@{j} {
-        order: @j;
+.d-flex {display: flex!important;}
+.d-inline-flex {display: inline-flex!important;}
+
+each(@media-rules, {
+    @media screen and (min-width: @value) {
+        .d-flex-@{key} {display: flex!important;}
+        .d-inline-flex-@{key} {display: inline-flex!important;}
     }
-    .generate-order(@j - 1);
-}
+})
+
+each(range(24), {
+    .order-@{value} {
+        order: @value!important;
+    }
+})
 
 .flex-equal-items {
     & > * {
@@ -61,63 +69,56 @@
 .flex-top {margin-bottom: auto;}
 .flex-bottom {margin-top: auto;}
 
-.generate-flex-media-options(@mediaBreakpointListMobileLength);
-.generate-flex-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
+each(@media-rules, {
+    @media screen and (min-width: @value) {
+        .flex-nowrap-@{key} {flex-wrap: nowrap !important;}
+        .flex-wrap-@{key} {flex-wrap: wrap !important;}
+        .flex-wrap-r-@{key} {flex-wrap: wrap-reverse !important;}
+        .flex-column-@{key} {flex-direction: column !important;}
+        .flex-column-r-@{key} {flex-direction: column-reverse !important;}
+        .flex-row-@{key} {flex-direction: row !important;}
+        .flex-row-r-@{key} {flex-direction: row-reverse !important;}
+        .flex-align-start-@{key} {align-items: flex-start !important;}
+        .flex-align-end-@{key} {align-items: flex-end !important;}
+        .flex-align-center-@{key} {align-items: center !important;}
+        .flex-align-stretch-@{key} {align-items: stretch !important;}
+        .flex-align-baseline-@{key} {align-items: baseline !important;}
+        .flex-self-start-@{key} {align-self: flex-start !important;}
+        .flex-self-end-@{key} {align-self: flex-end !important;}
+        .flex-self-center-@{key} {align-self: center !important;}
+        .flex-self-stretch-@{key} {align-self: stretch !important;}
+        .flex-self-baseline-@{key} {align-self: baseline !important;}
+        .flex-justify-start-@{key} {justify-content: flex-start !important;}
+        .flex-justify-end-@{key} {justify-content: flex-end !important;}
+        .flex-justify-center-@{key} {justify-content: center !important;}
+        .flex-justify-between-@{key} {justify-content: space-between !important;}
+        .flex-justify-around-@{key} {justify-content: space-around !important;}
+        .flex-content-start-@{key} {align-content: flex-start !important;}
+        .flex-content-end-@{key} {align-content: flex-end !important;}
+        .flex-content-center-@{key} {align-content: center !important;}
+        .flex-content-between-@{key} {align-content: space-between !important;}
+        .flex-content-around-@{key} {align-content: space-around !important;}
+        .flex-content-stretch-@{key} {align-content: stretch !important;}
 
-    @media screen and (min-width: @@m) {
-        .flex-nowrap-@{m} {flex-wrap: nowrap !important;}
-        .flex-wrap-@{m} {flex-wrap: wrap !important;}
-        .flex-wrap-r-@{m} {flex-wrap: wrap-reverse !important;}
-        .flex-column-@{m} {flex-direction: column !important;}
-        .flex-column-r-@{m} {flex-direction: column-reverse !important;}
-        .flex-row-@{m} {flex-direction: row !important;}
-        .flex-row-r-@{m} {flex-direction: row-reverse !important;}
-        .flex-align-start-@{m} {align-items: flex-start !important;}
-        .flex-align-end-@{m} {align-items: flex-end !important;}
-        .flex-align-center-@{m} {align-items: center !important;}
-        .flex-align-stretch-@{m} {align-items: stretch !important;}
-        .flex-align-baseline-@{m} {align-items: baseline !important;}
-        .flex-self-start-@{m} {align-self: flex-start !important;}
-        .flex-self-end-@{m} {align-self: flex-end !important;}
-        .flex-self-center-@{m} {align-self: center !important;}
-        .flex-self-stretch-@{m} {align-self: stretch !important;}
-        .flex-self-baseline-@{m} {align-self: baseline !important;}
-        .flex-justify-start-@{m} {justify-content: flex-start !important;}
-        .flex-justify-end-@{m} {justify-content: flex-end !important;}
-        .flex-justify-center-@{m} {justify-content: center !important;}
-        .flex-justify-between-@{m} {justify-content: space-between !important;}
-        .flex-justify-around-@{m} {justify-content: space-around !important;}
-        .flex-content-start-@{m} {align-content: flex-start !important;}
-        .flex-content-end-@{m} {align-content: flex-end !important;}
-        .flex-content-center-@{m} {align-content: center !important;}
-        .flex-content-between-@{m} {align-content: space-between !important;}
-        .flex-content-around-@{m} {align-content: space-around !important;}
-        .flex-content-stretch-@{m} {align-content: stretch !important;}
+        .flex-no-shrink-@{key} > * {flex-shrink: 0;}
+        .flex-shrink-@{key} > * {flex-shrink: 1;}
+        .flex-no-grow-@{key} > * {flex-grow: 0;}
+        .flex-grow-@{key} > * {flex-grow: 1;}
 
-        .flex-no-shrink-@{m} > * {flex-shrink: 0;}
-        .flex-shrink-@{m} > * {flex-shrink: 1;}
-        .flex-no-grow-@{m} > * {flex-grow: 0;}
-        .flex-grow-@{m} > * {flex-grow: 1;}
+        .flex-no-shrink-self-@{key} {flex-shrink: 0;}
+        .flex-shrink-self-@{key} {flex-shrink: 1;}
+        .flex-no-grow-self-@{key} {flex-grow: 0;}
+        .flex-grow-self-@{key} {flex-grow: 1;}
 
-        .flex-no-shrink-self-@{m} {flex-shrink: 0;}
-        .flex-shrink-self-@{m} {flex-shrink: 1;}
-        .flex-no-grow-self-@{m} {flex-grow: 0;}
-        .flex-grow-self-@{m} {flex-grow: 1;}
+        .flex-right-@{key} {margin-left: auto;}
+        .flex-left-@{key} {margin-right: auto;}
+        .flex-top-@{key} {margin-bottom: auto;}
+        .flex-bottom-@{key} {margin-top: auto;}
 
-        .flex-right-@{m} {margin-left: auto;}
-        .flex-left-@{m} {margin-right: auto;}
-        .flex-top-@{m} {margin-bottom: auto;}
-        .flex-bottom-@{m} {margin-top: auto;}
-
-        .generate-order(@ordersCount);
-        .generate-order(@j) when (@j > 0){
-            .order-@{m}-@{j} {
-                order: @j;
+        each(range(24), .(@v){
+            .order-@{v}-@{key} {
+                order: @v!important;
             }
-            .generate-order(@j - 1);
-        }
+        })
     }
-
-    .generate-flex-media-options(@name, @i + 1);
-}
+})
