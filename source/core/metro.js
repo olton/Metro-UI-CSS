@@ -19,8 +19,8 @@
 
     var Metro = {
 
-        version: "5.0.1",
-        build_time: "07.05.2024, 21:11:51",
+        version: "5.0.2",
+        build_time: "07.05.2024, 22:15:32",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -146,10 +146,12 @@
             FS: "(min-width: 0px)",
             XS: "(min-width: 360px)",
             SM: "(min-width: 576px)",
+            LD: "(min-width: 640px)",
             MD: "(min-width: 768px)",
             LG: "(min-width: 992px)",
             XL: "(min-width: 1200px)",
-            XXL: "(min-width: 1452px)"
+            XXL: "(min-width: 1452px)",
+            XXXL: "(min-width: 2000px)"
         },
 
         media_sizes: {
@@ -160,20 +162,23 @@
             MD: 768,
             LG: 992,
             XL: 1200,
-            XXL: 1452
+            XXL: 1452,
+            XXXL: 2000
         },
 
         media_mode: {
             FS: "fs",
             XS: "xs",
             SM: "sm",
+            LD: "ld",
             MD: "md",
             LG: "lg",
             XL: "xl",
-            XXL: "xxl"
+            XXL: "xxl",
+            XXXL: "xxxl"
         },
 
-        media_modes: ["fs","xs","sm","md","lg","xl","xxl"],
+        media_modes: ["fs","xs","sm","ld","md","lg","xl","xxl","xxxl"],
 
         actions: {
             REMOVE: 1,
