@@ -1,2 +1,5 @@
+import "../button"
+import "../colors"
+import "../../color"
 import "./dialog.js"
 import "./dialog.less"

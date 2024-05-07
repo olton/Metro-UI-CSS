@@ -1,5 +1,4 @@
 import "./vars.less"
-import "./accent-colors.less"
 import "./animate-element.less"
 import "./border.less"
 import "./cursors.less"

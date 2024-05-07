@@ -1,2 +1,6 @@
+import "../draggable"
+import "../resizable"
+import "../button"
+import "../colors"
 import "./window.js"
 import "./window.less"

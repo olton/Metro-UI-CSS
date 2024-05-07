@@ -1,2 +1,5 @@
+import "../button"
+import "../draggable"
+import "../collapse"
 import "./panel.js"
 import "./panel.less"

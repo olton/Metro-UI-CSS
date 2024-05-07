@@ -1,2 +1,5 @@
+import "../input"
+import "../button"
+import "../hamburger"
 import "./navview.js"
 import "./navview.less"

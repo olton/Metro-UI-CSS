@@ -2,94 +2,94 @@
     "required": {
         "reset": {
             "name": "Reset CSS",
-            "path": "source/reset"
+            "path": "reset"
         }
     },
 
     "routines": {
         "datetime": {
             "name": "Datetime",
-            "path": "source/datetime"
+            "path": "datetime"
         },
         "string": {
             "name": "String",
-            "path": "source/string"
+            "path": "string"
         },
         "m4q": {
             "name": "m4q",
-            "path": "source/m4q"
+            "path": "m4q"
         },
         "hooks": {
             "name": "Hooks",
-            "path": "source/hooks"
+            "path": "hooks"
         },
         "colors": {
             "name": "ColorJS",
-            "path": "source/color"
+            "path": "color"
         },
         "animation": {
             "name": "Animation",
-            "path": "source/animation"
+            "path": "animation"
         },
         "html": {
             "name": "HtmlJS",
-            "path": "source/html"
+            "path": "html"
         }
     },
 
     "common": {
         "js-ext": {
             "name": "JS Extensions",
-            "path": "source/extensions"
+            "path": "extensions"
         },
         "core": {
             "name": "Core JS",
-            "path": "source/core"
+            "path": "core"
         },
         "i18n": {
             "name": "i18n",
-            "path": "source/i18n"
+            "path": "i18n"
         },
         "common-css": {
             "name": "Common CSS",
-            "path": "source/common-css"
+            "path": "common-css"
         },
         "common-js": {
             "name": "Common JS",
-            "path": "source/common-js"
+            "path": "common-js"
         }
     },
 
     "additional": {
         "icons": {
             "name": "Metro Icons Font",
-            "path": "source/icons"
+            "path": "icons"
         }
     },
 
     "components": {
         "accordion": {
             "name": "Accordion",
-            "path": "source/components/accordion/"
+            "path": "components/accordion/"
         },
         "action-button": {
             "name": "Action button",
-            "path": "source/components/action-button/"
+            "path": "components/action-button/"
         },
         "activity": {
             "name": "Activities",
             "dependencies": {
                 "components": ["dialog"]
             },
-            "path": "source/components/activity/"
+            "path": "components/activity/"
         },
         "adblock": {
             "name": "Adblock hunter",
-            "path": "source/components/adblock/"
+            "path": "components/adblock/"
         },
         "animations":{
             "name": "Animations",
-            "path": "source/components/animations/"
+            "path": "components/animations/"
         },
         "app-bar": {
             "name": "App Bar",
@@ -97,42 +97,42 @@
                 "components": ["hamburger"],
                 "routines": ["color"]
             },
-            "path": "source/components/app-bar/"
+            "path": "components/app-bar/"
         },
         "audio-button": {
             "name": "Audio button",
-            "path": "source/components/audio-button/"
+            "path": "components/audio-button/"
         },
         "audio-player": {
             "name": "Audio player",
             "dependencies": {
                 "components": ["slider", "media-player", "default-icons"]
             },
-            "path": "source/components/audio-player/"
+            "path": "components/audio-player/"
         },
         "badges": {
             "name": "Badges",
-            "path": "source/components/badges/"
+            "path": "components/badges/"
         },
         "bottom-nav": {
             "name": "Bottom nav",
-            "path": "source/components/bottom-nav/"
+            "path": "components/bottom-nav/"
         },
         "bottom-sheet": {
             "name": "Bottom sheet",
-            "path": "source/components/bottom-sheet/"
+            "path": "components/bottom-sheet/"
         },
         "breadcrumbs": {
             "name": "Breadcrumbs",
-            "path": "source/components/breadcrumbs/"
+            "path": "components/breadcrumbs/"
         },
         "button": {
             "name": "Button",
-            "path": "source/components/button/"
+            "path": "components/button/"
         },
         "button-group": {
             "name": "Button-group",
-            "path": "source/components/button-group/"
+            "path": "components/button-group/"
         },
         "calendar": {
             "name": "Calendar",
@@ -140,7 +140,7 @@
                 "components": ["button","default-icons","spinner"],
                 "routines": ["color"]
             },
-            "path": "source/components/calendar/"
+            "path": "components/calendar/"
         },
         "calendar-picker": {
             "name": "Calendar picker",
@@ -148,52 +148,52 @@
                 "components": ["calendar"],
                 "routines": ["color"]
             },
-            "path": "source/components/calendarpicker/"
+            "path": "components/calendarpicker/"
         },
         "cards": {
             "name": "Cards",
-            "path": "source/components/cards/"
+            "path": "components/cards/"
         },
         "carousel": {
             "name": "Carousel",
             "dependencies": {
                 "components": ["button","animations"]
             },
-            "path": "source/components/carousel/"
+            "path": "components/carousel/"
         },
         "charms": {
             "name": "Charms",
             "dependencies": {
                 "routines": ["color"]
             },
-            "path": "source/components/charms/"
+            "path": "components/charms/"
         },
         "chat": {
             "name": "Chat",
             "dependencies": {
                 "components": ["input", "button"]
             },
-            "path": "source/components/chat/"
+            "path": "components/chat/"
         },
         "checkbox": {
             "name": "Checkbox",
-            "path": "source/components/checkbox/"
+            "path": "components/checkbox/"
         },
         "chips": {
             "name": "Chips",
-            "path": "source/components/chips/"
+            "path": "components/chips/"
         },
         "clock": {
             "name": "Clock",
-            "path": "source/components/clock/"
+            "path": "components/clock/"
         },
         "collapse": {
             "name": "Collapse",
-            "path": "source/components/collapse/"
+            "path": "components/collapse/"
         },
         "colors":{
             "name": "Color routines",
-            "path": "source/components/colors/"
+            "path": "components/colors/"
         },
         "color-selector":{
             "name": "Color selector",
@@ -201,7 +201,7 @@
                 "routines": ["color"],
                 "components": ["input", "radio", "button"]
             },
-            "path": "source/components/color-selector/"
+            "path": "components/color-selector/"
         },
         "color-picker":{
             "name": "Color picker",
@@ -209,56 +209,56 @@
                 "routines": ["color"],
                 "components": ["input", "radio", "button", "color-selector"]
             },
-            "path": "source/components/color-picker/"
+            "path": "components/color-picker/"
         },
         "command-button": {
             "name": "Command button",
-            "path": "source/components/command-button/"
+            "path": "components/command-button/"
         },
         "container": {
             "name": "Container",
-            "path": "source/components/container/"
+            "path": "components/container/"
         },
         "cookie": {
             "name": "Cookie manager",
-            "path": "source/components/cookie/"
+            "path": "components/cookie/"
         },
         "cookie-disclaimer": {
             "name": "Cookie disclaimer",
             "dependencies": {
                 "components": ["cookie"]
             },
-            "path": "source/components/cookie-disclaimer/"
+            "path": "components/cookie-disclaimer/"
         },
         "countdown": {
             "name": "Countdown",
-            "path": "source/components/countdown/"
+            "path": "components/countdown/"
         },
         "counter": {
             "name": "Counter",
-            "path": "source/components/counter/"
+            "path": "components/counter/"
         },
         "cube": {
             "name": "Cube",
             "dependencies": {
                 "routines": ["color"]
             },
-            "path": "source/components/cube/"
+            "path": "components/cube/"
         },
         "d-menu": {
             "name": "D-menu",
-            "path": "source/components/d-menu/"
+            "path": "components/d-menu/"
         },
         "datepicker": {
             "name": "Date picker",
             "dependencies": {
                 "components": ["wheelpicker"]
             },
-            "path": "source/components/datepicker/"
+            "path": "components/datepicker/"
         },
         "default-icons": {
             "name": "Default icons",
-            "path": "source/components/default-icons/"
+            "path": "components/default-icons/"
         },
         "dialog": {
             "name": "Dialog",
@@ -266,131 +266,135 @@
                 "components": ["button", "colors"],
                 "routines": ["color"]
             },
-            "path": "source/components/dialog/"
+            "path": "components/dialog/"
         },
         "donut": {
             "name": "Donut",
-            "path": "source/components/donut/"
+            "path": "components/donut/"
+        },
+        "double-select-box": {
+            "name": "Double Select Box",
+            "path": "components/double-select-box"
         },
         "double-slider": {
             "name": "Double slider",
             "dependencies": {
                 "components": ["slider"]
             },
-            "path": "source/components/double-slider/"
+            "path": "components/double-slider/"
         },
         "drag-items": {
             "name": "Drag items",
-            "path": "source/components/drag-items/"
+            "path": "components/drag-items/"
         },
         "draggable": {
             "name": "Draggable",
-            "path": "source/components/draggable/"
+            "path": "components/draggable/"
         },
         "dropdown": {
             "name": "Dropdown",
-            "path": "source/components/dropdown/"
+            "path": "components/dropdown/"
         },
         "dropdown-button": {
             "name": "Dropdown button",
             "dependencies": {
                 "components": ["button", "dropdown"]
             },
-            "path": "source/components/dropdown-button/"
+            "path": "components/dropdown-button/"
         },
         "expand-button": {
             "name": "Expand button",
-            "path": "source/components/expand-button/"
+            "path": "components/expand-button/"
         },
         "export":{
             "name": "Data export",
-            "path": "source/components/export/"
+            "path": "components/export/"
         },
         "file": {
             "name": "File input",
             "dependencies": {
                 "components": ["input-common","button","default-icons"]
             },
-            "path": "source/components/file/"
+            "path": "components/file/"
         },
         "form": {
             "name": "Form",
-            "path": "source/components/form/"
+            "path": "components/form/"
         },
         "flip-card": {
             "name": "Flip card",
-            "path": "source/components/flip-card/"
+            "path": "components/flip-card/"
         },
         "gravatar": {
             "name": "Gravatar",
             "dependencies": {
                 "components": ["md5"]
             },
-            "path": "source/components/gravatar/"
+            "path": "components/gravatar/"
         },
         "gradient-box": {
             "name": "Gradient box",
-            "path": "source/components/gradient-box/"
+            "path": "components/gradient-box/"
         },
         "grid": {
             "name": "Grid system",
-            "path": "source/components/grid/"
+            "path": "components/grid/"
         },
         "h-menu": {
             "name": "H-menu",
-            "path": "source/components/h-menu/"
+            "path": "components/h-menu/"
         },
         "hamburger": {
             "name": "Hamburger",
-            "path": "source/components/hamburger/"
+            "path": "components/hamburger/"
         },
         "head-bar": {
             "name": "Head bar",
-            "path": "source/components/head-bar/"
+            "path": "components/head-bar/"
         },
         "hero": {
             "name": "Hero",
-            "path": "source/components/hero/"
+            "path": "components/hero/"
         },
         "hint": {
             "name": "Hint",
-            "path": "source/components/hint/"
+            "path": "components/hint/"
         },
         "hotkey": {
             "name": "Hotkey",
-            "path": "source/components/hotkey/"
+            "path": "components/hotkey/"
         },
         "html-container": {
             "name": "HTML container",
-            "path": "source/components/html-container/"
+            "path": "components/html-container/"
         },
         "icon-box": {
             "name": "Icon box",
-            "path": "source/components/icon-box/"
+            "path": "components/icon-box/"
         },
         "image-button": {
             "name": "Image button",
-            "path": "source/components/image-button/"
+            "path": "components/image-button/"
         },
         "image-box": {
             "name": "Image box",
-            "path": "source/components/image-box/"
+            "path": "components/image-box/"
         },
         "image-compare": {
             "name": "Image compare",
-            "path": "source/components/image-compare/"
+            "path": "components/image-compare/"
         },
         "image-grid": {
             "name": "Image grid",
-            "path": "source/components/image-grid/"
+            "path": "components/image-grid/"
         },
         "image-magnifier": {
             "name": "Image magnifier",
-            "path": "source/components/image-magnifier/"
+            "path": "components/image-magnifier/"
         },
         "image-placeholder": {
             "name": "Image placeholder",
-            "path": "source/components/image-placeholder/"
+            "path": "components/image-placeholder/"
         },
         "info-box": {
             "name": "Info box",
@@ -398,66 +402,66 @@
                 "components": ["colors"],
                 "routines": ["color"]
             },
-            "path": "source/components/info-box/"
+            "path": "components/info-box/"
         },
         "info-button": {
             "name": "Info button",
-            "path": "source/components/info-button/"
+            "path": "components/info-button/"
         },
         "info-panel": {
             "name": "Info panel",
-            "path": "source/components/info-panel/"
+            "path": "components/info-panel/"
         },
         "input-common": {
             "name": "Input common",
-            "path": "source/components/input-common/"
+            "path": "components/input-common/"
         },
         "input-mask": {
             "name": "Input mask",
-            "path": "source/components/input-mask/"
+            "path": "components/input-mask/"
         },
         "input": {
             "name": "Input",
             "dependencies": {
-                "components": ["input-common","button"]
+                "components": ["input-common","button", "default-icons"]
             },
-            "path": "source/components/input/"
+            "path": "components/input/"
         },
         "input-material": {
             "name": "Input material",
             "dependencies": {
                 "components": ["input-common"]
             },
-            "path": "source/components/input-material/"
+            "path": "components/input-material/"
         },
         "keypad": {
             "name": "Keypad",
             "dependencies": {
                 "components": ["input-common"]
             },
-            "path": "source/components/keypad/"
+            "path": "components/keypad/"
         },
         "lightbox": {
             "name": "Lightbox",
             "dependencies": {
-                "components": ["default-icons"]
+                "components": ["button" ,"default-icons"]
             },
-            "path": "source/components/lightbox/"
+            "path": "components/lightbox/"
         },
         "list": {
             "name": "List",
-            "path": "source/components/list/"
+            "path": "components/list/"
         },
         "listview": {
             "name": "ListView",
             "dependencies": {
                 "components": ["checkbox"]
             },
-            "path": "source/components/listview/"
+            "path": "components/listview/"
         },
         "marquee": {
             "name": "Marquee",
-            "path": "source/components/marquee/",
+            "path": "components/marquee/",
             "dependencies": {
                 "routines": ["color"]
             }
@@ -467,158 +471,158 @@
             "dependencies": {
                 "components": ["default-icons"]
             },
-            "path": "source/components/master/"
+            "path": "components/master/"
         },
         "md5":{
             "name": "MD5 Hash",
-            "path": "source/components/md5/"
+            "path": "components/md5/"
         },
         "media-player": {
             "name": "Media player",
             "dependencies": {
                 "components": ["default-icons"]
             },
-            "path": "source/components/media-player/"
+            "path": "components/media-player/"
         },
         "more-info-box": {
             "name": "More info box",
-            "path": "source/components/more-info-box/"
+            "path": "components/more-info-box/"
         },
         "navview": {
             "name": "Navigation view",
             "dependencies": {
                 "components": ["input", "button", "hamburger"]
             },
-            "path": "source/components/navview/"
+            "path": "components/navview/"
         },
         "notify": {
             "name": "Notify system",
-            "path": "source/components/notify/"
+            "path": "components/notify/"
         },
         "pagination": {
             "name": "Pagination",
-            "path": "source/components/pagination/"
+            "path": "components/pagination/"
         },
         "panel": {
             "name": "Panel",
             "dependencies": {
                 "components": ["button", "draggable", "collapse"]
             },
-            "path": "source/components/panel/"
+            "path": "components/panel/"
         },
         "popover": {
             "name": "Popover",
-            "path": "source/components/popover/"
+            "path": "components/popover/"
         },
         "post-card": {
             "name": "Post card",
-            "path": "source/components/post-card/"
+            "path": "components/post-card/"
         },
         "progress": {
             "name": "Progress Bar",
-            "path": "source/components/progress/"
+            "path": "components/progress/"
         },
         "radio": {
             "name": "Radio button",
             "dependencies": {
                 "components": ["input-common"]
             },
-            "path": "source/components/radio/"
+            "path": "components/radio/"
         },
         "rating": {
             "name": "Rating",
             "dependencies": {
                 "routines": ["color"]
             },
-            "path": "source/components/rating/"
+            "path": "components/rating/"
         },
         "resizable": {
             "name": "Resizable obj",
-            "path": "source/components/resizable/"
+            "path": "components/resizable/"
         },
         "resizer": {
             "name": "Resizer (controller)",
-            "path": "source/components/resizer/"
+            "path": "components/resizer/"
         },
         "ribbon-menu": {
             "name": "Ribbon menu",
-            "path": "source/components/ribbon-menu/"
+            "path": "components/ribbon-menu/"
         },
         "ripple": {
             "name": "Ripple effect",
             "dependencies": {
                 "routines": ["color"]
             },
-            "path": "source/components/ripple/"
+            "path": "components/ripple/"
         },
         "select": {
             "name": "Select",
             "dependencies": {
-                "components": ["input-common","input", "dropdown", "tag", "default-icons"]
+                "components": ["input-common","input", "dropdown", "tag", "default-icons", "button-group"]
             },
-            "path": "source/components/select/"
+            "path": "components/select/"
         },
         "shortcut": {
             "name": "Shortcut",
-            "path": "source/components/shortcut/"
+            "path": "components/shortcut/"
         },
         "sidebar": {
             "name": "Sidebar",
             "dependencies": {
                 "components": ["input", "hamburger"]
             },
-            "path": "source/components/sidebar/"
+            "path": "components/sidebar/"
         },
         "sidenav-counter": {
             "name": "Sidenav counter",
-            "path": "source/components/sidenav-counter/"
+            "path": "components/sidenav-counter/"
         },
         "sidenav-m3": {
             "name": "Sidenav M3",
-            "path": "source/components/sidenav-m3/"
+            "path": "components/sidenav-m3/"
         },
         "sidenav-simple": {
             "name": "Sidenav simple",
-            "path": "source/components/sidenav-simple/"
+            "path": "components/sidenav-simple/"
         },
         "skill-box": {
             "name": "Skill Box",
-            "path": "source/components/skill-box/"
+            "path": "components/skill-box/"
         },
         "slider": {
             "name": "Slider",
-            "path": "source/components/slider/"
+            "path": "components/slider/"
         },
         "social-box": {
             "name": "Social Box",
-            "path": "source/components/social-box/"
+            "path": "components/social-box/"
         },
         "sorter": {
             "name": "Sorting elements",
-            "path": "source/components/sorter/"
+            "path": "components/sorter/"
         },
         "spinner": {
             "name": "Spinner",
             "dependencies": {
                 "components": ["input-common","button","default-icons"]
             },
-            "path": "source/components/spinner/"
+            "path": "components/spinner/"
         },
         "split-button": {
             "name": "Split button",
-            "path": "source/components/split-button/"
+            "path": "components/split-button/"
         },
         "splitter": {
             "name": "Splitter",
-            "path": "source/components/splitter/"
+            "path": "components/splitter/"
         },
         "stepper": {
             "name": "Stepper",
-            "path": "source/components/stepper/"
+            "path": "components/stepper/"
         },
         "storage": {
             "name": "Storage",
-            "path": "source/components/storage/"
+            "path": "components/storage/"
         },
         "streamer": {
             "name": "Streamer",
@@ -626,25 +630,25 @@
                 "routines": ["color"]
             },
             "repo": "olton/Metro-UI-CSS",
-            "path": "source/components/streamer/"
+            "path": "components/streamer/"
         },
         "switch": {
             "name": "Switch",
             "dependencies": {
                 "components": ["input-common"]
             },
-            "path": "source/components/switch/"
+            "path": "components/switch/"
         },
         "t-menu": {
             "name": "T-menu",
-            "path": "source/components/t-menu/"
+            "path": "components/t-menu/"
         },
         "table": {
             "name": "Table",
             "dependencies": {
-                "components": ["activity", "checkbox", "radio", "select", "button","export"]
+                "components": ["activity", "checkbox", "radio", "select", "button","export", "default-icons"]
             },
-            "path": "source/components/table/"
+            "path": "components/table/"
         },
         "tabs": {
             "name": "Tabs",
@@ -652,15 +656,15 @@
                 "components": ["hamburger"],
                 "routines": ["color"]
             },
-            "path": "source/components/tabs/"
+            "path": "components/tabs/"
         },
         "tabs-material": {
             "name": "Tabs material",
-            "path": "source/components/tabs-material/"
+            "path": "components/tabs-material/"
         },
         "tag": {
             "name": "Tag",
-            "path": "source/components/tag/"
+            "path": "components/tag/"
         },
         "tag-input": {
             "name": "Tag input",
@@ -668,18 +672,18 @@
                 "components": ["input-common","tag", "button","default-icons"],
                 "routines": ["color"]
             },
-            "path": "source/components/tag-input/"
+            "path": "components/tag-input/"
         },
         "template":{
             "name": "Template system",
-            "path": "source/components/template/"
+            "path": "components/template/"
         },
         "textarea": {
             "name": "Textarea",
             "dependencies": {
                 "components": ["input-common","button"]
             },
-            "path": "source/components/textarea/"
+            "path": "components/textarea/"
         },
         "tile": {
             "name": "Tiles",
@@ -687,65 +691,68 @@
                 "components": ["animations", "colors"],
                 "routines": ["color"]
             },
-            "path": "source/components/tile/"
+            "path": "components/tile/"
         },
         "timepicker": {
             "name": "Time picker",
             "dependencies": {
                 "components": ["wheelpicker"]
             },
-            "path": "source/components/timepicker/"
+            "path": "components/timepicker/"
         },
         "toast": {
             "name": "Toasts",
-            "path": "source/components/toast/"
+            "path": "components/toast/"
         },
         "tokenizer": {
             "name": "Tokenizer",
-            "path": "source/components/tockenizer/"
+            "path": "components/tockenizer/"
         },
         "toolbar": {
             "name": "Toolbar",
-            "path": "source/components/toolbar/"
+            "path": "components/toolbar/"
         },
         "top-bar": {
             "name": "Top bar",
-            "path": "source/components/top-bar/"
+            "path": "components/top-bar/"
         },
         "touch": {
             "name": "Touch events",
-            "path": "source/components/touch/"
+            "path": "components/touch/"
         },
         "treeview": {
             "name": "TreeView",
-            "path": "source/components/treeview/"
+            "path": "components/treeview/",
+            "dependencies": {
+                "components": ["button", "dropdown", "dropdown-button"]
+            }
         },
         "validator": {
             "name": "Validator",
             "dependencies": {
                 "routines": ["color"]
             },
-            "path": "source/components/validator/"
+            "path": "components/validator/"
         },
         "vegas": {
             "name": "Vegas",
-            "path": "source/components/vagas/"
+            "path": "components/vagas/"
         },
         "video-player": {
             "name": "Video player",
             "dependencies": {
                 "components": ["media-player", "button", "slider"]
             },
-            "path": "source/components/video-player/"
+            "path": "components/video-player/"
         },
         "viewport-check": {
             "name": "Viewport checker",
-            "path": "source/components/viewport-check/",
+            "path": "components/viewport-check/",
             "deprecated": true
         },
         "wheelpicker": {
             "name": "Wheel picker",
-            "path": "source/components/wheelpicker/"
+            "path": "components/wheelpicker/"
         },
         "window": {
             "name": "Window",
@@ -753,14 +760,14 @@
                 "components": ["draggable", "resizeable", "button", "colors"],
                 "routines": ["color"]
             },
-            "path": "source/components/window/"
+            "path": "components/window/"
         },
         "wizard": {
             "name": "Wizard",
             "dependencies": {
                 "components": ["default-icons","button"]
             },
-            "path": "source/components/wizard/"
+            "path": "components/wizard/"
         }
     }
 }

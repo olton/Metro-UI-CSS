@@ -1,2 +1,6 @@
+import "../../color"
+import "../input"
+import "../radio"
+import "../button"
 import "./color-selector.js"
 import "./color-selector.less"
