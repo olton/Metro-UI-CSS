@@ -26,15 +26,16 @@ tbody tr, tbody td,
             color: @white;
 
             &.outline {
-                color: @@color;
+                color: @@color!important;
                 border-color: @@color;
+                background-color: transparent;
 
                 &.dropdown-toggle::before {
                     border-color: @@color;
                 }
 
                 &:hover {
-                    color: @white;
+                    color: @white!important;
                 }
             }
 
@@ -65,9 +66,9 @@ tbody tr, tbody td,
     })
 
     &.yellow, &.light {
-        color: @dark;
+        color: @dark!important;
         &:hover, &.outline:hover {
-            color: @dark;
+            color: @dark!important;
         }
     }
 }
