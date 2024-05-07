@@ -142,6 +142,8 @@
                 if(dir === 1 && top <= -step) {
                     menu.css('top', parseInt(menu.css('top')) + step * dir);
                 }
+            }, {
+                passive: true
             });
 
             element.on(Metro.events.click, ".pull-button, .holder", function(){

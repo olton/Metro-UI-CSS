@@ -1,2 +1,5 @@
+import "../input-common"
+import "../button"
+import "../default-icons"
 import "./file.js"
 import "./file.less"

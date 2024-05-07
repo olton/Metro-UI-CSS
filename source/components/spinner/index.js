@@ -1,2 +1,5 @@
+import "../input-common"
+import "../button"
+import "../default-icons"
 import "./spinner.js"
 import "./spinner.less"

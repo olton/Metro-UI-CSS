@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../build/metro.css" rel="stylesheet">
+
+    <title>Hooks - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+    <div class="container">
+        <h1>Hooks test page</h1>
+        <button class="button" id="btn1">Clicks (0)</button>
+        <button class="button" id="btn2">Clicks (0)</button>
+    </div>
+
+<script src="../build/metro.js"></script>
+<script>
+    const onStateChange = ({newVal}) => {
+        console.log(`State was changed to `, newVal)
+    }
+
+    const [state, setState] = Hooks.useState(0)
+    const [state2, setState2] = Hooks.useState(0, onStateChange)
+    const events = Hooks.USE_EFFECT_EVENTS
+
+
+    Hooks.useEvent({
+        target: "#btn1",
+        event: "click",
+        effect: (e) => {
+            setState(state() + 1)
+            e.target.textContent = `Clicks (${state()})`
+        }
+    })
+
+    Hooks.useEvent({
+        target: "#btn2",
+        event: "click",
+        effect: (e) => {
+            setState2(state2() + 1)
+            e.target.textContent = `Clicks (${state2()})`
+        }
+    })
+
+    Hooks.useEffect({
+        target: "#btn1",
+        event: events.LOAD,
+        effect: (btn) => console.log(`Loaded`, btn)
+    })
+</script>
+</body>
+</html>

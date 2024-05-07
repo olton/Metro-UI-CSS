@@ -373,7 +373,7 @@
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Metro.colors.toRGBA(o.overlayColor, o.overlayAlpha)
+                    background: Color.Routines.toRGBA(Color.Routines.parse(o.overlayColor), o.overlayAlpha)
                 });
             }
 

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../build/metro.css" rel="stylesheet">
+    <link href="../build/icons.css" rel="stylesheet">
 
     <title>Test Treeview - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
@@ -39,7 +40,7 @@
         <ul data-role="treeview" class="border" id="tv">
             <li class="w-100 expanded">
                 <div class="d-flex flex-align-center">
-                    <input id="1" type="text" data-role="materialinput" value="item 11111">
+                    <input id="1" type="text" data-role="materialinput" value="item 11111" data-label="User email" data-informer="Enter a valid email address" placeholder="User Email">
                     <a id="btmMore-1" class="button">
                         <span class="mif-more-horiz"></span>
                     </a>
@@ -67,7 +68,7 @@
                     </ul>
                 </div>
             </li>
-            <li data-icon="<span class='mif-star-full fg-red'></span>" data-caption="Favorites">
+            <li data-icon="<span class='mif-star-full fg-red'>" data-caption="Favorites">
                 <ul>
                     <li data-icon="<span class='mif-library fg-green'></span>" data-caption="Projects"></li>
                     <li data-icon="<span class='mif-download fg-cyan'></span>" data-caption="Downloads"></li>

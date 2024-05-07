@@ -113,7 +113,7 @@
                 data.badges.map(b => {
                     if (!b) return;
                     badges.append(
-                        $(b)
+                        $(b).addClass("badge")
                     )
                 })
             }

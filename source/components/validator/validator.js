@@ -99,7 +99,7 @@
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
-            return Metro.colors.color(val, Metro.colors.PALETTES.STANDARD) !== false || Metro.colors.isColor(Metro.colors.parse(val));
+            return Color.Palette.color(val, Color.StandardColors) || Color.Routines.isColor(val);
         },
         pattern: function(val, pat){
             if (!Utils.isValue(val)) return false;

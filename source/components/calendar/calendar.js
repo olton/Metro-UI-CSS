@@ -696,9 +696,10 @@
                     $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
                 }
 
-                var cell = $("<span>").addClass("day").html(date.day()).appendTo(calendarDays);
+                var _day = date.day(), _data = date.format("YYYY-MM-DD");
+                var cell = $("<span>").addClass("day").html(_day).appendTo(calendarDays);
 
-                cell.attr('data-day', day)
+                cell.attr('data-day', _data)
 
                 if (day === showDay) {
                     cell.addClass("showed");
@@ -755,7 +756,7 @@
                             var event = $("<div>").addClass("event").addClass(o.clsEvent).appendTo(events);
                             if (!o.clsEvent) {
                                 event.css({
-                                    backgroundColor: Metro.colors.random()
+                                    backgroundColor: Color.Routines.randomColor()
                                 })
                             }
                         }

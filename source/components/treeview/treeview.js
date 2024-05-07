@@ -115,6 +115,36 @@
                 })
             }
 
+            if (data.actions) {
+                const actionsHolder = $("<div class='dropdown-button'>").addClass("actions-holder");
+                const actionsListTrigger = $("<span class='actions-list-trigger'>").text("⋮").appendTo(actionsHolder)
+                const actionsList = $("<ul data-role='dropdown' class='d-menu context actions-list'>").appendTo(actionsHolder)
+                node.append(actionsHolder)
+                for(let a of data.actions) {
+                    if (a.type && a.type === "divider") {
+                        $("<li>").addClass("divider").appendTo(actionsList)
+                    } else {
+                        const icon = a.icon ? $(a.icon).addClass("icon").outerHTML() : ""
+                        const li = $(`<li><a href="#">${icon} ${a.caption}</a></li>`).appendTo(actionsList)
+                        if (a.cls) {
+                            li.addClass(a.cls)
+                        }
+                        li.find("a").on("click", function () {
+                            Metro.utils.exec(a.onclick, [li[0]], this)
+                        })
+                    }
+                }
+                actionsList.on(Metro.events.leave, (e) => {
+                    Metro.getPlugin(actionsList, "dropdown").close()
+                })
+            }
+
+            if (data.type === 'node') {
+                node.addClass("tree-node")
+                node.append($("<span>").addClass("node-toggle"))
+                node.append( $("<ul>") )
+            }
+
             return node;
         },
 
@@ -336,6 +366,8 @@
                 }
             }
 
+            node.addClass("tree-node")
+
             new_node = this._createNode(data);
 
             new_node.appendTo(target);
@@ -412,6 +444,79 @@
             this._fireEvent("node-clean", {
                 node: node[0]
             });
+        },
+
+        collapseNode(node){
+            const element = this.element, o = this.options;
+            node = $(node)
+            node.removeClass("expanded");
+            node.data("collapsed", true)
+            node.children("ul")["slideUp"](o.duration);
+            this._fireEvent("collapse-node", {
+                node: node[0]
+            });
+        },
+
+        expandNode(node){
+            const element = this.element, o = this.options;
+            node = $(node)
+            if (!node.hasClass("tree-node")) {
+                return
+            }
+            node.addClass("expanded");
+            node.data("collapsed", false)
+            node.children("ul")["slideDown"](o.duration);
+            this._fireEvent("expand-node", {
+                node: node[0]
+            });
+        },
+
+        collapseAll(){
+            const element = this.element, o = this.options;
+            element.find(".expanded").each((_, el)=>{
+                const node = $(el);
+                let func;
+                const toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+                node.toggleClass("expanded");
+                node.data("collapsed", toBeExpanded);
+                func = toBeExpanded === true ? "slideUp" : "slideDown";
+                if (!toBeExpanded) {
+                    this._fireEvent("expand-node", {
+                        node: node[0]
+                    });
+                } else {
+                    this._fireEvent("collapse-node", {
+                        node: node[0]
+                    });
+                }
+                node.children("ul")[func](o.duration);
+            })
+            this._fireEvent("collapse-all");
+        },
+
+        expandAll(){
+            const element = this.element, o = this.options;
+            element.find(".tree-node:not(.expanded)").each((_, el)=>{
+                const node = $(el);
+                let func;
+                const toBeExpanded = !node.data("collapsed");//!node.hasClass("expanded");
+
+                node.toggleClass("expanded");
+                node.data("collapsed", toBeExpanded);
+                func = toBeExpanded === true ? "slideUp" : "slideDown";
+                if (!toBeExpanded) {
+                    this._fireEvent("expand-node", {
+                        node: node[0]
+                    });
+                } else {
+                    this._fireEvent("collapse-node", {
+                        node: node[0]
+                    });
+                }
+                node.children("ul")[func](o.duration);
+            })
+            this._fireEvent("expand-all");
         },
 
         changeAttribute: function(){

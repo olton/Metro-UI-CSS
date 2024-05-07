@@ -1,15 +1,11 @@
-<p align="center">
-  <a href="https://metroui.org.ua/">
-    <img src="https://metroui.org.ua/images/metro-xscode-logo.jpg" alt="">
-  </a>
+<div align="center">
+  <h3 align="center">Metro UI Components Library</h3>
 
-  <h3 align="center">Metro 4 Components Library</h3>
-</p>
-
-<p align="center">
     Sleek, intuitive, and powerful front-end framework for faster and easier web development.
- Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
-    <br>
+    Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
+</div>
+
+<p align="center">
     <a href="https://metroui.org.ua/"><strong>Explore Metro 4 docs »</strong></a>
 </p>
 
@@ -30,17 +26,21 @@ It's an independent project with its ongoing development made possible entirely 
 <br>
 
 ----
-
+### Project State
 ![Dependencies](https://img.shields.io/badge/Dependencies-none-darklime.svg)
-[![CSS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/metro.css?compression=gzip&label=CSS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/metro.css)
-[![JS gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/metro.js?compression=gzip&label=JS+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/metro.js)
-[![Icons gzip size](http://img.badgesize.io/olton/Metro-UI-CSS/master/build/icons.css?compression=gzip&label=Icons+gzip)](https://github.com/olton/Metro-UI-CSS/blob/master/build/icons.css)
-![GitHub release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS?color=darkLime)
-[![npm version](https://badge.fury.io/js/metro4.svg)](https://badge.fury.io/js/metro4)
+![Package Version](https://img.shields.io/github/package-json/v/olton/Metro-UI-CSS)
+![GitHub Release](https://img.shields.io/github/v/release/olton/Metro-UI-CSS)
+![NPM Version](https://img.shields.io/npm/v/%40olton%2Fmetroui)
 ![Website](https://img.shields.io/website/https/metroui.org.ua.svg)
-![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)
-![GitHub issues](https://img.shields.io/github/issues-raw/olton/Metro-UI-CSS.svg)
-![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg)
+![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?color=7852a9)
+
+---
+### Project Size
+![Code size](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg?color=830000)
+![GitHub Css Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Fmetro.css?label=CSS%20Size&color=fd9812)
+![GitHub JS Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Fmetro.js?label=JS%20Size&color=8f99ff)
+![GitHub Icons Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Ficons.css?label=Icons%20Size&color=01796f)
+![GitHub Bundle Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Fmetro.all.js?label=Bundle%20Size&color=8d4585)
 
 ----
 

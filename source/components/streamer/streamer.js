@@ -212,8 +212,8 @@
                     $("<div>").addClass("stream-secondary").html(stream_item.secondary).appendTo(stream);
                     $(stream_item.icon).addClass("stream-icon").appendTo(stream);
 
-                    var bg = Metro.colors.toHEX(Utils.getStyleOne(stream, "background-color"));
-                    var fg = Metro.colors.toHEX(Utils.getStyleOne(stream, "color"));
+                    var bg = Color.Routines.toHEX(Utils.getStyleOne(stream, "background-color"));
+                    var fg = Color.Routines.toHEX(Utils.getStyleOne(stream, "color"));
 
                     var stream_events = $("<div>").addClass("stream-events")
                         .data("background-color", bg)
@@ -524,19 +524,21 @@
                     .off(Metro.events.mousewheel)
                     .on(Metro.events.mousewheel, function(e) {
 
-                    if (e.deltaY === undefined) {
-                        return ;
-                    }
+                        if (e.deltaY === undefined) {
+                            return ;
+                        }
 
-                    var scroll, scrollable = $(this);
-                    var dir = e.deltaY > 0 ? -1 : 1;
-                    var step = o.wheelStep;
+                        var scroll, scrollable = $(this);
+                        var dir = e.deltaY > 0 ? -1 : 1;
+                        var step = o.wheelStep;
 
 
-                    scroll = scrollable.scrollLeft() - ( dir * step);
-                    scrollable.scrollLeft(scroll);
+                        scroll = scrollable.scrollLeft() - ( dir * step);
+                        scrollable.scrollLeft(scroll);
 
-                });
+                    }, {
+                        passive: true
+                    });
 
                 element.find(".events-area").off("mouseenter").on("mouseenter", function() {
                     disableScroll();

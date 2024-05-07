@@ -1,4 +1,3 @@
-/* global Metro */
 (function(Metro, $) {
     'use strict';
 
@@ -188,6 +187,14 @@
                         that.closeInactiveTabs();
                         break;
                     }
+                    case 'close-left': {
+                        that.closeTabsOnTheLeft(tab);
+                        break;
+                    }
+                    case 'close-right': {
+                        that.closeTabsOnTheRight(tab);
+                        break;
+                    }
                     case 'rename': {
                         that.renameTab(tab);
                         break;
@@ -267,6 +274,8 @@
                             <li class="divider"></li>
                             <li><a data-action="close">Close</a></li>
                             <li><a data-action="close-other">Close Other Tabs</a></li>
+                            <li><a data-action="close-left">Close Tabs Left</a></li>
+                            <li><a data-action="close-right">Close Tabs Right</a></li>
                             <li><a data-action="close-all">Close All Tabs</a></li>
                             <li><a data-action="close-inactive">Close Inactive Tabs</a></li>
                         </ul>
@@ -304,10 +313,6 @@
 
             this._fireEvent('tab-create', {tab: tab[0]})
 
-            if (o.activateNewTab) {
-                this.activateTab(tab[0])
-            }
-
             element[(o.defaultNewTabPosition === 'before' ? 'prepend' : 'append')](tab)
 
             return tab[0]
@@ -334,7 +339,7 @@
             e.stopPropagation()
         },
 
-        closeTab: function(tab){
+        closeTab: function(tab, reorg = true){
             var $tab = $(tab)
             if ($tab.hasClass("active")) {
                 const prev = $tab.prev(".page-control__tab"), next = $tab.next(".page-control__tab")
@@ -353,7 +358,7 @@
                 $($tab.data("ref")).remove()
             }
             $tab.remove()
-            this.organizeTabs()
+            if (reorg) this.organizeTabs()
             return this
         },
 
@@ -422,7 +427,14 @@
         },
 
         addTab: function({caption, icon, image, canClose = true, hasMenu = true, data, ref}, insert = "before"){
+            var o = this.options
+
             var newTab = this.createTab({caption, icon, image, canClose, hasMenu, data, ref})
+
+            if (o.activateNewTab) {
+                this.activateTab(newTab)
+            }
+
             this.element[(insert === "before" ? "prepend" : "append")](newTab)
             this.organizeTabs()
             return newTab
@@ -455,24 +467,47 @@
 
         closeAll: function(){
             this.component.find(".page-control__tab").each((index, tab) => {
-                this.closeTab(tab)
+                this.closeTab(tab, false)
             })
+            this.organizeTabs()
             return this
         },
 
         closeInactiveTabs: function(){
             this.component.find(".page-control__tab").each((index, tab) => {
-                if (!$(tab).hasClass("active")) this.closeTab(tab)
+                if (!$(tab).hasClass("active")) this.closeTab(tab, false)
             })
+            this.organizeTabs()
             return this
         },
 
         closeOtherTabs: function(tab){
             let _tab = typeof tab === "number" ? this.getTabByIndex(tab) : $(tab)
             this.component.find(".page-control__tab").each((index, tab) => {
-                if (_tab[0] !== tab) this.closeTab(tab)
+                if (_tab[0] !== tab) this.closeTab(tab, false)
             })
             this.activateTab(tab)
+            this.organizeTabs()
+            return this
+        },
+
+        closeTabsOnTheLeft: function(tab){
+            const tabs = this.component.find(".page-control__tab")
+            const tabIndex = tabs.indexOf($(tab))
+            this.component.find(".page-control__tab").each((index, _tab) => {
+                if (index < tabIndex) this.closeTab(_tab, false)
+            })
+            this.organizeTabs()
+            return this
+        },
+
+        closeTabsOnTheRight: function(tab){
+            const tabs = this.component.find(".page-control__tab")
+            const tabIndex = tabs.indexOf($(tab))
+            this.component.find(".page-control__tab").each((index, _tab) => {
+                if (index > tabIndex) this.closeTab(_tab, false)
+            })
+            this.organizeTabs()
             return this
         },
 
