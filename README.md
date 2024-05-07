@@ -2,7 +2,8 @@
   <h3 align="center">Metro UI Components Library</h3>
 
     Sleek, intuitive, and powerful front-end framework for faster and easier web development.
-    Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style.
+    Build responsive, mobile-first projects on the web 
+    with the first front-end component library in Metro Style.
 </div>
 
 <p align="center">
@@ -37,10 +38,10 @@ It's an independent project with its ongoing development made possible entirely 
 ---
 ### Project Size
 ![Code size](https://img.shields.io/github/languages/code-size/olton/Metro-UI-CSS.svg?color=830000)
-![GitHub Css Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Fmetro.css?label=CSS%20Size&color=fd9812)
-![GitHub JS Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Fmetro.js?label=JS%20Size&color=8f99ff)
-![GitHub Icons Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Ficons.css?label=Icons%20Size&color=01796f)
-![GitHub Bundle Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/build%2Fmetro.all.js?label=Bundle%20Size&color=8d4585)
+![GitHub Css Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/lib%2Fmetro.css?label=CSS%20Size&color=fd9812)
+![GitHub JS Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/lib%2Fmetro.js?label=JS%20Size&color=8f99ff)
+![GitHub Icons Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/lib%2Ficons.css?label=Icons%20Size&color=01796f)
+![GitHub Bundle Size](https://img.shields.io/github/size/olton/Metro-UI-CSS/lib%2Fmetro.all.js?label=Bundle%20Size&color=8d4585)
 
 ----
 
