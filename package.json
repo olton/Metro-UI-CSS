@@ -30,7 +30,7 @@
   "main": "src/index.js",
   "type": "module",
   "scripts": {
-    "clear": "shx rm -rf build/*",
+    "clear": "shx rm -rf lib/*",
     "clear:icons": "shx rm -rf build/icons.*",
     "clear:metro": "shx rm -rf build/metro*.*",
     "build": "npm run clear && npm install && cross-env NODE_ENV=production rollup --config",
@@ -41,7 +41,8 @@
     "cy:run": "cypress run",
     "deploy": "node deploy.cjs",
     "deploy:dev": "node deploy-dev.cjs",
-    "pub": "npm publish --access public"
+    "pub": "npm publish --access public",
+    "build:es": "shx rm -rf dist/* && node esbuild.js"
   },
   "browserslist": [
     "last 2 versions",
@@ -58,7 +59,6 @@
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
     "cypress": "^13.8.1",
-    "esbuild": "^0.20.2",
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
     "postcss": "^8.4.38",
@@ -75,7 +75,7 @@
     "@olton/animation": "^0.2.0",
     "@olton/color": "^1.0.0",
     "@olton/datetime": "^3.0.3",
-    "@olton/hooks": "^0.1.0",
+    "@olton/hooks": "^0.2.0",
     "@olton/html": "^0.7.0",
     "@olton/string": "^0.4.4",
     "m4q": "^2.0.0-rc7"

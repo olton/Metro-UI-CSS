@@ -59,7 +59,7 @@ export default [
             }),
         ],
         output: {
-            dir: './build',
+            dir: './lib',
             banner,
         },
         onwarn: message => {

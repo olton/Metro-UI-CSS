@@ -5,7 +5,6 @@ import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress';
 import fs from "fs";
 import pkg from "./package.json" assert {type: "json"}
-import esbuild from 'rollup-plugin-esbuild'
 
 const production = process.env.NODE_ENV === "production",
     sourcemap = !production
@@ -48,17 +47,9 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            // esbuild({
-            //     loaders: {
-            //         '.less': 'text',
-            //         '.json': 'json',
-            //         '.css': 'css',
-            //         '.js': 'js',
-            //     }
-            // })
         ],
         output: {
-            file: './build/metro.js',
+            file: './lib/metro.js',
             format: 'iife',
             sourcemap,
             banner,

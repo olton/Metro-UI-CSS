@@ -8,7 +8,6 @@ import noEmit from 'rollup-plugin-no-emit'
 import multi from '@rollup/plugin-multi-entry'
 import pkg from './package.json' assert {type: "json"}
 import fs from "fs";
-import esbuild from "rollup-plugin-esbuild";
 
 const production = !(process.env.ROLLUP_WATCH),
     sourcemap = !production
@@ -52,19 +51,9 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            // esbuild({
-            //     sourceMap: false,
-            //     minify: true,
-            //     loaders: {
-            //         '.less': 'text',
-            //         '.json': 'json',
-            //         '.css': 'css',
-            //         '.js': 'js',
-            //     }
-            // })
         ],
         output: {
-            file: './build/metro.js',
+            file: './lib/metro.js',
             format: 'iife',
             sourcemap,
             banner,
@@ -108,7 +97,7 @@ export default [
             }),
         ],
         output: {
-            dir: './build',
+            dir: './lib',
             banner,
         },
         onwarn: message => {
@@ -142,19 +131,9 @@ export default [
             nodeResolve({
                 browser: true
             }),
-            // esbuild({
-            //     sourceMap: false,
-            //     minify: true,
-            //     loaders: {
-            //         '.less': 'text',
-            //         '.json': 'json',
-            //         '.css': 'css',
-            //         '.js': 'js',
-            //     }
-            // })
         ],
         output: {
-            file: './build/metro.all.js',
+            file: './lib/metro.all.js',
             format: 'iife',
             sourcemap: sourcemap,
             banner,
