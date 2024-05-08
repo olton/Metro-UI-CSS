@@ -16,18 +16,14 @@
         <button class="button" onclick="start()">Start</button>
     </div>
 
-    <div>
-<!--        <div data-role="counter" data-value="5000" data-from="1000"></div>-->
-    </div>
-
-    <div style="font-size: 72px;" class="fg-red text-bold" data-role="counter" id="counter" data-start-on-viewport="true" data-prefix="$">0</div>
+    <div style="font-size: 72px;" class="fg-red text-bold" data-role="counter" data-value="1000" id="counter" data-start-on-viewport="true" data-prefix="$">0</div>
 </div>
 
 <script src="../lib/metro.js"></script>
 <script>
     function start() {
         Metro.utils.github("olton/Metro-UI-CSS", function(data){
-            $("#counter").attr("data-value", data.stargazers_count);
+            Metro.getPlugin("#counter", "counter").start(data.stargazers_count);
         });
     }
 
@@ -35,13 +31,7 @@
         console.log("event start");
     })
     $("#counter").on("attr-change", function(e){
-        Metro.getPlugin(this, "counter").startInViewport();
-    })
-    $("#counter").on("create", function(e){
-        console.log(e.detail);
-    })
-    $(document).on("component-create", function(e){
-        console.log(e.detail);
+        console.log("attr change");
     })
 </script>
 </body>

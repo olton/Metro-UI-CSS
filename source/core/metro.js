@@ -19,8 +19,8 @@
 
     var Metro = {
 
-        version: "5.0.2",
-        build_time: "07.05.2024, 22:15:32",
+        version: "5.0.3",
+        build_time: "08.05.2024, 20:05:19",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -199,18 +199,23 @@
         template: null,
         defaults: {},
 
-        about: function(){
-            var content =
-                "<h3>About</h3>" +
-                "<hr>" +
-                "<div><b>Metro UI</b> - v" + Metro.version + "</div>" +
-                "<div><b>M4Q</b> - " + m4q.version + "</div>";
-            Metro.infobox.create(content)
-        },
-
         info: function(){
+            console.info(`%c
+███╗   ███╗███████╗████████╗██████╗  ██████╗     ██╗   ██╗██╗
+████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██║   ██║██║
+██╔████╔██║█████╗     ██║   ██████╔╝██║   ██║    ██║   ██║██║
+██║╚██╔╝██║██╔══╝     ██║   ██╔══██╗██║   ██║    ██║   ██║██║
+██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝    ╚██████╔╝██║
+╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝      ╚═════╝ ╚═╝                                                             
+`, `color: #0080fe`)
             console.info(`%c METRO UI %c v${Metro.version} %c ${Metro.build_time} `, "color: pink; font-weight: bold; background: #800000", "color: white; background: darkgreen", "color: white; background: #0080fe;")
             $.info()
+            Hooks.info()
+            html.info()
+            Animation.info()
+            Color.info()
+            Datetime.info()
+            Str.info()
         },
 
         showCompileTime: function(){
@@ -312,7 +317,9 @@
                 html.addClass("use-blur-image");
             }
 
-            if (window.METRO_SHOW_ABOUT) Metro.info(true);
+            if (window.METRO_SHOW_INFO) {
+                Metro.info(true);
+            }
 
             if (isTouch === true) {
                 html.addClass("metro-touch-device");

@@ -64,10 +64,6 @@
 
             this.displayOrigin = Utils.getStyleOne(element, "display");
 
-            if (element.hasClass("v-menu")) {
-                element.addClass("for-dropdown");
-            }
-
             element.css("display", "none");
 
             this._toggle = toggle;

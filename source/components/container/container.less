@@ -20,10 +20,6 @@
     padding-left: 12px;
 }
 
-section {
-
-}
-
 @media (min-width: 360px) and (max-width: 576px) {
     .container {
         max-width: 98%;
@@ -48,25 +44,18 @@ section {
     }
 }
 
-@media (min-width: 1201px) and(max-width: 1452px) {
+@media (min-width: 1201px) {
     .container {
         max-width: 80%;
     }
 }
 
-@media (min-width: 1453px) {
-    .container {
-        max-width: 1360px;
+each(@media-rules, {
+    .container-@{key} {
+        max-width: @value!important;
     }
-}
+})
 
-.generate-container-media-options(@mediaBreakpointListMobileLength);
-.generate-container-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
-        .container-@{m} {
-            max-width: @@m!important;
-        }
-
-    .generate-container-media-options(@name, @i + 1);
+.container-max {
+    width: 100%!important;
 }

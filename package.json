@@ -1,7 +1,7 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "@olton/metroui",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [
     "metro",
@@ -71,12 +71,12 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
-    "@olton/animation": "^0.2.0",
-    "@olton/color": "^1.0.0",
-    "@olton/datetime": "^3.0.3",
-    "@olton/hooks": "^0.2.0",
-    "@olton/html": "^0.7.0",
-    "@olton/string": "^0.4.4",
+    "@olton/animation": "^0.3.0",
+    "@olton/color": "^1.0.2",
+    "@olton/datetime": "^3.0.4",
+    "@olton/hooks": "^0.3.0",
+    "@olton/html": "^0.8.0",
+    "@olton/string": "^0.5.0",
     "m4q": "^2.0.0-rc7"
   }
 }

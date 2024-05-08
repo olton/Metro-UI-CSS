@@ -41,44 +41,20 @@
         _create: function(){
             this._createEvents();
             this._fireEvent("counter-create");
-            this._run();
         },
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
 
-            $.window().on("scroll", function(){
-                if (o.startOnViewport === true && Utils.inViewport(element[0]) && !that.started) {
-                    that.start();
-                }
-            }, {ns: this.id})
-        },
-
-        _run: function(){
-            var element = this.element, o = this.options;
-
-            this.started = false;
-
-            if (o.startOnViewport !== true) {
-                this.start();
-            } else {
-                if (Utils.inViewport(element[0])) {
-                    this.start();
-                }
+            if (o.startOnViewport) {
+                Hooks.useEffect({
+                    effect: ()=>{
+                        that.start()
+                    },
+                    target: that.elem,
+                    event: Hooks.USE_EFFECT_EVENTS.VIEWPORT
+                })
             }
-        },
-
-        startInViewport: function(val, from){
-            var o = this.options;
-
-            if (Utils.isValue(from)) {
-                o.from = +from;
-            }
-
-            if (Utils.isValue(val)) {
-                o.value = +val;
-            }
-            this._run();
         },
 
         start: function(val, from){
@@ -131,8 +107,7 @@
         },
 
         destroy: function(){
-            $.window().off("scroll", {ns: this.id});
-            return this.element;
+            this.element.remove();
         }
     });
 }(Metro, m4q));

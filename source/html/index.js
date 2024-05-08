@@ -1,7 +1,5 @@
 import {html, Tag, TagEmpty, addStyle, addCssRule, cssLoader, jsLoader, Router, router, viewLoader, clearViewStorageHolder, createStyleElement, createStyleSheet, render, BaseElement} from "@olton/html"
 
-globalThis.html = html
-
 globalThis.html = {
     BaseElement,
     Tag,
@@ -14,7 +12,8 @@ globalThis.html = {
     clearViewStorageHolder,
     createStyleElement,
     createStyleSheet,
-    render
+    render,
+    ...html
 }
 
 globalThis.Router = {

@@ -29,7 +29,7 @@
     --d-menu-border-radius: 4px;
 }
 
-.d-menu {
+.d-menu, .d-menu ul {
     position: absolute;
     float: left;
     width: auto;
@@ -40,6 +40,8 @@
     border-radius: 6px;
     padding: 4px 0;
     border: 1px solid var(--d-menu-border-color);
+    z-index: @zindex-dropdown;
+    box-shadow: 2px 2px 10px var(--d-menu-shadow-color);
 
     &.open {
         display: block!important;
@@ -49,10 +51,6 @@
         left: auto;
         right: 0;
     }
-}
-
-.d-menu {
-    z-index: @zindex-dropdown;
 }
 
 .d-menu {
@@ -139,16 +137,7 @@
 }
 
 .d-menu {
-    box-shadow: 2px 2px 10px var(--d-menu-shadow-color);
-}
-
-.d-menu {
-    &.context {
-    }
-}
-
-.d-menu {
-    ul {
+    .d-menu, ul {
         position: absolute;
         left: calc(100% + 4px);
         top: 0;
@@ -157,7 +146,7 @@
 
 each(@media-rules, {
     @media screen and (min-width: @value) {
-        .d-menu {
+        .d-menu, .d-menu ul {
             &.place-right-@{key} {
                 left: auto;
                 right: 0;

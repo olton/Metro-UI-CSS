@@ -32,9 +32,9 @@
 
 
     /* Added by Ken Kitay https://github.com/kens-code*/
-    var meta_about = $.meta('metro4:about').attr("content");
-    if (window.METRO_SHOW_ABOUT === undefined) {
-        window.METRO_SHOW_ABOUT = meta_about !== undefined ? JSON.parse(meta_about) : true;
+    var meta_info = $.meta('metro4:info').attr("content");
+    if (window.METRO_SHOW_INFO === undefined) {
+        window.METRO_SHOW_INFO = meta_info !== undefined ? JSON.parse(meta_info) : true;
     }
     /* --- end ---*/
 

@@ -26,13 +26,17 @@
 .app-bar-item,
 .app-bar-menu > li > a,
 .h-menu > li > a,
-.d-menu > li > a,
-.v-menu > li > a,
-.t-menu > li > a
+.v-menu > li > a
 {
     .badge {
         .translateY(0);
         .translateX(0);
+    }
+}
+
+.d-menu > li > a {
+    .badge {
+        transform: translateX(10px);
     }
 }
 

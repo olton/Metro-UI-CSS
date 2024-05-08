@@ -7,7 +7,7 @@ import fs from "fs";
 import pkg from "./package.json" assert {type: "json"}
 
 const production = process.env.NODE_ENV === "production",
-    sourcemap = !production
+    sourcemap = !production, dev = !production
 
 const banner = `
 /*!
@@ -37,7 +37,7 @@ export default [
             }),
             postcss({
                 extract: true,
-                minimize: true,
+                minimize: production && true,
                 use: ['less'],
                 sourceMap: sourcemap,
                 plugins: [

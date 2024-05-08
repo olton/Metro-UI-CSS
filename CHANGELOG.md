@@ -1,3 +1,9 @@
+### 5.0.3
++ [x] Improved counter with `useEffect`
++ [x] Improved `v-menu`
++ [x] Update core libs
++ [x] Added `grid2`
+
 ### 5.0.2
 + [x] Improved `d-menu`, fix interacts with other components (`treeview`, `sidenav-m3`, `app-bar`)
 
