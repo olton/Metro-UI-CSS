@@ -1,7 +1,14 @@
-@import (once) "../../include/vars";
-@import (once) "../../include/mixins";
+@import "../../include/mixins";
 
-.expand-button {
+:root {
+    --transform-button-color: #000000;
+}
+
+.dark-mode {
+    --transform-button-color: #ffffff;
+}
+
+.transform-button {
     width: 36px;
     height: 36px;
     background-size: 1rem 1rem;
@@ -21,7 +28,7 @@
         width: 1.2rem;
         height: 2px;
         margin: 0 0 0;
-        background: @dark;
+        background: var(--transform-button-color);
         .rotate(0);
         .transition(.3s, linear);
 
@@ -32,7 +39,7 @@
             right: 0;
             width: 1.2rem;
             height: 2px;
-            background: @dark;
+            background: var(--transform-button-color);
             .rotate(0);
             .transition(.3s, linear);
         }
@@ -45,7 +52,6 @@
     &.transform {
         span {
             .rotate(180deg);
-            background: @dark;
 
             &:before, &:after {
                 content: '';
@@ -60,14 +66,36 @@
                 .rotate(-45deg);
             }
         }
-    }
 
-    &.light {
-        span {
-            background-color: @white;
-            &:before, &:after {
-                background-color: @white;
+        &.right {
+            .rotate(-180deg);
+            span {
+                margin-top: -2px;
             }
+        }
+
+        &.up {
+            .rotate(90deg);
+        }
+
+        &.down {
+            .rotate(-90deg);
+        }
+
+        &.top-left {
+            .rotate(45deg);
+        }
+
+        &.top-right {
+            .rotate(135deg);
+        }
+
+        &.bottom-left {
+            .rotate(-45deg);
+        }
+
+        &.bottom-right {
+            .rotate(-135deg);
         }
     }
 }

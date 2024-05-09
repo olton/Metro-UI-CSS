@@ -17,6 +17,19 @@
     <div class="container">
         <h1>Button test page</h1>
 
+        <div class="row">
+            <div class="cell-lg-6 p-10">
+                <button class="button">Primary</button>
+                <button class="button outline">Primary</button>
+                <button class="button flat">Primary</button>
+            </div>
+            <div class="cell-lg-6 p-10 dark-side">
+                <button class="button">Primary</button>
+                <button class="button outline">Primary</button>
+                <button class="button flat">Primary</button>
+            </div>
+        </div>
+
         <div class="example">
             <button class="button primary">Primary</button>
             <button class="button secondary">Secondary</button>
@@ -170,10 +183,16 @@
                 <span class="load-marker mif-loop2"></span>
                 <span class="load-caption">Download...</span>
             </button>
-            &nbsp;
-            <button class="expand-button" onclick="$(this).toggleClass('transform')">
-                <span>Expand</span>
-            </button>
+
+            <button class="transform-button" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button right" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button left" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button up" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button down" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button top-left" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button top-right" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button bottom-left" onclick="$(this).toggleClass('transform')"><span></span></button>
+            <button class="transform-button bottom-right" onclick="$(this).toggleClass('transform')"><span></span></button>
         </div>
     </div>
 

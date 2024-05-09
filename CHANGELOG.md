@@ -6,6 +6,7 @@
 + [x] Fix `d-menu` in `app-bar`
 + [x] Improved `collapse` components
 + [x] Improved `panel`, added `dark`, `light` themes
++ [x] `expand-button` renamed to `transofrm-button`, added new states `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right` 
 
 ### 5.0.3
 + [x] Improved counter with `useEffect`

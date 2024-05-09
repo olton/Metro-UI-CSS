@@ -1,6 +1,21 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --button-background: #ebebeb;
+    --button-background-hover: #dadada;
+    --button-color: #191919;
+    --button-border-color: #ebebeb;
+    --button-border-radius: 0;
+}
+
+.dark-side, .theme-dark {
+    --button-background: #2b2d30;
+    --button-background-hover: #1d1e20;
+    --button-color: #f3fcff;
+    --button-border-color: #4e5157;
+}
+
 .button, .flat-button {
     display: inline-flex;
     align-items: center;
@@ -10,66 +25,52 @@
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    border: 1px solid transparent;
     padding: 0 .75rem;
     font-size: .875rem;
-    //line-height: 34px;
     height: 36px;
     transition: @transition-short;
-    background-color: darken(@light, 5%);
-    color: @dark;
+    background-color: var(--button-background);
+    color: var(--button-color);
+    border: 1px solid var(--button-border-color);
     cursor: pointer;
     outline: none;
     position: relative;
     overflow: visible;
+    border-radius: var(--button-border-radius);
 
-    .icon + .caption {
+    * + * {
         margin-left: 8px;
     }
-    .caption + .icon {
-        margin-left: 8px;
-    }
-}
 
-.flat-button {
-    min-width: 64px;
-    background-color: transparent;
+    &.disabled, &:disabled {
+        pointer-events: none;
+        opacity: .65;
+    }
+
+    img {
+        height: 1rem;
+    }
 }
 
 .button {
     &:active, &.focus, &:focus {
-        .focus-show(@lightGray);
+        text-decoration: none;
+        //.focus-show(var(--button-border-color));
     }
 
     &:hover {
-        background-color: @hoverBackground;
+        background-color: var(--button-background-hover);
     }
 
     &.link {
-        background-color: @transparent;
-        color: @linkColor;
+        background-color: transparent;
         &:hover {
-            background-color: @transparent;
-            color: @linkColorHover;
+            background-color: transparent;
             text-decoration: underline;
         }
         &.focus, &:focus {
             box-shadow: none;
         }
-    }
-}
-
-.button {
-    &.hovered {
-        &:hover {
-            background-color:  rgba(red(@dark), green(@dark), blue(@dark), .2);
-        }
-    }
-}
-
-.button {
-    img {
-        height: 1rem;
     }
 }
 
@@ -147,31 +148,10 @@
 }
 
 .button {
-    &:focus, &:hover {
-        text-decoration: none;
-    }
-
-    &:active {
-        outline: 0;
-        .focus-show(@gray);
-    }
-
-    &.disabled, &:disabled {
-        opacity: .65;
-    }
-}
-
-.button {
     &.outline {
         background: transparent none;
         border-width: 1px;
-        border-color: @borderColor;
-    }
-}
-
-.button {
-    &:active {
-        box-shadow: none;
+        border-color: var(--button-border-color);
     }
 }
 
@@ -180,23 +160,9 @@ a {
     &.flat-button
     {
         appearance: none;
-        color: @dark;
+        color: var(--button-color);
         box-shadow: none;
         text-decoration: none;
-
-        &:hover {
-            box-shadow: none;
-        }
-
-        &:active, &.focus, &:focus {
-            .focus-show(@lightGray);
-        }
-    }
-}
-
-.button {
-    * + * {
-        margin-left: .5rem;
     }
 }
 
@@ -223,6 +189,16 @@ input[type=button], input[type=submit], input[type=reset] {
         .load-caption {
             margin-left: .5rem;
         }
+    }
+}
+
+.button.flat, .flat-button {
+    min-width: 64px;
+    background-color: transparent;
+    border-color: transparent;
+    &:hover {
+        background-color: var(--button-background);
+        border-color: var(--button-background);
     }
 }
 
