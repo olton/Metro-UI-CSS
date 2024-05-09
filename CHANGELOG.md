@@ -1,7 +1,16 @@
+# Changelog
+
+### 5.0.4
++ [x] Improved `app-bar`, added `dark`, `light` themes
++ [x] Improved `d-menu`, added `dark`, `light` themes
++ [x] Fix `d-menu` in `app-bar`
++ [x] Improved `collapse` components
++ [x] Improved `panel`, added `dark`, `light` themes
+
 ### 5.0.3
 + [x] Improved counter with `useEffect`
 + [x] Improved `v-menu`
-+ [x] Update core libs
++ [x] Update `core libs`
 + [x] Added `grid2`
 
 ### 5.0.2

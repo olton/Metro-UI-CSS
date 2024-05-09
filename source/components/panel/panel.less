@@ -1,15 +1,37 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --panel-background: #ffffff;
+    --panel-color: #191919;
+    --panel-border-color: #e8e8e8;
+    --panel-border-radius: 6px;
+    --panel-dropdown-toogle-color: #191919;
+}
+
+.dark-side, .theme-dark {
+    --panel-background: #2b2d30;
+    --panel-color: #dbdfe7;
+    --panel-border-color: #4a4d51;
+    --panel-dropdown-toogle-color: #ffffff;
+}
+
 .panel {
     display: flex;
     flex-flow: column nowrap;
     position: relative;
-    background-color: @white;
-    border: 1px solid @borderColor;
+    background-color: var(--panel-background);
+    color: var(--panel-color);
+    border: 1px solid var(--panel-border-color);
+    border-radius: var(--panel-border-radius);
 }
 
 .panel {
+    .dropdown-toggle {
+        &::before {
+            border-color: var(--panel-dropdown-toogle-color)!important;
+        }
+    }
 
     .panel-title, .panel-content {
         position: relative;
@@ -21,17 +43,18 @@
         align-items: center;
         order: 1;
         height: 2.625rem;
-        border-bottom: 1px solid @borderColor;
+        border-bottom: 1px solid var(--panel-border-color);
         line-height: 2.625rem;
         cursor: default;
         flex-shrink: 0;
+        font-size: 16px;
 
         .icon {
             order: 1;
             height: 2.625rem;
             line-height: 2.625rem;
             width: 2.625rem;
-            border-right: 1px solid @borderColor;
+            border-right: 1px solid var(--panel-border-color);
             flex-shrink: 0;
             color: inherit;
             text-align: center;
@@ -53,7 +76,7 @@
             order: 4;
             height: 100%;
             width: 2.625rem;
-            border-left: 1px solid @borderColor;
+            border-left: 1px solid var(--panel-border-color);
             flex-shrink: 0;
         }
 
@@ -89,6 +112,6 @@
         order: 2;
         height: auto;
         padding: .5rem;
-        //overflow: auto;
+        font-size: 14px;
     }
 }

@@ -1,6 +1,32 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --appbar-background: #f8f8f8;
+    --appbar-item-background: #f8f8f8;
+    --appbar-color: #191919;
+    --appbar-item-color: #191919;
+    --appbar-item-color-disabled: #ccc;
+    --appbar-item-color-hover: #000000;
+    --appbar-item-background-hover: #e8e8e8;
+    --appbar-dropdown-toogle-color: #191919;
+    --appbar-border-radius: 4px;
+    --appbar-z-index: @zindex-fixed;
+    --appbar-hamburger-color: #000000;
+}
+
+.dark-side, .theme-dark {
+    --appbar-background: #2b2d30;
+    --appbar-item-background: #2b2d30;
+    --appbar-color: #ffffff;
+    --appbar-item-color: #dbdfe7;
+    --appbar-item-color-disabled: #a8a8a8;
+    --appbar-item-color-hover: #ffffff;
+    --appbar-item-background-hover: #1e1f22;
+    --appbar-dropdown-toogle-color: #ffffff;
+    --appbar-hamburger-color: #ffffff;
+}
+
 .app-bar {
     display: flex;
     position: fixed;
@@ -9,10 +35,11 @@
     right: 0;
     height: auto;
     min-height: 52px;
-    z-index: @zindex-fixed;
-    background-color: @light;
+    z-index: var(--appbar-z-index);
+    background-color: var(--appbar-background);
     flex-flow: row wrap;
     align-items: center;
+    padding: 0 10px;
 }
 
 .app-bar {
@@ -20,34 +47,43 @@
     .app-bar-container {
         background-color: inherit;
         color: inherit;
+        padding: 0;
     }
 
-    .brand, .app-bar-item, .app-bar-container, .app-bar-button {
+    .app-bar-item, .app-bar-menu > li > a {
         display: flex;
         align-items: center;
-        position: relative;
-        height: 52px;
-        line-height: 52px;
-        padding: 0 16px;
-        background-color: inherit;
-        color: inherit;
+        font-size: 13px;
+        background-color: var(--appbar-item-background);
+        color: var(--appbar-item-color);
         text-decoration: none;
-        font-size: 14px;
-        flex-shrink: 0;
-        border: none;
-        justify-content: center;
+        padding: 4px 10px;
+        border-radius: var(--appbar-border-radius);
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        line-height: 20px;
+        overflow: hidden;
+
+        &:hover {
+            color: var(--appbar-item-color-hover);
+            text-decoration: none;
+            background-color: var(--appbar-item-background-hover);
+        }
 
         &:focus {
             outline: none;
         }
+
+        &.disabled {
+            color: var(--appbar-item-color-disabled);
+        }
     }
 
-    .app-bar-container {
-        padding: 0;
-    }
-
-    .app-bar-item {
-        white-space: nowrap;
+    .brand {
+        flex-shrink: 0;
+        &:hover {
+            background-color: var(--appbar-item-background);
+        }
     }
 
     .app-bar-button {
@@ -61,7 +97,7 @@
         margin: 0;
         padding: 0;
         position: relative;
-        width: 100%;
+        //width: 100%;
         display: flex;
         flex-wrap: nowrap;
         flex-direction: column;
@@ -69,36 +105,11 @@
         color: inherit;
     }
 
-    .app-bar-menu {
-        & > li, & > li  > a {
-            display: block;
-            line-height: 52px;
-            background-color: inherit;
-            color: inherit;
-            flex-shrink: 0;
-        }
-
-        & > li  > a {
-            padding: 0 16px;
-            text-decoration: none;
-            font-size: 14px;
-            position: relative;
-        }
-
-        & > li {
-            position: relative;
-        }
-
-        a {
-            &:hover {
-                text-decoration: none;
+    .app-bar-menu > li > a {
+        &.dropdown-toggle {
+            &::before {
+                border-color: var(--appbar-dropdown-toogle-color)!important;
             }
-        }
-    }
-
-    .brand:not(.no-hover), .app-bar-menu li:not(.no-hover), .hamburger:not(.no-hover), .app-bar-item:not(.no-hover) {
-        &:hover, &:active, .active {
-            background: @hoverBackground;
         }
     }
 
@@ -110,6 +121,10 @@
         height: 52px;
         width: 52px;
 
+        .line {
+            background-color: var(--appbar-hamburger-color);
+        }
+
         &.menu-down {
             &.active {
                 .line:nth-child(1), .line:nth-child(3) {
@@ -120,61 +135,31 @@
     }
 
     .app-bar-menu {
-        .v-menu {
-            box-shadow: none;
-            position: relative;
-            width: 100%;
+        &.collapsed {
+            display: none;
         }
-    }
-
-    .app-bar-menu, .app-bar-container {
-        .divider {
-            height: 1px!important;
-            line-height: 1px!important;
-            background-color: @lightGray;
-        }
-    }
-
-    .app-bar-container {
-        .v-menu {
-            position: absolute;
-            float: left;
-            width: auto;
-            border: 1px solid @borderColor;
-            background-color: @white;
-        }
-
-        & > .d-menu, & > .v-menu {
-            top: 100%;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-    }
-
-    a {
-        outline: none!important;
-    }
-
-    .app-bar-menu .d-menu .d-menu,
-    .app-bar-menu .v-menu .v-menu,
-    .app-bar-menu .v-menu .d-menu,
-    .app-bar-menu .d-menu .v-menu
-    {
-        left: 0;
-    }
-
-    .app-bar-menu {
         &.opened {
-            max-height: ~"calc(100vh - 52px)";
+            max-height: calc(100vh - 52px);
             overflow-y: auto;
+            padding: 4px;
+
+            & > li a {
+
+            }
+
+            ul {
+                position: relative;
+                left: 0;
+                float: none;
+                width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+                background-color: inherit;
+                border: none;
+            }
         }
     }
-}
 
-.app-bar {
     .app-bar-input {
         width: 100px;
         height: 30px;
@@ -182,59 +167,21 @@
         border: none!important;
         border-radius: 4px;
     }
-}
 
-
-.app-bar {
-    .hamburger:not(.hidden) ~ .ml-auto {
-        margin-right: 48px;
+    &:not(.app-bar-expand) {
+        padding-right: 60px!important;
     }
 }
 
 .app-bar-expand {
-
+    flex-direction: row;
     flex-wrap: nowrap;
-    flex-flow: row;
-
-    .brand, .app-bar-item, .app-bar-container {
-        width: auto;
-        flex-shrink: 1;
-    }
 
     .app-bar-menu {
-        float: left;
-    }
-
-    .app-bar-menu {
-        width: auto;
         flex-direction: row;
-    }
-
-    .app-bar-menu {
-        .d-menu {
-            position: absolute;
-            width: auto;
-        }
-
-        .v-menu {
-            position: absolute;
-            float: left;
-            width: auto;
-            border: 1px solid @borderColor;
-            background-color: @white;
-        }
-
         &.collapsed {
             display: flex!important;
         }
-    }
-
-    .app-bar-menu .d-menu .d-menu,
-    .app-bar-menu .v-menu .v-menu,
-    .app-bar-menu .v-menu .d-menu,
-    .app-bar-menu .d-menu .v-menu
-    {
-        left: 100%;
     }
 
     .hamburger {
@@ -251,5 +198,5 @@
 }
 
 .h-ab {
-    height: ~"calc(100% - 52px)";
+    height: calc(100% - 52px);
 }

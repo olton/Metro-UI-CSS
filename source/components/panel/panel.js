@@ -1,4 +1,3 @@
-/* global Metro, METRO_ANIMATION_DURATION, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;

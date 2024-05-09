@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.0.3",
-        build_time: "08.05.2024, 20:05:19",
+        build_time: "09.05.2024, 11:57:26",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -200,7 +200,8 @@
         defaults: {},
 
         info: function(){
-            console.info(`%c
+            if (typeof window['METRO_DISABLE_BANNER'] === 'undefined') {
+                console.info(`%c
 ███╗   ███╗███████╗████████╗██████╗  ██████╗     ██╗   ██╗██╗
 ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██║   ██║██║
 ██╔████╔██║█████╗     ██║   ██████╔╝██║   ██║    ██║   ██║██║
@@ -208,6 +209,7 @@
 ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝    ╚██████╔╝██║
 ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝      ╚═════╝ ╚═╝                                                             
 `, `color: #0080fe`)
+            }
             console.info(`%c METRO UI %c v${Metro.version} %c ${Metro.build_time} `, "color: pink; font-weight: bold; background: #800000", "color: white; background: darkgreen", "color: white; background: #0080fe;")
             $.info()
             Hooks.info()

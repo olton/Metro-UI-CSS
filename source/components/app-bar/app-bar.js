@@ -117,19 +117,22 @@
                     }
                 }
 
-                if (menu.length === 0) return;
+                if (menu.length === 0) {
+                    hamburger.addClass("hidden")
+                    return
+                }
+
+                menu.removeClass("opened").removeClass("collapsed")
 
                 if (hamburger.css('display') !== 'block') {
-                    menu.show(function () {
-                        $(this).removeStyleProperty("display");
-                    });
                     hamburger.addClass("hidden");
+                    menu.show()
                 } else {
                     hamburger.removeClass("hidden");
                     if (hamburger.hasClass("active")) {
-                        menu.show().removeClass("collapsed");
+                        menu.removeClass("collapsed").addClass("opened");
                     } else {
-                        menu.hide().addClass("collapsed");
+                        menu.addClass("collapsed").removeClass("opened");
                     }
                 }
             }, {ns: this.id});

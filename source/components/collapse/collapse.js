@@ -60,6 +60,12 @@
 
         _close: function(el, immediate){
             var elem = $(el);
+            var collapsed = elem.data("collapsed");
+
+            if (collapsed) {
+                return;
+            }
+
             var dropdown  = Metro.getPlugin(elem[0], "collapse");
             var options = dropdown.options;
             var func = immediate ? 'show' : 'slideUp';
@@ -78,6 +84,12 @@
 
         _open: function(el, immediate){
             var elem = $(el);
+            var collapsed = elem.data("collapsed");
+
+            if (!collapsed) {
+                return;
+            }
+
             var dropdown  = Metro.getPlugin(elem[0], "collapse");
             var options = dropdown.options;
             var func = immediate ? 'show' : 'slideDown';
