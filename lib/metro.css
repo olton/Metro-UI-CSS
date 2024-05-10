@@ -23336,6 +23336,15 @@ pre code {
   z-index: 10!important;
 }
 
+:root {
+  --accordion-heading-background: #f8f8f8;
+  --accordion-heading-color: #191919;
+}
+.dark-side,
+.theme-dark {
+  --accordion-heading-background: #2b2d30;
+  --accordion-heading-color: #dfe1e5;
+}
 .accordion {
   list-style: none inside;
   margin: 0;
@@ -23356,7 +23365,8 @@ pre code {
   display: block;
   position: relative;
   padding: 8px 16px;
-  background-color: #f8f8f8;
+  background-color: var(--accordion-heading-background);
+  color: var(--accordion-heading-color);
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
@@ -23418,7 +23428,8 @@ pre code {
 .accordion.material > .frame > .heading {
   padding: 16px 42px 16px 16px;
   font-size: 16px;
-  background-color: #ffffff;
+  background-color: var(--accordion-heading-background);
+  color: var(--accordion-heading-color);
 }
 .accordion.material > .frame > .heading::after {
   display: block;
@@ -23441,7 +23452,7 @@ pre code {
           transform-origin: 50% 50%;
 }
 .accordion.material .frame + .frame {
-  border-top: 1px #dfdfdf solid;
+  border-top: 1px var(--border-color) solid;
 }
 .accordion.material > .frame > .content {
   padding: 16px;

@@ -56,7 +56,7 @@
                 this.target = $("html");
             }
 
-            this._setState(o.state)
+            this._setState(o.state === STATE.DARK)
             this._updateState()
         },
 

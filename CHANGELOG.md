@@ -9,6 +9,7 @@
 + [x] `expand-button` renamed to `transofrm-button`, added new states `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right` 
 + [x] Added component `theme-switcher`
 + [x] Update common css for themes
++ [x] Update accordion for themes
 
 
 ### 5.0.3

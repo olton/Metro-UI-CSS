@@ -88,6 +88,8 @@
                     hamburger.addClass("hidden");
                 }
             }
+
+            $("body").addClass("p-ab")
         },
 
         _createEvents: function () {
