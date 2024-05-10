@@ -55,20 +55,35 @@
             if (this.target.length === 0) {
                 this.target = $("html");
             }
+
+            this._setState(o.state)
+            this._updateState()
         },
 
         _createEvents: function(){
             const that = this, elem = this.elem, o = this.options;
             this.container.on("click", (e) => {
-                if (elem.checked) {
-                    this.target.addClass("dark-side theme-dark").addClass(o.clsDark);
-                } else {
-                    this.target.removeClass("dark-side theme-dark").addClass(o.clsDark);
-                }
+                this._updateState()
             })
         },
 
+        _setState: function(state = false){
+            this.elem.checked = state
+        },
+
+        _updateState: function(){
+            if (this.elem.checked) {
+                this.target.addClass("dark-side theme-dark").addClass(this.options.clsDark);
+            } else {
+                this.target.removeClass("dark-side theme-dark").addClass(this.options.clsDark);
+            }
+        },
+
         changeAttribute: function(attr, newValue){
+            if (attr === "data-target") {
+                this.target = $(newValue)
+                this._updateState()
+            }
         },
 
         destroy: function(){
