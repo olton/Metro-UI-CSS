@@ -1,27 +1,55 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --calendar-background: #ffffff;
+    --calendar-header-background: #004D6FFF;
+    --calendar-weekday-background: #f8f8f7;
+    --calendar-weekday-color: #191919;
+    --calendar-header-color: #ffffff;
+    --calendar-border-color: #aaaaaa;
+    --calendar-color: #191919;
+    --calendar-day-border-color: #e8e8e8;
+    --calendar-exclude-day-background: #ffffff;
+    --calendar-exclude-day-color: #aaa;
+    --calendar-today-day-background: #56c30f;
+    --calendar-today-day-color: #fff;
+}
+
+.dark-side, .theme-dark {
+    --calendar-background: #2b2d30;
+    --calendar-header-background: #43454a;
+    --calendar-weekday-background: #414245;
+    --calendar-weekday-color: #dfe1e5;
+    --calendar-header-color: #dfe1e5;
+    --calendar-border-color: #414245;
+    --calendar-color: #dfe1e5;
+    --calendar-day-border-color: #4a4d51;
+    --calendar-exclude-day-background: #2b2d30;
+    --calendar-exclude-day-color: #818181;
+}
+
 .calendar {
     display: block;
     position: relative;
     width: 280px;
-    border: 1px solid @borderColor;
+    border: 1px solid var(--calendar-border-color);
     overflow: hidden;
     user-select: none;
-    background-color: @white;
+    background-color: var(--calendar-background);
 }
 
 .calendar-header, .calendar-content, .calendar-footer {
     position: relative;
     display: block;
-    background-color: @white;
-    color: @dark;
+    background-color: var(--calendar-background);
+    color: var(--calnedar-color);
 }
 
 .calendar-header {
     padding: 1rem;
-    background-color: @brandColor2;
-    color: @white;
+    background-color: var(--calendar-header-background);
+    color: var(--calendar-header-color);
     user-select: none;
 
     .header-year {
@@ -88,15 +116,16 @@
 
     .week-day, .week-number {
         font-weight: 700;
-        background-color: @light;
+        background-color: var(--calendar-weekday-background);
+        color: var(--calendar-weekday-color);
     }
 
     .week-day {
-        border-bottom: 1px solid @borderColor;
+        border-bottom: 1px solid var(--calnedar-border-color);
     }
 
     .week-number {
-        border-right: 1px solid @borderColor;
+        border-right: 1px solid var(--calnedar-border-color);
     }
 
     .week-days .week-number {
@@ -117,7 +146,7 @@
             box-shadow: inset 0 0 0 1px rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1)!important;
 
             &::after {
-                border-top: 20px solid @lightCyan;
+                border-top: 20px solid rgba(red(@lightCyan), green(@lightCyan), blue(@lightCyan), 1);
                 border-left: 20px solid transparent;
                 right: 0;
                 top: 0;
@@ -140,9 +169,10 @@
     }
 
     .today {
-        background-color: rgba(red(@green), green(@green), blue(@green), .5);
-        color: @white;
+        background-color: var(--calendar-today-day-background);
+        color: var(--calendar-today-day-color);
         font-weight: bold;
+        border-radius: 50%;
     }
 
     .coincidental {
@@ -150,21 +180,23 @@
     }
 
     .excluded {
-        background-color: @light;
+        background-color: var(--calendar-exclude-day-background);
+        color: var(--calendar-exclude-day-color)!important;
+        text-decoration: line-through;
     }
 
     .day {
-        border: 1px solid @transparent;
+        border: 1px solid transparent;
 
         &:hover {
-            border-color: @borderColor;
+            border-color: var(--calendar-border-color);
         }
     }
 }
 
 .calendar-footer {
     padding: .5rem;
-    border-top: 1px solid @borderColor;
+    border-top: 1px solid var(--calendar-border-color);
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
@@ -224,8 +256,8 @@
     .calendar-time {
         display: block;
         padding: 5px 10px 10px;
-        border-top: 1px solid @borderColor;
-        background: @light;
+        border-top: 1px solid var(--calendar-border-color);
+        background: var(--calendar-background);
 
         .calendar-time__inner {
             display: flex;
@@ -237,8 +269,8 @@
         .calendar-time__inner {
             .button {
                 &.spinner-button-minus {
-                    border-left: 1px solid @borderColor;
-                    border-right: 1px solid @borderColor;
+                    border-left: 1px solid var(--calendar-border-color);
+                    border-right: 1px solid var(--calendar-border-color);
                 }
             }
 
@@ -299,7 +331,7 @@
                 cursor: pointer;
 
                 &:hover {
-                    border-color: @borderColor;
+                    border-color: var(--calendar-border-color);
                 }
             }
         }
@@ -309,7 +341,7 @@
         }
 
         .calendar-toolbar {
-            border-bottom: 1px solid @borderColor;
+            border-bottom: 1px solid var(--calendar-border-color);
         }
     }
 
@@ -355,7 +387,7 @@
         justify-content: flex-start;
         align-items: stretch;
         border-top: none;
-        border-left: 1px solid @borderColor;
+        border-left: 1px solid var(--calendar-border-color);
         width: 100px;
 
         * > {
@@ -402,7 +434,10 @@
 
 .calendar {
     .days .day, .months .month, .years .year {
-        border: 1px solid @light;
+        border: 1px solid transparent;
+        &:hover {
+            border: 1px solid var(--calendar-border-color);
+        }
     }
 }
 

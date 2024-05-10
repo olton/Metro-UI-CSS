@@ -1,4 +1,3 @@
-/* global Metro, Datetime, datetime, METRO_LOCALE, METRO_WEEK_START, METRO_DATE_FORMAT, Cake */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -19,10 +18,10 @@
         calendarDeferred: 0,
         dayBorder: false,
         excludeDay: null,
-        prevMonthIcon: "<span class='default-icon-chevron-left'></span>",
-        nextMonthIcon: "<span class='default-icon-chevron-right'></span>",
-        prevYearIcon: "<span class='default-icon-chevron-left'></span>",
-        nextYearIcon: "<span class='default-icon-chevron-right'></span>",
+        prevMonthIcon: "〈",
+        nextMonthIcon: "〉",
+        prevYearIcon: "〈",
+        nextYearIcon: "〉",
         compact: false,
         wide: false,
         widePoint: null,

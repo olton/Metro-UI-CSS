@@ -246,7 +246,7 @@ mark {
 
 del {
     color: var(--body-color-secondary);
-    text-decoration: overline;
+    text-decoration: line-through;
 }
 
 * + p {
@@ -509,4 +509,8 @@ each(@mediaBreakpointListMobile, .(@m) {
     word-break: break-word;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+.error {
+    text-decoration: underline wavy red;
 }

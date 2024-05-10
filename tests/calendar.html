@@ -14,6 +14,13 @@
     </style>
 </head>
 <body class="m4-cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Calendar</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+
 <div class="container">
     <h1>Calendar test page</h1>
 
@@ -23,7 +30,16 @@
              data-animation-content="true"
              data-locale="en-US"
              data-week-start="0"
+             data-exclude="2024-05-21"
+        ></div>
+
+        <div data-role="calendar" class="calendar-wide"
+             data-animation-speed="20"
+             data-animation-content="true"
+             data-locale="en-US"
+             data-week-start="0"
              data-cls-today-button="success"
+             data-show-time="true"
         ></div>
 
 <!--        <div data-role="calendar"-->

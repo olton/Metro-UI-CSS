@@ -10,6 +10,8 @@
 + [x] Added component `theme-switcher`
 + [x] Update common css for themes
 + [x] Update accordion for themes
++ [x] Update calendar for themes
++ [x] Added class `error`
 
 
 ### 5.0.3

@@ -2,8 +2,8 @@
     'use strict';
 
     var STATE = {
-        LIGHT: 1,
-        DARK: -1,
+        LIGHT: "light",
+        DARK: "dark",
     }
 
     var ThemeSwitcherDefaultConfig = {
