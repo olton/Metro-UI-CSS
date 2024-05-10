@@ -1,6 +1,18 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --card-background: #ffffff;
+    --card-color: #191919;
+    --card-avatar-border-color: #ffffff;
+}
+
+.dark-side, .theme-dark {
+    --card-background: #2b2d30;
+    --card-color: #dbdfe7;
+    --card-avatar-border-color: #414245;
+}
+
 .card {
     display: block;
     position: relative;
@@ -8,12 +20,13 @@
     width: ~"calc(100% - 1rem)";
     margin: 8px auto;
     border-radius: 2px;
-    border: 1px solid @borderColor;
-    background-color: @white;
+    border: 1px solid var(--border-color);
+    background-color: var(--card-background);
+    color: var(--card-color);
 }
 
 .card-header {
-    border-bottom: 1px #eee solid;
+    border-bottom: 1px var(--border-color) solid;
     padding: 1rem;
     font-size: 16px;
     border-radius: 2px 2px 0 0;
@@ -38,7 +51,7 @@
         margin-left: 3.375rem;
         font-size: .8125rem;
         font-weight: 500;
-        color: @gray;
+        color: var(--body-color-secondary);
     }
 }
 
@@ -47,7 +60,7 @@
 }
 
 .card-footer {
-    border-top: 1px #eee solid;
+    border-top: 1px var(--border-color) solid;
     padding: 1rem;
     border-radius: 0 0 2px 2px;
     display: flex;
@@ -70,7 +83,7 @@
 
             .avatar {
                 border-radius: 50%;
-                border: 2px solid @white;
+                border: 2px solid var(--card-avatar-border-color);
             }
         }
     }

@@ -13,6 +13,7 @@
 + [x] Update `calendar` for themes
 + [x] Update `button-group` for themes
 + [x] Update `checkbox` for themes
++ [x] Update `cards` for themes
 + [x] Added class `error`
 + [x] Updated `breadcrumbs default`, added new style `breadcrumbs arrow`
 
