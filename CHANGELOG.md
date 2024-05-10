@@ -8,10 +8,12 @@
 + [x] Improved `panel`, added `dark`, `light` themes
 + [x] `expand-button` renamed to `transofrm-button`, added new states `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right` 
 + [x] Added component `theme-switcher`
-+ [x] Update common css for themes
-+ [x] Update accordion for themes
-+ [x] Update calendar for themes
++ [x] Update `common css` for themes
++ [x] Update `accordion` for themes
++ [x] Update `calendar` for themes
++ [x] Update `button-group` for themes
 + [x] Added class `error`
++ [x] Updated `breadcrumbs default`, added new style `breadcrumbs arrow`
 
 
 ### 5.0.3

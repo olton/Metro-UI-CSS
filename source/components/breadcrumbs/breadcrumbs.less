@@ -1,71 +1,179 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --breadcrumbs-background: #ffffff;
+    --breadcrumbs-color: #191919;
+    --breadcrumbs-background-hover: #ffffff;
+    --breadcrumbs-color-hover: #000000;
+}
+
+.dark-side, .theme-dark {
+    --breadcrumbs-background: #1e1f22;
+    --breadcrumbs-color: #dbdfe7;
+    --breadcrumbs-background-hover: #1e1f22;
+    --breadcrumbs-color-hover: #ffffff;
+}
+
 .breadcrumbs {
+    &.default {
+        margin: 0;
+        padding: 0;
+        list-style: none inside;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        background-color: var(--breadcrumbs-background);
+        color: var(--breadcrumbs-color);
 
-    margin-bottom: 1rem;
-    margin-left: 0;
-    padding: 0;
-    list-style: none inside;
-    display: flex;
-    flex-wrap: nowrap;
-    align-items: center;
-    background-color: @white;
-    color: lighten(@dark, 30%);
+        li {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            background-color: inherit;
+            color: inherit;
+            margin: 4px;
 
-    .page-item, .breadcrumb-item {
-        position: relative;
-        cursor: pointer;
-        display: list-item;
-        background-color: inherit;
-        color: inherit;
-        transition: @transition-short;
-        margin: 4px;
-    }
+            &::after {
+                content: "›";
+                z-index: 3;
+                position: absolute;
+                left: 100%;
+                top: -4px;
+                font-size: 1.4em;
+            }
+        }
 
-    .page-item + .page-item, .breadcrumb-item + .breadcrumb-item {
-        &::before, &::after {
+        a {
+            cursor: pointer;
             display: block;
-            position: absolute;
-            vertical-align: middle;
-            color: transparent;
-            font-size: 0;
-            content: "";
-            height: 1px;
-            width: .375rem;
-            background-color: @dark;
-            top: 50%;
-            left: 0;
-            margin-left: -.5rem;
+            position: relative;
+            padding: .5rem .75rem;
+            line-height: 1;
+            font-size: 14px;
+            text-decoration: none;
+            color: inherit;
+            background-color: transparent;
         }
 
-        &::before {
-            transform: rotate(45deg);
-            margin-top: -.125rem;
+        a:hover{
+            background-color: var(--breadcrumbs-background-hover);
+            color: var(--breadcrumbs-color-hover);
+            text-decoration: none;
         }
 
-        &::after {
-            transform: rotate(-45deg);
-            margin-top: .125rem;
+        li:last-child a {
+            font-weight: bold;
         }
     }
+}
 
-    .page-link, .page-item a, .breadcrumb-item a {
-        display: block;
-        position: relative;
-        padding: .5rem .75rem;
-        line-height: 1;
-        font-size: 1rem;
-        text-decoration: none;
-        color: inherit;
-        background-color: transparent;
-    }
+:root {
+    --breadcrumbs-arrow-item-background: #f7f8fa;
+    --breadcrumbs-arrow-item-background-active: #468cff;
+    --breadcrumbs-arrow-item-color-active: #ffffff;
+    --breadcrumbs-arrow-item-color: #191919;
+    --breadcrumbs-arrow-border-color: #e8e8e8;
+    --breadcrumbs-arrow-item-shadow: rgba(133, 133, 133, 0.1);
+}
 
-    .page-link:hover,  .page-item a:hover, .breadcrumb-item a:hover{
-        color: @dark;
-    }
+.dark-side, .theme-dark {
+    --breadcrumbs-arrow-item-background: #2b2d30;
+    --breadcrumbs-arrow-item-background-active: #ffc351;
+    --breadcrumbs-arrow-item-color-active: #000;
+    --breadcrumbs-arrow-item-color: #ffffff;
+    --breadcrumbs-arrow-border-color: #4a4d51;
+    --breadcrumbs-arrow-item-shadow: rgba(255, 255, 255, 0.1);
+}
 
-    .page-item:last-child, .breadcrumb-item:last-child {
-        font-weight: bold;
+.breadcrumbs {
+    &.arrow {
+        display: inline-flex;
+        flex-flow: row nowrap;
+        overflow: hidden;
+        border-radius: var(--border-radius);
+        counter-reset: flag;
+        border: 1px solid var(--breadcrumbs-arrow-border-color);
+
+        li {
+            display: block;
+        }
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            line-height: 36px;
+            background: var(--breadcrumbs-arrow-item-background);
+            color: var(--breadcrumbs-arrow-item-color);
+            padding: 0 10px 0 60px;
+            position: relative;
+            height: 36px;
+            text-decoration: none;
+
+            &::before {
+                content: counter(flag);
+                counter-increment: flag;
+                border-radius: 50%;
+                border: 1px solid var(--border-color);
+                width: 26px;
+                height: 26px;
+                line-height: 26px;
+                margin: 8px 0;
+                position: absolute;
+                top: -3px;
+                left: 27px;
+                background: var(--breadcrumbs-arrow-item-background);
+                font-weight: bold;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                right: -18px;
+                width: 36px;
+                height: 36px;
+                transform: scale(0.707) rotate(45deg);
+                z-index: 1;
+                box-shadow: 1px -1px 0 1px var(--breadcrumbs-arrow-item-shadow);
+                border-radius: 0 5px 0 50px;
+                background: var(--breadcrumbs-arrow-item-background);
+                color: var(--breadcrumbs-arrow-item-color);
+            }
+        }
+
+        li:first-child a {
+            padding-left: 46px;
+            border-radius: 5px 0 0 5px;
+            &::before {
+                left: 14px;
+            }
+        }
+
+        li:last-child a {
+            border-radius: 0 5px 5px 0;
+            padding-right: 20px;
+            &:after {
+                display: none;
+            }
+        }
+
+        li.active a, li:hover a {
+            background: var(--breadcrumbs-arrow-item-background-active);
+            color: var(--breadcrumbs-arrow-item-color-active);
+            &::before {
+                color: var(--breadcrumbs-arrow-item-color);
+            }
+            &::after {
+                background: var(--breadcrumbs-arrow-item-background-active);
+                box-shadow: 1px -1px 0 1px rgba(255, 255, 255, 0.4);
+            }
+        }
     }
 }

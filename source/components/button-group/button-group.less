@@ -1,9 +1,19 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --button-group-active-background: #989898;
+    --button-group-active-color: #fff;
+}
+
+.dark-side, .theme-dark {
+    --button-group-active-background: #1a1f23;
+    --button-group-active-color: #fff;
+}
+
 .button-group {
     .active {
-        background-color: @darkGray;
-        color: @white;
+        background-color: var(--button-group-active-background);
+        color: var(--button-group-active-color);
     }
 }

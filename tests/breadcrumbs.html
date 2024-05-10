@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Breadcrumbs - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+    <style>
+        .calendar {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Breadcrumbs</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+
+<div class="container">
+    <h1>Breadcrumbs test page</h1>
+    <ul class="breadcrumbs default">
+        <li><a href="#"><span class="mif-home"></span></a></li>
+        <li><a href="#">Item 2</a></li>
+        <li><a href="#">Item 3</a></li>
+        <li><a href="#">Item 4</a></li>
+    </ul>
+    <ul class="breadcrumbs arrow">
+        <li><a href="#"><span class="mif-home"></span></a></li>
+        <li><a href="#">Item 2</a></li>
+        <li class="active"><a href="#">Item 3</a></li>
+        <li><a href="#">Item 4</a></li>
+    </ul>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+</script>
+</body>
+</html>
