@@ -3,7 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
 
-    var CHECKBOX_STATE = {
+    globalThis.CHECKBOX_STATE = {
         CHECKED: 1,
         UNCHECKED: -1,
         INDETERMINATE: 0,
@@ -104,6 +104,10 @@
             caption.addClass(o.clsCaption);
             check.addClass(o.clsCheck);
 
+            if (this.elem.checked && this.state !== CHECKBOX_STATE.INDETERMINATE) {
+                this.state = true
+            }
+
             this._drawState()
 
             if (element.is(':disabled')) {
@@ -114,16 +118,14 @@
         },
 
         _drawState: function(){
-            var element = this.element;
+            var elem = this.elem;
 
-            element[0].checked = false;
             this._indeterminate(false)
 
-            if (this.state === CHECKBOX_STATE_INDETERMINATE) {
-                element[0].checked = true;
+            elem.checked = this.state !== CHECKBOX_STATE.UNCHECKED;
+
+            if (this.state === CHECKBOX_STATE.INDETERMINATE) {
                 this._indeterminate(true)
-            } else if (this.state === CHECKBOX_STATE_CHECKED) {
-                element[0].checked = true;
             }
         },
 
@@ -150,24 +152,24 @@
         },
 
         check: function(){
-            this.setCheckState(CHECKBOX_STATE_CHECKED)
+            this.setCheckState(CHECKBOX_STATE.CHECKED)
         },
 
         uncheck: function(){
-            this.setCheckState(CHECKBOX_STATE_UNCHECKED)
+            this.setCheckState(CHECKBOX_STATE.UNCHECKED)
         },
 
         indeterminate: function(){
-            this.setCheckState(CHECKBOX_STATE_INDETERMINATE)
+            this.setCheckState(CHECKBOX_STATE.INDETERMINATE)
         },
 
         setCheckState: function(state){
             if (state === -1 || state === "unchecked") {
-                this.state = CHECKBOX_STATE_UNCHECKED
+                this.state = CHECKBOX_STATE.UNCHECKED
             } else if (state === 0 || state === "indeterminate") {
-                this.state = CHECKBOX_STATE_INDETERMINATE
+                this.state = CHECKBOX_STATE.INDETERMINATE
             } else {
-                this.state = CHECKBOX_STATE_CHECKED
+                this.state = CHECKBOX_STATE.CHECKED
             }
 
             this._drawState();
