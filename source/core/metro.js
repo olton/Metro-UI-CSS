@@ -634,7 +634,7 @@
                 _fireEvent: function(eventName, data, log, noFire, context = null){
                     var element = this.element, o = this.options;
                     var _data;
-                    var event = $.camelCase(eventName).capitalize();
+                    var event = str(eventName).camelCase().capitalize(false).value;
 
                     data = $.extend({}, data, {__this: element[0]});
 

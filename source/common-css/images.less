@@ -1,6 +1,16 @@
 @import (once) "../include/vars";
 @import (once) "../include/mixins";
 
+:root {
+    --thumb-background: rgba(255,255,255,.8);
+    --img-overlay-background: rgba(70, 140, 255, .7);
+    --img-overlay-color: #ffffff;
+}
+
+.dark-side, .theme-dark {
+    --thumb-background: rgba(0,0,0,.8);
+}
+
 .img-container, .img-fluid, .img-thumbnail {
     width: 100%;
     max-width: 100%;
@@ -8,16 +18,16 @@
     display: block;
     position: relative;
     vertical-align: middle;
-    background-color: @transparent;
+    background-color: transparent;
     transition: @transition-base;
     overflow: visible;
 }
 
 .img-thumbnail {
     padding: .25rem;
-    border: 1px solid @borderColor;
-    border-radius: @borderRadius;
-    background-color: @white;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+    background-color: var(--thumb-background);
 }
 
 .img-container {
@@ -41,14 +51,14 @@
         font-size: .875rem;
         line-height: 1rem;
         padding: 2em;
-        background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), .7);
-        color: @white;
+        background-color: var(--img-overlay-background);
+        color: var(--img-overlay-color);
         text-align: center;
         border-radius: inherit;
         transition: @transition-base;
 
         * {
-            color: @white;
+            color: inherit;
         }
 
         &:hover {
@@ -64,7 +74,7 @@
             display: block;
             position: absolute;
             content: "";
-            border: 1px solid rgba(255, 255, 255, 0.7);
+            border: 1px solid var(--border-color);
             top: 1em;
             bottom: 1em;
             left: 1em;
@@ -92,15 +102,14 @@
 
     &.rounded {
         img {
-            border-radius: @borderRadius;
+            border-radius: var(--border-radius);
         }
     }
 
     &.thumbnail {
         padding: .25rem;
-        border: 1px solid @borderColor;
-        //border-radius: @borderRadius;
-        background-color: @white;
+        border: 1px solid var(--border-color);
+        background-color: var(--thumb-background);
 
         .title {
             font-size: .9rem;
@@ -132,7 +141,7 @@ figure {
         display: block;
         position: relative;
         vertical-align: middle;
-        background-color: @transparent;
+        background-color: transparent;
         transition: @transition-base;
     }
 }

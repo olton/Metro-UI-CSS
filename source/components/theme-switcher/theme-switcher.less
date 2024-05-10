@@ -1,0 +1,110 @@
+@import (once) "../../include/mixins";
+
+.theme-switcher {
+    display: inline-flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    margin: 0;
+    user-select: none;
+    cursor: pointer;
+    height: 36px;
+
+    .hideElement(input);
+
+    .check {
+        line-height: 38px;
+        font-size: 14px;
+        margin: 0 4px;
+        position: relative;
+        height: 20px;
+        width: 48px;
+        border: 2px @dark solid;
+        cursor: pointer;
+        background: @transparent;
+        z-index: 1;
+        display: inline-block;
+        vertical-align: middle;
+        border-radius: (1.125rem / 2);
+        flex-shrink: 0;
+    }
+
+    .check {
+        &::before {
+            content: "☾"; // dark
+            display: block;
+            position: absolute;
+            color: inherit;
+            left: 16px;
+            width: 26px;
+            top: -2px;
+            line-height: 20px;
+            font-size: 10px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+    }
+
+    .check {
+        &::after {
+            position: absolute;
+            left: 3px;
+            display: block;
+            content: "";
+            height: 12px;
+            width: 12px;
+            top: 50%;
+            .translateY(-50%);
+            border: 2px #333 solid;
+            cursor: pointer;
+            background: #333;
+            z-index: 2;
+            border-radius: 50%;
+        }
+    }
+
+    input[type="checkbox"]:indeterminate ~ .check {
+        &::after {
+            background-color: @gray;
+            border-color: @gray;
+            left: auto;
+            .translateX(18px);
+            .translateY(-50%);
+        }
+        &::before {
+            content: "";
+        }
+    }
+
+    input[type="checkbox"]:checked ~ .check {
+        background: @dark;
+        border-color: @dark;
+        color: @dark;
+        &::after {
+            background-color: @white;
+            border-color: @white;
+            left: auto;
+            .translateX(30px);
+            .translateY(-50%);
+        }
+        &::before {
+            content: "☼"; // light
+            color: @white;
+            left: 1px;
+        }
+    }
+
+    input[type="checkbox"]:disabled ~ .check {
+        background-color: @disabledBackground;
+        border-color: @disabledBackground;
+        &::after {
+            background-color: darken(@disabledBackground, 10%);
+            border-color: darken(@disabledBackground, 10%);
+        }
+        &::before {
+            display: none;
+        }
+    }
+}
+

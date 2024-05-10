@@ -1,6 +1,14 @@
 @import (once) "../include/vars";
 @import (once) "../include/mixins";
 
+:root {
+    --step-list-number-color: #75757500;
+}
+
+.dark-side, .theme-dark {
+    --step-list-number-color: #ffedbc;
+}
+
 .step-list {
     margin: 0 0 0 3em;
     padding: 0;
@@ -8,7 +16,7 @@
     counter-reset:li;
 
     & > li {
-        border-left: 1px #ccc solid;
+        border-left: 1px var(--border-color) solid;
         position: relative;
         padding: 0 .625rem;
         margin: .625rem;
@@ -20,7 +28,7 @@
         content:counter(li);
         counter-increment:li;
         font-size: 2rem;
-        color: @lightGray;
+        color: var(--step-list-number-color);
         left: 0;
         top: .3125rem;
         margin-left: -2em;
@@ -108,11 +116,11 @@
     }
 
     .item + .item {
-        border-top: 1px @borderColor solid;
+        border-top: 1px var(--border-color) solid;
     }
 
     & > li + li {
-        border-top: 1px @borderColor solid;
+        border-top: 1px var(--border-color) solid;
     }
 }
 
@@ -133,7 +141,7 @@
     }
 
     .title + .item, .title + li, li + .title {
-        border-top: 1px @transparent solid;
+        border-top: 1px transparent solid;
     }
 
     .item, & > li {
@@ -181,7 +189,7 @@
     position: relative;
     display: block;
     list-style: none inside;
-    border: 1px solid @borderColor;
+    border: 1px solid var(--border-color);
 
     .item, & > li {
         display: block;
@@ -190,7 +198,7 @@
     }
 
     .item + .item,  & > li + li {
-        border-top: 1px solid @borderColor;
+        border-top: 1px solid var(--border-color);
     }
 
     &.horizontal {
@@ -204,7 +212,7 @@
 
         .item + .item,  & > li + li {
             border-top: none;
-            border-left: 1px solid @borderColor;
+            border-left: 1px solid var(--border-color);
         }
 
     }

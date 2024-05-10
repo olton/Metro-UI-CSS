@@ -7,6 +7,9 @@
 + [x] Improved `collapse` components
 + [x] Improved `panel`, added `dark`, `light` themes
 + [x] `expand-button` renamed to `transofrm-button`, added new states `left`, `right`, `top`, `bottom`, `top-left`, `top-right`, `bottom-left`, `bottom-right` 
++ [x] Added component `theme-switcher`
++ [x] Update common css for themes
+
 
 ### 5.0.3
 + [x] Improved counter with `useEffect`

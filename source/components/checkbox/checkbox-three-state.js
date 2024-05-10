@@ -2,12 +2,16 @@
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
-    var CHECKBOX_STATE_CHECKED = 1
-    var CHECKBOX_STATE_UNCHECKED = -1
-    var CHECKBOX_STATE_INDETERMINATE = 0
+
+    var CHECKBOX_STATE = {
+        CHECKED: 1,
+        UNCHECKED: -1,
+        INDETERMINATE: 0,
+    }
+
     var CheckboxThreeStateDefaultConfig = {
         checkboxDeferred: 0,
-        state: CHECKBOX_STATE_UNCHECKED,
+        state: CHECKBOX_STATE.UNCHECKED,
         transition: true,
         style: 1,
         caption: "",
@@ -32,7 +36,7 @@
                 origin: {
                     className: ""
                 },
-                state: CHECKBOX_STATE_UNCHECKED
+                state: CHECKBOX_STATE.UNCHECKED
             });
 
             return this;
@@ -41,17 +45,12 @@
         _create: function(){
             var o = this.options;
 
-            if (this.elem.checked) {
-                o.state = 1;
-            }
-            this.elem.checked = false;
-
-            if (o.state === -1 || o.state === "unchecked") {
-                this.state = CHECKBOX_STATE_UNCHECKED
+            if (o.state === CHECKBOX_STATE.UNCHECKED || o.state === "unchecked") {
+                this.state = CHECKBOX_STATE.UNCHECKED
             } else if (o.state === 0 || o.state === "indeterminate") {
-                this.state = CHECKBOX_STATE_INDETERMINATE
+                this.state = CHECKBOX_STATE.INDETERMINATE
             } else {
-                this.state = CHECKBOX_STATE_CHECKED
+                this.state = CHECKBOX_STATE.CHECKED
             }
 
             this._createStructure();

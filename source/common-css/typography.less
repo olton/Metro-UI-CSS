@@ -1,6 +1,16 @@
 @import (once) "../include/vars";
 @import (once) "../include/mixins";
 
+:root {
+    --kbd-background: #004d6f;
+    --kbd-color: #fff;
+}
+
+.dark-side, .theme-dark {
+    --kbd-background: #004d6f;
+    --kbd-color: #fff;
+}
+
 .text {
     &-ultralight {
         font-weight: 100 !important;
@@ -43,10 +53,6 @@
     margin-top: 20px;
     margin-bottom: 20px;
     line-height: 1;
-}
-
-.display4, .display3, .display2, .display1 {
-    color: lighten(@black, 46%);
 }
 
 .leader, .h1, h1 {
@@ -95,7 +101,7 @@
 }
 
 .text-muted {
-    color: @gray;
+    color: var(--body-color-secondary);
 }
 
 .leader, .h1, h1,
@@ -112,7 +118,7 @@
         font-weight: 400;
         font-size: .7em;
         line-height: 1;
-        color: #777;
+        color: var(--body-color-secondary);
     }
 
     &:nth-child(1) {
@@ -151,7 +157,7 @@
 
 abbr {
     text-decoration: none;
-    border-bottom: 1px @gray dotted;
+    border-bottom: 1px var(--border-color) dotted;
     cursor: help;
     display: inline;
 }
@@ -234,12 +240,13 @@ a:not([class]):not([href]):not([tabindex]) {
 
 mark {
     .px2rem(padding, 3px);
-    background-color: rgb(252, 248, 227);
-    color: #000000;
+    background-color: var(--body-mark-background);
+    color: var(--body-mark-color);
 }
 
 del {
-    color: @gray;
+    color: var(--body-color-secondary);
+    text-decoration: overline;
 }
 
 * + p {
@@ -338,10 +345,10 @@ dl {
 blockquote {
     margin-bottom: 1rem;
     padding: 0 0 0 .625rem;
-    border-left: .25rem @light solid;
+    border-left: .25rem var(--border-color) solid;
 
     small {
-        color: @gray;
+        color: var(--body-color-secondary);
 
         &:before {
             content: "\2014 \00A0";
@@ -350,7 +357,7 @@ blockquote {
 
     &.right-side {
         border: 0;
-        border-right: 4px @light solid;
+        border-right: 4px var(--border-color) solid;
         padding-right: .625rem;
         text-align: right;
 
@@ -368,7 +375,7 @@ blockquote {
 hr {
     border: 0;
     height: 2px;
-    background-color: @light;
+    background-color: var(--border-color);
 
     &.thin {
         height: 1px;
@@ -384,8 +391,8 @@ hr {
     padding: 0 6px;
     font-size: 90%;
     color: #bd4147;
-    background-color: #f8f9fa;
-    border-radius: @borderRadius;
+    background-color: var(--body-mark-background);
+    border-radius: 4px;
     line-height: 20px;
     vertical-align: middle;
     height: 20px;
@@ -403,7 +410,6 @@ kbd {
 
 .tally {
     line-height: 16px;
-    background-color: darken(#f8f9fa, 5%);
 }
 
 pre code {
@@ -414,8 +420,8 @@ pre code {
 .remark {
     display: block;
     position: relative;
-    border: 1px solid @borderColor;
-    border-left: 4px solid @borderColor;
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--border-color);
     padding: 1rem;
     .px2rem(font-size, 14px);
     margin: 1rem 0;

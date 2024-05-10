@@ -1,17 +1,27 @@
 @import (once) "../include/vars";
 @import (once) "../include/mixins";
 
+:root {
+    --overlay-color: rgba(255,255,255, .5);
+    --splash-color: rgba(255,255,255, 1);
+}
+
+.dark-side, .theme-dark {
+    --overlay-color: rgba(0,0,0, .5);
+    --splash-color: rgba(0,0,0, 1);
+}
+
 .overlay {
     position: fixed;
     left: 0;
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255,255,255, .5);
+    background-color: var(--overlay-color);
     z-index: @zindex-modal-backdrop;
 
     &.transparent {
-        background-color: rgba(255,255,255, 0);
+        background-color: rgba(255,255,255, 0) !important;
     }
 }
 
@@ -29,7 +39,7 @@
     justify-content: center;
     align-items: center;
     z-index: @zindex-fullscreen;
-    background: @white;
+    background: var(--splash-color);
     position: fixed;
     top: 0;
     left: 0;
