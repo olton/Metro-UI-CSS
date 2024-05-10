@@ -1,6 +1,14 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+
+}
+
+.dark-side, .theme-dark {
+
+}
+
 .input {
     display: flex;
     flex-flow: row nowrap;
@@ -15,7 +23,7 @@
     }
 
     &.focused {
-        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+        box-shadow: 0 0 0 3px var(--input-box-shadow);
     }
 
     input {
@@ -26,6 +34,8 @@
         flex-basis: 0;
         height: 34px;
         padding: 0 .75rem;
+        background-color: transparent;
+        color: inherit;
 
         &:focus {
             box-shadow: none;
@@ -39,20 +49,23 @@
 
     .button {
         background-color: transparent;
-        color: @dark;
+        border-color: transparent;
+        color: var(--input-color);
         height: 34px;
         min-width: 34px;
         &:focus, &:active {
             box-shadow: none!important;
         }
         &:hover {
-            background-color: @light;
+            //background-color: @light;
             text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
         }
     }
 
     .input-clear-button, .input-reveal-button, .input-search-button {
+        font-family: "Segoe UI Symbol", serif;
         background-color: transparent;
+        font-size: 18px;
         &:hover {
             background-color: transparent;
         }
@@ -60,8 +73,8 @@
 
     &.disabled .button-group {
         button {
-            background-color: @light;
-            color: darken(@light, 10%);
+            background-color: transparent;
+            color: var(--input-disabled-color);
         }
     }
 

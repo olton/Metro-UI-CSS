@@ -6,39 +6,42 @@
     <link href="../lib/metro.css" rel="stylesheet">
 
     <title>Test Input - Metro 4 :: Popular HTML, CSS and JS library</title>
-
+    <style>
+        .example {
+            width: 300px;
+            margin: 10px;
+        }
+    </style>
 </head>
 <body class="m4-cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Inputs</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="light"/>
+    </div>
+</nav>
 <div class="container">
     <h1>Input test page</h1>
+    <div class="row">
+        <div class="example">
+            <input type="text" placeholder="Enter your name" class="metro-input">
+        </div>
 
-    <div>
-<!--        <input type="text" data-role="input">-->
+        <div class="example">
+            <input type="text" placeholder="Enter your name" data-role="input">
+        </div>
+
+        <div class="example">
+            <input type="password" placeholder="Enter password" data-role="input">
+        </div>
+
+        <div class="example">
+            <input type="text" placeholder="Enter search" data-role="input" data-search-button="true">
+        </div>
+
     </div>
-
-    <br>
-
-    <div>
-<!--        <input id="autocomplete" type="text" data-role="input" data-autocomplete="Ukraine, USA, Canada, Marokko, Singapur">-->
-        <input type="text" data-role="input" data-autocomplete-url="../data/autocomplete.json">
-<!--        <input type="text" data-role="input" data-autocomplete-url="../data/autocomplete.txt">-->
-<!--        <input type="text" data-role="input" data-autocomplete-url="../data/autocomplete-key.json" data-autocomplete-url-key="countries" data-label="Autocomplete json">-->
-    </div>
-
-    <br>
-
-    <div>
-<!--        <input type="text" data-role="input" data-label="Your name" id="user_name">-->
-<!--        <input type="text" data-role="input" data-label="اسمك" id="user_name_rtl" dir="rtl">-->
-    </div>
-
 </div>
 
 <script src="../lib/metro.js"></script>
-<script>
-    $("#autocomplete").on("autocomplete-select", function(e){
-        console.log(e.detail.value);
-    })
-</script>
 </body>
 </html>

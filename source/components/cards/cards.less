@@ -2,14 +2,18 @@
 @import (once) "../../include/mixins";
 
 :root {
-    --card-background: #ffffff;
+    --card-background: #fbfbfb;
+    --card-background-content: #ffffff;
     --card-color: #191919;
+    --card-color-content: #191919;
     --card-avatar-border-color: #ffffff;
 }
 
 .dark-side, .theme-dark {
     --card-background: #2b2d30;
+    --card-background-content: #26272b;
     --card-color: #dbdfe7;
+    --card-color-content: #dbdfe7;
     --card-avatar-border-color: #414245;
 }
 
@@ -57,6 +61,8 @@
 
 .card-content {
     display: block;
+    background-color: var(--card-background-content);
+    color: var(--card-color-content);
 }
 
 .card-footer {

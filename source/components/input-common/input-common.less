@@ -1,6 +1,37 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --input-background: #ffffff;
+    --input-background-disabled: #f7f8fa;
+    --input-color-disabled: #c9ccd6;
+    --input-border-color: #c9ccd6;
+    --input-border-color-hover: #adb0b8;
+    --input-color: #161316;
+    --input-box-shadow: rgba(201, 204, 214, 0.42);
+    --input-prepend-background: #f8f8f8;
+    --input-prepend-color: #191919;
+    --input-append-background: #f8f8f8;
+    --input-append-color: #191919;
+    --input-required-color: #468cff;
+    --input-invalid-color: #ad2a14;
+    --input-valid-color: #4cad14;
+}
+
+.dark-side, .theme-dark {
+    --input-background: #2b2d30;
+    --input-background-disabled: #2b2d30;
+    --input-color-disabled: #333437;
+    --input-border-color: #4e5157;
+    --input-border-color-hover: #71757e;
+    --input-color: #dfe1e5;
+    --input-box-shadow: rgba(78, 81, 87, 0.43);
+    --input-prepend-background: #4e5157;
+    --input-prepend-color: #71757e;
+    --input-append-background: #4e5157;
+    --input-append-color: #71757e;
+}
+
 .metro-input,
 .file,
 .input,
@@ -11,16 +42,15 @@
 .color-picker
 {
     position: relative;
-    border: 1px @inputBorder solid;
-    color: @dark;
+    border: 1px var(--input-border-color) solid;
+    color: var(--input-color);
     width: 100%;
     font-size: 16px;
     height: 36px;
     line-height: 36px;
-    background: @white none;
+    background: var(--input-background) none;
     background-clip: padding-box;
     min-width: 0;
-    //box-sizing: border-box;
 
     input {
         appearance: none;
@@ -50,7 +80,7 @@
     }
 
     &:hover {
-        border-color: darken(@inputBorder, 10%);
+        border-color: var(--input-border-color-hover);
     }
 
     .input-clear-button, .input-reveal-button {
@@ -69,39 +99,40 @@
     }
 
     &:focus, &.focused {
-        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+        box-shadow: 0 0 0 3px var(--input-box-shadow);
     }
 
     &:disabled, &.disabled {
         pointer-events: none;
-        border-color: darken(@light, 5%);
-        background-color: @disabledBackground;
+        border-color: var(--input-border-color);
+        background-color: var(--input-background-disabled);
+        color: var(--input-color-disabled);
     }
 
     &.hide-cursor {
         input {
             color: transparent;
-            text-shadow: 0 0 0 @dark;
+            text-shadow: 0 0 0 var(--input-background);
         }
     }
 
     &.required {
-        border: 1px @cyan dashed !important;
+        border: 1px var(--input-required-color) dashed !important;
         &:focus, &.focused {
-            box-shadow: 0 0 0 3px rgba(red(@cyan), green(@cyan), blue(@cyan), 0.45)!important;
+            box-shadow: 0 0 0 3px var(--input-required-color)!important;
         }
     }
 
     &.invalid {
-        border: 1px @red solid !important;
+        border: 1px var(--input-invalid-color) solid !important;
         &:focus, &.focused {
-            box-shadow: 0 0 0 3px rgba(red(@red), green(@red), blue(@red), 0.45)!important;
+            box-shadow: 0 0 0 3px var(--input-invalid-color)!important;
         }
 
         &::after {
             position: absolute;
             content: attr(data-exclaim);
-            color: @red;
+            color: var(--input-invalid-color);
             left: -16px;
             top: 0;
             font-size: 1.625rem;
@@ -110,11 +141,15 @@
     }
 
     &.valid {
-        border: 1px @green solid !important;
+        border: 1px var(--input-valid-color) solid !important;
         &:focus, &.focused {
-            box-shadow: 0 0 0 3px rgba(red(@green), green(@green), blue(@green), 0.45)!important;
+            box-shadow: 0 0 0 3px var(--input-valid-color)!important;
         }
     }
+}
+
+.metro-input {
+    padding: 0 8px;
 }
 
 textarea.metro-input {
@@ -129,10 +164,16 @@ input[type=button], input[type=submit], input[type=reset] {
 .file, .input, .select, .textarea, .tag-input, .spinner, .color-picker {
     .prepend, .append {
         padding: .5rem .75rem;
-        background-color: @light;
-        color: @dark;
         line-height: 1.25rem;
         white-space: nowrap;
+    }
+    .prepend {
+        background-color: var(--input-prepend-background);
+        color: var(--input-prepend-color);
+    }
+    .append {
+        background-color: var(--input-append-background);
+        color: var(--input-append-color);
     }
 }
 
@@ -149,7 +190,7 @@ input[type=button], input[type=submit], input[type=reset] {
     &:disabled, &.disabled {
         input, textarea, select, .select-input, .caption, .stars li {
             background: transparent;
-            color: @darkGray;
+            color: var(--input-color-disabled);
         }
 
         .button-group {
@@ -160,7 +201,7 @@ input[type=button], input[type=submit], input[type=reset] {
 
 .invalid_feedback {
     font-size: .9em;
-    color: @red;
+    color: var(--input-invalid-color);
 }
 
 .custom-validation {
@@ -168,7 +209,7 @@ input[type=button], input[type=submit], input[type=reset] {
     select[required],
     textarea[required] {
         &:valid {
-            border-color: @green;
+            border-color: var(--input-valid-color);
         }
 
         &:valid + .invalid_feedback {
@@ -176,7 +217,7 @@ input[type=button], input[type=submit], input[type=reset] {
         }
 
         &:invalid {
-            border-color: @red;
+            border-color: var(--input-invalid-color);
         }
 
         &:invalid + .invalid_feedback {
@@ -210,8 +251,8 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0 1000px white inset;
-    background-color: @white!important;
+    -webkit-box-shadow: 0 0 0 1000px var(--input-background) inset;
+    background-color: var(--input-background)!important;
     transition: background-color 5000s ease-in-out 0s;
 }
 
