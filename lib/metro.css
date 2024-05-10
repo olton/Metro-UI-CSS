@@ -36402,9 +36402,9 @@ code.light.outline:hover,
   --input-color: #dfe1e5;
   --input-box-shadow: rgba(78, 81, 87, 0.43);
   --input-prepend-background: #4e5157;
-  --input-prepend-color: #71757e;
+  --input-prepend-color: #bac1cf;
   --input-append-background: #4e5157;
-  --input-append-color: #71757e;
+  --input-append-color: #bac1cf;
 }
 .metro-input,
 .file,
@@ -36805,9 +36805,16 @@ input[type=reset] {
 .tag-input .append,
 .spinner .append,
 .color-picker .append {
-  padding: 0.5rem 0.75rem;
+  padding: 0 0.75rem;
   line-height: 1.25rem;
   white-space: nowrap;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
+  font-size: 14px;
 }
 .file .prepend,
 .input .prepend,
@@ -38072,6 +38079,19 @@ input:-ms-input-placeholder {
   margin-top: 4px;
 }
 
+:root {
+  --input-autocomplete-background: #ffffff;
+  --input-autocomplete-color: #191919;
+  --input-autocomplete-selected-color: #468cff;
+  --input-autocomplete-selected-background: transparent;
+}
+.dark-side,
+.theme-dark {
+  --input-autocomplete-background: #2b2d30;
+  --input-autocomplete-color: #dbdfe7;
+  --input-autocomplete-selected-color: #ffc351;
+  --input-autocomplete-selected-background: transparent;
+}
 .input {
   display: -webkit-box;
   display: flex;
@@ -38178,22 +38198,32 @@ input:-ms-input-placeholder {
   width: 100%;
   overflow: hidden;
   overflow-y: auto;
-  background-color: #ffffff;
+  background-color: var(--input-autocomplete-background);
+  color: var(--input-autocomplete-color);
   height: auto;
-  border: 1px solid #dfdfdf;
+  border: 1px solid var(--border-color);
   z-index: 3;
 }
 .input .autocomplete-list .item {
-  display: block;
+  display: -webkit-box;
+  display: flex;
   position: relative;
-  padding: 4px 8px;
+  padding: 0 8px;
   cursor: pointer;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+          justify-content: flex-start;
 }
 .input .autocomplete-list .item:hover {
   background-color: rgba(29, 29, 29, 0.1);
 }
 .input .autocomplete-list .item + .item {
-  border-top: 1px solid #dfdfdf;
+  border-top: 1px solid var(--border-color);
+}
+.input .autocomplete-list strong {
+  background: var(--input-autocomplete-selected-background);
+  color: var(--input-autocomplete-selected-color);
 }
 .input.input-large {
   height: 50px;

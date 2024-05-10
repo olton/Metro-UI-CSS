@@ -2,11 +2,17 @@
 @import (once) "../../include/mixins";
 
 :root {
-
+    --input-autocomplete-background: #ffffff;
+    --input-autocomplete-color: #191919;
+    --input-autocomplete-selected-color: #468cff;
+    --input-autocomplete-selected-background: transparent;
 }
 
 .dark-side, .theme-dark {
-
+    --input-autocomplete-background: #2b2d30;
+    --input-autocomplete-color: #dbdfe7;
+    --input-autocomplete-selected-color: #ffc351;
+    --input-autocomplete-selected-background: transparent;
 }
 
 .input {
@@ -101,16 +107,19 @@
         width: 100%;
         overflow: hidden;
         overflow-y: auto;
-        background-color: @white;
+        background-color: var(--input-autocomplete-background);
+        color: var(--input-autocomplete-color);
         height: auto;
-        border: 1px solid @borderColor;
+        border: 1px solid var(--border-color);
         z-index: 3;
 
         .item {
-            display: block;
+            display: flex;
             position: relative;
-            padding: 4px 8px;
+            padding: 0 8px;
             cursor: pointer;
+            align-items: center;
+            justify-content: flex-start;
 
             &:hover {
                 background-color: @hoverBackground;
@@ -118,7 +127,12 @@
         }
 
         .item + .item {
-            border-top: 1px solid @borderColor;
+            border-top: 1px solid var(--border-color);
+        }
+
+        strong {
+            background: var(--input-autocomplete-selected-background);
+            color: var(--input-autocomplete-selected-color);
         }
     }
 }
