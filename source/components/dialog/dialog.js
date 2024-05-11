@@ -123,7 +123,7 @@
 
             var closer = element.find("closer");
             if (closer.length === 0) {
-                closer = $("<span>").addClass("button square closer js-dialog-close");
+                closer = $("<span>").addClass("closer js-dialog-close");
                 closer.appendTo(element);
             }
             if (o.closeButton !== true) {

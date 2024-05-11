@@ -1,0 +1,23 @@
+.cloak, .m4-cloak {
+    opacity: 0!important;
+}
+
+.remove-cloak {
+    animation: kf-fadeIn 1s linear forwards
+}
+
+.add-cloak {
+    animation: kf-fadeOut 1s linear forwards
+}
+
+@keyframes kf-fadeIn {
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes kf-fadeOut {
+    100% {
+        opacity: 0;
+    }
+}

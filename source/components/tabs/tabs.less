@@ -3,7 +3,7 @@
 
 .tabs {
     position: relative;
-    border: 1px solid @borderColor;
+    border: 1px solid var(--border-color);
     transition: @transition-base;
     background-color: @white;
     color: @dark;
@@ -102,14 +102,14 @@
     &.vertical  > ul.tabs-list {
         flex-direction: column;
         border: none;
-        border-right: 1px solid @borderColor;
+        border-right: 1px solid var(--border-color);
         width: auto;
         height: 100%;
         justify-content: inherit;
 
         & > li {
             border: none;
-            border-right: 1px solid @borderColor;
+            border-right: 1px solid var(--border-color);
             margin: 0 -1px 0 0;
 
             & > a {
@@ -118,7 +118,7 @@
         }
 
         & > li.active {
-            border: 1px solid @borderColor;
+            border: 1px solid var(--border-color);
             border-right: none;
         }
     }
@@ -127,11 +127,11 @@
         &.right  > ul.tabs-list {
             //float: right;
             border: none;
-            border-left: 1px solid @borderColor;
+            border-left: 1px solid var(--border-color);
 
             & > li {
                 border: none;
-                border-left: 1px solid @borderColor;
+                border-left: 1px solid var(--border-color);
                 margin: 0 0 0 -1px;
 
                 & > a {
@@ -140,7 +140,7 @@
             }
 
             & > li.active {
-                border: 1px solid @borderColor;
+                border: 1px solid var(--border-color);
                 border-left: none;
             }
 
@@ -162,7 +162,7 @@
 
     & > ul.tabs-list {
         border: 0;
-        border-bottom: 1px solid @borderColor;
+        border-bottom: 1px solid var(--border-color);
         flex-direction: row;
         display: flex !important;
         margin-top: 0;
@@ -171,10 +171,10 @@
         overflow: visible;
 
         & > li {
-            border-bottom: 1px solid @borderColor;
+            border-bottom: 1px solid var(--border-color);
 
             &.active {
-                border: 1px solid @borderColor;
+                border: 1px solid var(--border-color);
                 border-bottom: none;
                 background-color: @white;
             }
@@ -189,14 +189,14 @@
     &.bottom {
         & > ul.tabs-list {
             border: none;
-            border-top: 1px solid @borderColor;
+            border-top: 1px solid var(--border-color);
 
             & > li {
                 border: none;
-                border-top: 1px solid @borderColor;
+                border-top: 1px solid var(--border-color);
 
                 &.active {
-                    border: 1px solid @borderColor;
+                    border: 1px solid var(--border-color);
                     border-top: none;
                 }
             }
@@ -249,7 +249,7 @@
         ul.tabs-group {
             justify-content: space-between;
             & > li {
-                border: 1px solid @borderColor;
+                border: 1px solid var(--border-color);
                 width: 100%;
                 &.active {
                     background: @lightGray;
@@ -266,7 +266,7 @@
 
                 &.active {
                     font-weight: 500;
-                    border-color: @borderColor;
+                    border-color: var(--border-color);
                     background: @lightGray;
                 }
             }

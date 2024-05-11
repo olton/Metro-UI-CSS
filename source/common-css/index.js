@@ -1,4 +1,4 @@
-import "./vars.less"
+import "./media.less"
 import "./base-theme.less"
 import "./animate-element.less"
 import "./border.less"

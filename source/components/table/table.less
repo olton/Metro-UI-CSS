@@ -145,12 +145,12 @@
     }
 
     &.table-border {
-        border: 1px @borderColor solid;
+        border: 1px var(--border-color) solid;
     }
 
     &.cell-border {
         th, td, .th, .td {
-            border: 1px @borderColor solid;
+            border: 1px var(--border-color) solid;
         }
 
         thead, .thead {
@@ -196,7 +196,7 @@
 
     &.row-border {
         tr + tr, .tr + .tr  {
-            border-top: 1px @borderColor solid;
+            border-top: 1px var(--border-color) solid;
         }
     }
 
@@ -276,7 +276,7 @@
     background-color: @white;
     color: @dark;
     z-index: @zindex-absolute;
-    border: 1px double @borderColor;
+    border: 1px double var(--border-color);
     width: auto;
     padding: 10px;
     max-height: ~"calc(100vh - 40px)";
@@ -289,7 +289,7 @@
         overflow: hidden;
         text-overflow: ellipsis;
         padding: 0 .5rem .5rem;
-        border-bottom: 1px solid @borderColor;
+        border-bottom: 1px solid var(--border-color);
         font-size: 24px;
         font-weight: 100;
         margin-bottom: .5rem;
@@ -305,7 +305,7 @@
     .table-inspector-actions {
         display: block;
         position: relative;
-        border-top: 1px solid @borderColor;
+        border-top: 1px solid var(--border-color);
         padding: .5rem .5rem 0;
         margin-top: .5rem;
     }
@@ -346,7 +346,7 @@
     top: 50%;
     left: 50%;
     .translate3d(-50%, -50%);
-    border: 1px solid @borderColor;
+    border: 1px solid var(--border-color);
     .win-shadow();
 }
 
@@ -459,7 +459,7 @@
 
 .table-component {
     .table-container {
-        border: 1px solid @borderColor;
+        border: 1px solid var(--border-color);
         margin: 10px 0;
         overflow: hidden;
     }

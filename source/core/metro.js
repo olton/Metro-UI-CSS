@@ -19,8 +19,8 @@
 
     var Metro = {
 
-        version: "5.0.4",
-        build_time: "10.05.2024, 20:02:47",
+        version: "5.0.5",
+        build_time: "11.05.2024, 15:36:10",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -347,15 +347,17 @@
 
             if (window.METRO_CLOAK_REMOVE !== "fade") {
                 $(".m4-cloak").removeClass("m4-cloak");
+                $(".cloak").removeClass("cloak");
                 $(window).fire("metro-initiated");
             } else {
-                $(".m4-cloak").animate({
+                $(".m4-cloak, .cloak").animate({
                     draw: {
                         opacity: 1
                     },
                     dur: 300,
                     onDone: function(){
                         $(".m4-cloak").removeClass("m4-cloak");
+                        $(".cloak").removeClass("cloak");
                         $(window).fire("metro-initiated");
                     }
                 });

@@ -1,6 +1,28 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --dialog-border-radius: 6px;
+
+    --dialog-background: #f7f8fa;
+    --dialog-color: #191919;
+    --dialog-border-color: #aaaaaa;
+    --dialog-closer-background: inherit;
+    --dialog-closer-color: inherit;
+    --dialog-closer-background-hover: var(--color-alert);
+    --dialog-closer-color-hover: var(--color-light);
+}
+
+.dark-side, .theme-dark {
+    --dialog-background: #2b2d30;
+    --dialog-color: #dbdfe7;
+    --dialog-border-color: #414245;
+    --dialog-closer-background: inherit;
+    --dialog-closer-color: inherit;
+    --dialog-closer-background-hover: var(--color-alert);
+    --dialog-closer-color-hover: var(--color-light);
+}
+
 .dialog {
     position: fixed;
     display: flex;
@@ -9,10 +31,11 @@
     max-width: ~"calc(100vw - 100px)";
     max-height: ~"calc(100vh - 100px)";
     height: auto;
-    background-color: @white;
-    color: @dark;
+    background-color: var(--dialog-background);
+    color: var(--dialog-color);
     z-index: @zindex-modal;
-    border: 1px solid @borderColor;
+    border: 1px solid var(--dialog-border-color);
+    border-radius: var(--dialog-border-radius);
 }
 
 .dialog {
@@ -29,7 +52,7 @@
     font-size: 1.325rem;
     padding: 12px 24px;
     order: 1;
-    border-bottom: 1px solid @borderColor;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .dialog-content {
@@ -38,7 +61,7 @@
 }
 
 .dialog-actions {
-    border-top: 1px solid @winFlatBorderColor;
+    border-top: 1px solid var(--border-color);
     padding: 8px 16px;
     order: 3;
     display: flex;
@@ -72,24 +95,34 @@
 
 .dialog {
     .closer {
-        display: block;
         position: absolute;
         top: 4px;
         right: 4px;
-        background-color: inherit;
-        color: inherit;
         z-index: 100;
+        border: none;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: var(--dialog-closer-background);
+        color: var(--dialog-closer-color);
+        cursor: pointer;
         &::before {
             display: block;
             content: "\00d7";
             font-size: 24px;
             margin-top: -4px;
         }
+        &:hover {
+            background-color: var(--dialog-closer-background-hover);
+            color: var(--dialog-closer-color-hover);
+        }
     }
 }
 
 .dialog {
-    each(@buttonPredefinedTypes, {
+    each(@accentColors, {
         @color: "@{value}Color";
 
         &.@{value} {

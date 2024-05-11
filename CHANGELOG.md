@@ -1,5 +1,8 @@
 # Changelog
 
+### 5.0.5
++ [x] Update `dialog` for themes
+
 ### 5.0.4
 + [x] Improved `app-bar`, added `dark`, `light` themes
 + [x] Improved `d-menu`, added `dark`, `light` themes
