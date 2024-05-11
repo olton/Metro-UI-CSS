@@ -2,13 +2,21 @@
 @import (once) "../include/mixins";
 
 :root {
-    --kbd-background: #004d6f;
-    --kbd-color: #fff;
+    --mark-background: #4a4d51;
+    --mark-color: #ffffff;
+    --code-background: #4a4d51;
+    --code-color: #ffffff;
+    --kbd-background: #004D6FFF;
+    --kbd-color: #ffffff;
 }
 
 .dark-side, .theme-dark {
-    --kbd-background: #004d6f;
-    --kbd-color: #fff;
+    --mark-background: #c0c0c0;
+    --mark-color: #000000;
+    --code-background: #c0c0c0;
+    --code-color: #000000;
+    --kbd-background: #004D6FFF;
+    --kbd-color: #ffffff;
 }
 
 .text {
@@ -209,14 +217,14 @@ pre code {
 
 a:not([class]) {
     position: relative;
-    color: @linkColor;
+    color: var(--link-color);
     text-decoration: none;
     background-color: transparent;
     -webkit-text-decoration-skip: objects;
     box-shadow: none;
 
     &:hover {
-        color: @linkColorHover;
+        color: var(--link-color-hover);
         text-decoration: underline;
     }
 }
@@ -240,8 +248,8 @@ a:not([class]):not([href]):not([tabindex]) {
 
 mark {
     .px2rem(padding, 3px);
-    background-color: var(--body-mark-background);
-    color: var(--body-mark-color);
+    background-color: var(--mark-background);
+    color: var(--mark-color);
 }
 
 del {
@@ -390,8 +398,8 @@ hr {
     display: inline-block;
     padding: 0 6px;
     font-size: 90%;
-    color: #bd4147;
-    background-color: var(--body-mark-background);
+    color: var(--code-color);
+    background-color: var(--code-background);
     border-radius: 4px;
     line-height: 20px;
     vertical-align: middle;
@@ -404,8 +412,8 @@ hr {
 }
 
 kbd {
-    background-color: @brandColor2;
-    color: @white;
+    background-color: var(--kbd-background);
+    color: var(--kbd-color);
 }
 
 .tally {
