@@ -28,8 +28,8 @@
     display: flex;
     flex-flow: column;
     width: auto;
-    max-width: ~"calc(100vw - 100px)";
-    max-height: ~"calc(100vh - 100px)";
+    max-width: calc(100vw - 100px);
+    max-height: calc(100vh - 100px);
     height: auto;
     background-color: var(--dialog-background);
     color: var(--dialog-color);
@@ -45,19 +45,31 @@
 }
 
 .dialog-title, .dialog-content, .dialog-actions {
-    display: block;
+    display: flex;
 }
 
 .dialog-title {
-    font-size: 1.325rem;
-    padding: 12px 24px;
+    font-size: 1rem;
+    padding: 10px 24px;
     order: 1;
     border-bottom: 1px solid var(--border-color);
+    align-items: center;
+    justify-content: flex-start!important;
+    flex-flow: row nowrap;
+
+    .icon {
+        margin-right: 1rem;
+    }
+
+    .caption {
+
+    }
 }
 
 .dialog-content {
     padding: 12px 24px;
     order: 2;
+    font-size: 14px;
 }
 
 .dialog-actions {
