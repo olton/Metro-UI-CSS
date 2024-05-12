@@ -9,7 +9,7 @@ import multi from '@rollup/plugin-multi-entry'
 import pkg from './package.json' assert {type: "json"}
 import fs from "fs";
 
-const production = !(process.env.ROLLUP_WATCH),
+const production = process.env.MODE === "production",
     sourcemap = !production
 
 const banner = `
