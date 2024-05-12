@@ -69,6 +69,12 @@ each(range(24), {
 .flex-top {margin-bottom: auto;}
 .flex-bottom {margin-top: auto;}
 
+.flex-center, .content-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 each(@media-rules, {
     @media screen and (min-width: @value) {
         .flex-nowrap-@{key} {flex-wrap: nowrap !important;}

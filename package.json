@@ -62,7 +62,6 @@
     "less": "^4.2.0",
     "postcss": "^8.4.38",
     "rollup": "^4.17.2",
-    "rollup-plugin-banner2": "^1.2.3",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-no-emit": "^1.2.0",
@@ -77,6 +76,6 @@
     "@olton/hooks": "^0.3.0",
     "@olton/html": "^0.8.0",
     "@olton/string": "^0.5.0",
-    "m4q": "^2.0.0-rc8"
+    "m4q": "^2.1.0"
   }
 }
