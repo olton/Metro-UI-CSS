@@ -4,6 +4,7 @@
 + [x] Update `dialog` for themes
 + [x] Added color variables
 + [x] Updated `m4q`, new methods: `$.curry`, `$.compose`, `$.pipe`
++ [x] Redesign `treeview`
 
 ### 5.0.4
 + [x] Improved `app-bar`, added `dark`, `light` themes
