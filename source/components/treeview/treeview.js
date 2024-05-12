@@ -6,6 +6,7 @@
         treeviewDeferred: 0,
         showChildCount: false,
         duration: 100,
+        hideActionsOnLeave: true,
         onNodeClick: Metro.noop,
         onNodeDblClick: Metro.noop,
         onNodeDelete: Metro.noop,
@@ -78,10 +79,12 @@
         },
 
 
-        _createNode: function(data){
-            var node;
+        _createNode: function(data, target){
+            const o = this.options
+            const nodeContainer = target ? target : $("<li>")
+            const node = $("<a>")
 
-            node = $("<li>");
+            nodeContainer.prepend(node)
 
             if (data.caption) {
                 node.prepend(this._createCaption(data.caption, data.style));
@@ -119,7 +122,7 @@
                 const actionsHolder = $("<div class='dropdown-button'>").addClass("actions-holder");
                 const actionsListTrigger = $("<span class='actions-list-trigger'>").text("⋮").appendTo(actionsHolder)
                 const actionsList = $("<ul data-role='dropdown' class='d-menu actions-list'>").appendTo(actionsHolder)
-                node.append(actionsHolder)
+                nodeContainer.append(actionsHolder)
                 for(let a of data.actions) {
                     if (a.type && a.type === "divider") {
                         $("<li>").addClass("divider").appendTo(actionsList)
@@ -136,57 +139,54 @@
                     }
                 }
                 actionsList.on(Metro.events.leave, (e) => {
-                    // Metro.getPlugin(actionsList, "dropdown").close()
+                    if (o.hideActionsOnLeave) Metro.getPlugin(actionsList, "dropdown").close()
                 })
             }
 
             if (data.type === 'node') {
-                node.addClass("tree-node")
-                node.append($("<span>").addClass("node-toggle"))
-                node.append( $("<ul>") )
+                nodeContainer.addClass("tree-node")
+                nodeContainer.append($("<span>").addClass("node-toggle"))
+                nodeContainer.append( $("<ul>") )
             }
 
-            return node;
+            if (nodeContainer.children("ul").length) {
+                nodeContainer.addClass("tree-node")
+                nodeContainer.append($("<span>").addClass("node-toggle"))
+            }
+
+            const hasChildren = nodeContainer.children("ul").length
+
+            if (hasChildren) {
+                if (Metro.utils.bool(data.collapsed) !== true) {
+                    nodeContainer.addClass("expanded")
+                } else {
+                    nodeContainer.children("ul").hide()
+                }
+            }
+
+            return nodeContainer;
         },
 
         _createTree: function(){
             var that = this, element = this.element, o = this.options;
-            var nodes = element.find("li");
+            var nodes = element.find("li[data-caption]");
 
             element.addClass("treeview");
 
-            $.each(nodes, function(){
-                var node = $(this);
-                var caption, icon, style;
+            $.each(nodes, (i, _el) => {
+                const el = $(_el)
 
-                caption = node.data("caption");
-                icon = node.data("icon");
-                style = node.data("style")
-
-                if (caption !== undefined) {
-                    if (node.children("ul").length > 0 && o.showChildCount === true) {
-                        caption += " ("+node.children("ul").children("li").length+")"
-                    }
-                    node.prepend(that._createCaption(caption, style));
-                }
-
-                if (icon !== undefined) {
-                    node.prepend(that._createIcon(icon));
-                }
-
-                if (node.children("ul").length > 0) {
-
-                    node.addClass("tree-node");
-
-                    node.append(that._createToggle());
-
-                    if (Utils.bool(node.attr("data-collapsed")) !== true) {
-                        node.addClass("expanded");
-                    } else {
-                        node.children("ul").hide();
-                    }
-                }
-
+                this._createNode({
+                    caption: el.data("caption"),
+                    icon: el.data("icon"),
+                    html: el.data("html"),
+                    attributes: el.data("attributes"),
+                    badge: el.data("badge"),
+                    badges: el.data("badges"),
+                    actions: el.data("actions"),
+                    type: el.data("type"),
+                    collapsed: el.data("collapsed"),
+                }, el)
             });
         },
 
@@ -202,7 +202,7 @@
                 e.preventDefault();
             });
 
-            element.on(Metro.events.click, "li > .caption", function(e){
+            element.on(Metro.events.click, "a", function(e){
                 var node = $(this).parent();
 
                 that.current(node);
@@ -214,7 +214,7 @@
                 e.preventDefault();
             });
 
-            element.on(Metro.events.dblclick, "li > .caption", function(e){
+            element.on(Metro.events.dblclick, "a", function(e){
                 var node = $(this).closest("li");
                 var toggle = node.children(".node-toggle");
                 var subtree = node.children("ul");
@@ -312,11 +312,11 @@
         current: function(node){
             var element = this.element;
 
-            if (node === undefined) {
-                return element.find("li.current")
+            if (!node) {
+                return element.find(".current")
             }
 
-            element.find("li").removeClass("current");
+            element.find(".current").removeClass("current");
             node.addClass("current");
         },
 

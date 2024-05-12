@@ -73,9 +73,9 @@
 
         _updateState: function(){
             if (this.elem.checked) {
-                this.target.addClass("dark-side theme-dark").addClass(this.options.clsDark);
+                this.target.addClass("dark-side").addClass(this.options.clsDark);
             } else {
-                this.target.removeClass("dark-side theme-dark").addClass(this.options.clsDark);
+                this.target.removeClass("dark-side").addClass(this.options.clsDark);
             }
         },
 

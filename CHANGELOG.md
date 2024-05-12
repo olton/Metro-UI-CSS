@@ -2,6 +2,8 @@
 
 ### 5.0.5
 + [x] Update `dialog` for themes
++ [x] Added color variables
++ [x] Updated `m4q`, new methods: `$.curry`, `$.compose`, `$.pipe`
 
 ### 5.0.4
 + [x] Improved `app-bar`, added `dark`, `light` themes

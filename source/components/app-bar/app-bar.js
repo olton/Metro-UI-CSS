@@ -89,7 +89,7 @@
                 }
             }
 
-            $("body").addClass("p-ab")
+            // $("body").addClass("p-ab")
         },
 
         _createEvents: function () {

@@ -8,4 +8,5 @@ globalThis.Color.Palette = Palette
 globalThis.Color.StandardColors = StandardColorPalette
 globalThis.Color.MetroColors = MetroColorPalette
 globalThis.Color.Primitives = Primitives
-globalThis.Color.info = info
+
+info()

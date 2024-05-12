@@ -1,115 +1,113 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
-.treeview {
-    margin: 0 0 0 0;
-    padding: 0 0 0 24px;
-    font-size: .8125rem;
+:root {
+    --treeview-background: #ffffff;
+    --treeview-color: #43454a;
+    --treeview-selected-row-background: #d4e2ff;
+    --treeview-selected-row-color: #2b2d30;
+    --treeview-node-toggle-color: #191919;
+}
+
+.dark-side {
+    --treeview-background: #2b2d30;
+    --treeview-color: #dfe1e5;
+    --treeview-selected-row-background: #43454a;
+    --treeview-selected-row-color: #ffffff;
+    --treeview-node-toggle-color: #ffffff;
+}
+
+.treeview, .treeview ul:not(.d-menu) {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
     list-style: none inside;
     display: block;
     position: relative;
     user-select: none;
+    background-color: var(--treeview-background);
+    color: var(--treeview-color);
 }
 
 .treeview {
+    padding: 8px;
+    overflow: hidden;
+}
+
+@pl: 24px;
+
+.treeview {
     li {
-        display: block;
         position: relative;
-        padding: 2px 0;
-        cursor: pointer;
-        line-height: 1.25rem;
-
-        & > .icon {
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            font-size: 16px;
-            //left: 0;
-            top: 3px;
-            line-height: 16px;
-
-            img {
-                max-width: 100%;
-                height: 100%;
-            }
-        }
-
-        & > .caption {
-            position: relative;
-            color: #5e5e5e;
-
-            &:hover  {
-                text-decoration: underline;
-                color: #0a0a0a;
-            }
-        }
-
-        & > .icon ~ .caption {
-            margin-left: 20px;
-        }
-
-        .node-toggle {
-            .toggle();
-        }
-
-        .node-toggle {
-            position: absolute;
-            left: -24px;
-            top: 0;
-            .square(24, px);
-            z-index: 0;
-
-            &::before {
-                .rotate(-135deg);
-            }
-        }
-
-        &.expanded {
-            & > .node-toggle {
-                &::before {
-                    .rotate(-45deg);
-                }
-            }
-        }
-
-        &.current > .caption {
-            color: @black;
-        }
     }
 
-    ul {
-        margin: 0;
-        padding: 0;
-        list-style: none inside;
-        display: block;
-        font-weight: normal;
-
-        .node-toggle {
-            left: -8px;
-        }
-
+    a {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        color: var(--d-menu-item-color);
+        text-decoration: none;
+        padding: 4px 10px 4px @pl;
+        border-radius: var(--d-menu-border-radius);
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        line-height: 20px;
+        overflow: hidden;
     }
 
-    .select .d-menu {
+    a:hover {
+        background-color: var(--treeview-selected-row-background);
+        color: var(--treeview-selected-row-color);
+    }
+
+    .current > a {
+        background-color: var(--treeview-selected-row-background);
+        color: var(--treeview-selected-row-color);
+    }
+
+    ul:not(.d-menu) a { padding-left: @pl * 2; }
+    ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 3; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 4; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 5; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 6; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 7; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 8; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 9; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) a { padding-left: @pl * 10; }
+
+    .icon {
+        margin-right: 6px;
+    }
+
+    .node-toggle {
+        .toggle();
         position: absolute;
         left: 0;
-        margin: 0;
-        width: auto;
+        top: 2px;
+        width: 24px;
+        height: 24px;
+        z-index: 0;
+
+        &::before {
+            .rotate(-135deg);
+            border-color: var(--treeview-node-toggle-color);
+        }
     }
 
-    li {
-        .checkbox, .checkbox .check, .checkbox .caption {
-            line-height: 1;
-        }
-        .radio, .radio .check, .radio .caption {
-            line-height: 1;
-        }
-        .switch, .switch .check, .switch .caption {
-            line-height: 1;
-        }
+    ul:not(.d-menu) .node-toggle { left: @pl * 1; }
+    ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 2; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 3; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 4; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 5; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 6; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 7; }
+    ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) .node-toggle { left: @pl * 8; }
 
-        .checkbox, .radio, .switch {
-            height: 24px;
+    li.expanded {
+        & > .node-toggle {
+            &::before {
+                .rotate(-45deg);
+            }
         }
     }
 
@@ -126,51 +124,47 @@
         margin-left: 4px;
     }
 
-    ul:not(.actions-list) li {
-        padding-left: 1rem;
+    .actions-holder {
+        z-index: 2;
+        position: absolute;
+        top: 1px;
+        left: -4px;
+        display: none;
+        height: 26px;
+        width: 26px;
+        align-items: center;
+        justify-content: center;
 
-        .icon {
-            //left: 1rem;
+        .actions-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+        }
+
+        .actions-list-trigger {
+            background-color: transparent;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        & > ul {
+            margin: 0;
+            z-index: 3;
+
+            li {
+                padding-left: 0;
+            }
         }
     }
-}
 
-.treeview {
-    li:not(.tree-node) {
+    li:hover, .current {
         & > .actions-holder {
-            z-index: 2;
-            position: absolute;
-            top: 1px;
-            left: -4px;
-            display: none;
-            height: 26px;
-            width: 26px;
-
-            .actions-list-trigger {
-                background-color: transparent;
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-                font-size: 14px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            & > ul {
-                margin: 0;
-                z-index: 3;
-
-                li {
-                    padding-left: 0;
-                }
-            }
-        }
-
-        &:hover {
-            & > .actions-holder {
-                display: block;
-            }
+            display: flex;
         }
     }
 }
