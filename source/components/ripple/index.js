@@ -1,3 +1,3 @@
-import "../../color"
+import "../../farbe"
 import "./ripple.js"
 import "./ripple.less"

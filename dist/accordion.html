@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><link rel="stylesheet" href="/accordion.96f1f6bc.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="/accordion.8fcdd5e1.css" rel="stylesheet">
+
+    <title>Test Accordion - Metro 4 :: Popular HTML, CSS and JS library</title>
+</head>
+<body class="m4-cloak">
+    <nav data-role="appbar">
+        <span class="app-bar-item">Accordion</span>
+        <div class="app-bar-item no-hover">
+            <input type="checkbox" data-role="theme-switcher">
+        </div>
+    </nav>
+    <div class="container mt-10">
+        <h3>Role</h3>
+        <div data-role="accordion" id="a1">
+            <div class="frame">
+                <div class="heading">Header 1</div>
+                <div class="content">
+                    <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                </div>
+            </div>
+            <div class="frame active">
+                <div class="heading">Header 2</div>
+                <div class="content">
+                    <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                </div>
+            </div>
+            <div class="frame">
+                <div class="heading">Header 3</div>
+                <div class="content">
+                    <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <h3>Runtime</h3>
+
+        <div id="a2">
+            <div class="frame">
+                <div class="heading">Header 1</div>
+                <div class="content">
+                    <div class="p-2">Cur luba manducare? Pol, a bene ionicis tormento. Warm, sichuan-style pudding is best garnished with aged BBQ sauce.</div>
+                </div>
+            </div>
+            <div class="frame active">
+                <div class="heading">Header 2</div>
+                <div class="content">
+                    <div class="p-2">Wildly open a starship. Belay, ye small wench- set sails for hunger! Springy, juicy pudding is best blended with whole ice water.</div>
+                </div>
+            </div>
+            <div class="frame">
+                <div class="heading">Header 3</div>
+                <div class="content">
+                    <div class="p-2">Bitter turkey can be made tasty by brushing with sweet chili sauce. Popcorn combines greatly with grey peanut butter.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>window.addEventListener("metroinitiated", function() {
+    console.log("Welcome to Metro4");
+});
+
+</script>
+
+<!--    <script src="../lib/metro.js"></script>-->
+    <script src="/accordion.2675afee.js" defer=""></script>
+    <script>$(function() {
+    Metro.makePlugin("#a2", "accordion");
+});
+
+</script>
+</body>
+</html>

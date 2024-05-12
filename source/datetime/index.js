@@ -1,6 +1,6 @@
 import {Datetime, datetime, info} from "@olton/datetime"
 
-info()
+Datetime.info = info
 
 globalThis.Datetime = Datetime
 globalThis.datetime = datetime

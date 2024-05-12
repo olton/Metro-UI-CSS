@@ -1,4 +1,4 @@
 import "../calendar"
-import "../../color"
+import "../../farbe"
 import "./calendarpicker.js"
 import "./calendarpicker.less"

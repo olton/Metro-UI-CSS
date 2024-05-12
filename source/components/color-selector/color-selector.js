@@ -288,8 +288,8 @@
             this._setColorValues();
             this._updateCursorsColor();
 
-            if (o.initColor && Color.Routines.isColor(o.initColor)) {
-                this._colorToPos(typeof o.initColor === "string" ? Color.Routines.parse(o.initColor) : o.initColor);
+            if (o.initColor && Farbe.Routines.isColor(o.initColor)) {
+                this._colorToPos(typeof o.initColor === "string" ? Farbe.Routines.parse(o.initColor) : o.initColor);
             }
         },
 
@@ -339,7 +339,7 @@
             var canvas = this.alphaCanvas[0];
             var ctx = canvas.getContext('2d');
             var alphaGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            var startColor = new Color.Primitives.HSLA(this.hue, 1, .5, 1).toString(),
+            var startColor = new Farbe.Primitives.HSLA(this.hue, 1, .5, 1).toString(),
                 endColor = "rgba(0,0,0,0)";
 
             alphaGradient.addColorStop(0.00, startColor);
@@ -442,9 +442,9 @@
         },
 
         _updateCursorsColor: function(){
-            this.shadeCursor.css({backgroundColor: Color.Routines.toHEX(new Color.Primitives.HSL(this.hue, this.saturation, this.lightness))});
-            this.hueCursor.css({backgroundColor: Color.Routines.toHEX(new Color.Primitives.HSL(this.hue, 1, .5))});
-            this.alphaCursor.css({backgroundColor: Color.Routines.toRGBA(new Color.Primitives.HSL(this.hue, 1, .5), this.alpha).toString()});
+            this.shadeCursor.css({backgroundColor: Farbe.Routines.toHEX(new Farbe.Primitives.HSL(this.hue, this.saturation, this.lightness))});
+            this.hueCursor.css({backgroundColor: Farbe.Routines.toHEX(new Farbe.Primitives.HSL(this.hue, 1, .5))});
+            this.alphaCursor.css({backgroundColor: Farbe.Routines.toRGBA(new Farbe.Primitives.HSL(this.hue, 1, .5), this.alpha).toString()});
         },
 
         _updateShadeCursor: function(x, y){
@@ -458,9 +458,9 @@
             var shadeCanvasRect = this.shadeCanvas[0].getBoundingClientRect();
             var hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
             var alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
-            var hsl = Color.Routines.toHSL(color);
-            var hsla = Color.Routines.toHSLA(color, color.a);
-            var hsv = Color.Routines.toHSV(color);
+            var hsl = Farbe.Routines.toHSL(color);
+            var hsla = Farbe.Routines.toHSLA(color, Farbe.a);
+            var hsv = Farbe.Routines.toHSV(color);
             var x = shadeCanvasRect.width * hsv.s;
             var y = shadeCanvasRect.height * (1 - hsv.v);
             var hueY = hueCanvasRect.height - ((hsl.h / 360) * hueCanvasRect.height);
@@ -482,13 +482,13 @@
 
         _setColorValues: function(){
             var element = this.element, o = this.options;
-            var hsl = new Color.Primitives.HSL(this.hue, this.saturation, this.lightness)
-            var hsla = new Color.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha)
-            var rgb = Color.Routines.toRGB(hsl);
-            var rgba = Color.Routines.toRGBA(rgb, this.alpha);
-            var hsv = Color.Routines.toHSV(hsl);
-            var cmyk = Color.Routines.toCMYK(hsl);
-            var hex = Color.Routines.toHEX(hsl);
+            var hsl = new Farbe.Primitives.HSL(this.hue, this.saturation, this.lightness)
+            var hsla = new Farbe.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha)
+            var rgb = Farbe.Routines.toRGB(hsl);
+            var rgba = Farbe.Routines.toRGBA(rgb, this.alpha);
+            var hsv = Farbe.Routines.toHSV(hsl);
+            var cmyk = Farbe.Routines.toCMYK(hsl);
+            var hex = Farbe.Routines.toHEX(hsl);
             var controller = $(o.controller);
             var percent = o.hslMode === "percent";
 
@@ -607,7 +607,7 @@
                         });
                         color = colorType + "(" +parts.join(", ")+ ")";
                     }
-                    if (color && Color.Routines.isColor(color)) {
+                    if (color && Farbe.Routines.isColor(color)) {
                         that.val(color);
                     }
 
@@ -620,7 +620,7 @@
                     that._clearInputInterval();
                     if (!that.inputInterval) that.inputInterval = setTimeout(function(){
                         var val = controller.val();
-                        if (val && Color.Routines.isColor(val)) {
+                        if (val && Farbe.Routines.isColor(val)) {
                             that.val(val);
                         }
                         that._clearInputInterval();
@@ -688,7 +688,7 @@
             });
 
             element.on("click", ".add-button", function(){
-                var color = Color.Routines.toHEX(new Color.Primitives.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
+                var color = Farbe.Routines.toHEX(new Farbe.Primitives.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
 
                 if (that.userColors.indexOf(color) > -1) {
                     return ;
@@ -743,7 +743,7 @@
             if (typeof v === "undefined") {
                 return this.getVal()
             }
-            this._colorToPos(Color.Routines.parse(v));
+            this._colorToPos(Farbe.Routines.parse(v));
         },
 
         user: function(v){

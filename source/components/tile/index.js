@@ -1,5 +1,5 @@
 import "../animations"
 import "../colors"
-import "../../color"
+import "../../farbe"
 import "./tile.js"
 import "./tile.less"

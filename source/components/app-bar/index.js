@@ -1,4 +1,4 @@
 import "../hamburger"
-import "../../color"
+import "../../farbe"
 import "./app-bar.js"
 import "./app-bar.less"

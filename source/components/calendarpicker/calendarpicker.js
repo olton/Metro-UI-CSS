@@ -419,7 +419,7 @@
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Color.Routines.toRGBA(o.overlayColor, o.overlayAlpha)
+                    background: Farbe.Routines.toRGBA(o.overlayColor, o.overlayAlpha)
                 });
             }
 

@@ -61,7 +61,7 @@
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Color.Routines.toRGBA(Color.Routines.parse(o.overlayColor), o.overlayAlpha)
+                    background: Farbe.Routines.toRGBA(Farbe.Routines.parse(o.overlayColor), o.overlayAlpha)
                 });
             }
 

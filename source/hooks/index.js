@@ -5,6 +5,5 @@ globalThis.Hooks = {
     useState,
     useEvent,
     USE_EFFECT_EVENTS,
+    info
 }
-
-info()

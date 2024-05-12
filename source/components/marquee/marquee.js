@@ -62,11 +62,11 @@
             element.css({
                 height: o.height,
                 width: o.width,
-                backgroundColor: Color.Routines.isColor(o.backgroundColor) ? o.backgroundColor : MarqueeDefaultConfig.backgroundColor,
-                color: Color.Routines.isColor(o.color) ? o.color : MarqueeDefaultConfig.color,
+                backgroundColor: Farbe.Routines.isColor(o.backgroundColor) ? o.backgroundColor : MarqueeDefaultConfig.backgroundColor,
+                color: Farbe.Routines.isColor(o.color) ? o.color : MarqueeDefaultConfig.color,
                 borderStyle: "solid",
                 borderWidth: o.borderSize,
-                borderColor: Color.Routines.isColor(o.borderColor) ? o.borderColor : MarqueeDefaultConfig.borderColor
+                borderColor: Farbe.Routines.isColor(o.borderColor) ? o.borderColor : MarqueeDefaultConfig.borderColor
             });
 
             this.setItems(o.items);

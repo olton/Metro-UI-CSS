@@ -83,7 +83,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Color.Routines.isLight(Utils.getStyleOne(container, "background-color")) === true) {
+                if (Farbe.Routines.isLight(Utils.getStyleOne(container, "background-color")) === true) {
                     hamburger.addClass("dark");
                 }
             }

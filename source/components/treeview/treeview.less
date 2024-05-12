@@ -34,7 +34,7 @@
     overflow: hidden;
 }
 
-@pl: 24px;
+@pl: 20px;
 
 .treeview {
     li {
@@ -83,9 +83,9 @@
         .toggle();
         position: absolute;
         left: 0;
-        top: 2px;
-        width: 24px;
-        height: 24px;
+        top: 4px;
+        width: 16px;
+        height: 16px;
         z-index: 0;
 
         &::before {
@@ -128,7 +128,7 @@
         z-index: 2;
         position: absolute;
         top: 1px;
-        left: -4px;
+        left: -2px;
         display: none;
         height: 26px;
         width: 26px;
@@ -166,5 +166,17 @@
         & > .actions-holder {
             display: flex;
         }
+    }
+
+    &.auto-layout {
+        ul:not(.d-menu) li { padding-left: @pl * 2; }
+        ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 3; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 4; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 5; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 6; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 7; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 8; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 9; }
+        ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) ul:not(.d-menu) li { padding-left: @pl * 10; }
     }
 }

@@ -99,7 +99,7 @@
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
-            return Color.Palette.color(val, Color.StandardColors) || Color.Routines.isColor(val);
+            return Farbe.Palette.color(val, Farbe.StandardColors) || Farbe.Routines.isColor(val);
         },
         pattern: function(val, pat){
             if (!Utils.isValue(val)) return false;

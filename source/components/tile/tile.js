@@ -125,7 +125,7 @@
 
                 setInterval(function(){
                     var temp = that.images.slice();
-                    var bg = Color.Routines.randomColor();
+                    var bg = Farbe.Routines.randomColor();
 
                     element.css("background-color", bg);
 

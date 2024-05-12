@@ -58,7 +58,7 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (elementColor === "rgba(0, 0, 0, 0)" || Color.Routines.isLight(elementColor) === true) {
+                if (elementColor === "rgba(0, 0, 0, 0)" || Farbe.Routines.isLight(elementColor) === true) {
                     hamburger.addClass("dark");
                 }
             }

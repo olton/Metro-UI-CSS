@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.0.5",
-        build_time: "12.05.2024, 17:53:48",
+        build_time: "12.05.2024, 20:37:52",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -202,13 +202,13 @@
         info: function(){
             console.info(`%c METRO UI %c v${Metro.version} %c ${Metro.build_time} `, "color: pink; font-weight: bold; background: #800000", "color: white; background: darkgreen", "color: white; background: #0080fe;")
 
-            // ;$.info()
-            // ;Hooks.info()
-            // ;html.info()
-            // ;Animation.info()
-            // ;Color.info()
-            // ;Datetime.info()
-            // ;Str.info()
+            ;$.info()
+            ;Hooks.info()
+            ;html.info()
+            ;Animation.info()
+            ;Farbe.info()
+            ;Datetime.info()
+            ;Str.info()
         },
 
         showCompileTime: function(){

@@ -1,6 +1,6 @@
 import "../button"
 import "../default-icons"
 import "../spinner"
-import "../../color"
+import "../../farbe"
 import "./calendar.js"
 import "./calendar.less"

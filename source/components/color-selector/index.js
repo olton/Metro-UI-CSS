@@ -1,4 +1,4 @@
-import "../../color"
+import "../../farbe"
 import "../input"
 import "../radio"
 import "../button"

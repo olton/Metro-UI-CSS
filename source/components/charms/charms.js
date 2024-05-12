@@ -54,7 +54,7 @@
             this.origin.background = element.css("background-color");
 
             element.css({
-                backgroundColor: Color.Routines.toRGBA(Utils.getStyleOne(element, "background-color"), o.opacity)
+                backgroundColor: Farbe.Routines.toRGBA(Utils.getStyleOne(element, "background-color"), o.opacity)
             });
         },
 
@@ -103,7 +103,7 @@
             o.opacity = opacity;
 
             element.css({
-                backgroundColor: Color.Routines.toRGBA(Utils.getStyleOne(element, "background-color"), opacity)
+                backgroundColor: Farbe.Routines.toRGBA(Utils.getStyleOne(element, "background-color"), opacity)
             });
         },
 

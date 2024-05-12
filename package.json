@@ -40,8 +40,7 @@
     "cy:run": "cypress run",
     "deploy": "node deploy.cjs",
     "deploy:dev": "node deploy-dev.cjs",
-    "pub": "npm publish --access public",
-    "build:es": "shx rm -rf dist/* && node esbuild.js"
+    "pub": "npm publish --access public"
   },
   "browserslist": [
     "last 2 versions",
@@ -67,12 +66,13 @@
     "rollup-plugin-no-emit": "^1.2.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
-    "shx": "^0.3.4"
+    "shx": "^0.3.4",
+    "vite": "^5.2.11"
   },
   "dependencies": {
     "@olton/animation": "^0.3.0",
-    "@olton/color": "^1.0.2",
     "@olton/datetime": "^3.0.4",
+    "@olton/farbe": "^1.0.0",
     "@olton/hooks": "^0.3.0",
     "@olton/html": "^0.8.0",
     "@olton/string": "^0.5.0",

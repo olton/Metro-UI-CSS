@@ -20,5 +20,3 @@ globalThis.Router = {
     create: router,
     Router
 }
-
-html.info()

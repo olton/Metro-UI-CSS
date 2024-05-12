@@ -66,7 +66,7 @@
         }
 
         ripple.css({
-            background: Color.Routines.toRGBA(Color.Routines.parse(color), alpha),
+            background: Farbe.Routines.toRGBA(Farbe.Routines.parse(color), alpha),
             width: size,
             height: size,
             top: y + 'px',
@@ -102,7 +102,7 @@
 
             function changeColor(){
                 var color = element.attr("data-ripple-color");
-                if (!Color.Routines.isColor(color)) {
+                if (!Farbe.Routines.isColor(color)) {
                     return;
                 }
                 o.rippleColor = color;
