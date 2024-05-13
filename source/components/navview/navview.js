@@ -223,6 +223,13 @@
             this._togglePaneMode();
         },
 
+        compact: function(){
+            const element = this.element, o = this.options;
+            element.addClass("compacted handmade")
+            element.removeClass("expanded")
+            this._recalc()
+        },
+
         /* eslint-disable-next-line */
         changeAttribute: function(attributeName){
         },
