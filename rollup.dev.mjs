@@ -11,7 +11,7 @@ const production = process.env.NODE_ENV === "production",
 
 const banner = `
 /*!
- * Metro UI Components Library  (https://metroui.org.ua)
+ * Metro UI v${pkg.version} - Web Components Library  (https://metroui.org.ua)
  * Copyright 2012-${new Date().getFullYear()} by Serhii Pimenov
  * Licensed under MIT
  !*/

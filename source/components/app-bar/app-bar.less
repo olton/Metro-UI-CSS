@@ -48,13 +48,16 @@
         background-color: inherit;
         color: inherit;
         padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .app-bar-item, .app-bar-menu > li {
         position: relative;
     }
 
-    .app-bar-item, .app-bar-menu > li > a {
+    .app-bar-item, .app-bar-item-static, .app-bar-menu > li > a {
         display: flex;
         align-items: center;
         font-size: 13px;
@@ -68,7 +71,7 @@
         line-height: 20px;
         overflow: hidden;
 
-        &:not(.no-hover):hover {
+        &:hover {
             color: var(--appbar-item-color-hover);
             text-decoration: none;
             background-color: var(--appbar-item-background-hover);
@@ -80,6 +83,13 @@
 
         &.disabled {
             color: var(--appbar-item-color-disabled);
+        }
+    }
+
+    .app-bar-item-static {
+        &:hover {
+            background-color: var(--appbar-item-background);
+            color: var(--appbar-item-color);
         }
     }
 
@@ -174,6 +184,13 @@
 
     &:not(.app-bar-expand) {
         padding-right: 60px!important;
+        .app-bar-menu {
+            width: 100%;
+            order: 1000;
+            top: 100%;
+            left: 0;
+            position: absolute;
+        }
     }
 }
 

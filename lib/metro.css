@@ -35314,12 +35314,19 @@ code.light.outline:hover,
   background-color: inherit;
   color: inherit;
   padding: 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 .app-bar .app-bar-item,
 .app-bar .app-bar-menu > li {
   position: relative;
 }
 .app-bar .app-bar-item,
+.app-bar .app-bar-item-static,
 .app-bar .app-bar-menu > li > a {
   display: -webkit-box;
   display: flex;
@@ -35336,19 +35343,26 @@ code.light.outline:hover,
   line-height: 20px;
   overflow: hidden;
 }
-.app-bar .app-bar-item:not(.no-hover):hover,
-.app-bar .app-bar-menu > li > a:not(.no-hover):hover {
+.app-bar .app-bar-item:hover,
+.app-bar .app-bar-item-static:hover,
+.app-bar .app-bar-menu > li > a:hover {
   color: var(--appbar-item-color-hover);
   text-decoration: none;
   background-color: var(--appbar-item-background-hover);
 }
 .app-bar .app-bar-item:focus,
+.app-bar .app-bar-item-static:focus,
 .app-bar .app-bar-menu > li > a:focus {
   outline: none;
 }
 .app-bar .app-bar-item.disabled,
+.app-bar .app-bar-item-static.disabled,
 .app-bar .app-bar-menu > li > a.disabled {
   color: var(--appbar-item-color-disabled);
+}
+.app-bar .app-bar-item-static:hover {
+  background-color: var(--appbar-item-background);
+  color: var(--appbar-item-color);
 }
 .app-bar .brand {
   flex-shrink: 0;
@@ -35421,6 +35435,14 @@ code.light.outline:hover,
 }
 .app-bar:not(.app-bar-expand) {
   padding-right: 60px!important;
+}
+.app-bar:not(.app-bar-expand) .app-bar-menu {
+  width: 100%;
+  -webkit-box-ordinal-group: 1001;
+          order: 1000;
+  top: 100%;
+  left: 0;
+  position: absolute;
 }
 .app-bar-expand {
   -webkit-box-orient: horizontal;
