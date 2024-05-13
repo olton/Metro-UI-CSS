@@ -5,7 +5,7 @@
 
     --navview-background: #ffffff;
     --navview-color: #191919;
-    --navview-pane-background: #e5e5e5;
+    --navview-pane-background: #f6f6f6;
     --navview-pane-color: #191919;
     --navview-item-background: transparent;
     --navview-item-color: #191919;
@@ -94,6 +94,7 @@
     a {
         display: flex;
         align-items: center;
+        justify-content: flex-start;
         font-size: 13px;
         color: var(--navview-item-color);
         background: var(--navview-item-background);
@@ -177,11 +178,13 @@
     .badges {
         flex-flow: row nowrap;
         align-items: center;
+        justify-content: flex-start;
     }
 
     .badge {
         display: block;
-        margin-left: 4px;
+        margin-right: 4px;
+        font-size: 10px;
     }
 
     .item-header {
@@ -261,7 +264,7 @@
 
         .navview-menu {
             a {
-                padding: 4px 10px 4px 32px;
+                padding: 4px 10px 4px 38px;
             }
 
             .badges, .hotkey, .caption {
@@ -272,7 +275,7 @@
                 position: relative;
                 left: auto;
                 top: auto;
-                padding-left: initial;
+                padding: 0;
             }
 
             .item-header {

@@ -1,15 +1,25 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --badge-background: #F8F8F8;
+    --badge-color: #191919;
+    --badge-border-radius: 4px;
+}
+
+.dark-side {
+    --badge-background: #F8F8F8;
+    --badge-color: #191919;
+}
+
 .badge {
     position: absolute;
     z-index: 1;
     top: 0;
     right: 0;
-    background-color: @light;
-    color: @dark;
-    border-radius: @borderRadius;
-    display: inline-block;
+    background-color: var(--badge-background);
+    color: var(--badge-color);
+    border-radius: var(--badge-border-radius);
     padding: .25em .4em;
     font-size: 75%;
     font-weight: 700;
@@ -17,6 +27,9 @@
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
     .translateY(-50%);
     .translateX(50%);
