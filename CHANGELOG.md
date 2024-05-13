@@ -1,6 +1,7 @@
 # Changelog
 ### 5.0.6
 + [x] Fixed `app-bar-menu` for collapsed `appbar`
++ [x] Redesign `navview`
 
 ### 5.0.5
 + [x] Update `dialog` for themes
