@@ -4,12 +4,12 @@
     var Utils = Metro.utils;
     var NavigationViewDefaultConfig = {
         navviewDeferred: 0,
-        compact: "md",
-        expand: "lg",
+        expandPoint: null,
+        compacted: false,
         toggle: null,
         animate: true,
-        activeState: false,
-        defaultView: "expand",
+        activeState: true,
+        initialView: "expand",
         onMenuItemClick: Metro.noop,
         onPaneClose: Metro.noop,
         onBeforePaneClose: Metro.noop,
@@ -81,28 +81,20 @@
         _recalc: function(){
             var that = this, element = this.element;
             setTimeout(function(){
-                if (that.pane.width() === 48) {
-                    element.addClass("js-compact");
-                } else {
-                    element.removeClass("js-compact");
-                }
                 that._calcMenuHeight();
             }, 200);
         },
 
         _createStructure: function(){
             var element = this.element, o = this.options;
-            var pane, content, toggle, menu/*, menu_container, menu_h, menu_container_h*/;
+            var pane, content, toggle, menu;
 
-            element
-                .addClass("navview")
-                .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
-                .addClass(o.expand !== false ? "navview-expand-"+o.expand : "");
+            element.addClass("navview")
 
-            if (o.defaultView === 'expand') {
+            if (o.initialView !== 'compact') {
                 element.addClass("expanded");
             } else {
-                element.addClass("compacted");
+                element.addClass("compacted handmade");
             }
 
             pane = element.children(".navview-pane");
@@ -138,7 +130,7 @@
                 var distance = that.menuScrollDistance;
                 var top = parseInt(menu.css('top'));
 
-                if (pane_width > 48 /*|| !element.hasClass("compacted") */) {
+                if (pane_width > 50) {
                     return false;
                 }
 
@@ -153,13 +145,17 @@
                 passive: true
             });
 
-            element.on(Metro.events.click, ".pull-button, .holder", function(){
-                that.pullClick(this);
+            element.on(Metro.events.click, ".pull-button", function(){
+                that._pullClick(this, 'pull');
+            });
+
+            element.on(Metro.events.click, ".holder", function(){
+                that._pullClick(this, 'holder');
             });
 
             element.on(Metro.events.click, ".navview-menu li", function(){
                 if (o.activeState === true) {
-                    element.find(".navview-menu li").removeClass("active");
+                    element.find(".navview-menu li.active").removeClass("active");
                     $(this).toggleClass("active");
                 }
             });
@@ -176,45 +172,28 @@
                 })
             }
 
-            $(window).on(Metro.events.resize, function(){
-                var menu_h, menu_container_h,
-                    menu_container = element.children(".navview-menu-container"),
-                    menu;
+            $(window).on(Metro.events.resize, () => {
+                this._recalc();
 
-                if (that.pane.hasClass("open")) {
-                    that._recalc();
-                    return ;
+                if (!element.hasClass("handmade")) {
+                    if (Metro.utils.isValue(o.expandPoint) && Metro.utils.mediaExist(o.expandPoint)) {
+                        element.removeClass("compacted");
+                        element.addClass("expanded");
+                    } else {
+                        element.removeClass("expanded");
+                        element.addClass("compacted");
+                    }
                 }
-
-                element.removeClass("expanded");
-                that.pane.removeClass("open");
-
-                if ($(this).width() <= Metro.media_sizes[(""+o.compact).toUpperCase()]) {
-                    element.removeClass("compacted");
-                }
-
-                if (menu_container.length) {
-                    menu = menu_container.children(".navview-menu");
-                    setTimeout(function () {
-                        menu_h = menu.height();
-                        menu_container_h = menu_container.height();
-                        that.menuScrollStep = menu.children(":not(.item-separator), :not(.item-header)")[0].clientHeight;
-                        that.menuScrollDistance = menu_h > menu_container_h ? Utils.nearest(menu_h - menu_container_h, that.menuScrollStep) : 0;
-                    }, 0);
-                }
-
-                that._recalc();
-
             }, {ns: this.id})
         },
 
-        _togglePaneMode: function(){
+        _togglePaneMode: function(hand = false){
             var element = this.element, o = this.options;
             var pane = this.pane;
-            var pane_compact = pane.width() < 280;
 
             element.toggleClass("expanded");
             element.toggleClass("compacted");
+            element.toggleClass("handmade");
 
             if (element.hasClass("compacted")) {
                 Metro.utils.exec(o.onPaneClose, null, this)
@@ -223,11 +202,8 @@
             }
         },
 
-        pullClick: function(el){
-            var that = this;
-            var input;
-
-            var target = $(el);
+        _pullClick: function(el, sender){
+            var input, target = $(el);
 
             if (target && target.hasClass("holder")) {
                 input = target.parent().find("input");
@@ -236,31 +212,14 @@
                 }, 200);
             }
 
-            if (that.pane.hasClass("open")) {
-                that.close();
-            } else {
-                this._togglePaneMode();
-            }
+            this._togglePaneMode(sender === 'pull');
 
             this._recalc();
 
             return true;
         },
 
-        open: function(){
-            this.pane.addClass("open");
-        },
-
-        close: function(){
-            this.pane.removeClass("open");
-        },
-
         toggle: function(){
-            var pane = this.pane;
-            pane.hasClass("open") ? pane.removeClass("open") : pane.addClass("open");
-        },
-
-        toggleMode: function(){
             this._togglePaneMode();
         },
 
@@ -281,7 +240,7 @@
 
             $(window).off(Metro.events.resize,{ns: this.id});
 
-            return element;
+            element.remove();
         }
     });
 }(Metro, m4q));
