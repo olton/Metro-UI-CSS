@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
 
     <title>Test ListView - Metro 4 :: Popular HTML, CSS and JS library</title>
 
 </head>
-<body class="m4-cloak">
+<body class="m4-cloak p-ab">
+<nav data-role="appbar">
+    <span class="app-bar-item">ListView</span>
+    <div class="app-bar-item-static">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+
 <div class="container">
     <h1>ListView test page</h1>
 
@@ -17,7 +25,7 @@
         <button class="button" onclick="selectSpecified(false)">Deselect specified</button>
     </div>
     <div>
-        <div class="p-4 bg-light d-flex flex-justify-between">
+        <div class="p-4 d-flex flex-justify-between border bd-default mt-4">
             <input type="radio" name="r1" value="list" data-role="radio" data-caption="List" title="">
             <input type="radio" name="r1" value="table" data-role="radio" data-caption="Table" checked="checked"  title="">
             <input type="radio" name="r1" value="content" data-role="radio" data-caption="Content" title="">

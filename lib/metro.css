@@ -44817,13 +44817,30 @@ a.info-button {
   max-width: calc(100vw - 20px);
 }
 
+:root {
+  --listview-item-border-radius: 4px;
+  --listview-background: #ffffff;
+  --listview-color: #191919;
+  --listview-item-background-hover: #d4e2ff;
+  --listview-item-background-active: #d4e2ff;
+  --listview-badge-background: transparent;
+  --listview-badge-color: #191919;
+}
+.dark-side {
+  --listview-background: #1e1f22;
+  --listview-color: #dbdfe7;
+  --listview-item-background-hover: #2d2d32;
+  --listview-item-background-active: #28282c;
+  --listview-badge-background: transparent;
+  --listview-badge-color: #dbdfe7;
+}
 .listview {
   position: relative;
   margin: 0;
   padding: 0;
   max-height: 100%;
-  background-color: #ffffff;
-  color: #1d1d1d;
+  background-color: var(--listview-background);
+  color: var(--listview-color);
   list-style: none inside;
   display: -webkit-box;
   display: flex;
@@ -44857,9 +44874,11 @@ a.info-button {
   font-size: 13px;
   border: 1px solid transparent;
   background-color: inherit;
+  overflow: hidden;
+  border-radius: var(--listview-item-border-radius);
 }
 .listview .node:hover {
-  background-color: #e5f3ff;
+  background-color: var(--listview-item-background-hover);
 }
 .listview .node > .icon {
   text-align: center;
@@ -44868,8 +44887,7 @@ a.info-button {
   max-width: 100%;
   height: 100%;
 }
-.listview .node > .icon [class*=mif-],
-.listview .node > .icon img {
+.listview .node > .icon > * {
   vertical-align: initial;
 }
 .listview .node .checkbox,
@@ -44890,6 +44908,13 @@ a.info-button {
 .listview:not(.selectable) .checkbox {
   display: none;
 }
+.listview .node > .data > .caption {
+  line-height: 1.2;
+  font-size: 12px;
+}
+.listview .node-group > .data > .caption {
+  font-size: 14px;
+}
 .listview.view-list .node {
   min-width: 160px;
   line-height: 26px;
@@ -44898,12 +44923,20 @@ a.info-button {
   -webkit-box-orient: horizontal;
   -webkit-box-direction: normal;
           flex-flow: row nowrap;
+  -webkit-box-align: center;
+          align-items: center;
 }
 .listview.view-list .node > .icon {
   width: 20px;
   height: 20px;
   line-height: 26px;
   font-size: 18px;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+          justify-content: center;
 }
 .listview.view-list .node > .data {
   line-height: 26px;
@@ -44915,13 +44948,15 @@ a.info-button {
 .listview.view-table {
   display: table;
   width: 100%;
+  padding: 0 8px;
 }
-.listview.view-table > li {
+.listview.view-table .node {
   display: table-row;
   width: 100%;
 }
-.listview.view-table > li > * {
+.listview.view-table .node > * {
   display: table-cell;
+  vertical-align: middle;
 }
 .listview.view-table .icon {
   width: 20px;
@@ -44940,6 +44975,9 @@ a.info-button {
   display: table-cell;
   width: auto;
   line-height: 26px;
+}
+.listview.view-table label.checkbox {
+  width: 32px;
 }
 .listview.view-content .node {
   width: 100%;
@@ -44998,6 +45036,9 @@ a.info-button {
 .listview.view-tiles .node > .icon + .data {
   padding-left: 16px;
 }
+.listview.view-tiles .node .caption {
+  font-size: 14px;
+}
 .listview.view-icons .node,
 .listview.view-icons-medium .node,
 .listview.view-icons-large .node {
@@ -45055,8 +45096,8 @@ a.info-button {
   font-size: 140px;
 }
 .listview .node.current-select {
-  background-color: #cce8ff;
-  border-color: #84bcea !important;
+  background-color: var(--listview-item-background-active);
+  border-color: var(--border-color) !important;
 }
 .listview .node-group {
   display: block;
@@ -45126,20 +45167,23 @@ a.info-button {
 .listview .node-group + .listview {
   margin-top: 0.5rem;
 }
-.listview .node {
-  border-radius: 10px;
-  overflow: hidden;
+.listview .node .badge {
+  font-size: 10px;
+  margin-bottom: 4px;
+  position: relative;
+  background-color: var(--listview-badge-background);
+  color: var(--listview-badge-color);
 }
-.listview .node > .badge,
-.listview .node > .badges {
+.listview .node .badges {
   position: absolute;
-  top: 4px;
-  right: -4px;
-  border: 1px solid var(--border-color);
-  font-size: 12px;
-}
-.listview .node > .badges {
+  top: 8px;
+  right: 10px;
   border-color: transparent;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-flow: column;
 }
 
 .marquee {
@@ -45537,7 +45581,7 @@ a.info-button {
   font-size: 10px;
 }
 .navview-pane .item-header {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   cursor: default;
   background-color: transparent;
