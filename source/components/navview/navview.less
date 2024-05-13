@@ -1,64 +1,61 @@
-@import (once) "../../include/vars";
-@import (once) "../../include/mixins";
+:root {
+    --navview-pane-width: 280px;
+    --navview-pane-width-compact: 50px;
+    --navview-item-border-radius: 4px;
 
-@navviewPaneWidth: 280px;
-@navviewPaneWidthCompact: 48px;
-@navviewPaneItemHeight: 40px;
+    --navview-background: #ffffff;
+    --navview-color: #191919;
+    --navview-pane-background: #e5e5e5;
+    --navview-pane-color: #191919;
+    --navview-item-background: transparent;
+    --navview-item-color: #191919;
+    --navview-item-background-hover: #cecece;
+    --navview-item-color-hover: #0a0a0a;
+    --navview-item-background-active: #cecece;
+    --navview-item-color-active: #0a0a0a;
+    --navview-item-color-disabled: #ccc;
+    --navview-item-marker-color: #468cff;
+    --navview-dropdown-toggle-color: #191919;
+}
 
-@navviewPaneBackground: #e5e5e5;
-@navviewPaneItemHover: #cecece;
-@navviewPaneItemActive: #b7b7b7;
-@navviewPaneItemFocus: #0a0a0a;
-@navviewPaneItemDisabled: #9c9c9c;
-
+.dark-side {
+    --navview-background: #1e1f22;
+    --navview-color: #dbdfe7;
+    --navview-pane-background: #2b2d30;
+    --navview-pane-color: #dfe1e5;
+    --navview-item-background: transparent;
+    --navview-item-color: #dfe1e5;
+    --navview-item-background-hover: #43454a;
+    --navview-item-color-hover: #ffffff;
+    --navview-item-background-active: #43454a;
+    --navview-item-color-active: #ffffff;
+    --navview-item-color-disabled: #43454a;
+    --navview-item-marker-color: #468cff;
+    --navview-dropdown-toggle-color: #ffffff;
+}
 
 .navview {
-    display: block;
+    height: 100vh;
+    display: flex;
+    flex-flow: row nowrap;
     position: relative;
-    background-color: @white;
-    color: @dark;
-    overflow: hidden;
+    background-color: var(--navview-background);
+    color: var(--navview-color);
+}
+
+.navview-pane, .navview-content {
+    position: relative;
+    flex-shrink: 0;
     height: 100%;
-    min-height: 100%;
 }
 
-.navview {
+.navview-pane {
+    display: flex;
+    flex-flow: column;
+    width: var(--navview-pane-width-compact);
+    background-color: var(--navview-pane-background);
+    color: var(--navview-pane-color);
 
-    .navview-pane, .navview-content {
-        display: block;
-        min-height: 100%;
-        height: 100%;
-    }
-
-    &.animate-panes {
-        .navview-pane, .navview-content {
-            transition: all .1s linear;
-        }
-    }
-
-    .navview-pane {
-        width: @navviewPaneWidth;
-        background-color: @navviewPaneBackground;
-        position: absolute;
-        left: 0;
-        top: 0;
-        .translate3d(-100%);
-        z-index: 3;
-
-        &.open {
-            .translate3d(0);
-            .navview-menu-container {
-                overflow-y: auto!important;
-            }
-        }
-    }
-
-    .navview-content {
-        position: relative;
-    }
-}
-
-.navview {
     .pull-button, .holder {
         position: relative;
         display: flex;
@@ -66,131 +63,11 @@
         align-items: center;
         width: 48px;
         height: 48px;
-        background-color: transparent;
+        background-color: var(--navview-item-background);
+        color: var(--navview-item-color);
         border: 2px solid transparent;
         outline: none;
         cursor: pointer;
-    }
-
-    .holder {
-        height: 40px;
-        display: none;
-    }
-
-    .navview-container, .navview-menu-container {
-        display: block;
-        position: relative;
-        width: auto;
-        background-color: inherit;
-    }
-
-    .navview-menu-container {
-        z-index: -1;
-    }
-
-    .navview-menu {
-        display: block;
-        position: relative;
-        list-style: none inside;
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        background-color: @navviewPaneBackground;
-
-        li {
-            display: block;
-            position: relative;
-        }
-
-        li {
-            a {
-                display: flex;
-                align-items: center;
-                position: relative;
-                line-height: @navviewPaneItemHeight;
-                text-decoration: none;
-                color: inherit;
-                white-space: nowrap;
-                border: 2px solid transparent;
-                height: @navviewPaneItemHeight;
-
-                &:hover {
-                    text-decoration: none;
-                }
-            }
-        }
-
-        .icon {
-            width: 48px;
-            height: 40px;
-            display: block;
-            text-align: center;
-        }
-
-        .caption {
-            padding-left: 48px;
-            white-space: nowrap;
-            display: block;
-        }
-
-        .icon + .caption {
-            padding-left: 0;
-        }
-
-        .item-header {
-            font-size: 22px;
-            height: 32px;
-            line-height: 32px;
-            padding-left: 16px;
-            cursor: default;
-            background-color: transparent;
-            white-space: nowrap;
-            display: block;
-        }
-
-        li {
-            &.active {
-                &::before {
-                    content: "";
-                    display: block;
-                    position: absolute;
-                    height: 24px;
-                    top: 8px;
-                    left: 0;
-                    width: 4px;
-                    background-color: @cyan;
-                    z-index: 1;
-                }
-            }
-
-            &.disabled {
-                color: @navviewPaneItemDisabled!important;
-
-                img {
-                    opacity: .5;
-                }
-            }
-        }
-    }
-
-    .pull-button, .navview-menu .icon, .suggest-box .holder {
-        & > * {
-            width: 16px;
-            height: 16px;
-            line-height: 16px;
-            font-size: 16px;
-            vertical-align: initial;
-        }
-    }
-
-    .pull-button, .holder, .navview-menu li a {
-        &:hover {
-            background-color: @navviewPaneItemHover;
-        }
-
-        &:active {
-            background-color: @navviewPaneItemActive;
-        }
     }
 
     .suggest-box {
@@ -198,21 +75,141 @@
         padding: 8px 0;
 
         .input, .select, .textarea {
-            display: flex;
-            width: ~"calc(100% - 24px)"!important;
+            display: none;
+            width: calc(100% - 24px)!important;
             margin: 0 12px;
         }
     }
 
-    .item-separator {
-        height: 16px!important;
-        width: 100%;
-        display: block;
-        background-color: transparent;
-        cursor: default;
+    .navview-menu {
+        margin: 0;
+        padding: 4px;
     }
 
-    .navview-menu .dropdown-toggle {
+    li {
+        display: block;
+        position: relative;
+    }
+
+    a {
+        display: flex;
+        align-items: center;
+        font-size: 13px;
+        color: var(--navview-item-color);
+        background: var(--navview-item-background);
+        text-decoration: none;
+        padding: 4px 10px;
+        border-radius: var(--navview-item-border-radius);
+        white-space: nowrap;
+        flex-wrap: nowrap;
+        line-height: 20px;
+        height: 32px;
+        border: 2px solid transparent;
+        position: relative;
+
+        &:hover {
+            background-color: var(--navview-item-background-hover);
+            color: var(--navview-item-color-hover);
+            text-decoration: none;
+
+            & > .caption {
+                background-color: var(--navview-item-background-hover);
+                color: var(--navview-item-color-hover);
+                position: absolute;
+                left: 100%;
+                top: -2px;
+                display: flex;
+                align-items: center;
+                z-index: 2;
+                padding: 0 10px 0 20px;
+                height: 32px;
+                border-top-right-radius: var(--navview-item-border-radius);
+                border-bottom-right-radius: var(--navview-item-border-radius);
+            }
+        }
+
+        &.dropdown-toggle {
+            padding-right: 10px!important;
+        }
+    }
+
+    li.disabled {
+        a {
+            color: var(--navview-item-color-disabled);
+        }
+    }
+
+    li.active {
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            height: 24px;
+            top: 4px;
+            left: 0;
+            width: 4px;
+            background-color: var(--navview-item-marker-color);
+            z-index: 1;
+            border-radius: 4px;
+        }
+    }
+
+    .caption {
+        margin-right: 1rem;
+        white-space: nowrap;
+    }
+
+    .hotkey {
+        margin-left: auto;
+        margin-right: 1rem;
+        font-size: .9em;
+    }
+
+    .icon {
+        position: absolute;
+        left: 10px;
+        top: 5px;
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+    }
+
+    .badges {
+        flex-flow: row nowrap;
+        align-items: center;
+    }
+
+    .badge {
+        display: block;
+        margin-left: 4px;
+    }
+
+    .item-header {
+        font-size: 12px;
+        font-weight: bold;
+        cursor: default;
+        background-color: transparent;
+        white-space: nowrap;
+        margin: 8px;
+        text-transform: uppercase;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+
+        &::after {
+            content: "";
+            height: 1px;
+            width: 100%;
+            background-color: var(--border-color);
+            margin-left: 10px;
+        }
+    }
+
+    .caption, .hotkey, .item-header, .badges {
+        display: none;
+    }
+
+    .dropdown-toggle {
         padding-right: 0!important;
         &::before {
             display: none;
@@ -228,230 +225,71 @@
             height: 0;
             border-style: solid;
             border-width: 0 0 8px 8px;
-            border-color: transparent transparent @dark  transparent;
+            border-color: transparent transparent var(--navview-dropdown-toggle-color)  transparent;
             z-index: 1;
             transform: rotate(-90deg);
             transition: all .3s;
         }
         &.active-toggle::after {
             border-width: 0 0 8px 8px;
-            border-color: transparent transparent @dark  transparent;
+            border-color: transparent transparent var(--navview-dropdown-toggle-color)  transparent;
             transform: rotate(0);
             bottom: 0;
             top: auto;
         }
     }
 
-    &.focusableItems {
-        .pull-button, .holder, .navview-menu li a {
-            &:focus {
-                border: 2px solid @navviewPaneItemFocus;
-            }
-        }
+    ul {
+        margin: 0;
+        padding: 0;
     }
+}
 
-    .badges {
-        display: flex;
-        margin-left: auto;
-        margin-right: 8px;
-
-        .badge {
-            margin: 0 2px;
-        }
-    }
-
-    .data-box {
-        display: block;
-    }
-
-    .navview-menu .navview-menu .item-header {
-        display: none!important;
-    }
+.navview-content {
+    display: block;
+    flex-shrink: 1;
+    width: 100%;
+    background-color: inherit;
+    color: inherit;
 }
 
 .navview {
     &.expanded {
-
         .navview-pane {
-            width: @navviewPaneWidth!important;
-
-            .navview-menu .caption, .item-header {
-                display: block!important;
-            }
-
-            .suggest-box {
-                > *:not(.holder) {
-                    display: flex!important;
-                }
-            }
-
-            .holder {
-                display: none!important;
-            }
-
-            .navview-menu-container {
-                overflow-y: auto!important;
-            }
+            width: var(--navview-pane-width);
         }
-        .badges {
-            display: flex!important;
-        }
-        .data-box {
-            display: block!important;
-        }
-    }
 
-    &.compacted {
-        .navview-pane {
-            width: @navviewPaneWidthCompact!important;
-            .translate3d(0);
+        .navview-menu {
+            a {
+                padding: 4px 10px 4px 32px;
+            }
 
-            .navview-menu .caption,
+            .badges, .hotkey, .caption {
+                display: inline-flex;
+            }
+
+            .caption {
+                position: relative;
+                left: auto;
+                top: auto;
+                padding-left: initial;
+            }
+
             .item-header {
-                display: none!important;
-            }
-
-            .suggest-box {
-                > *:not(.holder) {
-                    display: none!important;
-                }
-            }
-
-            .holder {
-                display: block!important;
-            }
-
-            .navview-menu-container {
-                overflow-y: initial!important;
-            }
-
-            .badges, .data-box {
-                display: none!important;
-            }
-        }
-        .navview-content {
-            margin-left: @navviewPaneWidthCompact!important;
-        }
-    }
-}
-
-.navview-compact(){
-    .navview-pane {
-        width: @navviewPaneWidthCompact;
-        .translate3d(0);
-
-        .navview-menu .caption, .item-header {
-            display: none;
-        }
-
-        .suggest-box {
-            > *:not(.holder) {
-                display: none;
-            }
-        }
-
-        .holder {
-            display: block;
-        }
-
-        .navview-menu-container {
-            overflow-y: initial;
-        }
-
-        .badges, .data-box {
-            display: none;
-        }
-    }
-    .navview-content {
-        margin-left: @navviewPaneWidthCompact;
-    }
-}
-
-.navview-expanded(){
-    .navview-pane {
-        width: @navviewPaneWidth;
-        .translate3d(0);
-
-        .navview-menu .caption, .item-header {
-            display: block;
-        }
-
-        .suggest-box {
-            > *:not(.holder) {
                 display: flex;
             }
         }
 
+        .suggest-box > .input {
+            display: flex;
+        }
+
         .holder {
             display: none;
         }
-
-        .navview-menu-container {
-            overflow-y: auto;
-        }
-
-        .badges {
-            display: flex;
-        }
-        .data-box {
-            display: block;
-        }
-    }
-    .navview-content {
-        margin-left: @navviewPaneWidth;
     }
 }
 
-each(@mediaBreakpointListMobile, {
-    @media screen and (min-width: @@value) {
-        .navview-margin-@{value} {margin-left: @navviewPaneWidth;}
-        .navview-margin-compact-@{value} {margin-left: @navviewPaneWidthCompact;}
-
-        .navview {
-            &.navview-compact-@{value} {
-                .navview-compact();
-            }
-            &.navview-expand-@{value} {
-                .navview-expanded();
-            }
-        }
-    }
-})
-
-.navview {
-    &.compacted, &.js-compact:not(.expanded) {
-        .navview-menu .navview-menu {
-            position: absolute;
-            left: 100%;
-            top: 0;
-            width: 220px;
-            max-width: @navviewPaneWidth;
-
-            .caption {
-                display: block!important;
-            }
-
-            .item-header {
-                display: block!important;
-            }
-        }
-    }
-}
-
-.navview {
-    &.compacted, &.js-compact {
-        & .navview-pane > .navview-menu-container > .navview-menu > li > a {
-            & > .caption {
-                display: none;
-            }
-
-            & > .icon:hover + .caption {
-                display: block!important;
-                position: absolute;
-                left: ~"calc(100% + 0px)";
-                background-color: inherit;
-                padding: 0 16px;
-            }
-        }
-    }
+.app-bar ~ .navview {
+    height: calc(100vh - 50px);
 }

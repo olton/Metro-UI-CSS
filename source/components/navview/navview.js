@@ -9,6 +9,7 @@
         toggle: null,
         animate: true,
         activeState: false,
+        defaultView: "expand",
         onMenuItemClick: Metro.noop,
         onPaneClose: Metro.noop,
         onBeforePaneClose: Metro.noop,
@@ -97,6 +98,12 @@
                 .addClass("navview")
                 .addClass(o.compact !== false ? "navview-compact-"+o.compact : "")
                 .addClass(o.expand !== false ? "navview-expand-"+o.expand : "");
+
+            if (o.defaultView === 'expand') {
+                element.addClass("expanded");
+            } else {
+                element.addClass("compacted");
+            }
 
             pane = element.children(".navview-pane");
             content = element.children(".navview-content");
@@ -206,13 +213,8 @@
             var pane = this.pane;
             var pane_compact = pane.width() < 280;
 
-            if ((pane_compact || element.hasClass("expanded")) && !element.hasClass("compacted")) {
-                element.toggleClass("expanded");
-            } else
-
-            if (element.hasClass("compacted") || !pane_compact) {
-                element.toggleClass("compacted");
-            }
+            element.toggleClass("expanded");
+            element.toggleClass("compacted");
 
             if (element.hasClass("compacted")) {
                 Metro.utils.exec(o.onPaneClose, null, this)
