@@ -4,16 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
 
     <title>Test Select - Metro 4 :: Popular HTML, CSS and JS library</title>
 
 </head>
-<body class="m4-cloak">
-<div class="container" style="height: 2000px; margin-top: 1000px;">
+<body class="m4-cloak p-ab">
+<nav data-role="appbar">
+    <span class="app-bar-item">Select</span>
+    <div class="app-bar-item-static">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
+<div class="container">
     <h1>Select test page</h1>
 
     <div class="example">
-        <select data-role="select" multiple>
+        <select data-role="select" multiple  data-clear-button="true" data-clear-button-icon="<span class='mif-cross'></span>">
             <OPTION value = "arknoid2" data-display = "arknoid2"> Arkanoid - Revenge of DOH (World) </OPTION>
             <OPTION value = "arkanoid" data-display = "arkanoid"> Arkanoid (World, older) </OPTION>
             <OPTION value = "astrob" data-display = "astrob"> Astro Blaster (version 3) </OPTION>

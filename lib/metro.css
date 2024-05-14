@@ -47437,6 +47437,56 @@ a.info-button {
   display: none!important;
 }
 
+:root {
+  --select-focus-color: rgba(228, 228, 228, 0.45);
+  --select-disabled-color: #ccc;
+  --select-options-background: #ffffff;
+  --select-options-color: #191919;
+  --select-option-background: transparent;
+  --select-option-color: inherit;
+  --select-option-background-hover: rgba(29, 29, 29, 0.1);
+  --select-option-color-hover: inherit;
+  --select-option-background-selected: #468cff;
+  --select-option-color-selected: #ffffff;
+  --select-button-background: transparent;
+  --select-button-color: #191919;
+  --select-button-background-hover: transparent;
+  --select-button-color-hover: #191919;
+  --select-dropdown-toggle-color: #191919;
+  --select-group-title-background: #f6f7f8;
+  --select-group-title-color: #646464;
+  --select-item-group-title-background: transparent;
+  --select-item-group-title-color: #ccc;
+  --select-tag-background: #f6f7f8;
+  --select-tag-color: #191919;
+  --select-tag-button-background: #f6f7f8;
+  --select-tag-button-color: #191919;
+}
+.dark-side {
+  --select-focus-color: rgba(228, 228, 228, 0.2);
+  --select-disabled-color: #ccc;
+  --select-options-background: #2b2d30;
+  --select-options-color: #dbdfe7;
+  --select-option-background: transparent;
+  --select-option-color: inherit;
+  --select-option-background-hover: #43454a;
+  --select-option-color-hover: #ffffff;
+  --select-option-background-selected: #43454a;
+  --select-option-color-selected: #ffffff;
+  --select-button-background: transparent;
+  --select-button-color: #dbdfe7;
+  --select-button-background-hover: transparent;
+  --select-button-color-hover: #ffffff;
+  --select-dropdown-toggle-color: #ffffff;
+  --select-group-title-background: #1e1f22;
+  --select-group-title-color: #646464;
+  --select-item-group-title-background: transparent;
+  --select-item-group-title-color: #646464;
+  --select-tag-background: #2b2d30;
+  --select-tag-color: #dbdfe7;
+  --select-tag-button-background: #2b2d30;
+  --select-tag-button-color: #dbdfe7;
+}
 .select {
   display: -webkit-box;
   display: flex;
@@ -47453,6 +47503,12 @@ a.info-button {
   -webkit-user-select: none;
           user-select: none;
 }
+.select:hover .button,
+.select.focused .button {
+  border: none!important;
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
 .select .dropdown-toggle {
   width: 36px;
   height: 36px;
@@ -47461,6 +47517,7 @@ a.info-button {
 }
 .select .dropdown-toggle::before {
   margin-left: -1.1rem;
+  border-color: var(--select-dropdown-toggle-color);
 }
 .select .option-list {
   margin: 0;
@@ -47469,7 +47526,8 @@ a.info-button {
   overflow-y: auto;
   position: relative;
   display: block;
-  background-color: #ffffff;
+  background-color: var(--select-options-background);
+  color: var(--select-options-color);
   font-size: 0.875rem;
 }
 .select .option-list li,
@@ -47494,11 +47552,12 @@ a.info-button {
   text-align: center;
 }
 .select .option-list li:hover {
-  background-color: rgba(29, 29, 29, 0.1);
+  background-color: var(--select-option-background-hover);
+  color: var(--select-option-color-hover);
 }
 .select .option-list li.active {
-  background-color: #5ebdec;
-  color: #ffffff;
+  background-color: var(--select-option-background-selected);
+  color: var(--select-option-color-selected);
   font-weight: bold;
 }
 .select input[type=checkbox] {
@@ -47518,18 +47577,14 @@ a.info-button {
   flex-wrap: nowrap;
 }
 .select .button {
-  background-color: transparent;
-  color: #1d1d1d;
+  background-color: var(--select-button-background);
+  color: var(--select-button-color);
   height: 34px;
   min-width: 34px;
 }
-.select .button:focus,
-.select .button:active {
-  -webkit-box-shadow: none!important;
-          box-shadow: none!important;
-}
 .select .button:hover {
-  background-color: #f8f8f8;
+  background-color: var(--select-button-background-hover);
+  color: var(--select-button-color-hover);
   text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
 }
 .select .input-clear-button {
@@ -47567,6 +47622,13 @@ a.info-button {
 .select:hover input {
   border-color: transparent;
 }
+.select:hover .button:focus,
+.select:hover .button:active,
+.select:hover .button:hover {
+  border: none!important;
+  -webkit-box-shadow: none!important;
+          box-shadow: none!important;
+}
 .select .drop-container {
   position: absolute;
   top: 100%;
@@ -47577,7 +47639,8 @@ a.info-button {
   padding: 2px;
   margin-left: -1px;
   z-index: 1000;
-  background-color: #ffffff;
+  background-color: var(--select-options-background);
+  color: var(--select-options-color);
   -webkit-box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
           box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
 }
@@ -47590,8 +47653,8 @@ a.info-button {
   width: max-content;
 }
 .select.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
-          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+  -webkit-box-shadow: 0 0 0 3px var(--select-focus-color);
+          box-shadow: 0 0 0 3px var(--select-focus-color);
 }
 .select.dropdown-toggle::before {
   margin-left: -1.1rem;
@@ -47602,21 +47665,21 @@ a.info-button {
   height: 0.4rem;
 }
 .select.disabled.dropdown-toggle:before {
-  border-color: #ffffff;
+  border-color: var(--select-disabled-color);
 }
 .select .group-title {
-  background-color: #f6f7f8;
+  background-color: var(--select-group-title-background);
+  color: var(--select-group-title-color);
   font-size: 0.75rem;
   line-height: 0.875rem;
   padding: 0.25rem 0.5rem 0.25rem 1rem;
   border: 0;
-  color: #646464;
   font-weight: bold;
 }
 .select .group-title:hover {
-  background-color: #f6f7f8;
+  background-color: var(--select-group-title-background) !important;
+  color: var(--select-group-title-color) !important;
   cursor: default;
-  border: 0;
 }
 .select ul {
   right: 0;
@@ -47784,7 +47847,17 @@ a.info-button {
 }
 .select .selected-item__group-name {
   font-size: 0.75rem;
-  color: gray;
+  background-color: var(--select-item-group-title-background);
+  color: var(--select-item-group-title-color);
+}
+.select .tag {
+  background-color: var(--select-tag-background);
+  color: var(--select-tag-color);
+  border: 1px solid var(--border-color);
+}
+.select .tag .remover {
+  background-color: var(--select-tag-button-background);
+  color: var(--select-tag-button-color);
 }
 
 .shortcut {

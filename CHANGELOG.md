@@ -3,6 +3,7 @@
 + [x] Fixed `app-bar-menu` for collapsed `appbar`
 + [x] Redesign `navview` and upd for themes
 + [x] Update `listview` for themes
++ [x] Update `select` for themes
 
 ### 5.0.5
 + [x] Update `dialog` for themes

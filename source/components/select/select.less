@@ -1,6 +1,58 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --select-focus-color: rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+    --select-disabled-color: #ccc;
+    --select-options-background: #ffffff;
+    --select-options-color: #191919;
+    --select-option-background: transparent;
+    --select-option-color: inherit;
+    --select-option-background-hover: rgba(29,29,29,0.1);
+    --select-option-color-hover: inherit;
+    --select-option-background-selected: #468cff;
+    --select-option-color-selected: #ffffff;
+    --select-button-background: transparent;
+    --select-button-color: #191919;
+    --select-button-background-hover: transparent;
+    --select-button-color-hover: #191919;
+    --select-dropdown-toggle-color: #191919;
+    --select-group-title-background: #f6f7f8;
+    --select-group-title-color: #646464;
+    --select-item-group-title-background: transparent;
+    --select-item-group-title-color: #ccc;
+    --select-tag-background: #f6f7f8;
+    --select-tag-color: #191919;
+    --select-tag-button-background: #f6f7f8;
+    --select-tag-button-color: #191919;
+}
+
+.dark-side {
+    --select-focus-color: rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.2);
+    --select-disabled-color: #ccc;
+    --select-options-background: #2b2d30;
+    --select-options-color: #dbdfe7;
+    --select-option-background: transparent;
+    --select-option-color: inherit;
+    --select-option-background-hover: #43454a;
+    --select-option-color-hover: #ffffff;
+    --select-option-background-selected: #43454a;
+    --select-option-color-selected: #ffffff;
+    --select-button-background: transparent;
+    --select-button-color: #dbdfe7;
+    --select-button-background-hover: transparent;
+    --select-button-color-hover: #ffffff;
+    --select-dropdown-toggle-color: #ffffff;
+    --select-group-title-background: #1e1f22;
+    --select-group-title-color: #646464;
+    --select-item-group-title-background: transparent;
+    --select-item-group-title-color: #646464;
+    --select-tag-background: #2b2d30;
+    --select-tag-color: #dbdfe7;
+    --select-tag-button-background: #2b2d30;
+    --select-tag-button-color: #dbdfe7;
+}
+
 .select {
     display: flex;
     flex-flow: row nowrap;
@@ -12,6 +64,15 @@
     margin: 0;
     user-select: none;
 
+    &:hover, &.focused {
+        .button {
+            border:none!important;
+            box-shadow: none!important;
+        }
+    }
+}
+
+.select {
     .dropdown-toggle {
         width: 36px;
         height: 36px;
@@ -20,6 +81,7 @@
 
         &::before {
             margin-left: -1.1rem;
+            border-color: var(--select-dropdown-toggle-color);
         }
     }
 
@@ -30,7 +92,8 @@
         overflow-y: auto;
         position: relative;
         display: block;
-        background-color: @white;
+        background-color: var(--select-options-background);
+        color: var(--select-options-color);
         font-size: 0.875rem;
 
         li, a {
@@ -57,12 +120,13 @@
         }
 
         li:hover {
-            background-color: rgba(29, 29, 29, 0.1);
+            background-color: var(--select-option-background-hover);
+            color: var(--select-option-color-hover);
         }
 
         li.active {
-            background-color: #5ebdec;
-            color: #ffffff;
+            background-color: var(--select-option-background-selected);
+            color: var(--select-option-color-selected);
             font-weight: bold;
         }
     }
@@ -83,15 +147,13 @@
     }
 
     .button {
-        background-color: transparent;
-        color: @dark;
+        background-color: var(--select-button-background);
+        color: var(--select-button-color);
         height: 34px;
         min-width: 34px;
-        &:focus, &:active {
-            box-shadow: none!important;
-        }
         &:hover {
-            background-color: @light;
+            background-color: var(--select-button-background-hover);
+            color: var(--select-button-color-hover);
             text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
         }
     }
@@ -130,6 +192,12 @@
         input {
             border-color: transparent;
         }
+        .button {
+            &:focus, &:active, &:hover {
+                border: none!important;
+                box-shadow: none!important;
+            }
+        }
     }
 
     .drop-container {
@@ -142,7 +210,8 @@
         padding: 2px;
         margin-left: -1px;
         z-index: @zindex-dropdown;
-        background-color: @white;
+        background-color: var(--select-options-background);
+        color: var(--select-options-color);
         box-shadow: 3px 3px 5px 0 rgba(0,0,0,0.3);
 
         .input {
@@ -158,7 +227,7 @@
     }
 
     &.focused {
-        box-shadow: 0 0 0 3px rgba(red(@lightGray), green(@lightGray), blue(@lightGray), 0.45);
+        box-shadow: 0 0 0 3px var(--select-focus-color);
     }
 
     &.dropdown-toggle {
@@ -175,23 +244,23 @@
     &.disabled {
         &.dropdown-toggle {
             &:before {
-                border-color: @white;
+                border-color: var(--select-disabled-color);
             }
         }
     }
 
     .group-title {
-        background-color: #f6f7f8;
+        background-color: var(--select-group-title-background);
+        color: var(--select-group-title-color);
         font-size: .75rem;
         line-height: .875rem;
         padding: .25rem .5rem .25rem 1rem;
         border: 0;
-        color: #646464;
         font-weight: bold;
         &:hover {
-            background-color: #f6f7f8;
+            background-color: var(--select-group-title-background)!important;
+            color: var(--select-group-title-color)!important;
             cursor: default;
-            border: 0;
         }
     }
 
@@ -234,7 +303,6 @@
     .select-input {order: 2;}
     .button-group {order: 3;}
     .dropdown-toggle {order: 4;}
-
 }
 
 .select {
@@ -355,6 +423,17 @@
 .select {
     .selected-item__group-name {
         font-size: .75rem;
-        color: gray;
+        background-color: var(--select-item-group-title-background);
+        color: var(--select-item-group-title-color);
+    }
+
+    .tag {
+        background-color: var(--select-tag-background);
+        color: var(--select-tag-color);
+        border: 1px solid var(--border-color);
+        .remover {
+            background-color: var(--select-tag-button-background);
+            color: var(--select-tag-button-color);
+        }
     }
 }
