@@ -2,7 +2,6 @@
 
 :root {
     --grid-gutter: 16px;
-    --grid-cell-base: 8.333333%;
 }
 
 .grid {
@@ -39,11 +38,11 @@
 
 each(range(0, 12), .(@k) {
     .cell-@{k}, .col-@{k} {
-        flex: 0 0 calc(var(--grid-cell-base) * @k - var(--grid-gutter));
-        max-width: calc(var(--grid-cell-base) * @k - var(--grid-gutter));
+        flex: 0 0 calc(@gridCellBaseSize * @k - var(--grid-gutter));
+        max-width: calc(@gridCellBaseSize * @k - var(--grid-gutter));
     }
     .offset-@{k} {
-        margin-left: calc(var(--grid-cell-base) * @k);
+        margin-left: calc(@gridCellBaseSize * @k);
     }
 })
 
@@ -101,11 +100,11 @@ each(@media-rules, {
 
         each(range(1, 12), .(@k) {
             .cell-@{key}-@{k}, .col-@{key}-@{k} {
-                flex: 0 0 calc( var(--grid-cell-base) * @k - var(--grid-gutter) ) ;
-                max-width: calc( var(--grid-cell-base) * @k - var(--grid-gutter) ) ;
+                flex: 0 0 calc( @gridCellBaseSize * @k - var(--grid-gutter) ) ;
+                max-width: calc( @gridCellBaseSize * @k - var(--grid-gutter) ) ;
             }
             .offset-@{key}-@{k} {
-                margin-left: calc( var(--grid-cell-base) * @k );
+                margin-left: calc( @gridCellBaseSize * @k );
             }
         })
     }
