@@ -1,2 +1,2 @@
+// import "./grid-old.less"
 import "./grid.less"
-import "./grid-new.less"

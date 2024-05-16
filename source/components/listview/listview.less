@@ -5,13 +5,33 @@
 @listviewItemSelectedBackground: #cce8ff;
 @listviewItemHoverBackground: #e5f3ff;
 
+:root {
+    --listview-item-border-radius: 4px;
+
+    --listview-background: #ffffff;
+    --listview-color: #191919;
+    --listview-item-background-hover: #d4e2ff;
+    --listview-item-background-active: #d4e2ff;
+    --listview-badge-background: transparent;
+    --listview-badge-color: #191919;
+}
+
+.dark-side {
+    --listview-background: #1e1f22;
+    --listview-color: #dbdfe7;
+    --listview-item-background-hover: #2d2d32;
+    --listview-item-background-active: #28282c;
+    --listview-badge-background: transparent;
+    --listview-badge-color: #dbdfe7;
+}
+
 .listview {
     position: relative;
     margin: 0;
     padding: 0;
     max-height: 100%;
-    background-color: @white;
-    color: @dark;
+    background-color: var(--listview-background);
+    color: var(--listview-color);
     list-style: none inside;
     display: flex;
 
@@ -38,19 +58,22 @@
         font-size: 13px;
         border: 1px solid transparent;
         background-color: inherit;
+        overflow: hidden;
+        border-radius: var(--listview-item-border-radius);
 
         &:hover {
-            background-color: @listviewItemHoverBackground;
+            background-color: var(--listview-item-background-hover);
         }
 
         & > .icon {
             text-align: center;
+
             img {
                 max-width: 100%;
                 height: 100%;
             }
 
-            [class*=mif-], img {
+            & > * {
                 vertical-align: initial;
             }
         }
@@ -78,6 +101,15 @@
             display: none;
         }
     }
+
+    .node > .data > .caption {
+        line-height: 1.2;
+        font-size: 12px;
+    }
+
+    .node-group > .data > .caption {
+        font-size: 14px;
+    }
 }
 
 .listview {
@@ -89,12 +121,16 @@
             height: 26px;
             padding: 0 8px;
             flex-flow: row nowrap;
+            align-items: center;
 
             & > .icon {
                 width: 20px;
                 height: 20px;
                 line-height: 26px;
                 font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
             }
 
             & > .data {
@@ -109,17 +145,18 @@
     }
 
     &.view-table {
-
         display: table;
         width: 100%;
+        padding: 0 8px;
 
-        & > li {
+        .node {
             display: table-row;
             width: 100%;
         }
 
-        & > li > * {
+        .node > * {
             display: table-cell;
+            vertical-align: middle;
         }
 
         .icon {
@@ -144,6 +181,10 @@
             display: table-cell;
             width: auto;
             line-height: 26px;
+        }
+
+        label.checkbox {
+            width: 32px;
         }
     }
 
@@ -211,6 +252,10 @@
             & > .icon + .data {
                 padding-left: 16px;
             }
+
+            .caption {
+                font-size: 14px;
+            }
         }
     }
 
@@ -277,8 +322,8 @@
 .listview {
     .node {
         &.current-select {
-            background-color: @listviewItemSelectedBackground;
-            border-color: @listviewItemSelectedBorder!important;
+            background-color: var(--listview-item-background-active);
+            border-color: var(--border-color)!important;
         }
     }
 
@@ -307,7 +352,6 @@
             position: absolute;
             left: 0;
             top: 0;
-            //.translateX(-100%);
             .square(24, px);
 
             &::before {
@@ -335,18 +379,21 @@
 
 .listview {
     .node {
-        border-radius: 10px;
-        overflow: hidden;
-        & > .badge, & > .badges {
-            position: absolute;
-            top: 4px;
-            right: -4px;
-            border: 1px solid var(--border-color);
-            font-size: 12px;
+        .badge {
+            font-size: 10px;
+            margin-bottom: 4px;
+            position: relative;
+            background-color: var(--listview-badge-background);
+            color: var(--listview-badge-color);
         }
 
-        & > .badges {
+        .badges {
+            position: absolute;
+            top: 8px;
+            right: 10px;
             border-color: transparent;
+            display: flex;
+            flex-flow: column;
         }
     }
 }

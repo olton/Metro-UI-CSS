@@ -739,6 +739,12 @@
             navigator.clipboard.writeText(v).then(function(){
                 Metro.utils.exec(cb, [v])
             })
+        },
+
+        getCssVar: function(v){
+            var root = document.documentElement
+            var style = getComputedStyle(root)
+            return style.getPropertyValue(v)
         }
     };
 
