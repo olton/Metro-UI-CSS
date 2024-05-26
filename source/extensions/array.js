@@ -39,4 +39,10 @@
         };
     }
 
+    if (typeof Array.prototype.pack !== "function") {
+        Array.prototype.pack = function () {
+            return this.map(n => n.trim()).filter(Boolean);
+        };
+    }
+
 }());

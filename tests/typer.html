@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Typer - Metro 4 :: Popular HTML, CSS and JS library</title>
+
+</head>
+<body class="cloak flex-center">
+<nav data-role="appbar">
+    <span class="app-bar-item">Typer</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" />
+    </div>
+</nav>
+
+<h1>
+    <span>Welcome to</span>
+    <span data-role="typer" data-colors="#ed426d,#6d67c6,#b74033" data-on-type="onType">Metro UI, Impressive Components Library, First in Metro Style</span>
+</h1>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function onType({word, char}){
+        console.log(word)
+        console.log(char)
+    }
+</script>
+</body>
+</html>
