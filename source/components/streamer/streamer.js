@@ -92,9 +92,10 @@
                 this.build();
             }
 
-            if (o.chromeNotice === true && Utils.detectChrome() === true && $.touchable === false) {
-                $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
-            }
+            // TODO Fix mouse scroll
+            // if (o.chromeNotice === true && Utils.detectChrome() === true && $.touchable === false) {
+            //     $("<p>").addClass("text-small text-muted").html("*) In Chrome browser please press and hold Shift and turn the mouse wheel.").insertAfter(element);
+            // }
         },
 
         _loadSource: function(){

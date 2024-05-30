@@ -21133,16 +21133,16 @@ ol.latin-lower {
 :root {
   --mark-background: #a6d2ff;
   --mark-color: #191919;
-  --code-background: #4a4d51;
-  --code-color: #ffffff;
+  --code-background: #f8f8f8;
+  --code-color: #191919;
   --kbd-background: #004D6FFF;
   --kbd-color: #ffffff;
 }
 .dark-side {
   --mark-background: #c0c0c0;
   --mark-color: #000000;
-  --code-background: #c0c0c0;
-  --code-color: #000000;
+  --code-background: #26282e;
+  --code-color: #ffffff;
   --kbd-background: #004D6FFF;
   --kbd-color: #ffffff;
 }
@@ -21422,11 +21422,10 @@ code,
 kbd,
 samp {
   font-family: monospace, monospace;
-  font-size: 1rem;
+  font-size: 16px;
 }
 pre {
-  margin-top: 0;
-  margin-bottom: 1rem;
+  margin: 0;
   overflow: auto;
 }
 code {
@@ -21435,7 +21434,7 @@ code {
 pre code {
   white-space: inherit;
 }
-a:not([class]) {
+a {
   position: relative;
   color: var(--link-color);
   text-decoration: none;
@@ -21444,16 +21443,16 @@ a:not([class]) {
   -webkit-box-shadow: none;
           box-shadow: none;
 }
-a:not([class]):hover {
+a:hover {
   color: var(--link-color-hover);
   text-decoration: underline;
 }
-a:not([class]):not([href]):not([tabindex]) {
+a:not([href]):not([tabindex]) {
   color: inherit;
   text-decoration: none;
 }
-a:not([class]):not([href]):not([tabindex]):focus,
-a:not([class]):not([href]):not([tabindex]):hover {
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
   color: inherit;
   text-decoration: none;
   outline: 0;
@@ -21594,9 +21593,7 @@ kbd {
   color: var(--code-color);
   background-color: var(--code-background);
   border-radius: 4px;
-  line-height: 20px;
   vertical-align: middle;
-  height: 20px;
 }
 a .tally,
 a code,
@@ -21614,15 +21611,6 @@ kbd {
 pre code {
   background-color: inherit;
   height: auto;
-}
-.remark {
-  display: block;
-  position: relative;
-  border: 1px solid var(--border-color);
-  border-left: 4px solid var(--border-color);
-  padding: 1rem;
-  font-size: 0.875rem;
-  margin: 1rem 0;
 }
 .reduce-1 {
   font-size: 0.9em !important;
@@ -31581,2453 +31569,357 @@ input[type=reset].loading .load-caption {
   background-size: 20px 20px !important;
 }
 
-.button.primary,
-.command-button.primary,
-.image-button.primary,
-.shortcut.primary,
-.tool-button.primary,
-.split-button .split.primary,
-tbody tr.primary,
-tbody td.primary,
-.tally.primary,
-code.primary,
-.notify.primary,
-.info-button.primary,
-.input .button.primary,
-.select .button.primary,
-.tag-input .button.primary,
-.spinner .button.primary,
-.toast.primary,
-.badge.primary {
-  outline-color: #75b5fd;
-  background-color: #0366d6;
-  color: #ffffff;
+.primary {
+  outline-color: #75b5fd !important;
+  background-color: #0366d6 !important;
+  border-color: #0366d6 !important;
+  color: #ffffff !important;
 }
-.button.primary.outline,
-.command-button.primary.outline,
-.image-button.primary.outline,
-.shortcut.primary.outline,
-.tool-button.primary.outline,
-.split-button .split.primary.outline,
-tbody tr.primary.outline,
-tbody td.primary.outline,
-.tally.primary.outline,
-code.primary.outline,
-.notify.primary.outline,
-.info-button.primary.outline,
-.input .button.primary.outline,
-.select .button.primary.outline,
-.tag-input .button.primary.outline,
-.spinner .button.primary.outline,
-.toast.primary.outline,
-.badge.primary.outline {
+.primary.outline {
   color: #0366d6 !important;
-  border-color: #0366d6;
-  background-color: transparent;
+  border-color: #0366d6 !important;
+  background-color: transparent!important;
 }
-.button.primary.outline.dropdown-toggle::before,
-.command-button.primary.outline.dropdown-toggle::before,
-.image-button.primary.outline.dropdown-toggle::before,
-.shortcut.primary.outline.dropdown-toggle::before,
-.tool-button.primary.outline.dropdown-toggle::before,
-.split-button .split.primary.outline.dropdown-toggle::before,
-tbody tr.primary.outline.dropdown-toggle::before,
-tbody td.primary.outline.dropdown-toggle::before,
-.tally.primary.outline.dropdown-toggle::before,
-code.primary.outline.dropdown-toggle::before,
-.notify.primary.outline.dropdown-toggle::before,
-.info-button.primary.outline.dropdown-toggle::before,
-.input .button.primary.outline.dropdown-toggle::before,
-.select .button.primary.outline.dropdown-toggle::before,
-.tag-input .button.primary.outline.dropdown-toggle::before,
-.spinner .button.primary.outline.dropdown-toggle::before,
-.toast.primary.outline.dropdown-toggle::before,
-.badge.primary.outline.dropdown-toggle::before {
-  border-color: #0366d6;
+.primary.outline.dropdown-toggle::before {
+  border-color: #0366d6 !important;
 }
-.button.primary.outline:hover,
-.command-button.primary.outline:hover,
-.image-button.primary.outline:hover,
-.shortcut.primary.outline:hover,
-.tool-button.primary.outline:hover,
-.split-button .split.primary.outline:hover,
-tbody tr.primary.outline:hover,
-tbody td.primary.outline:hover,
-.tally.primary.outline:hover,
-code.primary.outline:hover,
-.notify.primary.outline:hover,
-.info-button.primary.outline:hover,
-.input .button.primary.outline:hover,
-.select .button.primary.outline:hover,
-.tag-input .button.primary.outline:hover,
-.spinner .button.primary.outline:hover,
-.toast.primary.outline:hover,
-.badge.primary.outline:hover {
+.primary.outline:hover {
   color: #ffffff !important;
 }
-.button.primary.dropdown-toggle::before,
-.command-button.primary.dropdown-toggle::before,
-.image-button.primary.dropdown-toggle::before,
-.shortcut.primary.dropdown-toggle::before,
-.tool-button.primary.dropdown-toggle::before,
-.split-button .split.primary.dropdown-toggle::before,
-tbody tr.primary.dropdown-toggle::before,
-tbody td.primary.dropdown-toggle::before,
-.tally.primary.dropdown-toggle::before,
-code.primary.dropdown-toggle::before,
-.notify.primary.dropdown-toggle::before,
-.info-button.primary.dropdown-toggle::before,
-.input .button.primary.dropdown-toggle::before,
-.select .button.primary.dropdown-toggle::before,
-.tag-input .button.primary.dropdown-toggle::before,
-.spinner .button.primary.dropdown-toggle::before,
-.toast.primary.dropdown-toggle::before,
-.badge.primary.dropdown-toggle::before {
-  border-color: #ffffff;
+.primary.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.primary:hover,
-.command-button.primary:hover,
-.image-button.primary:hover,
-.shortcut.primary:hover,
-.tool-button.primary:hover,
-.split-button .split.primary:hover,
-tbody tr.primary:hover,
-tbody td.primary:hover,
-.tally.primary:hover,
-code.primary:hover,
-.notify.primary:hover,
-.info-button.primary:hover,
-.input .button.primary:hover,
-.select .button.primary:hover,
-.tag-input .button.primary:hover,
-.spinner .button.primary:hover,
-.toast.primary:hover,
-.badge.primary:hover {
-  color: #ffffff;
-  background-color: #024ea4;
-  border-color: #023671;
+.primary:hover {
+  color: #ffffff !important;
+  background-color: #024ea4 !important;
+  border-color: #023671 !important;
 }
-.button.primary:hover.dropdown-toggle::before,
-.command-button.primary:hover.dropdown-toggle::before,
-.image-button.primary:hover.dropdown-toggle::before,
-.shortcut.primary:hover.dropdown-toggle::before,
-.tool-button.primary:hover.dropdown-toggle::before,
-.split-button .split.primary:hover.dropdown-toggle::before,
-tbody tr.primary:hover.dropdown-toggle::before,
-tbody td.primary:hover.dropdown-toggle::before,
-.tally.primary:hover.dropdown-toggle::before,
-code.primary:hover.dropdown-toggle::before,
-.notify.primary:hover.dropdown-toggle::before,
-.info-button.primary:hover.dropdown-toggle::before,
-.input .button.primary:hover.dropdown-toggle::before,
-.select .button.primary:hover.dropdown-toggle::before,
-.tag-input .button.primary:hover.dropdown-toggle::before,
-.spinner .button.primary:hover.dropdown-toggle::before,
-.toast.primary:hover.dropdown-toggle::before,
-.badge.primary:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.primary:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.primary.same-color:hover,
-.command-button.primary.same-color:hover,
-.image-button.primary.same-color:hover,
-.shortcut.primary.same-color:hover,
-.tool-button.primary.same-color:hover,
-.split-button .split.primary.same-color:hover,
-tbody tr.primary.same-color:hover,
-tbody td.primary.same-color:hover,
-.tally.primary.same-color:hover,
-code.primary.same-color:hover,
-.notify.primary.same-color:hover,
-.info-button.primary.same-color:hover,
-.input .button.primary.same-color:hover,
-.select .button.primary.same-color:hover,
-.tag-input .button.primary.same-color:hover,
-.spinner .button.primary.same-color:hover,
-.toast.primary.same-color:hover,
-.badge.primary.same-color:hover {
-  background-color: #0366d6;
-  border-color: #0366d6;
+.primary.same-color:hover {
+  background-color: #0366d6 !important;
+  border-color: #0366d6 !important;
 }
-.button.primary:active,
-.command-button.primary:active,
-.image-button.primary:active,
-.shortcut.primary:active,
-.tool-button.primary:active,
-.split-button .split.primary:active,
-tbody tr.primary:active,
-tbody td.primary:active,
-.tally.primary:active,
-code.primary:active,
-.notify.primary:active,
-.info-button.primary:active,
-.input .button.primary:active,
-.select .button.primary:active,
-.tag-input .button.primary:active,
-.spinner .button.primary:active,
-.toast.primary:active,
-.badge.primary:active,
-.button.primary.focus,
-.command-button.primary.focus,
-.image-button.primary.focus,
-.shortcut.primary.focus,
-.tool-button.primary.focus,
-.split-button .split.primary.focus,
-tbody tr.primary.focus,
-tbody td.primary.focus,
-.tally.primary.focus,
-code.primary.focus,
-.notify.primary.focus,
-.info-button.primary.focus,
-.input .button.primary.focus,
-.select .button.primary.focus,
-.tag-input .button.primary.focus,
-.spinner .button.primary.focus,
-.toast.primary.focus,
-.badge.primary.focus,
-.button.primary:focus,
-.command-button.primary:focus,
-.image-button.primary:focus,
-.shortcut.primary:focus,
-.tool-button.primary:focus,
-.split-button .split.primary:focus,
-tbody tr.primary:focus,
-tbody td.primary:focus,
-.tally.primary:focus,
-code.primary:focus,
-.notify.primary:focus,
-.info-button.primary:focus,
-.input .button.primary:focus,
-.select .button.primary:focus,
-.tag-input .button.primary:focus,
-.spinner .button.primary:focus,
-.toast.primary:focus,
-.badge.primary:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.45);
-          box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.45);
+.secondary {
+  outline-color: #b7c6cd !important;
+  background-color: #607d8b !important;
+  border-color: #607d8b !important;
+  color: #ffffff !important;
 }
-.button.secondary,
-.command-button.secondary,
-.image-button.secondary,
-.shortcut.secondary,
-.tool-button.secondary,
-.split-button .split.secondary,
-tbody tr.secondary,
-tbody td.secondary,
-.tally.secondary,
-code.secondary,
-.notify.secondary,
-.info-button.secondary,
-.input .button.secondary,
-.select .button.secondary,
-.tag-input .button.secondary,
-.spinner .button.secondary,
-.toast.secondary,
-.badge.secondary {
-  outline-color: #b7c6cd;
-  background-color: #607d8b;
-  color: #ffffff;
-}
-.button.secondary.outline,
-.command-button.secondary.outline,
-.image-button.secondary.outline,
-.shortcut.secondary.outline,
-.tool-button.secondary.outline,
-.split-button .split.secondary.outline,
-tbody tr.secondary.outline,
-tbody td.secondary.outline,
-.tally.secondary.outline,
-code.secondary.outline,
-.notify.secondary.outline,
-.info-button.secondary.outline,
-.input .button.secondary.outline,
-.select .button.secondary.outline,
-.tag-input .button.secondary.outline,
-.spinner .button.secondary.outline,
-.toast.secondary.outline,
-.badge.secondary.outline {
+.secondary.outline {
   color: #607d8b !important;
-  border-color: #607d8b;
-  background-color: transparent;
+  border-color: #607d8b !important;
+  background-color: transparent!important;
 }
-.button.secondary.outline.dropdown-toggle::before,
-.command-button.secondary.outline.dropdown-toggle::before,
-.image-button.secondary.outline.dropdown-toggle::before,
-.shortcut.secondary.outline.dropdown-toggle::before,
-.tool-button.secondary.outline.dropdown-toggle::before,
-.split-button .split.secondary.outline.dropdown-toggle::before,
-tbody tr.secondary.outline.dropdown-toggle::before,
-tbody td.secondary.outline.dropdown-toggle::before,
-.tally.secondary.outline.dropdown-toggle::before,
-code.secondary.outline.dropdown-toggle::before,
-.notify.secondary.outline.dropdown-toggle::before,
-.info-button.secondary.outline.dropdown-toggle::before,
-.input .button.secondary.outline.dropdown-toggle::before,
-.select .button.secondary.outline.dropdown-toggle::before,
-.tag-input .button.secondary.outline.dropdown-toggle::before,
-.spinner .button.secondary.outline.dropdown-toggle::before,
-.toast.secondary.outline.dropdown-toggle::before,
-.badge.secondary.outline.dropdown-toggle::before {
-  border-color: #607d8b;
+.secondary.outline.dropdown-toggle::before {
+  border-color: #607d8b !important;
 }
-.button.secondary.outline:hover,
-.command-button.secondary.outline:hover,
-.image-button.secondary.outline:hover,
-.shortcut.secondary.outline:hover,
-.tool-button.secondary.outline:hover,
-.split-button .split.secondary.outline:hover,
-tbody tr.secondary.outline:hover,
-tbody td.secondary.outline:hover,
-.tally.secondary.outline:hover,
-code.secondary.outline:hover,
-.notify.secondary.outline:hover,
-.info-button.secondary.outline:hover,
-.input .button.secondary.outline:hover,
-.select .button.secondary.outline:hover,
-.tag-input .button.secondary.outline:hover,
-.spinner .button.secondary.outline:hover,
-.toast.secondary.outline:hover,
-.badge.secondary.outline:hover {
+.secondary.outline:hover {
   color: #ffffff !important;
 }
-.button.secondary.dropdown-toggle::before,
-.command-button.secondary.dropdown-toggle::before,
-.image-button.secondary.dropdown-toggle::before,
-.shortcut.secondary.dropdown-toggle::before,
-.tool-button.secondary.dropdown-toggle::before,
-.split-button .split.secondary.dropdown-toggle::before,
-tbody tr.secondary.dropdown-toggle::before,
-tbody td.secondary.dropdown-toggle::before,
-.tally.secondary.dropdown-toggle::before,
-code.secondary.dropdown-toggle::before,
-.notify.secondary.dropdown-toggle::before,
-.info-button.secondary.dropdown-toggle::before,
-.input .button.secondary.dropdown-toggle::before,
-.select .button.secondary.dropdown-toggle::before,
-.tag-input .button.secondary.dropdown-toggle::before,
-.spinner .button.secondary.dropdown-toggle::before,
-.toast.secondary.dropdown-toggle::before,
-.badge.secondary.dropdown-toggle::before {
-  border-color: #ffffff;
+.secondary.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.secondary:hover,
-.command-button.secondary:hover,
-.image-button.secondary:hover,
-.shortcut.secondary:hover,
-.tool-button.secondary:hover,
-.split-button .split.secondary:hover,
-tbody tr.secondary:hover,
-tbody td.secondary:hover,
-.tally.secondary:hover,
-code.secondary:hover,
-.notify.secondary:hover,
-.info-button.secondary:hover,
-.input .button.secondary:hover,
-.select .button.secondary:hover,
-.tag-input .button.secondary:hover,
-.spinner .button.secondary:hover,
-.toast.secondary:hover,
-.badge.secondary:hover {
-  color: #ffffff;
-  background-color: #4b626d;
-  border-color: #36474f;
+.secondary:hover {
+  color: #ffffff !important;
+  background-color: #4b626d !important;
+  border-color: #36474f !important;
 }
-.button.secondary:hover.dropdown-toggle::before,
-.command-button.secondary:hover.dropdown-toggle::before,
-.image-button.secondary:hover.dropdown-toggle::before,
-.shortcut.secondary:hover.dropdown-toggle::before,
-.tool-button.secondary:hover.dropdown-toggle::before,
-.split-button .split.secondary:hover.dropdown-toggle::before,
-tbody tr.secondary:hover.dropdown-toggle::before,
-tbody td.secondary:hover.dropdown-toggle::before,
-.tally.secondary:hover.dropdown-toggle::before,
-code.secondary:hover.dropdown-toggle::before,
-.notify.secondary:hover.dropdown-toggle::before,
-.info-button.secondary:hover.dropdown-toggle::before,
-.input .button.secondary:hover.dropdown-toggle::before,
-.select .button.secondary:hover.dropdown-toggle::before,
-.tag-input .button.secondary:hover.dropdown-toggle::before,
-.spinner .button.secondary:hover.dropdown-toggle::before,
-.toast.secondary:hover.dropdown-toggle::before,
-.badge.secondary:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.secondary:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.secondary.same-color:hover,
-.command-button.secondary.same-color:hover,
-.image-button.secondary.same-color:hover,
-.shortcut.secondary.same-color:hover,
-.tool-button.secondary.same-color:hover,
-.split-button .split.secondary.same-color:hover,
-tbody tr.secondary.same-color:hover,
-tbody td.secondary.same-color:hover,
-.tally.secondary.same-color:hover,
-code.secondary.same-color:hover,
-.notify.secondary.same-color:hover,
-.info-button.secondary.same-color:hover,
-.input .button.secondary.same-color:hover,
-.select .button.secondary.same-color:hover,
-.tag-input .button.secondary.same-color:hover,
-.spinner .button.secondary.same-color:hover,
-.toast.secondary.same-color:hover,
-.badge.secondary.same-color:hover {
-  background-color: #607d8b;
-  border-color: #607d8b;
+.secondary.same-color:hover {
+  background-color: #607d8b !important;
+  border-color: #607d8b !important;
 }
-.button.secondary:active,
-.command-button.secondary:active,
-.image-button.secondary:active,
-.shortcut.secondary:active,
-.tool-button.secondary:active,
-.split-button .split.secondary:active,
-tbody tr.secondary:active,
-tbody td.secondary:active,
-.tally.secondary:active,
-code.secondary:active,
-.notify.secondary:active,
-.info-button.secondary:active,
-.input .button.secondary:active,
-.select .button.secondary:active,
-.tag-input .button.secondary:active,
-.spinner .button.secondary:active,
-.toast.secondary:active,
-.badge.secondary:active,
-.button.secondary.focus,
-.command-button.secondary.focus,
-.image-button.secondary.focus,
-.shortcut.secondary.focus,
-.tool-button.secondary.focus,
-.split-button .split.secondary.focus,
-tbody tr.secondary.focus,
-tbody td.secondary.focus,
-.tally.secondary.focus,
-code.secondary.focus,
-.notify.secondary.focus,
-.info-button.secondary.focus,
-.input .button.secondary.focus,
-.select .button.secondary.focus,
-.tag-input .button.secondary.focus,
-.spinner .button.secondary.focus,
-.toast.secondary.focus,
-.badge.secondary.focus,
-.button.secondary:focus,
-.command-button.secondary:focus,
-.image-button.secondary:focus,
-.shortcut.secondary:focus,
-.tool-button.secondary:focus,
-.split-button .split.secondary:focus,
-tbody tr.secondary:focus,
-tbody td.secondary:focus,
-.tally.secondary:focus,
-code.secondary:focus,
-.notify.secondary:focus,
-.info-button.secondary:focus,
-.input .button.secondary:focus,
-.select .button.secondary:focus,
-.tag-input .button.secondary:focus,
-.spinner .button.secondary:focus,
-.toast.secondary:focus,
-.badge.secondary:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
-          box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45);
+.success {
+  outline-color: #adeb6e !important;
+  background-color: #60a917 !important;
+  border-color: #60a917 !important;
+  color: #ffffff !important;
 }
-.button.success,
-.command-button.success,
-.image-button.success,
-.shortcut.success,
-.tool-button.success,
-.split-button .split.success,
-tbody tr.success,
-tbody td.success,
-.tally.success,
-code.success,
-.notify.success,
-.info-button.success,
-.input .button.success,
-.select .button.success,
-.tag-input .button.success,
-.spinner .button.success,
-.toast.success,
-.badge.success {
-  outline-color: #adeb6e;
-  background-color: #60a917;
-  color: #ffffff;
-}
-.button.success.outline,
-.command-button.success.outline,
-.image-button.success.outline,
-.shortcut.success.outline,
-.tool-button.success.outline,
-.split-button .split.success.outline,
-tbody tr.success.outline,
-tbody td.success.outline,
-.tally.success.outline,
-code.success.outline,
-.notify.success.outline,
-.info-button.success.outline,
-.input .button.success.outline,
-.select .button.success.outline,
-.tag-input .button.success.outline,
-.spinner .button.success.outline,
-.toast.success.outline,
-.badge.success.outline {
+.success.outline {
   color: #60a917 !important;
-  border-color: #60a917;
-  background-color: transparent;
+  border-color: #60a917 !important;
+  background-color: transparent!important;
 }
-.button.success.outline.dropdown-toggle::before,
-.command-button.success.outline.dropdown-toggle::before,
-.image-button.success.outline.dropdown-toggle::before,
-.shortcut.success.outline.dropdown-toggle::before,
-.tool-button.success.outline.dropdown-toggle::before,
-.split-button .split.success.outline.dropdown-toggle::before,
-tbody tr.success.outline.dropdown-toggle::before,
-tbody td.success.outline.dropdown-toggle::before,
-.tally.success.outline.dropdown-toggle::before,
-code.success.outline.dropdown-toggle::before,
-.notify.success.outline.dropdown-toggle::before,
-.info-button.success.outline.dropdown-toggle::before,
-.input .button.success.outline.dropdown-toggle::before,
-.select .button.success.outline.dropdown-toggle::before,
-.tag-input .button.success.outline.dropdown-toggle::before,
-.spinner .button.success.outline.dropdown-toggle::before,
-.toast.success.outline.dropdown-toggle::before,
-.badge.success.outline.dropdown-toggle::before {
-  border-color: #60a917;
+.success.outline.dropdown-toggle::before {
+  border-color: #60a917 !important;
 }
-.button.success.outline:hover,
-.command-button.success.outline:hover,
-.image-button.success.outline:hover,
-.shortcut.success.outline:hover,
-.tool-button.success.outline:hover,
-.split-button .split.success.outline:hover,
-tbody tr.success.outline:hover,
-tbody td.success.outline:hover,
-.tally.success.outline:hover,
-code.success.outline:hover,
-.notify.success.outline:hover,
-.info-button.success.outline:hover,
-.input .button.success.outline:hover,
-.select .button.success.outline:hover,
-.tag-input .button.success.outline:hover,
-.spinner .button.success.outline:hover,
-.toast.success.outline:hover,
-.badge.success.outline:hover {
+.success.outline:hover {
   color: #ffffff !important;
 }
-.button.success.dropdown-toggle::before,
-.command-button.success.dropdown-toggle::before,
-.image-button.success.dropdown-toggle::before,
-.shortcut.success.dropdown-toggle::before,
-.tool-button.success.dropdown-toggle::before,
-.split-button .split.success.dropdown-toggle::before,
-tbody tr.success.dropdown-toggle::before,
-tbody td.success.dropdown-toggle::before,
-.tally.success.dropdown-toggle::before,
-code.success.dropdown-toggle::before,
-.notify.success.dropdown-toggle::before,
-.info-button.success.dropdown-toggle::before,
-.input .button.success.dropdown-toggle::before,
-.select .button.success.dropdown-toggle::before,
-.tag-input .button.success.dropdown-toggle::before,
-.spinner .button.success.dropdown-toggle::before,
-.toast.success.dropdown-toggle::before,
-.badge.success.dropdown-toggle::before {
-  border-color: #ffffff;
+.success.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.success:hover,
-.command-button.success:hover,
-.image-button.success:hover,
-.shortcut.success:hover,
-.tool-button.success:hover,
-.split-button .split.success:hover,
-tbody tr.success:hover,
-tbody td.success:hover,
-.tally.success:hover,
-code.success:hover,
-.notify.success:hover,
-.info-button.success:hover,
-.input .button.success:hover,
-.select .button.success:hover,
-.tag-input .button.success:hover,
-.spinner .button.success:hover,
-.toast.success:hover,
-.badge.success:hover {
-  color: #ffffff;
-  background-color: #477c11;
-  border-color: #2d4f0b;
+.success:hover {
+  color: #ffffff !important;
+  background-color: #477c11 !important;
+  border-color: #2d4f0b !important;
 }
-.button.success:hover.dropdown-toggle::before,
-.command-button.success:hover.dropdown-toggle::before,
-.image-button.success:hover.dropdown-toggle::before,
-.shortcut.success:hover.dropdown-toggle::before,
-.tool-button.success:hover.dropdown-toggle::before,
-.split-button .split.success:hover.dropdown-toggle::before,
-tbody tr.success:hover.dropdown-toggle::before,
-tbody td.success:hover.dropdown-toggle::before,
-.tally.success:hover.dropdown-toggle::before,
-code.success:hover.dropdown-toggle::before,
-.notify.success:hover.dropdown-toggle::before,
-.info-button.success:hover.dropdown-toggle::before,
-.input .button.success:hover.dropdown-toggle::before,
-.select .button.success:hover.dropdown-toggle::before,
-.tag-input .button.success:hover.dropdown-toggle::before,
-.spinner .button.success:hover.dropdown-toggle::before,
-.toast.success:hover.dropdown-toggle::before,
-.badge.success:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.success:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.success.same-color:hover,
-.command-button.success.same-color:hover,
-.image-button.success.same-color:hover,
-.shortcut.success.same-color:hover,
-.tool-button.success.same-color:hover,
-.split-button .split.success.same-color:hover,
-tbody tr.success.same-color:hover,
-tbody td.success.same-color:hover,
-.tally.success.same-color:hover,
-code.success.same-color:hover,
-.notify.success.same-color:hover,
-.info-button.success.same-color:hover,
-.input .button.success.same-color:hover,
-.select .button.success.same-color:hover,
-.tag-input .button.success.same-color:hover,
-.spinner .button.success.same-color:hover,
-.toast.success.same-color:hover,
-.badge.success.same-color:hover {
-  background-color: #60a917;
-  border-color: #60a917;
+.success.same-color:hover {
+  background-color: #60a917 !important;
+  border-color: #60a917 !important;
 }
-.button.success:active,
-.command-button.success:active,
-.image-button.success:active,
-.shortcut.success:active,
-.tool-button.success:active,
-.split-button .split.success:active,
-tbody tr.success:active,
-tbody td.success:active,
-.tally.success:active,
-code.success:active,
-.notify.success:active,
-.info-button.success:active,
-.input .button.success:active,
-.select .button.success:active,
-.tag-input .button.success:active,
-.spinner .button.success:active,
-.toast.success:active,
-.badge.success:active,
-.button.success.focus,
-.command-button.success.focus,
-.image-button.success.focus,
-.shortcut.success.focus,
-.tool-button.success.focus,
-.split-button .split.success.focus,
-tbody tr.success.focus,
-tbody td.success.focus,
-.tally.success.focus,
-code.success.focus,
-.notify.success.focus,
-.info-button.success.focus,
-.input .button.success.focus,
-.select .button.success.focus,
-.tag-input .button.success.focus,
-.spinner .button.success.focus,
-.toast.success.focus,
-.badge.success.focus,
-.button.success:focus,
-.command-button.success:focus,
-.image-button.success:focus,
-.shortcut.success:focus,
-.tool-button.success:focus,
-.split-button .split.success:focus,
-tbody tr.success:focus,
-tbody td.success:focus,
-.tally.success:focus,
-code.success:focus,
-.notify.success:focus,
-.info-button.success:focus,
-.input .button.success:focus,
-.select .button.success:focus,
-.tag-input .button.success:focus,
-.spinner .button.success:focus,
-.toast.success:focus,
-.badge.success:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
-          box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45);
+.alert {
+  outline-color: #ecaba7 !important;
+  background-color: #CE352C !important;
+  border-color: #CE352C !important;
+  color: #ffffff !important;
 }
-.button.alert,
-.command-button.alert,
-.image-button.alert,
-.shortcut.alert,
-.tool-button.alert,
-.split-button .split.alert,
-tbody tr.alert,
-tbody td.alert,
-.tally.alert,
-code.alert,
-.notify.alert,
-.info-button.alert,
-.input .button.alert,
-.select .button.alert,
-.tag-input .button.alert,
-.spinner .button.alert,
-.toast.alert,
-.badge.alert {
-  outline-color: #ecaba7;
-  background-color: #CE352C;
-  color: #ffffff;
-}
-.button.alert.outline,
-.command-button.alert.outline,
-.image-button.alert.outline,
-.shortcut.alert.outline,
-.tool-button.alert.outline,
-.split-button .split.alert.outline,
-tbody tr.alert.outline,
-tbody td.alert.outline,
-.tally.alert.outline,
-code.alert.outline,
-.notify.alert.outline,
-.info-button.alert.outline,
-.input .button.alert.outline,
-.select .button.alert.outline,
-.tag-input .button.alert.outline,
-.spinner .button.alert.outline,
-.toast.alert.outline,
-.badge.alert.outline {
+.alert.outline {
   color: #CE352C !important;
-  border-color: #CE352C;
-  background-color: transparent;
+  border-color: #CE352C !important;
+  background-color: transparent!important;
 }
-.button.alert.outline.dropdown-toggle::before,
-.command-button.alert.outline.dropdown-toggle::before,
-.image-button.alert.outline.dropdown-toggle::before,
-.shortcut.alert.outline.dropdown-toggle::before,
-.tool-button.alert.outline.dropdown-toggle::before,
-.split-button .split.alert.outline.dropdown-toggle::before,
-tbody tr.alert.outline.dropdown-toggle::before,
-tbody td.alert.outline.dropdown-toggle::before,
-.tally.alert.outline.dropdown-toggle::before,
-code.alert.outline.dropdown-toggle::before,
-.notify.alert.outline.dropdown-toggle::before,
-.info-button.alert.outline.dropdown-toggle::before,
-.input .button.alert.outline.dropdown-toggle::before,
-.select .button.alert.outline.dropdown-toggle::before,
-.tag-input .button.alert.outline.dropdown-toggle::before,
-.spinner .button.alert.outline.dropdown-toggle::before,
-.toast.alert.outline.dropdown-toggle::before,
-.badge.alert.outline.dropdown-toggle::before {
-  border-color: #CE352C;
+.alert.outline.dropdown-toggle::before {
+  border-color: #CE352C !important;
 }
-.button.alert.outline:hover,
-.command-button.alert.outline:hover,
-.image-button.alert.outline:hover,
-.shortcut.alert.outline:hover,
-.tool-button.alert.outline:hover,
-.split-button .split.alert.outline:hover,
-tbody tr.alert.outline:hover,
-tbody td.alert.outline:hover,
-.tally.alert.outline:hover,
-code.alert.outline:hover,
-.notify.alert.outline:hover,
-.info-button.alert.outline:hover,
-.input .button.alert.outline:hover,
-.select .button.alert.outline:hover,
-.tag-input .button.alert.outline:hover,
-.spinner .button.alert.outline:hover,
-.toast.alert.outline:hover,
-.badge.alert.outline:hover {
+.alert.outline:hover {
   color: #ffffff !important;
 }
-.button.alert.dropdown-toggle::before,
-.command-button.alert.dropdown-toggle::before,
-.image-button.alert.dropdown-toggle::before,
-.shortcut.alert.dropdown-toggle::before,
-.tool-button.alert.dropdown-toggle::before,
-.split-button .split.alert.dropdown-toggle::before,
-tbody tr.alert.dropdown-toggle::before,
-tbody td.alert.dropdown-toggle::before,
-.tally.alert.dropdown-toggle::before,
-code.alert.dropdown-toggle::before,
-.notify.alert.dropdown-toggle::before,
-.info-button.alert.dropdown-toggle::before,
-.input .button.alert.dropdown-toggle::before,
-.select .button.alert.dropdown-toggle::before,
-.tag-input .button.alert.dropdown-toggle::before,
-.spinner .button.alert.dropdown-toggle::before,
-.toast.alert.dropdown-toggle::before,
-.badge.alert.dropdown-toggle::before {
-  border-color: #ffffff;
+.alert.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.alert:hover,
-.command-button.alert:hover,
-.image-button.alert:hover,
-.shortcut.alert:hover,
-.tool-button.alert:hover,
-.split-button .split.alert:hover,
-tbody tr.alert:hover,
-tbody td.alert:hover,
-.tally.alert:hover,
-code.alert:hover,
-.notify.alert:hover,
-.info-button.alert:hover,
-.input .button.alert:hover,
-.select .button.alert:hover,
-.tag-input .button.alert:hover,
-.spinner .button.alert:hover,
-.toast.alert:hover,
-.badge.alert:hover {
-  color: #ffffff;
-  background-color: #a42a23;
-  border-color: #7a1f1a;
+.alert:hover {
+  color: #ffffff !important;
+  background-color: #a42a23 !important;
+  border-color: #7a1f1a !important;
 }
-.button.alert:hover.dropdown-toggle::before,
-.command-button.alert:hover.dropdown-toggle::before,
-.image-button.alert:hover.dropdown-toggle::before,
-.shortcut.alert:hover.dropdown-toggle::before,
-.tool-button.alert:hover.dropdown-toggle::before,
-.split-button .split.alert:hover.dropdown-toggle::before,
-tbody tr.alert:hover.dropdown-toggle::before,
-tbody td.alert:hover.dropdown-toggle::before,
-.tally.alert:hover.dropdown-toggle::before,
-code.alert:hover.dropdown-toggle::before,
-.notify.alert:hover.dropdown-toggle::before,
-.info-button.alert:hover.dropdown-toggle::before,
-.input .button.alert:hover.dropdown-toggle::before,
-.select .button.alert:hover.dropdown-toggle::before,
-.tag-input .button.alert:hover.dropdown-toggle::before,
-.spinner .button.alert:hover.dropdown-toggle::before,
-.toast.alert:hover.dropdown-toggle::before,
-.badge.alert:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.alert:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.alert.same-color:hover,
-.command-button.alert.same-color:hover,
-.image-button.alert.same-color:hover,
-.shortcut.alert.same-color:hover,
-.tool-button.alert.same-color:hover,
-.split-button .split.alert.same-color:hover,
-tbody tr.alert.same-color:hover,
-tbody td.alert.same-color:hover,
-.tally.alert.same-color:hover,
-code.alert.same-color:hover,
-.notify.alert.same-color:hover,
-.info-button.alert.same-color:hover,
-.input .button.alert.same-color:hover,
-.select .button.alert.same-color:hover,
-.tag-input .button.alert.same-color:hover,
-.spinner .button.alert.same-color:hover,
-.toast.alert.same-color:hover,
-.badge.alert.same-color:hover {
-  background-color: #CE352C;
-  border-color: #CE352C;
+.alert.same-color:hover {
+  background-color: #CE352C !important;
+  border-color: #CE352C !important;
 }
-.button.alert:active,
-.command-button.alert:active,
-.image-button.alert:active,
-.shortcut.alert:active,
-.tool-button.alert:active,
-.split-button .split.alert:active,
-tbody tr.alert:active,
-tbody td.alert:active,
-.tally.alert:active,
-code.alert:active,
-.notify.alert:active,
-.info-button.alert:active,
-.input .button.alert:active,
-.select .button.alert:active,
-.tag-input .button.alert:active,
-.spinner .button.alert:active,
-.toast.alert:active,
-.badge.alert:active,
-.button.alert.focus,
-.command-button.alert.focus,
-.image-button.alert.focus,
-.shortcut.alert.focus,
-.tool-button.alert.focus,
-.split-button .split.alert.focus,
-tbody tr.alert.focus,
-tbody td.alert.focus,
-.tally.alert.focus,
-code.alert.focus,
-.notify.alert.focus,
-.info-button.alert.focus,
-.input .button.alert.focus,
-.select .button.alert.focus,
-.tag-input .button.alert.focus,
-.spinner .button.alert.focus,
-.toast.alert.focus,
-.badge.alert.focus,
-.button.alert:focus,
-.command-button.alert:focus,
-.image-button.alert:focus,
-.shortcut.alert:focus,
-.tool-button.alert:focus,
-.split-button .split.alert:focus,
-tbody tr.alert:focus,
-tbody td.alert:focus,
-.tally.alert:focus,
-code.alert:focus,
-.notify.alert:focus,
-.info-button.alert:focus,
-.input .button.alert:focus,
-.select .button.alert:focus,
-.tag-input .button.alert:focus,
-.spinner .button.alert:focus,
-.toast.alert:focus,
-.badge.alert:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
-          box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45);
+.warning {
+  outline-color: #ffede1 !important;
+  background-color: #ff9447 !important;
+  border-color: #ff9447 !important;
+  color: #ffffff !important;
 }
-.button.warning,
-.command-button.warning,
-.image-button.warning,
-.shortcut.warning,
-.tool-button.warning,
-.split-button .split.warning,
-tbody tr.warning,
-tbody td.warning,
-.tally.warning,
-code.warning,
-.notify.warning,
-.info-button.warning,
-.input .button.warning,
-.select .button.warning,
-.tag-input .button.warning,
-.spinner .button.warning,
-.toast.warning,
-.badge.warning {
-  outline-color: #ffede1;
-  background-color: #ff9447;
-  color: #ffffff;
-}
-.button.warning.outline,
-.command-button.warning.outline,
-.image-button.warning.outline,
-.shortcut.warning.outline,
-.tool-button.warning.outline,
-.split-button .split.warning.outline,
-tbody tr.warning.outline,
-tbody td.warning.outline,
-.tally.warning.outline,
-code.warning.outline,
-.notify.warning.outline,
-.info-button.warning.outline,
-.input .button.warning.outline,
-.select .button.warning.outline,
-.tag-input .button.warning.outline,
-.spinner .button.warning.outline,
-.toast.warning.outline,
-.badge.warning.outline {
+.warning.outline {
   color: #ff9447 !important;
-  border-color: #ff9447;
-  background-color: transparent;
+  border-color: #ff9447 !important;
+  background-color: transparent!important;
 }
-.button.warning.outline.dropdown-toggle::before,
-.command-button.warning.outline.dropdown-toggle::before,
-.image-button.warning.outline.dropdown-toggle::before,
-.shortcut.warning.outline.dropdown-toggle::before,
-.tool-button.warning.outline.dropdown-toggle::before,
-.split-button .split.warning.outline.dropdown-toggle::before,
-tbody tr.warning.outline.dropdown-toggle::before,
-tbody td.warning.outline.dropdown-toggle::before,
-.tally.warning.outline.dropdown-toggle::before,
-code.warning.outline.dropdown-toggle::before,
-.notify.warning.outline.dropdown-toggle::before,
-.info-button.warning.outline.dropdown-toggle::before,
-.input .button.warning.outline.dropdown-toggle::before,
-.select .button.warning.outline.dropdown-toggle::before,
-.tag-input .button.warning.outline.dropdown-toggle::before,
-.spinner .button.warning.outline.dropdown-toggle::before,
-.toast.warning.outline.dropdown-toggle::before,
-.badge.warning.outline.dropdown-toggle::before {
-  border-color: #ff9447;
+.warning.outline.dropdown-toggle::before {
+  border-color: #ff9447 !important;
 }
-.button.warning.outline:hover,
-.command-button.warning.outline:hover,
-.image-button.warning.outline:hover,
-.shortcut.warning.outline:hover,
-.tool-button.warning.outline:hover,
-.split-button .split.warning.outline:hover,
-tbody tr.warning.outline:hover,
-tbody td.warning.outline:hover,
-.tally.warning.outline:hover,
-code.warning.outline:hover,
-.notify.warning.outline:hover,
-.info-button.warning.outline:hover,
-.input .button.warning.outline:hover,
-.select .button.warning.outline:hover,
-.tag-input .button.warning.outline:hover,
-.spinner .button.warning.outline:hover,
-.toast.warning.outline:hover,
-.badge.warning.outline:hover {
+.warning.outline:hover {
   color: #ffffff !important;
 }
-.button.warning.dropdown-toggle::before,
-.command-button.warning.dropdown-toggle::before,
-.image-button.warning.dropdown-toggle::before,
-.shortcut.warning.dropdown-toggle::before,
-.tool-button.warning.dropdown-toggle::before,
-.split-button .split.warning.dropdown-toggle::before,
-tbody tr.warning.dropdown-toggle::before,
-tbody td.warning.dropdown-toggle::before,
-.tally.warning.dropdown-toggle::before,
-code.warning.dropdown-toggle::before,
-.notify.warning.dropdown-toggle::before,
-.info-button.warning.dropdown-toggle::before,
-.input .button.warning.dropdown-toggle::before,
-.select .button.warning.dropdown-toggle::before,
-.tag-input .button.warning.dropdown-toggle::before,
-.spinner .button.warning.dropdown-toggle::before,
-.toast.warning.dropdown-toggle::before,
-.badge.warning.dropdown-toggle::before {
-  border-color: #ffffff;
+.warning.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.warning:hover,
-.command-button.warning:hover,
-.image-button.warning:hover,
-.shortcut.warning:hover,
-.tool-button.warning:hover,
-.split-button .split.warning:hover,
-tbody tr.warning:hover,
-tbody td.warning:hover,
-.tally.warning:hover,
-code.warning:hover,
-.notify.warning:hover,
-.info-button.warning:hover,
-.input .button.warning:hover,
-.select .button.warning:hover,
-.tag-input .button.warning:hover,
-.spinner .button.warning:hover,
-.toast.warning:hover,
-.badge.warning:hover {
-  color: #ffffff;
-  background-color: #ff7615;
-  border-color: #e05d00;
+.warning:hover {
+  color: #ffffff !important;
+  background-color: #ff7615 !important;
+  border-color: #e05d00 !important;
 }
-.button.warning:hover.dropdown-toggle::before,
-.command-button.warning:hover.dropdown-toggle::before,
-.image-button.warning:hover.dropdown-toggle::before,
-.shortcut.warning:hover.dropdown-toggle::before,
-.tool-button.warning:hover.dropdown-toggle::before,
-.split-button .split.warning:hover.dropdown-toggle::before,
-tbody tr.warning:hover.dropdown-toggle::before,
-tbody td.warning:hover.dropdown-toggle::before,
-.tally.warning:hover.dropdown-toggle::before,
-code.warning:hover.dropdown-toggle::before,
-.notify.warning:hover.dropdown-toggle::before,
-.info-button.warning:hover.dropdown-toggle::before,
-.input .button.warning:hover.dropdown-toggle::before,
-.select .button.warning:hover.dropdown-toggle::before,
-.tag-input .button.warning:hover.dropdown-toggle::before,
-.spinner .button.warning:hover.dropdown-toggle::before,
-.toast.warning:hover.dropdown-toggle::before,
-.badge.warning:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.warning:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.warning.same-color:hover,
-.command-button.warning.same-color:hover,
-.image-button.warning.same-color:hover,
-.shortcut.warning.same-color:hover,
-.tool-button.warning.same-color:hover,
-.split-button .split.warning.same-color:hover,
-tbody tr.warning.same-color:hover,
-tbody td.warning.same-color:hover,
-.tally.warning.same-color:hover,
-code.warning.same-color:hover,
-.notify.warning.same-color:hover,
-.info-button.warning.same-color:hover,
-.input .button.warning.same-color:hover,
-.select .button.warning.same-color:hover,
-.tag-input .button.warning.same-color:hover,
-.spinner .button.warning.same-color:hover,
-.toast.warning.same-color:hover,
-.badge.warning.same-color:hover {
-  background-color: #ff9447;
-  border-color: #ff9447;
+.warning.same-color:hover {
+  background-color: #ff9447 !important;
+  border-color: #ff9447 !important;
 }
-.button.warning:active,
-.command-button.warning:active,
-.image-button.warning:active,
-.shortcut.warning:active,
-.tool-button.warning:active,
-.split-button .split.warning:active,
-tbody tr.warning:active,
-tbody td.warning:active,
-.tally.warning:active,
-code.warning:active,
-.notify.warning:active,
-.info-button.warning:active,
-.input .button.warning:active,
-.select .button.warning:active,
-.tag-input .button.warning:active,
-.spinner .button.warning:active,
-.toast.warning:active,
-.badge.warning:active,
-.button.warning.focus,
-.command-button.warning.focus,
-.image-button.warning.focus,
-.shortcut.warning.focus,
-.tool-button.warning.focus,
-.split-button .split.warning.focus,
-tbody tr.warning.focus,
-tbody td.warning.focus,
-.tally.warning.focus,
-code.warning.focus,
-.notify.warning.focus,
-.info-button.warning.focus,
-.input .button.warning.focus,
-.select .button.warning.focus,
-.tag-input .button.warning.focus,
-.spinner .button.warning.focus,
-.toast.warning.focus,
-.badge.warning.focus,
-.button.warning:focus,
-.command-button.warning:focus,
-.image-button.warning:focus,
-.shortcut.warning:focus,
-.tool-button.warning:focus,
-.split-button .split.warning:focus,
-tbody tr.warning:focus,
-tbody td.warning:focus,
-.tally.warning:focus,
-code.warning:focus,
-.notify.warning:focus,
-.info-button.warning:focus,
-.input .button.warning:focus,
-.select .button.warning:focus,
-.tag-input .button.warning:focus,
-.spinner .button.warning:focus,
-.toast.warning:focus,
-.badge.warning:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
-          box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45);
+.yellow {
+  outline-color: #ffffff !important;
+  background-color: #ffe484 !important;
+  border-color: #ffe484 !important;
+  color: #ffffff !important;
 }
-.button.yellow,
-.command-button.yellow,
-.image-button.yellow,
-.shortcut.yellow,
-.tool-button.yellow,
-.split-button .split.yellow,
-tbody tr.yellow,
-tbody td.yellow,
-.tally.yellow,
-code.yellow,
-.notify.yellow,
-.info-button.yellow,
-.input .button.yellow,
-.select .button.yellow,
-.tag-input .button.yellow,
-.spinner .button.yellow,
-.toast.yellow,
-.badge.yellow {
-  outline-color: #ffffff;
-  background-color: #ffe484;
-  color: #ffffff;
-}
-.button.yellow.outline,
-.command-button.yellow.outline,
-.image-button.yellow.outline,
-.shortcut.yellow.outline,
-.tool-button.yellow.outline,
-.split-button .split.yellow.outline,
-tbody tr.yellow.outline,
-tbody td.yellow.outline,
-.tally.yellow.outline,
-code.yellow.outline,
-.notify.yellow.outline,
-.info-button.yellow.outline,
-.input .button.yellow.outline,
-.select .button.yellow.outline,
-.tag-input .button.yellow.outline,
-.spinner .button.yellow.outline,
-.toast.yellow.outline,
-.badge.yellow.outline {
+.yellow.outline {
   color: #ffe484 !important;
-  border-color: #ffe484;
-  background-color: transparent;
+  border-color: #ffe484 !important;
+  background-color: transparent!important;
 }
-.button.yellow.outline.dropdown-toggle::before,
-.command-button.yellow.outline.dropdown-toggle::before,
-.image-button.yellow.outline.dropdown-toggle::before,
-.shortcut.yellow.outline.dropdown-toggle::before,
-.tool-button.yellow.outline.dropdown-toggle::before,
-.split-button .split.yellow.outline.dropdown-toggle::before,
-tbody tr.yellow.outline.dropdown-toggle::before,
-tbody td.yellow.outline.dropdown-toggle::before,
-.tally.yellow.outline.dropdown-toggle::before,
-code.yellow.outline.dropdown-toggle::before,
-.notify.yellow.outline.dropdown-toggle::before,
-.info-button.yellow.outline.dropdown-toggle::before,
-.input .button.yellow.outline.dropdown-toggle::before,
-.select .button.yellow.outline.dropdown-toggle::before,
-.tag-input .button.yellow.outline.dropdown-toggle::before,
-.spinner .button.yellow.outline.dropdown-toggle::before,
-.toast.yellow.outline.dropdown-toggle::before,
-.badge.yellow.outline.dropdown-toggle::before {
-  border-color: #ffe484;
+.yellow.outline.dropdown-toggle::before {
+  border-color: #ffe484 !important;
 }
-.button.yellow.outline:hover,
-.command-button.yellow.outline:hover,
-.image-button.yellow.outline:hover,
-.shortcut.yellow.outline:hover,
-.tool-button.yellow.outline:hover,
-.split-button .split.yellow.outline:hover,
-tbody tr.yellow.outline:hover,
-tbody td.yellow.outline:hover,
-.tally.yellow.outline:hover,
-code.yellow.outline:hover,
-.notify.yellow.outline:hover,
-.info-button.yellow.outline:hover,
-.input .button.yellow.outline:hover,
-.select .button.yellow.outline:hover,
-.tag-input .button.yellow.outline:hover,
-.spinner .button.yellow.outline:hover,
-.toast.yellow.outline:hover,
-.badge.yellow.outline:hover {
+.yellow.outline:hover {
   color: #ffffff !important;
 }
-.button.yellow.dropdown-toggle::before,
-.command-button.yellow.dropdown-toggle::before,
-.image-button.yellow.dropdown-toggle::before,
-.shortcut.yellow.dropdown-toggle::before,
-.tool-button.yellow.dropdown-toggle::before,
-.split-button .split.yellow.dropdown-toggle::before,
-tbody tr.yellow.dropdown-toggle::before,
-tbody td.yellow.dropdown-toggle::before,
-.tally.yellow.dropdown-toggle::before,
-code.yellow.dropdown-toggle::before,
-.notify.yellow.dropdown-toggle::before,
-.info-button.yellow.dropdown-toggle::before,
-.input .button.yellow.dropdown-toggle::before,
-.select .button.yellow.dropdown-toggle::before,
-.tag-input .button.yellow.dropdown-toggle::before,
-.spinner .button.yellow.dropdown-toggle::before,
-.toast.yellow.dropdown-toggle::before,
-.badge.yellow.dropdown-toggle::before {
-  border-color: #ffffff;
+.yellow.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.yellow:hover,
-.command-button.yellow:hover,
-.image-button.yellow:hover,
-.shortcut.yellow:hover,
-.tool-button.yellow:hover,
-.split-button .split.yellow:hover,
-tbody tr.yellow:hover,
-tbody td.yellow:hover,
-.tally.yellow:hover,
-code.yellow:hover,
-.notify.yellow:hover,
-.info-button.yellow:hover,
-.input .button.yellow:hover,
-.select .button.yellow:hover,
-.tag-input .button.yellow:hover,
-.spinner .button.yellow:hover,
-.toast.yellow:hover,
-.badge.yellow:hover {
-  color: #ffffff;
-  background-color: #ffd951;
-  border-color: #ffce1e;
+.yellow:hover {
+  color: #ffffff !important;
+  background-color: #ffd951 !important;
+  border-color: #ffce1e !important;
 }
-.button.yellow:hover.dropdown-toggle::before,
-.command-button.yellow:hover.dropdown-toggle::before,
-.image-button.yellow:hover.dropdown-toggle::before,
-.shortcut.yellow:hover.dropdown-toggle::before,
-.tool-button.yellow:hover.dropdown-toggle::before,
-.split-button .split.yellow:hover.dropdown-toggle::before,
-tbody tr.yellow:hover.dropdown-toggle::before,
-tbody td.yellow:hover.dropdown-toggle::before,
-.tally.yellow:hover.dropdown-toggle::before,
-code.yellow:hover.dropdown-toggle::before,
-.notify.yellow:hover.dropdown-toggle::before,
-.info-button.yellow:hover.dropdown-toggle::before,
-.input .button.yellow:hover.dropdown-toggle::before,
-.select .button.yellow:hover.dropdown-toggle::before,
-.tag-input .button.yellow:hover.dropdown-toggle::before,
-.spinner .button.yellow:hover.dropdown-toggle::before,
-.toast.yellow:hover.dropdown-toggle::before,
-.badge.yellow:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.yellow:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.yellow.same-color:hover,
-.command-button.yellow.same-color:hover,
-.image-button.yellow.same-color:hover,
-.shortcut.yellow.same-color:hover,
-.tool-button.yellow.same-color:hover,
-.split-button .split.yellow.same-color:hover,
-tbody tr.yellow.same-color:hover,
-tbody td.yellow.same-color:hover,
-.tally.yellow.same-color:hover,
-code.yellow.same-color:hover,
-.notify.yellow.same-color:hover,
-.info-button.yellow.same-color:hover,
-.input .button.yellow.same-color:hover,
-.select .button.yellow.same-color:hover,
-.tag-input .button.yellow.same-color:hover,
-.spinner .button.yellow.same-color:hover,
-.toast.yellow.same-color:hover,
-.badge.yellow.same-color:hover {
-  background-color: #ffe484;
-  border-color: #ffe484;
+.yellow.same-color:hover {
+  background-color: #ffe484 !important;
+  border-color: #ffe484 !important;
 }
-.button.yellow:active,
-.command-button.yellow:active,
-.image-button.yellow:active,
-.shortcut.yellow:active,
-.tool-button.yellow:active,
-.split-button .split.yellow:active,
-tbody tr.yellow:active,
-tbody td.yellow:active,
-.tally.yellow:active,
-code.yellow:active,
-.notify.yellow:active,
-.info-button.yellow:active,
-.input .button.yellow:active,
-.select .button.yellow:active,
-.tag-input .button.yellow:active,
-.spinner .button.yellow:active,
-.toast.yellow:active,
-.badge.yellow:active,
-.button.yellow.focus,
-.command-button.yellow.focus,
-.image-button.yellow.focus,
-.shortcut.yellow.focus,
-.tool-button.yellow.focus,
-.split-button .split.yellow.focus,
-tbody tr.yellow.focus,
-tbody td.yellow.focus,
-.tally.yellow.focus,
-code.yellow.focus,
-.notify.yellow.focus,
-.info-button.yellow.focus,
-.input .button.yellow.focus,
-.select .button.yellow.focus,
-.tag-input .button.yellow.focus,
-.spinner .button.yellow.focus,
-.toast.yellow.focus,
-.badge.yellow.focus,
-.button.yellow:focus,
-.command-button.yellow:focus,
-.image-button.yellow:focus,
-.shortcut.yellow:focus,
-.tool-button.yellow:focus,
-.split-button .split.yellow:focus,
-tbody tr.yellow:focus,
-tbody td.yellow:focus,
-.tally.yellow:focus,
-code.yellow:focus,
-.notify.yellow:focus,
-.info-button.yellow:focus,
-.input .button.yellow:focus,
-.select .button.yellow:focus,
-.tag-input .button.yellow:focus,
-.spinner .button.yellow:focus,
-.toast.yellow:focus,
-.badge.yellow:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
-          box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45);
+.info {
+  outline-color: #fefeff !important;
+  background-color: #69cbfa !important;
+  border-color: #69cbfa !important;
+  color: #ffffff !important;
 }
-.button.info,
-.command-button.info,
-.image-button.info,
-.shortcut.info,
-.tool-button.info,
-.split-button .split.info,
-tbody tr.info,
-tbody td.info,
-.tally.info,
-code.info,
-.notify.info,
-.info-button.info,
-.input .button.info,
-.select .button.info,
-.tag-input .button.info,
-.spinner .button.info,
-.toast.info,
-.badge.info {
-  outline-color: #fefeff;
-  background-color: #69cbfa;
-  color: #ffffff;
-}
-.button.info.outline,
-.command-button.info.outline,
-.image-button.info.outline,
-.shortcut.info.outline,
-.tool-button.info.outline,
-.split-button .split.info.outline,
-tbody tr.info.outline,
-tbody td.info.outline,
-.tally.info.outline,
-code.info.outline,
-.notify.info.outline,
-.info-button.info.outline,
-.input .button.info.outline,
-.select .button.info.outline,
-.tag-input .button.info.outline,
-.spinner .button.info.outline,
-.toast.info.outline,
-.badge.info.outline {
+.info.outline {
   color: #69cbfa !important;
-  border-color: #69cbfa;
-  background-color: transparent;
+  border-color: #69cbfa !important;
+  background-color: transparent!important;
 }
-.button.info.outline.dropdown-toggle::before,
-.command-button.info.outline.dropdown-toggle::before,
-.image-button.info.outline.dropdown-toggle::before,
-.shortcut.info.outline.dropdown-toggle::before,
-.tool-button.info.outline.dropdown-toggle::before,
-.split-button .split.info.outline.dropdown-toggle::before,
-tbody tr.info.outline.dropdown-toggle::before,
-tbody td.info.outline.dropdown-toggle::before,
-.tally.info.outline.dropdown-toggle::before,
-code.info.outline.dropdown-toggle::before,
-.notify.info.outline.dropdown-toggle::before,
-.info-button.info.outline.dropdown-toggle::before,
-.input .button.info.outline.dropdown-toggle::before,
-.select .button.info.outline.dropdown-toggle::before,
-.tag-input .button.info.outline.dropdown-toggle::before,
-.spinner .button.info.outline.dropdown-toggle::before,
-.toast.info.outline.dropdown-toggle::before,
-.badge.info.outline.dropdown-toggle::before {
-  border-color: #69cbfa;
+.info.outline.dropdown-toggle::before {
+  border-color: #69cbfa !important;
 }
-.button.info.outline:hover,
-.command-button.info.outline:hover,
-.image-button.info.outline:hover,
-.shortcut.info.outline:hover,
-.tool-button.info.outline:hover,
-.split-button .split.info.outline:hover,
-tbody tr.info.outline:hover,
-tbody td.info.outline:hover,
-.tally.info.outline:hover,
-code.info.outline:hover,
-.notify.info.outline:hover,
-.info-button.info.outline:hover,
-.input .button.info.outline:hover,
-.select .button.info.outline:hover,
-.tag-input .button.info.outline:hover,
-.spinner .button.info.outline:hover,
-.toast.info.outline:hover,
-.badge.info.outline:hover {
+.info.outline:hover {
   color: #ffffff !important;
 }
-.button.info.dropdown-toggle::before,
-.command-button.info.dropdown-toggle::before,
-.image-button.info.dropdown-toggle::before,
-.shortcut.info.dropdown-toggle::before,
-.tool-button.info.dropdown-toggle::before,
-.split-button .split.info.dropdown-toggle::before,
-tbody tr.info.dropdown-toggle::before,
-tbody td.info.dropdown-toggle::before,
-.tally.info.dropdown-toggle::before,
-code.info.dropdown-toggle::before,
-.notify.info.dropdown-toggle::before,
-.info-button.info.dropdown-toggle::before,
-.input .button.info.dropdown-toggle::before,
-.select .button.info.dropdown-toggle::before,
-.tag-input .button.info.dropdown-toggle::before,
-.spinner .button.info.dropdown-toggle::before,
-.toast.info.dropdown-toggle::before,
-.badge.info.dropdown-toggle::before {
-  border-color: #ffffff;
+.info.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.info:hover,
-.command-button.info:hover,
-.image-button.info:hover,
-.shortcut.info:hover,
-.tool-button.info:hover,
-.split-button .split.info:hover,
-tbody tr.info:hover,
-tbody td.info:hover,
-.tally.info:hover,
-code.info:hover,
-.notify.info:hover,
-.info-button.info:hover,
-.input .button.info:hover,
-.select .button.info:hover,
-.tag-input .button.info:hover,
-.spinner .button.info:hover,
-.toast.info:hover,
-.badge.info:hover {
-  color: #ffffff;
-  background-color: #38baf9;
-  border-color: #08a8f6;
+.info:hover {
+  color: #ffffff !important;
+  background-color: #38baf9 !important;
+  border-color: #08a8f6 !important;
 }
-.button.info:hover.dropdown-toggle::before,
-.command-button.info:hover.dropdown-toggle::before,
-.image-button.info:hover.dropdown-toggle::before,
-.shortcut.info:hover.dropdown-toggle::before,
-.tool-button.info:hover.dropdown-toggle::before,
-.split-button .split.info:hover.dropdown-toggle::before,
-tbody tr.info:hover.dropdown-toggle::before,
-tbody td.info:hover.dropdown-toggle::before,
-.tally.info:hover.dropdown-toggle::before,
-code.info:hover.dropdown-toggle::before,
-.notify.info:hover.dropdown-toggle::before,
-.info-button.info:hover.dropdown-toggle::before,
-.input .button.info:hover.dropdown-toggle::before,
-.select .button.info:hover.dropdown-toggle::before,
-.tag-input .button.info:hover.dropdown-toggle::before,
-.spinner .button.info:hover.dropdown-toggle::before,
-.toast.info:hover.dropdown-toggle::before,
-.badge.info:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.info:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.info.same-color:hover,
-.command-button.info.same-color:hover,
-.image-button.info.same-color:hover,
-.shortcut.info.same-color:hover,
-.tool-button.info.same-color:hover,
-.split-button .split.info.same-color:hover,
-tbody tr.info.same-color:hover,
-tbody td.info.same-color:hover,
-.tally.info.same-color:hover,
-code.info.same-color:hover,
-.notify.info.same-color:hover,
-.info-button.info.same-color:hover,
-.input .button.info.same-color:hover,
-.select .button.info.same-color:hover,
-.tag-input .button.info.same-color:hover,
-.spinner .button.info.same-color:hover,
-.toast.info.same-color:hover,
-.badge.info.same-color:hover {
-  background-color: #69cbfa;
-  border-color: #69cbfa;
+.info.same-color:hover {
+  background-color: #69cbfa !important;
+  border-color: #69cbfa !important;
 }
-.button.info:active,
-.command-button.info:active,
-.image-button.info:active,
-.shortcut.info:active,
-.tool-button.info:active,
-.split-button .split.info:active,
-tbody tr.info:active,
-tbody td.info:active,
-.tally.info:active,
-code.info:active,
-.notify.info:active,
-.info-button.info:active,
-.input .button.info:active,
-.select .button.info:active,
-.tag-input .button.info:active,
-.spinner .button.info:active,
-.toast.info:active,
-.badge.info:active,
-.button.info.focus,
-.command-button.info.focus,
-.image-button.info.focus,
-.shortcut.info.focus,
-.tool-button.info.focus,
-.split-button .split.info.focus,
-tbody tr.info.focus,
-tbody td.info.focus,
-.tally.info.focus,
-code.info.focus,
-.notify.info.focus,
-.info-button.info.focus,
-.input .button.info.focus,
-.select .button.info.focus,
-.tag-input .button.info.focus,
-.spinner .button.info.focus,
-.toast.info.focus,
-.badge.info.focus,
-.button.info:focus,
-.command-button.info:focus,
-.image-button.info:focus,
-.shortcut.info:focus,
-.tool-button.info:focus,
-.split-button .split.info:focus,
-tbody tr.info:focus,
-tbody td.info:focus,
-.tally.info:focus,
-code.info:focus,
-.notify.info:focus,
-.info-button.info:focus,
-.input .button.info:focus,
-.select .button.info:focus,
-.tag-input .button.info:focus,
-.spinner .button.info:focus,
-.toast.info:focus,
-.badge.info:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(105, 203, 250, 0.45);
-          box-shadow: 0 0 0 3px rgba(105, 203, 250, 0.45);
+.dark {
+  outline-color: #9d9d9d !important;
+  background-color: #505050 !important;
+  border-color: #505050 !important;
+  color: #ffffff !important;
 }
-.button.dark,
-.command-button.dark,
-.image-button.dark,
-.shortcut.dark,
-.tool-button.dark,
-.split-button .split.dark,
-tbody tr.dark,
-tbody td.dark,
-.tally.dark,
-code.dark,
-.notify.dark,
-.info-button.dark,
-.input .button.dark,
-.select .button.dark,
-.tag-input .button.dark,
-.spinner .button.dark,
-.toast.dark,
-.badge.dark {
-  outline-color: #9d9d9d;
-  background-color: #505050;
-  color: #ffffff;
-}
-.button.dark.outline,
-.command-button.dark.outline,
-.image-button.dark.outline,
-.shortcut.dark.outline,
-.tool-button.dark.outline,
-.split-button .split.dark.outline,
-tbody tr.dark.outline,
-tbody td.dark.outline,
-.tally.dark.outline,
-code.dark.outline,
-.notify.dark.outline,
-.info-button.dark.outline,
-.input .button.dark.outline,
-.select .button.dark.outline,
-.tag-input .button.dark.outline,
-.spinner .button.dark.outline,
-.toast.dark.outline,
-.badge.dark.outline {
+.dark.outline {
   color: #505050 !important;
-  border-color: #505050;
-  background-color: transparent;
+  border-color: #505050 !important;
+  background-color: transparent!important;
 }
-.button.dark.outline.dropdown-toggle::before,
-.command-button.dark.outline.dropdown-toggle::before,
-.image-button.dark.outline.dropdown-toggle::before,
-.shortcut.dark.outline.dropdown-toggle::before,
-.tool-button.dark.outline.dropdown-toggle::before,
-.split-button .split.dark.outline.dropdown-toggle::before,
-tbody tr.dark.outline.dropdown-toggle::before,
-tbody td.dark.outline.dropdown-toggle::before,
-.tally.dark.outline.dropdown-toggle::before,
-code.dark.outline.dropdown-toggle::before,
-.notify.dark.outline.dropdown-toggle::before,
-.info-button.dark.outline.dropdown-toggle::before,
-.input .button.dark.outline.dropdown-toggle::before,
-.select .button.dark.outline.dropdown-toggle::before,
-.tag-input .button.dark.outline.dropdown-toggle::before,
-.spinner .button.dark.outline.dropdown-toggle::before,
-.toast.dark.outline.dropdown-toggle::before,
-.badge.dark.outline.dropdown-toggle::before {
-  border-color: #505050;
+.dark.outline.dropdown-toggle::before {
+  border-color: #505050 !important;
 }
-.button.dark.outline:hover,
-.command-button.dark.outline:hover,
-.image-button.dark.outline:hover,
-.shortcut.dark.outline:hover,
-.tool-button.dark.outline:hover,
-.split-button .split.dark.outline:hover,
-tbody tr.dark.outline:hover,
-tbody td.dark.outline:hover,
-.tally.dark.outline:hover,
-code.dark.outline:hover,
-.notify.dark.outline:hover,
-.info-button.dark.outline:hover,
-.input .button.dark.outline:hover,
-.select .button.dark.outline:hover,
-.tag-input .button.dark.outline:hover,
-.spinner .button.dark.outline:hover,
-.toast.dark.outline:hover,
-.badge.dark.outline:hover {
+.dark.outline:hover {
   color: #ffffff !important;
 }
-.button.dark.dropdown-toggle::before,
-.command-button.dark.dropdown-toggle::before,
-.image-button.dark.dropdown-toggle::before,
-.shortcut.dark.dropdown-toggle::before,
-.tool-button.dark.dropdown-toggle::before,
-.split-button .split.dark.dropdown-toggle::before,
-tbody tr.dark.dropdown-toggle::before,
-tbody td.dark.dropdown-toggle::before,
-.tally.dark.dropdown-toggle::before,
-code.dark.dropdown-toggle::before,
-.notify.dark.dropdown-toggle::before,
-.info-button.dark.dropdown-toggle::before,
-.input .button.dark.dropdown-toggle::before,
-.select .button.dark.dropdown-toggle::before,
-.tag-input .button.dark.dropdown-toggle::before,
-.spinner .button.dark.dropdown-toggle::before,
-.toast.dark.dropdown-toggle::before,
-.badge.dark.dropdown-toggle::before {
-  border-color: #ffffff;
+.dark.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.dark:hover,
-.command-button.dark:hover,
-.image-button.dark:hover,
-.shortcut.dark:hover,
-.tool-button.dark:hover,
-.split-button .split.dark:hover,
-tbody tr.dark:hover,
-tbody td.dark:hover,
-.tally.dark:hover,
-code.dark:hover,
-.notify.dark:hover,
-.info-button.dark:hover,
-.input .button.dark:hover,
-.select .button.dark:hover,
-.tag-input .button.dark:hover,
-.spinner .button.dark:hover,
-.toast.dark:hover,
-.badge.dark:hover {
-  color: #ffffff;
-  background-color: #373737;
-  border-color: #1d1d1d;
+.dark:hover {
+  color: #ffffff !important;
+  background-color: #373737 !important;
+  border-color: #1d1d1d !important;
 }
-.button.dark:hover.dropdown-toggle::before,
-.command-button.dark:hover.dropdown-toggle::before,
-.image-button.dark:hover.dropdown-toggle::before,
-.shortcut.dark:hover.dropdown-toggle::before,
-.tool-button.dark:hover.dropdown-toggle::before,
-.split-button .split.dark:hover.dropdown-toggle::before,
-tbody tr.dark:hover.dropdown-toggle::before,
-tbody td.dark:hover.dropdown-toggle::before,
-.tally.dark:hover.dropdown-toggle::before,
-code.dark:hover.dropdown-toggle::before,
-.notify.dark:hover.dropdown-toggle::before,
-.info-button.dark:hover.dropdown-toggle::before,
-.input .button.dark:hover.dropdown-toggle::before,
-.select .button.dark:hover.dropdown-toggle::before,
-.tag-input .button.dark:hover.dropdown-toggle::before,
-.spinner .button.dark:hover.dropdown-toggle::before,
-.toast.dark:hover.dropdown-toggle::before,
-.badge.dark:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.dark:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.dark.same-color:hover,
-.command-button.dark.same-color:hover,
-.image-button.dark.same-color:hover,
-.shortcut.dark.same-color:hover,
-.tool-button.dark.same-color:hover,
-.split-button .split.dark.same-color:hover,
-tbody tr.dark.same-color:hover,
-tbody td.dark.same-color:hover,
-.tally.dark.same-color:hover,
-code.dark.same-color:hover,
-.notify.dark.same-color:hover,
-.info-button.dark.same-color:hover,
-.input .button.dark.same-color:hover,
-.select .button.dark.same-color:hover,
-.tag-input .button.dark.same-color:hover,
-.spinner .button.dark.same-color:hover,
-.toast.dark.same-color:hover,
-.badge.dark.same-color:hover {
-  background-color: #505050;
-  border-color: #505050;
+.dark.same-color:hover {
+  background-color: #505050 !important;
+  border-color: #505050 !important;
 }
-.button.dark:active,
-.command-button.dark:active,
-.image-button.dark:active,
-.shortcut.dark:active,
-.tool-button.dark:active,
-.split-button .split.dark:active,
-tbody tr.dark:active,
-tbody td.dark:active,
-.tally.dark:active,
-code.dark:active,
-.notify.dark:active,
-.info-button.dark:active,
-.input .button.dark:active,
-.select .button.dark:active,
-.tag-input .button.dark:active,
-.spinner .button.dark:active,
-.toast.dark:active,
-.badge.dark:active,
-.button.dark.focus,
-.command-button.dark.focus,
-.image-button.dark.focus,
-.shortcut.dark.focus,
-.tool-button.dark.focus,
-.split-button .split.dark.focus,
-tbody tr.dark.focus,
-tbody td.dark.focus,
-.tally.dark.focus,
-code.dark.focus,
-.notify.dark.focus,
-.info-button.dark.focus,
-.input .button.dark.focus,
-.select .button.dark.focus,
-.tag-input .button.dark.focus,
-.spinner .button.dark.focus,
-.toast.dark.focus,
-.badge.dark.focus,
-.button.dark:focus,
-.command-button.dark:focus,
-.image-button.dark:focus,
-.shortcut.dark:focus,
-.tool-button.dark:focus,
-.split-button .split.dark:focus,
-tbody tr.dark:focus,
-tbody td.dark:focus,
-.tally.dark:focus,
-code.dark:focus,
-.notify.dark:focus,
-.info-button.dark:focus,
-.input .button.dark:focus,
-.select .button.dark:focus,
-.tag-input .button.dark:focus,
-.spinner .button.dark:focus,
-.toast.dark:focus,
-.badge.dark:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
-          box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45);
+.light {
+  outline-color: #ffffff !important;
+  background-color: #f8f8f8 !important;
+  border-color: #f8f8f8 !important;
+  color: #ffffff !important;
 }
-.button.light,
-.command-button.light,
-.image-button.light,
-.shortcut.light,
-.tool-button.light,
-.split-button .split.light,
-tbody tr.light,
-tbody td.light,
-.tally.light,
-code.light,
-.notify.light,
-.info-button.light,
-.input .button.light,
-.select .button.light,
-.tag-input .button.light,
-.spinner .button.light,
-.toast.light,
-.badge.light {
-  outline-color: #ffffff;
-  background-color: #f8f8f8;
-  color: #ffffff;
-}
-.button.light.outline,
-.command-button.light.outline,
-.image-button.light.outline,
-.shortcut.light.outline,
-.tool-button.light.outline,
-.split-button .split.light.outline,
-tbody tr.light.outline,
-tbody td.light.outline,
-.tally.light.outline,
-code.light.outline,
-.notify.light.outline,
-.info-button.light.outline,
-.input .button.light.outline,
-.select .button.light.outline,
-.tag-input .button.light.outline,
-.spinner .button.light.outline,
-.toast.light.outline,
-.badge.light.outline {
+.light.outline {
   color: #f8f8f8 !important;
-  border-color: #f8f8f8;
-  background-color: transparent;
+  border-color: #f8f8f8 !important;
+  background-color: transparent!important;
 }
-.button.light.outline.dropdown-toggle::before,
-.command-button.light.outline.dropdown-toggle::before,
-.image-button.light.outline.dropdown-toggle::before,
-.shortcut.light.outline.dropdown-toggle::before,
-.tool-button.light.outline.dropdown-toggle::before,
-.split-button .split.light.outline.dropdown-toggle::before,
-tbody tr.light.outline.dropdown-toggle::before,
-tbody td.light.outline.dropdown-toggle::before,
-.tally.light.outline.dropdown-toggle::before,
-code.light.outline.dropdown-toggle::before,
-.notify.light.outline.dropdown-toggle::before,
-.info-button.light.outline.dropdown-toggle::before,
-.input .button.light.outline.dropdown-toggle::before,
-.select .button.light.outline.dropdown-toggle::before,
-.tag-input .button.light.outline.dropdown-toggle::before,
-.spinner .button.light.outline.dropdown-toggle::before,
-.toast.light.outline.dropdown-toggle::before,
-.badge.light.outline.dropdown-toggle::before {
-  border-color: #f8f8f8;
+.light.outline.dropdown-toggle::before {
+  border-color: #f8f8f8 !important;
 }
-.button.light.outline:hover,
-.command-button.light.outline:hover,
-.image-button.light.outline:hover,
-.shortcut.light.outline:hover,
-.tool-button.light.outline:hover,
-.split-button .split.light.outline:hover,
-tbody tr.light.outline:hover,
-tbody td.light.outline:hover,
-.tally.light.outline:hover,
-code.light.outline:hover,
-.notify.light.outline:hover,
-.info-button.light.outline:hover,
-.input .button.light.outline:hover,
-.select .button.light.outline:hover,
-.tag-input .button.light.outline:hover,
-.spinner .button.light.outline:hover,
-.toast.light.outline:hover,
-.badge.light.outline:hover {
+.light.outline:hover {
   color: #ffffff !important;
 }
-.button.light.dropdown-toggle::before,
-.command-button.light.dropdown-toggle::before,
-.image-button.light.dropdown-toggle::before,
-.shortcut.light.dropdown-toggle::before,
-.tool-button.light.dropdown-toggle::before,
-.split-button .split.light.dropdown-toggle::before,
-tbody tr.light.dropdown-toggle::before,
-tbody td.light.dropdown-toggle::before,
-.tally.light.dropdown-toggle::before,
-code.light.dropdown-toggle::before,
-.notify.light.dropdown-toggle::before,
-.info-button.light.dropdown-toggle::before,
-.input .button.light.dropdown-toggle::before,
-.select .button.light.dropdown-toggle::before,
-.tag-input .button.light.dropdown-toggle::before,
-.spinner .button.light.dropdown-toggle::before,
-.toast.light.dropdown-toggle::before,
-.badge.light.dropdown-toggle::before {
-  border-color: #ffffff;
+.light.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.light:hover,
-.command-button.light:hover,
-.image-button.light:hover,
-.shortcut.light:hover,
-.tool-button.light:hover,
-.split-button .split.light:hover,
-tbody tr.light:hover,
-tbody td.light:hover,
-.tally.light:hover,
-code.light:hover,
-.notify.light:hover,
-.info-button.light:hover,
-.input .button.light:hover,
-.select .button.light:hover,
-.tag-input .button.light:hover,
-.spinner .button.light:hover,
-.toast.light:hover,
-.badge.light:hover {
-  color: #ffffff;
-  background-color: #dfdfdf;
-  border-color: #c5c5c5;
+.light:hover {
+  color: #ffffff !important;
+  background-color: #dfdfdf !important;
+  border-color: #c5c5c5 !important;
 }
-.button.light:hover.dropdown-toggle::before,
-.command-button.light:hover.dropdown-toggle::before,
-.image-button.light:hover.dropdown-toggle::before,
-.shortcut.light:hover.dropdown-toggle::before,
-.tool-button.light:hover.dropdown-toggle::before,
-.split-button .split.light:hover.dropdown-toggle::before,
-tbody tr.light:hover.dropdown-toggle::before,
-tbody td.light:hover.dropdown-toggle::before,
-.tally.light:hover.dropdown-toggle::before,
-code.light:hover.dropdown-toggle::before,
-.notify.light:hover.dropdown-toggle::before,
-.info-button.light:hover.dropdown-toggle::before,
-.input .button.light:hover.dropdown-toggle::before,
-.select .button.light:hover.dropdown-toggle::before,
-.tag-input .button.light:hover.dropdown-toggle::before,
-.spinner .button.light:hover.dropdown-toggle::before,
-.toast.light:hover.dropdown-toggle::before,
-.badge.light:hover.dropdown-toggle::before {
-  border-color: #ffffff;
+.light:hover.dropdown-toggle::before {
+  border-color: #ffffff !important;
 }
-.button.light.same-color:hover,
-.command-button.light.same-color:hover,
-.image-button.light.same-color:hover,
-.shortcut.light.same-color:hover,
-.tool-button.light.same-color:hover,
-.split-button .split.light.same-color:hover,
-tbody tr.light.same-color:hover,
-tbody td.light.same-color:hover,
-.tally.light.same-color:hover,
-code.light.same-color:hover,
-.notify.light.same-color:hover,
-.info-button.light.same-color:hover,
-.input .button.light.same-color:hover,
-.select .button.light.same-color:hover,
-.tag-input .button.light.same-color:hover,
-.spinner .button.light.same-color:hover,
-.toast.light.same-color:hover,
-.badge.light.same-color:hover {
-  background-color: #f8f8f8;
-  border-color: #f8f8f8;
+.light.same-color:hover {
+  background-color: #f8f8f8 !important;
+  border-color: #f8f8f8 !important;
 }
-.button.light:active,
-.command-button.light:active,
-.image-button.light:active,
-.shortcut.light:active,
-.tool-button.light:active,
-.split-button .split.light:active,
-tbody tr.light:active,
-tbody td.light:active,
-.tally.light:active,
-code.light:active,
-.notify.light:active,
-.info-button.light:active,
-.input .button.light:active,
-.select .button.light:active,
-.tag-input .button.light:active,
-.spinner .button.light:active,
-.toast.light:active,
-.badge.light:active,
-.button.light.focus,
-.command-button.light.focus,
-.image-button.light.focus,
-.shortcut.light.focus,
-.tool-button.light.focus,
-.split-button .split.light.focus,
-tbody tr.light.focus,
-tbody td.light.focus,
-.tally.light.focus,
-code.light.focus,
-.notify.light.focus,
-.info-button.light.focus,
-.input .button.light.focus,
-.select .button.light.focus,
-.tag-input .button.light.focus,
-.spinner .button.light.focus,
-.toast.light.focus,
-.badge.light.focus,
-.button.light:focus,
-.command-button.light:focus,
-.image-button.light:focus,
-.shortcut.light:focus,
-.tool-button.light:focus,
-.split-button .split.light:focus,
-tbody tr.light:focus,
-tbody td.light:focus,
-.tally.light:focus,
-code.light:focus,
-.notify.light:focus,
-.info-button.light:focus,
-.input .button.light:focus,
-.select .button.light:focus,
-.tag-input .button.light:focus,
-.spinner .button.light:focus,
-.toast.light:focus,
-.badge.light:focus {
-  -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
-          box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
-}
-.button.yellow,
-.command-button.yellow,
-.image-button.yellow,
-.shortcut.yellow,
-.tool-button.yellow,
-.split-button .split.yellow,
-tbody tr.yellow,
-tbody td.yellow,
-.tally.yellow,
-code.yellow,
-.notify.yellow,
-.info-button.yellow,
-.input .button.yellow,
-.select .button.yellow,
-.tag-input .button.yellow,
-.spinner .button.yellow,
-.toast.yellow,
-.badge.yellow,
-.button.light,
-.command-button.light,
-.image-button.light,
-.shortcut.light,
-.tool-button.light,
-.split-button .split.light,
-tbody tr.light,
-tbody td.light,
-.tally.light,
-code.light,
-.notify.light,
-.info-button.light,
-.input .button.light,
-.select .button.light,
-.tag-input .button.light,
-.spinner .button.light,
-.toast.light,
-.badge.light {
+.yellow,
+.light {
   color: #1d1d1d !important;
 }
-.button.yellow:hover,
-.command-button.yellow:hover,
-.image-button.yellow:hover,
-.shortcut.yellow:hover,
-.tool-button.yellow:hover,
-.split-button .split.yellow:hover,
-tbody tr.yellow:hover,
-tbody td.yellow:hover,
-.tally.yellow:hover,
-code.yellow:hover,
-.notify.yellow:hover,
-.info-button.yellow:hover,
-.input .button.yellow:hover,
-.select .button.yellow:hover,
-.tag-input .button.yellow:hover,
-.spinner .button.yellow:hover,
-.toast.yellow:hover,
-.badge.yellow:hover,
-.button.light:hover,
-.command-button.light:hover,
-.image-button.light:hover,
-.shortcut.light:hover,
-.tool-button.light:hover,
-.split-button .split.light:hover,
-tbody tr.light:hover,
-tbody td.light:hover,
-.tally.light:hover,
-code.light:hover,
-.notify.light:hover,
-.info-button.light:hover,
-.input .button.light:hover,
-.select .button.light:hover,
-.tag-input .button.light:hover,
-.spinner .button.light:hover,
-.toast.light:hover,
-.badge.light:hover,
-.button.yellow.outline:hover,
-.command-button.yellow.outline:hover,
-.image-button.yellow.outline:hover,
-.shortcut.yellow.outline:hover,
-.tool-button.yellow.outline:hover,
-.split-button .split.yellow.outline:hover,
-tbody tr.yellow.outline:hover,
-tbody td.yellow.outline:hover,
-.tally.yellow.outline:hover,
-code.yellow.outline:hover,
-.notify.yellow.outline:hover,
-.info-button.yellow.outline:hover,
-.input .button.yellow.outline:hover,
-.select .button.yellow.outline:hover,
-.tag-input .button.yellow.outline:hover,
-.spinner .button.yellow.outline:hover,
-.toast.yellow.outline:hover,
-.badge.yellow.outline:hover,
-.button.light.outline:hover,
-.command-button.light.outline:hover,
-.image-button.light.outline:hover,
-.shortcut.light.outline:hover,
-.tool-button.light.outline:hover,
-.split-button .split.light.outline:hover,
-tbody tr.light.outline:hover,
-tbody td.light.outline:hover,
-.tally.light.outline:hover,
-code.light.outline:hover,
-.notify.light.outline:hover,
-.info-button.light.outline:hover,
-.input .button.light.outline:hover,
-.select .button.light.outline:hover,
-.tag-input .button.light.outline:hover,
-.spinner .button.light.outline:hover,
-.toast.light.outline:hover,
-.badge.light.outline:hover {
+.yellow:hover,
+.light:hover,
+.yellow.outline:hover,
+.light.outline:hover {
   color: #1d1d1d !important;
 }
-.action-button.primary {
-  outline-color: #75b5fd;
-  background-color: #0366d6;
-  color: #ffffff;
+.focusable.primary:active,
+.focusable.primary.focus,
+.focusable.primary:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.45) !important;
 }
-.action-button.secondary {
-  outline-color: #b7c6cd;
-  background-color: #607d8b;
-  color: #ffffff;
+.focusable.secondary:active,
+.focusable.secondary.focus,
+.focusable.secondary:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(96, 125, 139, 0.45) !important;
 }
-.action-button.success {
-  outline-color: #adeb6e;
-  background-color: #60a917;
-  color: #ffffff;
+.focusable.success:active,
+.focusable.success.focus,
+.focusable.success:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(96, 169, 23, 0.45) !important;
 }
-.action-button.alert {
-  outline-color: #ecaba7;
-  background-color: #CE352C;
-  color: #ffffff;
+.focusable.alert:active,
+.focusable.alert.focus,
+.focusable.alert:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(206, 53, 44, 0.45) !important;
 }
-.action-button.warning {
-  outline-color: #ffede1;
-  background-color: #ff9447;
-  color: #ffffff;
+.focusable.warning:active,
+.focusable.warning.focus,
+.focusable.warning:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(255, 148, 71, 0.45) !important;
 }
-.action-button.yellow {
-  outline-color: #ffffff;
-  background-color: #ffe484;
-  color: #ffffff;
+.focusable.yellow:active,
+.focusable.yellow.focus,
+.focusable.yellow:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(255, 228, 132, 0.45) !important;
 }
-.action-button.info {
-  outline-color: #fefeff;
-  background-color: #69cbfa;
-  color: #ffffff;
+.focusable.info:active,
+.focusable.info.focus,
+.focusable.info:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(105, 203, 250, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(105, 203, 250, 0.45) !important;
 }
-.action-button.dark {
-  outline-color: #9d9d9d;
-  background-color: #505050;
-  color: #ffffff;
+.focusable.dark:active,
+.focusable.dark.focus,
+.focusable.dark:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(80, 80, 80, 0.45) !important;
 }
-.action-button.light {
-  outline-color: #ffffff;
-  background-color: #f8f8f8;
-  color: #ffffff;
-}
-.action-button.yellow,
-.action-button.light {
-  color: #1d1d1d;
-}
-.action-button.yellow:hover,
-.action-button.light:hover,
-.action-button.yellow.outline:hover,
-.action-button.light.outline:hover {
-  color: #1d1d1d;
-}
-.pagination.primary .page-item.active,
-.pagination.primary .page-item.service,
-.pagination.primary .page-item:hover {
-  background-color: #0366d6;
-  border-color: #0366d6;
-  color: #ffffff;
-}
-.pagination.primary .page-item.active:hover,
-.pagination.primary .page-item.service:hover,
-.pagination.primary .page-item:hover:hover {
-  background-color: #024ea4;
-}
-.pagination.secondary .page-item.active,
-.pagination.secondary .page-item.service,
-.pagination.secondary .page-item:hover {
-  background-color: #607d8b;
-  border-color: #607d8b;
-  color: #ffffff;
-}
-.pagination.secondary .page-item.active:hover,
-.pagination.secondary .page-item.service:hover,
-.pagination.secondary .page-item:hover:hover {
-  background-color: #4b626d;
-}
-.pagination.success .page-item.active,
-.pagination.success .page-item.service,
-.pagination.success .page-item:hover {
-  background-color: #60a917;
-  border-color: #60a917;
-  color: #ffffff;
-}
-.pagination.success .page-item.active:hover,
-.pagination.success .page-item.service:hover,
-.pagination.success .page-item:hover:hover {
-  background-color: #477c11;
-}
-.pagination.alert .page-item.active,
-.pagination.alert .page-item.service,
-.pagination.alert .page-item:hover {
-  background-color: #CE352C;
-  border-color: #CE352C;
-  color: #ffffff;
-}
-.pagination.alert .page-item.active:hover,
-.pagination.alert .page-item.service:hover,
-.pagination.alert .page-item:hover:hover {
-  background-color: #a42a23;
-}
-.pagination.warning .page-item.active,
-.pagination.warning .page-item.service,
-.pagination.warning .page-item:hover {
-  background-color: #ff9447;
-  border-color: #ff9447;
-  color: #ffffff;
-}
-.pagination.warning .page-item.active:hover,
-.pagination.warning .page-item.service:hover,
-.pagination.warning .page-item:hover:hover {
-  background-color: #ff7615;
-}
-.pagination.yellow .page-item.active,
-.pagination.yellow .page-item.service,
-.pagination.yellow .page-item:hover {
-  background-color: #ffe484;
-  border-color: #ffe484;
-  color: #ffffff;
-}
-.pagination.yellow .page-item.active:hover,
-.pagination.yellow .page-item.service:hover,
-.pagination.yellow .page-item:hover:hover {
-  background-color: #ffd951;
-}
-.pagination.info .page-item.active,
-.pagination.info .page-item.service,
-.pagination.info .page-item:hover {
-  background-color: #69cbfa;
-  border-color: #69cbfa;
-  color: #ffffff;
-}
-.pagination.info .page-item.active:hover,
-.pagination.info .page-item.service:hover,
-.pagination.info .page-item:hover:hover {
-  background-color: #38baf9;
-}
-.pagination.dark .page-item.active,
-.pagination.dark .page-item.service,
-.pagination.dark .page-item:hover {
-  background-color: #505050;
-  border-color: #505050;
-  color: #ffffff;
-}
-.pagination.dark .page-item.active:hover,
-.pagination.dark .page-item.service:hover,
-.pagination.dark .page-item:hover:hover {
-  background-color: #373737;
-}
-.pagination.light .page-item.active,
-.pagination.light .page-item.service,
-.pagination.light .page-item:hover {
-  background-color: #f8f8f8;
-  border-color: #f8f8f8;
-  color: #ffffff;
-}
-.pagination.light .page-item.active:hover,
-.pagination.light .page-item.service:hover,
-.pagination.light .page-item:hover:hover {
-  background-color: #dfdfdf;
-}
-.pagination.light .page-item.active,
-.pagination.yellow .page-item.active,
-.pagination.light .page-item.service,
-.pagination.yellow .page-item.service,
-.pagination.light .page-item:hover,
-.pagination.yellow .page-item:hover {
-  color: #1d1d1d;
-}
-.remark.primary {
-  background: #75b5fd;
-  border: 1px solid #75b5fd;
-}
-.remark.primary::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #0366d6;
-}
-.remark.primary {
-  background: #daebfe;
-  border: 1px solid #daebfe;
-}
-.remark.secondary {
-  background: #b7c6cd;
-  border: 1px solid #b7c6cd;
-}
-.remark.secondary::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #607d8b;
-}
-.remark.secondary {
-  background: #f3f6f7;
-  border: 1px solid #f3f6f7;
-}
-.remark.success {
-  background: #adeb6e;
-  border: 1px solid #adeb6e;
-}
-.remark.success::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #60a917;
-}
-.remark.success {
-  background: #ecfbde;
-  border: 1px solid #ecfbde;
-}
-.remark.alert {
-  background: #ecaba7;
-  border: 1px solid #ecaba7;
-}
-.remark.alert::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #CE352C;
-}
-.remark.alert {
-  background: #fae7e6;
-  border: 1px solid #fae7e6;
-}
-.remark.warning {
-  background: #ffede1;
-  border: 1px solid #ffede1;
-}
-.remark.warning::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #ff9447;
-}
-.remark.warning {
-  background: #ffede1;
-  border: 1px solid #ffede1;
-}
-.remark.yellow {
-  background: #ffffff;
-  border: 1px solid #ffffff;
-}
-.remark.yellow::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #ffe484;
-}
-.remark.yellow {
-  background: #fff7db;
-  border: 1px solid #fff7db;
-}
-.remark.info {
-  background: #fefeff;
-  border: 1px solid #fefeff;
-}
-.remark.info::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #69cbfa;
-}
-.remark.info {
-  background: #fefeff;
-  border: 1px solid #fefeff;
-}
-.remark.dark {
-  background: #9d9d9d;
-  border: 1px solid #9d9d9d;
-}
-.remark.dark::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #505050;
-}
-.remark.dark {
-  background: #e9e9e9;
-  border: 1px solid #e9e9e9;
-}
-.remark.light {
-  background: #ffffff;
-  border: 1px solid #ffffff;
-}
-.remark.light::before {
-  position: absolute;
-  top: 0;
-  left: -4px;
-  width: 4px;
-  height: 100%;
-  content: " ";
-  background-color: #f8f8f8;
+.focusable.light:active,
+.focusable.light.focus,
+.focusable.light:focus {
+  -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45) !important;
+          box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45) !important;
 }
 .metro-input.primary,
 .file.primary,
@@ -34289,46 +32181,6 @@ code.light.outline:hover,
 .spinner.light.focused {
   -webkit-box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
           box-shadow: 0 0 0 3px rgba(248, 248, 248, 0.45);
-}
-.accent-block.primary {
-  background-color: #0366d6;
-  color: #ffffff;
-}
-.accent-block.secondary {
-  background-color: #607d8b;
-  color: #ffffff;
-}
-.accent-block.success {
-  background-color: #60a917;
-  color: #ffffff;
-}
-.accent-block.alert {
-  background-color: #CE352C;
-  color: #ffffff;
-}
-.accent-block.warning {
-  background-color: #ff9447;
-  color: #ffffff;
-}
-.accent-block.yellow {
-  background-color: #ffe484;
-  color: #ffffff;
-}
-.accent-block.info {
-  background-color: #69cbfa;
-  color: #ffffff;
-}
-.accent-block.dark {
-  background-color: #505050;
-  color: #ffffff;
-}
-.accent-block.light {
-  background-color: #f8f8f8;
-  color: #ffffff;
-}
-.accent-block.light,
-.accent-block.yellow {
-  color: #1d1d1d;
 }
 
 :root {
@@ -35387,7 +33239,7 @@ code.light.outline:hover,
   --appbar-hamburger-color: #000000;
 }
 .dark-side {
-  --appbar-background: #2b2d30;
+  --appbar-background: #1e1f22;
   --appbar-color: #dbdfe7;
   --appbar-item-background: inherit;
   --appbar-item-color: inherit;
@@ -45273,6 +43125,223 @@ a.info-button {
   }
 }
 
+:root {
+  --remark-border-color: var(--border-color);
+  --remark-background: #ffffff;
+  --remark-color: #191919;
+}
+.dark-side {
+  --remark-border-color: var(--border-color);
+  --remark-background: #26282e;
+  --remark-color: #dbdfe7;
+}
+.remark {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+          align-items: center;
+  position: relative;
+  border: 1px solid;
+  border-left: 4px solid;
+  border-color: var(--remark-border-color);
+  color: var(--remark-color);
+  background-color: var(--remark-background);
+  padding: 1rem;
+  font-size: 14px;
+  margin: 1rem 0;
+  cursor: default;
+  overflow: hidden;
+}
+.remark.rounded {
+  border-radius: 10px!important;
+}
+.remark .icon {
+  margin-right: 1rem;
+  font-size: 32px;
+  width: 32px;
+  height: 32px;
+}
+.remark.primary {
+  border: 1px solid #5ca7fd !important;
+  color: #191919 !important;
+}
+.remark.primary::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #0366d6;
+  z-index: 0;
+}
+.remark.primary .icon {
+  color: #0366d6 !important;
+}
+.remark.primary {
+  background: #daebfe !important;
+}
+.remark.secondary {
+  border: 1px solid #a8bac3 !important;
+  color: #191919 !important;
+}
+.remark.secondary::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #607d8b;
+  z-index: 0;
+}
+.remark.secondary .icon {
+  color: #607d8b !important;
+}
+.remark.secondary {
+  background: #f3f6f7 !important;
+}
+.remark.success {
+  border: 1px solid #a0e857 !important;
+  color: #191919 !important;
+}
+.remark.success::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #60a917;
+  z-index: 0;
+}
+.remark.success .icon {
+  color: #60a917 !important;
+}
+.remark.success {
+  background: #ecfbde !important;
+}
+.remark.alert {
+  border: 1px solid #e89792 !important;
+  color: #191919 !important;
+}
+.remark.alert::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #CE352C;
+  z-index: 0;
+}
+.remark.alert .icon {
+  color: #CE352C !important;
+}
+.remark.alert {
+  background: #fae7e6 !important;
+}
+.remark.warning {
+  border: 1px solid #ffdec7 !important;
+  color: #191919 !important;
+}
+.remark.warning::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #ff9447;
+  z-index: 0;
+}
+.remark.warning .icon {
+  color: #ff9447 !important;
+}
+.remark.warning {
+  background: #ffede1 !important;
+}
+.remark.yellow {
+  border: 1px solid #ffffff !important;
+  color: #191919 !important;
+}
+.remark.yellow::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #ffe484;
+  z-index: 0;
+}
+.remark.yellow .icon {
+  color: #ffe484 !important;
+}
+.remark.yellow {
+  background: #fff7db !important;
+}
+.remark.info {
+  border: 1px solid #e5f6fe !important;
+  color: #191919 !important;
+}
+.remark.info::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #69cbfa;
+  z-index: 0;
+}
+.remark.info .icon {
+  color: #69cbfa !important;
+}
+.remark.info {
+  background: #e5f6fe !important;
+}
+.remark.dark {
+  border: 1px solid #909090 !important;
+  color: #191919 !important;
+}
+.remark.dark::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #505050;
+  z-index: 0;
+}
+.remark.dark .icon {
+  color: #505050 !important;
+}
+.remark.dark {
+  background: #e9e9e9 !important;
+}
+.remark.light {
+  border: 1px solid #ffffff !important;
+  color: #191919 !important;
+}
+.remark.light::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  content: " ";
+  background-color: #f8f8f8;
+  z-index: 0;
+}
+.remark.light .icon {
+  color: #f8f8f8 !important;
+}
+
 .resize-element {
   display: block;
   position: absolute;
@@ -50703,6 +48772,8 @@ textarea {
   text-align: center;
 }
 .theme-switcher .check::after {
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
   position: absolute;
   left: 3px;
   display: block;

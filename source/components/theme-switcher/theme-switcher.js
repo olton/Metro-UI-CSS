@@ -9,6 +9,8 @@
     var ThemeSwitcherDefaultConfig = {
         state: STATE.LIGHT,
         target: "html",
+        saveState: true,
+        saveStateKey: "THEME:SWITCHER",
         clsDark: "",
         onThemeSwitcherCreate: Metro.noop
     };
@@ -40,7 +42,13 @@
         },
 
         _createStructure: function(){
-            const that = this, element = this.element, elem = this.elem,  o = this.options;
+            const element = this.element, o = this.options;
+            let initState = 'light'
+
+            if (o.saveState) {
+                initState = Metro.storage.getItem(o.saveStateKey, false)
+            }
+
             const check = $("<span>").addClass("check");
 
             element.attr("type", "checkbox")
@@ -56,13 +64,12 @@
                 this.target = $("html");
             }
 
-            this._setState(o.state === STATE.DARK)
+            this._setState(o.saveState ? initState : o.state === STATE.DARK )
             this._updateState()
         },
 
         _createEvents: function(){
-            const that = this, elem = this.elem, o = this.options;
-            this.container.on("click", (e) => {
+            this.container.on("click", () => {
                 this._updateState()
             })
         },
@@ -72,11 +79,24 @@
         },
 
         _updateState: function(){
-            if (this.elem.checked) {
-                this.target.addClass("dark-side").addClass(this.options.clsDark);
+            const o = this.options, elem = this.elem, target = this.target;
+
+            if (elem.checked) {
+                target.addClass("dark-side").addClass(this.options.clsDark);
             } else {
-                this.target.removeClass("dark-side").addClass(this.options.clsDark);
+                target.removeClass("dark-side").addClass(this.options.clsDark);
             }
+
+            if (o.saveState) {
+                Metro.storage.setItem(o.saveStateKey, elem.checked)
+            }
+        },
+
+        val: function(value){
+            if (typeof value === undefined) {
+                return this.elem.checked ? 'dark' : 'light';
+            }
+            this._setState(typeof value === "boolean" ? value : value === 'dark');
         },
 
         changeAttribute: function(attr, newValue){

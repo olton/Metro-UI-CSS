@@ -56,25 +56,25 @@
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
-    "cypress": "^13.9.0",
+    "cypress": "^13.10.0",
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
     "postcss": "^8.4.38",
-    "rollup": "^4.17.2",
+    "rollup": "^4.18.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-no-emit": "^1.2.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "shx": "^0.3.4",
-    "vite": "^5.2.11"
+    "vite": "^5.2.12"
   },
   "dependencies": {
     "@olton/animation": "^0.3.0",
     "@olton/datetime": "^3.0.4",
     "@olton/farbe": "^1.0.0",
     "@olton/hooks": "^0.3.0",
-    "@olton/html": "^0.8.0",
+    "@olton/html": "^0.8.1",
     "@olton/string": "^0.5.0",
     "m4q": "^2.1.1"
   }

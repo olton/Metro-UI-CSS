@@ -685,6 +685,13 @@
             },
             "path": "components/textarea/"
         },
+        "theme-switcher": {
+            "name": "Theme Switcher",
+            "dependencies": {
+                "components": ["storage"]
+            },
+            "path": "components/theme-switcher"
+        },
         "tile": {
             "name": "Tiles",
             "dependencies": {

@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.0.6",
-        build_time: "26.05.2024, 10:14:27",
+        build_time: "30.05.2024, 17:42:04",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -320,13 +320,13 @@
                 html.addClass("metro-no-touch-device");
             }
 
-            Metro.sheet = this.utils.newCssSheet();
+            Metro.sheet = Metro.utils.newCssSheet();
 
-            this.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
+            Metro.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
 
             window.METRO_MEDIA = [];
             $.each(Metro.media_queries, function(key, query){
-                if (that.utils.media(query)) {
+                if (Metro.utils.media(query)) {
                     window.METRO_MEDIA.push(Metro.media_mode[key]);
                 }
             });
@@ -353,6 +353,14 @@
                     }
                 });
             }
+
+            $(document).on("click", "[data-copy-to-clipboard]", function(e) {
+                const val = $(this).attr("data-copy-to-clipboard")
+                Metro.utils.copy2clipboard(val)
+                if (Metro.toast) {
+                    Metro.toast.create(`Data copied to clipboard to clipboard`);
+                }
+            })
         },
 
         initHotkeys: function(hotkeys, redefine){
@@ -393,7 +401,7 @@
 
                 roles.map(function (func) {
 
-                    var $$ = that.utils.$();
+                    var $$ = Metro.utils.$();
                     var _func = normalizeComponentName(func);
 
                     if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
@@ -469,7 +477,7 @@
 
             p['destroy']();
             mc = el.data("metroComponent");
-            this.utils.arrayDelete(mc, _name);
+            Metro.utils.arrayDelete(mc, _name);
             el.data("metroComponent", mc);
             $.removeData(el[0], _name);
             el.removeAttr("data-role-"+_name);

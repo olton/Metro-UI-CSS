@@ -109,6 +109,8 @@
             }
 
             elementValue = !curr && o.nullValue === true ? "" : datetime(that.value).format(o.format, o.locale);
+            console.log(o.format)
+            console.log(datetime(that.value).format("DD.MM.YYYY"));
 
             if (o.showTime && this.time && elementValue) {
                 h = Str.lpad(this.time[0], "0", 2);
