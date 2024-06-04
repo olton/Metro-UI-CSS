@@ -46060,13 +46060,22 @@ a.info-button {
   margin-left: -2px;
 }
 
+:root {
+  --splitter-color: #F8F8F8;
+  --splitter-color-active: #F8F8F8;
+  --splitter-gutter-color: #BEBEBE;
+  --splitter-gutter-color-active: #BEBEBE;
+}
+.dark-side {
+  --splitter-color: #1e1f22;
+  --splitter-color-active: #26282e;
+  --splitter-gutter-color: #4a4d51;
+  --splitter-gutter-color-active: #2e436e;
+}
 .splitter {
   display: -webkit-box;
   display: flex;
   flex-wrap: nowrap;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-          flex-direction: row;
   -webkit-box-pack: justify;
           justify-content: space-between;
   position: relative;
@@ -46074,6 +46083,11 @@ a.info-button {
           user-select: none;
 }
 .splitter.vertical {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+          flex-direction: row;
+}
+.splitter.horizontal {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
           flex-direction: column;
@@ -46082,37 +46096,47 @@ a.info-button {
   flex-shrink: 0;
   -webkit-box-flex: 0;
           flex-grow: 0;
-  border: 1px solid #f8f8f8;
-  background-color: #f8f8f8;
-  cursor: col-resize;
+  background-color: var(--splitter-color);
   z-index: 1;
   position: relative;
-}
-.splitter > .gutter.active {
-  background-color: #bebebe;
 }
 .splitter > .gutter::before {
   content: "";
   z-index: 1;
   display: block;
   position: absolute;
-  left: 0;
-  width: 100%;
-  top: 50%;
-  height: 24px;
-  margin-top: -12px;
-  background: #bebebe;
+  background: var(--splitter-gutter-color);
 }
-.splitter.vertical > .gutter {
+.splitter > .gutter.active {
+  background-color: var(--splitter-color-active);
+}
+.splitter > .gutter.active::before {
+  background: var(--splitter-gutter-color-active);
+}
+.splitter.horizontal > .gutter {
   cursor: row-resize;
+  border-top: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
-.splitter.vertical > .gutter::before {
+.splitter.horizontal > .gutter::before {
   height: 100%;
   width: 24px;
   top: 0;
   left: 50%;
   margin-left: -12px;
   margin-top: 0;
+}
+.splitter.vertical > .gutter {
+  cursor: col-resize;
+  border-left: 1px solid var(--border-color);
+  border-right: 1px solid var(--border-color);
+}
+.splitter.vertical > .gutter::before {
+  left: 0;
+  width: 100%;
+  top: 50%;
+  height: 24px;
+  margin-top: -12px;
 }
 .splitter.static-size > .gutter {
   cursor: default;
@@ -46131,17 +46155,17 @@ a.info-button {
   --gutter-dot-size: 2px;
   --gutter-bg-size: 8px;
   --gutter-bg-position: calc(var(--gutter-bg-size) / 2);
-  --gutter-dot-color: #ffffff;
-  --gutter-dot-color-second: #bebebe;
+  --gutter-dot-color: var(--splitter-color);
+  --gutter-dot-color-second: var(--splitter-gutter-color);
 }
 .splitter.gutter-style-ribbed > .gutter::before {
-  background: repeating-linear-gradient(45deg, #ffffff, #a6a6a6 4px, #ffffff 4px, #a6a6a6 8px);
+  background: repeating-linear-gradient(45deg, var(--splitter-color), var(--splitter-gutter-color) 4px, var(--splitter-color) 4px, var(--splitter-gutter-color) 8px);
 }
-.splitter.gutter-style-dashed > .gutter::before {
-  background: repeating-linear-gradient(0deg, #ffffff, #a6a6a6 4px, #ffffff 4px, #a6a6a6 8px);
+.splitter.gutter-style-dashed.horizontal > .gutter::before {
+  background: repeating-linear-gradient(90deg, var(--splitter-color), var(--splitter-gutter-color) 4px, var(--splitter-color) 4px, var(--splitter-gutter-color) 8px);
 }
 .splitter.gutter-style-dashed.vertical > .gutter::before {
-  background: repeating-linear-gradient(90deg, #ffffff, #a6a6a6 4px, #ffffff 4px, #a6a6a6 8px);
+  background: repeating-linear-gradient(0deg, var(--splitter-color), var(--splitter-gutter-color) 4px, var(--splitter-color) 4px, var(--splitter-gutter-color) 8px);
 }
 .splitter.gutter-style-dotted > .gutter::before {
   background-image: radial-gradient(circle at center, var(--gutter-dot-color) var(--gutter-dot-size), var(--gutter-dot-color-second) 0), radial-gradient(circle at center, var(--gutter-dot-color) var(--gutter-dot-size), var(--gutter-dot-color-second) 0);

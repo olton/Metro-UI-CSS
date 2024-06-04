@@ -1,15 +1,31 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --splitter-color: #F8F8F8;
+    --splitter-color-active: #F8F8F8;
+    --splitter-gutter-color: #BEBEBE;
+    --splitter-gutter-color-active: #BEBEBE;
+}
+
+.dark-side {
+    --splitter-color: #1e1f22;
+    --splitter-color-active: #26282e;
+    --splitter-gutter-color: #4a4d51;
+    --splitter-gutter-color-active: #2e436e;
+}
+
 .splitter {
     display: flex;
     flex-wrap: nowrap;
-    flex-direction: row;
     justify-content: space-between;
     position: relative;
     user-select: none;
 
     &.vertical {
+        flex-direction: row;
+    }
+    &.horizontal {
         flex-direction: column;
     }
 }
@@ -18,35 +34,32 @@
     & > .gutter {
         flex-shrink: 0;
         flex-grow: 0;
-        border: 1px solid @light;
-        background-color: @light;
-        cursor: col-resize;
+        background-color: var(--splitter-color);
+
         z-index: 1;
         position: relative;
-
-        &.active {
-            background-color: @gray;
-        }
 
         &::before {
             content: "";
             z-index: 1;
             display: block;
             position: absolute;
-            left: 0;
-            width: 100%;
-            top: 50%;
-            height: 24px;
-            margin-top: -12px;
+            background: var(--splitter-gutter-color);
+        }
 
-            background: @gray;
+        &.active {
+            background-color: var(--splitter-color-active);
+            &::before {
+                background: var(--splitter-gutter-color-active);
+            }
         }
     }
 
-    &.vertical {
+    &.horizontal {
         & > .gutter {
             cursor: row-resize;
-
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
             &::before {
                 height: 100%;
                 width: 24px;
@@ -54,6 +67,21 @@
                 left: 50%;
                 margin-left: -12px;
                 margin-top: 0;
+            }
+        }
+    }
+
+    &.vertical {
+        & > .gutter {
+            cursor: col-resize;
+            border-left: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            &::before {
+                left: 0;
+                width: 100%;
+                top: 50%;
+                height: 24px;
+                margin-top: -12px;
             }
         }
     }
@@ -83,25 +111,27 @@
             &::before {
                 background: repeating-linear-gradient(
                         45deg,
-                        #ffffff,
-                        #a6a6a6 4px,
-                        #ffffff 4px,
-                        #a6a6a6 8px
+                        var(--splitter-color),
+                        var(--splitter-gutter-color) 4px,
+                        var(--splitter-color) 4px,
+                        var(--splitter-gutter-color) 8px
                 );
             }
         }
     }
 
     &.gutter-style-dashed {
-        & > .gutter {
-            &::before {
-                background: repeating-linear-gradient(
-                        0deg,
-                        #ffffff,
-                        #a6a6a6 4px,
-                        #ffffff 4px,
-                        #a6a6a6 8px
-                );
+        &.horizontal {
+            & > .gutter {
+                &::before {
+                    background: repeating-linear-gradient(
+                            90deg,
+                            var(--splitter-color),
+                            var(--splitter-gutter-color) 4px,
+                            var(--splitter-color) 4px,
+                            var(--splitter-gutter-color) 8px
+                    );
+                }
             }
         }
 
@@ -109,11 +139,11 @@
             & > .gutter {
                 &::before {
                     background: repeating-linear-gradient(
-                            90deg,
-                            #ffffff,
-                            #a6a6a6 4px,
-                            #ffffff 4px,
-                            #a6a6a6 8px
+                            0deg,
+                            var(--splitter-color),
+                            var(--splitter-gutter-color) 4px,
+                            var(--splitter-color) 4px,
+                            var(--splitter-gutter-color) 8px
                     );
                 }
             }
@@ -123,8 +153,8 @@
     --gutter-dot-size: 2px;
     --gutter-bg-size: 8px;
     --gutter-bg-position: ~"calc(var(--gutter-bg-size) / 2)";
-    --gutter-dot-color: #ffffff;
-    --gutter-dot-color-second: @gray;
+    --gutter-dot-color: var(--splitter-color);
+    --gutter-dot-color-second: var(--splitter-gutter-color);
 
     &.gutter-style-dotted {
         & > .gutter {

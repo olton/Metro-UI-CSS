@@ -18,7 +18,7 @@
                data-rows="10"
                data-rows-steps="5, 10, 20"
                data-show-activity="false"
-               data-source="../data/table.json"
+               data-source="data/table.json"
                data-show-skip="true"
                data-pagination-wrapper="#pagination"
                data-skip-wrapper="#skip"
@@ -30,6 +30,7 @@
                data-horizontal-scroll="true"
                data-horizontal-scroll-stop="xxl"
                data-cell-wrapper="true"
+               data-on-draw-cell="drawCell"
         >
             <thead id="head1"></thead>
             <tbody id="body1"></tbody>
@@ -55,6 +56,40 @@
     function getStoredKeys(){
         var keys = Metro.getPlugin("table", "table").getStoredKeys();
         alert(keys.join("\n"));
+    }
+
+    function drawCell(td, val, index, head, cells){
+        if (head.name === 'name') {
+            td.html('').append(
+                $('<a>').attr('href', '#'+val).html(val)
+            )
+        }
+
+        if (head.name === 'age') {
+            var clsBar;
+            var pb = $("<div>");
+
+            if (val >= 35 && val <= 50) {
+                clsBar = "bg-orange";
+            } else if (val > 50) {
+                clsBar = "bg-red"
+            }
+
+            pb
+                .attr("data-role", "progress")
+                .attr("data-value", val)
+                .attr("data-cls-bar", clsBar);
+
+            td.html('').append(pb);
+        }
+
+        if (head.name === 'salary') {
+            if (Metro.utils.parseMoney(val) > 8000) {
+                td.addClass("bg-green");
+            } else {
+                td.addClass("bg-red");
+            }
+        }
     }
 
     // $(function () {
