@@ -2193,100 +2193,100 @@ body {
   }
 }
 .order-1 {
-  -webkit-box-ordinal-group: 2 !important;
-          order: 1 !important;
+  -webkit-box-ordinal-group: 2;
+          order: 1;
 }
 .order-2 {
-  -webkit-box-ordinal-group: 3 !important;
-          order: 2 !important;
+  -webkit-box-ordinal-group: 3;
+          order: 2;
 }
 .order-3 {
-  -webkit-box-ordinal-group: 4 !important;
-          order: 3 !important;
+  -webkit-box-ordinal-group: 4;
+          order: 3;
 }
 .order-4 {
-  -webkit-box-ordinal-group: 5 !important;
-          order: 4 !important;
+  -webkit-box-ordinal-group: 5;
+          order: 4;
 }
 .order-5 {
-  -webkit-box-ordinal-group: 6 !important;
-          order: 5 !important;
+  -webkit-box-ordinal-group: 6;
+          order: 5;
 }
 .order-6 {
-  -webkit-box-ordinal-group: 7 !important;
-          order: 6 !important;
+  -webkit-box-ordinal-group: 7;
+          order: 6;
 }
 .order-7 {
-  -webkit-box-ordinal-group: 8 !important;
-          order: 7 !important;
+  -webkit-box-ordinal-group: 8;
+          order: 7;
 }
 .order-8 {
-  -webkit-box-ordinal-group: 9 !important;
-          order: 8 !important;
+  -webkit-box-ordinal-group: 9;
+          order: 8;
 }
 .order-9 {
-  -webkit-box-ordinal-group: 10 !important;
-          order: 9 !important;
+  -webkit-box-ordinal-group: 10;
+          order: 9;
 }
 .order-10 {
-  -webkit-box-ordinal-group: 11 !important;
-          order: 10 !important;
+  -webkit-box-ordinal-group: 11;
+          order: 10;
 }
 .order-11 {
-  -webkit-box-ordinal-group: 12 !important;
-          order: 11 !important;
+  -webkit-box-ordinal-group: 12;
+          order: 11;
 }
 .order-12 {
-  -webkit-box-ordinal-group: 13 !important;
-          order: 12 !important;
+  -webkit-box-ordinal-group: 13;
+          order: 12;
 }
 .order-13 {
-  -webkit-box-ordinal-group: 14 !important;
-          order: 13 !important;
+  -webkit-box-ordinal-group: 14;
+          order: 13;
 }
 .order-14 {
-  -webkit-box-ordinal-group: 15 !important;
-          order: 14 !important;
+  -webkit-box-ordinal-group: 15;
+          order: 14;
 }
 .order-15 {
-  -webkit-box-ordinal-group: 16 !important;
-          order: 15 !important;
+  -webkit-box-ordinal-group: 16;
+          order: 15;
 }
 .order-16 {
-  -webkit-box-ordinal-group: 17 !important;
-          order: 16 !important;
+  -webkit-box-ordinal-group: 17;
+          order: 16;
 }
 .order-17 {
-  -webkit-box-ordinal-group: 18 !important;
-          order: 17 !important;
+  -webkit-box-ordinal-group: 18;
+          order: 17;
 }
 .order-18 {
-  -webkit-box-ordinal-group: 19 !important;
-          order: 18 !important;
+  -webkit-box-ordinal-group: 19;
+          order: 18;
 }
 .order-19 {
-  -webkit-box-ordinal-group: 20 !important;
-          order: 19 !important;
+  -webkit-box-ordinal-group: 20;
+          order: 19;
 }
 .order-20 {
-  -webkit-box-ordinal-group: 21 !important;
-          order: 20 !important;
+  -webkit-box-ordinal-group: 21;
+          order: 20;
 }
 .order-21 {
-  -webkit-box-ordinal-group: 22 !important;
-          order: 21 !important;
+  -webkit-box-ordinal-group: 22;
+          order: 21;
 }
 .order-22 {
-  -webkit-box-ordinal-group: 23 !important;
-          order: 22 !important;
+  -webkit-box-ordinal-group: 23;
+          order: 22;
 }
 .order-23 {
-  -webkit-box-ordinal-group: 24 !important;
-          order: 23 !important;
+  -webkit-box-ordinal-group: 24;
+          order: 23;
 }
 .order-24 {
-  -webkit-box-ordinal-group: 25 !important;
-          order: 24 !important;
+  -webkit-box-ordinal-group: 25;
+          order: 24;
 }
 .flex-equal-items > * {
   -webkit-box-flex: 1;
@@ -2585,100 +2585,100 @@ body {
     margin-top: auto;
   }
   .order-1-fs {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-fs {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-fs {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-fs {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-fs {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-fs {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-fs {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-fs {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-fs {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-fs {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-fs {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-fs {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-fs {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-fs {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-fs {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-fs {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-fs {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-fs {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-fs {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-fs {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-fs {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-fs {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-fs {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-fs {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 360px) {
@@ -2824,100 +2824,100 @@ body {
     margin-top: auto;
   }
   .order-1-xs {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-xs {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-xs {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-xs {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-xs {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-xs {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-xs {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-xs {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-xs {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-xs {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-xs {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-xs {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-xs {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-xs {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-xs {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-xs {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-xs {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-xs {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-xs {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-xs {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-xs {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-xs {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-xs {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-xs {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 576px) {
@@ -3063,100 +3063,100 @@ body {
     margin-top: auto;
   }
   .order-1-sm {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-sm {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-sm {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-sm {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-sm {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-sm {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-sm {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-sm {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-sm {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-sm {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-sm {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-sm {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-sm {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-sm {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-sm {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-sm {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-sm {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-sm {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-sm {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-sm {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-sm {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-sm {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-sm {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-sm {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 640px) {
@@ -3302,100 +3302,100 @@ body {
     margin-top: auto;
   }
   .order-1-ld {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-ld {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-ld {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-ld {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-ld {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-ld {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-ld {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-ld {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-ld {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-ld {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-ld {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-ld {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-ld {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-ld {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-ld {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-ld {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-ld {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-ld {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-ld {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-ld {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-ld {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-ld {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-ld {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-ld {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 768px) {
@@ -3541,100 +3541,100 @@ body {
     margin-top: auto;
   }
   .order-1-md {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-md {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-md {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-md {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-md {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-md {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-md {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-md {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-md {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-md {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-md {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-md {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-md {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-md {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-md {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-md {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-md {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-md {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-md {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-md {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-md {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-md {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-md {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-md {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 992px) {
@@ -3780,100 +3780,100 @@ body {
     margin-top: auto;
   }
   .order-1-lg {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-lg {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-lg {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-lg {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-lg {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-lg {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-lg {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-lg {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-lg {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-lg {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-lg {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-lg {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-lg {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-lg {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-lg {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-lg {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-lg {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-lg {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-lg {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-lg {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-lg {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-lg {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-lg {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-lg {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 1200px) {
@@ -4019,100 +4019,100 @@ body {
     margin-top: auto;
   }
   .order-1-xl {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-xl {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-xl {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-xl {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-xl {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-xl {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-xl {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-xl {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-xl {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-xl {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-xl {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-xl {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-xl {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-xl {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-xl {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-xl {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-xl {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-xl {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-xl {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-xl {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-xl {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-xl {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-xl {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-xl {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 1452px) {
@@ -4258,100 +4258,100 @@ body {
     margin-top: auto;
   }
   .order-1-xxl {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-xxl {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-xxl {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-xxl {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-xxl {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-xxl {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-xxl {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-xxl {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-xxl {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-xxl {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-xxl {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-xxl {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-xxl {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-xxl {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-xxl {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-xxl {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-xxl {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-xxl {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-xxl {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-xxl {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-xxl {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-xxl {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-xxl {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-xxl {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 @media screen and (min-width: 2000px) {
@@ -4497,100 +4497,100 @@ body {
     margin-top: auto;
   }
   .order-1-xxxl {
-    -webkit-box-ordinal-group: 2 !important;
-            order: 1 !important;
+    -webkit-box-ordinal-group: 2;
+            order: 1;
   }
   .order-2-xxxl {
-    -webkit-box-ordinal-group: 3 !important;
-            order: 2 !important;
+    -webkit-box-ordinal-group: 3;
+            order: 2;
   }
   .order-3-xxxl {
-    -webkit-box-ordinal-group: 4 !important;
-            order: 3 !important;
+    -webkit-box-ordinal-group: 4;
+            order: 3;
   }
   .order-4-xxxl {
-    -webkit-box-ordinal-group: 5 !important;
-            order: 4 !important;
+    -webkit-box-ordinal-group: 5;
+            order: 4;
   }
   .order-5-xxxl {
-    -webkit-box-ordinal-group: 6 !important;
-            order: 5 !important;
+    -webkit-box-ordinal-group: 6;
+            order: 5;
   }
   .order-6-xxxl {
-    -webkit-box-ordinal-group: 7 !important;
-            order: 6 !important;
+    -webkit-box-ordinal-group: 7;
+            order: 6;
   }
   .order-7-xxxl {
-    -webkit-box-ordinal-group: 8 !important;
-            order: 7 !important;
+    -webkit-box-ordinal-group: 8;
+            order: 7;
   }
   .order-8-xxxl {
-    -webkit-box-ordinal-group: 9 !important;
-            order: 8 !important;
+    -webkit-box-ordinal-group: 9;
+            order: 8;
   }
   .order-9-xxxl {
-    -webkit-box-ordinal-group: 10 !important;
-            order: 9 !important;
+    -webkit-box-ordinal-group: 10;
+            order: 9;
   }
   .order-10-xxxl {
-    -webkit-box-ordinal-group: 11 !important;
-            order: 10 !important;
+    -webkit-box-ordinal-group: 11;
+            order: 10;
   }
   .order-11-xxxl {
-    -webkit-box-ordinal-group: 12 !important;
-            order: 11 !important;
+    -webkit-box-ordinal-group: 12;
+            order: 11;
   }
   .order-12-xxxl {
-    -webkit-box-ordinal-group: 13 !important;
-            order: 12 !important;
+    -webkit-box-ordinal-group: 13;
+            order: 12;
   }
   .order-13-xxxl {
-    -webkit-box-ordinal-group: 14 !important;
-            order: 13 !important;
+    -webkit-box-ordinal-group: 14;
+            order: 13;
   }
   .order-14-xxxl {
-    -webkit-box-ordinal-group: 15 !important;
-            order: 14 !important;
+    -webkit-box-ordinal-group: 15;
+            order: 14;
   }
   .order-15-xxxl {
-    -webkit-box-ordinal-group: 16 !important;
-            order: 15 !important;
+    -webkit-box-ordinal-group: 16;
+            order: 15;
   }
   .order-16-xxxl {
-    -webkit-box-ordinal-group: 17 !important;
-            order: 16 !important;
+    -webkit-box-ordinal-group: 17;
+            order: 16;
   }
   .order-17-xxxl {
-    -webkit-box-ordinal-group: 18 !important;
-            order: 17 !important;
+    -webkit-box-ordinal-group: 18;
+            order: 17;
   }
   .order-18-xxxl {
-    -webkit-box-ordinal-group: 19 !important;
-            order: 18 !important;
+    -webkit-box-ordinal-group: 19;
+            order: 18;
   }
   .order-19-xxxl {
-    -webkit-box-ordinal-group: 20 !important;
-            order: 19 !important;
+    -webkit-box-ordinal-group: 20;
+            order: 19;
   }
   .order-20-xxxl {
-    -webkit-box-ordinal-group: 21 !important;
-            order: 20 !important;
+    -webkit-box-ordinal-group: 21;
+            order: 20;
   }
   .order-21-xxxl {
-    -webkit-box-ordinal-group: 22 !important;
-            order: 21 !important;
+    -webkit-box-ordinal-group: 22;
+            order: 21;
   }
   .order-22-xxxl {
-    -webkit-box-ordinal-group: 23 !important;
-            order: 22 !important;
+    -webkit-box-ordinal-group: 23;
+            order: 22;
   }
   .order-23-xxxl {
-    -webkit-box-ordinal-group: 24 !important;
-            order: 23 !important;
+    -webkit-box-ordinal-group: 24;
+            order: 23;
   }
   .order-24-xxxl {
-    -webkit-box-ordinal-group: 25 !important;
-            order: 24 !important;
+    -webkit-box-ordinal-group: 25;
+            order: 24;
   }
 }
 
