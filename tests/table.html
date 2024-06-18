@@ -8,12 +8,18 @@
     <title>Test Table - Metro 4 :: Popular HTML, CSS and JS library</title>
 
 </head>
-<body class="m4-cloak">
+<body class="m4-cloak" style="padding-top: 50px;">
+<nav data-role="appbar">
+    <span class="app-bar-item">Table</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
 <div class="container">
     <h1>Table test page</h1>
 
     <div class="example">
-        <table id="table1" class="table striped"
+        <table id="table1" class="table striped row-hover border"
                data-role="table"
                data-rows="10"
                data-rows-steps="5, 10, 20"
