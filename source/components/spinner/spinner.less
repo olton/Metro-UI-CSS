@@ -1,6 +1,14 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+
+}
+
+.dark-side {
+
+}
+
 .spinner {
     display: flex;
     flex-flow: row nowrap;
@@ -21,7 +29,7 @@
         height: 100%;
         line-height: @inputHeight;
         font-size: 16px;
-        padding: 0 4px;
+        padding: 0 4px!important;
         text-align: center;
         &:focus {
             box-shadow: none!important;
@@ -35,7 +43,6 @@
         line-height: 34px;
         text-align: center;
         font-weight: bold;
-        background-color: @light;
         padding: 0;
     }
 
