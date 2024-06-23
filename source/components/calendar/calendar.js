@@ -2,6 +2,7 @@
     'use strict';
     var Utils = Metro.utils;
     var CalendarDefaultConfig = {
+        static: false,
         showGhost: false,
         events: null,
         startContent: "days",
@@ -443,6 +444,10 @@
                 var day = $(this);
                 var index, date;
 
+                if (o.static) {
+                    return;
+                }
+
                 date = day.data('day');
                 index = that.selected.indexOf(date);
 
@@ -692,11 +697,11 @@
                 var outsideDate = date.month() !== that.current.month;
 
                 if (o.showWeekNumber && i % 7 === 0) {
-                    $("<span>").addClass("week-number").html(date.weekNumber(o.weekStart)).appendTo(calendarDays);
+                    $("<span>").addClass("week-number").html(`<span class="week-number-content">${date.weekNumber(o.weekStart)}</span>`).appendTo(calendarDays);
                 }
 
                 var _day = date.day(), _data = date.format("YYYY-MM-DD");
-                var cell = $("<span>").addClass("day").html(_day).appendTo(calendarDays);
+                var cell = $("<span>").addClass("day").html(`<span class="day-content">${_day}</span>`).appendTo(calendarDays);
 
                 cell.attr('data-day', _data)
 

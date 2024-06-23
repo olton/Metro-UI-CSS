@@ -8,7 +8,13 @@
     <title>Test Tabs - Metro 4 :: Popular HTML, CSS and JS library</title>
 
 </head>
-<body class="m4-cloak">
+<body class="m4-cloak" style="padding-top: 50px">
+<nav data-role="appbar">
+    <span class="app-bar-item">Tabs</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
 <div class="container">
     <h1>Tabs test page</h1>
 
@@ -22,7 +28,6 @@
                 id="tabs"
                 data-role="tabs"
                 data-expand="true"
-                data-cls-tabs-list-item-active="fg-orange"
                 data-on-tab="console.log('tab', arguments)"
                 data-on-tab-close="console.log('close', arguments)"
                 data-on-tab-open="console.log('open', arguments)"

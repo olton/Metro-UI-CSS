@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.1.0",
-        build_time: "18.06.2024, 10:36:01",
+        build_time: "23.06.2024, 16:26:05",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -358,7 +358,7 @@
                 const val = $(this).attr("data-copy-to-clipboard")
                 Metro.utils.copy2clipboard(val)
                 if (Metro.toast) {
-                    Metro.toast.create(`Data copied to clipboard to clipboard`);
+                    Metro.toast.create(`Data copied to clipboard!`);
                 }
             })
         },
