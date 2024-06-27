@@ -42912,6 +42912,14 @@ a.info-button {
   --progress-bar-line-back-color: #004D6F;
   --progress-bar-load-color: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
 }
+.dark-side {
+  --progress-bar-back-color: #363942;
+  --progress-bar-bar-color: #60A917;
+  --progress-bar-buffer-color: #CE352C;
+  --progress-bar-line-color: #b3d4fc;
+  --progress-bar-line-back-color: #004D6F;
+  --progress-bar-load-color: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
+}
 .progress {
   display: block;
   position: relative;
