@@ -18,16 +18,16 @@
         stopOnMouse: true,
 
         controls: true,
+        controlsOnMouse: false,
+        controlsOutside: false,
+        controlPrev: '&larr;',
+        controlNext: '&rarr;',
+
         bullets: true,
         bulletsStyle: "square", // square, circle, rect, diamond
         bulletsSize: "default", // default, mini, small, large
-
-        controlsOnMouse: false,
-        controlsOutside: false,
         bulletsPosition: "default", // default, left, right
 
-        controlPrev: '&#x23F4',
-        controlNext: '&#x23F5',
         clsCarousel: "",
         clsSlides: "",
         clsSlide: "",
@@ -240,15 +240,15 @@
                 return ;
             }
 
-            next = $('<span/>').addClass('carousel-switch-next').addClass(o.clsControls).addClass(o.clsControlNext).html(">");
-            prev = $('<span/>').addClass('carousel-switch-prev').addClass(o.clsControls).addClass(o.clsControlPrev).html("<");
+            next = $('<span>').addClass('carousel-switch-next').addClass(o.clsControls).addClass(o.clsControlNext).html(`<div></div>`);
+            prev = $('<span>').addClass('carousel-switch-prev').addClass(o.clsControls).addClass(o.clsControlPrev).html(`<div></div>`);
 
             if (o.controlNext) {
-                next.html(o.controlNext);
+                next.children("div").html(o.controlNext);
             }
 
             if (o.controlPrev) {
-                prev.html(o.controlPrev);
+                prev.children("div").html(o.controlPrev);
             }
 
             next.appendTo(element);
