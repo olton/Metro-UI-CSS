@@ -36784,7 +36784,7 @@ input.input-small:-ms-input-placeholder {
 }
 
 :root {
-  --input-height: 36px;
+  --checkbox-height: 36px;
 }
 :root {
   --checkbox-check-color: #fff;
@@ -36838,7 +36838,7 @@ input.input-small:-ms-input-placeholder {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  line-height: var(--input-height);
+  line-height: var(--checkbox-height);
 }
 .checkbox .check::before {
   position: absolute;
@@ -37041,6 +37041,25 @@ input.input-small:-ms-input-placeholder {
   }
 }
 
+:root {
+  --radio-height: 36px;
+}
+:root {
+  --radio-check-color: #fff;
+  --radio-border-color: #191919;
+  --radio-checked-background: #191919;
+  --radio-focus-color: #e8e8e8;
+  --radio-disabled-background: #e8e8e8;
+  --radio-disabled-color: #6e6e6e;
+}
+.dark-side {
+  --radio-check-color: #fff;
+  --radio-border-color: #3c3c3c;
+  --radio-checked-background: #468cff;
+  --radio-focus-color: rgba(70, 140, 255, 0.2);
+  --radio-disabled-background: #424242;
+  --radio-disabled-color: #6e6e6e;
+}
 .radio {
   display: -webkit-inline-box;
   display: inline-flex;
@@ -37075,12 +37094,12 @@ input.input-small:-ms-input-placeholder {
   position: relative;
 }
 .radio .check {
-  border: 2px #d9d9d9 solid;
+  border: 2px var(--border-color) solid;
   width: 20px;
   height: 20px;
   border-radius: 50%;
   flex-shrink: 0;
-  line-height: 36px;
+  line-height: var(--radio-height);
 }
 .radio .check::before {
   position: absolute;
@@ -37090,27 +37109,29 @@ input.input-small:-ms-input-placeholder {
   width: 6px;
   height: 6px;
   color: transparent;
-  background-color: #ffffff;
-  border: 2px solid #ffffff;
+  background-color: var(--radio-checked-background);
+  border: 1px solid var(--radio-checked-background);
   border-radius: 50%;
   left: 50%;
   top: 50%;
-  margin-left: -3px;
-  margin-top: -3px;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
   display: none;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
 }
 .radio input[type=radio]:checked ~ .check {
-  border-color: #1d1d1d;
-  background-color: #1d1d1d;
+  border-color: var(--radio-checked-background);
+  background-color: transparent;
 }
 .radio input[type=radio]:checked ~ .check::before {
   display: block;
 }
 .radio input[type=radio]:disabled ~ .check {
-  border-color: #e9e9e9;
-  background-color: #e9e9e9;
+  border-color: var(--radio-disabled-background);
+  background-color: var(--radio-disabled-background);
+}
+.radio input[type=radio]:disabled ~ .check::before {
+  background-color: var(--radio-disabled-color);
+  border: none;
 }
 .radio .check {
   -webkit-box-ordinal-group: 2;
@@ -37148,29 +37169,6 @@ input.input-small:-ms-input-placeholder {
   margin-top: -1.5625rem;
   margin-left: -1.5625rem;
 }
-.radio.style2 input[type=radio]:checked ~ .check {
-  border-color: #1d1d1d;
-  background-color: #ffffff;
-}
-.radio.style2 .check {
-  border-color: #989898;
-}
-.radio.style2 .check::before {
-  background-color: #1d1d1d;
-  border: 2px solid #1d1d1d;
-  width: 8px;
-  height: 8px;
-  margin-left: -4px;
-  margin-top: -4px;
-}
-.radio.style2 input[type=radio]:disabled ~ .check {
-  border-color: #e9e9e9;
-  background-color: #ffffff;
-}
-.radio.style2 input[type=radio]:disabled ~ .check::before {
-  background-color: #e9e9e9;
-  border-color: #e9e9e9;
-}
 .radio.transition-on .check {
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -37180,8 +37178,8 @@ input.input-small:-ms-input-placeholder {
   transition: all 0.3s ease-in-out;
 }
 .radio .check.focused {
-  -webkit-box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
-          box-shadow: 0 0 0 3px rgba(228, 228, 228, 0.45);
+  -webkit-box-shadow: 0 0 0 3px var(--radio-focus-color);
+          box-shadow: 0 0 0 3px var(--radio-focus-color);
 }
 
 .color-selector {
