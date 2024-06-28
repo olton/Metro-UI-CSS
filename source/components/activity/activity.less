@@ -1,6 +1,19 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --activity-ring-time: @activityRingTime;
+    --activity-ring-time-mute: @activityRingTimeMute;
+    --activity-ring-size: @activityRingSize;
+    --activity-ring-rotate: @activityRingRotate;
+    
+    --activity-color: #191919;
+}
+
+.dark-side {
+    --activity-color: #ffffff;
+}
+
 .activity {
     &-ring {
         position: relative;
@@ -28,7 +41,7 @@
                     width: (@activityRingSize / 8);
                     height: (@activityRingSize / 8);
                     border-radius: (@activityRingSize / 8);
-                    background: @activityColor;
+                    background: var(--activity-color);
                 }
             }
 
@@ -57,16 +70,6 @@
                 .rotate(@activityRingRotate*4);
                 & > .circle {
                     animation-delay: (@activityRingTime / @activityRingTimeMute*4);
-                }
-            }
-        }
-
-        &.dark-style {
-            & > .wrap {
-                & > .circle {
-                    &:after {
-                        background-color: @activityColorDark;
-                    }
                 }
             }
         }
@@ -123,10 +126,10 @@
             position: absolute;
             width: 10px;
             height: 10px;
-            background-color: @activityColor;
+            background-color: var(--activity-color);
             opacity: 0;
             margin-left: 5px;
-            animation: metro-slide 3s cubic-bezier(.1,.85,.9,.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
+            animation: activity-metro-slide 3s cubic-bezier(.1,.85,.9,.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
 
             &:nth-child(2){
                 animation-delay: .8s;
@@ -139,12 +142,6 @@
             }
             &:nth-child(5){
                 animation-delay: .5s;
-            }
-        }
-
-        &.dark-style {
-            & > .circle {
-                background-color: @activityColorDark;
             }
         }
 
@@ -173,13 +170,13 @@
         height: 40px;
         overflow: hidden;
         transform-origin: bottom left;
-        animation: ani-shrink 1s linear infinite;
+        animation: activity-shrink 1s linear infinite;
 
         .square {
             position: absolute;
             width: 19px;
             height: 19px;
-            background: @activityColor;
+            background: var(--activity-color);
 
             &:nth-child(1) {
                 left: 0;
@@ -189,25 +186,19 @@
             &:nth-child(2) {
                 left: 21px;
                 top: 21px;
-                animation: ani-drop 1s linear infinite;
+                animation: activity-drop 1s linear infinite;
             }
 
             &:nth-child(3) {
                 left: 0;
                 top: 0;
-                animation: ani-drop2 1s linear infinite;
+                animation: activity-drop2 1s linear infinite;
             }
 
             &:nth-child(4) {
                 left: 21px;
                 top: 0;
-                animation: ani-drop3 1s linear infinite;
-            }
-        }
-
-        &.dark-style {
-            & > .square {
-                background-color: @activityColorDark;
+                animation: activity-drop3 1s linear infinite;
             }
         }
 
@@ -247,8 +238,8 @@
             margin: -32px 0 0 -32px;
             border-radius: 50%;
             border: 3px solid transparent;
-            border-top-color: @white;
-            animation: ani-pre-spin 1s linear infinite;
+            border-top-color: var(--activity-color);
+            animation: activity-pre-spin 1s linear infinite;
             z-index: 1001;
 
             &::before, &::after {
@@ -256,7 +247,7 @@
                 position: absolute;
                 border-radius: 50%;
                 border: 3px solid transparent;
-                border-top-color: @white;
+                border-top-color: var(--activity-color);
             }
 
             &:before {
@@ -264,7 +255,7 @@
                 left: 5px;
                 right: 5px;
                 bottom: 5px;
-                animation: ani-pre-spin 2s linear infinite;
+                animation: activity-pre-spin 2s linear infinite;
             }
 
             &:after {
@@ -272,21 +263,7 @@
                 left: 15px;
                 right: 15px;
                 bottom: 15px;
-                animation: spin 1.5s linear infinite;
-            }
-        }
-
-        &.dark-style {
-            .cycle {
-                border-top-color: @dark;
-
-                &:before {
-                    border-top-color: @dark;
-                }
-
-                &:after {
-                    border-top-color: @dark;
-                }
+                animation: activity-spin 1.5s linear infinite;
             }
         }
 
@@ -312,7 +289,7 @@
         .square(@sizeA, px);
 
         .circular{
-            animation: rotate 2s linear infinite;
+            animation: activity-rotate 2s linear infinite;
             position: relative;
             width: 100%;
             height: 100%;
@@ -321,19 +298,13 @@
         .path {
             stroke-dasharray: 1,200;
             stroke-dashoffset: 0;
-            animation: dash 1.5s ease-in-out infinite;
+            animation: activity-dash 1.5s ease-in-out infinite;
             stroke-linecap: round;
-            stroke: @white;
-        }
-
-        &.dark-style {
-            .path {
-                stroke: @dark;
-            }
+            stroke: var(--activity-color);
         }
 
         &.color-style .path{
-            animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+            animation: activity-dash 1.5s ease-in-out infinite, activity-color 6s ease-in-out infinite;
         }
 
 
@@ -362,39 +333,25 @@
             &:nth-child(1) {
                 left: 0;
                 top: 0;
-                animation: rotate-one 1s linear infinite;
+                animation: activity-rotate-one 1s linear infinite;
                 border-bottom: 3px solid;
-                border-bottom-color: @white;
+                border-bottom-color: var(--activity-color);
             }
 
             &:nth-child(2) {
                 right: 0;
                 top: 0;
-                animation: rotate-two 1s linear infinite;
+                animation: activity-rotate-two 1s linear infinite;
                 border-right: 3px solid;
-                border-right-color: @white;
+                border-right-color: var(--activity-color);
             }
 
             &:nth-child(3) {
                 right: 0;
                 bottom: 0;
-                animation: rotate-three 1s linear infinite;
+                animation: activity-rotate-three 1s linear infinite;
                 border-top: 3px solid;
-                border-top-color:  @white;
-            }
-        }
-
-        &.dark-style span {
-            &:nth-child(1) {
-                border-bottom-color: @dark;
-            }
-
-            &:nth-child(2) {
-                border-right-color: @dark;
-            }
-
-            &:nth-child(3) {
-                border-top-color: @dark;
+                border-top-color:  var(--activity-color);
             }
         }
 
@@ -423,8 +380,8 @@
             display: inline-block;
             float: left;
             margin-left: 2px;
-            animation: bars 0.8s infinite ease-in-out;
-            background-color: white;
+            animation: activity-bars 0.8s infinite ease-in-out;
+            background-color: var(--activity-color);
 
             &:nth-child(1) {
             }
@@ -443,10 +400,6 @@
             &:nth-child(6) {
                 animation-delay: -0.3s;
             }
-        }
-
-        &.dark-style span {
-            background-color: @dark;
         }
 
         &.color-style span {
@@ -472,13 +425,13 @@
     }
 }
 
-@keyframes rotate{
+@keyframes activity-rotate{
     100%{
         transform: rotate(360deg);
     }
 }
 
-@keyframes dash{
+@keyframes activity-dash{
     0%{
         stroke-dasharray: 1,200;
         stroke-dashoffset: 0;
@@ -493,7 +446,7 @@
     }
 }
 
-@keyframes color{
+@keyframes activity-color{
     100%, 0%{
         stroke: @red;
     }
@@ -508,7 +461,7 @@
     }
 }
 
-@keyframes rotate-one {
+@keyframes activity-rotate-one {
     0% {
         transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
     }
@@ -517,7 +470,7 @@
     }
 }
 
-@keyframes rotate-two {
+@keyframes activity-rotate-two {
     0% {
         transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
     }
@@ -526,7 +479,7 @@
     }
 }
 
-@keyframes rotate-three {
+@keyframes activity-rotate-three {
     0% {
         transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
     }
@@ -535,7 +488,7 @@
     }
 }
 
-@keyframes bars {
+@keyframes activity-bars {
     0%, 40%, 100% {
         transform: scaleY(0.05);
     }
@@ -544,7 +497,7 @@
     }
 }
 
-@keyframes ani-drop {
+@keyframes activity-drop {
     0% {
         transform: translateY(-50px);
     }
@@ -556,7 +509,7 @@
     }
 }
 
-@keyframes ani-drop2 {
+@keyframes activity-drop2 {
     0% {
         transform: translateY(-50px);
     }
@@ -568,7 +521,7 @@
     }
 }
 
-@keyframes ani-drop3 {
+@keyframes activity-drop3 {
     0% {
         transform: translateY(-50px);
     }
@@ -577,6 +530,24 @@
     }
     100% {
         transform: translate(0);
+    }
+}
+
+@keyframes activity-pre-spin {
+    0%   {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes activity-metro-slide {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
     }
 }
 

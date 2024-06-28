@@ -4,12 +4,14 @@
 :root {
     --progress-bar-height: 12px;
     --progress-bar-height-ani: -24px;
+    --progress-bar-radius: 0;
     --progress-bar-back-color: #eeeeee;
     --progress-bar-bar-color: #60A917;
     --progress-bar-buffer-color: #CE352C;
     --progress-bar-line-color: #b3d4fc;
     --progress-bar-line-back-color: #004D6F;
     --progress-bar-load-color: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
+    --progress-bar-value-color: #191919;
 }
 
 .dark-side {
@@ -19,6 +21,7 @@
     --progress-bar-line-color: #b3d4fc;
     --progress-bar-line-back-color: #004D6F;
     --progress-bar-load-color: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
+    --progress-bar-value-color: #ffffff;
 }
 
 .progress {
@@ -28,6 +31,7 @@
     height: var(--progress-bar-height);
     background-color: var(--progress-bar-back-color);
     overflow: hidden;
+    border-radius: var(--progress-bar-radius);
 
     &.with-load {
         background: transparent;

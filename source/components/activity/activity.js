@@ -4,7 +4,7 @@
     var ActivityDefaultConfig = {
         activityDeferred: 0,
         type: "ring",
-        style: "color",
+        style: "",
         size: 64,
         radius: 20,
         onActivityCreate: Metro.noop
@@ -30,7 +30,7 @@
 
             element
                 .html('')
-                .addClass(o.style + "-style")
+                .addClass(o.style === "dark" ? "dark-side" : o.style === "color" ? "color-style" : "")
                 .addClass("activity-" + o.type);
 
             function _metro(){

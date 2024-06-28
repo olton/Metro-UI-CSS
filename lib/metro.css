@@ -32416,6 +32416,16 @@ input[type=reset].loading .load-caption {
   color: #1d1d1d;
 }
 
+:root {
+  --activity-ring-time: 4000ms;
+  --activity-ring-time-mute: 30;
+  --activity-ring-size: 32px;
+  --activity-ring-rotate: -14deg;
+  --activity-color: #191919;
+}
+.dark-side {
+  --activity-color: #ffffff;
+}
 .activity-ring {
   position: relative;
   padding-top: 0.22rem;
@@ -32443,7 +32453,7 @@ input[type=reset].loading .load-caption {
   width: 4px;
   height: 4px;
   border-radius: 4px;
-  background: #ffffff;
+  background: var(--activity-color);
 }
 .activity-ring > .wrap:nth-child(2) {
   -webkit-transform: rotate(-14deg);
@@ -32477,9 +32487,6 @@ input[type=reset].loading .load-caption {
   -webkit-animation-delay: 533.33333333ms;
           animation-delay: 533.33333333ms;
 }
-.activity-ring.dark-style > .wrap > .circle:after {
-  background-color: #989898;
-}
 .activity-ring.color-style > .wrap > .circle:after {
   background-color: #1fb1f8;
 }
@@ -32507,11 +32514,11 @@ input[type=reset].loading .load-caption {
   position: absolute;
   width: 10px;
   height: 10px;
-  background-color: #ffffff;
+  background-color: var(--activity-color);
   opacity: 0;
   margin-left: 5px;
-  -webkit-animation: metro-slide 3s cubic-bezier(0.1, 0.85, 0.9, 0.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
-          animation: metro-slide 3s cubic-bezier(0.1, 0.85, 0.9, 0.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
+  -webkit-animation: activity-metro-slide 3s cubic-bezier(0.1, 0.85, 0.9, 0.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
+          animation: activity-metro-slide 3s cubic-bezier(0.1, 0.85, 0.9, 0.15) infinite, metro-opacity 2s ease-in-out infinite alternate;
 }
 .activity-metro > .circle:nth-child(2) {
   -webkit-animation-delay: 0.8s;
@@ -32528,9 +32535,6 @@ input[type=reset].loading .load-caption {
 .activity-metro > .circle:nth-child(5) {
   -webkit-animation-delay: 0.5s;
           animation-delay: 0.5s;
-}
-.activity-metro.dark-style > .circle {
-  background-color: #989898;
 }
 .activity-metro.color-style > .circle {
   background-color: #1fb1f8;
@@ -32554,14 +32558,14 @@ input[type=reset].loading .load-caption {
   overflow: hidden;
   -webkit-transform-origin: bottom left;
           transform-origin: bottom left;
-  -webkit-animation: ani-shrink 1s linear infinite;
-          animation: ani-shrink 1s linear infinite;
+  -webkit-animation: activity-shrink 1s linear infinite;
+          animation: activity-shrink 1s linear infinite;
 }
 .activity-square .square {
   position: absolute;
   width: 19px;
   height: 19px;
-  background: #ffffff;
+  background: var(--activity-color);
 }
 .activity-square .square:nth-child(1) {
   left: 0;
@@ -32570,23 +32574,20 @@ input[type=reset].loading .load-caption {
 .activity-square .square:nth-child(2) {
   left: 21px;
   top: 21px;
-  -webkit-animation: ani-drop 1s linear infinite;
-          animation: ani-drop 1s linear infinite;
+  -webkit-animation: activity-drop 1s linear infinite;
+          animation: activity-drop 1s linear infinite;
 }
 .activity-square .square:nth-child(3) {
   left: 0;
   top: 0;
-  -webkit-animation: ani-drop2 1s linear infinite;
-          animation: ani-drop2 1s linear infinite;
+  -webkit-animation: activity-drop2 1s linear infinite;
+          animation: activity-drop2 1s linear infinite;
 }
 .activity-square .square:nth-child(4) {
   left: 21px;
   top: 0;
-  -webkit-animation: ani-drop3 1s linear infinite;
-          animation: ani-drop3 1s linear infinite;
-}
-.activity-square.dark-style > .square {
-  background-color: #989898;
+  -webkit-animation: activity-drop3 1s linear infinite;
+          animation: activity-drop3 1s linear infinite;
 }
 .activity-square.color-style > .square:nth-child(1) {
   background-color: #fa6800;
@@ -32616,9 +32617,9 @@ input[type=reset].loading .load-caption {
   margin: -32px 0 0 -32px;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #ffffff;
-  -webkit-animation: ani-pre-spin 1s linear infinite;
-          animation: ani-pre-spin 1s linear infinite;
+  border-top-color: var(--activity-color);
+  -webkit-animation: activity-pre-spin 1s linear infinite;
+          animation: activity-pre-spin 1s linear infinite;
   z-index: 1001;
 }
 .activity-cycle .cycle::before,
@@ -32627,32 +32628,23 @@ input[type=reset].loading .load-caption {
   position: absolute;
   border-radius: 50%;
   border: 3px solid transparent;
-  border-top-color: #ffffff;
+  border-top-color: var(--activity-color);
 }
 .activity-cycle .cycle:before {
   top: 5px;
   left: 5px;
   right: 5px;
   bottom: 5px;
-  -webkit-animation: ani-pre-spin 2s linear infinite;
-          animation: ani-pre-spin 2s linear infinite;
+  -webkit-animation: activity-pre-spin 2s linear infinite;
+          animation: activity-pre-spin 2s linear infinite;
 }
 .activity-cycle .cycle:after {
   top: 15px;
   left: 15px;
   right: 15px;
   bottom: 15px;
-  -webkit-animation: spin 1.5s linear infinite;
-          animation: spin 1.5s linear infinite;
-}
-.activity-cycle.dark-style .cycle {
-  border-top-color: #1d1d1d;
-}
-.activity-cycle.dark-style .cycle:before {
-  border-top-color: #1d1d1d;
-}
-.activity-cycle.dark-style .cycle:after {
-  border-top-color: #1d1d1d;
+  -webkit-animation: activity-spin 1.5s linear infinite;
+          animation: activity-spin 1.5s linear infinite;
 }
 .activity-cycle.color-style .cycle {
   border-top-color: #1fb1f8;
@@ -32668,8 +32660,8 @@ input[type=reset].loading .load-caption {
   height: 64px;
 }
 .activity-simple .circular {
-  -webkit-animation: rotate 2s linear infinite;
-          animation: rotate 2s linear infinite;
+  -webkit-animation: activity-rotate 2s linear infinite;
+          animation: activity-rotate 2s linear infinite;
   position: relative;
   width: 100%;
   height: 100%;
@@ -32677,17 +32669,14 @@ input[type=reset].loading .load-caption {
 .activity-simple .path {
   stroke-dasharray: 1,200;
   stroke-dashoffset: 0;
-  -webkit-animation: dash 1.5s ease-in-out infinite;
-          animation: dash 1.5s ease-in-out infinite;
+  -webkit-animation: activity-dash 1.5s ease-in-out infinite;
+          animation: activity-dash 1.5s ease-in-out infinite;
   stroke-linecap: round;
-  stroke: #ffffff;
-}
-.activity-simple.dark-style .path {
-  stroke: #1d1d1d;
+  stroke: var(--activity-color);
 }
 .activity-simple.color-style .path {
-  -webkit-animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
-          animation: dash 1.5s ease-in-out infinite, color 6s ease-in-out infinite;
+  -webkit-animation: activity-dash 1.5s ease-in-out infinite, activity-color 6s ease-in-out infinite;
+          animation: activity-dash 1.5s ease-in-out infinite, activity-color 6s ease-in-out infinite;
 }
 .activity-simple.small {
   width: 32px;
@@ -32714,35 +32703,26 @@ input[type=reset].loading .load-caption {
 .activity-atom span:nth-child(1) {
   left: 0;
   top: 0;
-  -webkit-animation: rotate-one 1s linear infinite;
-          animation: rotate-one 1s linear infinite;
+  -webkit-animation: activity-rotate-one 1s linear infinite;
+          animation: activity-rotate-one 1s linear infinite;
   border-bottom: 3px solid;
-  border-bottom-color: #ffffff;
+  border-bottom-color: var(--activity-color);
 }
 .activity-atom span:nth-child(2) {
   right: 0;
   top: 0;
-  -webkit-animation: rotate-two 1s linear infinite;
-          animation: rotate-two 1s linear infinite;
+  -webkit-animation: activity-rotate-two 1s linear infinite;
+          animation: activity-rotate-two 1s linear infinite;
   border-right: 3px solid;
-  border-right-color: #ffffff;
+  border-right-color: var(--activity-color);
 }
 .activity-atom span:nth-child(3) {
   right: 0;
   bottom: 0;
-  -webkit-animation: rotate-three 1s linear infinite;
-          animation: rotate-three 1s linear infinite;
+  -webkit-animation: activity-rotate-three 1s linear infinite;
+          animation: activity-rotate-three 1s linear infinite;
   border-top: 3px solid;
-  border-top-color: #ffffff;
-}
-.activity-atom.dark-style span:nth-child(1) {
-  border-bottom-color: #1d1d1d;
-}
-.activity-atom.dark-style span:nth-child(2) {
-  border-right-color: #1d1d1d;
-}
-.activity-atom.dark-style span:nth-child(3) {
-  border-top-color: #1d1d1d;
+  border-top-color: var(--activity-color);
 }
 .activity-atom.color-style span:nth-child(1) {
   border-bottom-color: #1fb1f8;
@@ -32763,9 +32743,9 @@ input[type=reset].loading .load-caption {
   display: inline-block;
   float: left;
   margin-left: 2px;
-  -webkit-animation: bars 0.8s infinite ease-in-out;
-          animation: bars 0.8s infinite ease-in-out;
-  background-color: white;
+  -webkit-animation: activity-bars 0.8s infinite ease-in-out;
+          animation: activity-bars 0.8s infinite ease-in-out;
+  background-color: var(--activity-color);
 }
 .activity-bars span:nth-child(2) {
   -webkit-animation-delay: -0.7s;
@@ -32787,9 +32767,6 @@ input[type=reset].loading .load-caption {
   -webkit-animation-delay: -0.3s;
           animation-delay: -0.3s;
 }
-.activity-bars.dark-style span {
-  background-color: #1d1d1d;
-}
 .activity-bars.color-style span:nth-child(1) {
   background-color: #aa00ff;
 }
@@ -32808,19 +32785,19 @@ input[type=reset].loading .load-caption {
 .activity-bars.color-style span:nth-child(6) {
   background-color: #dc4fad;
 }
-@-webkit-keyframes rotate {
+@-webkit-keyframes activity-rotate {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
 }
-@keyframes rotate {
+@keyframes activity-rotate {
   100% {
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg);
   }
 }
-@-webkit-keyframes dash {
+@-webkit-keyframes activity-dash {
   0% {
     stroke-dasharray: 1,200;
     stroke-dashoffset: 0;
@@ -32834,7 +32811,7 @@ input[type=reset].loading .load-caption {
     stroke-dashoffset: -124;
   }
 }
-@keyframes dash {
+@keyframes activity-dash {
   0% {
     stroke-dasharray: 1,200;
     stroke-dashoffset: 0;
@@ -32848,7 +32825,7 @@ input[type=reset].loading .load-caption {
     stroke-dashoffset: -124;
   }
 }
-@-webkit-keyframes color {
+@-webkit-keyframes activity-color {
   100%,
   0% {
     stroke: #CE352C;
@@ -32864,7 +32841,7 @@ input[type=reset].loading .load-caption {
     stroke: #fff000;
   }
 }
-@keyframes color {
+@keyframes activity-color {
   100%,
   0% {
     stroke: #CE352C;
@@ -32880,7 +32857,7 @@ input[type=reset].loading .load-caption {
     stroke: #fff000;
   }
 }
-@-webkit-keyframes rotate-one {
+@-webkit-keyframes activity-rotate-one {
   0% {
     -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
             transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
@@ -32890,7 +32867,7 @@ input[type=reset].loading .load-caption {
             transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
   }
 }
-@keyframes rotate-one {
+@keyframes activity-rotate-one {
   0% {
     -webkit-transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
             transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
@@ -32900,7 +32877,7 @@ input[type=reset].loading .load-caption {
             transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
   }
 }
-@-webkit-keyframes rotate-two {
+@-webkit-keyframes activity-rotate-two {
   0% {
     -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
             transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
@@ -32910,7 +32887,7 @@ input[type=reset].loading .load-caption {
             transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
   }
 }
-@keyframes rotate-two {
+@keyframes activity-rotate-two {
   0% {
     -webkit-transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
             transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
@@ -32920,7 +32897,7 @@ input[type=reset].loading .load-caption {
             transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
   }
 }
-@-webkit-keyframes rotate-three {
+@-webkit-keyframes activity-rotate-three {
   0% {
     -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
             transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
@@ -32930,7 +32907,7 @@ input[type=reset].loading .load-caption {
             transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
-@keyframes rotate-three {
+@keyframes activity-rotate-three {
   0% {
     -webkit-transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
             transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
@@ -32940,7 +32917,7 @@ input[type=reset].loading .load-caption {
             transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
   }
 }
-@-webkit-keyframes bars {
+@-webkit-keyframes activity-bars {
   0%,
   40%,
   100% {
@@ -32952,7 +32929,7 @@ input[type=reset].loading .load-caption {
             transform: scaleY(1);
   }
 }
-@keyframes bars {
+@keyframes activity-bars {
   0%,
   40%,
   100% {
@@ -32964,7 +32941,7 @@ input[type=reset].loading .load-caption {
             transform: scaleY(1);
   }
 }
-@-webkit-keyframes ani-drop {
+@-webkit-keyframes activity-drop {
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px);
@@ -32978,7 +32955,7 @@ input[type=reset].loading .load-caption {
             transform: translate(0);
   }
 }
-@keyframes ani-drop {
+@keyframes activity-drop {
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px);
@@ -32992,7 +32969,7 @@ input[type=reset].loading .load-caption {
             transform: translate(0);
   }
 }
-@-webkit-keyframes ani-drop2 {
+@-webkit-keyframes activity-drop2 {
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px);
@@ -33006,7 +32983,7 @@ input[type=reset].loading .load-caption {
             transform: translate(0);
   }
 }
-@keyframes ani-drop2 {
+@keyframes activity-drop2 {
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px);
@@ -33020,7 +32997,7 @@ input[type=reset].loading .load-caption {
             transform: translate(0);
   }
 }
-@-webkit-keyframes ani-drop3 {
+@-webkit-keyframes activity-drop3 {
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px);
@@ -33034,7 +33011,7 @@ input[type=reset].loading .load-caption {
             transform: translate(0);
   }
 }
-@keyframes ani-drop3 {
+@keyframes activity-drop3 {
   0% {
     -webkit-transform: translateY(-50px);
             transform: translateY(-50px);
@@ -33046,6 +33023,42 @@ input[type=reset].loading .load-caption {
   100% {
     -webkit-transform: translate(0);
             transform: translate(0);
+  }
+}
+@-webkit-keyframes activity-pre-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes activity-pre-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes activity-metro-slide {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
+  }
+}
+@keyframes activity-metro-slide {
+  0% {
+    left: -50%;
+  }
+  100% {
+    left: 150%;
   }
 }
 .dialog.no-shadow {
@@ -42905,12 +42918,14 @@ a.info-button {
 :root {
   --progress-bar-height: 12px;
   --progress-bar-height-ani: -24px;
+  --progress-bar-radius: 0;
   --progress-bar-back-color: #eeeeee;
   --progress-bar-bar-color: #60A917;
   --progress-bar-buffer-color: #CE352C;
   --progress-bar-line-color: #b3d4fc;
   --progress-bar-line-back-color: #004D6F;
   --progress-bar-load-color: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
+  --progress-bar-value-color: #191919;
 }
 .dark-side {
   --progress-bar-back-color: #363942;
@@ -42919,6 +42934,7 @@ a.info-button {
   --progress-bar-line-color: #b3d4fc;
   --progress-bar-line-back-color: #004D6F;
   --progress-bar-load-color: radial-gradient(#a9c0e9 0%, #a9c0e9 16%, transparent 42%);
+  --progress-bar-value-color: #ffffff;
 }
 .progress {
   display: block;
@@ -42927,6 +42943,7 @@ a.info-button {
   height: var(--progress-bar-height);
   background-color: var(--progress-bar-back-color);
   overflow: hidden;
+  border-radius: var(--progress-bar-radius);
 }
 .progress.with-load {
   background: transparent;

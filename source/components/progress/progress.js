@@ -43,7 +43,7 @@
         },
 
         _create: function(){
-            var element = this.element, o = this.options;
+            var element = this.element, elem = this.elem, o = this.options;
             var value;
 
             if (typeof o.type === "string") o.type = o.type.toLowerCase();
@@ -53,19 +53,23 @@
                 .addClass("progress");
 
             function _progress(){
-                $("<div>").addClass("bar").appendTo(element);
+                elem.innerHTML = `<div class="bar"></div>`
             }
 
             function _buffer(){
-                $("<div>").addClass("bar").appendTo(element);
-                $("<div>").addClass("buffer").appendTo(element);
+                elem.innerHTML = `
+                    <div class="bar"></div>
+                    <div class="buffer"></div>
+                `
             }
 
             function _load(){
                 element.addClass("with-load");
-                $("<div>").addClass("bar").appendTo(element);
-                $("<div>").addClass("buffer").appendTo(element);
-                $("<div>").addClass("load").appendTo(element);
+                elem.innerHTML = `
+                    <div class="bar"></div>
+                    <div class="buffer"></div>
+                    <div class="load"></div>
+                `
             }
 
             function _line(){
