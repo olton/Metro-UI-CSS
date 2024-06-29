@@ -42908,7 +42908,7 @@ a.info-button {
   --progress-bar-height-ani: -24px;
   --progress-bar-radius: 0;
   --progress-bar-back-color: #eeeeee;
-  --progress-bar-bar-color: #60A917;
+  --progress-bar-color: #60A917;
   --progress-bar-buffer-color: #CE352C;
   --progress-bar-line-color: #b3d4fc;
   --progress-bar-line-back-color: #004D6F;
@@ -42960,7 +42960,7 @@ a.info-button {
 }
 .progress .bar {
   z-index: 3;
-  background: var(--progress-bar-bar-color);
+  background: var(--progress-bar-color);
 }
 .progress.line {
   background-color: var(--progress-bar-line-color);
