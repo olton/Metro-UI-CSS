@@ -42,6 +42,7 @@
         rowsWrapper: null,
         infoWrapper: null,
         paginationWrapper: null,
+        searchThreshold: 500,
         clsComponent: "",
         clsList: "",
         clsListItem: "",
@@ -356,31 +357,28 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element;
+            var that = this, element = this.element, o = this.options;
             var component = element.parent();
             var search = component.find(".list-search-block input");
             var customSearch;
 
-            search.on(Metro.events.inputchange, function(){
+            function searchItem(e){
                 that.filterString = this.value.trim().toLowerCase();
                 if (that.filterString[that.filterString.length - 1] === ":") {
                     return ;
                 }
                 that.currentPage = 1;
                 that._draw();
-            });
+            }
+
+            searchItem = $.debounce(searchItem, o.searchThreshold)
+
+            search.on(Metro.events.inputchange, searchItem);
 
             if (Utils.isValue(this.wrapperSearch)) {
                 customSearch = this.wrapperSearch.find("input");
                 if (customSearch.length > 0) {
-                    customSearch.on(Metro.events.inputchange, function(){
-                        that.filterString = this.value.trim().toLowerCase();
-                        if (that.filterString[that.filterString.length - 1] === ":") {
-                            return ;
-                        }
-                        that.currentPage = 1;
-                        that._draw();
-                    });
+                    customSearch.on(Metro.events.inputchange, searchItem);
                 }
             }
 
