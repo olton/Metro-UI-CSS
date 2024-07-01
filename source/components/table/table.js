@@ -1119,14 +1119,11 @@
 
             var _search = function(){
                 that.searchString = this.value.trim().toLowerCase();
-
-                clearInterval(that.input_interval); that.input_interval = false;
-                if (!that.input_interval) that.input_interval = setTimeout(function(){
-                    that.currentPage = 1;
-                    that._draw();
-                    clearInterval(that.input_interval); that.input_interval = false;
-                }, o.searchThreshold);
+                that.currentPage = 1;
+                that._draw();
             };
+
+            _search = $.debounce(_search, o.searchThreshold)
 
             search.on(Metro.events.inputchange, _search);
 
