@@ -60,7 +60,7 @@
     "cypress": "^13.12.0",
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
-    "postcss": "^8.4.38",
+    "postcss": "^8.4.39",
     "rollup": "^4.18.0",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^6.1.1",
@@ -68,15 +68,15 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "shx": "^0.3.4",
-    "vite": "^5.3.1"
+    "vite": "^5.3.2"
   },
   "dependencies": {
     "@olton/animation": "^0.3.0",
     "@olton/datetime": "^3.0.5",
     "@olton/farbe": "^1.0.0",
-    "@olton/hooks": "^0.5.0",
+    "@olton/hooks": "^0.7.0",
     "@olton/html": "^0.11.0",
     "@olton/string": "^0.5.0",
-    "m4q": "^2.1.2"
+    "m4q": "^2.3.0"
   }
 }
