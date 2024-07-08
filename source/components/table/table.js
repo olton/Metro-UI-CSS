@@ -1123,7 +1123,7 @@
                 that._draw();
             };
 
-            _search = $.debounce(_search, o.searchThreshold)
+            _search = Hooks.useDebounce(_search, o.searchThreshold)
 
             search.on(Metro.events.inputchange, _search);
 

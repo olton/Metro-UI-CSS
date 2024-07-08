@@ -371,7 +371,7 @@
                 that._draw();
             }
 
-            searchItem = $.debounce(searchItem, o.searchThreshold)
+            searchItem = Hooks.useDebounce(searchItem, o.searchThreshold)
 
             search.on(Metro.events.inputchange, searchItem);
 

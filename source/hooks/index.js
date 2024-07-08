@@ -3,6 +3,11 @@ import {
     useEvent,
     useEffect, USE_EFFECT_EVENTS,
     useMemo,
+    useDebounce,
+    usePipe,
+    useCurry,
+    useCompose,
+    useThrottle,
     info
 } from "@olton/hooks/dist/hooks.esm.js";
 
@@ -12,5 +17,10 @@ globalThis.Hooks = {
     useEvent,
     USE_EFFECT_EVENTS,
     useMemo,
+    useDebounce,
+    usePipe,
+    useCurry,
+    useCompose,
+    useThrottle,
     info
 }
