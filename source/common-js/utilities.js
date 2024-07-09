@@ -335,11 +335,11 @@
             return copy;
         },
 
-        github: function(repo, callback){
-            var that = this;
-            $.json('https://api.github.com/repos/' + repo).then(function(data){
-                that.exec(callback, [data]);
-            });
+        github: async function(repo, callback){
+            const res = await fetch(`https://api.github.com/repos/${repo}`)
+            if (!res.ok) return
+            const data = await res.json()
+            this.exec(callback, [data])
         },
 
         pageHeight: function(){

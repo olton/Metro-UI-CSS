@@ -38847,6 +38847,10 @@ fieldset.disabled,
 .form-group.disabled {
   pointer-events: none;
 }
+label {
+  font-weight: bold;
+  font-size: 14px;
+}
 
 :root {
   --grid-gutter: 16px;

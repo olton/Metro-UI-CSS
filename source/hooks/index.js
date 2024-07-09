@@ -1,26 +1,3 @@
-import {
-    useState,
-    useEvent,
-    useEffect, USE_EFFECT_EVENTS,
-    useMemo,
-    useDebounce,
-    usePipe,
-    useCurry,
-    useCompose,
-    useThrottle,
-    info
-} from "@olton/hooks/dist/hooks.esm.js";
+import * as Hooks from "@olton/hooks";
 
-globalThis.Hooks = {
-    useEffect,
-    useState,
-    useEvent,
-    USE_EFFECT_EVENTS,
-    useMemo,
-    useDebounce,
-    usePipe,
-    useCurry,
-    useCompose,
-    useThrottle,
-    info
-}
+globalThis.Hooks = Hooks
