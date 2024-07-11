@@ -38847,10 +38847,6 @@ fieldset.disabled,
 .form-group.disabled {
   pointer-events: none;
 }
-label {
-  font-weight: bold;
-  font-size: 14px;
-}
 
 :root {
   --grid-gutter: 16px;
@@ -40721,12 +40717,21 @@ label {
   }
 }
 
+:root {
+  --hint-z-index: 1070;
+  --hint-background: #FFFCC0;
+  --hint-color: #1d1d1d;
+}
+.dark-side {
+  --hint-background: #5a87cb;
+  --hint-color: #ffffff;
+}
 .hint {
   display: block;
   position: fixed;
-  z-index: 1070;
-  background-color: #fffcc0;
-  color: #1d1d1d;
+  z-index: var(--hint-z-index);
+  background-color: var(--hint-background);
+  color: var(--hint-color);
   font-size: 0.75rem;
   max-width: 13.75rem;
   padding: 0.625rem;
