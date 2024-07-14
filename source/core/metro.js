@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.1.0",
-        build_time: "14.07.2024, 14:17:14",
+        build_time: "14.07.2024, 17:26:18",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -345,7 +345,7 @@
             } else {
                 $(".m4-cloak, .cloak").animate({
                     draw: {
-                        opacity: 1
+                        opacity: [0, 1]
                     },
                     dur: 300,
                     onDone: function(){

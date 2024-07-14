@@ -459,7 +459,7 @@
             const hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
             const alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
             const hsl = Farbe.Routines.toHSL(color);
-            const hsla = Farbe.Routines.toHSLA(color, Farbe.a);
+            const hsla = Farbe.Routines.toHSLA(color);
             const hsv = Farbe.Routines.toHSV(color);
             const x = shadeCanvasRect.width * hsv.s;
             const y = shadeCanvasRect.height * (1 - hsv.v);
@@ -470,7 +470,6 @@
             this.saturation = hsl.s;
             this.lightness = hsl.l;
             this.alpha = hsla.a;
-
             this._updateHueCursor(hueY);
             this._updateShadeCursor(x, y);
             this._updateAlphaCursor(alphaY);
@@ -542,7 +541,7 @@
             const value = this.getVal()
 
             if (controller && controller.length) {
-                controller.val(value).trigger("change");
+                controller.val(value)//.trigger("change");
             }
 
             this._fireEvent("select-color", {
@@ -735,7 +734,8 @@
             if (typeof v === "undefined") {
                 return this.getVal()
             }
-            this._colorToPos(Farbe.Routines.parse(v));
+            const color = Farbe.Routines.parse(v)
+            this._colorToPos(color);
         },
 
         user: function(v){

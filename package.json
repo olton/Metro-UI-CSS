@@ -73,10 +73,10 @@
   "dependencies": {
     "@olton/animation": "^0.3.0",
     "@olton/datetime": "^3.0.5",
-    "@olton/farbe": "^1.0.0",
+    "@olton/farbe": "^1.0.3",
     "@olton/hooks": "^0.10.0",
     "@olton/html": "^0.11.0",
     "@olton/string": "^0.5.0",
-    "m4q": "^2.5.0"
+    "m4q": "^2.6.0"
   }
 }
