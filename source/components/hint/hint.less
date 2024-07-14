@@ -3,12 +3,13 @@
 
 :root {
     --hint-z-index: @zindex-tooltip;
+    --hint-border-radius: 6px;
     --hint-background: #FFFCC0;
     --hint-color: #1d1d1d;
 }
 
 .dark-side {
-    --hint-background: #5a87cb;
+    --hint-background: #26282e;
     --hint-color: #ffffff;
 }
 
@@ -18,7 +19,8 @@
     z-index: var(--hint-z-index);
     background-color: var(--hint-background);
     color: var(--hint-color);
-    font-size: .75rem;
-    max-width: 13.75rem;
-    padding: .625rem;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: var(--hint-border-radius);
+    box-shadow: 2px 2px 5px 0 var(--shadow-color);
 }

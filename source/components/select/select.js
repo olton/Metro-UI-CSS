@@ -8,7 +8,7 @@
         size: "normal",
         selectDeferred: 0,
         clearButton: false,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        clearButtonIcon: "&#x274c;",
         usePlaceholder: false,
         placeholder: "",
         addEmptyValue: false,

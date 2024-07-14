@@ -37182,9 +37182,15 @@ input.input-small:-ms-input-placeholder {
           box-shadow: 0 0 0 3px var(--radio-focus-color);
 }
 
+:root {
+  --color-selector-background: var(--default-background);
+}
+.dark-side {
+  --color-selector-background: var(--default-background);
+}
 .color-selector {
   width: 306px;
-  background-color: #ffffff;
+  background-color: var(--color-selector-background);
   flex-shrink: 0;
 }
 .color-selector .color-box {
@@ -37272,8 +37278,10 @@ input.input-small:-ms-input-placeholder {
   border: 2px solid #fff;
   -webkit-transition: all 0.2s ease;
   transition: all 0.2s ease;
-  -webkit-box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
-          box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.37) 0 1px 4px 0;
+          box-shadow: rgba(0, 0, 0, 0.37) 0 1px 4px 0;
+  cursor: -webkit-grab!important;
+  cursor: grab!important;
 }
 .color-selector .cursor.dragging {
   -webkit-transition: none;
@@ -40719,11 +40727,12 @@ fieldset.disabled,
 
 :root {
   --hint-z-index: 1070;
+  --hint-border-radius: 6px;
   --hint-background: #FFFCC0;
   --hint-color: #1d1d1d;
 }
 .dark-side {
-  --hint-background: #5a87cb;
+  --hint-background: #26282e;
   --hint-color: #ffffff;
 }
 .hint {
@@ -40732,9 +40741,11 @@ fieldset.disabled,
   z-index: var(--hint-z-index);
   background-color: var(--hint-background);
   color: var(--hint-color);
-  font-size: 0.75rem;
-  max-width: 13.75rem;
-  padding: 0.625rem;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: var(--hint-border-radius);
+  -webkit-box-shadow: 2px 2px 5px 0 var(--shadow-color);
+          box-shadow: 2px 2px 5px 0 var(--shadow-color);
 }
 
 :root {

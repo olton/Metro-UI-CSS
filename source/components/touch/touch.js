@@ -128,8 +128,8 @@
             }
 
             try {
-                element.on(this.START_EV, $.proxy(this.touchStart, that));
-                element.on(this.CANCEL_EV, $.proxy(this.touchCancel, that));
+                element.on(this.START_EV, $.bind(this.touchStart, that));
+                element.on(this.CANCEL_EV, $.bind(this.touchCancel, that));
             } catch (e) {
                 throw new Error('Events not supported ' + this.START_EV + ',' + this.CANCEL_EV + ' on Swipe');
             }
@@ -215,7 +215,7 @@
                 return ret;
             } else {
                 if (options.onHold !== Metro.noop) {
-                    this.holdTimeout = setTimeout($.proxy(function() {
+                    this.holdTimeout = setTimeout($.bind(function() {
                         //Trigger the event
                         element.trigger('hold', [event.target]);
                         //Fire the callback
@@ -666,7 +666,7 @@
 
                         //Now wait for the double tap timeout, and trigger this single tap
                         //if its not cancelled by a double tap
-                        this.singleTapTimeout = setTimeout($.proxy(function() {
+                        this.singleTapTimeout = setTimeout($.bind(function() {
                             this.doubleTapStartTime = null;
                             ret = Utils.exec(options.onTap, [event, event.target], element[0]);
                             element.fire("tap", {
@@ -943,12 +943,12 @@
 
             //Add or remove event listeners depending on touch status
             if (val === true) {
-                element.on(this.MOVE_EV, $.proxy(this.touchMove, this));
-                element.on(this.END_EV, $.proxy(this.touchEnd, this));
+                element.on(this.MOVE_EV, $.bind(this.touchMove, this));
+                element.on(this.END_EV, $.bind(this.touchEnd, this));
 
                 //we only have leave events on desktop, we manually calcuate leave on touch as its not supported in webkit
                 if (this.LEAVE_EV) {
-                    element.on(this.LEAVE_EV, $.proxy(this.touchLeave, this));
+                    element.on(this.LEAVE_EV, $.bind(this.touchLeave, this));
                 }
             } else {
 
