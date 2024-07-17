@@ -1,13 +1,29 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --carousel-background: var(--default-background);
+    --carousel-switch-color: var(--default-color);
+    --carousel-switch-color-hover: var(--default-color-hover);
+    --carousel-bullet-color: #f5f8fe;
+    --carousel-bullet-color-active: #50a8ff;
+}
+
+.dark-side {
+    --carousel-background: var(--default-background);
+    --carousel-switch-color: var(--default-color);
+    --carousel-switch-color-hover: var(--default-color-hover);
+    --carousel-bullet-color: #26282e;
+    --carousel-bullet-color-active: #50a8ff;
+}
+
 .carousel {
     display: block;
     position: relative;
     width: 100%;
     height: auto;
     overflow: visible;
-    background-color: @white;
+    background-color: var(--carousel-background);
 }
 
 .carousel {
@@ -52,30 +68,28 @@
     }
 
     .carousel-switch-next, .carousel-switch-prev {
-        width: auto;
         line-height: 4rem;
         height: 4rem;
+        width: 4rem;
         text-decoration: none;
         margin-top: -2rem;
         top: 50%;
-        font-size: 4rem;
         font-weight: 300;
-        color: @gray;
+        color: var(--carousel-switch-color);
         cursor: pointer;
-        vertical-align: middle;
         padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &:hover {
-            color: @lightGray;
+            color: var(--carousel-switch-color-hover);
         }
 
-        img {
-            max-width: 64px;
-            max-height: 64px;
-        }
-
-        [class*=mif-] {
-            display: block;
+        & > * {
+            max-width: 32px;
+            max-height: 32px;
+            font-size: 32px;
         }
     }
 
@@ -103,14 +117,14 @@
             float: none;
             width: .625rem;
             height: .625rem;
-            background-color: #ababab;
+            background-color: var(--carousel-bullet-color);
             border-radius: 50%;
             cursor: pointer;
-            border: 1px @white solid;
+            border: 1px var(--border-color) solid;
             margin: 0 .3125rem;
 
             &.bullet-on {
-                background-color: @lightCyan;
+                background-color: var(--carousel-bullet-color-active);
             }
 
             &:hover {
@@ -185,37 +199,6 @@
 
         .carousel-bullets {
             bottom: 0;
-        }
-    }
-}
-
-.carousel {
-    &.with-thumbnails {
-
-        .thumbs {
-            display: flex;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            width: 100%;
-            flex-flow: row;
-            justify-content: center;
-            padding-top: 10px;
-        }
-
-        .thumb {
-            display: block;
-            position: relative!important;
-            top: auto!important;
-            left: auto!important;
-            margin: .5rem;
-            cursor: pointer;
-            overflow: hidden;
-            background-color: @light;
-
-            &.thumb-on {
-                border: 4px solid @cyan;
-            }
         }
     }
 }

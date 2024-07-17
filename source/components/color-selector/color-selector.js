@@ -2,9 +2,8 @@
 (function(Metro, $) {
     'use strict';
 
-    var supportedColorTypes = "hex, rgb, rgba, hsl, hsla, hsv, cmyk";
-    var Utils = Metro.utils;
-    var ColorSelectorDefaultConfig = {
+    const supportedColorTypes = "hex, rgb, rgba, hsl, hsla, hsv, cmyk";
+    let ColorSelectorDefaultConfig = {
         defaultSwatches: "#FFFFFF,#000000,#FFFB0D,#0532FF,#FF9300,#00F91A,#FF2700,#686868,#EE5464,#D27AEE,#5BA8C4,#E64AA9,#1ba1e2,#6a00ff,#bebebe,#f8f8f8",
         userColors: null,
         returnValueType: "hex",
@@ -47,7 +46,7 @@
         init: function( options, elem ) {
             this._super(elem, options, ColorSelectorDefaultConfig, {
                 // define instance vars here
-                id: Utils.elementId("color-selector"),
+                id: Metro.utils.elementId("color-selector"),
                 defaultSwatches: [],
                 showValues: [],
                 userColors: [],
@@ -64,18 +63,19 @@
                 cmyk: null,
                 hex: null,
                 inputInterval: null,
-                locale: null
+                locale: null,
+                controller: null,
             });
             return this;
         },
 
         _create: function(){
-            var o = this.options;
+            const o = this.options;
 
-            if (Utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",").map(function (el){return el.toUpperCase();});
-            if (Utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
-            if (Utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",").map(function (el){return el.toUpperCase();});
-            if (Utils.isValue(o.showAsString)) this.showAsString = o.showAsString.toArray(",");
+            if (Metro.utils.isValue(o.defaultSwatches)) this.defaultSwatches = o.defaultSwatches.toArray(",").map(function (el){return el.toUpperCase();});
+            if (Metro.utils.isValue(o.showValues)) this.showValues = o.showValues.toArray(",");
+            if (Metro.utils.isValue(o.userColors)) this.userColors = o.userColors.toArray(",").map(function (el){return el.toUpperCase();});
+            if (Metro.utils.isValue(o.showAsString)) this.showAsString = o.showAsString.toArray(",");
 
             this.locale = Metro.locales[o.locale]['colorSelector'];
 
@@ -86,8 +86,8 @@
         },
 
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options, locale = this.locale;
-            var colorBox, row, swatches, map, value, inputs, radios,
+            const that = this, element = this.element, o = this.options, locale = this.locale;
+            let colorBox, row, swatches, map, value, inputs, radios,
                 userColorsActions, hueCanvas, shadeCanvas, hueCursor, shadeCursor,
                 colorBlock, alphaCanvas, alphaCursor;
 
@@ -112,15 +112,15 @@
             colorBox.append( row = $("<div>").addClass("row") );
 
             row.append( map = $("<div>").addClass("color-map") );
-            map.append( shadeCursor = $("<button>").attr("type", "button").addClass("cursor color-cursor") )
+            map.append( shadeCursor = $("<button>").attr("type", "button").addClass("cursor color-cursor dragging") )
             map.append( shadeCanvas = $("<canvas>").addClass("color-canvas") )
 
             row.append( map = $("<div>").addClass("hue-map") );
-            map.append( hueCursor = $("<button>").attr("type", "button").addClass("cursor hue-cursor") )
+            map.append( hueCursor = $("<button>").attr("type", "button").addClass("cursor hue-cursor dragging") )
             map.append( hueCanvas = $("<canvas>").addClass("hue-canvas") )
 
             row.append( map = $("<div>").addClass("alpha-map") );
-            map.append( alphaCursor = $("<button>").attr("type", "button").addClass("cursor alpha-cursor") )
+            map.append( alphaCursor = $("<button>").attr("type", "button").addClass("cursor alpha-cursor dragging") )
             map.append( alphaCanvas = $("<canvas>").addClass("alpha-canvas") )
 
             colorBox.append( row = $("<div>").addClass("row color-values-block") );
@@ -254,9 +254,7 @@
                     this.checked = true;
                 }
             });
-            Metro.makePlugin(radios, 'radio', {
-                style: 2
-            });
+            Metro.makePlugin(radios, 'radio', );
 
             $.each(supportedColorTypes.toArray(","), function(){
                 if (that.showValues.indexOf(this) === -1) element.find(".color-value-"+this).hide();
@@ -291,11 +289,13 @@
             if (o.initColor && Farbe.Routines.isColor(o.initColor)) {
                 this._colorToPos(typeof o.initColor === "string" ? Farbe.Routines.parse(o.initColor) : o.initColor);
             }
+
+            this.controller = o.controller ? $(o.controller) : null
         },
 
         _createShadeCanvas: function(color){
-            var canvas = this.shadeCanvas[0];
-            var ctx = canvas.getContext('2d');
+            const canvas = this.shadeCanvas[0];
+            const ctx = canvas.getContext('2d');
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -305,13 +305,13 @@
             ctx.fillStyle = color;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            var whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+            const whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
             whiteGradient.addColorStop(0, "#fff");
             whiteGradient.addColorStop(1, "transparent");
             ctx.fillStyle = whiteGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            var blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            const blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
             blackGradient.addColorStop(0, "transparent");
             blackGradient.addColorStop(1, "#000");
             ctx.fillStyle = blackGradient;
@@ -319,9 +319,9 @@
         },
 
         _createHueCanvas: function(){
-            var canvas = this.hueCanvas[0];
-            var ctx = canvas.getContext('2d');
-            var hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            const canvas = this.hueCanvas[0];
+            const ctx = canvas.getContext('2d');
+            const hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
 
             hueGradient.addColorStop(0.00, "hsl(0,100%,50%)");
             hueGradient.addColorStop(0.17, "hsl(298.8, 100%, 50%)");
@@ -336,10 +336,10 @@
         },
 
         _createAlphaCanvas: function(){
-            var canvas = this.alphaCanvas[0];
-            var ctx = canvas.getContext('2d');
-            var alphaGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            var startColor = new Farbe.Primitives.HSLA(this.hue, 1, .5, 1).toString(),
+            const canvas = this.alphaCanvas[0];
+            const ctx = canvas.getContext('2d');
+            const alphaGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            const startColor = new Farbe.Primitives.HSLA(this.hue, 1, .5, 1).toString(),
                 endColor = "rgba(0,0,0,0)";
 
             alphaGradient.addColorStop(0.00, startColor);
@@ -362,10 +362,10 @@
         },
 
         _getHueColor: function(pageY){
-            var canvas = this.hueCanvas;
-            var offset = canvas.offset();
-            var height = canvas.height();
-            var y, percent, color, hue;
+            const canvas = this.hueCanvas;
+            const offset = canvas.offset();
+            const height = canvas.height();
+            let y, percent, color, hue;
 
             y = pageY - offset.top;
 
@@ -386,10 +386,10 @@
         },
 
         _getAlphaValue: function(pageY){
-            var canvas = this.alphaCanvas;
-            var offset = canvas.offset();
-            var height = canvas.height();
-            var y, percent;
+            const canvas = this.alphaCanvas;
+            const offset = canvas.offset();
+            const height = canvas.height();
+            let y, percent;
 
             y = pageY - offset.top;
 
@@ -406,24 +406,24 @@
         },
 
         _getShadeColor: function(pageX, pageY){
-            var canvas = this.shadeCanvas;
-            var offset = canvas.offset();
-            var width = canvas.width();
-            var height = canvas.height();
-            var x = pageX - offset.left;
-            var y = pageY - offset.top;
+            const canvas = this.shadeCanvas;
+            const offset = canvas.offset();
+            const width = canvas.width();
+            const height = canvas.height();
+            let x = pageX - offset.left;
+            let y = pageY - offset.top;
 
             if(x > width) x = width;
             if(x < 0) x = 0;
             if(y > height) y = height;
             if(y < 0) y = .1;
 
-            var xRatio = x / width * 100;
-            var yRatio = y / height * 100;
-            var hsvValue = 1 - (yRatio / 100);
-            var hsvSaturation = xRatio / 100;
-            var lightness = (hsvValue / 2) * (2 - hsvSaturation);
-            var saturation = (hsvValue * hsvSaturation) / (1 - Math.abs(2 * lightness - 1));
+            const xRatio = x / width * 100;
+            const yRatio = y / height * 100;
+            const hsvValue = 1 - (yRatio / 100);
+            const hsvSaturation = xRatio / 100;
+            let lightness = (hsvValue / 2) * (2 - hsvSaturation);
+            let saturation = (hsvValue * hsvSaturation) / (1 - Math.abs(2 * lightness - 1));
 
             if (isNaN(lightness)) {
                 lightness = 0;
@@ -455,22 +455,21 @@
         },
 
         _colorToPos: function (color){
-            var shadeCanvasRect = this.shadeCanvas[0].getBoundingClientRect();
-            var hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
-            var alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
-            var hsl = Farbe.Routines.toHSL(color);
-            var hsla = Farbe.Routines.toHSLA(color, Farbe.a);
-            var hsv = Farbe.Routines.toHSV(color);
-            var x = shadeCanvasRect.width * hsv.s;
-            var y = shadeCanvasRect.height * (1 - hsv.v);
-            var hueY = hueCanvasRect.height - ((hsl.h / 360) * hueCanvasRect.height);
-            var alphaY = (1 - hsla.a) * alphaCanvasRect.height;
+            const shadeCanvasRect = this.shadeCanvas[0].getBoundingClientRect();
+            const hueCanvasRect = this.hueCanvas[0].getBoundingClientRect();
+            const alphaCanvasRect = this.alphaCanvas[0].getBoundingClientRect();
+            const hsl = Farbe.Routines.toHSL(color);
+            const hsla = Farbe.Routines.toHSLA(color);
+            const hsv = Farbe.Routines.toHSV(color);
+            const x = shadeCanvasRect.width * hsv.s;
+            const y = shadeCanvasRect.height * (1 - hsv.v);
+            const hueY = hueCanvasRect.height - ((hsl.h / 360) * hueCanvasRect.height);
+            const alphaY = (1 - hsla.a) * alphaCanvasRect.height;
 
             this.hue = hsl.h;
             this.saturation = hsl.s;
             this.lightness = hsl.l;
             this.alpha = hsla.a;
-
             this._updateHueCursor(hueY);
             this._updateShadeCursor(x, y);
             this._updateAlphaCursor(alphaY);
@@ -481,16 +480,16 @@
         },
 
         _setColorValues: function(){
-            var element = this.element, o = this.options;
-            var hsl = new Farbe.Primitives.HSL(this.hue, this.saturation, this.lightness)
-            var hsla = new Farbe.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha)
-            var rgb = Farbe.Routines.toRGB(hsl);
-            var rgba = Farbe.Routines.toRGBA(rgb, this.alpha);
-            var hsv = Farbe.Routines.toHSV(hsl);
-            var cmyk = Farbe.Routines.toCMYK(hsl);
-            var hex = Farbe.Routines.toHEX(hsl);
-            var controller = $(o.controller);
-            var percent = o.hslMode === "percent";
+            const element = this.element, o = this.options;
+            const hsl = new Farbe.Primitives.HSL(this.hue, this.saturation, this.lightness)
+            const hsla = new Farbe.Primitives.HSLA(this.hue, this.saturation, this.lightness, this.alpha)
+            const rgb = Farbe.Routines.toRGB(hsl);
+            const rgba = Farbe.Routines.toRGBA(rgb, this.alpha);
+            const hsv = Farbe.Routines.toHSV(hsl);
+            const cmyk = Farbe.Routines.toCMYK(hsl);
+            const hex = Farbe.Routines.toHEX(hsl);
+            const controller = this.controller;
+            const percent = o.hslMode === "percent";
 
             this.hsl = hsl;
             this.hsla = hsla;
@@ -542,7 +541,7 @@
             const value = this.getVal()
 
             if (controller && controller.length) {
-                controller.val(value).trigger("change");
+                controller.val(value)//.trigger("change");
             }
 
             this._fireEvent("select-color", {
@@ -565,85 +564,76 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
-            var hueMap = element.find(".hue-map");
-            var alphaMap = element.find(".alpha-map");
-            var shadeMap = element.find(".color-map");
-            var controller = $(o.controller);
-            var colorValues = element.find(".color-values-block input[type=text]");
+            const that = this, element = this.element, o = this.options;
+            const hueMap = element.find(".hue-map");
+            const alphaMap = element.find(".alpha-map");
+            const shadeMap = element.find(".color-map");
+            const controller = this.controller;
+            const colorValues = element.find(".color-values-block input[type=text]");
 
-            colorValues.on(Metro.events.inputchange, function(){
-                var input = $(this);
+            let onColorValuesChange = (e) => {
+                const input = $(e.target);
+                const colorGroup = input.closest(".color-block");
+                let colorType, color, parts;
 
-                that._clearInputInterval();
+                if (colorGroup.hasClass("color-hex")) {
+                    colorType = "hex";
+                } else if (colorGroup.hasClass("color-rgb")) {
+                    colorType = "rgb";
+                } else if (colorGroup.hasClass("color-rgba")) {
+                    colorType = "rgba";
+                } else if (colorGroup.hasClass("color-hsl")) {
+                    colorType = "hsl";
+                } else if (colorGroup.hasClass("color-hsla")) {
+                    colorType = "hsla";
+                } else if (colorGroup.hasClass("color-hsv")) {
+                    colorType = "hsv";
+                } else if (colorGroup.hasClass("color-cmyk")) {
+                    colorType = "cmyk";
+                }
 
-                if (!that.inputInterval) that.inputInterval = setTimeout(function(){
-                    var colorGroup = input.closest(".color-block");
-                    var colorType;
-                    var color, parts;
+                if (colorGroup.hasClass("as-string")) {
+                    color = input.val();
+                } else {
+                    parts = [];
+                    $.each(colorGroup.find("input"), function(){
+                        parts.push(this.value);
+                    });
+                    color = colorType + "(" +parts.join(", ")+ ")";
+                }
+                if (color && Farbe.Routines.isColor(color)) {
+                    that.val(color);
+                }
+            }
 
-                    if (colorGroup.hasClass("color-hex")) {
-                        colorType = "hex";
-                    } else if (colorGroup.hasClass("color-rgb")) {
-                        colorType = "rgb";
-                    } else if (colorGroup.hasClass("color-rgba")) {
-                        colorType = "rgba";
-                    } else if (colorGroup.hasClass("color-hsl")) {
-                        colorType = "hsl";
-                    } else if (colorGroup.hasClass("color-hsla")) {
-                        colorType = "hsla";
-                    } else if (colorGroup.hasClass("color-hsv")) {
-                        colorType = "hsv";
-                    } else if (colorGroup.hasClass("color-cmyk")) {
-                        colorType = "cmyk";
-                    }
+            onColorValuesChange = Hooks.useDebounce(onColorValuesChange, o.inputThreshold)
 
-                    if (colorGroup.hasClass("as-string")) {
-                        color = input.val();
-                    } else {
-                        parts = [];
-                        $.each(colorGroup.find("input"), function(){
-                            parts.push(this.value);
-                        });
-                        color = colorType + "(" +parts.join(", ")+ ")";
-                    }
-                    if (color && Farbe.Routines.isColor(color)) {
-                        that.val(color);
-                    }
-
-                    that._clearInputInterval();
-                }, o.inputThreshold);
-            });
+            colorValues.on(Metro.events.inputchange, onColorValuesChange);
 
             if (controller && controller.length) {
-                controller.on(Metro.events.inputchange, function(){
-                    that._clearInputInterval();
-                    if (!that.inputInterval) that.inputInterval = setTimeout(function(){
-                        var val = controller.val();
-                        if (val && Farbe.Routines.isColor(val)) {
-                            that.val(val);
-                        }
-                        that._clearInputInterval();
-                    }, o.inputThreshold);
-                });
+                let onControllerChange = Hooks.useDebounce(()=>{
+                    const val = controller.val();
+                    if (val && Farbe.Routines.isColor(val)) {
+                        that.val(val);
+                    }
+                }, o.inputThreshold)
+                controller.on(Metro.events.inputchange, onControllerChange);
             }
 
             alphaMap.on(Metro.events.startAll, function(e){
 
                 if (["hsla", "rgba"].includes(o.returnValueType) === false) {
-                    return
+                    // return
                 }
 
-                that._getAlphaValue(Utils.pageXY(e).y);
-                that.alphaCursor.addClass("dragging");
+                that._getAlphaValue(Metro.utils.pageXY(e).y);
 
                 $(document).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
-                    that._getAlphaValue(Utils.pageXY(e).y);
-                }, {ns: that.id, passive: false});
+                    that._getAlphaValue(Metro.utils.pageXY(e).y);
+                }, {ns: that.id});
 
                 $(document).on(Metro.events.stopAll, function(){
-                    that.alphaCursor.removeClass("dragging");
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
@@ -651,16 +641,16 @@
 
             hueMap.on(Metro.events.startAll, function(e){
 
-                that._getHueColor(Utils.pageXY(e).y);
-                that.hueCursor.addClass("dragging");
+                that._getHueColor(Metro.utils.pageXY(e).y);
+                // that.hueCursor.addClass("dragging");
 
                 $(document).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
-                    that._getHueColor(Utils.pageXY(e).y);
+                    that._getHueColor(Metro.utils.pageXY(e).y);
                 }, {ns: that.id, passive: false});
 
                 $(document).on(Metro.events.stopAll, function(){
-                    that.hueCursor.removeClass("dragging");
+                    // that.hueCursor.removeClass("dragging");
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id});
@@ -668,16 +658,16 @@
 
             shadeMap.on(Metro.events.startAll, function(e){
 
-                that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
-                that.shadeCursor.addClass("dragging");
+                that._getShadeColor(Metro.utils.pageXY(e).x, Metro.utils.pageXY(e).y);
+                // that.shadeCursor.addClass("dragging");
 
                 $(document).on(Metro.events.moveAll, function(e){
                     e.preventDefault();
-                    that._getShadeColor(Utils.pageXY(e).x, Utils.pageXY(e).y);
+                    that._getShadeColor(Metro.utils.pageXY(e).x, Metro.utils.pageXY(e).y);
                 }, {ns: that.id, passive: false});
 
                 $(document).on(Metro.events.stopAll, function(){
-                    that.shadeCursor.removeClass("dragging");
+                    // that.shadeCursor.removeClass("dragging");
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
                 }, {ns: that.id})
@@ -688,9 +678,9 @@
             });
 
             element.on("click", ".add-button", function(){
-                var color = Farbe.Routines.toHEX(new Farbe.Primitives.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
+                const color = Farbe.Routines.toHEX(new Farbe.Primitives.HSL(that.hue, that.saturation, that.lightness)).toUpperCase();
 
-                if (that.userColors.indexOf(color) > -1) {
+                if (that.userColors.includes(color)) {
                     return ;
                 }
 
@@ -714,7 +704,8 @@
         },
 
         getVal: function(){
-            var o = this.options, res;
+            const o = this.options
+            let res;
             switch (o.returnValueType.toLowerCase()) {
                 case "rgb":
                     res = this.rgb;
@@ -743,11 +734,12 @@
             if (typeof v === "undefined") {
                 return this.getVal()
             }
-            this._colorToPos(Farbe.Routines.parse(v));
+            const color = Farbe.Routines.parse(v)
+            this._colorToPos(color);
         },
 
         user: function(v){
-            if (!Utils.isValue(v)) {
+            if (!Metro.utils.isValue(v)) {
                 return this.userColors;
             }
 
@@ -765,10 +757,10 @@
         },
 
         _fillUserColors: function(){
-            var colors = this.element.find(".user-colors").clear();
+            const colors = this.element.find(".user-colors").clear();
 
             $.each(this.userColors, function(){
-                var color = this;
+                const color = this;
                 colors.append(
                     $("<button>")
                         .attr("data-color", color)
@@ -782,14 +774,14 @@
         },
 
         changeAttribute: function(attr, newValue){
-            var o = this.options;
+            const o = this.options;
 
             if (attr === "data-return-value-type") {
                 o.returnValueType = newValue;
             }
 
             if (attr === "data-return-as-string") {
-                o.returnValueType = Utils.bool(newValue);
+                o.returnValueType = Metro.utils.bool(newValue);
             }
         },
 

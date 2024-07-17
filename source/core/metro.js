@@ -19,8 +19,8 @@
 
     var Metro = {
 
-        version: "5.0.6",
-        build_time: "16.05.2024, 11:47:24",
+        version: "5.0.7",
+        build_time: "17.07.2024, 10:00:00",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -200,15 +200,17 @@
         defaults: {},
 
         info: function(){
-            console.info(`%c METRO UI %c v${Metro.version} %c ${Metro.build_time} `, "color: pink; font-weight: bold; background: #800000", "color: white; background: darkgreen", "color: white; background: #0080fe;")
+            if (typeof globalThis["METRO_DISABLE_LIB_INFO"] === 'undefined') {
+                console.info(`%c METRO UI %c v${Metro.version} %c ${Metro.build_time} `, "color: pink; font-weight: bold; background: #800000", "color: white; background: darkgreen", "color: white; background: #0080fe;")
 
-            ;$.info()
-            ;Hooks.info()
-            ;html.info()
-            ;Animation.info()
-            ;Farbe.info()
-            ;Datetime.info()
-            ;Str.info()
+                if (globalThis.$ && $.info) $.info()
+                if (globalThis.Hooks && Hooks.info) Hooks.info()
+                if (globalThis.html && html.info) html.info()
+                if (globalThis.Animation && Animation.info) Animation.info()
+                if (globalThis.Farbe && Farbe.info) Farbe.info()
+                if (globalThis.Datetime && Datetime.info) Datetime.info()
+                if (globalThis.Str && Str.info) Str.info()
+            }
         },
 
         showCompileTime: function(){
@@ -320,13 +322,13 @@
                 html.addClass("metro-no-touch-device");
             }
 
-            Metro.sheet = this.utils.newCssSheet();
+            Metro.sheet = Metro.utils.newCssSheet();
 
-            this.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
+            Metro.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
 
             window.METRO_MEDIA = [];
             $.each(Metro.media_queries, function(key, query){
-                if (that.utils.media(query)) {
+                if (Metro.utils.media(query)) {
                     window.METRO_MEDIA.push(Metro.media_mode[key]);
                 }
             });
@@ -343,7 +345,7 @@
             } else {
                 $(".m4-cloak, .cloak").animate({
                     draw: {
-                        opacity: 1
+                        opacity: [0, 1]
                     },
                     dur: 300,
                     onDone: function(){
@@ -353,6 +355,14 @@
                     }
                 });
             }
+
+            $(document).on("click", "[data-copy-to-clipboard]", function(e) {
+                const val = $(this).attr("data-copy-to-clipboard")
+                Metro.utils.copy2clipboard(val)
+                if (Metro.toast) {
+                    Metro.toast.create(`Data copied to clipboard!`);
+                }
+            })
         },
 
         initHotkeys: function(hotkeys, redefine){
@@ -393,7 +403,7 @@
 
                 roles.map(function (func) {
 
-                    var $$ = that.utils.$();
+                    var $$ = Metro.utils.$();
                     var _func = normalizeComponentName(func);
 
                     if ($$.fn[_func] !== undefined && $this.attr("data-role-"+_func) === undefined) {
@@ -469,7 +479,7 @@
 
             p['destroy']();
             mc = el.data("metroComponent");
-            this.utils.arrayDelete(mc, _name);
+            Metro.utils.arrayDelete(mc, _name);
             el.data("metroComponent", mc);
             $.removeData(el[0], _name);
             el.removeAttr("data-role-"+_name);

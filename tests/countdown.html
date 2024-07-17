@@ -28,7 +28,7 @@
 
         <hr>
         <div>
-            <div data-role="countdown" data-date="12/18/2021" class="countdownItems"></div>
+            <div id="cd1" data-role="countdown" data-date="12/18/2021" class="countdownItems"></div>
             <div data-role="countdown" data-date="12/19/2021" class="countdownItems"></div>
             <div data-role="countdown" data-date="12/20/2021" class="countdownItems"></div>
             <div data-role="countdown" data-date="12/21/2021" class="countdownItems"></div>
@@ -39,11 +39,11 @@
 
 <script src="../lib/metro.js"></script>
 <script>
-    // var date = "11-18-2020"
-    // console.log((new Date("11-18-2020")).getTime());
-    // console.log((new Date("11-19-2020")).getTime());
-    // console.log((new Date("11-20-2020")).getTime());
-    // console.log((new Date("11-21-2020")).getTime());
+    setTimeout(()=>{
+        const cd = Metro.getPlugin("#cd1", "countdown")
+        console.log(cd)
+        cd.resetWith("07/15/2024 20:00")
+    }, 1000)
 </script>
 </body>
 </html>

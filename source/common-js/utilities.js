@@ -1,8 +1,71 @@
-/* global jQuery, Metro, Datetime, datetime, Cake */
 (function(Metro, $) {
     'use strict';
     Metro.utils = {
         nothing: function(){},
+        noop: function(){},
+
+        elementId: function(prefix){
+            return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
+        },
+
+        secondsToTime: function(s) {
+            var days = Math.floor((s % 31536000) / 86400);
+            var hours = Math.floor(((s % 31536000) % 86400) / 3600);
+            var minutes = Math.floor((((s % 31536000) % 86400) % 3600) / 60);
+            var seconds = Math.round((((s % 31536000) % 86400) % 3600) % 60);
+
+            return {
+                "d": days,
+                "h": hours,
+                "m": minutes,
+                "s": seconds
+            };
+        },
+
+        secondsToFormattedString: function(time){
+            var sec_num = parseInt(time, 10);
+            var hours   = Math.floor(sec_num / 3600);
+            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
+            var seconds = sec_num - (hours * 3600) - (minutes * 60);
+
+            return [
+                Str.lpad(hours, "0", 2),
+                Str.lpad(minutes, "0", 2),
+                Str.lpad(seconds, "0", 2)
+            ].join(":");
+        },
+
+        func: function(f){
+            /* jshint -W054 */
+            return new Function("a", f);
+        },
+
+        exec: function(f, args, context){
+            var result;
+            if (f === undefined || f === null) {return false;}
+            var func = this.isFunc(f);
+
+            if (func === false) {
+                func = this.func(f);
+            }
+
+            try {
+                result = func.apply(context, args);
+            } catch (err) {
+                result = null;
+                if (window.METRO_THROWS === true) {
+                    throw err;
+                }
+            }
+            return result;
+        },
+
+        embedUrl: function(val){
+            if (val.indexOf("youtu.be") !== -1) {
+                val = "https://www.youtube.com/embed/" + val.split("/").pop();
+            }
+            return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
+        },
 
         isVisible: function(element){
             var el = $(element)[0];
@@ -12,12 +75,10 @@
         },
 
         isUrl: function (val) {
-            /* eslint-disable-next-line */
             return /^(\.\/|\.\.\/|ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@\-\/]))?/.test(val);
         },
 
         isTag: function(val){
-            /* eslint-disable-next-line */
             return /^<\/?[\w\s="/.':;#-\/\?]+>/gi.test(val);
         },
 
@@ -38,7 +99,7 @@
             return /youtu\.be|youtube|twitch|vimeo/gi.test(val);
         },
 
-        isDate: function(val, format, locale){
+        isDate: function(val, format, locale = "en-US"){
             var result;
 
             if (this.isDateObject(val)) {
@@ -46,7 +107,7 @@
             }
 
             try {
-                result = format ? Datetime.from(val, format, locale || "en-US") : datetime(val)
+                result = format ? Datetime.from(val, format, locale) : datetime(val)
                 return Datetime.isDatetime(result);
             } catch (e) {
                 return false;
@@ -98,7 +159,7 @@
                 return o;
             }
 
-            if (this.isTag(o) || this.isUrl(o)) {
+            if (t !== "string" && this.isTag(o) || this.isUrl(o)) {
                 return false;
             }
 
@@ -160,69 +221,6 @@
             return this.isJQuery(el) || this.isM4Q(el);
         },
 
-        embedUrl: function(val){
-            if (val.indexOf("youtu.be") !== -1) {
-                val = "https://www.youtube.com/embed/" + val.split("/").pop();
-            }
-            return "<div class='embed-container'><iframe src='"+val+"'></iframe></div>";
-        },
-
-        elementId: function(prefix){
-            return prefix+"-"+(new Date()).getTime()+$.random(1, 1000);
-        },
-
-        secondsToTime: function(s) {
-            var days = Math.floor((s % 31536000) / 86400);
-            var hours = Math.floor(((s % 31536000) % 86400) / 3600);
-            var minutes = Math.floor((((s % 31536000) % 86400) % 3600) / 60);
-            var seconds = Math.round((((s % 31536000) % 86400) % 3600) % 60);
-
-            return {
-                "d": days,
-                "h": hours,
-                "m": minutes,
-                "s": seconds
-            };
-        },
-
-        secondsToFormattedString: function(time){
-            var sec_num = parseInt(time, 10);
-            var hours   = Math.floor(sec_num / 3600);
-            var minutes = Math.floor((sec_num - (hours * 3600)) / 60);
-            var seconds = sec_num - (hours * 3600) - (minutes * 60);
-
-            return [
-                Str.lpad(hours, "0", 2),
-                Str.lpad(minutes, "0", 2),
-                Str.lpad(seconds, "0", 2)
-            ].join(":");
-        },
-
-        func: function(f){
-            /* jshint -W054 */
-            return new Function("a", f);
-        },
-
-        exec: function(f, args, context){
-            var result;
-            if (f === undefined || f === null) {return false;}
-            var func = this.isFunc(f);
-
-            if (func === false) {
-                func = this.func(f);
-            }
-
-            try {
-                result = func.apply(context, args);
-            } catch (err) {
-                result = null;
-                if (window.METRO_THROWS === true) {
-                    throw err;
-                }
-            }
-            return result;
-        },
-
         isOutsider: function(element) {
             var el = $(element);
             var inViewport;
@@ -260,8 +258,8 @@
         getCursorPosition: function(el, e){
             var a = this.rect(el);
             return {
-                x: this.pageXY(e).x - a.left - window.pageXOffset,
-                y: this.pageXY(e).y - a.top - window.pageYOffset
+                x: this.pageXY(e).x - a.left - window.scrollX,
+                y: this.pageXY(e).y - a.top - window.scrollY
             };
         },
 
@@ -302,7 +300,7 @@
         },
 
         objectDelete: function(obj, key){
-            if (obj[key] !== undefined) delete obj[key];
+            if (key in obj) delete obj[key];
         },
 
         arrayDeleteByMultipleKeys: function(arr, keys){
@@ -337,40 +335,11 @@
             return copy;
         },
 
-        github: function(repo, callback){
-            var that = this;
-            $.json('https://api.github.com/repos/' + repo).then(function(data){
-                that.exec(callback, [data]);
-            });
-        },
-
-        detectIE: function() {
-            var ua = window.navigator.userAgent;
-            var msie = ua.indexOf('MSIE ');
-            if (msie > 0) {
-                // IE 10 or older => return version number
-                return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10);
-            }
-
-            var trident = ua.indexOf('Trident/');
-            if (trident > 0) {
-                // IE 11 => return version number
-                var rv = ua.indexOf('rv:');
-                return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10);
-            }
-
-            var edge = ua.indexOf('Edge/');
-            if (edge > 0) {
-                // Edge (IE 12+) => return version number
-                return parseInt(ua.substring(edge + 5, ua.indexOf('.', edge)), 10);
-            }
-
-            // other browser
-            return false;
-        },
-
-        detectChrome: function(){
-            return /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+        github: async function(repo, callback){
+            const res = await fetch(`https://api.github.com/repos/${repo}`)
+            if (!res.ok) return
+            const data = await res.json()
+            this.exec(callback, [data])
         },
 
         pageHeight: function(){

@@ -14,7 +14,7 @@ each(@colorList, {
     .bd-@{value}-focus {&:focus {border-color: @@value !important;}}
     .tg-@{value} {
         &::before {
-            border-color: @@value;
+            border-color: @@value!important;
         }
     }
 })

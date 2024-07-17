@@ -1,11 +1,27 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --icon-box-background: var(--default-background);
+    --icon-box-color: var(--default-color);
+    --icon-box-border-color: var(--border-color);
+    --icon-box-border-radius: 6px;
+}
+
+.dark-side {
+    --icon-box-background: var(--default-background);
+    --icon-box-color: var(--default-color);
+    --icon-box-border-color: var(--border-color);
+}
+
 .icon-box {
     height: 90px;
     display: flex;
     flex-flow: row nowrap;
-    background-color: @white;
+    background-color: var(--icon-box-background);
+    color: var(--icon-box-color);
+    border: 1px solid var(--icon-box-border-color);
+    border-radius: var(--icon-box-border-radius);
 }
 
 .icon-box {

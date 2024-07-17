@@ -59,7 +59,7 @@
                 }
 
                 if (elementColor === "rgba(0, 0, 0, 0)" || Farbe.Routines.isLight(elementColor) === true) {
-                    hamburger.addClass("dark");
+                    // hamburger.addClass("dark");
                 }
             }
 

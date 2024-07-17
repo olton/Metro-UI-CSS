@@ -2,28 +2,30 @@
 @import (once) "../../include/mixins";
 
 :root {
-    --appbar-background: #f8f8f8;
-    --appbar-item-background: #f8f8f8;
+    --appbar-background: #ffffff;
     --appbar-color: #191919;
-    --appbar-item-color: #191919;
+    --appbar-item-background: inherit;
+    --appbar-item-color: inherit;
     --appbar-item-color-disabled: #ccc;
     --appbar-item-color-hover: #000000;
     --appbar-item-background-hover: #e8e8e8;
     --appbar-dropdown-toggle-color: #191919;
     --appbar-border-radius: 4px;
     --appbar-z-index: @zindex-fixed;
+    --appbar-hamburger-background: transparent;
     --appbar-hamburger-color: #000000;
 }
 
 .dark-side {
-    --appbar-background: #2b2d30;
-    --appbar-item-background: #2b2d30;
-    --appbar-color: #ffffff;
-    --appbar-item-color: #dbdfe7;
+    --appbar-background: #1e1f22;
+    --appbar-color: #dbdfe7;
+    --appbar-item-background: inherit;
+    --appbar-item-color: inherit;
     --appbar-item-color-disabled: #a8a8a8;
     --appbar-item-color-hover: #ffffff;
     --appbar-item-background-hover: #1e1f22;
     --appbar-dropdown-toggle-color: #ffffff;
+    --appbar-hamburger-background: transparent;
     --appbar-hamburger-color: #ffffff;
 }
 
@@ -37,6 +39,7 @@
     min-height: 52px;
     z-index: var(--appbar-z-index);
     background-color: var(--appbar-background);
+    color: var(--appbar-color);
     flex-flow: row wrap;
     align-items: center;
     padding: 0 10px;
@@ -130,10 +133,12 @@
     .hamburger {
         position: absolute;
         right: 0;
-        top: 0;
+        top: 50%;
         display:block;
         height: 52px;
         width: 52px;
+        margin-top: -27px;
+        background: var(--appbar-hamburger-background);
 
         .line {
             background-color: var(--appbar-hamburger-color);

@@ -19,12 +19,18 @@
         }
     </style>
 </head>
-<body class="m4-cloak">
+<body class="m4-cloak" style="padding-top: 50px">
+<nav data-role="appbar">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
 <div class="container">
     <h1>Carousel test page</h1>
 
     <div>
-        <div class="mt-4 mb-4 bg-light">
+        <div class="mt-4 mb-4 border bd-default">
             <input type="radio" name="r1" data-role="radio" value="slide" data-caption="slide">
             <input type="radio" name="r1" data-role="radio" value="slide-v" data-caption="slide-v">
             <input type="radio" name="r1" data-role="radio" value="fade" data-caption="fade">
@@ -32,15 +38,19 @@
             <input type="radio" name="r1" data-role="radio" value="zoom" data-caption="zoom">
             <input type="radio" name="r1" data-role="radio" value="swirl" data-caption="swirl" checked>
         </div>
-        <div data-role="carousel" data-effect="swirl" data-duration="1000" id="carousel" data-auto-start="true">
-            <div class="slide">
-                <div data-role="image-box" data-image="../images/1.jpg"></div>
-            </div>
-            <div class="slide">
-                <div data-role="image-box" data-image="../images/2.jpg"></div>
-            </div>
-            <div class="slide">
-                <div data-role="image-box" data-image="../images/3.jpg"></div>
+        <div class="d-flex flex-align-center flex-justify-center">
+            <div style="width: 600px;">
+                <div data-role="carousel" data-effect="swirl" data-duration="1000" id="carousel" data-auto-start="true">
+                    <div class="slide">
+                        <div data-role="image-box" data-image="https://picsum.photos/id/237/200/300"></div>
+                    </div>
+                    <div class="slide">
+                        <div data-role="image-box" data-image="https://picsum.photos/id/238/200/300"></div>
+                    </div>
+                    <div class="slide">
+                        <div data-role="image-box" data-image="https://picsum.photos/id/239/200/300"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

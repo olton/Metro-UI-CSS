@@ -15,7 +15,7 @@ each(@media-rules, {
 
 each(range(24), {
     .order-@{value} {
-        order: @value!important;
+        order: @value;
     }
 })
 
@@ -123,7 +123,7 @@ each(@media-rules, {
 
         each(range(24), .(@v){
             .order-@{v}-@{key} {
-                order: @v!important;
+                order: @v;
             }
         })
     }

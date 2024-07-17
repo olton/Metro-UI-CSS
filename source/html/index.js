@@ -1,9 +1,19 @@
-import {html, Tag, TagEmpty, addStyle, addCssRule, cssLoader, jsLoader, Router, router, viewLoader, clearViewStorageHolder, createStyleElement, createStyleSheet, render, BaseElement} from "@olton/html"
+import {
+    htmljs,
+    addStyle,
+    addCssRule,
+    cssLoader,
+    jsLoader,
+    Router,
+    router,
+    viewLoader,
+    clearViewStorageHolder,
+    createStyleElement,
+    createStyleSheet,
+    render,
+} from "@olton/html"
 
-globalThis.html = {
-    BaseElement,
-    Tag,
-    TagEmpty,
+globalThis.htmljs = {
     addStyle,
     addCssRule,
     cssLoader,
@@ -13,10 +23,8 @@ globalThis.html = {
     createStyleElement,
     createStyleSheet,
     render,
-    ...html
+    ...htmljs
 }
 
-globalThis.Router = {
-    create: router,
-    Router
-}
+globalThis.Router = Router
+globalThis.Router.create = router

@@ -3,9 +3,17 @@
 
 @colorPickerBackground: @white;
 
+:root {
+    --color-selector-background: var(--default-background);
+}
+
+.dark-side {
+    --color-selector-background: var(--default-background);
+}
+
 .color-selector {
     width: 306px;
-    background-color: @colorPickerBackground;
+    background-color: var(--color-selector-background);
     flex-shrink: 0;
 }
 
@@ -89,7 +97,8 @@
         z-index: 2;
         border: 2px solid #fff;
         transition: all .2s ease;
-        box-shadow: rgba(0, 0, 0, 0.37) 0px 1px 4px 0px;
+        box-shadow: rgba(0, 0, 0, 0.37) 0 1px 4px 0;
+        cursor: grab!important;
 
         &.dragging {
             transition: none;

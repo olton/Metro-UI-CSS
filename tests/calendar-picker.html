@@ -7,6 +7,9 @@
 
     <title>Test Calendar picker - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
+        body {
+            padding-top: 50px;
+        }
         .prepend {
             background: red!important;
         }
@@ -25,6 +28,23 @@
     <div>
         <input data-role="calendar-picker" data-prepend="prepend" data-dialog-mode="true" data-overlay-color="#ff00ff">
         <input data-role="calendar-picker" data-label="Select date:">
+    </div>
+
+    <div class="example">
+        <div class="row">
+            <div class="cell-md-4">
+                <p>Default</p>
+                <input type="text" data-role="calendarpicker"  data-dialog-point="360">
+            </div>
+            <div class="cell-md-4">
+                <p>%d %b %Y</p>
+                <input type="text" data-role="calendarpicker" value="1972/12/21" data-format="DD/MM/YYYY" data-dialog-point="360">
+            </div>
+            <div class="cell-md-4">
+                <p>%d %B %Y</p>
+                <input type="text" data-role="calendarpicker" data-format="%d %M %Y" data-dialog-point="360">
+            </div>
+        </div>
     </div>
 
 </div>

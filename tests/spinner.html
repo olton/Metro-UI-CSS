@@ -8,20 +8,28 @@
     <title>Test Spinner - Metro 4 :: Popular HTML, CSS and JS library</title>
 
 </head>
-<body class="m4-cloak">
+<body class="m4-cloak" style="padding-top: 50px;">
+<nav data-role="appbar">
+    <span class="app-bar-item">Spinner</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+</nav>
 <div class="container">
     <h1>Spinner test page</h1>
 
     <div class="example">
         <input type="text" data-role="spinner">
         <input type="text" data-role="spinner" data-label="Set value">
+        <input type="text" data-role="spinner" class="input-large">
+        <input type="text" data-role="spinner" class="input-small">
     </div>
 
 </div>
 
 <script src="../lib/metro.js"></script>
 <script>
-    $("@spinner").on("arrow-up", function(e){
+    $("@spinner").on("arrow-click", function(e){
         console.log("Arrow " + (e.detail.button === "plus" ? "up" : "down") + " pressed");
     })
 </script>

@@ -1,6 +1,32 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --pagination-page-item-background: var(--default-background);
+    --pagination-page-item-color: var(--default-color);
+    --pagination-page-item-background-hover: #e4e4e4;
+    --pagination-page-item-color-hover: var(--default-color);
+    --pagination-page-item-background-disabled: var(--default-background-disabled);
+    --pagination-page-item-color-disabled: var(--default-color-disabled);
+    --pagination-page-item-background-active: #d4e2ff;
+    --pagination-page-item-color-active: var(--default-color);
+    --pagination-page-item-border-color: var(--border-color);
+    --pagination-page-item-border-radius: 6px;
+}
+
+.dark-side {
+    --pagination-page-item-background: var(--default-background);
+    --pagination-page-item-color: var(--default-color);
+    --pagination-page-item-background-hover: #2e436e;
+    --pagination-page-item-color-hover: var(--default-color);
+    --pagination-page-item-background-disabled: var(--default-background-disabled);
+    --pagination-page-item-color-disabled: var(--default-color-disabled);
+    --pagination-page-item-background-active: #50a8ff;
+    --pagination-page-item-color-active: var(--default-color);
+    --pagination-page-item-border-color: var(--border-color);
+    --pagination-page-item-border-radius: 6px;
+}
+
 .pagination {
     display: flex;
     flex-wrap: wrap;
@@ -15,9 +41,9 @@
     .page-item {
         cursor: pointer;
         display: list-item;
-        background-color: @white;
-        color: @dark;
-        border: 1px solid darken(@light, 10%);
+        background-color: var(--pagination-page-item-background);
+        color: var(--pagination-page-item-color);
+        border: 1px solid var(--pagination-page-item-border-color);
         margin: .25rem;
         transition: @transition-short;
     }
@@ -35,7 +61,8 @@
 
     .page-item, .page-item.service {
         &:hover {
-            background-color: @hoverBackground;
+            background-color: var(--pagination-page-item-background-hover);
+            color: var(--pagination-page-item-color-hover);
         }
     }
 
@@ -43,25 +70,28 @@
         pointer-events: none;
         cursor: default;
         border-color: @transparent;
+
         &:hover {
-            background-color: @white!important;
+            background-color: var(--pagination-page-item-background);
+            color: var(--pagination-page-item-color);
             border-color: @transparent;
-            color: @dark;
         }
     }
 
     .page-item.disabled {
         pointer-events: none;
-        color: @lightGray;
+        background-color: var(--pagination-page-item-background-disabled);
+        color: var(--pagination-page-item-color-disabled);
     }
 
     .page-item.active {
-        background-color: @lightGray;
+        background-color: var(--pagination-page-item-background-active);
+        color: var(--pagination-page-item-color-active);
     }
 
     &.rounded {
         .page-item {
-            border-radius: @borderRadius;
+            border-radius: var(--pagination-page-item-border-radius);
         }
     }
 }
@@ -82,12 +112,12 @@
             }
 
             .page-item:first-child {
-                border-top-left-radius: @borderRadius;
-                border-bottom-left-radius: @borderRadius;
+                border-top-left-radius:  var(--pagination-page-item-border-radius);
+                border-bottom-left-radius:  var(--pagination-page-item-border-radius);
             }
             .page-item:last-child {
-                border-top-right-radius: @borderRadius;
-                border-bottom-right-radius: @borderRadius;
+                border-top-right-radius:  var(--pagination-page-item-border-radius);
+                border-bottom-right-radius:  var(--pagination-page-item-border-radius);
             }
         }
     }

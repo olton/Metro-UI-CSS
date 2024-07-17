@@ -13,7 +13,7 @@
         }
     </style>
 </head>
-<body class="m4-cloak">
+<body class="m4-cloak" style="padding-top: 50px;">
 <nav data-role="appbar">
     <span class="app-bar-item">Calendar</span>
     <div class="app-bar-item no-hover">
@@ -31,15 +31,24 @@
              data-locale="en-US"
              data-week-start="0"
              data-exclude="2024-05-21"
+             data-static="true"
         ></div>
 
-        <div data-role="calendar" class="calendar-wide"
+        <div data-role="calendar"
+             data-wide="true"
              data-animation-speed="20"
              data-animation-content="true"
              data-locale="en-US"
              data-week-start="0"
              data-cls-today-button="success"
              data-show-time="true"
+             data-readonly="true"
+             data-preset="
+                06-10-2024,
+                06-11-2024,
+                06-15-2024,
+                06-17-2024,
+             "
         ></div>
 
 <!--        <div data-role="calendar"-->

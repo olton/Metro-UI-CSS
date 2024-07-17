@@ -11,6 +11,8 @@
         templateBeginToken: "<%",
         templateEndToken: "%>",
         paginationDistance: 5,
+        paginationIslandSize: 3,
+        paginationShortTrack: 10,
 
         locale: METRO_LOCALE,
 
@@ -475,11 +477,11 @@
                 row.data('index', i);
                 row.data('index-view', i);
                 $("<td>").html("<input type='checkbox' data-style='"+o.checkStyle+"' data-role='checkbox' name='column_show_check[]' value='"+i+"' "+(Utils.bool(that.view[i]['show']) ? "checked" : "")+">").appendTo(row);
-                $("<td>").html(this.title).appendTo(row);
+                $("<td>").html(`<div>${this.title}</div>`).appendTo(row);
                 $("<td>").html("<input type='number' data-role='spinner' name='column_size' value='"+that.view[i]['size']+"' data-index='"+i+"'>").appendTo(row);
                 $("<td>").html("" +
-                    "<button class='button square js-table-inspector-field-up' type='button'><span class='mif-arrow-up'></span></button>" +
-                    "<button class='button square js-table-inspector-field-down' type='button'><span class='mif-arrow-down'></span></button>" +
+                    "<button class='button square js-table-inspector-field-up' type='button'>↑</button>" +
+                    "<button class='button square js-table-inspector-field-down' type='button'>↓</button>" +
                     "").appendTo(row);
                 tds[that.view[i]['index-view']] = row;
             });
@@ -1117,14 +1119,11 @@
 
             var _search = function(){
                 that.searchString = this.value.trim().toLowerCase();
-
-                clearInterval(that.input_interval); that.input_interval = false;
-                if (!that.input_interval) that.input_interval = setTimeout(function(){
-                    that.currentPage = 1;
-                    that._draw();
-                    clearInterval(that.input_interval); that.input_interval = false;
-                }, o.searchThreshold);
+                that.currentPage = 1;
+                that._draw();
             };
+
+            _search = Hooks.useDebounce(_search, o.searchThreshold)
 
             search.on(Metro.events.inputchange, _search);
 
@@ -1398,7 +1397,9 @@
                 claPagination: o.clsPagination,
                 prevTitle: o.paginationPrevTitle || this.locale.table["prev"],
                 nextTitle: o.paginationNextTitle || this.locale.table["next"],
-                distance: o.paginationShortMode === true ? o.paginationDistance : 0
+                distance: o.paginationDistance,
+                islandSize: o.paginationIslandSize,
+                shortTrack: o.paginationShortTrack
             });
         },
 

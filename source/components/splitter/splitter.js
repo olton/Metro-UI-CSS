@@ -1,13 +1,19 @@
 /* global Metro */
 (function(Metro, $) {
     'use strict';
+
+    const SPLIT_MODE = {
+        VERTICAL: "vertical",
+        HORIZONTAL: "horizontal",
+    }
+
     var Utils = Metro.utils;
     var Storage = Metro.storage;
     var SplitterDefaultConfig = {
         splitterDeferred: 0,
-        splitMode: "horizontal", // horizontal or vertical
+        split: SPLIT_MODE.VERTICAL, // horizontal or vertical
         splitSizes: null,
-        gutterSize: 4,
+        gutterSize: 5,
         minSizes: null,
         children: "*",
         gutterClick: "expand", // TODO expand or collapse
@@ -54,12 +60,10 @@
             var element = this.element, o = this.options;
             var children = element.children(o.children).addClass("split-block");
             var i, children_sizes = [];
-            var resizeProp = o.splitMode === "horizontal" ? "width" : "height";
+            var resizeProp = o.split === SPLIT_MODE.HORIZONTAL ? "height" : "width";
 
             element.addClass("splitter");
-            if (o.splitMode.toLowerCase() === "vertical") {
-                element.addClass("vertical");
-            }
+            element.addClass((o.split.toLowerCase() === SPLIT_MODE.VERTICAL) ? "vertical" : "horizontal");
 
             if (o.noResize === true) {
                 element.addClass("static-size")
@@ -124,12 +128,12 @@
                     return false
                 }
 
-                var w = o.splitMode === "horizontal" ? element.width() : element.height();
+                var w = o.split === SPLIT_MODE.VERTICAL ? element.width() : element.height();
                 var gutter = $(this);
                 var prev_block = gutter.prev(".split-block");
                 var next_block = gutter.next(".split-block");
-                var prev_block_size = 100 * (o.splitMode === "horizontal" ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
-                var next_block_size = 100 * (o.splitMode === "horizontal" ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
+                var prev_block_size = 100 * (o.split === SPLIT_MODE.VERTICAL ? prev_block.outerWidth(true) : prev_block.outerHeight(true)) / w;
+                var next_block_size = 100 * (o.split === SPLIT_MODE.VERTICAL ? next_block.outerWidth(true) : next_block.outerHeight(true)) / w;
                 var start_pos = Utils.getCursorPosition(element[0], e);
 
                 gutter.addClass("active");
@@ -148,7 +152,7 @@
                     var pos = Utils.getCursorPosition(element[0], e);
                     var new_pos;
 
-                    if (o.splitMode === "horizontal") {
+                    if (o.split === SPLIT_MODE.VERTICAL) {
                         new_pos = (pos.x * 100 / w) - (start_pos.x * 100 / w);
 
                     } else {
@@ -190,7 +194,7 @@
                     });
 
                 }, {ns: that.id})
-            });
+            }, {passive: true});
 
             $(window).on(Metro.events.resize, function(){
                 var gutter = element.children(".gutter");
@@ -220,7 +224,6 @@
                 if (storage)
                     storage.setItem(this.storageKey + id, itemsSize);
             }
-
         },
 
         _getSize: function(){

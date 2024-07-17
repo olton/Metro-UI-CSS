@@ -1,12 +1,38 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --tabs-background: var(--default-background);
+    --tabs-color: var(--default-color);
+    --tabs-hamburger-background: transparent;
+    --tabs-hamburger-color: #000000;
+    --tabs-item-background: var(--default-background);
+    --tabs-item-color: var(--default-color);
+    --tabs-item-background-hover: #f5f8fe;
+    --tabs-item-color-hover: var(--default-color);
+    --tabs-item-background-active: #ffffff;
+    --tabs-item-color-active: var(--default-color);
+}
+
+.dark-side {
+    --tabs-background: var(--default-background);
+    --tabs-color: var(--default-color);
+    --tabs-hamburger-background: transparent;
+    --tabs-hamburger-color: #ffffff;
+    --tabs-item-background: var(--default-background);
+    --tabs-item-color: var(--default-color);
+    --tabs-item-background-hover: #26282e;
+    --tabs-item-color-hover: var(--default-color);
+    --tabs-item-background-active: #4a4d51;
+    --tabs-item-color-active: var(--default-color);
+}
+
 .tabs {
     position: relative;
     border: 1px solid var(--border-color);
     transition: @transition-base;
-    background-color: @white;
-    color: @dark;
+    background-color: var(--tabs-background);
+    color: var(--tabs-color);
 
     .hamburger, .expand-title {
         cursor: pointer;
@@ -48,8 +74,8 @@
 
     & > li {
         display: block;
-        background-color: @white;
-        color: @dark;
+        background-color: var(--tabs-item-background);
+        color: var(--tabs-item-color);
         margin: 0 0 -1px 0;
     }
 
@@ -72,11 +98,13 @@
     }
 
     & > li:hover {
-        background-color: @light;
+        background-color: var(--tabs-item-background-hover);
+        color: var(--tabs-item-color-hover);
     }
 
     & > li.active {
-        background-color: darken(@light, 10%);
+        background-color: var(--tabs-item-background-active);
+        color: var(--tabs-item-color-active);
     }
 
     .d-menu {
@@ -176,7 +204,8 @@
             &.active {
                 border: 1px solid var(--border-color);
                 border-bottom: none;
-                background-color: @white;
+                background-color: var(--tabs-item-background-active);
+                color: var(--tabs-item-color-active);
             }
         }
 

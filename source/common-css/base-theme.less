@@ -1,6 +1,12 @@
 :root {
-    --body-background: #ffffff;
-    --body-color: #191919;
+    --default-background: #fff;
+    --default-color: #191919;
+    --default-color-hover: #000000;
+    --default-background-disabled: #f7f8fa;
+    --default-color-disabled: #c9ccd6;
+
+    --body-background: var(--default-background);
+    --body-color: var(--default-color);
     --body-color-secondary: #a2a5b1;
     --border-color: #e8e8e8;
     --link-color: #5a87cb;
@@ -11,8 +17,14 @@
 }
 
 .dark-side {
-    --body-background: #1e1f22;
-    --body-color: #dbdfe7;
+    --default-background: #1e1f22;
+    --default-color: #dbdfe7;
+    --default-color-hover: #dbdfe7;
+    --default-background-disabled: #343637;
+    --default-color-disabled: #54565a;
+
+    --body-background: var(--default-background);
+    --body-color: var(--default-color);
     --body-color-secondary: #c0c0c0;
     --border-color: #4a4d51;
     --link-color: #5a87cb;
@@ -25,14 +37,4 @@
 body {
     background-color: var(--body-background);
     color: var(--body-color);
-}
-
-.light-side {
-    background-color: #ffffff;
-    color: #191919;
-}
-
-.dark-side {
-    background-color: #1e1f22;
-    color: #dbdfe7;
 }

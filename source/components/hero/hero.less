@@ -1,12 +1,24 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --hero-background: #ffffff;
+    --hero-color: #191919;
+}
+
+.dark-side {
+    --hero-background: #1e1f22;
+    --hero-color: #dbdfe7;
+}
+
 .hero {
-    padding: 40px;
+    padding: 40px 20px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
+    background-color: var(--hero-background);
+    color: var(--hero-color);
 }
 
 @media all and (min-width: @md) {

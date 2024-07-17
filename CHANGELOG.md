@@ -1,4 +1,11 @@
 # Changelog
+### 5.0.7
++ [x] Update components for themes
++ [x] Update Hooks
++ [x] Update m4q
++ [x] Update Farbe
+
+
 ### 5.0.6
 + [x] Fixed `app-bar-menu` for collapsed `appbar`
 + [x] Redesign `navview` and upd for themes

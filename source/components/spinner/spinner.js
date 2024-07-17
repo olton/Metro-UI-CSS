@@ -76,7 +76,7 @@
             spinner.insertBefore(element);
             element.appendTo(spinner).addClass(o.clsSpinnerInput);
 
-            element.addClass("original-input");
+            element.addClass("metro-input");
 
             button_plus.appendTo(spinner);
             button_minus.appendTo(spinner);
@@ -152,7 +152,7 @@
                 that.repeat_timer = true;
                 spinnerButtonClick(plus, o.repeatThreshold);
 
-                e.preventDefault();
+                // e.preventDefault();
             }, {passive: true});
 
             spinner_buttons.on(Metro.events.stopAll, function(){

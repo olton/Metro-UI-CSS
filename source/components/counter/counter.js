@@ -47,12 +47,12 @@
             var that = this, element = this.element, o = this.options;
 
             if (o.startOnViewport) {
-                Hooks.useEffect({
+                Hooks.useEvent({
                     effect: ()=>{
                         that.start()
                     },
                     target: that.elem,
-                    event: Hooks.USE_EFFECT_EVENTS.VIEWPORT
+                    event: Hooks.EVENTS.VIEWPORT
                 })
             }
         },

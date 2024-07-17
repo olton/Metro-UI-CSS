@@ -1,13 +1,26 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --hint-z-index: @zindex-tooltip;
+    --hint-border-radius: 6px;
+    --hint-background: #FFFCC0;
+    --hint-color: #1d1d1d;
+}
+
+.dark-side {
+    --hint-background: #26282e;
+    --hint-color: #ffffff;
+}
+
 .hint {
     display: block;
     position: fixed;
-    z-index: @zindex-tooltip;
-    background-color: @hintBackground;
-    color: @hintColor;
-    font-size: .75rem;
-    max-width: 13.75rem;
-    padding: .625rem;
+    z-index: var(--hint-z-index);
+    background-color: var(--hint-background);
+    color: var(--hint-color);
+    font-size: 14px;
+    padding: 10px;
+    border-radius: var(--hint-border-radius);
+    box-shadow: 2px 2px 5px 0 var(--shadow-color);
 }
