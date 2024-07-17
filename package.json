@@ -57,7 +57,7 @@
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.19",
     "cross-env": "^7.0.3",
-    "cypress": "^13.13.0",
+    "cypress": "^13.13.1",
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
     "postcss": "^8.4.39",
@@ -68,7 +68,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "shx": "^0.3.4",
-    "vite": "^5.3.3"
+    "vite": "^5.3.4"
   },
   "dependencies": {
     "@olton/animation": "^0.3.0",
@@ -77,6 +77,6 @@
     "@olton/hooks": "^0.10.0",
     "@olton/html": "^0.11.0",
     "@olton/string": "^0.5.0",
-    "m4q": "^2.6.0"
+    "m4q": "^3.0.3"
   }
 }
