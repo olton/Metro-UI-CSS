@@ -5,69 +5,31 @@
     var Utils = Metro.utils;
     var ValidatorFuncs = {
         required: function(val){
-            if (Array.isArray(val)) {
-                return val.length > 0 ? val : false;
-            } else {
-                return Utils.isValue(val) ? val.trim() : false;
-            }
+            return G.safeParse(G.required(), val).ok
         },
         length: function(val, len){
-            if (Array.isArray(val)) {return val.length === parseInt(len);}
-            if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
-                return false;
-            }
-            return val.trim().length === parseInt(len);
+            return G.safeParse(G.length(len), val).ok
         },
         minlength: function(val, len){
-            if (Array.isArray(val)) {return val.length >= parseInt(len);}
-            if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
-                return false;
-            }
-            return val.trim().length >= parseInt(len);
+            return G.safeParse(G.minLength(len), val).ok
         },
         maxlength: function(val, len){
-            if (Array.isArray(val)) {return val.length <= parseInt(len);}
-            if (!Utils.isValue(len) || isNaN(len) || len <= 0) {
-                return false;
-            }
-            return val.trim().length <= parseInt(len);
+            return G.safeParse(G.maxLength(len), val).ok
         },
         min: function(val, min_value){
-            if (!Utils.isValue(min_value) || isNaN(min_value)) {
-                return false;
-            }
-            if (!this.number(val)) {
-                return false;
-            }
-            if (isNaN(val)) {
-                return false;
-            }
-            return Number(val) >= Number(min_value);
+            return G.safeParse(G.minValue(min_value), val).ok
         },
         max: function(val, max_value){
-            if (!Utils.isValue(max_value) || isNaN(max_value)) {
-                return false;
-            }
-            if (!this.number(val)) {
-                return false;
-            }
-            if (isNaN(val)) {
-                return false;
-            }
-            return Number(val) <= Number(max_value);
+            return G.safeParse(G.maxValue(max_value), val).ok
         },
         email: function(val){
-            /* eslint-disable-next-line */
-            return /^[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9\u007F-\uffff!#$%&'*+\/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}$/i.test(val);
+            return G.safeParse(G.email(), val).ok
         },
         domain: function(val){
-            /* eslint-disable-next-line */
-            return /^((xn--)?[a-z0-9]+(-[a-z0-9]+)*\.)+[a-z]{2,}$/.test(val);
+            return G.safeParse(G.domain(), val).ok
         },
         url: function(val){
-            /* eslint-disable-next-line */
-            var regexp    = /^(?:(?:(?:https?|ftp):)?\/\/)(?:\S+(?::\S*)?@)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z0-9\u00a1-\uffff][a-z0-9\u00a1-\uffff_-]{0,62})?[a-z0-9\u00a1-\uffff]\.)+(?:[a-z\u00a1-\uffff]{2,}\.?))(?::\d{2,5})?(?:[/?#]\S*)?$/i;
-            return regexp.test(val);
+            return G.safeParse(G.url(), val).ok
         },
         date: function(val, format, locale){
             try {
@@ -82,30 +44,29 @@
             }
         },
         number: function(val){
-            return !isNaN(val);
+            return G.safeParse(G.number(), val).ok
         },
         integer: function(val){
-            return Utils.isInt(val);
+            return G.safeParse(G.integer(), val).ok
+        },
+        safeInteger: function(val){
+            return G.safeParse(G.safeInteger(), val).ok
         },
         float: function(val){
-            return Utils.isFloat(val);
+            return G.safeParse(G.float(), val).ok
         },
         digits: function(val){
-            return /^\d+$/.test(val);
+            return G.safeParse(G.digits(), val).ok
         },
         hexcolor: function(val){
-            /* eslint-disable-next-line */
-            return /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(val);
+            return G.safeParse(G.hexColor(), val).ok
         },
         color: function(val){
             if (!Utils.isValue(val)) return false;
             return Farbe.Palette.color(val, Farbe.StandardColors) || Farbe.Routines.isColor(val);
         },
         pattern: function(val, pat){
-            if (!Utils.isValue(val)) return false;
-            if (!Utils.isValue(pat)) return false;
-            var reg = new RegExp(pat);
-            return reg.test(val);
+            return G.safeParse(G.pattern(pat), val).ok
         },
         compare: function(val, val2){
             return val === val2;
@@ -114,14 +75,10 @@
             return val !== not_this;
         },
         notequals: function(val, val2){
-            if (Utils.isNull(val)) return false;
-            if (Utils.isNull(val2)) return false;
-            return val.trim() !== val2.trim();
+            return val !== val2
         },
         equals: function(val, val2){
-            if (Utils.isNull(val)) return false;
-            if (Utils.isNull(val2)) return false;
-            return val.trim() === val2.trim();
+            return val === val2
         },
         custom: function(val, func){
             if (Utils.isFunc(func) === false) {
