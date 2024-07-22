@@ -72,11 +72,11 @@
 <script src="../lib/metro.js"></script>
 <script>
     $(function () {
-        if (Metro.validator.validate($('#input1')) === true) {
-            throw new Error("Validate error");
+        if (Metro.validator.validate($('#input1')) === false) {
+            console.log("Validate input1 error");
         }
         if (Metro.validator.validate($('#input2')) === false) {
-            throw new Error("Validate error");
+            console.log("Validate input2 error");
         }
     });
 

@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.0.8",
-        build_time: "17.07.2024, 10:31:16",
+        build_time: "22.07.2024, 12:07:33",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -210,6 +210,7 @@
                 if (globalThis.Farbe && Farbe.info) Farbe.info()
                 if (globalThis.Datetime && Datetime.info) Datetime.info()
                 if (globalThis.Str && Str.info) Str.info()
+                if (globalThis.G && G.info) G.info()
             }
         },
 
