@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.0.9",
-        build_time: "23.07.2024, 19:33:58",
+        build_time: "23.07.2024, 19:35:45",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
