@@ -19,8 +19,8 @@
 
     var Metro = {
 
-        version: "5.0.8",
-        build_time: "11.08.2024, 23:14:51",
+        version: "5.0.10",
+        build_time: "11.08.2024, 23:17:53",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -214,24 +214,8 @@
             }
         },
 
-        showCompileTime: function(){
-            return ""
-        },
-
         aboutDlg: function(){
             alert("Metro UI - v" + Metro.version);
-        },
-
-        ver: function(){
-            return Metro.version;
-        },
-
-        build: function(){
-            return Metro.build;
-        },
-
-        compile: function(){
-            return ""
         },
 
         observe: function(){
@@ -722,6 +706,25 @@
 
             buffer: function(response){
                 return response.arrayBuffer();
+            }
+        },
+
+        i18n: {
+            loadLocale(lang = 'en-US'){
+
+            },
+
+            getMessage(id){
+                return ""
+            },
+
+            updateUI(){
+                const updateUI = () => {
+                    document.querySelectorAll("[data-i18n]").forEach(el => {
+                        const id = el.getAttribute('data-i18n')
+                        el.innerHTML = Metro.i18n.getMessage(id)
+                    })
+                }
             }
         }
     };
