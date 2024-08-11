@@ -3,7 +3,7 @@
     'use strict';
     var Utils = Metro.utils;
     var CounterDefaultConfig = {
-        startOnViewport: true,
+        startOnViewport: false,
         counterDeferred: 0,
         duration: 2000,
         value: 0,
@@ -58,7 +58,7 @@
         },
 
         start: function(val, from){
-            var that = this, element = this.element, o = this.options;
+            var that = this, elem = this.elem, o = this.options;
 
             if (Utils.isValue(from)) {
                 o.from = +from;
@@ -72,7 +72,8 @@
 
             this._fireEvent("start");
 
-            element.animate({
+            Animation.animate({
+                el: elem,
                 draw: {
                     innerHTML: [o.from, o.value]
                 },
@@ -85,6 +86,8 @@
                     this.innerHTML = o.prefix + Number(this.innerHTML).format(0, 0, o.delimiter) + o.suffix
                 },
                 onDone: function(){
+                    console.log(`Done: ${o.value}`)
+                    this.innerHTML = o.prefix + Number(o.value).format(0, 0, o.delimiter) + o.suffix
                     that._fireEvent("stop");
                 }
             })
