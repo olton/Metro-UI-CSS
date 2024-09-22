@@ -1,7 +1,7 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "@olton/metroui",
-  "version": "5.0.10",
+  "version": "5.0.11",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [
     "metro",
@@ -57,24 +57,24 @@
     "@rollup/plugin-terser": "^0.4.4",
     "autoprefixer": "^10.4.20",
     "cross-env": "^7.0.3",
-    "cypress": "^13.13.2",
+    "cypress": "^13.14.2",
     "ftp-deploy": "^2.4.7",
     "less": "^4.2.0",
-    "postcss": "^8.4.41",
-    "rollup": "^4.20.0",
+    "postcss": "^8.4.47",
+    "rollup": "^4.22.4",
     "rollup-plugin-copy": "^3.5.0",
     "rollup-plugin-esbuild": "^6.1.1",
     "rollup-plugin-no-emit": "^1.2.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-progress": "^1.1.2",
     "shx": "^0.3.4",
-    "vite": "^5.4.0"
+    "vite": "^5.4.7"
   },
   "dependencies": {
     "@olton/animation": "^0.3.0",
     "@olton/datetime": "^3.0.5",
     "@olton/farbe": "^1.0.4",
-    "@olton/guardian": "^0.5.0",
+    "@olton/guardian": "^0.5.1",
     "@olton/hooks": "^0.10.0",
     "@olton/html": "^0.11.0",
     "@olton/string": "^0.5.0",

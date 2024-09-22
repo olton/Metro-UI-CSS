@@ -4,7 +4,7 @@ import autoprefixer from "autoprefixer"
 import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress';
 import noEmit from 'rollup-plugin-no-emit'
-import pkg from './package.json' assert {type: "json"}
+import pkg from './package.json' with {type: "json"}
 import fs from "fs";
 
 const production = !(process.env.ROLLUP_WATCH),

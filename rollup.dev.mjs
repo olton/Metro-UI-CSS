@@ -4,7 +4,7 @@ import autoprefixer from "autoprefixer"
 import replace from '@rollup/plugin-replace'
 import progress from 'rollup-plugin-progress';
 import fs from "fs";
-import pkg from "./package.json" assert {type: "json"}
+import pkg from "./package.json" with {type: "json"}
 
 const production = process.env.NODE_ENV === "production",
     sourcemap = !production, dev = !production

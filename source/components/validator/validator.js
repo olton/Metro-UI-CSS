@@ -1,4 +1,3 @@
-/* global Metro, Datetime, datetime */
 (function(Metro, $) {
     'use strict';
 
@@ -44,16 +43,16 @@
             }
         },
         number: function(val){
-            return G.safeParse(G.number(), val).ok
+            return G.safeParse(G.number(), +val).ok
         },
         integer: function(val){
-            return G.safeParse(G.integer(), val).ok
+            return G.safeParse(G.integer(), +val).ok
         },
         safeInteger: function(val){
-            return G.safeParse(G.safeInteger(), val).ok
+            return G.safeParse(G.safeInteger(), +val).ok
         },
         float: function(val){
-            return G.safeParse(G.float(), val).ok
+            return G.safeParse(G.float(), +val).ok
         },
         digits: function(val){
             return G.safeParse(G.digits(), val).ok

@@ -1,5 +1,5 @@
 import FtpDeploy from "ftp-deploy"
-import auth from "./ftpauth.json" assert {type: "json"}
+import auth from "./ftpauth.json" with {type: "json"}
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
