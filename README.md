@@ -84,10 +84,6 @@ Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olto
 Metro UI CSS 2.x you can find in a repo [Metro-UI-CSS-2](https://github.com/olton/Metro-UI-CSS-2)     
 Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/olton/Metro-UI-CSS-095) 
 
- Documentation and Demo for V3: [metroui.org.ua/v3](https://metroui.org.ua/v3/).   
- Documentation and Demo for V2: [metroui.org.ua/v2](https://metroui.org.ua/v2/).   
- Documentation and Demo for V0: [metroui.org.ua/v0](https://metroui.org.ua/v0/).   
-
 ### Activities
 
 ![Alt](https://repobeats.axiom.co/api/embed/75c6aba3d69c314c78727354cc6082e916ad1297.svg "Repobeats analytics image")
