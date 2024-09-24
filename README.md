@@ -20,9 +20,6 @@ It's an independent project with its ongoing development made possible entirely 
 <a href="https://www.patreon.com/metroui">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="38">
 </a>
-<a href="https://www.buymeacoffee.com/pimenov">
-	<img src="https://metroui.org.ua/images/buy-me-coffee2.png" height="38">
-</a>
 </p>
 <br>
 
@@ -47,7 +44,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 ### License and Premium Features
 This project licensed under the **MIT** license. 
-In addition, **SUPPORT PACK** is available for an annual subscription on [https://korzh.com/](https://https://korzh.com/) and for a [Patreon Patrons](https://www.patreon.com/metroui).
+In addition, **SUPPORT PACK** is available for an annual subscription on [https://korzh.com/](https://https://korzh.com/).
 
 **SUPPORT PACK** includes an **Extra time for priority support** by email and other options.
 
@@ -93,6 +90,13 @@ Thanks to all. Special thanks to all those who financially supported the project
 
 ### Credits
 You can read about credits [here](CREDITS.md)
+
+---
+
+### Support my work
+You can support my work
++ [x] Patreon - https://www.patreon.com/metroui
++ [x] PayPal - serhii@pimenov.com.ua
 
 ---
 
