@@ -100,4 +100,4 @@ You can read about credits [here](CREDITS.md)
 
 ---
 
-2012-2020 © Copyright by Serhii Pimenov. All Rights Reserved. Created by Serhii Pimenov.
+2012-2024 © Copyright by Serhii Pimenov. All Rights Reserved. Created by Serhii Pimenov.
