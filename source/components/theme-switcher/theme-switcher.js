@@ -12,6 +12,8 @@
         saveState: true,
         saveStateKey: "THEME:SWITCHER",
         clsDark: "",
+        darkSymbol: "☾",
+        lightSymbol: "☼",
         onThemeSwitcherCreate: Metro.noop
     };
 
@@ -50,6 +52,8 @@
             }
 
             const check = $("<span>").addClass("check");
+            check.attr("data-light-symbol", o.lightSymbol);
+            check.attr("data-dark-symbol", o.darkSymbol);
 
             element.attr("type", "checkbox")
 

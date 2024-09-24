@@ -48927,7 +48927,7 @@ textarea {
   flex-shrink: 0;
 }
 .theme-switcher .check::before {
-  content: "☾";
+  content: attr(data-dark-symbol);
   display: block;
   position: absolute;
   color: inherit;
@@ -48980,7 +48980,7 @@ textarea {
           transform: translateX(30px) translateY(-50%);
 }
 .theme-switcher input[type="checkbox"]:checked ~ .check::before {
-  content: "☼";
+  content: attr(data-light-symbol);
   color: #ffffff;
   left: 1px;
 }

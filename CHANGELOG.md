@@ -1,4 +1,9 @@
 # Changelog
+
+### 5.0.11
++ [x] Fix G.number()
++ [x] Bugs fixes
+
 ### 5.0.7
 + [x] Update components for themes
 + [x] Update Hooks
