@@ -1,13 +1,6 @@
-import {beforeAll, beforeEach, describe, it, expect, delay, DOM, builder} from "@olton/easytest";
-import { lessLoader} from "esbuild-plugin-less";
+import {beforeAll, beforeEach, describe, it, expect, delay, DOM} from "@olton/easytest";
 
 beforeAll(async () => {
-    await builder({
-        entryPoints: ['./source/index.js'],
-        outfile: './dist/metro.js',
-        bundle: true,
-        plugins: [lessLoader()]
-    })
     DOM.flash()
     DOM.js.fromFile('./dist/metro.js')
 })

@@ -30,17 +30,14 @@
   "main": "source/index.js",
   "type": "module",
   "scripts": {
-    "clear": "shx rm -rf lib/*",
-    "clear:icons": "shx rm -rf build/icons.*",
-    "clear:metro": "shx rm -rf build/metro*.*",
-    "build": "npm run clear && npm install && cross-env MODE=production rollup --config",
-    "watch": "cross-env MODE=development rollup --config rollup.dev.mjs -w",
-    "dev": "cross-env MODE=development rollup --config rollup.dev.mjs",
-    "icons": "npm run clear:icons && cross-env MODE=production rollup --config rollup.icons.mjs",
+    "clean": "shx rm -rf lib/*",
+    "build": "npm run clean && cross-env MODE=production node build.js",
+    "dev": "npm run clean && cross-env MODE=development node build.js",
+    "watch": "npm run clean && cross-env MODE=development node watch.js",
     "deploy": "node deploy.cjs",
     "deploy:dev": "node deploy-dev.cjs",
     "pub": "npm publish --access public",
-    "test": "easytest --include='abc/accordion.test.js' --dom --verbose --coverage --skip='gravatar,touch,sidebar,list.html'"
+    "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html'"
   },
   "browserslist": [
     "last 2 versions",
@@ -51,21 +48,14 @@
   ],
   "devDependencies": {
     "@olton/easytest": "^0.37.0",
-    "@rollup/plugin-multi-entry": "^6.0.1",
-    "@rollup/plugin-node-resolve": "^15.3.0",
-    "@rollup/plugin-replace": "^6.0.1",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@olton/esbuild-plugin-progress": "^0.1.0",
     "autoprefixer": "^10.4.20",
+    "chalk": "^5.3.0",
     "cross-env": "^7.0.3",
+    "esbuild": "^0.24.0",
+    "esbuild-plugin-less": "^1.3.10",
     "ftp-deploy": "^2.4.7",
-    "less": "^4.2.0",
-    "postcss": "^8.4.47",
-    "rollup": "^4.24.0",
-    "rollup-plugin-copy": "^3.5.0",
-    "rollup-plugin-esbuild": "^6.1.1",
-    "rollup-plugin-no-emit": "^1.2.1",
-    "rollup-plugin-postcss": "^4.0.2",
-    "rollup-plugin-progress": "^1.1.2",
+    "ora": "^8.1.0",
     "shx": "^0.3.4"
   },
   "dependencies": {
@@ -76,6 +66,7 @@
     "@olton/hooks": "^0.10.0",
     "@olton/html": "^0.11.0",
     "@olton/string": "^0.5.0",
-    "m4q": "^3.0.5"
+    "m4q": "^3.0.5",
+    "rollup-plugin-progress": "^1.1.2"
   }
 }

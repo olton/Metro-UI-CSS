@@ -1,0 +1,51 @@
+import { build } from 'esbuild';
+import { lessLoader } from "esbuild-plugin-less";
+import progress from "@olton/esbuild-plugin-progress";
+
+const production = process.env.MODE === "production"
+
+await build({
+    entryPoints: ['./source/default.js'],
+    outfile: './lib/metro.js',
+    bundle: true,
+    minify: production,
+    sourcemap: false,
+    plugins: [
+        progress({
+            text: 'Building Metro UI...',
+            succeedText: `Metro UI built successfully in %s ms!`
+        }),
+        lessLoader()
+    ],
+})
+
+await build({
+    entryPoints: ['./source/index.js'],
+    outfile: './lib/metro.all.js',
+    bundle: true,
+    minify: production,
+    sourcemap: false,
+    plugins: [
+        progress({
+            text: 'Building Metro UI with icons...',
+            succeedText: 'Metro UI with icons built successfully in %s ms!'
+        }),
+        lessLoader()
+    ],
+})
+
+await build({
+    entryPoints: ['./source/icons.js'],
+    outfile: './lib/icons.js',
+    bundle: true,
+    minify: production,
+    sourcemap: false,
+    plugins: [
+        progress({
+            text: 'Building Metro UI icons...',
+            succeedText: 'Metro UI icons built successfully in %s ms!'
+        }),
+        lessLoader()
+    ],
+})
+
