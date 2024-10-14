@@ -1,6 +1,7 @@
 import { build } from 'esbuild';
 import { lessLoader } from "esbuild-plugin-less";
 import progress from "@olton/esbuild-plugin-progress";
+import autoprefixer from "@olton/esbuild-plugin-autoprefixer";
 import { replace } from "esbuild-plugin-replace";
 
 const production = process.env.MODE === "production"
@@ -17,6 +18,7 @@ await build({
             succeedText: `Metro UI built successfully in %s ms!`
         }),
         lessLoader(),
+        autoprefixer(),
         replace({
             '__BUILD_TIME__': new Date().toLocaleString()
         })
@@ -35,6 +37,7 @@ await build({
             succeedText: 'Metro UI with icons built successfully in %s ms!'
         }),
         lessLoader(),
+        autoprefixer(),
         replace({
             '__BUILD_TIME__': new Date().toLocaleString()
         })
