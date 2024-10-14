@@ -59,8 +59,8 @@
         InputDefaultConfig = $.extend({}, InputDefaultConfig, options);
     };
 
-    if (typeof window["metroInputSetup"] !== undefined) {
-        Metro.inputSetup(window["metroInputSetup"]);
+    if (typeof globalThis["metroInputSetup"] !== undefined) {
+        Metro.inputSetup(globalThis["metroInputSetup"]);
     }
 
     Metro.Component('input', {

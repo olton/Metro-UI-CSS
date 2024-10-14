@@ -37,8 +37,8 @@
         ChatDefaultConfig = $.extend({}, ChatDefaultConfig, options);
     };
 
-    if (typeof window["metroChatSetup"] !== undefined) {
-        Metro.chatSetup(window["metroChatSetup"]);
+    if (typeof globalThis["metroChatSetup"] !== undefined) {
+        Metro.chatSetup(globalThis["metroChatSetup"]);
     }
 
     Metro.Component('chat', {

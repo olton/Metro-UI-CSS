@@ -53,7 +53,7 @@
                 result = func.apply(context, args);
             } catch (err) {
                 result = null;
-                if (window.METRO_THROWS === true) {
+                if (globalThis.METRO_THROWS === true) {
                     throw err;
                 }
             }
@@ -190,7 +190,7 @@
         },
 
         $: function(){
-            return window.useJQuery ? jQuery : m4q;
+            return globalThis.useJQuery ? jQuery : m4q;
         },
 
         isMetroObject: function(el, type){
@@ -246,8 +246,8 @@
             return (
                 rect.top >= 0 &&
                 rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+                rect.bottom <= (globalThis.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (globalThis.innerWidth || document.documentElement.clientWidth)
             );
         },
 
@@ -258,8 +258,8 @@
         getCursorPosition: function(el, e){
             var a = this.rect(el);
             return {
-                x: this.pageXY(e).x - a.left - window.scrollX,
-                y: this.pageXY(e).y - a.top - window.scrollY
+                x: this.pageXY(e).x - a.left - globalThis.scrollX,
+                y: this.pageXY(e).y - a.top - globalThis.scrollY
             };
         },
 
@@ -387,8 +387,8 @@
             var box = el.getBoundingClientRect();
 
             return {
-                top: box.top + window.pageYOffset,
-                left: box.left + window.pageXOffset
+                top: box.top + globalThis.pageYOffset,
+                left: box.left + globalThis.pageXOffset
             };
         },
 
@@ -466,7 +466,7 @@
 
         getStyle: function(element, pseudo){
             var el = $(element)[0];
-            return window.getComputedStyle(el, pseudo);
+            return globalThis.getComputedStyle(el, pseudo);
         },
 
         getStyleOne: function(el, property){
@@ -499,7 +499,7 @@
         },
 
         getURIParameter: function(url, name){
-            if (!url) url = window.location.href;
+            if (!url) url = globalThis.location.href;
             /* eslint-disable-next-line */
             name = name.replace(/[\[\]]/g, "\\$&");
             var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
@@ -560,19 +560,19 @@
         },
 
         media: function(query){
-            return window.matchMedia(query).matches;
+            return globalThis.matchMedia(query).matches;
         },
 
         mediaModes: function(){
-            return window.METRO_MEDIA;
+            return globalThis.METRO_MEDIA;
         },
 
         mediaExist: function(media){
-            return window.METRO_MEDIA.indexOf(media) > -1;
+            return globalThis.METRO_MEDIA.indexOf(media) > -1;
         },
 
         inMedia: function(media){
-            return window.METRO_MEDIA.indexOf(media) > -1 && window.METRO_MEDIA.indexOf(media) === window.METRO_MEDIA.length - 1;
+            return globalThis.METRO_MEDIA.indexOf(media) > -1 && globalThis.METRO_MEDIA.indexOf(media) === globalThis.METRO_MEDIA.length - 1;
         },
 
         isValue: function(val){
@@ -639,9 +639,9 @@
             var body = document.body, range, sel;
             var el = $(element)[0];
 
-            if (document.createRange && window.getSelection) {
+            if (document.createRange && globalThis.getSelection) {
                 range = document.createRange();
-                sel = window.getSelection();
+                sel = globalThis.getSelection();
                 sel.removeAllRanges();
                 try {
                     range.selectNodeContents(el);
@@ -658,11 +658,11 @@
 
             document.execCommand("Copy");
 
-            if (window.getSelection) {
-                if (window.getSelection().empty) {  // Chrome
-                    window.getSelection().empty();
-                } else if (window.getSelection().removeAllRanges) {  // Firefox
-                    window.getSelection().removeAllRanges();
+            if (globalThis.getSelection) {
+                if (globalThis.getSelection().empty) {  // Chrome
+                    globalThis.getSelection().empty();
+                } else if (globalThis.getSelection().removeAllRanges) {  // Firefox
+                    globalThis.getSelection().removeAllRanges();
                 }
             } else if (document["selection"]) {  // IE?
                 document["selection"].empty();
@@ -717,7 +717,7 @@
         }
     };
 
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.Utils = Metro.utils;
+    if (globalThis.METRO_GLOBAL_COMMON === true) {
+        globalThis.Utils = Metro.utils;
     }
 }(Metro, m4q));

@@ -54,8 +54,8 @@
         VideoPlayerDefaultConfig = $.extend({}, VideoPlayerDefaultConfig, options);
     };
 
-    if (typeof window["metroVideoPlayerSetup"] !== undefined) {
-        Metro.videoPlayerSetup(window["metroVideoPlayerSetup"]);
+    if (typeof globalThis["metroVideoPlayerSetup"] !== undefined) {
+        Metro.videoPlayerSetup(globalThis["metroVideoPlayerSetup"]);
     }
 
     Metro.Component('video-player', {
@@ -368,13 +368,13 @@
                 // }
             });
 
-            $(window).on(Metro.events.keyup, function(e){
+            $(globalThis).on(Metro.events.keyup, function(e){
                 if (that.fullscreen && e.keyCode === 27) {
                     player.find(".full").click();
                 }
             }, {ns: this.id});
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 that._setAspectRatio();
             }, {ns: this.id});
 
@@ -584,8 +584,8 @@
             player.off(Metro.events.click, ".loop");
             player.off(Metro.events.click, ".full");
 
-            $(window).off(Metro.events.keyup,{ns: this.id});
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.keyup,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             return element;
         }

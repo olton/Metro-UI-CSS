@@ -22,8 +22,8 @@
         CounterDefaultConfig = $.extend({}, CounterDefaultConfig, options);
     };
 
-    if (typeof window["metroCounterSetup"] !== undefined) {
-        Metro.counterSetup(window["metroCounterSetup"]);
+    if (typeof globalThis["metroCounterSetup"] !== undefined) {
+        Metro.counterSetup(globalThis["metroCounterSetup"]);
     }
 
     Metro.Component('counter', {

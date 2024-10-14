@@ -14,8 +14,8 @@
         GravatarDefaultConfig = $.extend({}, GravatarDefaultConfig, options);
     };
 
-    if (typeof window["metroGravatarSetup"] !== undefined) {
-        Metro.gravatarSetup(window["metroGravatarSetup"]);
+    if (typeof globalThis["metroGravatarSetup"] !== undefined) {
+        Metro.gravatarSetup(globalThis["metroGravatarSetup"]);
     }
 
     Metro.Component('gravatar', {

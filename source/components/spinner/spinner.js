@@ -36,8 +36,8 @@
         SpinnerDefaultConfig = $.extend({}, SpinnerDefaultConfig, options);
     };
 
-    if (typeof window["metroSpinnerSetup"] !== undefined) {
-        Metro.spinnerSetup(window["metroSpinnerSetup"]);
+    if (typeof globalThis["metroSpinnerSetup"] !== undefined) {
+        Metro.spinnerSetup(globalThis["metroSpinnerSetup"]);
     }
 
     Metro.Component('spinner', {

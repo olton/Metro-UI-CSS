@@ -14,8 +14,8 @@
         ViewportCheckDefaultConfig = $.extend({}, ViewportCheckDefaultConfig, options);
     };
 
-    if (typeof window["metroViewportCheckSetup"] !== undefined) {
-        Metro.viewportCheckSetup(window["metroViewportCheckSetup"]);
+    if (typeof globalThis["metroViewportCheckSetup"] !== undefined) {
+        Metro.viewportCheckSetup(globalThis["metroViewportCheckSetup"]);
     }
 
     Metro.Component('viewport-check', {
@@ -39,7 +39,7 @@
         _createEvents: function(){
             var that = this, elem = this.elem;
 
-            $(window).on(Metro.events.scroll, function(){
+            $(globalThis).on(Metro.events.scroll, function(){
                 var oldState = that.inViewport;
 
                 that.inViewport = Utils.inViewport(elem);
@@ -63,7 +63,7 @@
         },
 
         destroy: function(){
-            $(window).off(Metro.events.scroll, {ns: this.id});
+            $(globalThis).off(Metro.events.scroll, {ns: this.id});
 
             return this.element;
         }

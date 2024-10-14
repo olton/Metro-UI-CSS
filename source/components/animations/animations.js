@@ -344,7 +344,7 @@
         }
     };
 
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.Animations = Metro.animations;
+    if (globalThis.METRO_GLOBAL_COMMON === true) {
+        globalThis.Animations = Metro.animations;
     }
 }(Metro, m4q));

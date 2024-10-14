@@ -42,8 +42,8 @@
         CubeDefaultConfig = $.extend({}, CubeDefaultConfig, options);
     };
 
-    if (typeof window["metroCubeSetup"] !== undefined) {
-        Metro.cubeSetup(window["metroCubeSetup"]);
+    if (typeof globalThis["metroCubeSetup"] !== undefined) {
+        Metro.cubeSetup(globalThis["metroCubeSetup"]);
     }
 
     Metro.cubeDefaultRules = [
@@ -263,13 +263,13 @@
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
 
-            $(window).on(Metro.events.blur, function(){
+            $(globalThis).on(Metro.events.blur, function(){
                 if (o.stopOnBlur === true && that.running === true) {
                     that._stop();
                 }
             }, {ns: element.attr("id")});
 
-            $(window).on(Metro.events.focus, function(){
+            $(globalThis).on(Metro.events.focus, function(){
                 if (o.stopOnBlur === true && that.running === false) {
                     that._start();
                 }
@@ -450,8 +450,8 @@
             clearInterval(this.interval);
             this.interval = null;
 
-            $(window).off(Metro.events.blur, {ns: element.attr("id")});
-            $(window).off(Metro.events.focus,{ns: element.attr("id")});
+            $(globalThis).off(Metro.events.blur, {ns: element.attr("id")});
+            $(globalThis).off(Metro.events.focus,{ns: element.attr("id")});
 
             element.off(Metro.events.click, ".cube-cell");
 

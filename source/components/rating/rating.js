@@ -28,8 +28,8 @@
         RatingDefaultConfig = $.extend({}, RatingDefaultConfig, options);
     };
 
-    if (typeof window["metroRatingSetup"] !== undefined) {
-        Metro.ratingSetup(window["metroRatingSetup"]);
+    if (typeof globalThis["metroRatingSetup"] !== undefined) {
+        Metro.ratingSetup(globalThis["metroRatingSetup"]);
     }
 
     Metro.Component('rating', {

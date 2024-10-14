@@ -32,8 +32,8 @@
         MarqueeDefaultConfig = $.extend({}, MarqueeDefaultConfig, options);
     };
 
-    if (typeof window["metroMarqueeSetup"] !== undefined) {
-        Metro.marqueeSetup(window["metroMarqueeSetup"]);
+    if (typeof globalThis["metroMarqueeSetup"] !== undefined) {
+        Metro.marqueeSetup(globalThis["metroMarqueeSetup"]);
     }
 
     Metro.Component('marquee', {

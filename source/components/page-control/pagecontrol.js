@@ -30,8 +30,8 @@
         PageControlDefaultConfig = $.extend({}, PageControlDefaultConfig, options);
     };
 
-    if (typeof window["metroPageControlSetup"] !== undefined) {
-        Metro.pageControlSetup(window["metroPageControlSetup"]);
+    if (typeof globalThis["metroPageControlSetup"] !== undefined) {
+        Metro.pageControlSetup(globalThis["metroPageControlSetup"]);
     }
 
     Metro.Component('page-control', {
@@ -233,7 +233,7 @@
                 that._fireEvent('append-button-click', {tab})
             })
 
-            $(window).on("resize", (e)=>{
+            $(globalThis).on("resize", (e)=>{
                 this.organizeTabs()
             })
         },

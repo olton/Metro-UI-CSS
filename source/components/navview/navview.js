@@ -22,8 +22,8 @@
         NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
     };
 
-    if (typeof window["metroNavViewSetup"] !== undefined) {
-        Metro.navViewSetup(window["metroNavViewSetup"]);
+    if (typeof globalThis["metroNavViewSetup"] !== undefined) {
+        Metro.navViewSetup(globalThis["metroNavViewSetup"]);
     }
 
     Metro.Component('nav-view', {
@@ -172,7 +172,7 @@
                 })
             }
 
-            $(window).on(Metro.events.resize, () => {
+            $(globalThis).on(Metro.events.resize, () => {
                 this._recalc();
 
                 if (!element.hasClass("handmade")) {
@@ -245,7 +245,7 @@
                 this.paneToggle.off(Metro.events.click);
             }
 
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             element.remove();
         }

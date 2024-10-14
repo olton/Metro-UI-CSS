@@ -25,8 +25,8 @@
         ListViewDefaultConfig = $.extend({}, ListViewDefaultConfig, options);
     };
 
-    if (typeof window["metroListViewSetup"] !== undefined) {
-        Metro.listViewSetup(window["metroListViewSetup"]);
+    if (typeof globalThis["metroListViewSetup"] !== undefined) {
+        Metro.listViewSetup(globalThis["metroListViewSetup"]);
     }
 
     Metro.Component('listview', {
@@ -188,7 +188,7 @@
                 var href = $(this).attr("href");
 
                 if (href) {
-                    window.location.href = href;
+                    globalThis.location.href = href;
                     return;
                 }
 

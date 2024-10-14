@@ -35,8 +35,8 @@
         PanelDefaultConfig = $.extend({}, PanelDefaultConfig, options);
     };
 
-    if (typeof window["metroPanelSetup"] !== undefined) {
-        Metro.panelSetup(window["metroPanelSetup"]);
+    if (typeof globalThis["metroPanelSetup"] !== undefined) {
+        Metro.panelSetup(globalThis["metroPanelSetup"]);
     }
 
     Metro.Component('panel', {

@@ -26,8 +26,8 @@
         CheckboxThreeStateDefaultConfig = $.extend({}, CheckboxThreeStateDefaultConfig, options);
     };
 
-    if (typeof window["metroCheckboxThreeStateSetup"] !== undefined) {
-        Metro.metroCheckboxThreeStateSetup(window["metroCheckboxThreeStateSetup"]);
+    if (typeof globalThis["metroCheckboxThreeStateSetup"] !== undefined) {
+        Metro.metroCheckboxThreeStateSetup(globalThis["metroCheckboxThreeStateSetup"]);
     }
 
     Metro.Component('checkbox-three-state', {

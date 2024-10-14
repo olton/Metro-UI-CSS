@@ -30,8 +30,8 @@
         SplitterDefaultConfig = $.extend({}, SplitterDefaultConfig, options);
     };
 
-    if (typeof window["metroSplitterSetup"] !== "undefined") {
-        Metro.splitterSetup(window["metroSplitterSetup"]);
+    if (typeof globalThis["metroSplitterSetup"] !== "undefined") {
+        Metro.splitterSetup(globalThis["metroSplitterSetup"]);
     }
 
     Metro.Component('splitter', {
@@ -148,7 +148,7 @@
                     nextBlock: next_block[0]
                 });
 
-                $(window).on(Metro.events.moveAll, function(e){
+                $(globalThis).on(Metro.events.moveAll, function(e){
                     var pos = Utils.getCursorPosition(element[0], e);
                     var new_pos;
 
@@ -171,7 +171,7 @@
 
                 }, {ns: that.id});
 
-                $(window).on(Metro.events.stopAll, function(e){
+                $(globalThis).on(Metro.events.stopAll, function(e){
                     var cur_pos;
 
                     prev_block.removeClass("stop-pointer");
@@ -181,8 +181,8 @@
 
                     gutter.removeClass("active");
 
-                    $(window).off(Metro.events.moveAll,{ns: that.id});
-                    $(window).off(Metro.events.stopAll,{ns: that.id});
+                    $(globalThis).off(Metro.events.moveAll,{ns: that.id});
+                    $(globalThis).off(Metro.events.stopAll,{ns: that.id});
 
                     cur_pos = Utils.getCursorPosition(element[0], e);
 
@@ -196,7 +196,7 @@
                 }, {ns: that.id})
             }, {passive: true});
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 var gutter = element.children(".gutter");
                 var prev_block = gutter.prev(".split-block");
                 var next_block = gutter.next(".split-block");

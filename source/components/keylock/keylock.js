@@ -29,8 +29,8 @@
         KeylockDefaultConfig = $.extend({}, KeylockDefaultConfig, options);
     };
 
-    if (typeof window["metroKeylockSetup"] !== undefined) {
-        Metro.keylockSetup(window["metroKeylockSetup"]);
+    if (typeof globalThis["metroKeylockSetup"] !== undefined) {
+        Metro.keylockSetup(globalThis["metroKeylockSetup"]);
     }
 
     Metro.Component('keylock', {

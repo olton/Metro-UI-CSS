@@ -37,7 +37,8 @@
     "deploy": "node deploy.cjs",
     "deploy:dev": "node deploy-dev.cjs",
     "pub": "npm publish --access public",
-    "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html'"
+    "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html'",
+    "test:abc": "easytest --include='abc/accordion.test.js' --coverage --verbose --dom --errors"
   },
   "browserslist": [
     "last 2 versions",
@@ -47,8 +48,8 @@
     "not kaios >= 0"
   ],
   "devDependencies": {
-    "@olton/easytest": "^0.37.0",
-    "@olton/esbuild-plugin-progress": "^0.1.0",
+    "@olton/easytest": "^0.38.0",
+    "@olton/esbuild-plugin-progress": "^0.3.0",
     "autoprefixer": "^10.4.20",
     "chalk": "^5.3.0",
     "cross-env": "^7.0.3",

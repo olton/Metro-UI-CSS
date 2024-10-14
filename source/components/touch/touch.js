@@ -26,8 +26,8 @@
         PHASE_END : "end",
         PHASE_CANCEL : "cancel",
         SUPPORTS_TOUCH : 'ontouchstart' in window,
-        SUPPORTS_POINTER_IE10 : window.navigator.msPointerEnabled && !window.navigator.pointerEnabled && !('ontouchstart' in window),
-        SUPPORTS_POINTER : (window.navigator.pointerEnabled || window.navigator.msPointerEnabled) && !('ontouchstart' in window),
+        SUPPORTS_POINTER_IE10 : globalThis.navigator.msPointerEnabled && !globalThis.navigator.pointerEnabled && !('ontouchstart' in globalThis),
+        SUPPORTS_POINTER : (globalThis.navigator.pointerEnabled || globalThis.navigator.msPointerEnabled) && !('ontouchstart' in globalThis),
         IN_TOUCH: "intouch"
     };
 
@@ -69,8 +69,8 @@
         TouchDefaultConfig = $.extend({}, TouchDefaultConfig, options);
     };
 
-    if (typeof window["metroTouchSetup"] !== undefined) {
-        Metro.touchSetup(window["metroTouchSetup"]);
+    if (typeof globalThis["metroTouchSetup"] !== undefined) {
+        Metro.touchSetup(globalThis["metroTouchSetup"]);
     }
 
     Metro.Component('touch', {

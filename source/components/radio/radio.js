@@ -18,8 +18,8 @@
         RadioDefaultConfig = $.extend({}, RadioDefaultConfig, options);
     };
 
-    if (typeof window["metroRadioSetup"] !== undefined) {
-        Metro.radioSetup(window["metroRadioSetup"]);
+    if (typeof globalThis["metroRadioSetup"] !== undefined) {
+        Metro.radioSetup(globalThis["metroRadioSetup"]);
     }
 
     Metro.Component('radio', {

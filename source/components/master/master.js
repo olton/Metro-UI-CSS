@@ -33,8 +33,8 @@
         MasterDefaultConfig = $.extend({}, MasterDefaultConfig, options);
     };
 
-    if (typeof window["metroMasterSetup"] !== undefined) {
-        Metro.masterSetup(window["metroMasterSetup"]);
+    if (typeof globalThis["metroMasterSetup"] !== undefined) {
+        Metro.masterSetup(globalThis["metroMasterSetup"]);
     }
 
     Metro.Component('master', {
@@ -179,7 +179,7 @@
                 }
             });
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 element.find(".pages").height(that.pages[that.currentIndex].outerHeight(true) + 2);
             }, {ns: this.id});
         },
@@ -379,7 +379,7 @@
 
             element.off(Metro.events.click, ".controls .prev");
             element.off(Metro.events.click, ".controls .next");
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             return element;
         }

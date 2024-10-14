@@ -293,11 +293,11 @@
             var html = $("html");
             var that = this;
 
-            if (window.METRO_BLUR_IMAGE) {
+            if (globalThis.METRO_BLUR_IMAGE) {
                 html.addClass("use-blur-image");
             }
 
-            if (window.METRO_SHOW_INFO) {
+            if (globalThis.METRO_SHOW_INFO) {
                 Metro.info(true);
             }
 
@@ -311,10 +311,10 @@
 
             Metro.utils.addCssRule(Metro.sheet, "*, *::before, *::after", "box-sizing: border-box;");
 
-            window.METRO_MEDIA = [];
+            globalThis.METRO_MEDIA = [];
             $.each(Metro.media_queries, function(key, query){
                 if (Metro.utils.media(query)) {
-                    window.METRO_MEDIA.push(Metro.media_mode[key]);
+                    globalThis.METRO_MEDIA.push(Metro.media_mode[key]);
                 }
             });
 
@@ -323,10 +323,10 @@
             Metro.initHotkeys(hotkeys);
             Metro.initWidgets(widgets, "init");
 
-            if (window.METRO_CLOAK_REMOVE !== "fade") {
+            if (globalThis.METRO_CLOAK_REMOVE !== "fade") {
                 $(".m4-cloak").removeClass("m4-cloak");
                 $(".cloak").removeClass("cloak");
-                $(window).fire("metro-initiated");
+                $(globalThis).fire("metro-initiated");
             } else {
                 $(".m4-cloak, .cloak").animate({
                     draw: {
@@ -336,7 +336,7 @@
                     onDone: function(){
                         $(".m4-cloak").removeClass("m4-cloak");
                         $(".cloak").removeClass("cloak");
-                        $(window).fire("metro-initiated");
+                        $(globalThis).fire("metro-initiated");
                     }
                 });
             }
@@ -435,13 +435,13 @@
 
             register(m4q);
 
-            if (window.useJQuery) {
+            if (globalThis.useJQuery) {
                 register(jQuery);
             }
         },
 
         pluginExists: function(name){
-            var $ = window.useJQuery ? jQuery : m4q;
+            var $ = globalThis.useJQuery ? jQuery : m4q;
             return typeof $.fn[normalizeComponentName(name)] === "function";
         },
 
@@ -520,7 +520,7 @@
         },
 
         $: function(){
-            return window.useJQuery ? jQuery : m4q;
+            return globalThis.useJQuery ? jQuery : m4q;
         },
 
         get$el: function(el){
@@ -729,18 +729,18 @@
         }
     };
 
-    $(window).on(Metro.events.resize, function(){
-        window.METRO_MEDIA = [];
+    $(globalThis).on(Metro.events.resize, function(){
+        globalThis.METRO_MEDIA = [];
         $.each(Metro.media_queries, function(key, query){
             if (Metro.utils.media(query)) {
-                window.METRO_MEDIA.push(Metro.media_mode[key]);
+                globalThis.METRO_MEDIA.push(Metro.media_mode[key]);
             }
         });
     });
 
-    window.Metro = Metro;
+    globalThis.Metro = Metro;
 
-    if (window.METRO_INIT ===  true) {
+    if (globalThis.METRO_INIT ===  true) {
         $(function(){
             Metro.init()
         });

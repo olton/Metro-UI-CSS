@@ -69,7 +69,7 @@
 
                 if (el.is("a")) {
                     if (href && href.trim() !== "#") {
-                        window.location.href = href;
+                        globalThis.location.href = href;
                     }
                 }
 
@@ -80,7 +80,7 @@
 
     $.fn.hotkey = bindKey;
 
-    if (window.METRO_JQUERY && window.jquery_present) {
+    if (globalThis.METRO_JQUERY && globalThis.jquery_present) {
         jQuery.fn.hotkey = bindKey;
     }
 
@@ -114,7 +114,7 @@
                 Utils.exec(fn);
             } else {
                 if (el.is("a") && href && href.length > 0 && href.trim() !== "#") {
-                    window.location.href = href;
+                    globalThis.location.href = href;
                 } else {
                     el[0].click();
                 }

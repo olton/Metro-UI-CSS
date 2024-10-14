@@ -21,8 +21,8 @@
         AppBarDefaultConfig = $.extend({}, AppBarDefaultConfig, options);
     };
 
-    if (typeof window["metroAppBarSetup"] !== undefined) {
-        Metro.appBarSetup(window["metroAppBarSetup"]);
+    if (typeof globalThis["metroAppBarSetup"] !== undefined) {
+        Metro.appBarSetup(globalThis["metroAppBarSetup"]);
     }
 
     Metro.Component('app-bar', {
@@ -107,7 +107,7 @@
                 }
             });
 
-            $(window).on(Metro.events.resize, function () {
+            $(globalThis).on(Metro.events.resize, function () {
 
                 if (o.expand !== true) {
                     if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
@@ -185,7 +185,7 @@
         destroy: function () {
             var element = this.element;
             element.off(Metro.events.click, ".hamburger");
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
             return element;
         }
     });

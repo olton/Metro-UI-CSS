@@ -9,8 +9,8 @@ let ctx = await context({
     entryPoints: ['./source/default.js'],
     outfile: './lib/metro.js',
     bundle: true,
-    minify: production,
-    sourcemap: false,
+    minify: false,
+    sourcemap: true,
     plugins: [
         progress({
             text: 'Building Metro UI...',

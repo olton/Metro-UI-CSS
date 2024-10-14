@@ -149,8 +149,8 @@
         TableDefaultConfig = $.extend({}, TableDefaultConfig, options);
     };
 
-    if (typeof window["metroTableSetup"] !== undefined) {
-        Metro.tableSetup(window["metroTableSetup"]);
+    if (typeof globalThis["metroTableSetup"] !== undefined) {
+        Metro.tableSetup(globalThis["metroTableSetup"]);
     }
 
     Metro.Component('table', {
@@ -987,7 +987,7 @@
                 that.page(skipTo);
             });
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 if (o.horizontalScroll === true) {
                     if (!Utils.isNull(o.horizontalScrollStop) && Utils.mediaExist(o.horizontalScrollStop)) {
                         table_container.removeClass("horizontal-scroll");
@@ -2126,8 +2126,8 @@
             if (mode) {
                 ins.show(0, function(){
                     ins.css({
-                        top: ($(window).height()  - ins.outerHeight(true)) / 2 + pageYOffset,
-                        left: ($(window).width() - ins.outerWidth(true)) / 2 + pageXOffset
+                        top: ($(globalThis).height()  - ins.outerHeight(true)) / 2 + pageYOffset,
+                        left: ($(globalThis).width() - ins.outerWidth(true)) / 2 + pageXOffset
                     }).data("open", true);
                 });
             } else {
@@ -2285,7 +2285,7 @@
             search_input.data("input").destroy();
             rows_select.data("select").destroy();
 
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             element.off(Metro.events.click, ".sortable-column");
 

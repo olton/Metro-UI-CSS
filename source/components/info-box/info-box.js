@@ -26,8 +26,8 @@
         InfoBoxDefaultConfig = $.extend({}, InfoBoxDefaultConfig, options);
     };
 
-    if (typeof window["metroInfoBoxSetup"] !== undefined) {
-        Metro.infoBoxSetup(window["metroInfoBoxSetup"]);
+    if (typeof globalThis["metroInfoBoxSetup"] !== undefined) {
+        Metro.infoBoxSetup(globalThis["metroInfoBoxSetup"]);
     }
 
     Metro.Component('info-box', {
@@ -98,7 +98,7 @@
                 height: o.height,
                 visibility: "hidden",
                 top: '100%',
-                left: ( $(window).width() - element.outerWidth() ) / 2
+                left: ( $(globalThis).width() - element.outerWidth() ) / 2
             });
 
             element.appendTo($('body'));
@@ -115,7 +115,7 @@
                 that.close();
             });
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 that.reposition();
             }, {ns: this.id});
         },
@@ -123,8 +123,8 @@
         _setPosition: function(){
             var element = this.element;
             element.css({
-                top: ( $(window).height() - element.outerHeight() ) / 2,
-                left: ( $(window).width() - element.outerWidth() ) / 2
+                top: ( $(globalThis).height() - element.outerHeight() ) / 2,
+                left: ( $(globalThis).width() - element.outerWidth() ) / 2
             });
         },
 
@@ -213,7 +213,7 @@
             var element = this.element;
 
             element.off("all");
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             return element;
         }

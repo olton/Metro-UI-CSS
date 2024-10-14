@@ -19,8 +19,8 @@
         HtmlContainerDefaultConfig = $.extend({}, HtmlContainerDefaultConfig, options);
     };
 
-    if (typeof window["metroHtmlContainerSetup"] !== undefined) {
-        Metro.htmlContainerSetup(window["metroHtmlContainerSetup"]);
+    if (typeof globalThis["metroHtmlContainerSetup"] !== undefined) {
+        Metro.htmlContainerSetup(globalThis["metroHtmlContainerSetup"]);
     }
 
     Metro.Component('html-container', {

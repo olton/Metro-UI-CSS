@@ -18,8 +18,8 @@
         TyperDefaultConfig = $.extend({}, TyperDefaultConfig, options);
     };
 
-    if (typeof window["metroTyperSetup"] !== undefined) {
-        Metro.typerSetup(window["metroTyperSetup"]);
+    if (typeof globalThis["metroTyperSetup"] !== undefined) {
+        Metro.typerSetup(globalThis["metroTyperSetup"]);
     }
 
     Metro.Component('typer', {

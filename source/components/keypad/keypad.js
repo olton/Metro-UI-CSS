@@ -44,8 +44,8 @@
         KeypadDefaultConfig = $.extend({}, KeypadDefaultConfig, options);
     };
 
-    if (typeof window["metroKeypadSetup"] !== undefined) {
-        Metro.keypadSetup(window["metroKeypadSetup"]);
+    if (typeof globalThis["metroKeypadSetup"] !== undefined) {
+        Metro.keypadSetup(globalThis["metroKeypadSetup"]);
     }
 
     Metro.Component('keypad', {

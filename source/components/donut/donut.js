@@ -26,8 +26,8 @@
         DonutDefaultConfig = $.extend({}, DonutDefaultConfig, options);
     };
 
-    if (typeof window["metroDonutSetup"] !== undefined) {
-        Metro.donutSetup(window["metroDonutSetup"]);
+    if (typeof globalThis["metroDonutSetup"] !== undefined) {
+        Metro.donutSetup(globalThis["metroDonutSetup"]);
     }
 
     Metro.Component('donut', {
@@ -93,7 +93,7 @@
         _addEvents: function(){
             var that = this;
 
-            $(window).on("resize", function(){
+            $(globalThis).on("resize", function(){
                 that._setElementSize();
                 that._draw();
                 that.val(that.value);

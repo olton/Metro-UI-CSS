@@ -15,8 +15,8 @@
         BottomSheetDefaultConfig = $.extend({}, BottomSheetDefaultConfig, options);
     };
 
-    if (typeof window["metroBottomSheetSetup"] !== undefined) {
-        Metro.bottomSheetSetup(window["metroBottomSheetSetup"]);
+    if (typeof globalThis["metroBottomSheetSetup"] !== undefined) {
+        Metro.bottomSheetSetup(globalThis["metroBottomSheetSetup"]);
     }
 
     Metro.Component('bottom-sheet', {
