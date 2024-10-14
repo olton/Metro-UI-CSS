@@ -16,4 +16,4 @@ export const banner = `
 `
 
 globalThis.__version__ = version;
-globalThis.__build_time__ = new Date().toLocaleString();
+globalThis.__build_time__ = '__BUILD_TIME__';

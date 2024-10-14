@@ -1,6 +1,7 @@
 import { build } from 'esbuild';
 import { lessLoader } from "esbuild-plugin-less";
 import progress from "@olton/esbuild-plugin-progress";
+import { replace } from "esbuild-plugin-replace";
 
 const production = process.env.MODE === "production"
 
@@ -15,7 +16,10 @@ await build({
             text: 'Building Metro UI...',
             succeedText: `Metro UI built successfully in %s ms!`
         }),
-        lessLoader()
+        lessLoader(),
+        replace({
+            '__BUILD_TIME__': new Date().toLocaleString()
+        })
     ],
 })
 
@@ -30,7 +34,10 @@ await build({
             text: 'Building Metro UI with icons...',
             succeedText: 'Metro UI with icons built successfully in %s ms!'
         }),
-        lessLoader()
+        lessLoader(),
+        replace({
+            '__BUILD_TIME__': new Date().toLocaleString()
+        })
     ],
 })
 
@@ -45,7 +52,10 @@ await build({
             text: 'Building Metro UI icons...',
             succeedText: 'Metro UI icons built successfully in %s ms!'
         }),
-        lessLoader()
+        lessLoader(),
+        replace({
+            '__BUILD_TIME__': new Date().toLocaleString()
+        })
     ],
 })
 
