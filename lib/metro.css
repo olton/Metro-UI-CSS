@@ -34014,6 +34014,14 @@ input[type=reset].loading .load-caption {
 .media-player .volume.active {
   background-color: rgba(111, 111, 111, 0.5);
 }
+.media-player .controls .button {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+          align-items: center;
+}
 .media-player .loop {
   -webkit-box-ordinal-group: 2;
           order: 1;
@@ -34194,7 +34202,8 @@ input[type=reset].loading .load-caption {
   .media-player .volume,
   .media-player .loop,
   .media-player .stop {
-    display: block;
+    display: -webkit-box;
+    display: flex;
   }
 }
 
@@ -52254,6 +52263,13 @@ body.vegas-container > .vegas-slide {
   }
 }
 
+.video-player {
+    .controls {
+        .button {
+            border: none;
+        }
+    }
+}
 .window {
   display: -webkit-box;
   display: flex;

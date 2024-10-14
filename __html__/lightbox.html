@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Lightbox - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .lightbox-container {
+            display: flex;
+            flex-flow: row wrap;
+
+            img {
+                width: 200px;
+                aspect-ratio: 1 / 1;
+            }
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+    <div class="container">
+        <h1>Lightbox test page</h1>
+
+        <div class="example" id="example-1">
+            <div class="lightbox-container" data-role="lightbox" data-cls-close="bg-red fg-white" data-icon-close="<span class='mif-cross'>">
+                <img src="./images/lion.webp" data-original="./images/lion.webp" alt="Image 1">
+                <img src="./images/panther.webp" data-original="./images/panther.webp" alt="Image 2">
+                <img src="./images/puma.webp" data-original="./images/puma.webp" alt="Image 3">
+                <img src="./images/tiger.webp" data-original="./images/tiger.webp" alt="Image 4">
+            </div>
+        </div>
+    </div>
+
+<script src="../lib/metro.js"></script>
+<script>
+</script>
+</body>
+</html>

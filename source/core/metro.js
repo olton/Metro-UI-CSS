@@ -20,7 +20,7 @@
     var Metro = {
 
         version: "5.0.12",
-        build_time: "02.10.2024, 18:15:13",
+        build_time: "10.10.2024, 20:24:21",
         buildNumber: 0,
         isTouchable: isTouch,
         fullScreenEnabled: document.fullscreenEnabled,
@@ -200,7 +200,7 @@
         defaults: {},
 
         info: function(){
-            if (typeof globalThis["METRO_DISABLE_LIB_INFO"] === 'undefined') {
+            if (typeof globalThis["METRO_LIB_INFO"] !== 'undefined') {
                 console.info(`%c METRO UI %c v${Metro.version} %c ${Metro.build_time} `, "color: pink; font-weight: bold; background: #800000", "color: white; background: darkgreen", "color: white; background: #0080fe;")
 
                 if (globalThis.$ && $.info) $.info()

@@ -108,6 +108,14 @@
         }
     }
 
+    .controls {
+        .button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
     .loop {
         order: 1;
         display: none;
@@ -242,7 +250,7 @@
 @media screen and (min-width: @sm){
     .media-player {
         .volume, .loop, .stop {
-            display: block;
+            display: flex;
         }
     }
 }

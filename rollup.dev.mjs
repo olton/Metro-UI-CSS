@@ -10,6 +10,14 @@ const production = process.env.NODE_ENV === "production",
     sourcemap = !production, dev = !production
 
 const banner = `
+/*
+███╗   ███╗███████╗████████╗██████╗  ██████╗     ██╗   ██╗██╗
+████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██║   ██║██║
+██╔████╔██║█████╗     ██║   ██████╔╝██║   ██║    ██║   ██║██║
+██║╚██╔╝██║██╔══╝     ██║   ██╔══██╗██║   ██║    ██║   ██║██║
+██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝    ╚██████╔╝██║
+╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝      ╚═════╝ ╚═╝                                                             
+*/
 /*!
  * Metro UI v${pkg.version} - Web Components Library  (https://metroui.org.ua)
  * Copyright 2012-${new Date().getFullYear()} by Serhii Pimenov
