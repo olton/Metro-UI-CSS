@@ -1,5 +1,13 @@
 # Changelog
 
+### 5.0.12
++ [x] Update components for themes
++ [x] Update NavView (save compact state)
++ [x] Update sizing css, added `h-10, h-66, h-80, h-90`
++ [x] Improve Spinner button hold event 
++ [x] Fix Calendar duplicate day 27 for october
+
+
 ### 5.0.11
 + [x] Fix G.number()
 + [x] Bugs fixes

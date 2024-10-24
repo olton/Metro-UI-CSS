@@ -6,14 +6,14 @@
         spinnerDeferred: 0,
         label: "",
         step: 1,
-        plusIcon: "<span class='default-icon-plus'></span>",
-        minusIcon: "<span class='default-icon-minus'></span>",
+        plusIcon: "+",
+        minusIcon: "-",
         buttonsPosition: "default",
         defaultValue: 0,
         minValue: null,
         maxValue: null,
         fixed: 0,
-        repeatThreshold: 1000,
+        repeatThreshold: 2000,
         hideCursor: false,
         clsSpinner: "",
         clsSpinnerInput: "",
@@ -106,9 +106,9 @@
             var that = this, element = this.element, o = this.options;
             var spinner = element.closest(".spinner");
             var spinner_buttons = spinner.find(".spinner-button");
-            var value;
+            var value, repeat_timer;
 
-            var spinnerButtonClick = function(plus, threshold){
+            var spinnerButtonClick = function(plus){
                 var events = [plus ? "plus-click" : "minus-click", plus ? "arrow-up" : "arrow-down", "button-click", "arrow-click"];
                 var curr = +element.val();
                 var val = +element.val();
@@ -128,13 +128,23 @@
                     elementVal: element.val(),
                     button: plus ? "plus" : "minus"
                 });
-
-                setTimeout(function(){
-                    if (that.repeat_timer) {
-                        spinnerButtonClick(plus, 100);
-                    }
-                }, threshold);
             };
+
+            spinner.on(Metro.events.startAll, ".spinner-button", function(e){
+                var plus = $(this).hasClass("spinner-button-plus");
+                repeat_timer = setInterval(function(){
+                    spinnerButtonClick(plus);
+                }, 100)
+            }, {passive: true});
+
+            spinner.on(Metro.events.stopAll, ".spinner-button", function(e){
+                clearInterval(repeat_timer)
+            }, {passive: true});
+
+            spinner.on(Metro.events.click, ".spinner-button", function(e){
+                var plus = $(this).hasClass("spinner-button-plus");
+                spinnerButtonClick(plus);
+            }, {passive: true});
 
             spinner.on(Metro.events.click, function(e){
                 $(".focused").removeClass("focused");
@@ -142,53 +152,6 @@
 
                 e.preventDefault();
                 e.stopPropagation();
-            });
-
-            spinner_buttons.on(Metro.events.startAll, function(e){
-                var plus = $(this).closest(".spinner-button").hasClass("spinner-button-plus");
-
-                if (that.repeat_timer) return ;
-
-                that.repeat_timer = true;
-                spinnerButtonClick(plus, o.repeatThreshold);
-
-                // e.preventDefault();
-            }, {passive: true});
-
-            spinner_buttons.on(Metro.events.stopAll, function(){
-                that.repeat_timer = false;
-            });
-
-            element.on(Metro.events.keydown, function(e){
-                if (e.keyCode === Metro.keyCode.UP_ARROW || e.keyCode === Metro.keyCode.DOWN_ARROW) {
-
-                    if (that.repeat_timer) return ;
-
-                    that.repeat_timer = true;
-                    spinnerButtonClick(e.keyCode === Metro.keyCode.UP_ARROW, o.repeatThreshold);
-
-                } else {
-                    var key = e.key;
-                    if (key === "Backspace" || key === "Delete" || key === "ArrowLeft" || key === "ArrowRight" ) {
-                        //
-                    } else
-                    if (isNaN(key) || parseInt(key) < 0 && parseInt(key) > 9) {
-                        e.preventDefault();
-                    }
-
-                    value = parseInt(this.value);
-                }
-            });
-
-            element.on(Metro.events.keyup, function(){
-                var val = parseInt(this.value);
-                if ((o.minValue && val < o.minValue) || (o.maxValue && val > o.maxValue)) {
-                    this.value = value;
-                }
-            });
-
-            spinner.on(Metro.events.keyup, function(){
-                that.repeat_timer = false;
             });
         },
 

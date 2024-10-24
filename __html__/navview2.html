@@ -22,7 +22,7 @@
 </nav>
 
     <div class="example" style="height: calc(100vh - 50px)">
-        <div id="navview" data-role="navview" data-compact="md" data-expand="lg" data-toggle="#pane-toggle" data-active-state="true" class="compacted js-compact">
+        <div id="navview" data-role="navview" data-save-state="true" data-expand-point="lg" data-toggle="#pane-toggle" data-active-state="true">
             <nav class="navview-pane">
                 <button class="pull-button">
                     <span class="mif-menu"></span>
@@ -116,7 +116,7 @@
                     Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                     Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
                 </p>
-                <button onclick="Metro.getPlugin('#navview', 'navview').pullClick(this)" class="button">Close menu</button>
+                <button onclick="Metro.getPlugin('#navview', 'navview').toggle(this)" class="button">Close menu</button>
 
             </div>
         </div>

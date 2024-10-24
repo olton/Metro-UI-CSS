@@ -1,6 +1,9 @@
 (function($) {
     'use strict';
 
+    globalThis.__version__ = '__VERSION__';
+    globalThis.__build_time__ = '__BUILD_TIME__';
+
     var meta_init = $.meta('metro4:init').attr("content");
     var meta_locale = $.meta('metro4:locale').attr("content");
     var meta_week_start = $.meta('metro4:week_start').attr("content");

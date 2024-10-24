@@ -1,5 +1,3 @@
-import "./banner.js"
-import "./reset/index.js"
 import "./datetime/index.js"
 import "./string/index.js"
 import "./m4q/index.js"

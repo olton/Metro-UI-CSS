@@ -1,12 +1,8 @@
-import {beforeAll, beforeEach, describe, it, expect, DOM, build} from "@olton/easytest";
-
-beforeAll(() => {
-    DOM.flash()
-    DOM.js.fromFile('./lib/metro.js')
-})
+import {beforeEach, describe, it, expect, DOM} from "@olton/easytest";
+import "../lib/metro.js"
 
 beforeEach(() => {
-    DOM.html.fromString(`
+    DOM.html(`
         <div id="activity"></div>
     `)
 })

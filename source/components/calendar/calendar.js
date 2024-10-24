@@ -710,7 +710,7 @@
 
             $.each(calendar['days'], function(i){
                 var day = this;
-                var date = datetime(day).addMinute(new Date().getTimezoneOffset()).align('day');
+                var date = datetime(day).addDay(1).align("day").addMinute(new Date().getTimezoneOffset());
                 var outsideDate = date.month() !== that.current.month;
 
                 if (o.showWeekNumber && i % 7 === 0) {

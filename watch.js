@@ -1,7 +1,10 @@
-import {context} from 'esbuild'
+import {build, context} from 'esbuild'
 import progress from "@olton/esbuild-plugin-progress";
+import autoprefixer from "@olton/esbuild-plugin-autoprefixer";
 import {lessLoader} from "esbuild-plugin-less";
 import {replace} from "esbuild-plugin-replace";
+import unlink from "@olton/esbuild-plugin-unlink";
+
 
 const production = process.env.MODE === "production"
 
@@ -17,10 +20,33 @@ let ctx = await context({
             succeedText: 'Metro UI built successfully in %s ms! Watching for changes...'
         }),
         lessLoader(),
+        autoprefixer(),
         replace({
             '__BUILD_TIME__': new Date().toLocaleString()
         })
     ],
 })
 
-await ctx.watch()
+let ctxIcons = await context({
+    entryPoints: ['./source/icons.js'],
+    outfile: './lib/icons.js',
+    bundle: true,
+    minify: production,
+    sourcemap: false,
+    plugins: [
+        progress({
+            text: 'Building Metro UI icons...',
+            succeedText: 'Metro UI icons built successfully in %s ms!'
+        }),
+        lessLoader(),
+        unlink({
+            files: ['./lib/icons.js']
+        })
+    ],
+})
+
+await Promise.all([
+    await ctx.watch(),
+    await ctxIcons.watch(),
+])
+
