@@ -14,8 +14,8 @@
         CookieDefaultConfig = $.extend({}, CookieDefaultConfig, options);
     };
 
-    if (typeof window["metroCookieSetup"] !== undefined) {
-        Metro.cookieSetup(window["metroCookieSetup"]);
+    if (typeof globalThis["metroCookieSetup"] !== undefined) {
+        Metro.cookieSetup(globalThis["metroCookieSetup"]);
     }
 
     Metro.cookie = {

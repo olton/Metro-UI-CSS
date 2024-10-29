@@ -24,8 +24,8 @@
         FileDefaultConfig = $.extend({}, FileDefaultConfig, options);
     };
 
-    if (typeof window["metroFileSetup"] !== undefined) {
-        Metro.fileSetup(window["metroFileSetup"]);
+    if (typeof globalThis["metroFileSetup"] !== undefined) {
+        Metro.fileSetup(globalThis["metroFileSetup"]);
     }
 
     Metro.Component('file', {

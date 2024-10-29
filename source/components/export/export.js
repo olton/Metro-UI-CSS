@@ -20,14 +20,14 @@
         },
 
         base64: function (data) {
-            return window.btoa(unescape(encodeURIComponent(data)));
+            return globalThis.btoa(unescape(encodeURIComponent(data)));
         },
 
         b64toBlob: function (b64Data, contentType, sliceSize) {
             contentType = contentType || '';
             sliceSize = sliceSize || 512;
 
-            var byteCharacters = window.atob(b64Data);
+            var byteCharacters = globalThis.atob(b64Data);
             var byteArrays = [];
 
             var offset;
@@ -40,7 +40,7 @@
                     byteNumbers[i] = slice.charCodeAt(i);
                 }
 
-                var byteArray = new window.Uint8Array(byteNumbers);
+                var byteArray = new globalThis.Uint8Array(byteNumbers);
 
                 byteArrays.push(byteArray);
             }
@@ -100,11 +100,11 @@
 
             blob = this.b64toBlob(data, contentType);
 
-            url = window.URL.createObjectURL(blob);
+            url = globalThis.URL.createObjectURL(blob);
             anchor.href = url;
             anchor.download = filename || Utils.elementId("download");
             anchor.click();
-            window.URL.revokeObjectURL(url);
+            globalThis.URL.revokeObjectURL(url);
             document.body.removeChild(anchor);
             return true;
         },
@@ -137,7 +137,7 @@
 
     Metro.export = Export.init();
 
-    if (window.METRO_GLOBAL_COMMON === true) {
-        window.Export = Metro.export;
+    if (globalThis.METRO_GLOBAL_COMMON === true) {
+        globalThis.Export = Metro.export;
     }
 }(Metro, m4q));

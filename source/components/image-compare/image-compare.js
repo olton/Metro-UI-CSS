@@ -14,8 +14,8 @@
         ImageCompareDefaultConfig = $.extend({}, ImageCompareDefaultConfig, options);
     };
 
-    if (typeof window["metroImageCompareSetup"] !== undefined) {
-        Metro.imageCompareSetup(window["metroImageCompareSetup"]);
+    if (typeof globalThis["metroImageCompareSetup"] !== undefined) {
+        Metro.imageCompareSetup(globalThis["metroImageCompareSetup"]);
     }
 
     Metro.Component('image-compare', {
@@ -121,7 +121,7 @@
                 }, {ns: that.id})
             });
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 var element_width = element.width(), element_height;
 
                 if (o.width !== "100%") {
@@ -167,7 +167,7 @@
             var element = this.element;
 
             element.off(Metro.events.start);
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             return element;
         }

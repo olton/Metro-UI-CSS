@@ -48,8 +48,8 @@
         StreamerDefaultConfig = $.extend({}, StreamerDefaultConfig, options);
     };
 
-    if (typeof window["metroStreamerSetup"] !== undefined) {
-        Metro.streamerSetup(window["metroStreamerSetup"]);
+    if (typeof globalThis["metroStreamerSetup"] !== undefined) {
+        Metro.streamerSetup(globalThis["metroStreamerSetup"]);
     }
 
     Metro.Component('streamer', {
@@ -419,16 +419,16 @@
             var that = this, element = this.element, o = this.options;
 
             function disableScroll() {
-                var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                var scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+                var scrollTop = globalThis.pageYOffset || document.documentElement.scrollTop;
+                var scrollLeft = globalThis.pageXOffset || document.documentElement.scrollLeft;
 
-                window.onscroll = function() {
-                    window.scrollTo(scrollLeft, scrollTop);
+                globalThis.onscroll = function() {
+                    globalThis.scrollTo(scrollLeft, scrollTop);
                 };
             }
 
             function enableScroll() {
-                window.onscroll = function() {};
+                globalThis.onscroll = function() {};
             }
 
             element.off(Metro.events.click, ".stream-event").on(Metro.events.click, ".stream-event", function(e){
@@ -486,7 +486,7 @@
                             if (o.closed === true || event.data("closed") === true) {
                                 var target = event.data("target");
                                 if (target) {
-                                    window.location.href = target;
+                                    globalThis.location.href = target;
                                 }
                             }
 
@@ -617,7 +617,7 @@
             var events = element.find(".stream-event");
             var a = [];
             var link;
-            var origin = window.location.href;
+            var origin = globalThis.location.href;
 
             $.each(events, function(){
                 var event = $(this);

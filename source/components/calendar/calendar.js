@@ -103,8 +103,8 @@
         CalendarDefaultConfig = $.extend({}, CalendarDefaultConfig, options);
     };
 
-    if (typeof window["metroCalendarSetup"] !== undefined) {
-        Metro.calendarSetup(window["metroCalendarSetup"]);
+    if (typeof globalThis["metroCalendarSetup"] !== undefined) {
+        Metro.calendarSetup(globalThis["metroCalendarSetup"]);
     }
 
     Metro.Component('calendar', {
@@ -256,7 +256,7 @@
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 if (o.wide !== true) {
                     if (!Utils.isNull(o.widePoint) && Utils.mediaExist(o.widePoint)) {
                         element.addClass("calendar-wide");
@@ -710,7 +710,7 @@
 
             $.each(calendar['days'], function(i){
                 var day = this;
-                var date = datetime(day).addMinute(new Date().getTimezoneOffset()).align('day');
+                var date = datetime(day).addDay(1).align("day").addMinute(new Date().getTimezoneOffset());
                 var outsideDate = date.month() !== that.current.month;
 
                 if (o.showWeekNumber && i % 7 === 0) {
@@ -1131,7 +1131,7 @@
                 element.data("ripple").destroy();
             }
 
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             return element;
         }

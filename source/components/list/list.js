@@ -73,8 +73,8 @@
         ListDefaultConfig = $.extend({}, ListDefaultConfig, options);
     };
 
-    if (typeof window["metroListSetup"] !== undefined) {
-        Metro.listSetup(window["metroListSetup"]);
+    if (typeof globalThis["metroListSetup"] !== undefined) {
+        Metro.listSetup(globalThis["metroListSetup"]);
     }
 
     Metro.Component('list', {

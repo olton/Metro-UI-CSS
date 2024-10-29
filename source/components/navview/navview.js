@@ -22,8 +22,8 @@
         NavigationViewDefaultConfig = $.extend({}, NavigationViewDefaultConfig, options);
     };
 
-    if (typeof window["metroNavViewSetup"] !== undefined) {
-        Metro.navViewSetup(window["metroNavViewSetup"]);
+    if (typeof globalThis["metroNavViewSetup"] !== undefined) {
+        Metro.navViewSetup(globalThis["metroNavViewSetup"]);
     }
 
     Metro.Component('nav-view', {
@@ -94,6 +94,12 @@
             if (o.initialView !== 'compact') {
                 element.addClass("expanded");
             } else {
+                element.addClass("compacted handmade");
+            }
+
+            const state = Metro.storage.getItem("navview-compacted");
+            if (state === true) {
+                element.removeClass("expanded");
                 element.addClass("compacted handmade");
             }
 
@@ -168,12 +174,16 @@
 
             if (this.paneToggle !== null) {
                 this.paneToggle.on(Metro.events.click, function(){
-                    that.pane.toggleClass("open");
+                    //that.pane.toggleClass("open");
                 })
             }
 
-            $(window).on(Metro.events.resize, () => {
+            $(globalThis).on(Metro.events.resize, () => {
                 this._recalc();
+
+                if (o.saveState === true && element.hasClass("compacted")) {
+                    return false;
+                }
 
                 if (!element.hasClass("handmade")) {
                     if (Metro.utils.isValue(o.expandPoint) && Metro.utils.mediaExist(o.expandPoint)) {
@@ -196,8 +206,10 @@
             element.toggleClass("handmade");
 
             if (element.hasClass("compacted")) {
+                Metro.storage.setItem("navview-compacted", true);
                 Metro.utils.exec(o.onPaneClose, null, this)
             } else {
+                Metro.storage.setItem("navview-compacted", false);
                 Metro.utils.exec(o.onPaneOpen, null, this)
             }
         },
@@ -230,6 +242,13 @@
             this._recalc()
         },
 
+        expand: function(){
+            const element = this.element, o = this.options;
+            element.addClass("expanded")
+            element.removeClass("compacted handmade")
+            this._recalc()
+        },
+
         /* eslint-disable-next-line */
         changeAttribute: function(attributeName){
         },
@@ -245,7 +264,7 @@
                 this.paneToggle.off(Metro.events.click);
             }
 
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             element.remove();
         }

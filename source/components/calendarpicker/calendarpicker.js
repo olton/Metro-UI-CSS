@@ -40,8 +40,8 @@
         CalendarPickerDefaultConfig = $.extend({}, CalendarPickerDefaultConfig, options);
     };
 
-    if (typeof window["metroCalendarPickerSetup"] !== undefined) {
-        Metro.calendarPickerSetup(window["metroCalendarPickerSetup"]);
+    if (typeof globalThis["metroCalendarPickerSetup"] !== undefined) {
+        Metro.calendarPickerSetup(globalThis["metroCalendarPickerSetup"]);
     }
 
     Metro.Component('calendar-picker', {
@@ -340,7 +340,7 @@
             var cal_plugin = Metro.getPlugin(cal[0], 'calendar');
             var calendar = this.calendar;
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 if (o.dialogMode !== true) {
                     if (Utils.media("(max-width: " + o.dialogPoint + "px)")) {
                         container.addClass("dialog-mode");
@@ -555,7 +555,7 @@
             var container = element.parent();
             var clear = container.find(".input-clear-button");
 
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
             clear.off(Metro.events.click);
             container.off(Metro.events.click, "button, input");
             element.off(Metro.events.blur);

@@ -27,8 +27,8 @@
         TabsDefaultConfig = $.extend({}, TabsDefaultConfig, options);
     };
 
-    if (typeof window["metroTabsSetup"] !== undefined) {
-        Metro.tabsSetup(window["metroTabsSetup"]);
+    if (typeof globalThis["metroTabsSetup"] !== undefined) {
+        Metro.tabsSetup(globalThis["metroTabsSetup"]);
     }
 
     Metro.Component('tabs', {
@@ -110,7 +110,7 @@
             var that = this, element = this.element, o = this.options;
             var container = element.parent();
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
 
                 if (o.tabsPosition.includes("vertical")) {
                     return ;
@@ -169,11 +169,11 @@
                 }
             });
 
-            $(window).on("hashchange", function(e){
+            $(globalThis).on("hashchange", function(e){
                 var hash, tab;
 
                 if (o.updateUri) {
-                    hash = window.location.hash;
+                    hash = globalThis.location.hash;
                     tab = that._findTabByTarget(hash)
                     that._open($(tab))
                 }
@@ -244,7 +244,7 @@
 
             if (target !== "#" && target[0] === "#") {
                 if (o.updateUri) {
-                    window.location.hash = target
+                    globalThis.location.hash = target
                 }
                 $(target).show();
             }
@@ -315,7 +315,7 @@
             var element = this.element;
             var container = element.parent();
 
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             container.off(Metro.events.click, ".hamburger, .expand-title");
 

@@ -45,8 +45,8 @@
         DialogDefaultConfig = $.extend({}, DialogDefaultConfig, options);
     };
 
-    if (typeof window["metroDialogSetup"] !== undefined) {
-        Metro.dialogSetup(window["metroDialogSetup"]);
+    if (typeof globalThis["metroDialogSetup"] !== undefined) {
+        Metro.dialogSetup(globalThis["metroDialogSetup"]);
     }
 
     Metro.Component('dialog', {
@@ -135,7 +135,7 @@
                 height: o.height,
                 visibility: "hidden",
                 top: '100%',
-                left: ( $(window).width() - element.outerWidth() ) / 2
+                left: ( $(globalThis).width() - element.outerWidth() ) / 2
             });
 
             element.addClass(o.clsDialog);
@@ -149,7 +149,7 @@
                 this.open();
             }
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 that.setPosition();
             }, {ns: this.id});
 
@@ -208,7 +208,7 @@
             var element = this.element, o = this.options;
             var top, bottom;
             if (o.toTop !== true && o.toBottom !== true) {
-                top = ( $(window).height() - element.outerHeight() ) / 2;
+                top = ( $(globalThis).height() - element.outerHeight() ) / 2;
                 if (top < 0) {
                     top = 0;
                 }
@@ -226,7 +226,7 @@
             element.css({
                 top: top,
                 bottom: bottom,
-                left: ( $(window).width() - element.outerWidth() ) / 2
+                left: ( $(globalThis).width() - element.outerWidth() ) / 2
             });
         },
 
@@ -324,7 +324,7 @@
 
             element.off(Metro.events.click, ".js-dialog-close");
             element.find(".button").off(Metro.events.click);
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             return element;
         }

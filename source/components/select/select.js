@@ -54,8 +54,8 @@
         SelectDefaultConfig = $.extend({}, SelectDefaultConfig, options);
     };
 
-    if (typeof window["metroSelectSetup"] !== undefined) {
-        Metro.selectSetup(window["metroSelectSetup"]);
+    if (typeof globalThis["metroSelectSetup"] !== undefined) {
+        Metro.selectSetup(globalThis["metroSelectSetup"]);
     }
 
     Metro.Component('select', {

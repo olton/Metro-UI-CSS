@@ -28,8 +28,8 @@
         DoubleSelectBoxDefaultConfig = $.extend({}, DoubleSelectBoxDefaultConfig, options);
     };
 
-    if (typeof window["metroDoubleSelectBoxSetup"] !== undefined) {
-        Metro.doubleSelectBoxSetup(window["metroDoubleSelectBoxSetup"]);
+    if (typeof globalThis["metroDoubleSelectBoxSetup"] !== undefined) {
+        Metro.doubleSelectBoxSetup(globalThis["metroDoubleSelectBoxSetup"]);
     }
 
     Metro.Component('double-select-box', {

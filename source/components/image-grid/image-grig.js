@@ -21,8 +21,8 @@
         ImageGridDefaultConfig = $.extend({}, ImageGridDefaultConfig, options);
     };
 
-    if (typeof window["metroImageGridSetup"] !== undefined) {
-        Metro.imageGridSetup(window["metroImageGridSetup"]);
+    if (typeof globalThis["metroImageGridSetup"] !== undefined) {
+        Metro.imageGridSetup(globalThis["metroImageGridSetup"]);
     }
 
     Metro.Component('image-grid', {

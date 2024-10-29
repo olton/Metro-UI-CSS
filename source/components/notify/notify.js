@@ -21,8 +21,8 @@
         NotifyDefaultConfig = $.extend({}, NotifyDefaultConfig, options);
     };
 
-    if (typeof window["metroNotifySetup"] !== undefined) {
-        Metro.notifySetup(window["metroNotifySetup"]);
+    if (typeof globalThis["metroNotifySetup"] !== undefined) {
+        Metro.notifySetup(globalThis["metroNotifySetup"]);
     }
 
     var Notify = {
@@ -118,7 +118,7 @@
                 var distance = Utils.isValue(options.distance) ? options.distance : o.distance;
 
                 if (distance === "max" || isNaN(distance)) {
-                    distance = $(window).height();
+                    distance = $(globalThis).height();
                 }
 
                 notify

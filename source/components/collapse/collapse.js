@@ -15,8 +15,8 @@
         CollapseDefaultConfig = $.extend({}, CollapseDefaultConfig, options);
     };
 
-    if (typeof window["metroCollapseSetup"] !== undefined) {
-        Metro.collapseSetup(window["metroCollapseSetup"]);
+    if (typeof globalThis["metroCollapseSetup"] !== undefined) {
+        Metro.collapseSetup(globalThis["metroCollapseSetup"]);
     }
 
     Metro.Component('collapse', {

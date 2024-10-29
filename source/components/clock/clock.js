@@ -20,8 +20,8 @@
         ClockDefaultConfig = $.extend({}, ClockDefaultConfig, options);
     };
 
-    if (typeof window["metroClockSetup"] !== undefined) {
-        Metro.clockSetup(window["metroClockSetup"]);
+    if (typeof globalThis["metroClockSetup"] !== undefined) {
+        Metro.clockSetup(globalThis["metroClockSetup"]);
     }
 
     Metro.Component('clock', {

@@ -17,8 +17,8 @@
         GradientBoxDefaultConfig = $.extend({}, GradientBoxDefaultConfig, options);
     };
 
-    if (typeof window["metroGradientBoxSetup"] !== undefined) {
-        Metro.gradientBoxSetup(window["metroGradientBoxSetup"]);
+    if (typeof globalThis["metroGradientBoxSetup"] !== undefined) {
+        Metro.gradientBoxSetup(globalThis["metroGradientBoxSetup"]);
     }
 
     Metro.Component('gradient-box', {

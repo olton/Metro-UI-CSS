@@ -48,8 +48,8 @@
         DoubleSliderDefaultConfig = $.extend({}, DoubleSliderDefaultConfig, options);
     };
 
-    if (typeof window["metroDoubleSliderSetup"] !== undefined) {
-        Metro.doubleSliderSetup(window["metroDoubleSliderSetup"]);
+    if (typeof globalThis["metroDoubleSliderSetup"] !== undefined) {
+        Metro.doubleSliderSetup(globalThis["metroDoubleSliderSetup"]);
     }
 
     Metro.Component('double-slider', {
@@ -196,7 +196,7 @@
                 });
             });
 
-            $(window).on(Metro.events.resize,function(){
+            $(globalThis).on(Metro.events.resize,function(){
                 that.val(that.valueMin, that.valueMax);
             }, {ns: that.id});
         },
@@ -428,7 +428,7 @@
             marker.off(Metro.events.keydown);
             marker.off(Metro.events.keyup);
             slider.off(Metro.events.click);
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             return element;
         }

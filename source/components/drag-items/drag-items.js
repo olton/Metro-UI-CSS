@@ -24,8 +24,8 @@
         DragItemsDefaultConfig = $.extend({}, DragItemsDefaultConfig, options);
     };
 
-    if (typeof window["metroDragItemsSetup"] !== undefined) {
-        Metro.dragItemsSetup(window["metroDragItemsSetup"]);
+    if (typeof globalThis["metroDragItemsSetup"] !== undefined) {
+        Metro.dragItemsSetup(globalThis["metroDragItemsSetup"]);
     }
 
     Metro.Component('drag-items', {

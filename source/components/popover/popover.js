@@ -23,8 +23,8 @@
         PopoverDefaultConfig = $.extend({}, PopoverDefaultConfig, options);
     };
 
-    if (typeof window["metroPopoverSetup"] !== undefined) {
-        Metro.popoverSetup(window["metroPopoverSetup"]);
+    if (typeof globalThis["metroPopoverSetup"] !== undefined) {
+        Metro.popoverSetup(globalThis["metroPopoverSetup"]);
     }
 
     Metro.Component('popover', {
@@ -84,7 +84,7 @@
                 });
             }
 
-            $(window).on(Metro.events.scroll, function(){
+            $(globalThis).on(Metro.events.scroll, function(){
                 if (that.popover !== null) that.setPosition();
             }, {ns: this.id});
         },
@@ -95,26 +95,26 @@
             if (o.popoverPosition === Metro.position.BOTTOM) {
                 popover.addClass('bottom');
                 popover.css({
-                    top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.popoverOffset,
-                    left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
+                    top: element.offset().top - $(globalThis).scrollTop() + element.outerHeight() + o.popoverOffset,
+                    left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(globalThis).scrollLeft()
                 });
             } else if (o.popoverPosition === Metro.position.RIGHT) {
                 popover.addClass('right');
                 popover.css({
-                    top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
-                    left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.popoverOffset
+                    top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(globalThis).scrollTop(),
+                    left: element.offset().left + element.outerWidth() - $(globalThis).scrollLeft() + o.popoverOffset
                 });
             } else if (o.popoverPosition === Metro.position.LEFT) {
                 popover.addClass('left');
                 popover.css({
-                    top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(window).scrollTop(),
-                    left: element.offset().left - size.width - $(window).scrollLeft() - o.popoverOffset
+                    top: element.offset().top + element.outerHeight()/2 - size.height/2 - $(globalThis).scrollTop(),
+                    left: element.offset().left - size.width - $(globalThis).scrollLeft() - o.popoverOffset
                 });
             } else {
                 popover.addClass('top');
                 popover.css({
-                    top: element.offset().top - $(window).scrollTop() - size.height - o.popoverOffset,
-                    left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(window).scrollLeft()
+                    top: element.offset().top - $(globalThis).scrollTop() - size.height - o.popoverOffset,
+                    left: element.offset().left + element.outerWidth()/2 - size.width/2  - $(globalThis).scrollLeft()
                 });
             }
         },
@@ -263,7 +263,7 @@
                 element.off(Metro.events.leave);
             }
 
-            $(window).off(Metro.events.scroll,{ns: this.id});
+            $(globalThis).off(Metro.events.scroll,{ns: this.id});
 
             return element;
         }

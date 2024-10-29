@@ -20,9 +20,6 @@ It's an independent project with its ongoing development made possible entirely 
 <a href="https://www.patreon.com/metroui">
 	<img src="https://c5.patreon.com/external/logo/become_a_patron_button@2x.png" height="38">
 </a>
-<a href="https://www.buymeacoffee.com/pimenov">
-	<img src="https://metroui.org.ua/images/buy-me-coffee2.png" height="38">
-</a>
 </p>
 <br>
 
@@ -47,7 +44,7 @@ It's an independent project with its ongoing development made possible entirely 
 
 ### License and Premium Features
 This project licensed under the **MIT** license. 
-In addition, **SUPPORT PACK** is available for an annual subscription on [https://korzh.com/](https://https://korzh.com/) and for a [Patreon Patrons](https://www.patreon.com/metroui).
+In addition, **SUPPORT PACK** is available for an annual subscription on [https://korzh.com/](https://https://korzh.com/).
 
 **SUPPORT PACK** includes an **Extra time for priority support** by email and other options.
 
@@ -84,10 +81,6 @@ Metro UI CSS 3.x you can find in a repo [Metro-UI-CSS-3](https://github.com/olto
 Metro UI CSS 2.x you can find in a repo [Metro-UI-CSS-2](https://github.com/olton/Metro-UI-CSS-2)     
 Metro UI CSS 0.x you can find in a repo [Metro-UI-CSS-095](https://github.com/olton/Metro-UI-CSS-095) 
 
- Documentation and Demo for V3: [metroui.org.ua/v3](https://metroui.org.ua/v3/).   
- Documentation and Demo for V2: [metroui.org.ua/v2](https://metroui.org.ua/v2/).   
- Documentation and Demo for V0: [metroui.org.ua/v0](https://metroui.org.ua/v0/).   
-
 ### Activities
 
 ![Alt](https://repobeats.axiom.co/api/embed/75c6aba3d69c314c78727354cc6082e916ad1297.svg "Repobeats analytics image")
@@ -100,4 +93,11 @@ You can read about credits [here](CREDITS.md)
 
 ---
 
-2012-2020 © Copyright by Serhii Pimenov. All Rights Reserved. Created by Serhii Pimenov.
+### Support my work
+You can support my work
++ [x] Patreon - https://www.patreon.com/metroui
++ [x] PayPal - serhii@pimenov.com.ua
+
+---
+
+2012-2024 © Copyright by Serhii Pimenov. All Rights Reserved. Created by Serhii Pimenov.

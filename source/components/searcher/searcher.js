@@ -11,8 +11,8 @@
         SearcherDefaultConfig = $.extend({}, SearcherDefaultConfig, options);
     };
 
-    if (typeof window["metroSearcherSetup"] !== undefined) {
-        Metro.searcherSetup(window["metroSearcherSetup"]);
+    if (typeof globalThis["metroSearcherSetup"] !== undefined) {
+        Metro.searcherSetup(globalThis["metroSearcherSetup"]);
     }
 
     Metro.Component('searcher', {

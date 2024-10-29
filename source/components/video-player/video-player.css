@@ -1,0 +1,7 @@
+.video-player {
+    .controls {
+        .button {
+            border: none;
+        }
+    }
+}

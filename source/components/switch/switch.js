@@ -22,8 +22,8 @@
         SwitchDefaultConfig = $.extend({}, SwitchDefaultConfig, options);
     };
 
-    if (typeof window["metroSwitchSetup"] !== undefined) {
-        Metro.switchSetup(window["metroSwitchSetup"]);
+    if (typeof globalThis["metroSwitchSetup"] !== undefined) {
+        Metro.switchSetup(globalThis["metroSwitchSetup"]);
     }
 
     Metro.Component('switch', {

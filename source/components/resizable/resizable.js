@@ -21,8 +21,8 @@
         ResizableDefaultConfig = $.extend({}, ResizableDefaultConfig, options);
     };
 
-    if (typeof window["metroResizableSetup"] !== undefined) {
-        Metro.resizableSetup(window["metroResizableSetup"]);
+    if (typeof globalThis["metroResizableSetup"] !== undefined) {
+        Metro.resizableSetup(globalThis["metroResizableSetup"]);
     }
 
     Metro.Component('resizable', {

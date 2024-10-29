@@ -13,7 +13,7 @@
         effect: effects[0],
         effectFunc: "linear",
         direction: "left", //left, right
-        duration: METRO_ANIMATION_DURATION,
+        duration: globalThis.METRO_ANIMATION_DURATION || 300,
         period: 5000,
         stopOnMouse: true,
 
@@ -58,8 +58,8 @@
         CarouselDefaultConfig = $.extend({}, CarouselDefaultConfig, options);
     };
 
-    if (typeof window["metroCarouselSetup"] !== undefined) {
-        Metro.carouselSetup(window["metroCarouselSetup"]);
+    if (typeof globalThis["metroCarouselSetup"] !== undefined) {
+        Metro.carouselSetup(globalThis["metroCarouselSetup"]);
     }
 
     Metro.Component('carousel', {
@@ -174,7 +174,7 @@
                     medias = o.height.substr(1).toArray("|");
                     $.each(medias, function(){
                         var media = this.toArray(",");
-                        if (window.matchMedia(media[0]).matches) {
+                        if (globalThis.matchMedia(media[0]).matches) {
                             if (["16/9", "21/9", "4/3"].indexOf(media[1]) > -1) {
                                 height = Utils.aspectRatioH(width, media[1]);
                             } else {
@@ -347,7 +347,7 @@
                 });
             });
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 that._resize();
             }, {ns: this.id});
         },
@@ -540,7 +540,7 @@
             }
 
             element.off(Metro.events.click, ".slide");
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             return element;
         }

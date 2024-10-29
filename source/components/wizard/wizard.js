@@ -41,8 +41,8 @@
         WizardDefaultConfig = $.extend({}, WizardDefaultConfig, options);
     };
 
-    if (typeof window["metroWizardSetup"] !== undefined) {
-        Metro.wizardSetup(window["metroWizardSetup"]);
+    if (typeof globalThis["metroWizardSetup"] !== undefined) {
+        Metro.wizardSetup(globalThis["metroWizardSetup"]);
     }
 
     Metro.Component('wizard', {
@@ -155,7 +155,7 @@
                 that.toPage(index);
             });
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 that._setHeight();
             }, {ns: this.id});
         },
@@ -301,7 +301,7 @@
             element.off(Metro.events.click, ".wizard-btn-next");
             element.off(Metro.events.click, ".wizard-btn-finish");
             element.off(Metro.events.click, ".complete");
-            $(window).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize,{ns: this.id});
 
             return element;
         }

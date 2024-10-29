@@ -20,8 +20,8 @@
         DraggableDefaultConfig = $.extend({}, DraggableDefaultConfig, options);
     };
 
-    if (typeof window["metroDraggableSetup"] !== undefined) {
-        Metro.draggableSetup(window["metroDraggableSetup"]);
+    if (typeof globalThis["metroDraggableSetup"] !== undefined) {
+        Metro.draggableSetup(globalThis["metroDraggableSetup"]);
     }
 
     Metro.Component('draggable', {

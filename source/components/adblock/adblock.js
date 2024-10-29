@@ -17,8 +17,8 @@
         AdblockDefaultConfig = $.extend({}, AdblockDefaultConfig, options);
     };
 
-    if (typeof window["metroAdblockSetup"] !== undefined) {
-        Metro.adblockSetup(window["metroAdblockSetup"]);
+    if (typeof globalThis["metroAdblockSetup"] !== undefined) {
+        Metro.adblockSetup(globalThis["metroAdblockSetup"]);
     }
 
     var Adblock = {
@@ -57,7 +57,7 @@
                     clearInterval(interval);
 
                     Utils.exec(o.onFishingDone);
-                    $(window).fire("fishing-done");
+                    $(globalThis).fire("fishing-done");
 
                     a.remove();
                 };
@@ -74,7 +74,7 @@
                 ) {
 
                     Utils.exec(Adblock.options.onAlert);
-                    $(window).fire("adblock-alert");
+                    $(globalThis).fire("adblock-alert");
 
                     if (Adblock.options.fireOnce === true) {
                         done();
@@ -95,7 +95,7 @@
             };
 
             Utils.exec(o.onFishingStart);
-            $(window).fire("fishing-start");
+            $(globalThis).fire("fishing-start");
 
             interval = setInterval(function(){
                 run();
@@ -109,7 +109,7 @@
 
     $(function(){
         Adblock.options = $.extend({}, AdblockDefaultConfig);
-        $(window).on("metro-initiated", function(){
+        $(globalThis).on("metro-initiated", function(){
             Adblock.bite();
         });
     });

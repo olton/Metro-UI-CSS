@@ -28,8 +28,8 @@
         TextareaDefaultConfig = $.extend({}, TextareaDefaultConfig, options);
     };
 
-    if (typeof window["metroTextareaSetup"] !== undefined) {
-        Metro.textareaSetup(window["metroTextareaSetup"]);
+    if (typeof globalThis["metroTextareaSetup"] !== undefined) {
+        Metro.textareaSetup(globalThis["metroTextareaSetup"]);
     }
 
     Metro.Component('textarea', {

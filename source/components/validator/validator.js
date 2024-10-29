@@ -270,8 +270,8 @@
         ValidatorDefaultConfig = $.extend({}, ValidatorDefaultConfig, options);
     };
 
-    if (typeof window["metroValidatorSetup"] !== undefined) {
-        Metro.validatorSetup(window["metroValidatorSetup"]);
+    if (typeof globalThis["metroValidatorSetup"] !== undefined) {
+        Metro.validatorSetup(globalThis["metroValidatorSetup"]);
     }
 
     Metro.Component('validator', {

@@ -38,8 +38,8 @@
         ColorSelectorDefaultConfig = $.extend({}, ColorSelectorDefaultConfig, options);
     };
 
-    if (typeof window["metroColorSelectorSetup"] !== undefined) {
-        Metro.colorSelectorSetup(window["metroColorSelectorSetup"]);
+    if (typeof globalThis["metroColorSelectorSetup"] !== undefined) {
+        Metro.colorSelectorSetup(globalThis["metroColorSelectorSetup"]);
     }
 
     Metro.Component('color-selector', {

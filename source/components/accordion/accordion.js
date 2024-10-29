@@ -30,8 +30,8 @@
         AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
     };
 
-    if (typeof window["metroAccordionSetup"] !== undefined) {
-        Metro.accordionSetup(window["metroAccordionSetup"]);
+    if (typeof globalThis["metroAccordionSetup"] !== undefined) {
+        Metro.accordionSetup(globalThis["metroAccordionSetup"]);
     }
 
     Metro.Component('accordion', {

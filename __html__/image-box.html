@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test ImageBox - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .image-box__landscape {
+            width: 640px;
+            height: 480px;
+        }
+
+        .image-box__portrait {
+            width: 480px;
+            height: 640px;
+        }
+
+        .button {
+            margin: 0 2px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<div class="container">
+    <h1 class="text-center mt-10">ImageBox example</h1>
+
+    <div class="d-flex flex-justify-center">
+        <div data-role="image-box" data-image="./images/lion.webp"></div>
+    </div>
+
+    <br>
+
+    <div class="d-flex flex-justify-center">
+        <button class="button" onclick="setImage('./images/lion.webp')">
+            Set image 1
+        </button>
+        <button class="button" onclick="setImage('./images/puma.webp')">
+            Set image 2
+        </button>
+        <button class="button" onclick="setImage('./images/panther.webp')">
+            Set image 3
+        </button>
+        <button class="button" onclick="setImage('./images/tiger.webp')">
+            Set image 4
+        </button>
+    </div>
+</div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    function setImage(n){
+        $("@image-box").attr("data-image", n);
+    }
+</script>
+</body>
+</html>

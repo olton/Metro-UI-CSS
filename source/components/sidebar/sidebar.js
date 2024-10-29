@@ -27,8 +27,8 @@
         SidebarDefaultConfig = $.extend({}, SidebarDefaultConfig, options);
     };
 
-    if (typeof window["metroSidebarSetup"] !== undefined) {
-        Metro.sidebarSetup(window["metroSidebarSetup"]);
+    if (typeof globalThis["metroSidebarSetup"] !== undefined) {
+        Metro.sidebarSetup(globalThis["metroSidebarSetup"]);
     }
 
     Metro.Component('sidebar', {
@@ -46,7 +46,7 @@
 
             this._createStructure();
             this._createEvents();
-            $(window).resize();
+            $(globalThis).resize();
             this._checkStatic();
 
             this._fireEvent("sidebar-create", {
@@ -120,7 +120,7 @@
             }
 
             if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-                $(window).on(Metro.events.resize,function(){
+                $(globalThis).on(Metro.events.resize,function(){
                     that._checkStatic();
                 }, {ns: this.id});
             }
@@ -243,7 +243,7 @@
             }
 
             if (o.static !== null && ["fs", "sm", "md", "lg", "xl", "xxl"].indexOf(o.static) > -1) {
-                $(window).off(Metro.events.resize, {ns: this.id});
+                $(globalThis).off(Metro.events.resize, {ns: this.id});
             }
 
             if (o.menuItemClick === true) {

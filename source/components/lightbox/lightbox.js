@@ -26,8 +26,8 @@
         LightboxDefaultConfig = $.extend({}, LightboxDefaultConfig, options);
     };
 
-    if (typeof window["metroLightboxSetup"] !== undefined) {
-        Metro.lightboxSetup(window["metroLightboxSetup"]);
+    if (typeof globalThis["metroLightboxSetup"] !== undefined) {
+        Metro.lightboxSetup(globalThis["metroLightboxSetup"]);
     }
 
     Metro.Component('lightbox', {

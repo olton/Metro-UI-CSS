@@ -21,8 +21,8 @@
         ThemeSwitcherDefaultConfig = $.extend({}, ThemeSwitcherDefaultConfig, options);
     };
 
-    if (typeof window["metroThemeSwitcherSetup"] !== undefined) {
-        Metro.themeSwitcherSetup(window["metroThemeSwitcherSetup"]);
+    if (typeof globalThis["metroThemeSwitcherSetup"] !== undefined) {
+        Metro.themeSwitcherSetup(globalThis["metroThemeSwitcherSetup"]);
     }
 
     Metro.Component('theme-switcher', {

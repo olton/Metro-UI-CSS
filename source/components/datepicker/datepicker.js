@@ -41,8 +41,8 @@
         DatePickerDefaultConfig = $.extend({}, DatePickerDefaultConfig, options);
     };
 
-    if (typeof window["metroDatePickerSetup"] !== undefined) {
-        Metro.datePickerSetup(window["metroDatePickerSetup"]);
+    if (typeof globalThis["metroDatePickerSetup"] !== undefined) {
+        Metro.datePickerSetup(globalThis["metroDatePickerSetup"]);
     }
 
     Metro.Component('date-picker', {

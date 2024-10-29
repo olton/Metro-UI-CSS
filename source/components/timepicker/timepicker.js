@@ -39,8 +39,8 @@
         TimePickerDefaultConfig = $.extend({}, TimePickerDefaultConfig, options);
     };
 
-    if (typeof window["metroTimePickerSetup"] !== undefined) {
-        Metro.timePickerSetup(window["metroTimePickerSetup"]);
+    if (typeof globalThis["metroTimePickerSetup"] !== undefined) {
+        Metro.timePickerSetup(globalThis["metroTimePickerSetup"]);
     }
 
     Metro.Component('time-picker', {

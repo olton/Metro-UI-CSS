@@ -24,8 +24,8 @@
         MaterialInputDefaultConfig = $.extend({}, MaterialInputDefaultConfig, options);
     };
 
-    if (typeof window["metroMaterialInputSetup"] !== undefined) {
-        Metro.materialInputSetup(window["metroMaterialInputSetup"]);
+    if (typeof globalThis["metroMaterialInputSetup"] !== undefined) {
+        Metro.materialInputSetup(globalThis["metroMaterialInputSetup"]);
     }
 
     Metro.Component('material-input', {

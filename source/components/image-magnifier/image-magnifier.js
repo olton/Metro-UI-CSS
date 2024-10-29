@@ -24,8 +24,8 @@
         ImageMagnifierDefaultConfig = $.extend({}, ImageMagnifierDefaultConfig, options);
     };
 
-    if (typeof window["metroImageMagnifierSetup"] !== undefined) {
-        Metro.imageMagnifierSetup(window["metroImageMagnifierSetup"]);
+    if (typeof globalThis["metroImageMagnifierSetup"] !== undefined) {
+        Metro.imageMagnifierSetup(globalThis["metroImageMagnifierSetup"]);
     }
 
     Metro.Component('image-magnifier', {
@@ -140,7 +140,7 @@
             var zoomElement = this.zoomElement;
             var cx, cy;
 
-            $(window).on(Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.resize, function(){
                 var x = element.width() / 2 - o.lensSize / 2;
                 var y = element.height() / 2 - o.lensSize / 2;
 

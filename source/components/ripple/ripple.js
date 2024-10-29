@@ -14,8 +14,8 @@
         RippleDefaultConfig = $.extend({}, RippleDefaultConfig, options);
     };
 
-    if (typeof window["metroRippleSetup"] !== undefined) {
-        Metro.rippleSetup(window["metroRippleSetup"]);
+    if (typeof globalThis["metroRippleSetup"] !== undefined) {
+        Metro.rippleSetup(globalThis["metroRippleSetup"]);
     }
 
     var getRipple = function(target, color, alpha, event){

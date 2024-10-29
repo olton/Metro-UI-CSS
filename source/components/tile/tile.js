@@ -23,8 +23,8 @@
         TileDefaultConfig = $.extend({}, TileDefaultConfig, options);
     };
 
-    if (typeof window["metroTileSetup"] !== undefined) {
-        Metro.tileSetup(window["metroTileSetup"]);
+    if (typeof globalThis["metroTileSetup"] !== undefined) {
+        Metro.tileSetup(globalThis["metroTileSetup"]);
     }
 
     Metro.Component('tile', {

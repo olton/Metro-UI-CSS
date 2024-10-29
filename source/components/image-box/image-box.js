@@ -16,8 +16,8 @@
         ImageBoxDefaultConfig = $.extend({}, ImageBoxDefaultConfig, options);
     };
 
-    if (typeof window["metroImageBoxSetup"] !== undefined) {
-        Metro.imageBoxSetup(window["metroImageBoxSetup"]);
+    if (typeof globalThis["metroImageBoxSetup"] !== undefined) {
+        Metro.imageBoxSetup(globalThis["metroImageBoxSetup"]);
     }
 
     Metro.Component('image-box', {

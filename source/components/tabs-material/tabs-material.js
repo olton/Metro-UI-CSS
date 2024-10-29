@@ -26,8 +26,8 @@
         MaterialTabsDefaultConfig = $.extend({}, MaterialTabsDefaultConfig, options);
     };
 
-    if (typeof window["metroMaterialTabsSetup"] !== undefined) {
-        Metro.materialTabsSetup(window["metroMaterialTabsSetup"]);
+    if (typeof globalThis["metroMaterialTabsSetup"] !== undefined) {
+        Metro.materialTabsSetup(globalThis["metroMaterialTabsSetup"]);
     }
 
     Metro.Component('material-tabs', {

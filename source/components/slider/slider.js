@@ -47,8 +47,8 @@
         SliderDefaultConfig = $.extend({}, SliderDefaultConfig, options);
     };
 
-    if (typeof window["metroSliderSetup"] !== undefined) {
-        Metro.sliderSetup(window["metroSliderSetup"]);
+    if (typeof globalThis["metroSliderSetup"] !== undefined) {
+        Metro.sliderSetup(globalThis["metroSliderSetup"]);
     }
 
     Metro.Component('slider', {
@@ -267,7 +267,7 @@
                 });
             });
 
-            $(window).on(Metro.events.resize,function(){
+            $(globalThis).on(Metro.events.resize,function(){
                 that.val(that.value);
                 that.buff(that.buffer);
             }, {ns: that.id});
@@ -554,7 +554,7 @@
             marker.off(Metro.events.keydown);
             marker.off(Metro.events.keyup);
             slider.off(Metro.events.click);
-            $(window).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, {ns: this.id});
 
             return element;
         }

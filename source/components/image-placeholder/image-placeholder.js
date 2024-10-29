@@ -18,8 +18,8 @@
         ImagePlaceholderDefaultConfig = $.extend({}, ImagePlaceholderDefaultConfig, options);
     };
 
-    if (typeof window["metroImagePlaceholderSetup"] !== undefined) {
-        Metro.imagePlaceholderSetup(window["metroImagePlaceholderSetup"]);
+    if (typeof globalThis["metroImagePlaceholderSetup"] !== undefined) {
+        Metro.imagePlaceholderSetup(globalThis["metroImagePlaceholderSetup"]);
     }
 
     Metro.Component('image-placeholder', {

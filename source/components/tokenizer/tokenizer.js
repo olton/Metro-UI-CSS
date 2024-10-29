@@ -24,8 +24,8 @@
         TokenizerDefaultConfig = $.extend({}, TokenizerDefaultConfig, options);
     };
 
-    if (typeof window["metroTokenizerSetup"] !== undefined) {
-        Metro.tokenizerSetup(window["metroTokenizerSetup"]);
+    if (typeof globalThis["metroTokenizerSetup"] !== undefined) {
+        Metro.tokenizerSetup(globalThis["metroTokenizerSetup"]);
     }
 
     Metro.Component('tokenizer', {

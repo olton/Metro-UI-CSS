@@ -23,8 +23,8 @@
         TreeViewDefaultConfig = $.extend({}, TreeViewDefaultConfig, options);
     };
 
-    if (typeof window["metroTreeViewSetup"] !== undefined) {
-        Metro.treeViewSetup(window["metroTreeViewSetup"]);
+    if (typeof globalThis["metroTreeViewSetup"] !== undefined) {
+        Metro.treeViewSetup(globalThis["metroTreeViewSetup"]);
     }
 
     Metro.Component('tree-view', {

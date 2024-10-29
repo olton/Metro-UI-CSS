@@ -18,8 +18,8 @@
         HintDefaultConfig = $.extend({}, HintDefaultConfig, options);
     };
 
-    if (typeof window["metroHintSetup"] !== undefined) {
-        Metro.hintSetup(window["metroHintSetup"]);
+    if (typeof globalThis["metroHintSetup"] !== undefined) {
+        Metro.hintSetup(globalThis["metroHintSetup"]);
     }
 
     Metro.Component('hint', {
@@ -66,7 +66,7 @@
                 that.removeHint();
             });
 
-            $(window).on(Metro.events.scroll+" "+Metro.events.resize, function(){
+            $(globalThis).on(Metro.events.scroll+" "+Metro.events.resize, function(){
                 if (that.hint !== null) that.setPosition();
             }, {ns: this.id});
         },
@@ -101,26 +101,26 @@
             if (o.hintPosition === Metro.position.BOTTOM) {
                 hint.addClass('bottom');
                 hint.css({
-                    top: element.offset().top - $(window).scrollTop() + element.outerHeight() + o.hintOffset,
-                    left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(window).scrollLeft()
+                    top: element.offset().top - $(globalThis).scrollTop() + element.outerHeight() + o.hintOffset,
+                    left: element.offset().left + element.outerWidth()/2 - hint_size.width/2  - $(globalThis).scrollLeft()
                 });
             } else if (o.hintPosition === Metro.position.RIGHT) {
                 hint.addClass('right');
                 hint.css({
-                    top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
-                    left: element.offset().left + element.outerWidth() - $(window).scrollLeft() + o.hintOffset
+                    top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(globalThis).scrollTop(),
+                    left: element.offset().left + element.outerWidth() - $(globalThis).scrollLeft() + o.hintOffset
                 });
             } else if (o.hintPosition === Metro.position.LEFT) {
                 hint.addClass('left');
                 hint.css({
-                    top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(window).scrollTop(),
-                    left: element.offset().left - hint_size.width - $(window).scrollLeft() - o.hintOffset
+                    top: element.offset().top + element.outerHeight()/2 - hint_size.height/2 - $(globalThis).scrollTop(),
+                    left: element.offset().left - hint_size.width - $(globalThis).scrollLeft() - o.hintOffset
                 });
             } else {
                 hint.addClass('top');
                 hint.css({
-                    top: element.offset().top - $(window).scrollTop() - hint_size.height - o.hintOffset,
-                    left: element.offset().left - $(window).scrollLeft() + element.outerWidth()/2 - hint_size.width/2
+                    top: element.offset().top - $(globalThis).scrollTop() - hint_size.height - o.hintOffset,
+                    left: element.offset().left - $(globalThis).scrollLeft() + element.outerWidth()/2 - hint_size.width/2
                 });
             }
         },
@@ -161,7 +161,7 @@
             this.removeHint();
             element.off(Metro.events.enter + "-hint");
             element.off(Metro.events.leave + "-hint");
-            $(window).off(Metro.events.scroll + "-hint");
+            $(globalThis).off(Metro.events.scroll + "-hint");
         }
     });
 }(Metro, m4q));

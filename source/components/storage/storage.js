@@ -70,13 +70,13 @@
     MetroStorage.init = function(type){
 
         this.key = "";
-        this.storage = type ? type : window.localStorage;
+        this.storage = type ? type : globalThis.localStorage;
 
         return this;
     };
 
     MetroStorage.init.prototype = MetroStorage.prototype;
 
-    Metro.storage = MetroStorage(window.localStorage);
-    Metro.session = MetroStorage(window.sessionStorage);
+    Metro.storage = MetroStorage(globalThis.localStorage);
+    Metro.session = MetroStorage(globalThis.sessionStorage);
 }(Metro));

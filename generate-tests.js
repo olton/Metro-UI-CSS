@@ -19,13 +19,24 @@ const readFiles = (dirname, onFile, onError = () => {}) => {
     });
 }
 
-const sourceDir = './tests/'
-const targetDir = './cypress/e2e/'
+const sourceDir = './__html__/'
+const targetDir = './__tests__/'
 const test = `
-describe('Test $file', () => {
-  it('passes', () => {
-    cy.visit('tests/$file')
-  })
+import {beforeAll, afterAll, describe, it, expect, delay, getFileUrl, B} from "@olton/easytest";
+
+beforeAll(async () => {
+    await B.create()
+})
+
+afterAll(async () => {
+    await B.bye()
+})
+
+describe("$file tests", () => {
+    it("$file", async () => {
+        await B.visit(\`\$\{getFileUrl(\`./__html__/$file\`\)\}\`)
+        expect(B.error).toBeNull(B.error)
+    })
 })
 `
 
@@ -41,7 +52,7 @@ fs.readdir(targetDir, (err, files) => {
 
 readFiles(sourceDir, (filename, content) => {
     const [name, _] = filename.split(".")
-    fs.writeFile(`${targetDir}/${name}.cy.js`, `${test.replaceAll('$file', filename)}`, function (error) {
+    fs.writeFile(`${targetDir}/${name}.test.js`, `${test.replaceAll('$file', filename)}`, function (error) {
         if (error) {
             throw error;
         } else {

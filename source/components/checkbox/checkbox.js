@@ -19,8 +19,8 @@
         CheckboxDefaultConfig = $.extend({}, CheckboxDefaultConfig, options);
     };
 
-    if (typeof window["metroCheckboxSetup"] !== undefined) {
-        Metro.checkboxSetup(window["metroCheckboxSetup"]);
+    if (typeof globalThis["metroCheckboxSetup"] !== undefined) {
+        Metro.checkboxSetup(globalThis["metroCheckboxSetup"]);
     }
 
     Metro.Component('checkbox', {

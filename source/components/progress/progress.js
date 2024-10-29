@@ -28,8 +28,8 @@
         ProgressDefaultConfig = $.extend({}, ProgressDefaultConfig, options);
     };
 
-    if (typeof window["metroProgressSetup"] !== undefined) {
-        Metro.progressSetup(window["metroProgressSetup"]);
+    if (typeof globalThis["metroProgressSetup"] !== undefined) {
+        Metro.progressSetup(globalThis["metroProgressSetup"]);
     }
 
     Metro.Component('progress', {

@@ -21,8 +21,8 @@
         SorterDefaultConfig = $.extend({}, SorterDefaultConfig, options);
     };
 
-    if (typeof window["metroSorterSetup"] !== undefined) {
-        Metro.sorterSetup(window["metroSorterSetup"]);
+    if (typeof globalThis["metroSorterSetup"] !== undefined) {
+        Metro.sorterSetup(globalThis["metroSorterSetup"]);
     }
 
     Metro.Component('sorter', {
