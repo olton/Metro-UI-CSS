@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+    <link href="../lib/icons.css" rel="stylesheet">
+
+    <title>Test Sidenav - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body class="m4-cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+    </div>
+    <button class="button" id="toggle">Toggle</button>
+</nav>
+<ul data-role="sidenav-counter" data-expand-point="md" data-toggle="#toggle" id="menu">
+    <li><a href="#">
+        <span class="mif-apps icon"></span>
+        <span class="title">all items</span>
+        <span class="counter">0</span>
+    </a></li>
+    <li><a href="#">
+        <span class="mif-vpn-lock icon"></span>
+        <span class="title">websites</span>
+        <span class="counter">0</span>
+    </a></li>
+    <li class="active"><a href="#">
+        <span class="mif-drive-eta icon"></span>
+        <span class="title">Virtual machines</span>
+        <span class="counter">0</span>
+    </a></li>
+    <li><a href="#">
+        <span class="mif-cloud icon"></span>
+        <span class="title">Cloud services</span>
+        <span class="counter">0</span>
+    </a></li>
+    <li><a href="#">
+        <span class="mif-database icon"></span>
+        <span class="title">SQL Databases</span>
+        <span class="counter">0</span>
+    </a></li>
+    <li><a href="#">
+        <span class="mif-cogs icon"></span>
+        <span class="title">Automation</span>
+        <span class="counter">0</span>
+    </a></li>
+</ul>
+<script src="../lib/metro.js"></script>
+</body>
+</html>
