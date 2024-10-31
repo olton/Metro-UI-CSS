@@ -1,8 +1,31 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --sidenav-counter-background: #f6f6f6;
+    --sidenav-counter-color: #191919;
+    --sidenav-counter-icon-color: #191919;
+    --sidenav-counter-counter-color: #191919;
+    --sidenav-counter-background-hover: #cecece;
+    --sidenav-counter-color-hover: #0a0a0a;
+    --sidenav-counter-background-active: #68a3ff;
+    --sidenav-counter-color-active: #ffffff;
+}
+
+.dark-side {
+    --sidenav-counter-background: #2b2d30;
+    --sidenav-counter-color: #dfe1e5;
+    --sidenav-counter-icon-color: #dfe1e5;
+    --sidenav-counter-counter-color: #dfe1e5;
+    --sidenav-counter-background-hover: #43454a;
+    --sidenav-counter-color-hover: #ffffff;
+    --sidenav-counter-background-active: #468cff;
+    --sidenav-counter-color-active: #ffffff;
+}
+
 .sidenav-counter {
-    display: block;
+    display: flex;
+    flex-direction: column;
     position: relative;
     list-style: none inside;
     height: 100%;
@@ -11,8 +34,8 @@
     overflow-y: auto;
     margin: 0;
     padding: 0;
-    transition: @transition-base;
-    background-color: @light;
+    background-color: var(--sidenav-counter-background);
+    color: var(--sidenav-counter-color);
 
     .hideScrollBars();
 }
@@ -27,7 +50,6 @@
         color: inherit;
         width: 100%;
     }
-
 
     a {
         padding: .625rem 0 .625rem 0;
@@ -48,6 +70,7 @@
         position: absolute;
         left: .625rem;
         top: .635rem;
+        color: var(--sidenav-counter-icon-color);
     }
 
     .title, .counter {
@@ -57,7 +80,7 @@
     }
 
     .title {
-        font-size: .6875rem;
+        font-size: 10px;
         font-weight: bold;
         text-transform: uppercase;
         display: none;
@@ -69,21 +92,18 @@
         position: absolute;
         top: 0;
         right: 4px;
+        color: var(--sidenav-counter-counter-color);
     }
 
 
     li:hover {
-        background-color: @hoverBackground;
+        background-color: var(--sidenav-counter-background-hover);
+        color: var(--sidenav-counter-color-hover);
     }
 
-    li:active {
-        background-color: @darkCyan;
-        color: @white;
-    }
-
-    .active, li.active:hover {
-        background-color: @cyan;
-        color: @white;
+    li.active {
+        background-color: var(--sidenav-counter-background-active);
+        color: var(--sidenav-counter-color-active);
     }
 }
 
@@ -98,7 +118,7 @@
     }
 }
 
-.sidenav-counter-expand() {
+.sidenav-counter.expanded {
     width: 220px;
 
     a {
@@ -115,21 +135,3 @@
         right: auto;
     }
 }
-
-each(@mediaBreakpointListMobile, {
-    @media screen and (min-width: @@value) {
-        .sidenav-counter-expand-@{value} {
-            .sidenav-counter-expand();
-        }
-        &.sidenav-counter-expand-@{value}[dir=rtl] {
-            a {
-                padding: .625rem 3.75rem .625rem 1rem;
-            }
-
-            .icon {
-                left: auto;
-                right: .625rem;
-            }
-        }
-    }
-})

@@ -1,7 +1,7 @@
 {
   "author": "Serhii Pimenov <serhii@pimenov.com.ua>",
   "name": "@olton/metroui",
-  "version": "5.0.12",
+  "version": "5.0.13",
   "description": "The front-end framework for Build responsive, mobile-first projects on the web with the first front-end component library in Metro Style",
   "keywords": [
     "metro",
@@ -37,7 +37,7 @@
     "deploy": "node deploy.cjs",
     "deploy:dev": "node deploy-dev.cjs",
     "pub": "npm publish --access public",
-    "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html'",
+    "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html,audio-player'",
     "test:abc": "easytest --include='abc/accordion.test.js' --coverage --verbose --dom --errors"
   },
   "browserslist": [

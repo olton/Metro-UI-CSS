@@ -5,7 +5,7 @@
     var NavigationViewDefaultConfig = {
         navviewDeferred: 0,
         expandPoint: null,
-        compacted: false,
+        // compacted: false,
         toggle: null,
         animate: true,
         activeState: true,
@@ -91,13 +91,13 @@
 
             element.addClass("navview")
 
-            if (o.initialView !== 'compact') {
+            if (o.initialView !== 'compact' && Metro.utils.mediaExist(o.expandPoint)) {
                 element.addClass("expanded");
             } else {
                 element.addClass("compacted handmade");
             }
 
-            const state = Metro.storage.getItem("navview-compacted");
+            const state = Metro.storage.getItem("navview:compacted");
             if (state === true) {
                 element.removeClass("expanded");
                 element.addClass("compacted handmade");
@@ -178,12 +178,29 @@
                 })
             }
 
+            menu.find("a").on(Metro.events.enter, function(){
+                if (!element.hasClass("compacted")) {return}
+                const a = $(this)
+                const r = Metro.utils.rect(this)
+                const c = a.children(".caption")
+                c.css({
+                    top: r.top,
+                    left: r.left + menu_container.width(),
+                    borderRadius: 4,
+                    paddingLeft: 10,
+                    boxShadow: "0 0 5px 0 var(--shadow-color)"
+                })
+            })
+
+            menu.find("a").on(Metro.events.leave, function(){
+                if (!element.hasClass("compacted")) {return}
+                const a = $(this)
+                const c = a.children(".caption")
+                c[0].style = ""
+            })
+
             $(globalThis).on(Metro.events.resize, () => {
                 this._recalc();
-
-                if (o.saveState === true && element.hasClass("compacted")) {
-                    return false;
-                }
 
                 if (!element.hasClass("handmade")) {
                     if (Metro.utils.isValue(o.expandPoint) && Metro.utils.mediaExist(o.expandPoint)) {
@@ -206,10 +223,10 @@
             element.toggleClass("handmade");
 
             if (element.hasClass("compacted")) {
-                Metro.storage.setItem("navview-compacted", true);
+                Metro.storage.setItem("navview:compacted", true);
                 Metro.utils.exec(o.onPaneClose, null, this)
             } else {
-                Metro.storage.setItem("navview-compacted", false);
+                Metro.storage.setItem("navview:compacted", false);
                 Metro.utils.exec(o.onPaneOpen, null, this)
             }
         },
