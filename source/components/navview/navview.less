@@ -1,3 +1,5 @@
+@import "../../include/vars";
+
 :root {
     --navview-pane-width: 280px;
     --navview-pane-width-compact: 50px;
@@ -59,6 +61,7 @@
     width: var(--navview-pane-width-compact);
     background-color: var(--navview-pane-background);
     color: var(--navview-pane-color);
+    z-index: @zindex-fixed - 1;
 
     .pull-button, .holder {
         position: relative;
