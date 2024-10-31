@@ -7,7 +7,7 @@
     border-color: transparent!important;
 }
 
-each(@colorList, {
+each(@colors, {
     .bd-@{value} {border-color: @@value !important;}
     .bd-@{value}-active {&:active {border-color: @@value !important;}}
     .bd-@{value}-hover {&:hover {border-color: @@value !important;}}

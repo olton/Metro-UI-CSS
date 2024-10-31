@@ -22,7 +22,7 @@
 .bg-gitlab {background-color: #e65328!important;}
 .bg-amazon {background-color: #232f3e!important;}
 
-each(@colorList, {
+each(@colors, {
     .bg-@{value} {background-color: @@value !important;}
     .bg-@{value}-active {&:active {background-color: @@value !important;}}
     .bg-@{value}-hover {&:hover {background-color: @@value !important;}}

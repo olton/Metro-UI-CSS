@@ -1,0 +1,22 @@
+@import "../include/vars.less";
+
+each(@colors, .(@v, @k, @i) {
+    @color: "@{v}";
+
+    .gr-@{v} {
+        background: linear-gradient(to right, @@color, lighten(@@color, 20%))!important;
+    }
+})
+
+each(@lightColors, .(@v, @k, @i) {
+    .gr-@{v} {
+        background: linear-gradient(to right, @@v, #ffffff)!important;
+    }
+})
+
+each(@darkColors, .(@v, @k, @i) {
+    .gr-@{v} {
+        background: linear-gradient(to right, @@v, lighten(@@v, 20%))!important;
+    }
+})
+

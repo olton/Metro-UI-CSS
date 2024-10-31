@@ -4,7 +4,7 @@
     background-color: rgba(red(@cyan), green(@cyan), blue(@cyan), @alpha) !important;
 }
 
-each(@colorList, {
+each(@colors, {
     .op-@{value} {background-color: rgba(red(@@value), green(@@value), blue(@@value), @alpha) !important;}
     .op-@{value}-hi {background-color: rgba(red(@@value), green(@@value), blue(@@value), .2) !important;}
     .op-@{value}-low {background-color: rgba(red(@@value), green(@@value), blue(@@value), .8) !important;}

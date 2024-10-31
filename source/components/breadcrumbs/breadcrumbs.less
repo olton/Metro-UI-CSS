@@ -70,16 +70,20 @@
 }
 
 :root {
-    --breadcrumbs-arrow-item-background: #f7f8fa;
+    --breadcrumbs-arrow-item-background: rgba(251, 251, 251, 1);
+    --breadcrumbs-arrow-counter-background: #ffffff;
+    --breadcrumbs-arrow-counter-color: #000000;
     --breadcrumbs-arrow-item-background-active: #468cff;
     --breadcrumbs-arrow-item-color-active: #ffffff;
     --breadcrumbs-arrow-item-color: #191919;
-    --breadcrumbs-arrow-border-color: #e8e8e8;
+    --breadcrumbs-arrow-border-color: #c6c6c6;
     --breadcrumbs-arrow-item-shadow: rgba(133, 133, 133, 0.1);
 }
 
 .dark-side {
     --breadcrumbs-arrow-item-background: #2b2d30;
+    --breadcrumbs-arrow-counter-background: #ffffff;
+    --breadcrumbs-arrow-counter-color: #000000;
     --breadcrumbs-arrow-item-background-active: #ffc351;
     --breadcrumbs-arrow-item-color-active: #000;
     --breadcrumbs-arrow-item-color: #ffffff;
@@ -117,7 +121,7 @@
                 content: counter(flag);
                 counter-increment: flag;
                 border-radius: 50%;
-                border: 1px solid var(--border-color);
+                border: 1px solid var(--breadcrumbs-arrow-border-color);
                 width: 26px;
                 height: 26px;
                 line-height: 26px;
@@ -125,7 +129,8 @@
                 position: absolute;
                 top: -3px;
                 left: 27px;
-                background: var(--breadcrumbs-arrow-item-background);
+                background: var(--breadcrumbs-arrow-counter-background);
+                color: var(--breadcrumbs-arrow-counter-color);
                 font-weight: bold;
                 display: flex;
                 align-items: center;
@@ -168,7 +173,7 @@
             background: var(--breadcrumbs-arrow-item-background-active);
             color: var(--breadcrumbs-arrow-item-color-active);
             &::before {
-                color: var(--breadcrumbs-arrow-item-color);
+                //color: var(--breadcrumbs-arrow-item-color);
             }
             &::after {
                 background: var(--breadcrumbs-arrow-item-background-active);

@@ -1,9 +1,14 @@
 # Changelog
 
+### 5.1.0
++ [x] Change color to original value
++ [x] Added gradient backgrounds with `gr-COLOR`, `gr-light-COLOR`, and `gr-dark-COLOR`
++ [x] Added new colors: `champagne`, `khaki`, `charcoal`, `cinnamon`, `glaucous`, `nude`, `terracotta`, `coral`, `army`, `seashell`
+
 ### 5.0.13
 + [x] Update Sidenav Counter, added role, theme
 + [x] Update NavView (save compact state)
-+ [x] Set default size for body 100vh
++ [x] Set the default size for body to `100vh`
 
 ### 5.0.12
 + [x] Update components for themes

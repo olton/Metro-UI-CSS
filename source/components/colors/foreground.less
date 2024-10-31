@@ -4,7 +4,7 @@
     color: var(--default-color)!important;
 }
 
-each(@colorList, {
+each(@colors, {
     .fg-@{value} {color: @@value !important;}
     .fg-@{value}-active {&:active {color: @@value !important;}}
     .fg-@{value}-hover {&:hover {color: @@value !important;}}
