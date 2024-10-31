@@ -41892,6 +41892,7 @@ a.info-button {
   width: var(--navview-pane-width-compact);
   background-color: var(--navview-pane-background);
   color: var(--navview-pane-color);
+  z-index: 1029;
 }
 .navview-pane .pull-button,
 .navview-pane .holder {
