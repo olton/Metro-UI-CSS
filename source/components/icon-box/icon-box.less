@@ -14,8 +14,7 @@
 
 .dark-side {
     --icon-box-background: var(--default-background);
-    //--icon-box-background: linear-gradient(to right, rgba(255, 238, 238, 0.15), rgba(255, 252, 252, 0.1));
-    --icon-box-color: var(--default-color);
+    --icon-box-color: rgb(219, 223, 231);
     --icon-box-border-color: var(--border-color);
 
     --icon-box-icon-background: var(--default-background);
@@ -143,4 +142,38 @@
     .value { order: 1; }
     .title { order: 2; }
     .subtitle { order: 3; }
+}
+
+.info-box4 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: var(--icon-box-border-radius);
+    border: 1px solid var(--icon-box-border-color);
+    background: var(--icon-box-background);
+    color: var(--icon-box-color);
+    padding: 4px 8px;
+
+    .title {
+        text-transform: uppercase;
+        font-size: 9px;
+        font-weight: 400;
+    }
+    .value {
+        display: flex;
+        font-size: 16px;
+        font-weight: 500;
+        align-items: flex-end;
+        justify-content: space-between;
+        font-family: monospace;
+
+        .primary-value {
+            font-size: 1em;
+        }
+
+        .secondary-value {
+            font-size: 0.8em;
+            margin-left: auto;
+        }
+    }
 }
