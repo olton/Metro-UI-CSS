@@ -50,13 +50,13 @@
     const colors = [
         "lime", "green", "emerald", "blue", "teal", "cyan", "cobalt", "indigo", "violet", "pink", "magenta",
         "crimson", "red", "orange", "amber", "yellow", "brown", "olive", "steel", "mauve", "taupe",
-        "champagne", "khaki", "charcoal", "cinnamon", "glaucous", "nude", "terracotta", "coral", "army", "seashell"
+        "champagne", "khaki", "charcoal", "bronze", "windstorm", "nude", "terracotta", "coral", "army", "seashell"
     ];
 
-    for(let color of [...colors, "gray", "grayBlue", "grayMouse", "grayWhite"]) {
+    for(let color of [...colors, "gray", "gray-blue", "gray-mouse", "gray-white"]) {
         $("#box-container-colors").append($("<div class='cell-md-3 box bg-"+color+"'>").text(color))
     }
-    for(let color of [...colors, "gray", "grayBlue", "grayMouse", "grayWhite"]) {
+    for(let color of [...colors, "gray", "gray-blue", "gray-mouse", "gray-white"]) {
         $("#box-container").append($("<div class='cell-md-3 box gr-"+color+"'>"))
     }
     for(let color of colors) {

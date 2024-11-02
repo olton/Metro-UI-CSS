@@ -4,6 +4,8 @@
 + [x] Change color to original value
 + [x] Added gradient backgrounds with `gr-COLOR`, `gr-light-COLOR`, and `gr-dark-COLOR`
 + [x] Added new colors: `champagne`, `khaki`, `charcoal`, `cinnamon`, `glaucous`, `nude`, `terracotta`, `coral`, `army`, `seashell`
++ [x] Renamed colors to `*-color`, `*-light-color`, `*-dark-color`
++ [x] Improved progress bars
 
 ### 5.0.13
 + [x] Update Sidenav Counter, added role, theme

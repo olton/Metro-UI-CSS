@@ -2,34 +2,67 @@
 @import (once) "../../include/mixins";
 
 :root {
+    --icon-box-border-radius: 6px;
+
     --icon-box-background: var(--default-background);
     --icon-box-color: var(--default-color);
     --icon-box-border-color: var(--border-color);
-    --icon-box-border-radius: 6px;
+
+    --icon-box-icon-background: var(--default-background);
+    --icon-box-icon-color: var(--default-color);
 }
 
 .dark-side {
     --icon-box-background: var(--default-background);
+    //--icon-box-background: linear-gradient(to right, rgba(255, 238, 238, 0.15), rgba(255, 252, 252, 0.1));
     --icon-box-color: var(--default-color);
     --icon-box-border-color: var(--border-color);
+
+    --icon-box-icon-background: var(--default-background);
+    --icon-box-icon-color: var(--default-color);
 }
 
-.icon-box {
+.icon-box, .icon-box2, .icon-box3 {
     height: 90px;
     display: flex;
     flex-flow: row nowrap;
-    background-color: var(--icon-box-background);
+    background: var(--icon-box-background);
     color: var(--icon-box-color);
     border: 1px solid var(--icon-box-border-color);
     border-radius: var(--icon-box-border-radius);
-}
-
-.icon-box {
+    overflow: hidden;
+    position: relative;
 
     .icon, .content {
         position: relative;
     }
 
+    .title {
+        font-size: 16px;
+        font-weight: 500;
+        white-space: nowrap;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        font-weight: 500;
+        border-top: 1px solid var(--icon-box-border-color);
+        white-space: nowrap;
+        padding-top: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    .value {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 4px 0 10px 0;
+        white-space: nowrap;
+    }
+}
+
+.icon-box {
     .icon {
         height: 90px;
         width: 90px;
@@ -53,5 +86,61 @@
         display: block;
         width: 100%;
         background-color: inherit;
+        padding: 1rem;
     }
+
+    .title {
+        text-transform: uppercase;
+    }
+}
+
+.icon-box2, .icon-box3 {
+    height: auto;
+
+    .icon {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--icon-box-icon-background);
+        color: var(--icon-box-icon-color);
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 50%;
+
+        * {
+            font-size: 24px;
+            width: 24px;
+            height: 24px;
+        }
+    }
+    .content {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+        width: 100%;
+    }
+    .title { order: 1;}
+    .value { order: 2;  margin: 0;}
+    .subtitle { order: 3; margin-top: 1rem; }
+}
+
+.icon-box3 {
+    .icon {
+        right: auto;
+        left: 1rem;
+        border-radius: 6px;
+    }
+    .content {
+    }
+    .title, .value {
+        text-align: right;
+        margin-left: 60px;
+    }
+    .value { order: 1; }
+    .title { order: 2; }
+    .subtitle { order: 3; }
 }

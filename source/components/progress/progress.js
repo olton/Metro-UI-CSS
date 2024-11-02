@@ -4,19 +4,19 @@
     var ProgressDefaultConfig = {
         progressDeferred: 0,
         showValue: false,
-        valuePosition: "free", // center, free
         showLabel: false,
-        labelPosition: "before", // before, after
-        labelTemplate: "",
+        label: "Progress:",
         value: 0,
         buffer: 0,
         type: "bar",
         small: false,
+        clsProgress: "",
         clsBack: "",
         clsBar: "",
         clsBuffer: "",
         clsValue: "",
         clsLabel: "",
+        clsData: "",
         onValueChange: Metro.noop,
         onBufferChange: Metro.noop,
         onComplete: Metro.noop,
@@ -44,13 +44,14 @@
 
         _create: function(){
             var element = this.element, elem = this.elem, o = this.options;
-            var value;
 
             if (typeof o.type === "string") o.type = o.type.toLowerCase();
 
             element
                 .html("")
                 .addClass("progress");
+
+            this.component = element.wrap("<div>").addClass("progress-component").addClass(o.clsProgress);
 
             function _progress(){
                 elem.innerHTML = `<div class="bar"></div>`
@@ -83,26 +84,18 @@
                 default: _progress();
             }
 
-            if (o.type !== 'line') {
-                value = $("<span>").addClass("value").addClass(o.clsValue).appendTo(element);
-                if (o.valuePosition === "center") value.addClass("centered");
-                if (o.showValue === false) value.hide();
-            }
-
             if (o.small === true) element.addClass("small");
 
             element.addClass(o.clsBack);
             element.find(".bar").addClass(o.clsBar);
             element.find(".buffer").addClass(o.clsBuffer);
 
-            if (o.showLabel === true) {
-                var label = $("<span>").addClass("progress-label").addClass(o.clsLabel).html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
-                if (o.labelPosition === 'before') {
-                    label.insertBefore(element);
-                } else {
-                    label.insertAfter(element);
-                }
-            }
+            var data = $("<div>").addClass("progress-data").addClass(o.clsData).insertBefore(element);
+            var label = $("<div>").addClass("progress-label").addClass(o.clsLabel).html(o.label).appendTo(data);
+            var value = $("<div>").addClass("progress-value").addClass(o.clsLabel).html(o.value).appendTo(data);
+
+            if (o.showLabel === false) { label.hide(); }
+            if (o.showValue === false) { value.hide(); }
 
             this.val(o.value);
             this.buff(o.buffer);
@@ -114,7 +107,7 @@
 
         val: function(v){
             var that = this, element = this.element, o = this.options;
-            var value = element.find(".value");
+            var value = this.component.find(".progress-value");
 
             if (v === undefined) {
                 return that.value;
@@ -130,18 +123,6 @@
 
             bar.css("width", this.value + "%");
             value.html(this.value+"%");
-
-            var diff = element.width() - bar.width();
-            var valuePosition = value.width() > diff ? {left: "auto", right: diff + 'px'} : {left: v + '%'};
-
-            if (o.valuePosition === "free") value.css(valuePosition);
-
-            if (o.showLabel === true) {
-                var label = element[o.labelPosition === "before" ? "prev" : "next"](".progress-label");
-                if (label.length) {
-                    label.html(o.labelTemplate === "" ? o.value+"%" : o.labelTemplate.replace("%VAL%", o.value));
-                }
-            }
 
             this._fireEvent("value-change", {
                 val: this.value
@@ -200,7 +181,7 @@
         },
 
         destroy: function(){
-            return this.element;
+            return this.component.remove();
         }
     });
 }(Metro, m4q));

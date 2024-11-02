@@ -4,7 +4,7 @@
 :root {
     --progress-bar-height: 12px;
     --progress-bar-height-ani: -24px;
-    --progress-bar-radius: 0;
+    --progress-bar-radius: 8px;
     --progress-bar-back-color: #eeeeee;
     --progress-bar-color: #60A917;
     --progress-bar-buffer-color: #CE352C;
@@ -24,21 +24,43 @@
     --progress-bar-value-color: #ffffff;
 }
 
-.progress {
-    display: block;
+.progress-component {
     position: relative;
+    display: block;
     width: 100%;
-    height: var(--progress-bar-height);
-    background-color: var(--progress-bar-back-color);
-    overflow: hidden;
-    border-radius: var(--progress-bar-radius);
 
-    &.with-load {
-        background: transparent;
+    .progress {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: var(--progress-bar-height);
+        background-color: var(--progress-bar-back-color);
+        overflow: hidden;
+        border-radius: var(--progress-bar-radius);
+
+        &.with-load {
+            background: transparent;
+        }
     }
-}
 
-.progress {
+    .progress-data {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .progress-label {
+            order: 1;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .progress-value {
+            margin-left: auto;
+            order: 2;
+            font-weight: 600;
+        }
+    }
+
     .bar, .buffer, .load {
         position: absolute;
         height: 100%;
@@ -79,26 +101,11 @@
         }
     }
 
-    .value {
-        display: block;
-        float: left;
-        position: absolute;
-        z-index: 5;
-        font-size: 11px;
-        top: 50%;
-        transform: translateY(-50%);
-        margin-left: 4px;
-    }
-
-    .value.centered {
-        left: 50%;
-        transform: translate3d(-50%,-50%,0);
-    }
-}
-
-.progress {
-    &.small {
-        --progress-bar-height: 6px;
+    .progress {
+        &.small {
+            --progress-bar-height: 6px;
+            --progress-bar-radius: 4px;
+        }
     }
 }
 
