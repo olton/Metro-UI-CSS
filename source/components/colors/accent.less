@@ -31,7 +31,7 @@ each(@accentColors, {
         &:hover {
             color: @white!important;
             background-color: darken(@@color, 10%)!important;
-            border-color: darken(@@color, 20%)!important;
+            border-color: darken(@@color, 10%)!important;
 
             &.dropdown-toggle::before {
                 border-color: @white!important;
@@ -88,3 +88,18 @@ each(@accentColors, {
         }
     })
 }
+
+each(@normalColors, {
+    @color: "light-@{value}";
+    @text-color: "@{value}";
+    .soft-@{value} {
+        background: @@color!important;
+        color: @@text-color!important;
+        border-color: @@color!important;
+
+        &:hover {
+            background: @@value!important;
+            color: @white!important;
+        }
+    }
+})

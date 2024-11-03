@@ -1,0 +1,56 @@
+@import "../../include/vars";
+
+:root {
+    --ribbon-background: rgb(117, 117, 117);
+    --ribbon-color: #ffffff;
+}
+
+.dark-side {
+    --ribbon-background: rgba(117, 117, 117, 0.32);
+    --ribbon-color: #ffffff;
+}
+
+.ribbon {
+    display: flex;
+    align-items: center;
+    box-shadow: 2px 5px 10px rgba(50, 58, 70, .15);
+    clear: both;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 5px 12px;
+    position: relative;
+    border-radius: 0 3px 3px 0;
+    left: -10px;
+    background: var(--ribbon-background);
+    color: var(--ribbon-color);
+    float: left;
+    margin-left: -25px;
+    overflow: visible;
+
+    .icon {
+        font-size: 16px;
+        height: 16px;
+        width: 16px;
+        margin-right: 4px;
+    }
+
+    &::before {
+        bottom: -12px;
+        content: "◥";
+        display: block;
+        left: 0;
+        position: absolute;
+        color: var(--ribbon-background);
+    }
+}
+
+each(@normalColors, {
+    .ribbon-@{value} {
+        @sub-color: "dark-@{value}";
+        background: @@value;
+        color: #ffffff;
+        &::before {
+            color: @@sub-color;
+        }
+    }
+})

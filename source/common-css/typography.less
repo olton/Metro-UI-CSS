@@ -4,8 +4,8 @@
 :root {
     --mark-background: #a6d2ff;
     --mark-color: #191919;
-    --code-background: #f8f8f8;
-    --code-color: #191919;
+    --code-background: transparent;
+    --code-color: #43bef5;
     --kbd-background: #004D6FFF;
     --kbd-color: #ffffff;
 }
@@ -13,8 +13,8 @@
 .dark-side {
     --mark-background: #c0c0c0;
     --mark-color: #000000;
-    --code-background: #26282e;
-    --code-color: #ffffff;
+    --code-background: transparent;
+    --code-color: #43bef5;
     --kbd-background: #004D6FFF;
     --kbd-color: #ffffff;
 }
@@ -256,7 +256,7 @@ del {
     text-decoration: line-through;
 }
 
-* + p {
+p + p {
     margin-top: 1rem;
 }
 
@@ -508,4 +508,8 @@ each(@mediaBreakpointListMobile, .(@m) {
 
 .error {
     text-decoration: underline wavy red;
+}
+
+.mono {
+    font-family: monospace!important;
 }

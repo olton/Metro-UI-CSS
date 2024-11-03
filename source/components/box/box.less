@@ -1,0 +1,32 @@
+:root {
+    --box-border-radius: 10px;
+    --box-border-color: var(--border-color);
+    --box-background: #ffffff;
+    --box-color: #191919;
+}
+
+.dark-side {
+    --box-border-color: var(--border-color);
+    --box-background: var(--default-background);
+    --box-color: var(--default-color);
+}
+
+.box {
+    padding: 1.5rem;
+    background: var(--box-background);
+    border: 1px solid var(--box-border-color);
+    border-radius: var(--box-border-radius);
+    margin: 1rem 0;
+    font-size: 14px;
+
+    .title {
+        font-size: 16px;
+        line-height: 1.1;
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+
+    * + .title {
+        margin-top: 2rem;
+    }
+}

@@ -1,11 +1,24 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --info-box-border-radius: 6px;
+    --info-box-background: var(--default-background);
+    --info-box-color: var(--default-color);
+    --info-box-border-color: var(--border-color);
+}
+
+.dark-side {
+    --info-box-background: var(--default-background);
+    --info-box-color: var(--default-color);
+    --info-box-border-color: var(--border-color);
+}
+
 .info-box {
     position: fixed;
-    background-color: @white;
-    color: @dark;
-    border: 1px solid var(--border-color);
+    background-color: var(--info-box-background);
+    color: var(--info-box-color);
+    border: 1px solid var(--info-box-border-color);
     display: block;
     z-index: @zindex-modal;
     max-width: ~"calc(100vw - 100px)";
@@ -35,18 +48,51 @@
     }
 }
 
-.info-box {
-    each(@accentColors, {
-        @color: "@{value}Color";
+//.info-box {
+//    each(@accentColors, {
+//        @color: "@{value}Color";
+//
+//        &.@{value} {
+//            border-color: @@color;
+//            background-color: @@color;
+//            color: @white;
+//        }
+//    })
+//
+//    &.light, &.yellow {
+//        color: @dark;
+//    }
+//}
 
-        &.@{value} {
-            border-color: @@color;
-            background-color: @@color;
-            color: @white;
+.info-box2 {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: var(--info-box-border-radius);
+    border: 1px solid var(--info-box-border-color);
+    background: var(--info-box-background);
+    color: var(--info-box-color);
+    padding: 4px 8px;
+
+    .title {
+        text-transform: uppercase;
+        font-size: 9px;
+        font-weight: 400;
+    }
+    .value {
+        display: flex;
+        font-size: 16px;
+        font-weight: 500;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        .primary-value {
+            font-size: 1em;
         }
-    })
 
-    &.light, &.yellow {
-        color: @dark;
+        .secondary-value {
+            font-size: 0.8em;
+            margin-left: auto;
+        }
     }
 }

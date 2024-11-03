@@ -6,7 +6,9 @@
     --button-background-hover: #dadada;
     --button-color: #191919;
     --button-border-color: #ebebeb;
-    --button-border-radius: 0;
+    --button-border-radius: 4px;
+    --button-pill-radius: 18px;
+    --button-size: 36px;
 }
 
 .dark-side {
@@ -25,9 +27,9 @@
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    padding: 0 .75rem;
-    font-size: .875rem;
-    height: 36px;
+    padding: 0 1rem;
+    font-size: 14px;
+    height: var(--button-size);
     transition: @transition-short;
     background-color: var(--button-background);
     color: var(--button-color);
@@ -38,6 +40,13 @@
     overflow: visible;
     border-radius: var(--button-border-radius);
 
+    &:first-child {
+        margin-left: 0;
+    }
+    &:last-child {
+        margin-right: 0;
+    }
+
     * + * {
         margin-left: 8px;
     }
@@ -47,8 +56,13 @@
         opacity: .65;
     }
 
-    img {
-        height: 1rem;
+    .icon {
+        height: calc((var(--button-size)/2));
+        font-size: calc((var(--button-size)/2));
+    }
+
+    &.pill-button {
+        border-radius: var(--button-pill-radius);
     }
 }
 
@@ -64,6 +78,7 @@
 
     &.link {
         background-color: transparent;
+        border: none;
         &:hover {
             background-color: transparent;
             text-decoration: underline;
@@ -76,57 +91,51 @@
 
 .button {
     &.mini {
-        .px2rem(font-size, 10px);
+        --button-pill-radius: 10px;
+        --button-size: 20px;
+
+        font-size: 10px;
         padding: 0 .5rem;
-        height: 20px;
-        line-height: 20px;
-        img {
-            .px2rem(height, 10px);
-        }
     }
     &.small {
-        .px2rem(font-size, 12px);
+        --button-pill-radius: 13px;
+        --button-size: 26px;
+
+        font-size: 12px;
         padding: 0 .6rem;
-        height: 26px;
-        line-height: 26px;
-        img {
-            .px2rem(height, 12px);
-        }
     }
     &.large {
-        .px2rem(font-size, 22px);
+        --button-pill-radius: 27px;
+        --button-size: 54px;
+
+        font-size: 18px;
         padding: 0 1rem;
-        height: 53px;
-        line-height: 53px;
-        img {
-            .px2rem(height, 22px);
-        }
     }
 }
 
 .button {
     &.square, &.cycle {
-        .px2rem(width, 36px);
-        .px2rem(height, 36px);
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        width: 36px;
+        height: 36px;
+        padding: 0!important;
 
         flex-shrink: 0!important;
         flex-grow: 0!important;
 
         &.mini {
-            .px2rem(width, 20px);
-            .px2rem(height, 20px);
+            width: 20px;
+            height: 20px;
         }
         &.small {
-            .px2rem(width, 26px);
-            .px2rem(height, 26px);
+            width: 26px;
+            height: 26px;
         }
         &.large {
-            .px2rem(width, 53px);
-            .px2rem(height, 53px);
+            width: 54px;
+            height: 54px;
         }
     }
+
     &.cycle {
         border-radius: 50%;
     }

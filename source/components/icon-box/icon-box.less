@@ -144,36 +144,52 @@
     .subtitle { order: 3; }
 }
 
-.info-box4 {
+.icon-box4 {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: nowrap;
     position: relative;
     border-radius: var(--icon-box-border-radius);
     border: 1px solid var(--icon-box-border-color);
     background: var(--icon-box-background);
     color: var(--icon-box-color);
-    padding: 4px 8px;
+    padding: 1rem;
 
-    .title {
-        text-transform: uppercase;
-        font-size: 9px;
-        font-weight: 400;
-    }
-    .value {
+    .icon {
         display: flex;
-        font-size: 16px;
-        font-weight: 500;
-        align-items: flex-end;
-        justify-content: space-between;
-        font-family: monospace;
+        align-items: center;
+        justify-content: center;
+        width: 64px;
+        height: 64px;
+        overflow: hidden;
+        border-radius: 50%;
+        border: 1px solid var(--icon-box-border-color);
+        background: var(--icon-box-icon-background);
+        color: var(--icon-box-icon-color);
+        margin-right: 1rem;
 
-        .primary-value {
-            font-size: 1em;
+        * {
+            font-size: 60px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            vertical-align: middle;
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .title {
+            font-size: 12px;
+            font-weight: 400;
         }
 
-        .secondary-value {
-            font-size: 0.8em;
-            margin-left: auto;
+        .value {
+            font-size: 16px;
+            font-weight: 700;
         }
     }
 }
