@@ -25,7 +25,7 @@
         },
 
         eval: (str) => {
-            return str.replace(/{{(.*?)}}/g, (match, code) => {
+            return str.replace(/{{(.*?)}}/gs, (match, code) => {
                 try {
                     const fn_code = code.includes('return') ? code : 'return ' + code;
                     const fn = new Function(fn_code);
