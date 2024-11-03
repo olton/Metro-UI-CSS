@@ -39161,7 +39161,7 @@ input[type=reset].loading .load-caption {
   --breadcrumbs-arrow-item-background: #fbfbfb;
   --breadcrumbs-arrow-counter-background: #ffffff;
   --breadcrumbs-arrow-counter-color: #000000;
-  --breadcrumbs-arrow-item-background-active: #468cff;
+  --breadcrumbs-arrow-item-background-active: #959595;
   --breadcrumbs-arrow-item-color-active: #ffffff;
   --breadcrumbs-arrow-item-color: #191919;
   --breadcrumbs-arrow-border-color: #c6c6c6;
@@ -39171,7 +39171,7 @@ input[type=reset].loading .load-caption {
   --breadcrumbs-arrow-item-background: #2b2d30;
   --breadcrumbs-arrow-counter-background: #ffffff;
   --breadcrumbs-arrow-counter-color: #000000;
-  --breadcrumbs-arrow-item-background-active: #ffc351;
+  --breadcrumbs-arrow-item-background-active: #959595;
   --breadcrumbs-arrow-item-color-active: #000;
   --breadcrumbs-arrow-item-color: #ffffff;
   --breadcrumbs-arrow-border-color: #4a4d51;
@@ -44857,14 +44857,14 @@ fieldset.disabled,
   --icon-box-background: var(--default-background);
   --icon-box-color: var(--default-color);
   --icon-box-border-color: var(--border-color);
-  --icon-box-icon-background: var(--default-background);
+  --icon-box-icon-background: #e6e6e6;
   --icon-box-icon-color: var(--default-color);
 }
 .dark-side {
   --icon-box-background: var(--default-background);
   --icon-box-color: #dbdfe7;
   --icon-box-border-color: var(--border-color);
-  --icon-box-icon-background: var(--default-background);
+  --icon-box-icon-background: #3a3a3a;
   --icon-box-icon-color: var(--default-color);
 }
 .icon-box,
@@ -44923,7 +44923,7 @@ fieldset.disabled,
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.1);
+  background: var(--icon-box-icon-background);
 }
 .icon-box .icon > * {
   font-size: 45px;
@@ -56566,3 +56566,4 @@ body.vegas-container > .vegas-slide {
   right: calc(100% + 8px);
   z-index: 1001;
 }
+/*# sourceMappingURL=metro.css.map */

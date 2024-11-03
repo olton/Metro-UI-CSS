@@ -727,16 +727,6 @@
                 }
             }
         },
-
-        // inlineEval: (str) => {
-        //     return str.replace(/{{(.*?)}}/g, (match, code) => {
-        //         try {
-        //             return eval(code);
-        //         } catch (error) {
-        //             return match;
-        //         }
-        //     });
-        // }
     };
 
     $(globalThis).on(Metro.events.resize, function(){

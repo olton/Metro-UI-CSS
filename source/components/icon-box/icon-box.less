@@ -8,7 +8,7 @@
     --icon-box-color: var(--default-color);
     --icon-box-border-color: var(--border-color);
 
-    --icon-box-icon-background: var(--default-background);
+    --icon-box-icon-background: @light-gray;
     --icon-box-icon-color: var(--default-color);
 }
 
@@ -17,7 +17,7 @@
     --icon-box-color: rgb(219, 223, 231);
     --icon-box-border-color: var(--border-color);
 
-    --icon-box-icon-background: var(--default-background);
+    --icon-box-icon-background: @dark-gray;
     --icon-box-icon-color: var(--default-color);
 }
 
@@ -70,7 +70,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        background: rgba(0,0,0,0.1);
+        background: var(--icon-box-icon-background);
 
         & > * {
             font-size: 45px;
