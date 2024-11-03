@@ -18,13 +18,12 @@
     font-size: 12px;
     font-weight: 600;
     padding: 5px 12px;
-    position: relative;
+    position: absolute;
     border-radius: 0 3px 3px 0;
     left: -10px;
     background: var(--ribbon-background);
     color: var(--ribbon-color);
     float: left;
-    margin-left: -25px;
     overflow: visible;
 
     .icon {
@@ -41,6 +40,19 @@
         left: 0;
         position: absolute;
         color: var(--ribbon-background);
+    }
+
+    &.right {
+        left: auto;
+        right: -10px;
+        float: right;
+        border-radius: 3px 0 0 3px;
+
+        &::before {
+            content: "◤";
+            left: auto;
+            right: 0;
+        }
     }
 }
 

@@ -47870,13 +47870,12 @@ a.info-button {
   font-size: 12px;
   font-weight: 600;
   padding: 5px 12px;
-  position: relative;
+  position: absolute;
   border-radius: 0 3px 3px 0;
   left: -10px;
   background: var(--ribbon-background);
   color: var(--ribbon-color);
   float: left;
-  margin-left: -25px;
   overflow: visible;
 }
 .ribbon .icon {
@@ -47892,6 +47891,17 @@ a.info-button {
   left: 0;
   position: absolute;
   color: var(--ribbon-background);
+}
+.ribbon.right {
+  left: auto;
+  right: -10px;
+  float: right;
+  border-radius: 3px 0 0 3px;
+}
+.ribbon.right::before {
+  content: "\25e4";
+  left: auto;
+  right: 0;
 }
 .ribbon-lime {
   background: #AEFD6C;
