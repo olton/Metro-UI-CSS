@@ -105,6 +105,7 @@ video {
   padding: 0;
   border: 0;
   vertical-align: baseline;
+  z-index: 0;
 }
 article,
 aside,
@@ -1034,6 +1035,62 @@ body {
 }
 .border-ridge {
   border-style: ridge !important;
+}
+@property --border-spin-angle { syntax: "<angle>"; initial-value: 0deg; inherits: false; }
+:root {
+  --animated-border-speed: 3s;
+}
+.animated-border::after,
+.animated-border-hover::after,
+.animated-border::before,
+.animated-border-hover::before {
+  content: "";
+  position: absolute;
+  height: calc(100% + 3px);
+  width: calc(100% + 3px);
+  background-image:
+    conic-gradient(
+      from var(--border-spin-angle),
+      #ff4545,
+      #00ff99,
+      #006aff,
+      #ff0095,
+      #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: inherit;
+  animation: var(--animated-border-speed) spin-border linear infinite;
+}
+.animated-border::before,
+.animated-border-hover::before {
+  filter: blur(0.5rem);
+  opacity: 0.5;
+}
+.animated-border-hover::after,
+.animated-border-hover::before {
+  background-image: initial;
+}
+.animated-border-hover:hover::after,
+.animated-border-hover:hover::before {
+  background-image:
+    conic-gradient(
+      from var(--border-spin-angle),
+      #ff4545,
+      #00ff99,
+      #006aff,
+      #ff0095,
+      #ff4545);
+}
+@keyframes spin-border {
+  from {
+    --border-spin-angle: 0deg;
+  }
+  to {
+    --border-spin-angle: 360deg;
+  }
 }
 
 /* source/common-css/cursors.less */
@@ -24684,7 +24741,7 @@ pre code {
   padding: 0 1rem;
   font-size: 14px;
   height: var(--button-size);
-  transition: all 0.15s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: var(--button-background);
   color: var(--button-color);
   border: 1px solid var(--button-border-color);
@@ -24819,7 +24876,7 @@ input[type=reset] {
   padding: 0 1rem;
   font-size: 14px;
   height: var(--button-size);
-  transition: all 0.15s ease-in-out;
+  transition: all 0.3s ease-in-out;
   background-color: var(--button-background);
   color: var(--button-color);
   border: 1px solid var(--button-border-color);
@@ -39415,6 +39472,7 @@ input[type=reset].loading .load-caption {
   border-radius: var(--box-border-radius);
   margin: 1rem 0;
   font-size: 14px;
+  position: relative;
 }
 .box .title {
   font-size: 16px;
@@ -46982,10 +47040,9 @@ a.info-button {
   width: 100%;
   background-color: inherit;
   color: inherit;
-}
-.navview-content-inner {
   height: 100%;
   overflow-y: auto;
+  z-index: 1;
 }
 .navview.compacted .navview-menu-container > .navview-menu {
   width: calc(100% + 16px);
@@ -47866,16 +47923,15 @@ a.info-button {
   display: flex;
   align-items: center;
   box-shadow: 2px 5px 10px rgba(50, 58, 70, 0.15);
-  clear: both;
   font-size: 12px;
   font-weight: 600;
   padding: 5px 12px;
   position: absolute;
   border-radius: 0 3px 3px 0;
+  top: 20px;
   left: -10px;
   background: var(--ribbon-background);
   color: var(--ribbon-color);
-  float: left;
   overflow: visible;
 }
 .ribbon .icon {
@@ -47895,7 +47951,6 @@ a.info-button {
 .ribbon.right {
   left: auto;
   right: -10px;
-  float: right;
   border-radius: 3px 0 0 3px;
 }
 .ribbon.right::before {
@@ -57178,3 +57233,4 @@ body.vegas-container > .vegas-slide {
   right: calc(100% + 8px);
   z-index: 1001;
 }
+/*# sourceMappingURL=metro.css.map */

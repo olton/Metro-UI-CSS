@@ -7,6 +7,28 @@
     <link href="../lib/icons.css" rel="stylesheet">
 
     <title>Test Navview - Metro 4 :: Popular HTML, CSS and JS library</title>
+    <style>
+        .navview-content {
+            padding-top: 52px;
+        }
+
+        #page-content {
+            height: calc(100% - 2px);
+            width: calc(100% - 2px);
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            z-index: 1;
+
+            .card {
+                margin: 0 auto;
+                width: 300px;
+                height: 300px;
+                padding: 1.5rem;
+                border-radius: 10px;
+            }
+        }
+    </style>
 </head>
 <body class="cloak">
 <div data-role="navview" data-expand-point="md">
@@ -185,23 +207,27 @@
     </div>
 
     <div class="navview-content">
-        <div class="navview-content-inner">
-            <div data-role="appbar" class="bg-reserve-steppe pos-absolute border-bottom bd-default" data-expand-point="fs">
-                <div class="app-bar-item-static">
-                    <div class="text-bold enlarge-2" id="content-title">[...]</div>
-                </div>
-
-                <div class="app-bar-item-static ml-auto">
-                    <div data-role="clock"></div>
-                </div>
-                <div class="app-bar-item-static">
-                    <input type="checkbox" data-role="theme-switcher"/>
-                </div>
-
+        <div data-role="appbar" class="bg-reserve-steppe pos-absolute border-bottom bd-default" data-expand-point="fs">
+            <div class="app-bar-item-static">
+                <div class="text-bold enlarge-2" id="content-title">[...]</div>
             </div>
 
-            <div id="page-content"></div>
+            <div class="app-bar-item-static ml-auto">
+                <div data-role="clock"></div>
+            </div>
+            <div class="app-bar-item-static">
+                <input type="checkbox" data-role="theme-switcher"/>
+            </div>
+
         </div>
+
+        <div id="page-content" class="border bd-red">
+            <div class="card animated-border">
+                malesuada ultrices dolore sodales phasellus vim quaeque amet vel prodesset euismod decore duo epicurei tota mediocrem oratio necessitatibus error disputationi
+            </div>
+
+        </div>
+
     </div>
 </div>
 

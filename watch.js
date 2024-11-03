@@ -17,7 +17,7 @@ let ctx = await context({
     plugins: [
         progress({
             text: 'Building Metro UI...',
-            succeedText: 'Metro UI built successfully in %s ms! Watching for changes...'
+            succeedText: 'Compiled! Watching for changes...'
         }),
         lessLoader(),
         autoprefixer(),
