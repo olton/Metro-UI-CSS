@@ -106,11 +106,20 @@
             pane = element.children(".navview-pane");
             content = element.children(".navview-content");
             toggle = $(o.toggle);
-            menu = pane.children(".navview-menu");
 
+            menu = pane.children(".navview-menu");
             if (menu.length) {
                 menu.prevAll().reverse().wrapAll($("<div>").addClass("navview-container"));
                 menu.wrap($("<div>").addClass("navview-menu-container"));
+
+                menu.find("a").each(function(){
+                    const a = $(this)
+                    const icon = a.children(".icon")
+                    const caption = a.children(".caption")
+                    if (!icon.length) {
+                        a.prepend($("<span>").addClass("icon").html(caption.text()[0]))
+                    }
+                })
             }
 
             this.pane = pane.length > 0 ? pane : null;

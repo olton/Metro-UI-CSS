@@ -9,30 +9,41 @@
     <title>Animate Border - Metro 4 :: Popular HTML, CSS and JS library</title>
     <style>
         body {
-            padding-top: 50px;
+            /*padding-top: 50px;*/
+            background-color: #1f1f1f;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-content: center;
+
         }
         .card {
             margin: 0 auto;
-            padding: 2em;
+            padding: 32px;
             width: 300px;
             background-color: #1c1f2b;
             color: white;
             text-align: center;
             border-radius: 10px;
             position: relative;
+            border: 1px solid red;
+            z-index: 0;
+        }
+        .card-content {
+            position: relative;
+            padding: 1em;
+            /*border: 1px solid pink;*/
+            background-color: #000;
+            border-radius: 10px;
         }
     </style>
 </head>
-<body class="cloak flex-center">
-<nav data-role="appbar">
-    <span class="app-bar-item">Any</span>
-    <div class="app-bar-item no-hover">
-        <input type="checkbox" data-role="theme-switcher" data-state="dark"/>
+<body class="dark-side">
+<div class="card">
+    <div class="card-content animated-border-blue">
+        malesuada ultrices dolore sodales phasellus vim quaeque amet vel prodesset euismod decore duo epicurei tota mediocrem oratio necessitatibus error disputationi
     </div>
-</nav>
-
-<div class="card animated-border">
-   malesuada ultrices dolore sodales phasellus vim quaeque amet vel prodesset euismod decore duo epicurei tota mediocrem oratio necessitatibus error disputationi
 </div>
 
 <script src="../lib/metro.js"></script>

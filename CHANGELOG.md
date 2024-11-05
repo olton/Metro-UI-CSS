@@ -1,11 +1,12 @@
 # Changelog
 
 ### 5.1.0
-+ [x] Change color to original value
++ [x] Updated color values, each color is worked by hand.
 + [x] Added gradient backgrounds with `gr-COLOR`, `gr-light-COLOR`, and `gr-dark-COLOR`
 + [x] Added new colors: `champagne`, `khaki`, `charcoal`, `cinnamon`, `glaucous`, `nude`, `terracotta`, `coral`, `army`, `seashell`
 + [x] Renamed colors to `*-color`, `*-light-color`, `*-dark-color`
 + [x] Improved progress bars
++ [x] Added classes `.animated-border`, `.animated-border-COLOR`
 
 ### 5.0.13
 + [x] Update Sidenav Counter, added role, theme

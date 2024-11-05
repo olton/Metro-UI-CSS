@@ -53,6 +53,8 @@
     position: relative;
     flex-shrink: 0;
     height: 100%;
+    isolation: isolate;
+    z-index: 0;
 }
 
 .navview-pane {
@@ -90,6 +92,7 @@
 
     .navview-menu-container {
         height: 100%;
+        padding-left: 4px;
 
         & .navview-menu {
             height: 100%;
@@ -197,6 +200,7 @@
         width: 16px;
         height: 16px;
         font-size: 16px;
+        text-align: center;
     }
 
     .badges {
@@ -281,7 +285,6 @@
     color: inherit;
     height: 100%;
     overflow-y: auto;
-    z-index: 1;
 }
 
 .navview {
@@ -322,6 +325,20 @@
 
             .item-header {
                 display: flex;
+            }
+
+            &.pad-second-level {
+                .navview-menu {
+                    margin-right: -4px;
+                    li {
+                        a {
+                            padding-left: calc(38px + 1.5rem);
+                            .icon {
+                                left: calc(10px + 1.5rem);
+                            }
+                        }
+                    }
+                }
             }
         }
 

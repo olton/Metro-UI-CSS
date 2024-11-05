@@ -1,3 +1,5 @@
+@import "../include/vars";
+
 :root {
     --border-radius: 4px;
 }
@@ -97,53 +99,3 @@
 .border-outset {border-style: outset!important;}
 .border-ridge {border-style: ridge!important;}
 
-@property --border-spin-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-:root {
-    --animated-border-speed: 3s;
-}
-
-.animated-border, .animated-border-hover {
-    &::after, &::before {
-        content: '';
-        position: absolute;
-        height: calc(100% + 3px);
-        width: calc(100% + 3px);
-        background-image: conic-gradient(from var(--border-spin-angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-        top: 50%;
-        left: 50%;
-        translate: -50% -50%;
-        z-index: -1;
-        padding: 3px;
-        border-radius: inherit;
-        animation: var(--animated-border-speed) spin-border linear infinite;
-    }
-    &::before {
-        filter: blur(.5rem);
-        opacity: .5;
-    }
-}
-
-.animated-border-hover {
-    &::after, &::before {
-        background-image: initial;
-    }
-    &:hover {
-        &::after, &::before {
-            background-image: conic-gradient(from var(--border-spin-angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
-        }
-    }
-}
-
-@keyframes spin-border {
-    from{
-        --border-spin-angle: 0deg;
-    }
-    to{
-        --border-spin-angle: 360deg;
-    }
-}
