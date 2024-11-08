@@ -39965,7 +39965,7 @@ input[type=reset].loading .load-caption {
 }
 .breadcrumbs.arrow .icon {
   font-size: 16px;
-  margin-left: 0.5rem;
+  margin: 0 0.5rem;
 }
 .breadcrumbs.arrow .caption {
   font-size: inherit;
@@ -57814,3 +57814,4 @@ body.vegas-container > .vegas-slide {
   right: calc(100% + 8px);
   z-index: 1001;
 }
+/*# sourceMappingURL=metro.css.map */
