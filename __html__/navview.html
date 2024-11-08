@@ -47,11 +47,16 @@
 
         <ul class="navview-menu" id="side-menu">
             <li class="item-header">General</li>
-            <li id="li-dashboard">
-                <a href="#dashboard">
-                    <span class="icon"><span class="mif-roofing"></span></span>
-                    <span class="caption">Dashboard</span>
+            <li>
+                <a href="#" class="dropdown-toggle">
+                    <span class="icon"><span class="mif-developer_board"></span></span>
+                    <span class="caption">Dashboards</span>
                 </a>
+                <ul class="navview-menu" data-role="collapse">
+                    <li><a href="#"><span class="caption">Dashboard 1</span></a></li>
+                    <li><a href="#"><span class="caption">Dashboard 2</span></a></li>
+                    <li><a href="#"><span class="caption">Dashboard 3</span></a></li>
+                </ul>
             </li>
             <li id="li-widgets">
                 <a href="#widgets">
@@ -226,7 +231,10 @@
                 malesuada ultrices dolore sodales phasellus vim quaeque amet vel prodesset euismod decore duo epicurei tota mediocrem oratio necessitatibus error disputationi
 
                 <div class="mt-4">
-                    <button class="button animated-border">Button</button>
+                    <button class="button animated-border" id="btn1">Button</button>
+                    <div data-role="collapse" data-toggle-element="#btn1">
+                        collpsed block
+                    </div>
                 </div>
             </div>
         </div>

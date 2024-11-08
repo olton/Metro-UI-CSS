@@ -87,9 +87,9 @@
 @light-terracotta:     #ffefeb;
 @light-coral:          #fff3ef;
 @light-army:           #edefe9;
-@light-seashell:       #fffefd;
-@light-sand: #faf8f4;
-@light-gray:           #e6e6e6;
+@light-seashell:       #fff9f8;
+@light-sand:           #faf8f4;
+@light-gray:           #f4f4f4;
 @light-gray-blue:      #bee2f4;
 @light-gray-mouse:     #8ab4c8;
 
@@ -124,7 +124,7 @@
 @dark-coral:           #804028;
 @dark-army:            #2a2f14;
 @dark-seashell:        #807973;
-@dark-sand: #aca48c;
+@dark-sand:            #aca48c;
 @dark-gray:            #3a3a3a;
 @dark-gray-blue:       #36464e;
 @dark-gray-mouse:      #1f282c;
@@ -206,14 +206,32 @@
 
 // Accent colors
 @primaryColor: #0366d6;
+@primaryColorLight: lighten(#0366d6, 15%);
+@primaryColorDark: darken(#0366d6, 5%);
 @secondaryColor: @gray-blue;
+@secondaryColorLight: lighten(@gray-blue, 15%);
+@secondaryColorDark: darken(@gray-blue, 5%);
 @successColor: @emerald;
+@successColorLight: lighten(@emerald, 15%);
+@successColorDark: darken(@emerald, 5%);
 @alertColor: @crimson;
+@alertColorLight: lighten(@crimson, 15%);
+@alertColorDark: darken(@crimson, 5%);
 @warningColor: @orange;
+@warningColorLight: lighten(@orange, 15%);
+@warningColorDark: darken(@orange, 5%);
 @yellowColor: @yellow;
+@yellowColorLight: lighten(@yellow, 15%);
+@yellowColorDark: darken(@yellow, 5%);
 @infoColor: #468cff;
+@infoColorLight: lighten(#468cff, 15%);
+@infoColorDark: darken(#468cff, 5%);
 @darkColor: lighten(@dark, 20%);
+@darkColorLight: lighten(@darkColor, 15%);
+@darkColorDark: darken(@darkColor, 5%);
 @lightColor: @light;
+@lightColorLight: @white;
+@lightColorDark: darken(@light, 5%);
 
 @accentColors: primary, secondary, success, alert, warning, yellow, info, dark, light;
 @buttonPredefinedTypes: primary, secondary, success, alert, warning, yellow, info, dark, light;

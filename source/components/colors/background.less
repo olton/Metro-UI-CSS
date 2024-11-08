@@ -6,6 +6,7 @@
 
 .bg-default {
     background-color: var(--default-background)!important;
+    color: var(--default-color)!important;
 }
 
 .bg-hover:hover {background-color: @hoverBackground !important;}
@@ -15,12 +16,12 @@
 .bg-hover-light2:hover {background-color: @hoverBackgroundLight2 !important;}
 .bg-hover-light3:hover {background-color: @hoverBackgroundLight3 !important;}
 
-.bg-facebook {background-color: #4267b2!important;}
-.bg-twitter {background-color: #1DA1F2!important; ;}
-.bg-github {background-color: #24292e!important;}
-.bg-bootstrap {background-color: #563d7c!important;}
-.bg-gitlab {background-color: #e65328!important;}
-.bg-amazon {background-color: #232f3e!important;}
+.bg-facebook {background-color: #4267b2!important; color: #ffffff !important;}
+.bg-twitter {background-color: #1DA1F2!important; color: #ffffff !important;}
+.bg-github {background-color: #24292e!important; color: #ffffff !important;}
+.bg-bootstrap {background-color: #563d7c!important; color: #ffffff !important;}
+.bg-gitlab {background-color: #e65328!important; color: #ffffff !important;}
+.bg-amazon {background-color: #232f3e!important; color: #ffffff !important;}
 
 each(@colors, {
     .bg-@{value} {background-color: @@value !important;}

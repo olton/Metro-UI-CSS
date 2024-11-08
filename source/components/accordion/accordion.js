@@ -1,6 +1,7 @@
-/*global Metro, METRO_ANIMATION_DURATION */
-(function(Metro, $){
-    'use strict';
+/** @format */
+
+(function (Metro, $) {
+    "use strict";
     var Utils = Metro.utils;
     var AccordionDefaultConfig = {
         accordionDeferred: 0,
@@ -23,10 +24,10 @@
         onFrameBeforeOpen: Metro.noop_true,
         onFrameClose: Metro.noop,
         onFrameBeforeClose: Metro.noop_true,
-        onAccordionCreate: Metro.noop
+        onAccordionCreate: Metro.noop,
     };
 
-    Metro.accordionSetup = function(options){
+    Metro.accordionSetup = function (options) {
         AccordionDefaultConfig = $.extend({}, AccordionDefaultConfig, options);
     };
 
@@ -34,42 +35,38 @@
         Metro.accordionSetup(globalThis["metroAccordionSetup"]);
     }
 
-    Metro.Component('accordion', {
-        init: function( options, elem ) {
+    Metro.Component("accordion", {
+        init: function (options, elem) {
             this._super(elem, options, AccordionDefaultConfig);
             return this;
         },
 
-        _create: function(){
+        _create: function () {
             var element = this.element;
 
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent('accordionCreate', {
-                element: element
+            this._fireEvent("accordionCreate", {
+                element: element,
             });
         },
 
-        _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+        _createStructure: function () {
+            var that = this,
+                element = this.element,
+                o = this.options;
             var frames = element.children(".frame");
             var active = element.children(".frame.active");
             var frame_to_open;
 
-            element
-                .addClass("accordion")
-                .addClass(o.clsAccordion)
-            ;
+            element.addClass("accordion").addClass(o.clsAccordion);
 
-            frames
-                .addClass(o.clsFrame)
-                .each(function(){
-                    var $el = $(this);
-                    $el.children(".heading").addClass(o.clsHeading);
-                    $el.children(".content").addClass(o.clsContent);
-                })
-            ;
+            frames.addClass(o.clsFrame).each(function () {
+                var $el = $(this);
+                $el.children(".heading").addClass(o.clsHeading);
+                $el.children(".content").addClass(o.clsContent);
+            });
 
             if (o.showMarker === true) {
                 element.addClass("marker-on");
@@ -91,18 +88,20 @@
                 if (o.oneFrame === true) {
                     this._openFrame(frame_to_open);
                 } else {
-                    $.each(active, function(){
+                    $.each(active, function () {
                         that._openFrame(this);
                     });
                 }
             }
         },
 
-        _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+        _createEvents: function () {
+            var that = this,
+                element = this.element,
+                o = this.options;
             var active = element.children(".frame.active");
 
-            element.on(Metro.events.click, ".heading", function(){
+            element.on(Metro.events.click, ".heading", function () {
                 var heading = $(this);
                 var frame = heading.parent();
 
@@ -113,7 +112,6 @@
                 if (frame.hasClass("active")) {
                     if (active.length === 1 && o.oneFrame) {
                         /* eslint-disable-next-line */
-
                     } else {
                         that._closeFrame(frame);
                     }
@@ -123,11 +121,15 @@
             });
         },
 
-        _openFrame: function(f){
-            var element = this.element, o = this.options;
+        _openFrame: function (f) {
+            var element = this.element,
+                o = this.options;
             var frame = $(f);
 
-            if (Utils.exec(o.onFrameBeforeOpen, [frame[0]], element[0]) === false) {
+            if (
+                Utils.exec(o.onFrameBeforeOpen, [frame[0]], element[0]) ===
+                false
+            ) {
                 return false;
             }
 
@@ -135,77 +137,100 @@
                 this._closeAll(frame[0]);
             }
 
-            frame.addClass("active " + o.activeFrameClass).addClass(o.clsActiveFrame);
-            frame.children(".heading").addClass(o.activeHeadingClass).addClass(o.clsActiveFrameHeading);
-            frame.children(".content").addClass(o.activeContentClass).addClass(o.clsActiveFrameContent).slideDown(o.duration);
+            frame
+                .addClass("active " + o.activeFrameClass)
+                .addClass(o.clsActiveFrame);
+            frame
+                .children(".heading")
+                .addClass(o.activeHeadingClass)
+                .addClass(o.clsActiveFrameHeading);
+            frame
+                .children(".content")
+                .addClass(o.activeContentClass)
+                .addClass(o.clsActiveFrameContent)
+                .slideDown(o.duration);
 
             this._fireEvent("frameOpen", {
-                frame: frame[0]
+                frame: frame[0],
             });
         },
 
-        _closeFrame: function(f){
-            var element = this.element, o = this.options;
+        _closeFrame: function (f) {
+            var element = this.element,
+                o = this.options;
             var frame = $(f);
 
             if (!frame.hasClass("active")) {
-                return ;
+                return;
             }
 
-            if (Utils.exec(o.onFrameBeforeClose, [frame[0]], element[0]) === false) {
-                return ;
+            if (
+                Utils.exec(o.onFrameBeforeClose, [frame[0]], element[0]) ===
+                false
+            ) {
+                return;
             }
 
-            frame.removeClass("active " + o.activeFrameClass).removeClass(o.clsActiveFrame);
-            frame.children(".heading").removeClass(o.activeHeadingClass).removeClass(o.clsActiveFrameHeading);
-            frame.children(".content").removeClass(o.activeContentClass).removeClass(o.clsActiveFrameContent).slideUp(o.duration);
+            frame
+                .removeClass("active " + o.activeFrameClass)
+                .removeClass(o.clsActiveFrame);
+            frame
+                .children(".heading")
+                .removeClass(o.activeHeadingClass)
+                .removeClass(o.clsActiveFrameHeading);
+            frame
+                .children(".content")
+                .removeClass(o.activeContentClass)
+                .removeClass(o.clsActiveFrameContent)
+                .slideUp(o.duration);
 
             this._fireEvent("frameClose", {
-                frame: frame[0]
+                frame: frame[0],
             });
         },
 
-        _closeAll: function(skip){
-            var that = this, element = this.element;
+        _closeAll: function (skip) {
+            var that = this,
+                element = this.element;
             var frames = element.children(".frame");
 
-            $.each(frames, function(){
+            $.each(frames, function () {
                 if (skip === this) return;
                 that._closeFrame(this);
             });
         },
 
-        _hideAll: function(){
+        _hideAll: function () {
             var element = this.element;
             var frames = element.children(".frame");
 
-            $.each(frames, function(){
+            $.each(frames, function () {
                 $(this).children(".content").hide();
             });
         },
 
-        _openAll: function(){
-            var that = this, element = this.element;
+        _openAll: function () {
+            var that = this,
+                element = this.element;
             var frames = element.children(".frame");
 
-            $.each(frames, function(){
+            $.each(frames, function () {
                 that._openFrame(this);
             });
         },
 
-        open: function(i){
+        open: function (i) {
             var frame = this.element.children(".frame").eq(i);
             this._openFrame(frame);
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attr, newVal){
-        },
+        changeAttribute: function (attr, newVal) {},
 
-        destroy: function(){
+        destroy: function () {
             var element = this.element;
             element.off(Metro.events.click, ".heading");
             return element;
-        }
+        },
     });
-}(Metro, m4q));
+})(Metro, m4q);
