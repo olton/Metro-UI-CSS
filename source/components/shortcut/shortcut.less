@@ -1,25 +1,39 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --shortcut-border-radius: 6px;
+    --shortcut-background: #f8f8f8;
+    --shortcut-color: #191919;
+    --shortcut-background-hover: #dcdcdc;
+    --shortcut-color-hover: #474747;
+}
+
+.dark-side {
+    --shortcut-background: #2e2e2e;
+    --shortcut-color: #F8F8F8;
+    --shortcut-background-hover: #373737;
+    --shortcut-color-hover: #bfbfbf;
+}
+
 .shortcut {
     width: 84px;
     height: 84px;
-    padding: 8px;
     display: inline-flex;
     flex-direction: column;
     font-size: .9rem;
-    transition: @transition-short;
-    background-color: darken(@light, 5%);
-    color: @dark;
+    transition: @transition-base;
+    background: var(--shortcut-background);
+    color: var(--shortcut-color);
     cursor: pointer;
     white-space: nowrap;
-    vertical-align: middle;
     user-select: none;
     border: 1px solid transparent;
     position: relative;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     outline: none;
+    border-radius: var(--shortcut-border-radius);
 
     .icon, .caption {
         display: block;
@@ -32,18 +46,13 @@
         width: 28px;
         height: 28px;
         font-size: 28px;
-        margin-top: 16px;
         order: 1;
     }
 
     .caption {
         color: inherit;
-        height: 20px;
         order: 2;
-    }
-
-    .icon ~ .caption {
-        margin-top: .875rem;
+        margin-top: 10px;
     }
 
     .badge {
@@ -66,7 +75,8 @@
     }
 
     &:hover {
-        background-color: @hoverBackground;
+        background: var(--shortcut-background-hover);
+        color: var(--shortcut-color-hover);
     }
 
     &.focus, &:focus {

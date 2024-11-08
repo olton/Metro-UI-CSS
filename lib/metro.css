@@ -50398,25 +50398,37 @@ fieldset.disabled,
 }
 
 /* source/components/shortcut/shortcut.less */
+:root {
+  --shortcut-border-radius: 6px;
+  --shortcut-background: #f8f8f8;
+  --shortcut-color: #191919;
+  --shortcut-background-hover: #dcdcdc;
+  --shortcut-color-hover: #474747;
+}
+.dark-side {
+  --shortcut-background: #2e2e2e;
+  --shortcut-color: #F8F8F8;
+  --shortcut-background-hover: #373737;
+  --shortcut-color-hover: #bfbfbf;
+}
 .shortcut {
   width: 84px;
   height: 84px;
-  padding: 8px;
   display: inline-flex;
   flex-direction: column;
   font-size: 0.9rem;
-  transition: all 0.15s ease-in-out;
-  background-color: #ebebeb;
-  color: #1d1d1d;
+  transition: all 0.3s ease-in-out;
+  background: var(--shortcut-background);
+  color: var(--shortcut-color);
   cursor: pointer;
   white-space: nowrap;
-  vertical-align: middle;
   user-select: none;
   border: 1px solid transparent;
   position: relative;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   outline: none;
+  border-radius: var(--shortcut-border-radius);
 }
 .shortcut .icon,
 .shortcut .caption {
@@ -50429,16 +50441,12 @@ fieldset.disabled,
   width: 28px;
   height: 28px;
   font-size: 28px;
-  margin-top: 16px;
   order: 1;
 }
 .shortcut .caption {
   color: inherit;
-  height: 20px;
   order: 2;
-}
-.shortcut .icon ~ .caption {
-  margin-top: 0.875rem;
+  margin-top: 10px;
 }
 .shortcut .badge {
   position: absolute;
@@ -50456,7 +50464,8 @@ fieldset.disabled,
   margin-top: 24px;
 }
 .shortcut:hover {
-  background-color: rgba(29, 29, 29, 0.1);
+  background: var(--shortcut-background-hover);
+  color: var(--shortcut-color-hover);
 }
 .shortcut.focus,
 .shortcut:focus {
