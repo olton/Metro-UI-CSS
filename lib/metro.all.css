@@ -46219,6 +46219,8 @@ fieldset.disabled,
   text-decoration: none;
   line-height: 1;
   transition: all 0.3s ease-in-out;
+  padding: 0;
+  cursor: pointer;
 }
 .info-button .title,
 .info-button .value {
