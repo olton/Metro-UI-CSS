@@ -39965,7 +39965,7 @@ input[type=reset].loading .load-caption {
 }
 .breadcrumbs.arrow .icon {
   font-size: 16px;
-  margin-left: 0.5rem;
+  margin: 0 0.5rem;
 }
 .breadcrumbs.arrow .caption {
   font-size: inherit;

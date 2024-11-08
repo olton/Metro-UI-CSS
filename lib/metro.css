@@ -42825,6 +42825,12 @@ input.input-small:-ms-input-placeholder {
   font-weight: 500;
   margin: 0.5rem;
 }
+.command-button:first-child {
+  margin-left: 0;
+}
+.command-button:last-child {
+  margin-right: 0;
+}
 .command-button .icon,
 .command-button .caption {
   transition: all 0.3s ease-in-out;
