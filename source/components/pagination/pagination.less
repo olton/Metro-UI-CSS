@@ -11,7 +11,7 @@
     --pagination-page-item-background-active: #d4e2ff;
     --pagination-page-item-color-active: var(--default-color);
     --pagination-page-item-border-color: var(--border-color);
-    --pagination-page-item-border-radius: 6px;
+    --pagination-page-item-border-radius: 4px;
 }
 
 .dark-side {
@@ -44,8 +44,10 @@
         background-color: var(--pagination-page-item-background);
         color: var(--pagination-page-item-color);
         border: 1px solid var(--pagination-page-item-border-color);
+        border-radius: var(--pagination-page-item-border-radius);
         margin: .25rem;
         transition: @transition-short;
+        overflow: hidden;
     }
 
     .page-link {

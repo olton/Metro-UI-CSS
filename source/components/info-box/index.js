@@ -1,4 +1,6 @@
-import "../../farbe"
-import "../colors"
-import "./info-box.js"
-import "./info-box.less"
+/** @format */
+
+import "../../farbe";
+import "../../colors-css";
+import "./info-box.js";
+import "./info-box.less";

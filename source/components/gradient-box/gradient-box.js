@@ -1,6 +1,11 @@
-/* global Metro */
-(function(Metro, $) {
-    'use strict';
+/**
+ * global Metro
+ *
+ * @format
+ */
+
+(function (Metro, $) {
+    "use strict";
 
     var Utils = Metro.utils;
     var GradientBoxDefaultConfig = {
@@ -10,19 +15,23 @@
         gradientSize: "",
         gradientColors: "#000, #fff",
         gradientRepeat: false,
-        onGradientBoxCreate: Metro.noop
+        onGradientBoxCreate: Metro.noop,
     };
 
     Metro.gradientBoxSetup = function (options) {
-        GradientBoxDefaultConfig = $.extend({}, GradientBoxDefaultConfig, options);
+        GradientBoxDefaultConfig = $.extend(
+            {},
+            GradientBoxDefaultConfig,
+            options,
+        );
     };
 
     if (typeof globalThis["metroGradientBoxSetup"] !== undefined) {
         Metro.gradientBoxSetup(globalThis["metroGradientBoxSetup"]);
     }
 
-    Metro.Component('gradient-box', {
-        init: function( options, elem ) {
+    Metro.Component("gradient-box", {
+        init: function (options, elem) {
             this._super(elem, options, GradientBoxDefaultConfig, {
                 // define instance vars here
                 colors: [],
@@ -31,12 +40,12 @@
                 position: "",
                 type: "linear",
                 func: "linear-gradient",
-                repeat: false
+                repeat: false,
             });
             return this;
         },
 
-        _create: function(){
+        _create: function () {
             var o = this.options;
 
             this.colors = o.gradientColors.toArray(",");
@@ -44,15 +53,22 @@
             this.shape = o.gradientShape.toLowerCase();
             this.size = o.gradientSize.toLowerCase();
             this.repeat = o.gradientRepeat;
-            this.func = (this.repeat ? "repeating-" : "") + this.type + "-gradient";
+            this.func =
+                (this.repeat ? "repeating-" : "") + this.type + "-gradient";
 
             if (this.type === "linear") {
-                if ( !o.gradientPosition ) {
+                if (!o.gradientPosition) {
                     this.position = "to bottom";
                 } else {
-                    this.position = isNaN(o.gradientPosition) === false ? o.gradientPosition + "deg" : o.gradientPosition;
+                    this.position =
+                        isNaN(o.gradientPosition) === false
+                            ? o.gradientPosition + "deg"
+                            : o.gradientPosition;
 
-                    if (this.position.indexOf("deg") === -1 && this.position.indexOf("to ") === -1) {
+                    if (
+                        this.position.indexOf("deg") === -1 &&
+                        this.position.indexOf("to ") === -1
+                    ) {
                         this.position = "to " + this.position;
                     }
                 }
@@ -65,16 +81,17 @@
 
             this._createStructure();
             this._setGradient();
-            this._fireEvent('gradient-box-create');
+            this._fireEvent("gradient-box-create");
         },
 
-        _createStructure: function(){
+        _createStructure: function () {
             this.element.addClass("gradient-box");
         },
 
-        _setGradient: function (){
+        _setGradient: function () {
             var element = this.element;
-            var gradientRule, gradientOptions = [];
+            var gradientRule,
+                gradientOptions = [];
 
             if (this.type === "radial" && this.shape) {
                 gradientOptions.push(this.shape);
@@ -88,32 +105,54 @@
                 //gradientOptions.push((this.position.indexOf("at") === -1 ? "at " : "") + this.position);
             }
 
-            gradientRule = this.func + "(" + (gradientOptions.length ? gradientOptions.join(" ") + ", " : "") + this.colors.join(", ") + ")";
+            gradientRule =
+                this.func +
+                "(" +
+                (gradientOptions.length
+                    ? gradientOptions.join(" ") + ", "
+                    : "") +
+                this.colors.join(", ") +
+                ")";
 
             element.css({
-                background: gradientRule
+                background: gradientRule,
             });
         },
 
-        changeAttribute: function(attr, newValue){
+        changeAttribute: function (attr, newValue) {
             if (attr.indexOf("data-gradient-") === -1) {
-                return ;
+                return;
             }
 
             switch (attr) {
-                case "data-gradient-type": this.type = newValue; this.func = newValue.toLowerCase() + "-gradient"; break;
-                case "data-gradient-colors": this.colors = newValue ? newValue.toArray(",") : ["#fff", "#000"]; break;
-                case "data-gradient-shape": this.shape = newValue.toLowerCase(); break;
-                case "data-gradient-size": this.size = newValue.toLowerCase(); break;
-                case "data-gradient-position": this.position = newValue.toLowerCase(); break;
-                case "data-gradient-repeat": this.repeat = Utils.bool(newValue); break;
+                case "data-gradient-type":
+                    this.type = newValue;
+                    this.func = newValue.toLowerCase() + "-gradient";
+                    break;
+                case "data-gradient-colors-css":
+                    this.colors = newValue
+                        ? newValue.toArray(",")
+                        : ["#fff", "#000"];
+                    break;
+                case "data-gradient-shape":
+                    this.shape = newValue.toLowerCase();
+                    break;
+                case "data-gradient-size":
+                    this.size = newValue.toLowerCase();
+                    break;
+                case "data-gradient-position":
+                    this.position = newValue.toLowerCase();
+                    break;
+                case "data-gradient-repeat":
+                    this.repeat = Utils.bool(newValue);
+                    break;
             }
 
             this._setGradient();
         },
 
-        destroy: function(){
+        destroy: function () {
             return this.element;
-        }
+        },
     });
-}(Metro, m4q));
+})(Metro, m4q);

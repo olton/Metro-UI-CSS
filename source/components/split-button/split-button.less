@@ -1,6 +1,23 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --split-button-border-radius: 4px;
+    --split-button-background: #ebebeb;
+    --split-button-color: #191919;
+    --split-button-background-hover: #dcdcdc;
+    --split-button-color-hover: #474747;
+    --split-button-border-color: #E8E8E8;
+}
+
+.dark-side {
+    --split-button-background: #2e2e2e;
+    --split-button-color: #F8F8F8;
+    --split-button-background-hover: #373737;
+    --split-button-color-hover: #bfbfbf;
+    --split-button-border-color: #4A4D51;
+}
+
 .split-button {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -22,23 +39,27 @@
         padding: 0 .75rem;
         text-align: center;
         vertical-align: middle ;
-        background-color: @light-gray;
+        background: var(--split-button-background);
+        color: var(--split-button-color);
         border: 1px @transparent solid;
-        color: @dark;
+        border-radius: var(--split-button-border-radius);
         cursor: pointer;
         outline: none;
-        font-size: .875rem;
+        font-size: 14px;
         position: relative;
-        line-height: 36px;
         height: 36px;
         min-width: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
         &.dropdown-toggle {
             &::before {margin-left: -1.25rem;}
         }
 
         &:hover {
-            background-color: darken(@light-gray, 10%);
+            background: var(--split-button-background-hover);
+            color: var(--split-button-color-hover);
         }
     }
 
@@ -59,7 +80,7 @@
         &.outline {
             background: transparent none;
             border-width: 1px;
-            border-color: var(--border-color);
+            border-color: var(--split-button-border-color);
         }
 
         &:active {
@@ -68,7 +89,7 @@
     }
 
     [data-role*=dropdown], .drop-object {
-        left: 0;
+        right: 0;
         top: 100%;
     }
 

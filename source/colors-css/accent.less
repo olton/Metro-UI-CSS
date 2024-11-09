@@ -1,5 +1,5 @@
-@import (once) "../../include/vars";
-@import (once) "../../include/mixins";
+@import (once) "../include/vars";
+@import (once) "../include/mixins";
 
 each(@accentColors, {
     @color: "@{value}Color";
@@ -89,17 +89,3 @@ each(@accentColors, {
     })
 }
 
-each(@normalColors, {
-    @color: "light-@{value}";
-    @text-color: "dark-@{value}";
-    .soft-@{value} {
-        background: @@color!important;
-        color: @@text-color!important;
-        border-color: @@color!important;
-
-        &:hover {
-            background: @@value!important;
-            color: @white!important;
-        }
-    }
-})

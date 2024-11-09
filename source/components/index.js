@@ -30,7 +30,6 @@ import "./clock/index.js";
 import "./collapse/index.js";
 import "./color-picker/index.js";
 import "./color-selector/index.js";
-import "./colors/index.js";
 import "./command-button/index.js";
 import "./container/index.js";
 import "./cookie/index.js";

@@ -1,15 +1,8 @@
-import "./reset/index.js"
-import "./datetime/index.js"
-import "./string/index.js"
-import "./m4q/index.js"
-import "./hooks/index.js"
-import "./farbe/index.js"
-import "./html/index.js"
-import "./animation/index.js"
-import "./guardian/index.js"
-import "./core/index.js"
-import "./i18n/index.js"
-import "./extensions/index.js"
-import "./common-js/index.js"
-import "./common-css/index.js"
-import "./components/index.js"
+/** @format */
+
+import "./reset/index.js";
+import "./runtime.js";
+import "./i18n/index.js";
+import "./common-css/index.js";
+import "./colors-css/index.js";
+import "./components/index.js";
