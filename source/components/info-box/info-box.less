@@ -16,9 +16,10 @@
 
 .info-box {
     position: fixed;
-    background-color: var(--info-box-background);
+    background: var(--info-box-background);
     color: var(--info-box-color);
     border: 1px solid var(--info-box-border-color);
+    border-radius: var(--info-box-border-radius);
     display: block;
     z-index: @zindex-modal;
     max-width: ~"calc(100vw - 100px)";
@@ -27,18 +28,20 @@
 
 .info-box {
     .closer {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         top: 4px;
         right: 4px;
         background-color: inherit;
         color: inherit;
         z-index: 100;
+        border: none;
         &::before {
             display: block;
             content: "\00d7";
             font-size: 24px;
-            margin-top: -4px;
         }
     }
 

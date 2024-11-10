@@ -1,6 +1,7 @@
-(function(Metro, $) {
-    'use strict';
-    var Utils = Metro.utils;
+/** @format */
+
+(function (Metro, $) {
+    "use strict";
     var PanelDefaultConfig = {
         panelDeferred: 0,
         id: null,
@@ -8,7 +9,7 @@
         titleIcon: "",
         collapsible: false,
         collapsed: false,
-        collapseDuration: METRO_ANIMATION_DURATION,
+        collapseDuration: 100,
         width: "auto",
         height: "auto",
         draggable: false,
@@ -28,7 +29,7 @@
         onDragStart: Metro.noop,
         onDragStop: Metro.noop,
         onDragMove: Metro.noop,
-        onPanelCreate: Metro.noop
+        onPanelCreate: Metro.noop,
     };
 
     Metro.panelSetup = function (options) {
@@ -39,44 +40,43 @@
         Metro.panelSetup(globalThis["metroPanelSetup"]);
     }
 
-    Metro.Component('panel', {
-        init: function( options, elem ) {
+    Metro.Component("panel", {
+        init: function (options, elem) {
             this._super(elem, options, PanelDefaultConfig);
 
             return this;
         },
 
-        _addCustomButtons: function(buttons){
-            var element = this.element, o = this.options;
+        _addCustomButtons: function (buttons) {
+            var element = this.element,
+                o = this.options;
             var title = element.closest(".panel").find(".panel-title");
-            var buttonsContainer, customButtons = [];
+            var buttonsContainer,
+                customButtons = [];
 
-            if (typeof buttons === "string" && buttons.indexOf("{") > -1) {
-                customButtons = JSON.parse(buttons);
-            } else if (typeof buttons === "string" && Utils.isObject(buttons)) {
-                customButtons = Utils.isObject(buttons);
-            } else if (typeof buttons === "object" && Utils.objectLength(buttons) > 0) {
-                customButtons = buttons;
-            } else {
+            customButtons = Metro.utils.isObject(buttons);
+            if (!customButtons) {
                 console.warn("Unknown format for custom buttons", buttons);
-                return ;
+                return;
             }
 
             if (title.length === 0) {
                 console.warn("No place for custom buttons");
-                return ;
+                return;
             }
 
             buttonsContainer = title.find(".custom-buttons");
 
             if (buttonsContainer.length === 0) {
-                buttonsContainer = $("<div>").addClass("custom-buttons").appendTo(title);
+                buttonsContainer = $("<div>")
+                    .addClass("custom-buttons")
+                    .appendTo(title);
             } else {
                 buttonsContainer.find(".btn-custom").off(Metro.events.click);
                 buttonsContainer.html("");
             }
 
-            $.each(customButtons, function(){
+            $.each(customButtons, function () {
                 var item = this;
                 var customButton = $("<span>");
 
@@ -87,8 +87,8 @@
                     .attr("tabindex", -1)
                     .html(item.html);
 
-                if (item.attr && typeof item.attr === 'object') {
-                    $.each(item.attr, function(k, v){
+                if (item.attr && typeof item.attr === "object") {
+                    $.each(item.attr, function (k, v) {
                         customButton.attr(Str.dashedName(k), v);
                     });
                 }
@@ -98,20 +98,21 @@
                 buttonsContainer.prepend(customButton);
             });
 
-            title.on(Metro.events.click, ".btn-custom", function(e){
-                if (Utils.isRightMouse(e)) return;
+            title.on(Metro.events.click, ".btn-custom", function (e) {
+                if (Metro.utils.isRightMouse(e)) return;
                 var button = $(this);
                 var action = button.data("action");
-                Utils.exec(action, [button], this);
+                Metro.utils.exec(action, [button], this);
             });
 
             return this;
         },
 
-        _create: function(){
-            var element = this.element, o = this.options;
+        _create: function () {
+            var element = this.element,
+                o = this.options;
             var panel = $("<div>").addClass("panel").addClass(o.clsPanel);
-            var id = o.id ? o.id : Utils.elementId("panel");
+            var id = o.id ? o.id : Metro.utils.elementId("panel");
             var original_classes = element[0].className;
             var title;
 
@@ -119,27 +120,44 @@
             panel.insertBefore(element);
             element.appendTo(panel);
 
-            element[0].className = '';
-            element.addClass("panel-content").addClass(o.clsContent).appendTo(panel);
+            element[0].className = "";
+            element
+                .addClass("panel-content")
+                .addClass(o.clsContent)
+                .appendTo(panel);
 
-            if (o.titleCaption !== "" || o.titleIcon !== "" || o.collapsible === true) {
+            if (
+                o.titleCaption !== "" ||
+                o.titleIcon !== "" ||
+                o.collapsible === true
+            ) {
                 title = $("<div>").addClass("panel-title").addClass(o.clsTitle);
 
                 if (o.titleCaption !== "") {
-                    $("<span>").addClass("caption").addClass(o.clsTitleCaption).html(o.titleCaption).appendTo(title)
+                    $("<span>")
+                        .addClass("caption")
+                        .addClass(o.clsTitleCaption)
+                        .html(o.titleCaption)
+                        .appendTo(title);
                 }
 
                 if (o.titleIcon !== "") {
-                    $(o.titleIcon).addClass("icon").addClass(o.clsTitleIcon).appendTo(title)
+                    $(o.titleIcon)
+                        .addClass("icon")
+                        .addClass(o.clsTitleIcon)
+                        .appendTo(title);
                 }
 
                 if (o.collapsible === true) {
-                    var collapseToggle = $("<span>").addClass("dropdown-toggle marker-center active-toggle").addClass(o.clsCollapseToggle).appendTo(title);
+                    var collapseToggle = $("<span>")
+                        .addClass("dropdown-toggle marker-center active-toggle")
+                        .addClass(o.clsCollapseToggle)
+                        .appendTo(title);
                     Metro.makePlugin(element, "collapse", {
                         toggleElement: collapseToggle,
                         duration: o.collapseDuration,
                         onCollapse: o.onCollapse,
-                        onExpand: o.onExpand
+                        onExpand: o.onExpand,
                     });
 
                     if (o.collapsed === true) {
@@ -150,7 +168,7 @@
                 title.appendTo(panel);
             }
 
-            if (title && Utils.isValue(o.customButtons)) {
+            if (title && Metro.utils.isValue(o.customButtons)) {
                 this._addCustomButtons(o.customButtons);
             }
 
@@ -168,7 +186,7 @@
                     dragElement: dragElement,
                     onDragStart: o.onDragStart,
                     onDragStop: o.onDragStop,
-                    onDragMove: o.onDragMove
+                    onDragMove: o.onDragMove,
                 });
             }
 
@@ -178,51 +196,51 @@
 
             if (o.height !== "auto" && parseInt(o.height) >= 0) {
                 panel.outerHeight(parseInt(o.height));
-                element.css({overflow: "auto"});
+                element.css({ overflow: "auto" });
             }
 
             this.panel = panel;
 
             this._fireEvent("panel-create", {
                 element: element,
-                panel: panel
+                panel: panel,
             });
         },
 
-        customButtons: function(buttons){
+        customButtons: function (buttons) {
             return this._addCustomButtons(buttons);
         },
 
-        collapse: function(){
+        collapse: function () {
             var element = this.element;
-            if (Utils.isMetroObject(element, 'collapse') === false) {
-                return ;
+            if (Metro.utils.isMetroObject(element, "collapse") === false) {
+                return;
             }
-            Metro.getPlugin(element, 'collapse').collapse();
+            Metro.getPlugin(element, "collapse").collapse();
         },
 
-        open: function(){
+        open: function () {
             this.expand();
         },
 
-        close: function(){
+        close: function () {
             this.collapse();
         },
 
-        expand: function(){
+        expand: function () {
             var element = this.element;
-            if (Utils.isMetroObject(element, 'collapse') === false) {
-                return ;
+            if (Metro.utils.isMetroObject(element, "collapse") === false) {
+                return;
             }
-            Metro.getPlugin(element, 'collapse').expand();
+            Metro.getPlugin(element, "collapse").expand();
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
-        },
+        changeAttribute: function (attributeName) {},
 
-        destroy: function(){
-            var element = this.element, o = this.options;
+        destroy: function () {
+            var element = this.element,
+                o = this.options;
 
             if (o.collapsible === true) {
                 Metro.getPlugin(element, "collapse").destroy();
@@ -233,6 +251,6 @@
             }
 
             return element;
-        }
+        },
     });
-}(Metro, m4q));
+})(Metro, m4q);

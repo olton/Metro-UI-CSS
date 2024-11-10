@@ -1,6 +1,24 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --switch-countur-color: #191919;
+    --switch-color: #191919;
+    --switch-thumb-color: #191919;
+    --switch-countur-color-on: #191919;
+    --switch-color-on: #191919;
+    --switch-thumb-color-on: #ffffff;
+}
+
+.dark-side {
+    --switch-countur-color: #474747;
+    --switch-color: #fefefe;
+    --switch-thumb-color: #3e3e3e;
+    --switch-countur-color-on: #474747;
+    --switch-color-on: #474747;
+    --switch-thumb-color-on: #ffffff;
+}
+
 .switch {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -26,7 +44,7 @@
         position: relative;
         height: 20px;
         width: 48px;
-        border: 2px @dark solid;
+        border: 2px var(--switch-countur-color) solid;
         cursor: pointer;
         background: @transparent;
         z-index: 1;
@@ -45,20 +63,20 @@
         width: .75rem;
         top: 50%;
         .translateY(-50%);
-        border: 2px #333 solid;
+        border: 2px var(--switch-thumb-color) solid;
         cursor: pointer;
-        background: #333;
+        background: var(--switch-thumb-color);
         z-index: 2;
         border-radius: 50%;
     }
 
     input[type="checkbox"]:checked ~ .check {
-        background: @dark;
-        border-color: @dark;
+        background: var(--switch-color-on);
+        border-color: var(--switch-countur-color-on);
         color: @dark;
         &::after {
-            background-color: @white;
-            border-color: @white;
+            background-color: var(--switch-thumb-color-on);
+            border-color: var(--switch-thumb-color-on);
             left: auto;
             .translateX(30px);
             .translateY(-50%);
