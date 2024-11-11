@@ -39897,20 +39897,18 @@ input[type=reset].loading .load-caption {
   --badge-border-radius: 4px;
 }
 .dark-side {
-  --badge-background: #F8F8F8;
-  --badge-color: #191919;
+  --badge-background: #2b2d30;
+  --badge-color: #F8F8F8;
 }
 .badge {
-  position: absolute;
+  position: relative;
   z-index: 1;
-  top: 0;
-  right: 0;
   background-color: var(--badge-background);
   color: var(--badge-color);
   border-radius: var(--badge-border-radius);
   padding: 0.25em 0.4em;
-  font-size: 75%;
-  font-weight: 700;
+  font-size: 10px;
+  font-weight: 500;
   line-height: 1;
   text-align: center;
   white-space: nowrap;
@@ -39918,27 +39916,7 @@ input[type=reset].loading .load-caption {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transform: translateY(-50%) translateX(50%);
-}
-.brand .badge,
-.app-bar-item .badge,
-.app-bar-menu > li > a .badge,
-.h-menu > li > a .badge,
-.v-menu > li > a .badge {
-  transform: translateY(0) translateX(0);
-}
-.d-menu > li > a .badge {
-  transform: translateX(10px);
-}
-.badge.inline {
-  position: relative;
-  display: inline-block;
-  right: auto;
-  top: -1px;
-  transform: translateY(0) translateX(0);
-}
-.badge.inside {
-  transform: translateY(0) translateX(0);
+  cursor: default;
 }
 
 /* source/components/bottom-nav/bottom-nav.less */
@@ -40115,14 +40093,19 @@ input[type=reset].loading .load-caption {
   font-size: 14px;
   position: relative;
 }
-.box .box-title {
-  font-size: 16px;
+.box .box-title,
+.box .box-title-secondary {
+  font-size: 20px;
   line-height: 1.1;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
-.box * + .box-title {
+.box * + .box-title,
+.box * + .box-title-secondary {
   margin-top: 2rem;
+}
+.box .box-title-secondary {
+  font-size: 16px;
 }
 
 /* source/components/breadcrumbs/breadcrumbs.less */
@@ -47817,6 +47800,8 @@ fieldset.disabled,
   max-width: calc(100vw - 20px);
 }
 
+/* source/components/list/list.less */
+
 /* source/components/listview/listview.less */
 :root {
   --listview-item-border-radius: 4px;
@@ -48967,50 +48952,6 @@ fieldset.disabled,
   font-size: 26px;
 }
 
-/* source/components/post-card/post-card.less */
-.post-card {
-  display: flex;
-  flex-flow: row nowrap;
-}
-.post-card .left,
-.post-card .right {
-  flex-shrink: 1;
-  flex-grow: 1;
-  flex-basis: 50%;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-  backface-visibility: hidden;
-  position: relative;
-  transition: all 0.3s linear;
-}
-.post-card .left {
-  transform: perspective(1600px) rotateY(25deg);
-  transform-origin: right;
-  border-right: 1px solid #f8f8f8;
-}
-.post-card .right {
-  transform: perspective(1600px) rotateY(-25deg);
-  transform-origin: left;
-  border-left: 1px solid #f8f8f8;
-}
-.post-card.effect-on-hover:hover > .left,
-.post-card.effect-on-active.active > .left {
-  transform: perspective(1600px) rotateY(0);
-}
-.post-card.effect-on-hover:hover > .right,
-.post-card.effect-on-active.active > .right {
-  transform: perspective(1600px) rotateY(-35deg);
-}
-.post-card.effect-on-hover:hover.rotate-to-left > .right,
-.post-card.effect-on-active.active.rotate-to-left > .right {
-  transform: perspective(1600px) rotateY(0);
-}
-.post-card.effect-on-hover:hover.rotate-to-left > .left,
-.post-card.effect-on-active.active.rotate-to-left > .left {
-  transform: perspective(1600px) rotateY(35deg);
-}
-
 /* source/components/progress/progress.less */
 :root {
   --progress-bar-height: 12px;
@@ -49264,6 +49205,7 @@ fieldset.disabled,
 
 /* source/components/remark/remark.less */
 :root {
+  --remark-border-radius: 6px;
   --remark-border-color: var(--border-color);
   --remark-background: #ffffff;
   --remark-color: #191919;
@@ -49281,8 +49223,9 @@ fieldset.disabled,
   border: 1px solid;
   border-left: 4px solid;
   border-color: var(--remark-border-color);
+  border-radius: var(--remark-border-radius);
   color: var(--remark-color);
-  background-color: var(--remark-background);
+  background: var(--remark-background);
   padding: 1rem;
   font-size: 14px;
   margin: 1rem 0;
@@ -49539,6 +49482,7 @@ fieldset.disabled,
   background: var(--ribbon-background);
   color: var(--ribbon-color);
   overflow: visible;
+  z-index: 1029;
 }
 .ribbon .icon {
   font-size: 16px;
@@ -50968,6 +50912,18 @@ fieldset.disabled,
 }
 
 /* source/components/tag/tag.less */
+:root {
+  --tag-background: #f8f8f8;
+  --tag-color: #191919;
+  --tag-action-background: #dcdcdc;
+  --tag-action-color: #191919;
+}
+.dark-side {
+  --tag-background: #53575c;
+  --tag-color: #f3fcff;
+  --tag-action-background: #2b2d30;
+  --tag-action-color: #ffffff;
+}
 .tag {
   display: inline-flex;
   justify-content: space-between;
@@ -50977,28 +50933,39 @@ fieldset.disabled,
   padding: 0;
   height: 26px;
   line-height: 26px;
-  background-color: #f8f8f8;
+  background: var(--tag-background);
+  color: var(--tag-color);
   cursor: default;
+  border-radius: 4px;
 }
 .tag .title {
   display: block;
   position: relative;
-  font-size: 14px;
+  font-size: 12px;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  margin: 0 8px;
+  padding: 0 0.5rem;
 }
-.tag .remover {
-  display: block;
+.tag .action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   width: 26px;
   height: 100%;
   line-height: 22px;
   text-align: center;
   cursor: pointer;
-  background-color: #f4f4f4;
-  font-size: 1.2rem;
+  background: var(--tag-action-background);
+  color: var(--tag-action-color);
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  transition: all 0.15s ease-in-out;
+  font-size: 12px;
+}
+.tag .action:hover {
+  font-size: 1.4rem;
 }
 .tag.short-tag .title {
   max-width: 120px;
@@ -51012,7 +50979,7 @@ fieldset.disabled,
   font-size: 0.7rem;
   line-height: 18px;
 }
-.tag.small .remover {
+.tag.small .action {
   width: 18px;
   height: 18px;
   line-height: 18px;
@@ -51027,7 +50994,7 @@ fieldset.disabled,
   font-size: 1.3rem;
   line-height: 36px;
 }
-.tag.large .remover {
+.tag.large .action {
   width: 35px;
   height: 35px;
   line-height: 33px;
@@ -51037,8 +51004,583 @@ fieldset.disabled,
   background: #d4f0ff;
   color: #1d1d1d;
 }
-.tag.static .remover {
+.tag.static .action {
   display: none !important;
+}
+.tag.primary .action {
+  background: #024ea4;
+  color: #ffffff;
+}
+.tag.primary:hover {
+  background: #0366d6 !important;
+}
+.tag.secondary .action {
+  background: #526f8c;
+  color: #ffffff;
+}
+.tag.secondary:hover {
+  background: #6a89a7 !important;
+}
+.tag.success .action {
+  background: #37ae5f;
+  color: #ffffff;
+}
+.tag.success:hover {
+  background: #50c878 !important;
+}
+.tag.alert .action {
+  background: #ad102f;
+  color: #ffffff;
+}
+.tag.alert:hover {
+  background: #dc143c !important;
+}
+.tag.warning .action {
+  background: #cc8400;
+  color: #ffffff;
+}
+.tag.warning:hover {
+  background: #ffa500 !important;
+}
+.tag.yellow .action {
+  background: #cccc00;
+  color: #ffffff;
+}
+.tag.yellow:hover {
+  background: #ffff00 !important;
+}
+.tag.info .action {
+  background: #136cff;
+  color: #ffffff;
+}
+.tag.info:hover {
+  background: #468cff !important;
+}
+.tag.dark .action {
+  background: #373737;
+  color: #ffffff;
+}
+.tag.dark:hover {
+  background: #505050 !important;
+}
+.tag.light .action {
+  background: #dfdfdf;
+  color: #ffffff;
+}
+.tag.light:hover {
+  background: #f8f8f8 !important;
+}
+.tag.soft-lime .action {
+  background: #d8ffbf;
+  color: #000000;
+}
+.tag.soft-lime:hover {
+  background: #f7fff2 !important;
+  color: #557f32 !important;
+}
+.tag.normal-lime .action {
+  background: #92fc3a;
+  color: #ffffff;
+}
+.tag.normal-lime:hover {
+  background: #AEFD6C !important;
+  color: #ffffff;
+}
+.tag.soft-green .action {
+  background: #cae0c7;
+  color: #000000;
+}
+.tag.soft-green:hover {
+  background: #e9f2e8 !important;
+  color: #003d00 !important;
+}
+.tag.normal-green .action {
+  background: #004d00;
+  color: #ffffff;
+}
+.tag.normal-green:hover {
+  background: #008000 !important;
+  color: #ffffff;
+}
+.tag.soft-emerald .action {
+  background: #c8eecf;
+  color: #000000;
+}
+.tag.soft-emerald:hover {
+  background: #effaf1 !important;
+  color: #246339 !important;
+}
+.tag.normal-emerald .action {
+  background: #37ae5f;
+  color: #ffffff;
+}
+.tag.normal-emerald:hover {
+  background: #50c878 !important;
+  color: #ffffff;
+}
+.tag.soft-blue .action {
+  background: #b8ccfc;
+  color: #000000;
+}
+.tag.soft-blue:hover {
+  background: #e9effe !important;
+  color: #132a6f !important;
+}
+.tag.normal-blue .action {
+  background: #2b61ff;
+  color: #ffffff;
+}
+.tag.normal-blue:hover {
+  background: #5e87ff !important;
+  color: #ffffff;
+}
+.tag.soft-teal .action {
+  background: #cae2e2;
+  color: #000000;
+}
+.tag.soft-teal:hover {
+  background: #ebf4f4 !important;
+  color: #014848 !important;
+}
+.tag.normal-teal .action {
+  background: #046363;
+  color: #ffffff;
+}
+.tag.normal-teal:hover {
+  background: #069494 !important;
+  color: #ffffff;
+}
+.tag.soft-cyan .action {
+  background: #c1e8ff;
+  color: #000000;
+}
+.tag.soft-cyan:hover {
+  background: #f4fbff !important;
+  color: #456c7e !important;
+}
+.tag.normal-cyan .action {
+  background: #6193ff;
+  color: #ffffff;
+}
+.tag.normal-cyan:hover {
+  background: #94b6ff !important;
+  color: #ffffff;
+}
+.tag.soft-cobalt .action {
+  background: #bdd1ed;
+  color: #000000;
+}
+.tag.soft-cobalt:hover {
+  background: #e5edf8 !important;
+  color: #001f54 !important;
+}
+.tag.normal-cobalt .action {
+  background: #003278;
+  color: #ffffff;
+}
+.tag.normal-cobalt:hover {
+  background: #0047ab !important;
+  color: #ffffff;
+}
+.tag.soft-indigo .action {
+  background: #cec4e4;
+  color: #000000;
+}
+.tag.soft-indigo:hover {
+  background: #ebe7f4 !important;
+  color: #21003e !important;
+}
+.tag.normal-indigo .action {
+  background: #2e004f;
+  color: #ffffff;
+}
+.tag.normal-indigo:hover {
+  background: #4b0082 !important;
+  color: #ffffff;
+}
+.tag.soft-violet .action {
+  background: #fac4fa;
+  color: #000000;
+}
+.tag.soft-violet:hover {
+  background: #fef3fe !important;
+  color: #773e77 !important;
+}
+.tag.normal-violet .action {
+  background: #e855e8;
+  color: #ffffff;
+}
+.tag.normal-violet:hover {
+  background: #ee82ee !important;
+  color: #ffffff;
+}
+.tag.soft-pink .action {
+  background: #ffc6cf;
+  color: #000000;
+}
+.tag.soft-pink:hover {
+  background: #fff9fa !important;
+  color: #805f65 !important;
+}
+.tag.normal-pink .action {
+  background: #ff8da1;
+  color: #ffffff;
+}
+.tag.normal-pink:hover {
+  background: #ffc0cb !important;
+  color: #ffffff;
+}
+.tag.soft-magenta .action {
+  background: #ffbbff;
+  color: #000000;
+}
+.tag.soft-magenta:hover {
+  background: #ffeeff !important;
+  color: #800080 !important;
+}
+.tag.normal-magenta .action {
+  background: #cc00cc;
+  color: #ffffff;
+}
+.tag.normal-magenta:hover {
+  background: #ff00ff !important;
+  color: #ffffff;
+}
+.tag.soft-crimson .action {
+  background: #ffb8b8;
+  color: #000000;
+}
+.tag.soft-crimson:hover {
+  background: #ffebeb !important;
+  color: #6e0519 !important;
+}
+.tag.normal-crimson .action {
+  background: #ad102f;
+  color: #ffffff;
+}
+.tag.normal-crimson:hover {
+  background: #dc143c !important;
+  color: #ffffff;
+}
+.tag.soft-red .action {
+  background: #ffc3b6;
+  color: #000000;
+}
+.tag.soft-red:hover {
+  background: #ffede9 !important;
+  color: #800000 !important;
+}
+.tag.normal-red .action {
+  background: #cc0000;
+  color: #ffffff;
+}
+.tag.normal-red:hover {
+  background: #ff0000 !important;
+  color: #ffffff;
+}
+.tag.soft-orange .action {
+  background: #ffe2b9;
+  color: #000000;
+}
+.tag.soft-orange:hover {
+  background: #fff7ec !important;
+  color: #805100 !important;
+}
+.tag.normal-orange .action {
+  background: #cc8400;
+  color: #ffffff;
+}
+.tag.normal-orange:hover {
+  background: #ffa500 !important;
+  color: #ffffff;
+}
+.tag.soft-amber .action {
+  background: #ffe8ba;
+  color: #000000;
+}
+.tag.soft-amber:hover {
+  background: #fff9ed !important;
+  color: #805e00 !important;
+}
+.tag.normal-amber .action {
+  background: #cc9900;
+  color: #ffffff;
+}
+.tag.normal-amber:hover {
+  background: #ffbf00 !important;
+  color: #ffffff;
+}
+.tag.soft-yellow .action {
+  background: #ffffbd;
+  color: #000000;
+}
+.tag.soft-yellow:hover {
+  background: #fffff0 !important;
+  color: #808000 !important;
+}
+.tag.normal-yellow .action {
+  background: #cccc00;
+  color: #ffffff;
+}
+.tag.normal-yellow:hover {
+  background: #ffff00 !important;
+  color: #ffffff;
+}
+.tag.soft-brown .action {
+  background: #e2d3c6;
+  color: #000000;
+}
+.tag.soft-brown:hover {
+  background: #f3ede8 !important;
+  color: #42240f !important;
+}
+.tag.normal-brown .action {
+  background: #623a1d;
+  color: #ffffff;
+}
+.tag.normal-brown:hover {
+  background: #895129 !important;
+  color: #ffffff;
+}
+.tag.soft-olive .action {
+  background: #dde0c7;
+  color: #000000;
+}
+.tag.soft-olive:hover {
+  background: #f1f2e8 !important;
+  color: #3d3d00 !important;
+}
+.tag.normal-olive .action {
+  background: #4d4d00;
+  color: #ffffff;
+}
+.tag.normal-olive:hover {
+  background: #808000 !important;
+  color: #ffffff;
+}
+.tag.soft-steel .action {
+  background: #d3d8db;
+  color: #000000;
+}
+.tag.soft-steel:hover {
+  background: #eff1f2 !important;
+  color: #2e3841 !important;
+}
+.tag.normal-steel .action {
+  background: #4e5c6a;
+  color: #ffffff;
+}
+.tag.normal-steel:hover {
+  background: #647687 !important;
+  color: #ffffff;
+}
+.tag.soft-mauve .action {
+  background: #e9c4ff;
+  color: #000000;
+}
+.tag.soft-mauve:hover {
+  background: #fcf7ff !important;
+  color: #705680 !important;
+}
+.tag.normal-mauve .action {
+  background: #cc7cff;
+  color: #ffffff;
+}
+.tag.normal-mauve:hover {
+  background: #e0afff !important;
+  color: #ffffff;
+}
+.tag.soft-taupe .action {
+  background: #d6d2cd;
+  color: #000000;
+}
+.tag.soft-taupe:hover {
+  background: #edebe9 !important;
+  color: #261e18 !important;
+}
+.tag.normal-taupe .action {
+  background: #362d25;
+  color: #ffffff;
+}
+.tag.normal-taupe:hover {
+  background: #54463a !important;
+  color: #ffffff;
+}
+.tag.soft-champagne .action {
+  background: #f6eccf;
+  color: #000000;
+}
+.tag.soft-champagne:hover {
+  background: #fefdfa !important;
+  color: #7c7364 !important;
+}
+.tag.normal-champagne .action {
+  background: #f0d19e;
+  color: #ffffff;
+}
+.tag.normal-champagne:hover {
+  background: #f7e6ca !important;
+  color: #ffffff;
+}
+.tag.soft-khaki .action {
+  background: #eee6cd;
+  color: #000000;
+}
+.tag.soft-khaki:hover {
+  background: #fbf9f3 !important;
+  color: #6a6142 !important;
+}
+.tag.normal-khaki .action {
+  background: #c8b264;
+  color: #ffffff;
+}
+.tag.normal-khaki:hover {
+  background: #d5c58a !important;
+  color: #ffffff;
+}
+.tag.soft-charcoal .action {
+  background: #d2d2d2;
+  color: #000000;
+}
+.tag.soft-charcoal:hover {
+  background: #ebebeb !important;
+  color: #202020 !important;
+}
+.tag.normal-charcoal .action {
+  background: #313131;
+  color: #ffffff;
+}
+.tag.normal-charcoal:hover {
+  background: #4a4a4a !important;
+  color: #ffffff;
+}
+.tag.soft-bronze .action {
+  background: #f5d5bf;
+  color: #000000;
+}
+.tag.soft-bronze:hover {
+  background: #fcf2eb !important;
+  color: #693c13 !important;
+}
+.tag.normal-bronze .action {
+  background: #ad6524;
+  color: #ffffff;
+}
+.tag.normal-bronze:hover {
+  background: #d47e30 !important;
+  color: #ffffff;
+}
+.tag.soft-windstorm .action {
+  background: #c8d6ee;
+  color: #000000;
+}
+.tag.soft-windstorm:hover {
+  background: #eff3fa !important;
+  color: #304462 !important;
+}
+.tag.normal-windstorm .action {
+  background: #4472b6;
+  color: #ffffff;
+}
+.tag.normal-windstorm:hover {
+  background: #678dc6 !important;
+  color: #ffffff;
+}
+.tag.soft-nude .action {
+  background: #f8e1cb;
+  color: #000000;
+}
+.tag.soft-nude:hover {
+  background: #fefbf8 !important;
+  color: #7c6c5d !important;
+}
+.tag.normal-nude .action {
+  background: #f2bf8e;
+  color: #ffffff;
+}
+.tag.normal-nude:hover {
+  background: #f7d9bc !important;
+  color: #ffffff;
+}
+.tag.soft-terracotta .action {
+  background: #ffc6b8;
+  color: #000000;
+}
+.tag.soft-terracotta:hover {
+  background: #ffefeb !important;
+  color: #712516 !important;
+}
+.tag.normal-terracotta .action {
+  background: #ca391c;
+  color: #ffffff;
+}
+.tag.normal-terracotta:hover {
+  background: #e35336 !important;
+  color: #ffffff;
+}
+.tag.soft-coral .action {
+  background: #ffcdbc;
+  color: #000000;
+}
+.tag.soft-coral:hover {
+  background: #fff3ef !important;
+  color: #804028 !important;
+}
+.tag.normal-coral .action {
+  background: #ff6026;
+  color: #ffffff;
+}
+.tag.normal-coral:hover {
+  background: #ff8559 !important;
+  color: #ffffff;
+}
+.tag.soft-army .action {
+  background: #d5dacb;
+  color: #000000;
+}
+.tag.soft-army:hover {
+  background: #edefe9 !important;
+  color: #2a2f14 !important;
+}
+.tag.normal-army .action {
+  background: #3e4321;
+  color: #ffffff;
+}
+.tag.normal-army:hover {
+  background: #5d6532 !important;
+  color: #ffffff;
+}
+.tag.soft-seashell .action {
+  background: #ffcdc5;
+  color: #000000;
+}
+.tag.soft-seashell:hover {
+  background: #fff9f8 !important;
+  color: #807973 !important;
+}
+.tag.normal-seashell .action {
+  background: #ffd3b4;
+  color: #ffffff;
+}
+.tag.normal-seashell:hover {
+  background: #fff1e7 !important;
+  color: #ffffff;
+}
+.tag.soft-sand .action {
+  background: #eae2d1;
+  color: #000000;
+}
+.tag.soft-sand:hover {
+  background: #faf8f4 !important;
+  color: #aca48c !important;
+}
+.tag.normal-sand .action {
+  background: #baa871;
+  color: #ffffff;
+}
+.tag.normal-sand:hover {
+  background: #cbbd93 !important;
+  color: #ffffff;
 }
 
 /* source/components/select/select.less */

@@ -92,7 +92,6 @@ import "./notify/index.js";
 import "./pagination/index.js";
 import "./panel/index.js";
 import "./popover/index.js";
-import "./post-card/index.js";
 import "./progress/index.js";
 import "./radio/index.js";
 import "./rating/index.js";

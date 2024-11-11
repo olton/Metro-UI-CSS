@@ -2,6 +2,7 @@
 @import (once) "../../include/mixins";
 
 :root {
+    --remark-border-radius: 6px;
     --remark-border-color: var(--border-color);
     --remark-background: #ffffff;
     --remark-color: #191919;
@@ -21,8 +22,9 @@
     border: 1px solid;
     border-left: 4px solid;
     border-color: var(--remark-border-color);
+    border-radius: var(--remark-border-radius);
     color: var(--remark-color);
-    background-color: var(--remark-background);
+    background: var(--remark-background);
     padding: 1rem;
     font-size: 14px;
     margin: 1rem 0;

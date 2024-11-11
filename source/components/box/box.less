@@ -20,14 +20,18 @@
     font-size: 14px;
     position: relative;
 
-    .box-title {
-        font-size: 16px;
+    .box-title, .box-title-secondary {
+        font-size: 20px;
         line-height: 1.1;
         margin-bottom: 0.5rem;
         font-weight: 500;
     }
 
-    * + .box-title {
+    * + .box-title, * + .box-title-secondary {
         margin-top: 2rem;
+    }
+
+    .box-title-secondary {
+        font-size: 16px;
     }
 }
