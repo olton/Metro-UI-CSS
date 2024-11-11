@@ -40312,9 +40312,22 @@ input[type=reset].loading .load-caption {
   --button-group-active-background: #1a1f23;
   --button-group-active-color: #fff;
 }
+.button-group {
+  display: inline-flex;
+  position: relative;
+}
 .button-group .active {
   background-color: var(--button-group-active-background);
   color: var(--button-group-active-color);
+}
+.button-group > * {
+  margin-right: 2px;
+}
+.button-group > *:last-child {
+  margin-right: 0;
+}
+.button-group + .button-group {
+  margin-left: 0.5rem;
 }
 
 /* source/components/input-common/input-common.less */
@@ -42585,50 +42598,67 @@ input.input-small:-ms-input-placeholder {
 }
 
 /* source/components/chips/chips.less */
+:root {
+  --chip-background: #F4F4F4;
+  --chip-color: #191919;
+  --chip-background-hover: #dadada;
+  --chip-color-hover: #191919;
+  --chip-action-background: #c1c1c1;
+  --chip-action-color: #191919;
+}
+.dark-side {
+  --chip-background: #2b2d30;
+  --chip-color: #f3fcff;
+  --chip-background-hover: #333439;
+  --chip-color-hover: #f3fcff;
+  --chip-action-background: #43444a;
+  --chip-action-color: #f3fcff;
+}
 .chip {
-  display: inline-block;
-  float: left;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
   height: 32px;
   font-size: 14px;
-  padding: 0 12px;
+  padding: 0 8px;
   line-height: 32px;
-  background: #898989;
+  background: var(--chip-background);
+  color: var(--chip-color);
   cursor: default;
+  border-radius: 4px;
 }
 .chip .label {
   white-space: nowrap;
+  order: 2;
+  margin: 0 1rem 0 0.5rem;
 }
 .chip .icon {
-  position: absolute;
-  left: 0;
-  top: 0;
+  order: 1;
   width: 32px;
   height: 32px;
-  text-align: center;
   line-height: 32px;
   vertical-align: middle;
   font-size: 24px;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .chip .icon img {
-  width: 100%;
-  max-height: 100%;
+  width: 24px;
+  max-height: 24px;
   vertical-align: initial;
 }
-.chip .icon + .label {
-  margin-left: 30px;
-}
 .chip .action {
+  order: 3;
   display: block;
-  float: right;
-  margin-left: 10px;
   cursor: pointer;
   width: 24px;
   height: 24px;
-  margin-right: -8px;
-  margin-top: 4px;
-  background-color: #ccc;
-  overflow: hidden;
+  margin-left: auto;
+  background: var(--chip-action-background);
+  color: var(--chip-action-color);
+  border-radius: 4px;
 }
 .chip .action:before {
   content: "\2716";
@@ -42636,20 +42666,185 @@ input.input-small:-ms-input-placeholder {
   text-align: center;
   display: block;
 }
+.chip.pill-chip {
+  border-radius: 1rem;
+}
+.chip.pill-chip .action {
+  border-radius: 50%;
+}
 .chip:hover {
   background-color: rgba(29, 29, 29, 0.1);
 }
-.chip.material {
-  border-radius: 16px;
-}
-.chip.material .icon {
-  border-radius: 32px;
-}
-.chip.material .action {
-  border-radius: 24px;
+.chip.readonly .action,
+.chip.disabled .action {
+  display: none;
 }
 .chip + .chip {
   margin-left: 8px;
+}
+.primary .action {
+  background: #024ea4;
+  color: #ffffff;
+}
+.secondary .action {
+  background: #526f8c;
+  color: #ffffff;
+}
+.success .action {
+  background: #37ae5f;
+  color: #ffffff;
+}
+.alert .action {
+  background: #ad102f;
+  color: #ffffff;
+}
+.warning .action {
+  background: #cc8400;
+  color: #ffffff;
+}
+.yellow .action {
+  background: #cccc00;
+  color: #ffffff;
+}
+.info .action {
+  background: #136cff;
+  color: #ffffff;
+}
+.dark .action {
+  background: #373737;
+  color: #ffffff;
+}
+.light .action {
+  background: #dfdfdf;
+  color: #ffffff;
+}
+.soft-lime .action {
+  background: #92fc3a;
+  color: #ffffff;
+}
+.soft-green .action {
+  background: #004d00;
+  color: #ffffff;
+}
+.soft-emerald .action {
+  background: #37ae5f;
+  color: #ffffff;
+}
+.soft-blue .action {
+  background: #2b61ff;
+  color: #ffffff;
+}
+.soft-teal .action {
+  background: #046363;
+  color: #ffffff;
+}
+.soft-cyan .action {
+  background: #6193ff;
+  color: #ffffff;
+}
+.soft-cobalt .action {
+  background: #003278;
+  color: #ffffff;
+}
+.soft-indigo .action {
+  background: #2e004f;
+  color: #ffffff;
+}
+.soft-violet .action {
+  background: #e855e8;
+  color: #ffffff;
+}
+.soft-pink .action {
+  background: #ff8da1;
+  color: #ffffff;
+}
+.soft-magenta .action {
+  background: #cc00cc;
+  color: #ffffff;
+}
+.soft-crimson .action {
+  background: #ad102f;
+  color: #ffffff;
+}
+.soft-red .action {
+  background: #cc0000;
+  color: #ffffff;
+}
+.soft-orange .action {
+  background: #cc8400;
+  color: #ffffff;
+}
+.soft-amber .action {
+  background: #cc9900;
+  color: #ffffff;
+}
+.soft-yellow .action {
+  background: #cccc00;
+  color: #ffffff;
+}
+.soft-brown .action {
+  background: #623a1d;
+  color: #ffffff;
+}
+.soft-olive .action {
+  background: #4d4d00;
+  color: #ffffff;
+}
+.soft-steel .action {
+  background: #4e5c6a;
+  color: #ffffff;
+}
+.soft-mauve .action {
+  background: #cc7cff;
+  color: #ffffff;
+}
+.soft-taupe .action {
+  background: #362d25;
+  color: #ffffff;
+}
+.soft-champagne .action {
+  background: #f0d19e;
+  color: #ffffff;
+}
+.soft-khaki .action {
+  background: #c8b264;
+  color: #ffffff;
+}
+.soft-charcoal .action {
+  background: #313131;
+  color: #ffffff;
+}
+.soft-bronze .action {
+  background: #ad6524;
+  color: #ffffff;
+}
+.soft-windstorm .action {
+  background: #4472b6;
+  color: #ffffff;
+}
+.soft-nude .action {
+  background: #f2bf8e;
+  color: #ffffff;
+}
+.soft-terracotta .action {
+  background: #ca391c;
+  color: #ffffff;
+}
+.soft-coral .action {
+  background: #ff6026;
+  color: #ffffff;
+}
+.soft-army .action {
+  background: #3e4321;
+  color: #ffffff;
+}
+.soft-seashell .action {
+  background: #ffd3b4;
+  color: #ffffff;
+}
+.soft-sand .action {
+  background: #baa871;
+  color: #ffffff;
 }
 
 /* source/components/cloak/cloak.less */
