@@ -1,17 +1,17 @@
+/** @format */
+
 import {
     htmljs,
     addStyle,
     addCssRule,
     cssLoader,
     jsLoader,
-    Router,
-    router,
     viewLoader,
     clearViewStorageHolder,
     createStyleElement,
     createStyleSheet,
     render,
-} from "@olton/html"
+} from "@olton/html";
 
 globalThis.htmljs = {
     addStyle,
@@ -23,8 +23,5 @@ globalThis.htmljs = {
     createStyleElement,
     createStyleSheet,
     render,
-    ...htmljs
-}
-
-globalThis.Router = Router
-globalThis.Router.create = router
+    ...htmljs,
+};

@@ -158,6 +158,13 @@
     }
 
     &.striped {
+        tbody tr:nth-child(odd),
+        .tbody .tr:nth-child(odd) {
+            background: var(--table-striped-background);
+        }
+    }
+
+    &.inverse-striped {
         tbody tr:nth-child(even),
         .tbody .tr:nth-child(even) {
             background: var(--table-striped-background);

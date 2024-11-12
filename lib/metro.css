@@ -40100,6 +40100,10 @@ input[type=reset].loading .load-caption {
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
+.box .box-title {
+  border-bottom: 1px solid var(--box-border-color);
+  padding-bottom: 0.5rem;
+}
 .box * + .box-title,
 .box * + .box-title-secondary {
   margin-top: 2rem;
@@ -54486,8 +54490,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   background-color: var(--table-selected-background);
   color: var(--table-selected-color);
 }
-.table.striped tbody tr:nth-child(even),
-.table.striped .tbody .tr:nth-child(even) {
+.table.striped tbody tr:nth-child(odd),
+.table.striped .tbody .tr:nth-child(odd) {
+  background: var(--table-striped-background);
+}
+.table.inverse-striped tbody tr:nth-child(even),
+.table.inverse-striped .tbody .tr:nth-child(even) {
   background: var(--table-striped-background);
 }
 .table.row-hover tbody tr:hover,

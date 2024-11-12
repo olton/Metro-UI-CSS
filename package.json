@@ -34,8 +34,8 @@
     "build": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=production node build.js",
     "dev": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=development node build.js",
     "watch": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=development node watch.js",
-    "deploy": "node deploy.cjs",
-    "deploy:dev": "node deploy-dev.cjs",
+    "deploy": "npm run build && node ./deploy.js",
+    "deploy:dev": "npm run dev && node ./deploy-dev.js",
     "pub": "npm publish --access public",
     "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html,audio-player'",
     "test:abc": "easytest --include='abc/accordion.test.js' --coverage --verbose --dom --errors"
@@ -66,7 +66,7 @@
     "@olton/farbe": "^1.0.4",
     "@olton/guardian": "^0.5.1",
     "@olton/hooks": "^0.10.0",
-    "@olton/html": "^0.11.0",
+    "@olton/html": "^0.12.0",
     "@olton/string": "^0.5.0",
     "m4q": "^3.1.1"
   },
