@@ -156,9 +156,7 @@
             var radius = element.width() / 2;
             var r = radius * (1 - (1 - o.hole) / 2);
             var circumference = Math.round(2 * Math.PI * r);
-            var title_value = o.showValue
-                ? v
-                : Utils.percent(o.total, v, true); /*  + (o.cap)*/
+            var title_value = o.showValue ? v : Utils.percent(o.total, v, true); /*  + (o.cap)*/
             var fill_value = Math.round((+v * circumference) / o.total); // + ' ' + circumference;
 
             var sda = fill.attr("stroke-dasharray");
@@ -171,10 +169,7 @@
 
             fill.animate({
                 draw: function (t, p) {
-                    $(this).attr(
-                        "stroke-dasharray",
-                        sda + delta * p + " " + circumference,
-                    );
+                    $(this).attr("stroke-dasharray", sda + delta * p + " " + circumference);
                 },
                 dur: o.animate,
             });

@@ -2,7 +2,7 @@
 @import (once) "../../include/mixins";
 
 :root {
-    --breadcrumbs-background: #ffffff;
+    --breadcrumbs-background: transparent;
     --breadcrumbs-color: #191919;
     --breadcrumbs-background-hover: #ffffff;
     --breadcrumbs-color-hover: #000000;
@@ -74,8 +74,13 @@
             text-decoration: none;
         }
 
-        li:last-child a {
-            font-weight: bold;
+        li:last-child {
+            a {
+                font-weight: bold;
+            }
+            &::after {
+                display: none;
+            }
         }
     }
 }
@@ -104,7 +109,7 @@
 
 .breadcrumbs {
     &.arrow {
-        display: inline-flex;
+        display: flex;
         flex-flow: row nowrap;
         overflow: hidden;
         border-radius: var(--border-radius);

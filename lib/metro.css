@@ -40114,7 +40114,7 @@ input[type=reset].loading .load-caption {
 
 /* source/components/breadcrumbs/breadcrumbs.less */
 :root {
-  --breadcrumbs-background: #ffffff;
+  --breadcrumbs-background: transparent;
   --breadcrumbs-color: #191919;
   --breadcrumbs-background-hover: #ffffff;
   --breadcrumbs-color-hover: #000000;
@@ -40180,6 +40180,9 @@ input[type=reset].loading .load-caption {
 .breadcrumbs.default li:last-child a {
   font-weight: bold;
 }
+.breadcrumbs.default li:last-child::after {
+  display: none;
+}
 :root {
   --breadcrumbs-arrow-item-background: #fbfbfb;
   --breadcrumbs-arrow-counter-background: #ffffff;
@@ -40201,7 +40204,7 @@ input[type=reset].loading .load-caption {
   --breadcrumbs-arrow-item-shadow: rgba(255, 255, 255, 0.1);
 }
 .breadcrumbs.arrow {
-  display: inline-flex;
+  display: flex;
   flex-flow: row nowrap;
   overflow: hidden;
   border-radius: var(--border-radius);
@@ -44073,6 +44076,378 @@ aside::after {
 .donut > svg {
   width: 100%;
   height: 100%;
+}
+.donut > svg * {
+  transition: all 1s;
+}
+.donut-lime svg .donut-back {
+  stroke: #f7fff2;
+}
+.donut-lime svg .donut-fill {
+  stroke: #AEFD6C;
+}
+.donut-lime svg .donut-title {
+  fill: #557f32;
+}
+.donut-green svg .donut-back {
+  stroke: #e9f2e8;
+}
+.donut-green svg .donut-fill {
+  stroke: #008000;
+}
+.donut-green svg .donut-title {
+  fill: #003d00;
+}
+.donut-emerald svg .donut-back {
+  stroke: #effaf1;
+}
+.donut-emerald svg .donut-fill {
+  stroke: #50c878;
+}
+.donut-emerald svg .donut-title {
+  fill: #246339;
+}
+.donut-blue svg .donut-back {
+  stroke: #e9effe;
+}
+.donut-blue svg .donut-fill {
+  stroke: #5e87ff;
+}
+.donut-blue svg .donut-title {
+  fill: #132a6f;
+}
+.donut-teal svg .donut-back {
+  stroke: #ebf4f4;
+}
+.donut-teal svg .donut-fill {
+  stroke: #069494;
+}
+.donut-teal svg .donut-title {
+  fill: #014848;
+}
+.donut-cyan svg .donut-back {
+  stroke: #f4fbff;
+}
+.donut-cyan svg .donut-fill {
+  stroke: #94b6ff;
+}
+.donut-cyan svg .donut-title {
+  fill: #456c7e;
+}
+.donut-cobalt svg .donut-back {
+  stroke: #e5edf8;
+}
+.donut-cobalt svg .donut-fill {
+  stroke: #0047ab;
+}
+.donut-cobalt svg .donut-title {
+  fill: #001f54;
+}
+.donut-indigo svg .donut-back {
+  stroke: #ebe7f4;
+}
+.donut-indigo svg .donut-fill {
+  stroke: #4b0082;
+}
+.donut-indigo svg .donut-title {
+  fill: #21003e;
+}
+.donut-violet svg .donut-back {
+  stroke: #fef3fe;
+}
+.donut-violet svg .donut-fill {
+  stroke: #ee82ee;
+}
+.donut-violet svg .donut-title {
+  fill: #773e77;
+}
+.donut-pink svg .donut-back {
+  stroke: #fff9fa;
+}
+.donut-pink svg .donut-fill {
+  stroke: #ffc0cb;
+}
+.donut-pink svg .donut-title {
+  fill: #805f65;
+}
+.donut-magenta svg .donut-back {
+  stroke: #ffeeff;
+}
+.donut-magenta svg .donut-fill {
+  stroke: #ff00ff;
+}
+.donut-magenta svg .donut-title {
+  fill: #800080;
+}
+.donut-crimson svg .donut-back {
+  stroke: #ffebeb;
+}
+.donut-crimson svg .donut-fill {
+  stroke: #dc143c;
+}
+.donut-crimson svg .donut-title {
+  fill: #6e0519;
+}
+.donut-red svg .donut-back {
+  stroke: #ffede9;
+}
+.donut-red svg .donut-fill {
+  stroke: #ff0000;
+}
+.donut-red svg .donut-title {
+  fill: #800000;
+}
+.donut-orange svg .donut-back {
+  stroke: #fff7ec;
+}
+.donut-orange svg .donut-fill {
+  stroke: #ffa500;
+}
+.donut-orange svg .donut-title {
+  fill: #805100;
+}
+.donut-amber svg .donut-back {
+  stroke: #fff9ed;
+}
+.donut-amber svg .donut-fill {
+  stroke: #ffbf00;
+}
+.donut-amber svg .donut-title {
+  fill: #805e00;
+}
+.donut-yellow svg .donut-back {
+  stroke: #fffff0;
+}
+.donut-yellow svg .donut-fill {
+  stroke: #ffff00;
+}
+.donut-yellow svg .donut-title {
+  fill: #808000;
+}
+.donut-brown svg .donut-back {
+  stroke: #f3ede8;
+}
+.donut-brown svg .donut-fill {
+  stroke: #895129;
+}
+.donut-brown svg .donut-title {
+  fill: #42240f;
+}
+.donut-olive svg .donut-back {
+  stroke: #f1f2e8;
+}
+.donut-olive svg .donut-fill {
+  stroke: #808000;
+}
+.donut-olive svg .donut-title {
+  fill: #3d3d00;
+}
+.donut-steel svg .donut-back {
+  stroke: #eff1f2;
+}
+.donut-steel svg .donut-fill {
+  stroke: #647687;
+}
+.donut-steel svg .donut-title {
+  fill: #2e3841;
+}
+.donut-mauve svg .donut-back {
+  stroke: #fcf7ff;
+}
+.donut-mauve svg .donut-fill {
+  stroke: #e0afff;
+}
+.donut-mauve svg .donut-title {
+  fill: #705680;
+}
+.donut-taupe svg .donut-back {
+  stroke: #edebe9;
+}
+.donut-taupe svg .donut-fill {
+  stroke: #54463a;
+}
+.donut-taupe svg .donut-title {
+  fill: #261e18;
+}
+.donut-champagne svg .donut-back {
+  stroke: #fefdfa;
+}
+.donut-champagne svg .donut-fill {
+  stroke: #f7e6ca;
+}
+.donut-champagne svg .donut-title {
+  fill: #7c7364;
+}
+.donut-khaki svg .donut-back {
+  stroke: #fbf9f3;
+}
+.donut-khaki svg .donut-fill {
+  stroke: #d5c58a;
+}
+.donut-khaki svg .donut-title {
+  fill: #6a6142;
+}
+.donut-charcoal svg .donut-back {
+  stroke: #ebebeb;
+}
+.donut-charcoal svg .donut-fill {
+  stroke: #4a4a4a;
+}
+.donut-charcoal svg .donut-title {
+  fill: #202020;
+}
+.donut-bronze svg .donut-back {
+  stroke: #fcf2eb;
+}
+.donut-bronze svg .donut-fill {
+  stroke: #d47e30;
+}
+.donut-bronze svg .donut-title {
+  fill: #693c13;
+}
+.donut-windstorm svg .donut-back {
+  stroke: #eff3fa;
+}
+.donut-windstorm svg .donut-fill {
+  stroke: #678dc6;
+}
+.donut-windstorm svg .donut-title {
+  fill: #304462;
+}
+.donut-nude svg .donut-back {
+  stroke: #fefbf8;
+}
+.donut-nude svg .donut-fill {
+  stroke: #f7d9bc;
+}
+.donut-nude svg .donut-title {
+  fill: #7c6c5d;
+}
+.donut-terracotta svg .donut-back {
+  stroke: #ffefeb;
+}
+.donut-terracotta svg .donut-fill {
+  stroke: #e35336;
+}
+.donut-terracotta svg .donut-title {
+  fill: #712516;
+}
+.donut-coral svg .donut-back {
+  stroke: #fff3ef;
+}
+.donut-coral svg .donut-fill {
+  stroke: #ff8559;
+}
+.donut-coral svg .donut-title {
+  fill: #804028;
+}
+.donut-army svg .donut-back {
+  stroke: #edefe9;
+}
+.donut-army svg .donut-fill {
+  stroke: #5d6532;
+}
+.donut-army svg .donut-title {
+  fill: #2a2f14;
+}
+.donut-seashell svg .donut-back {
+  stroke: #fff9f8;
+}
+.donut-seashell svg .donut-fill {
+  stroke: #fff1e7;
+}
+.donut-seashell svg .donut-title {
+  fill: #807973;
+}
+.donut-sand svg .donut-back {
+  stroke: #faf8f4;
+}
+.donut-sand svg .donut-fill {
+  stroke: #cbbd93;
+}
+.donut-sand svg .donut-title {
+  fill: #aca48c;
+}
+.donut-primary svg .donut-back {
+  stroke: #75b5fd;
+}
+.donut-primary svg .donut-fill {
+  stroke: #0366d6;
+}
+.donut-primary svg .donut-title {
+  fill: #0366d6;
+}
+.donut-secondary svg .donut-back {
+  stroke: #cad5e0;
+}
+.donut-secondary svg .donut-fill {
+  stroke: #6a89a7;
+}
+.donut-secondary svg .donut-title {
+  fill: #6a89a7;
+}
+.donut-success svg .donut-back {
+  stroke: #c4edd2;
+}
+.donut-success svg .donut-fill {
+  stroke: #50c878;
+}
+.donut-success svg .donut-title {
+  fill: #50c878;
+}
+.donut-alert svg .donut-back {
+  stroke: #f594a7;
+}
+.donut-alert svg .donut-fill {
+  stroke: #dc143c;
+}
+.donut-alert svg .donut-title {
+  fill: #dc143c;
+}
+.donut-warning svg .donut-back {
+  stroke: #ffdb99;
+}
+.donut-warning svg .donut-fill {
+  stroke: #ffa500;
+}
+.donut-warning svg .donut-title {
+  fill: #ffa500;
+}
+.donut-yellow svg .donut-back {
+  stroke: #ffff99;
+}
+.donut-yellow svg .donut-fill {
+  stroke: #ffff00;
+}
+.donut-yellow svg .donut-title {
+  fill: #ffff00;
+}
+.donut-info svg .donut-back {
+  stroke: #dfebff;
+}
+.donut-info svg .donut-fill {
+  stroke: #468cff;
+}
+.donut-info svg .donut-title {
+  fill: #468cff;
+}
+.donut-dark svg .donut-back {
+  stroke: #9d9d9d;
+}
+.donut-dark svg .donut-fill {
+  stroke: #505050;
+}
+.donut-dark svg .donut-title {
+  fill: #505050;
+}
+.donut-light svg .donut-back {
+  stroke: #ffffff;
+}
+.donut-light svg .donut-fill {
+  stroke: #f8f8f8;
+}
+.donut-light svg .donut-title {
+  fill: #f8f8f8;
 }
 
 /* source/components/double-select-box/double-select-box.less */
