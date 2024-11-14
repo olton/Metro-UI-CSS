@@ -120,3 +120,16 @@
     50% { margin-left: 25%; margin-right: 0; }
     100% { margin-left: 100%; margin-right: 0; }
 }
+
+each(@normalColors, {
+    .progress-@{value} {
+        --progress-bar-color: @@value;
+    }
+})
+
+each(@accentColors, {
+    @color: "@{value}Color";
+    .progress-@{value} {
+        --progress-bar-color: @@color;
+    }
+})

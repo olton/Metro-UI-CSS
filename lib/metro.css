@@ -23363,7 +23363,7 @@ pre code {
   --color-dark-champagne: #7c7364;
   --color-dark-khaki: #6a6142;
   --color-dark-charcoal: #202020;
-  --color-dark-cinnamon: #693c13;
+  --color-dark-bronze: #693c13;
   --color-dark-windstorm: #304462;
   --color-dark-nude: #7c6c5d;
   --color-dark-terracotta: #712516;
@@ -49459,6 +49459,129 @@ fieldset.disabled,
     margin-left: 100%;
     margin-right: 0;
   }
+}
+.progress-lime {
+  --progress-bar-color: #AEFD6C;
+}
+.progress-green {
+  --progress-bar-color: #008000;
+}
+.progress-emerald {
+  --progress-bar-color: #50c878;
+}
+.progress-blue {
+  --progress-bar-color: #5e87ff;
+}
+.progress-teal {
+  --progress-bar-color: #069494;
+}
+.progress-cyan {
+  --progress-bar-color: #94b6ff;
+}
+.progress-cobalt {
+  --progress-bar-color: #0047ab;
+}
+.progress-indigo {
+  --progress-bar-color: #4b0082;
+}
+.progress-violet {
+  --progress-bar-color: #ee82ee;
+}
+.progress-pink {
+  --progress-bar-color: #ffc0cb;
+}
+.progress-magenta {
+  --progress-bar-color: #ff00ff;
+}
+.progress-crimson {
+  --progress-bar-color: #dc143c;
+}
+.progress-red {
+  --progress-bar-color: #ff0000;
+}
+.progress-orange {
+  --progress-bar-color: #ffa500;
+}
+.progress-amber {
+  --progress-bar-color: #ffbf00;
+}
+.progress-yellow {
+  --progress-bar-color: #ffff00;
+}
+.progress-brown {
+  --progress-bar-color: #895129;
+}
+.progress-olive {
+  --progress-bar-color: #808000;
+}
+.progress-steel {
+  --progress-bar-color: #647687;
+}
+.progress-mauve {
+  --progress-bar-color: #e0afff;
+}
+.progress-taupe {
+  --progress-bar-color: #54463a;
+}
+.progress-champagne {
+  --progress-bar-color: #f7e6ca;
+}
+.progress-khaki {
+  --progress-bar-color: #d5c58a;
+}
+.progress-charcoal {
+  --progress-bar-color: #4a4a4a;
+}
+.progress-bronze {
+  --progress-bar-color: #d47e30;
+}
+.progress-windstorm {
+  --progress-bar-color: #678dc6;
+}
+.progress-nude {
+  --progress-bar-color: #f7d9bc;
+}
+.progress-terracotta {
+  --progress-bar-color: #e35336;
+}
+.progress-coral {
+  --progress-bar-color: #ff8559;
+}
+.progress-army {
+  --progress-bar-color: #5d6532;
+}
+.progress-seashell {
+  --progress-bar-color: #fff1e7;
+}
+.progress-sand {
+  --progress-bar-color: #cbbd93;
+}
+.progress-primary {
+  --progress-bar-color: #0366d6;
+}
+.progress-secondary {
+  --progress-bar-color: #6a89a7;
+}
+.progress-success {
+  --progress-bar-color: #50c878;
+}
+.progress-alert {
+  --progress-bar-color: #dc143c;
+}
+.progress-warning {
+  --progress-bar-color: #ffa500;
+}
+.progress-yellow {
+  --progress-bar-color: #ffff00;
+}
+.progress-info {
+  --progress-bar-color: #468cff;
+}
+.progress-dark {
+  --progress-bar-color: #505050;
+}
+.progress-light {
+  --progress-bar-color: #f8f8f8;
 }
 
 /* source/components/rating/rating.less */
