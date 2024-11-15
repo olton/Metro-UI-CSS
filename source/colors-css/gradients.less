@@ -1,10 +1,14 @@
 @import "../include/vars.less";
 
+:root {
+    --gradient-direction: to right;
+}
+
 each(@normalColors, .(@v, @k, @i) {
     @color: "@{v}";
 
     .gr-@{v} {
-        background: linear-gradient(to right, @@color, lighten(@@color, 20%))!important;
+        background: linear-gradient(var(--gradient-direction), @@color, lighten(@@color, 20%))!important;
     }
 })
 
@@ -12,7 +16,7 @@ each(@lightColors, .(@v, @k, @i) {
     @color: "@{v}";
 
     .gr-@{v} {
-        background: linear-gradient(to right, @@color, #ffffff)!important;
+        background: linear-gradient(var(--gradient-direction), @@color, #ffffff)!important;
     }
 })
 
@@ -20,7 +24,7 @@ each(@darkColors, .(@v, @k, @i) {
     @color: "@{v}";
 
     .gr-@{v} {
-        background: linear-gradient(to right, darken(@@color, 20%), @@color)!important;
+        background: linear-gradient(var(--gradient-direction), darken(@@color, 20%), @@color)!important;
     }
 })
 
@@ -29,7 +33,7 @@ each(@darkColors, .(@v, @k, @i) {
         @color: "@{v}";
 
         .gr-@{v} {
-            background: linear-gradient(to right, rgba(255, 238, 238, 0.15), rgba(255, 252, 252, 0.1))!important;
+            background: linear-gradient(var(--gradient-direction), rgba(255, 238, 238, 0.15), rgba(255, 252, 252, 0.1))!important;
         }
     })
 }

@@ -17,13 +17,14 @@
 
 each(@normalColors, {
     @fillColor: "@{value}";
-    @strokeColor: "light-@{value}";
+    @strokeColor: @value;
+    @lightColor: "light-@{value}";
     @textColor: "dark-@{value}";
     
     .donut-@{value} {
         svg {
             .donut-back {
-                stroke: @@strokeColor;
+                stroke: darken(@@lightColor, 10%);
             }
             .donut-fill {
                 stroke: @@fillColor;

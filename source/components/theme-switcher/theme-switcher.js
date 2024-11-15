@@ -10,9 +10,10 @@
         saveStateKey: "THEME:SWITCHER",
         clsDark: "",
         darkSymbol: "☾",
-        lightSymbol: "☼",
+        lightSymbol: "☀",
         mode: "switch",
         onThemeSwitcherCreate: Metro.noop,
+        onChangeTheme: Metro.noop,
     };
 
     Metro.themeSwitcherSetup = function (options) {
@@ -112,6 +113,8 @@
             if (o.saveState) {
                 Metro.storage.setItem(o.saveStateKey, elem.checked);
             }
+
+            this._fireEvent("change-theme", { state: elem.checked });
         },
 
         val: function (value) {

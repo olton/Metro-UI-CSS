@@ -122,8 +122,12 @@
 }
 
 each(@normalColors, {
+    @lightColor: "light-@{value}";
+    @backColor: darken(@@lightColor, 10%);
+    
     .progress-@{value} {
         --progress-bar-color: @@value;
+        --progress-bar-back-color: @backColor;
     }
 })
 
