@@ -185,6 +185,11 @@
             HIDE: 2,
         },
 
+        theme: {
+            LIGHT: "light",
+            DARK: "dark",
+        },
+
         hotkeys: {},
         locales: {},
         utils: {},

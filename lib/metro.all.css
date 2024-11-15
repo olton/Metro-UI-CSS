@@ -40089,7 +40089,7 @@ input[type=reset].loading .load-caption {
   background: var(--box-background);
   border: 1px solid var(--box-border-color);
   border-radius: var(--box-border-radius);
-  margin: 1rem 0;
+  margin: 0;
   font-size: 14px;
   position: relative;
 }
@@ -40110,6 +40110,9 @@ input[type=reset].loading .load-caption {
 }
 .box .box-title-secondary {
   font-size: 16px;
+}
+* + .box {
+  margin-top: 1rem;
 }
 
 /* source/components/breadcrumbs/breadcrumbs.less */
@@ -56148,6 +56151,16 @@ textarea {
 }
 
 /* source/components/theme-switcher/theme-switcher.less */
+:root {
+  --theme-switcher-background: #ffffff;
+  --theme-switcher-color: #191919;
+  --theme-switcher-border-color: #191919;
+}
+.dark-side {
+  --theme-switcher-background: #191919;
+  --theme-switcher-color: #ffffff;
+  --theme-switcher-border-color: #ffffff;
+}
 .theme-switcher {
   display: inline-flex;
   flex-flow: row nowrap;
@@ -56167,7 +56180,7 @@ textarea {
   left: 0;
   opacity: 0;
 }
-.theme-switcher .check {
+.theme-switcher.mode-switch .check {
   line-height: 38px;
   font-size: 14px;
   margin: 0 4px;
@@ -56183,7 +56196,7 @@ textarea {
   border-radius: 0.5625rem;
   flex-shrink: 0;
 }
-.theme-switcher .check::before {
+.theme-switcher.mode-switch .check::before {
   content: attr(data-dark-symbol);
   display: block;
   position: absolute;
@@ -56196,7 +56209,7 @@ textarea {
   text-transform: uppercase;
   text-align: center;
 }
-.theme-switcher .check::after {
+.theme-switcher.mode-switch .check::after {
   transition: all 0.3s ease-in-out;
   position: absolute;
   left: 3px;
@@ -56212,41 +56225,76 @@ textarea {
   z-index: 2;
   border-radius: 50%;
 }
-.theme-switcher input[type=checkbox]:indeterminate ~ .check::after {
+.theme-switcher.mode-switch input[type=checkbox]:indeterminate ~ .check::after {
   background-color: #898989;
   border-color: #898989;
   left: auto;
   transform: translateX(18px) translateY(-50%);
 }
-.theme-switcher input[type=checkbox]:indeterminate ~ .check::before {
+.theme-switcher.mode-switch input[type=checkbox]:indeterminate ~ .check::before {
   content: "";
 }
-.theme-switcher input[type=checkbox]:checked ~ .check {
+.theme-switcher.mode-switch input[type=checkbox]:checked ~ .check {
   background: #1d1d1d;
   border-color: #1d1d1d;
   color: #1d1d1d;
 }
-.theme-switcher input[type=checkbox]:checked ~ .check::after {
+.theme-switcher.mode-switch input[type=checkbox]:checked ~ .check::after {
   background-color: #ffffff;
   border-color: #ffffff;
   left: auto;
   transform: translateX(30px) translateY(-50%);
 }
-.theme-switcher input[type=checkbox]:checked ~ .check::before {
+.theme-switcher.mode-switch input[type=checkbox]:checked ~ .check::before {
   content: attr(data-light-symbol);
   color: #ffffff;
   left: 1px;
 }
-.theme-switcher input[type=checkbox]:disabled ~ .check {
+.theme-switcher.mode-switch input[type=checkbox]:disabled ~ .check {
   background-color: #e9e9e9;
   border-color: #e9e9e9;
 }
-.theme-switcher input[type=checkbox]:disabled ~ .check::after {
+.theme-switcher.mode-switch input[type=checkbox]:disabled ~ .check::after {
   background-color: #d0d0d0;
   border-color: #d0d0d0;
 }
-.theme-switcher input[type=checkbox]:disabled ~ .check::before {
+.theme-switcher.mode-switch input[type=checkbox]:disabled ~ .check::before {
   display: none;
+}
+.theme-switcher.mode-button {
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 2px solid var(--theme-switcher-border-color);
+  cursor: pointer;
+  position: relative;
+  background: var(--theme-switcher-background);
+  color: var(--theme-switcher-color);
+  transition: all 0.3s ease-in-out;
+}
+.theme-switcher.mode-button .check {
+  display: block;
+  font-size: 20px;
+  transform: translateY(-1px);
+}
+.theme-switcher.mode-button .check::before,
+.theme-switcher.mode-button .check::after {
+  content: "\263e";
+  position: relative;
+  display: block;
+  z-index: 1;
+}
+.theme-switcher.mode-button .check::after {
+  content: "\263c";
+  display: none;
+}
+.theme-switcher.mode-button input:checked + .check::before {
+  display: none;
+}
+.theme-switcher.mode-button input:checked + .check::after {
+  display: block;
 }
 
 /* source/components/tile/tile.less */

@@ -1,5 +1,17 @@
 @import (once) "../../include/mixins";
 
+:root {
+    --theme-switcher-background: #ffffff;
+    --theme-switcher-color: #191919;
+    --theme-switcher-border-color: #191919;
+}
+
+.dark-side {
+    --theme-switcher-background: #191919;
+    --theme-switcher-color: #ffffff;
+    --theme-switcher-border-color: #ffffff;
+}
+
 .theme-switcher {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -13,98 +25,141 @@
 
     .hideElement(input);
 
-    .check {
-        line-height: 38px;
-        font-size: 14px;
-        margin: 0 4px;
-        position: relative;
-        height: 20px;
-        width: 48px;
-        border: 2px @dark solid;
-        cursor: pointer;
-        background: @transparent;
-        z-index: 1;
-        display: inline-block;
-        vertical-align: middle;
-        border-radius: (1.125rem / 2);
-        flex-shrink: 0;
-    }
-
-    .check {
-        &::before {
-            content: attr(data-dark-symbol); // dark
-            display: block;
-            position: absolute;
-            color: inherit;
-            left: 16px;
-            width: 26px;
-            top: -2px;
-            line-height: 20px;
-            font-size: 10px;
-            text-transform: uppercase;
-            text-align: center;
-        }
-    }
-
-    .check {
-        &::after {
-            transition: @transition-base;
-            position: absolute;
-            left: 3px;
-            display: block;
-            content: "";
-            height: 12px;
-            width: 12px;
-            top: 50%;
-            .translateY(-50%);
-            border: 2px #333 solid;
+    &.mode-switch {
+        .check {
+            line-height: 38px;
+            font-size: 14px;
+            margin: 0 4px;
+            position: relative;
+            height: 20px;
+            width: 48px;
+            border: 2px @dark solid;
             cursor: pointer;
-            background: #333;
-            z-index: 2;
-            border-radius: 50%;
+            background: @transparent;
+            z-index: 1;
+            display: inline-block;
+            vertical-align: middle;
+            border-radius: (1.125rem / 2);
+            flex-shrink: 0;
+        }
+
+        .check {
+            &::before {
+                content: attr(data-dark-symbol); // dark
+                display: block;
+                position: absolute;
+                color: inherit;
+                left: 16px;
+                width: 26px;
+                top: -2px;
+                line-height: 20px;
+                font-size: 10px;
+                text-transform: uppercase;
+                text-align: center;
+            }
+        }
+
+        .check {
+            &::after {
+                transition: @transition-base;
+                position: absolute;
+                left: 3px;
+                display: block;
+                content: "";
+                height: 12px;
+                width: 12px;
+                top: 50%;
+                .translateY(-50%);
+                border: 2px #333 solid;
+                cursor: pointer;
+                background: #333;
+                z-index: 2;
+                border-radius: 50%;
+            }
+        }
+
+        input[type="checkbox"]:indeterminate ~ .check {
+            &::after {
+                background-color: @gray;
+                border-color: @gray;
+                left: auto;
+                .translateX(18px);
+                .translateY(-50%);
+            }
+            &::before {
+                content: "";
+            }
+        }
+
+        input[type="checkbox"]:checked ~ .check {
+            background: @dark;
+            border-color: @dark;
+            color: @dark;
+            &::after {
+                background-color: @white;
+                border-color: @white;
+                left: auto;
+                .translateX(30px);
+                .translateY(-50%);
+            }
+            &::before {
+                content: attr(data-light-symbol); // light
+                color: @white;
+                left: 1px;
+            }
+        }
+
+        input[type="checkbox"]:disabled ~ .check {
+            background-color: @disabledBackground;
+            border-color: @disabledBackground;
+            &::after {
+                background-color: darken(@disabledBackground, 10%);
+                border-color: darken(@disabledBackground, 10%);
+            }
+            &::before {
+                display: none;
+            }
         }
     }
+    
+    /* TODO add slide up-down to the theme symbol */
+    &.mode-button {
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        border: 2px solid var(--theme-switcher-border-color);
+        cursor: pointer;
+        position: relative;
+        background: var(--theme-switcher-background);
+        color: var(--theme-switcher-color);
+        transition: @transition-base;
 
-    input[type="checkbox"]:indeterminate ~ .check {
-        &::after {
-            background-color: @gray;
-            border-color: @gray;
-            left: auto;
-            .translateX(18px);
-            .translateY(-50%);
-        }
-        &::before {
-            content: "";
-        }
-    }
+        .check {
+            display: block;
+            font-size: 20px;
+            transform: translateY(-1px);
 
-    input[type="checkbox"]:checked ~ .check {
-        background: @dark;
-        border-color: @dark;
-        color: @dark;
-        &::after {
-            background-color: @white;
-            border-color: @white;
-            left: auto;
-            .translateX(30px);
-            .translateY(-50%);
-        }
-        &::before {
-            content: attr(data-light-symbol); // light
-            color: @white;
-            left: 1px;
-        }
-    }
+            &::before, &::after {
+                content: '☾';
+                position: relative;
+                display: block;
+                z-index: 1;
+            }
 
-    input[type="checkbox"]:disabled ~ .check {
-        background-color: @disabledBackground;
-        border-color: @disabledBackground;
-        &::after {
-            background-color: darken(@disabledBackground, 10%);
-            border-color: darken(@disabledBackground, 10%);
+            &::after {
+                content: '☼';
+                display: none;
+            }
         }
-        &::before {
+
+        input:checked + .check::before {
             display: none;
+        }
+
+        input:checked + .check::after {
+            display: block;
         }
     }
 }

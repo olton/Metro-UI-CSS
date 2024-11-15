@@ -1,20 +1,18 @@
-(function(Metro, $) {
-    'use strict';
+/** @format */
 
-    var STATE = {
-        LIGHT: "light",
-        DARK: "dark",
-    }
+(function (Metro, $) {
+    "use strict";
 
     var ThemeSwitcherDefaultConfig = {
-        state: STATE.LIGHT,
+        state: Metro.theme.LIGHT,
         target: "html",
         saveState: true,
         saveStateKey: "THEME:SWITCHER",
         clsDark: "",
         darkSymbol: "☾",
         lightSymbol: "☼",
-        onThemeSwitcherCreate: Metro.noop
+        mode: "switch",
+        onThemeSwitcherCreate: Metro.noop,
     };
 
     Metro.themeSwitcherSetup = function (options) {
@@ -25,8 +23,8 @@
         Metro.themeSwitcherSetup(globalThis["metroThemeSwitcherSetup"]);
     }
 
-    Metro.Component('theme-switcher', {
-        init: function( options, elem ) {
+    Metro.Component("theme-switcher", {
+        init: function (options, elem) {
             this._super(elem, options, ThemeSwitcherDefaultConfig, {
                 container: null,
                 state: null,
@@ -36,54 +34,74 @@
             return this;
         },
 
-        _create: function(){
+        _create: function () {
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent('theme-switcher-create');
+            this._fireEvent("theme-switcher-create");
         },
 
-        _createStructure: function(){
-            const element = this.element, o = this.options;
-            let initState = 'light'
+        _createStructure: function () {
+            const element = this.element,
+                o = this.options;
+            let initState = "light";
 
             if (o.saveState) {
-                initState = Metro.storage.getItem(o.saveStateKey, false)
+                initState = Metro.storage.getItem(o.saveStateKey, false);
             }
 
             const check = $("<span>").addClass("check");
             check.attr("data-light-symbol", o.lightSymbol);
             check.attr("data-dark-symbol", o.darkSymbol);
 
-            element.attr("type", "checkbox")
+            element.attr("type", "checkbox");
 
-            this.container = element.wrap(
-                $("<label>").addClass("theme-switcher")
-            )
+            this.container = element.wrap($("<label>").addClass("theme-switcher"));
+            this.container.addClass(`mode-${o.mode}`);
 
-            check.appendTo(this.container)
+            check.appendTo(this.container);
 
-            this.target = $(o.target)
+            this.target = $(o.target);
             if (this.target.length === 0) {
                 this.target = $("html");
             }
 
-            this._setState(o.saveState ? initState : o.state === STATE.DARK )
-            this._updateState()
+            this._setState(o.saveState ? initState : o.state === Metro.theme.DARK);
+            this._updateState();
         },
 
-        _createEvents: function(){
+        _createEvents: function () {
             this.container.on("click", () => {
-                this._updateState()
-            })
+                this._updateState();
+            });
+
+            this._observeClass();
         },
 
-        _setState: function(state = false){
-            this.elem.checked = state
+        _observeClass: function () {
+            const observer = new MutationObserver((mutations) => {
+                mutations.forEach((mutation) => {
+                    if (mutation.type === "attributes") {
+                        if (mutation.attributeName === "class") {
+                            this.elem.checked = this.target[0].classList.contains("dark-side");
+                        }
+                    }
+                });
+            });
+            observer.observe(this.target[0], {
+                attributes: true,
+                attributeFilter: ["class"],
+            });
         },
 
-        _updateState: function(){
-            const o = this.options, elem = this.elem, target = this.target;
+        _setState: function (state = false) {
+            this.elem.checked = state;
+        },
+
+        _updateState: function () {
+            const o = this.options,
+                elem = this.elem,
+                target = this.target;
 
             if (elem.checked) {
                 target.addClass("dark-side").addClass(this.options.clsDark);
@@ -92,26 +110,26 @@
             }
 
             if (o.saveState) {
-                Metro.storage.setItem(o.saveStateKey, elem.checked)
+                Metro.storage.setItem(o.saveStateKey, elem.checked);
             }
         },
 
-        val: function(value){
+        val: function (value) {
             if (typeof value === undefined) {
-                return this.elem.checked ? 'dark' : 'light';
+                return this.elem.checked ? Metro.theme.DARK : Metro.theme.LIGHT;
             }
-            this._setState(typeof value === "boolean" ? value : value === 'dark');
+            this._setState(typeof value === "boolean" ? value : value === Metro.theme.DARK);
         },
 
-        changeAttribute: function(attr, newValue){
+        changeAttribute: function (attr, newValue) {
             if (attr === "data-target") {
-                this.target = $(newValue)
-                this._updateState()
+                this.target = $(newValue);
+                this._updateState();
             }
         },
 
-        destroy: function(){
+        destroy: function () {
             this.container.remove();
-        }
+        },
     });
-}(Metro, m4q));
+})(Metro, m4q);

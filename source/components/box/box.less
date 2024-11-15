@@ -16,7 +16,7 @@
     background: var(--box-background);
     border: 1px solid var(--box-border-color);
     border-radius: var(--box-border-radius);
-    margin: 1rem 0;
+    margin: 0;
     font-size: 14px;
     position: relative;
 
@@ -39,4 +39,8 @@
     .box-title-secondary {
         font-size: 16px;
     }
+}
+
+* + .box {
+    margin-top: 1rem;
 }
