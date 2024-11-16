@@ -40609,8 +40609,8 @@ input[type=reset].loading .load-caption {
   height: 3px;
   margin: 4px auto;
 }
-.hamburger.dark .line,
-.nav-button.dark .line {
+.hamburger.hamburger-dark .line,
+.nav-button.hamburger-dark .line {
   background-color: #1d1d1d;
 }
 .hamburger.menu-down .line:nth-child(2),
@@ -50559,6 +50559,7 @@ fieldset.disabled,
   background-color: var(--navview-pane-background);
   color: var(--navview-pane-color);
   z-index: 1029;
+  overflow: hidden;
 }
 .navview-pane .pull-button,
 .navview-pane .holder {
@@ -50587,7 +50588,6 @@ fieldset.disabled,
 }
 .navview-pane .navview-menu-container {
   height: 100%;
-  padding-left: 4px;
 }
 .navview-pane .navview-menu-container .navview-menu {
   height: 100%;
@@ -57365,7 +57365,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   --tabs-item-color: var(--default-color);
   --tabs-item-background-hover: #f5f8fe;
   --tabs-item-color-hover: var(--default-color);
-  --tabs-item-background-active: #ffffff;
+  --tabs-item-background-active: #eaeaea;
   --tabs-item-color-active: var(--default-color);
 }
 .dark-side {
@@ -57396,6 +57396,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   top: 0.25rem;
   right: 0.25rem;
   display: block;
+  background: var(--tabs-hamburger-background);
 }
 .tabs .expand-title {
   display: block;
@@ -57413,8 +57414,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   justify-content: inherit;
   width: 100%;
   position: relative;
-  margin-top: 0.5rem;
-  margin-bottom: 1px;
+  padding: 10px 4px 0;
   overflow: hidden;
   max-height: 0;
   transition: max-height 0.3s ease;
@@ -57427,7 +57427,12 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   display: block;
   background-color: var(--tabs-item-background);
   color: var(--tabs-item-color);
-  margin: 0 0 -1px 0;
+  margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.tabs > ul.tabs-list > li:last-child {
+  margin-bottom: 4px;
 }
 .tabs > ul.tabs-list > li > a {
   padding: 0.5rem 1rem;
@@ -57436,7 +57441,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .tabs > ul.tabs-list > li > a:hover {
   text-decoration: none;
@@ -58068,6 +58073,7 @@ textarea {
   background: var(--theme-switcher-background);
   color: var(--theme-switcher-color);
   transition: all 0.3s ease-in-out;
+  flex-shrink: 0;
 }
 .theme-switcher.mode-button .check {
   display: flex;

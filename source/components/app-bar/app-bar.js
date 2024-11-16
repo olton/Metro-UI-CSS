@@ -1,6 +1,11 @@
-/* global Metro */
-(function(Metro, $) {
-    'use strict';
+/**
+ * global Metro
+ *
+ * @format
+ */
+
+(function (Metro, $) {
+    "use strict";
 
     var Utils = Metro.utils;
     var AppBarDefaultConfig = {
@@ -14,7 +19,7 @@
         onBeforeMenuClose: Metro.noop,
         onMenuCollapse: Metro.noop,
         onMenuExpand: Metro.noop,
-        onAppBarCreate: Metro.noop
+        onAppBarCreate: Metro.noop,
     };
 
     Metro.appBarSetup = function (options) {
@@ -25,10 +30,10 @@
         Metro.appBarSetup(globalThis["metroAppBarSetup"]);
     }
 
-    Metro.Component('app-bar', {
+    Metro.Component("app-bar", {
         init: function (options, elem) {
             this._super(elem, options, AppBarDefaultConfig, {
-                id: Utils.elementId('app-bar')
+                id: Utils.elementId("app-bar"),
             });
 
             return this;
@@ -41,13 +46,16 @@
             this._createEvents();
 
             this._fireEvent("app-bar-create", {
-                element: element
-            })
+                element: element,
+            });
         },
 
         _createStructure: function () {
-            var element = this.element, o = this.options;
-            var hamburger, menu, elementColor = Utils.getStyleOne(element, "background-color");
+            var element = this.element,
+                o = this.options;
+            var hamburger,
+                menu,
+                elementColor = Utils.getStyleOne(element, "background-color");
 
             element.addClass("app-bar");
             // console.log(elementColor)
@@ -59,7 +67,7 @@
                 }
 
                 if (elementColor === "rgba(0, 0, 0, 0)" || Farbe.Routines.isLight(elementColor) === true) {
-                    // hamburger.addClass("dark");
+                    hamburger.addClass("hamburger-dark");
                 }
             }
 
@@ -72,7 +80,7 @@
                 Utils.addCssRule(Metro.sheet, ".app-bar-menu li", "list-style: none!important;"); // This special for IE11 and Edge
             }
 
-            if (hamburger.css('display') === 'block') {
+            if (hamburger.css("display") === "block") {
                 menu.hide().addClass("collapsed");
                 hamburger.removeClass("hidden");
             } else {
@@ -93,7 +101,9 @@
         },
 
         _createEvents: function () {
-            var that = this, element = this.element, o = this.options;
+            var that = this,
+                element = this.element,
+                o = this.options;
             var menu = element.find(".app-bar-menu");
             var hamburger = element.find(".hamburger");
 
@@ -107,46 +117,51 @@
                 }
             });
 
-            $(globalThis).on(Metro.events.resize, function () {
-
-                if (o.expand !== true) {
-                    if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
-                        element.addClass("app-bar-expand");
-                        that._fireEvent("menu-expand");
-                    } else {
-                        element.removeClass("app-bar-expand");
-                        that._fireEvent("menu-collapse");
+            $(globalThis).on(
+                Metro.events.resize,
+                function () {
+                    if (o.expand !== true) {
+                        if (Utils.isValue(o.expandPoint) && Utils.mediaExist(o.expandPoint)) {
+                            element.addClass("app-bar-expand");
+                            that._fireEvent("menu-expand");
+                        } else {
+                            element.removeClass("app-bar-expand");
+                            that._fireEvent("menu-collapse");
+                        }
                     }
-                }
 
-                if (menu.length === 0) {
-                    hamburger.addClass("hidden")
-                    return
-                }
-
-                menu.removeClass("opened").removeClass("collapsed")
-
-                if (hamburger.css('display') !== 'block') {
-                    hamburger.addClass("hidden");
-                    menu.show()
-                } else {
-                    hamburger.removeClass("hidden");
-                    if (hamburger.hasClass("active")) {
-                        menu.removeClass("collapsed").addClass("opened");
-                    } else {
-                        menu.addClass("collapsed").removeClass("opened");
+                    if (menu.length === 0) {
+                        hamburger.addClass("hidden");
+                        return;
                     }
-                }
-            }, {ns: this.id});
+
+                    menu.removeClass("opened").removeClass("collapsed");
+
+                    if (hamburger.css("display") !== "block") {
+                        hamburger.addClass("hidden");
+                        menu.show();
+                    } else {
+                        hamburger.removeClass("hidden");
+                        if (hamburger.hasClass("active")) {
+                            menu.removeClass("collapsed").addClass("opened");
+                        } else {
+                            menu.addClass("collapsed").removeClass("opened");
+                        }
+                    }
+                },
+                { ns: this.id },
+            );
         },
 
         close: function () {
-            var that = this, element = this.element, o = this.options;
+            var that = this,
+                element = this.element,
+                o = this.options;
             var menu = element.find(".app-bar-menu");
             var hamburger = element.find(".hamburger");
 
             that._fireEvent("before-menu-close", {
-                menu: menu[0]
+                menu: menu[0],
             });
 
             menu.slideUp(o.duration, function () {
@@ -154,18 +169,20 @@
                 hamburger.removeClass("active");
 
                 that._fireEvent("menu-close", {
-                    menu: menu[0]
+                    menu: menu[0],
                 });
             });
         },
 
         open: function () {
-            var that = this, element = this.element, o = this.options;
+            var that = this,
+                element = this.element,
+                o = this.options;
             var menu = element.find(".app-bar-menu");
             var hamburger = element.find(".hamburger");
 
             that._fireEvent("before-menu-open", {
-                menu: menu[0]
+                menu: menu[0],
             });
 
             menu.slideDown(o.duration, function () {
@@ -173,20 +190,19 @@
                 hamburger.addClass("active");
 
                 that._fireEvent("menu-open", {
-                    menu: menu[0]
+                    menu: menu[0],
                 });
             });
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function (attributeName) {
-        },
+        changeAttribute: function (attributeName) {},
 
         destroy: function () {
             var element = this.element;
             element.off(Metro.events.click, ".hamburger");
-            $(globalThis).off(Metro.events.resize, {ns: this.id});
+            $(globalThis).off(Metro.events.resize, { ns: this.id });
             return element;
-        }
+        },
     });
-}(Metro, m4q));
+})(Metro, m4q);
