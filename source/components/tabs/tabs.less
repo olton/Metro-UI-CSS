@@ -40,8 +40,8 @@
 
     .hamburger {
         position: absolute;
-        top: .25rem;
-        right: .25rem;
+        top: 2px;
+        right: 10px;
         display: block;
         background: var(--tabs-hamburger-background);
     }
@@ -195,16 +195,24 @@
 
     & > ul.tabs-list {
         border: 0;
-        border-bottom: 1px solid var(--border-color);
+        border-bottom: 2px solid var(--border-color);
         flex-direction: row;
         display: flex !important;
         margin-top: 0;
         height: auto;
         max-height: none;
         overflow: visible;
+        padding: 0 0 0 0;
 
         & > li {
             border-bottom: 1px solid var(--border-color);
+            border-bottom-left-radius: 0;
+            border-bottom-right-radius: 0;
+            margin-bottom: 0px;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
 
             &.active {
                 border: 1px solid var(--border-color);

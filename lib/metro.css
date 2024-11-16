@@ -40580,6 +40580,14 @@ input[type=reset].loading .load-caption {
 }
 
 /* source/components/hamburger/hamburger.less */
+:root {
+  --hamburger-background: transparent;
+  --hamburger-color: #191919;
+}
+.dark-side {
+  --hamburger-background: transparent;
+  --hamburger-color: #ffffff;
+}
 .hamburger,
 .nav-button {
   display: inline-block;
@@ -40593,8 +40601,8 @@ input[type=reset].loading .load-caption {
   font-size: 14px;
   line-height: 36px;
   transition: all 0.15s ease-in-out;
-  background-color: transparent;
-  color: #ffffff;
+  background: var(--hamburger-background);
+  color: var(--hamburger-color);
   cursor: pointer;
   outline: none;
   width: 36px;
@@ -40603,15 +40611,11 @@ input[type=reset].loading .load-caption {
 .hamburger .line,
 .nav-button .line {
   width: 30px;
-  background-color: #ffffff;
+  background: var(--hamburger-color);
   display: block;
   transition: all 0.3s ease-in-out;
   height: 3px;
   margin: 4px auto;
-}
-.hamburger.hamburger-dark .line,
-.nav-button.hamburger-dark .line {
-  background-color: #1d1d1d;
 }
 .hamburger.menu-down .line:nth-child(2),
 .nav-button.menu-down .line:nth-child(2),
@@ -57393,8 +57397,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .tabs .hamburger {
   position: absolute;
-  top: 0.25rem;
-  right: 0.25rem;
+  top: 2px;
+  right: 10px;
   display: block;
   background: var(--tabs-hamburger-background);
 }
@@ -57515,16 +57519,23 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .tabs-expand > ul.tabs-list {
   border: 0;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 2px solid var(--border-color);
   flex-direction: row;
   display: flex !important;
   margin-top: 0;
   height: auto;
   max-height: none;
   overflow: visible;
+  padding: 0 0 0 0;
 }
 .tabs-expand > ul.tabs-list > li {
   border-bottom: 1px solid var(--border-color);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-bottom: 0px;
+}
+.tabs-expand > ul.tabs-list > li:last-child {
+  margin-bottom: 0;
 }
 .tabs-expand > ul.tabs-list > li.active {
   border: 1px solid var(--border-color);

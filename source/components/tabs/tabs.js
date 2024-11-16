@@ -91,9 +91,9 @@
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
 
-                if (Farbe.Routines.isLight(Utils.getStyleOne(container, "background-color")) === true) {
-                    hamburger.addClass("hamburger-dark");
-                }
+                // if (Farbe.Routines.isLight(Utils.getStyleOne(container, "background-color")) === true) {
+                //     hamburger.addClass("hamburger-dark");
+                // }
             }
 
             container.addClass(o.clsTabs);

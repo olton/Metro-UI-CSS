@@ -65,10 +65,6 @@
                 for (var i = 0; i < 3; i++) {
                     $("<span>").addClass("line").appendTo(hamburger);
                 }
-
-                if (elementColor === "rgba(0, 0, 0, 0)" || Farbe.Routines.isLight(elementColor) === true) {
-                    hamburger.addClass("hamburger-dark");
-                }
             }
 
             element.prepend(hamburger);
