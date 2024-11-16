@@ -5,4 +5,9 @@ each(@colors, {
     .fc-@{value}-active {&:active {fill: @@value !important;}}
     .fc-@{value}-hover {&:hover {fill: @@value !important;}}
     .fc-@{value}-focus {&:focus {fill: @@value !important;}}
+
+    .st-@{value} {stroke: @@value !important;}
+    .st-@{value}-active {&:active {stroke: @@value !important;}}
+    .st-@{value}-hover {&:hover {stroke: @@value !important;}}
+    .st-@{value}-focus {&:focus {stroke: @@value !important;}}
 })

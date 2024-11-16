@@ -3,7 +3,7 @@
 import "./vars.less";
 import "./background.less";
 import "./border.less";
-import "./fill.less";
+import "./svg.less";
 import "./foreground.less";
 import "./opacity.less";
 import "./outline.less";
