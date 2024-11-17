@@ -9,6 +9,6 @@ import "./html/index.js";
 import "./animation/index.js";
 import "./guardian/index.js";
 import "./core/index.js";
-import "./i18n/en-US.js";
+import "./i18n/index.js";
 import "./extensions/index.js";
 import "./common-js/index.js";

@@ -1,6 +1,11 @@
-/* global Metro, METRO_LOCALE, Datetime, datetime */
-(function(Metro, $) {
-    'use strict';
+/**
+ * global Metro, METRO_LOCALE, Datetime, datetime
+ *
+ * @format
+ */
+
+(function (Metro, $) {
+    "use strict";
     var Utils = Metro.utils;
     var DatePickerDefaultConfig = {
         label: "",
@@ -8,7 +13,6 @@
         gmt: 0,
         format: "YYYY-MM-DD",
         inputFormat: null,
-        locale: METRO_LOCALE,
         value: null,
         distance: 3,
         month: true,
@@ -34,7 +38,7 @@
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onScroll: Metro.noop,
-        onDatePickerCreate: Metro.noop
+        onDatePickerCreate: Metro.noop,
     };
 
     Metro.datePickerSetup = function (options) {
@@ -45,25 +49,26 @@
         Metro.datePickerSetup(globalThis["metroDatePickerSetup"]);
     }
 
-    Metro.Component('date-picker', {
-        init: function( options, elem ) {
+    Metro.Component("date-picker", {
+        init: function (options, elem) {
             this._super(elem, options, DatePickerDefaultConfig, {
                 picker: null,
                 isOpen: false,
                 value: datetime(),
-                locale: null,
                 listTimer: {
                     day: null,
                     month: null,
-                    year: null
-                }
+                    year: null,
+                },
             });
 
             return this;
         },
 
-        _create: function(){
-            var element = this.element, o = this.options;
+        _create: function () {
+            var element = this.element,
+                o = this.options,
+                locale = this.locale;
             var date = datetime();
 
             if (o.distance < 1) {
@@ -75,14 +80,8 @@
             }
 
             if (Utils.isValue(o.value)) {
-                this.value = o.inputFormat ? Datetime.from(o.value, o.inputFormat, o.locale) : datetime(o.value);
+                this.value = o.inputFormat ? Datetime.from(o.value, o.inputFormat, locale) : datetime(o.value);
             }
-
-            if (Metro.locales[o.locale] === undefined) {
-                o.locale = METRO_LOCALE;
-            }
-
-            this.locale = Metro.locales[o.locale]['calendar'];
 
             if (o.minYear === null) {
                 o.minYear = date.year() - o.defaultYearDistance;
@@ -97,18 +96,23 @@
             this._set();
 
             this._fireEvent("datepicker-create", {
-                element: element
+                element: element,
             });
         },
 
-        _createStructure: function(){
-            var element = this.element, o = this.options;
+        _createStructure: function () {
+            var element = this.element,
+                o = this.options,
+                locale = this.locale;
             var picker, month, day, year, i, j;
             var dateWrapper, selectWrapper, selectBlock, actionBlock;
 
             var id = Utils.elementId("datepicker");
 
-            picker = $("<div>").attr("id", id).addClass("wheel-picker date-picker " + element[0].className).addClass(o.clsPicker);
+            picker = $("<div>")
+                .attr("id", id)
+                .addClass("wheel-picker date-picker " + element[0].className)
+                .addClass(o.clsPicker);
 
             picker.insertBefore(element);
             element.appendTo(picker);
@@ -143,7 +147,12 @@
                 month = $("<ul>").addClass("sel-month").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
                 for (i = 0; i < 12; i++) {
-                    $("<li>").addClass("js-month-"+i+" js-month-real-"+this.locale['months'][i].toLowerCase()).html(this.locale['months'][i]).data("value", i).appendTo(month);
+                    const month_name = Datetime.getLocale(locale).months[i];
+                    $("<li>")
+                        .addClass("js-month-" + i + " js-month-real-" + month_name.toLowerCase())
+                        .html(month_name)
+                        .data("value", i)
+                        .appendTo(month);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
             }
@@ -152,7 +161,11 @@
                 day = $("<ul>").addClass("sel-day").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(day);
                 for (i = 0; i < 31; i++) {
-                    $("<li>").addClass("js-day-"+i+" js-day-real-"+(i+1)).html(i + 1).data("value", i + 1).appendTo(day);
+                    $("<li>")
+                        .addClass("js-day-" + i + " js-day-real-" + (i + 1))
+                        .html(i + 1)
+                        .data("value", i + 1)
+                        .appendTo(day);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(day);
             }
@@ -161,7 +174,11 @@
                 year = $("<ul>").addClass("sel-year").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(year);
                 for (i = o.minYear, j = 0; i <= o.maxYear; i++, j++) {
-                    $("<li>").addClass("js-year-"+ j + " js-year-real-" + i).html(i).data("value", i).appendTo(year);
+                    $("<li>")
+                        .addClass("js-year-" + j + " js-year-real-" + i)
+                        .html(i)
+                        .data("value", i)
+                        .appendTo(year);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(year);
             }
@@ -169,11 +186,22 @@
             selectBlock.height((o.distance * 2 + 1) * 40);
 
             actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-            $("<button>").attr("type", "button").addClass("button action-ok").addClass(o.clsButton).addClass(o.clsOkButton).html(o.okButtonIcon).appendTo(actionBlock);
-            $("<button>").attr("type", "button").addClass("button action-cancel").addClass(o.clsButton).addClass(o.clsCancelButton).html(o.cancelButtonIcon).appendTo(actionBlock);
+            $("<button>")
+                .attr("type", "button")
+                .addClass("button action-ok")
+                .addClass(o.clsButton)
+                .addClass(o.clsOkButton)
+                .html(o.okButtonIcon)
+                .appendTo(actionBlock);
+            $("<button>")
+                .attr("type", "button")
+                .addClass("button action-cancel")
+                .addClass(o.clsButton)
+                .addClass(o.clsCancelButton)
+                .html(o.cancelButtonIcon)
+                .appendTo(actionBlock);
 
-
-            element[0].className = '';
+            element[0].className = "";
             if (o.copyInlineStyles === true) {
                 for (i = 0; i < element[0].style.length; i++) {
                     picker.css(element[0].style[i], element.css(element[0].style[i]));
@@ -187,38 +215,45 @@
             this.picker = picker;
         },
 
-        _createEvents: function(){
-            var that = this, o = this.options;
+        _createEvents: function () {
+            var that = this,
+                o = this.options;
             var picker = this.picker;
 
-            picker.on(Metro.events.start, ".select-block ul", function(e){
-
+            picker.on(Metro.events.start, ".select-block ul", function (e) {
                 if (e.changedTouches) {
-                    return ;
+                    return;
                 }
 
                 var target = this;
                 var pageY = Utils.pageXY(e).y;
 
-                $(document).on(Metro.events.move, function(e){
+                $(document).on(
+                    Metro.events.move,
+                    function (e) {
+                        target.scrollTop -= o.scrollSpeed * (pageY > Utils.pageXY(e).y ? -1 : 1);
 
-                    target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
+                        pageY = Utils.pageXY(e).y;
+                    },
+                    { ns: picker.attr("id") },
+                );
 
-                    pageY = Utils.pageXY(e).y;
-                }, {ns: picker.attr("id")});
-
-                $(document).on(Metro.events.stop, function(){
-                    $(document).off(Metro.events.move, {ns: picker.attr("id")});
-                    $(document).off(Metro.events.stop, {ns: picker.attr("id")});
-                }, {ns: picker.attr("id")});
+                $(document).on(
+                    Metro.events.stop,
+                    function () {
+                        $(document).off(Metro.events.move, { ns: picker.attr("id") });
+                        $(document).off(Metro.events.stop, { ns: picker.attr("id") });
+                    },
+                    { ns: picker.attr("id") },
+                );
             });
 
-            picker.on(Metro.events.click, function(e){
+            picker.on(Metro.events.click, function (e) {
                 if (that.isOpen === false) that.open();
                 e.stopPropagation();
             });
 
-            picker.on(Metro.events.click, ".action-ok", function(e){
+            picker.on(Metro.events.click, ".action-ok", function (e) {
                 var m, d, y;
                 var sm = picker.find(".sel-month li.active"),
                     sd = picker.find(".sel-day li.active"),
@@ -236,46 +271,46 @@
                 e.stopPropagation();
             });
 
-            picker.on(Metro.events.click, ".action-cancel", function(e){
+            picker.on(Metro.events.click, ".action-cancel", function (e) {
                 that.close();
                 e.stopPropagation();
             });
 
             var scrollLatency = 150;
-            $.each(["month", "day", "year"], function(){
-                var part = this, list = picker.find(".sel-"+part);
+            $.each(["month", "day", "year"], function () {
+                var part = this,
+                    list = picker.find(".sel-" + part);
 
-                list.on("scroll", function(){
+                list.on("scroll", function () {
                     if (that.isOpen) {
                         if (that.listTimer[part]) {
                             clearTimeout(that.listTimer[part]);
                             that.listTimer[part] = null;
                         }
 
-                        if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
+                        if (!that.listTimer[part])
+                            that.listTimer[part] = setTimeout(function () {
+                                var target, targetElement, scrollTop;
 
-                            var target, targetElement, scrollTop;
+                                that.listTimer[part] = null;
 
-                            that.listTimer[part] = null;
+                                target = Math.round(Math.ceil(list.scrollTop()) / 40);
 
-                            target = Math.round((Math.ceil(list.scrollTop()) / 40));
+                                targetElement = list.find(".js-" + part + "-" + target);
+                                scrollTop = targetElement.position().top - o.distance * 40;
 
-                            targetElement = list.find(".js-" + part + "-" + target);
-                            scrollTop = targetElement.position().top - (o.distance * 40);
+                                list.find(".active").removeClass("active");
 
-                            list.find(".active").removeClass("active");
-
-                            list[0].scrollTop = scrollTop;
-                            targetElement.addClass("active");
-                            Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
-
-                        }, scrollLatency);
+                                list[0].scrollTop = scrollTop;
+                                targetElement.addClass("active");
+                                Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
+                            }, scrollLatency);
                     }
-                })
+                });
             });
         },
 
-        _correct: function(){
+        _correct: function () {
             var m = this.value.month(),
                 d = this.value.day(),
                 y = this.value.year();
@@ -283,10 +318,11 @@
             this.value = datetime(y, m, d);
         },
 
-        _set: function(){
-            var element = this.element, o = this.options;
+        _set: function () {
+            var element = this.element,
+                o = this.options;
             var picker = this.picker;
-            var m = this.locale['months'][this.value.month()],
+            var m = Datetime.getLocale(this.locale).months[this.value.month()],
                 d = this.value.day(),
                 y = this.value.year();
 
@@ -300,19 +336,21 @@
                 picker.find(".year").html(y);
             }
 
-            element.val(this.value.format(o.format, o.locale)).trigger("change");
+            element.val(this.value.format(o.format, this.locale)).trigger("change");
 
             this._fireEvent("set", {
                 value: this.value.val(),
                 elementValue: element.val(),
-                picker: picker
-            })
+                picker: picker,
+            });
         },
 
-        open: function(){
+        open: function () {
             var o = this.options;
             var picker = this.picker;
-            var m = this.value.month(), d = this.value.day() - 1, y = this.value.year();
+            var m = this.value.month(),
+                d = this.value.day() - 1,
+                y = this.value.year();
             var m_list, d_list, y_list;
             var select_wrapper = picker.find(".select-wrapper");
             var select_wrapper_in_viewport, select_wrapper_rect;
@@ -334,114 +372,102 @@
 
             if (o.month === true) {
                 m_list = picker.find(".sel-month");
-                m_list
-                    .scrollTop(0)
-                    .animate({
-                        draw: {
-                            scrollTop: m_list.find("li.js-month-" + m).addClass("active").position().top - (40 * o.distance)
-                        },
-                        dur: 100
-                    });
+                m_list.scrollTop(0).animate({
+                    draw: {
+                        scrollTop:
+                            m_list
+                                .find("li.js-month-" + m)
+                                .addClass("active")
+                                .position().top -
+                            40 * o.distance,
+                    },
+                    dur: 100,
+                });
             }
             if (o.day === true) {
                 d_list = picker.find(".sel-day");
-                d_list
-                    .scrollTop(0)
-                    .animate({
-                        draw: {
-                            scrollTop: d_list.find("li.js-day-" + d).addClass("active").position().top - (40 * o.distance)
-                        },
-                        dur: 100
-                    });
+                d_list.scrollTop(0).animate({
+                    draw: {
+                        scrollTop:
+                            d_list
+                                .find("li.js-day-" + d)
+                                .addClass("active")
+                                .position().top -
+                            40 * o.distance,
+                    },
+                    dur: 100,
+                });
             }
             if (o.year === true) {
                 y_list = picker.find(".sel-year");
-                y_list
-                    .scrollTop(0)
-                    .animate({
-                        draw: {
-                            scrollTop: y_list.find("li.js-year-real-" + y).addClass("active").position().top - (40 * o.distance)
-                        },
-                        dur: 100
-                    });
+                y_list.scrollTop(0).animate({
+                    draw: {
+                        scrollTop:
+                            y_list
+                                .find("li.js-year-real-" + y)
+                                .addClass("active")
+                                .position().top -
+                            40 * o.distance,
+                    },
+                    dur: 100,
+                });
             }
 
             this.isOpen = true;
 
             this._fireEvent("open", {
                 value: this.value.val(),
-                picker: picker
-            })
-
+                picker: picker,
+            });
         },
 
-        close: function(){
+        close: function () {
             var picker = this.picker;
             picker.find(".select-wrapper").hide(0);
             this.isOpen = false;
 
             this._fireEvent("close", {
                 value: this.value.val(),
-                picker: picker
+                picker: picker,
             });
         },
 
-        val: function(value){
+        val: function (value) {
             var o = this.options;
 
             if (!Utils.isValue(value)) {
                 return this.element.val();
             }
 
-            this.value = o.inputFormat ? Datetime.from(value, o.inputFormat, o.locale) : datetime(value);
+            this.value = o.inputFormat ? Datetime.from(value, o.inputFormat, this.locale) : datetime(value);
 
             this._set();
         },
 
-        date: function(t, f){
+        date: function (t, f) {
             if (t === undefined) {
                 return this.value.val();
             }
 
             try {
-                this.value = Datetime.from(t, f, this.options.locale);
+                this.value = Datetime.from(t, f, this.locale);
                 this._set();
             } catch (e) {
                 return false;
             }
         },
 
-        i18n: function(locale){
-            var element = this.element, o = this.options;
-            var month, i;
-
-            o.locale = locale ? locale : element.attr("data-locale");
-            this.locale = Metro.locales[o.locale]['calendar'];
-
-            if (o.month === true) {
-                month =  element.closest(".date-picker").find(".sel-month").html("");
-                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
-                for (i = 0; i < 12; i++) {
-                    $("<li>").addClass("js-month-"+i+" js-month-real-"+this.locale['months'][i].toLowerCase()).html(this.locale['months'][i]).data("value", i).appendTo(month);
-                }
-                for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(month);
-            }
-
-            this._set();
-        },
-
-
-        disable: function(){
+        disable: function () {
             this.element.data("disabled", true);
             this.element.parent().addClass("disabled");
         },
 
-        enable: function(){
+        enable: function () {
             this.element.data("disabled", false);
             this.element.parent().removeClass("disabled");
         },
 
-        toggleState: function(){
+        toggleState: function () {
             if (this.elem.disabled) {
                 this.disable();
             } else {
@@ -449,11 +475,14 @@
             }
         },
 
-        changeAttribute: function(attr, newValue){
+        changeAttribute: function (attr, newValue) {
             switch (attr) {
-                case "disabled": this.toggleState(); break;
-                case "data-value": this.val(newValue); break;
-                case "data-locale": this.i18n(newValue); break;
+                case "disabled":
+                    this.toggleState();
+                    break;
+                case "data-value":
+                    this.val(newValue);
+                    break;
                 case "data-format":
                     this.options.format = newValue;
                     this._set();
@@ -461,11 +490,12 @@
             }
         },
 
-        destroy: function(){
-            var element = this.element, picker = this.picker;
+        destroy: function () {
+            var element = this.element,
+                picker = this.picker;
 
-            $.each(["moth", "day", "year"], function(){
-                picker.find(".sel-"+this).off("scroll");
+            $.each(["moth", "day", "year"], function () {
+                picker.find(".sel-" + this).off("scroll");
             });
 
             picker.off(Metro.events.start, ".select-block ul");
@@ -474,14 +504,16 @@
             picker.off(Metro.events.click, ".action-cancel");
 
             return element;
-        }
+        },
     });
 
-    $(document).on(Metro.events.click, function(){
-        $.each($(".date-picker"), function(){
-            $(this).find("input").each(function(){
-                Metro.getPlugin(this, "datepicker").close();
-            });
+    $(document).on(Metro.events.click, function () {
+        $.each($(".date-picker"), function () {
+            $(this)
+                .find("input")
+                .each(function () {
+                    Metro.getPlugin(this, "datepicker").close();
+                });
         });
     });
-}(Metro, m4q));
+})(Metro, m4q);

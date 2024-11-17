@@ -1,6 +1,7 @@
-/* global Metro, METRO_LOCALE */
-(function(Metro, $) {
-    'use strict';
+/** @format */
+
+(function (Metro, $) {
+    "use strict";
     var Utils = Metro.utils;
     var DialogDefaultConfig = {
         dialogDeferred: 0,
@@ -8,18 +9,17 @@
         leaveOverlayOnClose: false,
         toTop: false,
         toBottom: false,
-        locale: METRO_LOCALE,
         title: "",
         content: "",
         actions: {},
         actionsAlign: "right",
         defaultAction: true,
         overlay: true,
-        overlayColor: '#000000',
-        overlayAlpha: .5,
+        overlayColor: "#000000",
+        overlayAlpha: 0.5,
         overlayClickClose: false,
-        width: '480',
-        height: 'auto',
+        width: "480",
+        height: "auto",
         shadow: true,
         closeAction: true,
         clsDialog: "",
@@ -38,7 +38,7 @@
         onHide: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
-        onDialogCreate: Metro.noop
+        onDialogCreate: Metro.noop,
     };
 
     Metro.dialogSetup = function (options) {
@@ -49,27 +49,29 @@
         Metro.dialogSetup(globalThis["metroDialogSetup"]);
     }
 
-    Metro.Component('dialog', {
+    Metro.Component("dialog", {
         _counter: 0,
 
-        init: function( options, elem ) {
+        init: function (options, elem) {
             this._super(elem, options, DialogDefaultConfig, {
                 interval: null,
                 overlay: null,
-                id: Utils.elementId("dialog")
+                id: Utils.elementId("dialog"),
             });
 
             return this;
         },
 
-        _create: function(){
+        _create: function () {
             var o = this.options;
-            this.locale = Metro.locales[o.locale] !== undefined ? Metro.locales[o.locale] : Metro.locales["en-US"];
             this._build();
         },
 
-        _build: function(){
-            var that = this, element = this.element, o = this.options;
+        _build: function () {
+            var that = this,
+                element = this.element,
+                o = this.options,
+                locale = this.locale;
             var body = $("body");
             var overlay;
 
@@ -87,36 +89,41 @@
                 this.setContent(o.content);
             }
 
-            if (o.defaultAction === true || (o.actions !== false && typeof o.actions === 'object' && Utils.objectLength(o.actions) > 0)) {
+            if (o.defaultAction === true || (o.actions !== false && typeof o.actions === "object" && Utils.objectLength(o.actions) > 0)) {
                 var buttons = element.find(".dialog-actions");
                 var button;
 
                 if (buttons.length === 0) {
-                    buttons = $("<div>").addClass("dialog-actions").addClass("text-"+o.actionsAlign).appendTo(element);
+                    buttons = $("<div>")
+                        .addClass("dialog-actions")
+                        .addClass("text-" + o.actionsAlign)
+                        .appendTo(element);
                 }
 
-                if (o.defaultAction === true && (Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0)) {
-                    button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(this.locale["buttons"]["ok"]);
+                if (o.defaultAction === true && Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0) {
+                    button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(Metro.locales[locale]["buttons_ok"]);
                     button.appendTo(buttons);
                 }
 
-                if (Utils.isObject(o.actions)) $.each(Utils.isObject(o.actions), function(){
-                    var item = this;
-                    button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
-                    if (item.onclick !== undefined) button.on(Metro.events.click, function(){
-                        Utils.exec(item.onclick, [element]);
+                if (Utils.isObject(o.actions))
+                    $.each(Utils.isObject(o.actions), function () {
+                        var item = this;
+                        button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
+                        if (item.onclick !== undefined)
+                            button.on(Metro.events.click, function () {
+                                Utils.exec(item.onclick, [element]);
+                            });
+                        button.appendTo(buttons);
                     });
-                    button.appendTo(buttons);
-                });
             }
 
             if (o.overlay === true) {
-                overlay  = this._overlay();
+                overlay = this._overlay();
                 this.overlay = overlay;
             }
 
             if (o.closeAction === true) {
-                element.on(Metro.events.click, ".js-dialog-close", function(){
+                element.on(Metro.events.click, ".js-dialog-close", function () {
                     that.close();
                 });
             }
@@ -134,8 +141,8 @@
                 width: o.width,
                 height: o.height,
                 visibility: "hidden",
-                top: '100%',
-                left: ( $(globalThis).width() - element.outerWidth() ) / 2
+                top: "100%",
+                left: ($(globalThis).width() - element.outerWidth()) / 2,
             });
 
             element.addClass(o.clsDialog);
@@ -149,54 +156,59 @@
                 this.open();
             }
 
-            $(globalThis).on(Metro.events.resize, function(){
-                that.setPosition();
-            }, {ns: this.id});
+            $(globalThis).on(
+                Metro.events.resize,
+                function () {
+                    that.setPosition();
+                },
+                { ns: this.id },
+            );
 
             this._fireEvent("dialog-create", {
-                element: element
+                element: element,
             });
         },
 
-        _overlay: function(){
+        _overlay: function () {
             var o = this.options;
 
             var overlay = $("<div>");
             overlay.addClass("overlay").addClass(o.clsOverlay);
 
-            if (o.overlayColor === 'transparent') {
+            if (o.overlayColor === "transparent") {
                 overlay.addClass("transparent");
             } else {
                 overlay.css({
-                    background: Farbe.Routines.toRGBA(Farbe.Routines.parse(o.overlayColor), o.overlayAlpha)
+                    background: Farbe.Routines.toRGBA(Farbe.Routines.parse(o.overlayColor), o.overlayAlpha),
                 });
             }
 
             return overlay;
         },
 
-        hide: function(callback){
-            var element = this.element, o = this.options;
+        hide: function (callback) {
+            var element = this.element,
+                o = this.options;
             var timeout = 0;
             if (o.onHide !== Metro.noop) {
                 timeout = 500;
 
                 this._fireEvent("hide");
             }
-            setTimeout(function(){
+            setTimeout(function () {
                 Utils.exec(callback, null, element[0]);
                 element.css({
                     visibility: "hidden",
-                    top: "100%"
+                    top: "100%",
                 });
             }, timeout);
         },
 
-        show: function(callback){
+        show: function (callback) {
             var element = this.element;
             this.setPosition();
             element.css({
-                visibility: "visible"
+                visibility: "visible",
             });
 
             this._fireEvent("show");
@@ -204,11 +216,12 @@
             Utils.exec(callback, null, element[0]);
         },
 
-        setPosition: function(){
-            var element = this.element, o = this.options;
+        setPosition: function () {
+            var element = this.element,
+                o = this.options;
             var top, bottom;
             if (o.toTop !== true && o.toBottom !== true) {
-                top = ( $(globalThis).height() - element.outerHeight() ) / 2;
+                top = ($(globalThis).height() - element.outerHeight()) / 2;
                 if (top < 0) {
                     top = 0;
                 }
@@ -226,11 +239,11 @@
             element.css({
                 top: top,
                 bottom: bottom,
-                left: ( $(globalThis).width() - element.outerWidth() ) / 2
+                left: ($(globalThis).width() - element.outerWidth()) / 2,
             });
         },
 
-        setContent: function(c){
+        setContent: function (c) {
             var element = this.element;
             var content = element.find(".dialog-content");
             if (content.length === 0) {
@@ -249,7 +262,7 @@
             }
         },
 
-        setTitle: function(t){
+        setTitle: function (t) {
             var element = this.element;
             var title = element.find(".dialog-title");
             if (title.length === 0) {
@@ -259,17 +272,19 @@
             title.html(t);
         },
 
-        close: function(){
-            var that = this, element = this.element, o = this.options;
+        close: function () {
+            var that = this,
+                element = this.element,
+                o = this.options;
 
             if (!Utils.bool(o.leaveOverlayOnClose)) {
-                $('body').find('.overlay').remove();
+                $("body").find(".overlay").remove();
             }
 
-            this.hide(function(){
+            this.hide(function () {
                 element.data("open", false);
 
-                that._fireEvent("close")
+                that._fireEvent("close");
 
                 if (o.removeOnClose === true) {
                     element.remove();
@@ -277,65 +292,65 @@
             });
         },
 
-        open: function(){
-            var that = this, element = this.element, o = this.options;
+        open: function () {
+            var that = this,
+                element = this.element,
+                o = this.options;
 
             if (o.overlay === true && $(".overlay").length === 0) {
                 this.overlay.appendTo($("body"));
                 if (o.overlayClickClose === true) {
-                    this.overlay.on(Metro.events.click, function(){
+                    this.overlay.on(Metro.events.click, function () {
                         that.close();
                     });
                 }
             }
 
-            this.show(function(){
-
+            this.show(function () {
                 that._fireEvent("open");
 
                 element.data("open", true);
                 if (parseInt(o.autoHide) > 0) {
-                    setTimeout(function(){
+                    setTimeout(function () {
                         that.close();
                     }, parseInt(o.autoHide));
                 }
             });
         },
 
-        toggle: function(){
+        toggle: function () {
             var element = this.element;
-            if (element.data('open')) {
+            if (element.data("open")) {
                 this.close();
             } else {
                 this.open();
             }
         },
 
-        isOpen: function(){
-            return this.element.data('open') === true;
+        isOpen: function () {
+            return this.element.data("open") === true;
         },
 
         /* eslint-disable-next-line */
-        changeAttribute: function(attributeName){
-        },
+        changeAttribute: function (attributeName) {},
 
-        destroy: function(){
+        destroy: function () {
             var element = this.element;
 
             element.off(Metro.events.click, ".js-dialog-close");
             element.find(".button").off(Metro.events.click);
-            $(globalThis).off(Metro.events.resize,{ns: this.id});
+            $(globalThis).off(Metro.events.resize, { ns: this.id });
 
             return element;
-        }
+        },
     });
 
     Metro.dialog = {
-        isDialog: function(el){
+        isDialog: function (el) {
             return Utils.isMetroObject(el, "dialog");
         },
 
-        open: function(el, content, title){
+        open: function (el, content, title) {
             if (!this.isDialog(el)) {
                 return false;
             }
@@ -349,28 +364,28 @@
             dialog.open();
         },
 
-        close: function(el){
+        close: function (el) {
             if (!this.isDialog(el)) {
                 return false;
             }
             Metro.getPlugin($(el)[0], "dialog").close();
         },
 
-        toggle: function(el){
+        toggle: function (el) {
             if (!this.isDialog(el)) {
                 return false;
             }
             Metro.getPlugin($(el)[0], "dialog").toggle();
         },
 
-        isOpen: function(el){
+        isOpen: function (el) {
             if (!this.isDialog(el)) {
                 return false;
             }
             Metro.getPlugin($(el)[0], "dialog").isOpen();
         },
 
-        remove: function(el){
+        remove: function (el) {
             if (!this.isDialog(el)) {
                 return false;
             }
@@ -379,20 +394,24 @@
             dialog.close();
         },
 
-        create: function(options){
+        create: function (options) {
             var dlg;
 
             dlg = $("<div>").appendTo($("body"));
 
-            var dlg_options = $.extend({}, {
-                show: true,
-                closeAction: true,
-                removeOnClose: true
-            }, (options !== undefined ? options : {}));
+            var dlg_options = $.extend(
+                {},
+                {
+                    show: true,
+                    closeAction: true,
+                    removeOnClose: true,
+                },
+                options !== undefined ? options : {},
+            );
 
             dlg_options._runtime = true;
 
             return Metro.makePlugin(dlg, "dialog", dlg_options);
-        }
+        },
     };
-}(Metro, m4q));
+})(Metro, m4q);

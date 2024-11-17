@@ -1,6 +1,11 @@
-/* global Metro */
-(function(Metro, $) {
-    'use strict';
+/**
+ * global Metro
+ *
+ * @format
+ */
+
+(function (Metro, $) {
+    "use strict";
 
     var Utils = Metro.utils;
     var ColorPickerDefaultConfig = {
@@ -15,7 +20,7 @@
         clsPickerButton: "",
         clsClearButton: "",
         onColorSelected: Metro.noop,
-        onColorPickerCreate: Metro.noop
+        onColorPickerCreate: Metro.noop,
     };
 
     Metro.colorPickerSetup = function (options) {
@@ -26,25 +31,36 @@
         Metro.colorPickerSetup(globalThis["metroColorPickerSetup"]);
     }
 
-    Metro.Component('color-picker', {
-        init: function( options, elem ) {
-            this._super(elem, options, $.extend({}, Metro.defaults.ColorSelector, {
-                showUserColors: false,
-                showValues: ""
-            }, ColorPickerDefaultConfig), {
-                value: null,
-                picker: null,
-                colorSelector: null,
-                colorSelectorBox: null,
-                colorExample: null,
-                inputInterval: null,
-                isOpen: false
-            });
+    Metro.Component("color-picker", {
+        init: function (options, elem) {
+            this._super(
+                elem,
+                options,
+                $.extend(
+                    {},
+                    Metro.defaults.ColorSelector,
+                    {
+                        showUserColors: false,
+                        showValues: "",
+                    },
+                    ColorPickerDefaultConfig,
+                ),
+                {
+                    value: null,
+                    picker: null,
+                    colorSelector: null,
+                    colorSelectorBox: null,
+                    colorExample: null,
+                    inputInterval: null,
+                    isOpen: false,
+                },
+            );
             return this;
         },
 
-        _create: function(){
-            var element = this.element, o = this.options;
+        _create: function () {
+            var element = this.element,
+                o = this.options;
             var current = element.val();
 
             if (!Metro.pluginExists("color-selector")) {
@@ -56,12 +72,14 @@
             this._createStructure();
             this._createEvents();
 
-            this._fireEvent('color-picker-create');
+            this._fireEvent("color-picker-create");
         },
 
-        _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
-            var picker = element.wrap( $("<div>").addClass("color-picker").addClass(element[0].className) );
+        _createStructure: function () {
+            var that = this,
+                element = this.element,
+                o = this.options;
+            var picker = element.wrap($("<div>").addClass("color-picker").addClass(element[0].className));
             var buttons, colorExample, colorSelector, colorSelectorBox;
 
             colorExample = $("<div>").addClass("color-example-box").insertBefore(element);
@@ -74,7 +92,7 @@
                     .addClass(o.clsPickerButton)
                     .attr("tabindex", -1)
                     .attr("type", "button")
-                    .html(o.pickerButtonIcon)
+                    .html(o.pickerButtonIcon),
             );
 
             if (o.clearButton === true && !element[0].readOnly) {
@@ -84,7 +102,7 @@
                         .addClass(o.clsClearButton)
                         .attr("tabindex", -1)
                         .attr("type", "button")
-                        .html(o.clearButtonIcon)
+                        .html(o.clearButtonIcon),
                 );
             }
 
@@ -104,7 +122,7 @@
             this.colorSelector = colorSelector;
             this.colorSelectorBox = colorSelectorBox;
 
-            Metro.makePlugin(colorSelector, 'color-selector', {
+            Metro.makePlugin(colorSelector, "color-selector", {
                 defaultSwatches: o.defaultSwatches,
                 userColors: o.userColors,
                 returnValueType: o.returnValueType,
@@ -114,7 +132,6 @@
                 showUserColors: o.showUserColors,
                 target: o.target,
                 controller: element,
-                locale: o.locale,
                 addUserColorTitle: o.addUserColorTitle,
                 userColorsTitle: o.userColorsTitle,
                 hslMode: o.hslMode,
@@ -133,23 +150,23 @@
                 clsUserColorsTitle: o.clsUserColorsTitle,
                 clsUserColor: o.clsUserColor,
                 onColor: o.onColor,
-                onColorSelectorCreate: o.onColorSelectorCreate
+                onColorSelectorCreate: o.onColorSelectorCreate,
             });
 
-            Metro.makePlugin(colorSelectorBox, 'dropdown', {
+            Metro.makePlugin(colorSelectorBox, "dropdown", {
                 dropFilter: ".color-picker",
                 duration: o.duration,
                 toggleElement: [picker],
                 checkDropUp: true,
-                onDrop: function(){
-                    Metro.getPlugin(colorSelector, 'color-selector').val(that.value);
-                }
+                onDrop: function () {
+                    Metro.getPlugin(colorSelector, "color-selector").val(that.value);
+                },
             });
 
-            element[0].className = '';
+            element[0].className = "";
 
             if (o.copyInlineStyles === true) {
-                $.each(Utils.getInlineStyles(element), function(key, value){
+                $.each(Utils.getInlineStyles(element), function (key, value) {
                     picker.css(key, value);
                 });
             }
@@ -157,12 +174,12 @@
             this._setColor();
         },
 
-        _clearInputInterval: function(){
+        _clearInputInterval: function () {
             clearInterval(this.inputInterval);
             this.inputInterval = false;
         },
 
-        _setColor: function(){
+        _setColor: function () {
             var colorExample = this.colorExample;
             var color = this.value;
 
@@ -171,40 +188,42 @@
             }
 
             colorExample.css({
-                backgroundColor: color
+                backgroundColor: color,
             });
         },
 
-        _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+        _createEvents: function () {
+            var that = this,
+                element = this.element,
+                o = this.options;
             var picker = this.picker,
                 colorSelector = this.colorSelector,
                 colorSelectorBox = this.colorSelector;
 
-            picker.on(Metro.events.click, ".input-clear-button", function(e){
+            picker.on(Metro.events.click, ".input-clear-button", function (e) {
                 e.preventDefault();
                 e.stopPropagation();
                 element.val(o.defaultValue).trigger("change");
-                Metro.getPlugin(colorSelector, 'color-selector').val(o.defaultValue);
+                Metro.getPlugin(colorSelector, "color-selector").val(o.defaultValue);
             });
 
-            element.on(Metro.events.inputchange, function(){
+            element.on(Metro.events.inputchange, function () {
                 that.value = this.value;
                 that._setColor();
             });
 
-            colorSelectorBox.on(Metro.events.click, function(e){
+            colorSelectorBox.on(Metro.events.click, function (e) {
                 e.stopPropagation();
-            })
+            });
         },
 
-        val: function(v){
+        val: function (v) {
             if (arguments.length === 0 || !Utils.isValue(v)) {
                 return this.value;
             }
 
             if (!Farbe.Routines.isColor(v)) {
-                return ;
+                return;
             }
 
             this.value = v;
@@ -215,13 +234,12 @@
         // changeAttribute: function(attr, newValue){
         // },
 
-        destroy: function(){
+        destroy: function () {
             this.element.remove();
-        }
+        },
     });
 
-    $(document).on(Metro.events.click, function(){
+    $(document).on(Metro.events.click, function () {
         $(".color-picker").removeClass("open");
     });
-
-}(Metro, m4q));
+})(Metro, m4q);

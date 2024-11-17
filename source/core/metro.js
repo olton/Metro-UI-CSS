@@ -303,7 +303,8 @@
             var widgets = $("[data-role]");
             var hotkeys = $("[data-hotkey]");
             var html = $("html");
-            var that = this;
+
+            Metro.i18n.load(html.attr("lang"));
 
             if (globalThis.METRO_BLUR_IMAGE) {
                 html.addClass("use-blur-image");
@@ -447,6 +448,8 @@
                     }
                 });
             });
+
+            Metro.i18n.updateUI();
         },
 
         plugin: function (name, object) {
@@ -589,9 +592,11 @@
                         this.element = $(el);
                         this.options = $.extend({}, defaults, options);
                         this.component = this.elem;
+                        this.locale = "en";
 
                         this._setOptionsFromDOM();
                         this._runtime();
+                        this._setLocale();
 
                         if (setup && typeof setup === "object") {
                             $.each(setup, function (key, val) {
@@ -709,6 +714,15 @@
                         });
                     },
 
+                    _setLocale: function () {
+                        const lang = this.element.closest("[lang]");
+                        if (lang.length > 0) {
+                            this.locale = lang.attr("lang");
+                        } else {
+                            this.locale = $("html").attr("lang") || "en";
+                        }
+                    },
+
                     getComponent: function () {
                         return this.component;
                     },
@@ -752,19 +766,24 @@
         },
 
         i18n: {
-            loadLocale(lang = "en-US") {},
-
-            getMessage(id) {
-                return "";
+            load(lang = "en") {
+                Metro.locale = Metro.locales[lang];
             },
 
-            updateUI() {
-                const updateUI = () => {
-                    document.querySelectorAll("[data-i18n]").forEach((el) => {
-                        const id = el.getAttribute("data-i18n");
-                        el.innerHTML = Metro.i18n.getMessage(id);
-                    });
-                };
+            add(id, data) {
+                Metro.locales[id] = data;
+            },
+
+            get(key, locale) {
+                return Metro.locales[locale][key] || "";
+            },
+
+            updateUI(el, locale = "en") {
+                let from = el ? el : document;
+                from.querySelectorAll("[data-i18n]").forEach((el) => {
+                    const key = el.getAttribute("data-i18n");
+                    el.innerHTML = Metro.i18n.get(key, (locale = "en"));
+                });
             },
         },
     };

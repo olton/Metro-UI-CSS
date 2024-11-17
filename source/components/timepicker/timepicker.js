@@ -1,6 +1,7 @@
-/* global Metro, METRO_LOCALE, datetime, Cake */
-(function(Metro, $) {
-    'use strict';
+/** @format */
+
+(function (Metro, $) {
+    "use strict";
     var Utils = Metro.utils;
     var TimePickerDefaultConfig = {
         label: "",
@@ -9,7 +10,6 @@
         minutesStep: 1,
         secondsStep: 1,
         value: null,
-        locale: METRO_LOCALE,
         distance: 3,
         hours: true,
         minutes: true,
@@ -32,7 +32,7 @@
         onOpen: Metro.noop,
         onClose: Metro.noop,
         onScroll: Metro.noop,
-        onTimePickerCreate: Metro.noop
+        onTimePickerCreate: Metro.noop,
     };
 
     Metro.timePickerSetup = function (options) {
@@ -43,48 +43,60 @@
         Metro.timePickerSetup(globalThis["metroTimePickerSetup"]);
     }
 
-    Metro.Component('time-picker', {
-        init: function( options, elem ) {
+    Metro.Component("time-picker", {
+        init: function (options, elem) {
             this._super(elem, options, TimePickerDefaultConfig, {
                 picker: null,
                 isOpen: false,
                 value: [],
-                locale: Metro.locales[METRO_LOCALE]['calendar'],
                 listTimer: {
                     hours: null,
                     minutes: null,
-                    seconds: null
+                    seconds: null,
                 },
-                id: Utils.elementId("time-picker")
+                id: Utils.elementId("time-picker"),
             });
 
             return this;
         },
 
-        _create: function(){
-            var element = this.element, o = this.options;
+        _create: function () {
+            var element = this.element,
+                o = this.options;
             var i;
 
             if (o.distance < 1) {
                 o.distance = 1;
             }
 
-            if (o.hoursStep < 1) {o.hoursStep = 1;}
-            if (o.hoursStep > 23) {o.hoursStep = 23;}
+            if (o.hoursStep < 1) {
+                o.hoursStep = 1;
+            }
+            if (o.hoursStep > 23) {
+                o.hoursStep = 23;
+            }
 
-            if (o.minutesStep < 1) {o.minutesStep = 1;}
-            if (o.minutesStep > 59) {o.minutesStep = 59;}
+            if (o.minutesStep < 1) {
+                o.minutesStep = 1;
+            }
+            if (o.minutesStep > 59) {
+                o.minutesStep = 59;
+            }
 
-            if (o.secondsStep < 1) {o.secondsStep = 1;}
-            if (o.secondsStep > 59) {o.secondsStep = 59;}
+            if (o.secondsStep < 1) {
+                o.secondsStep = 1;
+            }
+            if (o.secondsStep > 59) {
+                o.secondsStep = 59;
+            }
 
-            if (element.val() === "" && (!Utils.isValue(o.value))) {
+            if (element.val() === "" && !Utils.isValue(o.value)) {
                 o.value = datetime().format("HH:mm:ss");
             }
 
-            this.value = (element.val() !== "" ? element.val() : ""+o.value).toArray(":");
+            this.value = (element.val() !== "" ? element.val() : "" + o.value).toArray(":");
 
-            for(i = 0; i < 3; i++) {
+            for (i = 0; i < 3; i++) {
                 if (this.value[i] === undefined || this.value[i] === null) {
                     this.value[i] = 0;
                 } else {
@@ -94,22 +106,16 @@
 
             this._normalizeValue();
 
-            if (Metro.locales[o.locale] === undefined) {
-                o.locale = METRO_LOCALE;
-            }
-
-            this.locale = Metro.locales[o.locale]['calendar'];
-
             this._createStructure();
             this._createEvents();
             this._set();
 
             this._fireEvent("time-picker-create", {
-                element: element
+                element: element,
             });
         },
 
-        _normalizeValue: function(){
+        _normalizeValue: function () {
             var o = this.options;
 
             if (o.hoursStep > 1) {
@@ -123,12 +129,16 @@
             }
         },
 
-        _createStructure: function(){
-            var element = this.element, o = this.options;
+        _createStructure: function () {
+            var element = this.element,
+                o = this.options,
+                locale = this.locale;
             var picker, hours, minutes, seconds, i;
             var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
-            picker = $("<div>").addClass("wheel-picker time-picker " + element[0].className).addClass(o.clsPicker);
+            picker = $("<div>")
+                .addClass("wheel-picker time-picker " + element[0].className)
+                .addClass(o.clsPicker);
 
             picker.insertBefore(element);
             element.attr("readonly", true).appendTo(picker);
@@ -146,13 +156,28 @@
             timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
 
             if (o.hours === true) {
-                hours = $("<div>").attr("data-title", this.locale['time']['hours']).addClass("hours").addClass(o.clsPart).addClass(o.clsHours).appendTo(timeWrapper);
+                hours = $("<div>")
+                    .attr("data-title", Metro.locales[locale]["label_hours"])
+                    .addClass("hours")
+                    .addClass(o.clsPart)
+                    .addClass(o.clsHours)
+                    .appendTo(timeWrapper);
             }
             if (o.minutes === true) {
-                minutes = $("<div>").attr("data-title", this.locale['time']['minutes']).addClass("minutes").addClass(o.clsPart).addClass(o.clsMinutes).appendTo(timeWrapper);
+                minutes = $("<div>")
+                    .attr("data-title", Metro.locales[locale]["label_minutes"])
+                    .addClass("minutes")
+                    .addClass(o.clsPart)
+                    .addClass(o.clsMinutes)
+                    .appendTo(timeWrapper);
             }
             if (o.seconds === true) {
-                seconds = $("<div>").attr("data-title", this.locale['time']['seconds']).addClass("seconds").addClass(o.clsPart).addClass(o.clsSeconds).appendTo(timeWrapper);
+                seconds = $("<div>")
+                    .attr("data-title", Metro.locales[locale]["label_seconds"])
+                    .addClass("seconds")
+                    .addClass(o.clsPart)
+                    .addClass(o.clsSeconds)
+                    .appendTo(timeWrapper);
             }
 
             selectWrapper = $("<div>").addClass("select-wrapper").appendTo(picker);
@@ -162,7 +187,11 @@
                 hours = $("<ul>").addClass("sel-hours").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
                 for (i = 0; i < 24; i = i + o.hoursStep) {
-                    $("<li>").addClass("js-hours-"+i).html(Str.lpad(i, "0", 2)).data("value", i).appendTo(hours);
+                    $("<li>")
+                        .addClass("js-hours-" + i)
+                        .html(Str.lpad(i, "0", 2))
+                        .data("value", i)
+                        .appendTo(hours);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(hours);
             }
@@ -170,7 +199,11 @@
                 minutes = $("<ul>").addClass("sel-minutes").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
                 for (i = 0; i < 60; i = i + o.minutesStep) {
-                    $("<li>").addClass("js-minutes-"+i).html(Str.lpad(i, "0", 2)).data("value", i).appendTo(minutes);
+                    $("<li>")
+                        .addClass("js-minutes-" + i)
+                        .html(Str.lpad(i, "0", 2))
+                        .data("value", i)
+                        .appendTo(minutes);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(minutes);
             }
@@ -178,7 +211,11 @@
                 seconds = $("<ul>").addClass("sel-seconds").appendTo(selectBlock);
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
                 for (i = 0; i < 60; i = i + o.secondsStep) {
-                    $("<li>").addClass("js-seconds-"+i).html(Str.lpad(i, "0", 2)).data("value", i).appendTo(seconds);
+                    $("<li>")
+                        .addClass("js-seconds-" + i)
+                        .html(Str.lpad(i, "0", 2))
+                        .data("value", i)
+                        .appendTo(seconds);
                 }
                 for (i = 0; i < o.distance; i++) $("<li>").html("&nbsp;").data("value", -1).appendTo(seconds);
             }
@@ -186,11 +223,22 @@
             selectBlock.height((o.distance * 2 + 1) * 40);
 
             actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
-            $("<button>").attr("type", "button").addClass("button action-ok").addClass(o.clsButton).addClass(o.clsOkButton).html(o.okButtonIcon).appendTo(actionBlock);
-            $("<button>").attr("type", "button").addClass("button action-cancel").addClass(o.clsButton).addClass(o.clsCancelButton).html(o.cancelButtonIcon).appendTo(actionBlock);
+            $("<button>")
+                .attr("type", "button")
+                .addClass("button action-ok")
+                .addClass(o.clsButton)
+                .addClass(o.clsOkButton)
+                .html(o.okButtonIcon)
+                .appendTo(actionBlock);
+            $("<button>")
+                .attr("type", "button")
+                .addClass("button action-cancel")
+                .addClass(o.clsButton)
+                .addClass(o.clsCancelButton)
+                .html(o.cancelButtonIcon)
+                .appendTo(actionBlock);
 
-
-            element[0].className = '';
+            element[0].className = "";
             if (o.copyInlineStyles === true) {
                 for (i = 0; i < element[0].style.length; i++) {
                     picker.css(element[0].style[i], element.css(element[0].style[i]));
@@ -208,38 +256,45 @@
             this.picker = picker;
         },
 
-        _createEvents: function(){
-            var that = this, o = this.options;
+        _createEvents: function () {
+            var that = this,
+                o = this.options;
             var picker = this.picker;
 
-            picker.on(Metro.events.start, ".select-block ul", function(e){
-
+            picker.on(Metro.events.start, ".select-block ul", function (e) {
                 if (e.changedTouches) {
-                    return ;
+                    return;
                 }
 
                 var target = this;
                 var pageY = Utils.pageXY(e).y;
 
-                $(document).on(Metro.events.move, function(e){
+                $(document).on(
+                    Metro.events.move,
+                    function (e) {
+                        target.scrollTop -= o.scrollSpeed * (pageY > Utils.pageXY(e).y ? -1 : 1);
 
-                    target.scrollTop -= o.scrollSpeed * (pageY  > Utils.pageXY(e).y ? -1 : 1);
+                        pageY = Utils.pageXY(e).y;
+                    },
+                    { ns: that.id },
+                );
 
-                    pageY = Utils.pageXY(e).y;
-                }, {ns: that.id});
-
-                $(document).on(Metro.events.stop, function(){
-                    $(document).off(Metro.events.move, {ns: that.id});
-                    $(document).off(Metro.events.stop, {ns: that.id});
-                }, {ns: that.id});
+                $(document).on(
+                    Metro.events.stop,
+                    function () {
+                        $(document).off(Metro.events.move, { ns: that.id });
+                        $(document).off(Metro.events.stop, { ns: that.id });
+                    },
+                    { ns: that.id },
+                );
             });
 
-            picker.on(Metro.events.click, function(e){
+            picker.on(Metro.events.click, function (e) {
                 if (that.isOpen === false) that.open();
                 e.stopPropagation();
             });
 
-            picker.on(Metro.events.click, ".action-ok", function(e){
+            picker.on(Metro.events.click, ".action-ok", function (e) {
                 var h, m, s;
                 var sh = picker.find(".sel-hours li.active"),
                     sm = picker.find(".sel-minutes li.active"),
@@ -257,18 +312,19 @@
                 e.stopPropagation();
             });
 
-            picker.on(Metro.events.click, ".action-cancel", function(e){
+            picker.on(Metro.events.click, ".action-cancel", function (e) {
                 that.close();
                 e.stopPropagation();
             });
 
             var scrollLatency = 150;
-            $.each(['hours', 'minutes', 'seconds'], function(){
-                var part = this, list = picker.find(".sel-"+part);
+            $.each(["hours", "minutes", "seconds"], function () {
+                var part = this,
+                    list = picker.find(".sel-" + part);
 
-                list.on("scroll", function(){
+                list.on("scroll", function () {
                     if (!that.isOpen) {
-                        return ;
+                        return;
                     }
 
                     if (that.listTimer[part]) {
@@ -276,43 +332,44 @@
                         that.listTimer[part] = null;
                     }
 
-                    if (!that.listTimer[part]) that.listTimer[part] = setTimeout(function () {
+                    if (!that.listTimer[part])
+                        that.listTimer[part] = setTimeout(function () {
+                            var target, targetElement, scrollTop;
 
-                        var target, targetElement, scrollTop;
+                            that.listTimer[part] = null;
 
-                        that.listTimer[part] = null;
+                            target = Math.round(Math.ceil(list.scrollTop()) / 40);
 
-                        target = Math.round((Math.ceil(list.scrollTop()) / 40));
+                            if (part === "hours" && o.hoursStep) {
+                                target *= parseInt(o.hoursStep);
+                            }
+                            if (part === "minutes" && o.minutesStep) {
+                                target *= parseInt(o.minutesStep);
+                            }
+                            if (part === "seconds" && o.secondsStep) {
+                                target *= parseInt(o.secondsStep);
+                            }
 
-                        if (part === "hours" && o.hoursStep) {
-                            target *= parseInt(o.hoursStep);
-                        }
-                        if (part === "minutes" && o.minutesStep) {
-                            target *= parseInt(o.minutesStep);
-                        }
-                        if (part === "seconds" && o.secondsStep) {
-                            target *= parseInt(o.secondsStep);
-                        }
+                            targetElement = list.find(".js-" + part + "-" + target);
+                            scrollTop = targetElement.position().top - o.distance * 40;
 
-                        targetElement = list.find(".js-" + part + "-" + target);
-                        scrollTop = targetElement.position().top - (o.distance * 40);
+                            list.find(".active").removeClass("active");
 
-                        list.find(".active").removeClass("active");
-
-                        list[0].scrollTop = scrollTop;
-                        targetElement.addClass("active");
-                        Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
-
-                    }, scrollLatency);
-
-                })
+                            list[0].scrollTop = scrollTop;
+                            targetElement.addClass("active");
+                            Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
+                        }, scrollLatency);
+                });
             });
         },
 
-        _set: function(){
-            var element = this.element, o = this.options;
+        _set: function () {
+            var element = this.element,
+                o = this.options;
             var picker = this.picker;
-            var h = "00", m = "00", s = "00";
+            var h = "00",
+                m = "00",
+                s = "00";
 
             if (o.hours === true) {
                 h = parseInt(this.value[0]);
@@ -331,12 +388,11 @@
 
             this._fireEvent("set", {
                 val: this.value,
-                elementVal: element.val()
+                elementVal: element.val(),
             });
-
         },
 
-        open: function(){
+        open: function () {
             var o = this.options;
             var picker = this.picker;
             var h, m, s;
@@ -361,15 +417,13 @@
                 select_wrapper.parent().addClass("for-top");
             }
 
-            var animateList = function(list, item){
-                list
-                    .scrollTop(0)
-                    .animate({
-                        draw: {
-                            scrollTop: item.position().top - (o.distance * 40) + list.scrollTop()
-                        },
-                        dur: 100
-                    });
+            var animateList = function (list, item) {
+                list.scrollTop(0).animate({
+                    draw: {
+                        scrollTop: item.position().top - o.distance * 40 + list.scrollTop(),
+                    },
+                    dur: 100,
+                });
             };
 
             if (o.hours === true) {
@@ -394,27 +448,26 @@
             this.isOpen = true;
 
             this._fireEvent("open", {
-                val: this.value
+                val: this.value,
             });
-
         },
 
-        close: function(){
+        close: function () {
             var picker = this.picker;
             picker.find(".select-wrapper").hide(0);
             this.isOpen = false;
 
             this._fireEvent("close", {
-                val: this.value
+                val: this.value,
             });
         },
 
-        _convert: function(t){
+        _convert: function (t) {
             var result;
 
             if (Array.isArray(t)) {
                 result = t;
-            } else if (typeof  t.getMonth === 'function') {
+            } else if (typeof t.getMonth === "function") {
                 result = [t.getHours(), t.getMinutes(), t.getSeconds()];
             } else if (Utils.isObject(t)) {
                 result = [t.h, t.m, t.s];
@@ -425,7 +478,7 @@
             return result;
         },
 
-        val: function(t){
+        val: function (t) {
             if (t === undefined) {
                 return this.element.val();
             }
@@ -434,13 +487,13 @@
             this._set();
         },
 
-        time: function(t){
+        time: function (t) {
             if (t === undefined) {
                 return {
                     h: this.value[0],
                     m: this.value[1],
-                    s: this.value[2]
-                }
+                    s: this.value[2],
+                };
             }
 
             this.value = this._convert(t);
@@ -448,14 +501,9 @@
             this._set();
         },
 
-        date: function(t){
-            if (t === undefined || typeof t.getMonth !== 'function') {
-                return datetime()
-                    .hour(this.value[0])
-                    .minute(this.value[1])
-                    .second(this.value[2])
-                    .ms(0)
-                    .val();
+        date: function (t) {
+            if (t === undefined || typeof t.getMonth !== "function") {
+                return datetime().hour(this.value[0]).minute(this.value[1]).second(this.value[2]).ms(0).val();
             }
 
             this.value = this._convert(t);
@@ -463,17 +511,17 @@
             this._set();
         },
 
-        disable: function(){
+        disable: function () {
             this.element.data("disabled", true);
             this.element.parent().addClass("disabled");
         },
 
-        enable: function(){
+        enable: function () {
             this.element.data("disabled", false);
             this.element.parent().removeClass("disabled");
         },
 
-        toggleState: function(){
+        toggleState: function () {
             if (this.elem.disabled) {
                 this.disable();
             } else {
@@ -481,7 +529,7 @@
             }
         },
 
-        changeAttribute: function(attr, newValue){
+        changeAttribute: function (attr, newValue) {
             switch (attr) {
                 case "data-value":
                     this.val(newValue);
@@ -492,12 +540,12 @@
             }
         },
 
-        destroy: function(){
+        destroy: function () {
             var element = this.element;
             var picker = this.picker;
 
-            $.each(['hours', 'minutes', 'seconds'], function(){
-                picker.find(".sel-"+this).off("scroll");
+            $.each(["hours", "minutes", "seconds"], function () {
+                picker.find(".sel-" + this).off("scroll");
             });
 
             picker.off(Metro.events.start, ".select-block ul");
@@ -506,15 +554,16 @@
             picker.off(Metro.events.click, ".action-cancel");
 
             return element;
-        }
-
+        },
     });
 
-    $(document).on(Metro.events.click, function(){
-        $.each($(".time-picker"), function(){
-            $(this).find("input").each(function(){
-                Metro.getPlugin(this, "timepicker").close();
-            });
+    $(document).on(Metro.events.click, function () {
+        $.each($(".time-picker"), function () {
+            $(this)
+                .find("input")
+                .each(function () {
+                    Metro.getPlugin(this, "timepicker").close();
+                });
         });
     });
-}(Metro, m4q));
+})(Metro, m4q);
