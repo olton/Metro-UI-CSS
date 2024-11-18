@@ -96,7 +96,7 @@
             const that = this,
                 element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             let colorBox,
                 row,
                 swatches,
@@ -245,7 +245,7 @@
                 $("<div>")
                     .addClass("user-colors-title")
                     .addClass(o.clsUserColorsTitle)
-                    .html(o.userColorsTitle || Metro.locales[locale]["label_user_colors"]),
+                    .html(o.userColorsTitle || strings["label_user_colors"]),
             );
             row.append($("<div>").addClass("user-colors").addClass(o.clsUserColors));
             row.append((userColorsActions = $("<div>").addClass("user-colors-actions")));
@@ -253,7 +253,7 @@
                 $("<button>")
                     .addClass("button add-button")
                     .addClass(o.clsUserColorButton)
-                    .html("<span class='user-swatch'></span><span>" + (o.addUserColorTitle || Metro.locales[locale]["button_add_user_color"]) + "</span>"),
+                    .html("<span class='user-swatch'></span><span>" + (o.addUserColorTitle || strings["button_add_user_color"]) + "</span>"),
             );
 
             inputs = colorBox.find("input[type=text]");

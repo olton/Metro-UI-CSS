@@ -51231,131 +51231,131 @@ fieldset.disabled,
 }
 .progress-lime {
   --progress-bar-color: #AEFD6C;
-  --progress-bar-back-color: #d6ffb4;
+  --progress-bar-back-color: #f2ffe7;
 }
 .progress-green {
   --progress-bar-color: #008000;
-  --progress-bar-back-color: #c3e9c1;
+  --progress-bar-back-color: #e7f6e6;
 }
 .progress-emerald {
   --progress-bar-color: #50c878;
-  --progress-bar-back-color: #b2d5aa;
+  --progress-bar-back-color: #d1e6cc;
 }
 .progress-blue {
   --progress-bar-color: #5e87ff;
-  --progress-bar-back-color: #b4bdff;
+  --progress-bar-back-color: #e7eaff;
 }
 .progress-teal {
   --progress-bar-color: #069494;
-  --progress-bar-back-color: #bde2e4;
+  --progress-bar-back-color: #e1f2f3;
 }
 .progress-cyan {
   --progress-bar-color: #94b6ff;
-  --progress-bar-back-color: #b0ccff;
+  --progress-bar-back-color: #e3edff;
 }
 .progress-cobalt {
   --progress-bar-color: #0047ab;
-  --progress-bar-back-color: #9ed7ff;
+  --progress-bar-back-color: #d1ecff;
 }
 .progress-indigo {
   --progress-bar-color: #4b0082;
-  --progress-bar-back-color: #e3c1e3;
+  --progress-bar-back-color: #f3e4f3;
 }
 .progress-violet {
   --progress-bar-color: #ee82ee;
-  --progress-bar-back-color: #f7b4f5;
+  --progress-bar-back-color: #fce2fb;
 }
 .progress-pink {
   --progress-bar-color: #ffc0cb;
-  --progress-bar-back-color: #ffbbc7;
+  --progress-bar-back-color: #ffeef1;
 }
 .progress-magenta {
   --progress-bar-color: #ff00ff;
-  --progress-bar-back-color: #ffafff;
+  --progress-bar-back-color: #ffe2ff;
 }
 .progress-crimson {
   --progress-bar-color: #dc143c;
-  --progress-bar-back-color: #ff9eb1;
+  --progress-bar-back-color: #ffd1da;
 }
 .progress-red {
   --progress-bar-color: #ff0000;
-  --progress-bar-back-color: #ffaeae;
+  --progress-bar-back-color: #ffe1e1;
 }
 .progress-orange {
   --progress-bar-color: #ffa500;
-  --progress-bar-back-color: #ffe0ab;
+  --progress-bar-back-color: #fff3de;
 }
 .progress-amber {
   --progress-bar-color: #ffbf00;
-  --progress-bar-back-color: #ffecae;
+  --progress-bar-back-color: #fff8e1;
 }
 .progress-yellow {
   --progress-bar-color: #ffff00;
-  --progress-bar-back-color: #ffffb3;
+  --progress-bar-back-color: #ffffe6;
 }
 .progress-brown {
   --progress-bar-color: #895129;
-  --progress-bar-back-color: #ffd7a6;
+  --progress-bar-back-color: #ffeed9;
 }
 .progress-olive {
   --progress-bar-color: #808000;
-  --progress-bar-back-color: #eaf9b8;
+  --progress-bar-back-color: #f8fde7;
 }
 .progress-steel {
   --progress-bar-color: #647687;
-  --progress-bar-back-color: #d3d5d5;
+  --progress-bar-back-color: #edeeee;
 }
 .progress-mauve {
   --progress-bar-color: #e0afff;
-  --progress-bar-back-color: #e3bcfb;
+  --progress-bar-back-color: #f7ecfe;
 }
 .progress-taupe {
   --progress-bar-color: #54463a;
-  --progress-bar-back-color: #dac2ac;
+  --progress-bar-back-color: #eadccf;
 }
 .progress-champagne {
   --progress-bar-color: #f7e6ca;
-  --progress-bar-back-color: #fff0c4;
+  --progress-bar-back-color: #fffdf7;
 }
 .progress-khaki {
   --progress-bar-color: #d5c58a;
-  --progress-bar-back-color: #ebe0b5;
+  --progress-bar-back-color: #f6f1dd;
 }
 .progress-charcoal {
   --progress-bar-color: #4a4a4a;
-  --progress-bar-back-color: #cfcfcf;
+  --progress-bar-back-color: #e8e8e8;
 }
 .progress-bronze {
   --progress-bar-color: #d47e30;
-  --progress-bar-back-color: #f1ed9b;
+  --progress-bar-back-color: #f7f5c8;
 }
 .progress-windstorm {
   --progress-bar-color: #678dc6;
-  --progress-bar-back-color: #c2cee6;
+  --progress-bar-back-color: #e6ebf5;
 }
 .progress-nude {
   --progress-bar-color: #f7d9bc;
-  --progress-bar-back-color: #f7d6b6;
+  --progress-bar-back-color: #fcf0e4;
 }
 .progress-terracotta {
   --progress-bar-color: #e35336;
-  --progress-bar-back-color: #f8bdc3;
+  --progress-bar-back-color: #fdebed;
 }
 .progress-coral {
   --progress-bar-color: #ff8559;
-  --progress-bar-back-color: #ffb495;
+  --progress-bar-back-color: #ffd8c8;
 }
 .progress-army {
   --progress-bar-color: #5d6532;
-  --progress-bar-back-color: #dedba6;
+  --progress-bar-back-color: #eceacb;
 }
 .progress-seashell {
   --progress-bar-color: #fff1e7;
-  --progress-bar-back-color: #ffcdc5;
+  --progress-bar-back-color: #fff9f8;
 }
 .progress-sand {
   --progress-bar-color: #cbbd93;
-  --progress-bar-back-color: #efe3b6;
+  --progress-bar-back-color: #f8f3e0;
 }
 .progress-primary {
   --progress-bar-color: #0366d6;
@@ -61667,8 +61667,15 @@ body.vegas-container > .vegas-slide {
 :root {
   --page-control-background: #ffffff;
   --page-control-background-hover: rgba(137, 137, 137, 0.1);
-  --page-control-closer-hover-background: rgba(29, 29, 29, 0.1);
+  --page-control-closer-hover-background: #e1e1e1;
   --page-control-border-color: #e0e0e0;
+  --page-control-border-radius: 6px;
+}
+.dark-side {
+  --page-control-background: #222222;
+  --page-control-background-hover: rgba(137, 137, 137, 0.1);
+  --page-control-closer-hover-background: #444444;
+  --page-control-border-color: #444444;
 }
 .page-control {
   position: relative;
@@ -61682,6 +61689,7 @@ body.vegas-container > .vegas-slide {
   flex-wrap: nowrap;
   list-style: none inside;
   min-height: 32px;
+  margin: 1rem 0 0;
 }
 .page-control__tabs::after {
   content: "";
@@ -61717,6 +61725,8 @@ body.vegas-container > .vegas-slide {
 .page-control__tab.active {
   border: 1px solid var(--page-control-border-color);
   border-bottom-color: var(--page-control-background);
+  border-top-left-radius: var(--page-control-border-radius);
+  border-top-right-radius: var(--page-control-border-radius);
 }
 .page-control__tab:not(:first-child)::before {
   content: "";

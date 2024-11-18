@@ -603,7 +603,7 @@
         _drawFooter: function () {
             var element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var footer = element.find(".calendar-footer");
 
             if (o.buttons === false) {
@@ -620,7 +620,7 @@
                 var button = $("<button>")
                     .attr("type", "button")
                     .addClass("button " + this + " " + o["cls" + Str.capitalize(this) + "Button"])
-                    .html(Metro.locales[locale][`button_${this}`])
+                    .html(strings[`button_${this}`])
                     .appendTo(footer);
                 if (this === "cancel" || this === "done") {
                     button.addClass("js-dialog-close");
@@ -636,6 +636,7 @@
             var that = this,
                 element = this.element,
                 o = this.options;
+            const strings = this.strings;
             var calendarContent = element.find(".calendar-content");
             var time = $("<div>").addClass("calendar-time").addClass(o.clsCalendarTime).appendTo(calendarContent);
             var inner, hours, minutes, row;
@@ -666,8 +667,8 @@
             time.append((inner = $("<div>").addClass("calendar-time__inner")));
 
             inner.append((row = $("<div>").addClass("calendar-time__inner-row")));
-            row.append($("<div>").addClass("calendar-time__inner-cell").append($("<span>").html(Metro.locales[this.locale]["label_hours"])));
-            row.append($("<div>").addClass("calendar-time__inner-cell").append($("<span>").html(Metro.locales[this.locale]["label_minutes"])));
+            row.append($("<div>").addClass("calendar-time__inner-cell").append($("<span>").html(strings["label_hours"])));
+            row.append($("<div>").addClass("calendar-time__inner-cell").append($("<span>").html(strings["label_minutes"])));
 
             time.append((inner = $("<div>").addClass("calendar-time__inner spinners").addClass(o.clsTime)));
             inner.append(
@@ -712,14 +713,14 @@
                 element = this.element,
                 o = this.options;
 
+            const strings = this.strings;
+
             var content = element.find(".calendar-content"),
                 toolbar,
                 weekDays,
                 calendarDays;
 
-            var calendar = datetime(this.current.year, this.current.month, this.current.day)
-                .useLocale(this.locale, true)
-                .calendar(Metro.locales[this.locale]["weekStart"]);
+            var calendar = datetime(this.current.year, this.current.month, this.current.day).useLocale(this.locale, true).calendar(strings["weekStart"]);
             var showDay = this.show.format("YYYY-MM-DD");
             var now = datetime();
 

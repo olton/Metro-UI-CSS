@@ -132,7 +132,7 @@
         _createStructure: function () {
             var element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var picker, hours, minutes, seconds, i;
             var timeWrapper, selectWrapper, selectBlock, actionBlock;
 
@@ -156,16 +156,11 @@
             timeWrapper = $("<div>").addClass("time-wrapper").appendTo(picker);
 
             if (o.hours === true) {
-                hours = $("<div>")
-                    .attr("data-title", Metro.locales[locale]["label_hours"])
-                    .addClass("hours")
-                    .addClass(o.clsPart)
-                    .addClass(o.clsHours)
-                    .appendTo(timeWrapper);
+                hours = $("<div>").attr("data-title", strings["label_hours"]).addClass("hours").addClass(o.clsPart).addClass(o.clsHours).appendTo(timeWrapper);
             }
             if (o.minutes === true) {
                 minutes = $("<div>")
-                    .attr("data-title", Metro.locales[locale]["label_minutes"])
+                    .attr("data-title", strings["label_minutes"])
                     .addClass("minutes")
                     .addClass(o.clsPart)
                     .addClass(o.clsMinutes)
@@ -173,7 +168,7 @@
             }
             if (o.seconds === true) {
                 seconds = $("<div>")
-                    .attr("data-title", Metro.locales[locale]["label_seconds"])
+                    .attr("data-title", strings["label_seconds"])
                     .addClass("seconds")
                     .addClass(o.clsPart)
                     .addClass(o.clsSeconds)

@@ -517,13 +517,13 @@
 
         _createInspector: function () {
             var o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var inspector, table_wrap, table, tbody, actions;
 
             inspector = $("<div data-role='draggable' data-drag-element='.table-inspector-header' data-drag-area='body'>").addClass("table-inspector");
             inspector.attr("for", this.element.attr("id"));
 
-            $("<div class='table-inspector-header'>" + (o.inspectorTitle || Metro.locales[locale].label_inspector) + "</div>").appendTo(inspector);
+            $("<div class='table-inspector-header'>" + (o.inspectorTitle || strings.label_inspector) + "</div>").appendTo(inspector);
 
             table_wrap = $("<div>").addClass("table-wrap").appendTo(inspector);
 
@@ -535,9 +535,9 @@
             this._createInspectorItems(tbody);
 
             actions = $("<div class='table-inspector-actions'>").appendTo(inspector);
-            $("<button class='button primary js-table-inspector-save' type='button'>").html(Metro.locales[locale].button_save).appendTo(actions);
-            $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(Metro.locales[locale].button_reset).appendTo(actions);
-            $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(Metro.locales[locale].button_cancel).appendTo(actions);
+            $("<button class='button primary js-table-inspector-save' type='button'>").html(strings.button_save).appendTo(actions);
+            $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(strings.button_reset).appendTo(actions);
+            $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(strings.button_cancel).appendTo(actions);
 
             inspector.data("open", false);
             this.inspector = inspector;
@@ -889,7 +889,7 @@
             var that = this,
                 element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var top_block = $("<div>").addClass("table-top").addClass(o.clsTableTop).insertBefore(element.parent());
             var search_block, search_input, rows_block, rows_select;
 
@@ -900,7 +900,7 @@
 
             search_input = $("<input>").attr("type", "text").attr("placeholder", o.tableSearchPlaceholder).appendTo(search_block);
             Metro.makePlugin(search_input, "input", {
-                prepend: o.tableSearchTitle || Metro.locales[locale].label_search,
+                prepend: o.tableSearchTitle || strings.label_search,
             });
 
             if (o.showSearch !== true) {
@@ -915,7 +915,7 @@
                 var val = parseInt(this);
                 var option = $("<option>")
                     .attr("value", val)
-                    .text(val === -1 ? o.allRecordsTitle || Metro.locales[locale].label_all : val)
+                    .text(val === -1 ? o.allRecordsTitle || strings.label_all : val)
                     .appendTo(rows_select);
                 if (val === parseInt(o.rows)) {
                     option.attr("selected", "selected");
@@ -923,7 +923,7 @@
             });
             Metro.makePlugin(rows_select, "select", {
                 filter: false,
-                prepend: o.tableRowsCountTitle || Metro.locales[locale].label_rows_count,
+                prepend: o.tableRowsCountTitle || strings.label_rows_count,
                 onChange: function (val) {
                     val = parseInt(val);
                     if (val === parseInt(o.rows)) {
@@ -953,7 +953,7 @@
         _createBottomBlock: function () {
             var element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var bottom_block = $("<div>").addClass("table-bottom").addClass(o.clsTableBottom).insertAfter(element.parent());
             var info, pagination, skip;
 
@@ -976,7 +976,7 @@
             $("<button>")
                 .addClass("button table-skip-button")
                 .addClass(o.clsTableSkipButton)
-                .html(o.tableSkipTitle || Metro.locales[locale].label_goto_page)
+                .html(o.tableSkipTitle || strings.label_goto_page)
                 .appendTo(skip);
 
             if (o.showSkip !== true) {
@@ -1477,7 +1477,7 @@
         _info: function (start, stop, length) {
             var element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var component = element.closest(".table-component");
             var info = Utils.isValue(this.wrapperInfo) ? this.wrapperInfo : component.find(".table-info");
             var text;
@@ -1494,7 +1494,7 @@
                 start = stop = length = 0;
             }
 
-            text = o.tableInfoTitle || Metro.locales[locale].label_info;
+            text = o.tableInfoTitle || strings.label_info;
             text = text.replace("$1", start);
             text = text.replace("$2", stop);
             text = text.replace("$3", length);
@@ -1504,7 +1504,7 @@
         _paging: function (length) {
             var element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var component = element.closest(".table-component");
             this.pagesCount = Math.ceil(length / o.rows); // Костыль
             Metro.pagination({
@@ -1513,8 +1513,8 @@
                 current: this.currentPage,
                 target: Utils.isValue(this.wrapperPagination) ? this.wrapperPagination : component.find(".table-pagination"),
                 claPagination: o.clsPagination,
-                prevTitle: o.paginationPrevTitle || Metro.locales[locale].label_prev,
-                nextTitle: o.paginationNextTitle || Metro.locales[locale].label_next,
+                prevTitle: o.paginationPrevTitle || strings.label_prev,
+                nextTitle: o.paginationNextTitle || strings.label_next,
                 distance: o.paginationDistance,
                 islandSize: o.paginationIslandSize,
                 shortTrack: o.paginationShortTrack,
@@ -1598,7 +1598,7 @@
             var that = this,
                 element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var body = element.find("tbody");
             var i, j, tr, td, check, cells, tds, is_even_row;
             var start = parseInt(o.rows) === -1 ? 0 : o.rows * (this.currentPage - 1),
@@ -1773,7 +1773,7 @@
                     .html(
                         $("<span>")
                             .addClass(o.clsEmptyTableTitle)
-                            .html(o.emptyTableTitle || Metro.locales[locale].label_empty),
+                            .html(o.emptyTableTitle || strings.label_empty),
                     );
                 td.appendTo(tr);
             }

@@ -113,7 +113,7 @@
             var delta_days;
             var now = datetime().time();
             var digit;
-            const locale = this.locale;
+            const strings = this.strings;
 
             if (!element.attr("id")) {
                 element.attr("id", Utils.elementId("countdown"));
@@ -133,7 +133,7 @@
                 var part = $("<div>")
                     .addClass("part " + this)
                     .addClass(o.clsPart)
-                    .attr("data-label", Metro.locales[locale][`label_${this}`])
+                    .attr("data-label", strings[`label_${this}`])
                     .appendTo(element);
 
                 if (this === "days") {

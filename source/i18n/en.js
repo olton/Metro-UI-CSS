@@ -92,5 +92,13 @@
 
         label_on: "on",
         label_off: "off",
+
+        label_rename_tab: "Rename tab",
+        label_close_tab: "Close tab",
+        label_close_other_tabs: "Close other tabs",
+        label_close_tabs_left: "Close tabs left",
+        label_close_tabs_right: "Close tabs right",
+        label_close_all_tabs: "Close all tabs",
+        label_close_inactive_tabs: "Close inactive tabs",
     });
 })();

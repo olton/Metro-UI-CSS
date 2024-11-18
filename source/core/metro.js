@@ -593,6 +593,7 @@
                         this.options = $.extend({}, defaults, options);
                         this.component = this.elem;
                         this.locale = "en";
+                        this.strings = {};
 
                         this._setOptionsFromDOM();
                         this._runtime();
@@ -721,6 +722,7 @@
                         } else {
                             this.locale = $("html").attr("lang") || "en";
                         }
+                        this.strings = $.extend({}, Metro.locales["en"], Metro.locales[this.locale]);
                     },
 
                     getComponent: function () {

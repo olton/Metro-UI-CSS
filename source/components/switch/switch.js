@@ -40,6 +40,9 @@
         _create: function () {
             var element = this.element,
                 o = this.options;
+
+            const strings = this.strings;
+
             var container;
             var check = $("<span>").addClass("check");
             var caption = $("<span>").addClass("caption").html(o.caption);
@@ -80,8 +83,8 @@
             }
 
             if (o.showOnOff) {
-                const on = element.attr("data-on") || o.textOn || Metro.locales[this.locale].label_on;
-                const off = element.attr("data-off") || o.textOff || Metro.locales[this.locale].label_off;
+                const on = element.attr("data-on") || o.textOn || strings.label_on;
+                const off = element.attr("data-off") || o.textOff || strings.label_off;
 
                 check.attr("data-on", on);
                 check.attr("data-off", off);

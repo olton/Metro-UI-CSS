@@ -71,7 +71,7 @@
             var that = this,
                 element = this.element,
                 o = this.options,
-                locale = this.locale;
+                strings = this.strings;
             var body = $("body");
             var overlay;
 
@@ -101,7 +101,7 @@
                 }
 
                 if (o.defaultAction === true && Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0) {
-                    button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(Metro.locales[locale]["buttons_ok"]);
+                    button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(strings["buttons_ok"]);
                     button.appendTo(buttons);
                 }
 

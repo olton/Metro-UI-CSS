@@ -271,6 +271,7 @@
             var that = this,
                 element = this.element,
                 o = this.options;
+
             var tab = $("<li>").addClass("page-control__tab").appendTo(element);
 
             if (hasMenu) {
@@ -278,14 +279,14 @@
                     $("<div>").addClass("page-control__tab__menu__holder").html(`
                         <span class="">︙</span>
                         <ul class="d-menu context page-control__tab__menu" data-role="dropdown">
-                            <li><a data-action="rename">Rename Tab</a></li>
+                            <li><a data-action="rename">${this.strings.label_rename_tab}</a></li>
                             <li class="divider"></li>
-                            <li><a data-action="close">Close</a></li>
-                            <li><a data-action="close-other">Close Other Tabs</a></li>
-                            <li><a data-action="close-left">Close Tabs Left</a></li>
-                            <li><a data-action="close-right">Close Tabs Right</a></li>
-                            <li><a data-action="close-all">Close All Tabs</a></li>
-                            <li><a data-action="close-inactive">Close Inactive Tabs</a></li>
+                            <li><a data-action="close">${this.strings.label_close_tab}</a></li>
+                            <li><a data-action="close-other">${this.strings.label_close_other_tabs}</a></li>
+                            <li><a data-action="close-left">${this.strings.label_close_tabs_left}</a></li>
+                            <li><a data-action="close-right">${this.strings.label_close_tabs_right}</a></li>
+                            <li><a data-action="close-all">${this.strings.label_close_all_tabs}</a></li>
+                            <li><a data-action="close-inactive">${this.strings.label_close_inactive_tabs}</a></li>
                         </ul>
                     `),
                 );
@@ -415,13 +416,17 @@
                 }
             });
 
-            element.children(".page-control__tab").each((index, el) => {
-                const tab = $(el);
-                const tabRect = el.getBoundingClientRect();
-                if (tabRect.left + tabRect.width + 50 > tabsWidth) {
-                    tab.appendTo(holder);
+            const tabs = element.children(".page-control__tab");
+            let w = 0;
+            for (let tab of tabs) {
+                const tabRect = tab.getBoundingClientRect();
+                if (w + tabRect.width + 50 > tabsWidth) {
+                    $(tab).nextAll(".page-control__tab").appendTo(holder);
+                    $(tab).appendTo(holder);
+                    break;
                 }
-            });
+                w += tabRect.width;
+            }
 
             if (holder.children().length) {
                 this.invisibleTabsHolderToggle.show(function () {
@@ -553,8 +558,9 @@
             var that = this,
                 o = this.options;
             var caption = $(tab).find(".page-control__tab__caption");
+
             Metro.dialog.create({
-                title: `Rename Tab`,
+                title: that.strings.label_rename_tab,
                 content: `
                     <form style="width: 100%">
                         <input type="text" data-role="input" value="${caption.text()}">
@@ -562,14 +568,14 @@
                 `,
                 actions: [
                     {
-                        caption: "Ok",
+                        caption: that.strings.button_ok,
                         cls: "js-dialog-close info",
                         onclick: function (dlg) {
                             that.setupTab(tab, "caption", dlg.find("input").val());
                         },
                     },
                     {
-                        caption: "Cancel",
+                        caption: that.strings.button_cancel,
                         cls: "js-dialog-close",
                     },
                 ],
