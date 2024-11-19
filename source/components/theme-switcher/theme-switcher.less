@@ -1,14 +1,14 @@
 @import (once) "../../include/mixins";
 
 :root {
-    --theme-switcher-background: #ffffff;
-    --theme-switcher-color: #191919;
+    --theme-switcher-background: #191919;
+    --theme-switcher-color: #ffffff;
     --theme-switcher-border-color: #4c4c4c;
 }
 
 .dark-side {
-    --theme-switcher-background: #191919;
-    --theme-switcher-color: #ffffff;
+    --theme-switcher-background: #ffffff;
+    --theme-switcher-color: #191919;
     --theme-switcher-border-color: #ffffff;
 }
 
@@ -128,6 +128,7 @@
         justify-content: center;
         width: 24px;
         height: 24px;
+        line-height: 24px;
         border-radius: 50%;
         border: 1px solid var(--theme-switcher-border-color);
         cursor: pointer;
@@ -147,16 +148,22 @@
             height: 100%;
 
             &::before, &::after {
-                transform: translateY(-1px);
+                
                 content: attr(data-dark-symbol);
                 position: relative;
                 display: block;
                 z-index: 1;
             }
 
+            &::before {
+                color: #ffffff;
+                transform: translate(-1px);
+            }
+
             &::after {
                 content: attr(data-light-symbol);
                 display: none;
+                
             }
         }
         
