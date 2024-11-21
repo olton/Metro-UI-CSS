@@ -40288,7 +40288,7 @@ input[type=reset].loading .load-caption {
   border-radius: 6px;
   height: auto;
   width: auto;
-  bottom: 80px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   font-size: 10px;
