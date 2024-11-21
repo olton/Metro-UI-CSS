@@ -21169,6 +21169,33 @@ ol.latin-lower {
 .text-bold {
   font-weight: 700 !important;
 }
+.text-weight-1 {
+  font-weight: 100 !important;
+}
+.text-weight-2 {
+  font-weight: 200 !important;
+}
+.text-weight-3 {
+  font-weight: 300 !important;
+}
+.text-weight-4 {
+  font-weight: 400 !important;
+}
+.text-weight-5 {
+  font-weight: 500 !important;
+}
+.text-weight-6 {
+  font-weight: 600 !important;
+}
+.text-weight-7 {
+  font-weight: 700 !important;
+}
+.text-weight-8 {
+  font-weight: 800 !important;
+}
+.text-weight-9 {
+  font-weight: 900 !important;
+}
 .display4 {
   font-size: 112px;
   font-weight: 200;
@@ -29086,7 +29113,7 @@ pre code {
   color: var(--default-color) !important;
 }
 .fg-black,
-.text-black {
+.text-color-black {
   color: #000000 !important;
 }
 .fg-black-active:active,
@@ -29102,7 +29129,7 @@ pre code {
   color: #000000 !important;
 }
 .fg-white,
-.text-white {
+.text-color-white {
   color: #ffffff !important;
 }
 .fg-white-active:active,
@@ -29118,7 +29145,7 @@ pre code {
   color: #ffffff !important;
 }
 .fg-dark,
-.text-dark {
+.text-color-dark {
   color: #1d1d1d !important;
 }
 .fg-dark-active:active,
@@ -29134,7 +29161,7 @@ pre code {
   color: #1d1d1d !important;
 }
 .fg-light,
-.text-light {
+.text-color-light {
   color: #f8f8f8 !important;
 }
 .fg-light-active:active,
@@ -29150,7 +29177,7 @@ pre code {
   color: #f8f8f8 !important;
 }
 .fg-gray,
-.text-gray {
+.text-color-gray {
   color: #898989 !important;
 }
 .fg-gray-active:active,
@@ -29166,7 +29193,7 @@ pre code {
   color: #898989 !important;
 }
 .fg-gray-blue,
-.text-gray-blue {
+.text-color-gray-blue {
   color: #6a89a7 !important;
 }
 .fg-gray-blue-active:active,
@@ -29182,7 +29209,7 @@ pre code {
   color: #6a89a7 !important;
 }
 .fg-gray-white,
-.text-gray-white {
+.text-color-gray-white {
   color: #f5f5f5 !important;
 }
 .fg-gray-white-active:active,
@@ -29198,7 +29225,7 @@ pre code {
   color: #f5f5f5 !important;
 }
 .fg-gray-mouse,
-.text-gray-mouse {
+.text-color-gray-mouse {
   color: #455a64 !important;
 }
 .fg-gray-mouse-active:active,
@@ -29214,7 +29241,7 @@ pre code {
   color: #455a64 !important;
 }
 .fg-lime,
-.text-lime {
+.text-color-lime {
   color: #AEFD6C !important;
 }
 .fg-lime-active:active,
@@ -29230,7 +29257,7 @@ pre code {
   color: #AEFD6C !important;
 }
 .fg-green,
-.text-green {
+.text-color-green {
   color: #008000 !important;
 }
 .fg-green-active:active,
@@ -29246,7 +29273,7 @@ pre code {
   color: #008000 !important;
 }
 .fg-emerald,
-.text-emerald {
+.text-color-emerald {
   color: #50c878 !important;
 }
 .fg-emerald-active:active,
@@ -29262,7 +29289,7 @@ pre code {
   color: #50c878 !important;
 }
 .fg-blue,
-.text-blue {
+.text-color-blue {
   color: #5e87ff !important;
 }
 .fg-blue-active:active,
@@ -29278,7 +29305,7 @@ pre code {
   color: #5e87ff !important;
 }
 .fg-teal,
-.text-teal {
+.text-color-teal {
   color: #069494 !important;
 }
 .fg-teal-active:active,
@@ -29294,7 +29321,7 @@ pre code {
   color: #069494 !important;
 }
 .fg-cyan,
-.text-cyan {
+.text-color-cyan {
   color: #94b6ff !important;
 }
 .fg-cyan-active:active,
@@ -29310,7 +29337,7 @@ pre code {
   color: #94b6ff !important;
 }
 .fg-cobalt,
-.text-cobalt {
+.text-color-cobalt {
   color: #0047ab !important;
 }
 .fg-cobalt-active:active,
@@ -29326,7 +29353,7 @@ pre code {
   color: #0047ab !important;
 }
 .fg-indigo,
-.text-indigo {
+.text-color-indigo {
   color: #4b0082 !important;
 }
 .fg-indigo-active:active,
@@ -29342,7 +29369,7 @@ pre code {
   color: #4b0082 !important;
 }
 .fg-violet,
-.text-violet {
+.text-color-violet {
   color: #ee82ee !important;
 }
 .fg-violet-active:active,
@@ -29358,7 +29385,7 @@ pre code {
   color: #ee82ee !important;
 }
 .fg-pink,
-.text-pink {
+.text-color-pink {
   color: #ffc0cb !important;
 }
 .fg-pink-active:active,
@@ -29374,7 +29401,7 @@ pre code {
   color: #ffc0cb !important;
 }
 .fg-magenta,
-.text-magenta {
+.text-color-magenta {
   color: #ff00ff !important;
 }
 .fg-magenta-active:active,
@@ -29390,7 +29417,7 @@ pre code {
   color: #ff00ff !important;
 }
 .fg-crimson,
-.text-crimson {
+.text-color-crimson {
   color: #dc143c !important;
 }
 .fg-crimson-active:active,
@@ -29406,7 +29433,7 @@ pre code {
   color: #dc143c !important;
 }
 .fg-red,
-.text-red {
+.text-color-red {
   color: #ff0000 !important;
 }
 .fg-red-active:active,
@@ -29422,7 +29449,7 @@ pre code {
   color: #ff0000 !important;
 }
 .fg-orange,
-.text-orange {
+.text-color-orange {
   color: #ffa500 !important;
 }
 .fg-orange-active:active,
@@ -29438,7 +29465,7 @@ pre code {
   color: #ffa500 !important;
 }
 .fg-amber,
-.text-amber {
+.text-color-amber {
   color: #ffbf00 !important;
 }
 .fg-amber-active:active,
@@ -29454,7 +29481,7 @@ pre code {
   color: #ffbf00 !important;
 }
 .fg-yellow,
-.text-yellow {
+.text-color-yellow {
   color: #ffff00 !important;
 }
 .fg-yellow-active:active,
@@ -29470,7 +29497,7 @@ pre code {
   color: #ffff00 !important;
 }
 .fg-brown,
-.text-brown {
+.text-color-brown {
   color: #895129 !important;
 }
 .fg-brown-active:active,
@@ -29486,7 +29513,7 @@ pre code {
   color: #895129 !important;
 }
 .fg-olive,
-.text-olive {
+.text-color-olive {
   color: #808000 !important;
 }
 .fg-olive-active:active,
@@ -29502,7 +29529,7 @@ pre code {
   color: #808000 !important;
 }
 .fg-steel,
-.text-steel {
+.text-color-steel {
   color: #647687 !important;
 }
 .fg-steel-active:active,
@@ -29518,7 +29545,7 @@ pre code {
   color: #647687 !important;
 }
 .fg-mauve,
-.text-mauve {
+.text-color-mauve {
   color: #e0afff !important;
 }
 .fg-mauve-active:active,
@@ -29534,7 +29561,7 @@ pre code {
   color: #e0afff !important;
 }
 .fg-taupe,
-.text-taupe {
+.text-color-taupe {
   color: #54463a !important;
 }
 .fg-taupe-active:active,
@@ -29550,7 +29577,7 @@ pre code {
   color: #54463a !important;
 }
 .fg-champagne,
-.text-champagne {
+.text-color-champagne {
   color: #f7e6ca !important;
 }
 .fg-champagne-active:active,
@@ -29566,7 +29593,7 @@ pre code {
   color: #f7e6ca !important;
 }
 .fg-khaki,
-.text-khaki {
+.text-color-khaki {
   color: #d5c58a !important;
 }
 .fg-khaki-active:active,
@@ -29582,7 +29609,7 @@ pre code {
   color: #d5c58a !important;
 }
 .fg-charcoal,
-.text-charcoal {
+.text-color-charcoal {
   color: #4a4a4a !important;
 }
 .fg-charcoal-active:active,
@@ -29598,7 +29625,7 @@ pre code {
   color: #4a4a4a !important;
 }
 .fg-bronze,
-.text-bronze {
+.text-color-bronze {
   color: #d47e30 !important;
 }
 .fg-bronze-active:active,
@@ -29614,7 +29641,7 @@ pre code {
   color: #d47e30 !important;
 }
 .fg-windstorm,
-.text-windstorm {
+.text-color-windstorm {
   color: #678dc6 !important;
 }
 .fg-windstorm-active:active,
@@ -29630,7 +29657,7 @@ pre code {
   color: #678dc6 !important;
 }
 .fg-nude,
-.text-nude {
+.text-color-nude {
   color: #f7d9bc !important;
 }
 .fg-nude-active:active,
@@ -29646,7 +29673,7 @@ pre code {
   color: #f7d9bc !important;
 }
 .fg-terracotta,
-.text-terracotta {
+.text-color-terracotta {
   color: #e35336 !important;
 }
 .fg-terracotta-active:active,
@@ -29662,7 +29689,7 @@ pre code {
   color: #e35336 !important;
 }
 .fg-coral,
-.text-coral {
+.text-color-coral {
   color: #ff8559 !important;
 }
 .fg-coral-active:active,
@@ -29678,7 +29705,7 @@ pre code {
   color: #ff8559 !important;
 }
 .fg-army,
-.text-army {
+.text-color-army {
   color: #5d6532 !important;
 }
 .fg-army-active:active,
@@ -29694,7 +29721,7 @@ pre code {
   color: #5d6532 !important;
 }
 .fg-seashell,
-.text-seashell {
+.text-color-seashell {
   color: #fff1e7 !important;
 }
 .fg-seashell-active:active,
@@ -29710,7 +29737,7 @@ pre code {
   color: #fff1e7 !important;
 }
 .fg-sand,
-.text-sand {
+.text-color-sand {
   color: #cbbd93 !important;
 }
 .fg-sand-active:active,
@@ -29726,7 +29753,7 @@ pre code {
   color: #cbbd93 !important;
 }
 .fg-light-lime,
-.text-light-lime {
+.text-color-light-lime {
   color: #f2ffe7 !important;
 }
 .fg-light-lime-active:active,
@@ -29742,7 +29769,7 @@ pre code {
   color: #f2ffe7 !important;
 }
 .fg-light-green,
-.text-light-green {
+.text-color-light-green {
   color: #e7f6e6 !important;
 }
 .fg-light-green-active:active,
@@ -29758,7 +29785,7 @@ pre code {
   color: #e7f6e6 !important;
 }
 .fg-light-emerald,
-.text-light-emerald {
+.text-color-light-emerald {
   color: #d1e6cc !important;
 }
 .fg-light-emerald-active:active,
@@ -29774,7 +29801,7 @@ pre code {
   color: #d1e6cc !important;
 }
 .fg-light-blue,
-.text-light-blue {
+.text-color-light-blue {
   color: #e7eaff !important;
 }
 .fg-light-blue-active:active,
@@ -29790,7 +29817,7 @@ pre code {
   color: #e7eaff !important;
 }
 .fg-light-teal,
-.text-light-teal {
+.text-color-light-teal {
   color: #e1f2f3 !important;
 }
 .fg-light-teal-active:active,
@@ -29806,7 +29833,7 @@ pre code {
   color: #e1f2f3 !important;
 }
 .fg-light-cyan,
-.text-light-cyan {
+.text-color-light-cyan {
   color: #e3edff !important;
 }
 .fg-light-cyan-active:active,
@@ -29822,7 +29849,7 @@ pre code {
   color: #e3edff !important;
 }
 .fg-light-cobalt,
-.text-light-cobalt {
+.text-color-light-cobalt {
   color: #d1ecff !important;
 }
 .fg-light-cobalt-active:active,
@@ -29838,7 +29865,7 @@ pre code {
   color: #d1ecff !important;
 }
 .fg-light-indigo,
-.text-light-indigo {
+.text-color-light-indigo {
   color: #f3e4f3 !important;
 }
 .fg-light-indigo-active:active,
@@ -29854,7 +29881,7 @@ pre code {
   color: #f3e4f3 !important;
 }
 .fg-light-violet,
-.text-light-violet {
+.text-color-light-violet {
   color: #fce2fb !important;
 }
 .fg-light-violet-active:active,
@@ -29870,7 +29897,7 @@ pre code {
   color: #fce2fb !important;
 }
 .fg-light-pink,
-.text-light-pink {
+.text-color-light-pink {
   color: #ffeef1 !important;
 }
 .fg-light-pink-active:active,
@@ -29886,7 +29913,7 @@ pre code {
   color: #ffeef1 !important;
 }
 .fg-light-magenta,
-.text-light-magenta {
+.text-color-light-magenta {
   color: #ffe2ff !important;
 }
 .fg-light-magenta-active:active,
@@ -29902,7 +29929,7 @@ pre code {
   color: #ffe2ff !important;
 }
 .fg-light-crimson,
-.text-light-crimson {
+.text-color-light-crimson {
   color: #ffd1da !important;
 }
 .fg-light-crimson-active:active,
@@ -29918,7 +29945,7 @@ pre code {
   color: #ffd1da !important;
 }
 .fg-light-red,
-.text-light-red {
+.text-color-light-red {
   color: #ffe1e1 !important;
 }
 .fg-light-red-active:active,
@@ -29934,7 +29961,7 @@ pre code {
   color: #ffe1e1 !important;
 }
 .fg-light-orange,
-.text-light-orange {
+.text-color-light-orange {
   color: #fff3de !important;
 }
 .fg-light-orange-active:active,
@@ -29950,7 +29977,7 @@ pre code {
   color: #fff3de !important;
 }
 .fg-light-amber,
-.text-light-amber {
+.text-color-light-amber {
   color: #fff8e1 !important;
 }
 .fg-light-amber-active:active,
@@ -29966,7 +29993,7 @@ pre code {
   color: #fff8e1 !important;
 }
 .fg-light-yellow,
-.text-light-yellow {
+.text-color-light-yellow {
   color: #ffffe6 !important;
 }
 .fg-light-yellow-active:active,
@@ -29982,7 +30009,7 @@ pre code {
   color: #ffffe6 !important;
 }
 .fg-light-brown,
-.text-light-brown {
+.text-color-light-brown {
   color: #ffeed9 !important;
 }
 .fg-light-brown-active:active,
@@ -29998,7 +30025,7 @@ pre code {
   color: #ffeed9 !important;
 }
 .fg-light-olive,
-.text-light-olive {
+.text-color-light-olive {
   color: #f8fde7 !important;
 }
 .fg-light-olive-active:active,
@@ -30014,7 +30041,7 @@ pre code {
   color: #f8fde7 !important;
 }
 .fg-light-steel,
-.text-light-steel {
+.text-color-light-steel {
   color: #edeeee !important;
 }
 .fg-light-steel-active:active,
@@ -30030,7 +30057,7 @@ pre code {
   color: #edeeee !important;
 }
 .fg-light-mauve,
-.text-light-mauve {
+.text-color-light-mauve {
   color: #f7ecfe !important;
 }
 .fg-light-mauve-active:active,
@@ -30046,7 +30073,7 @@ pre code {
   color: #f7ecfe !important;
 }
 .fg-light-taupe,
-.text-light-taupe {
+.text-color-light-taupe {
   color: #eadccf !important;
 }
 .fg-light-taupe-active:active,
@@ -30062,7 +30089,7 @@ pre code {
   color: #eadccf !important;
 }
 .fg-light-gray,
-.text-light-gray {
+.text-color-light-gray {
   color: #f4f4f4 !important;
 }
 .fg-light-gray-active:active,
@@ -30078,7 +30105,7 @@ pre code {
   color: #f4f4f4 !important;
 }
 .fg-light-gray-blue,
-.text-light-gray-blue {
+.text-color-light-gray-blue {
   color: #bee2f4 !important;
 }
 .fg-light-gray-blue-active:active,
@@ -30094,7 +30121,7 @@ pre code {
   color: #bee2f4 !important;
 }
 .fg-light-gray-mouse,
-.text-light-gray-mouse {
+.text-color-light-gray-mouse {
   color: #8ab4c8 !important;
 }
 .fg-light-gray-mouse-active:active,
@@ -30110,7 +30137,7 @@ pre code {
   color: #8ab4c8 !important;
 }
 .fg-light-champagne,
-.text-light-champagne {
+.text-color-light-champagne {
   color: #fffdf7 !important;
 }
 .fg-light-champagne-active:active,
@@ -30126,7 +30153,7 @@ pre code {
   color: #fffdf7 !important;
 }
 .fg-light-khaki,
-.text-light-khaki {
+.text-color-light-khaki {
   color: #f6f1dd !important;
 }
 .fg-light-khaki-active:active,
@@ -30142,7 +30169,7 @@ pre code {
   color: #f6f1dd !important;
 }
 .fg-light-charcoal,
-.text-light-charcoal {
+.text-color-light-charcoal {
   color: #e8e8e8 !important;
 }
 .fg-light-charcoal-active:active,
@@ -30158,7 +30185,7 @@ pre code {
   color: #e8e8e8 !important;
 }
 .fg-light-bronze,
-.text-light-bronze {
+.text-color-light-bronze {
   color: #f7f5c8 !important;
 }
 .fg-light-bronze-active:active,
@@ -30174,7 +30201,7 @@ pre code {
   color: #f7f5c8 !important;
 }
 .fg-light-windstorm,
-.text-light-windstorm {
+.text-color-light-windstorm {
   color: #e6ebf5 !important;
 }
 .fg-light-windstorm-active:active,
@@ -30190,7 +30217,7 @@ pre code {
   color: #e6ebf5 !important;
 }
 .fg-light-nude,
-.text-light-nude {
+.text-color-light-nude {
   color: #fcf0e4 !important;
 }
 .fg-light-nude-active:active,
@@ -30206,7 +30233,7 @@ pre code {
   color: #fcf0e4 !important;
 }
 .fg-light-terracotta,
-.text-light-terracotta {
+.text-color-light-terracotta {
   color: #fdebed !important;
 }
 .fg-light-terracotta-active:active,
@@ -30222,7 +30249,7 @@ pre code {
   color: #fdebed !important;
 }
 .fg-light-coral,
-.text-light-coral {
+.text-color-light-coral {
   color: #ffd8c8 !important;
 }
 .fg-light-coral-active:active,
@@ -30238,7 +30265,7 @@ pre code {
   color: #ffd8c8 !important;
 }
 .fg-light-army,
-.text-light-army {
+.text-color-light-army {
   color: #eceacb !important;
 }
 .fg-light-army-active:active,
@@ -30254,7 +30281,7 @@ pre code {
   color: #eceacb !important;
 }
 .fg-light-seashell,
-.text-light-seashell {
+.text-color-light-seashell {
   color: #fff9f8 !important;
 }
 .fg-light-seashell-active:active,
@@ -30270,7 +30297,7 @@ pre code {
   color: #fff9f8 !important;
 }
 .fg-light-sand,
-.text-light-sand {
+.text-color-light-sand {
   color: #f8f3e0 !important;
 }
 .fg-light-sand-active:active,
@@ -30286,7 +30313,7 @@ pre code {
   color: #f8f3e0 !important;
 }
 .fg-dark-lime,
-.text-dark-lime {
+.text-color-dark-lime {
   color: #557f32 !important;
 }
 .fg-dark-lime-active:active,
@@ -30302,7 +30329,7 @@ pre code {
   color: #557f32 !important;
 }
 .fg-dark-green,
-.text-dark-green {
+.text-color-dark-green {
   color: #003d00 !important;
 }
 .fg-dark-green-active:active,
@@ -30318,7 +30345,7 @@ pre code {
   color: #003d00 !important;
 }
 .fg-dark-emerald,
-.text-dark-emerald {
+.text-color-dark-emerald {
   color: #246339 !important;
 }
 .fg-dark-emerald-active:active,
@@ -30334,7 +30361,7 @@ pre code {
   color: #246339 !important;
 }
 .fg-dark-blue,
-.text-dark-blue {
+.text-color-dark-blue {
   color: #132a6f !important;
 }
 .fg-dark-blue-active:active,
@@ -30350,7 +30377,7 @@ pre code {
   color: #132a6f !important;
 }
 .fg-dark-teal,
-.text-dark-teal {
+.text-color-dark-teal {
   color: #014848 !important;
 }
 .fg-dark-teal-active:active,
@@ -30366,7 +30393,7 @@ pre code {
   color: #014848 !important;
 }
 .fg-dark-cyan,
-.text-dark-cyan {
+.text-color-dark-cyan {
   color: #456c7e !important;
 }
 .fg-dark-cyan-active:active,
@@ -30382,7 +30409,7 @@ pre code {
   color: #456c7e !important;
 }
 .fg-dark-cobalt,
-.text-dark-cobalt {
+.text-color-dark-cobalt {
   color: #001f54 !important;
 }
 .fg-dark-cobalt-active:active,
@@ -30398,7 +30425,7 @@ pre code {
   color: #001f54 !important;
 }
 .fg-dark-indigo,
-.text-dark-indigo {
+.text-color-dark-indigo {
   color: #21003e !important;
 }
 .fg-dark-indigo-active:active,
@@ -30414,7 +30441,7 @@ pre code {
   color: #21003e !important;
 }
 .fg-dark-violet,
-.text-dark-violet {
+.text-color-dark-violet {
   color: #773e77 !important;
 }
 .fg-dark-violet-active:active,
@@ -30430,7 +30457,7 @@ pre code {
   color: #773e77 !important;
 }
 .fg-dark-pink,
-.text-dark-pink {
+.text-color-dark-pink {
   color: #805f65 !important;
 }
 .fg-dark-pink-active:active,
@@ -30446,7 +30473,7 @@ pre code {
   color: #805f65 !important;
 }
 .fg-dark-magenta,
-.text-dark-magenta {
+.text-color-dark-magenta {
   color: #800080 !important;
 }
 .fg-dark-magenta-active:active,
@@ -30462,7 +30489,7 @@ pre code {
   color: #800080 !important;
 }
 .fg-dark-crimson,
-.text-dark-crimson {
+.text-color-dark-crimson {
   color: #6e0519 !important;
 }
 .fg-dark-crimson-active:active,
@@ -30478,7 +30505,7 @@ pre code {
   color: #6e0519 !important;
 }
 .fg-dark-red,
-.text-dark-red {
+.text-color-dark-red {
   color: #800000 !important;
 }
 .fg-dark-red-active:active,
@@ -30494,7 +30521,7 @@ pre code {
   color: #800000 !important;
 }
 .fg-dark-orange,
-.text-dark-orange {
+.text-color-dark-orange {
   color: #805100 !important;
 }
 .fg-dark-orange-active:active,
@@ -30510,7 +30537,7 @@ pre code {
   color: #805100 !important;
 }
 .fg-dark-amber,
-.text-dark-amber {
+.text-color-dark-amber {
   color: #805e00 !important;
 }
 .fg-dark-amber-active:active,
@@ -30526,7 +30553,7 @@ pre code {
   color: #805e00 !important;
 }
 .fg-dark-yellow,
-.text-dark-yellow {
+.text-color-dark-yellow {
   color: #808000 !important;
 }
 .fg-dark-yellow-active:active,
@@ -30542,7 +30569,7 @@ pre code {
   color: #808000 !important;
 }
 .fg-dark-brown,
-.text-dark-brown {
+.text-color-dark-brown {
   color: #42240f !important;
 }
 .fg-dark-brown-active:active,
@@ -30558,7 +30585,7 @@ pre code {
   color: #42240f !important;
 }
 .fg-dark-olive,
-.text-dark-olive {
+.text-color-dark-olive {
   color: #3d3d00 !important;
 }
 .fg-dark-olive-active:active,
@@ -30574,7 +30601,7 @@ pre code {
   color: #3d3d00 !important;
 }
 .fg-dark-steel,
-.text-dark-steel {
+.text-color-dark-steel {
   color: #2e3841 !important;
 }
 .fg-dark-steel-active:active,
@@ -30590,7 +30617,7 @@ pre code {
   color: #2e3841 !important;
 }
 .fg-dark-mauve,
-.text-dark-mauve {
+.text-color-dark-mauve {
   color: #705680 !important;
 }
 .fg-dark-mauve-active:active,
@@ -30606,7 +30633,7 @@ pre code {
   color: #705680 !important;
 }
 .fg-dark-taupe,
-.text-dark-taupe {
+.text-color-dark-taupe {
   color: #261e18 !important;
 }
 .fg-dark-taupe-active:active,
@@ -30622,7 +30649,7 @@ pre code {
   color: #261e18 !important;
 }
 .fg-dark-gray,
-.text-dark-gray {
+.text-color-dark-gray {
   color: #3a3a3a !important;
 }
 .fg-dark-gray-active:active,
@@ -30638,7 +30665,7 @@ pre code {
   color: #3a3a3a !important;
 }
 .fg-dark-gray-blue,
-.text-dark-gray-blue {
+.text-color-dark-gray-blue {
   color: #36464e !important;
 }
 .fg-dark-gray-blue-active:active,
@@ -30654,7 +30681,7 @@ pre code {
   color: #36464e !important;
 }
 .fg-dark-gray-mouse,
-.text-dark-gray-mouse {
+.text-color-dark-gray-mouse {
   color: #1f282c !important;
 }
 .fg-dark-gray-mouse-active:active,
@@ -30670,7 +30697,7 @@ pre code {
   color: #1f282c !important;
 }
 .fg-dark-champagne,
-.text-dark-champagne {
+.text-color-dark-champagne {
   color: #7c7364 !important;
 }
 .fg-dark-champagne-active:active,
@@ -30686,7 +30713,7 @@ pre code {
   color: #7c7364 !important;
 }
 .fg-dark-khaki,
-.text-dark-khaki {
+.text-color-dark-khaki {
   color: #6a6142 !important;
 }
 .fg-dark-khaki-active:active,
@@ -30702,7 +30729,7 @@ pre code {
   color: #6a6142 !important;
 }
 .fg-dark-charcoal,
-.text-dark-charcoal {
+.text-color-dark-charcoal {
   color: #202020 !important;
 }
 .fg-dark-charcoal-active:active,
@@ -30718,7 +30745,7 @@ pre code {
   color: #202020 !important;
 }
 .fg-dark-bronze,
-.text-dark-bronze {
+.text-color-dark-bronze {
   color: #693c13 !important;
 }
 .fg-dark-bronze-active:active,
@@ -30734,7 +30761,7 @@ pre code {
   color: #693c13 !important;
 }
 .fg-dark-windstorm,
-.text-dark-windstorm {
+.text-color-dark-windstorm {
   color: #304462 !important;
 }
 .fg-dark-windstorm-active:active,
@@ -30750,7 +30777,7 @@ pre code {
   color: #304462 !important;
 }
 .fg-dark-nude,
-.text-dark-nude {
+.text-color-dark-nude {
   color: #7c6c5d !important;
 }
 .fg-dark-nude-active:active,
@@ -30766,7 +30793,7 @@ pre code {
   color: #7c6c5d !important;
 }
 .fg-dark-terracotta,
-.text-dark-terracotta {
+.text-color-dark-terracotta {
   color: #712516 !important;
 }
 .fg-dark-terracotta-active:active,
@@ -30782,7 +30809,7 @@ pre code {
   color: #712516 !important;
 }
 .fg-dark-coral,
-.text-dark-coral {
+.text-color-dark-coral {
   color: #804028 !important;
 }
 .fg-dark-coral-active:active,
@@ -30798,7 +30825,7 @@ pre code {
   color: #804028 !important;
 }
 .fg-dark-army,
-.text-dark-army {
+.text-color-dark-army {
   color: #2a2f14 !important;
 }
 .fg-dark-army-active:active,
@@ -30814,7 +30841,7 @@ pre code {
   color: #2a2f14 !important;
 }
 .fg-dark-seashell,
-.text-dark-seashell {
+.text-color-dark-seashell {
   color: #807973 !important;
 }
 .fg-dark-seashell-active:active,
@@ -30830,7 +30857,7 @@ pre code {
   color: #807973 !important;
 }
 .fg-dark-sand,
-.text-dark-sand {
+.text-color-dark-sand {
   color: #aca48c !important;
 }
 .fg-dark-sand-active:active,
@@ -40194,6 +40221,126 @@ input[type=reset].loading .load-caption {
 }
 .dialog.no-shadow {
   box-shadow: none !important;
+}
+
+/* source/components/analog-clock/analog-clock.less */
+:root {
+  --analog-clock-size: 400px;
+  --analog-clock-icon-size: 48px;
+  --analog-clock-border-color: #6a6a6a;
+  --analog-clock-dash-color: #191919;
+  --analog-clock-background: var(--default-background);
+  --analog-clock-color: var(--default-color);
+  --analog-clock-hour-color: var(--color-dark);
+  --analog-clock-minute-color: var(--color-dark);
+  --analog-clock-second-color: var(--color-red);
+}
+.dark-side {
+  --analog-clock-border-color: #efefef;
+  --analog-clock-dash-color: #efefef;
+  --analog-clock-background: var(--default-background);
+  --analog-clock-color: var(--default-color);
+  --analog-clock-hour-color: var(--color-light);
+  --analog-clock-minute-color: var(--color-light);
+  --analog-clock-second-color: var(--color-red);
+}
+.analog-clock {
+  position: relative;
+  display: flex;
+  height: var(--analog-clock-size);
+  width: var(--analog-clock-size);
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 25px 45px rgba(0, 0, 0, 0.1);
+}
+.analog-clock .icon {
+  position: absolute;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: var(--analog-clock-icon-size);
+  width: var(--analog-clock-icon-size);
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+}
+.analog-clock .icon * {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--analog-clock-color);
+  width: 100%;
+  height: 100%;
+}
+.analog-clock .day-month {
+  position: absolute;
+  display: inline-flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--analog-clock-border-color);
+  border-radius: 6px;
+  height: auto;
+  width: auto;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+}
+.analog-clock .day-month .day,
+.analog-clock .day-month .month {
+  font-weight: 600;
+  padding: 6px 10px;
+  width: 50%;
+}
+.analog-clock .day-month .day {
+  border-right: 2px solid var(--analog-clock-border-color);
+}
+.analog-clock label {
+  position: absolute;
+  inset: 20px;
+  text-align: center;
+  transform: rotate(calc(var(--i) * (360deg / 12)));
+}
+.analog-clock label span {
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--black-color);
+  transform: rotate(calc(var(--i) * (-360deg / 12)));
+}
+.analog-clock .hands {
+  position: absolute;
+  height: 10px;
+  width: 10px;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+.analog-clock .hands .minute,
+.analog-clock .hands .hour,
+.analog-clock .hands .second {
+  position: absolute;
+  height: 130px;
+  width: 4px;
+  bottom: 0;
+  border-radius: 25px;
+  transform-origin: bottom;
+}
+.analog-clock .hands .second {
+  background: var(--analog-clock-second-color);
+}
+.analog-clock .hands .hour {
+  height: 100px;
+  width: 8px;
+  background: var(--analog-clock-hour-color);
+}
+.analog-clock .hands .minute {
+  height: 120px;
+  width: 5px;
+  background: var(--analog-clock-minute-color);
 }
 
 /* source/components/animated-border/animated-border.less */

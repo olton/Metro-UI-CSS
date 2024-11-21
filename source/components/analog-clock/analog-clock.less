@@ -1,0 +1,133 @@
+@import "../../include/vars";
+
+:root {
+    --analog-clock-size: 400px;
+    --analog-clock-icon-size: 48px;
+    --analog-clock-border-color: #6a6a6a;
+    --analog-clock-dash-color: #191919;
+    --analog-clock-background: var(--default-background);
+    --analog-clock-color: var(--default-color);
+    --analog-clock-hour-color: var(--color-dark);
+    --analog-clock-minute-color: var(--color-dark);
+    --analog-clock-second-color: var(--color-red);    
+}
+
+.dark-side {
+    --analog-clock-border-color: #efefef;
+    --analog-clock-dash-color: #efefef;
+    --analog-clock-background: var(--default-background);
+    --analog-clock-color: var(--default-color);
+    --analog-clock-hour-color: var(--color-light);
+    --analog-clock-minute-color: var(--color-light);
+    --analog-clock-second-color: var(--color-red);
+}
+
+.analog-clock {
+    position: relative;
+    display: flex;
+    height: var(--analog-clock-size);
+    width: var(--analog-clock-size);
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.1), 0 25px 45px rgba(0, 0, 0, 0.1);
+}
+
+.analog-clock {
+    .icon {
+        position: absolute;
+        display: inline-flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        height: var(--analog-clock-icon-size);
+        width: var(--analog-clock-icon-size);
+        top: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        
+        * {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--analog-clock-color);
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    .day-month {
+        position: absolute;
+        display: inline-flex;
+        flex-flow: row nowrap;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid var(--analog-clock-border-color);
+        border-radius: 6px;
+        height: auto;
+        width: auto;
+        bottom: 80px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        
+        .day, .month {
+            font-weight: 600;
+            padding: 6px 10px;
+            width: 50%;
+        }
+        
+        .day {
+            border-right: 2px solid var(--analog-clock-border-color);
+        }
+    }
+    
+    label {
+        position: absolute;
+        inset: 20px;
+        text-align: center;
+        transform: rotate(calc(var(--i) * (360deg / 12)));
+        
+        span {
+            display: inline-block;
+            font-size: 30px;
+            font-weight: 600;
+            color: var(--black-color);
+            transform: rotate(calc(var(--i) * (-360deg / 12)));
+        }
+    }
+    
+    .hands {
+        position: absolute;
+        height: 10px;
+        width: 10px;
+        display: flex;
+        justify-content: center;
+        z-index: 2;
+        
+        .minute, .hour, .second {
+            position: absolute;
+            height: 130px;
+            width: 4px;
+            bottom: 0;
+            border-radius: 25px;
+            transform-origin: bottom;
+        }
+        
+        .second {
+            background: var(--analog-clock-second-color);
+        }
+        
+        .hour {
+            height: 100px;
+            width: 8px;
+            background: var(--analog-clock-hour-color);
+        }
+        
+        .minute {
+            height: 120px;
+            width: 5px;
+            background: var(--analog-clock-minute-color);
+        }
+    }
+}
