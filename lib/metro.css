@@ -40331,6 +40331,7 @@ input[type=reset].loading .load-caption {
 }
 .analog-clock .hands .second {
   background: var(--analog-clock-second-color);
+  width: 2px;
 }
 .analog-clock .hands .hour {
   height: 100px;
@@ -62947,3 +62948,4 @@ body.vegas-container > .vegas-slide {
   right: calc(100% + 8px);
   z-index: 1001;
 }
+/*# sourceMappingURL=metro.css.map */

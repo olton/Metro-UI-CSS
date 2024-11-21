@@ -87,6 +87,8 @@
                 hourHand.style.transform = `rotate(${hr}deg)`;
             };
 
+            updateTime();
+            
             setInterval(updateTime, 1000);
         },
         
