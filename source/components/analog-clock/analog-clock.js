@@ -3,6 +3,7 @@
 
     var AnalogClockDefaultConfig = {
         icon: null,
+        showNumbers: false,
         onAnalogClockCreate: Metro.noop
     };
 
@@ -37,8 +38,19 @@
             
             element.addClass("analog-clock");
             
+            if (o.showNumbers) {
+                element.addClass("show-numbers");
+            }
+            
             for (let i = 1; i <= 12; i++) {
-                element.append(`<label style="--i: ${i}"><span>${i}</span></label>`);
+                element.append(`<label class="dash" style="--i: ${i}"><span>${o.showNumbers ? i : '|'}</span></label>`);
+            }
+            
+            for (let i = 1; i <= 90; i++) {
+                if (i % 5 === 0) {
+                    continue
+                }
+                element.append(`<label class="secondary-dash" style="--i2: ${i}"><span>|</span></label>`);
             }
             
             element.append(`
