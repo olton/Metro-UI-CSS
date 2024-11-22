@@ -87,16 +87,22 @@
             const secondHand = element.find(".second")[0]
             const minuteHand = element.find(".minute")[0]
             const hourHand = element.find(".hour")[0]
+            const dayEl = element.find(".day")[0]
+            const monthEl = element.find(".month")[0]
                 
             const updateTime = () => {
-                let date = new Date(),
-                    sec = (date.getSeconds() / 60) * 360,
-                    min = (date.getMinutes() / 60) * 360,
-                    hr = (date.getHours() / 12) * 360;
+                let date = datetime(),
+                    sec = (date.second() / 60) * 360,
+                    min = (date.minute() / 60) * 360,
+                    hr = (date.hour() / 12) * 360,
+                    day = date.format("DD", this.locale),
+                    month = date.format("MMM", this.locale);
 
                 secondHand.style.transform = `rotate(${sec}deg)`;
                 minuteHand.style.transform = `rotate(${min}deg)`;
                 hourHand.style.transform = `rotate(${hr}deg)`;
+                dayEl.innerHTML = day;
+                monthEl.innerHTML = month;
             };
 
             updateTime();
