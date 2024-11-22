@@ -4,6 +4,10 @@
     var AnalogClockDefaultConfig = {
         icon: null,
         showNumbers: false,
+        showMoon: true,
+        showDay: true,
+        showDigitalClock: true,
+        timeFormat: 24,
         onAnalogClockCreate: Metro.noop
     };
 
@@ -64,16 +68,43 @@
             
             element.append(`
                 <div class="day-month">
-                    <div class="day">${now.format("DD", this.locale)}</div>
-                    <div class="month">${now.format("MMM", this.locale)}</div>
+                    <div class="day-month-inner">
+                        <div class="day">${now.format("DD", this.locale)}</div>
+                        <div class="month">${now.format("MMM", this.locale)}</div>                    
+                    </div>
+                    <div class="week-day">${now.format("dddd", this.locale)}</div>
                 </div>
             `);
+            
+            if (o.showDay === false) {
+                element.find(".day-month").hide();
+            }
+            
+            element.append(`
+                <div class="digital-clock">
+                    <div class="dc-hour">${now.format(o.timeFormat === 24 ? "HH" : "hh", this.locale)}</div>
+                    <div class="dc-minute">${now.format("mm", this.locale)}</div>
+                    <div class="dc-second">${now.format("ss", this.locale)}</div>
+                </div>
+            `);
+            
+            if (o.showDigitalClock === false) {
+                element.find(".digital-clock").hide();
+            }
             
             if (o.icon) {
                 element.append(`<div class="icon">${o.icon}</div>`)
             }
             
+            if (o.showMoon === true) {
+                element.append(`<div class="moon"></div>`)
+            }
+            
             this._updateTime()
+            
+            setInterval(() => {
+                element.toggleClass("tick")
+            }, 500)
         },
 
         _createEvents: function(){
@@ -82,27 +113,37 @@
         },
 
         _updateTime: function(){
-            const element = this.element;
+            const element = this.element, o = this.options;
             
-            const secondHand = element.find(".second")[0]
-            const minuteHand = element.find(".minute")[0]
-            const hourHand = element.find(".hour")[0]
-            const dayEl = element.find(".day")[0]
-            const monthEl = element.find(".month")[0]
+            const secondHand = element.find(".second")
+            const minuteHand = element.find(".minute")
+            const hourHand = element.find(".hour")
+            const secondDig = element.find(".dc-second")
+            const minuteDig = element.find(".dc-minute")
+            const hourDig = element.find(".dc-hour")
+            const dayEl = element.find(".day")
+            const monthEl = element.find(".month")
+            const moonEl = element.find(".moon")
                 
             const updateTime = () => {
                 let date = datetime(),
                     sec = (date.second() / 60) * 360,
                     min = (date.minute() / 60) * 360,
-                    hr = (date.hour() / 12) * 360,
+                    hr = (date.hour12() / 12) * 360,
                     day = date.format("DD", this.locale),
-                    month = date.format("MMM", this.locale);
+                    month = date.format("MMM", this.locale),
+                    moon = date.moon();
 
-                secondHand.style.transform = `rotate(${sec}deg)`;
-                minuteHand.style.transform = `rotate(${min}deg)`;
-                hourHand.style.transform = `rotate(${hr}deg)`;
-                dayEl.innerHTML = day;
-                monthEl.innerHTML = month;
+                secondHand[0].style.transform = `rotate(${sec}deg)`;
+                minuteHand[0].style.transform = `rotate(${min}deg)`;
+                hourHand[0].style.transform = `rotate(${hr}deg)`;
+                dayEl.html(day);
+                monthEl.html(month);
+                moonEl.removeClass("").addClass(`${moon.name}`);
+                
+                hourDig[0].innerHTML = date.format(o.timeFormat === 24 ? "HH" : "hh", this.locale);
+                minuteDig[0].innerHTML = date.format("mm", this.locale);
+                secondDig[0].innerHTML = date.format("ss", this.locale);
             };
 
             updateTime();

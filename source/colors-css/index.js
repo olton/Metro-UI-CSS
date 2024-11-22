@@ -13,3 +13,4 @@ import "./accent.less";
 import "./gradients.less";
 import "./soft.less";
 import "./normal.less";
+import "./stroke.less";

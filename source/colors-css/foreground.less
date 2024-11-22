@@ -5,8 +5,8 @@
 }
 
 each(@colors, {
-    .fg-@{value}, .text-color-@{value} {color: @@value !important;}
-    .fg-@{value}-active, .text-@{value}-active {&:active {color: @@value !important;}}
-    .fg-@{value}-hover, .text-@{value}-hover {&:hover {color: @@value !important;}}
-    .fg-@{value}-focus, .text-@{value}-focus {&:focus {color: @@value !important;}}
+    .fg-@{value} {color: @@value !important;}
+    .fg-@{value}-active {&:active {color: @@value !important;}}
+    .fg-@{value}-hover {&:hover {color: @@value !important;}}
+    .fg-@{value}-focus {&:focus {color: @@value !important;}}
 })

@@ -1,0 +1,19 @@
+@import "../include/vars"; 
+
+:root {
+    --stroke-width: 1px;
+}
+
+each(@normalColors, {
+    @dark-color: "dark-@{value}";
+
+    .stroke-white-@{value} {
+        color: @@value;
+        -webkit-text-stroke: var(--stroke-width) #ffffff;
+    }
+
+    .stroke-dark-@{value} {
+        color: @@value;
+        -webkit-text-stroke: var(--stroke-width) @@dark-color;
+    }
+})
