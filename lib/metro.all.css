@@ -38994,6 +38994,7 @@ pre code {
   --button-border-radius: 4px;
   --button-pill-radius: 18px;
   --button-size: 36px;
+  --button-font-size: 14px;
 }
 .dark-side {
   --button-background: #2b2d30;
@@ -39011,8 +39012,8 @@ pre code {
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
-  padding: 0 1rem;
-  font-size: 14px;
+  padding: 0 var(--button-font-size);
+  font-size: var(--button-font-size);
   height: var(--button-size);
   transition: all 0.15s ease-in-out;
   background-color: var(--button-background);
@@ -39075,43 +39076,25 @@ pre code {
 .button.mini {
   --button-pill-radius: 10px;
   --button-size: 20px;
-  font-size: 10px;
-  padding: 0 0.5rem;
+  --button-font-size: 10px;
 }
 .button.small {
   --button-pill-radius: 13px;
   --button-size: 26px;
-  font-size: 12px;
-  padding: 0 0.6rem;
+  --button-font-size: 12px;
 }
 .button.large {
   --button-pill-radius: 27px;
   --button-size: 54px;
-  font-size: 18px;
-  padding: 0 1rem;
+  --button-font-size: 18px;
 }
 .button.square,
 .button.cycle {
-  width: 36px;
-  height: 36px;
+  width: var(--button-size);
+  height: var(--button-size);
   padding: 0 !important;
   flex-shrink: 0 !important;
   flex-grow: 0 !important;
-}
-.button.square.mini,
-.button.cycle.mini {
-  width: 20px;
-  height: 20px;
-}
-.button.square.small,
-.button.cycle.small {
-  width: 26px;
-  height: 26px;
-}
-.button.square.large,
-.button.cycle.large {
-  width: 54px;
-  height: 54px;
 }
 .button.cycle {
   border-radius: 50%;
@@ -39146,8 +39129,8 @@ input[type=reset] {
   white-space: nowrap;
   vertical-align: middle;
   user-select: none;
-  padding: 0 1rem;
-  font-size: 14px;
+  padding: 0 var(--button-font-size);
+  font-size: var(--button-font-size);
   height: var(--button-size);
   transition: all 0.15s ease-in-out;
   background-color: var(--button-background);
@@ -39235,24 +39218,21 @@ input[type=submit].mini,
 input[type=reset].mini {
   --button-pill-radius: 10px;
   --button-size: 20px;
-  font-size: 10px;
-  padding: 0 0.5rem;
+  --button-font-size: 10px;
 }
 input[type=button].small,
 input[type=submit].small,
 input[type=reset].small {
   --button-pill-radius: 13px;
   --button-size: 26px;
-  font-size: 12px;
-  padding: 0 0.6rem;
+  --button-font-size: 12px;
 }
 input[type=button].large,
 input[type=submit].large,
 input[type=reset].large {
   --button-pill-radius: 27px;
   --button-size: 54px;
-  font-size: 18px;
-  padding: 0 1rem;
+  --button-font-size: 18px;
 }
 input[type=button].square,
 input[type=submit].square,
@@ -39260,38 +39240,11 @@ input[type=reset].square,
 input[type=button].cycle,
 input[type=submit].cycle,
 input[type=reset].cycle {
-  width: 36px;
-  height: 36px;
+  width: var(--button-size);
+  height: var(--button-size);
   padding: 0 !important;
   flex-shrink: 0 !important;
   flex-grow: 0 !important;
-}
-input[type=button].square.mini,
-input[type=submit].square.mini,
-input[type=reset].square.mini,
-input[type=button].cycle.mini,
-input[type=submit].cycle.mini,
-input[type=reset].cycle.mini {
-  width: 20px;
-  height: 20px;
-}
-input[type=button].square.small,
-input[type=submit].square.small,
-input[type=reset].square.small,
-input[type=button].cycle.small,
-input[type=submit].cycle.small,
-input[type=reset].cycle.small {
-  width: 26px;
-  height: 26px;
-}
-input[type=button].square.large,
-input[type=submit].square.large,
-input[type=reset].square.large,
-input[type=button].cycle.large,
-input[type=submit].cycle.large,
-input[type=reset].cycle.large {
-  width: 54px;
-  height: 54px;
 }
 input[type=button].cycle,
 input[type=submit].cycle,
@@ -39377,6 +39330,159 @@ input[type=reset].loading .load-caption {
   }
   100% {
     transform: rotate(359deg);
+  }
+}
+@container (min-width: 0) {
+  .button.large-fs {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-fs {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-fs {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 360px) {
+  .button.large-xs {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-xs {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-xs {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 576px) {
+  .button.large-sm {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-sm {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-sm {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 640px) {
+  .button.large-ld {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-ld {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-ld {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 768px) {
+  .button.large-md {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-md {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-md {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 992px) {
+  .button.large-lg {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-lg {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-lg {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 1200px) {
+  .button.large-xl {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-xl {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-xl {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 1400px) {
+  .button.large-xxl {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-xxl {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-xxl {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
+  }
+}
+@container (min-width: 2000px) {
+  .button.large-xxxl {
+    --button-pill-radius: 27px;
+    --button-size: 54px;
+    --button-font-size: 18px;
+  }
+  .button.small-xxxl {
+    --button-pill-radius: 13px;
+    --button-size: 26px;
+    --button-font-size: 12px;
+  }
+  .button.mini-xxxl {
+    --button-pill-radius: 10px;
+    --button-size: 20px;
+    --button-font-size: 10px;
   }
 }
 
@@ -43965,6 +44071,7 @@ input:-ms-input-placeholder {
   --input-autocomplete-selected-color: #468cff;
   --input-autocomplete-selected-background: transparent;
   --input-border-radius: 4px;
+  --input-font-size: 16px;
 }
 .dark-side {
   --input-autocomplete-background: #2b2d30;
@@ -43996,22 +44103,39 @@ input:-ms-input-placeholder {
   padding: 0 0.75rem;
   background-color: transparent;
   color: inherit;
+  font-size: var(--input-font-size);
 }
 .input input:focus {
   box-shadow: none;
 }
+.input input[placeholder] {
+  font-size: var(--input-font-size);
+}
+.input input::-moz-placeholder {
+  font-size: var(--input-font-size);
+}
+.input input:-moz-placeholder {
+  font-size: var(--input-font-size);
+}
+.input input:-ms-input-placeholder {
+  font-size: var(--input-font-size);
+}
 .input .button-group {
   display: flex;
   flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
 }
 .input .button {
   background-color: transparent;
   border-color: transparent;
   color: var(--input-color);
-  height: 34px;
-  min-width: 34px;
-  width: 34px;
+  height: 30px;
+  width: 30px;
   border: 1px solid var(--input-border-color);
+  font-size: var(--input-font-size);
+  padding: 0;
 }
 .input .button:focus,
 .input .button:active {
@@ -44022,7 +44146,7 @@ input:-ms-input-placeholder {
 .input .input-search-button {
   font-family: "Segoe UI Symbol", serif;
   background-color: transparent;
-  font-size: 18px;
+  font-size: var(--input-font-size);
 }
 .input .input-clear-button:hover,
 .input .input-reveal-button:hover,
@@ -44050,6 +44174,8 @@ input:-ms-input-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: var(--input-font-size);
+  padding: 0 var(--input-font-size);
 }
 .input .prepend {
   border-top-left-radius: var(--input-border-radius);
@@ -44058,6 +44184,14 @@ input:-ms-input-placeholder {
 .input .append {
   border-top-right-radius: var(--input-border-radius);
   border-bottom-right-radius: var(--input-border-radius);
+}
+.input.pill-input,
+input.pill-input {
+  --input-border-radius: 1rem;
+}
+.input.pill-input .button,
+input.pill-input .button {
+  border-radius: 50%;
 }
 .input .autocomplete-list {
   margin: 0;
@@ -44093,132 +44227,68 @@ input:-ms-input-placeholder {
   background: var(--input-autocomplete-selected-background);
   color: var(--input-autocomplete-selected-color);
 }
-.input.input-large {
+.input.input-large,
+input.input-large {
+  --input-font-size: 22px;
   height: 50px;
 }
-.input.input-large input {
+.input.input-large input,
+input.input-large input {
   height: 48px;
-  font-size: 1.3rem;
   padding: 0 10px;
   line-height: 48px;
 }
-.input.input-large .button {
-  height: 48px;
-  min-width: 48px;
-  font-size: 1.3rem;
-}
-.input.input-large .button [class*=mif-] {
-  font-size: 1.3rem;
-}
-.input.input-large .button .default-icon-cross,
-.input.input-large .button .default-icon-eye {
-  width: 21px;
-  height: 21px;
+.input.input-large .button,
+input.input-large .button {
+  height: 44px;
+  width: 44px;
 }
 .input.input-large .button .input-clear-button,
-.input.input-large .button .input-reveal-button {
+input.input-large .button .input-clear-button,
+.input.input-large .button .input-reveal-button,
+input.input-large .button .input-reveal-button {
   width: 48px;
   padding: 0;
 }
-.input.input-large input[placeholder] {
-  font-size: 1.1rem;
-}
-.input.input-large input::-moz-placeholder {
-  font-size: 1.1rem;
-}
-.input.input-large input:-moz-placeholder {
-  font-size: 1.1rem;
-}
-.input.input-large input:-ms-input-placeholder {
-  font-size: 1.1rem;
-}
 .input.input-large .append,
-.input.input-large .prepend {
+input.input-large .append,
+.input.input-large .prepend,
+input.input-large .prepend {
   height: 48px;
   line-height: 48px;
-  padding: 0 0.5rem;
-  font-size: 1.3rem;
 }
-input.input-large {
-  height: 48px;
-  font-size: 1.3rem;
-  padding: 0 10px;
+.input.input-large.pill-input,
+input.input-large.pill-input {
+  --input-border-radius: 1.5rem;
 }
-input.input-large[placeholder] {
-  font-size: 1.1rem;
-}
-input.input-large::-moz-placeholder {
-  font-size: 1.1rem;
-}
-input.input-large:-moz-placeholder {
-  font-size: 1.1rem;
-}
-input.input-large:-ms-input-placeholder {
-  font-size: 1.1rem;
-}
-.input.input-small {
+.input.input-small,
+input.input-small {
+  --input-border-radius: 2px;
+  --input-font-size: 14px;
   height: 28px;
 }
-.input.input-small input {
+.input.input-small input,
+input.input-small input {
   height: 26px;
-  font-size: 0.9rem;
   padding: 0 4px;
   line-height: 26px;
 }
-.input.input-small .button {
-  height: 26px;
-  min-width: 26px;
-  font-size: 0.9rem;
+.input.input-small .button,
+input.input-small .button {
+  height: 22px;
+  width: 22px;
   padding: 0;
-}
-.input.input-small .button [class*=mif-] {
-  font-size: 0.9rem;
-}
-.input.input-small .button .default-icon-cross,
-.input.input-small .button .default-icon-eye {
-  width: 14px;
-  height: 14px;
-}
-.input.input-small .input-clear-button,
-.input.input-small .input-reveal-button {
-  width: 26px;
-  padding: 0;
-}
-.input.input-small input[placeholder] {
-  font-size: 0.8rem;
-}
-.input.input-small input::-moz-placeholder {
-  font-size: 0.8rem;
-}
-.input.input-small input:-moz-placeholder {
-  font-size: 0.8rem;
-}
-.input.input-small input:-ms-input-placeholder {
-  font-size: 0.8rem;
 }
 .input.input-small .append,
-.input.input-small .prepend {
+input.input-small .append,
+.input.input-small .prepend,
+input.input-small .prepend {
   height: 26px;
   line-height: 26px;
-  padding: 0 0.5rem;
-  font-size: 0.9rem;
 }
-input.input-small {
-  height: 26px;
-  font-size: 0.9rem;
-  padding: 0 4px;
-}
-input.input-small[placeholder] {
-  font-size: 0.8rem;
-}
-input.input-small::-moz-placeholder {
-  font-size: 0.8rem;
-}
-input.input-small:-moz-placeholder {
-  font-size: 0.8rem;
-}
-input.input-small:-ms-input-placeholder {
-  font-size: 0.8rem;
+.input.input-small.pill-input,
+input.input-small.pill-input {
+  --input-border-radius: 0.8rem;
 }
 .input[dir=rtl],
 .input.rtl {
@@ -44263,6 +44333,465 @@ input.input-small:-ms-input-placeholder {
 }
 .label-for-input.rtl {
   text-align: right;
+}
+@container (min-width: 0) {
+  .input.input-large-fs {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-fs input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-fs .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-fs .button .input-clear-button,
+  .input.input-large-fs .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-fs .append,
+  .input.input-large-fs .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-fs.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-fs {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-fs input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-fs .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-fs .append,
+  .input.input-small-fs .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-fs.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 360px) {
+  .input.input-large-xs {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-xs input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-xs .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-xs .button .input-clear-button,
+  .input.input-large-xs .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-xs .append,
+  .input.input-large-xs .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-xs.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-xs {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-xs input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-xs .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-xs .append,
+  .input.input-small-xs .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-xs.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 576px) {
+  .input.input-large-sm {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-sm input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-sm .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-sm .button .input-clear-button,
+  .input.input-large-sm .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-sm .append,
+  .input.input-large-sm .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-sm.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-sm {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-sm input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-sm .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-sm .append,
+  .input.input-small-sm .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-sm.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 640px) {
+  .input.input-large-ld {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-ld input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-ld .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-ld .button .input-clear-button,
+  .input.input-large-ld .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-ld .append,
+  .input.input-large-ld .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-ld.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-ld {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-ld input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-ld .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-ld .append,
+  .input.input-small-ld .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-ld.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 768px) {
+  .input.input-large-md {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-md input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-md .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-md .button .input-clear-button,
+  .input.input-large-md .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-md .append,
+  .input.input-large-md .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-md.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-md {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-md input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-md .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-md .append,
+  .input.input-small-md .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-md.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 992px) {
+  .input.input-large-lg {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-lg input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-lg .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-lg .button .input-clear-button,
+  .input.input-large-lg .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-lg .append,
+  .input.input-large-lg .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-lg.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-lg {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-lg input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-lg .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-lg .append,
+  .input.input-small-lg .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-lg.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 1200px) {
+  .input.input-large-xl {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-xl input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-xl .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-xl .button .input-clear-button,
+  .input.input-large-xl .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-xl .append,
+  .input.input-large-xl .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-xl.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-xl {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-xl input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-xl .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-xl .append,
+  .input.input-small-xl .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-xl.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 1400px) {
+  .input.input-large-xxl {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-xxl input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-xxl .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-xxl .button .input-clear-button,
+  .input.input-large-xxl .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-xxl .append,
+  .input.input-large-xxl .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-xxl.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-xxl {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-xxl input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-xxl .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-xxl .append,
+  .input.input-small-xxl .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-xxl.pill-input {
+    --input-border-radius: 0.8rem;
+  }
+}
+@container (min-width: 2000px) {
+  .input.input-large-xxxl {
+    --input-font-size: 22px;
+    height: 50px;
+  }
+  .input.input-large-xxxl input {
+    height: 48px;
+    padding: 0 10px;
+    line-height: 48px;
+  }
+  .input.input-large-xxxl .button {
+    height: 44px;
+    width: 44px;
+  }
+  .input.input-large-xxxl .button .input-clear-button,
+  .input.input-large-xxxl .button .input-reveal-button {
+    width: 48px;
+    padding: 0;
+  }
+  .input.input-large-xxxl .append,
+  .input.input-large-xxxl .prepend {
+    height: 48px;
+    line-height: 48px;
+  }
+  .input.input-large-xxxl.pill-input {
+    --input-border-radius: 1.5rem;
+  }
+  .input.input-small-xxxl {
+    --input-border-radius: 2px;
+    --input-font-size: 14px;
+    height: 28px;
+  }
+  .input.input-small-xxxl input {
+    height: 26px;
+    padding: 0 4px;
+    line-height: 26px;
+  }
+  .input.input-small-xxxl .button {
+    height: 22px;
+    width: 22px;
+    padding: 0;
+  }
+  .input.input-small-xxxl .append,
+  .input.input-small-xxxl .prepend {
+    height: 26px;
+    line-height: 26px;
+  }
+  .input.input-small-xxxl.pill-input {
+    --input-border-radius: 0.8rem;
+  }
 }
 
 /* source/components/chat/chat.less */

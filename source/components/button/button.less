@@ -9,6 +9,7 @@
     --button-border-radius: 4px;
     --button-pill-radius: 18px;
     --button-size: 36px;
+    --button-font-size: 14px;
 }
 
 .dark-side {
@@ -27,8 +28,8 @@
     white-space: nowrap;
     vertical-align: middle;
     user-select: none;
-    padding: 0 1rem;
-    font-size: 14px;
+    padding: 0 var(--button-font-size);
+    font-size: var(--button-font-size);
     height: var(--button-size);
     transition: @transition-short;
     background-color: var(--button-background);
@@ -69,7 +70,6 @@
 .button {
     &:active, &.focus, &:focus {
         text-decoration: none;
-        //.focus-show(var(--button-border-color));
     }
 
     &:hover {
@@ -93,47 +93,28 @@
     &.mini {
         --button-pill-radius: 10px;
         --button-size: 20px;
-
-        font-size: 10px;
-        padding: 0 .5rem;
+        --button-font-size: 10px;
     }
     &.small {
         --button-pill-radius: 13px;
         --button-size: 26px;
-
-        font-size: 12px;
-        padding: 0 .6rem;
+        --button-font-size: 12px;
     }
     &.large {
         --button-pill-radius: 27px;
         --button-size: 54px;
-
-        font-size: 18px;
-        padding: 0 1rem;
+        --button-font-size: 18px;
     }
 }
 
 .button {
     &.square, &.cycle {
-        width: 36px;
-        height: 36px;
+        width: var(--button-size);
+        height: var(--button-size);
         padding: 0!important;
 
         flex-shrink: 0!important;
         flex-grow: 0!important;
-
-        &.mini {
-            width: 20px;
-            height: 20px;
-        }
-        &.small {
-            width: 26px;
-            height: 26px;
-        }
-        &.large {
-            width: 54px;
-            height: 54px;
-        }
     }
 
     &.cycle {
@@ -147,7 +128,6 @@
             }
         }
     }
-
 }
 
 .button {
@@ -219,3 +199,25 @@ input[type=button], input[type=submit], input[type=reset] {
         .rotate(359deg);
     }
 }
+
+each(@media-rules, {
+    @container (min-width: @value) {
+        .button {
+            &.large-@{key} {
+                --button-pill-radius: 27px;
+                --button-size: 54px;
+                --button-font-size: 18px;
+            }
+            &.small-@{key} {
+                --button-pill-radius: 13px;
+                --button-size: 26px;
+                --button-font-size: 12px;
+            }
+            &.mini-@{key} {
+                --button-pill-radius: 10px;
+                --button-size: 20px;
+                --button-font-size: 10px;
+            }
+        }
+    }
+})
