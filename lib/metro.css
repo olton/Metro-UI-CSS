@@ -43964,6 +43964,7 @@ input:-ms-input-placeholder {
   --input-autocomplete-color: #191919;
   --input-autocomplete-selected-color: #468cff;
   --input-autocomplete-selected-background: transparent;
+  --input-border-radius: 4px;
 }
 .dark-side {
   --input-autocomplete-background: #2b2d30;
@@ -43977,6 +43978,7 @@ input:-ms-input-placeholder {
   justify-content: space-between;
   width: 100%;
   padding: 0;
+  border-radius: var(--input-border-radius);
 }
 .input:hover input {
   border-color: transparent;
@@ -44008,13 +44010,12 @@ input:-ms-input-placeholder {
   color: var(--input-color);
   height: 34px;
   min-width: 34px;
+  width: 34px;
+  border: 1px solid var(--input-border-color);
 }
 .input .button:focus,
 .input .button:active {
   box-shadow: none !important;
-}
-.input .button:hover {
-  text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
 }
 .input .input-clear-button,
 .input .input-reveal-button,
@@ -44049,6 +44050,14 @@ input:-ms-input-placeholder {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.input .prepend {
+  border-top-left-radius: var(--input-border-radius);
+  border-bottom-left-radius: var(--input-border-radius);
+}
+.input .append {
+  border-top-right-radius: var(--input-border-radius);
+  border-bottom-right-radius: var(--input-border-radius);
 }
 .input .autocomplete-list {
   margin: 0;
@@ -44248,6 +44257,13 @@ input.input-small:-ms-input-placeholder {
 .input:hover .badge {
   display: none;
 }
+.label-for-input {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.label-for-input.rtl {
+  text-align: right;
+}
 
 /* source/components/chat/chat.less */
 .chat {
@@ -44398,15 +44414,15 @@ input.input-small:-ms-input-placeholder {
 }
 :root {
   --checkbox-check-color: #fff;
-  --checkbox-border-color: #191919;
-  --checkbox-checked-background: #191919;
+  --checkbox-border-color: #777777;
+  --checkbox-checked-background: #474747;
   --checkbox-focus-color: #e8e8e8;
   --checkbox-disabled-color: #e8e8e8;
 }
 .dark-side {
   --checkbox-check-color: #fff;
   --checkbox-border-color: #3c3c3c;
-  --checkbox-checked-background: #468cff;
+  --checkbox-checked-background: #3c3c3c;
   --checkbox-focus-color: #191919;
   --checkbox-disabled-color: #2c2c2c;
 }
@@ -44438,7 +44454,8 @@ input.input-small:-ms-input-placeholder {
   position: relative;
 }
 .checkbox .check {
-  border: 2px var(--border-color) solid;
+  border: 2px var(--checkbox-border-color) solid;
+  border-radius: 4px;
   width: 20px;
   height: 20px;
   flex-shrink: 0;
@@ -62982,3 +62999,4 @@ body.vegas-container > .vegas-slide {
   right: calc(100% + 8px);
   z-index: 1001;
 }
+/*# sourceMappingURL=metro.css.map */

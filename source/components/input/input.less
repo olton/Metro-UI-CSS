@@ -6,6 +6,7 @@
     --input-autocomplete-color: #191919;
     --input-autocomplete-selected-color: #468cff;
     --input-autocomplete-selected-background: transparent;
+    --input-border-radius: 4px;
 }
 
 .dark-side {
@@ -21,6 +22,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 0;
+    border-radius: var(--input-border-radius);
 
     &:hover {
         input {
@@ -59,12 +61,14 @@
         color: var(--input-color);
         height: 34px;
         min-width: 34px;
+        width: 34px;
+        border: 1px solid var(--input-border-color);
         &:focus, &:active {
             box-shadow: none!important;
         }
         &:hover {
             //background-color: @light;
-            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
+            //text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
         }
     }
 
@@ -93,6 +97,16 @@
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    
+    .prepend {
+        border-top-left-radius: var(--input-border-radius);
+        border-bottom-left-radius: var(--input-border-radius);
+    }
+    
+    .append {
+        border-top-right-radius: var(--input-border-radius);
+        border-bottom-right-radius: var(--input-border-radius);
     }
 }
 
@@ -294,5 +308,14 @@ input.input-small:-ms-input-placeholder {font-size: .8rem;}
     }
     &:hover .badge {
         display: none;
+    }
+}
+
+.label-for-input {
+    font-size: 12px;
+    text-transform: uppercase;
+    
+    &.rtl {
+        text-align: right;
     }
 }

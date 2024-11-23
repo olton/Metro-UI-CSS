@@ -8,8 +8,8 @@
 
 :root {
     --checkbox-check-color: #fff;
-    --checkbox-border-color: #191919;
-    --checkbox-checked-background: #191919;
+    --checkbox-border-color: #777777;
+    --checkbox-checked-background: #474747;
     --checkbox-focus-color: #e8e8e8;
     --checkbox-disabled-color: #e8e8e8;
 }
@@ -17,7 +17,7 @@
 .dark-side {
     --checkbox-check-color: #fff;
     --checkbox-border-color: #3c3c3c;
-    --checkbox-checked-background: #468cff;
+    --checkbox-checked-background: #3c3c3c;
     --checkbox-focus-color: #191919;
     --checkbox-disabled-color: #2c2c2c;
 }
@@ -44,7 +44,8 @@
     }
 
     .check {
-        border: 2px var(--border-color) solid;
+        border: 2px var(--checkbox-border-color) solid;
+        border-radius: 4px;
         width: 20px;
         height: 20px;
         flex-shrink: 0;
