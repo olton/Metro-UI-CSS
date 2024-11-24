@@ -2,52 +2,96 @@
 @import (once) "../include/mixins";
 
 :root {
-    --shadow-color: #d6d6d6;
+    --shadow-color-small: rgba(0, 0, 0, 0.05);
+    --shadow-color-normal: rgba(0, 0, 0, 0.1);
+    --shadow-color-medium: rgba(0, 0, 0, 0.1);
+    --shadow-color-large: rgba(0, 0, 0, 0.1);
+    --shadow-color-large-extra: rgba(0, 0, 0, 0.25);
+    --shadow-color-3d: rgba(0, 0, 0, 1);
+    --shadow-color-border1: rgba(9, 30, 66, 0.25);
+    --shadow-color-border2: rgba(9, 30, 66, 0.13);
+    --shadow-color-glow: rgba(255, 149, 5, 0.3);
+    --shadow-color-glow-soft: rgba(255, 149, 5, 0.1);
+    --shadow-color-solid-1: rgba(9, 30, 66, 0.25);
+    --shadow-color-solid-2: rgba(9, 30, 66, 0.08);
 }
 
 .dark-side {
-    --shadow-color: #1b1c1f;
+    --shadow-color-small: rgba(0, 0, 0, 0.55);
+    --shadow-color-normal: rgba(0, 0, 0, 0.75);
+    --shadow-color-medium: rgba(0, 0, 0, 0.75);
+    --shadow-color-large: rgba(0, 0, 0, 0.75);
+    --shadow-color-large-extra: rgba(0, 0, 0, 0.75);
+    --shadow-color-3d: rgb(17, 18, 21);
+    --shadow-color-border1: rgba(0, 0, 0, 0.45);
+    --shadow-color-border2: rgba(0, 0, 0, 0.25);
+    --shadow-color-glow: rgba(149, 184, 255, 0.3);
+    --shadow-color-glow-soft: rgba(149, 184, 255, 0.1);
+    --shadow-color-solid-1: rgba(0, 0, 0, 0.55);
+    --shadow-color-solid-2: rgba(0, 0, 0, 0.25);
 }
 
-.no-shadow {
-    box-shadow: none!important;
+.no-shadow-box { box-shadow: none !important;}
+.no-shadow-text { text-shadow: none !important;}
+.no-shadow { text-shadow: none !important; box-shadow: none !important;}
+
+.shadow-small {
+    box-shadow: 0 1px 2px 0 var(--shadow-color-small);
 }
 
-.no-shadow-text {
-    text-shadow: none!important;
+.shadow-normal {
+    box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
 }
 
-.simple-shadow {
-    box-shadow: 4px 4px 10px 0 var(--shadow-color);
+.shadow-medium {
+    box-shadow: 0 10px 15px -3px var(--shadow-color-medium), 0 4px 6px -4px var(--shadow-color-medium);
 }
 
-.drop-shadow {
-    box-shadow: 2px 2px 5px 0 var(--shadow-color);
+.shadow-large {
+    box-shadow: 0 20px 25px -5px var(--shadow-color-large), 0 8px 10px -6px var(--shadow-color-large);
 }
 
-.win-shadow {
-    box-shadow: 0 0 5px 0 var(--shadow-color);
+.shadow-large-extra {
+    box-shadow: 0 25px 50px -12px var(--shadow-color-large-extra);
 }
 
-.shadow-1 {.shadow(1);}
-.shadow-2 {.shadow(2);}
-.shadow-3 {.shadow(3);}
-.shadow-4 {.shadow(4);}
-.shadow-5 {.shadow(5);}
+.shadow-3d {
+    box-shadow: 8px 8px 0 var(--shadow-color-3d);
+}
 
-.shadowed {
-    box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.4)!important;
+.shadow-3d-border {
+    box-shadow: 0 0 0 2px var(--shadow-color-3d), 8px 8px 0 0 var(--shadow-color-3d);
+}
 
-    &:hover, &:focus {
-        box-shadow: 2px 2px 5px 0 rgba(0,0,0,0.8)!important;
+.shadow-border {
+    box-shadow: 0 1px 1px var(--shadow-color-border1), 0 0 1px 1px var(--shadow-color-border2);
+}
+
+.shadow-glow-soft {
+    box-shadow: 0 9px 30px var(--shadow-color-glow-soft);
+}
+
+.shadow-glow {
+    box-shadow: 0 9px 30px var(--shadow-color-glow);
+}
+
+.shadow-solid {
+    box-shadow: 0 4px 8px -2px var(--shadow-color-solid-1), 0 0 0 1px var(--shadow-color-solid-2);
+}
+
+each(@normalColors, {
+    @softColor: "light-@{value}";
+    
+    .shadow-3d-@{value} {
+        box-shadow: 8px 8px 0 @@value;
     }
-
-    &:active {
-        box-shadow: none!important;
-        transform: translate(1px, 1px);
+    .shadow-3d-border-@{value} {
+        box-shadow: 0 0 0 2px @@value, 8px 8px 0 0 @@value;
     }
-}
-
-.text-shadow {
-    text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
-}
+    .shadow-glow-@{value} {
+        box-shadow: 0 9px 30px @@value;
+    }
+    .shadow-glow-soft-@{value} {
+        box-shadow: 0 9px 30px @@softColor;
+    }
+})

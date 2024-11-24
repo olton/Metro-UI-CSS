@@ -5394,54 +5394,459 @@ ol.latin-lower {
 
 /* source/common-css/shadow.less */
 :root {
-  --shadow-color: #d6d6d6;
+  --shadow-color-small: rgba(0, 0, 0, 0.05);
+  --shadow-color-normal: rgba(0, 0, 0, 0.1);
+  --shadow-color-medium: rgba(0, 0, 0, 0.1);
+  --shadow-color-large: rgba(0, 0, 0, 0.1);
+  --shadow-color-large-extra: rgba(0, 0, 0, 0.25);
+  --shadow-color-3d: #000000;
+  --shadow-color-border1: rgba(9, 30, 66, 0.25);
+  --shadow-color-border2: rgba(9, 30, 66, 0.13);
+  --shadow-color-glow: rgba(255, 149, 5, 0.3);
+  --shadow-color-glow-soft: rgba(255, 149, 5, 0.1);
+  --shadow-color-solid-1: rgba(9, 30, 66, 0.25);
+  --shadow-color-solid-2: rgba(9, 30, 66, 0.08);
 }
 .dark-side {
-  --shadow-color: #1b1c1f;
+  --shadow-color-small: rgba(0, 0, 0, 0.55);
+  --shadow-color-normal: rgba(0, 0, 0, 0.75);
+  --shadow-color-medium: rgba(0, 0, 0, 0.75);
+  --shadow-color-large: rgba(0, 0, 0, 0.75);
+  --shadow-color-large-extra: rgba(0, 0, 0, 0.75);
+  --shadow-color-3d: #111215;
+  --shadow-color-border1: rgba(0, 0, 0, 0.45);
+  --shadow-color-border2: rgba(0, 0, 0, 0.25);
+  --shadow-color-glow: rgba(149, 184, 255, 0.3);
+  --shadow-color-glow-soft: rgba(149, 184, 255, 0.1);
+  --shadow-color-solid-1: rgba(0, 0, 0, 0.55);
+  --shadow-color-solid-2: rgba(0, 0, 0, 0.25);
 }
-.no-shadow {
+.no-shadow-box {
   box-shadow: none !important;
 }
 .no-shadow-text {
   text-shadow: none !important;
 }
-.simple-shadow {
-  box-shadow: 4px 4px 10px 0 var(--shadow-color);
-}
-.drop-shadow {
-  box-shadow: 2px 2px 5px 0 var(--shadow-color);
-}
-.win-shadow {
-  box-shadow: 0 0 5px 0 var(--shadow-color);
-}
-.shadow-1 {
-  box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.16), 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-}
-.shadow-2 {
-  box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19), 0 8px 17px 0 rgba(0, 0, 0, 0.2);
-}
-.shadow-3 {
-  box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
-}
-.shadow-4 {
-  box-shadow: 0 25px 55px 0 rgba(0, 0, 0, 0.21), 0 16px 28px 0 rgba(0, 0, 0, 0.22);
-}
-.shadow-5 {
-  box-shadow: 0 40px 77px 0 rgba(0, 0, 0, 0.22), 0 27px 24px 0 rgba(0, 0, 0, 0.2);
-}
-.shadowed {
-  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.4) !important;
-}
-.shadowed:hover,
-.shadowed:focus {
-  box-shadow: 2px 2px 5px 0 rgba(0, 0, 0, 0.8) !important;
-}
-.shadowed:active {
+.no-shadow {
+  text-shadow: none !important;
   box-shadow: none !important;
-  transform: translate(1px, 1px);
 }
-.text-shadow {
-  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+.shadow-small {
+  box-shadow: 0 1px 2px 0 var(--shadow-color-small);
+}
+.shadow-normal {
+  box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
+}
+.shadow-medium {
+  box-shadow: 0 10px 15px -3px var(--shadow-color-medium), 0 4px 6px -4px var(--shadow-color-medium);
+}
+.shadow-large {
+  box-shadow: 0 20px 25px -5px var(--shadow-color-large), 0 8px 10px -6px var(--shadow-color-large);
+}
+.shadow-large-extra {
+  box-shadow: 0 25px 50px -12px var(--shadow-color-large-extra);
+}
+.shadow-3d {
+  box-shadow: 8px 8px 0 var(--shadow-color-3d);
+}
+.shadow-3d-border {
+  box-shadow: 0 0 0 2px var(--shadow-color-3d), 8px 8px 0 0 var(--shadow-color-3d);
+}
+.shadow-border {
+  box-shadow: 0 1px 1px var(--shadow-color-border1), 0 0 1px 1px var(--shadow-color-border2);
+}
+.shadow-glow-soft {
+  box-shadow: 0 9px 30px var(--shadow-color-glow-soft);
+}
+.shadow-glow {
+  box-shadow: 0 9px 30px var(--shadow-color-glow);
+}
+.shadow-solid {
+  box-shadow: 0 4px 8px -2px var(--shadow-color-solid-1), 0 0 0 1px var(--shadow-color-solid-2);
+}
+.shadow-3d-lime {
+  box-shadow: 8px 8px 0 #AEFD6C;
+}
+.shadow-3d-border-lime {
+  box-shadow: 0 0 0 2px #AEFD6C, 8px 8px 0 0 #AEFD6C;
+}
+.shadow-glow-lime {
+  box-shadow: 0 9px 30px #AEFD6C;
+}
+.shadow-glow-soft-lime {
+  box-shadow: 0 9px 30px #f2ffe7;
+}
+.shadow-3d-green {
+  box-shadow: 8px 8px 0 #008000;
+}
+.shadow-3d-border-green {
+  box-shadow: 0 0 0 2px #008000, 8px 8px 0 0 #008000;
+}
+.shadow-glow-green {
+  box-shadow: 0 9px 30px #008000;
+}
+.shadow-glow-soft-green {
+  box-shadow: 0 9px 30px #e7f6e6;
+}
+.shadow-3d-emerald {
+  box-shadow: 8px 8px 0 #50c878;
+}
+.shadow-3d-border-emerald {
+  box-shadow: 0 0 0 2px #50c878, 8px 8px 0 0 #50c878;
+}
+.shadow-glow-emerald {
+  box-shadow: 0 9px 30px #50c878;
+}
+.shadow-glow-soft-emerald {
+  box-shadow: 0 9px 30px #d1e6cc;
+}
+.shadow-3d-blue {
+  box-shadow: 8px 8px 0 #5e87ff;
+}
+.shadow-3d-border-blue {
+  box-shadow: 0 0 0 2px #5e87ff, 8px 8px 0 0 #5e87ff;
+}
+.shadow-glow-blue {
+  box-shadow: 0 9px 30px #5e87ff;
+}
+.shadow-glow-soft-blue {
+  box-shadow: 0 9px 30px #e7eaff;
+}
+.shadow-3d-teal {
+  box-shadow: 8px 8px 0 #069494;
+}
+.shadow-3d-border-teal {
+  box-shadow: 0 0 0 2px #069494, 8px 8px 0 0 #069494;
+}
+.shadow-glow-teal {
+  box-shadow: 0 9px 30px #069494;
+}
+.shadow-glow-soft-teal {
+  box-shadow: 0 9px 30px #e1f2f3;
+}
+.shadow-3d-cyan {
+  box-shadow: 8px 8px 0 #94b6ff;
+}
+.shadow-3d-border-cyan {
+  box-shadow: 0 0 0 2px #94b6ff, 8px 8px 0 0 #94b6ff;
+}
+.shadow-glow-cyan {
+  box-shadow: 0 9px 30px #94b6ff;
+}
+.shadow-glow-soft-cyan {
+  box-shadow: 0 9px 30px #e3edff;
+}
+.shadow-3d-cobalt {
+  box-shadow: 8px 8px 0 #0047ab;
+}
+.shadow-3d-border-cobalt {
+  box-shadow: 0 0 0 2px #0047ab, 8px 8px 0 0 #0047ab;
+}
+.shadow-glow-cobalt {
+  box-shadow: 0 9px 30px #0047ab;
+}
+.shadow-glow-soft-cobalt {
+  box-shadow: 0 9px 30px #d1ecff;
+}
+.shadow-3d-indigo {
+  box-shadow: 8px 8px 0 #4b0082;
+}
+.shadow-3d-border-indigo {
+  box-shadow: 0 0 0 2px #4b0082, 8px 8px 0 0 #4b0082;
+}
+.shadow-glow-indigo {
+  box-shadow: 0 9px 30px #4b0082;
+}
+.shadow-glow-soft-indigo {
+  box-shadow: 0 9px 30px #f3e4f3;
+}
+.shadow-3d-violet {
+  box-shadow: 8px 8px 0 #ee82ee;
+}
+.shadow-3d-border-violet {
+  box-shadow: 0 0 0 2px #ee82ee, 8px 8px 0 0 #ee82ee;
+}
+.shadow-glow-violet {
+  box-shadow: 0 9px 30px #ee82ee;
+}
+.shadow-glow-soft-violet {
+  box-shadow: 0 9px 30px #fce2fb;
+}
+.shadow-3d-pink {
+  box-shadow: 8px 8px 0 #ffc0cb;
+}
+.shadow-3d-border-pink {
+  box-shadow: 0 0 0 2px #ffc0cb, 8px 8px 0 0 #ffc0cb;
+}
+.shadow-glow-pink {
+  box-shadow: 0 9px 30px #ffc0cb;
+}
+.shadow-glow-soft-pink {
+  box-shadow: 0 9px 30px #ffeef1;
+}
+.shadow-3d-magenta {
+  box-shadow: 8px 8px 0 #ff00ff;
+}
+.shadow-3d-border-magenta {
+  box-shadow: 0 0 0 2px #ff00ff, 8px 8px 0 0 #ff00ff;
+}
+.shadow-glow-magenta {
+  box-shadow: 0 9px 30px #ff00ff;
+}
+.shadow-glow-soft-magenta {
+  box-shadow: 0 9px 30px #ffe2ff;
+}
+.shadow-3d-crimson {
+  box-shadow: 8px 8px 0 #dc143c;
+}
+.shadow-3d-border-crimson {
+  box-shadow: 0 0 0 2px #dc143c, 8px 8px 0 0 #dc143c;
+}
+.shadow-glow-crimson {
+  box-shadow: 0 9px 30px #dc143c;
+}
+.shadow-glow-soft-crimson {
+  box-shadow: 0 9px 30px #ffd1da;
+}
+.shadow-3d-red {
+  box-shadow: 8px 8px 0 #ff0000;
+}
+.shadow-3d-border-red {
+  box-shadow: 0 0 0 2px #ff0000, 8px 8px 0 0 #ff0000;
+}
+.shadow-glow-red {
+  box-shadow: 0 9px 30px #ff0000;
+}
+.shadow-glow-soft-red {
+  box-shadow: 0 9px 30px #ffe1e1;
+}
+.shadow-3d-orange {
+  box-shadow: 8px 8px 0 #ffa500;
+}
+.shadow-3d-border-orange {
+  box-shadow: 0 0 0 2px #ffa500, 8px 8px 0 0 #ffa500;
+}
+.shadow-glow-orange {
+  box-shadow: 0 9px 30px #ffa500;
+}
+.shadow-glow-soft-orange {
+  box-shadow: 0 9px 30px #fff3de;
+}
+.shadow-3d-amber {
+  box-shadow: 8px 8px 0 #ffbf00;
+}
+.shadow-3d-border-amber {
+  box-shadow: 0 0 0 2px #ffbf00, 8px 8px 0 0 #ffbf00;
+}
+.shadow-glow-amber {
+  box-shadow: 0 9px 30px #ffbf00;
+}
+.shadow-glow-soft-amber {
+  box-shadow: 0 9px 30px #fff8e1;
+}
+.shadow-3d-yellow {
+  box-shadow: 8px 8px 0 #ffff00;
+}
+.shadow-3d-border-yellow {
+  box-shadow: 0 0 0 2px #ffff00, 8px 8px 0 0 #ffff00;
+}
+.shadow-glow-yellow {
+  box-shadow: 0 9px 30px #ffff00;
+}
+.shadow-glow-soft-yellow {
+  box-shadow: 0 9px 30px #ffffe6;
+}
+.shadow-3d-brown {
+  box-shadow: 8px 8px 0 #895129;
+}
+.shadow-3d-border-brown {
+  box-shadow: 0 0 0 2px #895129, 8px 8px 0 0 #895129;
+}
+.shadow-glow-brown {
+  box-shadow: 0 9px 30px #895129;
+}
+.shadow-glow-soft-brown {
+  box-shadow: 0 9px 30px #ffeed9;
+}
+.shadow-3d-olive {
+  box-shadow: 8px 8px 0 #808000;
+}
+.shadow-3d-border-olive {
+  box-shadow: 0 0 0 2px #808000, 8px 8px 0 0 #808000;
+}
+.shadow-glow-olive {
+  box-shadow: 0 9px 30px #808000;
+}
+.shadow-glow-soft-olive {
+  box-shadow: 0 9px 30px #f8fde7;
+}
+.shadow-3d-steel {
+  box-shadow: 8px 8px 0 #647687;
+}
+.shadow-3d-border-steel {
+  box-shadow: 0 0 0 2px #647687, 8px 8px 0 0 #647687;
+}
+.shadow-glow-steel {
+  box-shadow: 0 9px 30px #647687;
+}
+.shadow-glow-soft-steel {
+  box-shadow: 0 9px 30px #edeeee;
+}
+.shadow-3d-mauve {
+  box-shadow: 8px 8px 0 #e0afff;
+}
+.shadow-3d-border-mauve {
+  box-shadow: 0 0 0 2px #e0afff, 8px 8px 0 0 #e0afff;
+}
+.shadow-glow-mauve {
+  box-shadow: 0 9px 30px #e0afff;
+}
+.shadow-glow-soft-mauve {
+  box-shadow: 0 9px 30px #f7ecfe;
+}
+.shadow-3d-taupe {
+  box-shadow: 8px 8px 0 #54463a;
+}
+.shadow-3d-border-taupe {
+  box-shadow: 0 0 0 2px #54463a, 8px 8px 0 0 #54463a;
+}
+.shadow-glow-taupe {
+  box-shadow: 0 9px 30px #54463a;
+}
+.shadow-glow-soft-taupe {
+  box-shadow: 0 9px 30px #eadccf;
+}
+.shadow-3d-champagne {
+  box-shadow: 8px 8px 0 #f7e6ca;
+}
+.shadow-3d-border-champagne {
+  box-shadow: 0 0 0 2px #f7e6ca, 8px 8px 0 0 #f7e6ca;
+}
+.shadow-glow-champagne {
+  box-shadow: 0 9px 30px #f7e6ca;
+}
+.shadow-glow-soft-champagne {
+  box-shadow: 0 9px 30px #fffdf7;
+}
+.shadow-3d-khaki {
+  box-shadow: 8px 8px 0 #d5c58a;
+}
+.shadow-3d-border-khaki {
+  box-shadow: 0 0 0 2px #d5c58a, 8px 8px 0 0 #d5c58a;
+}
+.shadow-glow-khaki {
+  box-shadow: 0 9px 30px #d5c58a;
+}
+.shadow-glow-soft-khaki {
+  box-shadow: 0 9px 30px #f6f1dd;
+}
+.shadow-3d-charcoal {
+  box-shadow: 8px 8px 0 #4a4a4a;
+}
+.shadow-3d-border-charcoal {
+  box-shadow: 0 0 0 2px #4a4a4a, 8px 8px 0 0 #4a4a4a;
+}
+.shadow-glow-charcoal {
+  box-shadow: 0 9px 30px #4a4a4a;
+}
+.shadow-glow-soft-charcoal {
+  box-shadow: 0 9px 30px #e8e8e8;
+}
+.shadow-3d-bronze {
+  box-shadow: 8px 8px 0 #d47e30;
+}
+.shadow-3d-border-bronze {
+  box-shadow: 0 0 0 2px #d47e30, 8px 8px 0 0 #d47e30;
+}
+.shadow-glow-bronze {
+  box-shadow: 0 9px 30px #d47e30;
+}
+.shadow-glow-soft-bronze {
+  box-shadow: 0 9px 30px #f7f5c8;
+}
+.shadow-3d-windstorm {
+  box-shadow: 8px 8px 0 #678dc6;
+}
+.shadow-3d-border-windstorm {
+  box-shadow: 0 0 0 2px #678dc6, 8px 8px 0 0 #678dc6;
+}
+.shadow-glow-windstorm {
+  box-shadow: 0 9px 30px #678dc6;
+}
+.shadow-glow-soft-windstorm {
+  box-shadow: 0 9px 30px #e6ebf5;
+}
+.shadow-3d-nude {
+  box-shadow: 8px 8px 0 #f7d9bc;
+}
+.shadow-3d-border-nude {
+  box-shadow: 0 0 0 2px #f7d9bc, 8px 8px 0 0 #f7d9bc;
+}
+.shadow-glow-nude {
+  box-shadow: 0 9px 30px #f7d9bc;
+}
+.shadow-glow-soft-nude {
+  box-shadow: 0 9px 30px #fcf0e4;
+}
+.shadow-3d-terracotta {
+  box-shadow: 8px 8px 0 #e35336;
+}
+.shadow-3d-border-terracotta {
+  box-shadow: 0 0 0 2px #e35336, 8px 8px 0 0 #e35336;
+}
+.shadow-glow-terracotta {
+  box-shadow: 0 9px 30px #e35336;
+}
+.shadow-glow-soft-terracotta {
+  box-shadow: 0 9px 30px #fdebed;
+}
+.shadow-3d-coral {
+  box-shadow: 8px 8px 0 #ff8559;
+}
+.shadow-3d-border-coral {
+  box-shadow: 0 0 0 2px #ff8559, 8px 8px 0 0 #ff8559;
+}
+.shadow-glow-coral {
+  box-shadow: 0 9px 30px #ff8559;
+}
+.shadow-glow-soft-coral {
+  box-shadow: 0 9px 30px #ffd8c8;
+}
+.shadow-3d-army {
+  box-shadow: 8px 8px 0 #5d6532;
+}
+.shadow-3d-border-army {
+  box-shadow: 0 0 0 2px #5d6532, 8px 8px 0 0 #5d6532;
+}
+.shadow-glow-army {
+  box-shadow: 0 9px 30px #5d6532;
+}
+.shadow-glow-soft-army {
+  box-shadow: 0 9px 30px #eceacb;
+}
+.shadow-3d-seashell {
+  box-shadow: 8px 8px 0 #fff1e7;
+}
+.shadow-3d-border-seashell {
+  box-shadow: 0 0 0 2px #fff1e7, 8px 8px 0 0 #fff1e7;
+}
+.shadow-glow-seashell {
+  box-shadow: 0 9px 30px #fff1e7;
+}
+.shadow-glow-soft-seashell {
+  box-shadow: 0 9px 30px #fff9f8;
+}
+.shadow-3d-sand {
+  box-shadow: 8px 8px 0 #cbbd93;
+}
+.shadow-3d-border-sand {
+  box-shadow: 0 0 0 2px #cbbd93, 8px 8px 0 0 #cbbd93;
+}
+.shadow-glow-sand {
+  box-shadow: 0 9px 30px #cbbd93;
+}
+.shadow-glow-soft-sand {
+  box-shadow: 0 9px 30px #f8f3e0;
 }
 
 /* source/common-css/sizing.less */
