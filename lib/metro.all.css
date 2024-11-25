@@ -5402,10 +5402,9 @@ ol.latin-lower {
   --shadow-color-3d: #000000;
   --shadow-color-border1: rgba(9, 30, 66, 0.25);
   --shadow-color-border2: rgba(9, 30, 66, 0.13);
-  --shadow-color-glow: rgba(255, 149, 5, 0.3);
-  --shadow-color-glow-soft: rgba(255, 149, 5, 0.1);
   --shadow-color-solid-1: rgba(9, 30, 66, 0.25);
   --shadow-color-solid-2: rgba(9, 30, 66, 0.08);
+  --shadow-color-text: #2e2e2e;
 }
 .dark-side {
   --shadow-color-small: rgba(0, 0, 0, 0.55);
@@ -5416,10 +5415,9 @@ ol.latin-lower {
   --shadow-color-3d: #111215;
   --shadow-color-border1: rgba(0, 0, 0, 0.45);
   --shadow-color-border2: rgba(0, 0, 0, 0.25);
-  --shadow-color-glow: rgba(149, 184, 255, 0.3);
-  --shadow-color-glow-soft: rgba(149, 184, 255, 0.1);
   --shadow-color-solid-1: rgba(0, 0, 0, 0.55);
   --shadow-color-solid-2: rgba(0, 0, 0, 0.25);
+  --shadow-color-text: rgba(0, 0, 0, 0.55);
 }
 .no-shadow-box {
   box-shadow: none !important;
@@ -5454,12 +5452,6 @@ ol.latin-lower {
 }
 .shadow-border {
   box-shadow: 0 1px 1px var(--shadow-color-border1), 0 0 1px 1px var(--shadow-color-border2);
-}
-.shadow-glow-soft {
-  box-shadow: 0 9px 30px var(--shadow-color-glow-soft);
-}
-.shadow-glow {
-  box-shadow: 0 9px 30px var(--shadow-color-glow);
 }
 .shadow-solid {
   box-shadow: 0 4px 8px -2px var(--shadow-color-solid-1), 0 0 0 1px var(--shadow-color-solid-2);
@@ -5847,6 +5839,313 @@ ol.latin-lower {
 }
 .shadow-glow-soft-sand {
   box-shadow: 0 9px 30px #f8f3e0;
+}
+.text-shadow {
+  text-shadow: 1px 2px 2px rgba(0, 0, 0, 0.5);
+}
+.text-shadow-hard {
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.text-shadow-heavy {
+  text-shadow:
+    0 4px 3px rgba(0, 0, 0, 0.4),
+    0 8px 13px rgba(0, 0, 0, 0.1),
+    0 18px 23px rgba(0, 0, 0, 0.1);
+}
+.text-shadow-3d {
+  text-shadow:
+    0 3px 0 #a6a6a6,
+    0px 1px 0 #a6a6a6,
+    0px 2px 0 #a6a6a6,
+    2px 14px 10px rgba(0, 0, 0, 0.15);
+}
+.text-shadow-lime {
+  text-shadow: 1px 1px 3px #AEFD6C;
+}
+.text-shadow-strong-lime {
+  text-shadow: 2px 2px 0 #AEFD6C;
+}
+.text-shadow-glow-lime {
+  text-shadow: 0 0 10px #AEFD6C;
+}
+.text-shadow-green {
+  text-shadow: 1px 1px 3px #008000;
+}
+.text-shadow-strong-green {
+  text-shadow: 2px 2px 0 #008000;
+}
+.text-shadow-glow-green {
+  text-shadow: 0 0 10px #008000;
+}
+.text-shadow-emerald {
+  text-shadow: 1px 1px 3px #50c878;
+}
+.text-shadow-strong-emerald {
+  text-shadow: 2px 2px 0 #50c878;
+}
+.text-shadow-glow-emerald {
+  text-shadow: 0 0 10px #50c878;
+}
+.text-shadow-blue {
+  text-shadow: 1px 1px 3px #5e87ff;
+}
+.text-shadow-strong-blue {
+  text-shadow: 2px 2px 0 #5e87ff;
+}
+.text-shadow-glow-blue {
+  text-shadow: 0 0 10px #5e87ff;
+}
+.text-shadow-teal {
+  text-shadow: 1px 1px 3px #069494;
+}
+.text-shadow-strong-teal {
+  text-shadow: 2px 2px 0 #069494;
+}
+.text-shadow-glow-teal {
+  text-shadow: 0 0 10px #069494;
+}
+.text-shadow-cyan {
+  text-shadow: 1px 1px 3px #94b6ff;
+}
+.text-shadow-strong-cyan {
+  text-shadow: 2px 2px 0 #94b6ff;
+}
+.text-shadow-glow-cyan {
+  text-shadow: 0 0 10px #94b6ff;
+}
+.text-shadow-cobalt {
+  text-shadow: 1px 1px 3px #0047ab;
+}
+.text-shadow-strong-cobalt {
+  text-shadow: 2px 2px 0 #0047ab;
+}
+.text-shadow-glow-cobalt {
+  text-shadow: 0 0 10px #0047ab;
+}
+.text-shadow-indigo {
+  text-shadow: 1px 1px 3px #4b0082;
+}
+.text-shadow-strong-indigo {
+  text-shadow: 2px 2px 0 #4b0082;
+}
+.text-shadow-glow-indigo {
+  text-shadow: 0 0 10px #4b0082;
+}
+.text-shadow-violet {
+  text-shadow: 1px 1px 3px #ee82ee;
+}
+.text-shadow-strong-violet {
+  text-shadow: 2px 2px 0 #ee82ee;
+}
+.text-shadow-glow-violet {
+  text-shadow: 0 0 10px #ee82ee;
+}
+.text-shadow-pink {
+  text-shadow: 1px 1px 3px #ffc0cb;
+}
+.text-shadow-strong-pink {
+  text-shadow: 2px 2px 0 #ffc0cb;
+}
+.text-shadow-glow-pink {
+  text-shadow: 0 0 10px #ffc0cb;
+}
+.text-shadow-magenta {
+  text-shadow: 1px 1px 3px #ff00ff;
+}
+.text-shadow-strong-magenta {
+  text-shadow: 2px 2px 0 #ff00ff;
+}
+.text-shadow-glow-magenta {
+  text-shadow: 0 0 10px #ff00ff;
+}
+.text-shadow-crimson {
+  text-shadow: 1px 1px 3px #dc143c;
+}
+.text-shadow-strong-crimson {
+  text-shadow: 2px 2px 0 #dc143c;
+}
+.text-shadow-glow-crimson {
+  text-shadow: 0 0 10px #dc143c;
+}
+.text-shadow-red {
+  text-shadow: 1px 1px 3px #ff0000;
+}
+.text-shadow-strong-red {
+  text-shadow: 2px 2px 0 #ff0000;
+}
+.text-shadow-glow-red {
+  text-shadow: 0 0 10px #ff0000;
+}
+.text-shadow-orange {
+  text-shadow: 1px 1px 3px #ffa500;
+}
+.text-shadow-strong-orange {
+  text-shadow: 2px 2px 0 #ffa500;
+}
+.text-shadow-glow-orange {
+  text-shadow: 0 0 10px #ffa500;
+}
+.text-shadow-amber {
+  text-shadow: 1px 1px 3px #ffbf00;
+}
+.text-shadow-strong-amber {
+  text-shadow: 2px 2px 0 #ffbf00;
+}
+.text-shadow-glow-amber {
+  text-shadow: 0 0 10px #ffbf00;
+}
+.text-shadow-yellow {
+  text-shadow: 1px 1px 3px #ffff00;
+}
+.text-shadow-strong-yellow {
+  text-shadow: 2px 2px 0 #ffff00;
+}
+.text-shadow-glow-yellow {
+  text-shadow: 0 0 10px #ffff00;
+}
+.text-shadow-brown {
+  text-shadow: 1px 1px 3px #895129;
+}
+.text-shadow-strong-brown {
+  text-shadow: 2px 2px 0 #895129;
+}
+.text-shadow-glow-brown {
+  text-shadow: 0 0 10px #895129;
+}
+.text-shadow-olive {
+  text-shadow: 1px 1px 3px #808000;
+}
+.text-shadow-strong-olive {
+  text-shadow: 2px 2px 0 #808000;
+}
+.text-shadow-glow-olive {
+  text-shadow: 0 0 10px #808000;
+}
+.text-shadow-steel {
+  text-shadow: 1px 1px 3px #647687;
+}
+.text-shadow-strong-steel {
+  text-shadow: 2px 2px 0 #647687;
+}
+.text-shadow-glow-steel {
+  text-shadow: 0 0 10px #647687;
+}
+.text-shadow-mauve {
+  text-shadow: 1px 1px 3px #e0afff;
+}
+.text-shadow-strong-mauve {
+  text-shadow: 2px 2px 0 #e0afff;
+}
+.text-shadow-glow-mauve {
+  text-shadow: 0 0 10px #e0afff;
+}
+.text-shadow-taupe {
+  text-shadow: 1px 1px 3px #54463a;
+}
+.text-shadow-strong-taupe {
+  text-shadow: 2px 2px 0 #54463a;
+}
+.text-shadow-glow-taupe {
+  text-shadow: 0 0 10px #54463a;
+}
+.text-shadow-champagne {
+  text-shadow: 1px 1px 3px #f7e6ca;
+}
+.text-shadow-strong-champagne {
+  text-shadow: 2px 2px 0 #f7e6ca;
+}
+.text-shadow-glow-champagne {
+  text-shadow: 0 0 10px #f7e6ca;
+}
+.text-shadow-khaki {
+  text-shadow: 1px 1px 3px #d5c58a;
+}
+.text-shadow-strong-khaki {
+  text-shadow: 2px 2px 0 #d5c58a;
+}
+.text-shadow-glow-khaki {
+  text-shadow: 0 0 10px #d5c58a;
+}
+.text-shadow-charcoal {
+  text-shadow: 1px 1px 3px #4a4a4a;
+}
+.text-shadow-strong-charcoal {
+  text-shadow: 2px 2px 0 #4a4a4a;
+}
+.text-shadow-glow-charcoal {
+  text-shadow: 0 0 10px #4a4a4a;
+}
+.text-shadow-bronze {
+  text-shadow: 1px 1px 3px #d47e30;
+}
+.text-shadow-strong-bronze {
+  text-shadow: 2px 2px 0 #d47e30;
+}
+.text-shadow-glow-bronze {
+  text-shadow: 0 0 10px #d47e30;
+}
+.text-shadow-windstorm {
+  text-shadow: 1px 1px 3px #678dc6;
+}
+.text-shadow-strong-windstorm {
+  text-shadow: 2px 2px 0 #678dc6;
+}
+.text-shadow-glow-windstorm {
+  text-shadow: 0 0 10px #678dc6;
+}
+.text-shadow-nude {
+  text-shadow: 1px 1px 3px #f7d9bc;
+}
+.text-shadow-strong-nude {
+  text-shadow: 2px 2px 0 #f7d9bc;
+}
+.text-shadow-glow-nude {
+  text-shadow: 0 0 10px #f7d9bc;
+}
+.text-shadow-terracotta {
+  text-shadow: 1px 1px 3px #e35336;
+}
+.text-shadow-strong-terracotta {
+  text-shadow: 2px 2px 0 #e35336;
+}
+.text-shadow-glow-terracotta {
+  text-shadow: 0 0 10px #e35336;
+}
+.text-shadow-coral {
+  text-shadow: 1px 1px 3px #ff8559;
+}
+.text-shadow-strong-coral {
+  text-shadow: 2px 2px 0 #ff8559;
+}
+.text-shadow-glow-coral {
+  text-shadow: 0 0 10px #ff8559;
+}
+.text-shadow-army {
+  text-shadow: 1px 1px 3px #5d6532;
+}
+.text-shadow-strong-army {
+  text-shadow: 2px 2px 0 #5d6532;
+}
+.text-shadow-glow-army {
+  text-shadow: 0 0 10px #5d6532;
+}
+.text-shadow-seashell {
+  text-shadow: 1px 1px 3px #fff1e7;
+}
+.text-shadow-strong-seashell {
+  text-shadow: 2px 2px 0 #fff1e7;
+}
+.text-shadow-glow-seashell {
+  text-shadow: 0 0 10px #fff1e7;
+}
+.text-shadow-sand {
+  text-shadow: 1px 1px 3px #cbbd93;
+}
+.text-shadow-strong-sand {
+  text-shadow: 2px 2px 0 #cbbd93;
+}
+.text-shadow-glow-sand {
+  text-shadow: 0 0 10px #cbbd93;
 }
 
 /* source/common-css/sizing.less */

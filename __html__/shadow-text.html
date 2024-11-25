@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../lib/metro.css" rel="stylesheet">
 
-    <title>Test Shadow - Metro UI :: Popular HTML, CSS and JS library</title>
+    <title>Text Shadow - Metro UI :: Popular HTML, CSS and JS library</title>
     <style>
         body {
             padding-top: 50px;
+            background: #fafafa;
         }
         .box {
-            width: 200px;
+            width: 280px;
             height: 100px;
             background: white;
             margin: 10px;
@@ -20,11 +21,15 @@
             align-items: center;
             justify-content: center;
             border: none;
+            font-size: 40px;
+            font-weight: bold;
+            color: #4a4a4a;
         }
         
         .dark-side {
             .box {
                 background: #404249;
+                color: #e8e8e8;
             }
         }
     </style>
@@ -41,8 +46,8 @@
 
     <div id="light" class="d-flex flex-wrap p-10" style="background: #fafafa"></div>
     <div id="dark" class="d-flex flex-wrap dark-side p-10" style="background: var(--default-background)"></div>
-    <div class="d-flex flex-wrap p-10" id="_3d" style="background: #fafafa"></div>
-    <div class="d-flex flex-wrap p-10" id="_3d-border" style="background: #fafafa"></div>
+    <div class="d-flex flex-wrap p-10" id="color" style="background: #fafafa"></div>
+    <div class="d-flex flex-wrap p-10" id="strong" style="background: #fafafa"></div>
     <div class="d-flex flex-wrap p-10" id="glow" style="background: #fafafa"></div>
     <div class="d-flex flex-wrap p-10" id="glow-soft" style="background: #fafafa"></div>
 </div>
@@ -50,7 +55,7 @@
 <script src="../lib/metro.js"></script>
 <script>
     const shadows = [
-        "small", "normal", "medium", "large", "large-extra", "3d", "3d-border", "border", "solid"
+        "text-shadow", "text-shadow-hard", "text-shadow-heavy", "text-shadow-3d"
     ]
     
     const colors = [
@@ -60,15 +65,15 @@
     ];
     
     for (let s of shadows) {
-        $("#light").append(`<div class="box shadow-${s}">.shadow-${s}</div>`)
-        $("#dark").append(`<div class="box shadow-${s}">.shadow-${s}</div>`)
+        $("#light").append(`<div class="box"><span class="${s}">Example</span></div>`)
+        $("#dark").append(`<div class="box"><span class="${s}">Example</span></div>`)
     }
     
     for (let c of colors) {
-        $("#_3d").append(`<div class="box shadow-3d-${c}">.shadow-3d-${c}</div>`)
-        $("#_3d-border").append(`<div class="box shadow-3d-border-${c}">.shadow-3d-border-${c}</div>`)
-        $("#glow").append(`<div class="box shadow-glow-${c}">.shadow-glow-${c}</div>`)
-        $("#glow-soft").append(`<div class="box shadow-glow-soft-${c}">.shadow-glow-soft-${c}</div>`)
+        $("#color").append(`<div class="box"><span class="fg-white text-shadow-${c}">Example</span></div>`)
+        $("#strong").append(`<div class="box"><span class="fg-light-${c} text-shadow-strong-${c}">Example</span></div>`)
+        $("#glow").append(`<div class="box"><span class="fg-white text-shadow-glow-${c}">Example</span></div>`)
+        // $("#glow-soft").append(`<div class="box shadow-glow-soft-${c}">.shadow-glow-soft-${c}</div>`)
     }
 </script>
 </body>
