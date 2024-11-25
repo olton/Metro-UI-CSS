@@ -620,7 +620,7 @@
                 var button = $("<button>")
                     .attr("type", "button")
                     .addClass("button " + this + " " + o["cls" + Str.capitalize(this) + "Button"])
-                    .html(strings[`button_${this}`])
+                    .html(strings[`label_${this}`])
                     .appendTo(footer);
                 if (this === "cancel" || this === "done") {
                     button.addClass("js-dialog-close");

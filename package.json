@@ -34,8 +34,8 @@
     "build": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=production node build.js",
     "dev": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=development node build.js",
     "watch": "npm run clean && cross-env NODE_NO_WARNINGS=1 MODE=development node watch.js",
-    "deploy": "npm run build && node ./deploy.js",
-    "deploy:dev": "npm run dev && node ./deploy-dev.js",
+    "dep:prod": "npm run build && node ./deploy.js",
+    "dep": "npm run dev && node ./deploy-dev.js",
     "pub": "npm publish --access public",
     "test": "easytest --include='__tests__/*.test.js' --skip='gravatar,touch,sidebar,list.html,audio-player'",
     "test:abc": "easytest --include='abc/accordion.test.js' --coverage --verbose --dom --errors"

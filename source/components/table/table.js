@@ -535,9 +535,9 @@
             this._createInspectorItems(tbody);
 
             actions = $("<div class='table-inspector-actions'>").appendTo(inspector);
-            $("<button class='button primary js-table-inspector-save' type='button'>").html(strings.button_save).appendTo(actions);
-            $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(strings.button_reset).appendTo(actions);
-            $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(strings.button_cancel).appendTo(actions);
+            $("<button class='button primary js-table-inspector-save' type='button'>").html(strings.label_save).appendTo(actions);
+            $("<button class='button secondary js-table-inspector-reset ml-2 mr-2' type='button'>").html(strings.label_reset).appendTo(actions);
+            $("<button class='button link js-table-inspector-cancel place-right' type='button'>").html(strings.label_cancel).appendTo(actions);
 
             inspector.data("open", false);
             this.inspector = inspector;

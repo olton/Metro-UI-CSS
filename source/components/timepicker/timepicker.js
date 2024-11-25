@@ -26,8 +26,8 @@
         clsButton: "",
         clsOkButton: "",
         clsCancelButton: "",
-        okButtonIcon: "<span class='default-icon-check'></span>",
-        cancelButtonIcon: "<span class='default-icon-cross'></span>",
+        okButtonIcon: "✓",
+        cancelButtonIcon: "𐄂",
         onSet: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
@@ -135,10 +135,16 @@
                 strings = this.strings;
             var picker, hours, minutes, seconds, i;
             var timeWrapper, selectWrapper, selectBlock, actionBlock;
-
+            
+            var id = Utils.elementId("timepicker");
+            
             picker = $("<div>")
                 .addClass("wheel-picker time-picker " + element[0].className)
                 .addClass(o.clsPicker);
+
+            if (!picker.attr("id")) {
+                picker.attr("id", id);
+            }
 
             picker.insertBefore(element);
             element.attr("readonly", true).appendTo(picker);
@@ -220,17 +226,24 @@
             actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
             $("<button>")
                 .attr("type", "button")
+                .addClass("button action-now")
+                .addClass(o.clsButton)
+                .addClass(o.clsTodayButton)
+                .html(`<span class="caption">${this.strings.label_now}</span>`)
+                .appendTo(actionBlock);
+            $("<button>")
+                .attr("type", "button")
                 .addClass("button action-ok")
                 .addClass(o.clsButton)
                 .addClass(o.clsOkButton)
-                .html(o.okButtonIcon)
+                .html(`<span class="icon">${o.okButtonIcon}</span>`)
                 .appendTo(actionBlock);
             $("<button>")
                 .attr("type", "button")
                 .addClass("button action-cancel")
                 .addClass(o.clsButton)
                 .addClass(o.clsCancelButton)
-                .html(o.cancelButtonIcon)
+                .html(`<span class="icon">${o.cancelButtonIcon}</span>`)
                 .appendTo(actionBlock);
 
             element[0].className = "";
@@ -256,7 +269,7 @@
                 o = this.options;
             var picker = this.picker;
 
-            picker.on(Metro.events.start, ".select-block ul", function (e) {
+            picker.on("touchstart", ".select-block ul", function (e) {
                 if (e.changedTouches) {
                     return;
                 }
@@ -265,7 +278,7 @@
                 var pageY = Utils.pageXY(e).y;
 
                 $(document).on(
-                    Metro.events.move,
+                    "touchmove",
                     function (e) {
                         target.scrollTop -= o.scrollSpeed * (pageY > Utils.pageXY(e).y ? -1 : 1);
 
@@ -275,7 +288,7 @@
                 );
 
                 $(document).on(
-                    Metro.events.stop,
+                    "touchend",
                     function () {
                         $(document).off(Metro.events.move, { ns: that.id });
                         $(document).off(Metro.events.stop, { ns: that.id });
@@ -317,45 +330,66 @@
                 var part = this,
                     list = picker.find(".sel-" + part);
 
-                list.on("scroll", function () {
-                    if (!that.isOpen) {
-                        return;
+                const scrollFn = Hooks.useDebounce(function (e) {
+                    var target, targetElement, scrollTop;
+
+                    that.listTimer[part] = null;
+
+                    target = Math.round(Math.ceil(list.scrollTop()) / 40);
+
+                    if (part === "hours" && o.hoursStep) {
+                        target *= parseInt(o.hoursStep);
+                    }
+                    if (part === "minutes" && o.minutesStep) {
+                        target *= parseInt(o.minutesStep);
+                    }
+                    if (part === "seconds" && o.secondsStep) {
+                        target *= parseInt(o.secondsStep);
                     }
 
-                    if (that.listTimer[part]) {
-                        clearTimeout(that.listTimer[part]);
-                        that.listTimer[part] = null;
-                    }
+                    targetElement = list.find(".js-" + part + "-" + target);
+                    scrollTop = targetElement.position().top - o.distance * 40;
 
-                    if (!that.listTimer[part])
-                        that.listTimer[part] = setTimeout(function () {
-                            var target, targetElement, scrollTop;
+                    list.find(".active").removeClass("active");
 
-                            that.listTimer[part] = null;
-
-                            target = Math.round(Math.ceil(list.scrollTop()) / 40);
-
-                            if (part === "hours" && o.hoursStep) {
-                                target *= parseInt(o.hoursStep);
-                            }
-                            if (part === "minutes" && o.minutesStep) {
-                                target *= parseInt(o.minutesStep);
-                            }
-                            if (part === "seconds" && o.secondsStep) {
-                                target *= parseInt(o.secondsStep);
-                            }
-
-                            targetElement = list.find(".js-" + part + "-" + target);
-                            scrollTop = targetElement.position().top - o.distance * 40;
-
-                            list.find(".active").removeClass("active");
-
-                            list[0].scrollTop = scrollTop;
-                            targetElement.addClass("active");
-                            Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
-                        }, scrollLatency);
-                });
+                    list[0].scrollTop = scrollTop;
+                    targetElement.addClass("active");
+                    Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
+                }, scrollLatency);
+                
+                list.on("scroll", scrollFn);
             });
+
+            picker.on(Metro.events.click, "ul li", function (e) {
+                const target = $(this)
+                const list = target.closest("ul")
+                const scrollTop = target.position().top - o.distance * 40;
+                list.find(".active").removeClass("active");
+                $.animate({
+                    el: list[0],
+                    draw: {
+                        scrollTop
+                    },
+                    dur: 300,
+                })
+                list[0].scrollTop = scrollTop;
+                target.addClass("active");
+                Utils.exec(o.onScroll, [target, list, picker], list[0]);
+            })
+
+            picker.on(Metro.events.click, ".action-now", function (e) {
+                const now = datetime()
+                const hour = now.hour()
+                const minute = now.minute()
+                const second = now.second()
+
+                picker.find(`.sel-hours li.js-hours-${hour}`).click();
+                picker.find(`.sel-minutes li.js-minutes-${minute}`).click();
+                picker.find(`.sel-seconds li.js-seconds-${second}`).click();
+
+                e.preventDefault();
+                e.stopPropagation();
+            })
         },
 
         _set: function () {

@@ -25,6 +25,7 @@
     --select-tag-color: #191919;
     --select-tag-button-background: #f6f7f8;
     --select-tag-button-color: #191919;
+    --select-border-radius: 4px;
 }
 
 .dark-side {
@@ -63,6 +64,7 @@
     position: relative;
     margin: 0;
     user-select: none;
+    border-radius: var(--select-border-radius);
 
     &:hover, &.focused {
         .button {

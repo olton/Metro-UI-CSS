@@ -253,7 +253,7 @@
                 $("<button>")
                     .addClass("button add-button")
                     .addClass(o.clsUserColorButton)
-                    .html("<span class='user-swatch'></span><span>" + (o.addUserColorTitle || strings["button_add_user_color"]) + "</span>"),
+                    .html("<span class='user-swatch'></span><span>" + (o.addUserColorTitle || strings["label_add_user_color"]) + "</span>"),
             );
 
             inputs = colorBox.find("input[type=text]");

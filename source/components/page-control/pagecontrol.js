@@ -568,14 +568,14 @@
                 `,
                 actions: [
                     {
-                        caption: that.strings.button_ok,
+                        caption: that.strings.label_ok,
                         cls: "js-dialog-close info",
                         onclick: function (dlg) {
                             that.setupTab(tab, "caption", dlg.find("input").val());
                         },
                     },
                     {
-                        caption: that.strings.button_cancel,
+                        caption: that.strings.label_cancel,
                         cls: "js-dialog-close",
                     },
                 ],

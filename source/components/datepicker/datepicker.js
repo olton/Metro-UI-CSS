@@ -32,8 +32,8 @@
         clsButton: "",
         clsOkButton: "",
         clsCancelButton: "",
-        okButtonIcon: "<span class='default-icon-check'></span>",
-        cancelButtonIcon: "<span class='default-icon-cross'></span>",
+        okButtonIcon: "✓",
+        cancelButtonIcon: "𐄂",
         onSet: Metro.noop,
         onOpen: Metro.noop,
         onClose: Metro.noop,
@@ -110,10 +110,13 @@
             var id = Utils.elementId("datepicker");
 
             picker = $("<div>")
-                .attr("id", id)
                 .addClass("wheel-picker date-picker " + element[0].className)
                 .addClass(o.clsPicker);
 
+            if (!picker.attr("id")) {
+                picker.attr("id", id);
+            }
+            
             picker.insertBefore(element);
             element.appendTo(picker);
 
@@ -188,17 +191,24 @@
             actionBlock = $("<div>").addClass("action-block").appendTo(selectWrapper);
             $("<button>")
                 .attr("type", "button")
+                .addClass("button action-today")
+                .addClass(o.clsButton)
+                .addClass(o.clsTodayButton)
+                .html(`<span class="caption">${this.strings.label_today}</span>`)
+                .appendTo(actionBlock);
+            $("<button>")
+                .attr("type", "button")
                 .addClass("button action-ok")
                 .addClass(o.clsButton)
                 .addClass(o.clsOkButton)
-                .html(o.okButtonIcon)
+                .html(`<span class="icon">${o.okButtonIcon}</span>`)
                 .appendTo(actionBlock);
             $("<button>")
                 .attr("type", "button")
                 .addClass("button action-cancel")
                 .addClass(o.clsButton)
                 .addClass(o.clsCancelButton)
-                .html(o.cancelButtonIcon)
+                .html(`<span class="icon">${o.cancelButtonIcon}</span>`)
                 .appendTo(actionBlock);
 
             element[0].className = "";
@@ -220,7 +230,7 @@
                 o = this.options;
             var picker = this.picker;
 
-            picker.on(Metro.events.start, ".select-block ul", function (e) {
+            picker.on("touchstart", ".select-block ul", function (e) {
                 if (e.changedTouches) {
                     return;
                 }
@@ -229,7 +239,7 @@
                 var pageY = Utils.pageXY(e).y;
 
                 $(document).on(
-                    Metro.events.move,
+                    "touchmove",
                     function (e) {
                         target.scrollTop -= o.scrollSpeed * (pageY > Utils.pageXY(e).y ? -1 : 1);
 
@@ -239,7 +249,7 @@
                 );
 
                 $(document).on(
-                    Metro.events.stop,
+                    "touchend",
                     function () {
                         $(document).off(Metro.events.move, { ns: picker.attr("id") });
                         $(document).off(Metro.events.stop, { ns: picker.attr("id") });
@@ -281,33 +291,56 @@
                 var part = this,
                     list = picker.find(".sel-" + part);
 
-                list.on("scroll", function () {
-                    if (that.isOpen) {
-                        if (that.listTimer[part]) {
-                            clearTimeout(that.listTimer[part]);
-                            that.listTimer[part] = null;
-                        }
+                const scrollFn = Hooks.useDebounce(function (e) {
+                    var target, targetElement, scrollTop;
 
-                        if (!that.listTimer[part])
-                            that.listTimer[part] = setTimeout(function () {
-                                var target, targetElement, scrollTop;
+                    that.listTimer[part] = null;
 
-                                that.listTimer[part] = null;
+                    target = Math.round(Math.ceil(list.scrollTop()) / 40);
 
-                                target = Math.round(Math.ceil(list.scrollTop()) / 40);
+                    targetElement = list.find(".js-" + part + "-" + target);
+                    scrollTop = targetElement.position().top - o.distance * 40;
 
-                                targetElement = list.find(".js-" + part + "-" + target);
-                                scrollTop = targetElement.position().top - o.distance * 40;
+                    list.find(".active").removeClass("active");
 
-                                list.find(".active").removeClass("active");
+                    list[0].scrollTop = scrollTop;
+                    targetElement.addClass("active");
+                    Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
+                }, scrollLatency)
 
-                                list[0].scrollTop = scrollTop;
-                                targetElement.addClass("active");
-                                Utils.exec(o.onScroll, [targetElement, list, picker], list[0]);
-                            }, scrollLatency);
-                    }
-                });
+                list.on("scroll", scrollFn)
             });
+            
+            picker.on(Metro.events.click, "ul li", function (e) {
+                const target = $(this)
+                const list = target.closest("ul")
+                const scrollTop = target.position().top - o.distance * 40;
+                list.find(".active").removeClass("active");
+                $.animate({
+                    el: list[0],
+                    draw: {
+                        scrollTop
+                    },
+                    dur: 300,
+                })
+                list[0].scrollTop = scrollTop;
+                target.addClass("active");
+                Utils.exec(o.onScroll, [target, list, picker], list[0]);
+            })
+            
+            picker.on(Metro.events.click, ".action-today", function (e) {
+                const now = datetime()
+                const month = now.month()
+                const day = now.day()
+                const year = now.year()
+                
+                picker.find(`.sel-month li.js-month-${month}`).click();
+                picker.find(`.sel-day li.js-day-real-${day}`).click();
+                picker.find(`.sel-year li.js-year-real-${year}`).click();
+
+                e.preventDefault();
+                e.stopPropagation();
+            })
         },
 
         _correct: function () {
