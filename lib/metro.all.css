@@ -43568,6 +43568,9 @@ input:-ms-input-placeholder {
 }
 
 /* source/components/spinner/spinner.less */
+:root {
+  --spinner-border-radius: 4px;
+}
 .spinner {
   display: flex;
   flex-flow: row nowrap;
@@ -43579,6 +43582,7 @@ input:-ms-input-placeholder {
   position: relative;
   height: 36px;
   line-height: 36px;
+  border-radius: var(--spinner-border-radius);
 }
 .spinner input {
   border: none !important;
@@ -43616,6 +43620,7 @@ input:-ms-input-placeholder {
 }
 .spinner.buttons-left .spinner-button-plus {
   order: 2;
+  margin-left: 2px;
 }
 .spinner.buttons-left .spinner-button-minus {
   order: 1;
@@ -43626,6 +43631,7 @@ input:-ms-input-placeholder {
 }
 .spinner.buttons-right .spinner-button-plus {
   order: 3;
+  margin-left: 2px;
 }
 .spinner.buttons-right .spinner-button-minus {
   order: 2;
