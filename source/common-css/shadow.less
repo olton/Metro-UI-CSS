@@ -92,30 +92,8 @@ each(@normalColors, {
     text-shadow: 1px 2px 2px rgba(0,0,0,0.5);    
 }
 
-.text-shadow-hard {
-    text-shadow: 3px 3px 0 rgba(0,0,0,0.2);    
-}
-
-.text-shadow-heavy {
-    text-shadow: 0 4px 3px rgba(0,0,0,0.4),
-    0 8px 13px rgba(0,0,0,0.1),
-    0 18px 23px rgba(0,0,0,0.1);
-}
-
-.text-shadow-3d {
-    text-shadow: 0 3px 0 #a6a6a6, 0px 1px 0 #a6a6a6, 0px 2px 0 #a6a6a6, 2px 14px 10px rgba(0,0,0,0.15);
-}
-
 each(@normalColors, {
     @color: "@{value}";
-    
-    .text-shadow-@{value} {
-        text-shadow: 1px 1px 3px @@color;
-    }
-
-    .text-shadow-strong-@{value} {
-        text-shadow: 2px 2px 0 @@color;
-    }
 
     .text-shadow-glow-@{value} {
         text-shadow: 0 0 10px @@color;
