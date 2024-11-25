@@ -44621,7 +44621,7 @@ input:-ms-input-placeholder {
   flex-basis: 0;
   height: 34px;
   padding: 0 0.75rem;
-  background-color: transparent;
+  background: transparent;
   color: inherit;
   font-size: var(--input-font-size);
 }
@@ -59937,6 +59937,13 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 
 /* source/components/tag-input/tag-input.less */
+:root {
+  --taginput-border-radius: 4px;
+  --taginput-color: var(--input-color);
+}
+.dark-side {
+  --taginput-color: var(--input-color);
+}
 .tag-input {
   display: flex;
   flex-flow: row wrap;
@@ -59948,6 +59955,8 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   position: relative;
   height: auto;
   min-height: 36px;
+  border-radius: var(--taginput-border-radius);
+  overflow: hidden;
 }
 .tag-input .original-input {
   width: 1px;
@@ -59964,22 +59973,21 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   line-height: 26px;
   font-size: 14px;
   padding: 0 4px;
+  background: transparent;
+  color: var(--taginput-color);
 }
 .tag-input .input-wrapper:focus {
   box-shadow: none !important;
 }
 .tag-input .input-clear-button {
+  font-family: "Segoe UI Symbol", serif;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 2px;
+  right: 2px;
   z-index: 2;
   background-color: transparent;
-  height: 34px;
-  min-width: 34px;
-}
-.tag-input .input-clear-button:hover {
-  background-color: #f8f8f8;
-  text-shadow: rgba(0, 0, 0, 0.25) 0.1em 0.1em 0.2em;
+  height: 30px;
+  width: 30px;
 }
 .tag-input.padding-for-clear {
   padding-right: 48px;

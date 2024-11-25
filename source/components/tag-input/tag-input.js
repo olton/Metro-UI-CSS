@@ -20,7 +20,7 @@
         taginputDeferred: 0,
         static: false,
         clearButton: true,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        clearButtonIcon: "❌",
 
         randomColor: false,
         maxTags: 0,
