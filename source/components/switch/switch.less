@@ -84,6 +84,7 @@
     }
 
     input[type="checkbox"]:disabled ~ .check {
+        cursor: default;
         background-color: @disabledBackground;
         border-color: @disabledBackground;
         &::after {
@@ -224,6 +225,7 @@
 
     input:disabled ~ .check {
         background-color: #D5D5D5;
+        cursor: default;
         &::after {
             background-color: #BDBDBD;
         }

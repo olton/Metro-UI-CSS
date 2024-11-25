@@ -1,4 +1,7 @@
-/* global Metro */
+/*
+* TODO:
+*  1. Add automatic creation editor with syntax highlighting
+* */
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -12,7 +15,7 @@
         append: "",
         copyInlineStyles: false,
         clearButton: true,
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        clearButtonIcon: "&#x274c;",
         autoSize: true,
         maxHeight: 0,
         clsPrepend: "",
@@ -128,8 +131,10 @@
             var fakeTextarea = textarea.find(".fake-textarea");
             var chars_counter = $(o.charsCounter);
 
-            textarea.on(Metro.events.click, ".input-clear-button", function(){
+            textarea.on(Metro.events.click, ".input-clear-button", function(e){
                 element.val(Utils.isValue(o.defaultValue) ? o.defaultValue : "").trigger('change').trigger('keyup').focus();
+                e.preventDefault();
+                e.stopPropagation();
             });
 
             if (o.autoSize) {

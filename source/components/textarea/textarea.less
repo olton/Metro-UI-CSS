@@ -1,6 +1,10 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --textarea-color: #191919;
+}
+
 .textarea, textarea {
     height: auto;
 }
@@ -46,16 +50,19 @@ textarea {
         overflow-y: hidden!important;
     }
 
+    .button {
+        width: 30px;
+        height: 30px;
+        color: var(--textarea-color);
+    }
+    
     .input-clear-button {
+        font-family: "Segoe UI Symbol", serif;
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 2px;
+        right: 2px;
         z-index: 2;
         background-color: transparent;
-        &:hover {
-            background-color: @light;
-            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
-        }
     }
 
     &:not(.no-scroll-vertical) {

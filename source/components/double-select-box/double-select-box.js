@@ -1,5 +1,3 @@
-/* global Metro */
-/* eslint-disable */
 (function(Metro, $) {
     'use strict';
 
@@ -7,10 +5,10 @@
         height: "auto",
         multiSelect: false,
 
-        moveRightIcon: "<span>&rsaquo;</span>",
-        moveRightAllIcon: "<span>&raquo;</span>",
-        moveLeftIcon: "<span>&lsaquo;</span>",
-        moveLeftAllIcon: "<span>&laquo;</span>",
+        moveRightIcon: "&rsaquo;",
+        moveRightAllIcon: "&raquo;",
+        moveLeftIcon: "&lsaquo;",
+        moveLeftAllIcon: "&laquo;",
 
         clsBox: "",
         clsMoveButton: "",
@@ -97,10 +95,10 @@
 
             controls.append(
                 $([
-                    $("<button>").attr("type", "button").addClass("button --move-right").addClass(o.clsMoveButton).addClass(o.clsMoveRightButton).html(o.moveRightIcon),
-                    $("<button>").attr("type", "button").addClass("button --move-right-all").addClass(o.clsMoveButton).addClass(o.clsMoveRightAllButton).html(o.moveRightAllIcon),
-                    $("<button>").attr("type", "button").addClass("button --move-left-all").addClass(o.clsMoveButton).addClass(o.clsMoveLeftAllButton).html(o.moveLeftAllIcon),
-                    $("<button>").attr("type", "button").addClass("button --move-left").addClass(o.clsMoveButton).addClass(o.clsMoveLeftButton).html(o.moveLeftIcon),
+                    $("<button>").attr("type", "button").addClass("button square small --move-right").addClass(o.clsMoveButton).addClass(o.clsMoveRightButton).html(`<span class="icon">${o.moveRightIcon}</span>`),
+                    $("<button>").attr("type", "button").addClass("button square small --move-right-all").addClass(o.clsMoveButton).addClass(o.clsMoveRightAllButton).html(`<span class="icon">${o.moveRightAllIcon}</span>`),
+                    $("<button>").attr("type", "button").addClass("button square small --move-left-all").addClass(o.clsMoveButton).addClass(o.clsMoveLeftAllButton).html(`<span class="icon">${o.moveLeftAllIcon}</span>`),
+                    $("<button>").attr("type", "button").addClass("button square small --move-left").addClass(o.clsMoveButton).addClass(o.clsMoveLeftButton).html(`<span class="icon">${o.moveLeftIcon}</span>`),
                 ])
             )
 

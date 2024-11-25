@@ -92,10 +92,21 @@ each(@normalColors, {
     text-shadow: 1px 2px 2px rgba(0,0,0,0.5);    
 }
 
-each(@normalColors, {
-    @color: "@{value}";
+.text-emboss {
+    text-shadow: -1px -1px 1px #fff, 1px 1px 1px #000;
+}
 
+.text-retro {
+    text-shadow: 3px 3px 0 #2c2e38, 5px 5px 0 #5c5f72;
+    letter-spacing: .1em;
+}
+
+.text-3d {
+    text-shadow: 0 1px 0 #999, 0 2px 0 #888, 0 3px 0 #777, 0 4px 0 #666, 0 5px 0 #555, 0 6px 0 #444, 0 7px 0 #333, 0 8px 7px #001135;
+}
+
+each(@normalColors, {
     .text-shadow-glow-@{value} {
-        text-shadow: 0 0 10px @@color;
+        text-shadow: 0 0 10px @@value;
     }
 })

@@ -1,4 +1,8 @@
-/* global Metro, Cake */
+/*
+* TODO:
+*  1. Add keyboard support to autocomplete list
+* */
+
 (function(Metro, $) {
     'use strict';
     var Utils = Metro.utils;
@@ -26,8 +30,8 @@
         searchButton: false,
         clearButton: true,
         revealButton: true,
-        clearButtonIcon: "&#x274c;",
-        revealButtonIcon: "&#x1f441;",
+        clearButtonIcon: "❌",
+        revealButtonIcon: "👀",
         searchButtonIcon: "🔍",
         customButtons: [],
         searchButtonClick: 'submit',
