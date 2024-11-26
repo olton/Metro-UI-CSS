@@ -11,7 +11,8 @@
         values: null,
         message: "",
         stars: 5,
-        starredColor: null,
+        onColor: null,
+        offColor: null,
         roundFunc: "round", // ceil, floor, round
         half: true,
         symbol: "★",
@@ -105,10 +106,14 @@
 
             result.html(o.message);
 
-            if (o.starredColor !== null && Farbe.Routines.isColor(o.starredColor)) {
-                Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starredColor + ";");
-                Utils.addCssRule(sheet, "#" + id + " .stars li.on", "color: "+o.starredColor+";");
-                Utils.addCssRule(sheet, "#" + id + " .stars li.half::after", "color: "+o.starredColor+";");
+            if (o.offColor !== null && (o.offColor.includes("var(") || Farbe.Routines.isColor(o.offColor))) {
+                
+            }
+            
+            if (o.onColor !== null && (o.onColor.includes("var(") || Farbe.Routines.isColor(o.onColor))) {
+                Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.onColor + ";");
+                Utils.addCssRule(sheet, "#" + id + " .stars li.on", "color: "+o.onColor+";");
+                Utils.addCssRule(sheet, "#" + id + " .stars li.half::after", "color: "+o.onColor+";");
             }
 
             if (o.title !== null) {

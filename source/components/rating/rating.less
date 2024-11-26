@@ -7,8 +7,8 @@
 
 :root {
     --rating-star-size: 24px;
-    --rating-star-color: var(--color-light-blue);
-    --rating-value-color: var(--color-blue);
+    --rating-off-color: var(--color-light-blue);
+    --rating-on-color: var(--color-blue);
     --rating-background: transparent;
 }
 
@@ -53,7 +53,7 @@
         li {
             display: block;
             position: relative;
-            color: var(--rating-star-color);
+            color: var(--rating-off-color);
             width: var(--rating-star-size);
             height: var(--rating-star-size);
             line-height: var(--rating-star-size);
@@ -106,7 +106,7 @@
     cursor: default;
 
     li.on, li.half::after {
-        color: var(--rating-value-color);
+        color: var(--rating-on-color);
     }
 }
 
@@ -115,12 +115,12 @@
 
     &:hover {
         li {
-            color: var(--rating-value-color);
+            color: var(--rating-on-color);
         }
     }
 
     li:hover ~ li {
-        color: @ratingStarOff!important;
+        color: var(--rating-off-color)!important;
     }
 
     li.scale {

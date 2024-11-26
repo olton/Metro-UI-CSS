@@ -47070,9 +47070,6 @@ aside::after {
 .wheel-picker .action-block > * {
   flex: 1;
 }
-.wheel-picker .select-wrapper {
-  transform: translate3d(0, -50%, 0);
-}
 .wheel-picker.for-top .select-wrapper,
 .wheel-picker.for-top-a .select-wrapper {
   transform: translate3d(0, 0, 0);
@@ -53656,8 +53653,8 @@ fieldset.disabled,
 /* source/components/rating/rating.less */
 :root {
   --rating-star-size: 24px;
-  --rating-star-color: var(--color-light-blue);
-  --rating-value-color: var(--color-blue);
+  --rating-off-color: var(--color-light-blue);
+  --rating-on-color: var(--color-blue);
   --rating-background: transparent;
 }
 .rating {
@@ -53695,7 +53692,7 @@ fieldset.disabled,
 .rating .stars li {
   display: block;
   position: relative;
-  color: var(--rating-star-color);
+  color: var(--rating-off-color);
   width: var(--rating-star-size);
   height: var(--rating-star-size);
   line-height: var(--rating-star-size);
@@ -53757,16 +53754,16 @@ fieldset.disabled,
 }
 .rating .stars li.on,
 .rating .stars li.half::after {
-  color: var(--rating-value-color);
+  color: var(--rating-on-color);
 }
 .rating:not(.static) .stars {
   cursor: pointer;
 }
 .rating:not(.static) .stars:hover li {
-  color: var(--rating-value-color);
+  color: var(--rating-on-color);
 }
 .rating:not(.static) .stars li:hover ~ li {
-  color: #898989 !important;
+  color: var(--rating-off-color) !important;
 }
 .rating:not(.static) .stars li.scale {
   animation: star-scale 0.3s ease-in-out;
