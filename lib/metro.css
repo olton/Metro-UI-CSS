@@ -51901,10 +51901,23 @@ fieldset.disabled,
 }
 
 /* source/components/keypad/keypad.less */
+:root {
+  --keypad-background: var(--input-background);
+  --keypad-color: var(--input-color);
+  --keypad-border-color: #E8E8E8;
+  --keypad-border-radius: 4px;
+}
+.dark-side {
+  --keypad-background: var(--input-background);
+  --keypad-color: var(--input-color);
+  --keypad-border-color: #4A4D51;
+}
 .keypad {
-  background-color: #ffffff;
-  color: #1d1d1d;
-  border: 1px solid #d9d9d9;
+  background: var(--keypad-background);
+  color: var(--keypad-color);
+  border: 1px solid var(--keypad-border-color);
+  border-radius: var(--keypad-border-radius);
+  position: relative;
 }
 .keypad input {
   border: 0;
@@ -51921,8 +51934,9 @@ fieldset.disabled,
   border: none;
   padding: 0;
   user-select: none;
-  transition: all 0.3s ease-in-out;
   z-index: 1000;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 .keypad .keys::before {
   content: "";
@@ -51930,7 +51944,7 @@ fieldset.disabled,
   background-color: inherit;
   width: 10px;
   height: 10px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--keypad-border-color);
   z-index: 2;
   left: -5px;
   top: 50%;
@@ -51941,8 +51955,26 @@ fieldset.disabled,
   transform: rotate(45deg);
 }
 .keypad .keys.open {
+  display: flex;
+}
+.keypad .key {
   display: block;
-  transition: all 0.3s ease-in-out;
+  position: relative;
+  float: left;
+  background-color: inherit;
+  color: inherit;
+  margin: 0;
+  text-align: center;
+  border: 1px solid var(--keypad-border-color);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  flex-shrink: 0;
+}
+.keypad .key:hover {
+  box-shadow: 0 0 0 3px rgba(244, 244, 244, 0.45);
+  transform: scale(1.1);
+  z-index: 2;
 }
 .keypad .keys.right {
   left: 100%;
@@ -52031,28 +52063,6 @@ fieldset.disabled,
   left: 100%;
   margin-left: -1rem;
   transform: rotate(-45deg);
-}
-.keypad .key {
-  display: block;
-  position: relative;
-  float: left;
-  background-color: inherit;
-  color: inherit;
-  margin: 0;
-  text-align: center;
-  border: 1px solid var(--border-color);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-}
-.keypad .key:hover {
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 0 3px rgba(244, 244, 244, 0.45);
-  transform: scale(1.2);
-  z-index: 2;
-}
-.keypad .key.service-key {
-  background-color: #f8f8f8;
 }
 
 /* source/components/lightbox/lightbox.less */

@@ -1,10 +1,25 @@
 @import (once) "../../include/vars";
 @import (once) "../../include/mixins";
 
+:root {
+    --keypad-background: var(--input-background);
+    --keypad-color: var(--input-color);
+    --keypad-border-color: #E8E8E8;
+    --keypad-border-radius: 4px;
+}
+
+.dark-side {
+    --keypad-background: var(--input-background);
+    --keypad-color: var(--input-color);
+    --keypad-border-color: #4A4D51;
+}
+
 .keypad {
-    background-color: @white;
-    color: @dark;
-    border: 1px solid @inputBorder;
+    background: var(--keypad-background);
+    color: var(--keypad-color);
+    border: 1px solid var(--keypad-border-color);
+    border-radius: var(--keypad-border-radius);
+    position: relative;
 }
 
 .keypad {
@@ -25,8 +40,9 @@
         border: none;
         padding: 0;
         user-select: none;
-        transition: @transition-base;
         z-index: @zindex-dropdown;
+        flex-wrap: wrap;
+        justify-content: space-between;
 
         &::before {
             content: '';
@@ -34,7 +50,7 @@
             background-color: inherit;
             width: 10px;
             height: 10px;
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--keypad-border-color);
             z-index: 2;
             left: -5px;
             top: 50%;
@@ -46,11 +62,34 @@
         }
 
         &.open {
-            display: block;
-            transition: @transition-base;
+            display: flex;
         }
+    }
+    
+    .key {
+        display: block;
+        position: relative;
+        float: left;
+        background-color: inherit;
+        color: inherit;
+        margin: 0;
+        text-align: center;
+        border: 1px solid var(--keypad-border-color);
+        font-size: 1rem;
+        cursor: pointer;
+        transition: @transition-short;
+        flex-shrink: 0;
 
-        &.right { //Default
+        &:hover {
+            .focus-show(@light-gray);
+            transform: scale(1.1);
+            z-index: 2;
+        }
+    }
+    
+    .keys {
+        
+        &.right {
             left: 100%;
             transform: translateY(-50%);
             top: 50%;
@@ -151,30 +190,6 @@
                 margin-left: -1rem;
                 .rotate(-45deg);
             }
-        }
-    }
-    .key {
-        display: block;
-        position: relative;
-        float: left;
-        background-color: inherit;
-        color: inherit;
-        margin: 0;
-        text-align: center;
-        border: 1px solid var(--border-color);
-        font-size: 1rem;
-        cursor: pointer;
-        transition: @transition-base;
-
-        &:hover {
-            transition: @transition-base;
-            .focus-show(@light-gray);
-            transform: scale(1.2);
-            z-index: 2;
-        }
-
-        &.service-key {
-            background-color: @light;
         }
     }
 }

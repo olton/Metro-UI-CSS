@@ -16,12 +16,13 @@
         keyLength: 0,
         shuffle: false,
         shuffleCount: 3,
-        position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
-        dynamicPosition: false,
+        //position: Metro.position.BOTTOM_LEFT, //top-left, top, top-right, right, bottom-right, bottom, bottom-left, left
+        // dynamicPosition: false,
         serviceButtons: true,
         showValue: true,
         open: false,
-        sizeAsKeys: false,
+        useElementSizeForKeys: true,
+        // sizeAsKeys: false,
 
         clsKeypad: "",
         clsInput: "",
@@ -65,6 +66,7 @@
         _create: function(){
             var element = this.element, o = this.options;
 
+            this.options.position = "bottom-left"
             this.keys = o.keys.toArray(o.keyDelimiter);
             this.keys_to_work = this.keys;
             this.exceptKeys = o.exceptKeys.toArray(o.keyDelimiter);
@@ -93,11 +95,6 @@
             }
 
             keypad.addClass("keypad");
-            if (keypad.css("position") === "static" || keypad.css("position") === "") {
-                keypad.css({
-                    position: "relative"
-                });
-            }
 
             if (element.attr("type") === undefined) {
                 element.attr("type", "text");
@@ -164,7 +161,7 @@
             var key_size = o.keySize;
             var width;
 
-            keys.html("");
+            keys.html("")
 
             $.each(this.keys_to_work, function(){
                 key = $("<span>").addClass("key").addClass(o.clsKey).html(this);
@@ -197,12 +194,16 @@
                 });
             }
 
-            width = factor * (key_size + 2) - 6;
-            keys.outerWidth(width);
-
-            if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {
-                keypad.outerWidth(keys.outerWidth());
+            if (o.useElementSizeForKeys === true) {
+                keys.outerWidth(element.outerWidth());
+            } else {
+                width = factor * (key_size + 2) - 6;
+                keys.outerWidth(width);
             }
+
+            // if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {
+            //     keypad.outerWidth(keys.outerWidth());
+            // }
         },
 
         _createEvents: function(){
@@ -264,8 +265,6 @@
                 that._fireEvent('change', {
                     val: that.val
                 })
-                // element.trigger('change');
-                // Utils.exec(o.onChange, [that.value], element[0]);
 
                 e.preventDefault();
                 e.stopPropagation();
@@ -277,9 +276,12 @@
                 }
 
                 if (keys.hasClass("open") === true) {
-                    keys.removeClass("open");
+                    keys.removeClass("open").removeClass("top-left");
                 } else {
                     keys.addClass("open");
+                    if (Metro.utils.inViewport(keys[0]) === false) {
+                        keys.addClass("top-left")
+                    }
                 }
 
                 e.preventDefault();
@@ -348,6 +350,9 @@
             var keys = keypad.find(".keys");
 
             keys.addClass("open");
+            if (Metro.utils.inViewport(keys[0]) === false) {
+                keys.addClass("top-left")
+            }
         },
 
         close: function(){
@@ -355,7 +360,7 @@
             var keypad = element.parent();
             var keys = keypad.find(".keys");
 
-            keys.removeClass("open");
+            keys.removeClass("open").removeClass("top-left");
         },
 
         disable: function(){
