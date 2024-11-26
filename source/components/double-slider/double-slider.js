@@ -9,7 +9,7 @@
         max: 100,
         accuracy: 0,
         showMinMax: false,
-        minMaxPosition: Metro.position.TOP,
+        minMaxPosition: Metro.position.BOTTOM,
         valueMin: null,
         valueMax: null,
         hint: false,
@@ -92,7 +92,7 @@
             var hintMin = $("<div>").addClass("hint hint-min").addClass(o.hintPositionMin + "-side").addClass(o.clsHint).addClass(o.clsHintMin);
             var hintMax = $("<div>").addClass("hint hint-max").addClass(o.hintPositionMax + "-side").addClass(o.clsHint).addClass(o.clsHintMax);
             var i;
-
+            
             if (o.size > 0) {
                 slider.outerWidth(o.size);
             }
@@ -117,8 +117,8 @@
 
             if (o.showMinMax === true) {
                 var min_max_wrapper = $("<div>").addClass("slider-min-max").addClass(o.clsMinMax);
-                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(o.min).appendTo(min_max_wrapper);
-                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(o.max).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-min").addClass(o.clsMin).html(`${o.min}`).appendTo(min_max_wrapper);
+                $("<span>").addClass("slider-text-max").addClass(o.clsMax).html(`${o.max}`).appendTo(min_max_wrapper);
                 if (o.minMaxPosition === Metro.position.TOP) {
                     min_max_wrapper.insertBefore(slider);
                 } else {

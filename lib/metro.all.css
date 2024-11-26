@@ -41731,6 +41731,23 @@ input[type=reset].loading .load-caption {
 }
 
 /* source/components/slider/slider.less */
+:root {
+  --slider-thumb-size: 18px;
+  --slider-thumb-color: var(--color-blue);
+  --slider-bar-color: #191919;
+  --slider-buffer-color: #fefefe;
+  --slider-back-color: #d5d5d5;
+  --slider-fill-color: var(--color-cyan);
+  --slider-thumb-border-color: var(--color-light-cyan);
+}
+.dark-side {
+  --slider-thumb-color: var(--color-crimson);
+  --slider-bar-color: #191919;
+  --slider-buffer-color: #fefefe;
+  --slider-back-color: #4e5055;
+  --slider-fill-color: #ff145c;
+  --slider-thumb-border-color: #ffffff;
+}
 .slider {
   display: block;
   position: relative;
@@ -41738,6 +41755,7 @@ input[type=reset].loading .load-caption {
   background: transparent;
   cursor: default;
   width: 100%;
+  border-radius: 4px;
 }
 .slider input {
   width: 1px;
@@ -41755,9 +41773,13 @@ input[type=reset].loading .load-caption {
   left: 0;
   top: 50%;
   transform: translateY(-50%);
+  border-radius: 4px;
+}
+.slider .marker {
+  border-radius: 50%;
 }
 .slider .backside {
-  background-color: #898989;
+  background-color: var(--slider-back-color);
   width: 100%;
   z-index: 1;
   height: 0.6rem;
@@ -41765,20 +41787,20 @@ input[type=reset].loading .load-caption {
 .slider .buffer {
   z-index: 2;
   height: 0.3rem;
-  background-color: #ffffff;
+  background-color: var(--slider-buffer-color);
 }
 .slider .complete {
   z-index: 3;
   height: 0.6rem;
-  background-color: #008000;
+  background-color: var(--slider-fill-color);
 }
 .slider .marker {
-  width: 1rem;
-  height: 1rem;
-  background-color: #1d1d1d;
+  width: var(--slider-thumb-size);
+  height: var(--slider-thumb-size);
+  background: var(--slider-thumb-color);
   z-index: 4;
   outline: none;
-  border: 1px solid transparent;
+  border: 2px solid var(--slider-thumb-border-color);
   cursor: pointer;
   overflow: visible;
 }
@@ -51922,6 +51944,30 @@ fieldset.disabled,
 .keypad input {
   border: 0;
 }
+.keypad .button-group {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+}
+.keypad .button {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--input-color);
+  height: 30px;
+  width: 30px;
+  border: 1px solid var(--input-border-color);
+  font-size: var(--input-font-size);
+  padding: 0;
+}
+.keypad .button:focus,
+.keypad .button:active {
+  box-shadow: none !important;
+}
 .keypad .keys {
   display: none;
   position: absolute;
@@ -51937,6 +51983,7 @@ fieldset.disabled,
   z-index: 1000;
   flex-wrap: wrap;
   justify-content: space-between;
+  box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
 }
 .keypad .keys::before {
   content: "";
@@ -53607,12 +53654,18 @@ fieldset.disabled,
 }
 
 /* source/components/rating/rating.less */
+:root {
+  --rating-star-size: 24px;
+  --rating-star-color: var(--color-light-blue);
+  --rating-value-color: var(--color-blue);
+  --rating-background: transparent;
+}
 .rating {
   display: inline-flex;
   flex-flow: row;
   align-items: center;
   position: relative;
-  background-color: transparent;
+  background: transparent;
   cursor: default;
   font-size: 16px;
 }
@@ -53642,16 +53695,16 @@ fieldset.disabled,
 .rating .stars li {
   display: block;
   position: relative;
-  color: #898989;
-  width: 24px;
-  height: 24px;
-  line-height: 24px;
-  font-size: 24px;
+  color: var(--rating-star-color);
+  width: var(--rating-star-size);
+  height: var(--rating-star-size);
+  line-height: var(--rating-star-size);
+  font-size: var(--rating-star-size);
   transition: color 0.3s linear;
 }
 .rating .stars li::before {
   position: absolute;
-  content: "\2605";
+  content: attr(data-symbol);
   display: block;
   z-index: 1;
   left: 0;
@@ -53660,7 +53713,7 @@ fieldset.disabled,
   left: 0;
   display: block;
   position: absolute;
-  content: "\2605";
+  content: attr(data-symbol);
   width: 0.42em;
   z-index: 2;
   overflow: hidden;
@@ -53704,13 +53757,13 @@ fieldset.disabled,
 }
 .rating .stars li.on,
 .rating .stars li.half::after {
-  color: #1d1d1d;
+  color: var(--rating-value-color);
 }
 .rating:not(.static) .stars {
   cursor: pointer;
 }
 .rating:not(.static) .stars:hover li {
-  color: #1d1d1d;
+  color: var(--rating-value-color);
 }
 .rating:not(.static) .stars li:hover ~ li {
   color: #898989 !important;

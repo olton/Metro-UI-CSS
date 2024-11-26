@@ -11,10 +11,10 @@
         values: null,
         message: "",
         stars: 5,
-        starColor: null,
-        staredColor: null,
+        starredColor: null,
         roundFunc: "round", // ceil, floor, round
         half: true,
+        symbol: "★",
         clsRating: "",
         clsTitle: "",
         clsStars: "",
@@ -68,7 +68,7 @@
             }
 
             this.originValue = o.value;
-            this.value = o.value > 0 ? Math[o.roundFunc](o.value) : 0;
+            this.value = o.value > 0 && o.roundFunc !== "none" ? Math[o.roundFunc](o.value) : Math.abs(o.value);
 
             this._createRating();
             this._createEvents();
@@ -82,22 +82,20 @@
             var element = this.element, o = this.options;
 
             var id = Utils.elementId("rating");
-            var rating = $("<div>").addClass("rating " + String(element[0].className).replace("d-block", "d-flex")).addClass(o.clsRating);
             var i, stars, result, li;
             var sheet = Metro.sheet;
             var value = o.static ? Math.floor(this.originValue) : this.value;
 
+            var rating = element.wrap("<div>").addClass("rating " + element[0].className).addClass(o.clsRating);
+            
             element.val(this.value);
 
-            rating.attr("id", id);
-
-            rating.insertBefore(element);
-            element.appendTo(rating);
+            rating.attr("id", element.id() ? "rating--"+element.id() : id);
 
             stars = $("<ul>").addClass("stars").addClass(o.clsStars).appendTo(rating);
 
             for(i = 1; i <= o.stars; i++) {
-                li = $("<li>").data("value", this.values[i-1]).appendTo(stars);
+                li = $("<li>").attr("data-symbol", o.symbol).data("value", this.values[i-1]).appendTo(stars);
                 if (i <= value) {
                     li.addClass("on");
                 }
@@ -107,12 +105,10 @@
 
             result.html(o.message);
 
-            if (o.starColor !== null && Farbe.Routines.isColor(o.starColor)) {
-                Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starColor + ";");
-            }
-            if (o.staredColor !== null && Farbe.Routines.isColor(o.staredColor)) {
-                Utils.addCssRule(sheet, "#"+id+" .stars li.on", "color: "+o.staredColor+";");
-                Utils.addCssRule(sheet, "#"+id+" .stars li.half::after", "color: "+o.staredColor+";");
+            if (o.starredColor !== null && Farbe.Routines.isColor(o.starredColor)) {
+                Utils.addCssRule(sheet, "#" + id + " .stars:hover li", "color: " + o.starredColor + ";");
+                Utils.addCssRule(sheet, "#" + id + " .stars li.on", "color: "+o.starredColor+";");
+                Utils.addCssRule(sheet, "#" + id + " .stars li.half::after", "color: "+o.starredColor+";");
             }
 
             if (o.title !== null) {

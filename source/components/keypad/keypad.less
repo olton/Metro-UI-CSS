@@ -28,6 +28,32 @@
         border: 0;
     }
 
+    .button-group {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        position: absolute;
+        top: 2px;
+        right: 2px;
+    }
+
+    .button {
+        background-color: transparent;
+        border-color: transparent;
+        color: var(--input-color);
+        height: 30px;
+        width: 30px;
+        border: 1px solid var(--input-border-color);
+        font-size: var(--input-font-size);
+        padding: 0;
+
+        &:focus, &:active {
+            box-shadow: none!important;
+        }
+    }
+
     .keys {
         display: none;
         position: absolute;
@@ -43,6 +69,7 @@
         z-index: @zindex-dropdown;
         flex-wrap: wrap;
         justify-content: space-between;
+        box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
 
         &::before {
             content: '';

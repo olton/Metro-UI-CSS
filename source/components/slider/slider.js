@@ -20,6 +20,7 @@
         target: null,
         returnType: "value", // value or percent
         size: 0,
+        label: null, 
 
         clsSlider: "",
         clsBackside: "",
@@ -82,9 +83,6 @@
         _createSlider: function(){
             var element = this.element, o = this.options;
 
-            var prev = element.prev();
-            var parent = element.parent();
-            var slider = $("<div>").addClass("slider " + element[0].className).addClass(o.clsSlider);
             var backside = $("<div>").addClass("backside").addClass(o.clsBackside);
             var complete = $("<div>").addClass("complete").addClass(o.clsComplete);
             var buffer = $("<div>").addClass("buffer").addClass(o.clsBuffer);
@@ -92,6 +90,8 @@
             var hint = $("<div>").addClass("hint").addClass(o.hintPosition + "-side").addClass(o.clsHint);
             var i;
 
+            var slider = element.wrap("<div>").addClass("slider").addClass(element[0].className).addClass(o.clsSlider);
+            
             if (o.size > 0) {
                 if (o.vertical === true) {
                     slider.outerHeight(o.size);
@@ -104,19 +104,16 @@
                 slider.addClass("vertical-slider");
             }
 
-            if (prev.length === 0) {
-                parent.prepend(slider);
-            } else {
-                slider.insertAfter(prev);
-            }
-
             if (o.hintAlways === true) {
                 hint.css({
                     display: "block"
                 }).addClass("permanent-hint");
             }
 
-            element.appendTo(slider);
+            if (o.label) {
+                $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(slider);
+            }
+            
             backside.appendTo(slider);
             complete.appendTo(slider);
             buffer.appendTo(slider);

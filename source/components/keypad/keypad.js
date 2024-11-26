@@ -1,4 +1,7 @@
-/* global Metro */
+/*
+* TODO:
+*  1. Add custom buttons
+* */
 (function(Metro, $) {
     'use strict';
     //var Utils = Metro.utils;
@@ -85,25 +88,15 @@
 
         _createKeypad: function(){
             var element = this.element, o = this.options;
-            var parent = element.parent();
-            var keypad, keys;
+            var keys;
 
-            if (parent.hasClass("input")) {
-                keypad = parent;
-            } else {
-                keypad = $("<div>").addClass("input").addClass(element[0].className);
-            }
-
-            keypad.addClass("keypad");
-
+            var keypad = element.wrap("<div>").addClass("input keypad").addClass(element[0].className).addClass(o.clsKeypad);
+            
             if (element.attr("type") === undefined) {
                 element.attr("type", "text");
             }
 
-            keypad.insertBefore(element);
-
             element.attr("readonly", true);
-            element.appendTo(keypad);
 
             keys = $("<div>").addClass("keys").addClass(o.clsKeys);
             keys.appendTo(keypad);
@@ -112,7 +105,6 @@
             if (o.open === true) {
                 keys.addClass("open keep-open");
             }
-
 
             element[0].className = '';
             if (o.copyInlineStyles === true) {
@@ -127,6 +119,10 @@
             element.on(Metro.events.blur, function(){keypad.removeClass("focused");});
             element.on(Metro.events.focus, function(){keypad.addClass("focused");});
 
+            var buttons = $("<div>").addClass("button-group").appendTo(keypad);
+            var kbdButton = $("<button>").addClass("button input-kbd-button").addClass(o.clsKbdButton).attr("tabindex", -1).attr("type", "button").html("⌨");
+            kbdButton.appendTo(buttons);
+            
             if (o.label) {
                 var label = $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(keypad);
                 if (element.attr("id")) {
@@ -200,10 +196,6 @@
                 width = factor * (key_size + 2) - 6;
                 keys.outerWidth(width);
             }
-
-            // if (o.sizeAsKeys === true && ['top-left', 'top', 'top-right', 'bottom-left', 'bottom', 'bottom-right'].indexOf(o.position) !== -1) {
-            //     keypad.outerWidth(keys.outerWidth());
-            // }
         },
 
         _createEvents: function(){
