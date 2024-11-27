@@ -27,8 +27,9 @@
         dropHeight: 200,
         dropWidth: null,
         dropFullSize: false,
-        checkDropUp: true,
-        dropUp: false,
+        // checkDropUp: true,
+        // dropUp: false,
+        openMode: "auto",
         showGroupName: false,
         shortTag: true,
 
@@ -327,8 +328,9 @@
                 dropFilter: ".select",
                 duration: o.duration,
                 toggleElement: [container],
-                checkDropUp: o.checkDropUp,
-                dropUp: o.dropUp,
+                // checkDropUp: o.checkDropUp,
+                // dropUp: o.dropUp,
+                openMode: o.openMode,
                 onDrop: function () {
                     var dropped, target;
                     dropdown_toggle.addClass("active-toggle");

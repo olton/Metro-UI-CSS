@@ -17,6 +17,7 @@
         showLabels: true,
         scrollSpeed: 4,
         copyInlineStyles: false,
+        openMode: "auto",
         clsPicker: "",
         clsPart: "",
         clsHours: "",
@@ -428,23 +429,39 @@
             var h_list, m_list, s_list;
             var items = picker.find("li");
             var select_wrapper = picker.find(".select-wrapper");
-            var select_wrapper_in_viewport, select_wrapper_rect;
+            // var select_wrapper_in_viewport, select_wrapper_rect;
             var h_item, m_item, s_item;
 
-            select_wrapper.parent().removeClass("for-top for-bottom");
+            // select_wrapper.parent().removeClass("for-top for-bottom");
             select_wrapper.show(0);
             items.removeClass("active");
 
-            select_wrapper_in_viewport = Utils.inViewport(select_wrapper[0]);
-            select_wrapper_rect = Utils.rect(select_wrapper[0]);
-
-            if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
-                select_wrapper.parent().addClass("for-bottom");
+            if (o.openMode === "auto") {
+                if (!Metro.utils.inViewport(select_wrapper[0])) {
+                    select_wrapper.parent().addClass("drop-up-select");
+                }
+                if (!Metro.utils.inViewport(select_wrapper[0])) {
+                    select_wrapper.parent().removeClass("drop-up-select");
+                    select_wrapper.parent().addClass("drop-as-dialog");
+                }
+            } else {
+                if (o.openMode === "dialog") {
+                    select_wrapper.parent().addClass("drop-as-dialog");
+                } else if (o.openMode === "up") {
+                    select_wrapper.parent().addClass("drop-up-select");
+                }
             }
-
-            if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
-                select_wrapper.parent().addClass("for-top");
-            }
+            
+            // select_wrapper_in_viewport = Utils.inViewport(select_wrapper[0]);
+            // select_wrapper_rect = Utils.rect(select_wrapper[0]);
+            //
+            // if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
+            //     select_wrapper.parent().addClass("for-bottom");
+            // }
+            //
+            // if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
+            //     select_wrapper.parent().addClass("for-top");
+            // }
 
             var animateList = function (list, item) {
                 list.scrollTop(0).animate({
@@ -482,8 +499,11 @@
         },
 
         close: function () {
-            var picker = this.picker;
+            var picker = this.picker, o = this.options;
             picker.find(".select-wrapper").hide(0);
+            if (o.openMode === "auto") {
+                picker.find(".select-wrapper").parent().removeClass("drop-up-select drop-as-dialog");
+            }
             this.isOpen = false;
 
             this._fireEvent("close", {

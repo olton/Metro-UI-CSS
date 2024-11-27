@@ -22,6 +22,7 @@
         calendarButtonIcon: "<span class='default-icon-calendar'></span>",
         clearButtonIcon: "<span class='default-icon-cross'></span>",
         copyInlineStyles: false,
+        openMode: "auto",
         clsPicker: "",
         clsInput: "",
         clsPrepend: "",
@@ -76,7 +77,7 @@
             var buttons = $("<div>").addClass("button-group");
             var calendarButton,
                 clearButton,
-                cal = $("<div>").addClass("drop-shadow");
+                cal = $("<div>")
             var curr, _curr, initTime, initHours, initMinutes, elementValue, h, m;
             var body = $("body");
 
@@ -380,8 +381,14 @@
                         that.overlay.appendTo($("body"));
                     }
                     cal.addClass("open");
-                    if (!Utils.inViewport(cal[0])) {
-                        cal.addClass("open-up");
+                    if (o.openMode === "auto") {
+                        if ( !Metro.utils.inViewport(cal[0]) ) {
+                            cal.addClass("open-up");
+                        }
+                    } else {
+                        if (o.openMode === "up") {
+                            cal.addClass("open-up");
+                        }
                     }
 
                     that._fireEvent("calendar-show", {

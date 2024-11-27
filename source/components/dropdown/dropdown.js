@@ -10,6 +10,7 @@
         duration: 50,
         checkDropUp: false,
         dropUp: false,
+        openMode: "auto",
         onDrop: Metro.noop,
         onUp: Metro.noop,
         onDropdownCreate: Metro.noop
@@ -55,9 +56,13 @@
         _createStructure: function(){
             var element = this.element, o = this.options;
             var toggle;
-
-            if (o.dropUp) {
+            
+            // if (o.dropUp) {
+            //     element.addClass("drop-up");
+            // }
+            if (o.openMode !== "auto" && o.openMode === "up") {
                 element.addClass("drop-up");
+                
             }
 
             toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
@@ -146,9 +151,12 @@
                 dropdown._fireEvent("close");
                 dropdown._fireEvent("up");
 
-                if (!options.dropUp && options.checkDropUp) {
-                    dropdown.element.removeClass("drop-up");
-                }
+                if (options.openMode === "auto") {
+                    dropdown.element.removeClass("drop-up drop-as-dialog");
+                } 
+                // if (!options.dropUp && options.checkDropUp) {
+                //     dropdown.element.removeClass("drop-up");
+                // }
             });
 
             this.isOpen = false;
@@ -166,16 +174,26 @@
             toggle.addClass('active-toggle').addClass("active-control");
 
             el[func](immediate ? 0 : options.duration, function(){
-                if (!options.dropUp && options.checkDropUp) {
-                    // dropdown.element.removeClass("drop-up");
-                    if (!Utils.inViewport(dropdown.element[0])) {
+                
+                if (options.openMode === "auto") {
+                    if (!Metro.utils.inViewport(dropdown.element[0])) {
                         dropdown.element.addClass("drop-up");
-
-                        if (!Utils.inViewport(dropdown.element[0])) {
-                            dropdown.element.removeClass("drop-up");
-                        }
+                    }
+                    if (!Metro.utils.inViewport(dropdown.element[0])) {
+                        dropdown.element.addClass("drop-as-dialog");
                     }
                 }
+                
+                // if (!options.dropUp && options.checkDropUp) {
+                //     // dropdown.element.removeClass("drop-up");
+                //     if (!Utils.inViewport(dropdown.element[0])) {
+                //         dropdown.element.addClass("drop-up");
+                //
+                //         if (!Utils.inViewport(dropdown.element[0])) {
+                //             dropdown.element.removeClass("drop-up");
+                //         }
+                //     }
+                // }
 
                 dropdown._fireEvent("open");
                 dropdown._fireEvent("drop");

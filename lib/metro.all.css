@@ -47070,12 +47070,7 @@ aside::after {
 .wheel-picker .action-block > * {
   flex: 1;
 }
-.wheel-picker.for-top .select-wrapper,
-.wheel-picker.for-top-a .select-wrapper {
-  transform: translate3d(0, 0, 0);
-}
-.wheel-picker.for-bottom .select-wrapper,
-.wheel-picker.for-bottom-a .select-wrapper {
+.wheel-picker.drop-up-select .select-wrapper {
   transform: translate3d(0, -100%, 0);
 }
 
