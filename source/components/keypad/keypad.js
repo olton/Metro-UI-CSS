@@ -8,7 +8,7 @@
     var KeypadDefaultConfig = {
         keypadDeferred: 0,
         label: "",
-        keySize: 48,
+        keySize: 36,
         keys: "1, 2, 3, 4, 5, 6, 7, 8, 9, 0",
         exceptKeys: "",
         keySeparator: "",
@@ -24,8 +24,9 @@
         serviceButtons: true,
         showValue: true,
         open: false,
-        useElementSizeForKeys: true,
+        useElementSizeForKeys: false,
         // sizeAsKeys: false,
+        openMode: "auto",
 
         clsKeypad: "",
         clsInput: "",
@@ -271,8 +272,14 @@
                     keys.removeClass("open").removeClass("top-left");
                 } else {
                     keys.addClass("open");
-                    if (Metro.utils.inViewport(keys[0]) === false) {
-                        keys.addClass("top-left")
+                    if (o.openMode === "auto") {
+                        if (Metro.utils.inViewport(keys[0]) === false) {
+                            keys.addClass("top-left")
+                        }
+                    } else {
+                        if (o.openMode === "up") {
+                            keys.addClass("top-left")
+                        }
                     }
                 }
 
@@ -337,13 +344,19 @@
         },
 
         open: function(){
-            var element = this.element;
+            var element = this.element, o = this.options;
             var keypad = element.parent();
             var keys = keypad.find(".keys");
 
             keys.addClass("open");
-            if (Metro.utils.inViewport(keys[0]) === false) {
-                keys.addClass("top-left")
+            if (o.openMode === "auto") {
+                if (Metro.utils.inViewport(keys[0]) === false) {
+                    keys.addClass("top-left")
+                }
+            } else {
+                if (o.openMode === "up") {
+                    keys.addClass("top-left")
+                }
             }
         },
 

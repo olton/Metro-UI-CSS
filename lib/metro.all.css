@@ -51977,7 +51977,7 @@ form,
   user-select: none;
   z-index: 1000;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: flex-start;
   box-shadow: 0 1px 3px 0 var(--shadow-color-normal), 0 1px 2px -1px var(--shadow-color-normal);
 }
 .keypad .keys::before {
