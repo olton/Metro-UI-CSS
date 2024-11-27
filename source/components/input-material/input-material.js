@@ -63,7 +63,7 @@
             container.insertBefore(element);
             element.appendTo(container);
 
-            if (Utils.isValue(o.label)) {
+            if (o.label) {
                 $("<span>").html(o.label).addClass("label").addClass(o.clsLabel).insertAfter(element);
             }
             if (Utils.isValue(o.informer)) {

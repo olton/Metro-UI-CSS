@@ -111,7 +111,14 @@
             }
 
             if (o.label) {
-                $("<label>").addClass("label-for-input").addClass(o.clsLabel).html(o.label).insertBefore(slider);
+                const label = $("<label>")
+                    .addClass("label-for-input")
+                    .addClass(o.clsLabel)
+                    .html(o.label)
+                    .insertBefore(slider);
+                if (element.id()) {
+                    label.attr("for", element.id());
+                }
             }
             
             backside.appendTo(slider);

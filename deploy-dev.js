@@ -21,7 +21,11 @@ const config = {
     sftp: false,
 };
 
+ftpDeploy.on("uploading", function (data) {
+    console.log(data.filename); // partial path with filename being uploaded
+});
+
 ftpDeploy
     .deploy(config)
-    .then((res) => console.log("finished:", res))
+    .then((res) => console.log("Deploy finished"))
     .catch((err) => console.log(err));

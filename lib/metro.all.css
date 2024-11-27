@@ -47903,66 +47903,69 @@ aside::after {
 }
 
 /* source/components/form/form.less */
-form {
-  display: block;
+form,
+.form {
+  display: flex;
   position: relative;
+  flex-flow: column nowrap;
 }
 .form-actions {
-  margin: 10px 0;
-  display: block;
+  margin: 1rem 0;
+  display: flex;
   position: relative;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: flex-start;
+  border-top: 1px solid var(--border-color);
+  padding-top: 1rem;
+}
+.form-actions *:not(:last-child) {
+  margin-right: 0.25rem;
 }
 .form-group {
-  display: block;
+  display: flex;
   position: relative;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
 }
 .form-group + .form-group {
   margin-top: 1rem;
 }
 .inline-form {
   display: flex;
-  flex-flow: row wrap;
-  align-items: center;
+  flex-flow: row nowrap;
+  align-items: flex-end;
   justify-content: flex-start;
 }
-.inline-form input[type=text],
-.inline-form input[type=password],
-.inline-form input[type=tel],
-.inline-form input[type=datetime-local],
-.inline-form input[type=email],
-.inline-form input[type=file],
-.inline-form input[type=month],
-.inline-form input[type=number],
-.inline-form input[type=search],
-.inline-form input[type=time],
-.inline-form input[type=url],
-.inline-form input[type=week],
-.inline-form input[type=file],
-.inline-form select,
-.inline-form textarea,
-.inline-form .file,
-.inline-form .input,
-.inline-form .textarea,
-.inline-form .select,
-.inline-form .tag-input,
-.inline-form .spinner {
-  width: auto;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+.inline-form > * {
+  width: auto !important;
+  margin: 0 0.5rem !important;
+  flex-shrink: 1;
 }
-.inline-form .form-group {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: flex-start;
+.inline-form > *:first-child {
+  margin-left: 0 !important;
 }
-form:disabled,
-fieldset:disabled,
-.form-group:disabled,
-form.disabled,
-fieldset.disabled,
-.form-group.disabled {
-  pointer-events: none;
+.inline-form .form-actions {
+  border-top: none;
+  padding-top: 0;
+}
+:root {
+  --form-column-min-width: 200px;
+  --form-gap-size: 1rem;
+}
+.grid-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(var(--form-column-min-width), 1fr));
+  grid-gap: var(--form-gap-size);
+}
+.grid-form .form-group {
+  margin: 0;
+}
+.grid-form .form-actions {
+  border-top: none;
+  padding-top: 0;
 }
 
 /* source/components/grid/grid.less */
