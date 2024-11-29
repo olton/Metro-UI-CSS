@@ -1,25 +1,24 @@
 (function(Metro, $) {
     'use strict';
 
-    var Utils = Metro.utils;
     var ValidatorFuncs = {
         required: function(val){
             return G.safeParse(G.required(), val).ok
         },
         length: function(val, len){
-            return G.safeParse(G.length(len), val).ok
+            return G.safeParse(G.length(+len), val).ok
         },
         minlength: function(val, len){
-            return G.safeParse(G.minLength(len), val).ok
+            return G.safeParse(G.minLength(+len), val).ok
         },
         maxlength: function(val, len){
-            return G.safeParse(G.maxLength(len), val).ok
+            return G.safeParse(G.maxLength(+len), val).ok
         },
         min: function(val, min_value){
-            return G.safeParse(G.minValue(min_value), val).ok
+            return G.safeParse(G.minValue(+min_value), +val).ok
         },
         max: function(val, max_value){
-            return G.safeParse(G.maxValue(max_value), val).ok
+            return G.safeParse(G.maxValue(+max_value), +val).ok
         },
         email: function(val){
             return G.safeParse(G.email(), val).ok
@@ -61,17 +60,17 @@
             return G.safeParse(G.hexColor(), val).ok
         },
         color: function(val){
-            if (!Utils.isValue(val)) return false;
+            if (!Metro.utils.isValue(val)) return false;
             return Farbe.Palette.color(val, Farbe.StandardColors) || Farbe.Routines.isColor(val);
         },
         pattern: function(val, pat){
             return G.safeParse(G.pattern(pat), val).ok
         },
         compare: function(val, val2){
-            return val === val2;
+            return val == val2;
         },
         not: function(val, not_this){
-            return val !== not_this;
+            return val != not_this;
         },
         notequals: function(val, val2){
             return val !== val2
@@ -80,21 +79,14 @@
             return val === val2
         },
         custom: function(val, func){
-            if (Utils.isFunc(func) === false) {
+            if (Metro.utils.isFunc(func) === false) {
                 return false;
             }
-            return Utils.exec(func, [val]);
+            return Metro.utils.exec(func, [val]);
         },
 
         is_control: function(el){
-            return el.parent().hasClass("input")
-                || el.parent().hasClass("select")
-                || el.parent().hasClass("textarea")
-                || el.parent().hasClass("checkbox")
-                || el.parent().hasClass("switch")
-                || el.parent().hasClass("radio")
-                || el.parent().hasClass("spinner")
-                ;
+            return el.attr("data-role");
         },
 
         reset_state: function(el){
@@ -190,7 +182,7 @@
                     f = rule[0]; rule.shift();
                     a = rule.join("=");
 
-                    if (['compare', 'equals', 'notequals'].indexOf(f) > -1) {
+                    if (['compare', 'not', 'equals', 'notequals'].indexOf(f) > -1) {
                         a = hasForm ? input[0].form.elements[a].value : $("[name="+a+"]").val();
                     }
 
@@ -199,7 +191,7 @@
                         b = input.attr("data-value-locale");
                     }
 
-                    if (Utils.isFunc(ValidatorFuncs[f]) === false)  {
+                    if (Metro.utils.isFunc(ValidatorFuncs[f]) === false)  {
                         this_result = true;
                     } else {
                         if (required_mode === true || f === "required") {
@@ -208,7 +200,7 @@
                             if (input.val().trim() !== "") {
                                 this_result = ValidatorFuncs[f](input.val(), a, b);
                             } else {
-                                this_result = true;
+                                this_result = true; 
                             }
                         }
                     }
@@ -236,12 +228,12 @@
                     });
                 }
 
-                if (cb_error !== undefined) Utils.exec(cb_error, [input, input.val()], input[0]);
+                if (cb_error !== undefined) Metro.utils.exec(cb_error, [input, input.val()], input[0]);
 
             } else {
                 this.set_valid_state(input);
 
-                if (cb_ok !== undefined) Utils.exec(cb_ok, [input, input.val()], input[0]);
+                if (cb_ok !== undefined) Metro.utils.exec(cb_ok, [input, input.val()], input[0]);
             }
 
             return this_result;
@@ -275,8 +267,6 @@
     }
 
     Metro.Component('validator', {
-        name: "Validator",
-
         init: function( options, elem ) {
             this._super(elem, options, ValidatorDefaultConfig, {
                 _onsubmit: null,
@@ -340,7 +330,7 @@
 
         _reset: function(){
             ValidatorFuncs.reset(this.element);
-            if (this._onreset !==  null) Utils.exec(this._onreset, null, this.element[0]);
+            if (this._onreset !==  null) Metro.utils.exec(this._onreset, null, this.element[0]);
         },
 
         _submit: function(){
@@ -364,7 +354,7 @@
 
             submit.removeAttr("disabled").removeClass("disabled");
 
-            result.val += Utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
+            result.val += Metro.utils.exec(o.onBeforeSubmit, [formData], this.elem) === false ? 1 : 0;
 
             if (result.val === 0) {
 
@@ -374,11 +364,11 @@
 
                 setTimeout(function(){
                     // TODO need fix event name to equivalent
-                    Utils.exec(o.onSubmit, [formData], form);
+                    Metro.utils.exec(o.onSubmit, [formData], form);
                     element.fire("formsubmit", {
                         data: formData
                     });
-                    if (that._onsubmit !==  null) Utils.exec(that._onsubmit, null, form);
+                    if (that._onsubmit !==  null) Metro.utils.exec(that._onsubmit, null, form);
                 }, o.submitTimeout);
             } else {
 

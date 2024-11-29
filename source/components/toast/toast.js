@@ -6,8 +6,8 @@
         callback: Metro.noop,
         timeout: METRO_TIMEOUT,
         distance: 20,
-        showTop: false,
-        clsToast: ""
+        position: "bottom", // top, bottom, center
+        cls: ""
     };
 
     Metro.toastSetup = function(options){
@@ -39,12 +39,14 @@
 
             timeout = timeout || o.timeout;
             callback = callback || o.callback;
-            cls = cls || o.clsToast;
+            cls = cls || o.cls;
 
-            if (o.showTop === true) {
+            if (o.position === "top") {
                 toast.addClass("show-top").css({
                     top: o.distance
                 });
+            } else if (o.position === "center") {
+                toast.addClass("show-center")
             } else {
                 toast.css({
                     bottom: o.distance
@@ -56,7 +58,7 @@
                     'left': '50%',
                     'margin-left': -(width / 2)
                 })
-                .addClass(o.clsToast)
+                .addClass(o.cls)
                 .addClass(cls)
                 .fadeIn(METRO_ANIMATION_DURATION, function(){
                     setTimeout(function(){

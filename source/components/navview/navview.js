@@ -209,7 +209,6 @@
                 const a = $(this);
                 const r = Metro.utils.rect(this);
                 const c = a.children(".caption");
-                console.log(c);
                 c.css({
                     position: "fixed",
                     top: r.top,

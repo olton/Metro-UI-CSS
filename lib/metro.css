@@ -42933,6 +42933,7 @@ input[type=reset].loading .load-caption {
   --input-required-color: #468cff;
   --input-invalid-color: #ad2a14;
   --input-valid-color: #4cad14;
+  --input-border-radius: 6px;
 }
 .dark-side {
   --input-background: #2b2d30;
@@ -42957,6 +42958,7 @@ input[type=reset].loading .load-caption {
 .color-picker {
   position: relative;
   border: 1px var(--input-border-color) solid;
+  border-radius: var(--input-border-radius);
   color: var(--input-color);
   width: 100%;
   font-size: 16px;
@@ -44585,13 +44587,16 @@ input:-ms-input-placeholder {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  width: 50%;
 }
 .chart-card .content {
   flex-flow: column nowrap;
-  width: 60%;
 }
 .chart-card .chart {
-  width: 40%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
 }
 .chart-card .title {
   font-size: 16px;
@@ -62519,18 +62524,28 @@ textarea {
 }
 
 /* source/components/toast/toast.less */
+:root {
+  --toast-background: #323232;
+  --toast-color: #ffffff;
+  --toast-border-radius: 6px;
+  --toast-closer-background: inherit;
+  --toast-closer-color: inherit;
+  --toast-closer-background-hover: var(--color-alert);
+  --toast-closer-color-hover: var(--color-light);
+}
 .toast {
   position: fixed;
   bottom: 20px;
   width: auto;
+  height: auto;
   max-width: 35.5rem;
   padding: 0.5rem 1.5rem;
   text-align: left;
   font-size: 0.875rem;
   font-weight: normal;
-  background-color: #323232;
-  color: #ffffff;
-  border-radius: 0.25rem;
+  background: var(--toast-background);
+  color: var(--toast-color);
+  border-radius: var(--toast-border-radius);
   z-index: 1080;
   display: block;
 }
@@ -62538,18 +62553,25 @@ textarea {
   bottom: auto;
   top: 20px;
 }
+.toast.show-center {
+  left: 50%;
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+}
 .toast .closer {
   display: block;
   position: absolute;
   top: 4px;
   right: 4px;
-  background-color: inherit;
-  color: inherit;
+  background: var(--toast-closer-background);
+  color: var(--toast-closer-color);
   z-index: 100;
 }
 .toast .closer::before {
+  font-family: "Segoe UI Symbol", serif;
   display: block;
-  content: "\d7";
+  content: "\274c";
   font-size: 24px;
   margin-top: -4px;
 }
