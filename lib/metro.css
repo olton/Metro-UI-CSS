@@ -5463,7 +5463,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #AEFD6C, 8px 8px 0 0 #AEFD6C;
 }
 .shadow-glow-lime {
-  box-shadow: 0 9px 30px #AEFD6C;
+  box-shadow: 0 0px 30px #AEFD6C;
 }
 .shadow-glow-soft-lime {
   box-shadow: 0 9px 30px #f2ffe7;
@@ -5475,7 +5475,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #008000, 8px 8px 0 0 #008000;
 }
 .shadow-glow-green {
-  box-shadow: 0 9px 30px #008000;
+  box-shadow: 0 0px 30px #008000;
 }
 .shadow-glow-soft-green {
   box-shadow: 0 9px 30px #e7f6e6;
@@ -5487,7 +5487,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #50c878, 8px 8px 0 0 #50c878;
 }
 .shadow-glow-emerald {
-  box-shadow: 0 9px 30px #50c878;
+  box-shadow: 0 0px 30px #50c878;
 }
 .shadow-glow-soft-emerald {
   box-shadow: 0 9px 30px #d1e6cc;
@@ -5499,7 +5499,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #5e87ff, 8px 8px 0 0 #5e87ff;
 }
 .shadow-glow-blue {
-  box-shadow: 0 9px 30px #5e87ff;
+  box-shadow: 0 0px 30px #5e87ff;
 }
 .shadow-glow-soft-blue {
   box-shadow: 0 9px 30px #e7eaff;
@@ -5511,7 +5511,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #069494, 8px 8px 0 0 #069494;
 }
 .shadow-glow-teal {
-  box-shadow: 0 9px 30px #069494;
+  box-shadow: 0 0px 30px #069494;
 }
 .shadow-glow-soft-teal {
   box-shadow: 0 9px 30px #e1f2f3;
@@ -5523,7 +5523,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #94b6ff, 8px 8px 0 0 #94b6ff;
 }
 .shadow-glow-cyan {
-  box-shadow: 0 9px 30px #94b6ff;
+  box-shadow: 0 0px 30px #94b6ff;
 }
 .shadow-glow-soft-cyan {
   box-shadow: 0 9px 30px #e3edff;
@@ -5535,7 +5535,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #0047ab, 8px 8px 0 0 #0047ab;
 }
 .shadow-glow-cobalt {
-  box-shadow: 0 9px 30px #0047ab;
+  box-shadow: 0 0px 30px #0047ab;
 }
 .shadow-glow-soft-cobalt {
   box-shadow: 0 9px 30px #d1ecff;
@@ -5547,7 +5547,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #4b0082, 8px 8px 0 0 #4b0082;
 }
 .shadow-glow-indigo {
-  box-shadow: 0 9px 30px #4b0082;
+  box-shadow: 0 0px 30px #4b0082;
 }
 .shadow-glow-soft-indigo {
   box-shadow: 0 9px 30px #f3e4f3;
@@ -5559,7 +5559,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ee82ee, 8px 8px 0 0 #ee82ee;
 }
 .shadow-glow-violet {
-  box-shadow: 0 9px 30px #ee82ee;
+  box-shadow: 0 0px 30px #ee82ee;
 }
 .shadow-glow-soft-violet {
   box-shadow: 0 9px 30px #fce2fb;
@@ -5571,7 +5571,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ffc0cb, 8px 8px 0 0 #ffc0cb;
 }
 .shadow-glow-pink {
-  box-shadow: 0 9px 30px #ffc0cb;
+  box-shadow: 0 0px 30px #ffc0cb;
 }
 .shadow-glow-soft-pink {
   box-shadow: 0 9px 30px #ffeef1;
@@ -5583,7 +5583,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ff00ff, 8px 8px 0 0 #ff00ff;
 }
 .shadow-glow-magenta {
-  box-shadow: 0 9px 30px #ff00ff;
+  box-shadow: 0 0px 30px #ff00ff;
 }
 .shadow-glow-soft-magenta {
   box-shadow: 0 9px 30px #ffe2ff;
@@ -5595,7 +5595,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #dc143c, 8px 8px 0 0 #dc143c;
 }
 .shadow-glow-crimson {
-  box-shadow: 0 9px 30px #dc143c;
+  box-shadow: 0 0px 30px #dc143c;
 }
 .shadow-glow-soft-crimson {
   box-shadow: 0 9px 30px #ffd1da;
@@ -5607,7 +5607,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ff0000, 8px 8px 0 0 #ff0000;
 }
 .shadow-glow-red {
-  box-shadow: 0 9px 30px #ff0000;
+  box-shadow: 0 0px 30px #ff0000;
 }
 .shadow-glow-soft-red {
   box-shadow: 0 9px 30px #ffe1e1;
@@ -5619,7 +5619,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ffa500, 8px 8px 0 0 #ffa500;
 }
 .shadow-glow-orange {
-  box-shadow: 0 9px 30px #ffa500;
+  box-shadow: 0 0px 30px #ffa500;
 }
 .shadow-glow-soft-orange {
   box-shadow: 0 9px 30px #fff3de;
@@ -5631,7 +5631,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ffbf00, 8px 8px 0 0 #ffbf00;
 }
 .shadow-glow-amber {
-  box-shadow: 0 9px 30px #ffbf00;
+  box-shadow: 0 0px 30px #ffbf00;
 }
 .shadow-glow-soft-amber {
   box-shadow: 0 9px 30px #fff8e1;
@@ -5643,7 +5643,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ffff00, 8px 8px 0 0 #ffff00;
 }
 .shadow-glow-yellow {
-  box-shadow: 0 9px 30px #ffff00;
+  box-shadow: 0 0px 30px #ffff00;
 }
 .shadow-glow-soft-yellow {
   box-shadow: 0 9px 30px #ffffe6;
@@ -5655,7 +5655,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #895129, 8px 8px 0 0 #895129;
 }
 .shadow-glow-brown {
-  box-shadow: 0 9px 30px #895129;
+  box-shadow: 0 0px 30px #895129;
 }
 .shadow-glow-soft-brown {
   box-shadow: 0 9px 30px #ffeed9;
@@ -5667,7 +5667,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #808000, 8px 8px 0 0 #808000;
 }
 .shadow-glow-olive {
-  box-shadow: 0 9px 30px #808000;
+  box-shadow: 0 0px 30px #808000;
 }
 .shadow-glow-soft-olive {
   box-shadow: 0 9px 30px #f8fde7;
@@ -5679,7 +5679,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #647687, 8px 8px 0 0 #647687;
 }
 .shadow-glow-steel {
-  box-shadow: 0 9px 30px #647687;
+  box-shadow: 0 0px 30px #647687;
 }
 .shadow-glow-soft-steel {
   box-shadow: 0 9px 30px #edeeee;
@@ -5691,7 +5691,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #e0afff, 8px 8px 0 0 #e0afff;
 }
 .shadow-glow-mauve {
-  box-shadow: 0 9px 30px #e0afff;
+  box-shadow: 0 0px 30px #e0afff;
 }
 .shadow-glow-soft-mauve {
   box-shadow: 0 9px 30px #f7ecfe;
@@ -5703,7 +5703,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #54463a, 8px 8px 0 0 #54463a;
 }
 .shadow-glow-taupe {
-  box-shadow: 0 9px 30px #54463a;
+  box-shadow: 0 0px 30px #54463a;
 }
 .shadow-glow-soft-taupe {
   box-shadow: 0 9px 30px #eadccf;
@@ -5715,7 +5715,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #f7e6ca, 8px 8px 0 0 #f7e6ca;
 }
 .shadow-glow-champagne {
-  box-shadow: 0 9px 30px #f7e6ca;
+  box-shadow: 0 0px 30px #f7e6ca;
 }
 .shadow-glow-soft-champagne {
   box-shadow: 0 9px 30px #fffdf7;
@@ -5727,7 +5727,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #d5c58a, 8px 8px 0 0 #d5c58a;
 }
 .shadow-glow-khaki {
-  box-shadow: 0 9px 30px #d5c58a;
+  box-shadow: 0 0px 30px #d5c58a;
 }
 .shadow-glow-soft-khaki {
   box-shadow: 0 9px 30px #f6f1dd;
@@ -5739,7 +5739,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #4a4a4a, 8px 8px 0 0 #4a4a4a;
 }
 .shadow-glow-charcoal {
-  box-shadow: 0 9px 30px #4a4a4a;
+  box-shadow: 0 0px 30px #4a4a4a;
 }
 .shadow-glow-soft-charcoal {
   box-shadow: 0 9px 30px #e8e8e8;
@@ -5751,7 +5751,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #d47e30, 8px 8px 0 0 #d47e30;
 }
 .shadow-glow-bronze {
-  box-shadow: 0 9px 30px #d47e30;
+  box-shadow: 0 0px 30px #d47e30;
 }
 .shadow-glow-soft-bronze {
   box-shadow: 0 9px 30px #f7f5c8;
@@ -5763,7 +5763,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #678dc6, 8px 8px 0 0 #678dc6;
 }
 .shadow-glow-windstorm {
-  box-shadow: 0 9px 30px #678dc6;
+  box-shadow: 0 0px 30px #678dc6;
 }
 .shadow-glow-soft-windstorm {
   box-shadow: 0 9px 30px #e6ebf5;
@@ -5775,7 +5775,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #f7d9bc, 8px 8px 0 0 #f7d9bc;
 }
 .shadow-glow-nude {
-  box-shadow: 0 9px 30px #f7d9bc;
+  box-shadow: 0 0px 30px #f7d9bc;
 }
 .shadow-glow-soft-nude {
   box-shadow: 0 9px 30px #fcf0e4;
@@ -5787,7 +5787,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #e35336, 8px 8px 0 0 #e35336;
 }
 .shadow-glow-terracotta {
-  box-shadow: 0 9px 30px #e35336;
+  box-shadow: 0 0px 30px #e35336;
 }
 .shadow-glow-soft-terracotta {
   box-shadow: 0 9px 30px #fdebed;
@@ -5799,7 +5799,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #ff8559, 8px 8px 0 0 #ff8559;
 }
 .shadow-glow-coral {
-  box-shadow: 0 9px 30px #ff8559;
+  box-shadow: 0 0px 30px #ff8559;
 }
 .shadow-glow-soft-coral {
   box-shadow: 0 9px 30px #ffd8c8;
@@ -5811,7 +5811,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #5d6532, 8px 8px 0 0 #5d6532;
 }
 .shadow-glow-army {
-  box-shadow: 0 9px 30px #5d6532;
+  box-shadow: 0 0px 30px #5d6532;
 }
 .shadow-glow-soft-army {
   box-shadow: 0 9px 30px #eceacb;
@@ -5823,7 +5823,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #fff1e7, 8px 8px 0 0 #fff1e7;
 }
 .shadow-glow-seashell {
-  box-shadow: 0 9px 30px #fff1e7;
+  box-shadow: 0 0px 30px #fff1e7;
 }
 .shadow-glow-soft-seashell {
   box-shadow: 0 9px 30px #fff9f8;
@@ -5835,7 +5835,7 @@ ol.latin-lower {
   box-shadow: 0 0 0 2px #cbbd93, 8px 8px 0 0 #cbbd93;
 }
 .shadow-glow-sand {
-  box-shadow: 0 9px 30px #cbbd93;
+  box-shadow: 0 0px 30px #cbbd93;
 }
 .shadow-glow-soft-sand {
   box-shadow: 0 9px 30px #f8f3e0;
@@ -47996,6 +47996,7 @@ form,
   margin-right: calc(-1 * var(--grid-gutter));
   container-type: inline-size;
   container-name: row;
+  width: 100%;
 }
 .row + .row {
   margin-top: var(--grid-gutter);
