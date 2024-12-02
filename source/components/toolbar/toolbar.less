@@ -53,11 +53,6 @@
         text-decoration: none;
     }
 
-    &:hover {
-        background: var(--tool-button-background-hover);
-        color: var(--tool-button-color-hover);
-    }
-
     &:active {
         outline: 0;
         box-shadow: none;
@@ -67,6 +62,11 @@
         background: transparent none;
         border-width: 1px;
         border-color: var(--tool-button-border-color);
+    }
+
+    &:hover {
+        background: var(--tool-button-background-hover);
+        color: var(--tool-button-color-hover);
     }
 
     &.disabled, &:disabled {

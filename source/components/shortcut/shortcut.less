@@ -5,7 +5,7 @@
     --shortcut-border-radius: 6px;
     --shortcut-background: #f8f8f8;
     --shortcut-color: #191919;
-    --shortcut-background-hover: #dcdcdc;
+    --shortcut-background-hover: #dadada;
     --shortcut-color-hover: #474747;
 }
 
@@ -87,6 +87,10 @@
         background: transparent none;
         border-width: 1px;
         border-color: var(--border-color);
+        &:hover {
+            background: var(--shortcut-background-hover);
+            color: var(--shortcut-color-hover);
+        }
     }
 
     &:focus, &:hover, &:active {

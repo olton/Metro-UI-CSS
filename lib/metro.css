@@ -56572,7 +56572,7 @@ form,
   --shortcut-border-radius: 6px;
   --shortcut-background: #f8f8f8;
   --shortcut-color: #191919;
-  --shortcut-background-hover: #dcdcdc;
+  --shortcut-background-hover: #dadada;
   --shortcut-color-hover: #474747;
 }
 .dark-side {
@@ -56645,6 +56645,10 @@ form,
   background: transparent none;
   border-width: 1px;
   border-color: var(--border-color);
+}
+.shortcut.outline:hover {
+  background: var(--shortcut-background-hover);
+  color: var(--shortcut-color-hover);
 }
 .shortcut:focus,
 .shortcut:hover,
@@ -62636,10 +62640,6 @@ textarea {
 .tool-button:hover {
   text-decoration: none;
 }
-.tool-button:hover {
-  background: var(--tool-button-background-hover);
-  color: var(--tool-button-color-hover);
-}
 .tool-button:active {
   outline: 0;
   box-shadow: none;
@@ -62648,6 +62648,10 @@ textarea {
   background: transparent none;
   border-width: 1px;
   border-color: var(--tool-button-border-color);
+}
+.tool-button:hover {
+  background: var(--tool-button-background-hover);
+  color: var(--tool-button-color-hover);
 }
 .tool-button.disabled,
 .tool-button:disabled {
