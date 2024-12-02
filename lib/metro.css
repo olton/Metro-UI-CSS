@@ -39628,6 +39628,9 @@ pre code {
   border-width: 1px;
   border-color: var(--button-border-color);
 }
+.button.outline:hover {
+  background-color: var(--button-background);
+}
 a.button,
 a.flat-button {
   appearance: none;
@@ -39790,6 +39793,11 @@ input[type=reset].outline {
   background: transparent none;
   border-width: 1px;
   border-color: var(--button-border-color);
+}
+input[type=button].outline:hover,
+input[type=submit].outline:hover,
+input[type=reset].outline:hover {
+  background-color: var(--button-background);
 }
 input[type=button] .load-marker,
 input[type=submit] .load-marker,
@@ -40903,6 +40911,7 @@ input[type=reset].loading .load-caption {
   top: 50%;
   transform: translate(0, -50%);
   font-size: 24px;
+  font-family: "Segoe UI Symbol", serif;
 }
 .analog-clock .moon.new-moon::before {
   content: "\1f311";
@@ -51256,8 +51265,8 @@ form,
   transition: all 0.3s ease-in-out;
 }
 .image-button .icon {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   line-height: 34px;
   font-size: 1rem;
   background: var(--image-button-icon-background);
@@ -51271,7 +51280,6 @@ form,
   color: inherit;
   order: 2;
   font-weight: 400;
-  line-height: 1.2;
 }
 .image-button .caption small {
   display: block;
@@ -58494,6 +58502,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   --switch-countur-color-on: #191919;
   --switch-color-on: #191919;
   --switch-thumb-color-on: #ffffff;
+  --switch-label-size: 8px;
 }
 .dark-side {
   --switch-countur-color: #474747;
@@ -58526,7 +58535,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .switch .caption {
   display: block;
   line-height: 38px;
-  font-size: 14px;
+  font-size: var(--switch-label-size);
   margin: 0 4px;
   position: relative;
 }
@@ -58613,7 +58622,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 26px;
   top: -2px;
   line-height: 20px;
-  font-size: 10px;
+  font-size: var(--switch-label-size);
   text-transform: uppercase;
   text-align: center;
 }

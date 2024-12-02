@@ -8,6 +8,7 @@
     --switch-countur-color-on: #191919;
     --switch-color-on: #191919;
     --switch-thumb-color-on: #ffffff;
+    --switch-label-size: 8px;
 }
 
 .dark-side {
@@ -35,7 +36,7 @@
     .check, .caption {
         display: block;
         line-height: 38px;
-        font-size: 14px;
+        font-size: var(--switch-label-size);
         margin: 0 4px;
         position: relative;
     }
@@ -136,7 +137,7 @@
             width: 26px;
             top: -2px;
             line-height: 20px;
-            font-size: 10px;
+            font-size: var(--switch-label-size);
             text-transform: uppercase;
             text-align: center;
         }
