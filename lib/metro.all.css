@@ -292,6 +292,10 @@ body {
 .ani-hover-spin:hover {
   animation: ani-spin 1.5s linear infinite;
 }
+.ani-spin-reverse,
+.ani-hover-spin-reverse:hover {
+  animation: ani-spin-reverse 1.5s linear infinite;
+}
 .ani-pulse,
 .ani-hover-pulse:hover {
   animation: ani-pulse 1.7s infinite;
@@ -474,6 +478,14 @@ body {
   }
   100% {
     transform: rotate(359deg);
+  }
+}
+@keyframes ani-spin-reverse {
+  0% {
+    transform: rotate(359deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
 @keyframes ani-pulse {
