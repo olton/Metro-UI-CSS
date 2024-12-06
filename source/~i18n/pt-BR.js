@@ -38,19 +38,19 @@
                 "reset": "Restaurar"
             },
             "table": {
-                "rowsCount": "Show entries:",
-                "search": "Search:",
-                "info": "Showing $1 to $2 of $3 entries",
-                "prev": "Prev",
-                "next": "Next",
-                "all": "All",
-                "inspector": "Inspector",
-                "skip": "Goto page",
-                "empty": "Nothing to show"
+                "rowsCount": "Exibindo:",
+                "search": "Pesquisar:",
+                "info": "Exibindo de $1 até $2 de $3 registros",
+                "prev": "Anterior",
+                "next": "Próximo",
+                "all": "Todos",
+                "inspector": "Inspetor",
+                "skip": "Ir para",
+                "empty": "Nada para exibir"
             },
             "colorSelector": {
-                addUserColorButton: "ADD TO SWATCHES",
-                userColorsTitle: "USER COLORS"
+                addUserColorButton: "ADICIONAR PARA AMOSTRAS",
+                userColorsTitle: "CORES DO USUÁRIO"
             },
             "switch": {
                 on: "on",
