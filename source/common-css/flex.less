@@ -15,7 +15,7 @@ each(@media-rules, {
 
 each(range(12), {
     .gap-@{value} {
-        gap: unit(@value * 4, px);
+        gap: unit(@value * 4, px)!important;
     }
 })
 
@@ -127,9 +127,15 @@ each(@media-rules, {
         .flex-top-@{key} {margin-bottom: auto;}
         .flex-bottom-@{key} {margin-top: auto;}
 
-        each(range(24), .(@v){
+        each(range(24), .(@v) {
             .order-@{v}-@{key} {
                 order: @v;
+            }
+        })
+
+        each(range(12), .(@v) {
+            .gap-@{v}-@{key} {
+                gap: unit(@v * 4, px)!important;
             }
         })
     }
@@ -182,6 +188,12 @@ each(@media-rules, {
         each(range(24), .(@v){
             .vp-order-@{v}-@{key} {
                 order: @v;
+            }
+        })
+        
+        each(range(12), .(@v) {
+            .vp-gap-@{v}-@{key} {
+                gap: unit(@v * 4, px)!important;
             }
         })
     }

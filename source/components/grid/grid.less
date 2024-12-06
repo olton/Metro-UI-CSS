@@ -10,6 +10,14 @@
 }
 
 .row {
+    each(range(12), .(@v) {
+        &.gap-@{v} {
+            --grid-gap: unit(@v * 4, px);
+        }
+    })
+}
+
+.row {
     display: flex;
     flex-flow: row wrap;
     gap: var(--grid-gap);
@@ -17,12 +25,13 @@
     margin-right: calc(-1 * var(--grid-gap));
     container-type: inline-size;
     container-name: row;
-    width: 100%;
 }
 
 .row + .row {
     margin-top: var(--grid-gap);
 }
+
+
 
 .row > * {
     position: relative;

@@ -146,7 +146,18 @@ figure {
     }
 }
 
-.use-blur-image img:not([alt]) {
+img:not([alt]) {
     filter: blur(8px);
 }
 
+.flip-image-h {
+    transform: scaleX(-1);
+}
+
+.flip-image-v {
+    transform: scaleY(-1);
+}
+
+.flip-image {
+    transform: scale(-1);
+}
