@@ -1,7 +1,7 @@
 @import "../include/vars";
 
 :root {
-    --border-radius: 4px;
+    --border-radius: 6px;
 }
 
 .no-border {border: 0 !important;}
@@ -24,71 +24,31 @@
 .border-top {border-top: 1px solid transparent;}
 .border-bottom {border-bottom: 1px solid transparent;}
 
-.border-top-left, .border-left-top {
-    border-top: 1px solid transparent;
-    border-left: 1px solid transparent;
-}
-.border-top-right, .border-right-top {
-    border-top: 1px solid transparent;
-    border-right: 1px solid transparent;
-}
-.border-bottom-right, .border-right-bottom {
-    border-bottom: 1px solid transparent;
-    border-right: 1px solid transparent;
-}
-.border-bottom-left, .border-left-bottom {
-    border-bottom: 1px solid transparent;
-    border-left: 1px solid transparent;
-}
-.border-top-bottom, .border-bottom-top {
-    border-bottom: 1px solid transparent;
-    border-top: 1px solid transparent;
-}
-.border-right-left, .border-left-right {
-    border-right: 1px solid transparent;
-    border-left: 1px solid transparent;
-}
+.border-radius, .rounded {border-radius: var(--border-radius);}
+.border-radius-half, .to-cycle {border-radius: 50%;}
 
-.border-top-right-bottom {
-    border-top: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-}
-.border-right-bottom-left {
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-}
-.border-bottom-left-top {
-    border-left: 1px solid transparent;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-}
-.border-left-top-right {
-    border-left: 1px solid transparent;
-    border-top: 1px solid transparent;
-    border-bottom: 1px solid transparent;
-}
-
-.border-radius {border-radius: var(--border-radius);}
-.border-radius-half {border-radius: 50%;}
-
-.generate-border-width(20);
-.generate-border-width(@i) when (@i > 0) {
-
-    .border-@{i} {border-width: unit(@i, px);}
+each(range(1, 20), .(@i) {
     .border-size-@{i} {border-width: unit(@i, px);}
     .border-radius-@{i} {border-radius: unit(@i, px);}
+});
 
-    .generate-border-width(@i - 1);
-}
-
-.rounded {
-    border-radius: var(--border-radius) !important;
-}
-.border-50 {
-    border-radius: 50% !important;
-}
+each(@media-rules, {
+    @container (min-width: @value) {
+        .border-none-@{key} {border: none!important;}
+        .border-top-none-@{key} {border-top: none!important;}
+        .border-right-none-@{key} {border-right: none!important;}
+        .border-bottom-none-@{key} {border-bottom: none!important;}
+        .border-left-none-@{key} {border-left: none!important;}
+    }
+    
+    @media (min-width: @value) {
+        .vp-border-none-@{key} {border: none!important;}
+        .vp-border-top-none-@{key} {border-top: none!important;}
+        .vp-border-right-none-@{key} {border-right: none!important;}
+        .vp-border-bottom-none-@{key} {border-bottom: none!important;}
+        .vp-border-left-none-@{key} {border-left: none!important;}
+    }
+})
 
 .border-solid {border-style: solid!important;}
 .border-dashed {border-style: dashed!important;}

@@ -4,8 +4,8 @@
 .w-auto {width: auto!important;}
 .h-auto {height: auto!important;}
 
-each(@mediaBreakpointListMobile, {
-    .w-@{value} {width: @@value!important;}
+each(@media-rules, {
+    .w-@{key} {width: @value!important;}
 })
 
 each(@percents, {
@@ -19,22 +19,37 @@ each(@percents, {
     .mw-@{value} {max-width: unit(@value, %)!important;}
 })
 
-each(@mediaBreakpointListMobile, .(@m) {
-    @media screen and (min-width: @@m) {
-
-        .w-auto-@{m} {width: auto!important;}
-        .h-auto-@{m} {height: auto!important;}
-
+each(@media-rules, {
+    @container (min-width: @value) {
+        .w-auto-@{key} {width: auto!important;}
+        .h-auto-@{key} {height: auto!important;}
 
         each(@percents, .(@p) {
-            .h-vh-@{p}-@{m} {height: unit(@p, vh)!important;}
-            .h-vw-@{p}-@{m} {height: unit(@p, vw)!important;}
-            .w-vh-@{p}-@{m} {width: unit(@p, vh)!important;}
-            .w-vw-@{p}-@{m} {width: unit(@p, vw)!important;}
-            .h-@{p}-@{m} {height: unit(@p, %)!important;}
-            .w-@{p}-@{m} {width: unit(@p, %)!important;}
-            .mh-@{p}-@{m} {max-height: unit(@p, %)!important;}
-            .mw-@{p}-@{m} {max-width: unit(@p, %)!important;}
+            .h-vh-@{p}-@{key} {height: unit(@p, vh)!important;}
+            .h-vw-@{p}-@{key} {height: unit(@p, vw)!important;}
+            .w-vh-@{p}-@{key} {width: unit(@p, vh)!important;}
+            .w-vw-@{p}-@{key} {width: unit(@p, vw)!important;}
+            .h-@{p}-@{key} {height: unit(@p, %)!important;}
+            .w-@{p}-@{key} {width: unit(@p, %)!important;}
+            .mh-@{p}-@{key} {max-height: unit(@p, %)!important;}
+            .mw-@{p}-@{key} {max-width: unit(@p, %)!important;}
+        })
+    }
+    
+    @media (min-width: @value) {
+        .vp-w-auto-@{key} {width: auto!important;}
+        .vp-h-auto-@{key} {height: auto!important;}
+
+        each(@percents, .(@p) {
+            .vp-h-vh-@{p}-@{key} {height: unit(@p, vh)!important;}
+            .vp-h-vw-@{p}-@{key} {height: unit(@p, vw)!important;}
+            .vp-w-vh-@{p}-@{key} {width: unit(@p, vh)!important;}
+            .vp-w-vw-@{p}-@{key} {width: unit(@p, vw)!important;}
+            .vp-h-@{p}-@{key} {height: unit(@p, %)!important;}
+            .vp-w-@{p}-@{key} {width: unit(@p, %)!important;}
+            .vp-mh-@{p}-@{key} {max-height: unit(@p, %)!important;}
+            .vp-mw-@{p}-@{key} {max-width: unit(@p, %)!important;}
         })
     }
 })
+

@@ -19,23 +19,11 @@
     --kbd-color: #ffffff;
 }
 
-.text {
-    &-ultralight {
-        font-weight: 100 !important;
-    }
-    &-light {
-        font-weight: 200 !important;
-    }
-    &-normal {
-        font-weight: 400 !important;
-    }
-    &-medium {
-        font-weight: 500 !important;
-    }
-    &-bold {
-        font-weight: 700 !important;
-    }
-}
+.text-ultralight { font-weight: 100 !important;}
+.text-light { font-weight: 200 !important;}
+.text-normal { font-weight: 400 !important;}
+.text-medium {font-weight: 600 !important;}
+.text-bold { font-weight: 800 !important;}
 
 .text-weight-1 {font-weight: 100 !important;}
 .text-weight-2 {font-weight: 200 !important;}
@@ -46,6 +34,7 @@
 .text-weight-7 {font-weight: 700 !important;}
 .text-weight-8 {font-weight: 800 !important;}
 .text-weight-9 {font-weight: 900 !important;}
+.text-weight-10 {font-weight: 1000 !important;}
 
 .display4 {
     font-size: 112px;
@@ -349,11 +338,9 @@ dl {
             font-weight: bold;
             float: left;
             padding: 0;
-            .px2rem(line-height, 40px);
-            .px2rem(font-size, 48px);
-            .px2rem(margin-right, 8px);
-            .px2rem(margin-left, -2px);
-            .px2rem(margin-top, 2px);
+            line-height: 40px;
+            font-size: 48px;
+            margin: 2px 8px 0 -2px;
         }
     }
 }
@@ -462,50 +449,95 @@ pre code {
     text-decoration: underline;
 }
 
-each(@mediaBreakpointListMobile, .(@m) {
-    @media screen and (min-width: @@m) {
-        .text-upper-@{m} {text-transform: uppercase !important;}
-        .text-lower-@{m} {text-transform: lowercase !important;}
-        .text-cap-@{m}   {text-transform: capitalize !important;}
+each(@media-rules, {
+    @container (min-width: @value) {
+        .text-upper-@{key} {text-transform: uppercase !important;}
+        .text-lower-@{key} {text-transform: lowercase !important;}
+        .text-cap-@{key}   {text-transform: capitalize !important;}
 
-        .text-left-@{m} {text-align: left !important;}
-        .text-right-@{m} {text-align: right !important;}
-        .text-center-@{m} {text-align: center !important;}
-        .text-just-@{m} {text-align: justify !important;}
+        .text-left-@{key} {text-align: left !important;}
+        .text-right-@{key} {text-align: right !important;}
+        .text-center-@{key} {text-align: center !important;}
+        .text-just-@{key} {text-align: justify !important;}
 
-        .va-top-@{m} {vertical-align: top !important;}
-        .va-bottom-@{m} {vertical-align: bottom !important;}
-        .va-baseline-@{m} {vertical-align: baseline !important;}
-        .va-middle-@{m} {vertical-align: middle !important;}
-        .va-sub-@{m} {vertical-align: sub !important;}
-        .va-super-@{m} {vertical-align: super !important;}
-        .va-text-top-@{m} {vertical-align: text-top !important;}
-        .va-text-bottom-@{m} {vertical-align: text-bottom !important;}
+        .va-top-@{key} {vertical-align: top !important;}
+        .va-bottom-@{key} {vertical-align: bottom !important;}
+        .va-baseline-@{key} {vertical-align: baseline !important;}
+        .va-middle-@{key} {vertical-align: middle !important;}
+        .va-sub-@{key} {vertical-align: sub !important;}
+        .va-super-@{key} {vertical-align: super !important;}
+        .va-text-top-@{key} {vertical-align: text-top !important;}
+        .va-text-bottom-@{key} {vertical-align: text-bottom !important;}
 
-        .reduce-1-@{m} {font-size: .9em!important;}
-        .reduce-2-@{m} {font-size: .8em!important;}
-        .reduce-3-@{m} {font-size: .7em!important;}
-        .reduce-4-@{m} {font-size: .6em!important;}
-        .reduce-5-@{m} {font-size: .5em!important;}
-        .reduce-6-@{m} {font-size: .4em!important;}
-        .reduce-7-@{m} {font-size: .3em!important;}
-        .reduce-8-@{m} {font-size: .2em!important;}
-        .reduce-9-@{m} {font-size: .1em!important;}
+        .reduce-1-@{key} {font-size: .9em!important;}
+        .reduce-2-@{key} {font-size: .8em!important;}
+        .reduce-3-@{key} {font-size: .7em!important;}
+        .reduce-4-@{key} {font-size: .6em!important;}
+        .reduce-5-@{key} {font-size: .5em!important;}
+        .reduce-6-@{key} {font-size: .4em!important;}
+        .reduce-7-@{key} {font-size: .3em!important;}
+        .reduce-8-@{key} {font-size: .2em!important;}
+        .reduce-9-@{key} {font-size: .1em!important;}
 
-        .enlarge-@{m} {font-size: 1em!important;}
+        .enlarge-@{key} {font-size: 1em!important;}
 
-        .enlarge-1-@{m} {font-size: 1.1em!important;}
-        .enlarge-2-@{m} {font-size: 1.2em!important;}
-        .enlarge-3-@{m} {font-size: 1.3em!important;}
-        .enlarge-4-@{m} {font-size: 1.4em!important;}
-        .enlarge-5-@{m} {font-size: 1.5em!important;}
-        .enlarge-6-@{m} {font-size: 1.6em!important;}
-        .enlarge-7-@{m} {font-size: 1.7em!important;}
-        .enlarge-8-@{m} {font-size: 1.8em!important;}
-        .enlarge-9-@{m} {font-size: 1.9em!important;}
-        .enlarge-2x-@{m} {font-size: 2em!important;}
-        .enlarge-3x-@{m} {font-size: 3em!important;}
-        .enlarge-4x-@{m} {font-size: 4em!important;}
+        .enlarge-1-@{key} {font-size: 1.1em!important;}
+        .enlarge-2-@{key} {font-size: 1.2em!important;}
+        .enlarge-3-@{key} {font-size: 1.3em!important;}
+        .enlarge-4-@{key} {font-size: 1.4em!important;}
+        .enlarge-5-@{key} {font-size: 1.5em!important;}
+        .enlarge-6-@{key} {font-size: 1.6em!important;}
+        .enlarge-7-@{key} {font-size: 1.7em!important;}
+        .enlarge-8-@{key} {font-size: 1.8em!important;}
+        .enlarge-9-@{key} {font-size: 1.9em!important;}
+        .enlarge-2x-@{key} {font-size: 2em!important;}
+        .enlarge-3x-@{key} {font-size: 3em!important;}
+        .enlarge-4x-@{key} {font-size: 4em!important;}
+    }
+    
+    @media (min-width: @value) {
+        .vp-text-upper-@{key} {text-transform: uppercase !important;}
+        .vp-text-lower-@{key} {text-transform: lowercase !important;}
+        .vp-text-cap-@{key}   {text-transform: capitalize !important;}
+
+        .vp-text-left-@{key} {text-align: left !important;}
+        .vp-text-right-@{key} {text-align: right !important;}
+        .vp-text-center-@{key} {text-align: center !important;}
+        .vp-text-just-@{key} {text-align: justify !important;}
+
+        .vp-va-top-@{key} {vertical-align: top !important;}
+        .vp-va-bottom-@{key} {vertical-align: bottom !important;}
+        .vp-va-baseline-@{key} {vertical-align: baseline !important;}
+        .vp-va-middle-@{key} {vertical-align: middle !important;}
+        .vp-va-sub-@{key} {vertical-align: sub !important;}
+        .vp-va-super-@{key} {vertical-align: super !important;}
+        .vp-va-text-top-@{key} {vertical-align: text-top !important;}
+        .vp-va-text-bottom-@{key} {vertical-align: text-bottom !important;}
+
+        .vp-reduce-1-@{key} {font-size: .9em!important;}
+        .vp-reduce-2-@{key} {font-size: .8em!important;}
+        .vp-reduce-3-@{key} {font-size: .7em!important;}
+        .vp-reduce-4-@{key} {font-size: .6em!important;}
+        .vp-reduce-5-@{key} {font-size: .5em!important;}
+        .vp-reduce-6-@{key} {font-size: .4em!important;}
+        .vp-reduce-7-@{key} {font-size: .3em!important;}
+        .vp-reduce-8-@{key} {font-size: .2em!important;}
+        .vp-reduce-9-@{key} {font-size: .1em!important;}
+
+        .vp-enlarge-@{key} {font-size: 1em!important;}
+
+        .vp-enlarge-1-@{key} {font-size: 1.1em!important;}
+        .vp-enlarge-2-@{key} {font-size: 1.2em!important;}
+        .vp-enlarge-3-@{key} {font-size: 1.3em!important;}
+        .vp-enlarge-4-@{key} {font-size: 1.4em!important;}
+        .vp-enlarge-5-@{key} {font-size: 1.5em!important;}
+        .vp-enlarge-6-@{key} {font-size: 1.6em!important;}
+        .vp-enlarge-7-@{key} {font-size: 1.7em!important;}
+        .vp-enlarge-8-@{key} {font-size: 1.8em!important;}
+        .vp-enlarge-9-@{key} {font-size: 1.9em!important;}
+        .vp-enlarge-2x-@{key} {font-size: 2em!important;}
+        .vp-enlarge-3x-@{key} {font-size: 3em!important;}
+        .vp-enlarge-4x-@{key} {font-size: 4em!important;}
     }
 })
 

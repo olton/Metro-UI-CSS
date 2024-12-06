@@ -90,20 +90,36 @@
     user-select: none;
 }
 
-each(@mediaBreakpointListMobile, {
-    @media screen and (min-width: @@value) {
-        .overflow-@{value} {overflow: auto !important;}
-        .no-overflow-@{value} {overflow: hidden !important;}
-        .scroll-@{value} {overflow: scroll !important;}
-        .scroll-x-@{value} {overflow-x: auto !important;}
-        .scroll-y-@{value} {overflow-y: auto !important;}
-        .no-scroll-@{value} {overflow: hidden !important;}
-        .no-scroll-x-@{value} {overflow-x: hidden !important;}
-        .no-scroll-y-@{value}{overflow-y: hidden !important;}
-        .wrap-@{value} {white-space: normal !important;}
-        .no-wrap-@{value} {white-space: nowrap !important;}
+each(@media-rules, {
+    @container (min-width: @value) {
+        .overflow-@{key} {overflow: auto !important;}
+        .no-overflow-@{key} {overflow: hidden !important;}
+        .scroll-@{key} {overflow: scroll !important;}
+        .scroll-x-@{key} {overflow-x: auto !important;}
+        .scroll-y-@{key} {overflow-y: auto !important;}
+        .no-scroll-@{key} {overflow: hidden !important;}
+        .no-scroll-x-@{key} {overflow-x: hidden !important;}
+        .no-scroll-y-@{key}{overflow-y: hidden !important;}
+        .wrap-@{key} {white-space: normal !important;}
+        .no-wrap-@{key} {white-space: nowrap !important;}
 
-        .collapse-@{value} {.collapse();}
-        .expand-@{value} {.expand();}
+        .collapse-@{key} {.collapse();}
+        .expand-@{key} {.expand();}
+    }
+
+    @media (min-width: @value) {
+        .vp-overflow-@{key} {overflow: auto !important;}
+        .vp-no-overflow-@{key} {overflow: hidden !important;}
+        .vp-scroll-@{key} {overflow: scroll !important;}
+        .vp-scroll-x-@{key} {overflow-x: auto !important;}
+        .vp-scroll-y-@{key} {overflow-y: auto !important;}
+        .vp-no-scroll-@{key} {overflow: hidden !important;}
+        .vp-no-scroll-x-@{key} {overflow-x: hidden !important;}
+        .vp-no-scroll-y-@{key}{overflow-y: hidden !important;}
+        .vp-wrap-@{key} {white-space: normal !important;}
+        .vp-no-wrap-@{key} {white-space: nowrap !important;}
+
+        .vp-collapse-@{key} {.collapse();}
+        .vp-expand-@{key} {.expand();}
     }
 })
