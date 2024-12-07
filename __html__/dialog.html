@@ -26,19 +26,35 @@
     <button class="button" onclick="OpenDialog()">Load dialog</button>
     <div  data-role="dialog"
             data-overlay="true"
-            data-default-action="true"
+            data-default-action="false"
             data-close-button="true"
             data-overlay-click-close="true"
-            id="IdDialog"
-            class="dialog"></div>
+            data-custom-buttons="customButtons"
+            id="dialog"></div>
 </div>
 
 <script src="../lib/metro.js"></script>
 <script>
+    var customButtons = [
+        {
+            text: "OK",
+            cls: "alert js-dialog-close",
+            onclick: function(){
+                console.log("OK button clicked");
+            }
+        },
+        {
+            text: "Cancel",
+            cls: "js-dialog-close",
+            onclick: function(){
+                console.log("Cancel button clicked");
+            }
+        }
+    ]
     function OpenDialog() {
         const content = `Lorem ipsum dolor sit amet, consectetur adipisicing elit. A delectus dignissimos dolore error, est excepturi facilis fuga nesciunt nulla quibusdam quisquam reprehenderit, voluptate. Aliquid ea, inventore iste labore necessitatibus nihil?`
-        var dialog = Metro.getPlugin('#IdDialog', 'dialog');
-        dialog.setTitle('<span class="default-icon-calendar icon"></span>My Dialog Title');
+        var dialog = Metro.getPlugin('#dialog', 'dialog');
+        dialog.setTitle('<span class="mif-calendar icon"></span>My Dialog Title');
         dialog.setContent(content);
         dialog.open();
     }

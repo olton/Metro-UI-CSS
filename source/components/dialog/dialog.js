@@ -1,5 +1,15 @@
 /** @format */
 
+/*
+* customButtons: [
+*    {
+*        text: "Button",
+*        cls: "",
+*        onclick: () => {},
+*    }
+* ]
+* */
+
 (function (Metro, $) {
     "use strict";
     var Utils = Metro.utils;
@@ -11,16 +21,15 @@
         toBottom: false,
         title: "",
         content: "",
-        actions: {},
+        customButtons: null,
         actionsAlign: "right",
         defaultAction: true,
         overlay: true,
         overlayColor: "#000000",
         overlayAlpha: 0.5,
         overlayClickClose: false,
-        width: "480",
+        width: "auto",
         height: "auto",
-        shadow: true,
         closeAction: true,
         clsDialog: "",
         clsTitle: "",
@@ -63,7 +72,6 @@
         },
 
         _create: function () {
-            var o = this.options;
             this._build();
         },
 
@@ -77,10 +85,6 @@
 
             element.addClass("dialog");
 
-            if (o.shadow === true) {
-                element.addClass("shadow-on");
-            }
-
             if (o.title !== "") {
                 this.setTitle(o.title);
             }
@@ -89,7 +93,7 @@
                 this.setContent(o.content);
             }
 
-            if (o.defaultAction === true || (o.actions !== false && typeof o.actions === "object" && Utils.objectLength(o.actions) > 0)) {
+            if (o.defaultAction === true || o.customButtons) {
                 var buttons = element.find(".dialog-actions");
                 var button;
 
@@ -105,8 +109,9 @@
                     button.appendTo(buttons);
                 }
 
-                if (Utils.isObject(o.actions))
-                    $.each(Utils.isObject(o.actions), function () {
+                const customButtons = Utils.isObject(o.customButtons);
+                if (Array.isArray(customButtons))
+                    $.each(customButtons, function () {
                         var item = this;
                         button = $("<button>").addClass("button").addClass(item.cls).html(item.text);
                         if (item.onclick !== undefined)
@@ -138,13 +143,17 @@
             }
 
             element.css({
-                width: o.width,
                 height: o.height,
                 visibility: "hidden",
                 top: "100%",
-                left: ($(globalThis).width() - element.outerWidth()) / 2,
             });
 
+            if (o.width !== "auto") {
+                element.css({
+                    width: o.width,
+                });
+            }
+            
             element.addClass(o.clsDialog);
             element.find(".dialog-title").addClass(o.clsTitle);
             element.find(".dialog-content").addClass(o.clsContent);

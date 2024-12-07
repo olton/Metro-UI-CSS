@@ -40288,7 +40288,7 @@ input[type=reset].loading .load-caption {
   position: fixed;
   display: flex;
   flex-flow: column;
-  width: auto;
+  width: min(90%, 600px);
   max-width: calc(100vw - 100px);
   max-height: calc(100vh - 100px);
   height: auto;
@@ -40297,9 +40297,6 @@ input[type=reset].loading .load-caption {
   z-index: 1050;
   border: 1px solid var(--dialog-border-color);
   border-radius: var(--dialog-border-radius);
-}
-.dialog.shadow-on {
-  box-shadow: 0 17px 50px 0 rgba(0, 0, 0, 0.19), 0 12px 15px 0 rgba(0, 0, 0, 0.24);
 }
 .dialog-title,
 .dialog-content,
