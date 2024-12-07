@@ -149,6 +149,9 @@
             marker.on(Metro.events.startAll, function(){
                 var _marker = $(this);
                 var hint = _marker.find(".hint");
+                
+                _marker.addClass("active");
+                
                 if (o.hint === true && o.hintAlways !== true) {
                     hint.fadeIn(300);
                 }
@@ -163,6 +166,8 @@
                 }, {ns: that.id});
 
                 $(document).on(Metro.events.stopAll, function(){
+                    slider.find(".marker").removeClass("active");
+                    
                     $(document).off(Metro.events.moveAll, {ns: that.id});
                     $(document).off(Metro.events.stopAll, {ns: that.id});
 
@@ -241,7 +246,7 @@
         },
 
         _move: function(e){
-            var target = $(e.target).closest(".marker");
+            var target = this.slider.find(".marker.active");
             var isMin = target.hasClass("marker-min");
             var slider = this.slider;
             var offset = slider.offset(),
