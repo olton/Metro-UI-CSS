@@ -780,8 +780,7 @@
                 return Metro.locales[locale][key] || "";
             },
 
-            updateUI(el, locale = "en") {
-                let from = el ? el : document;
+            updateUI(from = document, locale = "en") {
                 from.querySelectorAll("[data-i18n]").forEach((el) => {
                     const key = el.getAttribute("data-i18n");
                     el.innerHTML = Metro.i18n.get(key, (locale = "en"));

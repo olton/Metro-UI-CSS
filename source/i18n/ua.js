@@ -69,6 +69,9 @@
         label_submit: "Відправити",
         label_add_user_color: "Додати до зразків",
         label_send: "Відправити",
+        label_accept: "Прийняти",
+        label_cookies_title: "Цей сайт використовує файли cookie",
+        label_cookies_text: "Цей веб-сайт використовує файли cookie, щоб забезпечити вам найкращий досвід використання нашого веб-сайту.",
 
         label_days: "дні",
         label_hours: "год",

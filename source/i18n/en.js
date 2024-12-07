@@ -69,6 +69,9 @@
         label_submit: "Submit",
         label_add_user_color: "Add to swatches",
         label_send: "Send",
+        label_accept: "Accept",
+        label_cookies_title: "This site uses cookies",
+        label_cookies_text: "This website uses cookies to ensure you get the best experience on our website.",
 
         label_days: "days",
         label_hours: "hours",

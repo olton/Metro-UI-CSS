@@ -4,16 +4,14 @@
     var Utils = Metro.utils;
     var cookieDisclaimerDefaults = {
         name: 'cookies_accepted',
-        template: null,
-        templateSource: null,
-        acceptButton: '.cookie-accept-button',
-        cancelButton: '.cookie-cancel-button',
-        message: 'Our website uses cookies to monitor traffic on our website and ensure that we can provide our customers with the best online experience possible.',
+        templateUrl: null,
+        title: "",
+        message: "",
         duration: "30days",
         clsContainer: "",
         clsMessage: "",
         clsButtons: "",
-        clsAcceptButton: "alert",
+        clsAcceptButton: "",
         clsCancelButton: "",
         onAccept: Metro.noop,
         onDecline: Metro.noop
@@ -30,14 +28,15 @@
                 return ;
             }
 
-            if (this.options.template) {
-                fetch(this.options.template)
+            this.locale = $("html").attr("lang") || "en";
+            this.strings = $.extend({}, Metro.locales["en"], Metro.locales[this.locale]);
+            
+            if (this.options.templateUrl) {
+                fetch(this.options.templateUrl)
                     .then(Metro.fetch.text)
                     .then(function(data){
                         that.create(data)
                     });
-            } else if (this.options.templateSource) {
-                this.create($(this.options.templateSource));
             } else {
                 this.create();
             }
@@ -48,30 +47,45 @@
             var o = this.options, wrapper = this.disclaimer, buttons;
 
             wrapper
-                .addClass("cookie-disclaimer-block")
+                .addClass("cookie-disclaimer")
                 .addClass(o.clsContainer);
 
             if (!html) {
-                buttons = $("<div>")
-                    .addClass("cookie-disclaimer-actions")
-                    .addClass(o.clsButtons)
-                    .append( $('<button>').addClass('button cookie-accept-button').addClass(o.clsAcceptButton).html('Accept') )
-                    .append( $('<button>').addClass('button cookie-cancel-button').addClass(o.clsCancelButton).html('Cancel') );
-
                 wrapper
-                    .html( $("<div>").addClass(o.clsMessage).html(o.message) )
-                    .append( $("<hr>").addClass('thin') )
-                    .append(buttons);
-
-            } else if (html instanceof $) {
-                wrapper.append(html);
+                    .html( 
+                        $("<div class='disclaimer-message'>")
+                            .addClass(o.clsMessage)
+                            .html(`
+                                <div class="disclaimer-title">${o.title || this.strings.label_cookies_title}</div>
+                                <div class="disclaimer-text">${o.message || this.strings.label_cookies_text}</div>
+                            `) 
+                    );
             } else {
-                wrapper.html(html);
+                wrapper.append(html);
             }
 
+            buttons = $("<div>")
+                .addClass("disclaimer-actions")
+                .addClass(o.clsButtons)
+                .append( $('<button>').addClass('button cookie-accept-button').addClass(o.clsAcceptButton).html(this.strings.label_accept) )
+                .append( $('<button>').addClass('button cookie-cancel-button').addClass(o.clsCancelButton).html(this.strings.label_cancel) )
+                
+            buttons.appendTo(wrapper);
+            if (o.customButtons) {
+                $.each(o.customButtons, function(){
+                    var btn = $('<button>')
+                        .addClass('button cookie-custom-button')
+                        .addClass(this.cls)
+                        .html(this.text);
+                    btn.on("click", () =>{
+                        Utils.exec(this.onclick);
+                    });
+                    btn.appendTo(buttons);
+                });
+            }
             wrapper.appendTo($('body'));
 
-            wrapper.on(Metro.events.click, o.acceptButton, function(){
+            wrapper.on(Metro.events.click, ".cookie-accept-button", function(){
                 var dur = 0;
                 var durations = (""+o.duration).toArray(" ");
 
@@ -98,7 +112,7 @@
                 wrapper.remove();
             });
 
-            wrapper.on(Metro.events.click, o.cancelButton, function(){
+            wrapper.on(Metro.events.click, ".cookie-cancel-button", function(){
                 Utils.exec(o.onDecline);
                 wrapper.remove();
             });
