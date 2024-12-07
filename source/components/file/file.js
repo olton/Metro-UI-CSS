@@ -60,12 +60,12 @@
                 icon = $("<span>").addClass("icon").html(o.dropIcon).appendTo(container);
                 caption.html(o.dropTitle || this.strings.label_drop_file).insertAfter(icon);
                 files.html((o.filesSelectedTitle || this.strings.label_files_selected).replace('{n}', 0)).insertAfter(caption);
-                
+                button = $("<button>").addClass("button clear-button square").html("❌").appendTo(container);
             } else {
                 caption.insertBefore(element);
 
                 button = $("<button>")
-                    .addClass("button")
+                    .addClass("button select-files-button")
                     .attr("tabindex", -1)
                     .html(o.buttonTitle || this.strings.label_choose_file);
                 button.appendTo(container);
@@ -119,8 +119,12 @@
                 })
             }
 
-            container.on(Metro.events.click, "button", function(){
+            container.on(Metro.events.click, ".select-files-button", function(){
                 element[0].click();
+            });
+
+            container.on(Metro.events.click, ".clear-button", function(){
+                that.clear();
             });
 
             element.on(Metro.events.change, function(){
@@ -174,14 +178,15 @@
 
         clear: function(){
             var element = this.element, o = this.options;
+            
             if (o.mode === "input") {
                 element.siblings(".caption").html("");
             } else {
-                element.siblings(".caption").html(o.dropTitle);
-                element.siblings(".files").html("0" + " " + o.filesTitle);
+                element.siblings(".files").html((o.filesSelectedTitle || this.strings.label_files_selected).replace('{n}', 0))
             }
 
-            element.val("");
+            element[0].value = "";
+            element.trigger("change");
         },
 
         disable: function(){

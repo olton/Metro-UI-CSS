@@ -44535,15 +44535,6 @@ input:-ms-input-placeholder {
 .input input[placeholder] {
   font-size: var(--input-font-size);
 }
-.input input::-moz-placeholder {
-  font-size: var(--input-font-size);
-}
-.input input:-moz-placeholder {
-  font-size: var(--input-font-size);
-}
-.input input:-ms-input-placeholder {
-  font-size: var(--input-font-size);
-}
 .input .button-group {
   display: flex;
   flex-wrap: nowrap;
@@ -47656,6 +47647,31 @@ aside::after {
 }
 
 /* source/components/file/file.less */
+:root {
+  --file-height: 36px;
+  --file-button-background: #ebebeb;
+  --file-button-background-hover: #dadada;
+  --file-button-color: #191919;
+  --file-drop-zone-border-size: 4px;
+  --file-drop-zone-border-type: dashed;
+  --file-drop-zone-border-color: #858585;
+  --file-drop-zone-background: #f5f5f5;
+  --file-drop-zone-color: #191919;
+  --file-drop-zone-hover-color: #070707;
+  --file-drop-zone-drop-color: #94ff6a;
+}
+.dark-side {
+  --file-button-background: #3a3b40;
+  --file-button-background-hover: #484850;
+  --file-button-color: #f3fcff;
+  --file-drop-zone-border-size: 4px;
+  --file-drop-zone-border-type: dashed;
+  --file-drop-zone-border-color: #858585;
+  --file-drop-zone-background: #2b2d30;
+  --file-drop-zone-color: #dbdfe7;
+  --file-drop-zone-hover-color: #dbdfe7;
+  --file-drop-zone-drop-color: #94ff6a;
+}
 .file input,
 .drop-zone input,
 .file-button input {
@@ -47676,6 +47692,8 @@ aside::after {
   border: none;
   height: 30px;
   margin: 2px 2px 2px auto;
+  background: var(--file-button-background);
+  color: var(--file-button-color);
 }
 .file .button > * {
   height: 20px;
@@ -47689,6 +47707,9 @@ aside::after {
   justify-content: center;
   object-fit: cover;
 }
+.file .button:hover {
+  background: var(--file-button-background-hover);
+}
 .file .caption {
   line-height: 35px;
   display: block;
@@ -47699,8 +47720,13 @@ aside::after {
   text-overflow: ellipsis;
 }
 .file.disabled .button {
-  background-color: #f8f8f8;
-  color: #dfdfdf;
+  pointer-events: none;
+  opacity: 0.45;
+  background: transparent;
+}
+.file .prepend {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 .file .prepend {
   order: 1;
@@ -47722,9 +47748,12 @@ aside::after {
   width: 100%;
   height: auto;
   padding: 40px 0;
-  outline: 4px dashed #3a3a3a;
+  outline: var(--file-drop-zone-border-size) var(--file-drop-zone-border-type) var(--file-drop-zone-border-color);
   outline-offset: -12px;
-  background-color: #f8f8f8;
+  background: var(--file-drop-zone-background);
+  color: var(--file-drop-zone-color);
+  transition: all 0.5s;
+  position: relative;
 }
 .drop-zone .icon {
   font-family: "Segoe UI Symbol", serif;
@@ -47745,13 +47774,22 @@ aside::after {
 }
 .drop-zone.focused,
 .drop-zone:hover {
-  outline-color: #212121;
+  outline-color: var(--file-drop-zone-hover-color) !important;
 }
 .drop-zone.drop-on {
   outline-color: #00b300;
 }
-.file-button {
-  text-align: center;
+.drop-zone .clear-button {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: "Segoe UI Symbol", serif;
+  transform: scale(0);
+  opacity: 0;
+}
+.drop-zone:hover .clear-button {
+  opacity: 1;
+  transform: scale(1);
 }
 .file[dir=rtl] .append,
 .file.rtl .append {
