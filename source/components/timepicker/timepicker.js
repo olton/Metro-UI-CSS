@@ -429,10 +429,16 @@
             var h_list, m_list, s_list;
             var items = picker.find("li");
             var select_wrapper = picker.find(".select-wrapper");
-            // var select_wrapper_in_viewport, select_wrapper_rect;
             var h_item, m_item, s_item;
 
-            // select_wrapper.parent().removeClass("for-top for-bottom");
+            $.each($(".time-picker"), function () {
+                $(this)
+                    .find("input")
+                    .each(function () {
+                        Metro.getPlugin(this, "timepicker").close();
+                    });
+            });
+            
             select_wrapper.show(0);
             items.removeClass("active");
 
@@ -452,17 +458,6 @@
                 }
             }
             
-            // select_wrapper_in_viewport = Utils.inViewport(select_wrapper[0]);
-            // select_wrapper_rect = Utils.rect(select_wrapper[0]);
-            //
-            // if (!select_wrapper_in_viewport && select_wrapper_rect.top > 0) {
-            //     select_wrapper.parent().addClass("for-bottom");
-            // }
-            //
-            // if (!select_wrapper_in_viewport && select_wrapper_rect.top < 0) {
-            //     select_wrapper.parent().addClass("for-top");
-            // }
-
             var animateList = function (list, item) {
                 list.scrollTop(0).animate({
                     draw: {

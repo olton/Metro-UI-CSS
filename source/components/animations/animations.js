@@ -343,6 +343,4 @@
             this.swirlIn(next, o);
         }
     };
-
-    globalThis.Animation = $.merge({}, globalThis.Animation || {}, Metro.animations);
 }(Metro, m4q));

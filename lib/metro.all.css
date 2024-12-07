@@ -61016,6 +61016,7 @@ textarea {
   border: 1px solid var(--border-color);
   text-align: center;
   height: 100%;
+  position: relative;
 }
 .time-picker.show-labels .hours,
 .time-picker.show-labels .minutes,

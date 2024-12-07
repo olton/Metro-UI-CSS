@@ -86,7 +86,6 @@
                     this.innerHTML = o.prefix + Number(this.innerHTML).format(0, 0, o.delimiter) + o.suffix
                 },
                 onDone: function(){
-                    console.log(`Done: ${o.value}`)
                     this.innerHTML = o.prefix + Number(o.value).format(0, 0, o.delimiter) + o.suffix
                     that._fireEvent("stop");
                 }

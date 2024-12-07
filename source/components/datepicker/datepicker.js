@@ -275,15 +275,17 @@
                 y = sy.length === 0 ? that.value.value.getFullYear() : sy.data("value");
 
                 that.value = datetime(y, m, d);
-                that._correct();
+                // that._correct();
                 that._set();
-
                 that.close();
+                
+                e.preventDefault();
                 e.stopPropagation();
             });
 
             picker.on(Metro.events.click, ".action-cancel", function (e) {
                 that.close();
+                e.preventDefault();
                 e.stopPropagation();
             });
 
@@ -387,9 +389,15 @@
                 y = this.value.year();
             var m_list, d_list, y_list;
             var select_wrapper = picker.find(".select-wrapper");
-            // var select_wrapper_in_viewport, select_wrapper_rect;
 
-            // select_wrapper.parent().removeClass("for-top for-bottom");
+            $.each($(".date-picker"), function () {
+                $(this)
+                    .find("input")
+                    .each(function () {
+                        Metro.getPlugin(this, "datepicker").close();
+                    });
+            });
+            
             select_wrapper.show(0);
             picker.find("li").removeClass("active");
 
