@@ -108,7 +108,7 @@
                 if (Utils.isObject(o.actions))
                     $.each(Utils.isObject(o.actions), function () {
                         var item = this;
-                        button = $("<button>").addClass("button").addClass(item.cls).html(item.caption);
+                        button = $("<button>").addClass("button").addClass(item.cls).html(item.text);
                         if (item.onclick !== undefined)
                             button.on(Metro.events.click, function () {
                                 Utils.exec(item.onclick, [element]);
