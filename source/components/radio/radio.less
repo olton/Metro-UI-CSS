@@ -5,24 +5,22 @@
     --radio-height: 36px;
 }
 
-
 :root {
-    --radio-check-color: #fff;
-    --radio-border-color: #191919;
-    --radio-checked-background: #191919;
+    --radio-color: #575757;
+    --radio-background: transparent;
     --radio-focus-color: #e8e8e8;
-    --radio-disabled-background: #e8e8e8;
-    --radio-disabled-color: #6e6e6e;
+    --radio-background-disabled: #e8e8e8;
+    --radio-color-disabled: #c3c3c3;
 }
 
 .dark-side {
-    --radio-check-color: #fff;
-    --radio-border-color: #3c3c3c;
-    --radio-checked-background: #468cff;
-    --radio-focus-color: rgba(70, 140, 255, .2);
-    --radio-disabled-background: #424242;
-    --radio-disabled-color: #6e6e6e;
+    --radio-color: rgb(166, 166, 166);
+    --radio-background: transparent;
+    --radio-focus-color: #191919;
+    --radio-background-disabled: #353535;
+    --radio-color-disabled: #6c6c6c;
 }
+
 .radio {
     display: inline-flex;
     flex-flow: row nowrap;
@@ -45,22 +43,21 @@
     }
 
     .check {
-        border: 2px var(--border-color) solid;
-        .square(20, px);
+        border: 2px var(--radio-color) solid;
+        .square(21, px);
         border-radius: 50%;
         flex-shrink: 0;
-        line-height: var(--radio-height);
 
         &::before {
             position: absolute;
             vertical-align: middle;
             font-size: 0;
             content: "";
-            width: 6px;
-            height: 6px;
+            width: 8px;
+            height: 8px;
             color: transparent;
-            background-color: var(--radio-checked-background);
-            border: 1px solid var(--radio-checked-background);
+            background-color: var(--radio-color);
+            border: 1px solid var(--radio-color);
             border-radius: 50%;
             left: 50%;
             top: 50%;
@@ -70,7 +67,7 @@
     }
 
     input[type=radio]:checked ~ .check {
-        border-color: var(--radio-checked-background);
+        border-color: var(--radio-color);
         background-color: transparent;
 
         &::before {
@@ -79,10 +76,10 @@
     }
 
     input[type=radio]:disabled ~ .check {
-        border-color: var(--radio-disabled-background);
-        background-color: var(--radio-disabled-background);
+        border-color: var(--radio-background-disabled);
+        background-color: var(--radio-background-disabled);
         &::before {
-            background-color: var(--radio-disabled-color);
+            background-color: var(--radio-color-disabled);
             border: none;
         }
     }

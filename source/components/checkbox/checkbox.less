@@ -3,11 +3,12 @@
 
 :root {
     --checkbox-height: 36px;
+    --checkbox-border-radius: 4px;
 }
 
 
 :root {
-    --checkbox-color: #777777;
+    --checkbox-color: #575757;
     --checkbox-background: transparent;
     --checkbox-focus-color: #e8e8e8;
     --checkbox-background-disabled: #e8e8e8;
@@ -45,11 +46,9 @@
 
     .check {
         border: 2px var(--checkbox-color) solid;
-        border-radius: 4px;
-        width: 21px;
-        height: 21px;
+        border-radius: var(--checkbox-border-radius);
+        .square(21, px);
         flex-shrink: 0;
-        line-height: var(--checkbox-height);
 
         &::before {
             position: absolute;
