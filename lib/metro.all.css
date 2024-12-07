@@ -39788,6 +39788,7 @@ pre code {
   position: relative;
   overflow: visible;
   border-radius: var(--button-border-radius);
+  gap: 8px;
 }
 .button:first-child,
 .flat-button:first-child {
@@ -39796,10 +39797,6 @@ pre code {
 .button:last-child,
 .flat-button:last-child {
   margin-right: 0;
-}
-.button * + *,
-.flat-button * + * {
-  margin-left: 8px;
 }
 .button.disabled,
 .flat-button.disabled,
@@ -39911,6 +39908,7 @@ input[type=reset] {
   position: relative;
   overflow: visible;
   border-radius: var(--button-border-radius);
+  gap: 8px;
 }
 input[type=button]:first-child,
 input[type=submit]:first-child,
@@ -39921,11 +39919,6 @@ input[type=button]:last-child,
 input[type=submit]:last-child,
 input[type=reset]:last-child {
   margin-right: 0;
-}
-input[type=button] * + *,
-input[type=submit] * + *,
-input[type=reset] * + * {
-  margin-left: 8px;
 }
 input[type=button].disabled,
 input[type=submit].disabled,
@@ -47681,10 +47674,20 @@ aside::after {
 }
 .file .button {
   border: none;
+  height: 30px;
+  margin: 2px 2px 2px auto;
 }
 .file .button > * {
-  height: 24px;
-  max-width: 24px;
+  height: 20px;
+  line-height: 20px !important;
+}
+.file .button .icon {
+  font-size: 20px;
+  font-family: "Segoe UI Symbol", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  object-fit: cover;
 }
 .file .caption {
   line-height: 35px;
@@ -47710,8 +47713,6 @@ aside::after {
 }
 .file .button {
   order: 3;
-  margin-left: auto;
-  height: 34px;
 }
 .drop-zone {
   display: flex;
@@ -47726,9 +47727,14 @@ aside::after {
   background-color: #f8f8f8;
 }
 .drop-zone .icon {
-  display: block;
+  font-family: "Segoe UI Symbol", serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 64px;
   height: 64px;
+  font-size: 64px;
+  object-fit: cover;
 }
 .drop-zone .caption {
   margin-top: 10px;

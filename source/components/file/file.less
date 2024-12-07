@@ -13,9 +13,21 @@
 
     .button {
         border: none;
+        height: 30px;
+        margin: 2px 2px 2px auto;
+        
         & > * {
-            height: 24px;
-            max-width: 24px;
+            height: 20px;
+            line-height: 20px!important;
+        }
+        
+        .icon {
+            font-size: 20px;
+            font-family: "Segoe UI Symbol", serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            object-fit: cover;
         }
     }
 
@@ -37,11 +49,7 @@
     .prepend {order: 1}
     .append {order: 4}
     .caption {order: 2;}
-    .button {
-        order: 3;
-        margin-left: auto;
-        height: 34px;
-    }
+    .button { order: 3; }
 }
 
 .drop-zone {
@@ -57,9 +65,14 @@
     background-color: @light;
 
     .icon {
-        display: block;
+        font-family: "Segoe UI Symbol", serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 64px;
         height: 64px;
+        font-size: 64px;
+        object-fit: cover;
     }
 
     .caption {

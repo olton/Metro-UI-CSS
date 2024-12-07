@@ -5,10 +5,10 @@
         fileDeferred: 0,
         label: "",
         mode: "input",
-        buttonTitle: "Choose file(s)",
-        filesTitle: "file(s) selected",
-        dropTitle: "<strong>Choose a file(s)</strong> or drop it here",
-        dropIcon: "<span class='default-icon-upload'></span>",
+        buttonTitle: "",
+        filesSelectedTitle: "",
+        dropTitle: "",
+        dropIcon: "📥",
         prepend: "",
         clsComponent: "",
         clsPrepend: "",
@@ -53,24 +53,21 @@
             var files = $("<span>").addClass("files").addClass(o.clsCaption);
             var icon, button;
 
-
             container.insertBefore(element);
             element.appendTo(container);
 
-            if (o.mode === 'drop' || o.mode === 'dropzone') {
-                icon = $(o.dropIcon).addClass("icon").appendTo(container);
-                caption.html(o.dropTitle).insertAfter(icon);
-                files.html("0" + " " + o.filesTitle).insertAfter(caption);
-            } else if (o.mode === 'button') {
-
-                button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
-                button.appendTo(container);
-                button.addClass(o.clsButton);
-
+            if (o.mode.includes("drop")) {
+                icon = $("<span>").addClass("icon").html(o.dropIcon).appendTo(container);
+                caption.html(o.dropTitle || this.strings.label_drop_file).insertAfter(icon);
+                files.html((o.filesSelectedTitle || this.strings.label_files_selected).replace('{n}', 0)).insertAfter(caption);
+                
             } else {
                 caption.insertBefore(element);
 
-                button = $("<span>").addClass("button").attr("tabindex", -1).html(o.buttonTitle);
+                button = $("<button>")
+                    .addClass("button")
+                    .attr("tabindex", -1)
+                    .html(o.buttonTitle || this.strings.label_choose_file);
                 button.appendTo(container);
                 button.addClass(o.clsButton);
 
@@ -131,10 +128,6 @@
                 var file_names = [];
                 var entry;
 
-                // if (fi.files.length === 0) {
-                //     return ;
-                // }
-
                 Array.from(fi.files).forEach(function(file){
                     file_names.push(file.name);
                 });
@@ -146,7 +139,7 @@
                     caption.html(entry);
                     caption.attr('title', entry);
                 } else {
-                    files.html(element[0].files.length + " " +o.filesTitle);
+                    files.html((o.filesSelectedTitle || that.strings.label_files_selected).replace('{n}', element[0].files.length))
                 }
 
                 that._fireEvent("select", {
@@ -172,7 +165,7 @@
 
                 container.on('drop', function(e){
                     element[0].files = e.dataTransfer.files;
-                    files.html(element[0].files.length + " " +o.filesTitle);
+                    files.html((o.filesSelectedTitle || that.strings.label_files_selected).replace('{n}', element[0].files.length))
                     container.removeClass("drop-on");
                     element.trigger("change");
                 });

@@ -72,6 +72,9 @@
         label_accept: "Accept",
         label_cookies_title: "This site uses cookies",
         label_cookies_text: "This website uses cookies to ensure you get the best experience on our website.",
+        label_choose_file: "Choose file(s)",
+        label_drop_file: "Click or drop file(s) here",
+        label_files_selected: "{n} file(s) selected",
 
         label_days: "days",
         label_hours: "hours",
