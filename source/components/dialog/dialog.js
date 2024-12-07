@@ -101,7 +101,7 @@
                 }
 
                 if (o.defaultAction === true && Utils.objectLength(o.actions) === 0 && element.find(".dialog-actions > *").length === 0) {
-                    button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(strings["buttons_ok"]);
+                    button = $("<button>").addClass("button js-dialog-close").addClass(o.clsDefaultAction).html(strings["label_ok"]);
                     button.appendTo(buttons);
                 }
 

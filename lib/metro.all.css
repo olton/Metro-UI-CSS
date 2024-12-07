@@ -40364,6 +40364,7 @@ input[type=reset].loading .load-caption {
   background-color: var(--dialog-closer-background);
   color: var(--dialog-closer-color);
   cursor: pointer;
+  border-radius: 4px;
 }
 .dialog .closer::before {
   display: block;
