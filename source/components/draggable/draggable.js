@@ -67,8 +67,11 @@
                 o.dragArea = "body";
             }
 
-            setImmediate(function(){
+            setTimeout(function(){
                 that.dragArea = o.dragArea === 'parent' ? element.parent() : $(o.dragArea);
+                if (that.dragArea.css("position") === "static") {
+                    that.dragArea.css("position", "relative");                    
+                }
                 if (o.dragArea !== 'parent') {
                     element.appendTo(that.dragArea);
                     element.css({
