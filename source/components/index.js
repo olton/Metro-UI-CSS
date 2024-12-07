@@ -5,7 +5,6 @@ import "./action-button/index.js";
 import "./activity/index.js";
 import "./adblock/index.js";
 import "./analog-clock/index.js";
-import "./animated-border/index.js";
 import "./animations/index.js";
 import "./app-bar/index.js";
 import "./audio-button/index.js";

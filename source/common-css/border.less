@@ -51,3 +51,121 @@ each(@media-rules, {
 .border-outset {border-style: outset!important;}
 .border-ridge {border-style: ridge!important;}
 
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: true;
+}
+
+:root {
+    --animated-border-speed: 3s;
+    --animated-border-size: 2px;
+    --animated-border-color: #50a8ff;
+    --animated-border-color-1: #ff4545;
+    --animated-border-color-2: #00ff99;
+    --animated-border-color-3: #006aff;
+    --animated-border-color-4: #ff0095;
+    --animated-border-color-5: #ff4545;
+}
+
+.rainbow-border, [class*=rainbow-border-] {
+    &::after, &::before {
+        content: '';
+        position: absolute;
+        background-image: conic-gradient(
+                from var(--gradient-angle),
+                var(--animated-border-color-1),
+                var(--animated-border-color-2),
+                var(--animated-border-color-3),
+                var(--animated-border-color-4),
+                var(--animated-border-color-5)
+        );
+        z-index: -1;
+        padding: 3px;
+        border-radius: inherit;
+        inset: -2px;
+        animation: var(--animated-border-speed) spin-gradient linear infinite;
+    }
+    &::before {
+        filter: blur(.5rem);
+        opacity: .5;
+    }
+}
+
+.rainbow-border-hover {
+    &::after, &::before {
+        background-image: initial;
+        transition: opacity .5s;
+        opacity: 0;
+    }
+    &:hover {
+        &::after, &::before {
+            opacity: 1;
+            background-image: conic-gradient(
+                    from var(--gradient-angle),
+                    #ff4545,
+                    #00ff99,
+                    #006aff,
+                    #ff0095,
+                    #ff4545
+            );
+        }
+    }
+}
+
+.animated-border, [class*=animated-border-] {
+    &::before {
+        content: "";
+        position: absolute;
+        width: calc(100% + var(--animated-border-size) * 2);
+        height: calc(100% + var(--animated-border-size) * 2);
+        background: repeating-conic-gradient(
+                from var(--gradient-angle),
+                var(--animated-border-color) 0%,
+                var(--animated-border-color) 5%,
+                transparent 5%,
+                transparent 40%,
+                var(--animated-border-color) 50%
+        );
+        border-radius: inherit;
+        animation: spin-gradient var(--animated-border-speed) linear infinite;
+        inset: calc(-1 * var(--animated-border-size));
+        z-index: -1;
+    }
+}
+
+each(@normalColors, {
+    .animated-border-@{value} {
+        --animated-border-color: @@value;
+    }
+})
+
+.animated-border-hover {
+    &::before {
+        background: initial;
+        transition: opacity .5s;
+        opacity: 0;
+    }
+    &:hover {
+        &::before {
+            opacity: 1;
+            background: repeating-conic-gradient(
+                    from var(--gradient-angle),
+                    var(--animated-border-color) 0%,
+                    var(--animated-border-color) 5%,
+                    transparent 5%,
+                    transparent 40%,
+                    var(--animated-border-color) 50%
+            );
+        }
+    }
+}
+
+@keyframes spin-gradient {
+    from{
+        --gradient-angle: 0deg;
+    }
+    to{
+        --gradient-angle: 360deg;
+    }
+}
