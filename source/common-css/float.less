@@ -15,12 +15,6 @@ each(@media-rules, {
         .place-left-@{key}, .float-left-@{key} {float: left !important;}
         .place-none-@{key}, .float-none-@{key}, .no-float-@{key} {float: none !important;}
     }
-    
-    @media (min-width: @value) {
-        .vp-place-right-@{key}, .vp-float-right-@{key} {float: right !important;}
-        .vp-place-left-@{key}, .vp-float-left-@{key} {float: left !important;}
-        .vp-place-none-@{key}, .vp-float-none-@{key}, .vp-no-float-@{key} {float: none !important;}
-    }
 })
 
 

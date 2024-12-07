@@ -35,21 +35,5 @@ each(@media-rules, {
             .mw-@{p}-@{key} {max-width: unit(@p, %)!important;}
         })
     }
-    
-    @media (min-width: @value) {
-        .vp-w-auto-@{key} {width: auto!important;}
-        .vp-h-auto-@{key} {height: auto!important;}
-
-        each(@percents, .(@p) {
-            .vp-h-vh-@{p}-@{key} {height: unit(@p, vh)!important;}
-            .vp-h-vw-@{p}-@{key} {height: unit(@p, vw)!important;}
-            .vp-w-vh-@{p}-@{key} {width: unit(@p, vh)!important;}
-            .vp-w-vw-@{p}-@{key} {width: unit(@p, vw)!important;}
-            .vp-h-@{p}-@{key} {height: unit(@p, %)!important;}
-            .vp-w-@{p}-@{key} {width: unit(@p, %)!important;}
-            .vp-mh-@{p}-@{key} {max-height: unit(@p, %)!important;}
-            .vp-mw-@{p}-@{key} {max-width: unit(@p, %)!important;}
-        })
-    }
 })
 

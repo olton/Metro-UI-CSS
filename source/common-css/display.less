@@ -25,17 +25,4 @@ each(@media-rules, {
         .d-table-row-@{key} {display: table-row!important;}
         .d-table-cell-@{key} {display: table-cell!important;}
     }
-    
-    @media (min-width: @value) {
-        .vp-visible-@{key} {visibility: visible !important;}
-        .vp-no-visible-@{key} {visibility: hidden !important;}
-
-        .vp-d-none-@{key} {display: none!important;}
-        .vp-d-block-@{key} {display: block!important;}
-        .vp-d-inline-@{key} {display: inline!important;}
-        .vp-d-inline-block-@{key} {display: inline-block!important;}
-        .vp-d-table-@{key} {display: table!important;}
-        .vp-d-table-row-@{key} {display: table-row!important;}
-        .vp-d-table-cell-@{key} {display: table-cell!important;}
-    }
 })

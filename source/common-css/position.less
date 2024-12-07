@@ -30,11 +30,4 @@ each(@media-rules, {
         .pos-static-@{key} {position: static!important;}
         .pos-fixed-@{key} {position: fixed!important;}
     }
-    
-    @media (min-width: @value) {
-        .vp-pos-relative-@{key} {position: relative!important;}
-        .vp-pos-absolute-@{key} {position: absolute!important;}
-        .vp-pos-static-@{key} {position: static!important;}
-        .vp-pos-fixed-@{key} {position: fixed!important;}
-    }
 })

@@ -31,8 +31,6 @@
     margin-top: var(--grid-gap);
 }
 
-
-
 .row > * {
     position: relative;
     display: block;
@@ -108,61 +106,6 @@ each(@media-rules, {
                 max-width: calc( @gridCellBaseSize * @k - var(--grid-gap) ) ;
             }
             .offset-@{key}-@{k} {
-                margin-left: calc( @gridCellBaseSize * @k );
-            }
-        })
-    }
-    
-    @media (min-width: @value) {
-        .vp-cell-@{key}-half, .vp-col-@{key}-half {
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
-
-        .vp-cell-@{key}-one-fifth,
-        .vp-col-@{key}-one-fifth {
-            flex: 0 0 calc(20% - (var(--grid-gap)));
-            max-width: calc(20% - (var(--grid-gap)));
-        }
-
-        .vp-cell-@{key}-two-fifth,
-        .vp-col-@{key}-two-fifth {
-            flex: 0 0 calc(40% - (var(--grid-gap)));
-            max-width: calc(40% - (var(--grid-gap)));
-        }
-
-        .vp-cell-@{key}-three-fifth,
-        .vp-col-@{key}-three-fifth {
-            flex: 0 0 calc(60% - (var(--grid-gap)));
-            max-width: calc(60% - (var(--grid-gap)));
-        }
-
-        .vp-cell-@{key}-four-fifth, 
-        .vp-col-@{key}-four-fifth {
-            flex: 0 0 calc(80% - (var(--grid-gap)));
-            max-width: calc(80% - (var(--grid-gap)));
-        }
-
-        .vp-cell-@{key},
-        .vp-col-@{key} {
-            flex-basis: 0;
-            flex-grow: 1;
-            max-width: 100%;
-        }
-
-        .vp-cell-@{key}-auto,
-        .vp-col-@{key}-auto {
-            flex: 0 0 auto;
-            max-width: none;
-        }
-
-        each(range(1, 12), .(@k) {
-            .vp-cell-@{key}-@{k},
-            .vp-col-@{key}-@{k} {
-                flex: 0 0 calc( @gridCellBaseSize * @k - var(--grid-gap) ) ;
-                max-width: calc( @gridCellBaseSize * @k - var(--grid-gap) ) ;
-            }
-            .vp-offset-@{key}-@{k} {
                 margin-left: calc( @gridCellBaseSize * @k );
             }
         })

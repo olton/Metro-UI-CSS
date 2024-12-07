@@ -2,6 +2,23 @@
 
 :root {
     --gradient-direction: to right;
+    --gradient-from-color: #000;
+    --gradient-to-color: #5c5c5c;
+}
+
+.dark-side {
+    --gradient-from-color: #fff;
+    --gradient-to-color: #cacaca;
+}
+
+.gradient {
+    background: linear-gradient(var(--gradient-direction), var(--gradient-from-color), var(--gradient-to-color))!important;
+}
+
+.gradient-text {
+    background: linear-gradient(var(--gradient-direction), var(--gradient-from-color), var(--gradient-to-color))!important;
+    -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent;
 }
 
 each(@normalColors, .(@v, @k, @i) {
@@ -9,6 +26,12 @@ each(@normalColors, .(@v, @k, @i) {
 
     .gr-@{v} {
         background: linear-gradient(var(--gradient-direction), @@color, lighten(@@color, 20%))!important;
+    }
+    
+    .gr-text-@{v} {
+        background: linear-gradient(var(--gradient-direction), @@color, lighten(@@color, 20%))!important;
+        -webkit-background-clip: text!important;
+        -webkit-text-fill-color: transparent;
     }
 })
 
