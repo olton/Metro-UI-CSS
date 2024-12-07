@@ -8,8 +8,6 @@
         toggleElement: null,
         noClose: false,
         duration: 50,
-        checkDropUp: false,
-        dropUp: false,
         openMode: "auto",
         onDrop: Metro.noop,
         onUp: Metro.noop,
@@ -57,12 +55,8 @@
             var element = this.element, o = this.options;
             var toggle;
             
-            // if (o.dropUp) {
-            //     element.addClass("drop-up");
-            // }
             if (o.openMode !== "auto" && o.openMode === "up") {
                 element.addClass("drop-up");
-                
             }
 
             toggle = o.toggleElement !== null ? $(o.toggleElement) : element.siblings('.dropdown-toggle').length > 0 ? element.siblings('.dropdown-toggle') : element.prev();
@@ -154,9 +148,6 @@
                 if (options.openMode === "auto") {
                     dropdown.element.removeClass("drop-up drop-as-dialog");
                 } 
-                // if (!options.dropUp && options.checkDropUp) {
-                //     dropdown.element.removeClass("drop-up");
-                // }
             });
 
             this.isOpen = false;
@@ -180,26 +171,13 @@
                         dropdown.element.addClass("drop-up");
                     }
                     if (!Metro.utils.inViewport(dropdown.element[0])) {
-                        dropdown.element.addClass("drop-as-dialog");
+                        dropdown.element.removeClass("drop-up").addClass("drop-as-dialog");
                     }
                 }
-                
-                // if (!options.dropUp && options.checkDropUp) {
-                //     // dropdown.element.removeClass("drop-up");
-                //     if (!Utils.inViewport(dropdown.element[0])) {
-                //         dropdown.element.addClass("drop-up");
-                //
-                //         if (!Utils.inViewport(dropdown.element[0])) {
-                //             dropdown.element.removeClass("drop-up");
-                //         }
-                //     }
-                // }
 
                 dropdown._fireEvent("open");
                 dropdown._fireEvent("drop");
             });
-
-            // this._fireEvent("drop");
 
             this.isOpen = true;
         },

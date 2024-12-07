@@ -344,7 +344,5 @@
         }
     };
 
-    if (globalThis.METRO_GLOBAL_COMMON === true) {
-        globalThis.Animations = Metro.animations;
-    }
+    globalThis.Animation = $.merge({}, globalThis.Animation || {}, Metro.animations);
 }(Metro, m4q));

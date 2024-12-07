@@ -9,6 +9,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 0;
+    position: relative;
 
     &:hover {
         input {
@@ -37,22 +38,25 @@
     .buttons {
         display: flex;
         flex-wrap: nowrap;
+        align-items: center;
+        justify-content: center;
+        padding: 0 2px;
     }
 
     .button {
         background-color: transparent;
         color: @dark;
-        height: @pickerDefaultHeight;
-        min-width: @pickerDefaultHeight;
+        height: 30px;
+        width: 30px;
         &:focus, &:active {
             box-shadow: none!important;
         }
-        &:hover {
-            background-color: @light;
-            text-shadow: rgba(0,0,0,.25) 0.1em 0.1em 0.2em;
-        }
     }
 
+    .color-picker-button {
+        font-family: "Segoe UI Symbol", serif;
+    }
+    
     .input-clear-button {
         background-color: transparent;
         &:hover {
@@ -74,6 +78,7 @@
         background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAMUlEQVQ4T2NkYGAQYcAP3uCTZhw1gGGYhAGBZIA/nYDCgBDAm9BGDWAAJyRCgLaBCAAgXwixzAS0pgAAAABJRU5ErkJggg==") top left repeat;
         margin: 4px;
         border: 1px solid var(--border-color);
+        position: relative;
     }
 
     .color-selector-box {
@@ -89,11 +94,7 @@
     .append {order: 5;}
     .buttons {order: 4;}
 
-    input[placeholder]          {text-overflow:ellipsis;}
-    input::-moz-placeholder     {text-overflow:ellipsis;}
-    input:-moz-placeholder      {text-overflow:ellipsis;}
-    input:-ms-input-placeholder {text-overflow:ellipsis;}
-
+    input[placeholder] {text-overflow:ellipsis;}
 }
 
 .color-picker {

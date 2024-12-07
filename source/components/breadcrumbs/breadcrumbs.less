@@ -16,13 +16,16 @@
 }
 
 .breadcrumbs {
+    position: relative;
+    list-style: none inside;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+    
     &.default {
         margin: 10px 0;
         padding: 0;
-        list-style: none inside;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
         background-color: var(--breadcrumbs-background);
         color: var(--breadcrumbs-color);
 
@@ -109,8 +112,6 @@
 
 .breadcrumbs {
     &.arrow {
-        display: flex;
-        flex-flow: row nowrap;
         overflow: hidden;
         border-radius: var(--border-radius);
         counter-reset: flag;

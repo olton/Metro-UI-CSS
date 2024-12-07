@@ -15,6 +15,8 @@
     width: 306px;
     background-color: var(--color-selector-background);
     flex-shrink: 0;
+    display: block;
+    position: relative;
 }
 
 .color-selector {
@@ -37,37 +39,23 @@
         padding: 4px 10px;
         text-align: center;
         font-size: 11px;
-        color: @dark;
     }
 
     .default-swatches, .user-colors, .user-colors-actions  {
         display: block;
         width: auto;
+        max-width: initial;
 
         .swatch, .user-swatch {
-            display: inline-block;
-            width: 32px;
-            height: 32px;
+            display: inline-flex;
+            width: 24px;
+            height: 24px;
             background: #ccc;
-            border-radius: 0;
-            margin-left: 4px;
-            margin-bottom: 4px;
+            margin: 2px;
             box-sizing: border-box;
             border: 1px solid var(--border-color);
             cursor: pointer;
-
-            &:not(.user-swatch):nth-child(8n+1) {
-                margin-left: 0;
-            }
-        }
-
-        .user-swatch {
-            width: 24px;
-            height: 24px;
-
-            &:nth-child(10n+1) {
-                margin-left: 0;
-            }
+            border-radius: 4px;
         }
     }
 
@@ -81,10 +69,6 @@
 
         .user-swatch {
             margin: 0;
-        }
-
-        .button {
-            padding: 0 20px;
         }
     }
 

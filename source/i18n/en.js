@@ -68,6 +68,7 @@
         label_reset: "Reset",
         label_submit: "Submit",
         label_add_user_color: "Add to swatches",
+        label_send: "Send",
 
         label_days: "days",
         label_hours: "hours",

@@ -17,6 +17,7 @@
         pickerButtonIcon: "&#127912;",
         defaultValue: "rgba(0, 0, 0, 0)",
         copyInlineStyles: false,
+        openMode: "auto",
         clsPickerButton: "",
         clsClearButton: "",
         onColorSelected: Metro.noop,

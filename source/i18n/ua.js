@@ -68,6 +68,7 @@
         label_reset: "Скинути",
         label_submit: "Відправити",
         label_add_user_color: "Додати до зразків",
+        label_send: "Відправити",
 
         label_days: "дні",
         label_hours: "год",

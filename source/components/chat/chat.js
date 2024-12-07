@@ -3,21 +3,20 @@
 (function (Metro, $) {
     "use strict";
     var Utils = Metro.utils;
-    var defaultAvatar =
-        "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD//gA7Q1JFQVRPUjogZ2QtanBlZyB2MS4wICh1c2luZyBJSkcgSlBFRyB2NjIpLCBxdWFsaXR5ID0gOTAK/9sAQwADAgIDAgIDAwMDBAMDBAUIBQUEBAUKBwcGCAwKDAwLCgsLDQ4SEA0OEQ4LCxAWEBETFBUVFQwPFxgWFBgSFBUU/9sAQwEDBAQFBAUJBQUJFA0LDRQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQU/8AAEQgAUABQAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/aAAwDAQACEQMRAD8A+t+KKPxo/GgA70Yo/Gj8aADFH4VesdC1HUl3WtjcXCf344yV/PGKW+0HUtNXddWNzbp/fkjIX88YoAofhR+FH40fjQAfhR+FH40fjQAUUUUAFepeAPh5D9li1LVYhK8g3Q27j5VXszDuT6f5HA+FtOXVvEWn2rjMcko3j1UckfkDX0MBgYHAoARVCKFUBVHAA6ClZQwKkZBGCDS0UAec+Pvh3BJay6lpUQimjBeW3QYVx3Kjsfbv/PyqvpuvnvxfpqaT4l1C1QbY0lJUDsrfMB+RoAyKKKKACiiigDa8GXq6f4p02eQgIJQpJ7Bvlz+tfQP4V8yDg17P4A8cw65ZxWV5IE1KMbfmP+uA7j39R+NAHaUfhSUUAL+FeA+OL1NQ8WalNGQU83YCO+0Bf6V6b498cQ6BZyWlrIJNSkXaApz5QP8AEff0FeKk5OTyTQAUUUUAH40fjRU1naTX93DbQIXmlYIijuTQBc0Dw/eeI74W1mm49XkbhUHqTXsHhz4eaXoCpI8YvbscmaYZAP8Asr0H8/etHwv4cg8M6XHaxANIfmllxy7dz9PStigA/Gk/GlooA5bxJ8PdL19XkWMWd43PnwjGT/tL0P8AP3rx/X/D954cvjbXibT1SReVceoNfRFZHijw5B4m0uS1lAWQfNFLjlG7H6etAHz5+NH41NeWk1hdzW06FJonKMp7EGoaACvQfhBowudTudRkXK2y7I8j+Nup/Afzrz6vafhRaCDwmkgHM8zufwO3/wBloA7Kiij8KACkpaSgBaSj8KKAPJvi/owttTttRjXC3K7JMf3l6H8R/KvPq9p+K1qJ/CbyEcwTI4P1O3/2avFqAP/Z";
     var ChatDefaultConfig = {
         chatDeferred: 0,
         inputTimeFormat: null,
         timeFormat: "D MMM hh:mm A",
         name: "John Doe",
-        avatar: defaultAvatar,
+        avatar: "<span>👦</span>",
         welcome: null,
-        welcomeAvatar: defaultAvatar,
+        welcomeAvatar: "<span>👽</span>",
         title: null,
         width: "100%",
         height: "auto",
         messages: null,
-        sendButtonTitle: "Send",
+        sendButtonTitle: "",
+        sendButtonIcon: "",
         readonly: false,
 
         clsChat: "",
@@ -71,7 +70,7 @@
             var messages, messageInput, input;
             var customButtons = [
                 {
-                    html: o.sendButtonTitle,
+                    html: `${o.sendButtonTitle || this.strings.label_send}${o.sendButtonIcon}`,
                     cls: o.clsSendButton + " js-chat-send-button",
                     onclick: o.onSendButtonClick,
                 },
@@ -91,7 +90,7 @@
             messages = $("<div>").addClass("messages");
             messages.appendTo(element);
             messageInput = $("<div>").addClass("message-input").appendTo(element);
-            input = $("<input type='text'>");
+            input = $("<input type='text'>").addClass("chat-input");
             input.appendTo(messageInput);
             setTimeout(() => {
                 Metro.makePlugin(input[0], "input", {
@@ -127,12 +126,11 @@
             var that = this,
                 element = this.element,
                 o = this.options;
-            var sendButton = element.find(".js-chat-send-button");
-            var input = element.find("input[type=text]");
+            
 
             var send = function () {
-                var msg = "" + input.val(),
-                    m;
+                var input = element.find(".chat-input input");
+                var msg = "" + input.val(), m;
                 if (msg.trim() === "") {
                     return false;
                 }
@@ -152,11 +150,11 @@
                 input.focus();
             };
 
-            sendButton.on(Metro.events.click, function () {
+            element.on(Metro.events.click, ".js-chat-send-button", function () {
                 send();
             });
 
-            input.on(Metro.events.keyup, function (e) {
+            element.on(Metro.events.keyup, ".chat-input > input", function (e) {
                 if (e.keyCode === Metro.keyCode.ENTER) {
                     send();
                 }
@@ -176,7 +174,18 @@
 
             message = $("<div>").addClass("message").addClass(msg.position).appendTo(messages);
             item = $("<div>").addClass("message-item").appendTo(message);
-            avatar = $("<img>").attr("src", msg.avatar).addClass("message-avatar").appendTo(item);
+            
+            if (Metro.utils.isUrl(msg.avatar) || msg.avatar.includes("data:image")) {
+                avatar = $("<img>").attr("src", msg.avatar).attr("alt", msg.avatar).addClass("message-avatar").appendTo(item);
+            } else if (msg.avatar) {
+                const _el = $(msg.avatar)
+                if (_el.length ) {
+                    avatar = _el.addClass("message-avatar").appendTo(item);
+                } else {
+                    avatar = $("<span>").addClass("message-avatar").html(msg.avatar).appendTo(item);
+                }                
+            }
+            
             text = $("<div>")
                 .addClass("message-text")
                 .append($("<div>").addClass("message-text-inner").html(Str.escapeHtml(msg.text)))
@@ -303,5 +312,4 @@
     });
 
     Metro.defaults.Chat = ChatDefaultConfig;
-    Metro.defaults.ChatAvatar = defaultAvatar;
 })(Metro, m4q);
