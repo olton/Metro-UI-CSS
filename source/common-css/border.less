@@ -134,13 +134,7 @@ each(@media-rules, {
     }
 }
 
-each(@normalColors, {
-    .animated-border-@{value} {
-        --animated-border-color: @@value;
-    }
-})
-
-.animated-border-hover {
+.animated-border-hover, [class*=animated-border-hover-] {
     &::before {
         background: initial;
         transition: opacity .5s;
@@ -160,6 +154,12 @@ each(@normalColors, {
         }
     }
 }
+
+each(@normalColors, {
+    .animated-border-@{value}, .animated-border-hover-@{value} {
+        --animated-border-color: @@value;
+    }
+})
 
 @keyframes spin-gradient {
     from{
