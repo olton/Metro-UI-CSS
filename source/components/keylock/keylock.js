@@ -5,10 +5,8 @@
     var KeylockDefaultConfig = {
         keylockDeferred: 0,
 
-        stateOnIcon: "<span>&times;</span>",
-        stateOffIcon: "<span>&checkmark;</span>",
-
-        transition: true,
+        stateOnIcon: "<span>🔒</span>",
+        stateOffIcon: "<span>🔓</span>",
 
         onCaption: "",
         offCaption: "",
