@@ -4,11 +4,21 @@
     var Utils = Metro.utils;
     var MaterialInputDefaultConfig = {
         materialinputDeferred: 0,
+        
         label: "",
         informer: "",
         icon: "",
 
         permanentLabel: false,
+
+        searchButton: false,
+        clearButton: true,
+        revealButton: true,
+        clearButtonIcon: "❌",
+        revealButtonIcon: "👀",
+        searchButtonIcon: "🔍",
+        customButtons: [],
+        searchButtonClick: 'submit',
 
         clsComponent: "",
         clsInput: "",
@@ -51,7 +61,8 @@
 
         _createStructure: function(){
             var element = this.element, o = this.options;
-            var container = $("<div>").addClass("input-material " + element[0].className);
+            var container;
+            var buttons;
 
             element[0].className = "";
             element.attr("autocomplete", "nope");
@@ -60,8 +71,8 @@
                 element.attr("type", "text");
             }
 
-            container.insertBefore(element);
-            element.appendTo(container);
+            container = element.wrap("<div>").addClass("input-material " + element[0].className);
+            buttons = $("<div>").addClass("buttons").appendTo(container);
 
             if (o.label) {
                 $("<span>").html(o.label).addClass("label").addClass(o.clsLabel).insertAfter(element);
@@ -74,6 +85,47 @@
                 $("<span>").html(o.icon).addClass("icon").addClass(o.clsIcon).insertAfter(element);
             }
 
+            if (o.clearButton === true && !element[0].readOnly) {
+                const clearButton = $("<button>").addClass("button input-clear-button").addClass(o.clsClearButton).attr("tabindex", -1).attr("type", "button").html(o.clearButtonIcon);
+                clearButton.appendTo(buttons);
+            }
+            if (element.attr('type') === 'password' && o.revealButton === true) {
+                const revealButton = $("<button>").addClass("button input-reveal-button").addClass(o.clsRevealButton).attr("tabindex", -1).attr("type", "button").html(o.revealButtonIcon);
+                revealButton.appendTo(buttons);
+            }
+            if (o.searchButton === true) {
+                const searchButton = $("<button>").addClass("button input-search-button").addClass(o.clsSearchButton).attr("tabindex", -1).attr("type", o.searchButtonClick === 'submit' ? "submit" : "button").html(o.searchButtonIcon);
+                searchButton.appendTo(buttons);
+            }
+
+            const customButtons = Utils.isObject(o.customButtons);
+            if (Array.isArray(customButtons)) {
+                $.each(customButtons, function(){
+                    var item = this;
+                    var btn = $("<button>");
+
+                    btn
+                        .addClass("button input-custom-button")
+                        .addClass(o.clsCustomButton)
+                        .addClass(item.cls)
+                        .attr("tabindex", -1)
+                        .attr("type", "button")
+                        .html(item.text);
+
+                    if (item.attr && typeof item.attr === 'object') {
+                        $.each(item.attr, function(k, v){
+                            btn.attr(Str.dashedName(k), v);
+                        });
+                    }
+
+                    if (item.onclick) btn.on("click", () => {
+                        item.onclick.apply(btn, [element.valueOf(), element]);
+                    });
+                    
+                    btn.appendTo(buttons);
+                });
+            }
+            
             container.append($("<hr>").addClass(o.clsLine));
 
             if (o.permanentLabel === true) {
@@ -88,10 +140,53 @@
             } else {
                 this.enable();
             }
+            
+            this.component = container
         },
 
         _createEvents: function(){
+            const that = this, o = this.options
+            const element = this.element;
+            
+            this.component.on(Metro.events.click, ".input-clear-button", function(){
+                const curr = element.val();
+                element.val("").fire('clear').fire('change').fire('keyup').focus();
 
+                that._fireEvent("clear-click", {
+                    prev: curr,
+                });
+            });
+
+            this.component.on(Metro.events.click, ".input-reveal-button", function(){
+                if (element.attr('type') === 'password') {
+                    element.attr('type', 'text');
+                } else {
+                    element.attr('type', 'password');
+                }
+
+                that._fireEvent("reveal-click", {
+                    val: element.val()
+                });
+            });
+
+            this.component.on(Metro.events.click, ".input-search-button", function(){
+                if (o.searchButtonClick !== 'submit') {
+                    that._fireEvent("search-button-click", {
+                        val: element.val(),
+                        button: this
+                    });
+                } else {
+                    if (this.form) this.form.submit();
+                }
+            });
+
+            element.on(Metro.events.keydown, function(e){
+                if (e.keyCode === Metro.keyCode.ENTER) {
+                    that._fireEvent("enter-click", {
+                        val: element.val()
+                    });
+                }
+            });
         },
 
         clear: function(){

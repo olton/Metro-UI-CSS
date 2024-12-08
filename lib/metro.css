@@ -50278,11 +50278,23 @@ form,
 }
 
 /* source/components/input-material/input-material.less */
+:root {
+  --material-input-border-color: var(--border-color);
+  --material-input-border-color-hover: #cacaca;
+  --material-input-color: #191919;
+  --material-input-placeholder-color: #191919;
+}
+.dark-side {
+  --material-input-border-color: var(--border-color);
+  --material-input-border-color-hover: #686c71;
+  --material-input-color: #dbdfe7;
+  --material-input-placeholder-color: #dbdfe7;
+}
 .input-material {
   position: relative;
   min-width: 196px;
   height: 48px;
-  display: inline-block;
+  display: flex;
   margin: 0;
   width: 100%;
   border: none;
@@ -50294,16 +50306,30 @@ form,
   right: 0;
   bottom: 8px;
   border: 0;
-  border-bottom: 2px var(--border-color) solid;
+  border-bottom: 2px var(--material-input-border-color) solid;
   background-color: transparent;
   outline: none;
   font-size: 16px;
-  padding-bottom: 8px;
+  padding-bottom: 4px;
   padding-left: 0;
   width: 100%;
   z-index: 2;
   height: 28px;
   box-shadow: none !important;
+  color: var(--material-input-color);
+  transition: linear all 0.3s;
+}
+.input-material input::-ms-clear {
+  display: none;
+}
+.input-material input::-ms-reveal {
+  display: none;
+}
+.input-material input::-webkit-clear-button {
+  display: none;
+}
+.input-material input::-webkit-inner-spin-button {
+  height: 100%;
 }
 .input-material hr {
   content: "";
@@ -50312,8 +50338,8 @@ form,
   width: 0;
   opacity: 0;
   height: 3px;
-  background-color: #898989;
-  bottom: -4px;
+  background-color: var(--material-input-border-color-hover);
+  bottom: 4px;
   z-index: 2;
   transition: linear all 0.3s;
 }
@@ -50323,18 +50349,20 @@ form,
   display: block;
   z-index: 1;
   color: inherit;
-  font-size: 12px;
 }
 .input-material .label {
   opacity: 0;
-  top: 16px;
+  top: 12px;
   left: 0;
   transition: linear all 0.3s;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 700;
 }
 .input-material .informer {
   opacity: 0;
   bottom: 12px;
-  font-size: 12px;
+  font-size: 10px;
   transition: linear all 0.3s;
 }
 .input-material input::-webkit-input-placeholder {
@@ -50343,7 +50371,7 @@ form,
   left: 0;
   z-index: 1;
   opacity: 1;
-  color: #898989;
+  color: var(--material-input-placeholder-color);
   transition: linear all 0.3s;
 }
 .input-material .helper-button {
@@ -50352,8 +50380,77 @@ form,
 .input-material.full-size {
   width: 100%;
 }
-.input-material input:hover {
-  border-color: var(--border-color);
+.input-material .buttons {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2px;
+  margin-left: auto;
+  z-index: 3;
+}
+.input-material .button {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--input-color);
+  height: 30px;
+  width: 30px;
+  border: 1px solid var(--input-border-color);
+  font-size: var(--input-font-size);
+  padding: 0;
+}
+.input-material .button:focus,
+.input-material .button:active {
+  box-shadow: none !important;
+}
+.input-material .input-clear-button,
+.input-material .input-reveal-button,
+.input-material .input-search-button {
+  font-family: "Segoe UI Symbol", serif;
+  background-color: transparent;
+  font-size: var(--input-font-size);
+  transform: scale(0);
+  opacity: 0;
+}
+.input-material:focus input,
+.input-material.focused input,
+.input-material:hover input {
+  border-color: var(--material-input-border-color-hover);
+}
+.input-material:focus .input-clear-button,
+.input-material.focused .input-clear-button,
+.input-material:hover .input-clear-button,
+.input-material:focus .input-reveal-button,
+.input-material.focused .input-reveal-button,
+.input-material:hover .input-reveal-button {
+  opacity: 1;
+  transform: scale(1);
+}
+.input-material.disabled .buttons button {
+  background-color: transparent;
+  color: var(--input-disabled-color);
+}
+.input-material.invalid hr {
+  background-color: var(--input-invalid-color);
+}
+.input-material.invalid input {
+  border-color: var(--input-invalid-color);
+}
+.input-material.invalid .informer,
+.input-material.invalid .label,
+.input-material.invalid .icon {
+  color: var(--input-invalid-color);
+}
+.input-material.valid hr {
+  background-color: var(--input-valid-color);
+}
+.input-material.valid input {
+  border-color: var(--input-valid-color);
+}
+.input-material.valid .informer,
+.input-material.valid .label,
+.input-material.valid .icon {
+  color: var(--input-valid-color);
 }
 .input-material.with-icon {
   margin-left: 32px;
@@ -50374,9 +50471,8 @@ form,
 }
 .input-material.with-icon .icon img {
   width: 100%;
-  max-width: 100%;
   height: 100%;
-  max-height: 100%;
+  object-fit: cover;
 }
 .input-material.with-icon.full-size {
   width: calc(100% - 32px) !important;
@@ -50387,11 +50483,6 @@ form,
 .input-material input:focus ~ hr {
   opacity: 1;
   width: 100%;
-  transition: linear all 0.3s;
-}
-.input-material input:focus ~ .label {
-  opacity: 1;
-  top: 0;
   transition: linear all 0.3s;
 }
 .input-material input:focus::-webkit-input-placeholder {
@@ -50406,6 +50497,12 @@ form,
 }
 .input-material input:focus ~ .icon {
   opacity: 1;
+  transition: linear all 0.3s;
+}
+.input-material input:focus ~ .label,
+.input-material input:not(:placeholder-shown) ~ .label {
+  opacity: 1;
+  top: -2px;
   transition: linear all 0.3s;
 }
 .input-material.permanent-label input:not(:placeholder-shown) ~ .label {
@@ -50704,6 +50801,8 @@ form,
   height: 32px;
   background: rgba(248, 248, 248, 0.5);
   color: #1d1d1d;
+  font-family: "Segoe UI Symbol", serif;
+  border-radius: 4px;
 }
 .lightbox__closer * {
   line-height: 32px;
@@ -50713,6 +50812,7 @@ form,
 }
 .lightbox__prev,
 .lightbox__next {
+  font-family: "Segoe UI Symbol", serif;
   width: 48px;
   height: 48px;
   border-radius: 50%;
@@ -50720,18 +50820,22 @@ form,
   color: #1d1d1d;
   flex-grow: 0;
   flex-shrink: 0;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 50%;
   margin-top: -24px;
   left: 20px;
+  font-size: 36px;
 }
 .lightbox__prev *,
 .lightbox__next * {
-  line-height: 48px;
-  font-size: 40px;
+  line-height: 40px;
+  font-size: 36px;
   height: 40px;
   width: 40px;
+  object-fit: cover;
 }
 .lightbox__next {
   left: auto;
@@ -50767,6 +50871,8 @@ form,
   top: 100%;
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: center;
 }
 .lightbox__image-wrapper.no-title::before {
   display: none;

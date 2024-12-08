@@ -137,32 +137,31 @@
                 append.addClass("append").addClass(o.clsAppend).appendTo(container);
             }
 
-            if (typeof o.customButtons === "string") {
-                o.customButtons = Utils.isObject(o.customButtons);
-            }
-
-            if (typeof o.customButtons === "object" && Utils.objectLength(o.customButtons) > 0) {
-                $.each(o.customButtons, function(){
+            const customButtons = Utils.isObject(o.customButtons);
+            if (Array.isArray(customButtons)) {
+                $.each(customButtons, function(){
                     var item = this;
-                    var customButton = $("<button>");
+                    var btn = $("<button>");
 
-                    customButton
+                    btn
                         .addClass("button input-custom-button")
                         .addClass(o.clsCustomButton)
                         .addClass(item.cls)
                         .attr("tabindex", -1)
                         .attr("type", "button")
-                        .html(item.html);
+                        .html(item.text);
 
                     if (item.attr && typeof item.attr === 'object') {
                         $.each(item.attr, function(k, v){
-                            customButton.attr(Str.dashedName(k), v);
+                            btn.attr(Str.dashedName(k), v);
                         });
                     }
 
-                    customButton.data("action", item.onclick);
-
-                    customButton.appendTo(buttons);
+                    if (item.onclick) btn.on("click", () => {
+                        item.onclick.apply(btn, [element.valueOf(), element]);
+                    });
+                    
+                    btn.appendTo(buttons);
                 });
             }
 
@@ -247,6 +246,8 @@
             } else {
                 this.enable();
             }
+            
+            this.component = container
         },
 
         _createEvents: function(){
@@ -265,9 +266,7 @@
 
                 that._fireEvent("clear-click", {
                     prev: curr,
-                    val: element.val()
                 });
-
             });
 
             container.on(Metro.events.click, ".input-reveal-button", function(){
@@ -285,25 +284,13 @@
 
             container.on(Metro.events.click, ".input-search-button", function(){
                 if (o.searchButtonClick !== 'submit') {
-
                     that._fireEvent("search-button-click", {
                         val: element.val(),
                         button: this
                     });
-
                 } else {
-                    this.form.submit();
+                    if (this.form) this.form.submit();
                 }
-            });
-
-            // container.on(Metro.events.stop, ".input-reveal-button", function(){
-            //     element.attr('type', 'password').focus();
-            // });
-
-            container.on(Metro.events.click, ".input-custom-button", function(){
-                var button = $(this);
-                var action = button.data("action");
-                Utils.exec(action, [element.val(), button], this);
             });
 
             element.on(Metro.events.keyup, function(e){

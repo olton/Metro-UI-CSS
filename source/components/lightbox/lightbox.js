@@ -6,9 +6,9 @@
         loop: true,
         source: "img",
 
-        iconClose: "<span class='default-icon-cross'>",
-        iconPrev: "<span class='default-icon-chevron-left'>",
-        iconNext: "<span class='default-icon-chevron-right'>",
+        iconClose: "❌",
+        iconPrev: "🡐",
+        iconNext: "🡒",
 
         clsNext: "",
         clsPrev: "",
