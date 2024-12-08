@@ -14,8 +14,9 @@ body {
   line-height: 1.5;
   overflow-x: hidden;
   min-height: 100vh;
-  height: 100vh;
   text-rendering: optimizeSpeed;
+  display: flex;
+  flex-direction: column;
 }
 blockquote,
 q {
@@ -50518,15 +50519,31 @@ form,
 }
 
 /* source/components/keylock/keylock.less */
+:root {
+  --keylock-color: #575757;
+  --keylock-background: transparent;
+  --keylock-caption-color: #191919;
+  --keylock-background-disabled: #e8e8e8;
+  --keylock-color-disabled: #c3c3c3;
+}
+.dark-side {
+  --keylock-color: #a6a6a6;
+  --keylock-background: transparent;
+  --keylock-caption-color: #e8e8e8;
+  --keylock-background-disabled: #353535;
+  --keylock-color-disabled: #6c6c6c;
+}
 .keylock {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   position: relative;
   height: 36px;
   flex-flow: row nowrap;
-  padding: 2px;
+  padding: 0 8px;
+  line-height: 36px;
   cursor: pointer;
+  user-select: none;
 }
 .keylock input {
   width: 1px;
@@ -50539,31 +50556,38 @@ form,
 .keylock .icon {
   width: 34px;
   height: 34px;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   order: 1;
+  border: 1px solid var(--keylock-color);
+  border-radius: 4px;
+  font-family: "Segoe UI Symbol", serif;
 }
-.keylock .icon > * {
-  font-size: 32px;
-  vertical-align: middle;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.keylock .icon * {
+  font-size: 24px;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.keylock .state-on {
+.keylock .state-on,
+.keylock .caption-state-on {
   display: none;
 }
-.keylock .state-off {
-  display: block;
+.keylock .state-off,
+.keylock .caption-state-off {
+  display: flex;
 }
 .keylock input:checked ~ .icon .state-on,
-.keylock input:checked ~ .caption .state-on {
-  display: block;
+.keylock input:checked ~ .caption .caption-state-on {
+  display: flex;
 }
 .keylock input:checked ~ .icon .state-off,
-.keylock input:checked ~ .caption .state-off {
+.keylock input:checked ~ .caption .caption-state-off {
   display: none;
 }
 .keylock .caption {
@@ -50579,6 +50603,11 @@ form,
 }
 .keylock.caption-left .caption {
   order: 1;
+}
+.keylock input:disabled ~ .icon,
+.keylock input:disabled ~ .caption {
+  border-color: var(--keylock-background-disabled);
+  color: var(--keylock-color-disabled);
 }
 
 /* source/components/keypad/keypad.less */

@@ -5,20 +5,20 @@
     var KeylockDefaultConfig = {
         keylockDeferred: 0,
 
-        stateOnIcon: "<span>🔒</span>",
-        stateOffIcon: "<span>🔓</span>",
+        stateIconOn: "🔒",
+        stateIconOff: "🔓",
 
-        onCaption: "",
-        offCaption: "",
+        captionOn: "",
+        captionOff: "",
         captionPosition: "right",
 
         clsKeylock: "",
-        clsStateOn: "",
-        clsStateOff: "",
-        clsCaption: "",
         clsIcon: "",
-        clsOnCaption: "",
-        clsOffCaption: "",
+        clsIconOn: "",
+        clsIconOff: "",
+        clsCaption: "",
+        clsCaptionOn: "",
+        clsCaptionOff: "",
 
         onKeylockCreate: Metro.noop
     };
@@ -42,11 +42,7 @@
             var element = this.element, o = this.options;
             var container;
             var icon = $("<span>").addClass("icon").addClass(o.clsIcon);
-            var caption = $("<span>").addClass("caption").addClass(o.clsCaption);
-            var stateOnIcon = $(o.stateOnIcon).addClass("state-on").addClass(o.clsStateOn);
-            var stateOffIcon = $(o.stateOffIcon).addClass("state-off").addClass(o.clsStateOff);
-            var onCaption = $("<span>").addClass("state-on").addClass(o.clsOnCaption).html(o.onCaption);
-            var offCaption = $("<span>").addClass("state-off").addClass(o.clsOffCaption).html(o.offCaption);
+            
 
             element.attr("type", "checkbox");
 
@@ -61,14 +57,33 @@
             );
 
             icon.appendTo(container);
-            caption.appendTo(container);
-
-            stateOnIcon.appendTo(icon);
-            stateOffIcon.appendTo(icon);
-
-            onCaption.appendTo(caption);
-            offCaption.appendTo(caption);
-
+            if (o.stateIconOn) {
+                let _icon = $(o.stateIconOn)
+                if (_icon.length > 0) {
+                    _icon.addClass("state-on").addClass(o.clsIconOn).appendTo(icon)
+                } else {
+                    $("<span>").addClass("state-on").addClass(o.clsIconOn).html(o.stateIconOn).appendTo(icon)
+                }
+            }
+            if (o.stateIconOff) {
+                let _icon = $(o.stateIconOff)
+                if (_icon.length > 0) {
+                    _icon.addClass("state-off").addClass(o.clsIconOff).appendTo(icon)
+                } else {
+                    $("<span>").addClass("state-off").addClass(o.clsIconOff).html(o.stateIconOff).appendTo(icon)
+                }
+            }
+            
+            if (o.captionOn || o.captionOff) {
+                const caption = $("<span>").addClass("caption").addClass(o.clsCaption).appendTo(container);
+                if (o.captionOn) {
+                    $("<span>").addClass("caption-state-on").addClass(o.clsCaptionOn).html(o.captionOn).appendTo(caption);
+                }
+                if (o.captionOff) {
+                    $("<span>").addClass("caption-state-off").addClass(o.clsCaptionOff).html(o.captionOff).appendTo(caption);
+                }
+            }
+            
             if (o.transition === true) {
                 container.addClass("transition-on");
             }
