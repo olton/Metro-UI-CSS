@@ -47636,6 +47636,7 @@ form,
   margin-right: calc(-1 * var(--grid-gap));
   container-type: inline-size;
   container-name: row;
+  min-width: 100%;
 }
 .row + .row {
   margin-top: var(--grid-gap);
