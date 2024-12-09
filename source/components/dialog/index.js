@@ -1,7 +1,7 @@
 /** @format */
 
-import "../button";
-import "../../colors-css";
-import "../../farbe";
+import "../button/index.js";
+import "../../colors-css/index.js";
+import "../../farbe/index.js";
 import "./dialog.js";
 import "./dialog.less";

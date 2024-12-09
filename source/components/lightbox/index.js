@@ -1,4 +1,3 @@
-import "../button"
-import "../default-icons"
+import "../button/index.js"
 import "./lightbox.js"
 import "./lightbox.less"

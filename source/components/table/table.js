@@ -7,7 +7,7 @@
     var TableDefaultConfig = {
         useCurrentSlice: false,
         showInspectorButton: false,
-        inspectorButtonIcon: "<span class='default-icon-equalizer'>",
+        inspectorButtonIcon: "🔧",
         tableDeferred: 0,
         templateBeginToken: "<%",
         templateEndToken: "%>",

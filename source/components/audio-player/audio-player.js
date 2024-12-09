@@ -30,24 +30,24 @@
         showShuffle: true,
         showRandom: true,
 
-        loopIcon: "<span class='default-icon-loop'></span>",
-        stopIcon: "<span class='default-icon-stop'></span>",
-        playIcon: "<span class='default-icon-play'></span>",
-        pauseIcon: "<span class='default-icon-pause'></span>",
-        muteIcon: "<span class='default-icon-mute'></span>",
-        volumeLowIcon: "<span class='default-icon-low-volume'></span>",
-        volumeMediumIcon: "<span class='default-icon-medium-volume'></span>",
-        volumeHighIcon: "<span class='default-icon-high-volume'></span>",
+        loopIcon: "🔁",
+        stopIcon: "⏹",
+        playIcon: "▶",
+        pauseIcon: "⏸",
+        muteIcon: "🔇",
+        volumeLowIcon: "🔈",
+        volumeMediumIcon: "🔉",
+        volumeHighIcon: "🔊",
 
-        playlistIcon: "<span class='default-icon-playlist'></span>",
-        nextIcon: "<span class='default-icon-next'></span>",
-        prevIcon: "<span class='default-icon-prev'></span>",
-        firstIcon: "<span class='default-icon-first'></span>",
-        lastIcon: "<span class='default-icon-last'></span>",
-        forwardIcon: "<span class='default-icon-forward'></span>",
-        backwardIcon: "<span class='default-icon-backward'></span>",
-        shuffleIcon: "<span class='default-icon-shuffle'></span>",
-        randomIcon: "<span class='default-icon-random'></span>",
+        playlistIcon: "📃",
+        nextIcon: "→",
+        prevIcon: "←",
+        firstIcon: "⇤",
+        lastIcon: "⇥",
+        forwardIcon: "⇉",
+        backwardIcon: "⇇",
+        shuffleIcon: "🔀",
+        randomIcon: "🎲",
 
         onPlay: Metro.noop,
         onPause: Metro.noop,
@@ -85,7 +85,6 @@
             var element = this.element, o = this.options;
 
             this._createPlayer();
-            this._createControls();
             this._createEvents();
 
             if (o.autoplay === true) {
@@ -101,17 +100,7 @@
         _createPlayer: function(){
             var element = this.element, o = this.options, audio = this.audio;
 
-            var prev = element.prev();
-            var parent = element.parent();
-            var player = $("<div>").addClass("media-player audio-player " + element[0].className);
-
-            if (prev.length === 0) {
-                parent.prepend(player);
-            } else {
-                player.insertAfter(prev);
-            }
-
-            element.appendTo(player);
+            const player = element.wrap("<div>").addClass("media-player audio-player " + element[0].className)
 
             $.each(['muted', 'autoplay', 'controls', 'height', 'width', 'loop', 'poster', 'preload'], function(){
                 element.removeAttr(this);
@@ -128,6 +117,8 @@
             element[0].className = "";
 
             this.player = player;
+
+            this._createControls();
         },
 
         _setSource: function(src){

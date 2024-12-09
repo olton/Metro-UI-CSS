@@ -6,10 +6,10 @@
         wizardDeferred: 0,
         start: 1,
         finish: 0,
-        iconHelp: "<span class='default-icon-help'></span>",
-        iconPrev: "<span class='default-icon-left-arrow'></span>",
-        iconNext: "<span class='default-icon-right-arrow'></span>",
-        iconFinish: "<span class='default-icon-check'></span>",
+        iconHelp: "💡",
+        iconPrev: "🡐",
+        iconNext: "🡒",
+        iconFinish: "✔",
 
         buttonMode: "cycle", // default, cycle, square
         buttonOutline: true,
@@ -78,10 +78,10 @@
                 buttonMode += " outline";
             }
 
-            if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(Utils.isTag(o.iconHelp) ? o.iconHelp : $("<img>").attr('src', o.iconHelp)).appendTo(bar);
-            if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(Utils.isTag(o.iconPrev) ? o.iconPrev : $("<img>").attr('src', o.iconPrev)).appendTo(bar);
-            if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(Utils.isTag(o.iconNext) ? o.iconNext : $("<img>").attr('src', o.iconNext)).appendTo(bar);
-            if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(Utils.isTag(o.iconFinish) ? o.iconFinish : $("<img>").attr('src', o.iconFinish)).appendTo(bar);
+            if (o.iconHelp !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-help").addClass(buttonMode).addClass(o.clsHelp).html(o.iconHelp).appendTo(bar);
+            if (o.iconPrev !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-prev").addClass(buttonMode).addClass(o.clsPrev).html(o.iconPrev).appendTo(bar);
+            if (o.iconNext !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-next").addClass(buttonMode).addClass(o.clsNext).html(o.iconNext).appendTo(bar);
+            if (o.iconFinish !== false) $("<button>").attr("type", "button").addClass("button wizard-btn-finish").addClass(buttonMode).addClass(o.clsFinish).html(o.iconFinish).appendTo(bar);
 
             this.toPage(o.start);
 

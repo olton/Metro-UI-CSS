@@ -13,7 +13,7 @@
         effect: effects[0],
         effectFunc: "linear",
         direction: "left", //left, right
-        duration: globalThis.METRO_ANIMATION_DURATION || 300,
+        duration: 300,
         period: 5000,
         stopOnMouse: true,
 
@@ -413,7 +413,7 @@
             var period = o.period;
 
             var run = function(f, c, n, o){
-                Metro.animations[f](c, n, o);
+                Animation.effects[f](c[0], n[0], o);
             }
 
             if (next.data('duration') !== undefined) {

@@ -1,7 +1,7 @@
 /** @format */
 
-import "../animations";
-import "../../colors-css";
-import "../../farbe";
+import "../../animation/index.js";
+import "../../colors-css/index.js";
+import "../../farbe/index.js";
 import "./tile.js";
 import "./tile.less";

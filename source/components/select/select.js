@@ -13,7 +13,7 @@
         size: "normal",
         selectDeferred: 0,
         clearButton: false,
-        clearButtonIcon: "&#x274c;",
+        clearButtonIcon: "❌",
         usePlaceholder: false,
         placeholder: "",
         addEmptyValue: false,

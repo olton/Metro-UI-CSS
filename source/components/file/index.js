@@ -1,5 +1,4 @@
-import "../input-common"
-import "../button"
-import "../default-icons"
+import "../input-common/index.js"
+import "../button/index.js"
 import "./file.js"
 import "./file.less"

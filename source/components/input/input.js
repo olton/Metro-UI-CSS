@@ -31,7 +31,7 @@
         clearButton: true,
         revealButton: true,
         clearButtonIcon: "❌",
-        revealButtonIcon: "👀",
+        revealButtonIcon: "👁",
         searchButtonIcon: "🔍",
         customButtons: [],
         searchButtonClick: 'submit',

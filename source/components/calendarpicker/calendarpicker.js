@@ -19,8 +19,8 @@
         format: METRO_DATE_FORMAT,
         inputFormat: null,
         clearButton: false,
-        calendarButtonIcon: "<span class='default-icon-calendar'></span>",
-        clearButtonIcon: "<span class='default-icon-cross'></span>",
+        calendarButtonIcon: "📅",
+        clearButtonIcon: "❌",
         copyInlineStyles: false,
         openMode: "auto",
         clsPicker: "",
@@ -268,7 +268,7 @@
                 clearButton.appendTo(buttons);
             }
 
-            calendarButton = $("<button>").addClass("button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
+            calendarButton = $("<button>").addClass("button input-calendar-button").attr("tabindex", -1).attr("type", "button").html(o.calendarButtonIcon);
             calendarButton.appendTo(buttons);
 
             if (o.prepend !== "") {
