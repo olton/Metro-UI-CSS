@@ -57,7 +57,7 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
-    "@olton/animation": "^0.4.0",
+    "@olton/animation": "^0.5.0",
     "@olton/datetime": "^3.2.0",
     "@olton/farbe": "^1.0.4",
     "@olton/guardian": "^0.5.2",

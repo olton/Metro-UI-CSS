@@ -59217,7 +59217,7 @@ form,
   flex-flow: row wrap;
   align-items: center;
   cursor: pointer;
-  width: calc(100% - .1rem);
+  width: calc(100% - 0.1rem);
   height: 34px;
   padding-left: 10px;
   overflow: hidden;
@@ -62268,7 +62268,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     background-color: var(--table-background);
   }
 }
-@media screen and (min-width: 0) {
+@container (min-width: 0) {
   .table.normal-fs th,
   .table.normal-fs td,
   .table.normal-fs .th,
@@ -62291,7 +62291,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 360px) {
+@container (min-width: 360px) {
   .table.normal-xs th,
   .table.normal-xs td,
   .table.normal-xs .th,
@@ -62314,7 +62314,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 576px) {
+@container (min-width: 576px) {
   .table.normal-sm th,
   .table.normal-sm td,
   .table.normal-sm .th,
@@ -62337,7 +62337,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 640px) {
+@container (min-width: 640px) {
   .table.normal-ld th,
   .table.normal-ld td,
   .table.normal-ld .th,
@@ -62360,7 +62360,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 768px) {
+@container (min-width: 768px) {
   .table.normal-md th,
   .table.normal-md td,
   .table.normal-md .th,
@@ -62383,7 +62383,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 992px) {
+@container (min-width: 992px) {
   .table.normal-lg th,
   .table.normal-lg td,
   .table.normal-lg .th,
@@ -62406,7 +62406,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 1200px) {
+@container (min-width: 1200px) {
   .table.normal-xl th,
   .table.normal-xl td,
   .table.normal-xl .th,
@@ -62429,7 +62429,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 1400px) {
+@container (min-width: 1400px) {
   .table.normal-xxl th,
   .table.normal-xxl td,
   .table.normal-xxl .th,
@@ -62452,7 +62452,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
     font-size: 80%;
   }
 }
-@media screen and (min-width: 2000px) {
+@container (min-width: 2000px) {
   .table.normal-xxxl th,
   .table.normal-xxxl td,
   .table.normal-xxxl .th,
@@ -67152,4 +67152,3 @@ body.vegas-container > .vegas-slide {
   right: calc(100% + 8px);
   z-index: 1001;
 }
-/*# sourceMappingURL=metro.css.map */

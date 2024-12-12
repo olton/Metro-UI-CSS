@@ -17,7 +17,7 @@ let ctx = await context({
     plugins: [
         progress({
             text: 'Building Metro UI...',
-            succeedText: 'Compiled! Watching for changes...'
+            succeedText: 'Lib compiled in %s ms! Watching for changes...'
         }),
         lessLoader(),
         autoprefixer(),
@@ -36,7 +36,7 @@ let ctxIcons = await context({
     plugins: [
         progress({
             text: 'Building Metro UI icons...',
-            succeedText: 'Metro UI icons built successfully in %s ms!'
+            succeedText: 'Icons compiled in %s ms! Watching for changes...'
         }),
         lessLoader(),
         unlink({

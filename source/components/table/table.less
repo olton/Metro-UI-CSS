@@ -333,7 +333,7 @@
     border-radius: var(--table-inspector-border-radius);
     width: auto;
     padding: 10px;
-    max-height: ~"calc(100vh - 40px)";
+    max-height: calc(100vh - 40px);
     .win-shadow();
 
     .table-inspector-header {
@@ -351,7 +351,7 @@
 
     .table-wrap {
         display: block;
-        height: ~"calc(100% - 110px)";
+        height: calc(100% - 110px);
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -394,9 +394,9 @@
     position: absolute;
     z-index: @zindex-absolute;
     height: auto;
-    max-height: ~"calc(100vh - 40px)";
+    max-height: calc(100vh - 40px);
     width: auto;
-    max-width: ~"calc(100vw - 40px)";
+    max-width: calc(100vw - 40px);
     top: 50%;
     left: 50%;
     .translate3d(-50%, -50%);
@@ -416,35 +416,28 @@
     }
 }
 
-.generate-table-media-options(@mediaBreakpointListMobileLength);
-.generate-table-media-options(@name, @i: 1) when (@i <= @mediaBreakpointListMobileLength) {
-    @m: extract(@mediaBreakpointListMobile, @i);
-
-    @media screen and (min-width: @@m) {
-        .table {
-            &.normal-@{m} {
-                th, td, .th, .td {
-                    padding: 0.625rem;
-                    font-size: 1em;
-                }
+each(@media-rules, {
+    @container (min-width: @value) {
+        .table.normal-@{key} {
+            th, td, .th, .td {
+                padding: 0.625rem;
+                font-size: 1em;
             }
-            &.compact-@{m} {
-                th, td, .th, .td {
-                    padding: 7px 8px;
-                    font-size: 80%;
-                }
+        }
+        .table.compact-@{key} {
+            th, td, .th, .td {
+                padding: 7px 8px;
+                font-size: 80%;
             }
-            &.subcompact-@{m} {
-                th, td, .th, .td {
-                    padding: 3px 8px;
-                    font-size: 80%;
-                }
+        }
+        .table.subcompact-@{key} {
+            th, td, .th, .td {
+                padding: 3px 8px;
+                font-size: 80%;
             }
         }
     }
-
-    .generate-table-media-options(@name, @i + 1);
-}
+})
 
 .table-load-data-activity {
     position: absolute!important;
@@ -481,7 +474,7 @@
     }
 
     .table-rows-block {
-        width: ~"calc(100% - 46px)";
+        width: calc(100% - 46px);
     }
 
     .table-top {
