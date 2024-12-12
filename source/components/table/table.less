@@ -3,6 +3,10 @@
 
 :root {
     --table-inspector-border-radius: 10px;
+    --table-head-font-size: 14px;
+    --table-caption-font-size: 16px;
+    --table-footer-font-size: 14px;
+    --table-body-font-size: 16px;
 
     --table-border-color: #e8e8e8;
     --table-color: #191919;
@@ -49,7 +53,26 @@
 
 .table {
     width: 100%;
-
+    
+    caption {
+        font-size: var(--table-caption-font-size);
+        font-weight: bold;
+        padding: 10px 20px;
+        border-bottom: 1px solid var(--table-border-color);
+    }
+    
+    thead :is(th, td) {
+        font-size: var(--table-head-font-size);
+    }
+    
+    tfoot :is(th, td) {
+        font-size: var(--table-head-font-size);
+    }
+    
+    tbody td {
+        font-size: var(--table-body-font-size);
+    }
+    
     th, .th, td, .td {
         padding: 0.625rem;
     }
@@ -290,6 +313,7 @@
 .table-component {
     display: block;
     position: relative;
+    container: table-component / inline-size;
     
     .inspector-button {
         font-family: "Segoe UI Symbol", serif;
@@ -450,6 +474,7 @@ each(@media-rules, {
     display: flex;
     position: relative;
     flex-flow: row nowrap;
+    gap: 10px;
 
     input {
         width: 220px;
@@ -531,3 +556,46 @@ each(@media-rules, {
         min-width: 100%;
     }
 }
+
+each(@media-rules, {
+    @container table-component (max-width: @value) {
+        .table.responsive-@{key} {
+            thead {
+                border: none;
+                clip: rect(0 0 0 0);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                width: 1px;
+            }
+            tbody {
+                display: flex;
+                flex-flow: column;
+            }
+            tr {
+                border-bottom: 3px solid #ddd;
+                display: block;
+            }
+
+            td {
+                border-bottom: 1px solid #ddd;
+                display: block;
+                text-align: right;
+                width: 100%;
+                
+                &::before {
+                    content: attr(data-label);
+                    float: left;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                }
+            }
+
+            tr:last-child, td:last-child {
+                border-bottom: 0!important;
+            }
+        }
+    }
+})

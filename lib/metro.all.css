@@ -61779,6 +61779,10 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 /* source/components/table/table.less */
 :root {
   --table-inspector-border-radius: 10px;
+  --table-head-font-size: 14px;
+  --table-caption-font-size: 16px;
+  --table-footer-font-size: 14px;
+  --table-body-font-size: 16px;
   --table-border-color: #e8e8e8;
   --table-color: #191919;
   --table-background: transparent;
@@ -61833,6 +61837,21 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .table {
   width: 100%;
+}
+.table caption {
+  font-size: var(--table-caption-font-size);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--table-border-color);
+}
+.table thead :is(th, td) {
+  font-size: var(--table-head-font-size);
+}
+.table tfoot :is(th, td) {
+  font-size: var(--table-head-font-size);
+}
+.table tbody td {
+  font-size: var(--table-body-font-size);
 }
 .table th,
 .table .th,
@@ -62151,6 +62170,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .table-component {
   display: block;
   position: relative;
+  container: table-component / inline-size;
 }
 .table-component .inspector-button {
   font-family: "Segoe UI Symbol", serif;
@@ -62485,6 +62505,7 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   display: flex;
   position: relative;
   flex-flow: row nowrap;
+  gap: 10px;
 }
 .table-skip input {
   width: 220px;
@@ -62542,6 +62563,330 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .table-scrollable .table {
   width: auto;
   min-width: 100%;
+}
+@container table-component (max-width: 0) {
+  .table.responsive-fs thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-fs tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-fs tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-fs td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-fs td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-fs tr:last-child,
+  .table.responsive-fs td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 360px) {
+  .table.responsive-xs thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-xs tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-xs tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-xs td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-xs td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-xs tr:last-child,
+  .table.responsive-xs td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 576px) {
+  .table.responsive-sm thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-sm tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-sm tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-sm td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-sm td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-sm tr:last-child,
+  .table.responsive-sm td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 640px) {
+  .table.responsive-ld thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-ld tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-ld tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-ld td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-ld td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-ld tr:last-child,
+  .table.responsive-ld td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 768px) {
+  .table.responsive-md thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-md tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-md tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-md td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-md td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-md tr:last-child,
+  .table.responsive-md td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 992px) {
+  .table.responsive-lg thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-lg tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-lg tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-lg td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-lg td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-lg tr:last-child,
+  .table.responsive-lg td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 1200px) {
+  .table.responsive-xl thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-xl tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-xl tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-xl td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-xl td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-xl tr:last-child,
+  .table.responsive-xl td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 1400px) {
+  .table.responsive-xxl thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-xxl tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-xxl tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-xxl td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-xxl td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-xxl tr:last-child,
+  .table.responsive-xxl td:last-child {
+    border-bottom: 0 !important;
+  }
+}
+@container table-component (max-width: 2000px) {
+  .table.responsive-xxxl thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .table.responsive-xxxl tbody {
+    display: flex;
+    flex-flow: column;
+  }
+  .table.responsive-xxxl tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+  }
+  .table.responsive-xxxl td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    text-align: right;
+    width: 100%;
+  }
+  .table.responsive-xxxl td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  .table.responsive-xxxl tr:last-child,
+  .table.responsive-xxxl td:last-child {
+    border-bottom: 0 !important;
+  }
 }
 
 /* source/components/tabs/tabs.less */

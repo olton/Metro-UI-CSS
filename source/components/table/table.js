@@ -5,6 +5,8 @@
 
     var Utils = Metro.utils;
     var TableDefaultConfig = {
+        caption: "",
+        cardMode: "", 
         useCurrentSlice: false,
         showInspectorButton: false,
         inspectorButtonIcon: "🔧",
@@ -199,9 +201,10 @@
                 o = this.options;
             var id = Utils.elementId("table");
             var table_component, table_container, activity;
-
-            if (!Utils.isValue(element.attr("id"))) {
-                element.attr("id", id);
+            
+            if (!element.id()) {
+                console.warn(`To use all table component features, please set an ID for the table element!`);
+                element.id(id);
             }
 
             if (Utils.isValue(o.searchFields)) {
@@ -701,6 +704,10 @@
 
             head.clear().addClass(o.clsHead);
 
+            if (o.caption) {
+                $("<caption>").html(o.caption).insertBefore(head);
+            }
+            
             if (this.heads.length === 0) {
                 return head;
             }
@@ -970,7 +977,7 @@
             }
 
             skip = Utils.isValue(this.wrapperSkip) ? this.wrapperSkip : $("<div>").addClass("table-skip").appendTo(bottom_block);
-            skip.addClass(o.clsTableSkip);
+            skip.addClass("table-skip").addClass(o.clsTableSkip);
 
             $("<input type='text'>").addClass("input table-skip-input").addClass(o.clsTableSkipInput).appendTo(skip);
             $("<button>")
@@ -1635,14 +1642,20 @@
 
                     is_even_row = i % 2 === 0;
 
-                    td = $("<td>").html(i + 1);
+                    td = $("<td>")
+                        .attr("data-label", "#")
+                        .attr("aria-label", "#")
+                        .html(i + 1);
                     if (that.service[0].clsColumn !== undefined) {
                         td.addClass(that.service[0].clsColumn);
                     }
                     td.appendTo(tr);
 
                     // Checkbox
-                    td = $("<td>");
+                    td = $("<td>")
+                        .attr("data-label", "CHK")
+                        .attr("aria-label", "CHK")
+                    
                     if (o.checkType === "checkbox") {
                         check = $(
                             "<input type='checkbox' data-style='" +
@@ -1689,7 +1702,9 @@
 
                     $.each(cells, function (cell_index) {
                         var val = this;
-                        var td = $("<td>");
+                        var td = $("<td>")
+                            .attr("data-label", that.heads[cell_index].title)
+                            .attr("aria-label", that.heads[cell_index].title);
 
                         if (Utils.isValue(that.heads[cell_index].template)) {
                             val = that.heads[cell_index].template.replace(/%VAL%/g, val);
