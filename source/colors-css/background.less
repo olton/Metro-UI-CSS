@@ -29,3 +29,12 @@ each(@colors, {
     .bg-@{value}-hover {&:hover {background-color: @@value !important;}}
     .bg-@{value}-focus {&:focus {background-color: @@value !important;}}
 })
+
+:root {
+    --gm-value: 10px;
+}
+
+.bg-glassmorphism {
+    background-color: rgba(255, 255, 255, 0.1)!important;
+    backdrop-filter: blur(var(--gm-value))!important;
+}

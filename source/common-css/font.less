@@ -1,15 +1,22 @@
 @import (once) "../include/vars";
-@import (once) "../include/mixins";
+
+:root {
+    --font-name: @fontName;
+    --font-size: 1rem;
+    --line-height: 1.5;
+    --font-style: normal;
+    --font-weight: 400;
+}
 
 html {
-    font-family: @fontName;
+    font-family: var(--font-name);
     font-size: 100%;
 }
 
 body {
-    font-family: @fontName;
-    font-size: 1rem;
-    line-height: 1.5;
-    font-style: normal;
-    font-weight: 400;
+    font-family: var(--font-name);
+    font-size: var(--font-size);
+    line-height: var(--line-height);
+    font-style: var(--font-style);
+    font-weight: var(--font-weight);
 }

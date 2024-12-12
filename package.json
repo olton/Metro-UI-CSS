@@ -44,7 +44,7 @@
     "last 2 versions"
   ],
   "devDependencies": {
-    "@olton/easytest": "^0.39.0",
+    "@olton/easytest": "^0.40.0",
     "@olton/esbuild-plugin-autoprefixer": "^0.2.0",
     "@olton/esbuild-plugin-progress": "^0.3.0",
     "@olton/esbuild-plugin-unlink": "^0.2.0",
@@ -57,7 +57,7 @@
     "shx": "^0.3.4"
   },
   "dependencies": {
-    "@olton/animation": "^0.3.0",
+    "@olton/animation": "^0.4.0",
     "@olton/datetime": "^3.2.0",
     "@olton/farbe": "^1.0.4",
     "@olton/guardian": "^0.5.2",

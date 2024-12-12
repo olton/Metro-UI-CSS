@@ -10,10 +10,18 @@ each(@normalColors, {
     .stroke-white-@{value} {
         color: @@value;
         -webkit-text-stroke: var(--stroke-width) #ffffff;
+        text-stroke: var(--stroke-width) #ffffff;
+    }
+
+    .stroke-@{value} {
+        color: @@value;
+        -webkit-text-stroke: var(--stroke-width) @@value;
+        text-stroke: var(--stroke-width) @@value;
     }
 
     .stroke-dark-@{value} {
         color: @@value;
         -webkit-text-stroke: var(--stroke-width) @@dark-color;
+        text-stroke: var(--stroke-width) @@dark-color;
     }
 })

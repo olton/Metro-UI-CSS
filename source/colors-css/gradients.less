@@ -15,23 +15,11 @@
     background: linear-gradient(var(--gradient-direction), var(--gradient-from-color), var(--gradient-to-color))!important;
 }
 
-.gradient-text {
-    background: linear-gradient(var(--gradient-direction), var(--gradient-from-color), var(--gradient-to-color))!important;
-    -webkit-background-clip: text!important;
-    -webkit-text-fill-color: transparent;
-}
-
 each(@normalColors, .(@v, @k, @i) {
     @color: "@{v}";
 
     .gr-@{v} {
         background: linear-gradient(var(--gradient-direction), @@color, lighten(@@color, 20%))!important;
-    }
-    
-    .gr-text-@{v} {
-        background: linear-gradient(var(--gradient-direction), @@color, lighten(@@color, 20%))!important;
-        -webkit-background-clip: text!important;
-        -webkit-text-fill-color: transparent;
     }
 })
 
@@ -61,3 +49,18 @@ each(@darkColors, .(@v, @k, @i) {
     })
 }
 
+.gradient-text {
+    background: linear-gradient(var(--gradient-direction), var(--gradient-from-color), var(--gradient-to-color))!important;
+    -webkit-background-clip: text!important;
+    -webkit-text-fill-color: transparent;
+}
+
+each(@normalColors, .(@v, @k, @i) {
+    @color: "sat-@{v}";
+
+    .gr-text-@{v} {
+        background: linear-gradient(var(--gradient-direction), darken(@@color, 30%) 10%, @@v, darken(@@color, 30%))!important;
+        -webkit-background-clip: text!important;
+        -webkit-text-fill-color: transparent;
+    }
+})
