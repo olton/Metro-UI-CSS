@@ -4,9 +4,23 @@ import autoprefixer from "@olton/esbuild-plugin-autoprefixer";
 import {lessLoader} from "esbuild-plugin-less";
 import {replace} from "esbuild-plugin-replace";
 import unlink from "@olton/esbuild-plugin-unlink";
-
+import pkg from "./package.json" assert {type: "json"};
 
 const production = process.env.MODE === "production"
+const banner = `
+/*!
+ ███╗   ███╗███████╗████████╗██████╗  ██████╗     ██╗   ██╗██╗
+ ████╗ ████║██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗    ██║   ██║██║
+ ██╔████╔██║█████╗     ██║   ██████╔╝██║   ██║    ██║   ██║██║
+ ██║╚██╔╝██║██╔══╝     ██║   ██╔══██╗██║   ██║    ██║   ██║██║
+ ██║ ╚═╝ ██║███████╗   ██║   ██║  ██║╚██████╔╝    ╚██████╔╝██║
+ ╚═╝     ╚═╝╚══════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝      ╚═════╝ ╚═╝                                                             
+
+ * Metro UI v${pkg.version} Components Library  (https://metroui.org.ua)
+ * Copyright 2012-${new Date().getFullYear()} by Serhii Pimenov
+ * Licensed under MIT
+ */
+`
 
 let ctx = await context({
     entryPoints: ['./source/default.js'],
@@ -14,15 +28,19 @@ let ctx = await context({
     bundle: true,
     minify: false,
     sourcemap: true,
+    banner: {
+        js: banner
+    },
     plugins: [
         progress({
             text: 'Building Metro UI...',
-            succeedText: 'Lib compiled in %s ms! Watching for changes...'
+            succeedText: 'Library compiled in %s ms! Watching for changes...'
         }),
         lessLoader(),
         autoprefixer(),
         replace({
-            '__BUILD_TIME__': new Date().toLocaleString()
+            '__BUILD_TIME__': new Date().toLocaleString(),
+            '__VERSION__': pkg.version,
         })
     ],
 })

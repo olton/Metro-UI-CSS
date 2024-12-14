@@ -20,7 +20,12 @@
     var meta_global_common = $.meta("metro:global_common").attr("content");
     var meta_blur_image = $.meta("metro:blur_image").attr("content");
     var meta_smooth_scroll = $.meta("metro:smooth_scroll").attr("content");
+    var meta_theme = $.meta("metro:theme").attr("content");
 
+    if (meta_theme !== undefined) {
+        $("html").addClass(meta_theme === "auto" ? $.dark ? "dark-side" : "" : meta_theme === "dark" ? "dark-side" : "light-side");
+    }
+    
     if (globalThis.METRO_BLUR_IMAGE === undefined) {
         globalThis.METRO_BLUR_IMAGE = meta_blur_image !== undefined ? JSON.parse(meta_global_common) : false;
     }

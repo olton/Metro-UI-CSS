@@ -46,6 +46,7 @@
             const element = this.element,
                 o = this.options;
             let initState = "light";
+            
 
             if (o.saveState) {
                 initState = Metro.storage.getItem(o.saveStateKey, false);
@@ -100,10 +101,15 @@
         },
 
         _updateState: function () {
+            const usingMeta = $.meta("metro:theme").length > 0
             const o = this.options,
                 elem = this.elem,
                 target = this.target;
 
+            if (usingMeta) {
+                return
+            }
+            
             if (elem.checked) {
                 target.addClass("dark-side").addClass(this.options.clsDark);
             } else {
@@ -122,6 +128,7 @@
                 return this.elem.checked ? Metro.theme.DARK : Metro.theme.LIGHT;
             }
             this._setState(typeof value === "boolean" ? value : value === Metro.theme.DARK);
+            this._updateState();
         },
 
         changeAttribute: function (attr, newValue) {
