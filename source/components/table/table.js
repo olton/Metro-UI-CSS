@@ -1,8 +1,31 @@
 /** @format */
 
-(function (Metro, $) {
-    "use strict";
+/*
+    * type - rownum, rowcheck, data
+    * */
+var TABLE_COL_OPTIONS = {
+    title: undefined,
+    format: undefined,
+    formatMask: undefined,
+    name: undefined, 
+    colspan: null,
+    size: undefined,
+    sortable: false,
+    sortDir: undefined,
+    clsColumn: undefined,
+    cls: undefined,
+    show: true,
+    required: true, 
+    field: undefined,
+    fieldType: undefined,
+    validator: undefined,
+    template: undefined,
+    type: "data",
+}
 
+;(function (Metro, $) {
+    "use strict";
+    
     var Utils = Metro.utils;
     var TableDefaultConfig = {
         caption: "",
@@ -21,7 +44,6 @@
         horizontalScrollStop: null,
         check: false,
         checkType: "checkbox",
-        checkStyle: 1,
         checkColIndex: 0,
         checkName: null,
         checkStoreKey: "TABLE:$1:KEYS",
@@ -33,8 +55,9 @@
 
         head: null,
         body: null,
-        static: false,
         source: null,
+
+        static: false,
 
         searchMinLength: 1,
         searchThreshold: 500,
@@ -412,29 +435,21 @@
             this.service = [
                 {
                     // Rownum
+                    ...TABLE_COL_OPTIONS,
                     title: o.rownumTitle,
-                    format: undefined,
-                    name: undefined,
-                    sortable: false,
-                    sortDir: undefined,
                     clsColumn: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
                     cls: "rownum-cell " + (o.rownum !== true ? "d-none" : ""),
-                    colspan: undefined,
                     type: "rownum",
                 },
                 {
-                    // Check
+                    // Checkbox
+                    ...TABLE_COL_OPTIONS,
                     title:
                         o.checkType === "checkbox"
                             ? "<input type='checkbox' data-role='checkbox' class='table-service-check-all' data-style='" + o.checkStyle + "'>"
                             : "",
-                    format: undefined,
-                    name: undefined,
-                    sortable: false,
-                    sortDir: undefined,
                     clsColumn: "check-cell " + (o.check !== true ? "d-none" : ""),
                     cls: "check-cell " + (o.check !== true ? "d-none" : ""),
-                    colspan: undefined,
                     type: "rowcheck",
                 },
             ];
@@ -775,9 +790,6 @@
                 if (Utils.isValue(item.cls)) {
                     th.attr("data-cls", item.cls);
                 }
-                if (Utils.isValue(item.colspan)) {
-                    th.attr("colspan", item.colspan);
-                }
                 if (Utils.isValue(item.show)) {
                     th.attr("data-show", item.show);
                 }
@@ -976,10 +988,10 @@
                 pagination.hide();
             }
 
-            skip = Utils.isValue(this.wrapperSkip) ? this.wrapperSkip : $("<div>").addClass("table-skip").appendTo(bottom_block);
+            skip = Utils.isValue(this.wrapperSkip) ? this.wrapperSkip : $("<div>").appendTo(bottom_block);
             skip.addClass("table-skip").addClass(o.clsTableSkip);
 
-            $("<input type='text'>").addClass("input table-skip-input").addClass(o.clsTableSkipInput).appendTo(skip);
+            $(`<input type='text' data-role='input' placeholder="${strings.label_enter_page}">`).addClass("table-skip-input").addClass(o.clsTableSkipInput).appendTo(skip);
             $("<button>")
                 .addClass("button table-skip-button")
                 .addClass(o.clsTableSkipButton)
@@ -1427,7 +1439,7 @@
             inspector.off(Metro.events.click, ".js-table-inspector-save");
             inspector.off(Metro.events.click, ".js-table-inspector-cancel");
             inspector.off(Metro.events.click, ".js-table-inspector-reset");
-            inspector.find("input[type=number]").off(Metro.events.inputchange);
+            inspector.off(Metro.events.inputchange, "input[type=number]");
         },
 
         _saveTableView: function () {

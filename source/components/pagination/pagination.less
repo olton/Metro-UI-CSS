@@ -8,7 +8,7 @@
     --pagination-page-item-color-hover: var(--default-color);
     --pagination-page-item-background-disabled: var(--default-background-disabled);
     --pagination-page-item-color-disabled: var(--default-color-disabled);
-    --pagination-page-item-background-active: #d4e2ff;
+    --pagination-page-item-background-active: rgba(217, 217, 217, 0.44);
     --pagination-page-item-color-active: var(--default-color);
     --pagination-page-item-border-color: var(--border-color);
     --pagination-page-item-border-radius: 4px;
@@ -17,11 +17,11 @@
 .dark-side {
     --pagination-page-item-background: var(--default-background);
     --pagination-page-item-color: var(--default-color);
-    --pagination-page-item-background-hover: #2e436e;
+    --pagination-page-item-background-hover: rgba(106, 106, 106, 0.44);
     --pagination-page-item-color-hover: var(--default-color);
     --pagination-page-item-background-disabled: var(--default-background-disabled);
     --pagination-page-item-color-disabled: var(--default-color-disabled);
-    --pagination-page-item-background-active: #50a8ff;
+    --pagination-page-item-background-active: rgba(106, 106, 106, 0.44);
     --pagination-page-item-color-active: var(--default-color);
     --pagination-page-item-border-color: var(--border-color);
     --pagination-page-item-border-radius: 6px;
@@ -37,6 +37,7 @@
 }
 
 .pagination {
+    gap: 6px;
 
     .page-item {
         cursor: pointer;
@@ -45,7 +46,6 @@
         color: var(--pagination-page-item-color);
         border: 1px solid var(--pagination-page-item-border-color);
         border-radius: var(--pagination-page-item-border-radius);
-        margin: .25rem;
         transition: @transition-short;
         overflow: hidden;
     }
@@ -100,7 +100,7 @@
 
 .pagination {
     &.no-gap {
-        margin: 0 0 1rem 0;
+        gap: 0;
         .page-item {
             margin: -1px;
         }

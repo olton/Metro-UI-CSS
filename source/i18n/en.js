@@ -86,14 +86,15 @@
         label_year: "year",
         label_years: "years",
 
-        label_rows_count: "Show entries:",
+        label_rows_count: "Show:",
         label_search: "Search:",
         label_info: "Showing $1 to $2 of $3 entries",
         label_prev: "Prev",
         label_next: "Next",
         label_all: "All",
         label_inspector: "Inspector",
-        label_goto_page: "Goto page",
+        label_goto_page: "Goto",
+        label_enter_page: "Enter page...",
         label_empty: "Nothing to show",
         label_user_colors: "User Colors",
 

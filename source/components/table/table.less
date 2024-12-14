@@ -320,6 +320,12 @@
     }
 }
 
+.table-top {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 6px;
+}
+
 .table-bottom {
     margin-left: 0;
     margin-right: 0;
@@ -327,6 +333,10 @@
 
 .table-info, .table-pagination, .table-skip {
     flex-basis: auto;
+}
+
+.table-info {
+    margin-bottom: 10px;
 }
 
 .table-progress {
@@ -472,18 +482,16 @@ each(@media-rules, {
 
 .table-skip {
     display: flex;
+    justify-content: flex-end;
     position: relative;
     flex-flow: row nowrap;
-    gap: 10px;
+    gap: 6px;
 
-    input {
-        width: 220px;
+    .input {
+        width: 200px;
     }
 }
 
-.table-skip-input {
-    padding: 0 0.75rem;
-}
 
 .table-component {
     .table-top, .table-rows-block, .table-search-block {
@@ -494,18 +502,18 @@ each(@media-rules, {
     }
 
     .table-search-block {
-        flex-basis: 100%;
-        flex-shrink: 0;
+        //flex-basis: 100%;
+        flex-shrink: 1;
     }
 
     .table-rows-block {
-        width: calc(100% - 46px);
+        width: min(100%, 220px);
     }
 
     .table-top {
-        & > * {
-            margin-bottom: 4px;
-        }
+        //& > * {
+        //    margin-bottom: 4px;
+        //}
     }
 }
 
@@ -513,18 +521,6 @@ each(@media-rules, {
     .table-component {
         .table-top {
             flex-flow: row nowrap;
-
-            & > * + * {
-                margin-left: 4px;
-            }
-        }
-
-        .table-search-block {
-            flex-shrink: 1;
-        }
-
-        .table-rows-block {
-            width: 360px;
         }
     }
 }
@@ -560,6 +556,8 @@ each(@media-rules, {
 each(@media-rules, {
     @container table-component (max-width: @value) {
         .table.responsive-@{key} {
+            --table-body-font-size: 12px;
+            
             thead {
                 border: none;
                 clip: rect(0 0 0 0);

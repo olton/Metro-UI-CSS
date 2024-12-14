@@ -86,14 +86,15 @@
         label_year: "рік",
         label_years: "років",
 
-        label_rows_count: "Показати записи:",
+        label_rows_count: "Показати:",
         label_search: "Пошук:",
-        label_info: "Показати з $1 по$2 із $3 записів",
+        label_info: "Відображено з $1 по $2 із $3 записів",
         label_prev: "Попер",
         label_next: "Наст",
         label_all: "Усі",
         label_inspector: "Інспектор",
-        label_goto_page: "Перейти на сторінку",
+        label_goto_page: "Перейти",
+        label_enter_page: "Введіть сторінку...",
         label_empty: "Нічого показати",
         label_user_colors: "Кольори користувача",
 

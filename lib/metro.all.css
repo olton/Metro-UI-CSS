@@ -55812,7 +55812,7 @@ form,
   --pagination-page-item-color-hover: var(--default-color);
   --pagination-page-item-background-disabled: var(--default-background-disabled);
   --pagination-page-item-color-disabled: var(--default-color-disabled);
-  --pagination-page-item-background-active: #d4e2ff;
+  --pagination-page-item-background-active: rgba(217, 217, 217, 0.44);
   --pagination-page-item-color-active: var(--default-color);
   --pagination-page-item-border-color: var(--border-color);
   --pagination-page-item-border-radius: 4px;
@@ -55820,11 +55820,11 @@ form,
 .dark-side {
   --pagination-page-item-background: var(--default-background);
   --pagination-page-item-color: var(--default-color);
-  --pagination-page-item-background-hover: #2e436e;
+  --pagination-page-item-background-hover: rgba(106, 106, 106, 0.44);
   --pagination-page-item-color-hover: var(--default-color);
   --pagination-page-item-background-disabled: var(--default-background-disabled);
   --pagination-page-item-color-disabled: var(--default-color-disabled);
-  --pagination-page-item-background-active: #50a8ff;
+  --pagination-page-item-background-active: rgba(106, 106, 106, 0.44);
   --pagination-page-item-color-active: var(--default-color);
   --pagination-page-item-border-color: var(--border-color);
   --pagination-page-item-border-radius: 6px;
@@ -55837,6 +55837,9 @@ form,
   padding: 0;
   user-select: none;
 }
+.pagination {
+  gap: 6px;
+}
 .pagination .page-item {
   cursor: pointer;
   display: list-item;
@@ -55844,7 +55847,6 @@ form,
   color: var(--pagination-page-item-color);
   border: 1px solid var(--pagination-page-item-border-color);
   border-radius: var(--pagination-page-item-border-radius);
-  margin: 0.25rem;
   transition: all 0.15s ease-in-out;
   overflow: hidden;
 }
@@ -55886,7 +55888,7 @@ form,
   border-radius: var(--pagination-page-item-border-radius);
 }
 .pagination.no-gap {
-  margin: 0 0 1rem 0;
+  gap: 0;
 }
 .pagination.no-gap .page-item {
   margin: -1px;
@@ -62175,6 +62177,11 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .table-component .inspector-button {
   font-family: "Segoe UI Symbol", serif;
 }
+.table-top {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 6px;
+}
 .table-bottom {
   margin-left: 0;
   margin-right: 0;
@@ -62183,6 +62190,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 .table-pagination,
 .table-skip {
   flex-basis: auto;
+}
+.table-info {
+  margin-bottom: 10px;
 }
 .table-progress {
   width: 64px;
@@ -62503,15 +62513,13 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
 }
 .table-skip {
   display: flex;
+  justify-content: flex-end;
   position: relative;
   flex-flow: row nowrap;
-  gap: 10px;
+  gap: 6px;
 }
-.table-skip input {
-  width: 220px;
-}
-.table-skip-input {
-  padding: 0 0.75rem;
+.table-skip .input {
+  width: 200px;
 }
 .table-component .table-top,
 .table-component .table-rows-block,
@@ -62522,27 +62530,14 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   width: 100%;
 }
 .table-component .table-search-block {
-  flex-basis: 100%;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 .table-component .table-rows-block {
-  width: calc(100% - 46px);
-}
-.table-component .table-top > * {
-  margin-bottom: 4px;
+  width: min(100%, 220px);
 }
 @media screen and (min-width: 768px) {
   .table-component .table-top {
     flex-flow: row nowrap;
-  }
-  .table-component .table-top > * + * {
-    margin-left: 4px;
-  }
-  .table-component .table-search-block {
-    flex-shrink: 1;
-  }
-  .table-component .table-rows-block {
-    width: 360px;
   }
 }
 .table-component .table-container {
@@ -62565,6 +62560,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   min-width: 100%;
 }
 @container table-component (max-width: 0) {
+  .table.responsive-fs {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-fs thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62601,6 +62599,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 360px) {
+  .table.responsive-xs {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-xs thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62637,6 +62638,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 576px) {
+  .table.responsive-sm {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-sm thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62673,6 +62677,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 640px) {
+  .table.responsive-ld {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-ld thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62709,6 +62716,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 768px) {
+  .table.responsive-md {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-md thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62745,6 +62755,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 992px) {
+  .table.responsive-lg {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-lg thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62781,6 +62794,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 1200px) {
+  .table.responsive-xl {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-xl thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62817,6 +62833,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 1400px) {
+  .table.responsive-xxl {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-xxl thead {
     border: none;
     clip: rect(0 0 0 0);
@@ -62853,6 +62872,9 @@ html.metro-touch-device .streamer .stream.focused .stream-icon {
   }
 }
 @container table-component (max-width: 2000px) {
+  .table.responsive-xxxl {
+    --table-body-font-size: 12px;
+  }
   .table.responsive-xxxl thead {
     border: none;
     clip: rect(0 0 0 0);
