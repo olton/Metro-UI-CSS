@@ -37,6 +37,7 @@ import "./countdown/index.js";
 import "./counter/index.js";
 import "./cube/index.js";
 import "./d-menu/index.js";
+import "./dataset/index.js";
 import "./datepicker/index.js";
 import "./dialog/index.js";
 import "./donut/index.js";

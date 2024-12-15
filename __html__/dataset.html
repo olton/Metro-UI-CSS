@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="../lib/metro.css" rel="stylesheet">
+
+    <title>Test Dataset - Metro UI :: Popular HTML, CSS and JS library</title>
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body class="cloak">
+<nav data-role="appbar">
+    <span class="app-bar-item">Any</span>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher"/>
+    </div>
+    <div class="app-bar-item-static no-hover">
+        <input type="checkbox" data-role="theme-switcher" data-mode="button"/>
+    </div>
+</nav>
+
+<h1>Dataset test page</h1>
+<div data-role="dataset" 
+     data-offset-key="skip"
+     data-data-key="products"
+     data-fields="id, title, price, discountPercentage"
+     data-cls-pagination="mt-4 d-flex flex-justify-center"
+     data-captions="ID, Title, Price, Discount"
+     data-url='https://dummyjson.com/products'
+></div>
+
+<script src="../lib/metro.js"></script>
+<script>
+    console.log(Metro.events)
+</script>
+</body>
+</html>
