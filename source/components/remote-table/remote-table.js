@@ -1,7 +1,7 @@
 (function(Metro, $) {
     'use strict';
     
-    var DatasetDefaultConfig = {
+    var RemoteTableDefaultConfig = {
         caption: "",
         url: "",
         searchUrl: "",
@@ -25,20 +25,20 @@
         onLoad: f => f,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,
-        onDatasetCreate: Metro.noop
+        onTableCreate: Metro.noop
     };
 
-    Metro.datasetSetup = function (options) {
-        DatasetDefaultConfig = $.extend({}, DatasetDefaultConfig, options);
+    Metro.remoteTableSetup = function (options) {
+        RemoteTableDefaultConfig = $.extend({}, RemoteTableDefaultConfig, options);
     };
 
-    if (typeof window["metroDatasetSetup"] !== undefined) {
-        Metro.datasetSetup(window["metroDatasetSetup"]);
+    if (typeof window["metroRemoteTableSetup"] !== undefined) {
+        Metro.remoteTableSetup(window["metroRemoteTableSetup"]);
     }
 
-    Metro.Component('dataset', {
+    Metro.Component('remote-table', {
         init: function( options, elem ) {
-            this._super(elem, options, DatasetDefaultConfig, {
+            this._super(elem, options, RemoteTableDefaultConfig, {
                 // define instance vars here
                 data: null,
                 total: 0,

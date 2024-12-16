@@ -57473,50 +57473,7 @@ form,
   width: auto;
   min-width: 100%;
 }
-@container table-component (max-width: 0) {
-  .table.responsive-fs {
-    --table-body-font-size: 12px;
-    border: none;
-  }
-  .table.responsive-fs caption {
-    margin-bottom: 6px;
-  }
-  .table.responsive-fs thead {
-    border: none;
-    clip: rect(0 0 0 0);
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    padding: 0;
-    position: absolute;
-    width: 1px;
-  }
-  .table.responsive-fs tbody {
-    display: flex;
-    flex-flow: column;
-    gap: 6px;
-  }
-  .table.responsive-fs tr {
-    border: 3px solid #ddd;
-    display: block;
-    border-radius: var(--table-border-radius);
-  }
-  .table.responsive-fs td {
-    border-bottom: 1px solid #ddd;
-    display: block;
-    text-align: right;
-    width: 100%;
-    font-size: 14px;
-  }
-  .table.responsive-fs td::before {
-    content: attr(data-label);
-    float: left;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 12px;
-  }
-}
-@container table-component (max-width: 360px) {
+@container table-component (max-width: 359px) {
   .table.responsive-xs {
     --table-body-font-size: 12px;
     border: none;
@@ -57559,7 +57516,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 576px) {
+@container table-component (max-width: 575px) {
   .table.responsive-sm {
     --table-body-font-size: 12px;
     border: none;
@@ -57602,7 +57559,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 640px) {
+@container table-component (max-width: 639px) {
   .table.responsive-ld {
     --table-body-font-size: 12px;
     border: none;
@@ -57645,7 +57602,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 768px) {
+@container table-component (max-width: 767px) {
   .table.responsive-md {
     --table-body-font-size: 12px;
     border: none;
@@ -57688,7 +57645,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 992px) {
+@container table-component (max-width: 991px) {
   .table.responsive-lg {
     --table-body-font-size: 12px;
     border: none;
@@ -57731,7 +57688,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 1200px) {
+@container table-component (max-width: 1199px) {
   .table.responsive-xl {
     --table-body-font-size: 12px;
     border: none;
@@ -57774,7 +57731,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 1400px) {
+@container table-component (max-width: 1399px) {
   .table.responsive-xxl {
     --table-body-font-size: 12px;
     border: none;
@@ -57817,7 +57774,7 @@ form,
     font-size: 12px;
   }
 }
-@container table-component (max-width: 2000px) {
+@container table-component (max-width: 1999px) {
   .table.responsive-xxxl {
     --table-body-font-size: 12px;
     border: none;
