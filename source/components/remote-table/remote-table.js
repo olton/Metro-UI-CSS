@@ -49,11 +49,13 @@
         _create: function(){
             var that = this, element = this.element, o = this.options;
 
-            this.limit = o.limit
             this.offset = o.offset
             this.fields = o.fields.toArray(",")
             this.captions = o.captions ? o.captions.toArray(",") : null
             this.rowSteps = o.rowsSteps.toArray(",")
+            this.limit = +o.rows
+            this.url = o.url
+            this.search = ""
             
             this._createStructure();
             this._createEvents();
@@ -65,10 +67,15 @@
 
         _loadData: async function (){
             const o = this.options
-            if (!o.url) {
-                return ;
+            if (!this.url) {
+                return
             }
-            const url = o.url + "?" + o.limitKey + "=" + this.limit + "&" + o.offsetKey + "=" + this.offset;
+            let url
+            if (this.search) {
+                url = this.url + "?" + o.searchKey + "=" + this.element.find("input[name=search]").val().trim() + "&" + o.limitKey + "=" + this.limit + "&" + o.offsetKey + "=" + this.offset;
+            } else {
+                url = this.url + "?" + o.limitKey + "=" + this.limit + "&" + o.offsetKey + "=" + this.offset;
+            }
             const response = await fetch(url, {
                 method: o.method
             })
@@ -89,14 +96,14 @@
             entries.html(`
                 <div class="search-block row">
                     <div class="cell-sm-8">
-                        <input type="text" data-role="input" 
+                        <input name="search" type="text" data-role="input" 
                             data-prepend="${this.strings.label_search}" 
                             data-search-button="true" 
                             />
                     </div>
                     <div class="cell-sm-4">
-                        <select data-role="select" data-prepend="${this.strings.label_rows_count}" data-filter="false">
-                            ${this.rowSteps.map(step => `<option value="${step}">${step}</option>`).join("")}
+                        <select name="rows-count" data-role="select" data-prepend="${this.strings.label_rows_count}" data-filter="false">
+                            ${this.rowSteps.map(step => `<option value="${step}" ${+step === this.rowsCount ? 'selected' : ''}>${step}</option>`).join("")}
                         </select>
                     </div>
                 </div>
@@ -116,6 +123,7 @@
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
+            
             element.on("click", ".page-link", function(){
                 const parent = $(this).parent()
                 if (parent.hasClass("service")) {
@@ -131,6 +139,30 @@
                     return
                 }
                 that.offset = $(this).data("page") * that.limit - that.limit;
+                that._loadData().then(() => {})
+            })
+            
+            const searchFn = Hooks.useDebounce(() => {
+                const val = element.find("input[name=search]").val().trim()
+                if (val === "") {
+                    this.search = ""
+                    this.url = o.url
+                    this._loadData().then(() => {})
+                    return
+                }
+                if (val.length < 3) {
+                    return
+                }
+                this.search = val
+                this.url = o.searchUrl
+                this._loadData().then(() => {})
+            }, 300)
+            
+            element.on(Metro.events.inputchange, "input[name=search]", searchFn)
+            
+            element.on("change", "select[name=rows-count]", function(){
+                that.limit = +$(this).val()
+                that.offset = 0
                 that._loadData().then(() => {})
             })
         },
