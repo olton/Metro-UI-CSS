@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link href="../lib/metro.css" rel="stylesheet">
 
-    <title>Test Dataset - Metro UI :: Popular HTML, CSS and JS library</title>
+    <title>Test Remote Table - Metro UI :: Popular HTML, CSS and JS library</title>
     <style>
         body {
             padding-top: 50px;
@@ -23,15 +23,22 @@
     </div>
 </nav>
 
-<h1>Dataset test page</h1>
-<div data-role="dataset" 
-     data-offset-key="skip"
-     data-data-key="products"
-     data-fields="id, title, price, discountPercentage"
-     data-cls-pagination="mt-4 d-flex flex-justify-center"
-     data-captions="ID, Title, Price, Discount"
-     data-url='https://dummyjson.com/products'
-></div>
+<div class="container-fluid">
+    <div class="container">
+        <h1>Remote Table Test</h1>
+        <div data-role="dataset"
+             data-caption="Products"
+             data-offset-key="skip"
+             data-data-key="products"
+             data-fields="id, title, price, discountPercentage"
+             data-cls-table="table-border striped row-hover responsive-sm"
+             data-cls-pagination="mt-4 d-flex flex-justify-center"
+             data-captions="ID, Title, Price, Discount"
+             data-url='https://dummyjson.com/products'
+        ></div>
+        
+    </div>
+</div>
 
 <script src="../lib/metro.js"></script>
 <script>

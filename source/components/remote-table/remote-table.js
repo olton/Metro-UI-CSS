@@ -12,9 +12,12 @@
         captions: null,
         limitKey: "limit",
         offsetKey: "offset",
-        searchKey: "search",
+        searchKey: "query",
         totalKey: "total",
         dataKey: "data",
+        shortPagination: false,
+        rows: 10,
+        rowsSteps: "10,25,50,100",
         
         clsTable: "",
         clsPagination: "",
@@ -48,8 +51,9 @@
 
             this.limit = o.limit
             this.offset = o.offset
-            this.fields = o.fields.split(",").map(f => f.trim()).filter(f => f !== "")
-            this.captions = o.captions ? o.captions.split(",").map(f => f.trim()).filter(f => f !== "") : null
+            this.fields = o.fields.toArray(",")
+            this.captions = o.captions ? o.captions.toArray(",") : null
+            this.rowSteps = o.rowsSteps.toArray(",")
             
             this._createStructure();
             this._createEvents();
@@ -79,10 +83,24 @@
             var that = this, element = this.element, o = this.options;
             let entries
             
-            element.append(entries = $("<div>").addClass("dataset-entries"))
+            element.addClass("table-component remote-table")
+            element.append(entries = $("<div>").addClass("table-entry"))
             
             entries.html(`
-                <table class="table striped ${o.clsTable}">
+                <div class="search-block row">
+                    <div class="cell-sm-8">
+                        <input type="text" data-role="input" 
+                            data-prepend="${this.strings.label_search}" 
+                            data-search-button="true" 
+                            />
+                    </div>
+                    <div class="cell-sm-4">
+                        <select data-role="select" data-prepend="${this.strings.label_rows_count}" data-filter="false">
+                            ${this.rowSteps.map(step => `<option value="${step}">${step}</option>`).join("")}
+                        </select>
+                    </div>
+                </div>
+                <table class="table ${o.clsTable}">
                     <caption>${o.caption}</caption>
                     <thead></thead>
                     <tbody></tbody>
@@ -92,7 +110,7 @@
             this.body = entries.find("tbody")
             
             element.append(
-                this.pagination = $("<div>").addClass("dataset-pagination").addClass(o.clsPagination)
+                this.pagination = $("<div>").addClass("table-pagination").addClass(o.clsPagination)
             )
         },
 
@@ -103,6 +121,9 @@
                 if (parent.hasClass("service")) {
                     if (parent.hasClass("prev-page")) {
                         that.offset -= that.limit;
+                        if (that.offset < 0) {
+                            that.offset = 0;
+                        } 
                     } else {
                         that.offset += that.limit;
                     }
@@ -121,13 +142,15 @@
                 return ;
             }
 
+            const usePagination = Metro.utils.isValue(this.data[o.totalKey])
+            
             this.entries = this.data[o.dataKey];
             this.total = this.data[o.totalKey];
 
             this.header.clear()
             this.body.clear()
             
-            const headerRow = $("<tr>").addClass("dataset-header").appendTo(this.header);
+            const headerRow = $("<tr>").addClass("table-header").appendTo(this.header);
             let hIndex = 0;
             for (let key of Object.keys(this.entries[0])) {
                 if (this.fields.length && !this.fields.includes(key)) {
@@ -139,25 +162,37 @@
             }
             
             this.entries.forEach((entry, index) => {
-                const row = $("<tr>").addClass("dataset-row");
+                const row = $("<tr>").addClass("table-row");
                 this.body.append(row);
                 Metro.utils.exec(o.onDrawRow, [row, entry, index], this);
+                let hIndex = 0;
                 for (let key in entry) {
                     if (this.fields.length && !this.fields.includes(key)) {
                         continue;
                     }
-                    const cell = $("<td>").addClass("dataset-cell").html(entry[key]);
+                    const cell = $("<td>").attr("data-label", this.captions ? this.captions[hIndex] : key).addClass("table-cell").html(entry[key]);
                     row.append(cell);
                     Metro.utils.exec(o.onDrawCell, [cell, entry[key], key, entry, index], this);
+                    hIndex++
                 }
             });
             
-            Metro.pagination({
-                length: this.total,
-                rows: this.limit,
-                current: this.offset === 0 ? 1 : Math.round(this.offset / this.limit) + 1,
-                target: this.pagination,
-            })
+            if (usePagination && !o.shortPagination) {
+                Metro.pagination({
+                    length: this.total,
+                    rows: this.limit,
+                    current: this.offset === 0 ? 1 : Math.round(this.offset / this.limit) + 1,
+                    target: this.pagination,
+                })
+            } else {
+                this.pagination.html(`
+                    <div class="short-pagination">
+                        <div class="button service prev-page"><a href="javascript:void(0)" class="page-link">${this.strings.label_prev}</a></div>
+                        <div class="button service next-page"><a href="javascript:void(0)" class="page-link">${this.strings.label_next}</a></div>
+                    </div>
+                `)
+            }
+            
         },
         
         changeAttribute: function(attr, newValue){

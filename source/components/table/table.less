@@ -7,6 +7,7 @@
     --table-caption-font-size: 16px;
     --table-footer-font-size: 14px;
     --table-body-font-size: 16px;
+    --table-border-radius: 6px;
 
     --table-border-color: #e8e8e8;
     --table-color: #191919;
@@ -58,7 +59,7 @@
         font-size: var(--table-caption-font-size);
         font-weight: bold;
         padding: 10px 20px;
-        border-bottom: 1px solid var(--table-border-color);
+        border: 1px solid var(--table-border-color);
     }
     
     thead :is(th, td) {
@@ -557,7 +558,10 @@ each(@media-rules, {
     @container table-component (max-width: @value) {
         .table.responsive-@{key} {
             --table-body-font-size: 12px;
-            
+            border: none;
+            caption {
+                margin-bottom: 6px;
+            }
             thead {
                 border: none;
                 clip: rect(0 0 0 0);
@@ -571,10 +575,12 @@ each(@media-rules, {
             tbody {
                 display: flex;
                 flex-flow: column;
+                gap: 6px;
             }
             tr {
-                border-bottom: 3px solid #ddd;
+                border: 3px solid #ddd;
                 display: block;
+                border-radius: var(--table-border-radius);
             }
 
             td {
@@ -582,17 +588,15 @@ each(@media-rules, {
                 display: block;
                 text-align: right;
                 width: 100%;
+                font-size: 14px;
                 
                 &::before {
                     content: attr(data-label);
                     float: left;
                     font-weight: bold;
                     text-transform: uppercase;
+                    font-size: 12px;
                 }
-            }
-
-            tr:last-child, td:last-child {
-                border-bottom: 0!important;
             }
         }
     }
