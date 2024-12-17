@@ -99,6 +99,7 @@
         label_user_colors: "User Colors",
         label_tiles: "Tiles",
         label_list: "List",
+        label_load_more: "Load more",
 
         label_on: "on",
         label_off: "off",

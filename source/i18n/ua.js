@@ -99,6 +99,7 @@
         label_user_colors: "Кольори користувача",
         label_tiles: "Плитка",
         label_list: "Список",
+        label_load_more: "Показати ще",
 
         label_on: "увм",
         label_off: "вим",

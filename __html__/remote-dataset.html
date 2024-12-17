@@ -50,6 +50,14 @@
             border-radius: 2px;
             display: inline-flex;
         }
+        
+        .product-qrcode {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            width: 64px;
+            height: 64px;
+        }
     </style>
 </head>
 <body class="cloak">
@@ -88,13 +96,17 @@
     function datasetTemplate(data) {
         return data ? `
         <div class="card p-4 h-100">
+            <div class="product-qrcode d-none"><img src="${data.meta.qrCode}" alt="qrcode"/></div>
             <div class="product-image"><img src="${data.thumbnail}" alt="${data.title}"/></div>
             <div class="product-title">${data.title}</div>
-            <div class="product-brand alert">${data.brand}</div>
+            <div>
+                <span class="product-brand bg-sand">${data.brand}</span>
+                ${data.tags.map(sel => `<span class="mr-1 product-brand bg-light-sand">${sel}</span>`).join('')}
+            </div>
             <div><span class="product-desc">${data.description}</span></div>
             <div class="row mt-auto">
                 <div class="cell-6">
-                    <div class="product-price">Price: ${data.price}</div>
+                    <div class="product-price"><span class="">$${data.price}</span></div>
                 </div>
                 <div class="cell-6">
                     <div class="product-rating">

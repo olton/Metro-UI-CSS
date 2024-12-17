@@ -75,7 +75,7 @@
             this._fireEvent('dataset-create');
         },
 
-        _loadData: async function (){
+        _loadData: async function (append = false){
             const o = this.options
             if (!this.url) { return }
             let url = this.url + "?" + o.limitKey + "=" + this.limit + "&" + o.offsetKey + "=" + this.offset
@@ -84,7 +84,7 @@
             const response = await fetch(url, { method: o.method })
             if (response.ok === false) { return ; }
             this.data = Metro.utils.exec(o.onLoad, [await response.json()], this);
-            this._createEntries()
+            this._createEntries(append)
         },
 
         _createStructure: function(){
@@ -96,18 +96,13 @@
 
             entries.html(`
                 <div class="search-block row">
-                    <div class="cell-sm-8">
+                    <div class="cell-sm-10">
                         <input name="search" type="text" data-role="input" 
                             data-prepend="${this.strings.label_search}" 
                             data-search-button="true" 
                             />
                     </div>
-                    <div class="cell-sm-2">
-                        <div data-role="button-group" class="dataset-actions">
-                            <button class="button square active" title="${this.strings.label_tiles}"><span class="icon">▣</span></button>
-                            <button class="button square" title="${this.strings.label_list}"><span class="icon">▤</span></button>
-                        </div>
-                    </div>
+                   
                     <div class="cell-sm-2">
                         <select name="rows-count" data-role="select" data-prepend="${this.strings.label_rows_count}" data-filter="false">
                             ${this.rowSteps.map(step => `<option value="${step}" ${+step === this.rowsCount ? 'selected' : ''}>${step}</option>`).join("")}
@@ -120,8 +115,16 @@
             `)
             this.body = entries.find(".dataset-body").addClass(o.clsBody)
 
+            this.loadMore = $("<div>").addClass("dataset-load-more")
+            this.loadMore.html(`
+                <button class="button large cycle link load-more-button">
+                    <span class="icon">⟳</span>
+                    ${this.strings.label_load_more}
+                </button>
+            `).appendTo(element)
+            
             element.append(
-                this.pagination = $("<div>").addClass("dataset-pagination").addClass(o.clsPagination)
+                this.pagination = $("<div>").addClass("dataset-pagination")
             )
         },
 
@@ -169,9 +172,14 @@
                 that.offset = 0
                 that._loadData().then(() => {})
             })
+            
+            element.on("click", ".load-more-button", function(){
+                that.offset += that.limit
+                that._loadData(true).then(() => {})
+            })
         },
 
-        _createEntries: function (){
+        _createEntries: function (append = false){
             var that = this, element = this.element, o = this.options;
 
             if (!this.data) {
@@ -183,7 +191,7 @@
             this.entries = this.data[o.dataKey];
             this.total = this.data[o.totalKey];
 
-            this.body.clear()
+            if (append === false) this.body.clear()
             
             this.entries.forEach((entry, index) => {
                 const item = $("<div>").addClass("dataset-item").addClass(o.clsItem).addClass(index % 2 === 0 ? "even" : "odd")

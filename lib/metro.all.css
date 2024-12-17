@@ -56704,6 +56704,18 @@ form,
   flex-flow: row nowrap;
   justify-content: center;
 }
+.remote-dataset .dataset-load-more {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+.remote-dataset .dataset-load-more .button {
+  text-decoration: none !important;
+}
+.remote-dataset .dataset-load-more .icon {
+  font-size: 64px;
+}
 
 /* source/components/table/table.less */
 :root {
