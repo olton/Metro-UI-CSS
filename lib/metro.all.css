@@ -56691,6 +56691,20 @@ form,
   color: #f8f8f8 !important;
 }
 
+/* source/components/remote-dataset/remote-dataset.less */
+:root {
+  --remote-dataset-gap: 10px;
+}
+.remote-dataset .dataset-body {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+.remote-dataset .dataset-actions {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+
 /* source/components/table/table.less */
 :root {
   --table-inspector-border-radius: 10px;
@@ -67578,6 +67592,9 @@ body.vegas-container > .vegas-slide {
 }
 .mif-10x {
   font-size: 5.5em;
+}
+.mif-panda:before {
+  content: "\1f43c";
 }
 
 /* source/icons/icons.less */

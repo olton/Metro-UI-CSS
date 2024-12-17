@@ -97,6 +97,8 @@
         label_enter_page: "Enter page...",
         label_empty: "Nothing to show",
         label_user_colors: "User Colors",
+        label_tiles: "Tiles",
+        label_list: "List",
 
         label_on: "on",
         label_off: "off",

@@ -1,7 +1,7 @@
 (function(Metro, $) {
     'use strict';
-    
-    var RemoteTableDefaultConfig = {
+
+    var RemoteDatasetDefaultConfig = {
         caption: "",
         url: "",
         searchUrl: "",
@@ -22,27 +22,30 @@
         shortPagination: false,
         rows: 10,
         rowsSteps: "10,25,50,100",
-        
-        clsTable: "",
+
+        template: "",
+
+        clsBody: "",
+        clsItem: "",
         clsPagination: "",
         
         onLoad: f => f,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,
-        onTableCreate: Metro.noop
+        onDatasetCreate: Metro.noop
     };
 
-    Metro.remoteTableSetup = function (options) {
-        RemoteTableDefaultConfig = $.extend({}, RemoteTableDefaultConfig, options);
+    Metro.remoteDatasetSetup = function (options) {
+        RemoteDatasetDefaultConfig = $.extend({}, RemoteDatasetDefaultConfig, options);
     };
 
-    if (typeof window["metroRemoteTableSetup"] !== undefined) {
-        Metro.remoteTableSetup(window["metroRemoteTableSetup"]);
+    if (typeof window["metroRemoteDatasetSetup"] !== undefined) {
+        Metro.remoteDatasetSetup(window["metroRemoteDatasetSetup"]);
     }
 
-    Metro.Component('remote-table', {
+    Metro.Component('remote-dataset', {
         init: function( options, elem ) {
-            this._super(elem, options, RemoteTableDefaultConfig, {
+            this._super(elem, options, RemoteDatasetDefaultConfig, {
                 // define instance vars here
                 data: null,
                 total: 0,
@@ -51,7 +54,7 @@
         },
 
         _create: function(){
-            var o = this.options;
+            var that = this, element = this.element, o = this.options;
 
             this.offset = o.offset
             this.fields = o.fields.toArray(",")
@@ -62,13 +65,14 @@
             this.search = ""
             this.sortField = o.sort
             this.sortOrder = o.sortOrder
-            
+            this.template = Metro.utils.exec(o.template)
+
             this._createStructure();
             this._createEvents();
-            
+
             this._loadData().then(() => {});
 
-            this._fireEvent('table-create');
+            this._fireEvent('dataset-create');
         },
 
         _loadData: async function (){
@@ -82,14 +86,14 @@
             this.data = Metro.utils.exec(o.onLoad, [await response.json()], this);
             this._createEntries()
         },
-        
+
         _createStructure: function(){
             var that = this, element = this.element, o = this.options;
             let entries
-            
-            element.addClass("table-component remote-table")
-            element.append(entries = $("<div>").addClass("table-entry"))
-            
+
+            element.addClass("remote-dataset")
+            element.append(entries = $("<div>").addClass("dataset-entry"))
+
             entries.html(`
                 <div class="search-block row">
                     <div class="cell-sm-8">
@@ -98,29 +102,32 @@
                             data-search-button="true" 
                             />
                     </div>
-                    <div class="cell-sm-4">
+                    <div class="cell-sm-2">
+                        <div data-role="button-group" class="dataset-actions">
+                            <button class="button square active" title="${this.strings.label_tiles}"><span class="icon">▣</span></button>
+                            <button class="button square" title="${this.strings.label_list}"><span class="icon">▤</span></button>
+                        </div>
+                    </div>
+                    <div class="cell-sm-2">
                         <select name="rows-count" data-role="select" data-prepend="${this.strings.label_rows_count}" data-filter="false">
                             ${this.rowSteps.map(step => `<option value="${step}" ${+step === this.rowsCount ? 'selected' : ''}>${step}</option>`).join("")}
                         </select>
                     </div>
                 </div>
-                <table class="table ${o.clsTable}">
-                    <caption>${o.caption}</caption>
-                    <thead></thead>
-                    <tbody></tbody>
-                </table>
+                <div class="dataset-body">
+                    ...
+                </div>
             `)
-            this.header = entries.find("thead")
-            this.body = entries.find("tbody")
-            
+            this.body = entries.find(".dataset-body").addClass(o.clsBody)
+
             element.append(
-                this.pagination = $("<div>").addClass("table-pagination")
+                this.pagination = $("<div>").addClass("dataset-pagination").addClass(o.clsPagination)
             )
         },
 
         _createEvents: function(){
             var that = this, element = this.element, o = this.options;
-            
+
             element.on("click", ".page-link", function(){
                 const parent = $(this).parent()
                 if (parent.hasClass("service")) {
@@ -128,7 +135,7 @@
                         that.offset -= that.limit;
                         if (that.offset < 0) {
                             that.offset = 0;
-                        } 
+                        }
                     } else {
                         that.offset += that.limit;
                     }
@@ -138,7 +145,7 @@
                 that.offset = $(this).data("page") * that.limit - that.limit;
                 that._loadData().then(() => {})
             })
-            
+
             const searchFn = Hooks.useDebounce(() => {
                 const val = element.find("input[name=search]").val().trim()
                 if (val === "") {
@@ -154,9 +161,9 @@
                 this.url = o.searchUrl
                 this._loadData().then(() => {})
             }, 300)
-            
+
             element.on(Metro.events.inputchange, "input[name=search]", searchFn)
-            
+
             element.on("change", "select[name=rows-count]", function(){
                 that.limit = +$(this).val()
                 that.offset = 0
@@ -166,53 +173,31 @@
 
         _createEntries: function (){
             var that = this, element = this.element, o = this.options;
-            
+
             if (!this.data) {
                 return ;
             }
 
             const usePagination = Metro.utils.isValue(this.data[o.totalKey])
-            
+
             this.entries = this.data[o.dataKey];
             this.total = this.data[o.totalKey];
 
-            this.header.clear()
             this.body.clear()
             
-            const headerRow = $("<tr>").addClass("table-header").appendTo(this.header);
-            let hIndex = 0;
-            for (let key of Object.keys(this.entries[0])) {
-                if (this.fields.length && !this.fields.includes(key)) {
-                    continue;
-                }
-                const cell = $("<th>").html(this.captions ? this.captions[hIndex] : key);
-                cell.appendTo(headerRow);
-                hIndex++
-            }
-            
             this.entries.forEach((entry, index) => {
-                const row = $("<tr>").addClass("table-row");
-                this.body.append(row);
-                Metro.utils.exec(o.onDrawRow, [row, entry, index], this);
-                let hIndex = 0;
-                for (let key in entry) {
-                    if (this.fields.length && !this.fields.includes(key)) {
-                        continue;
-                    }
-                    const cell = $("<td>").attr("data-label", this.captions ? this.captions[hIndex] : key).addClass("table-cell").html(entry[key]);
-                    row.append(cell);
-                    Metro.utils.exec(o.onDrawCell, [cell, entry[key], key, entry, index], this);
-                    hIndex++
-                }
+                const item = $("<div>").addClass("dataset-item").addClass(o.clsItem).addClass(index % 2 === 0 ? "even" : "odd")
+                const html = Metro.utils.exec(o.template, [entry], entry)
+                item.html(html).appendTo(that.body)
             });
-            
+
             if (usePagination && !o.shortPagination) {
                 Metro.pagination({
                     length: this.total,
                     rows: this.limit,
                     current: this.offset === 0 ? 1 : Math.round(this.offset / this.limit) + 1,
                     target: this.pagination,
-                    clsPagination: o.clsPagination,
+                    clsPagination: o.clsPagination
                 })
             } else {
                 this.pagination.html(`
@@ -222,9 +207,8 @@
                     </div>
                 `)
             }
-            
         },
-        
+
         changeAttribute: function(attr, newValue){
         },
 

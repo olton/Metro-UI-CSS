@@ -50,6 +50,9 @@
 .mif-10x {
   font-size: 5.5em;
 }
+.mif-panda:before {
+  content: "\1f43c";
+}
 
 /* source/icons/icons.less */
 .mif-maintenance:before {

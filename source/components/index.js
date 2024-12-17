@@ -94,6 +94,7 @@ import "./progress/index.js";
 import "./radio/index.js";
 import "./rating/index.js";
 import "./remark/index.js";
+import "./remote-dataset/index.js";
 import "./remote-table/index.js";
 import "./resizable/index.js";
 import "./resizer/index.js";
