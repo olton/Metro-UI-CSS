@@ -8,13 +8,15 @@
             current: 0,
             target: "body",
             clsPagination: "",
-            prevTitle: "Prev",
-            nextTitle: "Next",
+            prevTitle: "",
+            nextTitle: "",
             distance: 5,
             islandSize: 3,
             shortTrack: 10,
         }, conf;
 
+        var strings = Metro.locales[$("html").attr("lang") || "en"];
+        
         var i, prev, next;
 
         conf = $.extend( {}, defConf, c);
@@ -48,7 +50,7 @@
             return li;
         };
 
-        prev = add_item(conf.prevTitle, "service prev-page", "prev");
+        prev = add_item(conf.prevTitle || strings.label_prev, "service prev-page", "prev");
         pagination.append(prev);
 
         pagination.append(add_item(1, current === 1 ? "active" : "", 1));
@@ -93,7 +95,7 @@
 
         if (totalPages > 1 || current < totalPages) pagination.append(add_item(totalPages, current === totalPages ? "active" : "", totalPages));
 
-        next = add_item(conf.nextTitle, "service next-page", "next");
+        next = add_item(conf.nextTitle || strings.label_next, "service next-page", "next");
         pagination.append(next);
 
         if (current === 1) {

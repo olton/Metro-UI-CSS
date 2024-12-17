@@ -153,9 +153,7 @@ import {Props} from "./props.js";
             }
 
             if (isTouch === true) {
-                html.addClass("metro-touch-device");
-            } else {
-                html.addClass("metro-no-touch-device");
+                html.addClass("touchable-device");
             }
 
             Metro.sheet = Metro.utils.newCssSheet();
