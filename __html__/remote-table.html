@@ -26,17 +26,22 @@
         <div data-role="remote-table"
              data-caption="Products"
              data-offset-key="skip"
+             data-search-key="q"
+             data-limit-key="limit"
              data-data-key="products"
+             data-total-key="total"
+             data-sort-key="sortBy"
+             data-order-key="order"
              data-fields="id, title, price, discountPercentage"
              data-sortable-fields="id, title, price, discountPercentage"
              data-col-size="30,,150,150"
-             data-cls-table="table-border striped row-hover responsive-sm"
-             data-cls-pagination="mt-4 d-flex flex-justify-center"
-             data-captions="ID, Title, Price, Discount"
+             data-captions="ID, Title, Price, Discount Price"
+             data-sort="id"
              data-url='https://dummyjson.com/products'
              data-search-url='https://dummyjson.com/products/search'
-             data-search-key="q"
              data-on-draw-cell="drawCell"
+             data-cls-table="table-border striped row-hover responsive-sm"
+             data-cls-pagination="mt-4 d-flex flex-justify-center"
         ></div>
         
     </div>
@@ -45,9 +50,11 @@
 <script src="../lib/metro.js"></script>
 <script>
     function drawCell(cell, value, name, record, index){
-        console.log(arguments)
         if (name === 'price') {
             cell.innerHTML = ( `<span class="${value > 100 ? "fg-red" : ""}">$${value}</span>` )
+        }
+        if (name === 'discountPercentage') {
+            cell.innerHTML = ( `${value}%` )
         }
     }
 </script>

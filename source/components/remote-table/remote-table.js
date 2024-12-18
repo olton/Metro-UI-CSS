@@ -1,7 +1,7 @@
 (function(Metro, $) {
     'use strict';
     
-    var RemoteTableDefaultConfig = {
+    let RemoteTableDefaultConfig = {
         caption: "",
         url: "",
         searchUrl: "",
@@ -31,6 +31,7 @@
         onLoad: f => f,
         onDrawRow: Metro.noop,
         onDrawCell: Metro.noop,
+        onDrawHeadCell: Metro.noop,
         onTableCreate: Metro.noop
     };
 
@@ -53,7 +54,7 @@
         },
 
         _create: function(){
-            var o = this.options;
+            const o = this.options;
 
             this.offset = o.offset
             this.fields = o.fields.toArray(",")
@@ -87,7 +88,7 @@
         },
         
         _createStructure: function(){
-            var that = this, element = this.element, o = this.options;
+            const element = this.element, o = this.options;
             let entries
             
             element.addClass("table-component remote-table")
@@ -122,7 +123,7 @@
         },
 
         _createEvents: function(){
-            var that = this, element = this.element, o = this.options;
+            const that = this, element = this.element, o = this.options;
             
             element.on("click", ".page-link", function(){
                 const parent = $(this).parent()
@@ -179,7 +180,7 @@
         },
 
         _createEntries: function (){
-            var that = this, element = this.element, o = this.options;
+            const o = this.options;
             
             if (!this.data) {
                 return ;
@@ -199,7 +200,8 @@
                 if (this.fields.length && !this.fields.includes(key)) {
                     continue;
                 }
-                const cell = $("<th>").html(this.captions ? this.captions[hIndex] : key).attr("data-field", key);
+                const cellData = this.captions ? this.captions[hIndex] : key
+                const cell = $("<th>").html(cellData).attr("data-field", key);
                 if (o.sortableFields && o.sortableFields.includes(key)) {
                     cell.addClass("sortable-column")
                     if (this.sortField === key) {
@@ -210,6 +212,7 @@
                 if (this.colSize[hIndex]) {
                     cell.css("width", this.colSize[hIndex])
                 }
+                Metro.utils.exec(o.onDrawHeadCell, [cell[0], cellData, key, hIndex, o.sortableFields.includes(key), this.sortField === key, this.sortOrder], this);
                 hIndex++
             }
             
