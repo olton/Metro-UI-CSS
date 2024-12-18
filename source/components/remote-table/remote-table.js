@@ -10,6 +10,7 @@
         offset: 0,
         fields: "",
         sortableFields: "",
+        colSize: "",
         sort: "",
         sortOrder: "asc",
         captions: null,
@@ -58,6 +59,7 @@
             this.fields = o.fields.toArray(",")
             this.captions = o.captions ? o.captions.toArray(",") : null
             this.rowSteps = o.rowsSteps.toArray(",")
+            this.colSize = o.colSize.toArray(",")
             this.limit = +o.rows
             this.url = o.url
             this.search = ""
@@ -204,7 +206,10 @@
                         cell.addClass(`sort-${this.sortOrder}`)
                     }
                 }
-                cell.appendTo(headerRow);
+                cell.appendTo(headerRow).addClass(`head-cell-${key}`);
+                if (this.colSize[hIndex]) {
+                    cell.css("width", this.colSize[hIndex])
+                }
                 hIndex++
             }
             
@@ -217,9 +222,12 @@
                     if (this.fields.length && !this.fields.includes(key)) {
                         continue;
                     }
-                    const cell = $("<td>").attr("data-label", this.captions ? this.captions[hIndex] : key).addClass("table-cell").html(entry[key]);
+                    const cell = $("<td>").attr("data-label", this.captions ? this.captions[hIndex] : key)
+                        .addClass(`data-cell-${key}`)
+                        .html(entry[key]);
+                    
                     row.append(cell);
-                    Metro.utils.exec(o.onDrawCell, [cell, entry[key], key, entry, index], this);
+                    Metro.utils.exec(o.onDrawCell, [cell[0], entry[key], key, entry, index], this);
                     hIndex++
                 }
             });

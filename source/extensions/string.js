@@ -3,12 +3,10 @@
 (function() {
     'use strict';
 
-    String.prototype.toArray = function(delimiter, type, format, locale){
+    String.prototype.toArray = function(delimiter = ",", type = "string", format, locale){
         var str = this;
         var a;
 
-        type = type || "string";
-        delimiter = delimiter || ",";
         format = format === undefined || format === null ? false : format;
 
         a = (""+str).split(delimiter);
