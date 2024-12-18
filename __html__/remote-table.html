@@ -6,22 +6,8 @@
     <link href="../lib/metro.css" rel="stylesheet">
 
     <title>Test Remote Table - Metro UI :: Popular HTML, CSS and JS library</title>
-    <style>
-        body {
-            padding-top: 50px;
-        }
-    </style>
 </head>
 <body class="cloak">
-<nav data-role="appbar">
-    <span class="app-bar-item">Any</span>
-    <div class="app-bar-item-static no-hover">
-        <input type="checkbox" data-role="theme-switcher"/>
-    </div>
-    <div class="app-bar-item-static no-hover">
-        <input type="checkbox" data-role="theme-switcher" data-mode="button"/>
-    </div>
-</nav>
 
 <div class="container-fluid">
     <div class="container">
@@ -31,6 +17,7 @@
              data-offset-key="skip"
              data-data-key="products"
              data-fields="id, title, price, discountPercentage"
+             data-sortable-fields="id, title, price, discountPercentage"
              data-cls-table="table-border striped row-hover responsive-sm"
              data-cls-pagination="mt-4 d-flex flex-justify-center"
              data-captions="ID, Title, Price, Discount"

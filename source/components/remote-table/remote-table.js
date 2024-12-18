@@ -9,6 +9,7 @@
         limit: 10,
         offset: 0,
         fields: "",
+        sortableFields: "",
         sort: "",
         sortOrder: "asc",
         captions: null,
@@ -92,13 +93,13 @@
             
             entries.html(`
                 <div class="search-block row">
-                    <div class="cell-sm-8">
+                    <div class="cell-sm-10">
                         <input name="search" type="text" data-role="input" 
                             data-prepend="${this.strings.label_search}" 
                             data-search-button="true" 
                             />
                     </div>
-                    <div class="cell-sm-4">
+                    <div class="cell-sm-2">
                         <select name="rows-count" data-role="select" data-prepend="${this.strings.label_rows_count}" data-filter="false">
                             ${this.rowSteps.map(step => `<option value="${step}" ${+step === this.rowsCount ? 'selected' : ''}>${step}</option>`).join("")}
                         </select>
@@ -162,6 +163,17 @@
                 that.offset = 0
                 that._loadData().then(() => {})
             })
+            
+            element.on("click", ".sortable-column", function(){
+                const field = $(this).attr("data-field")
+                if (that.sortField === field) {
+                    that.sortOrder = that.sortOrder === "asc" ? "desc" : "asc"
+                } else {
+                    that.sortField = field
+                    that.sortOrder = "asc"
+                }
+                that._loadData().then(() => {})
+            })
         },
 
         _createEntries: function (){
@@ -185,7 +197,13 @@
                 if (this.fields.length && !this.fields.includes(key)) {
                     continue;
                 }
-                const cell = $("<th>").html(this.captions ? this.captions[hIndex] : key);
+                const cell = $("<th>").html(this.captions ? this.captions[hIndex] : key).attr("data-field", key);
+                if (o.sortableFields && o.sortableFields.includes(key)) {
+                    cell.addClass("sortable-column")
+                    if (this.sortField === key) {
+                        cell.addClass(`sort-${this.sortOrder}`)
+                    }
+                }
                 cell.appendTo(headerRow);
                 hIndex++
             }
